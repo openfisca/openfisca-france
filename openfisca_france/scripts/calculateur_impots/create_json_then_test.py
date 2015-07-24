@@ -52,7 +52,7 @@ def define_scenario(year, column_code):
     parent1 = {
         "activite": u'Actif occupé',
         "birth": 1970,
-        "sali": 24000,
+        "salaire_imposable": 24000,
         "statmarit": u'Célibataire',
         }
     enfants = [

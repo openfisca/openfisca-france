@@ -346,7 +346,7 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
         data['inactif'] = 0
         data.loc[(data['activite'].isin([3, 4, 5, 6])), 'inactif'] = 1
         data.loc[(data['activite'] == 1) & (data['choi'] == 0), 'inactif'] = 1
-        data.loc[(data['activite'] == 0) & (data['sali'] == 0), 'inactif'] = 1
+        data.loc[(data['activite'] == 0) & (data['salaire_imposable'] == 0), 'inactif'] = 1
         data['partiel1'] = 0
         data.loc[(data['nbh'] / 12 <= 77) & (data['nbh'] / 12 > 0), 'partiel1'] = 1
         data['partiel2'] = 0

@@ -38,7 +38,7 @@ def check_1_parent(year = 2013):
         axes = [
             dict(
                 count = 3,
-                name = 'sali',
+                name = 'salaire_imposable',
                 max = 100000,
                 min = 0,
                 ),
@@ -47,8 +47,8 @@ def check_1_parent(year = 2013):
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         ).new_simulation(debug = True)
     simulation.calculate('revdisp')
-    sali = simulation.get_holder('sali').new_test_case_array(simulation.period)
-    assert (sali - np.linspace(0, 100000, 3) == 0).all(), 'sali: {}'.format(sali)
+    salaire_imposable = simulation.get_holder('salaire_imposable').new_test_case_array(simulation.period)
+    assert (salaire_imposable - np.linspace(0, 100000, 3) == 0).all(), 'salaire_imposable: {}'.format(salaire_imposable)
 
 
 def test_1_parent():
@@ -61,7 +61,7 @@ def check_1_parent_2_enfants(year):
         axes = [
             dict(
                 count = 3,
-                name = 'sali',
+                name = 'salaire_imposable',
                 max = 24000,
                 min = 0,
                 ),
@@ -83,8 +83,8 @@ def check_1_parent_2_enfants(year):
                 ),
             ],
         ).new_simulation(debug = True)
-    sali = simulation.get_holder('sali').new_test_case_array(simulation.period)
-    assert (sali - np.linspace(0, 24000, 3) == 0).all(), 'sali: {}'.format(sali)
+    salaire_imposable = simulation.get_holder('salaire_imposable').new_test_case_array(simulation.period)
+    assert (salaire_imposable - np.linspace(0, 24000, 3) == 0).all(), 'salaire_imposable: {}'.format(salaire_imposable)
     simulation.calculate('revdisp')
 
 
@@ -98,7 +98,7 @@ def check_1_parent_2_enfants_1_column(column_name, year):
         axes = [
             dict(
                 count = 3,
-                name = 'sali',
+                name = 'salaire_imposable',
                 max = 24000,
                 min = 0,
                 ),

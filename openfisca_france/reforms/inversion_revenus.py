@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-import logging
+# import logging
 
 from openfisca_core import columns, formulas, reforms
 # from openfisca_core.taxscales import MarginalRateTaxScale
@@ -34,7 +34,7 @@ from scipy.optimize import fsolve
 from .. import entities
 
 
-log = logging.getLogger(__name__)
+# log = logging.getLogger(__name__)
 
 
 def brut_to_target(target_name = None, period = None, simulation = None, **input_array_by_name):
@@ -49,6 +49,13 @@ def build_reform(tax_benefit_system):
     Reform = reforms.make_reform(
         name = u'Inversion des revenus',
         reference = tax_benefit_system,
+        )
+
+    Reform.input_variable(
+        column = columns.FloatCol,
+        entity_class = entities.Individus,
+        label = u'Salaire imposable utilisé pour remonter au salaire brut',
+        name = 'salaire_imposable_pour_inversion',
         )
 
     @Reform.formula
@@ -68,8 +75,9 @@ def build_reform(tax_benefit_system):
     #        period = period.start.offset('first-of', 'month').period('month')
 
             # Get value for year and divide below.
-            sali = simulation.get_array('sali', period.start.offset('first-of', 'year').period('year'))
-            if sali is None:
+            salaire_imposable_pour_inversion = simulation.get_array('salaire_imposable_pour_inversion',
+                period.start.offset('first-of', 'year').period('year'))
+            if salaire_imposable_pour_inversion is None:
                 salaire_net = simulation.get_array('salaire_net', period)
                 if salaire_net is not None:
                     # Calcule le salaire brut à partir du salaire net par inversion numérique.
@@ -87,12 +95,13 @@ def build_reform(tax_benefit_system):
                             ) - salaire_net
                     return period, fsolve(solve_function, salaire_net)
 
-                sali = simulation.calculate_add_divide('sali', period)
+                salaire_imposable_pour_inversion = simulation.calculate_add_divide('salaire_imposable_pour_inversion',
+                    period)
 
             # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
-            if (sali == 0).all():
+            if (salaire_imposable_pour_inversion == 0).all():
                 # Quick path to avoid fsolve when using default value of input variables.
-                return period, sali
+                return period, salaire_imposable_pour_inversion
             simulation = self.holder.entity.simulation
 
             def solve_function(salaire_de_base):
@@ -101,9 +110,9 @@ def build_reform(tax_benefit_system):
                     period = period,
                     salaire_de_base = salaire_de_base,
                     simulation = simulation,
-                    ) - sali
+                    ) - salaire_imposable_pour_inversion
 
-            return period, fsolve(solve_function, sali)
+            return period, fsolve(solve_function, salaire_imposable_pour_inversion)
 
     #       TODO: inclure un taux de prime et calculer les primes en même temps que salaire_de_base
 
@@ -139,8 +148,8 @@ def build_reform(tax_benefit_system):
     #
     #        nca = noncadre.inverse()
     #        cad = cadre.inverse()
-    #        brut_nca = nca.calc(sali)
-    #        brut_cad = cad.calc(sali)
+    #        brut_nca = nca.calc(salaire_imposable_pour_inversion)
+    #        brut_cad = cad.calc(salaire_imposable_pour_inversion)
     #        salbrut = brut_nca * (type_sal == CAT['prive_non_cadre'])
     #        salbrut += brut_cad * (type_sal == CAT['prive_cadre'])
     #
@@ -168,8 +177,8 @@ def build_reform(tax_benefit_system):
     #        # supp_familial_traitement = 0  # TODO: dépend de salbrut
     #        # indemnite_residence = 0  # TODO: fix bug
     #
-    #        # print 'sali', sali
-    #        brut_etat = etat.calc(sali)
+    #        # print 'salaire_imposable_pour_inversion', salaire_imposable_pour_inversion
+    #        brut_etat = etat.calc(salaire_imposable_pour_inversion)
     #        # print 'brut_etat', brut_etat
     #        # print 'impot', public_etat.calc(brut_etat)
     #        # print 'brut_etat', brut_etat

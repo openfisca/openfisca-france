@@ -111,7 +111,7 @@ def check_sal(type_sal, year = 2014):
         **single_entity_kwargs).new_simulation(debug = True)
 
     inverse_simulation.get_holder('salaire_de_base').delete_arrays()
-    inverse_simulation.get_or_new_holder('sali').array = imposable.copy()
+    inverse_simulation.get_or_new_holder('salaire_imposable_pour_inversion').array = imposable.copy()
     inverse_simulation.get_or_new_holder('contrat_de_travail').array = brut < smic_mensuel  # temps plein ou partiel
     inverse_simulation.get_or_new_holder('heures_remunerees_volume').array = (
         (brut // smic_horaire) * (brut < smic_mensuel)

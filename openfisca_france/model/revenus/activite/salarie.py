@@ -37,16 +37,6 @@ build_column('revenus_stage_formation_pro', FloatCol(entity = 'ind', label = u"R
 build_column('bourse_recherche', FloatCol(entity = 'ind', label = u"Bourse de recherche"))
 
 
-build_column('sali', FloatCol(label = u"Revenus d'activité imposables",
-                val_type = "monetary",
-                cerfa_field = {QUIFOY['vous']: u"1AJ",
-                               QUIFOY['conj']: u"1BJ",
-                               QUIFOY['pac1']: u"1CJ",
-                               QUIFOY['pac2']: u"1DJ",
-                               QUIFOY['pac3']: u"1EJ",
-                               }))  # (f1aj, f1bj, f1cj, f1dj, f1ej)
-
-
 build_column('sal_pen_exo_etr', IntCol(
     entity = 'ind',
     label = u"Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif",

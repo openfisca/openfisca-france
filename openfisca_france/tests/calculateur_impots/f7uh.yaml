@@ -11,7 +11,7 @@
     f7uh: 1500
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     birth: '1970-01-01'
@@ -39,7 +39,7 @@
     f7uh: 1500
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     birth: '1970-01-01'
@@ -66,7 +66,7 @@
     f7uh: 1500
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     birth: '1970-01-01'
@@ -94,7 +94,7 @@
     f7uh: 1500
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     birth: '1970-01-01'
@@ -122,7 +122,7 @@
     f7uh: 1500
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     birth: '1970-01-01'
@@ -151,7 +151,7 @@
     f7uh: 1500
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     birth: '1970-01-01'
@@ -179,7 +179,7 @@
     f7uh: 1500
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     birth: '1970-01-01'
@@ -207,7 +207,7 @@
     f7uh: 1500
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     birth: '1970-01-01'
@@ -236,7 +236,7 @@
     f7uh: 1500
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     birth: '1970-01-01'

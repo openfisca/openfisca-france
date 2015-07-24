@@ -82,7 +82,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
     DISABLE_ACTIONS_WHEN_HIDDEN = False
     sig_option_changed = Signal(str, object)
     XAXIS_PROPERTIES = {
-        'sali': {
+        'salaire_imposable': {
             'name': 'salaire_imposable',
             'typ_tot': {
                 'salsuperbrut': 'Salaire super brut',
@@ -591,7 +591,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         axes = [
             dict(
                 count = self.nmen,
-                name = 'sali',
+                name = 'salaire_imposable',
                 max = self.maxrev,
                 min = 0,
                 ),

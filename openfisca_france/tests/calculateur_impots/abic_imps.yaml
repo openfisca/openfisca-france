@@ -10,7 +10,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     abic_imps: 1500
     activite: 0
     statmarit: 2
@@ -37,7 +37,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     abic_imps: 1500
     activite: 0
     statmarit: 2
@@ -65,7 +65,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     abic_imps: 1500
     activite: 0
     statmarit: 2
@@ -93,7 +93,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     abic_imps: 1500
     activite: 0
     statmarit: 2
@@ -121,7 +121,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     abic_imps: 0
     activite: 0
     statmarit: 2
@@ -149,7 +149,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     abic_imps: 0
     activite: 0
     statmarit: 2
@@ -177,7 +177,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     abic_imps: 0
     activite: 0
     statmarit: 2
@@ -205,7 +205,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     abic_imps: 0
     activite: 0
     statmarit: 2
@@ -233,7 +233,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     abic_imps: 0
     activite: 0
     statmarit: 2
@@ -262,7 +262,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     abic_imps: 0
     activite: 0
     statmarit: 2
