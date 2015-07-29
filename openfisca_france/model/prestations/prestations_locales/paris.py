@@ -173,18 +173,61 @@ class plf_enfant(SimpleFormulaColumn):
 
 
 @reference_formula
-class plf_nbenf(SimpleFormulaColumn):
-    column = IntCol
-    entity_class = Familles
-    label = u"Nombre d'enfants dans la famille au sens de la mairie de Paris"
+class plf_enfant_garde_alternee(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Enfant en garde alternée pris en compte par la mairie de Paris pour PLF"
+    entity_class = Individus
 
     def function(self, simulation, period):
-        period_mois = period.start.offset('first-of', 'month').period('month')
+        period = period.start.offset('first-of', 'month').period('month')
+        alt = simulation.calculate('alt', period)
+        plf_enfant = simulation.calculate('plf_enfant', period)
 
-        plf_enfant_holder = simulation.compute('plf_enfant', period_mois)
-        plf_nbenf = self.sum_by_entity(plf_enfant_holder)
+        return period, alt * plf_enfant
 
-        return period, plf_nbenf
+
+@reference_formula
+class plf_enfant_handicape_garde_alternee(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Enfant handicapé en garde alternée pris en compte par la mairie de Paris pour PLF"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        alt = simulation.calculate('alt', period)
+        plf_enfant_handicape = simulation.calculate('plf_enfant_handicape', period)
+
+        return period, alt * plf_enfant_handicape
+
+
+@reference_formula
+class plf_handicap(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Allocation Paris-Logement-Familles en cas d'enfant handicapé"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        plf_enfant_handicape = simulation.compute('plf_enfant_handicape', period)
+        plf_enfant_handicape_garde_alternee = simulation.compute('plf_enfant_handicape_garde_alternee', period)
+        br = simulation.calculate('paris_logement_familles_br', period)
+
+        nb_enf_handicape = self.sum_by_entity(plf_enfant_handicape)
+        nb_enf_handicape_garde_alternee = self.sum_by_entity(plf_enfant_handicape_garde_alternee)
+
+        P = simulation.legislation_at(period.start).aides_locales.paris.paris_logement_familles
+        plafond = P.plafond_haut_3enf
+        montant = P.montant_haut_3enf
+
+        plf_handicap = (nb_enf_handicape > 0) * (br <= plafond) * montant
+
+        # Si tous les enfants handicapés sont en garde alternée
+        garde_alternee = nb_enf_handicape - nb_enf_handicape_garde_alternee == 0
+        deduction_garde_alternee = garde_alternee * 0.5 * plf_handicap
+
+        plf_handicap = plf_handicap - deduction_garde_alternee
+
+        return period, plf_handicap
 
 
 @reference_formula
@@ -196,31 +239,40 @@ class paris_logement_familles(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-
         elig = simulation.calculate('paris_logement_familles_elig', period)
         br = simulation.calculate('paris_logement_familles_br', period)
-        nbenf = simulation.calculate('plf_nbenf', period)
+        plf_enfant = simulation.compute('plf_enfant', period)
+        nbenf = self.sum_by_entity(plf_enfant)
+        plf_enfant_garde_alternee = simulation.compute('plf_enfant_garde_alternee', period)
+        nbenf_garde_alternee = self.sum_by_entity(plf_enfant_garde_alternee)
+        plf_handicap = simulation.calculate('plf_handicap', period)
         loyer = simulation.calculate('loyer', period) + simulation.calculate('charges_locatives', period)
-        plf_enfant_handicape_holder = simulation.compute('plf_enfant_handicape', period)
-        enfant_handicape = self.any_by_roles(plf_enfant_handicape_holder, roles = ENFS)
         P = simulation.legislation_at(period.start).aides_locales.paris.paris_logement_familles
 
-        result = (
-            (
-                (enfant_handicape * (br <= P.plafond_haut_3enf) + (nbenf >= 3) * (br <= P.plafond_bas_3enf)) *
-                (P.montant_haut_3enf + P.montant_haut_enf_sup * max_(nbenf - 3, 0))
-            ) +
-            (
-                ((nbenf >= 3) * (br <= P.plafond_haut_3enf) * (br > P.plafond_bas_3enf)) *
-                (P.montant_bas_3enf + P.montant_bas_enf_sup * max_(nbenf - 3, 0))
-            ) +
-            (
-                ((nbenf == 2) * (br <= P.plafond_2enf)) *
-                P.montant_2enf
-            )
+        ressources_sous_plaf_bas = (br <= P.plafond_bas_3enf)
+        ressources_sous_plaf_haut = (br <= P.plafond_haut_3enf) * (br > P.plafond_bas_3enf)
+        montant_base_3enfs = (nbenf >= 3) * (
+            ressources_sous_plaf_bas * P.montant_haut_3enf +
+            ressources_sous_plaf_haut * P.montant_bas_3enf
+        )
+        montant_enf_sup = (
+            ressources_sous_plaf_bas * P.montant_haut_enf_sup +
+            ressources_sous_plaf_haut * P.montant_bas_enf_sup
+        )
+        montant_3enfs = montant_base_3enfs + montant_enf_sup * max_(nbenf - 3, 0)
+        montant_2enfs = (nbenf == 2) * (br <= P.plafond_2enf) * P.montant_2enf
+
+        plf = montant_2enfs + montant_3enfs
+
+        deduction_garde_alternee = (nbenf_garde_alternee > 0) * (
+            (nbenf - nbenf_garde_alternee < 3) * 0.5 * plf +
+            (nbenf - nbenf_garde_alternee >= 3) * nbenf_garde_alternee * 0.5 * montant_enf_sup
         )
 
-        result = elig * result
-        result = min_(result, loyer)
+        plf = plf - deduction_garde_alternee
 
-        return period, result
+        plf = max_(plf, plf_handicap)
+        plf = elig * plf
+        plf = min_(plf, loyer)
+
+        return period, plf
