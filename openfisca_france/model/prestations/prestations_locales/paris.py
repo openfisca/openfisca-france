@@ -80,6 +80,7 @@ class paris_logement_familles_elig(SimpleFormulaColumn):
         statut_occupation = simulation.calculate('statut_occupation', period)
         charge_logement = (
             (statut_occupation == 1) +
+            (statut_occupation == 2) +
             (statut_occupation == 3) +
             (statut_occupation == 4) +
             (statut_occupation == 5) +
