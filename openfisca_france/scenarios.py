@@ -631,10 +631,11 @@ class Scenario(scenarios.AbstractScenario):
                                     enfants = conv.uniform_sequence(
                                         conv.test(
                                             lambda individu_id:
-                                                find_age(individu_by_id[individu_id], period.start.date,
+                                                individu_by_id[individu_id].get('invalide', False)
+                                                or find_age(individu_by_id[individu_id], period.start.date,
                                                     default = 0) <= 25,
                                             error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
-                                                u" 25 ans ou être invalide",
+                                                    u" 25 ans ou être invalide",
                                             ),
                                         ),
                                     parents = conv.pipe(
