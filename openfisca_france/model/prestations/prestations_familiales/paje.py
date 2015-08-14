@@ -62,7 +62,7 @@ class paje(SimpleFormulaColumn):
     entity_class = Familles
     label = u"PAJE - Ensemble des prestations"
     start_date = date(2004, 1, 1)
-    url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje-0"
+    url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje-0"  # noqa
 
     def function(self, simulation, period):
         '''
