@@ -5909,35 +5909,4 @@
       </CODE>
     </NODE>
   </NODE>
-
-<NODE code="aides_locales" description="Aides locales">
-  <NODE code="paris" description="Ville de Paris">
-    <NODE code="paris_logement_familles" description="Paris Logement Famille">
-      <CODE code="plafond_haut_3enf" description="Plafond haut de PLF pour les familles à 3 enfants, aussi plafond de PLF avec enfant handicapé" format="float" type="monetary">
-          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="5000" />
-        </CODE>
-        <CODE code="plafond_bas_3enf" description="Plafond bas de PLF pour les familles à 3 enfants" format="float" type="monetary">
-          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="3000" />
-        </CODE>
-        <CODE code="plafond_2enf" description="Plafond de PLF pour les familles à deux enfants." format="float" type="monetary">
-          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="2000" />
-        </CODE>
-        <CODE code="montant_haut_3enf" description="Montant haut PLF pour famille à 3 enfants." format="float" type="monetary">
-          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="128" />
-        </CODE>
-        <CODE code="montant_bas_3enf" description="Montant bas PLF pour famille à 3 enfants." format="float" type="monetary">
-          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="84" />
-        </CODE>
-        <CODE code="montant_2enf" description="Montant PLF pour les familles à deux enfants." format="float" type="monetary">
-          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="116" />
-        </CODE>
-        <CODE code="montant_haut_enf_sup" description="Montant haut sup par enfant" format="float" type="monetary">
-          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="41" />
-        </CODE>
-        <CODE code="montant_bas_enf_sup" description="Montant bas sup par enfant." format="float" type="monetary">
-          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="21" />
-        </CODE>
-      </NODE>
-    </NODE>
-  </NODE>
 </NODE>
