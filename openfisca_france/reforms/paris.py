@@ -65,6 +65,27 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
     )
 
+    Reform.input_variable(
+        column = columns.BoolCol,
+        entity_class = entities.Menages,
+        name ='parisien',
+        label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années",
+    )
+
+    Reform.input_variable(
+        name ='a_charge_fiscale',
+        column = columns.BoolCol,
+        entity_class = entities.Individus,
+        label = u"Enfant à charge fiscale du demandeur",
+    )
+
+    Reform.input_variable(
+        name ='enfant_place',
+        column = columns.BoolCol,
+        entity_class = entities.Individus,
+        label = u"Enfant placé en structure spécialisée ou famille d'accueil",
+    )
+
     @Reform.formula
     class paris_logement_familles_elig(formulas.SimpleFormulaColumn):
         column = columns.BoolCol

@@ -25,27 +25,6 @@
 from ...base import *  # noqa analysis:ignore
 
 
-reference_input_variable(
-    name ='parisien',
-    column = BoolCol,
-    entity_class = Menages,
-    label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années",
-)
-
-reference_input_variable(
-    name ='a_charge_fiscale',
-    column = BoolCol,
-    entity_class = Individus,
-    label = u"Enfant à charge fiscale du demandeur",
-)
-
-reference_input_variable(
-    name ='enfant_place',
-    column = BoolCol,
-    entity_class = Individus,
-    label = u"Enfant placé en structure spécialisée ou famille d'accueil",
-)
-
 # @reference_formula
 # class parisien(SimpleFormulaColumn):
 #     column = BoolCol
