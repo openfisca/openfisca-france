@@ -25,9 +25,7 @@
 
 from __future__ import division
 
-import copy
 from datetime import date
-import logging
 
 from numpy import maximum as max_, minimum as min_
 from openfisca_core import columns, formulas, reforms
@@ -37,14 +35,80 @@ from ..model.base import dated_function
 from ..model.prelevements_obligatoires.impot_revenu import reductions_impot
 
 
-log = logging.getLogger(__name__)
-
-
 # TODO: les baisses de charges n'ont pas été codées car annulées (toute ou en partie ?)
 # par le Conseil constitutionnel
 
 
 def build_reform(tax_benefit_system):
+    reform = reforms.make_reform(
+        legislation_json_modifier_function = modify_legislation_json,
+        name = u'PLFR 2014',
+        reference = tax_benefit_system,
+        )
+
+    @reform.formula
+    class reduction_impot_exceptionnelle(formulas.SimpleFormulaColumn):
+        column = columns.FloatCol
+        entity_class = entities.FoyersFiscaux
+        label = u"Réduction d'impôt exceptionnelle"
+
+        def function(self, simulation, period):
+            period = period.start.offset('first-of', 'year').period('year')
+            nb_adult = simulation.calculate('nb_adult')
+            nb_par = simulation.calculate('nb_par')
+            rfr = simulation.calculate('rfr')
+            params = simulation.legislation_at(period.start).plfr2014.reduction_impot_exceptionnelle
+            plafond = params.seuil * nb_adult + (nb_par - nb_adult) * 2 * params.majoration_seuil
+            montant = params.montant_plafond * nb_adult
+            return period, min_(max_(plafond + montant - rfr, 0), montant)
+
+    @reform.formula
+    class reductions(formulas.DatedFormulaColumn):
+        label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
+        reference = reductions_impot.reductions
+
+        @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
+        def function_20130101_20131231(self, simulation, period):
+            period = period.start.offset('first-of', 'year').period('year')
+            accult = simulation.calculate('accult')
+            adhcga = simulation.calculate('adhcga')
+            cappme = simulation.calculate('cappme')
+            creaen = simulation.calculate('creaen')
+            daepad = simulation.calculate('daepad')
+            deffor = simulation.calculate('deffor')
+            dfppce = simulation.calculate('dfppce')
+            doment = simulation.calculate('doment')
+            domlog = simulation.calculate('domlog')
+            donapd = simulation.calculate('donapd')
+            duflot = simulation.calculate('duflot')
+            ecpess = simulation.calculate('ecpess')
+            garext = simulation.calculate('garext')
+            intagr = simulation.calculate('intagr')
+            invfor = simulation.calculate('invfor')
+            invlst = simulation.calculate('invlst')
+            ip_net = simulation.calculate('ip_net')
+            locmeu = simulation.calculate('locmeu')
+            mecena = simulation.calculate('mecena')
+            mohist = simulation.calculate('mohist')
+            patnat = simulation.calculate('patnat')
+            prcomp = simulation.calculate('prcomp')
+            reduction_impot_exceptionnelle = simulation.calculate('reduction_impot_exceptionnelle')
+            repsoc = simulation.calculate('repsoc')
+            resimm = simulation.calculate('resimm')
+            rsceha = simulation.calculate('rsceha')
+            saldom = simulation.calculate('saldom')
+            scelli = simulation.calculate('scelli')
+            sofica = simulation.calculate('sofica')
+            spfcpi = simulation.calculate('spfcpi')
+            total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + \
+                donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + \
+                prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
+            return period, min_(ip_net, total_reductions)
+
+    return reform
+
+
+def modify_legislation_json(reference_legislation_json_copy):
     plfr2014_legislation_subtree = {
         "@type": "Node",
         "description": "Projet de loi de finance rectificative 2014",
@@ -247,76 +311,6 @@ def build_reform(tax_benefit_system):
                 },
             },
         }
-    reform_legislation_json = copy.deepcopy(tax_benefit_system.legislation_json)
-    reform_legislation_json['children']['plfr2014'] = plfr2014_legislation_subtree
-    reform_legislation_json['children']['plfrss2014'] = plfrss2014_legislation_subtree
-    # This validates the modified legislation JSON. But the operation is slow so it is commented. Use in development.
-    # from openfisca_core import conv, legislations
-    # conv.check(legislations.validate_legislation_json)(reform_legislation_json)
-
-    Reform = reforms.make_reform(
-        legislation_json = reform_legislation_json,
-        name = u'PLFR 2014',
-        reference = tax_benefit_system,
-        )
-
-    @Reform.formula
-    class reduction_impot_exceptionnelle(formulas.SimpleFormulaColumn):
-        column = columns.FloatCol
-        entity_class = entities.FoyersFiscaux
-        label = u"Réduction d'impôt exceptionnelle"
-
-        def function(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
-            nb_adult = simulation.calculate('nb_adult')
-            nb_par = simulation.calculate('nb_par')
-            rfr = simulation.calculate('rfr')
-            params = simulation.legislation_at(period.start).plfr2014.reduction_impot_exceptionnelle
-            plafond = params.seuil * nb_adult + (nb_par - nb_adult) * 2 * params.majoration_seuil
-            montant = params.montant_plafond * nb_adult
-            return period, min_(max_(plafond + montant - rfr, 0), montant)
-
-    @Reform.formula
-    class reductions(formulas.DatedFormulaColumn):
-        label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
-        reference = reductions_impot.reductions
-
-        @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-        def function_20130101_20131231(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
-            accult = simulation.calculate('accult')
-            adhcga = simulation.calculate('adhcga')
-            cappme = simulation.calculate('cappme')
-            creaen = simulation.calculate('creaen')
-            daepad = simulation.calculate('daepad')
-            deffor = simulation.calculate('deffor')
-            dfppce = simulation.calculate('dfppce')
-            doment = simulation.calculate('doment')
-            domlog = simulation.calculate('domlog')
-            donapd = simulation.calculate('donapd')
-            duflot = simulation.calculate('duflot')
-            ecpess = simulation.calculate('ecpess')
-            garext = simulation.calculate('garext')
-            intagr = simulation.calculate('intagr')
-            invfor = simulation.calculate('invfor')
-            invlst = simulation.calculate('invlst')
-            ip_net = simulation.calculate('ip_net')
-            locmeu = simulation.calculate('locmeu')
-            mecena = simulation.calculate('mecena')
-            mohist = simulation.calculate('mohist')
-            patnat = simulation.calculate('patnat')
-            prcomp = simulation.calculate('prcomp')
-            reduction_impot_exceptionnelle = simulation.calculate('reduction_impot_exceptionnelle')
-            repsoc = simulation.calculate('repsoc')
-            resimm = simulation.calculate('resimm')
-            rsceha = simulation.calculate('rsceha')
-            saldom = simulation.calculate('saldom')
-            scelli = simulation.calculate('scelli')
-            sofica = simulation.calculate('sofica')
-            spfcpi = simulation.calculate('spfcpi')
-            total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + \
-                donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + \
-                prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
-            return period, min_(ip_net, total_reductions)
-
-    return Reform()
+    reference_legislation_json_copy['children']['plfr2014'] = plfr2014_legislation_subtree
+    reference_legislation_json_copy['children']['plfrss2014'] = plfrss2014_legislation_subtree
+    return reference_legislation_json_copy

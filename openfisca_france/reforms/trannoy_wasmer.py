@@ -27,9 +27,6 @@
 
 from __future__ import division
 
-import copy
-import logging
-
 from numpy import logical_not as not_, minimum as min_
 from openfisca_core import columns, formulas, reforms
 
@@ -38,48 +35,14 @@ from ..model.base import PREF
 from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
 
 
-log = logging.getLogger(__name__)
-
-
 def build_reform(tax_benefit_system):
-    reform_legislation_subtree = {
-        "@type": "Node",
-        "description": "Charge de loyer",
-        "children": {
-            "active": {
-                "@type": "Parameter",
-                "description": "Activation de la charge",
-                "format": "bool",
-                "values": [{'start': u'2002-01-01', 'stop': '2013-12-31', 'value': 1}],
-                },
-            "plaf": {
-                "@type": "Parameter",
-                "description": 'Plafond mensuel',
-                "format": 'integer',
-                "unit": 'currency',
-                "values": [{'start': '2002-01-01', 'stop': '2013-12-31', 'value': 1000}],
-                },
-            "plaf_nbp": {
-                "@type": "Parameter",
-                "description": 'Ajuster le plafond au nombre de part',
-                "format": 'bool',
-                "values": [{'start': '2002-01-01', 'stop': '2013-12-31', 'value': 0}],
-                },
-            },
-        }
-    reform_legislation_json = copy.deepcopy(tax_benefit_system.legislation_json)
-    reform_legislation_json['children']['charge_loyer'] = reform_legislation_subtree
-    # This validates the modified legislation JSON. But the operation is slow so it is commented. Use in development.
-    # from openfisca_core import conv, legislations
-    # conv.check(legislations.validate_legislation_json)(reform_legislation_json)
-
-    Reform = reforms.make_reform(
-        legislation_json = reform_legislation_json,
+    reform = reforms.make_reform(
+        legislation_json_modifier_function = modify_legislation_json,
         name = u'Loyer comme charge déductible (Trannoy-Wasmer)',
         reference = tax_benefit_system,
         )
 
-    @Reform.formula
+    @reform.formula
     class charges_deduc(formulas.SimpleFormulaColumn):
         label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
         reference = charges_deductibles.charges_deduc
@@ -92,7 +55,7 @@ def build_reform(tax_benefit_system):
 
             return period, cd1 + cd2 + charge_loyer
 
-    @Reform.formula
+    @reform.formula
     class charge_loyer(formulas.SimpleFormulaColumn):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
@@ -112,4 +75,34 @@ def build_reform(tax_benefit_system):
 
             return period, 12 * min_(loyer / 12, plafond)
 
-    return Reform()
+    return reform
+
+
+def modify_legislation_json(reference_legislation_json_copy):
+    reform_legislation_subtree = {
+        "@type": "Node",
+        "description": "Charge de loyer",
+        "children": {
+            "active": {
+                "@type": "Parameter",
+                "description": u"Activation de la charge",
+                "format": "boolean",
+                "values": [{'start': u'2002-01-01', 'stop': '2013-12-31', 'value': 1}],
+                },
+            "plaf": {
+                "@type": "Parameter",
+                "description": u'Plafond mensuel',
+                "format": 'integer',
+                "unit": 'currency',
+                "values": [{'start': '2002-01-01', 'stop': '2013-12-31', 'value': 1000}],
+                },
+            "plaf_nbp": {
+                "@type": "Parameter",
+                "description": u'Ajuster le plafond au nombre de part',
+                "format": 'boolean',
+                "values": [{'start': '2002-01-01', 'stop': '2013-12-31', 'value': 0}],
+                },
+            },
+        }
+    reference_legislation_json_copy['children']['charge_loyer'] = reform_legislation_subtree
+    return reference_legislation_json_copy

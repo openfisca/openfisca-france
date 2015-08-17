@@ -183,22 +183,12 @@ test_case_by_employee_type = dict(
 
 def test_check():
     for employee_type, test_parameters in test_case_by_employee_type.iteritems():
-        reference_legislation_json = tax_benefit_system.legislation_json
-
-        reform_legislation_json = reforms.update_legislation(
-            legislation_json = reference_legislation_json,
-            path = ('children', 'cotsoc', 'children', 'gen', 'children', 'smic_h_b', 'values'),
-            period = periods.period("year", "2011"),
-            value = 9,
-            )
-
-        Reform = reforms.make_reform(
-            legislation_json = reform_legislation_json,
+        reform = reforms.make_reform(
+            legislation_json_modifier_function = modify_legislation_json,
             # name = u'smic_h_b_9_euros',
             name = u"Réforme pour simulation ACOSS SMIC horaire brut fixe à 9 euros",
             reference = tax_benefit_system,
             )
-        reform = Reform()
 
         simulation_period = 2011
         parent1 = dict(
@@ -225,5 +215,17 @@ def test_check():
 
 
 def assert_variable(variable_message, employee_type, amount, output):
-    assert abs(output - amount) < .01, \
+    # TODO Use assert_near.
+    assert abs(output - amount) < 0.01, \
         "error for {} ({}) : should be {} instead of {} ".format(variable_message, employee_type, amount, output)
+
+
+def modify_legislation_json(reference_legislation_json_copy):
+    # FIXME update_legislation is deprecated.
+    reform_legislation_json = reforms.update_legislation(
+        legislation_json = reference_legislation_json_copy,
+        path = ('children', 'cotsoc', 'children', 'gen', 'children', 'smic_h_b', 'values'),
+        period = periods.period("year", "2011"),
+        value = 9,
+        )
+    return reform_legislation_json

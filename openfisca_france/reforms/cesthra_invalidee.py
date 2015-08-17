@@ -25,9 +25,6 @@
 
 from __future__ import division
 
-import copy
-import logging
-
 from numpy import maximum as max_
 from openfisca_core import columns, formulas, reforms
 
@@ -35,43 +32,14 @@ from .. import entities
 from ..model.prelevements_obligatoires.impot_revenu import ir
 
 
-log = logging.getLogger(__name__)
-
-
 def build_reform(tax_benefit_system):
-    reform_legislation_subtree = {
-        "@type": "Node",
-        "description": "Contribution execptionnelle sur les très hauts revenus d'activité",
-        "children": {
-            "seuil": {
-                "@type": "Parameter",
-                "description": "Seuil",
-                "format": "integer",
-                "unit": "currency",
-                "values": [{'start': u'2012-01-01', 'stop': u'2013-12-31', 'value': 1000000}],
-                },
-            "taux": {
-                "@type": "Parameter",
-                "description": "Taux",
-                "format": "rate",
-                "unit": "currency",
-                "values": [{'start': u'2012-01-01', 'stop': u'2013-12-31', 'value': .75}],
-                },
-            },
-        }
-    reform_legislation_json = copy.deepcopy(tax_benefit_system.legislation_json)
-    reform_legislation_json['children']['cesthra'] = reform_legislation_subtree
-    # This validates the modified legislation JSON. But the operation is slow so it is commented. Use in development.
-    # from openfisca_core import conv, legislations
-    # conv.check(legislations.validate_legislation_json)(reform_legislation_json)
-
-    Reform = reforms.make_reform(
-        legislation_json = reform_legislation_json,
+    reform = reforms.make_reform(
+        legislation_json_modifier_function = modify_legislation_json,
         name = u"Contribution execptionnelle sur les très hauts revenus d'activité (invalidée par le CC)",
         reference = tax_benefit_system,
         )
 
-    @Reform.formula
+    @reform.formula
     class cesthra(formulas.SimpleFormulaColumn):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
@@ -89,7 +57,7 @@ def build_reform(tax_benefit_system):
                 cesthra += max_(rev - law_cesthra.seuil, 0) * law_cesthra.taux
             return period, cesthra
 
-    @Reform.formula
+    @reform.formula
     class irpp(formulas.SimpleFormulaColumn):
         label = u"Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)"
         reference = ir.irpp
@@ -112,4 +80,29 @@ def build_reform(tax_benefit_system):
                 (iai <= P.seuil) * ((pre_result < 0) * (-pre_result) +
                 (pre_result >= 0) * 0 * iai))
 
-    return Reform()
+    return reform
+
+
+def modify_legislation_json(reference_legislation_json_copy):
+    reform_legislation_subtree = {
+        "@type": "Node",
+        "description": "Contribution execptionnelle sur les très hauts revenus d'activité",
+        "children": {
+            "seuil": {
+                "@type": "Parameter",
+                "description": "Seuil",
+                "format": "integer",
+                "unit": "currency",
+                "values": [{'start': u'2012-01-01', 'stop': u'2013-12-31', 'value': 1000000}],
+                },
+            "taux": {
+                "@type": "Parameter",
+                "description": "Taux",
+                "format": "rate",
+                "unit": "currency",
+                "values": [{'start': u'2012-01-01', 'stop': u'2013-12-31', 'value': .75}],
+                },
+            },
+        }
+    reference_legislation_json_copy['children']['cesthra'] = reform_legislation_subtree
+    return reference_legislation_json_copy

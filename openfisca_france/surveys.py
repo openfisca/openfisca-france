@@ -168,17 +168,13 @@ def adapt_to_survey(tax_benefit_system):
     from openfisca_france_data.model.model import add_survey_formulas_to_entities
     add_survey_formulas_to_entities(survey_entity_class_by_key_plural)
 
-    # survey_legislation_json = copy.deepcopy(tax_benefit_system.legislation_json)
-
     from openfisca_core import reforms
-    SurveyTaxBenefitSystem = reforms.make_reform(
+    survey_tax_benefit_system = reforms.make_reform(
         # entity_class_by_key_plural = survey_entity_class_by_key_plural,
-        # legislation_json = survey_legislation_json,
         name = u'openfisca-france-survey',
         # new_formulas = (),
         reference = tax_benefit_system,
         )
-    survey_tax_benefit_system = SurveyTaxBenefitSystem()
     return survey_tax_benefit_system
 
 

@@ -25,9 +25,6 @@
 
 from __future__ import division
 
-import copy
-import logging
-
 from numpy import maximum as max_
 from openfisca_core import columns, formulas, reforms
 
@@ -36,35 +33,14 @@ from ..model.base import QUIFOY
 from ..model.prelevements_obligatoires.impot_revenu import ir
 
 
-log = logging.getLogger(__name__)
-
-
 def build_reform(tax_benefit_system):
-    reform_legislation_subtree = {
-        "@type": "Node",
-        "description": "Intégration au revenu imposable des allocations familiales",
-        "children": {
-            "imposition": {
-                "@type": "Parameter",
-                "description": "Indicatrice d'imposition",
-                "format": "boolean",
-                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': True}],
-                },
-            },
-        }
-    reform_legislation_json = copy.deepcopy(tax_benefit_system.legislation_json)
-    reform_legislation_json['children']['allocations_familiales_imposables'] = reform_legislation_subtree
-    # This validates the modified legislation JSON. But the operation is slow so it is commented. Use in development.
-    # from openfisca_core import conv, legislations
-    # conv.check(legislations.validate_legislation_json)(reform_legislation_json)
-
-    Reform = reforms.make_reform(
-        legislation_json = reform_legislation_json,
+    reform = reforms.make_reform(
+        legislation_json_modifier_function = modify_legislation_json,
         name = u'Allocations familiales imposables',
         reference = tax_benefit_system,
         )
 
-    @Reform.formula
+    @reform.formula
     class rbg(formulas.SimpleFormulaColumn):
         label = u"Nouveau revenu brut global intégrant les allocations familiales"
         reference = ir.rbg
@@ -86,7 +62,7 @@ def build_reform(tax_benefit_system):
                 (self.sum_by_entity(nbic_impm_holder) + nacc_pvce) * (1 + cga) - deficit_ante
                 )
 
-    @Reform.formula
+    @reform.formula
     class rfr(formulas.SimpleFormulaColumn):
         label = u"Nouveau revenu fiscal de référence intégrant les allocations familiales"
         reference = ir.rfr
@@ -116,7 +92,7 @@ def build_reform(tax_benefit_system):
                 rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vz + microentreprise
                 )
 
-    @Reform.formula
+    @reform.formula
     class allocations_familiales_imposables(formulas.SimpleFormulaColumn):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
@@ -131,4 +107,21 @@ def build_reform(tax_benefit_system):
             af = self.sum_by_entity(af)
             return period, af * imposition
 
-    return Reform()
+    return reform
+
+
+def modify_legislation_json(reference_legislation_json_copy):
+    reform_legislation_subtree = {
+        "@type": "Node",
+        "description": "Intégration au revenu imposable des allocations familiales",
+        "children": {
+            "imposition": {
+                "@type": "Parameter",
+                "description": "Indicatrice d'imposition",
+                "format": "boolean",
+                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': True}],
+                },
+            },
+        }
+    reference_legislation_json_copy['children']['allocations_familiales_imposables'] = reform_legislation_subtree
+    return reference_legislation_json_copy
