@@ -40,13 +40,12 @@ from ..model.prelevements_obligatoires.impot_revenu import reductions_impot
 
 
 def build_reform(tax_benefit_system):
-    reform = reforms.make_reform(
-        legislation_json_modifier_function = modify_legislation_json,
+    Reform = reforms.make_reform(
         name = u'PLFR 2014',
         reference = tax_benefit_system,
         )
 
-    @reform.formula
+    @Reform.formula
     class reduction_impot_exceptionnelle(formulas.SimpleFormulaColumn):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
@@ -62,7 +61,7 @@ def build_reform(tax_benefit_system):
             montant = params.montant_plafond * nb_adult
             return period, min_(max_(plafond + montant - rfr, 0), montant)
 
-    @reform.formula
+    @Reform.formula
     class reductions(formulas.DatedFormulaColumn):
         label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
         reference = reductions_impot.reductions
@@ -105,6 +104,8 @@ def build_reform(tax_benefit_system):
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
             return period, min_(ip_net, total_reductions)
 
+    reform = Reform()
+    reform.modify_legislation_json(modifier_function = modify_legislation_json)
     return reform
 
 

@@ -46,19 +46,19 @@ def brut_to_target(target_name = None, period = None, simulation = None, **input
 
 
 def build_reform(tax_benefit_system):
-    reform = reforms.make_reform(
+    Reform = reforms.make_reform(
         name = u'Inversion des revenus',
         reference = tax_benefit_system,
         )
 
-    reform.input_variable(
+    Reform.input_variable(
         column = columns.FloatCol,
         entity_class = entities.Individus,
         label = u'Salaire imposable utilisé pour remonter au salaire brut',
         name = 'salaire_imposable_pour_inversion',
         )
 
-    @reform.formula
+    @Reform.formula
     class salaire_de_base(formulas.SimpleFormulaColumn):
         column = columns.FloatCol
         entity_class = entities.Individus
@@ -191,7 +191,7 @@ def build_reform(tax_benefit_system):
     #        #<NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence"/>
     #        return period, salbrut + hsup
 
-    @reform.formula
+    @Reform.formula
     class chobrut(formulas.SimpleFormulaColumn):
         column = columns.FloatCol
         entity_class = entities.Individus
@@ -240,7 +240,7 @@ def build_reform(tax_benefit_system):
                     ) - choi
             return period, fsolve(solve_function, choi)
 
-    @reform.formula
+    @Reform.formula
     class rstbrut(formulas.SimpleFormulaColumn):
         column = columns.FloatCol
         entity_class = entities.Individus
@@ -291,4 +291,4 @@ def build_reform(tax_benefit_system):
                     ) - rsti
             return period, fsolve(solve_function, rsti)
 
-    return reform
+    return Reform()

@@ -36,13 +36,12 @@ from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
 
 
 def build_reform(tax_benefit_system):
-    reform = reforms.make_reform(
-        legislation_json_modifier_function = modify_legislation_json,
+    Reform = reforms.make_reform(
         name = u'Loyer comme charge déductible (Trannoy-Wasmer)',
         reference = tax_benefit_system,
         )
 
-    @reform.formula
+    @Reform.formula
     class charges_deduc(formulas.SimpleFormulaColumn):
         label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
         reference = charges_deductibles.charges_deduc
@@ -55,7 +54,7 @@ def build_reform(tax_benefit_system):
 
             return period, cd1 + cd2 + charge_loyer
 
-    @reform.formula
+    @Reform.formula
     class charge_loyer(formulas.SimpleFormulaColumn):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
@@ -75,6 +74,8 @@ def build_reform(tax_benefit_system):
 
             return period, 12 * min_(loyer / 12, plafond)
 
+    reform = Reform()
+    reform.modify_legislation_json(modifier_function = modify_legislation_json)
     return reform
 
 

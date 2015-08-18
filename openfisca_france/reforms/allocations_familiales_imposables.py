@@ -34,13 +34,12 @@ from ..model.prelevements_obligatoires.impot_revenu import ir
 
 
 def build_reform(tax_benefit_system):
-    reform = reforms.make_reform(
-        legislation_json_modifier_function = modify_legislation_json,
+    Reform = reforms.make_reform(
         name = u'Allocations familiales imposables',
         reference = tax_benefit_system,
         )
 
-    @reform.formula
+    @Reform.formula
     class rbg(formulas.SimpleFormulaColumn):
         label = u"Nouveau revenu brut global intégrant les allocations familiales"
         reference = ir.rbg
@@ -62,7 +61,7 @@ def build_reform(tax_benefit_system):
                 (self.sum_by_entity(nbic_impm_holder) + nacc_pvce) * (1 + cga) - deficit_ante
                 )
 
-    @reform.formula
+    @Reform.formula
     class rfr(formulas.SimpleFormulaColumn):
         label = u"Nouveau revenu fiscal de référence intégrant les allocations familiales"
         reference = ir.rfr
@@ -92,7 +91,7 @@ def build_reform(tax_benefit_system):
                 rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vz + microentreprise
                 )
 
-    @reform.formula
+    @Reform.formula
     class allocations_familiales_imposables(formulas.SimpleFormulaColumn):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
@@ -107,6 +106,8 @@ def build_reform(tax_benefit_system):
             af = self.sum_by_entity(af)
             return period, af * imposition
 
+    reform = Reform()
+    reform.modify_legislation_json(modifier_function = modify_legislation_json)
     return reform
 
 

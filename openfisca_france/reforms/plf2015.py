@@ -33,13 +33,12 @@ from ..model.prelevements_obligatoires.impot_revenu import ir
 
 
 def build_reform(tax_benefit_system):
-    reform = reforms.make_reform(
-        legislation_json_modifier_function = modify_legislation_json,
+    Reform = reforms.make_reform(
         name = u'PLF2015',
         reference = tax_benefit_system,
         )
 
-    @reform.formula
+    @Reform.formula
     class decote(formulas.SimpleFormulaColumn):
         label = u"Nouvelle décote 2015"
         reference = ir.decote
@@ -54,6 +53,8 @@ def build_reform(tax_benefit_system):
             decote_couple = (ir_plaf_qf < plf.decote_seuil_couple) * (plf.decote_seuil_couple - ir_plaf_qf)
             return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
+    reform = Reform()
+    reform.modify_legislation_json(modifier_function = modify_legislation_json)
     return reform
 
 

@@ -183,12 +183,13 @@ test_case_by_employee_type = dict(
 
 def test_check():
     for employee_type, test_parameters in test_case_by_employee_type.iteritems():
-        reform = reforms.make_reform(
-            legislation_json_modifier_function = modify_legislation_json,
+        Reform = reforms.make_reform(
             # name = u'smic_h_b_9_euros',
             name = u"Réforme pour simulation ACOSS SMIC horaire brut fixe à 9 euros",
             reference = tax_benefit_system,
             )
+        reform = Reform()
+        reform.modify_legislation_json(modifier_function = modify_legislation_json)
 
         simulation_period = 2011
         parent1 = dict(

@@ -44,12 +44,13 @@ def test_parametric_reform():
 
     simulation_year = 2013
     simulation_period = periods.period('year', simulation_year)
-    reform = reforms.make_reform(
-        legislation_json_modifier_function = modify_legislation_json,
+    Reform = reforms.make_reform(
         # name = u'IR_100_tranche_1',
         name = u"Imposition à 100% dès le premier euro et jusqu'à la fin de la 1ère tranche",
         reference = tax_benefit_system,
         )
+    reform = Reform()
+    reform.modify_legislation_json(modifier_function = modify_legislation_json)
 
     scenario = reform.new_scenario().init_single_entity(
         axes = [
