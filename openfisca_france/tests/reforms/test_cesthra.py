@@ -27,13 +27,13 @@ import datetime
 
 
 from openfisca_core import periods
-from openfisca_core.tools import assert_near
 from openfisca_france.reforms import cesthra_invalidee
 from openfisca_france.tests import base
 
 
 def test_cesthra_invalidee():
     year = 2012
+    period = periods.period('year', year)
     reform = cesthra_invalidee.build_reform(base.tax_benefit_system)
     scenario = reform.new_scenario().init_single_entity(
         axes = [
@@ -44,7 +44,7 @@ def test_cesthra_invalidee():
                 name = 'salaire_imposable',
                 ),
             ],
-        period = periods.period('year', year),
+        period = period,
         parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
         parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
         enfants = [
@@ -54,12 +54,16 @@ def test_cesthra_invalidee():
         )
 
     reference_simulation = scenario.new_simulation(debug = True, reference = True)
-
     reference_impo = reference_simulation.calculate('impo')
-    reference_revdisp = reference_simulation.calculate('revdisp', period = periods.period('year', year))
+    assert reference_impo is not None
+    reference_revdisp = reference_simulation.calculate('revdisp', period = period)
+    assert reference_revdisp is not None
 
-    reform_impo = reference_simulation.calculate('impo')
-    reform_revdisp = reference_simulation.calculate('revdisp', period = periods.period('year', year))
+    reform_simulation = scenario.new_simulation(debug = True)
+    reform_impo = reform_simulation.calculate('impo')
+    assert reform_impo is not None
+    reform_revdisp = reform_simulation.calculate('revdisp', period = period)
+    assert reform_revdisp is not None
 
 
 if __name__ == '__main__':
