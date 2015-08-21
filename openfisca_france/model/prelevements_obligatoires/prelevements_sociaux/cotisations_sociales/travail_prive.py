@@ -686,7 +686,7 @@ class vieillesse_deplafonnee_salarie(SimpleFormulaColumn):
             simulation,
             period,
             cotisation_type = 'salarie',
-            bareme_name = 'vieillessedeplaf',
+            bareme_name = 'vieillesse_deplafonnee',
             variable_name = self.__class__.__name__,
             )
         return period, cotisation
@@ -720,7 +720,7 @@ class vieillesse_deplafonnee_employeur(SimpleFormulaColumn):
         cotisation = apply_bareme(
             simulation,
             period, cotisation_type = 'employeur',
-            bareme_name = 'vieillessedeplaf',
+            bareme_name = 'vieillesse_deplafonnee',
             variable_name = self.__class__.__name__,
             )
         return period, cotisation
@@ -737,7 +737,7 @@ class vieillesse_plafonnee_employeur(SimpleFormulaColumn):
         cotisation = apply_bareme(
             simulation,
             period, cotisation_type = 'employeur',
-            bareme_name = 'vieillesseplaf',
+            bareme_name = 'vieillesse_plafonnee',
             variable_name = self.__class__.__name__,
             )
         return period, cotisation

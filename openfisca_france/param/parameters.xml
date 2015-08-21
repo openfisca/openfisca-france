@@ -2267,7 +2267,7 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME code="vieillessedeplaf" description="Vieillesse déplafonnée" option="contrib">
+        <BAREME code="vieillesse_deplafonnee" description="Vieillesse déplafonnée" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
               <VALUE deb="1993-07-01" fin="2016-12-31" valeur="0" />
@@ -2279,7 +2279,7 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME code="vieillesseplaf" description="Vieillesse plafonnée (régime de base)" option="contrib">
+        <BAREME code="vieillesse_plafonnee" description="Vieillesse plafonnée (régime de base)" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
               <VALUE deb="1979-01-01" fin="2016-12-31" valeur="0" />
@@ -3049,7 +3049,7 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME code="vieillessedeplaf" description="Vieillesse déplafonnée (ancienne assurance veuvage transférée à la CNAV en 2004)" option="contrib">
+        <BAREME code="vieillesse_deplafonnee" description="Vieillesse déplafonnée (ancienne assurance veuvage transférée à la CNAV en 2004)" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
               <VALUE deb="2004-07-01" fin="2014-12-31" valeur="0" />

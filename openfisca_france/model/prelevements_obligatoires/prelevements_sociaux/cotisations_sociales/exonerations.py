@@ -76,7 +76,7 @@ class exoneration_cotisations_employeur_jei(SimpleFormulaColumn):
         type_sal = simulation.calculate('type_sal', period)
 
         bareme_by_type_sal_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur
-        bareme_names = ['vieillessedeplaf', 'vieillesseplaf', 'maladie', 'famille']
+        bareme_names = ['vieillesse_deplafonnee', 'vieillesse_plafonnee', 'maladie', 'famille']
 
         exoneration = smic_proratise * 0.0
         for bareme_name in bareme_names:
@@ -201,8 +201,8 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
             )
         bareme_by_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur['prive_non_cadre']
         taux_max = (
-            bareme_by_name['vieillessedeplaf'].rates[0] +
-            bareme_by_name['vieillesseplaf'].rates[0] +
+            bareme_by_name['vieillesse_deplafonnee'].rates[0] +
+            bareme_by_name['vieillesse_plafonnee'].rates[0] +
             bareme_by_name['maladie'].rates[0] +
             bareme_by_name['famille'].rates[0] +
             bareme_by_name['fnal1'].rates[0] +

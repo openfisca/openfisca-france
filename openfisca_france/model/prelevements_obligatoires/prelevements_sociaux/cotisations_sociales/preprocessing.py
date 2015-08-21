@@ -67,7 +67,7 @@ def build_pat(node_json):
 
     # Rework commun to deal with public employees
     for var in ["apprentissage", "apprentissage_add", "assedic", "chomfg", "construction", "maladie", "formprof_09",
-                "formprof_1019", "formprof_20", "vieillessedeplaf", "vieillesseplaf"]:
+                "formprof_1019", "formprof_20", "vieillesse_deplafonnee", "vieillesse_plafonnee"]:
         del commun['children'][var]
 
     for var in ["apprentissage", "apprentissage_add", "formprof_09", "formprof_1019", "formprof_20", "chomfg",
