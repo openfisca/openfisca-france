@@ -149,29 +149,4 @@ class adpa(SimpleFormulaColumn):
 
         participation_departement = 100 - participation_usager
 
-
-# switch (_request('etatcivil'))
-# {
-# 	case 'seul':
-# 		$quotientFamilial = 1;
-# 		break;
-# 	case 'conjointDomicile':
-# 		$quotientFamilial = 1.70;
-# 		break;
-# 	case 'conjointHebergement':
-# 		$quotientFamilial = 2;
-# 		break;
-# 	default:
-# 		// C'est impossible...
-# 		break;
-# }
-# $ressourceMensuellesUsager = $ressourceMensuelles/$quotientFamilial;
-# if($ressourceMensuellesUsager < $seuil1)
-# 	$participationUsager = 0;
-# elseif($ressourceMensuellesUsager > $seuil2)
-# 	$participationUsager = 90;
-# else
-# 	$participationUsager = 90*(($ressourceMensuellesUsager - $seuil1)/(2*$majorationTiercePersonne));
-# $participationDepartement = 100 - $participationUsager;
-
         return period, participation_departement
