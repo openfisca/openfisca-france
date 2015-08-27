@@ -149,4 +149,4 @@ class adpa(SimpleFormulaColumn):
 
         participation_departement = 100 - participation_usager
 
-        return period, participation_departement
+        return period, participation_departement * adpa_elig
