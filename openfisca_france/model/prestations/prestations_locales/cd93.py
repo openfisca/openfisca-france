@@ -130,7 +130,7 @@ class adpa(SimpleFormulaColumn):
         print("base_ressource_mensuelle")
         print(base_ressource_mensuelle)
 
-        majorationTiercePersonne = 1038.36
+        majorationTiercePersonne = 1103.08
         seuil1 = 0.67 * majorationTiercePersonne
         seuil2 = 2.67 * majorationTiercePersonne
 
