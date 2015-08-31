@@ -834,11 +834,11 @@ class rsa_forfait_asf_i(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
 
-        asf_elig_i = simulation.calculate('asf_elig_i', period)
+        asf_elig_enfant = simulation.calculate('asf_elig_enfant', period)
         pfam = simulation.legislation_at(period.start).fam
         minim = simulation.legislation_at(period.start).minim
 
-        return period, asf_elig_i * pfam.af.bmaf * minim.rmi.forfait_asf.taux1
+        return period, asf_elig_enfant * pfam.af.bmaf * minim.rmi.forfait_asf.taux1
 
 
 @reference_formula

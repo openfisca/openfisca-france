@@ -33,16 +33,18 @@ from ...base import *  # noqa analysis:ignore
 
 
 @reference_formula
-class asf_elig_i(SimpleFormulaColumn):
+class asf_elig_enfant(SimpleFormulaColumn):
     column = BoolCol(default = False)
     entity_class = Individus
-    label = u"Éligibilité à l'ASF (individuelle)"
+    label = u"Enfant pouvant ouvrir droit à l'ASF"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
 
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
+
+        #TODO : pension alimentaire  attribuée à l'enfant ? Ce n'est probablement le cas ajd dans mes-aides
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
 
         pfam = simulation.legislation_at(period.start).fam
@@ -55,18 +57,18 @@ class asf_elig_i(SimpleFormulaColumn):
         return period, eligibilite
 
 @reference_formula
-class asf_i(SimpleFormulaColumn):
+class asf_enfant(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"Montant à verser à l'individu pour l'ASF"
+    label = u"Montant du droit à l'ASF ouvert par l'enfant"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
 
-        asf_elig_i = simulation.calculate('asf_elig_i', period)
+        asf_elig_enfant = simulation.calculate('asf_elig_enfant', period)
         pfam = simulation.legislation_at(period.start).fam
 
-        return period, asf_elig_i * pfam.af.bmaf * pfam.asf.taux1
+        return period, asf_elig_enfant * pfam.af.bmaf * pfam.asf.taux1
 
 
 @reference_formula
@@ -95,7 +97,7 @@ class asf(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
 
         asf_elig = simulation.calculate('asf_elig', period)
-        asf_i_holder = simulation.compute('asf_i', period)
-        montant = self.sum_by_entity(asf_i_holder, roles = ENFS)
+        asf_enfant_holder = simulation.compute('asf_enfant', period)
+        montant = self.sum_by_entity(asf_enfant_holder, roles = ENFS)
 
         return period, asf_elig * montant
