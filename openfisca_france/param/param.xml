@@ -5095,7 +5095,7 @@
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="513.88" />
       </CODE>
       <CODE code="age_pac" description="Limite d'âge des enfants comptés à charge" format="integer" type="age">
-        <VALUE deb="1977-10-01" fin="2014-12-31" valeur="25" />
+        <VALUE deb="1977-10-01" fin="2014-12-31" valeur="24" />
       </CODE>
       <NODE code="forfait_asf" description="Forfait Allocation de Soutien Familial">
         <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent">
