@@ -26,129 +26,38 @@
 
 from __future__ import division
 
-import copy
-import logging
-
 from openfisca_core import columns, formulas, reforms
-from numpy import vectorize, absolute as abs_, minimum as min_, maximum as max_
-
+from numpy import absolute as abs_, minimum as min_, maximum as max_
 
 from .. import entities
-from ..model.prelevements_obligatoires.impot_revenu import ir
-
-
-log = logging.getLogger(__name__)
 
 
 def build_reform(tax_benefit_system):
-    reform_legislation_subtree = {
-        "@type": "Node",
-        "description": "Aides locales",
-        "children": {
-            "paris": {
-                "@type": "Node",
-                "description": "Aides de la ville de Paris",
-                "children": {
-                    "paris_logement_familles": {
-                        "@type": "Node",
-                        "description": "Paris Logement Famille",
-                        "children": {
-                            "plafond_haut_3enf": {
-                                "@type": "Parameter",
-                                "description": "Plafond haut de PLF pour les familles à 3 enfants, aussi plafond de PLF avec enfant handicapé",
-                                "unit": "currency",
-                                "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 5000}],
-                            },
-                            "plafond_bas_3enf": {
-                                "@type": "Parameter",
-                                "description": "Plafond bas de PLF pour les familles à 3 enfants",
-                                "unit": "currency",
-                                "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 3000}],
-                            },
-                            "plafond_2enf": {
-                                "@type": "Parameter",
-                                "description": "Plafond de PLF pour les familles à deux enfants.",
-                                "unit": "currency",
-                                "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 2000}],
-                            },
-                            "montant_haut_3enf": {
-                                "@type": "Parameter",
-                                "description": "Montant haut PLF pour famille à 3 enfants",
-                                "unit": "currency",
-                                "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 128}],
-                            },
-                            "montant_bas_3enf": {
-                                "@type": "Parameter",
-                                "description": "Montant bas PLF pour famille à 3 enfants.",
-                                "unit": "currency",
-                                "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 84}],
-                            },
-                            "montant_2enf": {
-                                "@type": "Parameter",
-                                "description": "Montant PLF pour les familles à deux enfants.",
-                                "unit": "currency",
-                                "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 116}],
-                            },
-                            "montant_haut_enf_sup": {
-                                "@type": "Parameter",
-                                "description": "Montant haut sup par enfant",
-                                "unit": "currency",
-                                "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 41}],
-                            },
-                            "montant_bas_enf_sup": {
-                                "@type": "Parameter",
-                                "description": "Montant bas sup par enfant.",
-                                "unit": "currency",
-                                "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 21}],
-                            },
-
-                        }
-                    }
-                }
-            },
-        },
-    }
-
-    reform_legislation_json = copy.deepcopy(tax_benefit_system.legislation_json)
-    reform_legislation_json['children']['aides_locales'] = reform_legislation_subtree
-    # This validates the modified legislation JSON. But the operation is slow so it is commented. Use in development.
-    # from openfisca_core import conv, legislations
-    # conv.check(legislations.validate_legislation_json)(reform_legislation_json)
-
     Reform = reforms.make_reform(
-        legislation_json = reform_legislation_json,
-        name = u'Réforme test',
+        name = u'Aides de la ville de Paris',
         reference = tax_benefit_system,
-    )
+        )
 
     Reform.input_variable(
         column = columns.BoolCol,
         entity_class = entities.Menages,
         name ='parisien',
         label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années",
-    )
+        )
 
     Reform.input_variable(
         name ='a_charge_fiscale',
         column = columns.BoolCol,
         entity_class = entities.Individus,
         label = u"Enfant à charge fiscale du demandeur",
-    )
+        )
 
     Reform.input_variable(
         name ='enfant_place',
         column = columns.BoolCol,
         entity_class = entities.Individus,
         label = u"Enfant placé en structure spécialisée ou famille d'accueil",
-    )
+        )
 
     @Reform.formula
     class paris_logement_familles_elig(formulas.SimpleFormulaColumn):
@@ -166,7 +75,7 @@ def build_reform(tax_benefit_system):
                 (statut_occupation == 4) +
                 (statut_occupation == 5) +
                 (statut_occupation == 7)
-            )
+                )
 
             result = parisien * charge_logement
 
@@ -183,12 +92,14 @@ def build_reform(tax_benefit_system):
             chonet = simulation.calculate('chonet', period)
             rstnet = simulation.calculate('rstnet', period)
             pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
-            pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', period)
+            pensions_alimentaires_versees_individu = simulation.calculate(
+                'pensions_alimentaires_versees_individu', period)
             rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', period)
             indemnites_journalieres_imposables = simulation.calculate('indemnites_journalieres_imposables', period)
             indemnites_stage = simulation.calculate('indemnites_stage', period)
             revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', period)
-            allocation_securisation_professionnelle = simulation.calculate('allocation_securisation_professionnelle', period)
+            allocation_securisation_professionnelle = simulation.calculate(
+                'allocation_securisation_professionnelle', period)
             prestation_compensatoire = simulation.calculate('prestation_compensatoire', period)
             pensions_invalidite = simulation.calculate('pensions_invalidite', period)
             indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', period)
@@ -203,7 +114,7 @@ def build_reform(tax_benefit_system):
                 indemnites_journalieres_imposables + prestation_compensatoire +
                 pensions_invalidite + bourse_recherche + gains_exceptionnels + tns_total_revenus_net +
                 revenus_stage_formation_pro
-            )
+                )
 
             return period, result
 
@@ -309,7 +220,7 @@ def build_reform(tax_benefit_system):
         column = columns.FloatCol
         label = u"Allocation Paris Logement Familles"
         entity_class = entities.Familles
-        url = "http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193"
+        url = "http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193"  # noqa
 
         def function(self, simulation, period):
             period = period.start.offset('first-of', 'month').period('month')
@@ -328,11 +239,11 @@ def build_reform(tax_benefit_system):
             montant_base_3enfs = (nbenf >= 3) * (
                 ressources_sous_plaf_bas * P.montant_haut_3enf +
                 ressources_sous_plaf_haut * P.montant_bas_3enf
-            )
+                )
             montant_enf_sup = (
                 ressources_sous_plaf_bas * P.montant_haut_enf_sup +
                 ressources_sous_plaf_haut * P.montant_bas_enf_sup
-            )
+                )
             montant_3enfs = montant_base_3enfs + montant_enf_sup * max_(nbenf - 3, 0)
             montant_2enfs = (nbenf == 2) * (br <= P.plafond_2enf) * P.montant_2enf
 
@@ -341,7 +252,7 @@ def build_reform(tax_benefit_system):
             deduction_garde_alternee = (nbenf_garde_alternee > 0) * (
                 (nbenf - nbenf_garde_alternee < 3) * 0.5 * plf +
                 (nbenf - nbenf_garde_alternee >= 3) * nbenf_garde_alternee * 0.5 * montant_enf_sup
-            )
+                )
 
             plf = plf - deduction_garde_alternee
 
@@ -351,4 +262,85 @@ def build_reform(tax_benefit_system):
 
             return period, plf
 
-    return Reform()
+    reform = Reform()
+    reform.modify_legislation_json(modifier_function = modify_legislation_json)
+    return reform
+
+
+def modify_legislation_json(reference_legislation_json_copy):
+    reform_legislation_subtree = {
+        "@type": "Node",
+        "description": "Aides locales",
+        "children": {
+            "paris": {
+                "@type": "Node",
+                "description": "Aides de la ville de Paris",
+                "children": {
+                    "paris_logement_familles": {
+                        "@type": "Node",
+                        "description": "Paris Logement Famille",
+                        "children": {
+                            "plafond_haut_3enf": {
+                                "@type": "Parameter",
+                                "description": "Plafond haut de PLF pour les familles à 3 enfants, aussi plafond de PLF avec enfant handicapé",  # noqa
+                                "unit": "currency",
+                                "format": "float",
+                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 5000}],
+                                },
+                            "plafond_bas_3enf": {
+                                "@type": "Parameter",
+                                "description": "Plafond bas de PLF pour les familles à 3 enfants",
+                                "unit": "currency",
+                                "format": "float",
+                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 3000}],
+                                },
+                            "plafond_2enf": {
+                                "@type": "Parameter",
+                                "description": "Plafond de PLF pour les familles à deux enfants.",
+                                "unit": "currency",
+                                "format": "float",
+                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 2000}],
+                                },
+                            "montant_haut_3enf": {
+                                "@type": "Parameter",
+                                "description": "Montant haut PLF pour famille à 3 enfants",
+                                "unit": "currency",
+                                "format": "float",
+                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 128}],
+                            },
+                            "montant_bas_3enf": {
+                                "@type": "Parameter",
+                                "description": "Montant bas PLF pour famille à 3 enfants.",
+                                "unit": "currency",
+                                "format": "float",
+                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 84}],
+                                },
+                            "montant_2enf": {
+                                "@type": "Parameter",
+                                "description": "Montant PLF pour les familles à deux enfants.",
+                                "unit": "currency",
+                                "format": "float",
+                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 116}],
+                                },
+                            "montant_haut_enf_sup": {
+                                "@type": "Parameter",
+                                "description": "Montant haut sup par enfant",
+                                "unit": "currency",
+                                "format": "float",
+                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 41}],
+                                },
+                            "montant_bas_enf_sup": {
+                                "@type": "Parameter",
+                                "description": "Montant bas sup par enfant.",
+                                "unit": "currency",
+                                "format": "float",
+                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 21}],
+                                },
+                            }
+                        }
+                    }
+                },
+            },
+        }
+    reference_legislation_json_copy['children']['aides_locales'] = reform_legislation_subtree
+    return reference_legislation_json_copy
