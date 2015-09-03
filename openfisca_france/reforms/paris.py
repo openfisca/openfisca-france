@@ -34,6 +34,7 @@ from .. import entities
 
 def build_reform(tax_benefit_system):
     Reform = reforms.make_reform(
+        key = 'aides_ville_paris',
         name = u'Aides de la ville de Paris',
         reference = tax_benefit_system,
         )
