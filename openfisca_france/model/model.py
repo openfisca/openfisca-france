@@ -94,8 +94,6 @@ from revenus.activite import (  # noqa analysis:ignore
     salarie,
     )
 
-
-
 from revenus.capital import (  # noqa analysis:ignore
     financier,
     foncier,

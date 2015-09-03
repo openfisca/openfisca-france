@@ -49,3 +49,21 @@ class indemnites_journalieres(SimpleFormulaColumn):
         result = indemnites_journalieres_maternite + indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle
 
         return period, result
+
+
+@reference_formula
+class indemnites_journalieres_imposables(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Total des indemnités journalières imposables"
+    entity_class = Individus
+    url = "http://vosdroits.service-public.fr/particuliers/F3152.xhtml"
+
+    def function(self, simulation, period):
+        indemnites_journalieres = simulation.calculate('indemnites_journalieres', period)
+        indemnites_journalieres_accident_travail = simulation.calculate('indemnites_journalieres_accident_travail', period)
+        indemnites_journalieres_maladie_professionnelle = simulation.calculate('indemnites_journalieres_accident_travail', period)
+        result = indemnites_journalieres - 0.5 * (
+            indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle
+        )
+
+        return period, result
