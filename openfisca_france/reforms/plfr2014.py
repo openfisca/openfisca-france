@@ -41,7 +41,8 @@ from ..model.prelevements_obligatoires.impot_revenu import reductions_impot
 
 def build_reform(tax_benefit_system):
     Reform = reforms.make_reform(
-        name = u'PLFR 2014',
+        key = u'plfr2014',
+        name = u'Projet de Loi de Finances Rectificative 2014',
         reference = tax_benefit_system,
         )
 

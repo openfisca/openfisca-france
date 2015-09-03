@@ -184,7 +184,7 @@ test_case_by_employee_type = dict(
 def test_check():
     for employee_type, test_parameters in test_case_by_employee_type.iteritems():
         Reform = reforms.make_reform(
-            # name = u'smic_h_b_9_euros',
+            key = u'smic_h_b_9_euros',
             name = u"Réforme pour simulation ACOSS SMIC horaire brut fixe à 9 euros",
             reference = tax_benefit_system,
             )

@@ -34,7 +34,8 @@ from ..model.prelevements_obligatoires.impot_revenu import ir
 
 def build_reform(tax_benefit_system):
     Reform = reforms.make_reform(
-        name = u'PLF2015',
+        key = 'plf2015',
+        name = u'Projet de Loi de Finances 2015',
         reference = tax_benefit_system,
         )
 

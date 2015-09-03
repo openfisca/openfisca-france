@@ -45,7 +45,7 @@ def test_parametric_reform():
     simulation_year = 2013
     simulation_period = periods.period('year', simulation_year)
     Reform = reforms.make_reform(
-        # name = u'IR_100_tranche_1',
+        key = 'ir_100_tranche_1',
         name = u"Imposition à 100% dès le premier euro et jusqu'à la fin de la 1ère tranche",
         reference = tax_benefit_system,
         )

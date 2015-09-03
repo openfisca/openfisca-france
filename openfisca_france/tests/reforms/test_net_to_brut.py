@@ -56,7 +56,10 @@ def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
     chobrut = simulation.get_holder('chobrut').array
     chonet = simulation.calculate('chonet')
 
-    inversion_reform = inversion_revenus.build_reform(base.tax_benefit_system)
+    inversion_reform = base.get_cached_reform(
+        reform_key = 'inversion_revenus',
+        tax_benefit_system = base.tax_benefit_system,
+        )
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
         **scenario_args
         ).new_simulation(debug = True)
@@ -99,7 +102,10 @@ def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
     rstbrut = simulation.get_holder('rstbrut').array
     rstnet = simulation.calculate('rstnet')
 
-    inversion_reform = inversion_revenus.build_reform(base.tax_benefit_system)
+    inversion_reform = base.get_cached_reform(
+        reform_key = 'inversion_revenus',
+        tax_benefit_system = base.tax_benefit_system,
+        )
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
         **scenario_args
         ).new_simulation(debug = True)
@@ -150,7 +156,10 @@ def check_salaire_net_to_salaire_de_base(count, salaire_de_base_max, salaire_de_
 
     salaire_net = simulation.calculate('salaire_net')
 
-    inversion_reform = inversion_revenus.build_reform(base.tax_benefit_system)
+    inversion_reform = base.get_cached_reform(
+        reform_key = 'inversion_revenus',
+        tax_benefit_system = base.tax_benefit_system,
+        )
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
         **scenario_args
         ).new_simulation()

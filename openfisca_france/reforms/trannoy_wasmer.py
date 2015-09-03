@@ -37,6 +37,7 @@ from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
 
 def build_reform(tax_benefit_system):
     Reform = reforms.make_reform(
+        key = 'trannoy_wasmer',
         name = u'Loyer comme charge déductible (Trannoy-Wasmer)',
         reference = tax_benefit_system,
         )

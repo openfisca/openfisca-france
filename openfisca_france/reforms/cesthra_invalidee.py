@@ -34,6 +34,7 @@ from ..model.prelevements_obligatoires.impot_revenu import ir
 
 def build_reform(tax_benefit_system):
     Reform = reforms.make_reform(
+        key = 'cesthra_invalidee',
         name = u"Contribution execptionnelle sur les très hauts revenus d'activité (invalidée par le CC)",
         reference = tax_benefit_system,
         )

@@ -35,6 +35,7 @@ from ..model.prelevements_obligatoires.impot_revenu import ir
 
 def build_reform(tax_benefit_system):
     Reform = reforms.make_reform(
+        key = 'allocations_familiales_imposables',
         name = u'Allocations familiales imposables',
         reference = tax_benefit_system,
         )

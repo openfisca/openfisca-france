@@ -47,6 +47,7 @@ def brut_to_target(target_name = None, period = None, simulation = None, **input
 
 def build_reform(tax_benefit_system):
     Reform = reforms.make_reform(
+        key = 'inversion_revenus',
         name = u'Inversion des revenus',
         reference = tax_benefit_system,
         )
