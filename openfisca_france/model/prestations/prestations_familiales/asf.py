@@ -44,15 +44,11 @@ class asf_elig_enfant(SimpleFormulaColumn):
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
 
-        #TODO : pension alimentaire  attribuée à l'enfant ? Ce n'est probablement le cas ajd dans mes-aides
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
-
         pfam = simulation.legislation_at(period.start).fam
 
         eligibilite = (
             (age >= pfam.af.age1) * (age <= pfam.af.age3) *  # Âge compatible avec les prestations familiales
-            not_(smic55) *  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
-            (pensions_alimentaires_percues == 0))  # Ne perçoit pas de pension alimentaire
+            not_(smic55))  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
 
         return period, eligibilite
 
@@ -79,11 +75,13 @@ class asf_elig(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        pensions_alimentaires_percues_holder = simulation.compute('pensions_alimentaires_percues', period)
+        pensions_alimentaires_percues = self.sum_by_entity(pensions_alimentaires_percues_holder)
 
         isol = simulation.calculate('isol', period)
         residence_mayotte = simulation.calculate('residence_mayotte', period)
 
-        return period, not_(residence_mayotte) * isol  # Parent isolé et ne résident pas à Mayotte
+        return period, not_(residence_mayotte) * isol * not_(pensions_alimentaires_percues)  # Parent isolé et ne résident pas à Mayotte
 
 
 @reference_formula
