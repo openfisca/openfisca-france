@@ -1,6 +1,8 @@
 # OpenFisca France
 
-[![Build Status via Travis CI](https://travis-ci.org/openfisca/openfisca-france.svg?branch=master)](https://travis-ci.org/openfisca/openfisca-france)
+[![Build Status](https://travis-ci.org/openfisca/openfisca-france.svg?branch=master)](https://travis-ci.org/openfisca/openfisca-france)
+
+[More build status](http://www.openfisca.fr/build-status)
 
 ## Presentation
 
