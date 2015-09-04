@@ -298,10 +298,10 @@ class cf_majore_avant_cumul(DatedFormulaColumn):
 
 
 @reference_formula
-class cf_temp(SimpleFormulaColumn):
+class cf_montant(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Familles
-    label = u"Complément familial avant d'éventuels cumuls"
+    label = u"Montant du complément familial, avant prise en compte d'éventuels cumuls"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -325,11 +325,11 @@ class cf(SimpleFormulaColumn):
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
         period = period.start.offset('first-of', 'month').period('month')
-        paje_base_temp = simulation.calculate('paje_base_temp', period)
+        paje_base_montant = simulation.calculate('paje_base_montant', period)
         apje_temp = simulation.calculate_divide('apje_temp', period)
         ape_temp = simulation.calculate_divide('ape_temp', period)
-        cf_temp = simulation.calculate('cf_temp', period)
+        cf_montant = simulation.calculate('cf_montant', period)
         residence_mayotte = simulation.calculate('residence_mayotte', period)
 
-        cf_brut = (paje_base_temp < cf_temp) * (apje_temp <= cf_temp) * (ape_temp <= cf_temp) * cf_temp
+        cf_brut = (paje_base_montant < cf_montant) * (apje_temp <= cf_montant) * (ape_temp <= cf_montant) * cf_montant
         return period, not_(residence_mayotte) * round(cf_brut, 2)

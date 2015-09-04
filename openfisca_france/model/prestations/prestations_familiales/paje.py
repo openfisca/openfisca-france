@@ -80,10 +80,10 @@ class paje(SimpleFormulaColumn):
 
 
 @reference_formula
-class paje_base_temp(SimpleFormulaColumn):
+class paje_base_montant(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Familles
-    label = u"Allocation de base de la PAJE sans tenir compte d'éventuels cumuls"
+    label = u"Montant del'allocation de base de la PAJE, avant prise en compte d'éventuels cumuls"
     start_date = date(2004, 1, 1)
 
     def function(self, simulation, period):
@@ -444,11 +444,11 @@ class paje_base(SimpleFormulaColumn):
         '''
         period = period.start.offset('first-of', 'month').period('month')
 
-        paje_base_temp = simulation.calculate('paje_base_temp', period)
-        cf_temp = simulation.calculate('cf_temp', period)
+        paje_base_montant = simulation.calculate('paje_base_montant', period)
+        cf_montant = simulation.calculate('cf_montant', period)
 
         # On regarde ce qui est le plus intéressant pour la famille, chaque mois
-        paje_base = (paje_base_temp >= cf_temp) * paje_base_temp
+        paje_base = (paje_base_montant >= cf_montant) * paje_base_montant
         return period, paje_base
 
 
@@ -672,9 +672,9 @@ class ape(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         apje_temp = simulation.calculate('apje_temp', period)
         ape_temp = simulation.calculate('ape_temp', period)
-        cf_temp = simulation.calculate('cf_temp', period)
+        cf_montant = simulation.calculate('cf_montant', period)
 
-        ape = (apje_temp < ape_temp) * (cf_temp < ape_temp) * ape_temp
+        ape = (apje_temp < ape_temp) * (cf_montant < ape_temp) * ape_temp
         return period, round(ape, 2)
 
 
@@ -691,7 +691,7 @@ class apje(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         apje_temp = simulation.calculate('apje_temp', period)
         ape_temp = simulation.calculate('ape_temp', period)
-        cf_temp = simulation.calculate('cf_temp', period)
+        cf_montant = simulation.calculate('cf_montant', period)
 
-        apje = (cf_temp < apje_temp) * (ape_temp < apje_temp) * apje_temp
+        apje = (cf_montant < apje_temp) * (ape_temp < apje_temp) * apje_temp
         return period, round(apje, 2)
