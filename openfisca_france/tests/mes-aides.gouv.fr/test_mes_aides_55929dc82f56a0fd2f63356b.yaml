@@ -1,7 +1,6 @@
-name: Couple sans activité sans domicile stable
+name: Pas de forfait logement pour un bénéficiaire sans domicile stable
 keywords:
   - forfait logement
-  - recette
   - rsa
 description: Il ne faut pas appliquer le forfait logement
 period: "month:2015-06"
@@ -39,10 +38,100 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
 familles:
+  acs:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  af:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  aide_logement:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  alf:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  als:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  apl:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  asf:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  asi:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  aspa:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  ass:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  bourse_college:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  bourse_lycee:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  cf:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
   enfants:
+  paje_base:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
   parents:
     - 55929dc4131e5b05301ebc1a
     - 55929dc4131e5b05301ebc19
+  paris_logement_familles:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  rsa:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  rsa_majore:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
+  rsa_non_majore:
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 0
 foyers_fiscaux:
   declarants:
     - 55929dc4131e5b05301ebc1a

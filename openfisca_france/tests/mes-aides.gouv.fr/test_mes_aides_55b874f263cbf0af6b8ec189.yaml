@@ -1,0 +1,175 @@
+name: APL ACCESSION
+keywords:
+  - Propriétaire ou accédant à la propriété
+  - recette
+description: |
+  Test créé à partir d'un dossier de demande de (RSA, APL…) : 
+  Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : 
+  La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) : 
+period: "month:2015-07"
+individus:
+  - a_charge_fiscale: true
+    age: 53
+    age_en_mois: 643
+    birth: "1961-12-13"
+    cho:
+      2013: 0
+    enfant_place: false
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55b874cef0ac7bb86ba04ca6
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    rst:
+      2013: 0
+    salaire_imposable:
+      2013: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - a_charge_fiscale: true
+    age: 49
+    age_en_mois: 599
+    birth: "1965-08-13"
+    cho:
+      2013: 0
+    enfant_place: false
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55b874cef0ac7bb86ba04ca5
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    rst:
+      2013: 0
+    salaire_imposable:
+      2013: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  acs:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  af:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  aide_logement:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  alf:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  als:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  apl:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  asf:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  asi:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  aspa:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  ass:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  bourse_college:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  bourse_lycee:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  cf:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  enfants:
+  paje_base:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  parents:
+    - 55b874cef0ac7bb86ba04ca6
+    - 55b874cef0ac7bb86ba04ca5
+  paris_logement_familles:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  rsa:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  rsa_majore:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  rsa_non_majore:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+foyers_fiscaux:
+  declarants:
+    - 55b874cef0ac7bb86ba04ca6
+    - 55b874cef0ac7bb86ba04ca5
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+  rfr:
+menages:
+  conjoint: 55b874cef0ac7bb86ba04ca5
+  depcom: 77083
+  enfants:
+  loyer: 868
+  parisien: false
+  personne_de_reference: 55b874cef0ac7bb86ba04ca6
+  statut_occupation: 1
+output_variables:
+  aide_logement: 164.06
