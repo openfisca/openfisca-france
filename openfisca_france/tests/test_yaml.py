@@ -279,7 +279,7 @@ def test(force = False, name_filter = None, options_by_path = None):
                 if error is not None:
                     embedding_error = conv.embed_error(test, u'errors', error)
                     assert embedding_error is None, embedding_error
-                    raise ValueError("Error in test {}:\n{}".format(yaml_path, yaml.dump(test, allow_unicode = True,
+                    raise ValueError("Error in test {}:\n{}\nYaml test content: \n{}\n".format(yaml_path, error, yaml.dump(test, allow_unicode = True,
                         default_flow_style = False, indent = 2, width = 120)))
 
                 if not force and test.get(u'ignore', False):
