@@ -1,0 +1,224 @@
+name: Famille 1 Enfant handicapé
+keywords:
+  - Enfant handicapé
+  - PLF
+  - Paris
+description: Le montant d'aide doit être de 128 euros.
+period: "month:2015-07"
+individus:
+  - a_charge_fiscale: true
+    age: 35
+    age_en_mois: 426
+    birth: "1980-01-01"
+    enfant_place: false
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55b23588a56021586478564c
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    salaire_de_base:
+      2013: 69230.7692307692
+      2014-07: 5769.230769230769
+      2014-08: 5769.230769230769
+      2014-09: 5769.230769230769
+      2014-10: 5769.230769230769
+      2014-11: 5769.230769230769
+      2014-12: 5769.230769230769
+      2015-01: 5769.230769230769
+      2015-02: 5769.230769230769
+      2015-03: 5769.230769230769
+      2015-04: 5769.230769230769
+      2015-04:3: 17307.692307692305
+      2015-05: 5769.230769230769
+      2015-06: 5769.230769230769
+      2015-07: 5769.230769230769
+      year:2014-07: 69230.7692307692
+    salaire_imposable:
+      2013: 55972.55769230768
+      2014-07: 4664.379807692308
+      2014-08: 4664.379807692308
+      2014-09: 4664.379807692308
+      2014-10: 4664.379807692308
+      2014-11: 4664.379807692308
+      2014-12: 4664.379807692308
+      2015-01: 4664.379807692308
+      2015-02: 4664.379807692308
+      2015-03: 4664.379807692308
+      2015-04: 4664.379807692308
+      2015-04:3: 13993.139423076922
+      2015-05: 4664.379807692308
+      2015-06: 4664.379807692308
+      2015-07: 4664.379807692308
+      year:2014-07: 55972.55769230768
+    salaire_net:
+      2013: 54000
+      2014-07: 4500
+      2014-08: 4500
+      2014-09: 4500
+      2014-10: 4500
+      2014-11: 4500
+      2014-12: 4500
+      2015-01: 4500
+      2015-02: 4500
+      2015-03: 4500
+      2015-04: 4500
+      2015-04:3: 13500
+      2015-05: 4500
+      2015-06: 4500
+      2015-07: 4500
+      year:2014-07: 54000
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - a_charge_fiscale: true
+    age: 35
+    age_en_mois: 426
+    birth: "1980-01-01"
+    enfant_place: false
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55b23588a56021586478564b
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - a_charge_fiscale: true
+    age: 2
+    age_en_mois: 30
+    birth: "2013-01-01"
+    enfant_place: false
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55b23588a560215864785649
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  acs:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  af:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  aide_logement:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  alf:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  als:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  apl:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  asf:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  asi:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  aspa:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  ass:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  bourse_college:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  bourse_lycee:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  cf:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  enfants: 55b23588a560215864785649
+  paje_base:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  parents:
+    - 55b23588a56021586478564c
+    - 55b23588a56021586478564b
+  paris_logement_familles:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  proprietaire_proche_famille: false
+  rsa:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  rsa_majore:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  rsa_non_majore:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+foyers_fiscaux:
+  declarants:
+    - 55b23588a56021586478564c
+    - 55b23588a56021586478564b
+  personnes_a_charge: 55b23588a560215864785649
+menages:
+  charges_locatives: 50
+  conjoint: 55b23588a56021586478564b
+  depcom: 75106
+  enfants: 55b23588a560215864785649
+  loyer: 500
+  parisien: true
+  personne_de_reference: 55b23588a56021586478564c
+  statut_occupation: 4
+output_variables:
+  paris_logement_familles: 128

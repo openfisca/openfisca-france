@@ -4,7 +4,7 @@ keywords:
   - cf
 description: |
   Le plafond de ressources du Cf pour un couple avec un seul revenu d'activité et 3 enfants est de 37 555 €.
-  Les ressources 2013 du foyer (40 000 €) dépassent le plafond.
+  Les ressources 2013 du foyer (45 000 €, soit 40500€ après 10% de déduction ) dépassent le plafond.
   Donc pas de droit au Cf.
   Or le simulateur restitue un droit au Cf 170 €.
 period: "month:2015-02"
@@ -12,6 +12,8 @@ individus:
   - age: 65
     age_en_mois: 780
     birth: "1950-02-01"
+    cho:
+      2013: 0
     epargne_non_remuneree:
       2012-01: 0
     etu: 0
@@ -20,8 +22,11 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    rst:
+      2013: 0
     salaire_de_base:
-      2013: 57692.30769230769
       2014-02: 6410.25641025641
       2014-03: 6410.25641025641
       2014-04: 6410.25641025641
@@ -35,23 +40,7 @@ individus:
       2014-11:3: 0
       2014-12: 0
       2015-01: 0
-      year:2014-02: 51282.05128205128
-    salaire_net:
-      2013: 45000
-      2014-02: 5000
-      2014-03: 5000
-      2014-04: 5000
-      2014-05: 5000
-      2014-06: 5000
-      2014-07: 5000
-      2014-08: 5000
-      2014-09: 5000
-      2014-10: 5000
-      2014-11: 0
-      2014-11:3: 0
-      2014-12: 0
-      2015-01: 0
-      year:2014-02: 45000
+      year:2014-02: 57692.30769230769
     salaire_imposable:
       2013: 45000
       2014-02: 5182.6442307692305
@@ -67,7 +56,22 @@ individus:
       2014-11:3: 0
       2014-12: 0
       2015-01: 0
-      year:2014-02: 41461.15384615385
+      year:2014-02: 46643.79807692308
+    salaire_net:
+      2014-02: 5000
+      2014-03: 5000
+      2014-04: 5000
+      2014-05: 5000
+      2014-06: 5000
+      2014-07: 5000
+      2014-08: 5000
+      2014-09: 5000
+      2014-10: 5000
+      2014-11: 0
+      2014-11:3: 0
+      2014-12: 0
+      2015-01: 0
+      year:2014-02: 45000
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -76,6 +80,8 @@ individus:
   - age: 66
     age_en_mois: 792
     birth: "1949-02-01"
+    cho:
+      2013: 0
     epargne_non_remuneree:
       2012-01: 0
     etu: 0
@@ -84,6 +90,12 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    rst:
+      2013: 0
+    salaire_imposable:
+      2013: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -137,17 +149,109 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
 familles:
+  acs:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  af:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  aide_logement:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  alf:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  als:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  apl:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  asf:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  asi:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  aspa:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  ass:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  bourse_college:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  bourse_lycee:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  cf:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   enfants:
     - 54e7077070a3f65f40b60f04
     - 54e7077070a3f65f40b60f03
     - 54e7077070a3f65f40b60f02
+  paje_base:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   parents:
     - 54e7077070a3f65f40b60f12
     - 54e7077070a3f65f40b60f05
+  paris_logement_familles:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  rsa:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  rsa_majore:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  rsa_non_majore:
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
 foyers_fiscaux:
   declarants:
     - 54e7077070a3f65f40b60f12
     - 54e7077070a3f65f40b60f05
+  pensions_alimentaires_versees:
+    2013: 0
   personnes_a_charge:
     - 54e7077070a3f65f40b60f04
     - 54e7077070a3f65f40b60f03
