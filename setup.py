@@ -43,7 +43,7 @@ doc_lines = __doc__.split('\n')
 
 setup(
     name = 'OpenFisca-France',
-    version = '0.5dev',
+    version = '0.5.dev0',
 
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
@@ -59,7 +59,7 @@ setup(
         ],
     install_requires = [
         'Babel >= 0.9.4',
-        'Biryani >= 0.10.1',
+        'Biryani >= 0.10.4',
         'numpy',
         'OpenFisca-Core >= 0.5dev',
         'PyYAML',

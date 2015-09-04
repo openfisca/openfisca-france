@@ -4,15 +4,13 @@ keywords:
   - points de charge
 description: |
   2 points de charge supplémentaires pour le 4ème enfant à charge
-  Points de charge = 9 + 1 + 2 + 2 = 14
-  Plafond pour 3 parts correspondant : 18819 euros
-  RFR = 18800, donc montant = 135,9
+  Points de charge = (9 + 2) + 1 + 2 + 2 = 16
+  Plafond pour 3 parts correspondant : 21507 euros
+  RFR = 21500, donc montant = 135,9
 period: "month:2015-03"
 individus:
   - age: 34
-    agem: 415
-    alr:
-      2013: 0
+    age_en_mois: 415
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -23,10 +21,12 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
-    sal:
+    salaire_imposable:
       2013: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
@@ -34,9 +34,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 34
-    agem: 415
-    alr:
-      2013: 0
+    age_en_mois: 415
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -47,10 +45,12 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
-    sal:
+    salaire_imposable:
       2013: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
@@ -58,7 +58,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 14
-    agem: 175
+    age_en_mois: 175
     birth: "2000-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -67,14 +67,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 2
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 0
-    agem: 7
+    age_en_mois: 7
     birth: "2014-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -83,13 +83,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 0
-    agem: 7
+    age_en_mois: 7
     birth: "2014-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -98,13 +98,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 0
-    agem: 7
+    age_en_mois: 7
     birth: "2014-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -113,7 +113,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -131,7 +131,7 @@ foyers_fiscaux:
   declarants:
     - 55016b6ce471d52f5a015635
     - 55016b6ce471d52f5a015634
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
     - 55016b6ce471d52f5a015633
@@ -139,7 +139,7 @@ foyers_fiscaux:
     - 55016b6ce471d52f5a015631
     - 55016b6ce471d52f5a015630
   rfr:
-    2013: 18800
+    2013: 21500
 menages:
   conjoint: 55016b6ce471d52f5a015634
   depcom: 67482

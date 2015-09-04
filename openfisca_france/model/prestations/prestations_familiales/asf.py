@@ -81,11 +81,12 @@ class asf_elig(SimpleFormulaColumn):
         isol = simulation.calculate('isol', period)
         residence_mayotte = simulation.calculate('residence_mayotte', period)
 
-        return period, not_(residence_mayotte) * isol # Parent isolé et ne résident pas à Mayotte
+        return period, not_(residence_mayotte) * isol  # Parent isolé et ne résident pas à Mayotte
 
 
 @reference_formula
 class asf(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation de soutien familial (ASF)"

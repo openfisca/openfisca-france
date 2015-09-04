@@ -1,0 +1,19 @@
+- name: "Cotisation patronale de financement des organisations syndicales"
+  period: 2015-01
+  individus:
+    - id: "non cadre"
+      salaire_de_base: 2000
+      type_sal: 0
+    - id: "cadre"
+      salaire_de_base: 3000
+      type_sal: 1
+    - id: "contractuel fonction publique"
+      salaire_de_base: 2000
+      type_sal: 6
+    - id: "titualaire fonction publique"
+      salaire_de_base: 2000
+      type_sal: 3
+  output_variables:
+
+  output_variables:
+    financement_organisations_syndicales: [-2000 * 0.00016 , -3000 * 0.00016, -2000 * 0.00016, 0]

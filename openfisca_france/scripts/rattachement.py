@@ -121,7 +121,7 @@ def define_scenario(year):
             activite = u'Actif occupé',
             birth = 1973,
 #            cadre = True,
-            sali = 90000,
+            salaire_imposable = 90000,
             statmarit = u'Célibataire',
             ),
         enfants = [

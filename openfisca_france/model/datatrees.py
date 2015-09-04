@@ -34,7 +34,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('children', [
                     'birth',  # Date de naissance
                     'statmarit',  # Statut marital
-                    'salaire_de_base',  # Revenus d'activité imposables
+                    'salaire_de_base',  # Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie
                     'choi',  # Autres revenus imposables (chômage, préretraite)
                     'rsti',  # Pensions, retraites, rentes connues imposables
                     ]),
@@ -50,9 +50,9 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'ppe_du_sa',  # Prime pour l'emploi des salariés: nombre d'heures payées dans l'année
                     'ppe_du_ns',  # Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année
                     'cho_ld',  # Demandeur d'emploi inscrit depuis plus d'un an
-                    'csg_rempl',  # Taux retenu sur la CSG des revenus de remplacment
-                    'alr',  # Pensions alimentaires perçues
-                    'alr_decl',  # Pension déclarée
+                    'taux_csg_remplacement',  # Taux retenu sur la CSG des revenus de remplacment
+                    'pensions_alimentaires_percues',  # Pensions alimentaires perçues
+                    'pensions_alimentaires_percues_decl',  # Pension déclarée
                     ]),
                 ]),
             collections.OrderedDict([
@@ -163,7 +163,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""adoption""",  # Enfant adopté
                     u"""alt""",  # Enfant en garde alternée
                     u"""enceinte""",  # Est enceinte
-                    u"""inv""",  # Invalide
+                    u"""invalide""",  # Invalide
                     u"""rempli_obligation_scolaire""",  # Rempli l'obligation scolaire
                     u"""coloc""",  # Vie en colocation
                     u"""logement_chambre""",  # Le logement est considéré comme une chambre
@@ -173,15 +173,16 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f6ss""",  # Rachat de cotisations PERP, PREFON, COREM et C.G.O.S
                     u"""f7ac""",  # Cotisations syndicales des salariées et pensionnés
                     u"""elig_creimp_jeunes""",  # Éligible au crédit d'impôt jeunes
+                    u"""jei_date_demande""",  # Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)
+                    u"""stage_duree_heures""",  # Nombre d'heures effectuées en stage
+                    u"""stage_gratification_taux""",  # Taux de gratification (en plafond de la Sécurité sociale)
                     u"""scolarite""",  # Scolarité de l'enfant : collège, lycée...
                     u"""boursier""",  # Élève ou étudiant boursier
-                    u"""aah""",  # Allocation de l'adulte handicapé
-                    u"""caah""",  # Complément de l'allocation de l'adulte handicapé
                     u"""inapte_travail""",  # Reconnu inapte au travail
                     u"""taux_invalidite""",  # Taux d'invalidité
                     u"""ass_precondition_remplie""",  # Éligible à l'ASS
                     u"""categ_inv""",  # Catégorie de handicap (AEEH)
-                    u"""pensions_alimentaires_percues""",  # Pensions alimentaires perçues
+                    u"""pensions_alimentaires_versees_individu""",  # Pensions alimentaires versées pour un individu
                     u"""gains_exceptionnels""",  # Gains exceptionnels
                     u"""allocation_aide_retour_emploi""",  # Allocation d'aide au retour à l'emploi
                     u"""allocation_securisation_professionnelle""",  # Allocation de sécurisation professionnelle
@@ -217,10 +218,15 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""pveximpres""",  # Plus-values à long terme exonérées en cas de départ à la retraite à imposer aux prélèvements sociaux
                     u"""pvtaimpres""",  # Plus-values à long terme taxables à 16% à la retraite à imposer aux prélèvements sociaux
                     u"""f5sq""",
-                    u"""tns_chiffre_affaires_micro_entreprise""",  # Chiffre d'affaires de micro-entreprise ou assimilée
+                    u"""tns_auto_entrepreneur_chiffre_affaires""",  # Chiffre d'affaires en tant qu'auto-entrepreneur
+                    u"""tns_micro_entreprise_chiffre_affaires""",  # Chiffre d'affaires en de micro-entreprise
+                    u"""tns_auto_entrepreneur_type_activite""",  # Type d'activité de l'auto-entrepreneur
+                    u"""tns_micro_entreprise_type_activite""",  # Type d'activité de la micro-entreprise
                     u"""tns_autres_revenus""",  # Autres revenus non salariés
-                    u"""tns_type_structure""",  # Type de structure associée au travailleur non salarié
-                    u"""tns_type_activite""",  # Valeur locative des biens immobiliés possédés et non loués
+                    u"""tns_autres_revenus_chiffre_affaires""",  # Chiffre d'affaire pour les TNS non agricoles autres que les AE et ME
+                    u"""tns_autres_revenus_type_activite""",  # Type d'activité de l'entreprise non AE ni ME
+                    u"""tns_employe""",  # Le TNS a au moins un employé. Ne s'applique pas pour les agricoles ni auto-entrepreneurs ni micro entreprise
+                    u"""tns_benefice_exploitant_agricole""",  # Dernier bénéfice agricole
                     u"""indemnites_stage""",  # Indemnités de stage
                     u"""revenus_stage_formation_pro""",  # Revenus de stage de formation professionnelle
                     u"""bourse_recherche""",  # Bourse de recherche
@@ -233,11 +239,11 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""arrco_tranche_a_taux_employeur""",  # Taux ARRCO tranche A employeur) propre à l'entreprise
                     u"""arrco_tranche_a_taux_salarie""",  # Taux ARRCO tranche A salarié) propre à l'entreprise
                     u"""assujettie_taxe_salaires""",  # Entreprise assujettie à la taxe sur les salaires
-                    u"""avantages_en_nature_valeur_reelle""",  # Avantages en nature (Valeur réelle)
+                    u"""avantage_en_nature_valeur_reelle""",  # Avantages en nature (Valeur réelle)
                     u"""indemnites_compensatrices_conges_payes""",
                     u"""contrat_de_travail""",  # Type contrat de travail
-                    u"""contrat_de_travail_arrivee""",  # Date d'arrivée dans l'entreprise
-                    u"""contrat_de_travail_depart""",  # Date de départ de l'entreprise
+                    u"""contrat_de_travail_debut""",  # Date d'arrivée dans l'entreprise
+                    u"""contrat_de_travail_fin""",  # Date de départ de l'entreprise
                     u"""contrat_de_travail_duree""",  # Type (durée determinée ou indéterminée) du contrat de travail
                     u"""cotisation_sociale_mode_recouvrement""",  # Mode de recouvrement des cotisations sociales
                     u"""depcom_entreprise""",  # Localisation entreprise (depcom)
@@ -262,7 +268,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""redevable_taxe_apprentissage""",  # Entreprise redevable de la taxe d'apprentissage
                     u"""remboursement_transport_base""",  # Base pour le calcul du remboursement des frais de transport
                     u"""indemnites_forfaitaires""",  # Indemnités forfaitaires (transport, nourriture)
-                    u"""salaire_de_base""",  # Salaire de base
                     u"""titre_restaurant_taux_employeur""",  # Taux de participation de l'employeur au titre restaurant
                     u"""titre_restaurant_valeur_unitaire""",  # Valeur faciale unitaire du titre restaurant
                     u"""titre_restaurant_volume""",  # Volume des titres restaurant
@@ -321,6 +326,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
                     u"""proprietaire_proche_famille""",  # Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint
+                    u"""paje_prepare""",  # Prestation Partagée d’éducation de l’Enfant (PreParE)
                     ]),
                 ]),
             ]),
@@ -1020,7 +1026,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
-                    'loyer',  # Loyer mensuel
+                    'loyer',  # Loyer
                     'statut_occupation',  # Statut d'occupation
                     'depcom',  # Code INSEE (depcom) du lieu de résidence
                     ]),

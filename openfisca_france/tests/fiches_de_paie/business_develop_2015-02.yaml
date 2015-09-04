@@ -17,7 +17,7 @@ output_variables:
   agff_employeur: -26.07
   apec_employeur: -0.78
   arrco_employeur: -101.04
-  agirc_employeur: -41.16 -.01  # manque .01 dans la  fiche de paie
+  agirc_employeur: -0
   agirc_gmp_employeur: -41.16 -.01  # manque .01 dans la  fiche de paie
   chomage_employeur: -86.92
   cotisation_exceptionnelle_temporaire_employeur: -4.78
@@ -25,7 +25,7 @@ output_variables:
   mmid_employeur: -2172.9 * .128  # -6.52
   vieillesse_deplafonnee_employeur: -2172.9 * .018
   vieillesse_plafonnee_employeur: -2172.9 * .0850   # -2.17
-  exoneration_cotisations_patronales_jei: 2172.9 * (.018 + .0850 + .0525 + .128)
+  exoneration_cotisations_employeur_jei: 2172.9 * (.018 + .0850 + .0525 + .128)
   fonds_emploi_hospitalier: 0
   ircantec_employeur: 0
   pension_civile_employeur: 0
@@ -57,7 +57,8 @@ output_variables:
   cotisations_salariales: -509.15 + 109.7 + 62.38 + .01
   # cotisations_salariales_contributives
   agff_salarie: -17.38
-  agirc_salarie: -25.17
+  agirc_gmp_salarie: -25.17
+  agirc_salarie: -0
   apec_salarie: -0.52
   arrco_salarie: -67.36
   chomage_salarie: -52.15
@@ -71,11 +72,11 @@ output_variables:
   mmid_salarie: -22.82 * .0075/.0105  # -.0075 * 2172.9
   # mmid_salarie: -22.82
   contribution_exceptionnelle_solidarite: 0
-  csgsald: -109.7
+  csg_deductible_salaire: -109.7
   mhsup: 0
-  sal: 1726.13 + .01
-  csgsali: -(2172.9 * .9825 + 16.08)*.024
-  crdssal: -(2172.9 * .9825 + 16.08)*.005
+  salaire_imposable: 1726.13 + .01
+  csg_imposable_salaire: -(2172.9 * .9825 + 16.08)*.024
+  crds_salaire: -(2172.9 * .9825 + 16.08)*.005
   salaire_net: 1663.75 +.01  # 25.18 au lieu de 25.17 agirc_gmp
   hsup: 0
   depense_cantine_titre_restaurant_employe: 0

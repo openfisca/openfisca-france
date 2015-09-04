@@ -27,38 +27,40 @@
 
 from __future__ import division
 
-import copy
-
-import logging
-
 from openfisca_core import formulas, periods, reforms
+
 from ..model.prelevements_obligatoires.impot_revenu import ir
 
 
-log = logging.getLogger(__name__)
+def build_reform(tax_benefit_system):
+    Reform = reforms.make_reform(
+        key = 'plf2015',
+        name = u'Projet de Loi de Finances 2015',
+        reference = tax_benefit_system,
+        )
+
+    @Reform.formula
+    class decote(formulas.SimpleFormulaColumn):
+        label = u"Nouvelle décote 2015"
+        reference = ir.decote
+
+        def function(self, simulation, period):
+            period = period.start.offset('first-of', 'year').period('year')
+            ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
+            nb_adult = simulation.calculate('nb_adult', period)
+            plf = simulation.legislation_at(period.start).plf2015
+
+            decote_celib = (ir_plaf_qf < plf.decote_seuil_celib) * (plf.decote_seuil_celib - ir_plaf_qf)
+            decote_couple = (ir_plaf_qf < plf.decote_seuil_couple) * (plf.decote_seuil_couple - ir_plaf_qf)
+            return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
+
+    reform = Reform()
+    reform.modify_legislation_json(modifier_function = modify_legislation_json)
+    return reform
 
 
-# Reform formulas
-
-class decote(formulas.SimpleFormulaColumn):
-    label = u"Nouvelle décote 2015"
-    reference = ir.decote
-
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
-        ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
-        nb_adult = simulation.calculate('nb_adult', period)
-        plf = simulation.legislation_at(period.start).plf2015
-
-        decote_celib = (ir_plaf_qf < plf.decote_seuil_celib) * (plf.decote_seuil_celib - ir_plaf_qf)
-        decote_couple = (ir_plaf_qf < plf.decote_seuil_couple) * (plf.decote_seuil_couple - ir_plaf_qf)
-        return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
-
-
-# Reform legislation
-
-reform_legislation_subtree = {
-    "plf2015": {
+def modify_legislation_json(reference_legislation_json_copy):
+    reform_legislation_subtree = {
         "@type": "Node",
         "description": "PLF 2015",
         "children": {
@@ -77,36 +79,22 @@ reform_legislation_subtree = {
                 "values": [{'start': u'2013-01-01', 'stop': u'2014-12-31', 'value': 1870}],
                 },
             },
-        },
-    }
-
-
-# Build function
-
-def build_reform(tax_benefit_system):
-    reference_legislation_json = tax_benefit_system.legislation_json
-    reform_legislation_json = copy.deepcopy(reference_legislation_json)
+        }
     reform_year = 2014
     reform_period = periods.period('year', reform_year)
-
-    reform_legislation_json = reforms.update_legislation(
-        legislation_json = reform_legislation_json,
+    # FIXME update_legislation is deprecated.
+    reference_legislation_json_copy = reforms.update_legislation(
+        legislation_json = reference_legislation_json_copy,
         path = ('children', 'ir', 'children', 'bareme', 'brackets', 1, 'rate'),
         period = reform_period,
         value = 0,
         )
-    reform_legislation_json = reforms.update_legislation(
-        legislation_json = reform_legislation_json,
+    # FIXME update_legislation is deprecated.
+    reference_legislation_json_copy = reforms.update_legislation(
+        legislation_json = reference_legislation_json_copy,
         path = ('children', 'ir', 'children', 'bareme', 'brackets', 2, 'threshold'),
         period = reform_period,
         value = 9690,
         )
-    reform_legislation_json['children'].update(reform_legislation_subtree)
-
-    Reform = reforms.make_reform(
-        legislation_json = reform_legislation_json,
-        name = u'PLF2015',
-        new_formulas = (decote, ),
-        reference = tax_benefit_system,
-        )
-    return Reform()
+    reference_legislation_json_copy['children']['plf2015'] = reform_legislation_subtree
+    return reference_legislation_json_copy

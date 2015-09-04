@@ -31,9 +31,7 @@ period: "month:2015-03"
 relative_error_margin: 0.02
 individus:
   age: 43
-  agem: 516
-  alr:
-    2013: 0
+  age_en_mois: 516
   birth: "1972-02-17"
   cho:
     2013: 0
@@ -44,10 +42,12 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
+  pensions_alimentaires_percues:
+    2013: 0
   rst:
     2013: 0
-  sal:
+  salaire_imposable:
     2013: 15000
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -59,8 +59,8 @@ familles:
   proprietaire_proche_famille: false
 foyers_fiscaux:
   declarants: 54f5d9fc932d38203b89280c
-  f6el:
-    2013: 5000
+  pensions_alimentaires_versees:
+    2013: -5000
   personnes_a_charge:
   rfr:
 menages:

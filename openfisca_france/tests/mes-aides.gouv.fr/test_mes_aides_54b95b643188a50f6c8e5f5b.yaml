@@ -31,9 +31,7 @@ period: "month:2015-01"
 relative_error_margin: 0.02
 individus:
   age: 27
-  agem: 331
-  alr:
-    2013: 0
+  age_en_mois: 331
   birth: "1987-05-17"
   cho:
     2013: 0
@@ -44,11 +42,11 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
+  pensions_alimentaires_percues:
+    2013: 0
   rst:
     2013: 0
-  sal:
-    2013: 9570
   salaire_de_base:
     2013: 6153.846153846153
     2014-01: 512.8205128205128
@@ -83,6 +81,23 @@ individus:
     2014-12: 1200
     2015-01: 1200
     year:2014-01: 4800
+  salaire_imposable:
+    2013: 9570
+    2014-01: 414.6115384615385
+    2014-02: 414.6115384615385
+    2014-03: 414.6115384615385
+    2014-04: 414.6115384615385
+    2014-05: 414.6115384615385
+    2014-06: 414.6115384615385
+    2014-07: 414.6115384615385
+    2014-08: 414.6115384615385
+    2014-09: 414.6115384615385
+    2014-10: 0
+    2014-10:3: 1243.8346153846153
+    2014-11: 0
+    2014-12: 1243.8346153846153
+    2015-01: 1243.8346153846153
+    year:2014-01: 4975.338461538463
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -93,7 +108,7 @@ familles:
   proprietaire_proche_famille: false
 foyers_fiscaux:
   declarants: 54b95373955a42106c94b338
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
   rfr:

@@ -27,11 +27,11 @@ from ...base import *  # noqa analysis:ignore
 
 # Gain de levée d'options
 # Bouvard: j'ai changé là mais pas dans le code, il faut chercher les f1uv
-# et les mettre en f1tvm comme pour sali
+# et les mettre en f1tvm comme pour salaire_imposable
 # Il faut aussi le faire en amont dans les tables
 
 # là je ne comprends pas pourquoi il faut changer les f1uv en f1tvm....
-# du coups je n'ai pas changé et j'ai fait un dico comme pour sali
+# du coups je n'ai pas changé et j'ai fait un dico comme pour salaire_imposable
 
 build_column('f1tv', IntCol(label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans",
                         entity = 'ind',

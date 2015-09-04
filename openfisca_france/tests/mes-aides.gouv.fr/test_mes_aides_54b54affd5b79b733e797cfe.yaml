@@ -7,7 +7,7 @@ description: "Un couple hébergé à titre gratuit a droit à la CMU-C si ses re
 period: "month:2015-01"
 individus:
   - age: 34
-    agem: 418
+    age_en_mois: 418
     birth: "1980-03-02"
     epargne_non_remuneree:
       2012-01: 0
@@ -16,7 +16,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2013: 14830.769230769229
       2014-01: 1235.8974358974358
@@ -51,13 +51,30 @@ individus:
       2014-12: 964
       2015-01: 964
       year:2014-01: 11568
+    salaire_imposable:
+      2013: 11990.565692307691
+      2014-01: 999.2138076923077
+      2014-02: 999.2138076923077
+      2014-03: 999.2138076923077
+      2014-04: 999.2138076923077
+      2014-05: 999.2138076923077
+      2014-06: 999.2138076923077
+      2014-07: 999.2138076923077
+      2014-08: 999.2138076923077
+      2014-09: 999.2138076923077
+      2014-10: 999.2138076923077
+      2014-10:3: 2997.6414230769233
+      2014-11: 999.2138076923077
+      2014-12: 999.2138076923077
+      2015-01: 999.2138076923077
+      year:2014-01: 11990.565692307691
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 34
-    agem: 418
+    age_en_mois: 418
     birth: "1980-03-02"
     epargne_non_remuneree:
       2012-01: 0
@@ -66,7 +83,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:

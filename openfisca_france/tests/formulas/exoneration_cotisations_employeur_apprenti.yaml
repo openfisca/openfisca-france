@@ -7,9 +7,9 @@
   output_variables:
     apprenti: 1
     remuneration_apprenti: 35 * 52 * 9.61 * .25 / 12
-    cotisations_employeur: -149.31
+    cotisations_employeur: -149.37
     accident_du_travail: 0
-    exoneration_cotisations_employeur_apprenti: 149.31
+    exoneration_cotisations_employeur_apprenti: 149.37
 
 - period: "month:2015-03"
   input_variables:
@@ -23,3 +23,11 @@
     remuneration_apprenti:
       "month:2015-01": 35 * 52 * 9.61 * .49 / 12
       "month:2015-03": 35 * 52 * 9.61 * .49 / 12
+
+- period: "month:2015-04"
+  input_variables:
+    effectif_entreprise: 1
+    salaire_de_base: 1445.38
+  output_variables:
+    remuneration_apprenti:
+    exoneration_cotisations_employeur_apprenti: 0

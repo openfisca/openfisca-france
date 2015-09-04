@@ -1,6 +1,8 @@
 # OpenFisca France
 
-[![Build Status via Travis CI](https://travis-ci.org/openfisca/openfisca-france.svg?branch=master)](https://travis-ci.org/openfisca/openfisca-france)
+[![Build Status](https://travis-ci.org/openfisca/openfisca-france.svg?branch=master)](https://travis-ci.org/openfisca/openfisca-france)
+
+[More build status](http://www.openfisca.fr/build-status)
 
 ## Presentation
 
@@ -18,18 +20,29 @@ Please consult http://www.openfisca.fr/documentation
 Requirement: [OpenFisca-Core](https://github.com/openfisca/openfisca-core).
 
 Clone the OpenFisca-France Git repository on your machine and install the Python package.
-Assuming you are in your working directory:
+
+Assuming you are in an `openfisca` working directory:
 
 ```
 git clone https://github.com/openfisca/openfisca-france.git
 cd openfisca-france
-pip install --editable . --user
+git checkout next
+pip install --editable . --user # Microsoft Windows users must not use the `--user` option
 python setup.py compile_catalog
 ```
 
 For your information, the Tunisian tax-benefit system is also available:
 [OpenFisca-Tunisia](https://github.com/openfisca/openfisca-tunisia).
 
+## Tests
+
+Before submitting a pull request, please execute tests:
+
+    make test
+
+To download tests from [Ludwig](https://mes-aides.gouv.fr/tests/)
+(the tests tool from [Mes aides](https://mes-aides.gouv.fr/)),
+see [OpenFiscaFrance.jl](https://github.com/openfisca/OpenFiscaFrance.jl)
 
 ## Contribute
 

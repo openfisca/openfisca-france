@@ -30,21 +30,11 @@ from numpy import (
 
 
 from ...base import *  # noqa analysis:ignore
-
+from ...prestations.prestations_familiales.base_ressource import nb_enf
 
 build_column('indemnites_stage', FloatCol(entity = 'ind', label = u"Indemnités de stage"))
 build_column('revenus_stage_formation_pro', FloatCol(entity = 'ind', label = u"Revenus de stage de formation professionnelle"))
 build_column('bourse_recherche', FloatCol(entity = 'ind', label = u"Bourse de recherche"))
-
-
-build_column('sali', IntCol(label = u"Revenus d'activité imposables",
-                val_type = "monetary",
-                cerfa_field = {QUIFOY['vous']: u"1AJ",
-                               QUIFOY['conj']: u"1BJ",
-                               QUIFOY['pac1']: u"1CJ",
-                               QUIFOY['pac2']: u"1DJ",
-                               QUIFOY['pac3']: u"1EJ",
-                               }))  # (f1aj, f1bj, f1cj, f1dj, f1ej)
 
 
 build_column('sal_pen_exo_etr', IntCol(
@@ -182,7 +172,7 @@ reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
     label = u"Avantages en nature (Valeur réelle)",
-    name = 'avantages_en_nature_valeur_reelle',
+    name = 'avantage_en_nature_valeur_reelle',
     )
 reference_input_variable(
     column = FloatCol(),
@@ -211,13 +201,13 @@ reference_input_variable(
     column = DateCol(default = date(1870, 1, 1)),
     entity_class = Individus,
     label = u"Date d'arrivée dans l'entreprise",
-    name = 'contrat_de_travail_arrivee',  # debut
+    name = 'contrat_de_travail_debut',  # debut
     )
 reference_input_variable(
     column = DateCol(default = date(2099, 12, 31)),
     entity_class = Individus,
     label = u"Date de départ de l'entreprise",
-    name = 'contrat_de_travail_depart',   # fin
+    name = 'contrat_de_travail_fin',   # fin
     )
 reference_input_variable(
     column = EnumCol(
@@ -319,14 +309,14 @@ reference_input_variable(
     )
 reference_input_variable(
     base_function = requested_period_last_value,
-    column = FloatCol(default = .015),  # 1.5% est le minimum en 2014
+    column = FloatCol(default = 0.015),  # 1.5% est le minimum en 2014
     entity_class = Individus,
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",
     name = 'prevoyance_obligatoire_cadre_taux_employe',
     )
 reference_input_variable(
     base_function = requested_period_last_value,
-    column = FloatCol(default = .015),  # 1.5% est le minimum en 2014
+    column = FloatCol(default = 0.015),  # 1.5% est le minimum en 2014
     entity_class = Individus,
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",
     name = 'prevoyance_obligatoire_cadre_taux_employeur',
@@ -382,12 +372,13 @@ reference_input_variable(
 reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
-    label = u"Salaire de base (salaire brut sur la fiche de paie, valeur annuelle)",
+    label = u"Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie",
     name = 'salaire_de_base',
     set_input = set_input_divide_by_period,
+    url = u'http://www.insee.fr/fr/methodes/default.asp?page=definitions/salaire-mensuel-base-smb.htm',
     )
 reference_input_variable(
-    column = FloatCol(default = .5),
+    column = FloatCol(default = 0.5),
     entity_class = Individus,
     label = u"Taux de participation de l'employeur au titre restaurant",
     name = 'titre_restaurant_taux_employeur',
@@ -467,7 +458,7 @@ reference_input_variable(
 
 
 @reference_formula
-class avantages_en_nature(SimpleFormulaColumn):
+class avantage_en_nature(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -475,25 +466,25 @@ class avantages_en_nature(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
-        avantages_en_nature_valeur_reelle = simulation.calculate('avantages_en_nature_valeur_reelle', period)
-        avantages_en_nature_valeur_forfaitaire = simulation.calculate('avantages_en_nature_valeur_forfaitaire', period)
+        avantage_en_nature_valeur_reelle = simulation.calculate('avantage_en_nature_valeur_reelle', period)
+        avantage_en_nature_valeur_forfaitaire = simulation.calculate('avantage_en_nature_valeur_forfaitaire', period)
 
-        return period, avantages_en_nature_valeur_reelle + avantages_en_nature_valeur_forfaitaire
+        return period, avantage_en_nature_valeur_reelle + avantage_en_nature_valeur_forfaitaire
 
 
 @reference_formula
-class avantages_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
+class avantage_en_nature_valeur_forfaitaire(SimpleFormulaColumn):
     # base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
     label = u"Evaluation fofaitaire des avantages en nature "
 
-    # TODO:
+    # TODO: coplete this function
     def function(self, simulation, period):
         period = period
-        avantages_en_nature_valeur_reelle = simulation.calculate('avantages_en_nature_valeur_reelle', period)
+        avantage_en_nature_valeur_reelle = simulation.calculate('avantage_en_nature_valeur_reelle', period)
 
-        return period, avantages_en_nature_valeur_reelle * 0
+        return period, avantage_en_nature_valeur_reelle * 0
 
 
 @reference_formula
@@ -537,19 +528,20 @@ class nombre_jours_calendaires(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period(u'month')
-        contrat_de_travail_arrivee = simulation.calculate('contrat_de_travail_arrivee', period)
-        contrat_de_travail_depart = simulation.calculate('contrat_de_travail_depart', period)
+        contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
 
         busday_count = partial(original_busday_count, weekmask = "1" * 7)
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month'))
         jours_travailles = max_(
             busday_count(
-                max_(contrat_de_travail_arrivee, debut_mois),
-                min_(contrat_de_travail_depart, fin_mois) + timedelta64(1, 'D')
+                max_(contrat_de_travail_debut, debut_mois),
+                min_(contrat_de_travail_fin, fin_mois) + timedelta64(1, 'D')
                 ),
             0,
             )
+
         return period, jours_travailles
 
 
@@ -645,6 +637,29 @@ class primes_fonction_publique(SimpleFormulaColumn):
 
 
 @reference_formula
+class af_nbenf_fonc(SimpleFormulaColumn):
+    column = IntCol
+    entity_class = Familles
+    label = u"Nombre d'enfants dans la famille au sens des allocations familiales pour le fonctionnaires"
+    # Hack pour éviter une boucle infinie
+
+    def function(self, simulation, period):
+        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
+        # jour, sans changer la période.
+        age_holder = simulation.compute('age', period)
+        salaire_de_base = simulation.calculate_add('salaire_de_base', period.start.period('month', 6).offset(-6))
+        law = simulation.legislation_at(period.start)
+        nbh_travaillees = 169
+        smic_mensuel_brut = law.cotsoc.gen.smic_h_b * nbh_travaillees
+        smic55_holder = (salaire_de_base / 6) >= (law.fam.af.seuil_rev_taux * smic_mensuel_brut)
+        age = self.split_by_roles(age_holder, roles = ENFS)
+        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        af_nbenf = nb_enf(age, smic55, law.fam.af.age1, law.fam.af.age2)
+
+        return period, af_nbenf
+
+
+@reference_formula
 class supp_familial_traitement(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
@@ -656,10 +671,10 @@ class supp_familial_traitement(SimpleFormulaColumn):
         period = period.start.period(u'month').offset('first-of')
         type_sal = simulation.calculate('type_sal', period)
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        af_nbenf_holder = simulation.compute('af_nbenf', period)
+        af_nbenf_fonc_holder = simulation.compute('af_nbenf_fonc', period)
         _P = simulation.legislation_at(period.start)
 
-        fonc_nbenf = self.cast_from_entity_to_role(af_nbenf_holder, role = CHEF)
+        fonc_nbenf = self.cast_from_entity_to_role(af_nbenf_fonc_holder, role = CHEF)
         P = _P.fonc.supp_fam
         part_fixe_1 = P.fixe.enf1
         part_fixe_2 = P.fixe.enf2
@@ -750,12 +765,16 @@ class salaire_net_a_payer(SimpleFormulaColumn):
         dues par les salarié avancées par l'employeur
         '''
         period = period
-        salaire_net = simulation.calculate('salaire_net', period)
+        salaire_net = simulation.calculate_add('salaire_net', period)
         depense_cantine_titre_restaurant_employe = simulation.calculate(
             'depense_cantine_titre_restaurant_employe')
         indemnites_forfaitaires = simulation.calculate('indemnites_forfaitaires', period)
+        remuneration_apprenti = simulation.calculate('remuneration_apprenti', period)
+        stage_gratification = simulation.calculate('stage_gratification', period)
         salaire_net_a_payer = (
             salaire_net +
+            remuneration_apprenti +
+            stage_gratification +
             depense_cantine_titre_restaurant_employe +
             indemnites_forfaitaires
             )
@@ -772,6 +791,7 @@ class salsuperbrut(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period
+        remuneration_apprenti = simulation.calculate_add('remuneration_apprenti', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
         indemnite_residence = simulation.calculate_add('indemnite_residence', period)
@@ -779,9 +799,15 @@ class salsuperbrut(SimpleFormulaColumn):
         cotisations_employeur = simulation.calculate('cotisations_employeur', period)
         depense_cantine_titre_restaurant_employeur = simulation.calculate(
             'depense_cantine_titre_restaurant_employeur', period)
-        exoneration_cotisations_patronales_geographiques = simulation.calculate(
-            'exoneration_cotisations_patronales_geographiques', period)
-        exoneration_cotisations_patronales_jei = simulation.calculate_add('exoneration_cotisations_patronales_jei', period)
+        exoneration_cotisations_employeur_apprenti = simulation.calculate_add(
+            'exoneration_cotisations_employeur_apprenti', period)
+        exoneration_cotisations_employeur_geographiques = simulation.calculate(
+            'exoneration_cotisations_employeur_geographiques', period)
+        exoneration_cotisations_employeur_jei = simulation.calculate_add(
+            'exoneration_cotisations_employeur_jei', period)
+        exoneration_cotisations_employeur_stagiaire = simulation.calculate_add(
+            'exoneration_cotisations_employeur_stagiaire', period)
+
         allegement_fillon = simulation.calculate_add('allegement_fillon', period)
         credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
         reintegration_titre_restaurant_employeur = simulation.calculate(
@@ -789,15 +815,17 @@ class salsuperbrut(SimpleFormulaColumn):
         remuneration_principale = simulation.calculate('remuneration_principale', period)
 
         tehr = simulation.calculate_divide('tehr', period)
-
         salsuperbrut = (
+            remuneration_apprenti +
             salaire_de_base + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +
             remuneration_principale +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement
             - cotisations_employeur
             - allegement_fillon
-            - exoneration_cotisations_patronales_geographiques
-            - exoneration_cotisations_patronales_jei
+            - exoneration_cotisations_employeur_geographiques
+            - exoneration_cotisations_employeur_jei
+            - exoneration_cotisations_employeur_apprenti
+            - exoneration_cotisations_employeur_stagiaire
             - credit_impot_competitivite_emploi
             - tehr
             )

@@ -10,7 +10,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     nbnc_exon: 1500
@@ -37,7 +37,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     nbnc_exon: 1500
@@ -64,7 +64,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     nbnc_exon: 1500
@@ -92,7 +92,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     nbnc_exon: 1500
@@ -120,7 +120,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     nbnc_exon: 1500
@@ -148,7 +148,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     nbnc_exon: 1500
@@ -176,7 +176,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     nbnc_exon: 1500
@@ -204,7 +204,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     nbnc_exon: 1500
@@ -233,7 +233,7 @@
     - ind0
   individus:
   - id: ind0
-    sali: 24000
+    salaire_imposable: 24000
     activite: 0
     statmarit: 2
     nbnc_exon: 1500

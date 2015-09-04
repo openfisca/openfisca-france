@@ -7,7 +7,7 @@ description: Un couple ayant un enfant hébergés à titre gratuit a droit à la
 period: "month:2015-01"
 individus:
   - age: 34
-    agem: 418
+    age_en_mois: 418
     birth: "1980-03-02"
     epargne_non_remuneree:
       2012-01: 0
@@ -16,7 +16,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2013: 17800.000000000004
       2014-01: 1483.3333333333333
@@ -51,13 +51,30 @@ individus:
       2014-12: 1157
       2015-01: 1157
       year:2014-01: 13884
+    salaire_imposable:
+      2013: 14391.166500000005
+      2014-01: 1199.263875
+      2014-02: 1199.263875
+      2014-03: 1199.263875
+      2014-04: 1199.263875
+      2014-05: 1199.263875
+      2014-06: 1199.263875
+      2014-07: 1199.263875
+      2014-08: 1199.263875
+      2014-09: 1199.263875
+      2014-10: 1199.263875
+      2014-10:3: 3597.7916250000003
+      2014-11: 1199.263875
+      2014-12: 1199.263875
+      2015-01: 1199.263875
+      year:2014-01: 14391.166500000005
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 34
-    agem: 418
+    age_en_mois: 418
     birth: "1980-03-02"
     epargne_non_remuneree:
       2012-01: 0
@@ -66,13 +83,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 14
-    agem: 179
+    age_en_mois: 179
     birth: "2000-02-02"
     epargne_non_remuneree:
       2012-01: 0
@@ -81,7 +98,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0

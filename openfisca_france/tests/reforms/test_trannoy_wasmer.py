@@ -28,13 +28,15 @@ import datetime
 
 from openfisca_core import periods
 from openfisca_core.tools import assert_near
-from openfisca_france.reforms import trannoy_wasmer
 from openfisca_france.tests import base
 
 
 def test_charge_loyer():
     year = 2013
-    reform = trannoy_wasmer.build_reform(base.tax_benefit_system)
+    reform = base.get_cached_reform(
+        reform_key = 'trannoy_wasmer',
+        tax_benefit_system = base.tax_benefit_system,
+        )
     scenario = reform.new_scenario().init_single_entity(
         axes = [
             dict(

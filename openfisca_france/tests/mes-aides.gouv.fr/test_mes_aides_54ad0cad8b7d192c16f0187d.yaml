@@ -6,7 +6,7 @@ description: L'enfant gagne ici 800 euros nets par mois ce qui est moins de 55% 
 period: "month:2015-01"
 individus:
   - age: 34
-    agem: 412
+    age_en_mois: 412
     birth: "1980-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -15,13 +15,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 4
-    agem: 52
+    age_en_mois: 52
     birth: "2010-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -30,13 +30,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 17
-    agem: 208
+    age_en_mois: 208
     birth: "1997-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -45,7 +45,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2013: 12307.692307692307
       2014-01: 1025.6410256410256
@@ -80,6 +80,23 @@ individus:
       2014-12: 800
       2015-01: 800
       year:2014-01: 9600
+    salaire_imposable:
+      2013: 9950.676923076926
+      2014-01: 829.223076923077
+      2014-02: 829.223076923077
+      2014-03: 829.223076923077
+      2014-04: 829.223076923077
+      2014-05: 829.223076923077
+      2014-06: 829.223076923077
+      2014-07: 829.223076923077
+      2014-08: 829.223076923077
+      2014-09: 829.223076923077
+      2014-10: 829.223076923077
+      2014-10:3: 2487.669230769231
+      2014-11: 829.223076923077
+      2014-12: 829.223076923077
+      2015-01: 829.223076923077
+      year:2014-01: 9950.676923076926
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0

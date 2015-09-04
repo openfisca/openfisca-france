@@ -7,7 +7,7 @@ description: Des ressources inférieures au plafond CMUc pour un couple marié p
 period: "month:2014-12"
 individus:
   - age: 50
-    agem: 611
+    age_en_mois: 611
     birth: "1964-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -16,7 +16,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2012: 12820.499999999998
       2013-12: 1424.4999999999998
@@ -49,13 +49,29 @@ individus:
       2014-10: 0
       2014-11: 0
       year:2013-12: 9999.99
+    salaire_imposable:
+      2012: 10365.27809625
+      2013-12: 1151.69756625
+      2014-01: 1151.69756625
+      2014-02: 1151.69756625
+      2014-03: 1151.69756625
+      2014-04: 1151.69756625
+      2014-05: 1151.69756625
+      2014-06: 1151.69756625
+      2014-07: 1151.69756625
+      2014-08: 1151.69756625
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 10365.27809625
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 50
-    agem: 611
+    age_en_mois: 611
     birth: "1964-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -64,7 +80,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2012: 3802.615384615384
       2013-12: 422.5128205128205
@@ -97,6 +113,22 @@ individus:
       2014-10: 0
       2014-11: 0
       year:2013-12: 2966.04
+    salaire_imposable:
+      2012: 3074.386018846154
+      2013-12: 341.59844653846153
+      2014-01: 341.59844653846153
+      2014-02: 341.59844653846153
+      2014-03: 341.59844653846153
+      2014-04: 341.59844653846153
+      2014-05: 341.59844653846153
+      2014-06: 341.59844653846153
+      2014-07: 341.59844653846153
+      2014-08: 341.59844653846153
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 3074.386018846154
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:

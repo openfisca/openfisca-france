@@ -322,9 +322,9 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
         data['statut'] = 8
         data.loc[data['public'] == 1, 'statut'] = 11
         # [0"Non renseigné/non pertinent",1"Exonéré",2"Taux réduit",3"Taux plein"]
-        data['csg_rempl'] = 3
-        data.loc[data['csg_exo'] == 1, 'csg_rempl'] = 1
-        data.loc[data['csg_part'] == 1, 'csg_rempl'] = 2
+        data['taux_csg_remplacement'] = 3
+        data.loc[data['csg_exo'] == 1, 'taux_csg_remplacement'] = 1
+        data.loc[data['csg_part'] == 1, 'taux_csg_remplacement'] = 2
         data = data.drop(['csg_tout', 'csg_exo', 'csg_part'], axis = 1)
         # data['ebic_impv'] = 20000
         data['exposition_accident'] = 0
@@ -346,7 +346,7 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
         data['inactif'] = 0
         data.loc[(data['activite'].isin([3, 4, 5, 6])), 'inactif'] = 1
         data.loc[(data['activite'] == 1) & (data['choi'] == 0), 'inactif'] = 1
-        data.loc[(data['activite'] == 0) & (data['sali'] == 0), 'inactif'] = 1
+        data.loc[(data['activite'] == 0) & (data['salaire_imposable'] == 0), 'inactif'] = 1
         data['partiel1'] = 0
         data.loc[(data['nbh'] / 12 <= 77) & (data['nbh'] / 12 > 0), 'partiel1'] = 1
         data['partiel2'] = 0
@@ -372,7 +372,7 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
     data["caseN"] = _compl(data["caseN"])
     data = _var_to_ppe(data)
     data = _var_to_pfam(data)
-    data['inv'] = 0
+    data['invalide'] = 0
 
     variables_to_drop = [
         variable
@@ -381,5 +381,5 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
         ]
     data = data.drop(variables_to_drop, axis = 1)
 #    data.rename(columns = {"id_conj" : "conj"}, inplace = True)
-    data['agem'] = data['age'] * 12
+    data['age_en_mois'] = data['age'] * 12
     return data

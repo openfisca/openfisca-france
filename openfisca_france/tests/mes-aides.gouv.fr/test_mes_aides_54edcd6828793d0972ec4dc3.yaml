@@ -28,9 +28,7 @@ period: "month:2015-02"
 relative_error_margin: 0.02
 individus:
   - age: 46
-    agem: 555
-    alr:
-      2013: 2738
+    age_en_mois: 555
     birth: "1968-11-25"
     cho:
       2013: 2738
@@ -41,17 +39,19 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 2738
     rst:
       2013: 2738
-    sal:
+    salaire_imposable:
       2013: 2738
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 18
-    agem: 225
+    age_en_mois: 225
     birth: "1996-05-03"
     epargne_non_remuneree:
       2012-01: 0
@@ -60,14 +60,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 15
-    agem: 181
+    age_en_mois: 181
     birth: "2000-01-09"
     epargne_non_remuneree:
       2012-01: 0
@@ -76,7 +76,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -90,7 +90,7 @@ familles:
   proprietaire_proche_famille: false
 foyers_fiscaux:
   declarants: 54edcd5028793d0972ec4dc2
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
     - 54edcd5028793d0972ec4dc1

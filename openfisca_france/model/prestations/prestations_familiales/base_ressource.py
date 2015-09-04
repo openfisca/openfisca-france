@@ -164,22 +164,22 @@ class rev_coll(SimpleFormulaColumn):
         # Quand rev_coll est calculé sur une année glissante, rto_net_declarant1 est calculé sur l'année légale
         # correspondante.
         rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period.offset('first-of'))
-        rev_cap_lib_holder = simulation.compute('rev_cap_lib', period)
+        rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', period)
         rev_cat_rvcm_holder = simulation.compute('rev_cat_rvcm', period)
         # div = simulation.calculate('div', period)  # TODO why is this variable not used ?
         abat_spe_holder = simulation.compute('abat_spe', period)
         glo = simulation.calculate('glo', period)
         fon_holder = simulation.compute('fon', period)
-        # Quand rev_coll est calculé sur une année glissante, alv_declarant1 est calculé sur l'année légale
+        # Quand rev_coll est calculé sur une année glissante, pensions_alimentaires_versees_declarant1 est calculé sur l'année légale
         # correspondante.
-        alv_declarant1 = simulation.calculate('alv_declarant1', period.offset('first-of'))
+        pensions_alimentaires_versees_declarant1 = simulation.calculate('pensions_alimentaires_versees_declarant1', period.offset('first-of'))
         f7ga_holder = simulation.compute('f7ga', period)
         f7gb_holder = simulation.compute('f7gb', period)
         f7gc_holder = simulation.compute('f7gc', period)
         rev_cat_pv_holder = simulation.compute('rev_cat_pv', period)
 
         # TODO: ajouter les revenus de l'étranger etr*0.9
-        # alv_declarant1 is negative since it is paid by the declaree
+        # pensions_alimentaires_versees_declarant1 is negative since it is paid by the declaree
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
         rev_cat_rvcm = self.cast_from_entity_to_role(rev_cat_rvcm_holder, role = VOUS)
         abat_spe = self.cast_from_entity_to_role(abat_spe_holder, role = VOUS)
@@ -189,7 +189,7 @@ class rev_coll(SimpleFormulaColumn):
         f7gc = self.cast_from_entity_to_role(f7gc_holder, role = VOUS)
         rev_cat_pv = self.cast_from_entity_to_role(rev_cat_pv_holder, role = VOUS)
 
-        return period, (rto_net_declarant1 + rev_cap_lib + rev_cat_rvcm + fon + glo + alv_declarant1 - f7ga - f7gb
+        return period, (rto_net_declarant1 + rev_cap_lib + rev_cat_rvcm + fon + glo + pensions_alimentaires_versees_declarant1 - f7ga - f7gb
             - f7gc - abat_spe + rev_cat_pv)
 
 
@@ -240,25 +240,12 @@ def nb_enf(ages, smic55, ag1, ag2):
     return res
 
 
-def age_aine(ages, smic55, ag1, ag2):
+def age_en_mois_benjamin(ages_en_mois):
     '''
-    Renvoie un vecteur avec l'âge de l'ainé (au sens des allocations
-    familiales) de chaque famille
+    Renvoie un vecteur (une entree pour chaque famille) avec l'age du benjamin.  # TODO check age_en_mois > 0
     '''
-    ageaine = -9999
-    for key, age in ages.iteritems():
-        ispacaf = (ag1 <= age) & (age <= ag2) & not_(smic55[key])
-        isaine = ispacaf & (age > ageaine)
-        ageaine = isaine * age + not_(isaine) * ageaine
-    return ageaine
-
-
-def age_en_mois_benjamin(agems):
-    '''
-    Renvoie un vecteur (une entree pour chaque famille) avec l'age du benjamin.  # TODO check agem > 0
-    '''
-    agem_benjamin = 12 * 9999
-    for agem in agems.itervalues():
-        isbenjamin = (agem < agem_benjamin) & (agem != -9999)
-        agem_benjamin = isbenjamin * agem + not_(isbenjamin) * agem_benjamin
-    return agem_benjamin
+    age_en_mois_benjamin = 12 * 9999
+    for age_en_mois in ages_en_mois.itervalues():
+        isbenjamin = (age_en_mois < age_en_mois_benjamin) & (age_en_mois != -9999)
+        age_en_mois_benjamin = isbenjamin * age_en_mois + not_(isbenjamin) * age_en_mois_benjamin
+    return age_en_mois_benjamin

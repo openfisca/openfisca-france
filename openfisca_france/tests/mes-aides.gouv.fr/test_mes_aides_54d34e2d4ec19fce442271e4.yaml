@@ -28,7 +28,7 @@ relative_error_margin: 0.02
 individus:
   activite: 2
   age: 24
-  agem: 293
+  age_en_mois: 293
   birth: "1990-08-12"
   boursier: true
   epargne_non_remuneree:
@@ -38,7 +38,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:

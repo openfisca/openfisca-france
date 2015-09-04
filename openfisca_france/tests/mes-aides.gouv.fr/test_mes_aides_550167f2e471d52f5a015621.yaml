@@ -4,14 +4,12 @@ keywords:
   - parts
 description: |
   Cas nominal : 2 parents et un seul enfant scolarisé au lycée.
-  Nombre de parts = 0 car rfr = 12200, points de charge = 9 et plafond = 12098
+  Nombre de parts = 0 car rfr = 14800, points de charge = 11 et plafond = 14786
   RFR > plafond donc montant = 0
 period: "month:2015-03"
 individus:
   - age: 34
-    agem: 415
-    alr:
-      2013: 0
+    age_en_mois: 415
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -22,10 +20,12 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
-    sal:
+    salaire_imposable:
       2013: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
@@ -33,9 +33,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 34
-    agem: 415
-    alr:
-      2013: 0
+    age_en_mois: 415
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -46,10 +44,12 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
-    sal:
+    salaire_imposable:
       2013: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
@@ -57,7 +57,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 14
-    agem: 175
+    age_en_mois: 175
     birth: "2000-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -66,7 +66,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 2
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -81,11 +81,11 @@ foyers_fiscaux:
   declarants:
     - 550167e750a4762d5ab000b8
     - 550167e750a4762d5ab000b7
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge: 550167e750a4762d5ab000b6
   rfr:
-    2013: 12200
+    2013: 14800
 menages:
   conjoint: 550167e750a4762d5ab000b7
   depcom: 67482

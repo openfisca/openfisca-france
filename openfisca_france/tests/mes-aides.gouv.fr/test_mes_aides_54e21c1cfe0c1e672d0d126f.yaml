@@ -13,7 +13,7 @@ relative_error_margin: 0.02
 individus:
   activite: 3
   age: 74
-  agem: 897
+  age_en_mois: 897
   birth: "1940-05-05"
   epargne_non_remuneree:
     2012-01: 0
@@ -22,7 +22,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   rstbrut:
     2013: 7800
     2014-02: 650
@@ -91,6 +91,23 @@ individus:
     2015-01: 390
     2015-02: 390
     year:2014-02: 4680
+  salaire_imposable:
+    2013: 4850.955000000001
+    2014-02: 404.24625
+    2014-03: 404.24625
+    2014-04: 404.24625
+    2014-05: 404.24625
+    2014-06: 404.24625
+    2014-07: 404.24625
+    2014-08: 404.24625
+    2014-09: 404.24625
+    2014-10: 404.24625
+    2014-11: 404.24625
+    2014-11:3: 1212.73875
+    2014-12: 404.24625
+    2015-01: 404.24625
+    2015-02: 404.24625
+    year:2014-02: 4850.955000000001
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:

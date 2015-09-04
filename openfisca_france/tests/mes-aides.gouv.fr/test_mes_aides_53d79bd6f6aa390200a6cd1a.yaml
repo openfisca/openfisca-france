@@ -4,7 +4,7 @@ description:
 period: "month:2014-07"
 individus:
   age: 34
-  agem: 414
+  age_en_mois: 414
   birth: "1980-01-01"
   enceinte: false
   epargne_non_remuneree:
@@ -14,7 +14,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   pensions_alimentaires_percues:
     2012: 1302
     2014-04: 434

@@ -1,0 +1,189 @@
+name: Couple avec 4 enfants dont 2 en garde alternée
+keywords:
+  - "cmu-c/acs"
+  - garde alternée
+description: |
+  Plafond CMUC pour un couple ayant 4 enfants dont 2 en garde alternée (les 2 derniers) = 21610
+  AF = 530
+  CF= 200
+  Revenus: 14600 + 530 X 12 + 200 X 12 = 23 360 > plafond CMUC
+period: "month:2015-04"
+individus:
+  - age: 19
+    age_en_mois: 239
+    birth: "1995-05-03"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5525272da7629db1117ea8a8
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    salaire_de_base:
+      2013: 18717.948717948715
+      2014-04: 2079.7720797720795
+      2014-05: 2079.7720797720795
+      2014-06: 2079.7720797720795
+      2014-07: 2079.7720797720795
+      2014-08: 2079.7720797720795
+      2014-09: 2079.7720797720795
+      2014-10: 2079.7720797720795
+      2014-11: 2079.7720797720795
+      2014-12: 2079.7720797720795
+      2015-01: 0
+      2015-01:3: 0
+      2015-02: 0
+      2015-03: 0
+      year:2014-04: 18717.948717948715
+    salaire_net:
+      2013: 14600.000000000002
+      2014-04: 1622.2222222222222
+      2014-05: 1622.2222222222222
+      2014-06: 1622.2222222222222
+      2014-07: 1622.2222222222222
+      2014-08: 1622.2222222222222
+      2014-09: 1622.2222222222222
+      2014-10: 1622.2222222222222
+      2014-11: 1622.2222222222222
+      2014-12: 1622.2222222222222
+      2015-01: 0
+      2015-01:3: 0
+      2015-02: 0
+      2015-03: 0
+      year:2014-04: 14600.000000000002
+    salaire_imposable:
+      2013: 15133.321153846155
+      2014-04: 1681.480128205128
+      2014-05: 1681.480128205128
+      2014-06: 1681.480128205128
+      2014-07: 1681.480128205128
+      2014-08: 1681.480128205128
+      2014-09: 1681.480128205128
+      2014-10: 1681.480128205128
+      2014-11: 1681.480128205128
+      2014-12: 1681.480128205128
+      2015-01: 0
+      2015-01:3: 0
+      2015-02: 0
+      2015-03: 0
+      year:2014-04: 15133.321153846155
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 19
+    age_en_mois: 239
+    birth: "1995-05-03"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5525272da7629db1117ea8a7
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    age_en_mois: 176
+    birth: "2000-07-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5525272da7629db1117ea8a6
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 13
+    age_en_mois: 162
+    birth: "2001-09-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5525272da7629db1117ea8a5
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 12
+    age_en_mois: 150
+    alt: true
+    birth: "2002-09-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5525272da7629db1117ea8a4
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 11
+    age_en_mois: 138
+    alt: true
+    birth: "2003-09-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 5525272da7629db1117ea8a3
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+    - 5525272da7629db1117ea8a6
+    - 5525272da7629db1117ea8a5
+    - 5525272da7629db1117ea8a4
+    - 5525272da7629db1117ea8a3
+  parents:
+    - 5525272da7629db1117ea8a8
+    - 5525272da7629db1117ea8a7
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants:
+    - 5525272da7629db1117ea8a8
+    - 5525272da7629db1117ea8a7
+  personnes_a_charge:
+    - 5525272da7629db1117ea8a6
+    - 5525272da7629db1117ea8a5
+    - 5525272da7629db1117ea8a4
+    - 5525272da7629db1117ea8a3
+menages:
+  conjoint: 5525272da7629db1117ea8a7
+  depcom: 76540
+  enfants:
+    - 5525272da7629db1117ea8a6
+    - 5525272da7629db1117ea8a5
+    - 5525272da7629db1117ea8a4
+    - 5525272da7629db1117ea8a3
+  loyer: 700
+  personne_de_reference: 5525272da7629db1117ea8a8
+  statut_occupation: 4
+output_variables:
+  cmu_c: false

@@ -3,10 +3,10 @@ period: "2014-01"
 input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: False
-  avantages_en_nature_valeur_reelle: 0
+  avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: 1  # temps plein
-  contrat_de_travail_arrivee: "2014-01-01"
-  contrat_de_travail_depart: "2014-12-31"
+  contrat_de_travail_debut: "2014-01-01"
+  contrat_de_travail_fin: "2014-12-31"
   contrat_de_travail_duree: 0  # CDI
   effectif_entreprise: 0
   # exposition_accident: 3
@@ -91,15 +91,15 @@ output_variables:
   # cotisations_salariales_non_contributives: 0
   mmid_salarie: 0
   contribution_exceptionnelle_solidarite: 0
-  csgsald: 0
+  csg_deductible_salaire: 0
   mhsup: 0
   salaire_net: 0
 
   # salaire imposable
-  csgsali: 0
-  crdssal: 0
+  csg_imposable_salaire: 0
+  crds_salaire: 0
   hsup: 0
-  sal: 0
+  salaire_imposable: 0
 
   depense_cantine_titre_restaurant_employe: 0
 

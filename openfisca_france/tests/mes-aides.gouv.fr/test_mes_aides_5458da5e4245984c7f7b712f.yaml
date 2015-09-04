@@ -8,7 +8,7 @@ period: "month:2014-11"
 individus:
   activite: 3
   age: 62
-  agem: 746
+  age_en_mois: 746
   birth: "1952-08-25"
   epargne_non_remuneree:
     2012-01: 0
@@ -17,7 +17,7 @@ individus:
   inapte_travail: 1
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   rstbrut:
     2012: 1199.9999999999998
     2013-11: 99.99999999999999

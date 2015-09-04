@@ -5,7 +5,7 @@ period: "month:2014-10"
 individus:
   activite: 1
   age: 32
-  agem: 393
+  age_en_mois: 393
   birth: "1982-01-01"
   chobrut:
     2012: 10594.009418736501
@@ -48,7 +48,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:

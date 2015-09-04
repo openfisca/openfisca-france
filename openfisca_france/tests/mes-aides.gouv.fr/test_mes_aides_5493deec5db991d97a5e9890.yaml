@@ -28,9 +28,7 @@ period: "month:2014-12"
 relative_error_margin: 0.02
 individus:
   - age: 42
-    agem: 515
-    alr:
-      2012: 0
+    age_en_mois: 515
     birth: "1972-01-09"
     cho:
       2012: 0
@@ -41,11 +39,11 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2012: 0
     rst:
       2012: 0
-    sal:
-      2012: 27542
     salaire_de_base:
       2012: 35301.28205128205
       2013-12: 3922.364672364672
@@ -78,12 +76,28 @@ individus:
       2014-10: 0
       2014-11: 0
       year:2013-12: 27535.000000000004
+    salaire_imposable:
+      2012: 27542
+      2013-12: 3171.202419871795
+      2014-01: 3171.202419871795
+      2014-02: 3171.202419871795
+      2014-03: 3171.202419871795
+      2014-04: 3171.202419871795
+      2014-05: 3171.202419871795
+      2014-06: 3171.202419871795
+      2014-07: 3171.202419871795
+      2014-08: 3171.202419871795
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 28540.821778846155
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 13
-    agem: 165
+    age_en_mois: 165
     birth: "2001-03-08"
     epargne_non_remuneree:
       2012-01: 0
@@ -92,14 +106,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 11
-    agem: 132
+    age_en_mois: 132
     birth: "2003-11-23"
     epargne_non_remuneree:
       2012-01: 0
@@ -108,14 +122,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 9
-    agem: 119
+    age_en_mois: 119
     birth: "2005-01-02"
     epargne_non_remuneree:
       2012-01: 0
@@ -124,14 +138,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 7
-    agem: 89
+    age_en_mois: 89
     birth: "2007-07-17"
     epargne_non_remuneree:
       2012-01: 0
@@ -140,13 +154,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 6
-    agem: 72
+    age_en_mois: 72
     birth: "2008-12-08"
     epargne_non_remuneree:
       2012-01: 0
@@ -155,13 +169,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 4
-    agem: 57
+    age_en_mois: 57
     birth: "2010-03-02"
     epargne_non_remuneree:
       2012-01: 0
@@ -170,13 +184,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 1
-    agem: 15
+    age_en_mois: 15
     birth: "2013-09-15"
     epargne_non_remuneree:
       2012-01: 0
@@ -185,7 +199,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -203,7 +217,7 @@ familles:
   proprietaire_proche_famille: false
 foyers_fiscaux:
   declarants: 5493dde7c54524d87a61aaca
-  f6el:
+  pensions_alimentaires_versees:
     2012: 0
   personnes_a_charge:
     - 5493dde7c54524d87a61aac9

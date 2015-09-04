@@ -4,7 +4,7 @@ description: Cette personne a droit à un RSA socle seul et donc est éligible �
 period: "month:2015-02"
 individus:
   age: 34
-  agem: 419
+  age_en_mois: 419
   birth: "1980-03-02"
   epargne_non_remuneree:
     2012-01: 0
@@ -13,7 +13,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   salaire_de_base:
     2013: 8307.692307692307
     2014-02: 923.0769230769231
@@ -46,6 +46,22 @@ individus:
     2014-12: 0
     2015-01: 0
     year:2014-02: 6480
+  salaire_imposable:
+    2013: 6716.706923076923
+    2014-02: 746.3007692307692
+    2014-03: 746.3007692307692
+    2014-04: 746.3007692307692
+    2014-05: 746.3007692307692
+    2014-06: 746.3007692307692
+    2014-07: 746.3007692307692
+    2014-08: 746.3007692307692
+    2014-09: 746.3007692307692
+    2014-10: 746.3007692307692
+    2014-11: 0
+    2014-11:3: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 6716.706923076923
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:

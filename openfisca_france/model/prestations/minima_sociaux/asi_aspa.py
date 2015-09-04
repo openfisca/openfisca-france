@@ -25,23 +25,23 @@
 
 from __future__ import division
 
-from numpy import maximum as max_, logical_not as not_
+from numpy import abs as abs_, logical_not as not_, logical_or as or_, maximum as max_
 
 from ...base import *  # noqa analysis:ignore
 
 
 reference_input_variable(
+    name = "inapte_travail",
     column = BoolCol,
     entity_class = Individus,
     label = u"Reconnu inapte au travail",
-    name = "inapte_travail",
     )
 
 reference_input_variable(
-    column = IntCol,
+    name = "taux_invalidite",
+    column = FloatCol,
     entity_class = Individus,
     label = u"Taux d'invalidité",
-    name = "taux_invalidite",
     )
 
 
@@ -53,36 +53,42 @@ class br_mv_i(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+
         three_previous_months = period.start.period('month', 3).offset(-3)
         aspa_elig = simulation.calculate('aspa_elig', period)
         aspa_couple_holder = simulation.compute('aspa_couple', period)
-        salaire_de_base = simulation.calculate('salaire_de_base', three_previous_months)
-        chonet = simulation.calculate('chonet', three_previous_months)
-        rstbrut = simulation.calculate('rstbrut', three_previous_months)
+        salaire_de_base = simulation.calculate_add('salaire_de_base', three_previous_months)
+        chonet = simulation.calculate_add('chonet', three_previous_months)
+        rstbrut = simulation.calculate_add('rstbrut', three_previous_months)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
-        rto_declarant1 = simulation.calculate_add_divide('rto_declarant1', three_previous_months)
+        pensions_alimentaires_versees_individu = simulation.calculate(
+            'pensions_alimentaires_versees_individu', three_previous_months
+            )
+        rto_declarant1 = simulation.calculate_add('rto_declarant1', three_previous_months)
         rpns = simulation.calculate_add_divide('rpns', three_previous_months)
         rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
         rev_cap_lib_holder = simulation.compute_add_divide('rev_cap_lib', three_previous_months)
         rfon_ms = simulation.calculate_add_divide('rfon_ms', three_previous_months)
         div_ms = simulation.calculate_add_divide('div_ms', three_previous_months)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', three_previous_months)
-        allocation_securisation_professionnelle = simulation.calculate('allocation_securisation_professionnelle', three_previous_months)
-        prime_forfaitaire_mensuelle_reprise_activite = simulation.calculate('prime_forfaitaire_mensuelle_reprise_activite', three_previous_months)
+        allocation_securisation_professionnelle = simulation.calculate(
+            'allocation_securisation_professionnelle', three_previous_months
+            )
+        prime_forfaitaire_mensuelle_reprise_activite = simulation.calculate(
+            'prime_forfaitaire_mensuelle_reprise_activite', three_previous_months
+            )
         dedommagement_victime_amiante = simulation.calculate('dedommagement_victime_amiante', three_previous_months)
         prestation_compensatoire = simulation.calculate('prestation_compensatoire', three_previous_months)
         pensions_invalidite = simulation.calculate('pensions_invalidite', three_previous_months)
         gains_exceptionnels = simulation.calculate('gains_exceptionnels', three_previous_months)
-        indemnites_journalieres_maternite = simulation.calculate('indemnites_journalieres_maternite', three_previous_months)
-        indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', three_previous_months)
-        indemnites_journalieres_maladie_professionnelle = simulation.calculate('indemnites_journalieres_maladie_professionnelle', three_previous_months)
-        indemnites_journalieres_accident_travail = simulation.calculate('indemnites_journalieres_accident_travail', three_previous_months)
         indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', three_previous_months)
+        indemnites_journalieres = simulation.calculate('indemnites_journalieres', three_previous_months)
         indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
-        tns_total_revenus = simulation.calculate_add('tns_total_revenus', three_previous_months)
-        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', three_previous_months)
-        aah = simulation.calculate('aah', three_previous_months)
-
+        tns_total_revenus_net = simulation.calculate_add('tns_total_revenus_net', three_previous_months)
+        rsa_base_ressources_patrimoine_i = simulation.calculate_add(
+            'rsa_base_ressources_patrimoine_i', three_previous_months
+            )
+        aah = simulation.calculate_add('aah', three_previous_months)
         legislation = simulation.legislation_at(period.start)
         leg_1er_janvier = simulation.legislation_at(period.start.offset('first-of', 'year'))
 
@@ -91,24 +97,26 @@ class br_mv_i(SimpleFormulaColumn):
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
         # Inclus l'AAH si conjoint non pensionné ASPA, retraite et pension invalidité
+        # FIXME Il faudrait vérifier que le conjoint est pensionné ASPA, pas qu'il est juste éligible !
         aah = aah * not_(aspa_elig)
 
         # Abattement sur les salaires (appliqué sur une base trimestrielle)
-        abattement_forfaitaire_base = leg_1er_janvier.cotsoc.gen.smic_h_b * legislation.minim.aspa.abattement_forfaitaire_nb_h
+        abattement_forfaitaire_base = (
+            leg_1er_janvier.cotsoc.gen.smic_h_b * legislation.minim.aspa.abattement_forfaitaire_nb_h
+            )
         abattement_forfaitaire_taux = (aspa_couple * legislation.minim.aspa.abattement_forfaitaire_tx_couple +
             not_(aspa_couple) * legislation.minim.aspa.abattement_forfaitaire_tx_seul
-            )
+        )
         abattement_forfaitaire = abattement_forfaitaire_base * abattement_forfaitaire_taux
         salaire_de_base = max_(0, salaire_de_base - abattement_forfaitaire)
 
-        return period, (salaire_de_base + chonet + rstbrut + pensions_alimentaires_percues + rto_declarant1 + rpns +
-               max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
-               # max_(0,etr) +
-               revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +
-               dedommagement_victime_amiante + prestation_compensatoire + pensions_invalidite + gains_exceptionnels +
-               indemnites_journalieres_maternite + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
-               indemnites_journalieres_accident_travail + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus +
-               rsa_base_ressources_patrimoine_i + aah
+        return period, (salaire_de_base + chonet + rstbrut + pensions_alimentaires_percues -
+               abs_(pensions_alimentaires_versees_individu) + rto_declarant1 + rpns +
+               max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +  # max_(0,etr) +
+               revenus_stage_formation_pro + allocation_securisation_professionnelle +
+               prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
+               pensions_invalidite + gains_exceptionnels + indemnites_journalieres + indemnites_chomage_partiel +
+               indemnites_volontariat + tns_total_revenus_net + rsa_base_ressources_patrimoine_i + aah
                ) / 3
 
 
@@ -135,25 +143,17 @@ class aspa_elig(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        last_month = period.start.period('month').offset(-1)
 
         age = simulation.calculate('age', period)
-        inv = simulation.calculate('inv', period)
-        taux_invalidite = simulation.calculate('taux_invalidite', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
-        rstbrut = simulation.calculate('rstbrut', last_month)
-        pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
-
+        taux_invalidite = simulation.calculate('taux_invalidite', period)
         P = simulation.legislation_at(period.start).minim
-
+        condition_invalidite = (taux_invalidite > P.aspa.taux_invalidite_aspa_anticipe) + inapte_travail
         condition_age_base = (age >= P.aspa.age_min)
-        condition_age_anticipe_inaptitude = (age >= P.aah.age_legal_retraite) & inapte_travail
-        condition_age_anticipe_handicap = (age >= P.aah.age_legal_retraite) & inv & (taux_invalidite >= 50)
+        condition_age_anticipe = (age >= P.aah.age_legal_retraite) * condition_invalidite
 
-        condition_age = condition_age_base | condition_age_anticipe_inaptitude | condition_age_anticipe_handicap
-        condition_pensionnement = (rstbrut + pensions_invalidite) > 0
-
-        return period, condition_age * condition_pensionnement
+        condition_age = condition_age_base + condition_age_anticipe
+        return period, condition_age
 
 
 @reference_formula
@@ -167,12 +167,12 @@ class asi_elig(SimpleFormulaColumn):
         last_month = period.start.period('month').offset(-1)
 
         aspa_elig = simulation.calculate('aspa_elig', period)
-        inv = simulation.calculate('inv', period)
-        rstbrut = simulation.calculate('rstbrut', last_month)
+        invalide = simulation.calculate('invalide', period)
+        rstnet = simulation.calculate('rstnet', last_month)
         pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
 
-        condition_situation = inv & not_(aspa_elig)
-        condition_pensionnement = (rstbrut + pensions_invalidite) > 0
+        condition_situation = invalide & not_(aspa_elig)
+        condition_pensionnement = (rstnet + pensions_invalidite) > 0
 
         return period, condition_situation * condition_pensionnement
 
@@ -196,6 +196,7 @@ class asi_aspa_nb_alloc(SimpleFormulaColumn):
 
 @reference_formula
 class asi(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     label = u"Allocation supplémentaire d'invalidité"
     start_date = date(2007, 1, 1)
@@ -228,25 +229,25 @@ class asi(SimpleFormulaColumn):
 
         elig = elig1 | elig2 | elig3 | elig4 | elig5
 
-        montant_max = (elig1 * P.asi.montant_seul
-            + elig2 * P.asi.montant_couple
-            + elig3 * 2 * P.asi.montant_seul
-            + elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
-            + elig5 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 12
+        montant_max = (elig1 * P.asi.montant_seul +
+            elig2 * P.asi.montant_couple +
+            elig3 * 2 * P.asi.montant_seul +
+            elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2) +
+            elig5 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 12
 
         ressources = br_mv + montant_max
 
-        plafond_ressources = (elig1 * (P.asi.plaf_seul * not_(concub) + P.asi.plaf_couple * concub)
-            + elig2 * P.asi.plaf_couple
-            + elig3 * P.asi.plaf_couple
-            + elig4 * P.aspa.plaf_couple
-            + elig5 * P.aspa.plaf_couple) / 12
+        plafond_ressources = (elig1 * (P.asi.plaf_seul * not_(concub) + P.asi.plaf_couple * concub) +
+            elig2 * P.asi.plaf_couple +
+            elig3 * P.asi.plaf_couple +
+            elig4 * P.aspa.plaf_couple +
+            elig5 * P.aspa.plaf_couple) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
-        diff = ((elig1 | elig2 | elig3) * (montant_max - depassement)
-            + elig4 * (P.asi.montant_couple / 12 / 2 - depassement / 2)
-            + elig5 * (P.asi.montant_seul / 12 - depassement / 2))
+        diff = ((elig1 | elig2 | elig3) * (montant_max - depassement) +
+            elig4 * (P.asi.montant_couple / 12 / 2 - depassement / 2) +
+            elig5 * (P.asi.montant_seul / 12 - depassement / 2))
 
         # Montant mensuel servi (sous réserve d'éligibilité)
         montant_servi_asi = max_(diff, 0)
@@ -280,6 +281,7 @@ class aspa_couple(DatedFormulaColumn):
 
 @reference_formula
 class aspa(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
     label = u"Allocation de solidarité aux personnes agées"
@@ -309,20 +311,22 @@ class aspa(SimpleFormulaColumn):
 
         elig = elig1 | elig2 | elig3 | elig4
 
-        montant_max = (elig1 * P.aspa.montant_seul
-            + elig2 * P.aspa.montant_couple
-            + elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
-            + elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 12
+        montant_max = (
+            elig1 * P.aspa.montant_seul +
+            elig2 * P.aspa.montant_couple +
+            elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2) +
+            elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2)
+            ) / 12
 
         ressources = br_mv + montant_max
 
-        plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub)
-            + (elig2 | elig3 | elig4) * P.aspa.plaf_couple) / 12
+        plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub) +
+            (elig2 | elig3 | elig4) * P.aspa.plaf_couple) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
-        diff = ((elig1 | elig2) * (montant_max - depassement)
-            + (elig3 | elig4) * (P.aspa.montant_couple / 12 / 2 - depassement / 2))
+        diff = ((elig1 | elig2) * (montant_max - depassement) +
+            (elig3 | elig4) * (P.aspa.montant_couple / 12 / 2 - depassement / 2))
 
         # Montant mensuel servi (sous réserve d'éligibilité)
         montant_servi_aspa = max_(diff, 0)

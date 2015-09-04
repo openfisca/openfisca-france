@@ -7,7 +7,7 @@ period: "month:2014-11"
 relative_error_margin: 0.02
 individus:
   - age: 28
-    agem: 338
+    age_en_mois: 338
     birth: "1986-08-25"
     epargne_non_remuneree:
       2012-01: 0
@@ -16,7 +16,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2012: 7692.307692307691
       2013-11: 641.025641025641
@@ -51,12 +51,29 @@ individus:
       2014-10: 500
       2014-11: 500
       year:2013-11: 6000
+    salaire_imposable:
+      2012: 6219.173076923075
+      2013-11: 518.2644230769231
+      2013-12: 518.2644230769231
+      2014-01: 518.2644230769231
+      2014-02: 518.2644230769231
+      2014-03: 518.2644230769231
+      2014-04: 518.2644230769231
+      2014-05: 518.2644230769231
+      2014-06: 518.2644230769231
+      2014-07: 518.2644230769231
+      2014-08: 518.2644230769231
+      2014-08:3: 1554.7932692307693
+      2014-09: 518.2644230769231
+      2014-10: 518.2644230769231
+      2014-11: 518.2644230769231
+      year:2013-11: 6219.173076923075
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 2
-    agem: 34
+    age_en_mois: 34
     birth: "2012-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -65,7 +82,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:

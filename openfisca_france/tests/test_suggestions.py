@@ -73,7 +73,7 @@ def test_birth():
             ],
         )
     assert_equal(
-        simulation.calculate('agem').tolist(),
+        simulation.calculate('age_en_mois').tolist(),
         [
             40 * 12,
             10 * 12,

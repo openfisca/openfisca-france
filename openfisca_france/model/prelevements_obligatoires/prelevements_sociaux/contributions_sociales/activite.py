@@ -28,8 +28,6 @@ from __future__ import division
 
 import logging
 
-from numpy import zeros
-
 from ....base import *  # noqa analysis:ignore
 from .base import montant_csg_crds
 
@@ -57,10 +55,11 @@ class assiette_csg_abattue(SimpleFormulaColumn):
         supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
         hsup = simulation.calculate('hsup', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
+        stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
 
         return period, (
             remuneration_principale + salaire_de_base + primes_salaires + primes_fonction_publique +
-            indemnite_residence + supp_familial_traitement - hsup
+            indemnite_residence + stage_gratification_reintegration + supp_familial_traitement - hsup
             )
 
 
@@ -78,7 +77,8 @@ class assiette_csg_non_abattue(SimpleFormulaColumn):
 
 
 @reference_formula
-class csgsald(SimpleFormulaColumn):
+class csg_deductible_salaire(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     label = u"CSG déductible sur les salaires"
     entity_class = Individus
@@ -100,7 +100,8 @@ class csgsald(SimpleFormulaColumn):
 
 
 @reference_formula
-class csgsali(SimpleFormulaColumn):
+class csg_imposable_salaire(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     label = u"CSG imposables sur les salaires"
     entity_class = Individus
@@ -123,7 +124,8 @@ class csgsali(SimpleFormulaColumn):
 
 
 @reference_formula
-class crdssal(SimpleFormulaColumn):
+class crds_salaire(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     label = u"CRDS sur les salaires"
     entity_class = Individus
@@ -158,10 +160,10 @@ class forfait_social(SimpleFormulaColumn):
     # la réserve spéciale de participation dans les sociétés coopératives ouvrières de production (Scop).
 
     def function(self, simulation, period):
-        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
-        prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate(
+        prevoyance_obligatoire_cadre = simulation.calculate_add('prevoyance_obligatoire_cadre', period)
+        prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate_add(
             'prise_en_charge_employeur_prevoyance_complementaire', period)
-        prise_en_charge_employeur_retraite_complementaire = simulation.calculate(
+        prise_en_charge_employeur_retraite_complementaire = simulation.calculate_add(
             'prise_en_charge_employeur_retraite_complementaire', period)
 
         taux_plein = simulation.legislation_at(period.start).forfait_social.taux_plein
@@ -171,39 +173,43 @@ class forfait_social(SimpleFormulaColumn):
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
         assiette_taux_reduit = - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
         return period, - (
-            assiette_taux_plein * taux_plein +
-            assiette_taux_reduit * taux_reduit
+            assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit
             )
 
 
 @reference_formula
-class sal(SimpleFormulaColumn):
+class salaire_imposable(SimpleFormulaColumn):
     base_function = requested_period_added_value
-    column = FloatCol
+    column = FloatCol(
+        cerfa_field = {
+            QUIFOY['vous']: u"1AJ",
+            QUIFOY['conj']: u"1BJ",
+            QUIFOY['pac1']: u"1CJ",
+            QUIFOY['pac2']: u"1DJ",
+            QUIFOY['pac3']: u"1EJ",
+            },  # (f1aj, f1bj, f1cj, f1dj, f1ej)
+        val_type = "monetary",
+        )
     entity_class = Individus
     label = u"Salaires imposables"
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
-        period = period
-        salaire_de_base = simulation.calculate_add('salaire_de_base', period)
-        primes_salaires = simulation.calculate_add('primes_salaires', period)
-        primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
-        indemnite_residence = simulation.calculate_add('indemnite_residence', period)
-        supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
-        csgsald = simulation.calculate_add('csgsald', period)
+        period = period.start.period(u'month').offset('first-of')
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
+        primes_salaires = simulation.calculate('primes_salaires', period)
+        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
+        indemnite_residence = simulation.calculate('indemnite_residence', period)
+        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        csg_deductible_salaire = simulation.calculate('csg_deductible_salaire', period)
         cotisations_salariales = simulation.calculate('cotisations_salariales', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
         hsup = simulation.calculate('hsup', period)
-        # Quand sal est calculé sur une année glissante, rev_microsocial_declarant1 est calculé sur l'année légale
-        # correspondante. Quand sal est calculé sur un mois, rev_microsocial_declarant1 est calculé par division du
-        # montant pour l'année légale.
-        rev_microsocial_declarant1 = simulation.calculate_add_divide('rev_microsocial_declarant1',
-            period.offset('first-of'))
+        rev_microsocial_declarant1 = simulation.calculate_divide('rev_microsocial_declarant1', period)
 
         return period, (
             salaire_de_base + primes_salaires + remuneration_principale +
-            primes_fonction_publique + indemnite_residence + supp_familial_traitement + csgsald +
+            primes_fonction_publique + indemnite_residence + supp_familial_traitement + csg_deductible_salaire +
             cotisations_salariales - hsup + rev_microsocial_declarant1
             )
 
@@ -221,17 +227,16 @@ class salaire_net(SimpleFormulaColumn):
         Calcul du salaire net d'après définition INSEE
         net = net de csg et crds
         '''
-        period = period
+        period = period.start.period(u'month').offset('first-of')
 
-        salaire_de_base = simulation.get_array('salaire_de_base', period)
-        if salaire_de_base is None:
-            return period, zeros(self.holder.entity.count)
+        # salaire_de_base = simulation.get_array('salaire_de_base', period)
+        # if salaire_de_base is None:
+        #     return period, zeros(self.holder.entity.count)
+        salaire_imposable = simulation.calculate('salaire_imposable', period)
+        crds_salaire = simulation.calculate('crds_salaire', period)
+        csg_imposable_salaire = simulation.calculate('csg_imposable_salaire', period)
 
-        sal = simulation.calculate('sal', period)
-        crdssal = simulation.calculate_add('crdssal', period)
-        csgsali = simulation.calculate_add('csgsali', period)
-
-        return period, sal + crdssal + csgsali
+        return period, salaire_imposable + crds_salaire + csg_imposable_salaire
 
 
 @reference_formula

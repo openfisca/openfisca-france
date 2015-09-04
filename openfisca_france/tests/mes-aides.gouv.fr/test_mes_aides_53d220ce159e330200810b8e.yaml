@@ -7,7 +7,7 @@ description: "Forfait logement pour 2 personnes : 120 €, ressources < 1080 - 1
 period: "month:2014-07"
 individus:
   - age: 24
-    agem: 298
+    age_en_mois: 298
     birth: "1989-09-14"
     enceinte: false
     epargne_non_remuneree:
@@ -17,7 +17,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2012: 3653.8461538461543
       2014-04: 1217.948717948718
@@ -34,13 +34,21 @@ individus:
       2014-06: 950
       2014-07: 950
       year:2013-07: 2850
+    salaire_imposable:
+      2012: 2954.1072115384613
+      2014-04: 984.7024038461539
+      2014-04:3: 2954.1072115384613
+      2014-05: 984.7024038461539
+      2014-06: 984.7024038461539
+      2014-07: 984.7024038461539
+      year:2013-07: 2954.1072115384613
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 24
-    agem: 298
+    age_en_mois: 298
     birth: "1989-09-14"
     epargne_non_remuneree:
       2012-01: 0
@@ -49,7 +57,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:

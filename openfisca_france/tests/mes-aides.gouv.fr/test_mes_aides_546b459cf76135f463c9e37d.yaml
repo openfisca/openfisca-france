@@ -7,7 +7,7 @@ period: "month:2014-11"
 individus:
   activite: 3
   age: 65
-  agem: 789
+  age_en_mois: 789
   birth: "1949-02-15"
   epargne_non_remuneree:
     2012-01: 0
@@ -16,7 +16,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   retraite_combattant:
     2012: 3600
     2013-11: 300

@@ -6,9 +6,7 @@ description: RFR = 2700 euros < plafond de 2790 euros pour le montant de 357 eur
 period: "month:2014-12"
 individus:
   - age: 34
-    agem: 411
-    alr:
-      2013: 0
+    age_en_mois: 411
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -19,10 +17,10 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
-    rst:
+    invalide: 0
+    pensions_alimentaires_percues:
       2013: 0
-    sal:
+    rst:
       2013: 0
     salaire_de_base:
       2012: 3461.538461538462
@@ -56,12 +54,29 @@ individus:
       2014-10: 0
       2014-11: 0
       year:2013-12: 2700
+    salaire_imposable:
+      2013: 0
+      2012: 2798.6278846153846
+      2013-12: 310.9586538461538
+      2014-01: 310.9586538461538
+      2014-02: 310.9586538461538
+      2014-03: 310.9586538461538
+      2014-04: 310.9586538461538
+      2014-05: 310.9586538461538
+      2014-06: 310.9586538461538
+      2014-07: 310.9586538461538
+      2014-08: 310.9586538461538
+      2014-09: 0
+      2014-09:3: 0
+      2014-10: 0
+      2014-11: 0
+      year:2013-12: 2798.6278846153846
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 14
-    agem: 171
+    age_en_mois: 171
     birth: "2000-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -70,7 +85,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -81,7 +96,7 @@ familles:
   parents: 5485d40b3bc432e473c703b7
 foyers_fiscaux:
   declarants: 5485d40b3bc432e473c703b7
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge: 5485d40b3bc432e473c703b6
   rfr:

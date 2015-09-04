@@ -6,7 +6,7 @@ description: "Ressource à exclure de la base ressources RSA (article L. 132-2 d
 period: "month:2014-12"
 individus:
   age: 34
-  agem: 419
+  age_en_mois: 419
   birth: "1980-01-01"
   epargne_non_remuneree:
     2012-01: 0
@@ -15,7 +15,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   retraite_combattant:
     2012: 6000
     2013-12: 500

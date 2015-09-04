@@ -4,7 +4,7 @@ description: Avec un enfant à charge en résidence alternée, le plafond applic
 period: "month:2014-12"
 individus:
   - age: 50
-    agem: 611
+    age_en_mois: 611
     birth: "1964-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -13,7 +13,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2012: 14102.564102564105
       2013-12: 1139.6011396011395
@@ -48,12 +48,29 @@ individus:
       2014-11: 1000
       2014-12: 1000
       year:2013-12: 10999.999999999998
+    salaire_imposable:
+      2012: 11401.817307692309
+      2013-12: 921.3589743589744
+      2014-01: 921.3589743589744
+      2014-02: 921.3589743589744
+      2014-03: 921.3589743589744
+      2014-04: 921.3589743589744
+      2014-05: 921.3589743589744
+      2014-06: 921.3589743589744
+      2014-07: 921.3589743589744
+      2014-08: 921.3589743589744
+      2014-09: 1036.5288461538462
+      2014-09:3: 3109.5865384615386
+      2014-10: 1036.5288461538462
+      2014-11: 1036.5288461538462
+      2014-12: 1036.5288461538462
+      year:2013-12: 11401.817307692309
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 16
-    agem: 203
+    age_en_mois: 203
     alt: true
     birth: "1998-01-01"
     epargne_non_remuneree:
@@ -63,7 +80,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 2
     valeur_locative_immo_non_loue:
       2012-01: 0

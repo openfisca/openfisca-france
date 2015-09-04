@@ -12,7 +12,7 @@ description: |
 period: "month:2014-12"
 individus:
   - age: 40
-    agem: 491
+    age_en_mois: 491
     birth: "1974-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -21,7 +21,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2012: 29358.974358974363
       2013-12: 2407.4074074074074
@@ -56,13 +56,30 @@ individus:
       2014-11: 2000
       2014-12: 2000
       year:2013-12: 22899.999999999996
+    salaire_imposable:
+      2012: 23736.510576923083
+      2013-12: 1946.3708333333334
+      2014-01: 1946.3708333333334
+      2014-02: 1946.3708333333334
+      2014-03: 1946.3708333333334
+      2014-04: 1946.3708333333334
+      2014-05: 1946.3708333333334
+      2014-06: 1946.3708333333334
+      2014-07: 1946.3708333333334
+      2014-08: 1946.3708333333334
+      2014-09: 2073.0576923076924
+      2014-09:3: 6219.173076923077
+      2014-10: 2073.0576923076924
+      2014-11: 2073.0576923076924
+      2014-12: 2073.0576923076924
+      year:2013-12: 23736.510576923083
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 40
-    agem: 491
+    age_en_mois: 491
     birth: "1974-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -71,13 +88,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 4
-    agem: 59
+    age_en_mois: 59
     birth: "2010-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -86,13 +103,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 17
-    agem: 215
+    age_en_mois: 215
     birth: "1997-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -101,7 +118,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0

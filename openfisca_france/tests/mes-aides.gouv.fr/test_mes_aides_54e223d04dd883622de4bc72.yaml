@@ -12,7 +12,7 @@ period: "month:2015-02"
 individus:
   - activite: 3
     age: 74
-    agem: 897
+    age_en_mois: 897
     birth: "1940-05-05"
     epargne_non_remuneree:
       2012-01: 0
@@ -21,7 +21,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     rstbrut:
       2013: 6000
       2014-02: 500
@@ -90,6 +90,23 @@ individus:
       2015-01: 649.74
       2015-02: 649.74
       year:2014-02: 7796.879999999998
+    salaire_imposable:
+      2013: 8081.691030000001
+      2014-02: 673.4742525
+      2014-03: 673.4742525
+      2014-04: 673.4742525
+      2014-05: 673.4742525
+      2014-06: 673.4742525
+      2014-07: 673.4742525
+      2014-08: 673.4742525
+      2014-09: 673.4742525
+      2014-10: 673.4742525
+      2014-11: 673.4742525
+      2014-11:3: 2020.4227575
+      2014-12: 673.4742525
+      2015-01: 673.4742525
+      2015-02: 673.4742525
+      year:2014-02: 8081.691030000001
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -97,7 +114,7 @@ individus:
       2012-01: 0
   - activite: 3
     age: 74
-    agem: 897
+    age_en_mois: 897
     birth: "1940-05-05"
     epargne_non_remuneree:
       2012-01: 0
@@ -106,7 +123,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     rstbrut:
       2013: 1800
       2014-02: 150

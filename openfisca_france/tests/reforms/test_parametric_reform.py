@@ -31,30 +31,32 @@ from openfisca_france.tests.base import assert_near, tax_benefit_system
 
 
 def test_parametric_reform():
+
+    def modify_legislation_json(reference_legislation_json_copy):
+        # FIXME update_legislation is deprecated.
+        reform_legislation_json = reforms.update_legislation(
+            legislation_json = reference_legislation_json_copy,
+            path = ('children', 'ir', 'children', 'bareme', 'brackets', 0, 'rate'),
+            period = simulation_period,
+            value = 1,
+            )
+        return reform_legislation_json
+
     simulation_year = 2013
     simulation_period = periods.period('year', simulation_year)
-    reference_legislation_json = tax_benefit_system.legislation_json
-
-    reform_legislation_json = reforms.update_legislation(
-        legislation_json = reference_legislation_json,
-        path = ('children', 'ir', 'children', 'bareme', 'brackets', 0, 'rate'),
-        period = simulation_period,
-        value = 1,
-        )
-
     Reform = reforms.make_reform(
-        legislation_json = reform_legislation_json,
-        # name = u'IR_100_tranche_1',
+        key = 'ir_100_tranche_1',
         name = u"Imposition à 100% dès le premier euro et jusqu'à la fin de la 1ère tranche",
         reference = tax_benefit_system,
         )
     reform = Reform()
+    reform.modify_legislation_json(modifier_function = modify_legislation_json)
 
     scenario = reform.new_scenario().init_single_entity(
         axes = [
             dict(
                 count = 3,
-                name = 'sal',
+                name = 'salaire_imposable',
                 max = 100000,
                 min = 0,
                 ),

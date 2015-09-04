@@ -4,7 +4,7 @@ description:
 period: "month:2014-10"
 individus:
   - age: 25
-    agem: 300
+    age_en_mois: 300
     birth: "1989-09-14"
     epargne_non_remuneree:
       2012-01: 0
@@ -13,7 +13,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2012: 92307.6923076923
       2013-10: 7692.307692307692
@@ -48,12 +48,29 @@ individus:
       2014-09: 6000
       2014-10: 6000
       year:2013-10: 72000
+    salaire_imposable:
+      2012: 74630.07692307692
+      2013-10: 6219.173076923077
+      2013-11: 6219.173076923077
+      2013-12: 6219.173076923077
+      2014-01: 6219.173076923077
+      2014-02: 6219.173076923077
+      2014-03: 6219.173076923077
+      2014-04: 6219.173076923077
+      2014-05: 6219.173076923077
+      2014-06: 6219.173076923077
+      2014-07: 6219.173076923077
+      2014-07:3: 18657.51923076923
+      2014-08: 6219.173076923077
+      2014-09: 6219.173076923077
+      2014-10: 6219.173076923077
+      year:2013-10: 74630.07692307692
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 7
-    agem: 87
+    age_en_mois: 87
     birth: "2007-07-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -62,13 +79,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 7
-    agem: 87
+    age_en_mois: 87
     birth: "2007-07-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -77,13 +94,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 7
-    agem: 87
+    age_en_mois: 87
     birth: "2007-07-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -92,7 +109,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:

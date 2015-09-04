@@ -6,7 +6,7 @@ description:
 period: "month:2014-07"
 individus:
   age: 68
-  agem: 826
+  age_en_mois: 826
   birth: "1945-09-14"
   enceinte: false
   epargne_non_remuneree:
@@ -16,7 +16,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   rstbrut:
     2012: 900
     2014-04: 300

@@ -4,7 +4,7 @@ description: Le patrimoine non productif de revenus est pris en compte à hauteu
 period: "month:2014-11"
 individus:
   age: 28
-  agem: 346
+  age_en_mois: 346
   birth: "1986-01-01"
   epargne_non_remuneree:
     2012-01: 20000
@@ -13,7 +13,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   revenus_capital:
     2012: 0
     2013-11: 0

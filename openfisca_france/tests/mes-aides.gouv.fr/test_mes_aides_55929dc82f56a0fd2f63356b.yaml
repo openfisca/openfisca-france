@@ -1,0 +1,58 @@
+name: Couple sans activité sans domicile stable
+keywords:
+  - forfait logement
+  - recette
+  - rsa
+description: Il ne faut pas appliquer le forfait logement
+period: "month:2015-06"
+individus:
+  - age: 55
+    age_en_mois: 665
+    birth: "1960-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55929dc4131e5b05301ebc1a
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 55
+    age_en_mois: 665
+    birth: "1960-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 55929dc4131e5b05301ebc19
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  enfants:
+  parents:
+    - 55929dc4131e5b05301ebc1a
+    - 55929dc4131e5b05301ebc19
+foyers_fiscaux:
+  declarants:
+    - 55929dc4131e5b05301ebc1a
+    - 55929dc4131e5b05301ebc19
+  personnes_a_charge:
+menages:
+  conjoint: 55929dc4131e5b05301ebc19
+  depcom: 77004
+  enfants:
+  personne_de_reference: 55929dc4131e5b05301ebc1a
+output_variables:
+  cmu_c: true
+  rsa: 770.82

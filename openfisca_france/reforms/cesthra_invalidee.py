@@ -25,68 +25,68 @@
 
 from __future__ import division
 
-import copy
-
-import logging
-
 from numpy import maximum as max_
-
 from openfisca_core import columns, formulas, reforms
-from openfisca_france import entities
-from openfisca_france.model.prelevements_obligatoires.impot_revenu import ir
+
+from .. import entities
+from ..model.prelevements_obligatoires.impot_revenu import ir
 
 
-log = logging.getLogger(__name__)
+def build_reform(tax_benefit_system):
+    Reform = reforms.make_reform(
+        key = 'cesthra_invalidee',
+        name = u"Contribution execptionnelle sur les très hauts revenus d'activité (invalidée par le CC)",
+        reference = tax_benefit_system,
+        )
 
-from openfisca_france.model.base import QUIFOY
-VOUS = QUIFOY['vous']
+    @Reform.formula
+    class cesthra(formulas.SimpleFormulaColumn):
+        column = columns.FloatCol
+        entity_class = entities.FoyersFiscaux
+        label = u"Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
+        # PLF 2013 (rejeté) : 'taxe à 75%'
+
+        def function(self, simulation, period):
+            period = period.start.offset('first-of', 'year').period('year')
+            salaire_imposable_holder = simulation.calculate("salaire_imposable", period)
+            law_cesthra = simulation.legislation_at(period.start).cesthra
+            salaire_imposable = self.split_by_roles(salaire_imposable_holder)
+
+            cesthra = 0
+            for rev in salaire_imposable.itervalues():
+                cesthra += max_(rev - law_cesthra.seuil, 0) * law_cesthra.taux
+            return period, cesthra
+
+    @Reform.formula
+    class irpp(formulas.SimpleFormulaColumn):
+        label = u"Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)"
+        reference = ir.irpp
+
+        def function(self, simulation, period):
+            '''
+            Montant après seuil de recouvrement (hors ppe)
+            '''
+            period = period.start.offset('first-of', 'year').period('year')
+            iai = simulation.calculate('iai', period)
+            credits_impot = simulation.calculate('credits_impot', period)
+            cehr = simulation.calculate('cehr', period)
+            cesthra = simulation.calculate('cesthra', period = period)
+            P = simulation.legislation_at(period.start).ir.recouvrement
+
+            pre_result = iai - credits_impot + cehr + cesthra
+            return period, ((iai > P.seuil) *
+                ((pre_result < P.min) * (pre_result > 0) * iai * 0 +
+                ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)) +
+                (iai <= P.seuil) * ((pre_result < 0) * (-pre_result) +
+                (pre_result >= 0) * 0 * iai))
+
+    reform = Reform()
+    reform.modify_legislation_json(modifier_function = modify_legislation_json)
+    return reform
 
 
-class cesthra(formulas.SimpleFormulaColumn):
-    column = columns.FloatCol
-    entity_class = entities.FoyersFiscaux
-    label = u"Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
-    # PLF 2013 (rejeté) : 'taxe à 75%'
-
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
-        sal_holder = simulation.calculate("sal", period)
-        law_cesthra = simulation.legislation_at(period.start).cesthra
-        sal = self.split_by_roles(sal_holder)
-
-        cesthra = 0
-        for rev in sal.itervalues():
-            cesthra += max_(rev - law_cesthra.seuil, 0) * law_cesthra.taux
-        return period, cesthra
-
-
-class irpp(formulas.SimpleFormulaColumn):
-    label = u"Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)"
-    reference = ir.irpp
-
-    def function(self, simulation, period):
-        '''
-        Montant après seuil de recouvrement (hors ppe)
-        '''
-        period = period.start.offset('first-of', 'month').period('year')
-        iai = simulation.calculate('iai', period)
-        credits_impot = simulation.calculate('credits_impot', period)
-        cehr = simulation.calculate('cehr', period)
-        cesthra = simulation.calculate('cesthra', period = period)
-        P = simulation.legislation_at(period.start).ir.recouvrement
-
-        pre_result = iai - credits_impot + cehr + cesthra
-        return period, ((iai > P.seuil) *
-            ((pre_result < P.min) * (pre_result > 0) * iai * 0 +
-            ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)) +
-            (iai <= P.seuil) * ((pre_result < 0) * (-pre_result) +
-            (pre_result >= 0) * 0 * iai))
-
-
-# Reform legislation
-
-reform_legislation_subtree = {
-    "cesthra": {
+def modify_legislation_json(reference_legislation_json_copy):
+    reform_legislation_subtree = {
         "@type": "Node",
         "description": "Contribution execptionnelle sur les très hauts revenus d'activité",
         "children": {
@@ -105,18 +105,6 @@ reform_legislation_subtree = {
                 "values": [{'start': u'2012-01-01', 'stop': u'2013-12-31', 'value': .75}],
                 },
             },
-        },
-    }
-
-
-def build_reform(tax_benefit_system):
-    reference_legislation_json = tax_benefit_system.legislation_json
-    reform_legislation_json = copy.deepcopy(reference_legislation_json)
-    reform_legislation_json['children'].update(reform_legislation_subtree)
-    Reform = reforms.make_reform(
-        legislation_json = reform_legislation_json,
-        name = u"Contribution execptionnelle sur les très hauts revenus d'activité (invalidée par le CC)",
-        new_formulas = (cesthra, irpp),
-        reference = tax_benefit_system,
-        )
-    return Reform()
+        }
+    reference_legislation_json_copy['children']['cesthra'] = reform_legislation_subtree
+    return reference_legislation_json_copy

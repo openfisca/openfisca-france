@@ -27,20 +27,22 @@ import datetime
 
 from openfisca_core.tools import assert_near
 
-from openfisca_france.reforms import plfr2014
 from openfisca_france.tests import base
 
 
 def test_plfr2014():
     year = 2013
-    reform = plfr2014.build_reform(base.tax_benefit_system)
+    reform = base.get_cached_reform(
+        reform_key = 'plfr2014',
+        tax_benefit_system = base.tax_benefit_system,
+        )
     scenario = reform.new_scenario().init_single_entity(
         axes = [
             dict(
                 count = 10,
                 max = 13795 * (1 + .1) * (1 + .03),
                 min = 13795 * (1 + .1) * (1 - .03),
-                name = 'sal',
+                name = 'salaire_imposable',
                 ),
             ],
         period = year,

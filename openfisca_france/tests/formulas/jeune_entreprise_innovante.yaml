@@ -8,7 +8,7 @@
     mmid_employeur: -320
     vieillesse_deplafonnee_employeur: -45
     vieillesse_plafonnee_employeur: -212.5
-    exoneration_cotisations_patronales_jei: -(-131.25 - 320 - 45 - 212.5)
+    exoneration_cotisations_employeur_jei: -(-131.25 - 320 - 45 - 212.5)
 - period: "month:2015-03"
   input_variables:
     entreprise_creation: "2015-01-01"
@@ -16,7 +16,7 @@
     effectif_entreprise: 430
     salaire_de_base: 2500
   output_variables:
-    exoneration_cotisations_patronales_jei: 0
+    exoneration_cotisations_employeur_jei: 0
 - period: "month:2015-03"
   input_variables:
     entreprise_creation: "2007-03-01"
@@ -24,4 +24,4 @@
     effectif_entreprise: 200
     salaire_de_base: 2500
   output_variables:
-    exoneration_cotisations_patronales_jei: -(-131.25 - 320 - 45 - 212.5)
+    exoneration_cotisations_employeur_jei: -(-131.25 - 320 - 45 - 212.5)

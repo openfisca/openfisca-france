@@ -1,0 +1,52 @@
+- name: "Complément d'AAH - cas 1"
+  description: Montant du complément d AAH au niveau de l individu
+  period: 2012-03
+  absolute_error_margin: 10
+  input_variables:
+    asi: 600
+    asi_elig: 'True'
+    aide_logement_montant: 230
+  output_variables:
+    caah: 179.3  # 1 * max(922.93 - 743.62, 0)
+# changer résultat test quand mva intégrée
+
+- name: "Complément d'AAH - cas 2"
+  description: Montant du complément d AAH au niveau de l individu
+  period: 2008-09
+  absolute_error_margin: 10
+  input_variables:
+    aah: 790
+    aide_logement_montant: 190
+  output_variables:
+    caah: 179  # 831.91 - 652.60
+# changer résultat test quand mva intégrée
+
+- name: "Complément d'AAH - cas 3"
+  description: Montant du complément d AAH au niveau de l individu
+  period: 2004-11
+  absolute_error_margin: 10
+  input_variables:
+    aah: 620
+    aide_logement_montant: 0
+  output_variables:
+    caah: 0
+
+- name: "Complément d'AAH - cas 4"
+  description: Montant du complément d AAH au niveau de l individu
+  period: 2004-11
+  absolute_error_margin: 10
+  input_variables:
+    aah: 620
+    aide_logement_montant: 120
+  output_variables:
+    caah: 94  # 16% * 587.74
+
+- name: "Complément d'AAH - cas 5"
+  description: Montant du complément d AAH au niveau de l individu
+  period: 2005-02
+  absolute_error_margin: 10
+  input_variables:
+    aide_logement_montant: 310
+    aah: 540
+  output_variables:
+    caah: 95.9  # 16% * 1 * 599.49

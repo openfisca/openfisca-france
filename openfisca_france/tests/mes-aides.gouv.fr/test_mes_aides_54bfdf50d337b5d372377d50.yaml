@@ -1,0 +1,56 @@
+name: 123_Neutral revenus non pro
+keywords:
+  - base ressources
+  - rsa
+description: |
+  Neutral dans la limite du montant forfaitaire pour 1 personne 
+  800-513.88 = 286.12
+  513.88 - 286.12 = 227.76
+period: "month:2015-01"
+individus:
+  age: 35
+  age_en_mois: 420
+  birth: "1980-01-01"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 54bfdf0bd337b5d372377d43
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  pensions_alimentaires_percues:
+    2013: 9600
+    2014-01: 800
+    2014-02: 800
+    2014-03: 800
+    2014-04: 800
+    2014-05: 800
+    2014-06: 800
+    2014-07: 800
+    2014-08: 800
+    2014-09: 800
+    2014-10: 800
+    2014-10:3: 2400
+    2014-11: 800
+    2014-12: 800
+    year:2014-01: 9600
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 54bfdf0bd337b5d372377d43
+  proprietaire_proche_famille: true
+foyers_fiscaux:
+  declarants: 54bfdf0bd337b5d372377d43
+  personnes_a_charge:
+menages:
+  depcom: 85191
+  enfants:
+  loyer: 900
+  personne_de_reference: 54bfdf0bd337b5d372377d43
+  statut_occupation: 4
+output_variables:
+  rsa: 227.76

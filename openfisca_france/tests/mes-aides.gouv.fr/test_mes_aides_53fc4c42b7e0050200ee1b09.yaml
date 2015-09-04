@@ -4,7 +4,7 @@ description: Il y a une pente à appliquer sur les indemnités de chômage parti
 period: "month:2014-08"
 individus:
   age: 34
-  agem: 415
+  age_en_mois: 415
   birth: "1980-01-01"
   enceinte: false
   epargne_non_remuneree:
@@ -22,7 +22,7 @@ individus:
     year:2013-08: 600
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   salaire_de_base:
     2012: 2307.6923076923076
     2014-05: 769.2307692307692
@@ -39,6 +39,14 @@ individus:
     2014-07: 600
     2014-08: 600
     year:2013-08: 1800
+  salaire_imposable:
+    2012: 1865.751923076923
+    2014-05: 621.9173076923076
+    2014-05:3: 1865.751923076923
+    2014-06: 621.9173076923076
+    2014-07: 621.9173076923076
+    2014-08: 621.9173076923076
+    year:2013-08: 1865.751923076923
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:

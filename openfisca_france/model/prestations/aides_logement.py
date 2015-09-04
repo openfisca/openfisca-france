@@ -103,12 +103,12 @@ class aide_logement_base_ressources_eval_forfaitaire(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        sal_holder = simulation.compute('sal', period.offset(-1))
-        sal = self.sum_by_entity(sal_holder, roles = [CHEF, PART])
+        salaire_imposable_holder = simulation.compute('salaire_imposable', period.offset(-1))
+        salaire_imposable = self.sum_by_entity(salaire_imposable_holder, roles = [CHEF, PART])
 
         # Application de l'abattement pour frais professionnels
         params_abattement = simulation.legislation_at(period.start).ir.tspr.abatpro
-        somme_salaires_mois_precedent = 12 * sal
+        somme_salaires_mois_precedent = 12 * salaire_imposable
         montant_abattement = round(
             min_(
                 max_(params_abattement.taux * somme_salaires_mois_precedent, params_abattement.min),
@@ -131,7 +131,7 @@ class aide_logement_abattement_chomage_indemnise(SimpleFormulaColumn):
         two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
         chomage_net_m_1 = simulation.calculate('chonet', period.offset(-1))
         chomage_net_m_2 = simulation.calculate('chonet', period.offset(-2))
-        revenus_activite_pro = simulation.calculate('sal', two_years_ago)
+        revenus_activite_pro = simulation.calculate('salaire_imposable', two_years_ago)
         taux_abattement = simulation.legislation_at(period.start).al.ressources.abattement_chomage_indemnise
 
         abattement = and_(chomage_net_m_1 > 0, chomage_net_m_2 > 0) * taux_abattement * revenus_activite_pro
@@ -190,8 +190,8 @@ class aide_logement_base_ressources(SimpleFormulaColumn):
         age_holder = simulation.compute('age', period)
         age = self.split_by_roles(age_holder, roles = [CHEF, PART])
         smic_horaire_brut_n2 = simulation.legislation_at(last_day_reference_year).cotsoc.gen.smic_h_b
-        sal_holder = simulation.compute('sal', period.offset(-1))
-        somme_salaires = self.sum_by_entity(sal_holder, roles = [CHEF, PART])
+        salaire_imposable_holder = simulation.compute('salaire_imposable', period.offset(-1))
+        somme_salaires = self.sum_by_entity(salaire_imposable_holder, roles = [CHEF, PART])
 
         plafond_eval_forfaitaire = 1015 * smic_horaire_brut_n2
 
@@ -272,15 +272,9 @@ class aide_logement_montant_brut(SimpleFormulaColumn):
         # loyer
         # coloc (1 si colocation, 0 sinon)
         # statut_occupation : statut d'occupation du logement
-        #   statut_occupation==1 : Accédant à la propriété
-        #   statut_occupation==2 : Propriétaire (non accédant) du logement.
-        #   statut_occupation==3 : Locataire d'un logement HLM
-        #   statut_occupation==4 : Locataire ou statut_occupationus-locataire d'un logement loué vide non-HLM
-        #   statut_occupation==5 : Locataire ou statut_occupationus-locataire d'un logement loué meublé
-        #                          ou d'une chambre d'hôtel.
-        #   statut_occupation==6 : Logé gratuitement par des parents, des amis ou l'employeur
+        # Voir statut_occupation dans model/caracteristiques_socio_demographiques/logement.py
 
-        loca = (3 <= statut_occupation) & (5 >= statut_occupation)
+        loca = ((3 <= statut_occupation) & (5 >= statut_occupation)) | (statut_occupation == 7)
         acce = statut_occupation == 1
 
         # # aides au logement pour les locataires
@@ -393,7 +387,6 @@ class aide_logement_montant_brut(SimpleFormulaColumn):
         # # APL (tous)
 
         al = al_loc + al_acc
-
         return period, al
 
 
@@ -414,6 +407,7 @@ class aide_logement_montant(SimpleFormulaColumn):
 
 @reference_formula
 class alf(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
     label = u"Allocation logement familiale"
@@ -425,10 +419,10 @@ class alf(SimpleFormulaColumn):
         al_pac = simulation.calculate('al_pac', period)
         statut_occupation_famille = simulation.calculate('statut_occupation_famille', period)
         proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
-
         statut_occupation = statut_occupation_famille
-        return period, \
-            (al_pac >= 1) * (statut_occupation != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
+
+        result = (al_pac >= 1) * (statut_occupation != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
+        return period, result
 
 
 @reference_formula
@@ -451,11 +445,12 @@ class als_nonet(SimpleFormulaColumn):
         return period, (
             (al_pac == 0) * (statut_occupation != 3) * not_(proprietaire_proche_famille) *
             not_(etu[CHEF] | etu[PART]) * aide_logement_montant
-            )
+        )
 
 
 @reference_formula
 class alset(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
     label = u"Allocation logement sociale (étudiante)"
@@ -476,11 +471,12 @@ class alset(SimpleFormulaColumn):
         return period, (
             (al_pac == 0) * (statut_occupation != 3) * not_(proprietaire_proche_famille) *
             (etu[CHEF] | etu[PART]) * aide_logement_montant
-            )
+        )
 
 
 @reference_formula
 class als(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
     label = u"Allocation logement sociale"
@@ -497,6 +493,7 @@ class als(SimpleFormulaColumn):
 
 @reference_formula
 class apl(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
     label = u" Aide personnalisée au logement"
@@ -511,6 +508,26 @@ class apl(SimpleFormulaColumn):
         statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
         statut_occupation = self.filter_role(statut_occupation, role = CHEF)
         return period, aide_logement_montant * (statut_occupation == 3)
+
+
+@reference_formula
+class aide_logement_non_calculable(SimpleFormulaColumn):
+    column = EnumCol(
+        enum = Enum([
+            u"",
+            u"primo_accedant",
+            u"locataire_foyer"
+        ]),
+        default = 0
+    )
+    entity_class = Familles
+    label = u"Aide au logement non calculable"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        statut_occupation = simulation.calculate('statut_occupation', period)
+
+        return period, (statut_occupation == 1) * 1 + (statut_occupation == 7) * 2
 
 
 @reference_formula
@@ -530,6 +547,7 @@ class aide_logement(SimpleFormulaColumn):
 
 @reference_formula
 class crds_logement(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
     label = u"CRDS des allocations logement"

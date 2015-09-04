@@ -23,17 +23,76 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+from openfisca_core import reforms
 from openfisca_core.tools import assert_near
 
 from .. import init_country
+from ..reforms import (
+    allocations_familiales_imposables,
+    cesthra_invalidee,
+    inversion_revenus,
+    plf2015,
+    plfr2014,
+    trannoy_wasmer,
+    )
 
 
 __all__ = [
     'assert_near',
+    'get_cached_composed_reform',
+    'get_cached_reform',
     'tax_benefit_system',
     'TaxBenefitSystem',
     ]
 
 
+# Initialize a tax_benefit_system
+
 TaxBenefitSystem = init_country()
 tax_benefit_system = TaxBenefitSystem()
+
+
+# Initialize reforms caches
+
+build_reform_functions = [
+    allocations_familiales_imposables.build_reform,
+    cesthra_invalidee.build_reform,
+    inversion_revenus.build_reform,
+    plf2015.build_reform,
+    plfr2014.build_reform,
+    trannoy_wasmer.build_reform,
+    ]
+known_reforms = [
+    build_reform(tax_benefit_system)
+    for build_reform in build_reform_functions
+    ]
+build_reform_function_by_key = {
+    reform.key: build_reform
+    for build_reform, reform in zip(build_reform_functions, known_reforms)
+    }
+reform_by_full_key = {
+    reform.full_key: reform
+    for reform in known_reforms
+    }
+
+
+def get_cached_composed_reform(reform_keys, tax_benefit_system):
+    full_key = '.'.join(
+        [tax_benefit_system.full_key] + reform_keys
+        if isinstance(tax_benefit_system, reforms.AbstractReform)
+        else reform_keys
+        )
+    composed_reform = reform_by_full_key.get(full_key)
+    if composed_reform is None:
+        build_reform_functions = [build_reform_function_by_key[reform_key] for reform_key in reform_keys]
+        composed_reform = reforms.compose_reforms(
+            build_functions_and_keys = zip(build_reform_functions, reform_keys),
+            tax_benefit_system = tax_benefit_system,
+            )
+        assert full_key == composed_reform.full_key
+        reform_by_full_key[full_key] = composed_reform
+    return composed_reform
+
+
+def get_cached_reform(reform_key, tax_benefit_system):
+    return get_cached_composed_reform([reform_key], tax_benefit_system)

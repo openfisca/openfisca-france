@@ -10,7 +10,7 @@ description: |
 period: "month:2015-02"
 individus:
   - age: 65
-    agem: 780
+    age_en_mois: 780
     birth: "1950-02-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -19,46 +19,62 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
-      2013: 51282.05128205128
-      2014-02: 5698.005698005698
-      2014-03: 5698.005698005698
-      2014-04: 5698.005698005698
-      2014-05: 5698.005698005698
-      2014-06: 5698.005698005698
-      2014-07: 5698.005698005698
-      2014-08: 5698.005698005698
-      2014-09: 5698.005698005698
-      2014-10: 5698.005698005698
+      2013: 57692.30769230769
+      2014-02: 6410.25641025641
+      2014-03: 6410.25641025641
+      2014-04: 6410.25641025641
+      2014-05: 6410.25641025641
+      2014-06: 6410.25641025641
+      2014-07: 6410.25641025641
+      2014-08: 6410.25641025641
+      2014-09: 6410.25641025641
+      2014-10: 6410.25641025641
       2014-11: 0
       2014-11:3: 0
       2014-12: 0
       2015-01: 0
       year:2014-02: 51282.05128205128
     salaire_net:
-      2013: 40000
-      2014-02: 4444.444444444444
-      2014-03: 4444.444444444444
-      2014-04: 4444.444444444444
-      2014-05: 4444.444444444444
-      2014-06: 4444.444444444444
-      2014-07: 4444.444444444444
-      2014-08: 4444.444444444444
-      2014-09: 4444.444444444444
-      2014-10: 4444.444444444444
+      2013: 45000
+      2014-02: 5000
+      2014-03: 5000
+      2014-04: 5000
+      2014-05: 5000
+      2014-06: 5000
+      2014-07: 5000
+      2014-08: 5000
+      2014-09: 5000
+      2014-10: 5000
       2014-11: 0
       2014-11:3: 0
       2014-12: 0
       2015-01: 0
-      year:2014-02: 40000
+      year:2014-02: 45000
+    salaire_imposable:
+      2013: 45000
+      2014-02: 5182.6442307692305
+      2014-03: 5182.6442307692305
+      2014-04: 5182.6442307692305
+      2014-05: 5182.6442307692305
+      2014-06: 5182.6442307692305
+      2014-07: 5182.6442307692305
+      2014-08: 5182.6442307692305
+      2014-09: 5182.6442307692305
+      2014-10: 5182.6442307692305
+      2014-11: 0
+      2014-11:3: 0
+      2014-12: 0
+      2015-01: 0
+      year:2014-02: 41461.15384615385
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 66
-    agem: 792
+    age_en_mois: 792
     birth: "1949-02-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -67,13 +83,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 11
-    agem: 132
+    age_en_mois: 132
     birth: "2004-02-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -82,14 +98,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 12
-    agem: 144
+    age_en_mois: 144
     birth: "2003-02-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -98,14 +114,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 15
-    agem: 180
+    age_en_mois: 180
     birth: "2000-02-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -114,7 +130,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -137,7 +153,7 @@ foyers_fiscaux:
     - 54e7077070a3f65f40b60f03
     - 54e7077070a3f65f40b60f02
   rfr:
-    2013: 40000
+    2013: 45000
 menages:
   conjoint: 54e7077070a3f65f40b60f05
   depcom: 75114

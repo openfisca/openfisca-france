@@ -10,7 +10,7 @@ period: "month:2014-12"
 relative_error_margin: 0.02
 individus:
   - age: 34
-    agem: 419
+    age_en_mois: 419
     birth: "1980-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -19,13 +19,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 4
-    agem: 59
+    age_en_mois: 59
     birth: "2010-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -34,7 +34,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:

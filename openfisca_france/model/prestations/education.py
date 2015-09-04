@@ -92,7 +92,7 @@ class bourse_lycee_points_de_charge(SimpleFormulaColumn):
         for age in ages.itervalues():
             nb_enfants += age >= 0
 
-        points_de_charge = 9 * (nb_enfants >= 1)
+        points_de_charge = 11 * (nb_enfants >= 1)
         points_de_charge += 1 * (nb_enfants >= 2) # 1 point de charge pour le 2ème enfant
         points_de_charge += 2 * (nb_enfants >= 3) + 2 * (nb_enfants >= 4) # 2 points de charge pour les 3ème et 4ème enfants
         points_de_charge += 3 * (nb_enfants >= 5) * (nb_enfants - 4) # 3 points de charge pour chaque enfant au-dessus de 4 enfants

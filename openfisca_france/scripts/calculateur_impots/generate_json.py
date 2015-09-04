@@ -47,7 +47,7 @@ def define_scenario(year = 2013):
         parent1 = dict(
             activite = u'Actif occupé',
             birth = 1970,
-            sali = 24000,
+            salaire_imposable = 24000,
             statmarit = u'Célibataire',
             ),
         enfants = [

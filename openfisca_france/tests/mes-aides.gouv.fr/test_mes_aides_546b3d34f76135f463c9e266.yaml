@@ -7,7 +7,7 @@ period: "month:2014-11"
 individus:
   activite: 3
   age: 65
-  agem: 789
+  age_en_mois: 789
   birth: "1949-02-15"
   epargne_non_remuneree:
     2012-01: 0
@@ -16,7 +16,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   rstbrut:
     2012: 7200
     2013-11: 600
@@ -59,6 +59,23 @@ familles:
   enfants:
   parents: 546b3bfdfb9f05fb6373bd1d
   proprietaire_proche_famille: false
+  rsa:
+    2012: 6108
+    2013-11: 509
+    2013-12: 509
+    2014-01: 509
+    2014-02: 509
+    2014-03: 509
+    2014-04: 509
+    2014-05: 509
+    2014-06: 509
+    2014-07: 509
+    2014-08: 509
+    2014-08:3: 1527
+    2014-09: 509
+    2014-10: 509
+    2014-11: 509
+    year:2013-11: 6108
 foyers_fiscaux:
   declarants: 546b3bfdfb9f05fb6373bd1d
   personnes_a_charge:

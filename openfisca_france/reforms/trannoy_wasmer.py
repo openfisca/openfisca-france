@@ -27,93 +27,84 @@
 
 from __future__ import division
 
-import copy
 from numpy import logical_not as not_, minimum as min_
-
-import logging
-
 from openfisca_core import columns, formulas, reforms
+
 from .. import entities
-from ..model import base
+from ..model.base import PREF
 from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
 
 
-log = logging.getLogger(__name__)
+def build_reform(tax_benefit_system):
+    Reform = reforms.make_reform(
+        key = 'trannoy_wasmer',
+        name = u'Loyer comme charge déductible (Trannoy-Wasmer)',
+        reference = tax_benefit_system,
+        )
+
+    @Reform.formula
+    class charges_deduc(formulas.SimpleFormulaColumn):
+        label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
+        reference = charges_deductibles.charges_deduc
+
+        def function(self, simulation, period):
+            period = period.start.offset('first-of', 'year').period('year')
+            cd1 = simulation.calculate('cd1', period)
+            cd2 = simulation.calculate('cd2', period)
+            charge_loyer = simulation.calculate('charge_loyer', period)
+
+            return period, cd1 + cd2 + charge_loyer
+
+    @Reform.formula
+    class charge_loyer(formulas.SimpleFormulaColumn):
+        column = columns.FloatCol
+        entity_class = entities.FoyersFiscaux
+        label = u"Charge déductible pour paiement d'un loyer"
+
+        def function(self, simulation, period):
+            period = period.start.offset('first-of', 'year').period('year')
+            loyer_holder = simulation.calculate('loyer', period)
+            nbptr = simulation.calculate('nbptr', period)
+            loyer = self.cast_from_entity_to_role(loyer_holder, entity = "menage", role = PREF)
+            loyer = self.sum_by_entity(loyer)
+            charge_loyer = simulation.legislation_at(period.start).charge_loyer
+
+            plaf = charge_loyer.plaf
+            plaf_nbp = charge_loyer.plaf_nbp
+            plafond = plaf * (not_(plaf_nbp) + plaf * nbptr * plaf_nbp)
+
+            return period, 12 * min_(loyer / 12, plafond)
+
+    reform = Reform()
+    reform.modify_legislation_json(modifier_function = modify_legislation_json)
+    return reform
 
 
-class charges_deduc(formulas.SimpleFormulaColumn):
-    label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
-    reference = charges_deductibles.charges_deduc
-
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
-        cd1 = simulation.calculate('cd1', period)
-        cd2 = simulation.calculate('cd2', period)
-        charge_loyer = simulation.calculate('charge_loyer', period)
-
-        return period, cd1 + cd2 + charge_loyer
-
-
-class charge_loyer(formulas.SimpleFormulaColumn):
-    column = columns.FloatCol
-    entity_class = entities.FoyersFiscaux
-    label = u"Charge déductible pour paiement d'un loyer"
-
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
-        loyer_holder = simulation.calculate('loyer', period)
-        nbptr = simulation.calculate('nbptr', period)
-        loyer = self.cast_from_entity_to_role(loyer_holder, entity = "menage", role = base.PREF)
-        loyer = self.sum_by_entity(loyer)
-        charge_loyer = simulation.legislation_at(period.start).charge_loyer
-
-        plaf = charge_loyer.plaf
-        plaf_nbp = charge_loyer.plaf_nbp
-        plafond = plaf * (not_(plaf_nbp) + plaf * nbptr * plaf_nbp)
-
-        return period, 12 * min_(loyer / 12, plafond)
-
-
-# Reform legislation
-reform_legislation_subtree = {
-    "charge_loyer": {
+def modify_legislation_json(reference_legislation_json_copy):
+    reform_legislation_subtree = {
         "@type": "Node",
         "description": "Charge de loyer",
         "children": {
             "active": {
                 "@type": "Parameter",
-                "description": "Activation de la charge",
-                "format": "bool",
+                "description": u"Activation de la charge",
+                "format": "boolean",
                 "values": [{'start': u'2002-01-01', 'stop': '2013-12-31', 'value': 1}],
                 },
             "plaf": {
                 "@type": "Parameter",
-                "description": 'Plafond mensuel',
+                "description": u'Plafond mensuel',
                 "format": 'integer',
                 "unit": 'currency',
                 "values": [{'start': '2002-01-01', 'stop': '2013-12-31', 'value': 1000}],
                 },
             "plaf_nbp": {
                 "@type": "Parameter",
-                "description": 'Ajuster le plafond au nombre de part',
-                "format": 'bool',
+                "description": u'Ajuster le plafond au nombre de part',
+                "format": 'boolean',
                 "values": [{'start': '2002-01-01', 'stop': '2013-12-31', 'value': 0}],
                 },
             },
         }
-    }
-
-
-# Build function
-
-def build_reform(tax_benefit_system):
-    reference_legislation_json = tax_benefit_system.legislation_json
-    reform_legislation_json = copy.deepcopy(reference_legislation_json)
-    reform_legislation_json['children'].update(reform_legislation_subtree)
-    Reform = reforms.make_reform(
-        legislation_json = reform_legislation_json,
-        name = u'Loyer comme charge déductible (Trannoy-Wasmer)',
-        new_formulas = (charges_deduc, charge_loyer),
-        reference = tax_benefit_system,
-        )
-    return Reform()
+    reference_legislation_json_copy['children']['charge_loyer'] = reform_legislation_subtree
+    return reference_legislation_json_copy

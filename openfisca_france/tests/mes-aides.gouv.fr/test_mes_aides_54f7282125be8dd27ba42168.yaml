@@ -1,6 +1,7 @@
 name: Couple 2 enfants en garde alternée
 keywords:
   - "cmu-c/acs"
+  - garde alternée
   - majoration
   - plafonds
 description: |
@@ -14,7 +15,7 @@ description: |
 period: "month:2015-03"
 individus:
   - age: 34
-    agem: 418
+    age_en_mois: 418
     birth: "1980-05-03"
     epargne_non_remuneree:
       2012-01: 0
@@ -23,7 +24,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2013: 21538.46153846154
       2014-03: 1794.871794871795
@@ -58,13 +59,30 @@ individus:
       2015-02: 1400
       2015-03: 1400
       year:2014-03: 16800
+    salaire_imposable:
+      2013: 17413.684615384616
+      2014-03: 1451.1403846153846
+      2014-04: 1451.1403846153846
+      2014-05: 1451.1403846153846
+      2014-06: 1451.1403846153846
+      2014-07: 1451.1403846153846
+      2014-08: 1451.1403846153846
+      2014-09: 1451.1403846153846
+      2014-10: 1451.1403846153846
+      2014-11: 1451.1403846153846
+      2014-12: 1451.1403846153846
+      2014-12:3: 4353.421153846154
+      2015-01: 1451.1403846153846
+      2015-02: 1451.1403846153846
+      2015-03: 1451.1403846153846
+      year:2014-03: 17413.684615384616
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 34
-    agem: 418
+    age_en_mois: 418
     birth: "1980-05-03"
     epargne_non_remuneree:
       2012-01: 0
@@ -73,14 +91,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 9
-    agem: 116
+    age_en_mois: 116
     alt: true
     birth: "2005-06-09"
     epargne_non_remuneree:
@@ -90,14 +108,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 7
-    agem: 91
+    age_en_mois: 91
     alt: true
     birth: "2007-07-09"
     epargne_non_remuneree:
@@ -107,7 +125,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:

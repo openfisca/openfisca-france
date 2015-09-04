@@ -112,7 +112,7 @@ build_column('caseW', BoolCol(label = u"Vous ou votre conjoint (même s'il est d
 
 # pour inv, il faut que tu regardes si tu es d'accord et si c'est bien la bonne case,
 # la case P exsite déjà plus bas ligne 339 sous le nom caseP
-build_column('inv', BoolCol(label = u'Invalide'))  # TODO: cerfa_field
+build_column('invalide', BoolCol(label = u'Invalide'))  # TODO: cerfa_field
 
 
 

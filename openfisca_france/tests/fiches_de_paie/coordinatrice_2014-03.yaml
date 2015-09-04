@@ -3,15 +3,13 @@ period: "2014-03"
 input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: True
-  avantages_en_nature_valeur_reelle: 0
-  contrat_de_travail: 1  # temps plein
-  contrat_de_travail_arrivee: "2013-07-02"
-  contrat_de_travail_depart: "2014-12-31"
+  avantage_en_nature_valeur_reelle: 0
+  contrat_de_travail: 0  # temps plein
+  contrat_de_travail_debut: "2013-07-02"
+  contrat_de_travail_fin: "2014-12-31"
   contrat_de_travail_duree: 0  # CDI
-  effectif_entreprise: 3000
+  effectif_entreprise: 250
   heures_non_remunerees_volume: 0
-  # heures_remunerees_volume: 0
-  # exposition_accident: 3
   code_postal_entreprise: "13299"
   nombre_tickets_restaurant: 0
   prevoyance_obligatoire_cadre_taux_employeur: .015  # 1.5% est le minimum
@@ -19,22 +17,20 @@ input_variables:
   prise_en_charge_employeur_retraite_complementaire: 82.44
   prise_en_charge_employeur_prevoyance_complementaire: 0
   prise_en_charge_employeur_retraite_supplementaire: 0
-  # ratio_alternants: 0 pas l'info
+  ratio_alternants: 0 # pas l'info
   redevable_taxe_apprentissage: 1
   remboursement_transport_base: 0
   salaire_de_base: 1800
   taux_accident_travail: 0.015
-  taux_versement_transport: 0
+  taux_versement_transport: .02
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
   type_sal: 0  # non cadre
   volume_jours_ijss: 0
 output_variables:
-  # TODO à inclure dans la décomposition et à finir de coder forfait_social: -3.8 # 47.49 de base
-  # TODO à coder taxe_handicapes: 18.40
 
   # salsuperbrut: 0
-  # cotisations_employeur: 0
+  IGNORE_cotisations_employeur: -737.96 - 222.12 - 72
 
   # cotisations_employeur_contributives: 0
   ags: -5.4
@@ -57,26 +53,23 @@ output_variables:
   mmid_employeur: -230.4
   taxe_salaires: -76.5 - 27.07 - 49.02
 
-  # cotisations_employeur_main_d_oeuvre: 0
+  # cotisations_employeur_main_d_oeuvre
   conge_individuel_formation_cdd: 0
-  contribution_developpement_apprentissage: -3.24 #avec la taxe d'apprentissage
+  contribution_developpement_apprentissage: -3.24 # avec la taxe d'apprentissage
   contribution_solidarite_autonomie: -5.4
-  # contribution_supplementaire_apprentissage: 0 pas dans la fiche
-  # fnal: 0  TODO: check
+  IGNORE_contribution_supplementaire_apprentissage: 0 #  pas dans la fiche
+  IGNORE_fnal: 0  # check
   formation_professionnelle: -28.8
   participation_effort_construction: -8.1
   prevoyance_obligatoire_cadre: 0
   taxe_apprentissage: -9
-  versement_transport: 0
+  versement_transport: -36
 
-  # allegement_fillon: 222.12 TODO: (devrait être 0)
-  credit_impot_competitivite_emploi: 0
+  allegement_fillon: 222.12
+  credit_impot_competitivite_emploi: 72 # pas sur la fiche de paie
   tehr: {'2014': 0}
   salaire_de_base: 1800
-
-  # cotisations_salariales: 0
-
-  # cotisations_salariales_contributives: 0
+  cotisations_salariales: -394.38 + 51.29 + 90.19
   agff_salarie: -14.4
   agirc_salarie: 0
   apec_salarie: 0
@@ -89,19 +82,18 @@ output_variables:
   pension_civile_salarie: 0
   rafp_salarie: 0
 
-  # cotisations_salariales_non_contributives: 0
+  # cotisations_salariales_non_contributives
   mmid_salarie: -13.5 # regroupée avec vieillesse dans la fiche de paie
   contribution_exceptionnelle_solidarite: 0
-  csgsald: -90.19
+  csg_deductible_salaire: -90.19
   mhsup: 0
   salaire_net: 1405.62
 
   # salaire imposable
-  csgsali: -42.44
-  crdssal: -8.84 # Avec la CSG dans la fiche de paie
+  csg_imposable_salaire: -42.44
+  crds_salaire: -8.84 # Avec la CSG dans la fiche de paie
   hsup: 0
-  # sal: 0 pas l'information
-
+  salaire_imposable: 1456.91
   depense_cantine_titre_restaurant_employe: 0
 
   salaire_net_a_payer: 1405.62

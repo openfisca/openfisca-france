@@ -9,7 +9,7 @@ description: |
 period: "month:2014-12"
 individus:
   - age: 50
-    agem: 611
+    age_en_mois: 611
     birth: "1964-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -18,7 +18,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2012: 22564.102564102563
       2013-12: 1908.8319088319088
@@ -53,13 +53,30 @@ individus:
       2014-11: 1400
       2014-12: 1400
       year:2013-12: 17600
+    salaire_imposable:
+      2012: 18242.907692307694
+      2013-12: 1543.2762820512821
+      2014-01: 1543.2762820512821
+      2014-02: 1543.2762820512821
+      2014-03: 1543.2762820512821
+      2014-04: 1543.2762820512821
+      2014-05: 1543.2762820512821
+      2014-06: 1543.2762820512821
+      2014-07: 1543.2762820512821
+      2014-08: 1543.2762820512821
+      2014-09: 1451.1403846153846
+      2014-09:3: 4353.421153846154
+      2014-10: 1451.1403846153846
+      2014-11: 1451.1403846153846
+      2014-12: 1451.1403846153846
+      year:2013-12: 18242.907692307694
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 50
-    agem: 611
+    age_en_mois: 611
     birth: "1964-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -68,7 +85,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:

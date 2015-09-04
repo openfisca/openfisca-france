@@ -5,7 +5,7 @@ period: "month:2014-12"
 individus:
   - activite: 3
     age: 59
-    agem: 719
+    age_en_mois: 719
     birth: "1955-01-01"
     epargne_non_remuneree:
       2012-01: 0
@@ -14,7 +14,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 1
+    invalide: 1
     rstbrut:
       2012: 2591.792656587473
       2013-12: 215.9827213822894
@@ -55,7 +55,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 58
-    agem: 707
+    age_en_mois: 707
     birth: "1956-01-01"
     enceinte: true
     epargne_non_remuneree:
@@ -65,7 +65,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 1
+    invalide: 1
     pensions_invalidite:
       2012: 1200
       2013-12: 100

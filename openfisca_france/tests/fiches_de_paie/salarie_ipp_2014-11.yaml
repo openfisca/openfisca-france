@@ -3,7 +3,7 @@ period: "2014-11"
 input_variables:
   assujettie_taxe_salaires: True
   contrat_de_travail_duree: 1  # CDD
-  contrat_de_travail_arrivee: "2014-11-02"
+  contrat_de_travail_debut: "2014-11-02"
   effectif_entreprise: 3000
   # exposition_accident: 3
   code_postal_entreprise: "75014"
@@ -29,8 +29,9 @@ output_variables:
   ags: -13.80
   apec_employeur: -1.09 - .57
   cotisation_exceptionnelle_temporaire_employeur: -10.12
-  arrco_employeur: -138.53 - 199.75
-  # agirc_employeur: -199.75  # Inclus dans arcco
+  arrco_employeur: -138.53
+  agirc_employeur: -199.75
+  agirc_gmp_employeur: 0
   chomage_employeur: -120.99 - 63.01
   # chomage_tranche_a_employeur: -120.99  # Inclus dans assedic
   # chomage_tranche_b_employeur: -63.01  # Inclus dans assedic
@@ -54,6 +55,7 @@ output_variables:
   apec_salarie: -.73 - .38
   arrco_salarie: -92.25
   agirc_salarie: -122.09
+  agirc_gmp_salarie: 0
   # chomage_tranche_a_employe: -72.59  # Inclus dans assedic
   # chomage_tranche_b_employe: 37.81  # Inclus dans assedic
   chomage_salarie: -72.59 - 37.81
@@ -63,13 +65,13 @@ output_variables:
   # cotisations_salariales_contributives:
 
   # cotisations_salariales:
-  csgsald: -232.92
-  csgsali: -109.61
-  crdssal: -22.83
+  csg_deductible_salaire: -232.92
+  csg_imposable_salaire: -109.61
+  crds_salaire: -22.83
   reintegration_titre_restaurant_employeur: 0
   depense_cantine_titre_restaurant_employeur: 19 * 4.5
 
-  sal: 3745.19  # salaire imposable
+  salaire_imposable: 3745.19  # salaire imposable
   depense_cantine_titre_restaurant_employe: -19 * 4.5
 
   salaire_net_a_payer: 3527.25

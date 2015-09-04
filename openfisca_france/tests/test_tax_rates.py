@@ -33,13 +33,13 @@ def test_average_tax_rate():
         axes = [
             dict(
                 count = 100,
-                name = 'sal',
+                name = 'salaire_imposable',
                 max = 24000,
                 min = 0,
                 ),
             ],
         period = year,
-        parent1 = dict(agem = 40 * 12 + 6),
+        parent1 = dict(age_en_mois = 40 * 12 + 6),
         ).new_simulation()  # Remove debug = True, because logging is too slow.
     assert (average_rate(
         target = simulation.calculate('revdisp'),
@@ -53,13 +53,13 @@ def test_marginal_tax_rate():
         axes = [
             dict(
                 count = 10000,
-                name = 'sal',
+                name = 'salaire_imposable',
                 max = 1000000,
                 min = 0,
                 ),
             ],
         period = year,
-        parent1 = dict(agem = 40 * 12 + 6),
+        parent1 = dict(age_en_mois = 40 * 12 + 6),
         ).new_simulation()  # Remove debug = True, because logging is too slow.
     assert (marginal_rate(
         target = simulation.calculate('revdisp'),

@@ -7,7 +7,7 @@ period: "month:2014-08"
 relative_error_margin: 0.02
 individus:
   - age: 33
-    agem: 407
+    age_en_mois: 407
     birth: "1980-09-14"
     enceinte: false
     epargne_non_remuneree:
@@ -17,14 +17,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
-    statmarit: 2
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 33
-    agem: 407
+    age_en_mois: 407
     birth: "1980-09-14"
     epargne_non_remuneree:
       2012-01: 0
@@ -33,13 +32,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 3
-    agem: 47
+    age_en_mois: 47
     birth: "2010-09-14"
     epargne_non_remuneree:
       2012-01: 0
@@ -48,13 +47,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 3
-    agem: 47
+    age_en_mois: 47
     birth: "2010-09-14"
     epargne_non_remuneree:
       2012-01: 0
@@ -63,7 +62,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:

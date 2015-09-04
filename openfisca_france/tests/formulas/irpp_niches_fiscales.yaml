@@ -2,7 +2,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6gi: 1800
   output_variables:
     irpp: -819
@@ -10,7 +10,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6gi: 1800
   output_variables:
     irpp: -860
@@ -18,7 +18,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6gi: 1800
   output_variables:
     irpp: -860
@@ -27,7 +27,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6el: 1800
   output_variables:
     irpp: -913
@@ -35,7 +35,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6el: 1800
   output_variables:
     irpp: -929
@@ -43,7 +43,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6el: 1800
   output_variables:
     irpp: -929
@@ -52,7 +52,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6gj: 1800
   output_variables:
     irpp: -819
@@ -60,7 +60,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6gj: 1800
   output_variables:
     irpp: -860
@@ -68,7 +68,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6gj: 1800
   output_variables:
     irpp: -860
@@ -77,7 +77,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6em: 1800
   output_variables:
     irpp: -913
@@ -85,7 +85,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6em: 1800
   output_variables:
     irpp: -929
@@ -93,7 +93,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6em: 1800
   output_variables:
     irpp: -929
@@ -102,7 +102,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6gp: 1800
   output_variables:
     irpp: -819
@@ -110,7 +110,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6gp: 1800
   output_variables:
     irpp: -860
@@ -118,7 +118,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6gp: 1800
   output_variables:
     irpp: -860
@@ -127,7 +127,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6gu: 1800
   output_variables:
     irpp: -913
@@ -135,7 +135,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6gu: 1800
   output_variables:
     irpp: -929
@@ -143,7 +143,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6gu: 1800
   output_variables:
     irpp: -929
@@ -152,7 +152,7 @@
   period: 2012
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6gi: 6000
   output_variables:
     irpp: -94
@@ -160,7 +160,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6gi: 1800
     f6gj: 6000
   output_variables:
@@ -170,7 +170,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6de: 1800
   output_variables:
     irpp: -913
@@ -178,7 +178,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6de: 1800
   output_variables:
     irpp: -929
@@ -186,7 +186,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6de: 1800
   output_variables:
     irpp: -929
@@ -195,7 +195,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6dd: 1800
   output_variables:
     irpp: -913
@@ -203,7 +203,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6dd: 1800
   output_variables:
     irpp: -929
@@ -211,7 +211,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6dd: 1800
   output_variables:
     irpp: -929
@@ -220,7 +220,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6eu: 1800
   output_variables:
     irpp: -913
@@ -228,7 +228,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6eu: 1800
   output_variables:
     irpp: -929
@@ -236,7 +236,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6eu: 1800
   output_variables:
     irpp: -929
@@ -245,7 +245,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6eu: 3600
   output_variables:
     irpp: -586
@@ -253,7 +253,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6eu: 3600
   output_variables:
     irpp: -627
@@ -261,7 +261,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6eu: 3600
   output_variables:
     irpp: -627
@@ -270,7 +270,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6eu: 3600
     f6ev: 2
   output_variables:
@@ -279,7 +279,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6eu: 3600
     f6ev: 2
   output_variables:
@@ -288,7 +288,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6eu: 3600
     f6ev: 2
   output_variables:
@@ -298,7 +298,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6rs: 1800
   output_variables:
     irpp: -913
@@ -306,7 +306,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6rs: 1800
   output_variables:
     irpp: -929
@@ -314,7 +314,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6rs: 1800
   output_variables:
     irpp: -929
@@ -323,7 +323,7 @@
   period: 2012
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     nbJ: 1
     f6rs: 1800
   output_variables:
@@ -332,7 +332,7 @@
   period: 2011
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     nbJ: 1
     f6rs: 1800
   output_variables:
@@ -341,7 +341,7 @@
   period: 2010
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     nbJ: 1
     f6rs: 1800
   output_variables:
@@ -351,7 +351,7 @@
   period: 2012
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6ss: 1800
   output_variables:
     irpp: -913
@@ -359,7 +359,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6ss: 1800
   output_variables:
     irpp: -929
@@ -367,7 +367,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6ss: 1800
   output_variables:
     irpp: -929
@@ -376,7 +376,7 @@
   period: 2012
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     nbJ: 1
     f6ss: 1800
   output_variables:
@@ -385,7 +385,7 @@
   period: 2011
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     nbJ: 1
     f6ss: 1800
   output_variables:
@@ -394,7 +394,7 @@
   period: 2010
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     nbJ: 1
     f6ss: 1800
   output_variables:
@@ -405,7 +405,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6cb: 1800
   output_variables:
     irpp: -913
@@ -413,7 +413,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6cb: 1800
   output_variables:
     irpp: -929
@@ -421,7 +421,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6cb: 1800
   output_variables:
     irpp: -929
@@ -430,7 +430,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6hl: 1800
   output_variables:
     irpp: -913
@@ -439,7 +439,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6hk: 1800
   output_variables:
     irpp: -913
@@ -447,7 +447,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6hk: 1800
   output_variables:
     irpp: -929
@@ -456,7 +456,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6hj: 1800
   output_variables:
     irpp: -913
@@ -464,7 +464,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6hj: 1800
   output_variables:
     irpp: -929
@@ -472,7 +472,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6hj: 1800
   output_variables:
     irpp: -929
@@ -481,21 +481,21 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 70000
+    salaire_imposable: 70000
   output_variables:
     irpp: -13334
 - name: "IRPP - Niches fiscales - Dépassement plafond avec 70 000 €"
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 70000
+    salaire_imposable: 70000
   output_variables:
     irpp: -13334
 - name: "IRPP - Niches fiscales - Dépassement plafond avec 70 000 €"
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 70000
+    salaire_imposable: 70000
   output_variables:
     irpp: -13334
 
@@ -503,7 +503,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 70000
+    salaire_imposable: 70000
     f6cb: 28000
   output_variables:
     irpp: -5834
@@ -511,7 +511,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 70000
+    salaire_imposable: 70000
     f6cb: 28000
   output_variables:
     irpp: -5834
@@ -519,7 +519,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 70000
+    salaire_imposable: 70000
     f6cb: 28000
   output_variables:
     irpp: -5834
@@ -528,7 +528,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fa: 1800
   output_variables:
     irpp: -913
@@ -536,7 +536,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fa: 1800
   output_variables:
     irpp: -929
@@ -544,7 +544,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fa: 1800
   output_variables:
     irpp: -929
@@ -553,7 +553,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fb: 1800
   output_variables:
     irpp: -913
@@ -561,7 +561,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fb: 1800
   output_variables:
     irpp: -929
@@ -569,7 +569,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fb: 1800
   output_variables:
     irpp: -929
@@ -578,7 +578,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fc: 1800
   output_variables:
     irpp: -913
@@ -586,7 +586,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fc: 1800
   output_variables:
     irpp: -929
@@ -594,7 +594,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fc: 1800
   output_variables:
     irpp: -929
@@ -603,7 +603,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fd: 1800
   output_variables:
     irpp: -913
@@ -611,7 +611,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fd: 1800
   output_variables:
     irpp: -929
@@ -619,7 +619,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fd: 1800
   output_variables:
     irpp: -929
@@ -628,7 +628,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fe: 1800
   output_variables:
     irpp: -913
@@ -636,7 +636,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fe: 1800
   output_variables:
     irpp: -929
@@ -644,7 +644,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fe: 1800
   output_variables:
     irpp: -929
@@ -653,7 +653,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fl: 1800
   output_variables:
     irpp: -913
@@ -661,7 +661,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fl: 1800
   output_variables:
     irpp: -929
@@ -669,7 +669,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 20000
+    salaire_imposable: 20000
     f6fl: 1800
   output_variables:
     irpp: -929
@@ -682,7 +682,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 14000
+    salaire_imposable: 14000
     age: 66
   output_variables:
     irpp: -0
@@ -690,7 +690,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 14000
+    salaire_imposable: 14000
     age: 66
   output_variables:
     irpp: -0
@@ -698,7 +698,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 14000
+    salaire_imposable: 14000
     age: 66
   output_variables:
     irpp: -0
@@ -707,7 +707,7 @@
   period: 2012
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
-    sal: 18000
+    salaire_imposable: 18000
     age: 66
   output_variables:
     irpp: -670
@@ -715,7 +715,7 @@
   period: 2011
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
-    sal: 18000
+    salaire_imposable: 18000
     age: 66
   output_variables:
     irpp: -711
@@ -723,7 +723,7 @@
   period: 2010
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
-    sal: 18000
+    salaire_imposable: 18000
     age: 66
   output_variables:
     irpp: -711
@@ -732,7 +732,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 25000
+    salaire_imposable: 25000
     age: 66
   output_variables:
     irpp: -1649
@@ -740,7 +740,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 25000
+    salaire_imposable: 25000
     age: 66
   output_variables:
     irpp: -1649
@@ -748,7 +748,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 25000
+    salaire_imposable: 25000
     age: 66
   output_variables:
     irpp: -1649
@@ -757,7 +757,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 28000
+    salaire_imposable: 28000
     age: 66
   output_variables:
     irpp: -2189
@@ -765,7 +765,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 28000
+    salaire_imposable: 28000
     age: 66
   output_variables:
     irpp: -2189
@@ -773,7 +773,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 28000
+    salaire_imposable: 28000
     age: 66
   output_variables:
     irpp: -2189
@@ -782,7 +782,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 14000
+    salaire_imposable: 14000
     caseP: 1
   output_variables:
     irpp: -0
@@ -790,7 +790,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 14000
+    salaire_imposable: 14000
     caseP: 1
   output_variables:
     irpp: -0
@@ -798,7 +798,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 14000
+    salaire_imposable: 14000
     caseP: 1
   output_variables:
     irpp: -0
@@ -807,7 +807,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 25000
+    salaire_imposable: 25000
     caseP: 1
   output_variables:
     irpp: -979
@@ -815,7 +815,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 25000
+    salaire_imposable: 25000
     caseP: 1
   output_variables:
     irpp: -979
@@ -823,7 +823,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 25000
+    salaire_imposable: 25000
     caseP: 1
   output_variables:
     irpp: -979
@@ -832,7 +832,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 28000
+    salaire_imposable: 28000
     caseP: 1
   output_variables:
     irpp: -1519
@@ -840,7 +840,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 28000
+    salaire_imposable: 28000
     caseP: 1
   output_variables:
     irpp: -1519
@@ -848,7 +848,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 28000
+    salaire_imposable: 28000
     caseP: 1
   output_variables:
     irpp: -1519
@@ -857,7 +857,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    sal: 38000
+    salaire_imposable: 38000
     nbN: 3
   output_variables:
     irpp: -1056
@@ -865,7 +865,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    sal: 38000
+    salaire_imposable: 38000
     nbN: 3
   output_variables:
     irpp: -1056
@@ -873,7 +873,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    sal: 38000
+    salaire_imposable: 38000
     nbN: 3
   output_variables:
     irpp: -1056

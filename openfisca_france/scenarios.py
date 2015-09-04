@@ -631,10 +631,11 @@ class Scenario(scenarios.AbstractScenario):
                                     enfants = conv.uniform_sequence(
                                         conv.test(
                                             lambda individu_id:
-                                                find_age(individu_by_id[individu_id], period.start.date,
+                                                individu_by_id[individu_id].get('invalide', False)
+                                                or find_age(individu_by_id[individu_id], period.start.date,
                                                     default = 0) <= 25,
                                             error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
-                                                u" 25 ans ou être invalide",
+                                                    u" 25 ans ou être invalide",
                                             ),
                                         ),
                                     parents = conv.pipe(
@@ -678,9 +679,9 @@ class Scenario(scenarios.AbstractScenario):
                                     personnes_a_charge = conv.uniform_sequence(
                                         conv.test(
                                             lambda individu_id:
-                                                individu_by_id[individu_id].get('inv', False)
+                                                individu_by_id[individu_id].get('invalide', False)
                                                 or find_age(individu_by_id[individu_id], period.start.date,
-                                                    default = 0) < 25,
+                                                    default = 0) <= 25,
                                             error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
                                                     u" 25 ans ou être invalide",
                                             ),
@@ -725,6 +726,7 @@ class Scenario(scenarios.AbstractScenario):
         return json_or_python_to_test_case
 
     def suggest(self):
+        """Returns a dict of suggestions and modifies self.test_case applying those suggestions."""
         test_case = self.test_case
         if test_case is None:
             return None
@@ -735,7 +737,7 @@ class Scenario(scenarios.AbstractScenario):
 
         for individu in test_case['individus']:
             individu_id = individu['id']
-            if individu.get('age') is None and individu.get('agem') is None and individu.get('birth') is None:
+            if individu.get('age') is None and individu.get('age_en_mois') is None and individu.get('birth') is None:
                 # Add missing birth date to person (a parent is 40 years old and a child is 10 years old.
                 is_parent = any(individu_id in famille['parents'] for famille in test_case['familles'])
                 birth_year = period_start_year - 40 if is_parent else period_start_year - 10
@@ -878,17 +880,26 @@ class Scenario(scenarios.AbstractScenario):
 
 def find_age(individu, date, default = None):
     birth = individu.get('birth')
+    if isinstance(birth, dict):
+        birth = birth.values()[0] if birth else None
     if birth is not None:
         age = date.year - birth.year
         if date.month < birth.month or date.month == birth.month and date.day < birth.day:
             age -= 1
         return age
+
     age = individu.get('age')
+    if isinstance(age, dict):
+        age = age.values()[0] if age else None
     if age is not None:
         return age
-    agem = individu.get('agem')
-    if agem is not None:
-        return agem / 12.0
+
+    age_en_mois = individu.get('age_en_mois')
+    if isinstance(age_en_mois, dict):
+        age_en_mois = age_en_mois.values()[0] if age_en_mois else None
+    if age_en_mois is not None:
+        return age_en_mois / 12.0
+
     return default
 
 

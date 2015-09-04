@@ -84,7 +84,7 @@ def cleanup_tree(entity, tree):
 
 
 def is_valid_input_column(column):
-    return column.name not in ('age', 'agem', 'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen') \
+    return column.name not in ('age', 'age_en_mois', 'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen') \
         and issubclass(column.formula_class, formulas.SimpleFormula) and column.formula_class.function is None \
         and not column.survey_only
 

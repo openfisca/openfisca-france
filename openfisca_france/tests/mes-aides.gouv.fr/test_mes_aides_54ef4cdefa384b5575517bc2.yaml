@@ -29,9 +29,7 @@ description: |
 period: "month:2015-02"
 individus:
   age: 34
-  agem: 414
-  alr:
-    2013: 0
+  age_en_mois: 414
   birth: "1980-08-12"
   cho:
     2013: 0
@@ -42,11 +40,13 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   logement_chambre: 1
+  pensions_alimentaires_percues:
+    2013: 0
   rst:
     2013: 0
-  sal:
+  salaire_imposable:
     2013: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -58,7 +58,7 @@ familles:
   proprietaire_proche_famille: false
 foyers_fiscaux:
   declarants: 54ef4cd17516fb5d75533549
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
   rfr:

@@ -82,7 +82,7 @@
           "activite": 0, 
           "birth": "1970-01-01", 
           "nacc_defs": 1500, 
-          "sali": 24000, 
+          "salaire_imposable": 24000, 
           "statmarit": 2
         }
       }, 

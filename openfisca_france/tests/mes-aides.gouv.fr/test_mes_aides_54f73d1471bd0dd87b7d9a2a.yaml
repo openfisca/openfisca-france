@@ -7,7 +7,7 @@ period: "month:2015-03"
 relative_error_margin: 0.02
 individus:
   - age: 34
-    agem: 418
+    age_en_mois: 418
     birth: "1980-05-03"
     epargne_non_remuneree:
       2012-01: 0
@@ -16,7 +16,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2013: 3076.9230769230767
       2014-03: 256.4102564102564
@@ -51,13 +51,30 @@ individus:
       2015-02: 200
       2015-03: 200
       year:2014-03: 2400
+    salaire_imposable:
+      2013: 2487.6692307692315
+      2014-03: 207.30576923076924
+      2014-04: 207.30576923076924
+      2014-05: 207.30576923076924
+      2014-06: 207.30576923076924
+      2014-07: 207.30576923076924
+      2014-08: 207.30576923076924
+      2014-09: 207.30576923076924
+      2014-10: 207.30576923076924
+      2014-11: 207.30576923076924
+      2014-12: 207.30576923076924
+      2014-12:3: 621.9173076923078
+      2015-01: 207.30576923076924
+      2015-02: 207.30576923076924
+      2015-03: 207.30576923076924
+      year:2014-03: 2487.6692307692315
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 34
-    agem: 418
+    age_en_mois: 418
     birth: "1980-05-03"
     epargne_non_remuneree:
       2012-01: 0
@@ -66,7 +83,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2013: 2307.692307692308
       2014-03: 192.3076923076923
@@ -101,13 +118,30 @@ individus:
       2015-02: 150
       2015-03: 150
       year:2014-03: 1800
+    salaire_imposable:
+      2013: 1865.7519230769233
+      2014-03: 155.4793269230769
+      2014-04: 155.4793269230769
+      2014-05: 155.4793269230769
+      2014-06: 155.4793269230769
+      2014-07: 155.4793269230769
+      2014-08: 155.4793269230769
+      2014-09: 155.4793269230769
+      2014-10: 155.4793269230769
+      2014-11: 155.4793269230769
+      2014-12: 155.4793269230769
+      2014-12:3: 466.43798076923076
+      2015-01: 155.4793269230769
+      2015-02: 155.4793269230769
+      2015-03: 155.4793269230769
+      year:2014-03: 1865.7519230769233
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 7
-    agem: 91
+    age_en_mois: 91
     birth: "2007-07-09"
     epargne_non_remuneree:
       2012-01: 0
@@ -116,13 +150,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 9
-    agem: 116
+    age_en_mois: 116
     birth: "2005-06-09"
     epargne_non_remuneree:
       2012-01: 0
@@ -131,14 +165,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 4
-    agem: 54
+    age_en_mois: 54
     birth: "2010-08-07"
     epargne_non_remuneree:
       2012-01: 0
@@ -147,7 +181,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:

@@ -7,7 +7,7 @@ description: Une personne hébergée à titre gratuit si c'est ressources <720 e
 period: "month:2015-01"
 individus:
   age: 34
-  agem: 418
+  age_en_mois: 418
   birth: "1980-03-02"
   epargne_non_remuneree:
     2012-01: 0
@@ -16,7 +16,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
   salaire_de_base:
     2013: 10000
     2014-01: 833.3333333333333
@@ -51,6 +51,23 @@ individus:
     2014-12: 650
     2015-01: 650
     year:2014-01: 7800
+  salaire_imposable:
+    2013: 8084.924999999998
+    2014-01: 673.74375
+    2014-02: 673.74375
+    2014-03: 673.74375
+    2014-04: 673.74375
+    2014-05: 673.74375
+    2014-06: 673.74375
+    2014-07: 673.74375
+    2014-08: 673.74375
+    2014-09: 673.74375
+    2014-10: 673.74375
+    2014-10:3: 2021.2312499999998
+    2014-11: 673.74375
+    2014-12: 673.74375
+    2015-01: 673.74375
+    year:2014-01: 8084.924999999998
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:

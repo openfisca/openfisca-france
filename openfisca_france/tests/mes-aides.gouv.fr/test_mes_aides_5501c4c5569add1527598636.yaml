@@ -3,15 +3,13 @@ keywords:
   - bourse lycée
   - points de charge
 description: |
-  Pour une famille avec 1 seul enfant, 9 points de charge
-  Plafond RFR correspondant : 12098 euros
-  RFR déclaré : 12000, donc parts = 3, montant = 3*45,3 = 135,9
+  Pour une famille avec 1 seul enfant, 9 + 2 = 11 points de charge
+  Plafond RFR correspondant pour 3 parts : 14786 euros
+  RFR déclaré : 14700, donc parts = 3, montant = 3 * 45,3 = 135,9
 period: "month:2015-03"
 individus:
   - age: 34
-    agem: 415
-    alr:
-      2013: 0
+    age_en_mois: 415
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -22,10 +20,12 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
-    sal:
+    salaire_imposable:
       2013: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
@@ -33,9 +33,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 34
-    agem: 415
-    alr:
-      2013: 0
+    age_en_mois: 415
     birth: "1980-08-12"
     cho:
       2013: 0
@@ -46,10 +44,12 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
-    sal:
+    salaire_imposable:
       2013: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
@@ -57,7 +57,7 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 14
-    agem: 175
+    age_en_mois: 175
     birth: "2000-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -66,7 +66,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     scolarite: 2
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -81,11 +81,11 @@ foyers_fiscaux:
   declarants:
     - 5501c4b56d04f819275813c7
     - 5501c4b56d04f819275813c6
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge: 5501c4b56d04f819275813c5
   rfr:
-    2013: 12000
+    2013: 14700
 menages:
   conjoint: 5501c4b56d04f819275813c6
   depcom: 67482

@@ -32,9 +32,7 @@ relative_error_margin: 0.02
 individus:
   activite: 1
   age: 34
-  agem: 413
-  alr:
-    2013: 0
+  age_en_mois: 413
   ass_precondition_remplie: false
   birth: "1980-08-12"
   cho:
@@ -80,10 +78,12 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  inv: 0
+  invalide: 0
+  pensions_alimentaires_percues:
+    2013: 0
   rst:
     2013: 0
-  sal:
+  salaire_imposable:
     2013: 13764
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -95,7 +95,7 @@ familles:
   proprietaire_proche_famille: false
 foyers_fiscaux:
   declarants: 54d38d8ad4e3b0d74454c68e
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
   rfr:

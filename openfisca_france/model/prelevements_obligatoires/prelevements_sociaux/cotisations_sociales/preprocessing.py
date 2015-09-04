@@ -40,7 +40,7 @@ log = logging.getLogger(__name__)
 
 
 def build_pat(node_json):
-    """Construit le dictionnaire de barèmes des cotisations patronales à partir de node_json['children']['cotsoc'][
+    """Construit le dictionnaire de barèmes des cotisations employeur à partir de node_json['children']['cotsoc'][
         'children']['pat']"""
     pat = copy.deepcopy(node_json['children']['cotsoc']['children']['pat'])
     commun = pat['children'].pop('commun')
@@ -67,7 +67,7 @@ def build_pat(node_json):
 
     # Rework commun to deal with public employees
     for var in ["apprentissage", "apprentissage_add", "assedic", "chomfg", "construction", "maladie", "formprof_09",
-                "formprof_1019", "formprof_20", "vieillessedeplaf", "vieillesseplaf"]:
+                "formprof_1019", "formprof_20", "vieillesse_deplafonnee", "vieillesse_plafonnee"]:
         del commun['children'][var]
 
     for var in ["apprentissage", "apprentissage_add", "formprof_09", "formprof_1019", "formprof_20", "chomfg",
@@ -107,8 +107,8 @@ def build_pat(node_json):
 
 def build_sal(node_json):
     '''
-    Construit le dictionnaire de barèmes des cotisations salariales
     à partir des informations contenues dans node_json['children']['cotsoc']['children']['sal']
+    Construit le dictionnaire de barèmes des cotisations salariales
     '''
     sal = copy.deepcopy(node_json['children']['cotsoc']['children']['sal'])
     sal['children']['noncadre']['children'].update(sal['children']['commun']['children'])

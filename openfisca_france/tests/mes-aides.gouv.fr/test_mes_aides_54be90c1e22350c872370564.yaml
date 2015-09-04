@@ -27,12 +27,10 @@ description: |
   
   Résultat caf.fr = 218,22€
 period: "month:2015-01"
-relative_error_margin: 0.02
+relative_error_margin: 0.05
 individus:
   - age: 30
-    agem: 369
-    alr:
-      2013: 0
+    age_en_mois: 369
     birth: "1984-04-12"
     cho:
       2013: 0
@@ -43,20 +41,19 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
+    pensions_alimentaires_percues:
+      2013: 0
     rst:
       2013: 0
-    sal:
+    salaire_imposable:
       2013: 0
-    statmarit: 2
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 28
-    agem: 343
-    alr:
-      2013: 0
+    age_en_mois: 343
     birth: "1986-06-15"
     cho:
       2013: 0
@@ -67,10 +64,10 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
-    rst:
+    invalide: 0
+    pensions_alimentaires_percues:
       2013: 0
-    sal:
+    rst:
       2013: 0
     salaire_de_base:
       2013: 5128.166666666668
@@ -106,6 +103,23 @@ individus:
       2014-12: 1000
       2015-01: 1000
       year:2014-01: 3999.9699999999993
+    salaire_imposable:
+      2013: 0
+      2014-01: 345.5061602884615
+      2014-02: 345.5061602884615
+      2014-03: 345.5061602884615
+      2014-04: 345.5061602884615
+      2014-05: 345.5061602884615
+      2014-06: 345.5061602884615
+      2014-07: 345.5061602884615
+      2014-08: 345.5061602884615
+      2014-09: 345.5061602884615
+      2014-10: 0
+      2014-10:3: 1036.5288461538462
+      2014-11: 0
+      2014-12: 1036.5288461538462
+      2015-01: 1036.5288461538462
+      year:2014-01: 4146.08428875
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -120,7 +134,7 @@ foyers_fiscaux:
   declarants:
     - 54be8f6ce22350c872370563
     - 54be8f6ce22350c872370556
-  f6el:
+  pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
   rfr:

@@ -29,7 +29,7 @@ import itertools
 from openfisca_core import entities
 
 
-class Enntreprises(entities.AbstractEntity):
+class Entreprises(entities.AbstractEntity):
     column_by_name = collections.OrderedDict()
     index_for_person_variable_name = 'entreprise_id'
     key_plural = 'entreprises'

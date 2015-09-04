@@ -40,7 +40,7 @@ class cotisations_employeur(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisations sociales patronales"
+    label = u"Cotisations sociales employeur"
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
@@ -62,13 +62,15 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisations sociales patronales contributives"
+    label = u"Cotisations sociales employeur contributives"
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         period = period
         ags = simulation.calculate('ags', period)
         agff_employeur = simulation.calculate_add('agff_employeur', period)
+        agirc_employeur = simulation.calculate_add('agirc_employeur', period)
+        agirc_gmp_employeur = simulation.calculate_add('agirc_gmp_employeur', period)
         apec_employeur = simulation.calculate('apec_employeur', period)
         arrco_employeur = simulation.calculate('arrco_employeur', period)
         chomage_employeur = simulation.calculate('chomage_employeur', period)
@@ -85,6 +87,8 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
             # prive
             ags +
             agff_employeur +
+            agirc_employeur +
+            agirc_gmp_employeur +
             apec_employeur +
             arrco_employeur +
             chomage_employeur +
@@ -105,13 +109,14 @@ class cotisations_employeur_non_contributives(SimpleFormulaColumn):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisations sociales patronales non-contributives"
+    label = u"Cotisations sociales employeur non-contributives"
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         period = period
         accident_du_travail = simulation.calculate_add('accident_du_travail', period)
         allocations_temporaires_invalidite = simulation.calculate_add('allocations_temporaires_invalidite', period)
+        contribution_solidarite_autonomie = simulation.calculate('contribution_solidarite_autonomie', period)
         famille = simulation.calculate('famille', period)
         mmid_employeur = simulation.calculate_add('mmid_employeur', period)
         taxe_salaires = simulation.calculate_add('taxe_salaires', period)
@@ -119,6 +124,7 @@ class cotisations_employeur_non_contributives(SimpleFormulaColumn):
         cotisations_employeur_non_contributives = (
             allocations_temporaires_invalidite +
             accident_du_travail +
+            contribution_solidarite_autonomie +
             famille +
             mmid_employeur +
             taxe_salaires
@@ -138,6 +144,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
         period = period
         agff_salarie = simulation.calculate_add('agff_salarie', period)
         agirc_salarie = simulation.calculate_add('agirc_salarie', period)
+        agirc_gmp_salarie = simulation.calculate_add('agirc_gmp_salarie', period)
         apec_salarie = simulation.calculate_add('apec_salarie', period)
         arrco_salarie = simulation.calculate_add('arrco_salarie', period)
         chomage_salarie = simulation.calculate_add('chomage_salarie', period)
@@ -153,6 +160,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
             # prive
             agff_salarie +
             agirc_salarie +
+            agirc_gmp_salarie +
             apec_salarie +
             arrco_salarie +
             chomage_salarie +
@@ -205,5 +213,14 @@ class cotisations_salariales(SimpleFormulaColumn):
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         cotisations_salariales_non_contributives = simulation.calculate(
             'cotisations_salariales_non_contributives', period)
+        exoneration_cotisations_salariales_apprenti = simulation.calculate_add(
+            'exoneration_cotisations_salariales_apprenti', period)
+        exoneration_cotisations_salarie_stagiaire = simulation.calculate_add(
+            'exoneration_cotisations_salarie_stagiaire', period)
 
-        return period, cotisations_salariales_contributives + cotisations_salariales_non_contributives
+        return period, (
+            cotisations_salariales_contributives +
+            cotisations_salariales_non_contributives +
+            exoneration_cotisations_salariales_apprenti +
+            exoneration_cotisations_salarie_stagiaire
+            )

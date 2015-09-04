@@ -1,0 +1,88 @@
+name: "Pas de neutralisation des ressources non perçues en m-1"
+keywords:
+  - base ressources
+  - rsa
+description: |
+  M-3 et M-2: salaires de 300€
+  Plus de ressources en M-1 et ne percevra plus cette ressource au mois M
+  Pas de neutralisation des ressources dans la BR
+  
+  (513,88 + 62%[(2*300)/3]) - ([(2*300)/3] - 61,67) = 128,21€
+period: "month:2015-06"
+individus:
+  age: 32
+  age_en_mois: 393
+  birth: "1982-08-12"
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 5579affb85a12b87142c5706
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  salaire_de_base:
+    2013: 3076.9230769230767
+    2014-06: 256.4102564102564
+    2014-07: 256.4102564102564
+    2014-08: 256.4102564102564
+    2014-09: 256.4102564102564
+    2014-10: 256.4102564102564
+    2014-11: 256.4102564102564
+    2014-12: 256.4102564102564
+    2015-01: 256.4102564102564
+    2015-02: 256.4102564102564
+    2015-03: 384.6153846153846
+    2015-03:3: 769.2307692307692
+    2015-04: 384.6153846153846
+    2015-05: 0
+    year:2014-06: 3076.9230769230767
+  salaire_net:
+    2013: 2400
+    2014-06: 200
+    2014-07: 200
+    2014-08: 200
+    2014-09: 200
+    2014-10: 200
+    2014-11: 200
+    2014-12: 200
+    2015-01: 200
+    2015-02: 200
+    2015-03: 300
+    2015-03:3: 600
+    2015-04: 300
+    2015-05: 0
+    year:2014-06: 2400
+  salaire_imposable:
+    2013: 2487.6692307692315
+    2014-06: 207.30576923076924
+    2014-07: 207.30576923076924
+    2014-08: 207.30576923076924
+    2014-09: 207.30576923076924
+    2014-10: 207.30576923076924
+    2014-11: 207.30576923076924
+    2014-12: 207.30576923076924
+    2015-01: 207.30576923076924
+    2015-02: 207.30576923076924
+    2015-03: 310.9586538461538
+    2015-03:3: 621.9173076923076
+    2015-04: 310.9586538461538
+    2015-05: 0
+    year:2014-06: 2487.6692307692315
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+  enfants:
+  parents: 5579affb85a12b87142c5706
+foyers_fiscaux:
+  declarants: 5579affb85a12b87142c5706
+  personnes_a_charge:
+menages:
+  depcom: 14127
+  enfants:
+  personne_de_reference: 5579affb85a12b87142c5706
+  statut_occupation: 6
+output_variables:
+  rsa: 376.21

@@ -6,7 +6,7 @@ description: Pas d'allocations familiales versées car dans l'exemple l'enfant g
 period: "month:2014-11"
 individus:
   - age: 34
-    agem: 411
+    age_en_mois: 411
     birth: "1980-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -15,13 +15,13 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 18
-    agem: 219
+    age_en_mois: 219
     birth: "1996-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -30,7 +30,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     salaire_de_base:
       2012: 13846.15384615385
       2013-11: 1153.8461538461538
@@ -65,12 +65,29 @@ individus:
       2014-10: 900
       2014-11: 900
       year:2013-11: 10800
+    salaire_imposable:
+      2012: 11194.511538461542
+      2013-11: 932.8759615384615
+      2013-12: 932.8759615384615
+      2014-01: 932.8759615384615
+      2014-02: 932.8759615384615
+      2014-03: 932.8759615384615
+      2014-04: 932.8759615384615
+      2014-05: 932.8759615384615
+      2014-06: 932.8759615384615
+      2014-07: 932.8759615384615
+      2014-08: 932.8759615384615
+      2014-08:3: 2798.6278846153846
+      2014-09: 932.8759615384615
+      2014-10: 932.8759615384615
+      2014-11: 932.8759615384615
+      year:2013-11: 11194.511538461542
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 4
-    agem: 51
+    age_en_mois: 51
     birth: "2010-08-12"
     epargne_non_remuneree:
       2012-01: 0
@@ -79,7 +96,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    inv: 0
+    invalide: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
