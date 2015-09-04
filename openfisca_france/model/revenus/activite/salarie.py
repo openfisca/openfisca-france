@@ -51,7 +51,7 @@ build_column('sal_pen_exo_etr', IntCol(
     ))
 
 
-build_column('fra', IntCol(label = u"Frais réels",
+build_column('frais_reels', IntCol(label = u"Frais réels",
                val_type = "monetary",
                cerfa_field = {QUIFOY['vous']: u"1AK",
                               QUIFOY['conj']: u"1BK",
