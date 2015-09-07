@@ -57,7 +57,7 @@ setup(
         'numpy',
         'OpenFisca-Core >= 0.5dev',
         'PyYAML',
-        'scipy >= 0.12',
+        # 'scipy >= 0.12',  # Only for inversion_revenus reform
         # 'pandas >= 0.13',  # Only for taxipp_utils.py which is ignored in Makefile
         ],
     message_extractors = {'openfisca_france': [
