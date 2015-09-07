@@ -4354,40 +4354,63 @@
         <CODE code="age" description="Limite d'âge (stricte) pour bénéficier de la PAJE" format="integer" type="age">
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="3" />
         </CODE>
-        <CODE code="plaf" description="Plafond de ressources" format="integer" type="monetary">
-          <VALUE deb="2004-01-01" fin="2004-06-30" valeur="19303" />
-          <VALUE deb="2004-07-01" fin="2005-06-30" valeur="19670" />
-          <VALUE deb="2005-07-01" fin="2006-06-30" valeur="20004" />
-          <VALUE deb="2006-07-01" fin="2007-06-30" valeur="20344" />
-          <VALUE deb="2007-07-01" fin="2008-12-31" valeur="25862" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="26250" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="26985" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="27012" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="27283" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="27855" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="28384" />
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="28583" />
-        </CODE>
-        <CODE code="plaf_maj" description="Majoration pour biactifs et isolés" format="integer" type="monetary">
-          <VALUE deb="2004-01-01" fin="2004-06-30" valeur="7758" />
-          <VALUE deb="2004-07-01" fin="2005-06-30" valeur="7905" />
-          <VALUE deb="2005-07-01" fin="2006-06-30" valeur="8039" />
-          <VALUE deb="2006-07-01" fin="2007-06-30" valeur="8176" />
-          <VALUE deb="2007-07-01" fin="2008-12-31" valeur="10394" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="10550" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="10845" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="10856" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="10965" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="11195" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="11408" />
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="11488" />
-        </CODE>
-        <CODE code="plaf_tx1" description="Majoration du plafond pour les 2 premiers enfants" format="percent">
-          <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.25" />
-        </CODE>
-        <CODE code="plaf_tx2" description="Majoration du plafond à partir du 3ème enfant" format="percent">
-          <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.3" />
-        </CODE>
+        <NODE code="avant_2014">
+          <CODE code="plaf" description="Plafond de ressources" format="integer" type="monetary">
+            <VALUE deb="2004-01-01" fin="2004-06-30" valeur="19303" />
+            <VALUE deb="2004-07-01" fin="2005-06-30" valeur="19670" />
+            <VALUE deb="2005-07-01" fin="2006-06-30" valeur="20004" />
+            <VALUE deb="2006-07-01" fin="2007-06-30" valeur="20344" />
+            <VALUE deb="2007-07-01" fin="2008-12-31" valeur="25862" />
+            <VALUE deb="2009-01-01" fin="2009-12-31" valeur="26250" />
+            <VALUE deb="2010-01-01" fin="2010-12-31" valeur="26985" />
+            <VALUE deb="2011-01-01" fin="2011-12-31" valeur="27012" />
+            <VALUE deb="2012-01-01" fin="2012-12-31" valeur="27283" />
+            <VALUE deb="2013-01-01" fin="2013-12-31" valeur="27855" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="28384" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="28583" />
+          </CODE>
+          <CODE code="plaf_maj" description="Majoration pour biactifs et isolés" format="integer" type="monetary">
+            <VALUE deb="2004-01-01" fin="2004-06-30" valeur="7758" />
+            <VALUE deb="2004-07-01" fin="2005-06-30" valeur="7905" />
+            <VALUE deb="2005-07-01" fin="2006-06-30" valeur="8039" />
+            <VALUE deb="2006-07-01" fin="2007-06-30" valeur="8176" />
+            <VALUE deb="2007-07-01" fin="2008-12-31" valeur="10394" />
+            <VALUE deb="2009-01-01" fin="2009-12-31" valeur="10550" />
+            <VALUE deb="2010-01-01" fin="2010-12-31" valeur="10845" />
+            <VALUE deb="2011-01-01" fin="2011-12-31" valeur="10856" />
+            <VALUE deb="2012-01-01" fin="2012-12-31" valeur="10965" />
+            <VALUE deb="2013-01-01" fin="2013-12-31" valeur="11195" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="11408" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="11488" />
+          </CODE>
+          <CODE code="plaf_tx1" description="Majoration du plafond pour les 2 premiers enfants" format="percent">
+            <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.25" />
+          </CODE>
+          <CODE code="plaf_tx2" description="Majoration du plafond à partir du 3ème enfant" format="percent">
+            <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.3" />
+          </CODE>
+        </NODE>
+        <NODE code="apres_2014">
+          <NODE code="taux_plein">
+            <CODE code="plaf" description="Plafond de ressources de base pour PAJE à taux plein">
+              <VALUE deb="2014-04-01" fin="2015-12-31" valeur="24514" />
+            </CODE>
+            <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux plein">
+              <VALUE deb="2014-04-01" fin="2015-12-31" valeur="8089" />
+            </CODE>
+          </NODE>
+          <NODE code="taux_partiel">
+            <CODE code="plaf" description="Plafond de ressources de base pour PAJE à taux partiel">
+              <VALUE deb="2014-04-01" fin="2015-12-31" valeur="29286" />
+            </CODE>
+            <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux partiel">
+              <VALUE deb="2014-04-01" fin="2015-12-31" valeur="9664" />
+            </CODE>
+          </NODE>
+          <CODE code="plaf_tx_par_enf">
+            <VALUE deb="2014-04-01" fin="2015-12-31" valeur="0.22" />
+          </CODE>
+        </NODE>
         <CODE code="taux" description="Allocation de base (en % de la bmaf)" format="percent">
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.4595" />
         </CODE>
