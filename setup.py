@@ -32,7 +32,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '0.5.dev0',
+    version = '0.5.0',
 
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
