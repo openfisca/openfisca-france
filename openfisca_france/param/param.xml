@@ -4392,22 +4392,27 @@
         </NODE>
         <NODE code="apres_2014">
           <NODE code="taux_plein">
-            <CODE code="plaf" description="Plafond de ressources de base pour PAJE à taux plein">
+            <CODE code="plaf" description="Plafond de ressources de base pour PAJE à taux plein" format="integer" type="monetary">
+              <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
               <VALUE deb="2014-04-01" fin="2015-12-31" valeur="24514" />
             </CODE>
-            <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux plein">
+            <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux plein" format="integer" type="monetary">
+              <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
               <VALUE deb="2014-04-01" fin="2015-12-31" valeur="8089" />
             </CODE>
           </NODE>
           <NODE code="taux_partiel">
-            <CODE code="plaf" description="Plafond de ressources de base pour PAJE à taux partiel">
+            <CODE code="plaf" description="Plafond de ressources de base pour PAJE à taux partiel" format="integer" type="monetary">
+              <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
               <VALUE deb="2014-04-01" fin="2015-12-31" valeur="29286" />
-            </CODE>
-            <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux partiel">
+            </CODE>F
+            <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux partiel" format="integer" type="monetary">
+              <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
               <VALUE deb="2014-04-01" fin="2015-12-31" valeur="9664" />
             </CODE>
           </NODE>
-          <CODE code="plaf_tx_par_enf">
+          <CODE code="plaf_tx_par_enf" description="Majoration du plafond par enfant" format="percent">
+            <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
             <VALUE deb="2014-04-01" fin="2015-12-31" valeur="0.22" />
           </CODE>
         </NODE>
