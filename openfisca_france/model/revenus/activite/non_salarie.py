@@ -271,7 +271,7 @@ build_column('nbic_defs', IntCol(entity = 'ind',
                      label = u"Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)",
                      val_type = "monetary",
                      end = date(2009, 12, 31),
-                     cerfa_field = {QUIFOY['vous']: u"5KL",
+                     cerfa_field = {QUIFOY['vous']: u"5KM",
                                     QUIFOY['conj']: u"5LM",
                                     QUIFOY['pac1']: u"5MM", }))  # (f5km, f5lm, f5mm))
 
