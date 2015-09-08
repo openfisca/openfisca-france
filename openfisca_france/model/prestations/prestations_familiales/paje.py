@@ -162,6 +162,7 @@ class paje_base_montant(SimpleFormulaColumn):
 
         return period, montant
 
+
 @reference_formula
 class paje_base_enfant_eligible_avant_reforme_2014(SimpleFormulaColumn):
     column = BoolCol
@@ -175,7 +176,9 @@ class paje_base_enfant_eligible_avant_reforme_2014(SimpleFormulaColumn):
         ne_avant_2014 =  (datetime64('2014-04-01') - birth) > 0
         age_limite = simulation.legislation_at(period.start).fam.paje.base.age
 
-        return period, (age <= age_limite) * not_(smic55) * ne_avant_2014
+        # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
+        # celui au cours duquel l'enfant atteint l'âge de 3 ans.
+        return period, (age < age_limite) * not_(smic55) * ne_avant_2014
 
 
 @reference_formula
@@ -191,9 +194,9 @@ class paje_base_enfant_eligible_apres_reforme_2014(SimpleFormulaColumn):
         ne_avant_2014 =  (datetime64('2014-04-01') - birth) > 0
         age_limite = simulation.legislation_at(period.start).fam.paje.base.age
 
-        return period, (age <= age_limite) * not_(smic55) * not_(ne_avant_2014)
-
-
+        # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
+        # celui au cours duquel l'enfant atteint l'âge de 3 ans.
+        return period, (age < age_limite) * not_(smic55) * not_(ne_avant_2014)
 
 
 @reference_formula
