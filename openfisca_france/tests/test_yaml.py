@@ -39,7 +39,7 @@ from openfisca_core.tools import assert_near
 import numpy as np
 import yaml
 
-from . import base
+from openfisca_france.tests import base
 
 
 log = logging.getLogger(__name__)
