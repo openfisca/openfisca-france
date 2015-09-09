@@ -29,7 +29,6 @@ from __future__ import division
 
 from openfisca_core import columns, formulas, reforms
 # from openfisca_core.taxscales import MarginalRateTaxScale
-from scipy.optimize import fsolve
 
 from .. import entities
 
@@ -46,6 +45,8 @@ def brut_to_target(target_name = None, period = None, simulation = None, **input
 
 
 def build_reform(tax_benefit_system):
+    from scipy.optimize import fsolve
+
     Reform = reforms.make_reform(
         key = 'inversion_revenus',
         name = u'Inversion des revenus',
