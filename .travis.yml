@@ -9,5 +9,6 @@ install:
 language: python
 python: "2.7"
 script: make test-ci
+sudo: false
 virtualenv:
   system_site_packages: true
