@@ -413,13 +413,13 @@ class salcho_imp(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
         rev_sal = simulation.calculate('rev_sal', period)
-        cho_ld = simulation.calculate('cho_ld', period)
-        fra = simulation.calculate('fra', period)
+        chomeur_longue_duree = simulation.calculate('chomeur_longue_duree', period)
+        frais_reels = simulation.calculate('frais_reels', period)
         abatpro = simulation.legislation_at(period.start).ir.tspr.abatpro
 
-        amin = abatpro.min * not_(cho_ld) + abatpro.min2 * cho_ld
-        abatfor = round(min_(max_(abatpro.taux * rev_sal, amin), abatpro.max))
-        return period, (fra > abatfor) * (rev_sal - fra) + (fra <= abatfor) * max_(0, rev_sal - abatfor)
+        abattement_minimum = abatpro.min * not_(chomeur_longue_duree) + abatpro.min2 * chomeur_longue_duree
+        abatfor = round(min_(max_(abatpro.taux * rev_sal, abattement_minimum), abatpro.max))
+        return period, (frais_reels > abatfor) * (rev_sal - frais_reels) + (frais_reels <= abatfor) * max_(0, rev_sal - abatfor)
 
 
 @reference_formula

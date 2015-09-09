@@ -1,0 +1,190 @@
+name: "TNS agricole en métopole - 4 personnes au foyer"
+keywords:
+  - rsa
+  - tns
+description: |
+  Éligibilité au RSA d'un TNS agricole couple + 2 enfants
+  Bénéfice agricole < (800*SMIC horaire)*1,5 + (30%*800SMIC horaire) + (40%*800SMIC horaire) = 16513,6 €
+  
+  Ne pas afficher de montant
+period: "month:2015-04"
+individus:
+  - age: 35
+    age_en_mois: 420
+    birth: "1980-04-13"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553fb8f314dd6d5d39443ccc
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    statmarit: 1
+    tns_benefice_exploitant_agricole: 16500
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 32
+    age_en_mois: 392
+    birth: "1982-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553fb8f314dd6d5d39443ccb
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 13
+    age_en_mois: 164
+    birth: "2001-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553fb8f314dd6d5d39443cca
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 9
+    age_en_mois: 116
+    birth: "2005-08-14"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 553fb8f314dd6d5d39443cc9
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  acs:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  af:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  aide_logement:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  alf:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  als:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  apl:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  asf:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  asi:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  aspa:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  ass:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  bourse_college:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  bourse_lycee:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  cf:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  enfants:
+    - 553fb8f314dd6d5d39443cca
+    - 553fb8f314dd6d5d39443cc9
+  paje_base:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  parents:
+    - 553fb8f314dd6d5d39443ccc
+    - 553fb8f314dd6d5d39443ccb
+  paris_logement_familles:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  rsa:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  rsa_majore:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  rsa_non_majore:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+foyers_fiscaux:
+  declarants:
+    - 553fb8f314dd6d5d39443ccc
+    - 553fb8f314dd6d5d39443ccb
+  personnes_a_charge:
+    - 553fb8f314dd6d5d39443cca
+    - 553fb8f314dd6d5d39443cc9
+menages:
+  conjoint: 553fb8f314dd6d5d39443ccb
+  depcom: 14500
+  enfants:
+    - 553fb8f314dd6d5d39443cca
+    - 553fb8f314dd6d5d39443cc9
+  personne_de_reference: 553fb8f314dd6d5d39443ccc
+  statut_occupation: 6
+output_variables:
+  rsa: 1

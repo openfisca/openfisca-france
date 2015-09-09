@@ -25,7 +25,7 @@
 
 from __future__ import division
 
-from numpy import (round, floor, maximum as max_, minimum as min_, logical_not as not_)
+from numpy import (round, floor, maximum as max_, minimum as min_, logical_not as not_, datetime64)
 
 from ...base import *  # noqa analysis:ignore
 from .base_ressource import nb_enf, age_en_mois_benjamin
@@ -80,52 +80,123 @@ class paje(SimpleFormulaColumn):
 
 
 @reference_formula
-class paje_base_temp(SimpleFormulaColumn):
-    column = FloatCol(default = 0)
+class paje_base_montant(SimpleFormulaColumn):
+    column = FloatCol
     entity_class = Familles
-    label = u"Allocation de base de la PAJE sans tenir compte d'éventuels cumuls"
+    label = u"Montant de la PAJE"
     start_date = date(2004, 1, 1)
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
-
-        age_holder = simulation.compute('age', period)
-        af_nbenf = simulation.calculate('af_nbenf', period)
-        br_pf = simulation.calculate('br_pf', period)
-        biact = simulation.calculate('biact', period)
-        isol = simulation.calculate('isol', period)
-        smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
-
+        couple_biactif = simulation.calculate('biact', period)
+        parent_isole = simulation.calculate('isol', period)
+        nombre_enfants = simulation.calculate('af_nbenf', period)
         pfam = simulation.legislation_at(period.start).fam
-        pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
+        montant_taux_plein = pfam.af.bmaf * pfam.paje.base.taux
 
-        # TODO cumul des paje si et seulement si naissance multiples
+        def plafond_avant_avril_2014():
+            plafond_de_base = pfam.paje.base.avant_2014.plaf
+            maj_plafond_2_premiers_enfants = pfam.paje.base.avant_2014.plaf_tx1 * plafond_de_base
+            maj_plafond_par_enfant_sup = pfam.paje.base.avant_2014.plaf_tx2 * plafond_de_base
+            maj_plafond_seul_biactif = pfam.paje.base.avant_2014.plaf_maj
 
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+            plafond = (
+                plafond_de_base +
+                min_(nombre_enfants, 2) * maj_plafond_2_premiers_enfants +
+                max_(nombre_enfants - 2, 0) * maj_plafond_par_enfant_sup +
+                (couple_biactif + parent_isole) * maj_plafond_seul_biactif
+            )
+            return plafond
 
-        bmaf = pfam.af.bmaf
-        bmaf2 = pfam_n_2.af.bmaf
+        def plafond_taux_plein():
+            plafond_de_base = pfam.paje.base.apres_2014.taux_plein.plaf
+            maj_plafond_seul_biactif = pfam.paje.base.apres_2014.taux_plein.plaf_maj
+            maj_plafond_par_enfant = pfam.paje.base.apres_2014.plaf_tx_par_enf * plafond_de_base
 
-        base = round(pfam.paje.base.taux * bmaf, 2)
-        base2 = round(pfam.paje.base.taux * bmaf2, 2)
+            plafond = (
+                plafond_de_base +
+                nombre_enfants * maj_plafond_par_enfant +
+                (couple_biactif + parent_isole) * maj_plafond_seul_biactif
+            )
+            return plafond
+
+        def plafond_taux_partiel():
+            plafond_de_base = pfam.paje.base.apres_2014.taux_partiel.plaf
+            maj_plafond_seul_biactif = pfam.paje.base.apres_2014.taux_partiel.plaf_maj
+            maj_plafond_par_enfant = pfam.paje.base.apres_2014.plaf_tx_par_enf * plafond_de_base
+
+            plafond = (
+                plafond_de_base +
+                nombre_enfants * maj_plafond_par_enfant +
+                (couple_biactif + parent_isole) * maj_plafond_seul_biactif
+            )
+            return plafond
+
+        def enfant_eligible_ne_avant_avril_2014():
+            paje_base_enfant_eligible_avant_reforme_2014 = simulation.compute('paje_base_enfant_eligible_avant_reforme_2014')
+            return self.any_by_roles(paje_base_enfant_eligible_avant_reforme_2014)
+
+        def enfant_eligible_ne_apres_avril_2014():
+            paje_base_enfant_eligible_apres_reforme_2014 = simulation.compute('paje_base_enfant_eligible_apres_reforme_2014')
+            return self.any_by_roles(paje_base_enfant_eligible_apres_reforme_2014)
+
+        def montant_enfant_ne_avant_avril_2014():
+            annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
+            ressources = simulation.calculate('br_pf', period)
+            return (ressources <= plafond_avant_avril_2014()) * montant_taux_plein
+
+        def montant_enfant_ne_apres_avril_2014():
+            annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
+            ressources = simulation.calculate('br_pf', period)
+            montant_taux_partiel = montant_taux_plein / 2
+
+            montant = (
+                (ressources <= plafond_taux_plein()) * montant_taux_plein +
+                (ressources <= plafond_taux_partiel()) * (ressources > plafond_taux_plein()) * montant_taux_partiel
+            )
+            return montant
+
+        montant = (
+            enfant_eligible_ne_avant_avril_2014() * montant_enfant_ne_avant_avril_2014() +
+            not_(enfant_eligible_ne_avant_avril_2014()) * enfant_eligible_ne_apres_avril_2014() * montant_enfant_ne_apres_avril_2014()
+        )
+
+        return period, montant
+
+
+@reference_formula
+class paje_base_enfant_eligible_avant_reforme_2014(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Enfant ouvrant droit à la PAJE de base né avant le 1er avril 2014"
+
+    def function(self, simulation, period):
+        age = simulation.calculate('age', period)
+        smic55 = simulation.calculate('smic55', period)
+        birth = simulation.calculate('birth', period)
+        ne_avant_2014 =  (datetime64('2014-04-01') - birth) > 0
+        age_limite = simulation.legislation_at(period.start).fam.paje.base.age
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
-        nbenf = nb_enf(age, smic55, 0, pfam.paje.base.age - 1)
-        plaf_tx = (
-            (nbenf > 0) +
-            pfam.paje.base.plaf_tx1 * min_(af_nbenf, 2) +
-            pfam.paje.base.plaf_tx2 * max_(af_nbenf - 2, 0)
-            )
-        majo = isol | biact
-        plaf = pfam.paje.base.plaf * plaf_tx + (plaf_tx > 0) * pfam.paje.base.plaf_maj * majo
-        plaf2 = plaf + 12 * base2  # TODO vérifier l'aspect différentielle de la PAJE et le plaf2 de la paje
+        return period, (age < age_limite) * not_(smic55) * ne_avant_2014
 
-        paje_base = (nbenf > 0) * ((br_pf < plaf) * base + (br_pf >= plaf) * max_(plaf2 - br_pf, 0) / 12)
-        # non cumulabe avec la CF, voir Paje_CumulCf
-        return period, paje_base
+
+@reference_formula
+class paje_base_enfant_eligible_apres_reforme_2014(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Enfant ouvrant droit à la PAJE de base né après le 1er avril 2014"
+
+    def function(self, simulation, period):
+        age = simulation.calculate('age', period)
+        smic55 = simulation.calculate('smic55', period)
+        birth = simulation.calculate('birth', period)
+        ne_avant_2014 =  (datetime64('2014-04-01') - birth) > 0
+        age_limite = simulation.legislation_at(period.start).fam.paje.base.age
+
+        # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
+        # celui au cours duquel l'enfant atteint l'âge de 3 ans.
+        return period, (age < age_limite) * not_(smic55) * not_(ne_avant_2014)
 
 
 @reference_formula
@@ -444,11 +515,11 @@ class paje_base(SimpleFormulaColumn):
         '''
         period = period.start.offset('first-of', 'month').period('month')
 
-        paje_base_temp = simulation.calculate('paje_base_temp', period)
-        cf_temp = simulation.calculate('cf_temp', period)
+        paje_base_montant = simulation.calculate('paje_base_montant', period)
+        cf_montant = simulation.calculate('cf_montant', period)
 
         # On regarde ce qui est le plus intéressant pour la famille, chaque mois
-        paje_base = (paje_base_temp >= cf_temp) * paje_base_temp
+        paje_base = (paje_base_montant >= cf_montant) * paje_base_montant
         return period, paje_base
 
 
@@ -672,9 +743,9 @@ class ape(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         apje_temp = simulation.calculate('apje_temp', period)
         ape_temp = simulation.calculate('ape_temp', period)
-        cf_temp = simulation.calculate('cf_temp', period)
+        cf_montant = simulation.calculate('cf_montant', period)
 
-        ape = (apje_temp < ape_temp) * (cf_temp < ape_temp) * ape_temp
+        ape = (apje_temp < ape_temp) * (cf_montant < ape_temp) * ape_temp
         return period, round(ape, 2)
 
 
@@ -691,7 +762,7 @@ class apje(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         apje_temp = simulation.calculate('apje_temp', period)
         ape_temp = simulation.calculate('ape_temp', period)
-        cf_temp = simulation.calculate('cf_temp', period)
+        cf_montant = simulation.calculate('cf_montant', period)
 
-        apje = (cf_temp < apje_temp) * (ape_temp < apje_temp) * apje_temp
+        apje = (cf_montant < apje_temp) * (ape_temp < apje_temp) * apje_temp
         return period, round(apje, 2)

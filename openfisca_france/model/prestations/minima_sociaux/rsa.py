@@ -736,13 +736,14 @@ class rsa_eligibilite(SimpleFormulaColumn):
         age_parents = self.split_by_roles(age_holder, roles = [CHEF, PART])
         activite_holder = simulation.compute('activite', period)
         activite_parents = self.split_by_roles(activite_holder, roles = [CHEF, PART])
+        nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         rsa_eligibilite_tns = simulation.calculate('rsa_eligibilite_tns', period)
-
         rmi = simulation.legislation_at(period.start).minim.rmi
+        age_min = (nb_enfant_rsa == 0) * rmi.age_pac
 
         eligib = (
-            (age_parents[CHEF] >= rmi.age_pac) * not_(activite_parents[CHEF] == 2) +
-            (age_parents[PART] >= rmi.age_pac) * not_(activite_parents[PART] == 2)
+            (age_parents[CHEF] >= age_min) * not_(activite_parents[CHEF] == 2) +
+            (age_parents[PART] >= age_min) * not_(activite_parents[PART] == 2)
         )
         eligib = eligib * rsa_eligibilite_tns
 
@@ -833,11 +834,11 @@ class rsa_forfait_asf_i(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
 
-        asf_elig_i = simulation.calculate('asf_elig_i', period)
+        asf_elig_enfant = simulation.calculate('asf_elig_enfant', period)
         pfam = simulation.legislation_at(period.start).fam
         minim = simulation.legislation_at(period.start).minim
 
-        return period, asf_elig_i * pfam.af.bmaf * minim.rmi.forfait_asf.taux1
+        return period, asf_elig_enfant * pfam.af.bmaf * minim.rmi.forfait_asf.taux1
 
 
 @reference_formula
