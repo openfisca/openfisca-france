@@ -30,7 +30,6 @@ from .. import init_country
 from ..reforms import (
     allocations_familiales_imposables,
     cesthra_invalidee,
-    inversion_revenus,
     plf2015,
     plfr2014,
     trannoy_wasmer,
@@ -57,7 +56,6 @@ tax_benefit_system = TaxBenefitSystem()
 build_reform_functions = [
     allocations_familiales_imposables.build_reform,
     cesthra_invalidee.build_reform,
-    inversion_revenus.build_reform,
     plf2015.build_reform,
     plfr2014.build_reform,
     trannoy_wasmer.build_reform,

@@ -32,7 +32,7 @@ from openfisca_core import periods
 
 from openfisca_france.reforms import inversion_revenus
 from openfisca_france.model.base import CAT
-from openfisca_france.tests.base import assert_near, get_cached_reform, tax_benefit_system
+from openfisca_france.tests.base import assert_near, tax_benefit_system
 
 
 def test_cho(year = 2014):
@@ -49,10 +49,7 @@ def test_cho(year = 2014):
     brut = simulation.get_holder('chobrut').array
     imposable = simulation.calculate('cho')
 
-    inversion_reform = get_cached_reform(
-        reform_key = 'inversion_revenus',
-        tax_benefit_system = tax_benefit_system,
-        )
+    inversion_reform = inversion_revenus.build_reform(tax_benefit_system)
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
         **single_entity_kwargs).new_simulation(debug = True)
 
@@ -77,10 +74,7 @@ def test_rst(year = 2014):
     brut = simulation.get_holder('rstbrut').array
     imposable = simulation.calculate('rst')
 
-    inversion_reform = get_cached_reform(
-        reform_key = 'inversion_revenus',
-        tax_benefit_system = tax_benefit_system,
-        )
+    inversion_reform = inversion_revenus.build_reform(tax_benefit_system)
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
         **single_entity_kwargs).new_simulation(debug = True)
 
@@ -112,10 +106,7 @@ def check_sal(type_sal, year = 2014):
 
     imposable = simulation.calculate('salaire_imposable')
 
-    inversion_reform = get_cached_reform(
-        reform_key = 'inversion_revenus',
-        tax_benefit_system = tax_benefit_system,
-        )
+    inversion_reform = inversion_revenus.build_reform(tax_benefit_system)
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
         **single_entity_kwargs).new_simulation(debug = True)
 
