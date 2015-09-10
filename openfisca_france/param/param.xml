@@ -1999,7 +1999,7 @@
           <VALUE deb="2017-01-01" fin="2017-12-31" valeur=".2810" />
         </CODE>
         <CODE code="seuil" description="Point de sortie (en smic)" format="percent">
-          <VALUE deb="2005-07-01" fin="2014-12-31" valeur="1.6" />
+          <VALUE deb="2005-07-01" fin="2016-12-31" valeur="1.6" />
         </CODE>
       </NODE>
       <NODE code="cice" description="Crédit d'impot compétitivité emploi">
