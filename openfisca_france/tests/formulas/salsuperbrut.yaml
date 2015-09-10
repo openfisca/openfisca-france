@@ -1,4 +1,5 @@
 - period: "2015-04"
+  relative_error_margin: 0.01
   input_variables:
     salaire_de_base: 1445.38
     allegement_fillon_mode_recouvrement: 1
