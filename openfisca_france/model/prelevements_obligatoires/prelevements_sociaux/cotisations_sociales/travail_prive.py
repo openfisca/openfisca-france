@@ -651,9 +651,9 @@ class taille_entreprise(SimpleFormulaColumn):
 
         taille_entreprise = (
             (effectif_entreprise > 0).astype(int16) +
-            (effectif_entreprise > 10).astype(int16) +
-            (effectif_entreprise > 20).astype(int16) +
-            (effectif_entreprise > 250).astype(int16)
+            (effectif_entreprise > 9).astype(int16) +
+            (effectif_entreprise > 19).astype(int16) +
+            (effectif_entreprise > 249).astype(int16)
             )
         return period, taille_entreprise
 
