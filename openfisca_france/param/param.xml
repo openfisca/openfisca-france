@@ -77,7 +77,7 @@
     <!-- </NODE> -->
     <NODE code="chomage" description="Allocations chômage">
       <NODE code="deductible" description="CSG déductible">
-	<CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
+        <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
           <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
@@ -156,7 +156,7 @@
     </NODE>
     <NODE code="preretraite" description="Allocations de préretraite">
       <NODE code="deductible" description="CSG déductible">
-	<CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
+        <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
           <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
@@ -203,24 +203,24 @@
         <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".005" />
       </CODE>
       <BAREME code="abattement" description="Abattement sur les revenus d'activité, du chômage et des préretraites">
-	<TRANCHE code="tranche0">
-	  <TAUX>
-	    <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".05" />
-	    <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".03" />
-	    <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0175" />
-	  </TAUX>
-	  <SEUIL>
-	    <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
-	  </SEUIL>
-	</TRANCHE>
-	<TRANCHE code="tranche1">
-	  <SEUIL>
-	    <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
-	  </SEUIL>
-	  <TAUX>
-	    <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0" />
-	  </TAUX>
-	</TRANCHE>
+        <TRANCHE code="tranche0">
+          <TAUX>
+            <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".05" />
+            <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".03" />
+            <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0175" />
+          </TAUX>
+          <SEUIL>
+            <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
+          </SEUIL>
+        </TRANCHE>
+        <TRANCHE code="tranche1">
+          <SEUIL>
+            <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0" />
+          </TAUX>
+        </TRANCHE>
       </BAREME>
     </NODE>
     <NODE code="retraite" description="Retraites et pensions d'invalidité">
@@ -294,12 +294,12 @@
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="38.99" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="38.48" />
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="37.81" />
-		<VALUE deb="2007-01-01" fin="2007-12-31" valeur="36.57" />
-		<VALUE deb="2006-01-01" fin="2006-12-31" valeur="35.27" />
-		<VALUE deb="2005-01-01" fin="2005-12-31" valeur="34.58" />
-		<VALUE deb="2004-01-01" fin="2004-12-31" valeur="33.75" />
-		<VALUE deb="2003-01-01" fin="2003-12-31" valeur="32.97" />
-		<VALUE deb="2002-01-01" fin="2002-12-31" valeur="32.42" />
+        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="36.57" />
+        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="35.27" />
+        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="34.58" />
+        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="33.75" />
+        <VALUE deb="2003-01-01" fin="2003-12-31" valeur="32.97" />
+        <VALUE deb="2002-01-01" fin="2002-12-31" valeur="32.42" />
       </CODE>
       <CODE code="cotisation_salarie" description="Cotisation forfaitaire mensuelle salarié">
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="25.17" />
@@ -309,11 +309,11 @@
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="23.82" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="23.52" />
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="23.11" />
-		<VALUE deb="2007-01-01" fin="2007-12-31" valeur="22.35" />
+        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="22.35" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="21.56" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="20.75" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="20.25" />
-		<VALUE deb="2003-01-01" fin="2003-12-31" valeur="19.78" />
+        <VALUE deb="2003-01-01" fin="2003-12-31" valeur="19.78" />
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="19.45" />
       </CODE>
       <CODE code="salaire_charniere" description="Salaire charnière annuel">
@@ -325,7 +325,7 @@
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="38332.92" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="37973.00" />
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="36877.00" />
-		    <VALUE deb="2007-01-01" fin="2007-12-31" valeur="35666.00" />
+        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="35666.00" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="34428.00" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="33512.00" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="32952.00" />
@@ -5516,7 +5516,7 @@
     </NODE>
   </NODE>
   <NODE code="isf" description="Impôt de solidarité sur la fortune (ISF)"> # Réforme sarkozy jamais appliquée
-   <NODE code="decote" description="Décôte de l'ISF">
+    <NODE code="decote" description="Décôte de l'ISF">
       <CODE code="min" description="Plancher de la décote" format="float" type="monetary">
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="1300000" />
       </CODE>
