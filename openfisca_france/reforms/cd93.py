@@ -135,18 +135,18 @@ def build_reform(tax_benefit_system):
             adpa_elig = self.any_by_roles(adpa_elig_holder)
 
             base_ressource_mensuelle = simulation.calculate('base_ressources_adpa', period)
-            print("base_ressource_mensuelle")
-            print(base_ressource_mensuelle)
+            # print("base_ressource_mensuelle")
+            # print(base_ressource_mensuelle)
 
             majorationTiercePersonne = 1103.08
             seuil1 = 0.67 * majorationTiercePersonne
             seuil2 = 2.67 * majorationTiercePersonne
 
 
-            print((base_ressource_mensuelle < seuil1) * 0)
-            print((base_ressource_mensuelle >= seuil1) * (base_ressource_mensuelle <= seuil2) *
-                     90 * (base_ressource_mensuelle - seuil1) / (2 * majorationTiercePersonne) )
-            print((base_ressource_mensuelle > seuil2) * 90)
+            # print((base_ressource_mensuelle < seuil1) * 0)
+            # print((base_ressource_mensuelle >= seuil1) * (base_ressource_mensuelle <= seuil2) *
+                     # 90 * (base_ressource_mensuelle - seuil1) / (2 * majorationTiercePersonne) )
+            # print((base_ressource_mensuelle > seuil2) * 90)
 
             participation_usager = (
                 (base_ressource_mensuelle < seuil1) * 0 +
