@@ -169,7 +169,7 @@ def assert_near_calculate_output(value, target_value, absolute_error_margin = 0,
                     abs(target_value - value), abs(relative_error_margin * target_value))
 
 
-def check(name, period_str, test, force):
+def check(yaml_path, name, period_str, test, force):
     scenario = test['scenario']
     scenario.suggest()
     simulation = scenario.new_simulation(debug = True)
@@ -198,7 +198,7 @@ def check(name, period_str, test, force):
                     )
 
 
-def check_calculate_output(name, period_str, test, force):
+def check_calculate_output(yaml_path, name, period_str, test, force):
     scenario = test['scenario']
     scenario.suggest()
     simulation = scenario.new_simulation(debug = True)
@@ -289,7 +289,8 @@ def test(force = False, name_filter = None, options_by_path = None):
                         and name_filter not in (test.get('keywords', [])):
                     continue
                 checker = check_calculate_output if options['calculate_output'] else check
-                yield checker, test.get('name') or filename_core, unicode(test['scenario'].period), test, force
+                yield checker, yaml_path, test.get('name') or filename_core, unicode(test['scenario'].period), test, \
+                    force
 
 
 if __name__ == "__main__":
@@ -322,7 +323,7 @@ if __name__ == "__main__":
         options_by_path = None
 
     tests_found = False
-    for test_index, (function, name, period_str, test, force) in enumerate(
+    for test_index, (function, yaml_path, name, period_str, test, force) in enumerate(
             test(
                 force = args.force,
                 name_filter = args.name,
@@ -330,8 +331,9 @@ if __name__ == "__main__":
                 ),
             1):
         keywords = test.get('keywords', [])
-        title = "Test {}: {}{} - {}".format(
+        title = "Test {}: {} {}{} - {}".format(
             test_index,
+            yaml_path,
             u'[{}] '.format(u', '.join(keywords)).encode('utf-8') if keywords else '',
             name.encode('utf-8'),
             period_str,
