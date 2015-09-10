@@ -38,10 +38,10 @@ def build_reform(tax_benefit_system):
         )
 
     Reform.input_variable(
-        name = "niveau_perte_autonomie",
-        column = IntCol,
+        name = "perte_autonomie",
+        column = BoolCol,
         entity_class = Individus,
-        label = u"Niveau de perte d'autonomie"
+        label = u"Personne en perte d'autonomie"
     )
 
 
@@ -76,9 +76,9 @@ def build_reform(tax_benefit_system):
             period = period.start.offset('first-of', 'month').period('month')
             age = simulation.calculate('age', period)
             resident_93 = simulation.calculate('resident_93', period)
-            niveau_perte_autonomie = simulation.calculate('niveau_perte_autonomie', period)
+            perte_autonomie = simulation.calculate('perte_autonomie', period)
 
-            result = (age > 60) * resident_93 * (niveau_perte_autonomie <= 4) * (niveau_perte_autonomie > 0)
+            result = (age > 60) * resident_93 * perte_autonomie
 
             return period, result
 
