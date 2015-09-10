@@ -1987,13 +1987,19 @@
       <NODE code="fillon" description="Exonération Fillon">
         <CODE code="tx_max" description="Taux maximum (plus de 20 salariés)" format="percent">
           <VALUE deb="2005-07-01" fin="2014-12-31" valeur=".26" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".2835" />
+          <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".2845" />
+          <VALUE deb="2017-01-01" fin="2017-12-31" valeur=".2850" />
         </CODE>
         <CODE code="tx_max2" description="Taux maximum (moins de 20 salariés)" format="percent">
           <VALUE deb="2005-07-01" fin="2007-06-30" valeur=".26" />
           <VALUE deb="2007-07-01" fin="2014-12-31" valeur=".281" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".2795" />
+          <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".2805" />
+          <VALUE deb="2017-01-01" fin="2017-12-31" valeur=".2810" />
         </CODE>
         <CODE code="seuil" description="Point de sortie (en smic)" format="percent">
-          <VALUE deb="2005-07-01" fin="2014-12-31" valeur="1.6" />
+          <VALUE deb="2005-07-01" fin="2016-12-31" valeur="1.6" />
         </CODE>
       </NODE>
       <NODE code="cice" description="Crédit d'impot compétitivité emploi">
