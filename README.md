@@ -36,6 +36,12 @@ For your information, the Tunisian tax-benefit system is also available:
 
 ## Tests
 
+To add tests for a formula, add a YAML file in `openfisca_france/tests/formulas/`, taking example on the existing ones.
+
+To execute the tests for a specific YAML file, run `openfisca_france/tests/test_yaml.py <path/to/file.yaml>`.
+
+### Mass execution
+
 Before submitting a pull request, please execute tests:
 
     make test
