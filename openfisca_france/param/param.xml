@@ -1,4 +1,4 @@
-﻿<NODE code="root" deb="2006-01-01" fin="2013-12-31">
+<NODE code="root" deb="2006-01-01" fin="2013-12-31">
   <NODE code="csg" description="Contribution sociale généralisée (CSG)">
     <NODE code="activite" description="Revenus d'activité">
       <NODE code="deductible" description="CSG déductible">
