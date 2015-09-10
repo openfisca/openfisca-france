@@ -341,7 +341,7 @@ if __name__ == "__main__":
         print("=" * len(title))
         print(title)
         print("=" * len(title))
-        function(name, period_str, test, force)
+        function(yaml_path, name, period_str, test, force)
         tests_found = True
     if not tests_found:
         print("No test found!")
