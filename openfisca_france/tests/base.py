@@ -82,7 +82,12 @@ def get_cached_composed_reform(reform_keys, tax_benefit_system):
         )
     composed_reform = reform_by_full_key.get(full_key)
     if composed_reform is None:
-        build_reform_functions = [build_reform_function_by_key[reform_key] for reform_key in reform_keys]
+        build_reform_functions = []
+        for reform_key in reform_keys:
+            assert reform_key in build_reform_function_by_key, \
+                'Error loading cached reform "{}" in build_reform_functions'.format(reform_key)
+            build_reform_function = build_reform_function_by_key[reform_key]
+            build_reform_functions.append(build_reform_function)
         composed_reform = reforms.compose_reforms(
             build_functions_and_keys = zip(build_reform_functions, reform_keys),
             tax_benefit_system = tax_benefit_system,
