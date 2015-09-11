@@ -252,5 +252,4 @@ menages:
   statut_occupation: 4
 output_variables:
   acs: 0
-  af: 129.99
   cmu_c: false
