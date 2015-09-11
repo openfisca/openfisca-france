@@ -199,7 +199,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         last_month = period.start.period('month').offset(-1)
 
         activite = simulation.calculate('activite', period)
-        salaire_net = simulation.calculate('salaire_net', previous_year)
+        salaire_net = simulation.calculate_add('salaire_net', previous_year)
         chonet = simulation.calculate('chonet', previous_year)
         rstnet = simulation.calculate('rstnet', previous_year)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
@@ -253,16 +253,16 @@ class cmu_base_ressources(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         previous_year = period.start.period('year').offset(-1)
-        aspa = simulation.calculate('aspa', period)
-        ass = simulation.calculate('ass', period)
-        asi = simulation.calculate('asi', period)
-        af = simulation.calculate('af', period)
-        cf = simulation.calculate_divide('cf', period)
-        asf = simulation.calculate_divide('asf', period)
+        aspa = simulation.calculate_add('aspa', previous_year)
+        ass = simulation.calculate_add('ass', previous_year)
+        asi = simulation.calculate_add('asi', previous_year)
+        af = simulation.calculate_add('af', previous_year)
+        cf = simulation.calculate_add('cf', previous_year)
+        asf = simulation.calculate_add('asf', previous_year)
         paje_clca = simulation.calculate_add('paje_clca', previous_year)
         paje_prepare = simulation.calculate_add('paje_prepare', previous_year)
+        aide_logement = simulation.calculate_add('aide_logement', previous_year)
         statut_occupation_holder = simulation.compute('statut_occupation', period)
-        aide_logement = simulation.calculate('aide_logement', period)
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
         cmu_forfait_logement_al = simulation.calculate('cmu_forfait_logement_al', period)
         age_holder = simulation.compute('age', period)
@@ -278,12 +278,12 @@ class cmu_base_ressources(SimpleFormulaColumn):
         age_pac = self.split_by_roles(age_holder, roles = ENFS)
 
         forfait_logement = (((statut_occupation == 2) + (statut_occupation == 6)) * cmu_forfait_logement_base +
-            (aide_logement > 0) * min_(cmu_forfait_logement_al, aide_logement * 12))
+            (aide_logement > 0) * min_(cmu_forfait_logement_al, aide_logement))
 
         res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement
 
         # Prestations calculées, donc valeurs mensuelles. On estime l'annuel en multipliant par 12
-        res += 12 * (aspa + ass + asi + af + cf + asf)
+        res += (aspa + ass + asi + af + cf + asf)
 
         res += paje_clca + paje_prepare
 

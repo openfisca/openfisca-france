@@ -28,6 +28,7 @@ from openfisca_core.tools import assert_near
 
 from .. import init_country
 from ..reforms import (
+    aides_ville_paris,
     allocations_familiales_imposables,
     cesthra_invalidee,
     plf2015,
@@ -54,6 +55,7 @@ tax_benefit_system = TaxBenefitSystem()
 # Initialize reforms caches
 
 build_reform_functions = [
+    aides_ville_paris.build_reform,
     allocations_familiales_imposables.build_reform,
     cesthra_invalidee.build_reform,
     plf2015.build_reform,

@@ -1,0 +1,180 @@
+name: "COUPLE -25 ANS 1 ENFANT ME SS ACTIVITE MR TI"
+keywords:
+  - recette
+  - rsa
+description: |
+  Test créé à partir d'un dossier de demande de RSA, 
+  Couple - 25 ans mais présence d'1 enfant  = droit RSA 
+  
+  RSA non calculé
+period: "month:2015-07"
+relative_error_margin: 0.02
+individus:
+  - age: 19
+    age_en_mois: 237
+    birth: "1995-09-11"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 559fb03cf92fd455017e6e11
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 23
+    age_en_mois: 286
+    birth: "1991-09-05"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 559fb03cf92fd455017e6e10
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    statmarit: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 1
+    age_en_mois: 16
+    birth: "2014-03-08"
+    epargne_non_remuneree:
+      2012-01: 0
+    etu: 0
+    id: 559fb03cf92fd455017e6e0f
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    invalide: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  acs:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  af:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  aide_logement:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  alf:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  als:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  apl:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  asf:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  asi:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  aspa:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  ass:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  bourse_college:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  bourse_lycee:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  cf:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  enfants: 559fb03cf92fd455017e6e0f
+  paje_base:
+    2013: 2215
+    2014-07: 184.5711111111111
+    2014-08: 184.5711111111111
+    2014-09: 184.5711111111111
+    2014-10: 184.5711111111111
+    2014-11: 184.5711111111111
+    2014-12: 184.5711111111111
+    2015-01: 184.5711111111111
+    2015-02: 184.5711111111111
+    2015-03: 184.5711111111111
+    2015-04: 184.62
+    2015-04:3: 553.86
+    2015-05: 184.62
+    2015-06: 184.62
+    2015-07: 184.62
+    year:2014-07: 2215
+  parents:
+    - 559fb03cf92fd455017e6e11
+    - 559fb03cf92fd455017e6e10
+  paris_logement_familles:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  rsa:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  rsa_majore:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  rsa_non_majore:
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+foyers_fiscaux:
+  declarants:
+    - 559fb03cf92fd455017e6e11
+    - 559fb03cf92fd455017e6e10
+  personnes_a_charge: 559fb03cf92fd455017e6e0f
+menages:
+  conjoint: 559fb03cf92fd455017e6e10
+  depcom: 77005
+  enfants: 559fb03cf92fd455017e6e0f
+  personne_de_reference: 559fb03cf92fd455017e6e11
+  statut_occupation: 6
+output_variables:
+  paje_base: 184.62
+  rsa_non_majore: 586.82

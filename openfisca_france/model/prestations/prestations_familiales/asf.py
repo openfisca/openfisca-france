@@ -33,40 +33,38 @@ from ...base import *  # noqa analysis:ignore
 
 
 @reference_formula
-class asf_elig_i(SimpleFormulaColumn):
+class asf_elig_enfant(SimpleFormulaColumn):
     column = BoolCol(default = False)
     entity_class = Individus
-    label = u"Éligibilité à l'ASF (individuelle)"
+    label = u"Enfant pouvant ouvrir droit à l'ASF"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
 
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
 
         pfam = simulation.legislation_at(period.start).fam
 
         eligibilite = (
             (age >= pfam.af.age1) * (age <= pfam.af.age3) *  # Âge compatible avec les prestations familiales
-            not_(smic55) *  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
-            (pensions_alimentaires_percues == 0))  # Ne perçoit pas de pension alimentaire
+            not_(smic55))  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
 
         return period, eligibilite
 
 @reference_formula
-class asf_i(SimpleFormulaColumn):
+class asf_enfant(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"Montant à verser à l'individu pour l'ASF"
+    label = u"Montant du droit à l'ASF ouvert par l'enfant"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
 
-        asf_elig_i = simulation.calculate('asf_elig_i', period)
+        asf_elig_enfant = simulation.calculate('asf_elig_enfant', period)
         pfam = simulation.legislation_at(period.start).fam
 
-        return period, asf_elig_i * pfam.af.bmaf * pfam.asf.taux1
+        return period, asf_elig_enfant * pfam.af.bmaf * pfam.asf.taux1
 
 
 @reference_formula
@@ -77,11 +75,13 @@ class asf_elig(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        pensions_alimentaires_percues_holder = simulation.compute('pensions_alimentaires_percues', period)
+        pensions_alimentaires_percues = self.sum_by_entity(pensions_alimentaires_percues_holder)
 
         isol = simulation.calculate('isol', period)
         residence_mayotte = simulation.calculate('residence_mayotte', period)
 
-        return period, not_(residence_mayotte) * isol  # Parent isolé et ne résident pas à Mayotte
+        return period, not_(residence_mayotte) * isol * not_(pensions_alimentaires_percues)  # Parent isolé et ne résident pas à Mayotte
 
 
 @reference_formula
@@ -95,7 +95,7 @@ class asf(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
 
         asf_elig = simulation.calculate('asf_elig', period)
-        asf_i_holder = simulation.compute('asf_i', period)
-        montant = self.sum_by_entity(asf_i_holder, roles = ENFS)
+        asf_enfant_holder = simulation.compute('asf_enfant', period)
+        montant = self.sum_by_entity(asf_enfant_holder, roles = ENFS)
 
         return period, asf_elig * montant
