@@ -642,7 +642,7 @@ class taille_entreprise(SimpleFormulaColumn):
         default = 0,
         )
     entity_class = Individus
-    label = u"Catégode taille d'entreprise (pour calcul des cotisations sociales)"
+    label = u"Catégorie de taille d'entreprise"
     url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
 
     def function(self, simulation, period):
@@ -651,9 +651,9 @@ class taille_entreprise(SimpleFormulaColumn):
 
         taille_entreprise = (
             (effectif_entreprise > 0).astype(int16) +
-            (effectif_entreprise > 10).astype(int16) +
-            (effectif_entreprise > 20).astype(int16) +
-            (effectif_entreprise > 250).astype(int16)
+            (effectif_entreprise > 9).astype(int16) +
+            (effectif_entreprise > 19).astype(int16) +
+            (effectif_entreprise > 249).astype(int16)
             )
         return period, taille_entreprise
 
