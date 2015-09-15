@@ -71,12 +71,12 @@ class paje(SimpleFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
 
         paje_base = simulation.calculate('paje_base', period)
-        paje_nais = simulation.calculate('paje_nais', period)
+        paje_naissance = simulation.calculate('paje_naissance', period)
         paje_clca = simulation.calculate('paje_clca', period)
         paje_clmg = simulation.calculate('paje_clmg', period)
         paje_colca = simulation.calculate('paje_colca', period)
 
-        return period, paje_base + (paje_nais + paje_clca + paje_clmg + paje_colca) / 12
+        return period, paje_base + (paje_naissance + paje_clca + paje_clmg + paje_colca) / 12
 
 
 @reference_formula
@@ -201,7 +201,7 @@ class paje_base_enfant_eligible_apres_reforme_2014(SimpleFormulaColumn):
 
 
 @reference_formula
-class paje_nais(SimpleFormulaColumn):
+class paje_naissance(SimpleFormulaColumn):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
