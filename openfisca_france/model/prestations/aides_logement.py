@@ -143,6 +143,27 @@ class aide_logement_abattement_chomage_indemnise(SimpleFormulaColumn):
 
 
 @reference_formula
+class aide_logement_abattement_depart_retraite(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Montant de l'abattement sur les salaires en cas de départ en retraite"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
+        retraite = simulation.calculate('activite', period) == 3
+        activite_n_2 = simulation.calculate('salaire_imposable', two_years_ago)
+        retraite_n_2 = simulation.calculate('rst', two_years_ago)
+
+        abattement = 0.3 * activite_n_2 * (retraite_n_2 == 0) * retraite
+
+        params_abattement_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro
+        abattement = round((1 - params_abattement_frais_pro.taux) * abattement)
+
+        return period, abattement
+
+
+@reference_formula
 class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Familles
@@ -159,8 +180,10 @@ class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
         br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
         abattement_chomage_indemnise_holder = simulation.compute('aide_logement_abattement_chomage_indemnise', period)
         abattement_chomage_indemnise = self.sum_by_entity(abattement_chomage_indemnise_holder, roles = [CHEF, PART])
+        abattement_depart_retraite_holder = simulation.compute('aide_logement_abattement_depart_retraite', period)
+        abattement_depart_retraite = self.sum_by_entity(abattement_depart_retraite_holder, roles = [CHEF, PART])
 
-        ressources = br_pf_i[CHEF] + br_pf_i[PART] + rev_coll - abattement_chomage_indemnise
+        ressources = br_pf_i[CHEF] + br_pf_i[PART] + rev_coll - abattement_chomage_indemnise - abattement_depart_retraite
 
         # Abattement forfaitaire pour double activité
         abattement_double_activite = biact * Pr.dar_1

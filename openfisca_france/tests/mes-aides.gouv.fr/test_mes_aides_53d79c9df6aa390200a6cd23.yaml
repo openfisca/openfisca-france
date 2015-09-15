@@ -26,6 +26,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
+    statmarit: 2
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -76,12 +77,102 @@ individus:
     valeur_locative_terrains_non_loue:
       2012-01: 0
 familles:
+  acs:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  af:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  aide_logement:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  alf:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  als:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  apl:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  asf:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  asi:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  aspa:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  ass:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  bourse_college:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  bourse_lycee:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  cf:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
   enfants:
     - 53d79c63f6aa390200a6cd1d
     - 53d79c63f6aa390200a6cd1c
+  paje_base:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
   parents:
     - 53d79c63f6aa390200a6cd1f
     - 53d79c63f6aa390200a6cd1e
+  paris_logement_familles:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  rsa:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  rsa_majore:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  rsa_non_majore:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
 foyers_fiscaux:
   declarants:
     - 53d79c63f6aa390200a6cd1f

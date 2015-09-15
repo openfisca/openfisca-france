@@ -26,7 +26,7 @@
 from ...base import *  # noqa analysis:ignore
 
 
-build_column('cho_ld', BoolCol(label = u"Demandeur d'emploi inscrit depuis plus d'un an",
+build_column('chomeur_longue_duree', BoolCol(label = u"Demandeur d'emploi inscrit depuis plus d'un an",
                    cerfa_field = {QUIFOY['vous']: u"1AI",
                                   QUIFOY['conj']: u"1BI",
                                   QUIFOY['pac1']: u"1CI",

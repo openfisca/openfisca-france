@@ -43,13 +43,13 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('label', u"""Traitements, salaires, primes pour l'emploi et rentes"""),
                 ('children', [
                     'activite',  # Activité
-                    'fra',  # Frais réels
+                    'frais_reels',  # Frais réels
                     'hsup',  # Heures supplémentaires : revenus exonérés connus
                     'ppe_tp_sa',  # Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière
                     'ppe_tp_ns',  # Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière
                     'ppe_du_sa',  # Prime pour l'emploi des salariés: nombre d'heures payées dans l'année
                     'ppe_du_ns',  # Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année
-                    'cho_ld',  # Demandeur d'emploi inscrit depuis plus d'un an
+                    'chomeur_longue_duree',  # Demandeur d'emploi inscrit depuis plus d'un an
                     'taux_csg_remplacement',  # Taux retenu sur la CSG des revenus de remplacment
                     'pensions_alimentaires_percues',  # Pensions alimentaires perçues
                     'pensions_alimentaires_percues_decl',  # Pension déclarée
