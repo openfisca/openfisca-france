@@ -236,9 +236,10 @@ class paje_nais(SimpleFormulaColumn):
 
         nbenf = af_nbenf + nbnais  # On ajoute l'enfant à  naître;
 
-        plaf_tx = (nbenf > 0) + P.paje.base.plaf_tx1 * min_(nbenf, 2) + P.paje.base.plaf_tx2 * max_(nbenf - 2, 0)
+        # Est-ce que ces taux n'ont pas été mis à jour en avril 2014 ?
+        plaf_tx = (nbenf > 0) + P.paje.base.avant_2014.plaf_tx1 * min_(nbenf, 2) + P.paje.base.avant_2014.plaf_tx2 * max_(nbenf - 2, 0)
         majo = isol | biact
-        plaf = P.paje.base.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.plaf_maj * majo
+        plaf = P.paje.base.avant_2014.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.avant_2014.plaf_maj * majo
         elig = (br_pf <= plaf) * (nbnais != 0)
         nais_brut = nais_prime * elig * (nbnais)
         return period, nais_brut
