@@ -87,6 +87,7 @@ class paje_base_montant(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
 
     def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
         couple_biactif = simulation.calculate('biact', period)
         parent_isole = simulation.calculate('isol', period)
         nombre_enfants = simulation.calculate('af_nbenf', period)
@@ -132,20 +133,18 @@ class paje_base_montant(SimpleFormulaColumn):
             return plafond
 
         def enfant_eligible_ne_avant_avril_2014():
-            paje_base_enfant_eligible_avant_reforme_2014 = simulation.compute('paje_base_enfant_eligible_avant_reforme_2014')
+            paje_base_enfant_eligible_avant_reforme_2014 = simulation.compute('paje_base_enfant_eligible_avant_reforme_2014', period)
             return self.any_by_roles(paje_base_enfant_eligible_avant_reforme_2014)
 
         def enfant_eligible_ne_apres_avril_2014():
-            paje_base_enfant_eligible_apres_reforme_2014 = simulation.compute('paje_base_enfant_eligible_apres_reforme_2014')
+            paje_base_enfant_eligible_apres_reforme_2014 = simulation.compute('paje_base_enfant_eligible_apres_reforme_2014', period)
             return self.any_by_roles(paje_base_enfant_eligible_apres_reforme_2014)
 
         def montant_enfant_ne_avant_avril_2014():
-            annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
             ressources = simulation.calculate('br_pf', period)
             return (ressources <= plafond_avant_avril_2014()) * montant_taux_plein
 
         def montant_enfant_ne_apres_avril_2014():
-            annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
             ressources = simulation.calculate('br_pf', period)
             montant_taux_partiel = montant_taux_plein / 2
 
@@ -170,6 +169,7 @@ class paje_base_enfant_eligible_avant_reforme_2014(SimpleFormulaColumn):
     label = u"Enfant ouvrant droit à la PAJE de base né avant le 1er avril 2014"
 
     def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
         birth = simulation.calculate('birth', period)
@@ -188,6 +188,7 @@ class paje_base_enfant_eligible_apres_reforme_2014(SimpleFormulaColumn):
     label = u"Enfant ouvrant droit à la PAJE de base né après le 1er avril 2014"
 
     def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
         birth = simulation.calculate('birth', period)
