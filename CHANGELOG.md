@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.3.dev0 - next release
+
+* TODO Fill this changes list while developing
+
 ## 0.5.2
 
 * Merge pull request #304 from sgmap/taille_entreprise
