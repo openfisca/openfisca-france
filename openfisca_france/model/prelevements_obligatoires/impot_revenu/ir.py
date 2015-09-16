@@ -1266,7 +1266,7 @@ class decote(DatedFormulaColumn):
 
         return period, (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
         
-    @dated_function(start = date(2001, 1, 1), stop = date(2013, 12, 31))
+    @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
     def function(self, simulation, period):
             period = period.start.offset('first-of', 'year').period('year')
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)

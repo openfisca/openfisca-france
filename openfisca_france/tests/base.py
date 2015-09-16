@@ -31,7 +31,6 @@ from ..reforms import (
     aides_ville_paris,
     allocations_familiales_imposables,
     cesthra_invalidee,
-    plf2015,
     plfr2014,
     trannoy_wasmer,
     )
@@ -58,7 +57,6 @@ build_reform_functions = [
     aides_ville_paris.build_reform,
     allocations_familiales_imposables.build_reform,
     cesthra_invalidee.build_reform,
-    plf2015.build_reform,
     plfr2014.build_reform,
     trannoy_wasmer.build_reform,
     ]
