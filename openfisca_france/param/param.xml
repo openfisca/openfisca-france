@@ -285,7 +285,7 @@
         <VALUE deb="2012-01-01" fin="2014-12-31" valeur="0.10" /> # TODO: update, get more info..
       </CODE>
     </NODE>
-    <NODE code="agirc_gmp" description="Garantie minimale de points AGIRC">  # Find a better place
+    <NODE code="agirc_gmp" description="Garantie minimale de points AGIRC">  # Find a better place
       <CODE code="cotisation_employeur" description="Cotisation forfaitaire mensuelle employeur">
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="41.17" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="41.13" />
@@ -2781,7 +2781,16 @@
         <VALUE deb="2010-01-01" fin="2011-12-31" valeur="878" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="960" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1016" />
-        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1021" />
+      </CODE>
+    </NODE>
+    <NODE code="decote_seuil_celib" description="Décote">
+      <CODE code="seuil" description="Seuil de la décôte pour un célibataire" format="integer" type="monetary">
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1135" />
+      </CODE>
+    </NODE>
+    <NODE code="decote_seuil_couple" description="Décote">
+      <CODE code="seuil" description="Seuil de la décôte pour un couple" format="integer" type="monetary">
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1870" />
       </CODE>
     </NODE>
     <NODE code="reductions_impots" description="Réduction d'impôt">
