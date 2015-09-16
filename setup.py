@@ -74,6 +74,6 @@ setup(
     message_extractors = {'openfisca_france': [
         ('**.py', 'python', None),
         ]},
-    packages = find_packages(),
+    packages = find_packages(exclude=['openfisca_france.tests*']),
     test_suite = 'nose.collector',
     )
