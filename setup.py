@@ -50,6 +50,7 @@ setup(
 
     data_files = [
         ('share/locale/fr/LC_MESSAGES', ['openfisca_france/i18n/fr/LC_MESSAGES/openfisca-france.mo']),
+        ('share/openfisca/openfisca-france', ['CHANGELOG.md', 'LICENSE', 'README.md']),
         ],
     extras_require = {
         'inversion_revenus': [
