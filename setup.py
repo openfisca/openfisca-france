@@ -51,14 +51,24 @@ setup(
     data_files = [
         ('share/locale/fr/LC_MESSAGES', ['openfisca_france/i18n/fr/LC_MESSAGES/openfisca-france.mo']),
         ],
+    extras_require = {
+        'inversion_revenus': [
+            'scipy >= 0.12',
+            ],
+        'taxipp': [
+            'pandas >= 0.13',
+            ],
+        'test': [
+            'nose',
+            ],
+        },
+    include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
         'Babel >= 0.9.4',
         'Biryani >= 0.10.4',
         'numpy >= 1.6',
         'OpenFisca-Core >= 0.5.0',
         'PyYAML >= 3.10',
-        # 'scipy >= 0.12',  # Only for inversion_revenus reform
-        # 'pandas >= 0.13',  # Only for taxipp_utils.py which is ignored in Makefile
         ],
     message_extractors = {'openfisca_france': [
         ('**.py', 'python', None),
