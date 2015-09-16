@@ -1,0 +1,4 @@
+recursive-include openfisca_france/assets/apl *
+recursive-include openfisca_france/decompositions *
+recursive-include openfisca_france/param *
+recursive-include openfisca_france/scripts *
