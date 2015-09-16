@@ -23,8 +23,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# TODO switch to to average tax rates
-
 from __future__ import division
 
 from openfisca_core import formulas, periods, reforms
@@ -35,7 +33,7 @@ from ..model.prelevements_obligatoires.impot_revenu import ir
 def build_reform(tax_benefit_system):
     Reform = reforms.make_reform(
         key = 'plf2015',
-        name = u'Projet de Loi de Finances 2015',
+        name = u'Projet de Loi de Finances 2015 appliquée au revenus 2013',
         reference = tax_benefit_system,
         )
 
@@ -62,25 +60,25 @@ def build_reform(tax_benefit_system):
 def modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_subtree = {
         "@type": "Node",
-        "description": "PLF 2015",
+        "description": "PLF 2015 sur revenus 2013",
         "children": {
             "decote_seuil_celib": {
                 "@type": "Parameter",
                 "description": "Seuil de la décôte pour un célibataire",
                 "format": "integer",
                 "unit": "currency",
-                "values": [{'start': u'2013-01-01', 'stop': u'2014-12-31', 'value': 1135}],
+                "values": [{'start': u'2013-01-01', 'stop': u'2013-12-31', 'value': 1135}],
                 },
             "decote_seuil_couple": {
                 "@type": "Parameter",
                 "description": "Seuil de la décôte pour un couple",
                 "format": "integer",
                 "unit": "currency",
-                "values": [{'start': u'2013-01-01', 'stop': u'2014-12-31', 'value': 1870}],
+                "values": [{'start': u'2013-01-01', 'stop': u'2013-12-31', 'value': 1870}],
                 },
             },
         }
-    reform_year = 2014
+    reform_year = 2013
     reform_period = periods.period('year', reform_year)
     # FIXME update_legislation is deprecated.
     reference_legislation_json_copy = reforms.update_legislation(

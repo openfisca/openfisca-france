@@ -31,8 +31,8 @@ from openfisca_core import periods
 from openfisca_france.tests import base
 
 
-def test(year = 2014):
-    max_sal = 20000
+def test(year = 2013):
+    max_sal = 18000
     count = 2
     people = 1
     reform = base.get_cached_reform(
@@ -59,14 +59,18 @@ def test(year = 2014):
 
     reference_simulation = scenario.new_simulation(debug = True, reference = True)
     reform_simulation = scenario.new_simulation(debug = True)
+    error_margin = 1
 
-    error_margin = 0.1
     impo = reference_simulation.calculate('impo')
     reform_impo = reform_simulation.calculate('impo')
-    print impo
-    print reform_impo
-    boum
-    assert_less(max(abs(impo - reform_impo)), error_margin)
+    ir_plaf_qf = reference_simulation.calculate('ir_plaf_qf')
+    reform_ir_plaf_qf = reform_simulation.calculate('ir_plaf_qf')
+    print ir_plaf_qf
+    print reform_ir_plaf_qf
+    assert_less(max(abs([0, 911.4] - ir_plaf_qf)), error_margin)
+    assert_less(max(abs([0, 911.4] - reform_ir_plaf_qf)), error_margin)
+    assert_less(max(abs([0, -856] - impo)), error_margin)
+    assert_less(max(abs([0, -856 + (1135 -911.4)] - reform_impo)), error_margin)
 
 
 if __name__ == '__main__':
