@@ -65,12 +65,10 @@ def test(year = 2013):
     reform_impo = reform_simulation.calculate('impo')
     ir_plaf_qf = reference_simulation.calculate('ir_plaf_qf')
     reform_ir_plaf_qf = reform_simulation.calculate('ir_plaf_qf')
-    print ir_plaf_qf
-    print reform_ir_plaf_qf
-    assert_less(max(abs([0, 911.4] - ir_plaf_qf)), error_margin)
+    assert_less(max(abs([0, 918] - ir_plaf_qf)), error_margin)
     assert_less(max(abs([0, 911.4] - reform_ir_plaf_qf)), error_margin)
-    assert_less(max(abs([0, -856] - impo)), error_margin)
-    assert_less(max(abs([0, -856 + (1135 -911.4)] - reform_impo)), error_margin)
+    assert_less(max(abs([0, -869] - impo)), error_margin)
+    assert_less(max(abs([0, -911.4 + (1135 - 911.4)] - reform_impo)), error_margin)
 
 
 if __name__ == '__main__':
