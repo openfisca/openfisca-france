@@ -1,0 +1,9 @@
+- name: "psoc - Célibataire ayant un salaire de base de 50000€ annuel"
+  period: 2014
+  individus:
+  - id: ind0
+    salaire_de_base:
+      2013: 50000
+      2014: 50000
+  output_variables:
+    psoc: 0
