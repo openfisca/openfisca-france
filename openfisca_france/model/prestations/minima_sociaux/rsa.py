@@ -362,10 +362,10 @@ class br_rmi_pf(DatedFormulaColumn):
     def function_2002(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         af_base = simulation.calculate('af_base', period)
-        cf = simulation.calculate_divide('cf', period)
+        cf = simulation.calculate('cf', period)
         asf = simulation.calculate('asf', period)
-        apje = simulation.calculate_divide('apje', period)
-        ape = simulation.calculate_divide('ape', period)
+        apje = simulation.calculate('apje', period)
+        ape = simulation.calculate('ape', period)
         P = simulation.legislation_at(period.start).minim
 
         return period, P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
@@ -374,12 +374,12 @@ class br_rmi_pf(DatedFormulaColumn):
     def function_2003(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         af_base = simulation.calculate('af_base', period)
-        cf = simulation.calculate_divide('cf', period)
-        asf = simulation.calculate_divide('asf', period)
-        paje_base = simulation.calculate_divide('paje_base', period)
-        paje_clca = simulation.calculate_divide('paje_clca', period)
-        paje_prepare = simulation.calculate_divide('paje_prepare', period)
-        paje_colca = simulation.calculate_divide('paje_colca', period)
+        cf = simulation.calculate('cf', period)
+        asf = simulation.calculate('asf', period)
+        paje_base = simulation.calculate('paje_base', period)
+        paje_clca = simulation.calculate('paje_clca', period)
+        paje_prepare = simulation.calculate('paje_prepare', period)
+        paje_colca = simulation.calculate('paje_colca', period)
         P = simulation.legislation_at(period.start).minim
 
         return period, P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_prepare + paje_colca)
@@ -392,10 +392,10 @@ class br_rmi_pf(DatedFormulaColumn):
         cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', period)
         cf = simulation.calculate('cf', period)
         rsa_forfait_asf = simulation.calculate('rsa_forfait_asf', period)
-        paje_base = simulation.calculate_divide('paje_base', period)
-        paje_clca = simulation.calculate_divide('paje_clca', period)
-        paje_prepare = simulation.calculate_divide('paje_prepare', period)
-        paje_colca = simulation.calculate_divide('paje_colca', period)
+        paje_base = simulation.calculate('paje_base', period)
+        paje_clca = simulation.calculate('paje_clca', period)
+        paje_prepare = simulation.calculate('paje_prepare', period)
+        paje_colca = simulation.calculate('paje_colca', period)
         P = simulation.legislation_at(period.start).minim
 
         # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
@@ -708,10 +708,10 @@ class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         interets_epargne_sur_livrets = simulation.calculate('interets_epargne_sur_livrets', period)
         epargne_non_remuneree = simulation.calculate('epargne_non_remuneree', period)
-        revenus_capital = simulation.calculate_divide('revenus_capital', period)
+        revenus_capital = simulation.calculate('revenus_capital', period)
         valeur_locative_immo_non_loue = simulation.calculate('valeur_locative_immo_non_loue', period)
         valeur_locative_terrains_non_loue = simulation.calculate('valeur_locative_terrains_non_loue', period)
-        revenus_locatifs = simulation.calculate_divide('revenus_locatifs', period)
+        revenus_locatifs = simulation.calculate('revenus_locatifs', period)
         rsa = simulation.legislation_at(period.start).minim.rmi
 
         return period, (

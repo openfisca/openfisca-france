@@ -68,8 +68,8 @@ class br_mv_i(SimpleFormulaColumn):
         rpns = simulation.calculate_add_divide('rpns', three_previous_months)
         rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
         rev_cap_lib_holder = simulation.compute_add_divide('rev_cap_lib', three_previous_months)
-        rfon_ms = simulation.calculate_add_divide('rfon_ms', three_previous_months)
-        div_ms = simulation.calculate_add_divide('div_ms', three_previous_months)
+        rfon_ms = simulation.calculate_add('rfon_ms', three_previous_months)
+        div_ms = simulation.calculate_add('div_ms', three_previous_months)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', three_previous_months)
         allocation_securisation_professionnelle = simulation.calculate(
             'allocation_securisation_professionnelle', three_previous_months
@@ -129,7 +129,7 @@ class br_mv(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         br_mv_i_holder = simulation.compute('br_mv_i', period)
-        ass = simulation.calculate_divide('ass', period)
+        ass = simulation.calculate('ass', period)
 
         br_mv_i = self.split_by_roles(br_mv_i_holder, roles = [CHEF, PART])
         return period, ass + br_mv_i[CHEF] + br_mv_i[PART]
