@@ -1569,3 +1569,33 @@
       birth: "2004-01-01"
   output_variables:
     af: 7239.12 / 12
+
+- name: "Allocations familiales - Couple, 3 enfants dont 1 en garde alternée"
+  description: Coefficient garder alternée et Montant AF brut de CRDS
+  period: 2015-09
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2", "enfant3"]
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2", "enfant3"]
+  individus:
+    - id: "parent1"
+      birth: "1966-01-01"
+    - id: "parent2"
+      birth: "1966-01-01"
+    - id: "enfant1"
+      birth: "2010-01-01"
+    - id: "enfant2"
+      birth: "2011-01-01"
+    - id: "enfant3"
+      birth: "2012-01-01"
+      alt: true
+  output_variables:
+    af_coeff_garde_alternee: 0.8333
+    af: (296.53 * 0.8333)
