@@ -46,6 +46,20 @@ class af_nbenf(SimpleFormulaColumn):
 
         return period, af_nbenf
 
+@reference_formula
+class af_coeff_garde_alternee(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Coefficient à appliquer aux af pour tenir compte de la garde alternée"
+
+    def function(self, simulation, period):
+        period = period.this_month
+        nb_enf = simulation.calculate('af_nbenf', period)
+        alt = simulation.compute('alt', period)
+        nb_enf_garde_alternee = self.sum_by_entity(alt)
+        coeff = 1 - (nb_enf_garde_alternee / nb_enf) * 0.5
+
+        return period, coeff
 
 @reference_formula
 class af_forf_nbenf(SimpleFormulaColumn):
@@ -119,6 +133,9 @@ class af_base(SimpleFormulaColumn):
         plus_de_trois_enfants = max_(af_nbenf - 2, 0) * pfam.taux.enf3
         taux_total = un_seul_enfant + plus_de_deux_enfants + plus_de_trois_enfants
         montant_base = eligibilite * round(pfam.bmaf * taux_total, 2)
+
+        coeff_garde_alternee = simulation.calculate('af_coeff_garde_alternee', period)
+        montant_base = montant_base * coeff_garde_alternee
 
         af_taux_modulation = simulation.calculate('af_taux_modulation', period)
         montant_base_module = montant_base * af_taux_modulation
