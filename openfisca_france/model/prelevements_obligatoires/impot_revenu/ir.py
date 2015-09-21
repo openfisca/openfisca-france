@@ -1258,6 +1258,7 @@ class decote(DatedFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"décote"
+
     @dated_function(start = date(2001, 1, 1), stop = date(2013, 12, 31))
     def function_2001_2013(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
