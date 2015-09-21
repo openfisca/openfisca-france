@@ -1265,7 +1265,7 @@ class decote(DatedFormulaColumn):
         decote = simulation.legislation_at(period.start).ir.decote
 
         return period, (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
-        
+
     @dated_function(start = date(2014, 1, 1))
     def function_2014(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
@@ -1277,7 +1277,8 @@ class decote(DatedFormulaColumn):
         decote_couple = (ir_plaf_qf < decote_seuil_couple) * (decote_seuil_couple - ir_plaf_qf)
             
         return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
-        
+   
+
 @reference_formula
 class nat_imp(SimpleFormulaColumn):
     column = BoolCol(default = False)
