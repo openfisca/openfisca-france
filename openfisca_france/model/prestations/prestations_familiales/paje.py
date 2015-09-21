@@ -649,7 +649,7 @@ class ape_temp(SimpleFormulaColumn):
         L'allocation parentale d'éducation n'est pas soumise à condition de ressources, sauf l’APE à taux partiel pour
         les professions non salariées.
         '''
-        period = period.start.offset('first-of', 'month').period('year')
+        period = period.start.offset('first-of', 'month').period('month')
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', accept_other_period = True)
         inactif = simulation.calculate('inactif', period)
@@ -677,7 +677,7 @@ class ape_temp(SimpleFormulaColumn):
         #  (smic_8.27*169*136 %)
         ape = elig * (inactif * P.ape.tx_inactif + partiel1 * P.ape.tx_50 + partiel2 * P.ape.tx_80)
         # Cummul APE APJE CF
-        return period, 12 * ape  # annualisé
+        return period, ape  # annualisé
 
 
 @reference_formula
