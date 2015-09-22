@@ -26,23 +26,24 @@
 from __future__ import division
 
 from openfisca_core import formulas, periods, reforms
-
+from ..model.base import *
 from ..model.prelevements_obligatoires.impot_revenu import ir
 
 
 def build_reform(tax_benefit_system):
     Reform = reforms.make_reform(
         key = 'plf2015',
-        name = u'Projet de Loi de Finances 2015 appliquée au revenus 2013',
+        name = u'Projet de Loi de Finances 2015 appliquée aux revenus 2013',
         reference = tax_benefit_system,
         )
 
     @Reform.formula
-    class decote(formulas.SimpleFormulaColumn):
+    class decote(formulas.DatedFormulaColumn):
         label = u"Nouvelle décote 2015"
         reference = ir.decote
 
-        def function(self, simulation, period):
+        @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31) )
+        def function_2013(self, simulation, period):
             period = period.start.offset('first-of', 'year').period('year')
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             nb_adult = simulation.calculate('nb_adult', period)
