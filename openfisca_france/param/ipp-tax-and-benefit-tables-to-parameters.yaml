@@ -2,6 +2,19 @@ baremes_ipp_chomage_unemployment:
   RENAME: chomage
 baremes_ipp_impot_revenu_income_tax:
   RENAME: impot_revenu
+  deductions:
+    RENAME: tspr
+    deduction_supplementaire:
+      RENAME: abat_sal_pen
+        # taux: taux
+        abattement_maximal: max
+        ## TODO plaf_ab_dedsal:
+    abattement_forfaitaire_pour_frais_professionnels_sur_les_salaires_et_pensions.taux: abatpro.taux
+    minimum_de_l_abattement_pour_frais_professionnels.salaires: abatpro.min
+    minimum_de_l_abattement_pour_frais_professionnels.allocations_chomage: abatpro.min2
+    minimum_de_l_abattement_pour_frais_professionnels.pensions: abatpen.min
+    maximum_de_l_abattement_pour_frais_professionnels.salaires: abatpro.max
+    maximum_de_l_abattement_pour_frais_professionnels.pensions: abatpen.max
   abat_rni:
     RENAME: abattements_rni
     abattement_pour_personnes_agees_de_de_65_ans_ou_invalide_4:
@@ -23,15 +36,15 @@ baremes_ipp_impot_revenu_income_tax:
       maximum: max
       minimum: min
     deduction_pour_pensions_alimentaires: pensions_alimentaires
-    deductions_pour_pertes_en_capital_societes_nouvelles: 
+    deductions_pour_pertes_en_capital_societes_nouvelles:
       RENAME: pertes_en_capital_societes_nouvelles
       plafond_1: plafond_cb
       plafond_2: plafond_da
     deductions_pour_grosses_reparations: grosses_reparations
-    reduction_pour_versement_compte_epargne_codev: 
+    reduction_pour_versement_compte_epargne_codev:
       RENAME: compte_epargne_codev
       plafond_en_du_revenu_net_global: plafond_pct_rng
-    deductions_pour_souscription_parts_sofipeche: 
+    deductions_pour_souscription_parts_sofipeche:
       RENAME: sofipeche
       plafond_en_du_revenu_net_global: plafond_pct_rng
     Déductions investissement DOM_TOM: null  # Value must be a float
