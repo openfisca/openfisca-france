@@ -39,7 +39,7 @@ def build_reform(tax_benefit_system):
 
     @Reform.formula
     class decote(formulas.DatedFormulaColumn):
-        label = u"Nouvelle décote 2015"
+        label = u"Décote IR 2015 appliquée sur IR 2014 (revenus 2013)"
         reference = ir.decote
 
         @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31) )
