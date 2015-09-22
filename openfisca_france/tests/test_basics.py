@@ -27,8 +27,8 @@ from __future__ import division
 
 import datetime
 
-from ..model.base import CAT
-from . import base
+from openfisca_france.model.base import CAT
+from openfisca_france.tests import base
 
 
 tests_infos = [
