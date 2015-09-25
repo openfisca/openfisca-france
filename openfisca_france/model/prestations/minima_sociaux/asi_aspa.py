@@ -151,9 +151,10 @@ class aspa_elig(SimpleFormulaColumn):
         condition_invalidite = (taux_invalidite > P.aspa.taux_invalidite_aspa_anticipe) + inapte_travail
         condition_age_base = (age >= P.aspa.age_min)
         condition_age_anticipe = (age >= P.aah.age_legal_retraite) * condition_invalidite
-
         condition_age = condition_age_base + condition_age_anticipe
-        return period, condition_age
+        condition_nationalite = simulation.calculate('asi_aspa_condition_nationalite', period)
+
+        return period, condition_age * condition_nationalite
 
 
 @reference_formula
@@ -173,8 +174,23 @@ class asi_elig(SimpleFormulaColumn):
 
         condition_situation = invalide & not_(aspa_elig)
         condition_pensionnement = (rstnet + pensions_invalidite) > 0
+        condition_nationalite = simulation.calculate('asi_aspa_condition_nationalite', period)
 
-        return period, condition_situation * condition_pensionnement
+        return period, condition_situation * condition_pensionnement * condition_nationalite
+
+
+@reference_formula
+class asi_aspa_condition_nationalite(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Condition de nationnalité et de titre de séjour pour bénéficier de l'ASPA ou l'ASI"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        ressortissant_eee = simulation.calculate('ressortissant_eee', period)
+        duree_possession_titre_sejour= simulation.calculate('duree_possession_titre_sejour', period)
+        duree_min_titre_sejour = simulation.legislation_at(period.start).minim.aspa.duree_min_titre_sejour
+
+        return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
 
 @reference_formula

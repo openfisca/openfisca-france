@@ -5216,6 +5216,9 @@
           <VALUE deb="2009-01-01" fin="2014-12-31" valeur="0.03" />
         </CODE>
       </NODE>
+      <CODE code="duree_min_titre_sejour" description="Durée minimale de titre du séjour permettant de bénéficier du RSA" format="integer">
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="5" />
+      </CODE>
     </NODE>
     <NODE code="api" description="Allocation parent isolé">
       <CODE code="base" description="Taux de l'API sans enfant (femme enceinte, en pourcentage de la BMAF)" format="percent">
@@ -5372,6 +5375,9 @@
       <CODE code="abattement_forfaitaire_tx_couple" description="Fraction du SMIC pour l'abattement (couple)" format="float">
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="1.5" />
+      </CODE>
+      <CODE code="duree_min_titre_sejour" description="Durée minimale de titre du séjour permettant de bénéficier de l'ASPA ou de l'ASI" format="integer">
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="10" />
       </CODE>
     </NODE>
     <NODE code="asi" description="Allocation supplémentaire d'invalidité">
