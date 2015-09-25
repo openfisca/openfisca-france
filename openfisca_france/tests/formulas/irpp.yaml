@@ -984,6 +984,14 @@
   output_variables:
     irpp: -687
     true_decote: 224
+- name: "IRPP - Célibataire ayant des 	Revenu net imposable de 10000 € (teste la décote)"
+  period: 2014
+  absolute_error_margin: 0.9 #TODO : check why the error margin is so large, is there bottom round made by dgfip ?
+  input_variables:
+    salaire_imposable: 10000
+  output_variables:
+    irpp: -0
+    true_decote: 0
 - period: "2014"
   absolute_error_margin: 0.5
   name: "IRPP Couple, salaire_net = [30000, 0]"
