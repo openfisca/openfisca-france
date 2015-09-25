@@ -1281,10 +1281,10 @@ class decote(DatedFormulaColumn):
 
 
 @reference_formula
-class true_decote(SimpleFormulaColumn):
+class decote_gain_fiscal(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"Décote au sens Dgfip / gain fiscal de la décote"
+    label = u"Gain fiscal de la décote/Décote au sens Dgfip tel que sur la feuille d'impôt"
     start_date = date(1982, 1, 1)
 
     def function(self, simulation, period):
