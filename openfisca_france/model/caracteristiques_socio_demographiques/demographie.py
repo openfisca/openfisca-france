@@ -211,3 +211,17 @@ reference_input_variable(
     entity_class = Individus,
     label = u"Rempli l'obligation scolaire",
     )
+
+reference_input_variable(
+    name ="ressortissant_eee",
+    column = BoolCol(default = True),
+    entity_class = Individus,
+    label = u"Ressortissant de l'EEE ou de la Suisse."
+    )
+
+reference_input_variable(
+    name ="duree_possession_titre_sejour",
+    column = IntCol,
+    entity_class = Individus,
+    label = u"Durée depuis laquelle l'individu possède un titre de séjour (en années)"
+    )
