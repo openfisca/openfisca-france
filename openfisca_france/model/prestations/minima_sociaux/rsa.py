@@ -700,6 +700,20 @@ class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
             revenus_locatifs
             )
 
+@reference_formula
+class rsa_condition_nationalite(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Conditions de nationnalité et de titre de séjour pour bénéficier du RSA"
+
+    def function(self, simulation, period):
+        period = period.this_month
+        ressortissant_eee = simulation.calculate('ressortissant_eee', period)
+        duree_possession_titre_sejour= simulation.calculate('duree_possession_titre_sejour', period)
+        duree_min_titre_sejour = simulation.legislation_at(period.start).minim.rmi.duree_min_titre_sejour
+
+        return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
+
 
 @reference_formula
 class rsa_eligibilite(SimpleFormulaColumn):
@@ -708,13 +722,15 @@ class rsa_eligibilite(SimpleFormulaColumn):
     label = u"Eligibilité au RSA"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age_holder = simulation.compute('age', period)
         age_parents = self.split_by_roles(age_holder, roles = [CHEF, PART])
         activite_holder = simulation.compute('activite', period)
         activite_parents = self.split_by_roles(activite_holder, roles = [CHEF, PART])
         nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         rsa_eligibilite_tns = simulation.calculate('rsa_eligibilite_tns', period)
+        rsa_condition_nationalite = simulation.compute('rsa_condition_nationalite', period)
+        condition_nationalite = self.any_by_roles(rsa_condition_nationalite, roles = [CHEF, PART])
         rmi = simulation.legislation_at(period.start).minim.rmi
         age_min = (nb_enfant_rsa == 0) * rmi.age_pac
 
@@ -722,7 +738,10 @@ class rsa_eligibilite(SimpleFormulaColumn):
             (age_parents[CHEF] >= age_min) * not_(activite_parents[CHEF] == 2) +
             (age_parents[PART] >= age_min) * not_(activite_parents[PART] == 2)
         )
-        eligib = eligib * rsa_eligibilite_tns
+        eligib = eligib * (
+            condition_nationalite *
+            rsa_eligibilite_tns
+            )
 
         return period, eligib
 
