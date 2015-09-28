@@ -115,16 +115,18 @@ class aide_logement_abattement_chomage_indemnise(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.this_month
+<<<<<<< HEAD
         two_years_ago = period.n_2
+=======
+>>>>>>> RSA neutral AL
         chomage_net_m_1 = simulation.calculate('chonet', period.offset(-1))
         chomage_net_m_2 = simulation.calculate('chonet', period.offset(-2))
-        revenus_activite_pro = simulation.calculate('salaire_imposable', two_years_ago)
+        revenus_activite_pro = simulation.calculate('salaire_imposable', period.n_2)
         taux_abattement = simulation.legislation_at(period.start).al.ressources.abattement_chomage_indemnise
+        taux_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro.taux
 
         abattement = and_(chomage_net_m_1 > 0, chomage_net_m_2 > 0) * taux_abattement * revenus_activite_pro
-
-        params_abattement_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro
-        abattement = round((1 - params_abattement_frais_pro.taux) * abattement)
+        abattement = round((1 - taux_frais_pro) * abattement)
 
         return period, abattement
 
@@ -137,18 +139,40 @@ class aide_logement_abattement_depart_retraite(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.this_month
+<<<<<<< HEAD
         two_years_ago = period.n_2
+=======
+>>>>>>> RSA neutral AL
         retraite = simulation.calculate('activite', period) == 3
-        activite_n_2 = simulation.calculate('salaire_imposable', two_years_ago)
-        retraite_n_2 = simulation.calculate('rst', two_years_ago)
+        activite_n_2 = simulation.calculate('salaire_imposable', period.n_2)
+        retraite_n_2 = simulation.calculate('rst', period.n_2)
+        taux_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro.taux
 
         abattement = 0.3 * activite_n_2 * (retraite_n_2 == 0) * retraite
-
-        params_abattement_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro
-        abattement = round((1 - params_abattement_frais_pro.taux) * abattement)
+        abattement = round((1 - taux_frais_pro) * abattement)
 
         return period, abattement
 
+
+@reference_formula
+class aide_logement_neutralisation_rsa(SimpleFormulaColumn):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
+
+    def function(self, simulation, period):
+        period = period.this_month
+        rsa_last_month = simulation.calculate('rsa', period.last_month)
+        activite = simulation.compute('salaire_imposable', period.n_2)
+        chomage = simulation.compute('cho', period.n_2)
+        activite_n_2 = self.sum_by_entity(activite)
+        chomage_n_2 = self.sum_by_entity(chomage)
+        taux_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro.taux
+
+        abattement = (activite_n_2 + chomage_n_2) * rsa_last_month
+        abattement = round((1 - taux_frais_pro) * abattement)
+
+        return period, abattement
 
 @reference_formula
 class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
@@ -158,9 +182,12 @@ class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.this_month
+<<<<<<< HEAD
         two_years_ago = period.n_2
+=======
+>>>>>>> RSA neutral AL
         br_pf_i_holder = simulation.compute('br_pf_i', period)
-        rev_coll_holder = simulation.compute('rev_coll', two_years_ago)
+        rev_coll_holder = simulation.compute('rev_coll', period.n_2)
         rev_coll = self.sum_by_entity(rev_coll_holder)
         biact = simulation.calculate('biact', period)
         Pr = simulation.legislation_at(period.start).al.ressources
@@ -169,8 +196,12 @@ class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
         abattement_chomage_indemnise = self.sum_by_entity(abattement_chomage_indemnise_holder, roles = [CHEF, PART])
         abattement_depart_retraite_holder = simulation.compute('aide_logement_abattement_depart_retraite', period)
         abattement_depart_retraite = self.sum_by_entity(abattement_depart_retraite_holder, roles = [CHEF, PART])
+        neutralisation_rsa = simulation.calculate('aide_logement_neutralisation_rsa', period)
 
-        ressources = br_pf_i[CHEF] + br_pf_i[PART] + rev_coll - abattement_chomage_indemnise - abattement_depart_retraite
+        ressources = (
+            br_pf_i[CHEF] + br_pf_i[PART] + rev_coll -
+            (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
+        )
 
         # Abattement forfaitaire pour double activité
         abattement_double_activite = biact * Pr.dar_1
