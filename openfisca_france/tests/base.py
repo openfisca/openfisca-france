@@ -29,28 +29,17 @@ TaxBenefitSystem = init_country()
 tax_benefit_system = TaxBenefitSystem()
 
 
-# Initialize reforms caches
+# Reforms cache, used by long scripts like test_yaml.py
 
-build_reform_functions = [
-    aides_ville_paris.build_reform,
-    allocations_familiales_imposables.build_reform,
-    cesthra_invalidee.build_reform,
-    plf2015.build_reform,
-    plfr2014.build_reform,
-    trannoy_wasmer.build_reform,
-    ]
-known_reforms = [
-    build_reform(tax_benefit_system)
-    for build_reform in build_reform_functions
-    ]
 build_reform_function_by_key = {
-    reform.key: build_reform
-    for build_reform, reform in zip(build_reform_functions, known_reforms)
+    'aides_ville_paris': aides_ville_paris.build_reform,
+    'allocations_familiales_imposables': allocations_familiales_imposables.build_reform,
+    'cesthra_invalidee': cesthra_invalidee.build_reform,
+    'plf2015': plf2015.build_reform,
+    'plfr2014': plfr2014.build_reform,
+    'trannoy_wasmer': trannoy_wasmer.build_reform,
     }
-reform_by_full_key = {
-    reform.full_key: reform
-    for reform in known_reforms
-    }
+reform_by_full_key = {}
 
 
 def get_cached_composed_reform(reform_keys, tax_benefit_system):
