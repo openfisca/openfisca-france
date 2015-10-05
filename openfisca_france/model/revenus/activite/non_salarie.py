@@ -1055,12 +1055,13 @@ class travailleur_non_salarie(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
+        this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period) != 0
-        tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period) != 0
-        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period) != 0
-        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period) != 0
-        tns_autres_revenus_chiffre_affaires = simulation.calculate('tns_autres_revenus_chiffre_affaires', period) != 0
+        tns_micro_entreprise_chiffre_affaires = simulation.calculate_add('tns_micro_entreprise_chiffre_affaires', this_year_and_last_year) != 0
+        tns_autres_revenus = simulation.calculate_add('tns_autres_revenus', this_year_and_last_year) != 0
+        tns_benefice_exploitant_agricole = simulation.calculate_add('tns_benefice_exploitant_agricole', this_year_and_last_year) != 0
+        tns_autres_revenus_chiffre_affaires = simulation.calculate_add('tns_autres_revenus_chiffre_affaires', this_year_and_last_year) != 0
 
         result = (
             tns_auto_entrepreneur_chiffre_affaires + tns_micro_entreprise_chiffre_affaires +
@@ -1089,7 +1090,7 @@ class tns_auto_entrepreneur_benefice(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
         bareme = simulation.legislation_at(period.start).tns
@@ -1105,7 +1106,7 @@ class tns_micro_entreprise_benefice(SimpleFormulaColumn) :
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_year
         tns_micro_entreprise_type_activite = simulation.calculate('tns_micro_entreprise_type_activite', period)
         tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period)
         bareme = simulation.legislation_at(period.start).tns
@@ -1113,6 +1114,7 @@ class tns_micro_entreprise_benefice(SimpleFormulaColumn) :
         benefice =  compute_benefice_auto_entrepreneur_micro_entreprise(bareme, tns_micro_entreprise_type_activite, tns_micro_entreprise_chiffre_affaires)
         return period, benefice
 
+# The following formulas take into account 'cotisation sociales'. However, it seems that for all prestations, the 'base ressources' are only using the 'benefice', without deducting the 'cotisation sociales'. Although this rule seems unfair towards independent workers, we are now applying it for all presations and therefore we are not using the following formulas for calculating prestations.
 
 @reference_formula
 class tns_auto_entrepreneur_revenus_net(SimpleFormulaColumn) :
