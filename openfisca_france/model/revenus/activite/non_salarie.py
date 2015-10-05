@@ -974,6 +974,7 @@ build_column('f5sq', IntCol())
 
 # Input variables
 
+# Input mensuel
 reference_input_variable(
     name ='tns_auto_entrepreneur_chiffre_affaires',
     column = FloatCol,
@@ -981,6 +982,7 @@ reference_input_variable(
     label = u"Chiffre d'affaires en tant qu'auto-entrepreneur",
     set_input = set_input_divide_by_period)
 
+# Input annuel
 reference_input_variable(
     name ='tns_micro_entreprise_chiffre_affaires',
     column = FloatCol,
@@ -990,6 +992,7 @@ reference_input_variable(
 
 enum_tns_type_activite = Enum([u'achat_revente', u'bic', u'bnc'])
 
+# TODO remove this ugly is_permanent
 reference_input_variable(
     name='tns_auto_entrepreneur_type_activite',
     column = EnumCol(enum = enum_tns_type_activite),
@@ -997,6 +1000,7 @@ reference_input_variable(
     is_permanent = True,
     label = u"Type d'activité de l'auto-entrepreneur")
 
+# TODO remove this ugly is_permanent
 reference_input_variable(
     name='tns_micro_entreprise_type_activite',
     column = EnumCol(enum = enum_tns_type_activite),
@@ -1004,6 +1008,7 @@ reference_input_variable(
     is_permanent = True,
     label = u"Type d'activité de la micro-entreprise")
 
+# Input sur le dernier exercice. Par convention, sur l'année dernière.
 reference_input_variable(
     name ='tns_autres_revenus',
     column = FloatCol,
@@ -1032,6 +1037,7 @@ reference_input_variable(
     label = u"Le TNS a au moins un employé. Ne s'applique pas pour les agricoles ni auto-entrepreneurs ni micro entreprise",
     set_input = set_input_dispatch_by_period)
 
+# Input annuel
 reference_input_variable(
     name = 'tns_benefice_exploitant_agricole',
     column = FloatCol,
@@ -1144,21 +1150,3 @@ class tns_micro_entreprise_revenus_net(SimpleFormulaColumn) :
         revenus = tns_micro_entreprise_benefice - tns_micro_entreprise_charges_sociales
 
         return period, revenus
-
-
-@reference_formula
-class tns_total_revenus_net(DatedFormulaColumn):
-    column = FloatCol
-    label = u"Total des revenus non salariés"
-    entity_class = Individus
-#    start = "2008-01-01"
-
-    @dated_function(date(2008, 1, 1))
-    def function_2008__(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        tns_auto_entrepreneur_revenus_net = simulation.calculate('tns_auto_entrepreneur_revenus_net', period)
-        tns_micro_entreprise_revenus_net = simulation.calculate('tns_micro_entreprise_revenus_net', period)
-        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
-        total_revenus = tns_autres_revenus + tns_auto_entrepreneur_revenus_net + tns_micro_entreprise_revenus_net
-
-        return period, total_revenus
