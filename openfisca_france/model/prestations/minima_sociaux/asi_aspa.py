@@ -29,9 +29,10 @@ class br_mv_i(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
+        last_year = period.last_year
+        three_previous_months = period.last_3_months
 
-        three_previous_months = period.start.period('month', 3).offset(-3)
         aspa_elig = simulation.calculate('aspa_elig', period)
         aspa_couple_holder = simulation.compute('aspa_couple', period)
         salaire_de_base = simulation.calculate_add('salaire_de_base', three_previous_months)
@@ -61,7 +62,17 @@ class br_mv_i(SimpleFormulaColumn):
         indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', three_previous_months)
         indemnites_journalieres = simulation.calculate('indemnites_journalieres', three_previous_months)
         indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
-        tns_total_revenus_net = simulation.calculate_add('tns_total_revenus_net', three_previous_months)
+
+        def revenus_tns():
+            revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', three_previous_months)
+
+           # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year) * (3 / 12)
+            tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year) * (3 / 12)
+            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year) * (3 / 12)
+
+            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+
         rsa_base_ressources_patrimoine_i = simulation.calculate_add(
             'rsa_base_ressources_patrimoine_i', three_previous_months
             )
@@ -93,7 +104,7 @@ class br_mv_i(SimpleFormulaColumn):
                revenus_stage_formation_pro + allocation_securisation_professionnelle +
                prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
                pensions_invalidite + gains_exceptionnels + indemnites_journalieres + indemnites_chomage_partiel +
-               indemnites_volontariat + tns_total_revenus_net + rsa_base_ressources_patrimoine_i + aah
+               indemnites_volontariat + revenus_tns() + rsa_base_ressources_patrimoine_i + aah
                ) / 3
 
 
