@@ -2204,7 +2204,7 @@ class rag(SimpleFormulaColumn):
 class ric(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"ric"
+    label = u"Bénéfices industriels et commerciaux"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?pageId=prof_bic&espId=2&impot=BIC&sfid=50"
 
     def function(self, simulation, period):
