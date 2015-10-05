@@ -65,6 +65,8 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Individus
 
         def function(self, simulation, period):
+            period = period.this_month
+            last_year = period.last_year
             salaire_net = simulation.calculate('salaire_net', period)
             chonet = simulation.calculate('chonet', period)
             rstnet = simulation.calculate('rstnet', period)
@@ -82,14 +84,23 @@ def build_reform(tax_benefit_system):
             indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', period)
             bourse_recherche = simulation.calculate('bourse_recherche', period)
             gains_exceptionnels = simulation.calculate('gains_exceptionnels', period)
-            tns_total_revenus_net = simulation.calculate_add('tns_total_revenus_net', period)
+
+            def revenus_tns():
+                revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', period)
+
+                # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+                tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year) / 12
+                tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year) / 12
+                tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year) / 12
+
+                return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
             result = (
                 salaire_net + indemnites_chomage_partiel + indemnites_stage + chonet + rstnet +
                 pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
                 rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
                 indemnites_journalieres_imposables + prestation_compensatoire +
-                pensions_invalidite + bourse_recherche + gains_exceptionnels + tns_total_revenus_net +
+                pensions_invalidite + bourse_recherche + gains_exceptionnels + revenus_tns() +
                 revenus_stage_formation_pro
                 )
 
