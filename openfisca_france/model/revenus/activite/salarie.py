@@ -41,11 +41,12 @@ build_column('frais_reels', IntCol(label = u"Frais réels",
 build_column('hsup', IntCol(label = u"Heures supplémentaires : revenus exonérés connus",
                 val_type = "monetary",
                 start = date(2007, 1, 1),
+                end = date(2013, 12, 13),  # Il y a des heures supplémentaires effectuées en 2013 payées en 2013
                 cerfa_field = {QUIFOY['vous']: u"1AU",
                                QUIFOY['conj']: u"1BU",
                                QUIFOY['pac1']: u"1CU",
                                QUIFOY['pac2']: u"1DU",
-                               }))  # (f1au, f1bu, f1cu, f1du, f1eu)
+                               }))  # (f1au, f1bu, f1cu, f1du)
 
 build_column('ppe_du_sa', IntCol(label = u"Prime pour l'emploi des salariés: nombre d'heures payées dans l'année",
                      cerfa_field = {QUIFOY['vous']: u"1AV",
