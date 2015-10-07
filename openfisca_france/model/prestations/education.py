@@ -34,9 +34,9 @@ class bourse_college(SimpleFormulaColumn):
         plafond_taux_2 = P.plafond_taux_2 + P.plafond_taux_2 * nb_enfants * P.coeff_enfant_supplementaire
         plafond_taux_3 = P.plafond_taux_3 + P.plafond_taux_3 * nb_enfants * P.coeff_enfant_supplementaire
 
-        eligible_taux_3 = rfr < plafond_taux_3
-        eligible_taux_2 = not_(eligible_taux_3) * (rfr < plafond_taux_2)
-        eligible_taux_1 = not_(or_(eligible_taux_2, eligible_taux_3)) * (rfr < plafond_taux_1)
+        eligible_taux_3 = rfr <= plafond_taux_3
+        eligible_taux_2 = not_(eligible_taux_3) * (rfr <= plafond_taux_2)
+        eligible_taux_1 = not_(or_(eligible_taux_2, eligible_taux_3)) * (rfr <= plafond_taux_1)
 
         scolarites = self.split_by_roles(scolarite_holder, roles = ENFS)
         nb_enfants_college = zeros(len(rfr))
