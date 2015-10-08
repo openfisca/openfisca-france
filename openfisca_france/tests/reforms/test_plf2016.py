@@ -13,7 +13,7 @@ def test_dossier_de_presse_1():
     # Célibataire sans enfants1 part : revenu mensuel net = 1593 IR2015 = 1138 IR2016 = 828
     year = 2015
     reform = base.get_cached_reform(
-        reform_key = 'plf2016',
+        reform_key = 'plf2016_counterfactual',
         tax_benefit_system = base.tax_benefit_system,
         )
     scenario = reform.new_scenario().init_single_entity(
@@ -37,7 +37,7 @@ def test_dossier_de_presse_2():
     # Couple, sans enfants, retraités 2 parts : revenu mensuel net : 2960 IR2015 = 1911 #IR2016 = 1428
     year = 2015
     reform = base.get_cached_reform(
-        reform_key = 'plf2016',
+        reform_key = 'plf2016_counterfactual',
         tax_benefit_system = base.tax_benefit_system,
         )
     scenario = reform.new_scenario().init_single_entity(
@@ -70,7 +70,7 @@ def test_dossier_de_presse_3():
     # Couple, deux enfants, salariés 3 parts: revenu mensuel net : 3800 IR 2015 : 1879 IR 2016 : 1372
     year = 2015
     reform = base.get_cached_reform(
-        reform_key = 'plf2016',
+        reform_key = 'plf2016_counterfactual',
         tax_benefit_system = base.tax_benefit_system,
         )
     scenario = reform.new_scenario().init_single_entity(
@@ -107,6 +107,6 @@ if __name__ == '__main__':
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
 
-    # test_dossier_de_presse_1()
-    # test_dossier_de_presse_2()
+    test_dossier_de_presse_1()
+    test_dossier_de_presse_2()
     test_dossier_de_presse_3()
