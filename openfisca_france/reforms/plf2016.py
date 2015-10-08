@@ -95,9 +95,8 @@ def build_counterfactual_reform(tax_benefit_system):
     return reform
 
 
-# TODO inflater les paramètres de la décote
-# Et vérifier le barème de l'IR
 def counterfactual_modify_legislation_json(reference_legislation_json_copy):
+    # TODO: inflater les paramètres de la décote le barème de l'IR
     reform_legislation_subtree = {
         "@type": "Node",
         "description": "PLF 2016 sur revenus 2015",
@@ -121,20 +120,21 @@ def counterfactual_modify_legislation_json(reference_legislation_json_copy):
     reference_legislation_json_copy['children']['plf2016_conterfactual'] = reform_legislation_subtree
     return reference_legislation_json_copy
 
-# WIP : Nouveaux parametres à actualiser :
-#1° Le 1 est remplacé par les dispositions suivantes :
-#(3) « 1. L'impôt est calculé en appliquant à la fraction de chaque part de revenu qui excède 9 700 € le taux de :
-#(4) « 14 % pour la fraction supérieure à 9 700 € et inférieure ou égale à 26 791 € ;
-#(5) « 30 % pour la fraction supérieure à 26 791 € et inférieure ou égale à 71 826 € ;
-#(6) « 41 % pour la fraction supérieure à 71 826 € et inférieure ou égale à 152 108 € ;
-#(7) « 45 % pour la fraction supérieure à 152 108 €. » ;
-#(8) 2° Au 2 :
-#(9) a) Au premier alinéa, le montant : « 1 508 € » est remplacé par le montant : « 1 510 € » ;
-#(10) b) Au deuxième alinéa, le montant : « 3 558 € » est remplacé par le montant : « 3 562 € » ;
-#(11) c) Au troisième alinéa, le montant : « 901 € » est remplacé par le montant : « 902 € » ;
-#(12) d) Au quatrième alinéa, le montant : « 1 504 € » est remplacé par le montant : « 1 506 € » ;
-#(13) e) Au dernier alinéa, le montant : « 1 680 € » est remplacé par le montant : « 1 682 € » ;
-#(14) 3° Au 4, les mots : « 1 135 € et » sont remplacés par les mots : « 1 165 € et les trois quarts de » et les mots : « 1 870 €
-#et » sont remplacés par les mots : « 1 920 € et les trois quarts de ».
-#(15) II. – Au second alinéa de l'article 196 B du même code, le montant : « 5 726 € » est remplacé par le
-#montant : « 5 732 € ».
+    # WIP : Nouveaux parametres à actualiser :
+    # 1° Le 1 est remplacé par les dispositions suivantes :
+    # (3) « 1. L'impôt est calculé en appliquant à la fraction de chaque part de revenu qui excède 9 700 € le taux de :
+    # (4) « 14 % pour la fraction supérieure à 9 700 € et inférieure ou égale à 26 791 € ;
+    # (5) « 30 % pour la fraction supérieure à 26 791 € et inférieure ou égale à 71 826 € ;
+    # (6) « 41 % pour la fraction supérieure à 71 826 € et inférieure ou égale à 152 108 € ;
+    # (7) « 45 % pour la fraction supérieure à 152 108 €. » ;
+    # (8) 2° Au 2 :
+    # (9) a) Au premier alinéa, le montant : « 1 508 € » est remplacé par le montant : « 1 510 € » ;
+    # (10) b) Au deuxième alinéa, le montant : « 3 558 € » est remplacé par le montant : « 3 562 € » ;
+    # (11) c) Au troisième alinéa, le montant : « 901 € » est remplacé par le montant : « 902 € » ;
+    # (12) d) Au quatrième alinéa, le montant : « 1 504 € » est remplacé par le montant : « 1 506 € » ;
+    # (13) e) Au dernier alinéa, le montant : « 1 680 € » est remplacé par le montant : « 1 682 € » ;
+    # (14) 3° Au 4, les mots : « 1 135 € et » sont remplacés par les mots : « 1 165 € et les trois quarts de » et
+    # les mots : « 1 870 €
+    # et » sont remplacés par les mots : « 1 920 € et les trois quarts de ».
+    # (15) II. – Au second alinéa de l'article 196 B du même code, le montant : « 5 726 € » est remplacé par le
+    # montant : « 5 732 € ».
