@@ -1236,6 +1236,30 @@ class decote(DatedFormulaColumn):
     entity_class = FoyersFiscaux
     label = u"décote"
 
+    @dated_function(start = date(2015, 1, 1))
+    def function_2015(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
+        ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
+        nb_adult = simulation.calculate('nb_adult', period)
+        decote_seuil_celib = simulation.legislation_at(period.start).ir.decote_seuil_celib.seuil
+        decote_seuil_couple = simulation.legislation_at(period.start).ir.decote_seuil_couple.seuil
+        decote_celib = (ir_plaf_qf < decote_seuil_celib) * (decote_seuil_celib - .75 * ir_plaf_qf)
+        decote_couple = (ir_plaf_qf < decote_seuil_couple) * (decote_seuil_couple - .75 * ir_plaf_qf)
+
+        return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
+
+    @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
+    def function_2014(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
+        ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
+        nb_adult = simulation.calculate('nb_adult', period)
+        decote_seuil_celib = simulation.legislation_at(period.start).ir.decote_seuil_celib.seuil
+        decote_seuil_couple = simulation.legislation_at(period.start).ir.decote_seuil_couple.seuil
+        decote_celib = (ir_plaf_qf < decote_seuil_celib) * (decote_seuil_celib - ir_plaf_qf)
+        decote_couple = (ir_plaf_qf < decote_seuil_couple) * (decote_seuil_couple - ir_plaf_qf)
+
+        return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
+
     @dated_function(start = date(2001, 1, 1), stop = date(2013, 12, 31))
     def function_2001_2013(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
@@ -1243,18 +1267,6 @@ class decote(DatedFormulaColumn):
         decote = simulation.legislation_at(period.start).ir.decote
 
         return period, (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
-
-    @dated_function(start = date(2014, 1, 1))
-    def function_2014__(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
-        ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
-        nb_adult = simulation.calculate('nb_adult', period)
-        decote_seuil_celib = simulation.legislation_at(period.start).ir.decote.seuil_celib
-        decote_seuil_couple = simulation.legislation_at(period.start).ir.decote.seuil_couple
-        decote_celib = (ir_plaf_qf < decote_seuil_celib) * (decote_seuil_celib - ir_plaf_qf)
-        decote_couple = (ir_plaf_qf < decote_seuil_couple) * (decote_seuil_couple - ir_plaf_qf)
-
-        return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
 
 @reference_formula
@@ -3031,10 +3043,6 @@ class ppe_brute(SimpleFormulaColumn):
         ppe_tot = ppe_vous + ppe_conj + ppe_pac1 + ppe_pac2 + ppe_pac3 + maj_pac
 
         ppe_tot = (ppe_tot != 0) * max_(ppe.versmin, ppe_tot)
-        # from pandas import DataFrame
-        # decompo = {0: ppev, 1 :ppe_vous, 2: ppec,3: ppe_conj, 4: maj_pac, 5 : ppe_monact_vous, 6: ppe_monact_conj,
-            #8: basev, 81 : basevi, 9: basec, 91 : baseci, 10:ppe_tot}
-        # ppe DataFrame(decompo).to_string()
 
         return period, ppe_tot
 
@@ -3055,10 +3063,10 @@ class ppe(SimpleFormulaColumn):
         ppe_brute = simulation.calculate('ppe_brute', period)
         rsa_act_i_holder = simulation.compute('rsa_act_i', period)
 
-        #   TODO: les foyers qui paient l'ISF n'ont pas le droit à la PPE
+        # TODO: les foyers qui paient l'ISF n'ont pas le droit à la PPE
         rsa_act_i = self.split_by_roles(rsa_act_i_holder, roles = [VOUS, CONJ])
 
-    #   On retranche le RSA activité de la PPE
-    #   Dans les agrégats officiels de la DGFP, c'est la PPE brute qu'il faut comparer
+        #   On retranche le RSA activité de la PPE
+        #   Dans les agrégats officiels de la DGFP, c'est la PPE brute qu'il faut comparer
         ppe = max_(ppe_brute - rsa_act_i[VOUS] - rsa_act_i[CONJ], 0)
         return period, ppe
