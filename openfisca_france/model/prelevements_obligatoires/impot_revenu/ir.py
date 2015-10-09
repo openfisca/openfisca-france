@@ -1243,8 +1243,8 @@ class decote(DatedFormulaColumn):
         nb_adult = simulation.calculate('nb_adult', period)
         decote_seuil_celib = simulation.legislation_at(period.start).ir.decote_seuil_celib.seuil
         decote_seuil_couple = simulation.legislation_at(period.start).ir.decote_seuil_couple.seuil
-        decote_celib = (ir_plaf_qf < decote_seuil_celib) * (decote_seuil_celib - .75 * ir_plaf_qf)
-        decote_couple = (ir_plaf_qf < decote_seuil_couple) * (decote_seuil_couple - .75 * ir_plaf_qf)
+        decote_celib = (ir_plaf_qf < 4 / 3 * decote_seuil_celib) * (decote_seuil_celib - 3 / 4 * ir_plaf_qf)
+        decote_couple = (ir_plaf_qf < 4 / 3 * decote_seuil_couple) * (decote_seuil_couple - 3 / 4 * ir_plaf_qf)
 
         return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
@@ -1714,11 +1714,14 @@ class irpp(SimpleFormulaColumn):
 
         # TODO: crade ?
         pre_result = iai - credits_impot + cehr
-        return period, ((iai > P.seuil) *
-            ((pre_result < P.min) * (pre_result > 0) * iai * 0 +
-            ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)) +
-            (iai <= P.seuil) * ((pre_result < 0) * (-pre_result) +
-            (pre_result >= 0) * 0 * iai))
+        return period, (
+            (iai > P.seuil) * (
+                (pre_result < P.min) * (pre_result > 0) * iai * 0 +
+                ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)) +
+            (iai <= P.seuil) * (
+                (pre_result < 0) * (-pre_result) +
+                (pre_result >= 0) * 0 * iai)
+                )
 
 
 ###############################################################################
@@ -2689,6 +2692,21 @@ class taux_effectif(SimpleFormulaColumn):
         base_fictive = rni + microentreprise + abnc_proc + nbnc_proc * (1 + cga)
         trigger = (microentreprise != 0) | (abnc_proc != 0) | (nbnc_proc != 0)
         return period, trigger * nbptr * bareme.calc(base_fictive / nbptr) / max_(1, base_fictive)
+
+
+@reference_formula
+class taux_moyen_imposition(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"Taux moyen d'imposition"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
+        rni = simulation.calculate('rni', period)
+        irpp = simulation.calculate('irpp', period)
+        return period, (
+            (- irpp) / (rni + (rni == 0))
+            ) * (rni > 0)
 
 
 ###############################################################################

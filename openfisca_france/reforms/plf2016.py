@@ -97,6 +97,7 @@ def build_counterfactual_reform(tax_benefit_system):
 
 def counterfactual_modify_legislation_json(reference_legislation_json_copy):
     # TODO: inflater les paramètres de la décote le barème de l'IR
+    inflation = .001
     reform_legislation_subtree = {
         "@type": "Node",
         "description": "PLF 2016 sur revenus 2015",
@@ -106,14 +107,14 @@ def counterfactual_modify_legislation_json(reference_legislation_json_copy):
                 "description": "Seuil de la décôte pour un célibataire",
                 "format": "integer",
                 "unit": "currency",
-                "values": [{'start': u'2015-01-01', 'stop': u'2015-12-31', 'value': 1135}],
+                "values": [{'start': u'2015-01-01', 'stop': u'2015-12-31', 'value': round(1135 * (1 + inflation))}],
                 },
             "decote_seuil_couple": {
                 "@type": "Parameter",
                 "description": "Seuil de la décôte pour un couple",
                 "format": "integer",
                 "unit": "currency",
-                "values": [{'start': u'2015-01-01', 'stop': u'2015-12-31', 'value': 1870}],
+                "values": [{'start': u'2015-01-01', 'stop': u'2015-12-31', 'value': round(1870 * (1 + inflation))}],
                 },
             },
         }
