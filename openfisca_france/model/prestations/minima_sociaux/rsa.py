@@ -614,7 +614,7 @@ class rsa(DatedFormulaColumn):
 
     @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         rsa_majore = simulation.calculate('rsa_majore', period)
         rsa_non_majore = simulation.calculate('rsa_non_majore', period)
         rsa_non_calculable = simulation.calculate('rsa_non_calculable', period)
@@ -925,11 +925,17 @@ class rsa_non_calculable(SimpleFormulaColumn):
     label = u"RSA non calculable pour la Famille (voir rsa_non_calculable_i)"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
+
+        # Si le montant du RSA est nul sans tenir compte des revenus
+        # TNS pouvant provoquer une non calculabilité (parce que
+        # les autres revenus sont trop importants), alors a fortiori
+        # la famille ne sera pas éligible au RSA en tenant compte de
+        # ces ressources. Il n'y a donc pas non calculabilité.
         eligible_rsa = (
-            simulation.calculate('rsa_eligibilite', period) +
-            simulation.calculate('rsa_majore_eligibilite', period)
-            )
+            simulation.calculate('rsa_majore', period) +
+            simulation.calculate('rsa_non_majore', period)
+            ) > 0
         non_calculable_tns_holder = simulation.compute('rsa_non_calculable_tns_i', period)
         non_calculable_tns_parents = self.split_by_roles(non_calculable_tns_holder, roles = [CHEF, PART])
         non_calculable = (
