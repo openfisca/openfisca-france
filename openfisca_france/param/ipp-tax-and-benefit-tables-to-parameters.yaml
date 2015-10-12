@@ -1,5 +1,5 @@
-baremes_ipp_chomage_unemployment:
-  RENAME: chomage
+# baremes_ipp_chomage_unemployment:
+#   RENAME: chomage
 baremes_ipp_impot_revenu_income_tax:
   RENAME: impot_revenu
   abat_rni:
@@ -23,15 +23,15 @@ baremes_ipp_impot_revenu_income_tax:
       maximum: max
       minimum: min
     deduction_pour_pensions_alimentaires: pensions_alimentaires
-    deductions_pour_pertes_en_capital_societes_nouvelles: 
+    deductions_pour_pertes_en_capital_societes_nouvelles:
       RENAME: pertes_en_capital_societes_nouvelles
       plafond_1: plafond_cb
       plafond_2: plafond_da
     deductions_pour_grosses_reparations: grosses_reparations
-    reduction_pour_versement_compte_epargne_codev: 
+    reduction_pour_versement_compte_epargne_codev:
       RENAME: compte_epargne_codev
       plafond_en_du_revenu_net_global: plafond_pct_rng
-    deductions_pour_souscription_parts_sofipeche: 
+    deductions_pour_souscription_parts_sofipeche:
       RENAME: sofipeche
       plafond_en_du_revenu_net_global: plafond_pct_rng
     Déductions investissement DOM_TOM: null  # Value must be a float
@@ -113,5 +113,5 @@ baremes_ipp_retraites_pensions:
   salval:
     salaire_validant_un_trimestre:
       metropole: null  # Value must be a float
-baremes_ipp_taxation_capital: taxation_capital
-baremes_ipp_taxation_indirecte: taxation_indirecte
+# baremes_ipp_taxation_capital: taxation_capital
+# baremes_ipp_taxation_indirecte: taxation_indirecte
