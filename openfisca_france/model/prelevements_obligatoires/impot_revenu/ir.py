@@ -1683,10 +1683,6 @@ class cehr(SimpleFormulaColumn):
     url = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
 
     def function(self, simulation, period):
-        '''
-        Contribution exceptionnelle sur les hauts revenus
-        'foy'
-        '''
         period = period.start.offset('first-of', 'year').period('year')
         rfr = simulation.calculate('rfr', period)
         nb_adult = simulation.calculate('nb_adult', period)

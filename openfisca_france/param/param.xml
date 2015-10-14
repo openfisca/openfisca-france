@@ -3879,26 +3879,26 @@
     <BAREME code="cehr" description="Contribution exceptionnelle sur les hauts revenus" type="monetary">
       <TRANCHE code="tranche0">
         <SEUIL>
-          <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0" />
+          <VALUE deb="2011-01-01" fin="2015-12-31" valeur="0" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.0" />
+          <VALUE deb="2011-01-01" fin="2015-12-31" valeur="0.0" />
         </TAUX>
       </TRANCHE>
       <TRANCHE code="tranche1">
         <SEUIL>
-          <VALUE deb="2011-01-01" fin="2013-12-31" valeur="250000" />
+          <VALUE deb="2011-01-01" fin="2015-12-31" valeur="250000" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.03" />
+          <VALUE deb="2011-01-01" fin="2015-12-31" valeur="0.03" />
         </TAUX>
       </TRANCHE>
       <TRANCHE code="tranche2">
         <SEUIL>
-          <VALUE deb="2011-01-01" fin="2013-12-31" valeur="500000" />
+          <VALUE deb="2011-01-01" fin="2015-12-31" valeur="500000" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.04" />
+          <VALUE deb="2011-01-01" fin="2015-12-31" valeur="0.04" />
         </TAUX>
       </TRANCHE>
     </BAREME>
