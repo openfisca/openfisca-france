@@ -117,7 +117,7 @@ class age_en_mois(SimpleFormulaColumn):
 class nb_adult(SimpleFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"Nombre d'adulte(s) dans le foyer fiscal"
+    label = u"Nombre d'adulte(s) déclarants dans le foyer fiscal"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
@@ -1112,7 +1112,7 @@ class ir_ss_qf(SimpleFormulaColumn):
         rni = simulation.calculate('rni', period)
         nb_adult = simulation.calculate('nb_adult', period)
         bareme = simulation.legislation_at(period.start).ir.bareme
-
+        print bareme
         A = bareme.calc(rni / nb_adult)
         return period, nb_adult * A
 
@@ -1712,17 +1712,27 @@ class irpp(SimpleFormulaColumn):
         cehr = simulation.calculate('cehr', period)
         P = simulation.legislation_at(period.start).ir.recouvrement
 
-        # TODO: crade ?
         pre_result = iai - credits_impot + cehr
         return period, (
             (iai > P.seuil) * (
                 (pre_result < P.min) * (pre_result > 0) * iai * 0 +
-                ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)) +
+                ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)
+                ) +
             (iai <= P.seuil) * (
-                (pre_result < 0) * (-pre_result) +
-                (pre_result >= 0) * 0 * iai)
-                )
+                (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
+            )
 
+
+@reference_formula
+class foyer_impose(SimpleFormulaColumn):
+    column = BoolCol(default = False)
+    entity_class = FoyersFiscaux
+    label = u"Le foyer fiscal est imposé"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
+        irpp = simulation.calculate('irpp', period)
+        return period, (irpp < 0)
 
 ###############################################################################
 # # Autres totaux utiles pour la suite

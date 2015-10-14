@@ -639,8 +639,8 @@ class rsa_act(DatedFormulaColumn):
         Note: le partage en moitié est un point de législation, pas un choix arbitraire
         '''
         period = period
-        rsa = simulation.calculate('rsa', period)
-        rmi = simulation.calculate('rmi', period)
+        rsa = simulation.calculate_add('rsa', period)
+        rmi = simulation.calculate_add('rmi', period)
 
         return period, max_(rsa - rmi, 0)
 

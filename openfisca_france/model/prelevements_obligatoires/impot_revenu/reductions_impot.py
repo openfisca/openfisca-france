@@ -393,6 +393,7 @@ class reductions(DatedFormulaColumn):
         mohist = simulation.calculate('mohist', period)
         patnat = simulation.calculate('patnat', period)
         prcomp = simulation.calculate('prcomp', period)
+        reduction_impot_exceptionnelle = simulation.calculate('reduction_impot_exceptionnelle', period)
         repsoc = simulation.calculate('repsoc', period)
         resimm = simulation.calculate('resimm', period)
         rsceha = simulation.calculate('rsceha', period)
@@ -403,13 +404,13 @@ class reductions(DatedFormulaColumn):
 
         total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist +
-        patnat + prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi)
+        patnat + prcomp + + reduction_impot_exceptionnelle + repsoc + resimm + rsceha + saldom + scelli + sofica +
+        spfcpi)
         return period, min_(ip_net, total_reductions)
 
-
-#pour tous les dfppce:
-    # : note de bas de page
-    # TODO: plafonnement pour parti politiques depuis 2012 P.ir.reductions_impots.dfppce.max_niv
+        # pour tous les dfppce:
+        # : note de bas de page
+        # TODO: plafonnement pour parti politiques depuis 2012 P.ir.reductions_impots.dfppce.max_niv
 
 
 @reference_formula
@@ -623,9 +624,6 @@ class cappme(DatedFormulaColumn):
         seuil3 = min_(P.seuil_tpe * (marpac + 1) - min_(base, seuil1) - min_(f7cq, seuil1), seuil1)
         return period, P.taux25 * min_(base, seuil1) + P.taux22 * min_(f7cn, seuil1) + P.taux18 * (min_(f7cf + f7cc, seuil3) +
                 min_(f7cu + f7cq, seuil2))
-
-
-#TODO: vérifier l'existence du "max_"
 
 
 @reference_formula
@@ -1265,14 +1263,13 @@ class doment(DatedFormulaColumn):
                     f7qg + f7qi + f7qo + f7qp + f7qr + f7qv + f7qz + f7rg + f7ri + f7rj + f7rk + f7rl + f7rm + f7ro + f7rp +
                     f7rq + f7rr + f7rt + f7ru + f7rv + f7rw)
 
+        # TODO: vérifier pour 2002
+        # TODO: pb 7ul 2005-2009 (ITRED = 0 au lieu de 20€ (forfaitaire), dû à ça : Cochez [7UL] si vous déclarez en ligne pour
+        # la première fois vos revenus 2008 et si vous utilisez un moyen automatique de paiement (prélèvement mensuel ou à
+        # l'échéance ou paiement par voie électronique))
 
-#TODO: vérifier pour 2002
-#TODO: pb 7ul 2005-2009 (ITRED = 0 au lieu de 20€ (forfaitaire), dû à ça : Cochez [7UL] si vous déclarez en ligne pour
-#la première fois vos revenus 2008 et si vous utilisez un moyen automatique de paiement (prélèvement mensuel ou à
-#l'échéance ou paiement par voie électronique))
 
-
-#TODO: vérifier les dates des variables de doment et domsoc (y sont-elles encore en 2013 par ex ?)
+        # TODO: vérifier les dates des variables de doment et domsoc (y sont-elles encore en 2013 par ex ?)
 
 @reference_formula
 class domlog(DatedFormulaColumn):
@@ -2428,6 +2425,25 @@ class prcomp(SimpleFormulaColumn):
                                   (f7wn > f7wm) * (f7wo <= P.seuil) * P.taux * f7wn +
                                   max_(0, (f7wn > f7wm) * (f7wo >= P.seuil) * P.taux * f7wn / div)) +
                  P.taux * f7wp)
+
+
+@reference_formula
+class reduction_impot_exceptionnelle(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"Réduction d'impôt exceptionnelle"
+    start_date = date(2013, 1, 1)
+    stop_date = date(2013, 12, 31)
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
+        nb_adult = simulation.calculate('nb_adult')
+        nbptr = simulation.calculate('nbptr')
+        rfr = simulation.calculate('rfr')
+        params = simulation.legislation_at(period.start).ir.reductions_impots.reduction_impot_exceptionnelle
+        plafond = params.seuil * nb_adult + (nbptr - nb_adult) * 2 * params.majoration_seuil
+        montant = params.montant_plafond * nb_adult
+        return period, min_(max_(plafond + montant - rfr, 0), montant)
 
 
 @reference_formula
