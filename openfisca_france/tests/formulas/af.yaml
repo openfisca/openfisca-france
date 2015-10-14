@@ -1570,6 +1570,24 @@
   output_variables:
     af: 7239.12 / 12
 
+- name: "Allocations familiales - Couple sans enfant"
+  description: Montant AF brut de CRDS
+  period: 2015-01
+  familles:
+    parents: ["parent1", "parent2"]
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "parent2"
+      age: 40
+  output_variables:
+    af: 0
+
 - name: "Allocations familiales - Couple, 3 enfants dont 1 en garde alternée"
   description: Coefficient garde alternée et Montant AF brut de CRDS
   period: 2015-09
