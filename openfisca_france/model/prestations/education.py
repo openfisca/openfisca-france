@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import zeros, logical_not as not_, logical_or as or_
+from numpy import zeros, logical_not as not_, logical_or as or_, round as round_
 
 from ..base import *  # noqa analysis:ignore
 
@@ -30,13 +30,13 @@ class bourse_college(SimpleFormulaColumn):
         for age in ages.itervalues():
             nb_enfants += age >= 0
 
-        plafond_taux_1 = P.plafond_taux_1 + P.plafond_taux_1 * nb_enfants * P.coeff_enfant_supplementaire
-        plafond_taux_2 = P.plafond_taux_2 + P.plafond_taux_2 * nb_enfants * P.coeff_enfant_supplementaire
-        plafond_taux_3 = P.plafond_taux_3 + P.plafond_taux_3 * nb_enfants * P.coeff_enfant_supplementaire
+        plafond_taux_1 = round_(P.plafond_taux_1 + P.plafond_taux_1 * nb_enfants * P.coeff_enfant_supplementaire)
+        plafond_taux_2 = round_(P.plafond_taux_2 + P.plafond_taux_2 * nb_enfants * P.coeff_enfant_supplementaire)
+        plafond_taux_3 = round_(P.plafond_taux_3 + P.plafond_taux_3 * nb_enfants * P.coeff_enfant_supplementaire)
 
-        eligible_taux_3 = rfr < plafond_taux_3
-        eligible_taux_2 = not_(eligible_taux_3) * (rfr < plafond_taux_2)
-        eligible_taux_1 = not_(or_(eligible_taux_2, eligible_taux_3)) * (rfr < plafond_taux_1)
+        eligible_taux_3 = rfr <= plafond_taux_3
+        eligible_taux_2 = not_(eligible_taux_3) * (rfr <= plafond_taux_2)
+        eligible_taux_1 = not_(or_(eligible_taux_2, eligible_taux_3)) * (rfr <= plafond_taux_1)
 
         scolarites = self.split_by_roles(scolarite_holder, roles = ENFS)
         nb_enfants_college = zeros(len(rfr))

@@ -5883,25 +5883,30 @@
   <NODE code="bourses_education" description="Bourses de l'Éducation nationale">
     <NODE code="bourse_college" description="Bourse des collèges">
       <CODE code="plafond_taux_1" description="Plafond de référence pour le taux 1" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="11252" />
+        <VALUE deb="2014-01-01" fin="2015-06-30" valeur="11252" />
+        <VALUE deb="2015-07-01" fin="2016-06-30" valeur="11288" />
       </CODE>
       <CODE code="plafond_taux_2" description="Plafond de référence pour le taux 2" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="6083" />
+        <VALUE deb="2014-01-01" fin="2015-06-30" valeur="6083" />
+        <VALUE deb="2015-07-01" fin="2016-06-30" valeur="6102" />
       </CODE>
       <CODE code="plafond_taux_3" description="Plafond de référence pour le taux 3" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="2146" />
+        <VALUE deb="2014-01-01" fin="2015-06-30" valeur="2146" />
+        <VALUE deb="2015-07-01" fin="2016-06-30" valeur="2153" />
       </CODE>
       <CODE code="coeff_enfant_supplementaire" description="Coefficient à rajouter aux plafonds pour chaque enfant à charge" format="percent">
-        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="0.3" />
+        <VALUE deb="2014-01-01" fin="2016-06-30" valeur="0.3" />
       </CODE>
       <CODE code="montant_taux_1" description="Montant taux 1" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="84" />
+        <VALUE deb="2014-01-01" fin="2016-06-30" valeur="84" />
       </CODE>
       <CODE code="montant_taux_2" description="Montant taux 2" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="228" />
+        <VALUE deb="2014-01-01" fin="2015-06-30" valeur="228" />
+        <VALUE deb="2015-07-01" fin="2016-06-30" valeur="231" />
       </CODE>
       <CODE code="montant_taux_3" description="Montant taux 3" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="357" />
+        <VALUE deb="2014-01-01" fin="2015-06-30" valeur="357" />
+        <VALUE deb="2015-07-01" fin="2016-06-30" valeur="360" />
       </CODE>
     </NODE>
     <NODE code="bourse_lycee" description="Bourse de lycée">
