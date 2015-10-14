@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import round, maximum as max_, logical_not as not_, logical_or as or_
+from numpy import round, maximum as max_, logical_not as not_, logical_or as or_, vectorize
 
 
 from ...base import *  # noqa analysis:ignore
@@ -57,8 +57,13 @@ class af_coeff_garde_alternee(DatedFormulaColumn):
         period = period.this_month
         nb_enf = simulation.calculate('af_nbenf', period)
         alt = simulation.compute('alt', period)
-        nb_enf_garde_alternee = self.sum_by_entity(alt)
-        coeff = 1 - (nb_enf_garde_alternee / nb_enf) * 0.5
+        af_enfant_a_charge = simulation.compute('af_enfant_a_charge', period)
+
+        # Le nombre d'enfants à charge en garde alternée, qui vérifient donc af_enfant_a_charge = true et alt = true
+        nb_enf_garde_alternee = self.sum_by_entity(alt.array * af_enfant_a_charge.array)
+
+        # Avoid division by zero. If nb_enf == 0, necessarily nb_enf_garde_alternee = 0 so coeff = 1
+        coeff = 1 - (nb_enf_garde_alternee / (nb_enf + (nb_enf == 0))) * 0.5
 
         return period, coeff
 
