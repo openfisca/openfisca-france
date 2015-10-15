@@ -375,7 +375,7 @@ class rev_sal(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
-        salaire_imposable =  simulation.calculate_add('salaire_imposable', period)
+        salaire_imposable = simulation.calculate_add('salaire_imposable', period)
         cho = simulation.calculate('cho', period)
 
         return period, salaire_imposable + cho
@@ -396,7 +396,9 @@ class salcho_imp(SimpleFormulaColumn):
 
         abattement_minimum = abatpro.min * not_(chomeur_longue_duree) + abatpro.min2 * chomeur_longue_duree
         abatfor = round(min_(max_(abatpro.taux * rev_sal, abattement_minimum), abatpro.max))
-        return period, (frais_reels > abatfor) * (rev_sal - frais_reels) + (frais_reels <= abatfor) * max_(0, rev_sal - abatfor)
+        return period, (
+            (frais_reels > abatfor) * (rev_sal - frais_reels) + (frais_reels <= abatfor) * max_(0, rev_sal - abatfor)
+            )
 
 
 @reference_formula
