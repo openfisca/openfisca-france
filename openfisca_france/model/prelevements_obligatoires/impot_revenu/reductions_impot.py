@@ -404,7 +404,7 @@ class reductions(DatedFormulaColumn):
 
         total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist +
-        patnat + prcomp + + reduction_impot_exceptionnelle + repsoc + resimm + rsceha + saldom + scelli + sofica +
+        patnat + prcomp + reduction_impot_exceptionnelle + repsoc + resimm + rsceha + saldom + scelli + sofica +
         spfcpi)
         return period, min_(ip_net, total_reductions)
 
