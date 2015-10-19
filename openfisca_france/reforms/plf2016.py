@@ -2,9 +2,13 @@
 
 from __future__ import division
 
-from openfisca_core import formulas, reforms
-from ..model.base import *
-from ..model.prelevements_obligatoires.impot_revenu import ir
+
+from numpy import maximum as max_, minimum as min_
+
+
+from openfisca_core import formulas, periods, reforms
+from ..model.base import *  # analysis.ignore
+from ..model.prelevements_obligatoires.impot_revenu import ir, reductions_impot
 
 
 # What if the reform was applied the year before it should
@@ -139,3 +143,171 @@ def counterfactual_modify_legislation_json(reference_legislation_json_copy):
     # et » sont remplacés par les mots : « 1 920 € et les trois quarts de ».
     # (15) II. – Au second alinéa de l'article 196 B du même code, le montant : « 5 726 € » est remplacé par le
     # montant : « 5 732 € ».
+
+
+def build_counterfactual_2014_reform(tax_benefit_system):
+    Reform = reforms.make_reform(
+        key = 'plf2016_counterfactual_2014',
+        name = u'Contrefactuel 2014 du PLF 2016 sur les revenus 2015',
+        reference = tax_benefit_system,
+        )
+
+    @Reform.formula
+    class decote(formulas.DatedFormulaColumn):
+        label = u"Décote IR 2015 appliquée sur revenus 2015 (contrefactuel)"
+        reference = ir.decote
+
+    @dated_function(start = date(2015, 1, 1))
+    def function_2001_2013(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
+        ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
+        decote = simulation.legislation_at(period.start).ir.decote
+        return period, (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
+
+    @Reform.formula
+    class reduction_impot_exceptionnelle(formulas.SimpleFormulaColumn):
+        column = FloatCol
+        entity_class = FoyersFiscaux
+        label = u"Réduction d'impôt exceptionnelle"
+
+        def function(self, simulation, period):
+            period = period.start.offset('first-of', 'year').period('year')
+            nb_adult = simulation.calculate('nb_adult')
+            nb_par = simulation.calculate('nb_par')
+            rfr = simulation.calculate('rfr')
+            inflator = 1 + .001 + .006
+            # params = simulation.legislation_at(period.start).ir.reductions_impots.reduction_impot_exceptionnelle
+            seuil = 13795 * inflator
+            majoration_seuil = 3536 * inflator
+            montant_plafond = 350 * inflator
+            plafond = seuil * nb_adult + (nb_par - nb_adult) * 2 * majoration_seuil
+            montant = montant_plafond * nb_adult
+            return period, min_(max_(plafond + montant - rfr, 0), montant)
+
+    @Reform.formula
+    class reductions(formulas.DatedFormulaColumn):
+        label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
+        reference = reductions_impot.reductions
+
+        @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
+        def function_20130101_20131231(self, simulation, period):
+            period = period.start.offset('first-of', 'year').period('year')
+            accult = simulation.calculate('accult')
+            adhcga = simulation.calculate('adhcga')
+            cappme = simulation.calculate('cappme')
+            creaen = simulation.calculate('creaen')
+            daepad = simulation.calculate('daepad')
+            deffor = simulation.calculate('deffor')
+            dfppce = simulation.calculate('dfppce')
+            doment = simulation.calculate('doment')
+            domlog = simulation.calculate('domlog')
+            donapd = simulation.calculate('donapd')
+            duflot = simulation.calculate('duflot')
+            ecpess = simulation.calculate('ecpess')
+            garext = simulation.calculate('garext')
+            intagr = simulation.calculate('intagr')
+            invfor = simulation.calculate('invfor')
+            invlst = simulation.calculate('invlst')
+            ip_net = simulation.calculate('ip_net')
+            locmeu = simulation.calculate('locmeu')
+            mecena = simulation.calculate('mecena')
+            mohist = simulation.calculate('mohist')
+            patnat = simulation.calculate('patnat')
+            prcomp = simulation.calculate('prcomp')
+            reduction_impot_exceptionnelle = simulation.calculate('reduction_impot_exceptionnelle')
+            repsoc = simulation.calculate('repsoc')
+            resimm = simulation.calculate('resimm')
+            rsceha = simulation.calculate('rsceha')
+            saldom = simulation.calculate('saldom')
+            scelli = simulation.calculate('scelli')
+            sofica = simulation.calculate('sofica')
+            spfcpi = simulation.calculate('spfcpi')
+            total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + \
+                donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + \
+                prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
+            return period, min_(ip_net, total_reductions)
+
+    reform = Reform()
+    reform.modify_legislation_json(modifier_function = counterfactual_2014_modify_legislation_json)
+    return reform
+
+
+def counterfactual_2014_modify_legislation_json(reference_legislation_json_copy):
+    # TODO: inflater les paramètres de la décote le barème de l'IR
+    inflator = 1 + .001 + .006
+    reform_year = 2015
+    reform_period = periods.period('year', reform_year)
+    print reform_period
+#    reference_legislation_json_copy = reforms.update_legislation(
+#        legislation_json = reference_legislation_json_copy,
+#        path = ('children', 'ir', 'children', 'reductions_impots', 'children', 'reduction_impot_exceptionnelle',
+#                'children', 'montant_plafond'),
+#        period = reform_period,
+#        value = 350 * inflator,
+#        )
+#    reference_legislation_json_copy = reforms.update_legislation(
+#        legislation_json = reference_legislation_json_copy,
+#        path = ('children', 'ir', 'children', 'reductions_impots', 'children', 'reduction_impot_exceptionnelle',
+#                'children', 'seuil'),
+#        period = reform_period,
+#        value = 13795 * inflator,
+#        )
+#    reference_legislation_json_copy = reforms.update_legislation(
+#        legislation_json = reference_legislation_json_copy,
+#        path = ('children', 'ir', 'children', 'reductions_impots', 'children', 'reduction_impot_exceptionnelle',
+#                'children', 'majoration_seuil'),
+#        period = reform_period,
+#        value = 3536 * inflator,
+#        )
+
+    # FIXME update_legislation is deprecated.
+    reference_legislation_json_copy = reforms.update_legislation(
+        legislation_json = reference_legislation_json_copy,
+        path = ('children', 'ir', 'children', 'bareme', 'brackets', 1, 'threshold'),
+        period = reform_period,
+        value = 6011 * inflator,
+        )
+    reference_legislation_json_copy = reforms.update_legislation(
+        legislation_json = reference_legislation_json_copy,
+        path = ('children', 'ir', 'children', 'bareme', 'brackets', 1, 'rate'),
+        period = reform_period,
+        value = .055,
+        )
+    reference_legislation_json_copy = reforms.update_legislation(
+        legislation_json = reference_legislation_json_copy,
+        path = ('children', 'ir', 'children', 'bareme', 'brackets', 2, 'threshold'),
+        period = reform_period,
+        value = 11991 * inflator,
+        )
+    reference_legislation_json_copy = reforms.update_legislation(
+        legislation_json = reference_legislation_json_copy,
+        path = ('children', 'ir', 'children', 'bareme', 'brackets', 2, 'rate'),
+        period = reform_period,
+        value = .14,
+        )
+    reference_legislation_json_copy = reforms.update_legislation(
+        legislation_json = reference_legislation_json_copy,
+        path = ('children', 'ir', 'children', 'bareme', 'brackets', 3, 'threshold'),
+        period = reform_period,
+        value = 26631 * inflator,
+        )
+    reference_legislation_json_copy = reforms.update_legislation(
+        legislation_json = reference_legislation_json_copy,
+        path = ('children', 'ir', 'children', 'bareme', 'brackets', 3, 'rate'),
+        period = reform_period,
+        value = .30,
+        )
+    reference_legislation_json_copy = reforms.update_legislation(
+        legislation_json = reference_legislation_json_copy,
+        path = ('children', 'ir', 'children', 'bareme', 'brackets', 4, 'threshold'),
+        period = reform_period,
+        value = 71397 * inflator,
+        )
+    reference_legislation_json_copy = reforms.update_legislation(
+        legislation_json = reference_legislation_json_copy,
+        path = ('children', 'ir', 'children', 'bareme', 'brackets', 4, 'rate'),
+        period = reform_period,
+        value = .40,
+        )
+
+    return reference_legislation_json_copy

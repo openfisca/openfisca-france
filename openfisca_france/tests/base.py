@@ -38,6 +38,7 @@ build_reform_function_by_key = {
     'cesthra_invalidee': cesthra_invalidee.build_reform,
     'plf2016': plf2016.build_reform,
     'plf2016_counterfactual': plf2016.build_counterfactual_reform,
+    'plf2016_counterfactual_2014': plf2016.build_counterfactual_2014_reform,
     'plf2015': plf2015.build_reform,
     'plfr2014': plfr2014.build_reform,
     'trannoy_wasmer': trannoy_wasmer.build_reform,
