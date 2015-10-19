@@ -128,15 +128,9 @@ class af_base(SimpleFormulaColumn):
 
 @reference_formula
 class af_taux_modulation(DatedFormulaColumn):
-    column = FloatCol
+    column = FloatCol(default = 1)
     entity_class = Familles
     label = u"Taux de modulation à appliquer au montant des AF depuis 2015"
-
-    @dated_function(start = date(2002, 1, 1))
-    def function_2002(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        af_nbenf = simulation.calculate('af_nbenf', period)
-        return period, 1 + 0 * af_nbenf  # Trick pour avoir la bonne longueur d'array numpy. #Todo trouver mieux
 
     @dated_function(start = date(2015, 7, 1))
     def function_2015(self, simulation, period):
@@ -159,15 +153,9 @@ class af_taux_modulation(DatedFormulaColumn):
 
 @reference_formula
 class af_forf_taux_modulation(DatedFormulaColumn):
-    column = FloatCol
+    column = FloatCol(default = 1)
     entity_class = Familles
-    label = u"Taux de modulation à appliquer à l'allocation forfaitaire des AF depuis 2015"
-
-    @dated_function(start = date(2002, 1, 1))
-    def function_2002(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        af_nbenf = simulation.calculate('af_nbenf', period)
-        return period, 1 + 0 * af_nbenf  # Trick pour avoir la bonne longueur d'array numpy. #Todo trouver mieux
+    label = u"Taux de modulation à appliquer depuis 2007 à l'allocation forfaitaire des AF depuis 2015"
 
     @dated_function(start = date(2015, 7, 1))
     def function_2015(self, simulation, period):

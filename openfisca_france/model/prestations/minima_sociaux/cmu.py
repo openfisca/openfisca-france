@@ -5,26 +5,18 @@ from __future__ import division
 from functools import partial
 
 from numpy import (absolute as abs_, apply_along_axis, array, int32, logical_not as not_, logical_or as or_,
-                   maximum as max_, minimum as min_, zeros)
+                   maximum as max_, minimum as min_)
 
 from ...base import *  # noqa analysis:ignore
 
 
 @reference_formula
 class acs_montant(DatedFormulaColumn):
-    column = FloatCol
+    column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Montant de l'ACS en cas d'éligibilité"
 
-    @dated_function(date(2000, 1, 1), date(2009, 7, 31))
-    def function_2000(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        age_holder = simulation.compute('age', period)
-
-        ages = self.filter_role(age_holder, role = CHEF)
-        return period, 0 * ages
-
-    @dated_function(date(2009, 8, 1))
+    @dated_function(start = date(2009, 8, 1))
     def function_2009(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         age_holder = simulation.compute('age', period)
