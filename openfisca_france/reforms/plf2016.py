@@ -154,15 +154,17 @@ def build_counterfactual_2014_reform(tax_benefit_system):
 
     @Reform.formula
     class decote(formulas.DatedFormulaColumn):
-        label = u"Décote IR 2015 appliquée sur revenus 2015 (contrefactuel)"
         reference = ir.decote
 
-    @dated_function(start = date(2015, 1, 1))
-    def function_2001_2013(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
-        ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
-        decote = simulation.legislation_at(period.start).ir.decote
-        return period, (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
+        @dated_function(start = date(2015, 1, 1))
+        def function_2015(self, simulation, period):
+            period = period.start.offset('first-of', 'year').period('year')
+            ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
+            inflator = 1 + .001 + .005
+
+            decote = simulation.legislation_at(period.start).ir.decote
+            print 'decote', decote
+            return period, (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
     @Reform.formula
     class reduction_impot_exceptionnelle(formulas.SimpleFormulaColumn):
@@ -175,7 +177,7 @@ def build_counterfactual_2014_reform(tax_benefit_system):
             nb_adult = simulation.calculate('nb_adult')
             nb_par = simulation.calculate('nb_par')
             rfr = simulation.calculate('rfr')
-            inflator = 1 + .001 + .006
+            inflator = 1 + .001 + .005
             # params = simulation.legislation_at(period.start).ir.reductions_impots.reduction_impot_exceptionnelle
             seuil = 13795 * inflator
             majoration_seuil = 3536 * inflator
@@ -225,6 +227,7 @@ def build_counterfactual_2014_reform(tax_benefit_system):
             total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + \
                 donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + \
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
+
             return period, min_(ip_net, total_reductions)
 
     reform = Reform()
@@ -234,7 +237,7 @@ def build_counterfactual_2014_reform(tax_benefit_system):
 
 def counterfactual_2014_modify_legislation_json(reference_legislation_json_copy):
     # TODO: inflater les paramètres de la décote le barème de l'IR
-    inflator = 1 + .001 + .006
+    inflator = 1 + .001 + .005
     reform_year = 2015
     reform_period = periods.period('year', reform_year)
     print reform_period
