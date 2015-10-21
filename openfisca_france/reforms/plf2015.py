@@ -19,15 +19,15 @@ def build_reform(tax_benefit_system):
         label = u"Décote IR 2015 appliquée sur IR 2014 (revenus 2013)"
         reference = ir.decote
 
-        @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31) )
+        @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
         def function_2013(self, simulation, period):
             period = period.start.offset('first-of', 'year').period('year')
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             nb_adult = simulation.calculate('nb_adult', period)
             plf = simulation.legislation_at(period.start).plf2015
 
-            decote_celib = (ir_plaf_qf < plf.decote_seuil_celib) * (plf.decote_seuil_celib - ir_plaf_qf)
-            decote_couple = (ir_plaf_qf < plf.decote_seuil_couple) * (plf.decote_seuil_couple - ir_plaf_qf)
+            decote_celib = (ir_plaf_qf < plf.decote.seuil_celib) * (plf.decote.seuil_celib - ir_plaf_qf)
+            decote_couple = (ir_plaf_qf < plf.decote.seuil_couple) * (plf.decote.seuil_couple - ir_plaf_qf)
             return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
     reform = Reform()
@@ -38,18 +38,18 @@ def build_reform(tax_benefit_system):
 def modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_subtree = {
         "@type": "Node",
-        "description": "PLF 2015 sur revenus 2013",
+        "description": "PLF 2015 sur revenus 2013 (Décote)",
         "children": {
-            "decote_seuil_celib": {
+            "seuil_celib": {
                 "@type": "Parameter",
-                "description": "Seuil de la décôte pour un célibataire",
+                "description": "Seuil de la décote pour un célibataire",
                 "format": "integer",
                 "unit": "currency",
                 "values": [{'start': u'2013-01-01', 'stop': u'2013-12-31', 'value': 1135}],
                 },
-            "decote_seuil_couple": {
+            "seuil_couple": {
                 "@type": "Parameter",
-                "description": "Seuil de la décôte pour un couple",
+                "description": "Seuil de la décote pour un couple",
                 "format": "integer",
                 "unit": "currency",
                 "values": [{'start': u'2013-01-01', 'stop': u'2013-12-31', 'value': 1870}],
