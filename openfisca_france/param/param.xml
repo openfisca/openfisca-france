@@ -3850,12 +3850,6 @@
       </CODE>
     </NODE>
     <NODE code="autre" description="Variables pour scénario de réforme">
-      <CODE code="D_enfJ" description="Indicatrice pour rattachement d'enfant majeur" format="bool">
-        <VALUE deb="2001-01-01" fin="2013-12-31" valeur="1" />
-      </CODE>
-      <CODE code="alloc_imp" description="Allocations familiales imposables" format="bool">
-        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0" />
-      </CODE>
       <CODE code="finpfl" description="Indicatrice pour imposition des revenus du capital au barème" format="bool">
         <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0" />
       </CODE>
