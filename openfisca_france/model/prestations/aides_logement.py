@@ -144,7 +144,7 @@ class aide_logement_abattement_depart_retraite(SimpleFormulaColumn):
 
         abattement = 0.3 * activite_n_2 * (retraite_n_2 == 0) * retraite
 
-        params_abattement_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro
+        params_abattement_frais_pro = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro
         abattement = round((1 - params_abattement_frais_pro.taux) * abattement)
 
         return period, abattement
