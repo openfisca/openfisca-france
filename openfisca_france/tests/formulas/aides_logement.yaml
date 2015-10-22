@@ -1,0 +1,39 @@
+- name: "Aides logements - les enfants de moins de 21 ans sont considérés à charge"
+  description: Nombre de personnes à charge pour les AL
+  period: 2015-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1"]
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 20
+  output_variables:
+    al_pac: 1
+
+- name: "Aides logements - les enfants de plus de 21 ans ne sont pas considérés à charge"
+  description: Nombre de personnes à charge pour les AL
+  period: 2015-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1"]
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 21
+  output_variables:
+    al_pac: 0
