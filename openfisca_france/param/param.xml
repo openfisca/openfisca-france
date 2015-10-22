@@ -548,7 +548,7 @@
         <BAREME code="vieillesse_deplafonnee" description="Vieillesse déplafonnée (ancienne assurance veuvage transférée à la CNAV en 2004)" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
-              <VALUE deb="2004-07-01" fin="2014-12-31" valeur="0" />
+              <VALUE deb="2004-07-01" fin="2015-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".003" />
@@ -588,7 +588,7 @@
         <BAREME code="arrco" description="Retraite complémentaire ARRCO Tranche 1" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
-              <VALUE deb="1993-07-01" fin="2013-12-31" valeur="0" />
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".031" />
@@ -602,10 +602,10 @@
           </TRANCHE>
           <TRANCHE code="tranche1">
             <SEUIL>
-              <VALUE deb="2000-01-01" fin="2013-12-31" valeur="1" />
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="1" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2000-01-01" fin="2013-12-31" valeur="0" />
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
             </TAUX>
           </TRANCHE>
         </BAREME>
@@ -1342,12 +1342,12 @@
         <BAREME code="vieillesse_deplafonnee" description="Vieillesse déplafonnée" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
-              <VALUE deb="1993-07-01" fin="2016-12-31" valeur="0" />
+              <VALUE deb="1991-02-01" fin="2015-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.018" />
               <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0175" />
-              <VALUE deb="1993-07-01" fin="2013-12-31" valeur="0.016" />
+              <VALUE deb="1991-02-01" fin="2013-12-31" valeur="0.016" />
             </TAUX>
           </TRANCHE>
         </BAREME>
@@ -1507,23 +1507,23 @@
           <BAREME code="formprof_09" description="Formation professionnelle (0-9 salaries)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1992-01-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1993-01-01" fin="2013-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
                 <VALUE deb="2005-01-01" fin="2013-12-31" valeur="0.0055" />
                 <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.004" />
-                <VALUE deb="1993-07-01" fin="2003-12-31" valeur="0.0015" />
+                <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.0015" />
               </TAUX>
             </TRANCHE>
           </BAREME>
           <BAREME code="formprof_1019" description="Formation professionnelle (10-19 salaries)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1992-07-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1992-01-01" fin="2013-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2005-08-04" fin="2013-12-01" valeur="0.0105" />
-                <VALUE deb="2004-01-01" fin="2005-08-03" valeur="0.016" />
+                <VALUE deb="2005-01-01" fin="2013-12-01" valeur="0.0105" />
+                <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.016" />
                 <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
                 <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
               </TAUX>
@@ -1532,7 +1532,7 @@
           <BAREME code="formprof_20" description="Formation professionnelle (plus de 20 salariés)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
+                <VALUE deb="1992-01-01" fin="2013-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
                 <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.016" />
@@ -2785,14 +2785,10 @@
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="960" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1016" />
       </CODE>
-    </NODE>
-    <NODE code="decote_seuil_celib" description="Décote">
-      <CODE code="seuil" description="Seuil de la décôte pour un célibataire" format="integer" type="monetary">
+      <CODE code="seuil_celib" description="Seuil de la décote pour un célibataire" format="integer" type="monetary">
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1135" />
       </CODE>
-    </NODE>
-    <NODE code="decote_seuil_couple" description="Décote">
-      <CODE code="seuil" description="Seuil de la décôte pour un couple" format="integer" type="monetary">
+      <CODE code="seuil_couple" description="Seuil de la décote pour un couple" format="integer" type="monetary">
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1870" />
       </CODE>
     </NODE>
@@ -3383,7 +3379,7 @@
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur="5000" />
         </CODE>
         <CODE code="pac1" description="Majoration du plafond pour le 1er enfant" format="integer" type="monetary">
-          <VALUE deb="2002-01-01" fin="2013-12-31" valeur="400" />  # TODO: 400 par pac
+          <VALUE deb="2002-01-01" fin="2013-12-31" valeur="400" />
     </CODE>
         <CODE code="pac2" description="Majoration du plafond pour le 2eme enfant" format="integer" type="monetary">
           <VALUE deb="2002-01-01" fin="2007-12-31" valeur="500" />
@@ -3850,12 +3846,6 @@
       </CODE>
     </NODE>
     <NODE code="autre" description="Variables pour scénario de réforme">
-      <CODE code="D_enfJ" description="Indicatrice pour rattachement d'enfant majeur" format="bool">
-        <VALUE deb="2001-01-01" fin="2013-12-31" valeur="1" />
-      </CODE>
-      <CODE code="alloc_imp" description="Allocations familiales imposables" format="bool">
-        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0" />
-      </CODE>
       <CODE code="finpfl" description="Indicatrice pour imposition des revenus du capital au barème" format="bool">
         <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0" />
       </CODE>
