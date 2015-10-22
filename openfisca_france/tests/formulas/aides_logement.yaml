@@ -37,3 +37,47 @@
       age: 21
   output_variables:
     al_pac: 0
+
+- name: "Aides logements - les enfants de plus de 21 ans handicapés (>80%) sont considérés à charge"
+  description: Nombre de personnes à charge pour les AL
+  period: 2015-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1"]
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 30
+      invalide: true
+      taux_invalidite: 0.9
+  output_variables:
+    al_pac: 1
+
+- name: "Aides logements - les enfants de plus de 21 ans handicapés (<80%) ne sont pas considérés à charge"
+  description: Nombre de personnes à charge pour les AL
+  period: 2015-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1"]
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 30
+      invalide: true
+      taux_invalidite: 0.7
+  output_variables:
+    al_pac: 0

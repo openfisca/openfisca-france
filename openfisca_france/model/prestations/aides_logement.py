@@ -46,27 +46,40 @@ class al_pac(SimpleFormulaColumn):
         grand-parents, enfants, petits enfants, frères, soeurs, oncles,
         tantes, neveux, nièces).
         '''
+
         period = period.this_month
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
-        nbR_holder = simulation.compute('nbR', period.this_year)
-        af = simulation.legislation_at(period.start).fam.af
-        cf = simulation.legislation_at(period.start).fam.cf
+        age_max_enfant = simulation.legislation_at(period.start).fam.cf.age2
 
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        def al_nb_enfants():
+            smic55_holder = simulation.compute('smic55', period)
+            age = self.split_by_roles(age_holder, roles = ENFS)
+            smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+            age_min_enfant = simulation.legislation_at(period.start).fam.af.age1
 
-        nbR = self.cast_from_entity_to_role(nbR_holder, role = VOUS)
-        al_nbinv = self.sum_by_entity(nbR)
+            return nb_enf(age, smic55, age_min_enfant, age_max_enfant - 1) # La limite sur l'age max est stricte.
 
-        age1 = af.age1
-        age2 = cf.age2
-        al_nbenf = nb_enf(age, smic55, age1, age2 - 1) # La limite sur l'age max est stricte.
-        al_pac = al_nbenf + al_nbinv  # TODO: manque invalides
-        # TODO: il faudrait probablement définir les aides au logement pour un ménage et non
-        # pour une famille
+        def al_nb_adultes_handicapes():
 
-        return period, al_pac
+            # Variables à valeur pour un individu
+            br_pf_i = simulation.compute('br_pf_i', period).array
+            inapte_travail = simulation.compute('inapte_travail', period).array
+            taux_invalidite = simulation.compute('taux_invalidite', period).array
+            age = age_holder.array
+
+            # Parametres
+            plafond_ressource = simulation.legislation_at(period.start).minim.aspa.plaf_seul
+            taux_invalidite_minimum = 0.8
+
+            adulte_handicape = (
+                (taux_invalidite > taux_invalidite_minimum) *
+                (age >= age_max_enfant) *
+                (br_pf_i <= plafond_ressource)
+            )
+
+            return self.sum_by_entity(adulte_handicape)
+
+        return period, al_nb_enfants() + al_nb_adultes_handicapes()
 
 
 @reference_formula
