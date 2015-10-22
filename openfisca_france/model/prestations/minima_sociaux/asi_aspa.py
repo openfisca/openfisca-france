@@ -1,28 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-
 from __future__ import division
 
 from numpy import abs as abs_, logical_not as not_, logical_or as or_, maximum as max_
@@ -68,8 +45,8 @@ class br_mv_i(SimpleFormulaColumn):
         rpns = simulation.calculate_add_divide('rpns', three_previous_months)
         rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
         rev_cap_lib_holder = simulation.compute_add_divide('rev_cap_lib', three_previous_months)
-        rfon_ms = simulation.calculate_add_divide('rfon_ms', three_previous_months)
-        div_ms = simulation.calculate_add_divide('div_ms', three_previous_months)
+        rfon_ms = simulation.calculate_add('rfon_ms', three_previous_months)
+        div_ms = simulation.calculate_add('div_ms', three_previous_months)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', three_previous_months)
         allocation_securisation_professionnelle = simulation.calculate(
             'allocation_securisation_professionnelle', three_previous_months
@@ -129,7 +106,7 @@ class br_mv(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         br_mv_i_holder = simulation.compute('br_mv_i', period)
-        ass = simulation.calculate_divide('ass', period)
+        ass = simulation.calculate('ass', period)
 
         br_mv_i = self.split_by_roles(br_mv_i_holder, roles = [CHEF, PART])
         return period, ass + br_mv_i[CHEF] + br_mv_i[PART]
@@ -151,9 +128,10 @@ class aspa_elig(SimpleFormulaColumn):
         condition_invalidite = (taux_invalidite > P.aspa.taux_invalidite_aspa_anticipe) + inapte_travail
         condition_age_base = (age >= P.aspa.age_min)
         condition_age_anticipe = (age >= P.aah.age_legal_retraite) * condition_invalidite
-
         condition_age = condition_age_base + condition_age_anticipe
-        return period, condition_age
+        condition_nationalite = simulation.calculate('asi_aspa_condition_nationalite', period)
+
+        return period, condition_age * condition_nationalite
 
 
 @reference_formula
@@ -173,8 +151,23 @@ class asi_elig(SimpleFormulaColumn):
 
         condition_situation = invalide & not_(aspa_elig)
         condition_pensionnement = (rstnet + pensions_invalidite) > 0
+        condition_nationalite = simulation.calculate('asi_aspa_condition_nationalite', period)
 
-        return period, condition_situation * condition_pensionnement
+        return period, condition_situation * condition_pensionnement * condition_nationalite
+
+
+@reference_formula
+class asi_aspa_condition_nationalite(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Condition de nationnalité et de titre de séjour pour bénéficier de l'ASPA ou l'ASI"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        ressortissant_eee = simulation.calculate('ressortissant_eee', period)
+        duree_possession_titre_sejour= simulation.calculate('duree_possession_titre_sejour', period)
+        duree_min_titre_sejour = simulation.legislation_at(period.start).minim.aspa.duree_min_titre_sejour
+
+        return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
 
 @reference_formula

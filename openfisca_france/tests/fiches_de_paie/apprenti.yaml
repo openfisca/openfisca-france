@@ -86,10 +86,11 @@ output_variables:
 
   #
   cotisations_salariales: 0  #-5.71 -22.14 -17.14 -2.14 -48.92 -5.36
-  exoneration_cotisations_salariales_apprenti: -(-5.71 -22.14 -17.14 -2.14 -48.92 -5.36)
   #
   cotisations_salariales_contributives: -5.71 -22.14 -17.14 -2.14 -48.92
   cotisations_salariales_non_contributives: -5.36
+  exoneration_cotisations_salariales_apprenti: -(-5.71 -22.14 -17.14 -2.14 -48.92 -5.36)
+
   agff_salarie: -5.71
   agirc_salarie: 0
   agirc_gmp_salarie: 0

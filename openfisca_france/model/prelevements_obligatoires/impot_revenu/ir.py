@@ -1,28 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 from __future__ import division
 
 import logging
@@ -1254,17 +1231,48 @@ class avantage_qf(SimpleFormulaColumn):
 
 
 @reference_formula
-class decote(SimpleFormulaColumn):
+class decote(DatedFormulaColumn):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"décote"
 
-    def function(self, simulation, period):
+    @dated_function(start = date(2001, 1, 1), stop = date(2013, 12, 31))
+    def function_2001_2013(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         decote = simulation.legislation_at(period.start).ir.decote
 
         return period, (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
+
+    @dated_function(start = date(2014, 1, 1))
+    def function_2014__(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
+        ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
+        nb_adult = simulation.calculate('nb_adult', period)
+        decote_seuil_celib = simulation.legislation_at(period.start).ir.decote.seuil_celib
+        decote_seuil_couple = simulation.legislation_at(period.start).ir.decote.seuil_couple
+        decote_celib = (ir_plaf_qf < decote_seuil_celib) * (decote_seuil_celib - ir_plaf_qf)
+        decote_couple = (ir_plaf_qf < decote_seuil_couple) * (decote_seuil_couple - ir_plaf_qf)
+
+        return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
+
+
+@reference_formula
+class decote_gain_fiscal(SimpleFormulaColumn):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"Gain fiscal de la décote/Décote au sens Dgfip tel que sur la feuille d'impôt"
+    start_date = date(1982, 1, 1)
+
+    def function(self, simulation, period):
+        '''
+        Renvoie le gain fiscal du à la décote
+        '''
+        period = period.start.offset('first-of', 'year').period('year')
+        decote = simulation.calculate('decote', period)
+        ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
+
+        return period, min_(decote, ir_plaf_qf)
 
 
 @reference_formula

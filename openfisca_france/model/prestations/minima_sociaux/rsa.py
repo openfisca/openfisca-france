@@ -1,28 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-
 from __future__ import division
 
 from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_)
@@ -362,10 +339,10 @@ class br_rmi_pf(DatedFormulaColumn):
     def function_2002(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         af_base = simulation.calculate('af_base', period)
-        cf = simulation.calculate_divide('cf', period)
+        cf = simulation.calculate('cf', period)
         asf = simulation.calculate('asf', period)
-        apje = simulation.calculate_divide('apje', period)
-        ape = simulation.calculate_divide('ape', period)
+        apje = simulation.calculate('apje', period)
+        ape = simulation.calculate('ape', period)
         P = simulation.legislation_at(period.start).minim
 
         return period, P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
@@ -374,12 +351,12 @@ class br_rmi_pf(DatedFormulaColumn):
     def function_2003(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         af_base = simulation.calculate('af_base', period)
-        cf = simulation.calculate_divide('cf', period)
-        asf = simulation.calculate_divide('asf', period)
-        paje_base = simulation.calculate_divide('paje_base', period)
-        paje_clca = simulation.calculate_divide('paje_clca', period)
-        paje_prepare = simulation.calculate_divide('paje_prepare', period)
-        paje_colca = simulation.calculate_divide('paje_colca', period)
+        cf = simulation.calculate('cf', period)
+        asf = simulation.calculate('asf', period)
+        paje_base = simulation.calculate('paje_base', period)
+        paje_clca = simulation.calculate('paje_clca', period)
+        paje_prepare = simulation.calculate('paje_prepare', period)
+        paje_colca = simulation.calculate('paje_colca', period)
         P = simulation.legislation_at(period.start).minim
 
         return period, P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_prepare + paje_colca)
@@ -392,10 +369,10 @@ class br_rmi_pf(DatedFormulaColumn):
         cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', period)
         cf = simulation.calculate('cf', period)
         rsa_forfait_asf = simulation.calculate('rsa_forfait_asf', period)
-        paje_base = simulation.calculate_divide('paje_base', period)
-        paje_clca = simulation.calculate_divide('paje_clca', period)
-        paje_prepare = simulation.calculate_divide('paje_prepare', period)
-        paje_colca = simulation.calculate_divide('paje_colca', period)
+        paje_base = simulation.calculate('paje_base', period)
+        paje_clca = simulation.calculate('paje_clca', period)
+        paje_prepare = simulation.calculate('paje_prepare', period)
+        paje_colca = simulation.calculate('paje_colca', period)
         P = simulation.legislation_at(period.start).minim
 
         # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
@@ -708,10 +685,10 @@ class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
         period = period.start.offset('first-of', 'month').period('month')
         interets_epargne_sur_livrets = simulation.calculate('interets_epargne_sur_livrets', period)
         epargne_non_remuneree = simulation.calculate('epargne_non_remuneree', period)
-        revenus_capital = simulation.calculate_divide('revenus_capital', period)
+        revenus_capital = simulation.calculate('revenus_capital', period)
         valeur_locative_immo_non_loue = simulation.calculate('valeur_locative_immo_non_loue', period)
         valeur_locative_terrains_non_loue = simulation.calculate('valeur_locative_terrains_non_loue', period)
-        revenus_locatifs = simulation.calculate_divide('revenus_locatifs', period)
+        revenus_locatifs = simulation.calculate('revenus_locatifs', period)
         rsa = simulation.legislation_at(period.start).minim.rmi
 
         return period, (
@@ -723,6 +700,20 @@ class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
             revenus_locatifs
             )
 
+@reference_formula
+class rsa_condition_nationalite(SimpleFormulaColumn):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Conditions de nationnalité et de titre de séjour pour bénéficier du RSA"
+
+    def function(self, simulation, period):
+        period = period.this_month
+        ressortissant_eee = simulation.calculate('ressortissant_eee', period)
+        duree_possession_titre_sejour= simulation.calculate('duree_possession_titre_sejour', period)
+        duree_min_titre_sejour = simulation.legislation_at(period.start).minim.rmi.duree_min_titre_sejour
+
+        return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
+
 
 @reference_formula
 class rsa_eligibilite(SimpleFormulaColumn):
@@ -731,13 +722,15 @@ class rsa_eligibilite(SimpleFormulaColumn):
     label = u"Eligibilité au RSA"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age_holder = simulation.compute('age', period)
         age_parents = self.split_by_roles(age_holder, roles = [CHEF, PART])
         activite_holder = simulation.compute('activite', period)
         activite_parents = self.split_by_roles(activite_holder, roles = [CHEF, PART])
         nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         rsa_eligibilite_tns = simulation.calculate('rsa_eligibilite_tns', period)
+        rsa_condition_nationalite = simulation.compute('rsa_condition_nationalite', period)
+        condition_nationalite = self.any_by_roles(rsa_condition_nationalite, roles = [CHEF, PART])
         rmi = simulation.legislation_at(period.start).minim.rmi
         age_min = (nb_enfant_rsa == 0) * rmi.age_pac
 
@@ -745,7 +738,10 @@ class rsa_eligibilite(SimpleFormulaColumn):
             (age_parents[CHEF] >= age_min) * not_(activite_parents[CHEF] == 2) +
             (age_parents[PART] >= age_min) * not_(activite_parents[PART] == 2)
         )
-        eligib = eligib * rsa_eligibilite_tns
+        eligib = eligib * (
+            condition_nationalite *
+            rsa_eligibilite_tns
+            )
 
         return period, eligib
 

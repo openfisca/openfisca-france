@@ -77,7 +77,7 @@
     <!-- </NODE> -->
     <NODE code="chomage" description="Allocations chômage">
       <NODE code="deductible" description="CSG déductible">
-	<CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
+        <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
           <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
@@ -156,7 +156,7 @@
     </NODE>
     <NODE code="preretraite" description="Allocations de préretraite">
       <NODE code="deductible" description="CSG déductible">
-	<CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
+        <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
           <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
@@ -203,24 +203,24 @@
         <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".005" />
       </CODE>
       <BAREME code="abattement" description="Abattement sur les revenus d'activité, du chômage et des préretraites">
-	<TRANCHE code="tranche0">
-	  <TAUX>
-	    <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".05" />
-	    <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".03" />
-	    <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0175" />
-	  </TAUX>
-	  <SEUIL>
-	    <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
-	  </SEUIL>
-	</TRANCHE>
-	<TRANCHE code="tranche1">
-	  <SEUIL>
-	    <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
-	  </SEUIL>
-	  <TAUX>
-	    <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0" />
-	  </TAUX>
-	</TRANCHE>
+        <TRANCHE code="tranche0">
+          <TAUX>
+            <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".05" />
+            <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".03" />
+            <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0175" />
+          </TAUX>
+          <SEUIL>
+            <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
+          </SEUIL>
+        </TRANCHE>
+        <TRANCHE code="tranche1">
+          <SEUIL>
+            <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0" />
+          </TAUX>
+        </TRANCHE>
       </BAREME>
     </NODE>
     <NODE code="retraite" description="Retraites et pensions d'invalidité">
@@ -285,7 +285,7 @@
         <VALUE deb="2012-01-01" fin="2014-12-31" valeur="0.10" /> # TODO: update, get more info..
       </CODE>
     </NODE>
-    <NODE code="agirc_gmp" description="Garantie minimale de points AGIRC">  # Find a better place
+    <NODE code="agirc_gmp" description="Garantie minimale de points AGIRC">  # Find a better place
       <CODE code="cotisation_employeur" description="Cotisation forfaitaire mensuelle employeur">
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="41.17" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="41.13" />
@@ -294,12 +294,12 @@
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="38.99" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="38.48" />
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="37.81" />
-		<VALUE deb="2007-01-01" fin="2007-12-31" valeur="36.57" />
-		<VALUE deb="2006-01-01" fin="2006-12-31" valeur="35.27" />
-		<VALUE deb="2005-01-01" fin="2005-12-31" valeur="34.58" />
-		<VALUE deb="2004-01-01" fin="2004-12-31" valeur="33.75" />
-		<VALUE deb="2003-01-01" fin="2003-12-31" valeur="32.97" />
-		<VALUE deb="2002-01-01" fin="2002-12-31" valeur="32.42" />
+        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="36.57" />
+        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="35.27" />
+        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="34.58" />
+        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="33.75" />
+        <VALUE deb="2003-01-01" fin="2003-12-31" valeur="32.97" />
+        <VALUE deb="2002-01-01" fin="2002-12-31" valeur="32.42" />
       </CODE>
       <CODE code="cotisation_salarie" description="Cotisation forfaitaire mensuelle salarié">
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="25.17" />
@@ -309,11 +309,11 @@
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="23.82" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="23.52" />
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="23.11" />
-		<VALUE deb="2007-01-01" fin="2007-12-31" valeur="22.35" />
+        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="22.35" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="21.56" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="20.75" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="20.25" />
-		<VALUE deb="2003-01-01" fin="2003-12-31" valeur="19.78" />
+        <VALUE deb="2003-01-01" fin="2003-12-31" valeur="19.78" />
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="19.45" />
       </CODE>
       <CODE code="salaire_charniere" description="Salaire charnière annuel">
@@ -325,7 +325,7 @@
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="38332.92" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="37973.00" />
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="36877.00" />
-		    <VALUE deb="2007-01-01" fin="2007-12-31" valeur="35666.00" />
+        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="35666.00" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="34428.00" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="33512.00" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="32952.00" />
@@ -548,7 +548,7 @@
         <BAREME code="vieillesse_deplafonnee" description="Vieillesse déplafonnée (ancienne assurance veuvage transférée à la CNAV en 2004)" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
-              <VALUE deb="2004-07-01" fin="2014-12-31" valeur="0" />
+              <VALUE deb="2004-07-01" fin="2015-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".003" />
@@ -588,7 +588,7 @@
         <BAREME code="arrco" description="Retraite complémentaire ARRCO Tranche 1" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
-              <VALUE deb="1993-07-01" fin="2013-12-31" valeur="0" />
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".031" />
@@ -602,10 +602,10 @@
           </TRANCHE>
           <TRANCHE code="tranche1">
             <SEUIL>
-              <VALUE deb="2000-01-01" fin="2013-12-31" valeur="1" />
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="1" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2000-01-01" fin="2013-12-31" valeur="0" />
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
             </TAUX>
           </TRANCHE>
         </BAREME>
@@ -1342,12 +1342,12 @@
         <BAREME code="vieillesse_deplafonnee" description="Vieillesse déplafonnée" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
-              <VALUE deb="1993-07-01" fin="2016-12-31" valeur="0" />
+              <VALUE deb="1991-02-01" fin="2015-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.018" />
               <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0175" />
-              <VALUE deb="1993-07-01" fin="2013-12-31" valeur="0.016" />
+              <VALUE deb="1991-02-01" fin="2013-12-31" valeur="0.016" />
             </TAUX>
           </TRANCHE>
         </BAREME>
@@ -1507,23 +1507,23 @@
           <BAREME code="formprof_09" description="Formation professionnelle (0-9 salaries)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1992-01-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1993-01-01" fin="2013-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
                 <VALUE deb="2005-01-01" fin="2013-12-31" valeur="0.0055" />
                 <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.004" />
-                <VALUE deb="1993-07-01" fin="2003-12-31" valeur="0.0015" />
+                <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.0015" />
               </TAUX>
             </TRANCHE>
           </BAREME>
           <BAREME code="formprof_1019" description="Formation professionnelle (10-19 salaries)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1992-07-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1992-01-01" fin="2013-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2005-08-04" fin="2013-12-01" valeur="0.0105" />
-                <VALUE deb="2004-01-01" fin="2005-08-03" valeur="0.016" />
+                <VALUE deb="2005-01-01" fin="2013-12-01" valeur="0.0105" />
+                <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.016" />
                 <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
                 <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
               </TAUX>
@@ -1532,7 +1532,7 @@
           <BAREME code="formprof_20" description="Formation professionnelle (plus de 20 salariés)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
+                <VALUE deb="1992-01-01" fin="2013-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
                 <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.016" />
@@ -2245,6 +2245,7 @@
           <VALUE deb="2010-01-01" fin="2011-12-31" valeur="14157" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="12000" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="12097" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="12157" />
         </CODE>
         <CODE code="min" description="Abattement minimum - Cas général" format="integer" type="monetary">
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="364" />
@@ -2257,6 +2258,7 @@
           <VALUE deb="2008-01-01" fin="2008-12-31" valeur="413" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="415" />
           <VALUE deb="2010-01-01" fin="2013-12-31" valeur="421" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="426" />
         </CODE>
         <CODE code="min2" description="Abattement minimum - Demandeur d'emploi" format="integer" type="monetary">
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="797" />
@@ -2269,6 +2271,7 @@
           <VALUE deb="2008-01-01" fin="2008-12-31" valeur="906" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="910" />
           <VALUE deb="2010-01-01" fin="2013-12-31" valeur="924" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="936" />
         </CODE>
       </NODE>
       <NODE code="abatpen" description="Abattement sur les pensions">
@@ -2781,7 +2784,12 @@
         <VALUE deb="2010-01-01" fin="2011-12-31" valeur="878" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="960" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1016" />
-        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1021" />
+      </CODE>
+      <CODE code="seuil_celib" description="Seuil de la décote pour un célibataire" format="integer" type="monetary">
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1135" />
+      </CODE>
+      <CODE code="seuil_couple" description="Seuil de la décote pour un couple" format="integer" type="monetary">
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1870" />
       </CODE>
     </NODE>
     <NODE code="reductions_impots" description="Réduction d'impôt">
@@ -3371,7 +3379,7 @@
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur="5000" />
         </CODE>
         <CODE code="pac1" description="Majoration du plafond pour le 1er enfant" format="integer" type="monetary">
-          <VALUE deb="2002-01-01" fin="2013-12-31" valeur="400" />  # TODO: 400 par pac
+          <VALUE deb="2002-01-01" fin="2013-12-31" valeur="400" />
     </CODE>
         <CODE code="pac2" description="Majoration du plafond pour le 2eme enfant" format="integer" type="monetary">
           <VALUE deb="2002-01-01" fin="2007-12-31" valeur="500" />
@@ -3838,12 +3846,6 @@
       </CODE>
     </NODE>
     <NODE code="autre" description="Variables pour scénario de réforme">
-      <CODE code="D_enfJ" description="Indicatrice pour rattachement d'enfant majeur" format="bool">
-        <VALUE deb="2001-01-01" fin="2013-12-31" valeur="1" />
-      </CODE>
-      <CODE code="alloc_imp" description="Allocations familiales imposables" format="bool">
-        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0" />
-      </CODE>
       <CODE code="finpfl" description="Indicatrice pour imposition des revenus du capital au barème" format="bool">
         <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0" />
       </CODE>
@@ -4354,40 +4356,68 @@
         <CODE code="age" description="Limite d'âge (stricte) pour bénéficier de la PAJE" format="integer" type="age">
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="3" />
         </CODE>
-        <CODE code="plaf" description="Plafond de ressources" format="integer" type="monetary">
-          <VALUE deb="2004-01-01" fin="2004-06-30" valeur="19303" />
-          <VALUE deb="2004-07-01" fin="2005-06-30" valeur="19670" />
-          <VALUE deb="2005-07-01" fin="2006-06-30" valeur="20004" />
-          <VALUE deb="2006-07-01" fin="2007-06-30" valeur="20344" />
-          <VALUE deb="2007-07-01" fin="2008-12-31" valeur="25862" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="26250" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="26985" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="27012" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="27283" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="27855" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="28384" />
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="28583" />
-        </CODE>
-        <CODE code="plaf_maj" description="Majoration pour biactifs et isolés" format="integer" type="monetary">
-          <VALUE deb="2004-01-01" fin="2004-06-30" valeur="7758" />
-          <VALUE deb="2004-07-01" fin="2005-06-30" valeur="7905" />
-          <VALUE deb="2005-07-01" fin="2006-06-30" valeur="8039" />
-          <VALUE deb="2006-07-01" fin="2007-06-30" valeur="8176" />
-          <VALUE deb="2007-07-01" fin="2008-12-31" valeur="10394" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="10550" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="10845" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="10856" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="10965" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="11195" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="11408" />
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="11488" />
-        </CODE>
-        <CODE code="plaf_tx1" description="Majoration du plafond pour les 2 premiers enfants" format="percent">
-          <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.25" />
-        </CODE>
-        <CODE code="plaf_tx2" description="Majoration du plafond à partir du 3ème enfant" format="percent">
-          <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.3" />
-        </CODE>
+        <NODE code="avant_2014">
+          <CODE code="plaf" description="Plafond de ressources" format="integer" type="monetary">
+            <VALUE deb="2004-01-01" fin="2004-06-30" valeur="19303" />
+            <VALUE deb="2004-07-01" fin="2005-06-30" valeur="19670" />
+            <VALUE deb="2005-07-01" fin="2006-06-30" valeur="20004" />
+            <VALUE deb="2006-07-01" fin="2007-06-30" valeur="20344" />
+            <VALUE deb="2007-07-01" fin="2008-12-31" valeur="25862" />
+            <VALUE deb="2009-01-01" fin="2009-12-31" valeur="26250" />
+            <VALUE deb="2010-01-01" fin="2010-12-31" valeur="26985" />
+            <VALUE deb="2011-01-01" fin="2011-12-31" valeur="27012" />
+            <VALUE deb="2012-01-01" fin="2012-12-31" valeur="27283" />
+            <VALUE deb="2013-01-01" fin="2013-12-31" valeur="27855" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="28384" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="28583" />
+          </CODE>
+          <CODE code="plaf_maj" description="Majoration pour biactifs et isolés" format="integer" type="monetary">
+            <VALUE deb="2004-01-01" fin="2004-06-30" valeur="7758" />
+            <VALUE deb="2004-07-01" fin="2005-06-30" valeur="7905" />
+            <VALUE deb="2005-07-01" fin="2006-06-30" valeur="8039" />
+            <VALUE deb="2006-07-01" fin="2007-06-30" valeur="8176" />
+            <VALUE deb="2007-07-01" fin="2008-12-31" valeur="10394" />
+            <VALUE deb="2009-01-01" fin="2009-12-31" valeur="10550" />
+            <VALUE deb="2010-01-01" fin="2010-12-31" valeur="10845" />
+            <VALUE deb="2011-01-01" fin="2011-12-31" valeur="10856" />
+            <VALUE deb="2012-01-01" fin="2012-12-31" valeur="10965" />
+            <VALUE deb="2013-01-01" fin="2013-12-31" valeur="11195" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="11408" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="11488" />
+          </CODE>
+          <CODE code="plaf_tx1" description="Majoration du plafond pour les 2 premiers enfants" format="percent">
+            <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.25" />
+          </CODE>
+          <CODE code="plaf_tx2" description="Majoration du plafond à partir du 3ème enfant" format="percent">
+            <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.3" />
+          </CODE>
+        </NODE>
+        <NODE code="apres_2014">
+          <NODE code="taux_plein">
+            <CODE code="plaf" description="Plafond de ressources de base pour PAJE à taux plein" format="integer" type="monetary">
+              <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
+              <VALUE deb="2014-04-01" fin="2015-12-31" valeur="24514" />
+            </CODE>
+            <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux plein" format="integer" type="monetary">
+              <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
+              <VALUE deb="2014-04-01" fin="2015-12-31" valeur="8089" />
+            </CODE>
+          </NODE>
+          <NODE code="taux_partiel">
+            <CODE code="plaf" description="Plafond de ressources de base pour PAJE à taux partiel" format="integer" type="monetary">
+              <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
+              <VALUE deb="2014-04-01" fin="2015-12-31" valeur="29286" />
+            </CODE>F
+            <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux partiel" format="integer" type="monetary">
+              <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
+              <VALUE deb="2014-04-01" fin="2015-12-31" valeur="9664" />
+            </CODE>
+          </NODE>
+          <CODE code="plaf_tx_par_enf" description="Majoration du plafond par enfant" format="percent">
+            <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
+            <VALUE deb="2014-04-01" fin="2015-12-31" valeur="0.22" />
+          </CODE>
+        </NODE>
         <CODE code="taux" description="Allocation de base (en % de la bmaf)" format="percent">
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.4595" />
         </CODE>
@@ -5176,6 +5206,9 @@
           <VALUE deb="2009-01-01" fin="2014-12-31" valeur="0.03" />
         </CODE>
       </NODE>
+      <CODE code="duree_min_titre_sejour" description="Durée minimale de titre du séjour permettant de bénéficier du RSA" format="integer">
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="5" />
+      </CODE>
     </NODE>
     <NODE code="api" description="Allocation parent isolé">
       <CODE code="base" description="Taux de l'API sans enfant (femme enceinte, en pourcentage de la BMAF)" format="percent">
@@ -5333,6 +5366,9 @@
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="1.5" />
       </CODE>
+      <CODE code="duree_min_titre_sejour" description="Durée minimale de titre du séjour permettant de bénéficier de l'ASPA ou de l'ASI" format="integer">
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="10" />
+      </CODE>
     </NODE>
     <NODE code="asi" description="Allocation supplémentaire d'invalidité">
       <CODE code="plaf_seul" description="Plafond de ressources (allocation comprise) pour une personne seule" format="float" type="monetary">
@@ -5488,7 +5524,7 @@
     </NODE>
   </NODE>
   <NODE code="isf" description="Impôt de solidarité sur la fortune (ISF)"> # Réforme sarkozy jamais appliquée
-   <NODE code="decote" description="Décôte de l'ISF">
+    <NODE code="decote" description="Décôte de l'ISF">
       <CODE code="min" description="Plancher de la décote" format="float" type="monetary">
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="1300000" />
       </CODE>
@@ -5837,25 +5873,30 @@
   <NODE code="bourses_education" description="Bourses de l'Éducation nationale">
     <NODE code="bourse_college" description="Bourse des collèges">
       <CODE code="plafond_taux_1" description="Plafond de référence pour le taux 1" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="11252" />
+        <VALUE deb="2014-01-01" fin="2015-06-30" valeur="11252" />
+        <VALUE deb="2015-07-01" fin="2016-06-30" valeur="11288" />
       </CODE>
       <CODE code="plafond_taux_2" description="Plafond de référence pour le taux 2" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="6083" />
+        <VALUE deb="2014-01-01" fin="2015-06-30" valeur="6083" />
+        <VALUE deb="2015-07-01" fin="2016-06-30" valeur="6102" />
       </CODE>
       <CODE code="plafond_taux_3" description="Plafond de référence pour le taux 3" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="2146" />
+        <VALUE deb="2014-01-01" fin="2015-06-30" valeur="2146" />
+        <VALUE deb="2015-07-01" fin="2016-06-30" valeur="2153" />
       </CODE>
       <CODE code="coeff_enfant_supplementaire" description="Coefficient à rajouter aux plafonds pour chaque enfant à charge" format="percent">
-        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="0.3" />
+        <VALUE deb="2014-01-01" fin="2016-06-30" valeur="0.3" />
       </CODE>
       <CODE code="montant_taux_1" description="Montant taux 1" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="84" />
+        <VALUE deb="2014-01-01" fin="2016-06-30" valeur="84" />
       </CODE>
       <CODE code="montant_taux_2" description="Montant taux 2" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="228" />
+        <VALUE deb="2014-01-01" fin="2015-06-30" valeur="228" />
+        <VALUE deb="2015-07-01" fin="2016-06-30" valeur="231" />
       </CODE>
       <CODE code="montant_taux_3" description="Montant taux 3" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fin="2015-01-01" valeur="357" />
+        <VALUE deb="2014-01-01" fin="2015-06-30" valeur="357" />
+        <VALUE deb="2015-07-01" fin="2016-06-30" valeur="360" />
       </CODE>
     </NODE>
     <NODE code="bourse_lycee" description="Bourse de lycée">

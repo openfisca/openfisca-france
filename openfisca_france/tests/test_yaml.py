@@ -1,29 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 """Test YAML files."""
 
 
@@ -63,13 +40,6 @@ options_by_dir = collections.OrderedDict((
         ),
     (
         os.path.abspath(os.path.join(os.path.dirname(__file__), 'formulas')),
-        dict(
-            calculate_output = False,
-            default_absolute_error_margin = 0.005,
-            ),
-        ),
-    (
-        os.path.abspath(os.path.join(os.path.dirname(__file__), 'formulas_mes_aides')),
         dict(
             calculate_output = False,
             default_absolute_error_margin = 0.005,
@@ -280,7 +250,8 @@ def test(force = False, name_filter = None, options_by_path = None):
                 if error is not None:
                     embedding_error = conv.embed_error(test, u'errors', error)
                     assert embedding_error is None, embedding_error
-                    raise ValueError("Error in test {}:\n{}\nYaml test content: \n{}\n".format(yaml_path, error, yaml.dump(test, allow_unicode = True,
+                    raise ValueError("Error in test {}:\n{}\nYaml test content: \n{}\n".format(
+                        yaml_path, error, yaml.dump(test, allow_unicode = True,
                         default_flow_style = False, indent = 2, width = 120)))
 
                 if not force and test.get(u'ignore', False):

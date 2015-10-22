@@ -1,31 +1,8 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 from __future__ import division
 
-from numpy import zeros, logical_not as not_, logical_or as or_
+from numpy import zeros, logical_not as not_, logical_or as or_, round as round_
 
 from ..base import *  # noqa analysis:ignore
 
@@ -53,13 +30,13 @@ class bourse_college(SimpleFormulaColumn):
         for age in ages.itervalues():
             nb_enfants += age >= 0
 
-        plafond_taux_1 = P.plafond_taux_1 + P.plafond_taux_1 * nb_enfants * P.coeff_enfant_supplementaire
-        plafond_taux_2 = P.plafond_taux_2 + P.plafond_taux_2 * nb_enfants * P.coeff_enfant_supplementaire
-        plafond_taux_3 = P.plafond_taux_3 + P.plafond_taux_3 * nb_enfants * P.coeff_enfant_supplementaire
+        plafond_taux_1 = round_(P.plafond_taux_1 + P.plafond_taux_1 * nb_enfants * P.coeff_enfant_supplementaire)
+        plafond_taux_2 = round_(P.plafond_taux_2 + P.plafond_taux_2 * nb_enfants * P.coeff_enfant_supplementaire)
+        plafond_taux_3 = round_(P.plafond_taux_3 + P.plafond_taux_3 * nb_enfants * P.coeff_enfant_supplementaire)
 
-        eligible_taux_3 = rfr < plafond_taux_3
-        eligible_taux_2 = not_(eligible_taux_3) * (rfr < plafond_taux_2)
-        eligible_taux_1 = not_(or_(eligible_taux_2, eligible_taux_3)) * (rfr < plafond_taux_1)
+        eligible_taux_3 = rfr <= plafond_taux_3
+        eligible_taux_2 = not_(eligible_taux_3) * (rfr <= plafond_taux_2)
+        eligible_taux_1 = not_(or_(eligible_taux_2, eligible_taux_3)) * (rfr <= plafond_taux_1)
 
         scolarites = self.split_by_roles(scolarite_holder, roles = ENFS)
         nb_enfants_college = zeros(len(rfr))

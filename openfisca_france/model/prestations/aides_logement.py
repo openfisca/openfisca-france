@@ -1,28 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 from __future__ import division
 
 import csv
@@ -256,160 +233,189 @@ class aide_logement_montant_brut(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+
+        # Situation familiale
         concub = simulation.calculate('concub', period)
-        aide_logement_base_ressources = simulation.calculate('aide_logement_base_ressources', period)
-        statut_occupation_holder = simulation.compute('statut_occupation', period)
-        loyer_holder = simulation.compute('loyer', period)
-        coloc_holder = simulation.compute('coloc', period)
-        logement_chambre_holder = simulation.compute('logement_chambre', period)
-        al_pac = simulation.calculate('al_pac', period)
         enceinte_fam = simulation.calculate('enceinte_fam', period)
-        zone_apl_famille = simulation.calculate('zone_apl_famille', period)
-        nat_imp_holder = simulation.compute('nat_imp', period.start.period(u'year').offset('first-of'))
-        al = simulation.legislation_at(period.start).al
-
-        pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
-
-        # le barème "couple" est utilisé pour les femmes enceintes isolées
-        couple = or_(concub, enceinte_fam)
+        couple = or_(concub, enceinte_fam) # le barème "couple" est utilisé pour les femmes enceintes isolées
         personne_seule = not_(couple)
+        al_pac = simulation.calculate('al_pac', period)
 
+        # Logement
+        statut_occupation_holder = simulation.compute('statut_occupation', period)
         statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
         statut_occupation = self.filter_role(statut_occupation, role = CHEF)
+        loyer_holder = simulation.compute('loyer', period)
         loyer = self.cast_from_entity_to_roles(loyer_holder)
         loyer = self.filter_role(loyer, role = CHEF)
-
-        zone_apl = zone_apl_famille
-        # Variables individuelles
+        coloc_holder = simulation.compute('coloc', period)
         coloc = self.any_by_roles(coloc_holder)
+        logement_chambre_holder = simulation.compute('logement_chambre', period)
         chambre = self.any_by_roles(logement_chambre_holder)
+        zone_apl_famille = simulation.calculate('zone_apl_famille', period)
+        zone_apl = zone_apl_famille
+        locataire = ((3 <= statut_occupation) & (5 >= statut_occupation)) | (statut_occupation == 7)
+        accedant = statut_occupation == 1
 
-        # Variables du foyer fiscal
-        nat_imp = self.cast_from_entity_to_roles(nat_imp_holder)
-        nat_imp = self.any_by_roles(nat_imp)
+        # Ressources
+        aide_logement_base_ressources = simulation.calculate('aide_logement_base_ressources', period)
 
-        # ne prend pas en compte les chambres ni les logements-foyers.
-        # variables nécéssaires dans FA
-        # al_pac : nb de personne à charge du ménage prise en compte pour les AL
-        # zone_apl
-        # loyer
-        # coloc (1 si colocation, 0 sinon)
-        # statut_occupation : statut d'occupation du logement
-        # Voir statut_occupation dans model/caracteristiques_socio_demographiques/logement.py
+        # Parametres législatifs
+        al = simulation.legislation_at(period.start).al
+        pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
 
-        loca = ((3 <= statut_occupation) & (5 >= statut_occupation)) | (statut_occupation == 7)
-        acce = statut_occupation == 1
+        def loyer_retenu():
+            # loyer mensuel réel, multiplié par 2/3 pour les meublés
+            L1 = round((statut_occupation == 5) * loyer * 2 / 3 + (statut_occupation != 5) * loyer, 2)
 
-        # # aides au logement pour les locataires
-        # loyer mensuel, multiplié par 2/3 pour les meublés
-        L1 = round((statut_occupation == 5) * loyer * 2 / 3 + (statut_occupation != 5) * loyer, 2)
+            # taux à appliquer sur le loyer plafond
+            taux_loyer_plafond = (and_(not_(coloc), not_(chambre)) * 1
+                                 + chambre * al.loyers_plafond.chambre
+                                 + not_(chambre) * coloc * al.loyers_plafond.colocation)
 
-        # taux à appliquer sur le loyer plafond
-        taux_loyer_plafond = (and_(not_(coloc), not_(chambre)) * 1
-                             + chambre * al.loyers_plafond.chambre
-                             + not_(chambre) * coloc * al.loyers_plafond.colocation)
+            loyer_plafond_personne_seule = or_(personne_seule * (al_pac == 0), chambre)
+            loyer_plafond_famille = not_(loyer_plafond_personne_seule) * (al_pac > 0)
+            loyer_plafond_couple = and_(not_(loyer_plafond_famille), not_(loyer_plafond_personne_seule))
 
-        loyer_plafond_personne_seule = or_(personne_seule * (al_pac == 0), chambre)
-        loyer_plafond_famille = not_(loyer_plafond_personne_seule) * (al_pac > 0)
-        loyer_plafond_couple = and_(not_(loyer_plafond_famille), not_(loyer_plafond_personne_seule))
+            z1 = al.loyers_plafond.zone1
+            z2 = al.loyers_plafond.zone2
+            z3 = al.loyers_plafond.zone3
 
-        z1 = al.loyers_plafond.zone1
-        z2 = al.loyers_plafond.zone2
-        z3 = al.loyers_plafond.zone3
+            Lz1 = (
+                loyer_plafond_personne_seule * z1.L1 +
+                loyer_plafond_couple * z1.L2 +
+                loyer_plafond_famille * (z1.L3 + (al_pac > 1) * (al_pac - 1) * z1.L4)
+                )
+            Lz2 = (
+                loyer_plafond_personne_seule * z2.L1 +
+                loyer_plafond_couple * z2.L2 +
+                loyer_plafond_famille * (z2.L3 + (al_pac > 1) * (al_pac - 1) * z2.L4)
+                )
+            Lz3 = (
+                loyer_plafond_personne_seule * z3.L1 +
+                loyer_plafond_couple * z3.L2 +
+                loyer_plafond_famille * (z3.L3 + (al_pac > 1) * (al_pac - 1) * z3.L4)
+                )
 
-        Lz1 = (
-            loyer_plafond_personne_seule * z1.L1 +
-            loyer_plafond_couple * z1.L2 +
-            loyer_plafond_famille * (z1.L3 + (al_pac > 1) * (al_pac - 1) * z1.L4)
-            )
-        Lz2 = (
-            loyer_plafond_personne_seule * z2.L1 +
-            loyer_plafond_couple * z2.L2 +
-            loyer_plafond_famille * (z2.L3 + (al_pac > 1) * (al_pac - 1) * z2.L4)
-            )
-        Lz3 = (
-            loyer_plafond_personne_seule * z3.L1 +
-            loyer_plafond_couple * z3.L2 +
-            loyer_plafond_famille * (z3.L3 + (al_pac > 1) * (al_pac - 1) * z3.L4)
-            )
+            L2 = Lz1 * (zone_apl == 1) + Lz2 * (zone_apl == 2) + Lz3 * (zone_apl == 3)
+            L2 = round(L2 * taux_loyer_plafond, 2)
 
-        L2 = Lz1 * (zone_apl == 1) + Lz2 * (zone_apl == 2) + Lz3 * (zone_apl == 3)
-        L2 = round(L2 * taux_loyer_plafond, 2)
+            # loyer retenu
+            L = min_(L1, L2)
 
-        # loyer retenu
-        L = min_(L1, L2)
+            return L
 
-        # forfait de charges
-        P_fc = al.forfait_charges
-        C = (
-            not_(coloc) * (P_fc.fc1 + al_pac * P_fc.fc2) +
-            coloc * ((personne_seule * 0.5 + couple) * P_fc.fc1 + al_pac * P_fc.fc2)
-            )
+        def depense_eligible():
+            # Loyer chargé pris en compte par la CAF comme montant des dépenses liées au logement
 
-        # dépense éligible
-        E = L + C
+            # forfait de charges
+            P_fc = al.forfait_charges
+            C = (
+                not_(coloc) * (P_fc.fc1 + al_pac * P_fc.fc2) +
+                coloc * ((personne_seule * 0.5 + couple) * P_fc.fc1 + al_pac * P_fc.fc2)
+                )
 
-        # ressources prises en compte
-        R = aide_logement_base_ressources
+            # dépense éligible
+            E = loyer_retenu() + C
 
-        # Plafond RO
-        rmi = al.rmi
-        R1 = (
-            al.R1.taux1 * rmi * personne_seule * (al_pac == 0) +
-            al.R1.taux2 * rmi * couple * (al_pac == 0) +
-            al.R1.taux3 * rmi * (al_pac == 1) +
-            al.R1.taux4 * rmi * (al_pac >= 2) +
-            al.R1.taux5 * rmi * (al_pac > 2) * (al_pac - 2)
-            )
+            return E
 
-        bmaf = pfam_n_2.af.bmaf
-        R2 = (
-            al.R2.taux4 * bmaf * (al_pac >= 2) +
-            al.R2.taux5 * bmaf * (al_pac > 2) * (al_pac - 2)
-            )
+        def indice_ressources_Rp():
+            # Indice de ressource utilisé par la CAF, en €
+            # Différence entre les ressources du foyer et un revenu R0 de référence
 
-        Ro = round(12 * (R1 - R2) * (1 - al.autres.abat_sal))
+            # ressources prises en compte
+            R = aide_logement_base_ressources
 
-        Rp = max_(0, R - Ro)
+            # Plafond RO
+            rmi = al.rmi
+            R1 = (
+                al.R1.taux1 * rmi * personne_seule * (al_pac == 0) +
+                al.R1.taux2 * rmi * couple * (al_pac == 0) +
+                al.R1.taux3 * rmi * (al_pac == 1) +
+                al.R1.taux4 * rmi * (al_pac >= 2) +
+                al.R1.taux5 * rmi * (al_pac > 2) * (al_pac - 2)
+                )
 
-        # Participation personnelle
-        Po = max_(al.pp.taux * E, al.pp.min)
+            bmaf = pfam_n_2.af.bmaf
+            R2 = (
+                al.R2.taux4 * bmaf * (al_pac >= 2) +
+                al.R2.taux5 * bmaf * (al_pac > 2) * (al_pac - 2)
+                )
 
-        # Taux de famille
-        TF = (
-            al.TF.taux1 * (personne_seule) * (al_pac == 0) +
-            al.TF.taux2 * (couple) * (al_pac == 0) +
-            al.TF.taux3 * (al_pac == 1) +
-            al.TF.taux4 * (al_pac == 2) +
-            al.TF.taux5 * (al_pac == 3) +
-            al.TF.taux6 * (al_pac >= 4) +
-            al.TF.taux7 * (al_pac > 4) * (al_pac - 4)
-            )
+            Ro = round(12 * (R1 - R2) * (1 - al.autres.abat_sal))
 
-        # Loyer de référence
-        L_Ref = (
-            z2.L1 * (personne_seule) * (al_pac == 0) +
-            z2.L2 * (couple) * (al_pac == 0) +
-            z2.L3 * (al_pac >= 1) +
-            z2.L4 * (al_pac > 1) * (al_pac - 1)
+            Rp = max_(0, R - Ro)
+
+            return Rp
+
+        def taux_famille():
+            # Taux représentant la situation familiale. Plus il est faible, moins la famille a de personnes à charge.
+            TF = (
+                al.TF.taux1 * (personne_seule) * (al_pac == 0) +
+                al.TF.taux2 * (couple) * (al_pac == 0) +
+                al.TF.taux3 * (al_pac == 1) +
+                al.TF.taux4 * (al_pac == 2) +
+                al.TF.taux5 * (al_pac == 3) +
+                al.TF.taux6 * (al_pac >= 4) +
+                al.TF.taux7 * (al_pac > 4) * (al_pac - 4)
             )
 
-        RL = L / L_Ref
+            return TF
 
-        # TODO: paramètres en dur ??
-        TL = max_(max_(0, al.TL.taux2 * (RL - 0.45)), al.TL.taux3 * (RL - 0.75) + al.TL.taux2 * (0.75 - 0.45))
+        def taux_loyer():
+            # Taux obscur basé sur une comparaison du loyer retenu à un loyer de référence.
 
-        Tp = TF + TL
+            L = loyer_retenu()
+            z2 = al.loyers_plafond.zone2
 
-        PP = Po + Tp * Rp
-        al_loc = max_(0, E - PP) * loca
-        al_loc = al_loc * (al_loc >= al.autres.nv_seuil)
+            # Loyer de référence
+            L_Ref = (
+                z2.L1 * (personne_seule) * (al_pac == 0) +
+                z2.L2 * (couple) * (al_pac == 0) +
+                z2.L3 * (al_pac >= 1) +
+                z2.L4 * (al_pac > 1) * (al_pac - 1)
+                )
 
-        # # TODO: APL pour les accédants à la propriété
-        al_acc = 0 * acce
-        # # APL (tous)
+            RL = L / L_Ref
 
-        al = al_loc + al_acc
+            # TODO: paramètres en dur ??
+            TL = max_(
+                max_(0, al.TL.taux2 * (RL - 0.45)),
+                al.TL.taux3 * (RL - 0.75) + al.TL.taux2 * (0.75 - 0.45)
+            )
+
+            return TL
+
+        def participation_personelle():
+            # Participation du demandeur à ses dépenses de logement
+
+            # Depense eligible
+            E = depense_eligible()
+
+            # participatioion personnelle minimale
+            Po = max_(al.pp.taux * E, al.pp.min)
+
+            # Taux de participation
+            Tp = taux_famille() + taux_loyer()
+
+            # Indice ressources
+            Rp = indice_ressources_Rp()
+
+            Pp = Po + Tp * Rp
+
+            return Pp
+
+        al_locataire = max_(0, depense_eligible() - participation_personelle()) * locataire
+
+        # Montant minimal de versement
+        al_locataire = al_locataire * (al_locataire >= al.autres.nv_seuil)
+
+        # TODO: APL pour les accédants à la propriété
+        al_accedants = 0 * accedant
+
+        al = al_locataire + al_accedants
+
         return period, al
 
 
