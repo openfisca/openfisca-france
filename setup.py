@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '0.5.3.dev0',
+    version = '0.5.3',
 
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
@@ -20,7 +20,7 @@ setup(
         "Programming Language :: Python",
         "Topic :: Scientific/Engineering :: Information Analysis",
         ],
-    description = u'France specific model for OpenFisca',
+    description = u'French tax and benefit system for OpenFisca',
     keywords = 'benefit france microsimulation social tax',
     license = 'http://www.fsf.org/licensing/licenses/agpl-3.0.html',
     url = 'https://github.com/openfisca/openfisca-france',

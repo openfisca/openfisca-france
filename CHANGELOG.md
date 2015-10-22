@@ -1,8 +1,60 @@
 # Changelog
 
-## 0.5.3.dev0 - next release
+## 0.5.3
 
-* TODO Fill this changes list while developing
+* Fix vieillesse deplafonnee baremes
+* Fix some dates in arrco and formation prof. baremes
+* Remove obsolete or unuseful comment which induces indentation problem when using parameters fusion scripts
+* Improve decote legislation parameters
+* Removing unused obsolete reform parameters still in param.xml
+* Add tests
+* Round ceilings values
+* Resources need to be non superior to ceilings, not inferior
+* update bourse_college params
+* flake8
+* Do not pre-initialize reforms cache
+* Remove licence from code files
+* Introduce asi_aspa_condition_nationalite Introduce rsa_condition_nationalite
+* Introduce ressortissant_eee Introduce duree_possession_titre_sejour
+* change it in the tests too...
+* Change name and description of the prestation
+* add a test for decote where the individual is below the first tax threshold
+* implement true_decote that is the decote amount provided by dgfip (at list on their simulator) which is the fiscal gain accountable to the decote mechanism
+* add a test for irpp couples
+* Actualize legislation for min/max abattements pour frais pro add a test for IR 2015 ; change label of reform plf 2015.
+* Change reforms.plf2015 decote to a DatedFormulaColumn
+* Conform to instructions given by @benjello for PR
+* add empty line
+* add an empty line for two empty lines between two classes
+* add decote ir2014 on income 2014 from reform plf hardcoded.
+* Small changes, trash plf2015 reform
+* Put reforms/plf2015.py into legislation. WIP still need a proper test on decote
+* Return ape_temp for a month, not for a weird period
+* Repair imports in test_basics.py
+* Remove irrelevant calculate_divide and calculate_add_divide in rsa.py, cf.py, asi_aspa.py
+* Merge formulas and formulas_mes_aides folder
+* Typo in cerfa field
+* Add test for psoc formula
+* Clean test_plf2015
+* NOT WORKING Reform plf2015 on revenus 2013
+* Rename paje_nais to paje_naissance
+* Fix params references
+* Redefine period in functions
+* Fix indentation in params
+* Fix param for retro-compatibility
+* Kid age need to be *strictly* < 3
+* Réécriture et update de la paje
+* Rename cf_temp to cf_montant Rename paje_base_temp to paje_base_montant
+* Refactor aide_logement_montant_brut
+* Add clean-mo target
+* Add make clean target
+* Add MANIFEST.in
+* Do not package tests
+* Remove unnecessary __init__.py in scripts
+* Add data_files in setup.py
+* Use extras_require in setup.py
+* Remove nose section from setup.cfg
+* Add CONTRIBUTING.md file
 
 ## 0.5.2
 
