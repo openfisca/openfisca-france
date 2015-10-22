@@ -2,7 +2,7 @@
 
 from functools import partial
 from numpy import (
-    busday_count as original_busday_count, datetime64, maximum as max_, minimum as min_, timedelta64, zeros,
+    busday_count as original_busday_count, datetime64, maximum as max_, minimum as min_, timedelta64,
     )
 
 
@@ -546,9 +546,9 @@ class gipa(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        type_sal = simulation.calculate('type_sal', period)
 
-        return period, zeros(len(type_sal))
+        from numpy import zeros
+        return period, zeros(self.holder.entity.count)
 
 
 @reference_formula

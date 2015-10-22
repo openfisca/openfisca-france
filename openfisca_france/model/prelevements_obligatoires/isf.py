@@ -545,7 +545,8 @@ class bouclier_rev(SimpleFormulaColumn):
 
         # TODO: réintégrer les déficits antérieur
         # TODO: intégrer les revenus soumis au prélèvement libératoire
-        null = 0 * rbg
+        fromp numpy import zeros
+        null = zeros(self.holder.entity.count)
 
         deficit_ante = null
 
