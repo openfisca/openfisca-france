@@ -4045,7 +4045,7 @@
         <VALUE deb="2003-07-01" fin="2014-03-31" valeur="20" />
       </CODE>
       <CODE code="seuil_rev_taux" description="Seuil de revenu pour être considéré comme enfant à charge (en smic)" format="percent">
-        <VALUE deb="2001-07-01" fin="2014-03-31" valeur=".55" />
+        <VALUE deb="2001-07-01" fin="2015-03-31" valeur=".55" />
       </CODE>
       <NODE code="taux" description="Taux (% de la BMAF)">
         <CODE code="enf_seul" description="Un seul enfant à charge (DOM)" format="percent">
