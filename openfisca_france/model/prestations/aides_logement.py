@@ -115,7 +115,7 @@ class aide_logement_abattement_chomage_indemnise(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.this_month
-        two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
+        two_years_ago = period.n_2
         chomage_net_m_1 = simulation.calculate('chonet', period.offset(-1))
         chomage_net_m_2 = simulation.calculate('chonet', period.offset(-2))
         revenus_activite_pro = simulation.calculate('salaire_imposable', two_years_ago)
@@ -137,7 +137,7 @@ class aide_logement_abattement_depart_retraite(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.this_month
-        two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
+        two_years_ago = period.n_2
         retraite = simulation.calculate('activite', period) == 3
         activite_n_2 = simulation.calculate('salaire_imposable', two_years_ago)
         retraite_n_2 = simulation.calculate('rst', two_years_ago)
@@ -158,7 +158,7 @@ class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.this_month
-        two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
+        two_years_ago = period.n_2
         br_pf_i_holder = simulation.compute('br_pf_i', period)
         rev_coll_holder = simulation.compute('rev_coll', two_years_ago)
         rev_coll = self.sum_by_entity(rev_coll_holder)
@@ -190,7 +190,7 @@ class aide_logement_base_ressources(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.this_month
         mois_precedent = period.offset(-1)
-        last_day_reference_year = period.start.offset('first-of', 'year').period('year').offset(-2).stop
+        last_day_reference_year = period.n_2.stop
         base_ressources_defaut = simulation.calculate('aide_logement_base_ressources_defaut', period)
         base_ressources_eval_forfaitaire = simulation.calculate(
             'aide_logement_base_ressources_eval_forfaitaire', period)
