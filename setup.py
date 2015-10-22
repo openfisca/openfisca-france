@@ -43,7 +43,7 @@ setup(
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
         'Babel >= 0.9.4',
-        'Biryani >= 0.10.4',
+        'Biryani[datetimeconv] >= 0.10.4',
         'numpy >= 1.6',
         'OpenFisca-Core >= 0.5.0',
         'PyYAML >= 3.10',
