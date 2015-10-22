@@ -64,7 +64,7 @@ class al_pac(SimpleFormulaColumn):
 
         age1 = af.age1
         age2 = cf.age2
-        al_nbenf = nb_enf(age, smic55, age1, age2)
+        al_nbenf = nb_enf(age, smic55, age1, age2 - 1) # La limite sur l'age max est stricte.
         al_pac = D_enfch * (al_nbenf + al_nbinv)  # TODO: manque invalides
         # TODO: il faudrait probablement définir les aides au logement pour un ménage et non
         # pour une famille
