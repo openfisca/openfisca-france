@@ -95,11 +95,8 @@ class exoneration_cotisations_employeur_stagiaire(SimpleFormulaColumn):
         type_sal = simulation.calculate('type_sal', period)
 
         bareme_by_type_sal_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur
-        bareme_names = ['agffnc', 'agffc', 'chomfg', 'assedic']
-
-        exoneration = plafond_securite_sociale * 0.0
-        for bareme_name in bareme_names:
-            exoneration += apply_bareme_for_relevant_type_sal(
+        exoneration = sum(
+            apply_bareme_for_relevant_type_sal(
                 bareme_by_type_sal_name = bareme_by_type_sal_name,
                 bareme_name = bareme_name,
                 type_sal = type_sal,
@@ -107,7 +104,9 @@ class exoneration_cotisations_employeur_stagiaire(SimpleFormulaColumn):
                 plafond_securite_sociale = plafond_securite_sociale,
                 round_base_decimals = 2,
                 )
-        exoneration = exoneration + agirc_employeur + agirc_gmp_employeur + arrco_employeur
+            for bareme_name in ['agffnc', 'agffc', 'chomfg', 'assedic']
+        )
+        exoneration += agirc_employeur + agirc_gmp_employeur + arrco_employeur
         return period, - exoneration * stagiaire
 
 
