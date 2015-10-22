@@ -3379,7 +3379,7 @@
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur="5000" />
         </CODE>
         <CODE code="pac1" description="Majoration du plafond pour le 1er enfant" format="integer" type="monetary">
-          <VALUE deb="2002-01-01" fin="2013-12-31" valeur="400" />  # TODO: 400 par pac
+          <VALUE deb="2002-01-01" fin="2013-12-31" valeur="400" />
     </CODE>
         <CODE code="pac2" description="Majoration du plafond pour le 2eme enfant" format="integer" type="monetary">
           <VALUE deb="2002-01-01" fin="2007-12-31" valeur="500" />
