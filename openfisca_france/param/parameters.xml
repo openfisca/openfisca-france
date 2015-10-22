@@ -69,9 +69,6 @@
       </CODE>
     </NODE>
     <NODE code="autres" description="Autres dispositions communes">
-      <CODE code="D_enfch" description="Enfants comptés à charge (pour scénario de réforme)" format="integer">
-        <VALUE deb="2001-01-01" fin="2014-12-31" valeur="1" />
-      </CODE>
       <CODE code="abat_sal" description="Abattement salarié" format="percent">
         <VALUE deb="2006-01-01" fin="2015-12-31" valeur="0.10" />
         <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.28" />
@@ -9569,9 +9566,6 @@
       </CODE>
     </NODE>
     <NODE code="rmi" description="Revenu de solidarité active">
-      <CODE code="D_enfch" description="Enfants comptés à charge" format="integer">
-        <VALUE deb="2001-01-01" fin="2013-12-31" valeur="1" />
-      </CODE>
       <CODE code="RMI_fixe" description="Fixe le Rmi dans les simulations" format="bool">
         <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
       </CODE>

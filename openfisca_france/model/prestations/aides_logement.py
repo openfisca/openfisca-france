@@ -50,22 +50,19 @@ class al_pac(SimpleFormulaColumn):
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period)
         nbR_holder = simulation.compute('nbR', period.this_year)
-        D_enfch = simulation.legislation_at(period.start).al.autres.D_enfch
         af = simulation.legislation_at(period.start).fam.af
         cf = simulation.legislation_at(period.start).fam.cf
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
-        # P_AL.D_enfch est une dummy qui vaut 1 si les enfants sont comptés à
-        # charge (cas actuel) et zéro sinon.
         nbR = self.cast_from_entity_to_role(nbR_holder, role = VOUS)
         al_nbinv = self.sum_by_entity(nbR)
 
         age1 = af.age1
         age2 = cf.age2
         al_nbenf = nb_enf(age, smic55, age1, age2 - 1) # La limite sur l'age max est stricte.
-        al_pac = D_enfch * (al_nbenf + al_nbinv)  # TODO: manque invalides
+        al_pac = al_nbenf + al_nbinv  # TODO: manque invalides
         # TODO: il faudrait probablement définir les aides au logement pour un ménage et non
         # pour une famille
 
