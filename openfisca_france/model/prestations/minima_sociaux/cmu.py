@@ -346,16 +346,14 @@ def forfait_logement(nbp_foyer, P, law_rsa):
         ((nbp_foyer == 1) * P.taux_1p + (nbp_foyer == 2) * P.taux_2p + (nbp_foyer > 2) * P.taux_3p_plus))
 
 
-def nb_par_age(ages, min, max):
+def nb_par_age(age_by_role, min, max):
     '''
     Calcule le nombre d'individus ayant un âge compris entre min et max
     '''
-    res = None
-    for key, age in ages.iteritems():
-        if res is None:
-            res = zeros(len(age), dtype = int32)
-        res += (min <= age) & (age <= max)
-    return res
+    return sum(
+        (min <= age) & (age <= max)
+        for age in age_by_role.itervalues()
+        )
 
 
 def rsa_socle_base(nbp, P):
