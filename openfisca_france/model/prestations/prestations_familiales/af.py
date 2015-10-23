@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import round, maximum as max_, logical_not as not_, logical_or as or_
+from numpy import round, maximum as max_, logical_not as not_, logical_or as or_, vectorize
 
 
 from ...base import *  # noqa analysis:ignore
@@ -16,7 +16,7 @@ class af_enfant_a_charge(SimpleFormulaColumn):
     label = u"Enfant à charge au sens des allocations familiales"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
         smic55 = simulation.calculate('smic55', period)
@@ -39,13 +39,33 @@ class af_nbenf(SimpleFormulaColumn):
     label = u"Nombre d'enfants dans la famille au sens des allocations familiales"
 
     def function(self, simulation, period):
-        period_mois = period.start.offset('first-of', 'month').period('month')
+        period_mois = period.this_month
 
         af_enfant_a_charge_holder = simulation.compute('af_enfant_a_charge', period_mois)
         af_nbenf = self.sum_by_entity(af_enfant_a_charge_holder)
 
         return period, af_nbenf
 
+@reference_formula
+class af_coeff_garde_alternee(DatedFormulaColumn):
+    column = FloatCol(default = 1)
+    entity_class = Familles
+    label = u"Coefficient à appliquer aux af pour tenir compte de la garde alternée"
+
+    @dated_function(start = date(2007, 5, 1))
+    def function_2007(self, simulation, period):
+        period = period.this_month
+        nb_enf = simulation.calculate('af_nbenf', period)
+        alt = simulation.compute('alt', period)
+        af_enfant_a_charge = simulation.compute('af_enfant_a_charge', period)
+
+        # Le nombre d'enfants à charge en garde alternée, qui vérifient donc af_enfant_a_charge = true et alt = true
+        nb_enf_garde_alternee = self.sum_by_entity(alt.array * af_enfant_a_charge.array)
+
+        # Avoid division by zero. If nb_enf == 0, necessarily nb_enf_garde_alternee = 0 so coeff = 1
+        coeff = 1 - (nb_enf_garde_alternee / (nb_enf + (nb_enf == 0))) * 0.5
+
+        return period, coeff
 
 @reference_formula
 class af_forf_nbenf(SimpleFormulaColumn):
@@ -54,7 +74,7 @@ class af_forf_nbenf(SimpleFormulaColumn):
     label = u"Nombre d'enfants dans la famille éligibles à l'allocation forfaitaire des AF"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age_holder = simulation.compute('age', period)
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55_holder = simulation.compute('smic55', period)
@@ -72,7 +92,7 @@ class af_eligibilite_base(SimpleFormulaColumn):
     label = u"Allocations familiales - Éligibilité pour la France métropolitaine sous condition de ressources"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         residence_dom = simulation.calculate('residence_dom', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
@@ -87,7 +107,7 @@ class af_eligibilite_dom(SimpleFormulaColumn):
     label = u"Allocations familiales - Éligibilité pour les DOM (hors Mayotte) sous condition de ressources"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         residence_dom = simulation.calculate('residence_dom', period)
         residence_mayotte = simulation.calculate('residence_mayotte', period)
@@ -104,7 +124,7 @@ class af_base(SimpleFormulaColumn):
     # prestations familiales (brutes de crds)
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         eligibilite_base = simulation.calculate('af_eligibilite_base', period)
         eligibilite_dom = simulation.calculate('af_eligibilite_dom', period)
@@ -119,6 +139,8 @@ class af_base(SimpleFormulaColumn):
         plus_de_trois_enfants = max_(af_nbenf - 2, 0) * pfam.taux.enf3
         taux_total = un_seul_enfant + plus_de_deux_enfants + plus_de_trois_enfants
         montant_base = eligibilite * round(pfam.bmaf * taux_total, 2)
+        coeff_garde_alternee = simulation.calculate('af_coeff_garde_alternee', period)
+        montant_base = montant_base * coeff_garde_alternee
 
         af_taux_modulation = simulation.calculate('af_taux_modulation', period)
         montant_base_module = montant_base * af_taux_modulation
@@ -134,7 +156,7 @@ class af_taux_modulation(DatedFormulaColumn):
 
     @dated_function(start = date(2015, 7, 1))
     def function_2015(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         af_nbenf = simulation.calculate('af_nbenf', period)
         pfam = simulation.legislation_at(period.start).fam.af
         br_pf = simulation.calculate('br_pf', period)
@@ -159,7 +181,7 @@ class af_forf_taux_modulation(DatedFormulaColumn):
 
     @dated_function(start = date(2015, 7, 1))
     def function_2015(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         pfam = simulation.legislation_at(period.start).fam.af
         af_nbenf = simulation.calculate('af_nbenf', period)
         af_forf_nbenf = simulation.calculate('af_forf_nbenf', period)
@@ -185,7 +207,7 @@ class af_age_aine(SimpleFormulaColumn):
     label = u"Allocations familiales - Âge de l'aîné des enfants éligibles"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         age_holder = simulation.compute('age', period)
         age_enfants = self.split_by_roles(age_holder, roles = ENFS)
@@ -212,7 +234,7 @@ class af_majoration_enfant(SimpleFormulaColumn):
     label = u"Allocations familiales - Majoration pour âge applicable à l'enfant"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         af_enfant_a_charge = simulation.calculate('af_enfant_a_charge', period)
         age = simulation.calculate('age', period)
@@ -250,7 +272,7 @@ class af_majo(SimpleFormulaColumn):
     label = u"Allocations familiales - majoration pour âge"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         af_majoration_enfant_holder = simulation.compute('af_majoration_enfant', period)
         af_majoration_enfants = self.sum_by_entity(af_majoration_enfant_holder, roles = ENFS)
 
@@ -268,7 +290,7 @@ class af_complement_degressif(DatedFormulaColumn):
 
     @dated_function(start = date(2015, 7, 1))
     def function_2015(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         af_nbenf = simulation.calculate('af_nbenf', period)
         br_pf = simulation.calculate('br_pf', period)
         af_base = simulation.calculate('af_base', period)
@@ -298,7 +320,7 @@ class af_forf_complement_degressif(DatedFormulaColumn):
 
     @dated_function(start = date(2015, 7, 1))
     def function_2015(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         af_nbenf = simulation.calculate('af_nbenf', period)
         af_forf_nbenf = simulation.calculate('af_forf_nbenf', period)
         pfam = simulation.legislation_at(period.start).fam.af
@@ -327,7 +349,7 @@ class af_forf(SimpleFormulaColumn):
     label = u"Allocations familiales - forfait"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         af_nbenf = simulation.calculate('af_nbenf', period)
         af_forf_nbenf = simulation.calculate('af_forf_nbenf', period)
         P = simulation.legislation_at(period.start).fam.af
@@ -350,7 +372,7 @@ class af(SimpleFormulaColumn):
     label = u"Allocations familiales - total des allocations"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         af_base = simulation.calculate('af_base', period)
         af_majo = simulation.calculate('af_majo', period)
         af_forf = simulation.calculate('af_forf', period)
