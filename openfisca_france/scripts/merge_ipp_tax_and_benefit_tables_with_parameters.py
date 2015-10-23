@@ -228,7 +228,10 @@ def main():
                             else:
                                 fragment = translations
                                 translations = None
-                        sub_path = [fragment] if isinstance(fragment, basestring) else fragment[:]
+                        fragments = [fragment] if isinstance(fragment, basestring) else fragment[:]
+                        sub_path = []
+                        for fragment in fragments:
+                            sub_path.extend(fragment.split(u'.'))
                         while sub_path:
                             fragment = sub_path.pop(0)
                             fragment = slugify_ipp_translation_key(fragment)
