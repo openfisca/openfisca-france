@@ -546,9 +546,7 @@ class gipa(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-
-        from numpy import zeros
-        return period, zeros(self.holder.entity.count)
+        return period, self.zeros()
 
 
 @reference_formula

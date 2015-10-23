@@ -666,8 +666,7 @@ class rsa_act_i(DatedFormulaColumn):
 
         conj = or_(concub, maries)
 
-        from numpy import zeros
-        rsa_act_i = zeros(self.holder.entity.count)
+        rsa_act_i = self.zeros()
 
         chef_filter = quifam == 0
         rsa_act_i[chef_filter] = rsa_act[chef_filter] / (1 + conj[chef_filter])

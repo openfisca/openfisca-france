@@ -543,19 +543,18 @@ class bouclier_rev(SimpleFormulaColumn):
         cd_penali = simulation.calculate('cd_penali', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
 
+
         # TODO: réintégrer les déficits antérieur
         # TODO: intégrer les revenus soumis au prélèvement libératoire
-        fromp numpy import zeros
-        null = zeros(self.holder.entity.count)
-
-        deficit_ante = null
+        # deficit_ante =
 
         # # Revenus
         frac_rvcm_rfr = 0.7 * rvcm_plus_abat  # TODO: UNUSED ?
         # # revenus distribués?
         # # A majorer de l'abatt de 40% - montant brut en cas de PFL
         # # pour le calcul de droit à restitution : prendre 0.7*montant_brut_rev_dist_soumis_au_barème
-        rev_bar = rbg - maj_cga - csg_deduc - deficit_ante
+        # rev_bar = rbg - maj_cga - csg_deduc - deficit_ante
+        rev_bar = rbg - maj_cga - csg_deduc
 
     # # TODO: AJOUTER : indemnités de fonction percus par les élus- revenus soumis à régimes spéciaux
 
@@ -565,13 +564,13 @@ class bouclier_rev(SimpleFormulaColumn):
 
         # #Revenus exonérés d'IR réalisés en France et à l'étranger##
     #    rev_exo = primes_pel + primes_cel + rente_pea + int_livrets + plus_values_per
-        rev_exo = null
 
         # # proposer à l'utilisateur des taux de réference- PER, PEA, PEL,...TODO
         # # sommes investis- calculer les plus_values annuelles et prendre en compte pour rev_exo?
         # revenus soumis à la taxe forfaitaire sur les métaux précieux : rev_or
 
-        revenus = rev_bar + rev_lib + rev_exo + rev_or
+        # revenus = rev_bar + rev_lib + rev_exo + rev_or
+        revenus = rev_bar + rev_lib + rev_or
 
         # # CHARGES
         # Pension alimentaires

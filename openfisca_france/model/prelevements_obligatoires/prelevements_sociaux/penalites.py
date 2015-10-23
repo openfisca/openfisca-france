@@ -92,7 +92,6 @@ class penalite_handicapes(SimpleFormulaColumn):
         # effectifs salariés. A défaut, l’employeur peut verser une contribution annuelle
         # proportionnelle au nombre de salariés handicapés qu’il aurait dû recruter pour
         # remplir son obligation d’emploi.
-        from numpy import zeros
-        return period, zeros(self.holder.entity.count)
+        return period, self.zeros()
 
 # TODO penibilite CDD évoquée page 11 du guide IPP est-elle la cotisation pour le CIF des CDD ?
