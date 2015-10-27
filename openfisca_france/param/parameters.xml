@@ -3572,7 +3572,7 @@
     </NODE>
     <NODE code="autre" description="Variables pour scénario de réforme">
       <CODE code="finpfl" description="Indicatrice pour imposition des revenus du capital au barème" format="bool">
-        <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0" />
+        <VALUE deb="2001-01-01" valeur="0" />
       </CODE>
     </NODE>
     <BAREME code="bareme" description="Tranches de l'IR" type="monetary">
@@ -4920,6 +4920,7 @@
         </CODE>
       </NODE>
     </NODE>
+<<<<<<< HEAD
     <NODE code="microfoncier" description="Microfoncier">
       <CODE code="max" description="Si revenu inférieur à" format="integer" type="monetary">
         <VALUE deb="2001-01-01" fin="2013-12-31" valeur="15000" />
@@ -4935,6 +4936,8 @@
       <CODE code="RMI_fixe" description="Fixe le Rmi dans les simulations" format="bool">
         <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
 =======
+=======
+>>>>>>> WIP
     <NODE code="non_imposable" description="Condition de non imposabilité">
       <CODE code="seuil" description="Seuil de non imposabilité" format="integer" type="monetary">
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="11791" />
@@ -6130,18 +6133,6 @@
       </NODE>
     </NODE>
     <NODE code="rpns" description="Revenus des professions non salariées">
-      <NODE code="abattement_pour_le_regime_microfoncier">
-        <CODE code="plafond_de_recettes" format="float" type="monetary">
-          <VALUE deb="2001-01-01" valeur="15000" />
-          <VALUE deb="1999-01-01" fin="2000-12-31" valeur="60000" />
-          <VALUE deb="1997-01-01" fin="1998-12-31" valeur="30000" />
-        </CODE>
-        <CODE code="taux" format="percent">
-          <VALUE deb="2006-01-01" valeur="0.3" />
-          <VALUE deb="1999-01-01" fin="2005-12-31" valeur="0.4" />
-          <VALUE deb="1997-01-01" fin="1998-12-31" valeur="0.333333333333" />
-        </CODE>
-      </NODE>
       <CODE code="cga_max" description="Abattement centre de gestion agréé ou association aggréé///si revenu inférieur à " format="integer" type="monetary">
         <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="120100" />
@@ -6171,109 +6162,108 @@
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="10700" />
       </CODE>
       <NODE code="micro" description="Régime microentreprise/Spécial bnc">
-        <NODE code="servi" description="Activité de service">
-          <CODE code="max" description="Maximum" format="integer" type="monetary">
-            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="32900" />
-            <VALUE deb="2011-01-01" fin="2013-12-31" valeur="32600" />
-            <VALUE deb="2010-01-01" fin="2010-12-31" valeur="32100" />
-            <VALUE deb="2009-01-01" fin="2009-12-31" valeur="32000" />
-            <VALUE deb="2002-01-01" fin="2008-12-31" valeur="27000" />
-            <VALUE deb="2001-01-01" fin="2001-12-31" valeur="26679" />
+        <NODE code="imputation_sur_le_revenu_global">
+          <CODE code="plafond_deficits_agricoles" format="float" type="monetary">
+            <VALUE deb="2011-01-01" valeur="106225" />
+            <VALUE deb="2010-01-01" fin="2010-12-31" valeur="104665" />
+            <VALUE deb="2009-01-01" fin="2009-12-31" valeur="104238" />
+            <VALUE deb="2007-01-01" fin="2008-12-31" valeur="101300" />
+            <VALUE deb="2006-01-01" fin="2006-12-31" valeur="100000" />
+            <VALUE deb="2004-01-01" fin="2005-12-31" valeur="60000" />
+            <VALUE deb="2001-01-01" fin="2003-12-31" valeur="53360" />
+            <VALUE deb="2000-01-01" fin="2000-12-31" valeur="350000" />
+            <VALUE deb="1995-01-01" fin="1999-12-31" valeur="200000" />
+            <VALUE deb="1994-01-01" fin="1994-12-31" valeur="150000" />
+            <VALUE deb="1989-01-01" fin="1993-12-31" valeur="100000" />
+            <VALUE deb="1988-01-01" fin="1988-12-31" valeur="70000" />
+            <VALUE deb="1979-01-01" fin="1987-12-31" valeur="40000" />
           </CODE>
-          <CODE code="min" description="Minimum" format="integer" type="monetary">
-            <VALUE deb="2002-01-01" fin="2013-12-31" valeur="305" />
+          <CODE code="plafond_deficits_fonciers" format="float" type="monetary">
+            <VALUE deb="2001-01-01" valeur="10700" />
+            <VALUE deb="1995-01-01" fin="2000-12-31" valeur="70000" />
+            <VALUE deb="1992-01-01" fin="1994-12-31" valeur="50000" />
           </CODE>
-          <CODE code="taux" description="Taux" format="percent">
-            <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.50" />  # Check 2014
-          <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.52" />
-            <VALUE deb="1991-01-01" fin="2001-12-31" valeur="0.50" />
+        </NODE>
+        <NODE code="microentreprise">
+          <CODE code="montant_minimum" format="float" type="monetary">
+            <VALUE deb="2001-01-01" valeur="305" />
+            <VALUE deb="1991-01-01" fin="2000-12-31" valeur="2000" />
+          </CODE>
+          <CODE code="taux_prestations_de_services" format="percent">
+            <VALUE deb="2006-01-01" valeur="0.5" />
+            <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.52" />
+            <VALUE deb="1991-01-01" fin="2001-12-31" valeur="0.5" />
+          </CODE>
+          <CODE code="taux_ventes_de_marchandises" format="percent">
+            <VALUE deb="2006-01-01" valeur="0.71" />
+            <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.72" />
+            <VALUE deb="1999-01-01" fin="2001-12-31" valeur="0.7" />
+            <VALUE deb="1991-01-01" fin="1998-12-31" valeur="0.5" />
+          </CODE>
+        </NODE>
+        <NODE code="microfoncier" description="Microfoncier">
+          <CODE code="max" description="Si revenu inférieur à" format="float" type="monetary">
+            <VALUE deb="2001-01-01" valeur="15000" />
+            <VALUE deb="1999-01-01" fin="2000-12-31" valeur="60000" />
+            <VALUE deb="1997-01-01" fin="1998-12-31" valeur="30000" />
+          </CODE>
+          <CODE code="taux" description="Abattemment" format="percent">
+            <VALUE deb="2006-01-01" valeur="0.3" />
+            <VALUE deb="1999-01-01" fin="2005-12-31" valeur="0.4" />
+            <VALUE deb="1997-01-01" fin="1998-12-31" valeur="0.333333333333" />
           </CODE>
         </NODE>
         <NODE code="specialbnc" description="Régime spécial BNC">
-          <CODE code="max" description="Maximum" format="integer" type="monetary">
-            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="32900" />
-            <VALUE deb="2011-01-01" fin="2013-12-31" valeur="32600" />
-            <VALUE deb="2010-01-01" fin="2010-12-31" valeur="32100" />
-            <VALUE deb="2009-01-01" fin="2009-12-31" valeur="32000" />
-            <VALUE deb="2002-01-01" fin="2008-12-31" valeur="27000" />
-            <VALUE deb="2001-01-01" fin="2001-12-31" valeur="26679" />
-          </CODE>
-          <CODE code="min" description="Minimum" format="integer" type="monetary">
-            <VALUE deb="2002-01-01" fin="2013-12-31" valeur="305" />
-          </CODE>
+          <NODE code="marchandises" description="Activité de vente">
+            <CODE code="max" description="Maximum" format="float" type="monetary">
+              <VALUE deb="2013-01-01" valeur="82200" />
+              <VALUE deb="2011-01-01" fin="2012-12-31" valeur="81500" />
+              <VALUE deb="2010-01-01" fin="2010-12-31" valeur="80300" />
+              <VALUE deb="2009-01-01" fin="2009-12-31" valeur="80000" />
+              <VALUE deb="2002-01-01" fin="2008-12-31" valeur="76300" />
+              <VALUE deb="2001-01-01" fin="2001-12-31" valeur="76224.51" />
+              <VALUE deb="1999-01-01" fin="2000-12-31" valeur="500000" />
+              <VALUE deb="1996-01-01" fin="1998-12-31" valeur="100000" />
+              <VALUE deb="1991-01-01" fin="1995-12-31" valeur="70000" />
+            </CODE>
+            <CODE code="min" description="Minimum" format="integer" type="monetary">
+              <VALUE deb="2001-01-01" valeur="305" />
+            </CODE>
+            <CODE code="taux" description="Taux" format="percent">
+              <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.71" />
+              <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.72" />
+              <VALUE deb="1999-01-01" fin="2001-12-31" valeur="0.70" />
+              <VALUE deb="1991-01-01" fin="1998-12-31" valeur="0.50" />
+            </CODE>
+          </NODE>
+          <NODE code="services" description="Activité de service">
+            <CODE code="max" description="Maximum" format="float" type="monetary">
+              <VALUE deb="2013-01-01" valeur="32900" />
+              <VALUE deb="2011-01-01" fin="2012-12-31" valeur="32600" />
+              <VALUE deb="2010-01-01" fin="2010-12-31" valeur="32100" />
+              <VALUE deb="2009-01-01" fin="2009-12-31" valeur="32000" />
+              <VALUE deb="2002-01-01" fin="2008-12-31" valeur="27000" />
+              <VALUE deb="2001-01-01" fin="2001-12-31" valeur="26678.58" />
+              <VALUE deb="1999-01-01" fin="2000-12-31" valeur="175000" />
+              <VALUE deb="1996-01-01" fin="1998-12-31" valeur="100000" />
+              <VALUE deb="1991-01-01" fin="1995-12-31" valeur="70000" />
+            </CODE>
+            <CODE code="min" description="Minimum" format="integer" type="monetary">
+              <VALUE deb="2002-01-01" valeur="305" />
+            </CODE>
+            <CODE code="taux" description="Taux" format="percent">
+              <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.50" />
+              <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.52" />
+              <VALUE deb="1991-01-01" fin="2001-12-31" valeur="0.50" />
+            </CODE>
+          </NODE>
           <CODE code="taux" description="Taux" format="percent">
-            <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.34" />
+            <VALUE deb="2006-01-01" valeur="0.34" />
             <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.37" />
             <VALUE deb="1999-01-01" fin="2001-12-31" valeur="0.35" />
             <VALUE deb="1991-01-01" fin="1998-12-31" valeur="0.25" />
           </CODE>
         </NODE>
-        <NODE code="vente" description="Activité de vente">
-          <CODE code="max" description="Maximum" format="integer" type="monetary">
-            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="82200" />
-            <VALUE deb="2011-01-01" fin="2013-12-31" valeur="81500" />
-            <VALUE deb="2010-01-01" fin="2010-12-31" valeur="80300" />
-            <VALUE deb="2009-01-01" fin="2009-12-31" valeur="80000" />
-            <VALUE deb="2002-01-01" fin="2008-12-31" valeur="76300" />
-            <VALUE deb="2001-01-01" fin="2001-12-31" valeur="76225" />
-          </CODE>
-          <CODE code="min" description="Minimum" format="integer" type="monetary">
-            <VALUE deb="2001-01-01" fin="2013-12-31" valeur="305" />
-          </CODE>
-          <CODE code="taux" description="Taux" format="percent">
-            <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.71" />
-            <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.72" />
-            <VALUE deb="1999-01-01" fin="2001-12-31" valeur="0.70" />
-            <VALUE deb="1991-01-01" fin="1998-12-31" valeur="0.50" />
-          </CODE>
-        </NODE>
-      </NODE>
-      <NODE code="micro_microentreprise">
-        <CODE code="montant_minimum" format="float" type="monetary">
-          <VALUE deb="2001-01-01" valeur="305" />
-          <VALUE deb="1991-01-01" fin="2000-12-31" valeur="2000" />
-        </CODE>
-        <CODE code="taux_prestations_de_services" format="percent">
-          <VALUE deb="2006-01-01" valeur="0.5" />
-          <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.52" />
-          <VALUE deb="1991-01-01" fin="2001-12-31" valeur="0.5" />
-        </CODE>
-        <CODE code="taux_ventes_de_marchandises" format="percent">
-          <VALUE deb="2006-01-01" valeur="0.71" />
-          <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.72" />
-          <VALUE deb="1999-01-01" fin="2001-12-31" valeur="0.7" />
-          <VALUE deb="1991-01-01" fin="1998-12-31" valeur="0.5" />
-        </CODE>
-      </NODE>
-      <NODE code="micro_specialbnc">
-        <CODE code="plafond_de_recettes_marchandises" format="float" type="monetary">
-          <VALUE deb="2013-01-01" valeur="82200" />
-          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="81500" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="80300" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="80000" />
-          <VALUE deb="2002-01-01" fin="2008-12-31" valeur="76300" />
-          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="76224.51" />
-          <VALUE deb="1999-01-01" fin="2000-12-31" valeur="500000" />
-          <VALUE deb="1996-01-01" fin="1998-12-31" valeur="100000" />
-          <VALUE deb="1991-01-01" fin="1995-12-31" valeur="70000" />
-        </CODE>
-        <CODE code="plafond_de_recettes_services" format="float" type="monetary">
-          <VALUE deb="2013-01-01" valeur="32900" />
-          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="32600" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="32100" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="32000" />
-          <VALUE deb="2002-01-01" fin="2008-12-31" valeur="27000" />
-          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="26678.58" />
-          <VALUE deb="1999-01-01" fin="2000-12-31" valeur="175000" />
-          <VALUE deb="1996-01-01" fin="1998-12-31" valeur="100000" />
-          <VALUE deb="1991-01-01" fin="1995-12-31" valeur="70000" />
-        </CODE>
-        <CODE code="taux" format="percent">
-          <VALUE deb="2006-01-01" valeur="0.34" />
-          <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.37" />
-          <VALUE deb="1999-01-01" fin="2001-12-31" valeur="0.35" />
-          <VALUE deb="1991-01-01" fin="1998-12-31" valeur="0.25" />
-        </CODE>
       </NODE>
       <NODE code="microsocial" description="Régime micro-social">
         <CODE code="bnc" description="Taux professions libérales relevant du RSI/CIPAV (bnc)" format="percent">
@@ -6289,89 +6279,6 @@
       <CODE code="taux16" description="Revenus taxés à 16% (logiciels originaux)" format="percent">
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.16" />
       </CODE>
-    </NODE>
-    <NODE code="rpns_micro">
-      <NODE code="abattement_pour_le_regime_microfoncier">
-        <CODE code="plafond_de_recettes" format="float" type="monetary">
-          <VALUE deb="2001-01-01" valeur="15000" />
-          <VALUE deb="1999-01-01" fin="2000-12-31" valeur="60000" />
-          <VALUE deb="1997-01-01" fin="1998-12-31" valeur="30000" />
-        </CODE>
-        <CODE code="taux" format="percent">
-          <VALUE deb="2006-01-01" valeur="0.3" />
-          <VALUE deb="1999-01-01" fin="2005-12-31" valeur="0.4" />
-          <VALUE deb="1997-01-01" fin="1998-12-31" valeur="0.333333333333" />
-        </CODE>
-      </NODE>
-      <NODE code="imputation_sur_le_revenu_global">
-        <CODE code="plafond_deficits_agricoles" format="float" type="monetary">
-          <VALUE deb="2011-01-01" valeur="106225" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="104665" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="104238" />
-          <VALUE deb="2007-01-01" fin="2008-12-31" valeur="101300" />
-          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="100000" />
-          <VALUE deb="2004-01-01" fin="2005-12-31" valeur="60000" />
-          <VALUE deb="2001-01-01" fin="2003-12-31" valeur="53360" />
-          <VALUE deb="2000-01-01" fin="2000-12-31" valeur="350000" />
-          <VALUE deb="1995-01-01" fin="1999-12-31" valeur="200000" />
-          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="150000" />
-          <VALUE deb="1989-01-01" fin="1993-12-31" valeur="100000" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="70000" />
-          <VALUE deb="1979-01-01" fin="1987-12-31" valeur="40000" />
-        </CODE>
-        <CODE code="plafond_deficits_fonciers" format="float" type="monetary">
-          <VALUE deb="2001-01-01" valeur="10700" />
-          <VALUE deb="1995-01-01" fin="2000-12-31" valeur="70000" />
-          <VALUE deb="1992-01-01" fin="1994-12-31" valeur="50000" />
-        </CODE>
-      </NODE>
-      <NODE code="microentreprise">
-        <CODE code="montant_minimum" format="float" type="monetary">
-          <VALUE deb="2001-01-01" valeur="305" />
-          <VALUE deb="1991-01-01" fin="2000-12-31" valeur="2000" />
-        </CODE>
-        <CODE code="taux_prestations_de_services" format="percent">
-          <VALUE deb="2006-01-01" valeur="0.5" />
-          <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.52" />
-          <VALUE deb="1991-01-01" fin="2001-12-31" valeur="0.5" />
-        </CODE>
-        <CODE code="taux_ventes_de_marchandises" format="percent">
-          <VALUE deb="2006-01-01" valeur="0.71" />
-          <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.72" />
-          <VALUE deb="1999-01-01" fin="2001-12-31" valeur="0.7" />
-          <VALUE deb="1991-01-01" fin="1998-12-31" valeur="0.5" />
-        </CODE>
-      </NODE>
-      <NODE code="specialbnc">
-        <CODE code="plafond_de_recettes_marchandises" format="float" type="monetary">
-          <VALUE deb="2013-01-01" valeur="82200" />
-          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="81500" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="80300" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="80000" />
-          <VALUE deb="2002-01-01" fin="2008-12-31" valeur="76300" />
-          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="76224.51" />
-          <VALUE deb="1999-01-01" fin="2000-12-31" valeur="500000" />
-          <VALUE deb="1996-01-01" fin="1998-12-31" valeur="100000" />
-          <VALUE deb="1991-01-01" fin="1995-12-31" valeur="70000" />
-        </CODE>
-        <CODE code="plafond_de_recettes_services" format="float" type="monetary">
-          <VALUE deb="2013-01-01" valeur="32900" />
-          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="32600" />
-          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="32100" />
-          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="32000" />
-          <VALUE deb="2002-01-01" fin="2008-12-31" valeur="27000" />
-          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="26678.58" />
-          <VALUE deb="1999-01-01" fin="2000-12-31" valeur="175000" />
-          <VALUE deb="1996-01-01" fin="1998-12-31" valeur="100000" />
-          <VALUE deb="1991-01-01" fin="1995-12-31" valeur="70000" />
-        </CODE>
-        <CODE code="taux" format="percent">
-          <VALUE deb="2006-01-01" valeur="0.34" />
-          <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.37" />
-          <VALUE deb="1999-01-01" fin="2001-12-31" valeur="0.35" />
-          <VALUE deb="1991-01-01" fin="1998-12-31" valeur="0.25" />
-        </CODE>
-      </NODE>
     </NODE>
     <NODE code="rvcm" description="Revenus des valeurs et capitaux mobiliers">
       <CODE code="abat_assvie" description="Abattement produits des contrats d'assurance vie" format="integer" type="monetary">

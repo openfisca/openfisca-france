@@ -21,5 +21,10 @@ impot_revenu.charges_deductibles.sofipeche.taux: impot_revenu.charges_deductible
 impot_revenu.charges_deductibles.percap: impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
 impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles.max_cb: impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles.plafond_cb
 impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles.max_da: impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles.plafond_da
-impot_revenu.rpns.microentreprise: impot_revenu.rpns.micro 
+impot_revenu.rpns.microentreprise: impot_revenu.rpns.micro
+impot_revenu.rpns.micro.vente: impot_revenu.rpns.micro.specialbnc.marchandises
+impot_revenu.rpns.micro.servi: impot_revenu.rpns.micro.specialbnc.services
+impot_revenu.rpns.micro.specialbnc.max: null  # using srveices since they are the same
+impot_revenu.rpns.micro.specialbnc.min: null  # using services since they are the same
+impot_revenu.microfoncier: impot_revenu.rpns.micro.microfoncier
 # cotsoc: prelevements_sociaux

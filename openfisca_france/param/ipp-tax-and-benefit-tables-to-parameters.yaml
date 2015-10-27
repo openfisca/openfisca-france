@@ -50,9 +50,15 @@ baremes_ipp_impot_revenu_income_tax:
     Déductions investissement DOM_TOM: null  # Value must be a float
   micro:
     RENAME: rpns.micro
-    abattement_sur_recettes_des_microentreprises: microentreprise
-    abattement_pour_le_regime_micro_bnc: specialbnc
-
+    abattement_sur_recettes_des_microentreprises:
+      RENAME: microentreprise
+    abattement_pour_le_regime_micro_bnc:
+      RENAME: specialbnc
+      plafond_de_recettes_marchandises: marchandises.max
+      plafond_de_recettes_services: services.max
+    abattement_pour_le_regime_microfoncier:
+      RENAME: microfoncier
+      plafond_de_recettes: max
 baremes_ipp_marche_du_travail_labour_market: null
 # baremes_ipp_marche_du_travail_labour_market: marche_du_travail
 baremes_ipp_prelevements_sociaux_social_security_contributions: null
