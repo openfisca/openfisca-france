@@ -30,7 +30,7 @@ def check_run(simulation, period):
     assert simulation.calculate('salsuperbrut') is not None, "Can't compute salsuperbrut on period {}".format(period)
 
 
-def test():
+def test_basics():
     for scenario_arguments in scenarios_arguments:
         scenario = base.tax_benefit_system.new_scenario()
         scenario.init_single_entity(**scenario_arguments)
@@ -44,4 +44,6 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test()
+    for _, simulation, period in test_basics():
+        check_run(simulation, period)
+    print u'OpenFisca-France basic test was executed successfully.'.encode('utf-8')
