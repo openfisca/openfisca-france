@@ -61,20 +61,24 @@ baremes_ipp_impot_revenu_income_tax:
       plafond_de_recettes: max
 baremes_ipp_marche_du_travail_labour_market: null
 # baremes_ipp_marche_du_travail_labour_market: marche_du_travail
-baremes_ipp_prelevements_sociaux_social_security_contributions: null
-# baremes_ipp_prelevements_sociaux_social_security_contributions:
-#   RENAME: prelevements_sociaux
-#   deces-ac:
-#     Commercants-industriels:
-#       Décès: null  # Changement d'unité de FRF à %
-#       Invalidité: null  # Changement d'unité de FRF à %
-#   fillon:
-#     Ensemble des entreprises:
-#       Salaire de référence: null  # Value must be a float
-#     Entreprises restées aux 39 heures hebdomadaires au 30/06/2003:
-#       Salaire de référence: null  # Value must be a float
-#     Entreprises ayant signé un accord de RTT avant le 30/06/2003:
-#       Salaire de référence: null  # Value must be a float
+#baremes_ipp_prelevements_sociaux_social_security_contributions: null
+baremes_ipp_prelevements_sociaux_social_security_contributions:
+  RENAME: prelevements_sociaux
+  csg-1.revenus_d_activite:
+    RENAME: csg.activite
+  csg-2:
+    RENAME: csg.remplacement
+  deces-ac:
+    Commercants-industriels:
+      Décès: null  # Changement d'unité de FRF à %
+      Invalidité: null  # Changement d'unité de FRF à %
+  fillon:
+    Ensemble des entreprises:
+      Salaire de référence: null  # Value must be a float
+    Entreprises restées aux 39 heures hebdomadaires au 30/06/2003:
+      Salaire de référence: null  # Value must be a float
+    Entreprises ayant signé un accord de RTT avant le 30/06/2003:
+      Salaire de référence: null  # Value must be a float
 baremes_ipp_prestations_sociales_social_benefits: null
 # baremes_ipp_prestations_sociales_social_benefits:
 #   RENAME: prestations
@@ -141,7 +145,20 @@ baremes_ipp_retraites_pensions: null
 #   salval:
 #     salaire_validant_un_trimestre:
 #       metropole: null  # Value must be a float
-# baremes_ipp_taxation_capital: taxation_capital
-baremes_ipp_taxation_capital: null
+baremes_ipp_taxation_capital:
+  RENAME: taxation_capital
+  ps:
+    RENAME: prelevements_sociaux
+    prelevement_social_sur_les_revenus_du_patrimoine: prelevement_social.revenus_du_patrimoine
+    prelevement_social_sur_les_produits_de_placement: prelevement_social.produits_de_placement
+    caps_sur_les_.revenus_du_patrimoine: caps.revenus_du_patrimoine
+    caps_sur_les_produits_de_placement: caps.produits_de_placement
+    caps_rsa: caps.rsa
+    prelevements_de_solidarite_sur_les_produits_de_placement: prelevements_solidarite.produits_de_placement
+    prelevements_de_solidarite_sur_les_revenus_du_patrimoine: prelevements_solidarite.revenus_du_patrimoine
+  csg:
+    RENAME: prelevements_sociaux
+    crds: crds
+# baremes_ipp_taxation_capital: null
 # baremes_ipp_taxation_indirecte: taxation_indirecte
 baremes_ipp_taxation_indirecte: null

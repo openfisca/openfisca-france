@@ -188,10 +188,10 @@
     <NODE code="capital" description="Revenus du capital">
       <CODE code="glob" description="Taux global" format="percent">
         <VALUE deb="2000-01-01" fin="2003-12-31" valeur="0.075" />
-        <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.082" />
+        <VALUE deb="2004-01-01"  valeur="0.082" />
       </CODE>
       <CODE code="deduc" description="dont CSG déductible" format="percent">
-        <VALUE deb="2012-01-01" fin="2013-12-31" valeur=".051" />
+        <VALUE deb="2012-01-01"  valeur=".051" />
         <VALUE deb="2004-01-01" fin="2011-12-31" valeur=".058" />
         <VALUE deb="2000-01-01" fin="2003-12-31" valeur=".051" />
       </CODE>
@@ -258,10 +258,10 @@
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur=".034" />
       <VALUE deb="2012-01-01" fin="2013-12-31" valeur=".045" />
     </CODE>
-    <CODE code="add_pat" description="Contribution additionnelle solidarité autonomie (revenus du patrimoine)" format="percent">
+    <CODE code="add_pat" description="Contribution additionnelle au prélèvement social (revenus du patrimoine)" format="percent">
       <VALUE deb="2004-07-01" fin="2013-12-31" valeur=".003" />
     </CODE>
-    <CODE code="add_ret" description="Contribution additionnelle solidarité autonomie (pensions de retraites, pré-retraites et invalidité)" format="percent">
+    <CODE code="add_ret" description="Contribution additionnelle au prélèvement social (pensions de retraites, pré-retraites et invalidité)" format="percent">
       <VALUE deb="2013-04-01" fin="2013-12-31" valeur=".003" />
     </CODE>
     <CODE code="rsa" description="Contribution au financement du revenu de solidarité active" format="percent">

@@ -66,7 +66,7 @@ class csg_deductible_salaire(SimpleFormulaColumn):
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
 
-        law = simulation.legislation_at(period.start)
+        law = simulation.legislation_at(period.start).prelevements_sociaux
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
@@ -88,7 +88,7 @@ class csg_imposable_salaire(SimpleFormulaColumn):
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        law = simulation.legislation_at(period.start)
+        law = simulation.legislation_at(period.start).prelevements_sociaux
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,

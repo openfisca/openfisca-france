@@ -53,11 +53,11 @@ class csg_deductible_chomage(SimpleFormulaColumn):
             base_avec_abattement = chobrut,
             indicatrice_taux_plein = (taux_csg_remplacement == 3),
             indicatrice_taux_reduit = (taux_csg_remplacement == 2),
-            law_node = law.csg.chomage.deductible,
+            law_node = law.prelevements_sociaux.csg.chomage.deductible,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
-        cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
+        cho_seuil_exo = law.prelevements_sociaux.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
         csg_deductible_chomage = max_(
             - montant_csg - max_(cho_seuil_exo - (chobrut + csg_imposable_chomage + montant_csg), 0),
             0,
@@ -81,11 +81,11 @@ class csg_imposable_chomage(SimpleFormulaColumn):
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = chobrut,
-            law_node = law.csg.chomage.imposable,
+            law_node = law.prelevements_sociaux.csg.chomage.imposable,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
-        cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
+        cho_seuil_exo = law.prelevements_sociaux.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
         csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chobrut + montant_csg), 0), 0)
         return period, - csg_imposable_chomage
 
@@ -110,7 +110,7 @@ class crds_chomage(SimpleFormulaColumn):
         # salaire_mensuel_reference = chobrut / .7
         # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
         heures_mensuelles = 35 * 52 / 12
-        cho_seuil_exo = law.csg.chomage.min_exo * heures_mensuelles * smic_h_b
+        cho_seuil_exo = law.prelevements_sociaux.csg.chomage.min_exo * heures_mensuelles * smic_h_b
 
         montant_crds = montant_csg_crds(
             base_avec_abattement = chobrut,
@@ -183,7 +183,7 @@ class csg_deductible_retraite(SimpleFormulaColumn):
             base_sans_abattement = rstbrut,
             indicatrice_taux_plein = (taux_csg_remplacement == 3),
             indicatrice_taux_reduit = (taux_csg_remplacement == 2),
-            law_node = law.csg.retraite.deductible,
+            law_node = law.prelevements_sociaux.csg.retraite.deductible,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         return period, montant_csg
@@ -204,7 +204,7 @@ class csg_imposable_retraite(SimpleFormulaColumn):
 
         montant_csg = montant_csg_crds(
             base_sans_abattement = rstbrut,
-            law_node = law.csg.retraite.imposable,
+            law_node = law.prelevements_sociaux.csg.retraite.imposable,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         return period, montant_csg
