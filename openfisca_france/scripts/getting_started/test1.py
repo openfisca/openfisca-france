@@ -13,6 +13,7 @@ scenario = tax_benefit_system.new_scenario()
 scenario.init_single_entity(
     period = year,
     parent1 = dict(
+        birth = datetime.date(year - 30, 1, 1),
         salaire_de_base = 15000,
         ),
     enfants = [
