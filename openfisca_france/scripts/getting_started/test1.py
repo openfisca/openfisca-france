@@ -1,25 +1,20 @@
 # -*- coding: utf-8 -*-
 
-import datetime
+import openfisca_france
 
-from openfisca_france import init_country
-
-TaxBenefitSystem = init_country()
-tax_benefit_system = TaxBenefitSystem()
-
-year = 2015
+tax_benefit_system = openfisca_france.init_tax_benefit_system()
 
 scenario = tax_benefit_system.new_scenario()
 scenario.init_single_entity(
-    period = year,
+    period = 2015,
     parent1 = dict(
-        birth = datetime.date(year - 30, 1, 1),
+        age = 30,
         salaire_de_base = 15000,
         ),
     enfants = [
-        dict(birth = datetime.date(year - 10, 1, 1)),
-        dict(birth = datetime.date(year - 12, 1, 1)),
-        dict(birth = datetime.date(year - 18, 1, 1)),
+        dict(age = 10),
+        dict(age = 12),
+        dict(age = 18),
         ],
     )
 
