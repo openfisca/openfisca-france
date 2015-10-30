@@ -8,7 +8,7 @@ from openfisca_core.columns import (AgeCol, BoolCol, build_column, DateCol, Enum
 from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import (calculate_output_add, calculate_output_add_divide, calculate_output_divide,
     dated_function, DatedFormulaColumn, EntityToPersonColumn, last_duration_last_value,
-    make_reference_formula_decorator, missing_value, PersonToEntityColumn, reference_input_variable,
+    make_formula_decorator, missing_value, PersonToEntityColumn, reference_input_variable,
     requested_period_added_value, requested_period_default_value, requested_period_last_value,
     set_input_dispatch_by_period, set_input_divide_by_period, SimpleFormulaColumn)
 
@@ -105,4 +105,4 @@ build_column = functools.partial(
     entity_class_by_symbol = entity_class_by_symbol,
     )
 
-reference_formula = make_reference_formula_decorator(entity_class_by_symbol = entity_class_by_symbol)
+reference_formula = make_formula_decorator(entity_class_by_symbol = entity_class_by_symbol)
