@@ -1,35 +1,32 @@
 # -*- coding: utf-8 -*-
 
-from numpy import zeros
-
 from ....base import CAT
 
-
 def apply_bareme_for_relevant_type_sal(
-        bareme_by_type_sal_name = None,
-        bareme_name = None,
-        type_sal = None,
-        base = None,
-        plafond_securite_sociale = None,
+        bareme_by_type_sal_name,
+        bareme_name,
+        type_sal,
+        base,
+        plafond_securite_sociale,
         round_base_decimals = 2,
         ):
     assert bareme_by_type_sal_name is not None
     assert bareme_name is not None
+    assert type_sal is not None
     assert base is not None
     assert plafond_securite_sociale is not None
-    assert type_sal is not None
-    cotisation = zeros(len(base))
-    for type_sal_name, type_sal_index in CAT:
-        if type_sal_name not in bareme_by_type_sal_name:  # to deal with public_titulaire_militaire
-            continue
-        bareme = bareme_by_type_sal_name[type_sal_name].get(bareme_name)  # TODO; should have better warnings
-        if bareme is not None:
-            cotisation += bareme.calc(
-                base * (type_sal == type_sal_index),
-                factor = plafond_securite_sociale,
-                round_base_decimals = round_base_decimals,
-                )
-    return - cotisation
+    def iter_cotisations():
+        for type_sal_name, type_sal_index in CAT:
+            if type_sal_name not in bareme_by_type_sal_name:  # to deal with public_titulaire_militaire
+                continue
+            bareme = bareme_by_type_sal_name[type_sal_name].get(bareme_name)  # TODO; should have better warnings
+            if bareme is not None:
+                yield bareme.calc(
+                    base * (type_sal == type_sal_index),
+                    factor = plafond_securite_sociale,
+                    round_base_decimals = round_base_decimals,
+                    )
+    return - sum(iter_cotisations())
 
 
 def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None, variable_name = None):

@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import zeros, logical_not as not_, logical_or as or_, round as round_
+from numpy import logical_not as not_, logical_or as or_, round as round_
 
 from ..base import *  # noqa analysis:ignore
 
@@ -26,9 +26,9 @@ class bourse_college(SimpleFormulaColumn):
         P = simulation.legislation_at(period.start).bourses_education.bourse_college
 
         ages = self.split_by_roles(age_holder, roles = ENFS)
-        nb_enfants = zeros(len(rfr))
-        for age in ages.itervalues():
-            nb_enfants += age >= 0
+        nb_enfants = sum(
+            age >= 0 for age in ages.itervalues()
+        )
 
         plafond_taux_1 = round_(P.plafond_taux_1 + P.plafond_taux_1 * nb_enfants * P.coeff_enfant_supplementaire)
         plafond_taux_2 = round_(P.plafond_taux_2 + P.plafond_taux_2 * nb_enfants * P.coeff_enfant_supplementaire)
@@ -39,9 +39,10 @@ class bourse_college(SimpleFormulaColumn):
         eligible_taux_1 = not_(or_(eligible_taux_2, eligible_taux_3)) * (rfr <= plafond_taux_1)
 
         scolarites = self.split_by_roles(scolarite_holder, roles = ENFS)
-        nb_enfants_college = zeros(len(rfr))
-        for scolarite in scolarites.itervalues():
-            nb_enfants_college += scolarite == SCOLARITE_COLLEGE
+
+        nb_enfants_college = sum(
+            scolarite == SCOLARITE_COLLEGE for scolarite in scolarites.itervalues()
+        )
 
         montant = nb_enfants_college * (
             eligible_taux_3 * P.montant_taux_3 +
@@ -65,9 +66,9 @@ class bourse_lycee_points_de_charge(SimpleFormulaColumn):
 
         # compte le nombre d'enfants
         ages = self.split_by_roles(age_holder, roles = ENFS)
-        nb_enfants = zeros(len(isol))
-        for age in ages.itervalues():
-            nb_enfants += age >= 0
+        nb_enfants = sum(
+            age >= 0 for age in ages.itervalues()
+        )
 
         points_de_charge = 11 * (nb_enfants >= 1)
         points_de_charge += 1 * (nb_enfants >= 2) # 1 point de charge pour le 2ème enfant
@@ -100,15 +101,16 @@ class bourse_lycee_nombre_parts(SimpleFormulaColumn):
         plafond_4_parts = round(plafonds_reference['4_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['4_parts']))
         plafond_3_parts = round(plafonds_reference['3_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['3_parts']))
 
-        nombre_parts = zeros(len(rfr))
-        nombre_parts = ((rfr <= plafond_10_parts) * 10
-            + (rfr > plafond_10_parts) * (rfr <= plafond_9_parts) * 9
-            + (rfr > plafond_9_parts) * (rfr <= plafond_8_parts) * 8
-            + (rfr > plafond_8_parts) * (rfr <= plafond_7_parts) * 7
-            + (rfr > plafond_7_parts) * (rfr <= plafond_6_parts) * 6
-            + (rfr > plafond_6_parts) * (rfr <= plafond_5_parts) * 5
-            + (rfr > plafond_5_parts) * (rfr <= plafond_4_parts) * 4
-            + (rfr > plafond_4_parts) * (rfr <= plafond_3_parts) * 3)
+        nombre_parts = (
+            (rfr <= plafond_10_parts) * 10 +
+            (rfr > plafond_10_parts) * (rfr <= plafond_9_parts) * 9 +
+            (rfr > plafond_9_parts) * (rfr <= plafond_8_parts) * 8 +
+            (rfr > plafond_8_parts) * (rfr <= plafond_7_parts) * 7 +
+            (rfr > plafond_7_parts) * (rfr <= plafond_6_parts) * 6 +
+            (rfr > plafond_6_parts) * (rfr <= plafond_5_parts) * 5 +
+            (rfr > plafond_5_parts) * (rfr <= plafond_4_parts) * 4 +
+            (rfr > plafond_4_parts) * (rfr <= plafond_3_parts) * 3
+        )
 
         return period, nombre_parts
 
@@ -126,9 +128,10 @@ class bourse_lycee(SimpleFormulaColumn):
         valeur_part = simulation.legislation_at(period.start).bourses_education.bourse_lycee.valeur_part
 
         scolarites = self.split_by_roles(scolarite_holder, roles = ENFS)
-        nb_enfants_lycee = zeros(len(nombre_parts))
-        for scolarite in scolarites.itervalues():
-            nb_enfants_lycee += scolarite == SCOLARITE_LYCEE
+
+        nb_enfants_lycee = sum(
+            scolarite == SCOLARITE_LYCEE for scolarite in scolarites.itervalues()
+        )
 
         montant = nombre_parts * valeur_part * nb_enfants_lycee
 

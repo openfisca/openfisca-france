@@ -2,11 +2,9 @@
 
 from __future__ import division
 
-from numpy import int32, logical_not as not_, logical_or as or_, zeros
-
+from numpy import int32, logical_not as not_, logical_or as or_
 
 from ...base import *  # noqa analysis:ignore
-
 
 @reference_formula
 class smic55(SimpleFormulaColumn):
@@ -209,12 +207,9 @@ def nb_enf(ages, smic55, ag1, ag2):
 #        Un enfant est reconnu à charge pour le versement des prestations
 #        jusqu'au mois précédant son age limite supérieur (ag2 + 1) mais
 #        le versement à lieu en début de mois suivant
-    res = None
-    for key, age in ages.iteritems():
-        if res is None:
-            res = zeros(len(age), dtype = int32)
-        res += (ag1 <= age) & (age <= ag2) & not_(smic55[key])
-    return res
+    return sum(
+        (ag1 <= age) & (age <= ag2) & not_(smic55[key]) for key, age in ages.iteritems()
+    )
 
 
 def age_en_mois_benjamin(ages_en_mois):

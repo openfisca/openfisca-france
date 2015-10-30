@@ -92,7 +92,6 @@ class penalite_handicapes(SimpleFormulaColumn):
         # effectifs salariés. A défaut, l’employeur peut verser une contribution annuelle
         # proportionnelle au nombre de salariés handicapés qu’il aurait dû recruter pour
         # remplir son obligation d’emploi.
-        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        return period, 0 * effectif_entreprise
+        return period, self.zeros()
 
 # TODO penibilite CDD évoquée page 11 du guide IPP est-elle la cotisation pour le CIF des CDD ?

@@ -665,7 +665,9 @@ class rsa_act_i(DatedFormulaColumn):
         rsa_act = self.cast_from_entity_to_roles(rsa_act_holder)
 
         conj = or_(concub, maries)
-        rsa_act_i = 0 * quifam  # TODO Generate an array of float for rsa_act_i, add method self.zeros().
+
+        rsa_act_i = self.zeros()
+
         chef_filter = quifam == 0
         rsa_act_i[chef_filter] = rsa_act[chef_filter] / (1 + conj[chef_filter])
         partenaire_filter = quifam == 1

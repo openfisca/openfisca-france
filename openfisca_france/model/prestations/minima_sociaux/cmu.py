@@ -5,26 +5,18 @@ from __future__ import division
 from functools import partial
 
 from numpy import (absolute as abs_, apply_along_axis, array, int32, logical_not as not_, logical_or as or_,
-                   maximum as max_, minimum as min_, zeros)
+                   maximum as max_, minimum as min_)
 
 from ...base import *  # noqa analysis:ignore
 
 
 @reference_formula
 class acs_montant(DatedFormulaColumn):
-    column = FloatCol
+    column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Montant de l'ACS en cas d'éligibilité"
 
-    @dated_function(date(2000, 1, 1), date(2009, 7, 31))
-    def function_2000(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        age_holder = simulation.compute('age', period)
-
-        ages = self.filter_role(age_holder, role = CHEF)
-        return period, 0 * ages
-
-    @dated_function(date(2009, 8, 1))
+    @dated_function(start = date(2009, 8, 1))
     def function_2009(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         age_holder = simulation.compute('age', period)
@@ -354,16 +346,14 @@ def forfait_logement(nbp_foyer, P, law_rsa):
         ((nbp_foyer == 1) * P.taux_1p + (nbp_foyer == 2) * P.taux_2p + (nbp_foyer > 2) * P.taux_3p_plus))
 
 
-def nb_par_age(ages, min, max):
+def nb_par_age(age_by_role, min, max):
     '''
     Calcule le nombre d'individus ayant un âge compris entre min et max
     '''
-    res = None
-    for key, age in ages.iteritems():
-        if res is None:
-            res = zeros(len(age), dtype = int32)
-        res += (min <= age) & (age <= max)
-    return res
+    return sum(
+        (min <= age) & (age <= max)
+        for age in age_by_role.itervalues()
+        )
 
 
 def rsa_socle_base(nbp, P):

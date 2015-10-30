@@ -46,30 +46,40 @@ class al_pac(SimpleFormulaColumn):
         grand-parents, enfants, petits enfants, frères, soeurs, oncles,
         tantes, neveux, nièces).
         '''
-        period = period.start.offset('first-of', 'month').period('month')
+
+        period = period.this_month
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
-        nbR_holder = simulation.compute('nbR', period.start.offset('first-of', 'year').period('year'))
-        D_enfch = simulation.legislation_at(period.start).al.autres.D_enfch
-        af = simulation.legislation_at(period.start).fam.af
-        cf = simulation.legislation_at(period.start).fam.cf
+        age_max_enfant = simulation.legislation_at(period.start).fam.cf.age2
 
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        def al_nb_enfants():
+            smic55_holder = simulation.compute('smic55', period)
+            age = self.split_by_roles(age_holder, roles = ENFS)
+            smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+            age_min_enfant = simulation.legislation_at(period.start).fam.af.age1
 
-        # P_AL.D_enfch est une dummy qui vaut 1 si les enfants sont comptés à
-        # charge (cas actuel) et zéro sinon.
-        nbR = self.cast_from_entity_to_role(nbR_holder, role = VOUS)
-        al_nbinv = self.sum_by_entity(nbR)
+            return nb_enf(age, smic55, age_min_enfant, age_max_enfant - 1) # La limite sur l'age max est stricte.
 
-        age1 = af.age1
-        age2 = cf.age2
-        al_nbenf = nb_enf(age, smic55, age1, age2)
-        al_pac = D_enfch * (al_nbenf + al_nbinv)  # TODO: manque invalides
-        # TODO: il faudrait probablement définir les aides au logement pour un ménage et non
-        # pour une famille
+        def al_nb_adultes_handicapes():
 
-        return period, al_pac
+            # Variables à valeur pour un individu
+            br_pf_i = simulation.compute('br_pf_i', period).array
+            inapte_travail = simulation.compute('inapte_travail', period).array
+            taux_invalidite = simulation.compute('taux_invalidite', period).array
+            age = age_holder.array
+
+            # Parametres
+            plafond_ressource = simulation.legislation_at(period.start).minim.aspa.plaf_seul
+            taux_invalidite_minimum = 0.8
+
+            adulte_handicape = (
+                (taux_invalidite > taux_invalidite_minimum) *
+                (age >= age_max_enfant) *
+                (br_pf_i <= plafond_ressource)
+            )
+
+            return self.sum_by_entity(adulte_handicape)
+
+        return period, al_nb_enfants() + al_nb_adultes_handicapes()
 
 
 @reference_formula
@@ -79,7 +89,7 @@ class aide_logement_base_ressources_eval_forfaitaire(SimpleFormulaColumn):
     label = u"Base ressources en évaluation forfaitaire des aides au logement (R351-7 du CCH)"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         salaire_imposable_holder = simulation.compute('salaire_imposable', period.offset(-1))
         salaire_imposable = self.sum_by_entity(salaire_imposable_holder, roles = [CHEF, PART])
 
@@ -104,8 +114,8 @@ class aide_logement_abattement_chomage_indemnise(SimpleFormulaColumn):
     label = u"Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
+        period = period.this_month
+        two_years_ago = period.n_2
         chomage_net_m_1 = simulation.calculate('chonet', period.offset(-1))
         chomage_net_m_2 = simulation.calculate('chonet', period.offset(-2))
         revenus_activite_pro = simulation.calculate('salaire_imposable', two_years_ago)
@@ -126,8 +136,8 @@ class aide_logement_abattement_depart_retraite(SimpleFormulaColumn):
     label = u"Montant de l'abattement sur les salaires en cas de départ en retraite"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
+        period = period.this_month
+        two_years_ago = period.n_2
         retraite = simulation.calculate('activite', period) == 3
         activite_n_2 = simulation.calculate('salaire_imposable', two_years_ago)
         retraite_n_2 = simulation.calculate('rst', two_years_ago)
@@ -147,8 +157,8 @@ class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
     label = u"Base ressource par défaut des allocations logement"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        two_years_ago = period.start.offset('first-of', 'year').period('year').offset(-2)
+        period = period.this_month
+        two_years_ago = period.n_2
         br_pf_i_holder = simulation.compute('br_pf_i', period)
         rev_coll_holder = simulation.compute('rev_coll', two_years_ago)
         rev_coll = self.sum_by_entity(rev_coll_holder)
@@ -178,9 +188,9 @@ class aide_logement_base_ressources(SimpleFormulaColumn):
     label = u"Base ressources des allocations logement"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         mois_precedent = period.offset(-1)
-        last_day_reference_year = period.start.offset('first-of', 'year').period('year').offset(-2).stop
+        last_day_reference_year = period.n_2.stop
         base_ressources_defaut = simulation.calculate('aide_logement_base_ressources_defaut', period)
         base_ressources_eval_forfaitaire = simulation.calculate(
             'aide_logement_base_ressources_eval_forfaitaire', period)
@@ -232,7 +242,7 @@ class aide_logement_montant_brut(SimpleFormulaColumn):
     label = u"Formule des aides aux logements en secteur locatif en montant brut avant CRDS"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         # Situation familiale
         concub = simulation.calculate('concub', period)
@@ -426,7 +436,7 @@ class aide_logement_montant(SimpleFormulaColumn):
     label = u"Montant des aides au logement net de CRDS"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         aide_logement_montant_brut = simulation.calculate('aide_logement_montant_brut', period)
         crds_logement = simulation.calculate('crds_logement', period)
         montant = round(aide_logement_montant_brut + crds_logement, 2)
@@ -443,7 +453,7 @@ class alf(SimpleFormulaColumn):
     url = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         al_pac = simulation.calculate('al_pac', period)
         statut_occupation_famille = simulation.calculate('statut_occupation_famille', period)
@@ -461,7 +471,7 @@ class als_nonet(SimpleFormulaColumn):
     label = u"Allocation logement sociale (non étudiante)"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         al_pac = simulation.calculate('al_pac', period)
         etu_holder = simulation.compute('etu', period)
@@ -486,7 +496,7 @@ class alset(SimpleFormulaColumn):
     url = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         al_pac = simulation.calculate('al_pac', period)
         etu_holder = simulation.compute('etu', period)
@@ -512,7 +522,7 @@ class als(SimpleFormulaColumn):
     url = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         als_nonet = simulation.calculate('als_nonet', period)
         alset = simulation.calculate('alset', period)
         result = (als_nonet + alset)
@@ -530,7 +540,7 @@ class apl(SimpleFormulaColumn):
     url = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         statut_occupation_holder = simulation.compute('statut_occupation', period)
 
@@ -553,7 +563,7 @@ class aide_logement_non_calculable(SimpleFormulaColumn):
     label = u"Aide au logement non calculable"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         statut_occupation = simulation.calculate('statut_occupation', period)
 
         return period, (statut_occupation == 1) * 1 + (statut_occupation == 7) * 2
@@ -566,7 +576,7 @@ class aide_logement(SimpleFormulaColumn):
     label = u"Aide au logement (tout type)"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         apl = simulation.calculate('apl', period)
         als = simulation.calculate('als', period)
         alf = simulation.calculate('alf', period)
@@ -583,7 +593,7 @@ class crds_logement(SimpleFormulaColumn):
     url = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         aide_logement_montant_brut = simulation.calculate('aide_logement_montant_brut', period)
         crds = simulation.legislation_at(period.start).fam.af.crds
         return period, -aide_logement_montant_brut * crds

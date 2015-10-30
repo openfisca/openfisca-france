@@ -81,3 +81,14 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
             taxes_salaires_main_oeuvre.preload_taux_versement_transport()
 
     return TaxBenefitSystem
+
+
+def init_tax_benefit_system():
+    """
+    Helper function which suits most of the time.
+
+    Use `init_country` if you need to get the `TaxBenefitSystem` class.
+    """
+    TaxBenefitSystem = init_country()
+    tax_benefit_system = TaxBenefitSystem()
+    return tax_benefit_system

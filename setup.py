@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '0.5.3',
+    version = '0.5.4.dev0',
 
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
@@ -44,7 +44,7 @@ setup(
     install_requires = [
         'Babel >= 0.9.4',
         'Biryani[datetimeconv] >= 0.10.4',
-        'numpy >= 1.6',
+        'numpy >= 1.6,< 1.10',
         'OpenFisca-Core >= 0.5.0',
         'PyYAML >= 3.10',
         ],
