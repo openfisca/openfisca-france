@@ -7,8 +7,10 @@
 import argparse
 import collections
 import datetime
+import itertools
 import logging
 import os
+import re
 import sys
 import xml.etree.ElementTree as etree
 
@@ -162,8 +164,8 @@ def main():
                 row_by_start[start] = row
             sorted_row_by_start = sorted(row_by_start.iteritems())
 
-            unsorted_relative_ipp_paths = set()
             relative_ipp_paths_by_start = {}
+            unsorted_relative_ipp_paths = set()
             for start, row in sorted_row_by_start:
                 relative_ipp_paths_by_start[start] = start_relative_ipp_paths = []
                 for name, child in row.iteritems():
@@ -191,6 +193,7 @@ def main():
                 return -1
 
             sorted_relative_ipp_paths = sorted(unsorted_relative_ipp_paths, cmp = compare_relative_ipp_paths)
+            tax_rate_tree_by_bracket_type = {}
 
             for start, row in sorted_row_by_start:
                 for relative_ipp_path in sorted_relative_ipp_paths:
@@ -213,6 +216,8 @@ def main():
                     while remaining_path:
                         fragment = remaining_path.pop(0)
                         fragment = slugify_ipp_translation_key(fragment)
+
+                        bracket_type = None
                         type = None
                         if translations is not None:
                             translations = translations.get(fragment, fragment)
@@ -225,6 +230,9 @@ def main():
                                     fragment = translation
                                 type = translations.get('TYPE')
                                 assert type in (None, u'BAREME')
+                                bracket_type = translations.get('TRANCHE')
+                                if bracket_type is not None:
+                                    assert type == u'BAREME'
                             else:
                                 fragment = translations
                                 translations = None
@@ -278,6 +286,16 @@ def main():
                                         sub_tree['TYPE'] = type
                                     else:
                                         assert existing_type == type
+                                if bracket_type is not None:
+                                    assert type == u'BAREME', str((translated_path, sub_path, sub_tree))
+                                    assert not sub_path
+                                    slice_name = remaining_path.pop(0)
+                                    assert not remaining_path
+                                    rate = sub_tree.get(u'TAUX')
+                                    if rate is None:
+                                        tax_rate_tree_by_bracket_type[bracket_type] = sub_tree
+                                        sub_tree[u'TAUX'] = rate = collections.OrderedDict()
+                                    sub_tree = rate.setdefault(slice_name, [])
                             else:
                                 sub_tree = sub_tree.setdefault(fragment, [])
                     if skip_ipp_path:
@@ -291,6 +309,52 @@ def main():
                         start = start,
                         value = value,
                         ))
+
+            if tax_rate_tree_by_bracket_type:
+                taxipp_names_row = data.get(u"Noms TaxIPP")
+                assert taxipp_names_row
+                taxipp_names = []
+                for name, child in taxipp_names_row.iteritems():
+                    if name in date_names:
+                        continue
+                    if name in note_names:
+                        continue
+                    if name in reference_names:
+                        continue
+                    taxipp_names.extend(
+                        value
+                        for path, value in iter_ipp_values(child)
+                        )
+
+                for bracket_type, tax_rate_tree in tax_rate_tree_by_bracket_type.iteritems():
+                    bases = []
+                    bracket_type_re = re.compile(bracket_type)
+                    add_final_bracket = True
+                    for taxipp_name in taxipp_names:
+                        match = bracket_type_re.match(taxipp_name)
+                        if match is not None:
+                            base_min = match.group('SEUIL_MIN')
+                            assert base_min is not None, 'Invalid bracket: {}'.format(base_min)
+                            base_max = match.group('SEUIL_MAX')
+                            if base_min not in bases:
+                                bases.append(base_min)
+                            if base_max is None:
+                                add_final_bracket = False
+                            elif base_max not in bases:
+                                bases.append(base_max)
+                    rates_tree = tax_rate_tree[u'TAUX']
+                    if add_final_bracket:
+                        rates_tree[u'Tranche nulle'] = [dict(
+                            start = rates_tree.values()[0][0]['start'],
+                            value = '0',
+                            )]
+                    tax_rate_tree[u'SEUIL'] = bases_tree = collections.OrderedDict()
+                    for (name, values), base in itertools.izip(rates_tree.iteritems(), bases):
+                        # assert len(bases) >= len(values), str((bases, name, values))
+                        bases_tree[name] = [dict(
+                            start = values[0]['start'],
+                            value = base,
+                            )]
 
     root_element = transform_node_to_element(u'root', tree)
     root_element.set('deb', original_root_element.get('deb'))
@@ -328,7 +392,7 @@ def merge_elements(element, original_element, path = None):
 
 
 def slugify_ipp_translation_key(key):
-    return key if key in ('RENAME', 'TYPE') else strings.slugify(key, separator = u'_')
+    return key if key in ('RENAME', 'TRANCHE', 'TYPE') else strings.slugify(key, separator = u'_')
 
 
 def slugify_ipp_translations_keys(ipp_translations):
