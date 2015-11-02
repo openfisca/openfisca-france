@@ -1402,7 +1402,7 @@ class assiette_service(SimpleFormulaColumn):
 
         return period, self.sum_by_entity(ebic_imps_holder)
 
-    # P = _P.impot_revenu.rpns.microentreprise
+    # P = _P.impot_revenu.rpns.micro.microentreprise
     # assert (ebic_imps <= P.servi.max)
 
 
@@ -1461,7 +1461,7 @@ class microentreprise(SimpleFormulaColumn):
         ebnc_impo_holder = simulation.compute('ebnc_impo', period)
         ebic_imps_holder = simulation.compute('ebic_imps', period)
         ebic_impv_holder = simulation.compute('ebic_impv', period)
-        me = simulation.legislation_at(period.start).impot_revenu.rpns.microentreprise
+        me = simulation.legislation_at(period.start).impot_revenu.rpns.micro.microentreprise
 
         ebnc_impo = self.sum_by_entity(ebnc_impo_holder)
         ebic_imps = self.sum_by_entity(ebic_imps_holder)
@@ -2089,7 +2089,7 @@ class defacc(SimpleFormulaColumn):
         macc_pvct_holder = simulation.compute('macc_pvct', period)
         aacc_impn_holder = simulation.compute('aacc_impn', period)
         cga = simulation.legislation_at(period.start).impot_revenu.rpns.cga_taux2
-        microentreprise = simulation.legislation_at(period.start).impot_revenu.rpns.microentreprise
+        micro = simulation.legislation_at(period.start).impot_revenu.rpns.micro
 
         def abat_rpns(rev, P):
             return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
@@ -2124,7 +2124,7 @@ class defncn(SimpleFormulaColumn):
         cncn_aimp_holder = simulation.compute('cncn_aimp', period)
         cncn_bene_holder = simulation.compute('cncn_bene', period)
         cga = simulation.legislation_at(period.start).impot_revenu.rpns.cga_taux2
-        specailbnc = simulation.legislation_at(period.start).impot_revenu.rpns.micro.specialbnc
+        specialbnc = simulation.legislation_at(period.start).impot_revenu.rpns.micro.specialbnc
 
         def abat_rpns(rev, P):
             return max_(0, rev - min_(rev, max_(P.taux * min_(P.max, rev), P.min)))
@@ -2134,8 +2134,8 @@ class defncn(SimpleFormulaColumn):
         cncn_aimp = self.sum_by_entity(cncn_aimp_holder)
         return period, min_(
             f5ht + f5it + f5jt + f5kt + f5lt + f5mt,
-            abat_rpns(mncn_impo, specialbnc) + mncn_pvct + cncn_aimp + (1 + cga) * cncn_bene
-            )
+            abat_rpns(mncn_impo, specialbnc.services) + mncn_pvct + cncn_aimp + (1 + cga) * cncn_bene
+            )  # TODO check !
 
 
 @reference_formula
@@ -2313,7 +2313,7 @@ class rac(SimpleFormulaColumn):
         mncn_impo = simulation.calculate('mncn_impo', period)
         cncn_bene = simulation.calculate('cncn_bene', period)
         cncn_defi = simulation.calculate('cncn_defi', period)
-        microentreprise = simulation.legislation_at(period.start).impot_revenu.rpns.microentreprise
+        micro = simulation.legislation_at(period.start).impot_revenu.rpns.micro
 
         zacc = (macc_exon + macc_impv + macc_imps
                 + aacc_exon + aacc_impn + aacc_imps - aacc_defn - aacc_defs
@@ -2574,16 +2574,30 @@ class rpns_i(SimpleFormulaColumn):
         # regime micro entreprise
         macc_timp = abat_rpns(macc_impv, micro.specialbnc.marchandises) + abat_rpns(macc_imps, micro.specialbnc.services)
         # Régime du bénéfice réel bénéficiant de l'abattement CGA
-        aacc_timp = (max_(0, (aacc_impn + (aacc_gits > 0) * max_(microentreprise.servi.min, aacc_gits *
-            (1 - micro.specialbnc.marchandises.taux)) + (aacc_imps > 0) * max_(microentreprise.servi.min, aacc_imps *
-            (1 - micro.specialbnc.services.taux)) + (nacc_meup > 0) * max_(microentreprise.servi.min, nacc_meup *
-            (1 - micro.specialbnc.marchandises.taux)) + nacc_defs - aacc_defn)))
+        aacc_timp = (
+            max_(
+                0,
+                (aacc_impn + (aacc_gits > 0) * max_(
+                    micro.specialbnc.services.min,
+                    aacc_gits * (1 - micro.specialbnc.marchandises.taux)
+                    )) +
+                (aacc_imps > 0) * max_(
+                    micro.specialbnc.marchandises.min,
+                    aacc_imps * (1 - micro.specialbnc.services.taux)
+                    ) +
+                (nacc_meup > 0) * max_(
+                    micro.specialbnc.services.min,
+                    nacc_meup * (1 - micro.specialbnc.marchandises.taux)
+                    ) +
+                nacc_defs - aacc_defn
+                )
+            )
         # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
         nacc_timp = max_(0, nacc_impn - nacc_defn)
 
         # # E revenus non commerciaux non professionnels
         # regime déclaratif special ou micro-bnc
-        mncn_timp = abat_rpns(mncn_impo, micro.specialbnc)
+        mncn_timp = abat_rpns(mncn_impo, micro.specialbnc.services)  # TODO check
 
         # régime de la déclaration controlée
         # total 11
@@ -2592,7 +2606,7 @@ class rpns_i(SimpleFormulaColumn):
 
         # # D revenus non commerciaux professionnels
         # regime déclaratif special ou micro-bnc
-        mbnc_timp = abat_rpns(mbnc_impo, micro.specialbnc)
+        mbnc_timp = abat_rpns(mbnc_impo, micro.specialbnc.services)  # TODO check
 
         # regime de la déclaration contrôlée bénéficiant de l'abattement association agréée
         abnc_timp = abnc_impo - abnc_defi

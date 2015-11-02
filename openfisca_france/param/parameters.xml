@@ -316,7 +316,7 @@
         <VALUE deb="2002-01-01" fin="2017-12-31" valeur="0.3" />
       </CODE>
       <CODE code="dar_1" description="Abattement R. 351-6 (double activité)" format="integer" type="monetary">
-        <VALUE deb="2007-07-01" fin="2013-12-31" valeur="95" />
+        <VALUE deb="2007-07-01" valeur="95" />
         <VALUE deb="2002-01-01" fin="2007-06-30" valeur="76" />
       </CODE>
       <CODE code="dar_10" description="Abattement forfaitaire R351-11" format="integer" type="monetary">
@@ -326,17 +326,17 @@
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="0" />
       </CODE>
       <CODE code="dar_2" description="Plancher ressources APL en secteur accession R. 351-7-1" format="float" type="monetary">
-        <VALUE deb="2007-07-01" fin="2013-12-31" valeur="8000" />
+        <VALUE deb="2007-07-01" valeur="8000" />
         <VALUE deb="2003-07-01" fin="2007-06-30" valeur="6400" />
         <VALUE deb="2002-07-01" fin="2003-06-30" valeur="6300" />
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="6173.82" />
       </CODE>
       <CODE code="dar_2_2" description="Plancher ressources AL en secteur accession R. 351-7-1" format="float" type="monetary">
-        <VALUE deb="2007-07-01" fin="2013-12-31" valeur="3900" />
+        <VALUE deb="2007-07-01" valeur="3900" />
         <VALUE deb="2002-07-01" fin="2007-06-30" valeur="3100" />
       </CODE>
       <CODE code="dar_3" description="Coefficient R. 351-7-1" format="float">
-        <VALUE deb="2007-07-01" fin="2013-12-31" valeur="16.25" />
+        <VALUE deb="2007-07-01" valeur="16.25" />
         <VALUE deb="2002-01-01" fin="2007-06-30" valeur="13" />
       </CODE>
       <CODE code="dar_4" description="Plancher de ressources pour les étudiants (R. 351-7-2)" format="float" type="monetary">
@@ -417,10 +417,10 @@
           <VALUE deb="2001-07-01" fin="2002-06-30" valeur="10005" />
         </CODE>
         <CODE code="dar_3a" description="Coefficient multiplicateur du smic horaire brut au 31/12/n-2 (R. 351-7) pour un salarié" format="float">
-          <VALUE deb="2007-07-01" fin="2012-12-31" valeur="1015" />
+          <VALUE deb="2007-07-01" valeur="1015" />
         </CODE>
         <CODE code="dar_3b" description="Coefficient multiplicateur du smic horaire brut au 01/07 précédent la date d'ouverture des droits (R. 351-7) pour un employeur ou un travailleur indépendant" format="float">
-          <VALUE deb="2007-07-01" fin="2015-12-31" valeur="1500" />
+          <VALUE deb="2007-07-01" valeur="1500" />
         </CODE>
       </NODE>
     </NODE>
@@ -2474,52 +2474,53 @@
   <NODE code="fam" description="Prestations familiales">
     <NODE code="aeeh" description="Allocation d'éducation de l'enfant handicapé / Allocation d'éducation spéciale">
       <CODE code="age" description="Limite d'âge" format="integer" type="age">
-        <VALUE deb="1976-08-01" fin="2014-03-31" valeur="20" />
+        <VALUE deb="1976-08-01" valeur="20" />
       </CODE>
       <CODE code="base" description="Allocation de base" format="percent">
-        <VALUE deb="1985-01-01" fin="2014-03-31" valeur=".32" />
+        <VALUE deb="1985-01-01" valeur=".32" />
       </CODE>
       <CODE code="cpl1" description="Complément de catégorie 1" format="percent">
-        <VALUE deb="1991-09-24" fin="2014-03-31" valeur=".24" />
+        <VALUE deb="1991-09-24" valeur=".24" />
       </CODE>
       <CODE code="cpl2" description="Complément de catégorie 2" format="percent">
-        <VALUE deb="2002-04-01" fin="2014-03-31" valeur=".65" />
+        <VALUE deb="2002-04-01" valeur=".65" />
         <VALUE deb="1991-09-24" fin="2002-03-31" valeur=".72" />
       </CODE>
       <CODE code="cpl3" description="Complément de catégorie 3" format="percent">
-        <VALUE deb="2002-04-01" fin="2014-03-31" valeur=".92" />
+        <VALUE deb="2002-04-01" valeur=".92" />
       </CODE>
       <CODE code="cpl3b" description="Seuil dépense b complément de catégorie 3" format="percent">
-        <VALUE deb="2002-04-01" fin="2013-12-31" valeur=".59" />
+        <VALUE deb="2002-04-01" valeur=".59" />
       </CODE>
       <CODE code="cpl3c" description="Seuil dépense c complément de catégorie 3" format="percent">
-        <VALUE deb="2002-04-01" fin="2013-12-31" valeur="1.24" />
+        <VALUE deb="2002-04-01" valeur="1.24" />
       </CODE>
       <CODE code="cpl4" description="Complément de catégorie 4" format="percent">
-        <VALUE deb="2002-04-01" fin="2014-03-31" valeur="1.4257" />
+        <VALUE deb="2002-04-01" valeur="1.4257" />
         <VALUE deb="1991-09-24" fin="2002-03-31" valeur="0" />
       </CODE>
       <CODE code="cpl4b" description="Seuil dépense b complément de catégorie 4" format="percent">
-        <VALUE deb="2002-04-01" fin="2013-12-31" valeur="0.8257" />
+        <VALUE deb="2002-04-01" valeur="0.8257" />
         <VALUE deb="1991-09-24" fin="2002-03-31" valeur="0" />
       </CODE>
       <CODE code="cpl4c" description="Seuil dépense c complément de catégorie 4" format="percent">
-        <VALUE deb="2002-04-01" fin="2013-12-31" valeur="1.0957" />
+        <VALUE deb="2002-04-01" valeur="1.0957" />
         <VALUE deb="1991-09-24" fin="2002-03-31" valeur="0" />
       </CODE>
       <CODE code="cpl4d" description="Seuil dépense d complément de catégorie 4" format="percent">
-        <VALUE deb="2002-04-01" fin="2013-12-31" valeur="1.7457" />
+        <VALUE deb="2002-04-01" valeur="1.7457" />
         <VALUE deb="1991-09-24" fin="2002-03-31" valeur="0" />
       </CODE>
       <CODE code="cpl5" description="Complément de catégorie 5" format="percent">
-        <VALUE deb="2002-04-01" fin="2014-03-31" valeur="1.8221" />
+        <VALUE deb="2002-04-01" valeur="1.8221" />
         <VALUE deb="1991-09-24" fin="2002-03-31" valeur="0" />
       </CODE>
       <CODE code="cpl5a" description="Seuil dépense complément de catégorie 5" format="percent">
-        <VALUE deb="2002-04-01" fin="2013-12-31" valeur="0.7164" />
+        <VALUE deb="2002-04-01" valeur="0.7164" />
         <VALUE deb="1991-09-24" fin="2002-03-31" valeur="0" />
       </CODE>
       <CODE code="cpl6" description="Complément de catégorie 6 (majoration pour assistance d’une tierce personne invalide de 3e catégorie) " format="float" type="monetary">
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="1103.08" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="1096.50" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="1082.43" />
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="1060.17" />
@@ -2535,35 +2536,35 @@
         <VALUE deb="2002-04-01" fin="2002-12-31" valeur="916.32" />
       </CODE>
       <CODE code="maj2" description="Majoration (parent isolé) de catégorie 2" format="percent">
-        <VALUE deb="2005-02-13" fin="2014-03-31" valeur=".13" />
+        <VALUE deb="2005-02-13" valeur=".13" />
         <VALUE deb="2002-04-01" fin="2005-02-12" valeur=".00" />
       </CODE>
       <CODE code="maj3" description="Majoration (parent isolé) de catégorie 3" format="percent">
-        <VALUE deb="2005-02-13" fin="2014-03-31" valeur=".18" />
+        <VALUE deb="2005-02-13" valeur=".18" />
         <VALUE deb="2002-04-01" fin="2005-02-12" valeur=".00" />
       </CODE>
       <CODE code="maj4" description="Majoration (parent isolé) de catégorie 4" format="percent">
-        <VALUE deb="2005-02-13" fin="2014-03-31" valeur=".57" />
+        <VALUE deb="2005-02-13" valeur=".57" />
         <VALUE deb="2002-04-01" fin="2005-02-12" valeur=".00" />
       </CODE>
       <CODE code="maj5" description="Majoration (parent isolé) de catégorie 5" format="percent">
-        <VALUE deb="2005-02-13" fin="2014-03-31" valeur=".73" />
+        <VALUE deb="2005-02-13" valeur=".73" />
         <VALUE deb="2002-04-01" fin="2005-02-12" valeur=".00" />
       </CODE>
       <CODE code="maj6" description="Majoration (parent isolé) de catégorie 6" format="percent">
-        <VALUE deb="2005-02-13" fin="2014-03-31" valeur="1.07" />
+        <VALUE deb="2005-02-13" valeur="1.07" />
         <VALUE deb="2002-04-01" fin="2005-02-12" valeur=".00" />
       </CODE>
     </NODE>
     <NODE code="af" description="Allocations familiales">
       <CODE code="age1" description="Âge mininimal pour toucher les AF" format="integer" type="age">
-        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0" />
+        <VALUE deb="2002-01-01" valeur="0" />
       </CODE>
       <CODE code="age2" description="Âge maximal pour toucher les AF (hors forfait)" format="integer" type="age">
-        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="19" />
+        <VALUE deb="2002-01-01" valeur="19" />
       </CODE>
       <CODE code="age3" description="Âge maximal pour toucher les AF (forfait datant de 2003-07-01 inclus )" format="integer" type="age">
-        <VALUE deb="2003-07-01" fin="2014-03-31" valeur="20" />
+        <VALUE deb="2003-07-01" valeur="20" />
       </CODE>
       <CODE code="bmaf" description="Base mensuelle des allocations familiales" format="float" type="monetary">
         <VALUE deb="2014-04-01" fin="2016-03-31" valeur="406.21" />
@@ -2582,22 +2583,22 @@
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="334.84" />
       </CODE>
       <CODE code="crds" description="Taux de crds" format="percent">
-        <VALUE deb="1996-01-01" fin="2013-12-31" valeur="0.005" />
+        <VALUE deb="1996-01-01" valeur="0.005" />
       </CODE>
       <NODE code="maj_age_deux_enfants" description="Majorations pour âge">
         <CODE code="age1" description="Âge de début de la 1ere majoration" format="integer" type="age">
-          <VALUE deb="2002-01-01" fin="2014-03-31" valeur="11" />
+          <VALUE deb="2002-01-01" valeur="11" />
         </CODE>
         <CODE code="age2" description="Âge de début de la 2ème majoration" format="integer" type="age">
-          <VALUE deb="2008-05-01" fin="2014-03-31" valeur="14" />
+          <VALUE deb="2008-05-01" valeur="14" />
           <VALUE deb="2002-01-01" fin="2008-04-30" valeur="16" />
         </CODE>
         <CODE code="taux1" description="1ère majoration pour âge" format="percent">
-          <VALUE deb="2008-05-01" fin="2014-03-31" valeur="0.00" />
+          <VALUE deb="2008-05-01" valeur="0.00" />
           <VALUE deb="2002-01-01" fin="2008-04-30" valeur="0.09" />
         </CODE>
         <CODE code="taux2" description="2ème majoration pour âge (14 ans pour les enfants né après le 30/04/97)" format="percent">
-          <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.16" />
+          <VALUE deb="2002-01-01" valeur="0.16" />
         </CODE>
       </NODE>
       <NODE code="maj_age_un_enfant" description="Majorations pour âge">
@@ -2632,7 +2633,7 @@
         </CODE>
       </NODE>
       <CODE code="seuil_rev_taux" description="Seuil de revenu pour être considéré comme enfant à charge (en smic)" format="percent">
-        <VALUE deb="2001-07-01" fin="2015-03-31" valeur=".55" />
+        <VALUE deb="2001-07-01" valeur=".55" />
       </CODE>
       <NODE code="taux" description="Taux (% de la BMAF)">
         <CODE code="enf1" description="Premier enfant à charge" format="percent">
@@ -2823,15 +2824,15 @@
     </NODE>
     <NODE code="cf" description="Complément familial">
       <CODE code="age1" description="Âge limite inférieur" format="integer" type="age">
-        <VALUE deb="1986-01-01" fin="2014-03-31" valeur="3" />
+        <VALUE deb="1986-01-01" valeur="3" />
       </CODE>
       <CODE code="age2" description="Âge limite supérieur" format="integer" type="age">
-        <VALUE deb="1998-01-01" fin="2014-03-31" valeur="21" />
+        <VALUE deb="1998-01-01" valeur="21" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="18" />
         <VALUE deb="1986-01-01" fin="1996-12-31" valeur="17" />
       </CODE>
       <CODE code="age_limite_dom" description="Âge limite DOM" format="integer" type="age">
-        <VALUE deb="1986-01-01" fin="2014-03-31" valeur="5" />
+        <VALUE deb="1986-01-01" valeur="5" />
       </CODE>
       <CODE code="majoration_plafond_biact_isole" description="Majoration du plafond pour biactifs ou isolé" format="integer" type="monetary">
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8386" />
@@ -2977,19 +2978,19 @@
       </NODE>
       <NODE code="clca" description="Complément libre choix d'activité">
         <CODE code="age" description="Limite d'âge (stricte)" format="integer" type="age">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="3" />
+          <VALUE deb="2004-01-01" valeur="3" />
         </CODE>
         <CODE code="avecab_tx_inactif" description="Taux pour les personnes inactives percevant l'allocation de base de la PAJE">
-          <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.9662" />
+          <VALUE deb="2004-01-01" valeur="0.9662" />
         </CODE>
         <CODE code="avecab_tx_partiel1" description="Taux pour les personnes à temps partiel inf. à 50% percevant l'allocation de base de la PAJE">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.6246" />
+          <VALUE deb="2004-01-01" valeur="0.6246" />
         </CODE>
         <CODE code="avecab_tx_partiel2" description="Taux pour les personnes à temps partiel 50pc-80pc percevant l'allocation de base de la PAJE">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.3603" />
+          <VALUE deb="2004-01-01" valeur="0.3603" />
         </CODE>
         <CODE code="duree1" description="Durée (en mois) de versement pour le premier enfant" format="integer" type="months">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="6" />
+          <VALUE deb="2004-01-01" valeur="6" />
         </CODE>
         <CODE code="sansab_tx_inactif" description="Taux pour les personnes inactives ne percevant pas l'allocation de base de la PAJE" format="percent">
           <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.9662" />
@@ -3006,40 +3007,40 @@
       </NODE>
       <NODE code="clmg" description="Complément de libre choix du mode de garde">
         <CODE code="age1" description="Limite d'âge (stricte) pour une prestation pleine" format="integer" type="age">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="3" />
+          <VALUE deb="2004-01-01" valeur="3" />
         </CODE>
         <CODE code="age2" description="Limite d'âge (stricte) pour une prestation réduite" format="integer" type="age">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="6" />
+          <VALUE deb="2004-01-01" valeur="6" />
         </CODE>
         <CODE code="ass_mat1" description="Taux pour recours à une assistante maternelle, une association, une entreprise ou une microcréche avant le premier plafond" format="percent">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="1.7257" />
+          <VALUE deb="2004-01-01" valeur="1.7257" />
         </CODE>
         <CODE code="ass_mat2" description="Taux pour recours à une assistante maternelle, une association, une entreprise ou une microcréche avant le second plafond" format="percent">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="1.4381" />
+          <VALUE deb="2004-01-01" valeur="1.4381" />
         </CODE>
         <CODE code="ass_mat3" description="Taux pour recours à une assistante maternelle, une association, une entreprise ou une microcréche après le second plafond" format="percent">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="1.1505" />
+          <VALUE deb="2004-01-01" valeur="1.1505" />
         </CODE>
         <CODE code="domi1" description="Taux pour recours à une garde à domicile avant le premier plafond" format="percent">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="2.0853" />
+          <VALUE deb="2004-01-01" valeur="2.0853" />
         </CODE>
         <CODE code="domi2" description="Taux pour recours à une garde à domicile avant le second plafond" format="percent">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="1.7976" />
+          <VALUE deb="2004-01-01" valeur="1.7976" />
         </CODE>
         <CODE code="domi3" description="Taux pour recours à une garde à domicile après le second plafond" format="percent">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="1.5100" />
+          <VALUE deb="2004-01-01" valeur="1.5100" />
         </CODE>
         <CODE code="empl_dir1" description="Taux pour recours à un emploi direct avant le premier plafond" format="percent">
-          <VALUE deb="2001-01-01" fin="2013-12-31" valeur="1.1404" />
+          <VALUE deb="2001-01-01" valeur="1.1404" />
         </CODE>
         <CODE code="empl_dir2" description="Taux pour recours à un emploi direct avant le second plafond" format="percent">
-          <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0.7191" />
+          <VALUE deb="2001-01-01" valeur="0.7191" />
         </CODE>
         <CODE code="empl_dir3" description="Taux pour recours à un emploi direct après le second plafond" format="percent">
-          <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0.4314" />
+          <VALUE deb="2001-01-01" valeur="0.4314" />
         </CODE>
         <CODE code="seuil11" description="Premier plafond de ressources pour un enfant" format="integer" type="monetary">
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="20706" />
+          <VALUE deb="2013-01-01" valeur="20706" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="20281" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="20079" />
           <VALUE deb="2010-01-01" fin="2010-12-31" valeur="20059" />
@@ -3051,7 +3052,7 @@
           <VALUE deb="2004-01-01" fin="2004-06-30" valeur="14349" />
         </CODE>
         <CODE code="seuil12" description="Premier plafond de ressources pour deux enfants" format="integer" type="monetary">
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="23840" />
+          <VALUE deb="2013-01-01" valeur="23840" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="23350" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="23118" />
           <VALUE deb="2010-01-01" fin="2010-12-31" valeur="23095" />
@@ -3063,7 +3064,7 @@
           <VALUE deb="2004-01-01" fin="2004-06-30" valeur="16521" />
         </CODE>
         <CODE code="seuil1sup" description="Premier plafond de ressources: maj. enfant suppl." format="integer" type="monetary">
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3761" />
+          <VALUE deb="2013-01-01" valeur="3761" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="3683" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="3647" />
           <VALUE deb="2010-01-01" fin="2010-12-31" valeur="3643" />
@@ -3075,7 +3076,7 @@
           <VALUE deb="2004-01-01" fin="2004-06-30" valeur="2626" />
         </CODE>
         <CODE code="seuil21" description="Second plafond de ressources pour un enfant" format="integer" type="monetary">
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="46014" />
+          <VALUE deb="2013-01-01" valeur="46014" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="45068" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="44621" />
           <VALUE deb="2010-01-01" fin="2010-12-31" valeur="44576" />
@@ -3087,7 +3088,7 @@
           <VALUE deb="2004-01-01" fin="2004-06-30" valeur="31887" />
         </CODE>
         <CODE code="seuil22" description="Second plafond de ressources pour deux enfants" format="integer" type="monetary">
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="52978" />
+          <VALUE deb="2013-01-01" valeur="52978" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="51889" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="51374" />
           <VALUE deb="2010-01-01" fin="2010-12-31" valeur="51322" />
@@ -3099,7 +3100,7 @@
           <VALUE deb="2004-01-01" fin="2004-06-30" valeur="36713" />
         </CODE>
         <CODE code="seuil2sup" description="Second plafond de ressources: maj. enfant suppl." format="integer" type="monetary">
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="8357" />
+          <VALUE deb="2013-01-01" valeur="8357" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="8195" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="8104" />
           <VALUE deb="2010-01-01" fin="2010-12-31" valeur="8096" />
@@ -3113,13 +3114,13 @@
       </NODE>
       <NODE code="colca" description="Complément optionnel libre choix d'activité">
         <CODE code="age" description="Age limite (strict) de perception" format="integer" type="age">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="1" />
+          <VALUE deb="2004-01-01" valeur="1" />
         </CODE>
         <CODE code="avecab" description="Taux de la prestation en cas de perception de l'allocation de base de la PAJE" format="percent">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="1.5793" />
+          <VALUE deb="2004-01-01" valeur="1.5793" />
         </CODE>
         <CODE code="sansab" description="Taux de la prestation en cas de non perception de l'allocation de base de la PAJE" format="percent">
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="2.0388" />
+          <VALUE deb="2004-01-01" valeur="2.0388" />
         </CODE>
       </NODE>
       <NODE code="nais" description="Prime à la naissance">
@@ -6919,7 +6920,7 @@
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
       </CODE>
       <CODE code="age_min" description="Âge minimal requis" format="integer" type="age">
-        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="65" />
+        <VALUE deb="2002-01-01" valeur="65" />
       </CODE>
       <CODE code="duree_min_titre_sejour" description="Durée minimale de titre du séjour permettant de bénéficier de l'ASPA ou de l'ASI" format="integer">
         <VALUE deb="2002-01-01" fin="2015-12-31" valeur="10" />
@@ -6997,7 +6998,7 @@
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="6997.60267" />
       </CODE>
       <CODE code="taux_invalidite_aspa_anticipe" description="Taux d'invalidité nécessaire pour percevoir l'ASPA de manière anticipée" format="percent">
-        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.5" />
+        <VALUE deb="2002-01-01" valeur="0.5" />
       </CODE>
     </NODE>
     <NODE code="ass" description="Allocation de solidarité spécifique">
