@@ -204,7 +204,7 @@ def main():
                             break
 
                     if value in (u'-', u'na', u'nc'):
-                        # Value is unknown. Previous value must  be propagated.
+                        # Value is unknown. Previous value must be propagated.
                         continue
                     ipp_path = relative_file_path.split(os.sep)[:-1] + [sheet_name] + list(relative_ipp_path)
 
@@ -344,15 +344,34 @@ def main():
                                 bases.append(base_max)
                     rates_tree = tax_rate_tree[u'TAUX']
                     if add_final_bracket:
-                        rates_tree[u'Tranche nulle'] = [dict(
-                            start = rates_tree.values()[0][0]['start'],
+                        first_start = UnboundLocalError
+                        last_stop = UnboundLocalError
+                        for bracket in rates_tree.values():
+                            bracket_start = bracket[0]['start']
+                            if first_start is UnboundLocalError or bracket_start < first_start:
+                                first_start = bracket_start
+                            bracket_stop = bracket[-1].get('stop')
+                            if last_stop is UnboundLocalError or \
+                                    last_stop is not None and (bracket_stop is None or last_stop < bracket_stop):
+                                last_stop = bracket_stop
+
+                        for bracket in rates_tree.values():
+                            for item in bracket:
+                                if item['value'] is None:
+                                    item['value'] = '0'
+
+                        null_bracket_item = dict(
+                            start = first_start,
                             value = '0',
-                            )]
+                            )
+                        if last_stop is not None:
+                            null_bracket_item['stop'] = last_stop
+                        rates_tree[u'Tranche nulle'] = [null_bracket_item]
+
                     tax_rate_tree[u'SEUIL'] = bases_tree = collections.OrderedDict()
-                    for (name, values), base in itertools.izip(rates_tree.iteritems(), bases):
-                        # assert len(bases) >= len(values), str((bases, name, values))
+                    for (name, bracket), base in itertools.izip(rates_tree.iteritems(), bases):
                         bases_tree[name] = [dict(
-                            start = values[0]['start'],
+                            start = bracket[0]['start'],
                             value = base,
                             )]
 
