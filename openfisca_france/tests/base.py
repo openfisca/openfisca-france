@@ -9,6 +9,7 @@ from ..reforms import (
     allocations_familiales_imposables,
     cesthra_invalidee,
     plf2016,
+    plf2016_ayrault_muet,
     plf2015,
     plfr2014,
     trannoy_wasmer,
@@ -37,6 +38,8 @@ build_reform_function_by_key = {
     'allocations_familiales_imposables': allocations_familiales_imposables.build_reform,
     'cesthra_invalidee': cesthra_invalidee.build_reform,
     'plf2016': plf2016.build_reform,
+    'ayrault_muet': plf2016_ayrault_muet.build_reform,
+
     'plf2016_counterfactual': plf2016.build_counterfactual_reform,
     'plf2016_counterfactual_2014': plf2016.build_counterfactual_2014_reform,
     'plf2015': plf2015.build_reform,
