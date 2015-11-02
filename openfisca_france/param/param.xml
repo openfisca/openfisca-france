@@ -1483,10 +1483,11 @@
           <BAREME code="apprentissage" description="Taxe d'apprentissage (toutes entreprises)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
+                <VALUE deb="1993-07-01" fin="2016-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0.005" />
+                <VALUE deb="2014-01-01" fin="2016-12-31" valeur="0.0068" />
+                <VALUE deb="1993-07-01" fin="2013-12-31" valeur="0.005" />
               </TAUX>
             </TRANCHE>
           </BAREME>
