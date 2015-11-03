@@ -67,6 +67,8 @@ def build_reform(tax_benefit_system):
                 cat = 'prive_non_cadre'
             elif (type_sal == 1).all():
                 cat = 'prive_cadre'
+            elif (type_sal == 2).all():
+                cat = 'public_titulaire_etat'
 
             for name, bareme in salarie[cat].iteritems():
                 print name, bareme
@@ -89,23 +91,25 @@ def build_reform(tax_benefit_system):
             # et en tenant compte des éléments de l'assiette
             # salarie['fonc']['etat']['excep_solidarite'] = salarie['fonc']['commun']['solidarite']
 
-#            public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
-#            public_titulaire_territoriale = salarie['public_titulaire_territoriale'].combine_tax_scales()
-#            public_titulaire_hospitaliere = salarie['public_titulaire_hospitaliere'].combine_tax_scales()
-#            public_non_titulaire = salarie['public_non_titulaire'].combine_tax_scales()
+            TAUX_DE_PRIME = 0
+
+            public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
+            public_titulaire_territoriale = salarie['public_titulaire_territoriale'].combine_tax_scales()
+            public_titulaire_hospitaliere = salarie['public_titulaire_hospitaliere'].combine_tax_scales()
+            public_non_titulaire = salarie['public_non_titulaire'].combine_tax_scales()
 
             # Pour a fonction publique la csg est calculée sur l'ensemble salbrut(=TIB) + primes
             # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
-#            bareme_csg_public_titulaire_etat = csg['act']['deduc'].multiply_rates(
-#                1 + TAUX_DE_PRIME, inplace = False, new_name = "csg deduc titutaire etat")
-#            public_etat.add_tax_scale(bareme_csg_titulaire_etat)
-#            bareme_prime = MarginalRateTaxScale(name = "taux de prime")
-#            bareme_prime.add_bracket(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
-#            public_titulaire_etat.add_tax_scale(bareme_prime)
-#            salaire_de_base += (
-#                (type_sal == CAT['public_titulaire_etat']) *
-#                public_titulaire_etat.inverse().calc(salaire_imposable_pour_inversion)
-#                )
+            bareme_csg_public_titulaire_etat = csg.multiply_rates(
+                1 + TAUX_DE_PRIME, inplace = False, new_name = "csg deduc titutaire etat")
+            public_titulaire_etat.add_tax_scale(bareme_csg_public_titulaire_etat)
+            bareme_prime = MarginalRateTaxScale(name = "taux de prime")
+            bareme_prime.add_bracket(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
+            public_titulaire_etat.add_tax_scale(bareme_prime)
+            salaire_de_base += (
+                (type_sal == CAT['public_titulaire_etat']) *
+                public_titulaire_etat.inverse().calc(salaire_imposable_pour_inversion)
+                )
             # TODO: complete this to deal with the fonctionnaire
             # supp_familial_traitement = 0  # TODO: dépend de salbrut
             # indemnite_residence = 0  # TODO: fix bug

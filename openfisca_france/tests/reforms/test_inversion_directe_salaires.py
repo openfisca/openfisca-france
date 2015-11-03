@@ -5,7 +5,7 @@ from __future__ import division
 import datetime
 
 
-from openfisca_core import periods
+from openfisca_core import periods, taxscales
 
 from openfisca_france.reforms import inversion_directe_salaires
 from openfisca_france.model.base import CAT
@@ -58,9 +58,13 @@ def check_inversion_directe_salaires(type_sal, year = 2014):
         cat = 'prive_non_cadre'
     elif type_sal == 1:
         cat = 'prive_cadre'
+    elif type_sal == 2:
+        cat = 'public_titulaire_etat'
     for cotisation_name, cotisation in cotisation_by_name.iteritems():
         print cotisation_name, cotisation
     for name, bareme in salarie[cat].iteritems():
+        if not isinstance(bareme, taxscales.AbstractTaxScale):
+            continue
         x = bareme.scale_tax_scales(plafond_securite_sociale_annuel)
         print name, bareme
         print x.calc(brut)
@@ -95,7 +99,7 @@ def check_inversion_directe_salaires(type_sal, year = 2014):
 
 
 def test_sal(year = 2014):
-    for type_sal_category in ('prive_cadre', 'prive_non_cadre'):  # , 'public_titulaire_etat'):
+    for type_sal_category in ('prive_cadre', ): # ('public_titulaire_etat', 'prive_non_cadre'):
         yield check_inversion_directe_salaires, CAT[type_sal_category], year
 
 
