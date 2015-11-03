@@ -32,14 +32,14 @@
 from __future__ import division
 
 from numpy import maximum as max_
-from openfisca_core import columns, extensions, formulas
+from openfisca_core import columns, formulas, reforms
 from openfisca_france import entities
 from openfisca_france.model.base import QUIFAM, QUIFOY
 
 
 def build_extension(base_tax_benefit_system):
-    Extension = extensions.make_extension(
-        base = base_tax_benefit_system,
+    Extension = reforms.make_reform(
+        reference = base_tax_benefit_system,
         key = 'landais_piketty_saez',
         name = u'Landais Piketty Saez',
         )

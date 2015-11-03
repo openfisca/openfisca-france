@@ -29,7 +29,7 @@ from openfisca_core import periods
 from openfisca_core.tools import assert_near
 from openfisca_france.tests.base import tax_benefit_system
 
-from openfisca_france_reform_landais_piketty_saez import build_extension
+from openfisca_france.reforms.landais_piketty_saez import build_extension
 
 
 def test():
