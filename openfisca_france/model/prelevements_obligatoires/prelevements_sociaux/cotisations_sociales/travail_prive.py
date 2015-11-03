@@ -218,7 +218,7 @@ class agirc_gmp_salarie(SimpleFormulaColumn):
             sous_plafond_securite_sociale * cotisation_forfaitaire +
             not_(sous_plafond_securite_sociale) * agirc_gmp_assiette * taux
             )
-        return period, min_((cotisation - agirc_salarie) * (type_sal == 1), 0)  # cotisation are negative
+        return period, 0 * min_((cotisation - agirc_salarie) * (type_sal == 1), 0)  # cotisation are negative
 
 
 @reference_formula
@@ -584,7 +584,9 @@ class plafond_securite_sociale(SimpleFormulaColumn):
 
         plafond_temps_plein = _P.cotsoc.gen.plafond_securite_sociale
         jours_travailles = nombre_jours_calendaires - heures_non_remunerees_volume / 7
-        plafond_securite_sociale = min_(jours_travailles, 30) / 30 * plafond_temps_plein
+        plafond_securite_sociale = (
+            max_(heures_non_remunerees_volume == 0, min_(jours_travailles, 30) / 30) * plafond_temps_plein)
+            # temps plein ou non pour gérer le mois de février qui à 28 ou 29 jours
         return period, plafond_securite_sociale
 
 

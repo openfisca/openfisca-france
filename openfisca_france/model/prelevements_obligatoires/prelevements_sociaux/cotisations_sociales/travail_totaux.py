@@ -187,6 +187,9 @@ class cotisations_salariales_non_contributives(SimpleFormulaColumn):
             contribution_exceptionnelle_solidarite
             )
 
+        print 'mmid_salarie', mmid_salarie
+        print 'contribution_exceptionnelle_solidarite', contribution_exceptionnelle_solidarite
+
         return period, cotisations_salariales_non_contributives
 
 
