@@ -130,6 +130,7 @@ class agff_salarie(SimpleFormulaColumn):
     # AGFF: Association pour la gestion du fonds de financement (sous-entendu des départs entre 60 et 65 ans)
 
     def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
         cotisation = apply_bareme(
             simulation,
             period,
@@ -256,6 +257,7 @@ class agirc_salarie(SimpleFormulaColumn):
     label = u"Cotisation AGIRC tranche B (salarié)"
 
     def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
         cotisation = apply_bareme(
             simulation,
             period,
@@ -307,13 +309,15 @@ class apec_salarie(SimpleFormulaColumn):
     label = u"Cotisations agence pour l'emploi des cadres (APEC,  salarié)"
 
     def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        type_sal = simulation.calculate('type_sal', period)
         cotisation = apply_bareme(
             simulation, period,
             cotisation_type = "salarie",
             bareme_name = "apec",
             variable_name = self.__class__.__name__,
             )
-        return period, cotisation  # TODO: check public notamment contractuel
+        return period, cotisation * (type_sal == 1)  # TODO: check public notamment contractuel
 
 
 @reference_formula
@@ -341,6 +345,7 @@ class arrco_salarie(SimpleFormulaColumn):
     # TODO: check gestion mensuel/annuel
 
     def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
         cotisation_minimale = apply_bareme(
             simulation,
             period,
@@ -398,6 +403,7 @@ class chomage_salarie(SimpleFormulaColumn):
     label = u"Cotisation chômage tranche A (salarié)"
 
     def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
         cotisation = apply_bareme(
             simulation,
             period,
@@ -446,7 +452,7 @@ class contribution_solidarite_autonomie(SimpleFormulaColumn):
 class cotisation_exceptionnelle_temporaire_salarie(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation_exceptionnelle_temporaire (employe)"
+    label = u"Cotisation_exceptionnelle_temporaire (salarie)"
 
     def function(self, simulation, period):
         cotisation = apply_bareme(
@@ -500,6 +506,7 @@ class mmid_salarie(SimpleFormulaColumn):
     label = u"Cotisation maladie (salarié)"
 
     def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
         cotisation = apply_bareme(
             simulation,
             period,

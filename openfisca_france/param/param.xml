@@ -702,7 +702,7 @@
               <VALUE deb="1993-07-01" fin="1993-12-31" valeur=".0234" />
             </TAUX>
           </TRANCHE>
-          <TRANCHE code="tranche2">
+          <!-- <TRANCHE code="tranche2">
             <SEUIL>
               <VALUE deb="1993-07-01" fin="2015-12-31" valeur="4" />
             </SEUIL>
@@ -718,7 +718,7 @@
               <VALUE deb="1994-01-01" fin="1994-12-31" valeur=".0363" />
               <VALUE deb="1993-07-01" fin="1993-12-31" valeur=".0234" />
             </TAUX>
-          </TRANCHE>
+          </TRANCHE> -->
           <TRANCHE code="tranche3">
             <SEUIL>
               <VALUE deb="1993-07-01" fin="2015-12-31" valeur="8" />

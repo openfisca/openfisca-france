@@ -133,6 +133,19 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
         vieillesse_deplafonnee_salarie = simulation.calculate_add('vieillesse_deplafonnee_salarie', period)
         vieillesse_plafonnee_salarie = simulation.calculate_add('vieillesse_plafonnee_salarie', period)
 
+        print 'agff_salarie', agff_salarie
+        print 'agirc_salarie', agirc_salarie
+        print 'agirc_gmp_salarie', agirc_gmp_salarie
+        print 'apec_salarie', apec_salarie
+        print 'arrco_salarie', arrco_salarie
+        print 'chomage_salarie', chomage_salarie
+        print 'cotisation_exceptionnelle_temporaire_salarie', cotisation_exceptionnelle_temporaire_salarie
+        print 'vieillesse_deplafonnee_salarie', vieillesse_deplafonnee_salarie
+        print 'vieillesse_plafonnee_salarie', vieillesse_plafonnee_salarie
+        print 'ircantec_salarie', ircantec_salarie
+        print 'pension_civile_salarie', pension_civile_salarie
+        print 'rafp_salarie', rafp_salarie
+
         cotisations_salariales_contributives = (
             # prive
             agff_salarie +
