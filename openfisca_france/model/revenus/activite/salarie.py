@@ -377,6 +377,7 @@ reference_input_variable(
     column = FloatCol(),
     entity_class = Individus,
     label = u"Traitement indiciaire brut (TIB)",
+    set_input = set_input_divide_by_period,
     name = 'traitement_indiciaire_brut',
     )
 reference_input_variable(

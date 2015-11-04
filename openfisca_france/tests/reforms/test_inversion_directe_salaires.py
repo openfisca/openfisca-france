@@ -14,8 +14,13 @@ from openfisca_france.tests.base import assert_near, tax_benefit_system
 
 def check_inversion_directe_salaires(type_sal, year = 2014):
     period = periods.period("{}".format(year))
+    if type_sal <= 1:
+        revenu_name = 'salaire_de_base'
+    else:
+        revenu_name = 'traitement_indiciaire_brut'
+
     single_entity_kwargs = dict(
-        axes = [dict(count = 1 + 1, max = 12 * 4000, min = 12 * 500, name = 'salaire_de_base')],  # TODO: min = 0
+        axes = [dict(count = 1 + 1, max = 12 * 4000, min = 12 * 500, name = revenu_name)],  # TODO: min = 0
         period = period,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
@@ -26,16 +31,26 @@ def check_inversion_directe_salaires(type_sal, year = 2014):
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         **single_entity_kwargs
         ).new_simulation(debug = False)
-    brut = simulation.get_holder('salaire_de_base').array
+
     smic_horaire = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b
     smic_annuel = smic_horaire * 35 * 52
-    brut = simulation.get_holder('salaire_de_base').array
+    try:
+        salaire_de_base = simulation.get_holder('salaire_de_base').array
+    except KeyError:
+        salaire_de_base = None
+        pass
+    try:
+        traitement_indiciaire_brut = simulation.get_holder('traitement_indiciaire_brut').array
+    except KeyError:
+        traitement_indiciaire_brut = None
+        pass
 
-    for month in ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]:
-        simulation.get_or_new_holder('contrat_de_travail').set_input(
-            periods.period("{}-{}".format(year, month)), (brut < smic_annuel) * 1.)  # temps plein ou temps partiel
-        simulation.get_or_new_holder('heures_remunerees_volume').set_input(
-            periods.period("{}-{}".format(year, month)), ((brut / 12) // smic_horaire) * (brut < smic_annuel))
+    if type_sal <= 1:
+        for month in ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]:
+            simulation.get_or_new_holder('contrat_de_travail').set_input(
+                periods.period("{}-{}".format(year, month)), (salaire_de_base < smic_annuel) * 1.)  # temps plein ou temps partiel
+            simulation.get_or_new_holder('heures_remunerees_volume').set_input(
+                periods.period("{}-{}".format(year, month)), ((salaire_de_base / 12) // smic_horaire) * (salaire_de_base < smic_annuel))
 
     imposable = simulation.calculate_add('salaire_imposable')
     print imposable
@@ -67,39 +82,43 @@ def check_inversion_directe_salaires(type_sal, year = 2014):
             continue
         x = bareme.scale_tax_scales(plafond_securite_sociale_annuel)
         print name, bareme
-        print x.calc(brut)
-
-#            print 'prive_cadre'
-#            for name, bareme in salarie['prive_cadre'].iteritems():
-#                print name, bareme
-#            prive_non_cadre = salarie['prive_non_cadre'].combine_tax_scales().scale_tax_scales(
+        print x.calc(salaire_de_base if salaire_de_base else traitement_indiciaire_brut)
 
     inversion_reform = inversion_directe_salaires.build_reform(tax_benefit_system)
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
         **single_entity_kwargs).new_simulation(debug = True)
 
-    inverse_simulation.get_holder('salaire_de_base').delete_arrays()
+    try:
+        inverse_simulation.get_holder('salaire_de_base').delete_arrays()
+    except KeyError:
+        pass
+    try:
+        inverse_simulation.get_holder('traitement_indiciaire_brut').delete_arrays()
+    except KeyError:
+        pass
+
     inverse_simulation.get_or_new_holder('salaire_imposable_pour_inversion').set_input(
         period, imposable.copy())
 
-    for month in ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]:
-        inverse_simulation.get_or_new_holder('contrat_de_travail').set_input(
-            periods.period("{}-{}".format(year, month)), (brut < smic_annuel) * 1.)  # temps plein ou partiel
-        inverse_simulation.get_or_new_holder('heures_remunerees_volume').set_input(
-            periods.period("{}-{}".format(year, month)), ((brut / 12) // smic_horaire) * (brut < smic_annuel))
+    if type_sal <= 1:
+        for month in ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]:
+            inverse_simulation.get_or_new_holder('contrat_de_travail').set_input(
+                periods.period("{}-{}".format(year, month)), (salaire_de_base < smic_annuel) * 1.)  # temps plein ou partiel
+            inverse_simulation.get_or_new_holder('heures_remunerees_volume').set_input(
+                periods.period("{}-{}".format(year, month)), ((salaire_de_base / 12) // smic_horaire) * (brut < smic_annuel))
 
-#    for cotisation_name in cotisations_name:
-#        assert_near(
-#            inverse_simulation.calculate_add(cotisation_name),
-#            cotisation_by_name[cotisation_name], absolute_error_margin = 1)
+    new_salaire_de_base = inverse_simulation.calculate('salaire_de_base')
+    new_traitement_indiciaire_brut = inverse_simulation.calculate('traitement_indiciaire_brut')
 
-    new_brut = inverse_simulation.calculate('salaire_de_base')
     print type_sal
-    assert_near(new_brut, brut, absolute_error_margin = 1)
+    if salaire_de_base is not None:
+        assert_near(new_salaire_de_base, salaire_de_base, absolute_error_margin = 1)
+    if traitement_indiciaire_brut is not None:
+        assert_near(new_traitement_indiciaire_brut, traitement_indiciaire_brut, absolute_error_margin = 1)
 
 
 def test_sal(year = 2014):
-    for type_sal_category in ('prive_cadre', ): # ('public_titulaire_etat', 'prive_non_cadre'):
+    for type_sal_category in ('public_titulaire_etat', ): # ('prive_cadre', 'prive_non_cadre'):
         yield check_inversion_directe_salaires, CAT[type_sal_category], year
 
 

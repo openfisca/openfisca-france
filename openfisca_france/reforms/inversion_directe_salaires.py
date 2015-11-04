@@ -30,9 +30,8 @@ def build_reform(tax_benefit_system):
     class salaire_de_base(formulas.SimpleFormulaColumn):
         column = columns.FloatCol
         entity_class = entities.Individus
-        label = u"Salaire brut ou traitement indiciaire brut"
+        label = u"Salaire brut"
         reference = tax_benefit_system.column_by_name["salaire_de_base"]
-        url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
 
         def function(self, simulation, period):
             """Calcule le salaire brut à partir du salaire imposable ou sinon du salaire net.
@@ -79,12 +78,48 @@ def build_reform(tax_benefit_system):
             # On ajoute la CSG deductible
             prive_non_cadre.add_tax_scale(csg)
             prive_cadre.add_tax_scale(csg)
-
-#            print "salaire_imposable_pour_inversion", salaire_imposable_pour_inversion
             salaire_de_base = (
-                (type_sal == CAT['prive_non_cadre']) * prive_non_cadre.inverse().calc(salaire_imposable_pour_inversion) +
+                (type_sal == CAT['prive_non_cadre']) *
+                prive_non_cadre.inverse().calc(salaire_imposable_pour_inversion) +
                 (type_sal == CAT['prive_cadre']) * prive_cadre.inverse().calc(salaire_imposable_pour_inversion)
                 )
+            return period, salaire_de_base + hsup
+
+    @Reform.formula
+    class traitement_indiciaire_brut(formulas.SimpleFormulaColumn):
+        column = columns.FloatCol
+        entity_class = entities.Individus
+        label = u"Traitement indiciaire brut"
+        reference = tax_benefit_system.column_by_name["traitement_indiciaire_brut"]
+
+        def function(self, simulation, period):
+            """Calcule le tratement indiciaire brut à partir du salaire imposable.
+            """
+            # Get value for year and divide below.
+            salaire_imposable_pour_inversion = simulation.calculate('salaire_imposable_pour_inversion',
+                period.start.offset('first-of', 'year').period('year'))
+
+            # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
+#            if salaire_imposable_pour_inversion == 0 or (salaire_imposable_pour_inversion == 0).all():
+#                # Quick path to avoid fsolve when using default value of input variables.
+#                return period, salaire_imposable_pour_inversion
+
+            # Calcule le salaire brut à partir du salaire imposable.
+            # Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
+            # Note : le supplément familial de traitement est imposable.
+            type_sal = simulation.calculate('type_sal', period)
+            P = simulation.legislation_at(period.start)
+            plafond_securite_sociale_annuel = P.cotsoc.gen.plafond_securite_sociale * 12
+            taux_csg = P.csg.activite.deductible.taux * (1 - .0175)
+            csg = MarginalRateTaxScale(name = 'csg')
+            csg.add_bracket(0, taux_csg)
+
+            if (type_sal == 2).all():
+                cat = 'public_titulaire_etat'
+            salarie = P.cotsoc.cotisations_salarie
+            for name, bareme in salarie[cat].iteritems():
+                print name, bareme
+
             # public etat
             # TODO: modifier la contribution exceptionelle de solidarité
             # en fixant son seuil de non imposition dans le barème (à corriger dans param.xml
@@ -92,11 +127,13 @@ def build_reform(tax_benefit_system):
             # salarie['fonc']['etat']['excep_solidarite'] = salarie['fonc']['commun']['solidarite']
 
             TAUX_DE_PRIME = 0
-
+            public_titulaire_etat = salarie['public_titulaire_etat'].copy()
+            public_titulaire_etat['rafp'].multiply_rates(TAUX_DE_PRIME, inplace = True)
             public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
-            public_titulaire_territoriale = salarie['public_titulaire_territoriale'].combine_tax_scales()
-            public_titulaire_hospitaliere = salarie['public_titulaire_hospitaliere'].combine_tax_scales()
-            public_non_titulaire = salarie['public_non_titulaire'].combine_tax_scales()
+
+            # public_titulaire_territoriale = salarie['public_titulaire_territoriale'].combine_tax_scales()
+            # public_titulaire_hospitaliere = salarie['public_titulaire_hospitaliere'].combine_tax_scales()
+            # public_non_titulaire = salarie['public_non_titulaire'].combine_tax_scales()
 
             # Pour a fonction publique la csg est calculée sur l'ensemble salbrut(=TIB) + primes
             # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
@@ -106,14 +143,13 @@ def build_reform(tax_benefit_system):
             bareme_prime = MarginalRateTaxScale(name = "taux de prime")
             bareme_prime.add_bracket(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
             public_titulaire_etat.add_tax_scale(bareme_prime)
-            salaire_de_base += (
+            traitement_indiciaire_brut = (
                 (type_sal == CAT['public_titulaire_etat']) *
                 public_titulaire_etat.inverse().calc(salaire_imposable_pour_inversion)
                 )
             # TODO: complete this to deal with the fonctionnaire
             # supp_familial_traitement = 0  # TODO: dépend de salbrut
             # indemnite_residence = 0  # TODO: fix bug
-            return period, salaire_de_base + hsup
-
+            return period, traitement_indiciaire_brut
 
     return Reform()
