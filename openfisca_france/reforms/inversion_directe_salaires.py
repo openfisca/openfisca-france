@@ -17,7 +17,7 @@ TAUX_DE_PRIME = .10
 def build_reform(tax_benefit_system):
 
     Reform = reforms.make_reform(
-        key = 'inversion_revenus',
+        key = 'inversion_directe_salaires',
         name = u'Inversion des revenus',
         reference = tax_benefit_system,
         )

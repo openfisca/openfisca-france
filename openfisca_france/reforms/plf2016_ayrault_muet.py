@@ -3,12 +3,11 @@
 from __future__ import division
 
 
-from numpy import maximum as max_, minimum as min_, round as round_
+from numpy import maximum as max_, minimum as min_
 
 
-from openfisca_core import formulas, periods, reforms
+from openfisca_core import formulas, reforms
 from ..model.base import *  # analysis.ignore
-from ..model.prelevements_obligatoires.impot_revenu import ir, reductions_impot
 
 
 # Réforme de l'amendement Ayrault-Muet
