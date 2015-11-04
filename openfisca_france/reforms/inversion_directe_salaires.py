@@ -65,15 +65,16 @@ def build_reform(tax_benefit_system):
             csg = MarginalRateTaxScale(name = 'csg')
             csg.add_bracket(0, taux_csg)
 
-            if (type_sal == 0).all():
-                cat = 'prive_non_cadre'
-            elif (type_sal == 1).all():
-                cat = 'prive_cadre'
-            elif (type_sal == 2).all():
-                cat = 'public_titulaire_etat'
-
-            for name, bareme in salarie[cat].iteritems():
-                print name, bareme
+#            cat = None
+#            if (type_sal == 0).all():
+#                cat = 'prive_non_cadre'
+#            elif (type_sal == 1).all():
+#                cat = 'prive_cadre'
+#            elif (type_sal == 2).all():
+#                cat = 'public_titulaire_etat'
+#            if cat is not None:
+#                for name, bareme in salarie[cat].iteritems():
+#                    print name, bareme
 
             prive_non_cadre = salarie['prive_non_cadre'].combine_tax_scales().scale_tax_scales(
                 plafond_securite_sociale_annuel)
@@ -116,11 +117,13 @@ def build_reform(tax_benefit_system):
             csg = MarginalRateTaxScale(name = 'csg')
             csg.add_bracket(0, taux_csg)
 
-            if (type_sal == 2).all():
-                cat = 'public_titulaire_etat'
             salarie = P.cotsoc.cotisations_salarie
-            for name, bareme in salarie[cat].iteritems():
-                print name, bareme
+#            cat = None
+#            if (type_sal == 2).all():
+#                cat = 'public_titulaire_etat'
+#            if cat is not None:
+#                for name, bareme in salarie[cat].iteritems():
+#                    print name, bareme
 
             # public etat
             # TODO: modifier la contribution exceptionelle de solidarité
