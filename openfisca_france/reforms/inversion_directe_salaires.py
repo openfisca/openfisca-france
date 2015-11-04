@@ -11,6 +11,9 @@ from openfisca_core.taxscales import MarginalRateTaxScale
 from .. import entities
 
 
+TAUX_DE_PRIME = .10
+
+
 def build_reform(tax_benefit_system):
 
     Reform = reforms.make_reform(
@@ -109,7 +112,6 @@ def build_reform(tax_benefit_system):
             # Note : le supplément familial de traitement est imposable.
             type_sal = simulation.calculate('type_sal', period)
             P = simulation.legislation_at(period.start)
-            plafond_securite_sociale_annuel = P.cotsoc.gen.plafond_securite_sociale * 12
             taux_csg = P.csg.activite.deductible.taux * (1 - .0175)
             csg = MarginalRateTaxScale(name = 'csg')
             csg.add_bracket(0, taux_csg)
@@ -126,7 +128,6 @@ def build_reform(tax_benefit_system):
             # et en tenant compte des éléments de l'assiette
             # salarie['fonc']['etat']['excep_solidarite'] = salarie['fonc']['commun']['solidarite']
 
-            TAUX_DE_PRIME = 0
             public_titulaire_etat = salarie['public_titulaire_etat'].copy()
             public_titulaire_etat['rafp'].multiply_rates(TAUX_DE_PRIME, inplace = True)
             public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
@@ -151,5 +152,21 @@ def build_reform(tax_benefit_system):
             # supp_familial_traitement = 0  # TODO: dépend de salbrut
             # indemnite_residence = 0  # TODO: fix bug
             return period, traitement_indiciaire_brut
+
+    @Reform.formula
+    class primes_fonction_publique(formulas.SimpleFormulaColumn):
+        column = columns.FloatCol
+        entity_class = entities.Individus
+        label = u"Primes de la fonction publique"
+        reference = tax_benefit_system.column_by_name["primes_fonction_publique"]
+
+        def function(self, simulation, period):
+            """Calcule les primes.
+            """
+            # Get value for year and divide below.
+            traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut',
+                period.start.offset('first-of', 'year').period('year'))
+
+            return period, TAUX_DE_PRIME * traitement_indiciaire_brut
 
     return Reform()

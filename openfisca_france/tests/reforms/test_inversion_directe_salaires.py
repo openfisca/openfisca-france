@@ -11,16 +11,26 @@ from openfisca_france.reforms import inversion_directe_salaires
 from openfisca_france.model.base import CAT
 from openfisca_france.tests.base import assert_near, tax_benefit_system
 
+TAUX_DE_PRIME = inversion_directe_salaires.TAUX_DE_PRIME
+
 
 def check_inversion_directe_salaires(type_sal, year = 2014):
     period = periods.period("{}".format(year))
+    min_brut = 12 * 500
+    max_brut = 12 * 4000
+    count = 1 + 1
     if type_sal <= 1:
-        revenu_name = 'salaire_de_base'
+        axes = [dict(count = count, max = max_brut, min = min_brut, name = 'salaire_de_base')]
     else:
-        revenu_name = 'traitement_indiciaire_brut'
-
+        axes = [
+            [
+                dict(count = count, max = max_brut, min = min_brut, name = 'traitement_indiciaire_brut'),
+                dict(count = count, max = TAUX_DE_PRIME * max_brut + .01, min = TAUX_DE_PRIME * min_brut,
+                     name = 'primes_fonction_publique'),
+            ]
+        ]
     single_entity_kwargs = dict(
-        axes = [dict(count = 1 + 1, max = 12 * 4000, min = 12 * 500, name = revenu_name)],  # TODO: min = 0
+        axes = axes,  # TODO: min = 0
         period = period,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
@@ -41,8 +51,10 @@ def check_inversion_directe_salaires(type_sal, year = 2014):
         pass
     try:
         traitement_indiciaire_brut = simulation.get_holder('traitement_indiciaire_brut').array
+        primes_fonction_publique = simulation.get_holder('primes_fonction_publique').array
     except KeyError:
         traitement_indiciaire_brut = None
+        primes_fonction_publique = None
         pass
 
     if type_sal <= 1:
@@ -68,7 +80,6 @@ def check_inversion_directe_salaires(type_sal, year = 2014):
 
     salarie = simulation.legislation_at(period.start).cotsoc.cotisations_salarie
     plafond_securite_sociale_annuel = simulation.legislation_at(period.start).cotsoc.gen.plafond_securite_sociale * 12
-    # Salariés du privé
     if type_sal == 0:
         cat = 'prive_non_cadre'
     elif type_sal == 1:
@@ -94,6 +105,7 @@ def check_inversion_directe_salaires(type_sal, year = 2014):
         pass
     try:
         inverse_simulation.get_holder('traitement_indiciaire_brut').delete_arrays()
+        inverse_simulation.get_holder('primes_fonction_publique').delete_arrays()
     except KeyError:
         pass
 
@@ -109,12 +121,14 @@ def check_inversion_directe_salaires(type_sal, year = 2014):
 
     new_salaire_de_base = inverse_simulation.calculate('salaire_de_base')
     new_traitement_indiciaire_brut = inverse_simulation.calculate('traitement_indiciaire_brut')
+    new_primes_fonction_publique = inverse_simulation.calculate('primes_fonction_publique')
 
     print type_sal
     if salaire_de_base is not None:
         assert_near(new_salaire_de_base, salaire_de_base, absolute_error_margin = 1)
     if traitement_indiciaire_brut is not None:
-        assert_near(new_traitement_indiciaire_brut, traitement_indiciaire_brut, absolute_error_margin = 1)
+        assert_near(new_primes_fonction_publique, primes_fonction_publique, absolute_error_margin =  None, relative_error_margin = .05)
+        assert_near(new_traitement_indiciaire_brut, traitement_indiciaire_brut, absolute_error_margin =  None, relative_error_margin = .05)
 
 
 def test_sal(year = 2014):
