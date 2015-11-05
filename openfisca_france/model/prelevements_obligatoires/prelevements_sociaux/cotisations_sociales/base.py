@@ -102,7 +102,7 @@ def compute_cotisation_anticipee(simulation, period, cotisation_type = None, bar
     if period.start.month == 12:
         assert variable_name is not None
         cumul = simulation.calculate_add(variable_name, period.start.offset('first-of', 'month').offset(
-            -11, 'month').period('month', 11))
+            -11, 'month').period('month', 11), max_nb_recursive_calls = 1) # December variable_name depends on variable_name in the past 11 months. We need to explicitely allow this recursion.
 
         return compute_cotisation(
             simulation,
