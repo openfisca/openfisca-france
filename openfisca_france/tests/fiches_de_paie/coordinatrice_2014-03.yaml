@@ -55,14 +55,14 @@ output_variables:
 
   # cotisations_employeur_main_d_oeuvre
   conge_individuel_formation_cdd: 0
-  contribution_developpement_apprentissage: -3.24 # avec la taxe d'apprentissage
   contribution_solidarite_autonomie: -5.4
   IGNORE_contribution_supplementaire_apprentissage: 0 #  pas dans la fiche
   IGNORE_fnal: 0  # check
   formation_professionnelle: -28.8
   participation_effort_construction: -8.1
   prevoyance_obligatoire_cadre: 0
-  taxe_apprentissage: -9
+  taxe_apprentissage: -12.24 # taux relevé de 0.5% à 0.68% au 2014-01-01 (aspiration de la contrib. au dév)
+  contribution_developpement_apprentissage: 0
   versement_transport: -36
 
   allegement_fillon: 222.12
