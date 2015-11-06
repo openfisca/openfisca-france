@@ -52,7 +52,7 @@ def add_member(entity, **variables_value_by_name):
 
     # Set arguments in variables.
     for variable_name, value in value_by_name.iteritems():
-        variable_holder = entity.get_or_new_holder(variable_name)
+        variable_holder = simulation.get_or_new_holder(variable_name)
         column = variable_holder.column
         if isinstance(value, dict):
             for period, period_value in value.iteritems():
