@@ -170,7 +170,6 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         last_year = period.last_year
         last_month = period.last_month
 
-        activite = simulation.calculate('activite', period)
         salaire_net = simulation.calculate_add('salaire_net', previous_year)
         chonet = simulation.calculate('chonet', previous_year)
         rstnet = simulation.calculate('rstnet', previous_year)
@@ -183,7 +182,6 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         indemnites_journalieres = simulation.calculate('indemnites_journalieres', previous_year)
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
         revenus_stage_formation_pro_annee = simulation.calculate('revenus_stage_formation_pro', previous_year)
-        revenus_stage_formation_pro_dernier_mois = simulation.calculate('revenus_stage_formation_pro', last_month)
         allocation_securisation_professionnelle = simulation.calculate(
             'allocation_securisation_professionnelle', previous_year
             )
@@ -198,6 +196,8 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         bourse_enseignement_sup = simulation.calculate('bourse_enseignement_sup', previous_year)
         bourse_recherche = simulation.calculate('bourse_recherche', previous_year)
         gains_exceptionnels = simulation.calculate('gains_exceptionnels', previous_year)
+        revenus_stage_formation_pro_last_month = simulation.calculate('revenus_stage_formation_pro', last_month)
+        chomage_last_month = simulation.calculate('chonet', last_month)
 
         def revenus_tns():
             revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
@@ -212,10 +212,10 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         P = simulation.legislation_at(period.start).cmu
 
         # Revenus de stage de formation professionnelle exclus si plus perçus depuis 1 mois
-        revenus_stage_formation_pro = revenus_stage_formation_pro_annee * (revenus_stage_formation_pro_dernier_mois > 0)
+        revenus_stage_formation_pro = revenus_stage_formation_pro_annee * (revenus_stage_formation_pro_last_month > 0)
 
         # Abattement sur revenus d'activité si chômage ou formation professionnelle
-        abattement_chomage_fp = or_(activite == 1, revenus_stage_formation_pro_dernier_mois > 0)
+        abattement_chomage_fp = or_(chomage_last_month > 0, revenus_stage_formation_pro_last_month > 0)
 
         return period, ((salaire_net + indemnites_chomage_partiel) * (1 - abattement_chomage_fp * P.abattement_chomage) +
             indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues -
@@ -264,7 +264,6 @@ class cmu_base_ressources(SimpleFormulaColumn):
 
         res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement
 
-        # Prestations calculées, donc valeurs mensuelles. On estime l'annuel en multipliant par 12
         res += (aspa + ass + asi + af + cf + asf)
 
         res += paje_clca + paje_prepare
