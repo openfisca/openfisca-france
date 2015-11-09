@@ -613,7 +613,7 @@ class rsa(DatedFormulaColumn):
 
     @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         rsa_majore = simulation.calculate('rsa_majore', period)
         rsa_non_majore = simulation.calculate('rsa_non_majore', period)
         rsa_non_calculable = simulation.calculate('rsa_non_calculable', period)
@@ -754,13 +754,14 @@ class rsa_eligibilite_tns(SimpleFormulaColumn):
     label = u"Eligibilité au RSA pour un travailleur non salarié"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
+        last_year = period.last_year
 
-        tns_benefice_exploitant_agricole_holder = simulation.compute('tns_benefice_exploitant_agricole', period)
+        tns_benefice_exploitant_agricole_holder = simulation.compute('tns_benefice_exploitant_agricole', last_year)
         tns_benefice_exploitant_agricole = self.sum_by_entity(tns_benefice_exploitant_agricole_holder)
         tns_employe_holder = simulation.compute('tns_employe', period)
         tns_employe = self.any_by_roles(tns_employe_holder)
-        tns_autres_revenus_chiffre_affaires_holder = simulation.compute('tns_autres_revenus_chiffre_affaires', period)
+        tns_autres_revenus_chiffre_affaires_holder = simulation.compute('tns_autres_revenus_chiffre_affaires', last_year)
         tns_autres_revenus_chiffre_affaires = self.split_by_roles(tns_autres_revenus_chiffre_affaires_holder)
         tns_autres_revenus_type_activite_holder = simulation.compute('tns_autres_revenus_type_activite', period)
         tns_autres_revenus_type_activite = self.split_by_roles(tns_autres_revenus_type_activite_holder)
@@ -947,11 +948,17 @@ class rsa_non_calculable(SimpleFormulaColumn):
     label = u"RSA non calculable pour la Famille (voir rsa_non_calculable_i)"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
+
+        # Si le montant du RSA est nul sans tenir compte des revenus
+        # TNS pouvant provoquer une non calculabilité (parce que
+        # les autres revenus sont trop importants), alors a fortiori
+        # la famille ne sera pas éligible au RSA en tenant compte de
+        # ces ressources. Il n'y a donc pas non calculabilité.
         eligible_rsa = (
-            simulation.calculate('rsa_eligibilite', period) +
-            simulation.calculate('rsa_majore_eligibilite', period)
-            )
+            simulation.calculate('rsa_majore', period) +
+            simulation.calculate('rsa_non_majore', period)
+            ) > 0
         non_calculable_tns_holder = simulation.compute('rsa_non_calculable_tns_i', period)
         non_calculable_tns_parents = self.split_by_roles(non_calculable_tns_holder, roles = [CHEF, PART])
         non_calculable = (
@@ -970,10 +977,11 @@ class rsa_non_calculable_tns_i(SimpleFormulaColumn):
     label = u"RSA non calculable du fait de la situation de l'individu. Dans le cas des TNS, l'utilisateur est renvoyé vers son PCG"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period)
-        tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period)
-        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
+        period = period.this_month
+        this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
+        tns_benefice_exploitant_agricole = simulation.calculate_add('tns_benefice_exploitant_agricole', this_year_and_last_year)
+        tns_micro_entreprise_chiffre_affaires = simulation.calculate_add('tns_micro_entreprise_chiffre_affaires', this_year_and_last_year)
+        tns_autres_revenus = simulation.calculate_add('tns_autres_revenus', this_year_and_last_year)
 
         return period, (
             (tns_benefice_exploitant_agricole > 0) + (tns_micro_entreprise_chiffre_affaires > 0) +

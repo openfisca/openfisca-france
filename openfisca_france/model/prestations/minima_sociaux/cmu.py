@@ -164,8 +164,11 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        # Rolling year
         previous_year = period.start.period('year').offset(-1)
-        last_month = period.start.period('month').offset(-1)
+        # N-1
+        last_year = period.last_year
+        last_month = period.last_month
 
         activite = simulation.calculate('activite', period)
         salaire_net = simulation.calculate_add('salaire_net', previous_year)
@@ -195,7 +198,17 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
         bourse_enseignement_sup = simulation.calculate('bourse_enseignement_sup', previous_year)
         bourse_recherche = simulation.calculate('bourse_recherche', previous_year)
         gains_exceptionnels = simulation.calculate('gains_exceptionnels', previous_year)
-        tns_total_revenus_net = simulation.calculate_add('tns_total_revenus_net', previous_year)
+
+        def revenus_tns():
+            revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
+
+            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year)
+            tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year)
+            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year)
+
+            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+
         P = simulation.legislation_at(period.start).cmu
 
         # Revenus de stage de formation professionnelle exclus si plus perçus depuis 1 mois
@@ -210,7 +223,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
             allocation_securisation_professionnelle + indemnites_journalieres +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
             retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche +
-            gains_exceptionnels + tns_total_revenus_net + revenus_stage_formation_pro)
+            gains_exceptionnels + revenus_tns() + revenus_stage_formation_pro)
 
 
 @reference_formula
