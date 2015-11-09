@@ -8,7 +8,7 @@ from openfisca_france.model.base import CAT
 from openfisca_france.tests import base
 
 
-tests_infos = [
+scenarios_arguments = [
     dict(
         period = year,
         parent1 = dict(
@@ -20,7 +20,8 @@ tests_infos = [
         menage = dict(
             zone_apl = 1,
             ),
-        ) for year in range(2015, 2002, -1)
+        )
+    for year in range(2015, 2002, -1)
     ]
 
 
@@ -29,10 +30,11 @@ def check_run(simulation, period):
     assert simulation.calculate('salsuperbrut') is not None, "Can't compute salsuperbrut on period {}".format(period)
 
 
-def test():
-    for scenario_arguments in tests_infos:
-        simulation = base.tax_benefit_system.new_scenario().init_single_entity(**scenario_arguments).new_simulation(
-            debug = False)
+def test_basics():
+    for scenario_arguments in scenarios_arguments:
+        scenario = base.tax_benefit_system.new_scenario()
+        scenario.init_single_entity(**scenario_arguments)
+        simulation = scenario.new_simulation(debug = False)
         period = scenario_arguments['period']
         yield check_run, simulation, period
 
@@ -42,4 +44,6 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test()
+    for _, simulation, period in test_basics():
+        check_run(simulation, period)
+    print u'OpenFisca-France basic test was executed successfully.'.encode('utf-8')

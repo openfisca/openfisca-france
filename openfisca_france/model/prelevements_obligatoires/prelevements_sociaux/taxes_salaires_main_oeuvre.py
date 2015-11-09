@@ -251,6 +251,7 @@ class taxe_apprentissage(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Taxe d'apprentissage (employeur, entreprise redevable de la taxe d'apprentissage uniquement)"
+    url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')

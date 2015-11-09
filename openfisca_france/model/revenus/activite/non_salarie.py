@@ -974,6 +974,7 @@ build_column('f5sq', IntCol())
 
 # Input variables
 
+# Input mensuel
 reference_input_variable(
     name ='tns_auto_entrepreneur_chiffre_affaires',
     column = FloatCol,
@@ -981,6 +982,7 @@ reference_input_variable(
     label = u"Chiffre d'affaires en tant qu'auto-entrepreneur",
     set_input = set_input_divide_by_period)
 
+# Input annuel
 reference_input_variable(
     name ='tns_micro_entreprise_chiffre_affaires',
     column = FloatCol,
@@ -990,6 +992,7 @@ reference_input_variable(
 
 enum_tns_type_activite = Enum([u'achat_revente', u'bic', u'bnc'])
 
+# TODO remove this ugly is_permanent
 reference_input_variable(
     name='tns_auto_entrepreneur_type_activite',
     column = EnumCol(enum = enum_tns_type_activite),
@@ -997,6 +1000,7 @@ reference_input_variable(
     is_permanent = True,
     label = u"Type d'activité de l'auto-entrepreneur")
 
+# TODO remove this ugly is_permanent
 reference_input_variable(
     name='tns_micro_entreprise_type_activite',
     column = EnumCol(enum = enum_tns_type_activite),
@@ -1004,6 +1008,7 @@ reference_input_variable(
     is_permanent = True,
     label = u"Type d'activité de la micro-entreprise")
 
+# Input sur le dernier exercice. Par convention, sur l'année dernière.
 reference_input_variable(
     name ='tns_autres_revenus',
     column = FloatCol,
@@ -1032,6 +1037,7 @@ reference_input_variable(
     label = u"Le TNS a au moins un employé. Ne s'applique pas pour les agricoles ni auto-entrepreneurs ni micro entreprise",
     set_input = set_input_dispatch_by_period)
 
+# Input annuel
 reference_input_variable(
     name = 'tns_benefice_exploitant_agricole',
     column = FloatCol,
@@ -1049,12 +1055,13 @@ class travailleur_non_salarie(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
+        this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period) != 0
-        tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period) != 0
-        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period) != 0
-        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period) != 0
-        tns_autres_revenus_chiffre_affaires = simulation.calculate('tns_autres_revenus_chiffre_affaires', period) != 0
+        tns_micro_entreprise_chiffre_affaires = simulation.calculate_add('tns_micro_entreprise_chiffre_affaires', this_year_and_last_year) != 0
+        tns_autres_revenus = simulation.calculate_add('tns_autres_revenus', this_year_and_last_year) != 0
+        tns_benefice_exploitant_agricole = simulation.calculate_add('tns_benefice_exploitant_agricole', this_year_and_last_year) != 0
+        tns_autres_revenus_chiffre_affaires = simulation.calculate_add('tns_autres_revenus_chiffre_affaires', this_year_and_last_year) != 0
 
         result = (
             tns_auto_entrepreneur_chiffre_affaires + tns_micro_entreprise_chiffre_affaires +
@@ -1083,7 +1090,7 @@ class tns_auto_entrepreneur_benefice(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
         bareme = simulation.legislation_at(period.start).tns
@@ -1099,7 +1106,7 @@ class tns_micro_entreprise_benefice(SimpleFormulaColumn) :
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_year
         tns_micro_entreprise_type_activite = simulation.calculate('tns_micro_entreprise_type_activite', period)
         tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period)
         bareme = simulation.legislation_at(period.start).tns
@@ -1107,6 +1114,7 @@ class tns_micro_entreprise_benefice(SimpleFormulaColumn) :
         benefice =  compute_benefice_auto_entrepreneur_micro_entreprise(bareme, tns_micro_entreprise_type_activite, tns_micro_entreprise_chiffre_affaires)
         return period, benefice
 
+# The following formulas take into account 'cotisation sociales'. However, it seems that for all prestations, the 'base ressources' are only using the 'benefice', without deducting the 'cotisation sociales'. Although this rule seems unfair towards independent workers, we are now applying it for all presations and therefore we are not using the following formulas for calculating prestations.
 
 @reference_formula
 class tns_auto_entrepreneur_revenus_net(SimpleFormulaColumn) :
@@ -1144,21 +1152,3 @@ class tns_micro_entreprise_revenus_net(SimpleFormulaColumn) :
         revenus = tns_micro_entreprise_benefice - tns_micro_entreprise_charges_sociales
 
         return period, revenus
-
-
-@reference_formula
-class tns_total_revenus_net(DatedFormulaColumn):
-    column = FloatCol
-    label = u"Total des revenus non salariés"
-    entity_class = Individus
-#    start = "2008-01-01"
-
-    @dated_function(date(2008, 1, 1))
-    def function_2008__(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        tns_auto_entrepreneur_revenus_net = simulation.calculate('tns_auto_entrepreneur_revenus_net', period)
-        tns_micro_entreprise_revenus_net = simulation.calculate('tns_micro_entreprise_revenus_net', period)
-        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
-        total_revenus = tns_autres_revenus + tns_auto_entrepreneur_revenus_net + tns_micro_entreprise_revenus_net
-
-        return period, total_revenus

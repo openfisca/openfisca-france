@@ -183,7 +183,7 @@ def compute_allegement_fillon_anticipe(simulation, period):
     if period.start.month == 12:
         cumul = simulation.calculate_add(
             'allegement_fillon',
-            period.start.offset('first-of', 'year').period('month', 11))
+            period.start.offset('first-of', 'year').period('month', 11), max_nb_recursive_calls = 1)
         return compute_allegement_fillon(
             simulation, period.start.offset('first-of', 'year').period('year')
             ) - cumul
@@ -196,7 +196,7 @@ def compute_allegement_fillon_progressif(simulation, period):
     if period.start.month > 1:
         up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
         up_to_previous_month = period.start.offset('first-of', 'year').period('month', period.start.month - 1)
-        cumul = simulation.calculate_add('allegement_fillon', up_to_previous_month)
+        cumul = simulation.calculate_add('allegement_fillon', up_to_previous_month, max_nb_recursive_calls = 1)
         up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
         return compute_allegement_fillon(simulation, up_to_this_month) - cumul
 

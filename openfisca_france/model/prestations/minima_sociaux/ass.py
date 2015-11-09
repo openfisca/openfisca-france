@@ -66,7 +66,10 @@ class ass_base_ressources_i(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        # Rolling year
         previous_year = period.start.period('year').offset(-1)
+        # N-1
+        last_year = period.last_year
 
         salaire_imposable = simulation.calculate_add('salaire_imposable', previous_year)
         salaire_imposable_this_month = simulation.calculate('salaire_imposable', period)
@@ -74,10 +77,17 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         # Le Salaire d'une activité partielle est neutralisé en cas d'interruption
         salaire_imposable = (1 - salaire_imposable_interrompu) * salaire_imposable
         rstnet = simulation.calculate('rstnet', previous_year)
-        tns_auto_entrepreneur_benefice = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
-        tns_micro_entreprise_benefice = simulation.calculate_add('tns_micro_entreprise_benefice', period)
-        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period)
-        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
+
+        def revenus_tns():
+            revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
+
+            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year)
+            tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year)
+            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year)
+
+            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
         pensions_alimentaires_versees_individu = simulation.calculate(
             'pensions_alimentaires_versees_individu', previous_year
@@ -89,8 +99,7 @@ class ass_base_ressources_i(SimpleFormulaColumn):
 
         return period, (
             salaire_imposable + rstnet + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
-            aah + indemnites_stage + revenus_stage_formation_pro + tns_auto_entrepreneur_benefice +
-            tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+            aah + indemnites_stage + revenus_stage_formation_pro + revenus_tns()
         )
 
 
@@ -102,8 +111,11 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        previous_year = period.start.period('year').offset(-1)
         last_month = period.start.period('month').offset(-1)
+        # Rolling year
+        previous_year = period.start.period('year').offset(-1)
+        # N-1
+        last_year = period.last_year
 
         has_ressources_substitution = (
             simulation.calculate('chonet', last_month) +
@@ -138,20 +150,23 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
         aah = calculateWithAbatement('aah')
         rstnet = calculateWithAbatement('rstnet')
         pensions_alimentaires_percues = calculateWithAbatement('pensions_alimentaires_percues')
-        tns_auto_entrepreneur_benefice = calculateWithAbatement('tns_auto_entrepreneur_benefice')
 
-        tns_micro_entreprise_benefice = simulation.calculate_add('tns_micro_entreprise_benefice', period)
-        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period)
-        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
-        pensions_alimentaires_versees_individu = simulation.calculate_add(
-            'pensions_alimentaires_versees_individu', previous_year
-            )
+        def revenus_tns():
+            revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
+
+            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year)
+            tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year)
+            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year)
+
+            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+
+        pensions_alimentaires_versees_individu = simulation.calculate_add('pensions_alimentaires_versees_individu', previous_year)
 
         result = (
             salaire_imposable + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
             aah + indemnites_stage + revenus_stage_formation_pro + rstnet + chonet +
-            indemnites_journalieres + tns_auto_entrepreneur_benefice + tns_micro_entreprise_benefice +
-            tns_benefice_exploitant_agricole + tns_autres_revenus
+            indemnites_journalieres + revenus_tns()
         )
 
         return period, result
