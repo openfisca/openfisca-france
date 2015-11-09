@@ -440,7 +440,6 @@ class enceinte_fam(SimpleFormulaColumn):
         enceinte_compat = and_(benjamin < 0, benjamin > -6)
         return period, or_(or_(enceinte_compat, enceinte[CHEF]), enceinte[PART])
 
-
 @reference_formula
 class nb_enfant_rsa(SimpleFormulaColumn):
     column = IntCol
@@ -873,6 +872,13 @@ class rsa_forfait_logement(SimpleFormulaColumn):
         return period, max_(montant_al, montant_nature)
 
 
+reference_input_variable(
+    column = BoolCol,
+    entity_class = Familles,
+    label = u"Situation d'isolement depuis moins de 18 mois",
+    name = 'rsa_isolement_recent',
+    )
+
 @reference_formula
 class rsa_majore(DatedFormulaColumn):
     column = FloatCol
@@ -881,7 +887,7 @@ class rsa_majore(DatedFormulaColumn):
 
     @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
         ra_rsa = simulation.calculate('ra_rsa', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
@@ -900,12 +906,29 @@ class rsa_majore_eligibilite(SimpleFormulaColumn):
     label = u"Eligibilité au RSA majoré pour parent isolé"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+
+        def has_enfant_moins_3_ans():
+            age_holder = simulation.compute('age', period)
+            smic55_holder = simulation.compute('smic55', period)
+            age_enf = self.split_by_roles(age_holder, roles = ENFS)
+            smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
+            nbenf = nb_enf(age_enf, smic55_enf, 0, 2)
+
+            return nbenf > 0
+
+        period = period.this_month
         isol = simulation.calculate('isol', period)
+        isolement_recent = simulation.calculate('rsa_isolement_recent', period)
+        enfant_moins_3_ans = has_enfant_moins_3_ans()
         enceinte_fam = simulation.calculate('enceinte_fam', period)
         nbenf = simulation.calculate('nb_enfant_rsa', period)
         rsa_eligibilite_tns = simulation.calculate('rsa_eligibilite_tns', period)
-        eligib = isol * (enceinte_fam | (nbenf > 0)) * rsa_eligibilite_tns
+        eligib = (
+            isol *
+            (enceinte_fam | (nbenf > 0)) *
+            (enfant_moins_3_ans | isolement_recent | enceinte_fam) *
+            rsa_eligibilite_tns
+        )
 
         return period, eligib
 
