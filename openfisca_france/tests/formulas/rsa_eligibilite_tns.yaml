@@ -1,14 +1,16 @@
 - name: "Eligibilité au RSA pour TNS agricole seul quand bénéfice agricole < plafond"
   period: "month:2015-04"
   input_variables:
-    tns_benefice_exploitant_agricole: 7600
+    tns_benefice_exploitant_agricole:
+      2014: 7600
   output_variables:
     rsa_eligibilite_tns: True
 
 - name: "Non-Eligibilité au RSA pour TNS agricole seul quand bénéfice agricole > plafond"
   period: "month:2015-04"
   input_variables:
-    tns_benefice_exploitant_agricole: 7700
+    tns_benefice_exploitant_agricole:
+      2014: 7700
   output_variables:
     rsa_eligibilite_tns: False
 
@@ -18,7 +20,8 @@
     parents: ["parent1", "parent2"]
   individus:
     - id: "parent1"
-      tns_benefice_exploitant_agricole: 11500
+      tns_benefice_exploitant_agricole:
+        2014: 11500
       age: 40
     - id: "parent2"
       age: 40
@@ -31,7 +34,8 @@
     parents: ["parent1", "parent2"]
   individus:
     - id: "parent1"
-      tns_benefice_exploitant_agricole: 11600
+      tns_benefice_exploitant_agricole:
+        2014: 11600
       age: 40
     - id: "parent2"
       age: 40
@@ -45,7 +49,8 @@
     enfants: ["enfant1", "enfant2"]
   individus:
     - id: "parent1"
-      tns_benefice_exploitant_agricole: 14600
+      tns_benefice_exploitant_agricole:
+        2014: 14600
       age: 40
     - id: "enfant1"
       age: 10
@@ -61,7 +66,8 @@
     enfants: ["enfant1", "enfant2"]
   individus:
     - id: "parent1"
-      tns_benefice_exploitant_agricole: 14700
+      tns_benefice_exploitant_agricole:
+        2014: 14700
       age: 40
     - id: "enfant1"
       age: 10
@@ -73,7 +79,8 @@
 - name: "Non-Eligibilité au RSA pour TNS avec employé"
   period: "month:2015-04"
   input_variables:
-    tns_autres_revenus: 4000
+    tns_autres_revenus:
+      2014: 4000
     tns_employe: True
   output_variables:
     rsa_eligibilite_tns: False
@@ -81,7 +88,8 @@
 - name: "Non-Eligibilité au RSA pour TNS avec CA > plafond"
   period: "month:2015-04"
   input_variables:
-    tns_autres_revenus_chiffre_affaires: 90000
+    tns_autres_revenus_chiffre_affaires:
+      2014: 90000
     tns_autres_revenus_type_activite: 0
   output_variables:
     rsa_eligibilite_tns: False
@@ -89,7 +97,8 @@
 - name: "Eligibilité au RSA pour TNS avec CA < plafond"
   period: "month:2015-04"
   input_variables:
-    tns_autres_revenus_chiffre_affaires: 80000
+    tns_autres_revenus_chiffre_affaires:
+      2014: 80000
     tns_autres_revenus_type_activite: 0
   output_variables:
     rsa_eligibilite_tns: True
@@ -97,7 +106,8 @@
 - name: "Non-Eligibilité au RSA pour TNS avec CA > plafond"
   period: "month:2015-04"
   input_variables:
-    tns_autres_revenus_chiffre_affaires: 50000
+    tns_autres_revenus_chiffre_affaires:
+      2014: 50000
     tns_autres_revenus_type_activite: 2
   output_variables:
     rsa_eligibilite_tns: False
@@ -105,7 +115,8 @@
 - name: "Eligibilité au RSA pour TNS avec CA < plafond"
   period: "month:2015-04"
   input_variables:
-    tns_autres_revenus_chiffre_affaires: 30000
+    tns_autres_revenus_chiffre_affaires:
+      2014: 30000
     tns_autres_revenus_type_activite: 2
   output_variables:
     rsa_eligibilite_tns: True
@@ -124,7 +135,8 @@
   period: "month:2015-04"
   input_variables:
     rsa_eligibilite: True
-    tns_benefice_exploitant_agricole: 4000
+    tns_benefice_exploitant_agricole:
+      2014: 4000
   output_variables:
     rsa_non_calculable: True
 
@@ -137,7 +149,8 @@
       age: 40
     - id: "parent2"
       age: 40
-      tns_benefice_exploitant_agricole: 8000
+      tns_benefice_exploitant_agricole:
+        2014: 8000
   output_variables:
     rsa_non_calculable: 2
 
@@ -145,7 +158,8 @@
   period: "month:2015-04"
   input_variables:
     rsa_eligibilite: False
-    tns_benefice_exploitant_agricole: 10000
+    tns_benefice_exploitant_agricole:
+      2014: 10000
   output_variables:
     rsa_non_calculable: False
 
