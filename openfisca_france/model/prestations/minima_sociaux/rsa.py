@@ -457,6 +457,12 @@ class nb_enfant_rsa(SimpleFormulaColumn):
 
         return period, nbenf
 
+reference_input_variable(
+    column = BoolCol,
+    entity_class = Menages,
+    label = u"Partipation aux frais de logement pour un hebergé à titre gratuit",
+    name = 'participation_frais',
+    )
 
 @reference_formula
 class psa(DatedFormulaColumn):
