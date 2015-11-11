@@ -313,7 +313,7 @@
     </NODE>
     <NODE code="ressources" description="Dispositions applicables aux ressources">
       <CODE code="abattement_chomage_indemnise" description="Abattement pour chômage indemnisé (R351-13)" format="percent">
-        <VALUE deb="2002-01-01" fin="2017-12-31" valeur="0.3" />
+        <VALUE deb="2002-01-01" valeur="0.3" />
       </CODE>
       <CODE code="dar_1" description="Abattement R. 351-6 (double activité)" format="integer" type="monetary">
         <VALUE deb="2007-07-01" valeur="95" />
@@ -1054,10 +1054,11 @@
           <BAREME code="apprentissage" description="Taxe d'apprentissage (toutes entreprises)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
+                <VALUE deb="1993-07-01" fin="2016-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0.005" />
+                <VALUE deb="2014-01-01" fin="2016-12-31" valeur="0.0068" />
+                <VALUE deb="1993-07-01" fin="2013-12-31" valeur="0.005" />
               </TAUX>
             </TRANCHE>
           </BAREME>
@@ -1077,7 +1078,8 @@
                 <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.0018" />
+                <VALUE deb="2014-01-01" fin="2016-12-31" valeur="0" />
+                <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.0018" />
                 <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.0012" />
                 <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.0006" />
               </TAUX>
@@ -7498,36 +7500,6 @@
         </NODE>
       </NODE>
     </NODE>
-    <NODE code="ags">
-      <NODE code="employeurs">
-        <CODE code="sous_4_pss" format="percent">
-          <VALUE deb="2011-04-01" valeur="0.003" />
-          <VALUE deb="2009-10-01" fin="2011-03-31" valeur="0.004" />
-          <VALUE deb="2009-07-01" fin="2009-09-30" valeur="0.003" />
-          <VALUE deb="2009-04-01" fin="2009-06-30" valeur="0.002" />
-          <VALUE deb="2008-07-01" fin="2009-03-31" valeur="0.001" />
-          <VALUE deb="2006-07-01" fin="2008-06-30" valeur="0.0015" />
-          <VALUE deb="2006-01-01" fin="2006-06-30" valeur="0.0025" />
-          <VALUE deb="2005-04-01" fin="2005-12-31" valeur="0.0035" />
-          <VALUE deb="2003-09-01" fin="2005-03-31" valeur="0.0045" />
-          <VALUE deb="2003-01-01" fin="2003-08-31" valeur="0.0035" />
-          <VALUE deb="2002-07-01" fin="2002-12-31" valeur="0.003" />
-          <VALUE deb="2002-01-01" fin="2002-06-30" valeur="0.002" />
-          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.001" />
-          <VALUE deb="2000-07-01" fin="2000-12-31" valeur="0.0015" />
-          <VALUE deb="1999-07-01" fin="2000-06-30" valeur="0.002" />
-          <VALUE deb="1996-07-01" fin="1999-06-30" valeur="0.0025" />
-          <VALUE deb="1993-01-01" fin="1996-06-30" valeur="0.0035" />
-          <VALUE deb="1990-01-01" fin="1992-12-31" valeur="0.0015" />
-          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="0.0024" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.0028" />
-          <VALUE deb="1984-10-01" fin="1987-12-31" valeur="0.0035" />
-          <VALUE deb="1976-04-01" fin="1984-09-30" valeur="0.0025" />
-          <VALUE deb="1975-07-01" fin="1976-03-31" valeur="0.002" />
-          <VALUE deb="1974-01-01" fin="1975-06-30" valeur="0.0005" />
-        </CODE>
-      </NODE>
-    </NODE>
     <NODE code="alleg_gen">
       <NODE code="dispositifs_de_reductions_des_cotisations_famille_1993_1996">
         <CODE code="0_1_1_smic" format="percent">
@@ -8323,6 +8295,51 @@
         <CODE code="taux_reduit" format="percent">
           <VALUE deb="2011-01-01" fin="2012-07-10" valeur="0.025" />
         </CODE>
+      </NODE>
+    </NODE>
+    <NODE code="cotisations_sociales">
+      <NODE code="ags">
+        <BAREME code="employeur">
+          <TRANCHE code="sous_4_pss">
+            <SEUIL>
+              <VALUE deb="1974-01-01" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2011-04-01" valeur="0.003" />
+              <VALUE deb="2009-10-01" fin="2011-03-31" valeur="0.004" />
+              <VALUE deb="2009-07-01" fin="2009-09-30" valeur="0.003" />
+              <VALUE deb="2009-04-01" fin="2009-06-30" valeur="0.002" />
+              <VALUE deb="2008-07-01" fin="2009-03-31" valeur="0.001" />
+              <VALUE deb="2006-07-01" fin="2008-06-30" valeur="0.0015" />
+              <VALUE deb="2006-01-01" fin="2006-06-30" valeur="0.0025" />
+              <VALUE deb="2005-04-01" fin="2005-12-31" valeur="0.0035" />
+              <VALUE deb="2003-09-01" fin="2005-03-31" valeur="0.0045" />
+              <VALUE deb="2003-01-01" fin="2003-08-31" valeur="0.0035" />
+              <VALUE deb="2002-07-01" fin="2002-12-31" valeur="0.003" />
+              <VALUE deb="2002-01-01" fin="2002-06-30" valeur="0.002" />
+              <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.001" />
+              <VALUE deb="2000-07-01" fin="2000-12-31" valeur="0.0015" />
+              <VALUE deb="1999-07-01" fin="2000-06-30" valeur="0.002" />
+              <VALUE deb="1996-07-01" fin="1999-06-30" valeur="0.0025" />
+              <VALUE deb="1993-01-01" fin="1996-06-30" valeur="0.0035" />
+              <VALUE deb="1990-01-01" fin="1992-12-31" valeur="0.0015" />
+              <VALUE deb="1989-01-01" fin="1989-12-31" valeur="0.0024" />
+              <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.0028" />
+              <VALUE deb="1984-10-01" fin="1987-12-31" valeur="0.0035" />
+              <VALUE deb="1976-04-01" fin="1984-09-30" valeur="0.0025" />
+              <VALUE deb="1975-07-01" fin="1976-03-31" valeur="0.002" />
+              <VALUE deb="1974-01-01" fin="1975-06-30" valeur="0.0005" />
+            </TAUX>
+          </TRANCHE>
+          <TRANCHE code="tranche_nulle">
+            <SEUIL>
+              <VALUE deb="1974-01-01" valeur="4" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="1974-01-01" valeur="0" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
       </NODE>
     </NODE>
     <NODE code="crds">
