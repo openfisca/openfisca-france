@@ -26,44 +26,44 @@ class br_aah(SimpleFormulaColumn):
         return period, br_pf_n_2  # + asi_n_2 + aspa_n_2
 
     '''
-    Allocation adulte handicapé
+        Allocation adulte handicapé
 
-    Conditions liées au handicap
-    La personne doit être atteinte d’un taux d’incapacité permanente :
-    - d’au moins 80 %,
-    - ou compris entre 50 et 79 %. Dans ce cas, elle doit remplir deux conditions
-    supplémentaires : être dans l’impossibilité de se procurer un emploi compte
-    tenu de son handicap et ne pas avoir travaillé depuis au moins 1 an
-    Condition de résidence
-    L'AAH peut être versée aux personnes résidant en France métropolitaine ou
-     dans les départements d'outre-mer ou à Saint-Pierre et Miquelon de façon permanente.
-     Les personnes de nationalité étrangère doivent être en possession d'un titre de séjour
-     régulier ou être titulaire d'un récépissé de renouvellement de titre de séjour.
-    Condition d'âge
-    Age minimum : Le demandeur ne doit plus avoir l'âge de bénéficier de l'allocation d'éducation de l'enfant
-    handicapé, c'est-à-dire qu'il doit être âgé :
-    - de plus de vingt ans,
-    - ou de plus de seize ans, s'il ne remplit plus les conditions pour ouvrir droit aux allocations familiales.
-    Pour les montants http://www.handipole.org/spip.php?article666
+        Conditions liées au handicap
+        La personne doit être atteinte d’un taux d’incapacité permanente :
+        - d’au moins 80 %,
+        - ou compris entre 50 et 79 %. Dans ce cas, elle doit remplir deux conditions
+        supplémentaires : être dans l’impossibilité de se procurer un emploi compte
+        tenu de son handicap et ne pas avoir travaillé depuis au moins 1 an
+        Condition de résidence
+        L'AAH peut être versée aux personnes résidant en France métropolitaine ou
+         dans les départements d'outre-mer ou à Saint-Pierre et Miquelon de façon permanente.
+         Les personnes de nationalité étrangère doivent être en possession d'un titre de séjour
+         régulier ou être titulaire d'un récépissé de renouvellement de titre de séjour.
+        Condition d'âge
+        Age minimum : Le demandeur ne doit plus avoir l'âge de bénéficier de l'allocation d'éducation de l'enfant
+        handicapé, c'est-à-dire qu'il doit être âgé :
+        - de plus de vingt ans,
+        - ou de plus de seize ans, s'il ne remplit plus les conditions pour ouvrir droit aux allocations familiales.
+        Pour les montants http://www.handipole.org/spip.php?article666
 
-    Âge max_
-    Le versement de l'AAH prend fin à partir de l'âge minimum légal de départ à la retraite en cas d'incapacité
-    de 50 % à 79 %. À cet âge, le bénéficiaire bascule dans le régime de retraite pour inaptitude.
-    En cas d'incapacité d'au moins 80 %, une AAH différentielle (c'est-à-dire une allocation mensuelle réduite)
-    peut être versée au-delà de l'âge minimum légal de départ à la retraite en complément d'une retraite inférieure
-    au minimum vieillesse.
+        Âge max_
+        Le versement de l'AAH prend fin à partir de l'âge minimum légal de départ à la retraite en cas d'incapacité
+        de 50 % à 79 %. À cet âge, le bénéficiaire bascule dans le régime de retraite pour inaptitude.
+        En cas d'incapacité d'au moins 80 %, une AAH différentielle (c'est-à-dire une allocation mensuelle réduite)
+        peut être versée au-delà de l'âge minimum légal de départ à la retraite en complément d'une retraite inférieure
+        au minimum vieillesse.
 
-    N'entrent pas en compte dans les ressources :
-    L'allocation compensatrice tierce personne, les allocations familiales,
-    l'allocation de logement, la retraite du combattant, les rentes viagères
-    constituées en faveur d'une personne handicapée ou dans la limite d'un
-    montant fixé à l'article D.821-6 du code de la sécurité sociale (1 830 €/an),
-    lorsqu'elles ont été constituées par une personne handicapée pour elle-même.
-    Le RMI (article R 531-10 du code de la sécurité sociale).
-    A partir du 1er juillet 2007, votre Caf, pour le calcul de votre Aah,
-    continue à prendre en compte les ressources de votre foyer diminuées de 20%.
-    Notez, dans certaines situations, la Caf évalue forfaitairement vos
-    ressources à partir de votre revenu mensuel.
+        N'entrent pas en compte dans les ressources :
+        L'allocation compensatrice tierce personne, les allocations familiales,
+        l'allocation de logement, la retraite du combattant, les rentes viagères
+        constituées en faveur d'une personne handicapée ou dans la limite d'un
+        montant fixé à l'article D.821-6 du code de la sécurité sociale (1 830 €/an),
+        lorsqu'elles ont été constituées par une personne handicapée pour elle-même.
+        Le RMI (article R 531-10 du code de la sécurité sociale).
+        A partir du 1er juillet 2007, votre Caf, pour le calcul de votre Aah,
+        continue à prendre en compte les ressources de votre foyer diminuées de 20%.
+        Notez, dans certaines situations, la Caf évalue forfaitairement vos
+        ressources à partir de votre revenu mensuel.
     '''
 
 
@@ -156,52 +156,52 @@ class caah(DatedFormulaColumn):
     label = u"Complément d'allocation adulte handicapé (mensualisé)"
     entity_class = Individus
     '''
-    Complément d'allocation adulte handicapé : complément de ressources ou majoration vie autonome.
+        Complément d'allocation adulte handicapé : complément de ressources ou majoration vie autonome.
 
-    Complément de ressources
+        Complément de ressources
 
-    Pour bénéficier du complément de ressources, l’intéressé doit remplir les conditions
-    suivantes :
-    - percevoir l’allocation aux adultes handicapés à taux normal ou en
-       complément d’une pension d’invalidité, d’une pension de vieillesse ou
-       d’une rente accident du travail ;
-    - avoir un taux d’incapacité égal ou supérieur à 80 % ;
-    - avoir une capacité de travail, appréciée par la commission des droits et
-       de l’autonomie (CDAPH) inférieure à 5 % du fait du handicap ;
-    - ne pas avoir perçu de revenu à caractère professionnel depuis un an à la date
-       du dépôt de la demande de complément ;
-    - disposer d’un logement indépendant.
-    A noter : une personne hébergée par un particulier à son domicile n’est pas
-    considérée disposer d’un logement indépendant, sauf s’il s’agit de son conjoint,
-    de son concubin ou de la personne avec laquelle elle est liée par un pacte civil
-    de solidarité.
+        Pour bénéficier du complément de ressources, l’intéressé doit remplir les conditions
+        suivantes :
+        - percevoir l’allocation aux adultes handicapés à taux normal ou en
+           complément d’une pension d’invalidité, d’une pension de vieillesse ou
+           d’une rente accident du travail ;
+        - avoir un taux d’incapacité égal ou supérieur à 80 % ;
+        - avoir une capacité de travail, appréciée par la commission des droits et
+           de l’autonomie (CDAPH) inférieure à 5 % du fait du handicap ;
+        - ne pas avoir perçu de revenu à caractère professionnel depuis un an à la date
+           du dépôt de la demande de complément ;
+        - disposer d’un logement indépendant.
+        A noter : une personne hébergée par un particulier à son domicile n’est pas
+        considérée disposer d’un logement indépendant, sauf s’il s’agit de son conjoint,
+        de son concubin ou de la personne avec laquelle elle est liée par un pacte civil
+        de solidarité.
 
-    Le complément de ressources est destiné aux personnes handicapées dans l’incapacité de
-    travailler. Il est égal à la différence entre la garantie de ressources pour les personnes
-    handicapées (GRPH) et l’AAH.
+        Le complément de ressources est destiné aux personnes handicapées dans l’incapacité de
+        travailler. Il est égal à la différence entre la garantie de ressources pour les personnes
+        handicapées (GRPH) et l’AAH.
 
-    Majoration pour la vie autonome
+        Majoration pour la vie autonome
 
-    La majoration pour la vie autonome est destinée à permettre aux personnes, en capacité de travailler et
-    au chômage en raison de leur handicap, de pourvoir faire face à leur dépense de logement.
+        La majoration pour la vie autonome est destinée à permettre aux personnes, en capacité de travailler et
+        au chômage en raison de leur handicap, de pourvoir faire face à leur dépense de logement.
 
-    Conditions d'attribution
-    La majoration pour la vie autonome est versée automatiquement aux personnes qui remplissent les conditions
-    suivantes :
-    - percevoir l'AAH à taux normal ou en complément d'un avantage vieillesse ou d'invalidité ou d'une rente
-    accident du travail,
-    - avoir un taux d'incapacité au moins égal à 80 %,
-    - disposer d'un logement indépendant,
-    - bénéficier d'une aide au logement (aide personnelle au logement, ou allocation de logement sociale ou
-    familiale), comme titulaire du droit, ou comme conjoint, concubin ou partenaire lié par
-    un Pacs au titulaire du droit,
-    - ne pas percevoir de revenu d'activité à caractère professionnel propre.
+        Conditions d'attribution
+        La majoration pour la vie autonome est versée automatiquement aux personnes qui remplissent les conditions
+        suivantes :
+        - percevoir l'AAH à taux normal ou en complément d'un avantage vieillesse ou d'invalidité ou d'une rente
+        accident du travail,
+        - avoir un taux d'incapacité au moins égal à 80 %,
+        - disposer d'un logement indépendant,
+        - bénéficier d'une aide au logement (aide personnelle au logement, ou allocation de logement sociale ou
+        familiale), comme titulaire du droit, ou comme conjoint, concubin ou partenaire lié par
+        un Pacs au titulaire du droit,
+        - ne pas percevoir de revenu d'activité à caractère professionnel propre.
 
-    Choix entre la majoration ou la garantie de ressources
-    La majoration pour la vie autonome n'est pas cumulable avec la garantie de ressources pour les personnes
-    handicapées.
-    La personne qui remplit les conditions d'octroi de ces deux avantages doit choisir de bénéficier de l'un ou de
-    l'autre.
+        Choix entre la majoration ou la garantie de ressources
+        La majoration pour la vie autonome n'est pas cumulable avec la garantie de ressources pour les personnes
+        handicapées.
+        La personne qui remplit les conditions d'octroi de ces deux avantages doit choisir de bénéficier de l'un ou de
+        l'autre.
     '''
 
     @dated_function(start = date(2005, 7, 1))
