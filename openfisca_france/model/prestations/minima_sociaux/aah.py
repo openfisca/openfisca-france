@@ -13,7 +13,7 @@ class br_aah(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
     #        annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
 
     # inactifs ou travailleurs en ESAT :
@@ -74,7 +74,7 @@ class aah_eligible(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         law = simulation.legislation_at(period.start)
 
         invalide = simulation.calculate('invalide', period)
@@ -97,7 +97,7 @@ class nb_eligib_aah(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         br_aah = simulation.calculate('br_aah', period)
         aah_eligible_holder = simulation.calculate('aah_eligible', period)
 
@@ -117,7 +117,7 @@ class aah_famille(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         law = simulation.legislation_at(period.start)
 
         br_aah = simulation.calculate('br_aah', period)
@@ -138,7 +138,7 @@ class aah(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         aah_eligible = simulation.calculate('aah_eligible', period)
 
@@ -210,7 +210,7 @@ class caah(DatedFormulaColumn):
 
     @dated_function(start = date(2005, 7, 1))
     def function_2005_07_01(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         law = simulation.legislation_at(period.start)
 
         grph = law.minim.caah.grph
@@ -238,7 +238,7 @@ class caah(DatedFormulaColumn):
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 6, 30))  # TODO FIXME start date
     def function_2005_06_30(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         law = simulation.legislation_at(period.start)
 
         cpltx = law.minim.caah.cpltx
