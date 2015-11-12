@@ -77,6 +77,7 @@ baremes_ipp_prelevements_sociaux_social_security_contributions:
   mmid:
     RENAME: cotisations_sociales.mmid
     sur_tout_salaire:
+      RENAME: NOTHING
       salaries:
         RENAME: salarie
         TYPE: BAREME
@@ -86,6 +87,7 @@ baremes_ipp_prelevements_sociaux_social_security_contributions:
         TYPE: BAREME
         TRANCHE: mmid_p_(?P<SEUIL_MIN>\d+)_$
     salaire_sous_plafond:
+      RENAME: NOTHING
       salaries:
         RENAME: salarie2
         TYPE: BAREME

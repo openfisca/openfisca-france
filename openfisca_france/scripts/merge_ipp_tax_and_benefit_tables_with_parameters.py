@@ -227,16 +227,20 @@ def main():
                             elif isinstance(translations, dict):
                                 translation = translations.get('RENAME')
                                 if translation is not None:
-                                    fragment = translation
+                                    fragment = translation if translation != u'NOTHING' else None
                                 type = translations.get('TYPE')
                                 assert type in (None, u'BAREME')
+                                if type is not None:
+                                    assert fragment is not None
                                 bracket_type = translations.get('TRANCHE')
                                 if bracket_type is not None:
                                     assert type == u'BAREME'
                             else:
                                 fragment = translations
                                 translations = None
-                        fragments = [fragment] if isinstance(fragment, basestring) else fragment[:]
+                        fragments = [] if fragment is None \
+                            else [fragment] if isinstance(fragment, basestring) \
+                            else fragment[:]
                         sub_path = []
                         for fragment in fragments:
                             sub_path.extend(fragment.split(u'.'))
