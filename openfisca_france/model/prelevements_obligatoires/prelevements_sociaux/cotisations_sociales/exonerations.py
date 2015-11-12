@@ -340,7 +340,7 @@ class exoneration_is_creation_zrr(SimpleFormulaColumn):
     url = 'http://www.apce.com/pid11690/exonerations-d-impots-zrr.html?espace=1&tp=1'
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         entreprise_benefice = simulation.calculate('entreprise_benefice', period)
         # TODO: MODIFIER avec création d'entreprise

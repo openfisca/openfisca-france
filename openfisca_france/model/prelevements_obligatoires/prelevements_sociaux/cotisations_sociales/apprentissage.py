@@ -181,7 +181,7 @@ class prime_apprentissage(SimpleFormulaColumn):
     # Son versement cesse lorsque l'apprenti n'est plus salarié dans l'entreprise ou l'établissement qui l'a embauché.
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         apprenti = simulation.calculate('apprenti', period)
         return period, 1000 * apprenti
 

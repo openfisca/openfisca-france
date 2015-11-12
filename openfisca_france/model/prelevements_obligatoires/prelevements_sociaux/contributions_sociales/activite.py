@@ -247,7 +247,7 @@ class rev_microsocial(SimpleFormulaColumn):
     url = u"http://www.apce.com/pid6137/regime-micro-social.html"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         assiette_service = simulation.calculate('assiette_service', period)
         assiette_vente = simulation.calculate('assiette_vente', period)
         assiette_proflib = simulation.calculate('assiette_proflib', period)

@@ -19,7 +19,7 @@ class ars(SimpleFormulaColumn):
         '''
         Allocation de rentrée scolaire brute de CRDS
         '''
-        period_br = period.start.offset('first-of', 'year').period('year')
+        period_br = period.this_year
         period = period.start.offset('first-of', 'year').offset(9, 'month').period('month')
         age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period)

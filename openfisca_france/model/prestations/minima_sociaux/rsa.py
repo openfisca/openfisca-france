@@ -32,7 +32,7 @@ class aefa(DatedFormulaColumn):
 
     @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
     def function_2009__(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
@@ -69,7 +69,7 @@ class aefa(DatedFormulaColumn):
 
     @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
     def function_2008(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
@@ -107,7 +107,7 @@ class aefa(DatedFormulaColumn):
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
     def function__2008_(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
@@ -407,7 +407,7 @@ class div_ms(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        period_declaration = period.start.offset('first-of', 'year').period('year')
+        period_declaration = period.this_year
         f3vc_holder = simulation.compute('f3vc', period_declaration)
         f3ve_holder = simulation.compute('f3ve', period_declaration)
         f3vg_holder = simulation.compute('f3vg', period_declaration)
@@ -556,7 +556,7 @@ class rfon_ms(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        period_declaration = period.start.offset('first-of', 'year').period('year')
+        period_declaration = period.this_year
         f4ba_holder = simulation.compute('f4ba', period_declaration)
         f4be_holder = simulation.compute('f4be', period_declaration)
 

@@ -174,7 +174,7 @@ def compute_allegement_fillon_annuel(simulation, period):
     if period.start.month < 12:
         return 0
     if period.start.month == 12:
-        return compute_allegement_fillon(simulation, period.start.offset('first-of', 'year').period('year'))
+        return compute_allegement_fillon(simulation, period.this_year)
 
 
 def compute_allegement_fillon_anticipe(simulation, period):
@@ -185,7 +185,7 @@ def compute_allegement_fillon_anticipe(simulation, period):
             'allegement_fillon',
             period.start.offset('first-of', 'year').period('month', 11), max_nb_cycles = 1)
         return compute_allegement_fillon(
-            simulation, period.start.offset('first-of', 'year').period('year')
+            simulation, period.this_year
             ) - cumul
 
 
