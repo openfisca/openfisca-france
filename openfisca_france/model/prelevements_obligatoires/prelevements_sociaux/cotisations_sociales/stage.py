@@ -34,7 +34,7 @@ class stage_gratification(SimpleFormulaColumn):
     start_date = date(2014, 11, 1)  # TODO: remove when updating legislation backwards
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
         stage_gratification_taux = simulation.calculate('stage_gratification_taux', period)
         stagiaire = simulation.calculate('stagiaire', period)
@@ -54,7 +54,7 @@ class stage_gratification_reintegration(SimpleFormulaColumn):
     start_date = date(2014, 11, 1)  # TODO: remove when updating legislation backwards
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
         stage_gratification = simulation.calculate('stage_gratification', period)
         plafond_securite_sociale_horaire = (
@@ -72,7 +72,7 @@ class stagiaire(SimpleFormulaColumn):
     label = u"L'individu est stagiaire"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
         return period, (stage_duree_heures > 0)
 
@@ -85,7 +85,7 @@ class exoneration_cotisations_employeur_stagiaire(SimpleFormulaColumn):
     url = "http://www.apce.com/pid2798/stages.html?espace=3"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         agirc_employeur = simulation.calculate('agirc_employeur', period)
         agirc_gmp_employeur = simulation.calculate('agirc_gmp_employeur', period)
         arrco_employeur = simulation.calculate('arrco_employeur', period)
@@ -118,7 +118,7 @@ class exoneration_cotisations_salarie_stagiaire(SimpleFormulaColumn):
     url = "http://www.apce.com/pid2798/stages.html?espace=3"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         agirc_salarie = simulation.calculate('agirc_salarie', period)
         agirc_gmp_salarie = simulation.calculate('agirc_gmp_salarie', period)
         arrco_salarie = simulation.calculate('arrco_salarie', period)

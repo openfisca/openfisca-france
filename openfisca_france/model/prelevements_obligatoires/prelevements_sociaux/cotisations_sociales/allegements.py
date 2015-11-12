@@ -42,7 +42,7 @@ class allegement_fillon(DatedFormulaColumn):
 
     @dated_function(date(2005, 7, 1))
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         stagiaire = simulation.calculate('stagiaire', period)
         apprenti = simulation.calculate('apprenti', period)
         allegement_fillon_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
@@ -136,7 +136,7 @@ class credit_impot_competitivite_emploi(DatedFormulaColumn):
 
     @dated_function(date(2013, 1, 1))
     def function_2013_(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         assiette_allegement = simulation.calculate('assiette_allegement', period)
         jeune_entreprise_innovante = simulation.calculate('jeune_entreprise_innovante', period)
         smic_proratise = simulation.calculate('smic_proratise', period)
@@ -159,7 +159,7 @@ class smic_proratise(SimpleFormulaColumn):
     label = u"SMIC proratisé"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
         smic_horaire_brut = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b
         smic_proratise = coefficient_proratisation * smic_horaire_brut * 35 * 52 / 12
@@ -179,7 +179,7 @@ def compute_allegement_fillon_annuel(simulation, period):
 
 def compute_allegement_fillon_anticipe(simulation, period):
     if period.start.month < 12:
-        return compute_allegement_fillon(simulation, period.start.offset('first-of', 'month').period('month'))
+        return compute_allegement_fillon(simulation, period.this_month)
     if period.start.month == 12:
         cumul = simulation.calculate_add(
             'allegement_fillon',
@@ -191,7 +191,7 @@ def compute_allegement_fillon_anticipe(simulation, period):
 
 def compute_allegement_fillon_progressif(simulation, period):
     if period.start.month == 1:
-        return compute_allegement_fillon(simulation, period.start.offset('first-of', 'month').period('month'))
+        return compute_allegement_fillon(simulation, period.this_month)
 
     if period.start.month > 1:
         up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)

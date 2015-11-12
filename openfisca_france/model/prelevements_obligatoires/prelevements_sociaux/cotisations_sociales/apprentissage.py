@@ -17,7 +17,7 @@ class apprenti(SimpleFormulaColumn):
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age = simulation.calculate('age', period)
         age_condition = (16 <= age) * (age < 25)
         apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
@@ -45,7 +45,7 @@ class remuneration_apprenti(SimpleFormulaColumn):
     # alternance (DIMA).
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age = simulation.calculate('age', period)
         apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
         smic = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
@@ -118,7 +118,7 @@ class exoneration_cotisations_employeur_apprenti(SimpleFormulaColumn):
     # de conclusion du contrat d'apprentissage.
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         accident_du_travail = simulation.calculate('accident_du_travail', period)
         apprenti = simulation.calculate('apprenti', period)
         cotisations_employeur = simulation.calculate('cotisations_employeur', period)
@@ -149,7 +149,7 @@ class exoneration_cotisations_salariales_apprenti(SimpleFormulaColumn):
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         apprenti = simulation.calculate('apprenti', period)
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         cotisations_salariales_non_contributives = simulation.calculate(

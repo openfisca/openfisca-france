@@ -548,7 +548,7 @@ class rto(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         year = period.start.period(u'year').offset('first-of')
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         f1aw = simulation.calculate('f1aw', year)
         f1bw = simulation.calculate('f1bw', year)
         f1cw = simulation.calculate('f1cw', year)
@@ -1808,7 +1808,7 @@ class rev_cap_bar(SimpleFormulaColumn):
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         year = period.this_year
         f2dc = simulation.calculate('f2dc', year)
         f2gr = simulation.calculate('f2gr', year)
@@ -1849,7 +1849,7 @@ class rev_cap_lib(DatedFormulaColumn):
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
     def function_20020101_20071231(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         year = period.this_year
         f2dh = simulation.calculate('f2dh', year)
         f2ee = simulation.calculate('f2ee', year)
@@ -1861,7 +1861,7 @@ class rev_cap_lib(DatedFormulaColumn):
 
     @dated_function(start = date(2008, 1, 1), stop = date(2015, 12, 31))
     def function_20080101_20151231(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         year = period.this_year
         f2da = simulation.calculate('f2da', year)
         f2dh = simulation.calculate('f2dh', year)

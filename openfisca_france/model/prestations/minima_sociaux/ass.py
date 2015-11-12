@@ -18,7 +18,7 @@ class ass(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         ass_base_ressources = simulation.calculate('ass_base_ressources', period)
         ass_eligibilite_i_holder = simulation.compute('ass_eligibilite_i', period)
@@ -48,7 +48,7 @@ class ass_base_ressources(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         ass_base_ressources_i_holder = simulation.compute('ass_base_ressources_i', period)
         ass_base_ressources_demandeur = self.filter_role(ass_base_ressources_i_holder, role = CHEF)
         ass_base_ressources_conjoint_holder = simulation.compute('ass_base_ressources_conjoint', period)
@@ -65,7 +65,7 @@ class ass_base_ressources_i(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
         # N-1
@@ -110,7 +110,7 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         last_month = period.start.period('month').offset(-1)
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
@@ -179,7 +179,7 @@ class ass_eligibilite_i(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         # 1 si demandeur d'emploi
         activite = simulation.calculate('activite', period)

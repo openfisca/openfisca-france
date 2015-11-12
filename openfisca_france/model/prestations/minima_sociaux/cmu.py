@@ -18,7 +18,7 @@ class acs_montant(DatedFormulaColumn):
 
     @dated_function(start = date(2009, 8, 1))
     def function_2009(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age_holder = simulation.compute('age', period)
         P = simulation.legislation_at(period.start).cmu
 
@@ -38,7 +38,7 @@ class cmu_forfait_logement_base(SimpleFormulaColumn):
     label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
         P = simulation.legislation_at(period.start).cmu.forfait_logement
         law_rsa = simulation.legislation_at(period.start).minim.rmi
@@ -53,7 +53,7 @@ class cmu_forfait_logement_al(SimpleFormulaColumn):
     label = u"Forfait logement applicable en cas d'aide au logement"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
         P = simulation.legislation_at(period.start).cmu.forfait_logement_al
         law_rsa = simulation.legislation_at(period.start).minim.rmi
@@ -68,7 +68,7 @@ class cmu_nbp_foyer(SimpleFormulaColumn):
     label = u"Nombre de personnes dans le foyer CMU"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         nb_par = simulation.calculate('nb_par', period)
         cmu_nb_pac = simulation.calculate('cmu_nb_pac', period)
 
@@ -81,7 +81,7 @@ class cmu_eligible_majoration_dom(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         residence_guadeloupe = simulation.calculate('residence_guadeloupe', period)
         residence_martinique = simulation.calculate('residence_martinique', period)
         residence_guyane = simulation.calculate('residence_guyane', period)
@@ -97,7 +97,7 @@ class cmu_c_plafond(SimpleFormulaColumn):
     label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age_holder = simulation.compute('age', period)
         alt_holder = simulation.compute('alt', period)
         cmu_eligible_majoration_dom = simulation.calculate('cmu_eligible_majoration_dom', period)
@@ -149,7 +149,7 @@ class acs_plafond(SimpleFormulaColumn):
     label = u"Plafond annuel de ressources pour l'éligibilité à l'ACS"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         cmu_c_plafond = simulation.calculate('cmu_c_plafond', period)
         P = simulation.legislation_at(period.start).cmu
 
@@ -163,7 +163,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
         # N-1
@@ -233,7 +233,7 @@ class cmu_base_ressources(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         previous_year = period.start.period('year').offset(-1)
         aspa = simulation.calculate_add('aspa', previous_year)
         ass = simulation.calculate_add('ass', previous_year)
@@ -281,7 +281,7 @@ class cmu_nb_pac(SimpleFormulaColumn):
     label = u"Nombre de personnes à charge au titre de la CMU"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age_holder = simulation.compute('age', period)
         P = simulation.legislation_at(period.start).cmu
 

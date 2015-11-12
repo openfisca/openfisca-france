@@ -51,7 +51,7 @@ def build_reform(tax_benefit_system):
             Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
             Note : le supplément familial de traitement est imposable.
             """
-    #        period = period.start.offset('first-of', 'month').period('month')
+    #        period = period.this_month
 
             # Get value for year and divide below.
             salaire_imposable_pour_inversion = simulation.get_array('salaire_imposable_pour_inversion',
@@ -229,7 +229,7 @@ def build_reform(tax_benefit_system):
         def function(self, simulation, period):
             """"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
             """
-            # period = period.start.offset('first-of', 'month').period('month')
+            # period = period.this_month
 
             # Get value for year and divide below.
             rsti = simulation.get_array('rsti', period.this_year)

@@ -22,7 +22,7 @@ class assiette_csg_abattue(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         primes_salaires = simulation.calculate('primes_salaires', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
@@ -47,7 +47,7 @@ class assiette_csg_non_abattue(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
         # TODO + indemnites_journalieres_maladie,
         return period, - prevoyance_obligatoire_cadre
@@ -61,7 +61,7 @@ class csg_deductible_salaire(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
@@ -84,7 +84,7 @@ class csg_imposable_salaire(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
@@ -108,7 +108,7 @@ class crds_salaire(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
