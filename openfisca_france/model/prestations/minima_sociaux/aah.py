@@ -14,14 +14,14 @@ class br_aah(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-#        annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
+    #        annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
 
-# inactifs ou travailleurs en ESAT :
+    # inactifs ou travailleurs en ESAT :
         br_pf_n_2 = simulation.calculate_add('br_pf', period)
-#        asi_n_2 = simulation.calculate_add('asi', annee_fiscale_n_2)
-#        aspa_n_2 = simulation.calculate_add('aspa', annee_fiscale_n_2)
-# TODO: travailleurs en milieu protégé : les ressources celles des trois derniers mois.
-# toujours la même base ressources ? http://www.guide-familial.fr/actualite-149654--nouvelle-etape-dans-la-reforme-de-l-aah--la-prise-en-compte-trimestrielle-des-ressources.html
+    #        asi_n_2 = simulation.calculate_add('asi', annee_fiscale_n_2)
+    #        aspa_n_2 = simulation.calculate_add('aspa', annee_fiscale_n_2)
+        # TODO: travailleurs en milieu protégé : les ressources celles des trois derniers mois.
+    # toujours la même base ressources ? http://www.guide-familial.fr/actualite-149654--nouvelle-etape-dans-la-reforme-de-l-aah--la-prise-en-compte-trimestrielle-des-ressources.html
 
         return period, br_pf_n_2  # + asi_n_2 + aspa_n_2
 
