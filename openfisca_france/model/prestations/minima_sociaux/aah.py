@@ -92,6 +92,23 @@ class aah_eligible(SimpleFormulaColumn):
 
 
 @reference_formula
+class aah_non_calculable(SimpleFormulaColumn):
+    column = EnumCol(
+        enum = Enum([
+            u"",
+            u"intervention_CDAPH_necessaire"
+        ]),
+        default = 0
+    )
+    entity_class = Familles
+    label = u"AAH non calculable"
+
+    def function(self, simulation, period):
+        period = period.this_month
+        taux_invalidite = simulation.calculate('taux_invalidite')
+        return period, (taux_invalidite < 0.8) * (taux_invalidite >= 0.5)
+
+@reference_formula
 class nb_eligib_aah(SimpleFormulaColumn):
     column = FloatCol
     label = "Nombre d'allocataires de l'AAH dans la famille"

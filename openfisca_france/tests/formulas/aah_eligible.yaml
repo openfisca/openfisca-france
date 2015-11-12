@@ -7,6 +7,7 @@
     age: 50
   output_variables:
     aah_eligible: True
+    aah_non_calculable: False
 
 - name: "Eligibilité AAH - Invalide, âge inférieur à retraite, pas de AEEH - 2"
   description: "Eligible à AAH"
@@ -51,3 +52,15 @@
     taux_invalidite: 0.4
   output_variables:
     aah_eligible: False
+    aah_non_calculable: False
+
+
+- name: "Indetermination de l'éligibilité à l'AAH : taux d'invalidité entre 50% et 80%"
+  description: "Eligible à AAH"
+  period: 2013-07
+  input_variables:
+    age: 50
+    invalide: True
+    taux_invalidite: 0.7
+  output_variables:
+    aah_non_calculable: True
