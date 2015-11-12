@@ -20,7 +20,7 @@ class bourse_college(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        rfr = simulation.calculate('rfr', period.start.offset('first-of', 'year').period('year').offset(-2))
+        rfr = simulation.calculate('rfr', period.n_2)
         age_holder = simulation.compute('age', period)
         scolarite_holder = simulation.compute('scolarite', period)
         P = simulation.legislation_at(period.start).bourses_education.bourse_college
@@ -88,7 +88,7 @@ class bourse_lycee_nombre_parts(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
         points_de_charge = simulation.calculate('bourse_lycee_points_de_charge', period)
-        rfr = simulation.calculate('rfr', period.start.offset('first-of', 'year').period('year').offset(-2))
+        rfr = simulation.calculate('rfr', period.n_2)
         plafonds_reference = simulation.legislation_at(period.start).bourses_education.bourse_lycee.plafonds_reference
         increments_par_point_de_charge = simulation.legislation_at(period.start).bourses_education.bourse_lycee.increments_par_point_de_charge
 
