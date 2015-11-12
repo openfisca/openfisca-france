@@ -64,17 +64,16 @@ baremes_ipp_marche_du_travail_labour_market: null
 # baremes_ipp_prelevements_sociaux_social_security_contributions: null
 baremes_ipp_prelevements_sociaux_social_security_contributions:
   RENAME: prelevements_sociaux
-  # TODO: Problème de tranche b inexistante avant une certaine date
-  # chomage:
-  #   RENAME: cotisations_sociales.chomage
-  #   salaries:
-  #     RENAME: salarie
-  #     TYPE: BAREME
-  #     TRANCHE: chom_s_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d*)$
-  #   employeurs:
-  #     RENAME: employeur
-  #     TYPE: BAREME
-  #     TRANCHE: chom_s_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d*)$
+  chomage:
+    RENAME: cotisations_sociales.chomage
+    salaries:
+      RENAME: salarie
+      TYPE: BAREME
+      TRANCHE: chom_s_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d*)$
+    employeurs:
+      RENAME: employeur
+      TYPE: BAREME
+      TRANCHE: chom_p_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d*)$
   # TODO: comment faire pour un barème sans limite ?
   # mmid:
   #   RENAME: cotisations_sociales.mmid
