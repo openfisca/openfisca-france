@@ -528,37 +528,25 @@ def transform_node_to_element(name, node):
 
                 threshold_element = etree.Element('SEUIL')
                 values, format, type = prepare_xml_values(name, node.get('SEUIL', {}).get(slice_name, []))
-                for value in values:
-                    value_element = transform_value_to_element(value)
-                    if value_element is not None:
-                        threshold_element.append(value_element)
+                transform_values_to_element_children(values, threshold_element)
                 if len(threshold_element) > 0:
                     slice_element.append(threshold_element)
 
                 amount_element = etree.Element('MONTANT')
                 values, format, type = prepare_xml_values(name, node.get('MONTANT', {}).get(slice_name, []))
-                for value in values:
-                    value_element = transform_value_to_element(value)
-                    if value_element is not None:
-                        amount_element.append(value_element)
+                transform_values_to_element_children(values, amount_element)
                 if len(amount_element) > 0:
                     slice_element.append(amount_element)
 
                 rate_element = etree.Element('TAUX')
                 values, format, type = prepare_xml_values(name, node.get('TAUX', {}).get(slice_name, []))
-                for value in values:
-                    value_element = transform_value_to_element(value)
-                    if value_element is not None:
-                        rate_element.append(value_element)
+                transform_values_to_element_children(values, rate_element)
                 if len(rate_element) > 0:
                     slice_element.append(rate_element)
 
                 base_element = etree.Element('ASSIETTE')
                 values, format, type = prepare_xml_values(name, node.get('ASSIETTE', {}).get(slice_name, []))
-                for value in values:
-                    value_element = transform_value_to_element(value)
-                    if value_element is not None:
-                        base_element.append(value_element)
+                transform_values_to_element_children(values, base_element)
                 if len(base_element) > 0:
                     slice_element.append(base_element)
 
@@ -586,10 +574,7 @@ def transform_node_to_element(name, node):
             code_element.set('format', format)
         if type is not None:
             code_element.set('type', type)
-        for value in values:
-            value_element = transform_value_to_element(value)
-            if value_element is not None:
-                code_element.append(value_element)
+        transform_values_to_element_children(values, code_element)
         return code_element if len(code_element) > 0 else None
 
 
@@ -607,6 +592,24 @@ def transform_value_to_element(leaf):
     if stop is not None:
         value_element.set('fin', stop.isoformat())
     return value_element
+
+
+def transform_values_to_element_children(values, element):
+    j = 0
+    for i, value in enumerate(values[1:]):
+        next_value = values[j]
+        j += 1
+        if value['stop'] < next_value['start'] - datetime.timedelta(days = 1):
+            values.insert(j, dict(
+                start = value['stop'] + datetime.timedelta(days = 1),
+                stop = next_value['start'] - datetime.timedelta(days = 1),
+                value = 0,
+                ))
+            j += 1
+    for value in values:
+        value_element = transform_value_to_element(value)
+        if value_element is not None:
+            element.append(value_element)
 
 
 if __name__ == "__main__":
