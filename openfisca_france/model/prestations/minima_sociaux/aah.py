@@ -77,14 +77,15 @@ class aah_eligible(SimpleFormulaColumn):
         period = period.this_month
         law = simulation.legislation_at(period.start)
 
-        invalide = simulation.calculate('invalide', period)
+        taux_invalidite = simulation.calculate('taux_invalidite')
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
 
         eligible_aah = (
-            ((invalide) & (age <= law.minim.aah.age_legal_retraite)) &
-            ((age >= law.fam.aeeh.age) | ((age >= 16) & (smic55)))
-            )
+            (taux_invalidite >= 0.8) *
+            (age <= law.minim.aah.age_legal_retraite) *
+            ((age >= law.fam.aeeh.age) + ((age >= 16) * (smic55)))
+        )
 
         return period, eligible_aah
     # TODO: dated_function : avant 2008, il fallait ne pas avoir travaillé pendant les 12 mois précédant la demande.
