@@ -349,7 +349,7 @@ def main():
                         if match is not None:
                             base_min = match.group('SEUIL_MIN')
                             assert base_min is not None, 'Invalid bracket: {}'.format(base_min)
-                            base_max = match.group('SEUIL_MAX')
+                            base_max = match.groupdict().get('SEUIL_MAX')
                             if base_min not in bases:
                                 bases.append(base_min)
                             if base_max is None:
