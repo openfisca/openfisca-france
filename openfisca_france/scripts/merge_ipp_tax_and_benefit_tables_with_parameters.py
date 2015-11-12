@@ -286,16 +286,30 @@ def main():
                                         sub_tree['TYPE'] = type
                                     else:
                                         assert existing_type == type
-                                if bracket_type is not None:
-                                    assert type == u'BAREME', str((translated_path, sub_path, sub_tree))
-                                    assert not sub_path
-                                    slice_name = remaining_path.pop(0)
-                                    assert not remaining_path
-                                    rate = sub_tree.get(u'TAUX')
-                                    if rate is None:
-                                        tax_rate_tree_by_bracket_type[bracket_type] = sub_tree
-                                        sub_tree[u'TAUX'] = rate = collections.OrderedDict()
-                                    sub_tree = rate.setdefault(slice_name, [])
+                                    if bracket_type is not None:
+                                        assert type == u'BAREME', str((translated_path, sub_path, sub_tree))
+                                        assert not sub_path
+                                        slice_name = remaining_path.pop(0)
+                                        assert not remaining_path
+                                        rate = sub_tree.get(u'TAUX')
+                                        if rate is None:
+                                            tax_rate_tree_by_bracket_type[bracket_type] = sub_tree
+                                            sub_tree[u'TAUX'] = rate = collections.OrderedDict()
+                                        sub_tree = rate.setdefault(slice_name, [])
+                            elif bracket_type is not None:
+                                assert type == u'BAREME', str((translated_path, sub_path, sub_tree))
+                                assert not sub_path
+                                sub_tree = sub_tree.setdefault(fragment, collections.OrderedDict())
+                                existing_type = sub_tree.get('TYPE')
+                                if existing_type is None:
+                                    sub_tree['TYPE'] = type
+                                else:
+                                    assert existing_type == type
+                                rate = sub_tree.get(u'TAUX')
+                                if rate is None:
+                                    tax_rate_tree_by_bracket_type[bracket_type] = sub_tree
+                                    sub_tree[u'TAUX'] = rate = collections.OrderedDict()
+                                sub_tree = rate.setdefault(u'tranche_unique', [])
                             else:
                                 sub_tree = sub_tree.setdefault(fragment, [])
                     if skip_ipp_path:

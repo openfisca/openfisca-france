@@ -74,26 +74,26 @@ baremes_ipp_prelevements_sociaux_social_security_contributions:
       RENAME: employeur
       TYPE: BAREME
       TRANCHE: chom_p_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d*)$
-  # TODO: comment faire pour un barème sans limite ?
-  # mmid:
-  #   RENAME: cotisations_sociales.mmid
-  #   sur_tout_salaire.salaries:
-  #     RENAME: salarie
-  #     TYPE: BAREME
-  #     TRANCHE: mmid_s_(?P<SEUIL_MIN>\d+)_$
-  #   sur_tout_salaire.employeurs:
-  #     RENAME: employeur
-  #     TYPE: BAREME
-  #     TRANCHE: mmid_s_(?P<SEUIL_MIN>\d+)_$
-  # TODO: je n'arrive pas à faire un barème composé d'une seule tranche
-  #   salaire_sous_plafond.salarie:
-  #     RENAME: salarie2
-  #     TYPE: BAREME
-  #     TRANCHE: mmid_s_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d*)$
-  #   salaire_sous_plafond.employeurs:
-  #     RENAME: employeur2
-  #     TYPE: BAREME
-  #     TRANCHE: mmid_s_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d*)$
+  mmid:
+    RENAME: cotisations_sociales.mmid
+    sur_tout_salaire:
+      salaries:
+        RENAME: salarie
+        TYPE: BAREME
+        TRANCHE: mmid_s_(?P<SEUIL_MIN>\d+)_$
+      employeurs:
+        RENAME: employeur
+        TYPE: BAREME
+        TRANCHE: mmid_p_(?P<SEUIL_MIN>\d+)_$
+    salaire_sous_plafond:
+      salaries:
+        RENAME: salarie2
+        TYPE: BAREME
+        TRANCHE: mmid_s_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
+      employeurs:
+        RENAME: employeur2
+        TYPE: BAREME
+        TRANCHE: mmid_p_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
   # Inversion tranches / employe-salarie par rapport au modèle du chomage
   # agirc:
   #   RENAME: cotisations_sociales.agirc

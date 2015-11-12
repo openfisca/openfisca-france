@@ -8392,6 +8392,93 @@
           </TRANCHE>
         </BAREME>
       </NODE>
+      <NODE code="mmid">
+        <NODE code="salaire_sous_plafond">
+          <BAREME code="employeur2">
+            <TRANCHE code="tranche_unique">
+              <SEUIL>
+                <VALUE deb="1967-10-01" valeur="0" />
+              </SEUIL>
+              <TAUX>
+                <VALUE deb="1984-01-01" valeur="0" />
+                <VALUE deb="1981-11-01" fin="1983-12-31" valeur="0.0545" />
+                <VALUE deb="1979-01-01" fin="1981-10-31" valeur="0.0895" />
+                <VALUE deb="1976-10-01" fin="1978-12-31" valeur="0.1095" />
+                <VALUE deb="1971-01-01" fin="1976-09-30" valeur="0.1045" />
+                <VALUE deb="1970-08-01" fin="1970-12-31" valeur="0.1025" />
+                <VALUE deb="1967-10-01" fin="1970-07-31" valeur="0.095" />
+              </TAUX>
+            </TRANCHE>
+            <TRANCHE code="tranche_nulle">
+              <SEUIL>
+                <VALUE deb="1967-10-01" valeur="1" />
+              </SEUIL>
+              <TAUX>
+                <VALUE deb="1967-10-01" valeur="0" />
+              </TAUX>
+            </TRANCHE>
+          </BAREME>
+          <CODE code="reduction_65_ans" format="percent">
+            <VALUE deb="1968-07-01" fin="1977-06-30" valeur="0.01" />
+          </CODE>
+          <BAREME code="salarie2">
+            <TRANCHE code="tranche_unique">
+              <SEUIL>
+                <VALUE deb="1967-10-01" valeur="0" />
+              </SEUIL>
+              <TAUX>
+                <VALUE deb="1980-01-01" valeur="0" />
+                <VALUE deb="1979-01-01" fin="1979-12-31" valeur="0.01" />
+                <VALUE deb="1976-10-01" fin="1978-12-31" valeur="0.03" />
+                <VALUE deb="1967-10-01" fin="1976-09-30" valeur="0.025" />
+              </TAUX>
+            </TRANCHE>
+            <TRANCHE code="tranche_nulle">
+              <SEUIL>
+                <VALUE deb="1967-10-01" valeur="1" />
+              </SEUIL>
+              <TAUX>
+                <VALUE deb="1967-10-01" valeur="0" />
+              </TAUX>
+            </TRANCHE>
+          </BAREME>
+        </NODE>
+        <NODE code="sur_tout_salaire">
+          <BAREME code="employeur">
+            <TRANCHE code="tranche_unique">
+              <SEUIL>
+                <VALUE deb="1967-10-01" valeur="0" />
+              </SEUIL>
+              <TAUX>
+                <VALUE deb="1992-01-01" valeur="0.128" />
+                <VALUE deb="1984-01-01" fin="1991-12-31" valeur="0.126" />
+                <VALUE deb="1981-11-01" fin="1983-12-31" valeur="0.08" />
+                <VALUE deb="1979-01-01" fin="1981-10-31" valeur="0.045" />
+                <VALUE deb="1976-01-01" fin="1978-12-31" valeur="0.025" />
+                <VALUE deb="1967-10-01" fin="1975-12-31" valeur="0.02" />
+              </TAUX>
+            </TRANCHE>
+          </BAREME>
+          <BAREME code="salarie">
+            <TRANCHE code="tranche_unique">
+              <SEUIL>
+                <VALUE deb="1967-10-01" valeur="0" />
+              </SEUIL>
+              <TAUX>
+                <VALUE deb="1998-01-01" valeur="0.0075" />
+                <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.055" />
+                <VALUE deb="1991-07-01" fin="1996-12-31" valeur="0.068" />
+                <VALUE deb="1987-07-01" fin="1991-06-30" valeur="0.059" />
+                <VALUE deb="1980-01-01" fin="1987-06-30" valeur="0.055" />
+                <VALUE deb="1979-08-01" fin="1979-12-31" valeur="0.045" />
+                <VALUE deb="1979-01-01" fin="1979-07-31" valeur="0.035" />
+                <VALUE deb="1976-01-01" fin="1978-12-31" valeur="0.015" />
+                <VALUE deb="1967-10-01" fin="1975-12-31" valeur="0.01" />
+              </TAUX>
+            </TRANCHE>
+          </BAREME>
+        </NODE>
+      </NODE>
     </NODE>
     <NODE code="crds">
       <CODE code="taux_crds" format="percent">
@@ -9463,47 +9550,6 @@
           <VALUE deb="1975-10-01" fin="1976-09-30" valeur="0.069" />
           <VALUE deb="1975-04-01" fin="1975-09-30" valeur="0.067" />
           <VALUE deb="1974-10-01" fin="1975-03-31" valeur="0.0625" />
-        </CODE>
-      </NODE>
-    </NODE>
-    <NODE code="mmid">
-      <NODE code="salaire_sous_plafond">
-        <CODE code="employeurs" format="percent">
-          <VALUE deb="1981-11-01" fin="1983-12-31" valeur="0.0545" />
-          <VALUE deb="1979-01-01" fin="1981-10-31" valeur="0.0895" />
-          <VALUE deb="1976-10-01" fin="1978-12-31" valeur="0.1095" />
-          <VALUE deb="1971-01-01" fin="1976-09-30" valeur="0.1045" />
-          <VALUE deb="1970-08-01" fin="1970-12-31" valeur="0.1025" />
-          <VALUE deb="1967-10-01" fin="1970-07-31" valeur="0.095" />
-        </CODE>
-        <CODE code="reduction_65_ans" format="percent">
-          <VALUE deb="1968-07-01" fin="1977-06-30" valeur="0.01" />
-        </CODE>
-        <CODE code="salaries" format="percent">
-          <VALUE deb="1979-01-01" fin="1979-12-31" valeur="0.01" />
-          <VALUE deb="1976-10-01" fin="1978-12-31" valeur="0.03" />
-          <VALUE deb="1967-10-01" fin="1976-09-30" valeur="0.025" />
-        </CODE>
-      </NODE>
-      <NODE code="sur_tout_salaire">
-        <CODE code="employeurs" format="percent">
-          <VALUE deb="1992-01-01" valeur="0.128" />
-          <VALUE deb="1984-01-01" fin="1991-12-31" valeur="0.126" />
-          <VALUE deb="1981-11-01" fin="1983-12-31" valeur="0.08" />
-          <VALUE deb="1979-01-01" fin="1981-10-31" valeur="0.045" />
-          <VALUE deb="1976-01-01" fin="1978-12-31" valeur="0.025" />
-          <VALUE deb="1967-10-01" fin="1975-12-31" valeur="0.02" />
-        </CODE>
-        <CODE code="salaries" format="percent">
-          <VALUE deb="1998-01-01" valeur="0.0075" />
-          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.055" />
-          <VALUE deb="1991-07-01" fin="1996-12-31" valeur="0.068" />
-          <VALUE deb="1987-07-01" fin="1991-06-30" valeur="0.059" />
-          <VALUE deb="1980-01-01" fin="1987-06-30" valeur="0.055" />
-          <VALUE deb="1979-08-01" fin="1979-12-31" valeur="0.045" />
-          <VALUE deb="1979-01-01" fin="1979-07-31" valeur="0.035" />
-          <VALUE deb="1976-01-01" fin="1978-12-31" valeur="0.015" />
-          <VALUE deb="1967-10-01" fin="1975-12-31" valeur="0.01" />
         </CODE>
       </NODE>
     </NODE>
