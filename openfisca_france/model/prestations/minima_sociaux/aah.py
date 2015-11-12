@@ -98,14 +98,9 @@ class nb_eligib_aah(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.this_month
-        br_aah = simulation.calculate('br_aah', period)
         aah_eligible_holder = simulation.calculate('aah_eligible', period)
 
-        aah_eligible = self.split_by_roles(aah_eligible_holder)
-
-        nb_eligib_aah = 0.0 * br_aah
-        for eligible in aah_eligible.values():
-            nb_eligib_aah = nb_eligib_aah + eligible
+        nb_eligib_aah = self.sum_by_entity(aah_eligible_holder)
 
         return period, nb_eligib_aah
 
