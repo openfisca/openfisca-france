@@ -96,12 +96,12 @@ baremes_ipp_prelevements_sociaux_social_security_contributions:
         RENAME: employeur2
         TYPE: BAREME
         TRANCHE: mmid_p_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
-  # Inversion tranches / employe-salarie par rapport au modèle du chomage
+  # TODO Inversion tranches / employe-salarie par rapport au modèle du chomage
   # agirc:
-  #   RENAME: cotisations_sociales.agirc
   #   taux_contractuels: null
   #   taux_d_appel: null
   #   taux_effectifs: null
+  #   RENAME: cotisations_sociales.agirc
   #   taux_effectifs_salaries_employeurs.salarie:
   #     RENAME: salarie
   #     TYPE: BAREME
@@ -116,6 +116,25 @@ baremes_ipp_prelevements_sociaux_social_security_contributions:
       RENAME: employeur
       TYPE: BAREME
       TRANCHE: ags_p_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d*)$
+  apec-f:
+    RENAME: cotisations_sociales.apec
+  # TODO find a way to separate or combine these two baremes
+  # apec:
+  #   RENAME: cotisations_sociales.apec
+  #   sous_4_pss:
+  #     salarie:
+  #       TYPE: BAREME
+  #       TRANCHE: apec_s_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
+  #     employeur:
+  #       TYPE: BAREME
+  #       TRANCHE: apec_p_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
+  #   tranche_b_de_1_a_4_pss:
+  #     salarie:
+  #       TYPE: BAREME
+  #       TRANCHE: apec_s_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
+  #     employeur:
+  #       TYPE: BAREME
+  #       TRANCHE: apec_p_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
   csg-1.revenus_d_activite:
     RENAME: csg.activite
   csg-2:
