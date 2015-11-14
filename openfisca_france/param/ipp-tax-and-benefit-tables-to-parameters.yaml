@@ -97,11 +97,11 @@ baremes_ipp_prelevements_sociaux_social_security_contributions:
         TYPE: BAREME
         TRANCHE: mmid_p_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
   # TODO Inversion tranches / employe-salarie par rapport au modèle du chomage
-  # agirc:
-  #   taux_contractuels: null
-  #   taux_d_appel: null
-  #   taux_effectifs: null
-  #   RENAME: cotisations_sociales.agirc
+  agirc:
+    RENAME: cotisations_sociales.agirc
+    taux_contractuels: null
+    taux_d_appel: null
+    taux_effectifs: null
   #   taux_effectifs_salaries_employeurs.salarie:
   #     RENAME: salarie
   #     TYPE: BAREME
