@@ -433,6 +433,10 @@ def slugify_ipp_translation_key(key):
 
 
 def slugify_ipp_translations_keys(ipp_translations):
+    for key, value in ipp_translations.iteritems():
+        assert '.' not in key, \
+            'Key in YAML file, converting IPP tables to parameters, must not contain a ".": {}'.format(
+                key.encode('utf-8'))
     return collections.OrderedDict(
         (
             slugify_ipp_translation_key(key),
