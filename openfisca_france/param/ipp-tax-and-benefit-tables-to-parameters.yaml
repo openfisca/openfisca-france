@@ -229,7 +229,7 @@ baremes_ipp_taxation_capital:
     RENAME: prelevements_sociaux
     prelevement_social_sur_les_revenus_du_patrimoine: prelevement_social.revenus_du_patrimoine
     prelevement_social_sur_les_produits_de_placement: prelevement_social.produits_de_placement
-    caps_sur_les_.revenus_du_patrimoine: caps.revenus_du_patrimoine
+    caps_sur_les_revenus_du_patrimoine: caps.revenus_du_patrimoine
     caps_sur_les_produits_de_placement: caps.produits_de_placement
     caps_rsa: caps.rsa
     prelevements_de_solidarite_sur_les_produits_de_placement: prelevements_solidarite.produits_de_placement
