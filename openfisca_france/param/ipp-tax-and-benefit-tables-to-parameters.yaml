@@ -9,12 +9,15 @@ baremes_ipp_impot_revenu_income_tax:
       RENAME: abat_sal_pen
       abattement_maximal: max
       ## TODO gérer plaf_ab_dedsal:
-      abattement_forfaitaire_pour_frais_professionnels_sur_les_salaires_et_pensions.taux: abatpro.taux
-      minimum_de_l_abattement_pour_frais_professionnels.salaires: abatpro.min
-      minimum_de_l_abattement_pour_frais_professionnels.allocations_chomage: abatpro.min2
-      minimum_de_l_abattement_pour_frais_professionnels.pensions: abatpen.min
-      maximum_de_l_abattement_pour_frais_professionnels.salaires: abatpro.max
-      maximum_de_l_abattement_pour_frais_professionnels.pensions: abatpen.max
+    abattement_forfaitaire_pour_frais_professionnels_sur_les_salaires_et_pensions:
+      RENAME: abatpro
+    minimum_de_l_abattement_pour_frais_professionnels:
+      RENAME: NOTHING
+      allocations_chomage: abatpro.min2
+      salaires: abatpro.min
+      pensions: abatpen.min
+    maximum_de_l_abattement_pour_frais_professionnels.salaires: abatpro.max
+    maximum_de_l_abattement_pour_frais_professionnels.pensions: abatpen.max
   abat_rni:
     RENAME: abattements_rni
     abattement_pour_personnes_agees_de_de_65_ans_ou_invalide_4:
