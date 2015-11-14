@@ -8276,6 +8276,17 @@
       </NODE>
     </NODE>
     <NODE code="csg" description="Contribution sociale généralisée (CSG)">
+      <NODE code="abattement">
+        <CODE code="au_dessus_de_4_pss" format="percent">
+          <VALUE deb="2005-01-01" fin="2010-12-31" valeur="0.03" />
+          <VALUE deb="1991-02-01" fin="2004-12-31" valeur="0.05" />
+        </CODE>
+        <CODE code="sous_4pss" format="percent">
+          <VALUE deb="2012-01-01" valeur="0.0175" />
+          <VALUE deb="2005-01-01" fin="2011-12-31" valeur="0.03" />
+          <VALUE deb="1991-02-01" fin="2004-12-31" valeur="0.05" />
+        </CODE>
+      </NODE>
       <NODE code="activite" description="Revenus d'activité">
         <NODE code="deductible" description="CSG déductible">
           <BAREME code="abattement" description="Abattement de la base de la CSG déductible">
@@ -8328,6 +8339,30 @@
             <VALUE deb="1991-02-01" fin="1993-06-30" valeur=".011" />
           </CODE>
         </NODE>
+        <CODE code="taux_csg_deductible" format="percent">
+          <VALUE deb="1998-01-01" valeur="0.051" />
+          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
+        </CODE>
+        <CODE code="taux_global_csg" format="percent">
+          <VALUE deb="1998-01-01" valeur="0.075" />
+          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.034" />
+          <VALUE deb="1993-07-01" fin="1996-12-31" valeur="0.024" />
+          <VALUE deb="1991-02-01" fin="1993-06-30" valeur="0.011" />
+        </CODE>
+      </NODE>
+      <NODE code="allocations_chomage">
+        <CODE code="taux_csg_deductible" format="percent">
+          <VALUE deb="1998-01-01" valeur="0.038" />
+          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
+        </CODE>
+        <CODE code="taux_csg_reduit" format="percent">
+          <VALUE deb="1998-01-01" valeur="0.038" />
+          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
+        </CODE>
+        <CODE code="taux_global_csg" format="percent">
+          <VALUE deb="1998-01-01" valeur="0.062" />
+          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.034" />
+        </CODE>
       </NODE>
       <NODE code="capital" description="Revenus du capital">
         <CODE code="deduc" description="dont CSG déductible" format="percent">
@@ -8501,45 +8536,6 @@
             <VALUE deb="1997-01-01" fin="2014-12-31" valeur=".024" />
           </CODE>
         </NODE>
-      </NODE>
-    </NODE>
-    <NODE code="csg_1">
-      <NODE code="abattement">
-        <CODE code="au_dessus_de_4_pss" format="percent">
-          <VALUE deb="2005-01-01" fin="2010-12-31" valeur="0.03" />
-          <VALUE deb="1991-02-01" fin="2004-12-31" valeur="0.05" />
-        </CODE>
-        <CODE code="sous_4pss" format="percent">
-          <VALUE deb="2012-01-01" valeur="0.0175" />
-          <VALUE deb="2005-01-01" fin="2011-12-31" valeur="0.03" />
-          <VALUE deb="1991-02-01" fin="2004-12-31" valeur="0.05" />
-        </CODE>
-      </NODE>
-      <NODE code="allocations_chomage">
-        <CODE code="taux_csg_deductible" format="percent">
-          <VALUE deb="1998-01-01" valeur="0.038" />
-          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
-        </CODE>
-        <CODE code="taux_csg_reduit" format="percent">
-          <VALUE deb="1998-01-01" valeur="0.038" />
-          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
-        </CODE>
-        <CODE code="taux_global_csg" format="percent">
-          <VALUE deb="1998-01-01" valeur="0.062" />
-          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.034" />
-        </CODE>
-      </NODE>
-      <NODE code="revenus_d_activite">
-        <CODE code="taux_csg_deductible" format="percent">
-          <VALUE deb="1998-01-01" valeur="0.051" />
-          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
-        </CODE>
-        <CODE code="taux_global_csg" format="percent">
-          <VALUE deb="1998-01-01" valeur="0.075" />
-          <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.034" />
-          <VALUE deb="1993-07-01" fin="1996-12-31" valeur="0.024" />
-          <VALUE deb="1991-02-01" fin="1993-06-30" valeur="0.011" />
-        </CODE>
       </NODE>
     </NODE>
     <NODE code="css_chom">

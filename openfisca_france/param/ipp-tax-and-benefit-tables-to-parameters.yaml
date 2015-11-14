@@ -140,8 +140,10 @@ baremes_ipp_prelevements_sociaux_social_security_contributions:
   #     employeur:
   #       TYPE: BAREME
   #       TRANCHE: apec_p_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
-  csg-1.revenus_d_activite:
-    RENAME: csg.activite
+  csg-1:
+    RENAME: csg
+    revenus_d_activite:
+      RENAME: activite
   csg-2:
     RENAME: csg.remplacement
   deces-ac:
