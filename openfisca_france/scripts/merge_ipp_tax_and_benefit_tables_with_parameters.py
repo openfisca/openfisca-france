@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
 """Merge YAML files of IPP tax and benefit tables with OpenFisca parameters to generate new parameters."""
 
 
@@ -10,12 +11,13 @@ import datetime
 import itertools
 import logging
 import os
-import re
 import sys
 import xml.etree.ElementTree as etree
 
 from biryani import strings
 import yaml
+
+from openfisca_france.param import ipp_tax_and_benefit_tables_to_parameters
 
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
@@ -123,10 +125,6 @@ def main():
             element.set('code', name)
             parent_element.append(element)
 
-    with open(args.ipp_translations) as ipp_translations_file:
-        ipp_translations = yaml.load(ipp_translations_file)
-        ipp_translations = slugify_ipp_translations_keys(ipp_translations)
-
     tree = collections.OrderedDict()
     for source_dir_encoded, directories_name_encoded, filenames_encoded in os.walk(args.source_dir):
         directories_name_encoded.sort()
@@ -193,7 +191,7 @@ def main():
                 return -1
 
             sorted_relative_ipp_paths = sorted(unsorted_relative_ipp_paths, cmp = compare_relative_ipp_paths)
-            tax_rate_tree_by_bracket_type = {}
+            # tax_rate_tree_by_bracket_type = {}
 
             for start, row in sorted_row_by_start:
                 for relative_ipp_path in sorted_relative_ipp_paths:
@@ -206,118 +204,21 @@ def main():
                     if value in (u'-', u'na', u'nc'):
                         # Value is unknown. Previous value must be propagated.
                         continue
-                    ipp_path = relative_file_path.split(os.sep)[:-1] + [sheet_name] + list(relative_ipp_path)
+                    ipp_path = [
+                        fragment if fragment in ('RENAME', 'TRANCHE', 'TYPE') else strings.slugify(fragment,
+                            separator = u'_')
+                        for fragment in itertools.chain(
+                            relative_file_path.split(os.sep)[:-1],
+                            [sheet_name],
+                            relative_ipp_path,
+                            )
+                        ]
 
-                    remaining_path = ipp_path[:]
-                    skip_ipp_path = False
                     sub_tree = tree
-                    translations = ipp_translations
-                    translated_path = []
-                    while remaining_path:
-                        fragment = remaining_path.pop(0)
-                        fragment = slugify_ipp_translation_key(fragment)
-
-                        bracket_type = None
-                        type = None
-                        if translations is not None:
-                            translations = translations.get(fragment, fragment)
-                            if translations is None:
-                                skip_ipp_path = True
-                                break
-                            elif isinstance(translations, dict):
-                                translation = translations.get('RENAME')
-                                if translation is not None:
-                                    fragment = translation if translation != u'NOTHING' else None
-                                type = translations.get('TYPE')
-                                assert type in (None, u'BAREME')
-                                if type is not None:
-                                    assert fragment is not None
-                                bracket_type = translations.get('TRANCHE')
-                                if bracket_type is not None:
-                                    assert type == u'BAREME'
-                            else:
-                                fragment = translations
-                                translations = None
-                        fragments = [] if fragment is None \
-                            else [fragment] if isinstance(fragment, basestring) \
-                            else fragment[:]
-                        sub_path = []
-                        for fragment in fragments:
-                            sub_path.extend(fragment.split(u'.'))
-                        while sub_path:
-                            fragment = sub_path.pop(0)
-                            fragment = slugify_ipp_translation_key(fragment)
-                            translated_path.append(fragment)
-                            if fragment == u'ASSIETTE':
-                                assert sub_tree.get('TYPE') == u'BAREME', str((translated_path, sub_path, sub_tree))
-                                assert not sub_path
-                                slice_name = remaining_path.pop(0)
-                                assert not remaining_path
-                                sub_tree = sub_tree.setdefault(u'ASSIETTE', collections.OrderedDict()).setdefault(
-                                    slice_name, [])
-                            elif fragment == u'BAREME':
-                                existing_type = sub_tree.get('TYPE')
-                                if existing_type is None:
-                                    sub_tree['TYPE'] = fragment
-                                else:
-                                    assert existing_type == fragment
-                            elif fragment == u'MONTANT':
-                                assert sub_tree.get('TYPE') == u'BAREME', str((translated_path, sub_path, sub_tree))
-                                assert not sub_path
-                                slice_name = remaining_path.pop(0)
-                                assert not remaining_path
-                                sub_tree = sub_tree.setdefault(u'MONTANT', collections.OrderedDict()).setdefault(
-                                    slice_name, [])
-                            elif fragment == u'SEUIL':
-                                assert sub_tree.get('TYPE') == u'BAREME', str((translated_path, sub_path, sub_tree))
-                                assert not sub_path
-                                slice_name = remaining_path.pop(0)
-                                assert not remaining_path
-                                sub_tree = sub_tree.setdefault(u'SEUIL', collections.OrderedDict()).setdefault(
-                                    slice_name, [])
-                            elif fragment == u'TAUX':
-                                assert sub_tree.get('TYPE') == u'BAREME', str((translated_path, sub_path, sub_tree))
-                                assert not sub_path
-                                slice_name = remaining_path.pop(0)
-                                assert not remaining_path
-                                sub_tree = sub_tree.setdefault(u'TAUX', collections.OrderedDict()).setdefault(
-                                    slice_name, [])
-                            elif sub_path or remaining_path:
-                                sub_tree = sub_tree.setdefault(fragment, collections.OrderedDict())
-                                if type is not None:
-                                    existing_type = sub_tree.get('TYPE')
-                                    if existing_type is None:
-                                        sub_tree['TYPE'] = type
-                                    else:
-                                        assert existing_type == type
-                                    if bracket_type is not None:
-                                        assert type == u'BAREME', str((translated_path, sub_path, sub_tree))
-                                        assert not sub_path
-                                        slice_name = remaining_path.pop(0)
-                                        assert not remaining_path
-                                        rate = sub_tree.get(u'TAUX')
-                                        if rate is None:
-                                            tax_rate_tree_by_bracket_type[bracket_type] = sub_tree
-                                            sub_tree[u'TAUX'] = rate = collections.OrderedDict()
-                                        sub_tree = rate.setdefault(slice_name, [])
-                            elif bracket_type is not None:
-                                assert type == u'BAREME', str((translated_path, sub_path, sub_tree))
-                                assert not sub_path
-                                sub_tree = sub_tree.setdefault(fragment, collections.OrderedDict())
-                                existing_type = sub_tree.get('TYPE')
-                                if existing_type is None:
-                                    sub_tree['TYPE'] = type
-                                else:
-                                    assert existing_type == type
-                                rate = sub_tree.get(u'TAUX')
-                                if rate is None:
-                                    tax_rate_tree_by_bracket_type[bracket_type] = sub_tree
-                                    sub_tree[u'TAUX'] = rate = collections.OrderedDict()
-                                sub_tree = rate.setdefault(u'tranche_unique', [])
-                            else:
-                                sub_tree = sub_tree.setdefault(fragment, [])
-                    if skip_ipp_path:
-                        continue
+                    for fragment in ipp_path[:-1]:
+                        sub_tree = sub_tree.setdefault(fragment, collections.OrderedDict())
+                    fragment = ipp_path[-1]
+                    sub_tree = sub_tree.setdefault(fragment, [])
                     if sub_tree:
                         last_leaf = sub_tree[-1]
                         if last_leaf['value'] == value:
@@ -328,70 +229,7 @@ def main():
                         value = value,
                         ))
 
-            if tax_rate_tree_by_bracket_type:
-                taxipp_names_row = data.get(u"Noms TaxIPP")
-                assert taxipp_names_row
-                taxipp_names = []
-                for name, child in taxipp_names_row.iteritems():
-                    if name in date_names:
-                        continue
-                    if name in note_names:
-                        continue
-                    if name in reference_names:
-                        continue
-                    taxipp_names.extend(
-                        value
-                        for path, value in iter_ipp_values(child)
-                        )
-
-                for bracket_type, tax_rate_tree in tax_rate_tree_by_bracket_type.iteritems():
-                    bases = []
-                    bracket_type_re = re.compile(bracket_type)
-                    add_final_bracket = True
-                    for taxipp_name in taxipp_names:
-                        match = bracket_type_re.match(taxipp_name)
-                        if match is not None:
-                            base_min = match.group('SEUIL_MIN')
-                            assert base_min is not None, 'Invalid bracket: {}'.format(base_min)
-                            base_max = match.groupdict().get('SEUIL_MAX')
-                            if base_min not in bases:
-                                bases.append(base_min)
-                            if base_max is None:
-                                add_final_bracket = False
-                            elif base_max not in bases:
-                                bases.append(base_max)
-                    rates_tree = tax_rate_tree[u'TAUX']
-                    if add_final_bracket:
-                        first_start = UnboundLocalError
-                        last_stop = UnboundLocalError
-                        for bracket in rates_tree.values():
-                            bracket_start = bracket[0]['start']
-                            if first_start is UnboundLocalError or bracket_start < first_start:
-                                first_start = bracket_start
-                            bracket_stop = bracket[-1].get('stop')
-                            if last_stop is UnboundLocalError or \
-                                    last_stop is not None and (bracket_stop is None or last_stop < bracket_stop):
-                                last_stop = bracket_stop
-
-                        for bracket in rates_tree.values():
-                            for item in bracket:
-                                if item['value'] is None:
-                                    item['value'] = '0'
-
-                        null_bracket_item = dict(
-                            start = first_start,
-                            value = '0',
-                            )
-                        if last_stop is not None:
-                            null_bracket_item['stop'] = last_stop
-                        rates_tree[u'Tranche nulle'] = [null_bracket_item]
-
-                    tax_rate_tree[u'SEUIL'] = bases_tree = collections.OrderedDict()
-                    for (name, bracket), base in itertools.izip(rates_tree.iteritems(), bases):
-                        bases_tree[name] = [dict(
-                            start = bracket[0]['start'],
-                            value = base,
-                            )]
+    ipp_tax_and_benefit_tables_to_parameters.transform_ipp_tree(tree)
 
     root_element = transform_node_to_element(u'root', tree)
     root_element.set('deb', original_root_element.get('deb'))
@@ -426,42 +264,6 @@ def merge_elements(element, original_element, path = None):
             else:
                 # A child with the same code as the original child doesn't exist yet.
                 element.append(original_child)
-
-
-def slugify_ipp_translation_key(key):
-    return key if key in ('RENAME', 'TRANCHE', 'TYPE') else strings.slugify(key, separator = u'_')
-
-
-def slugify_ipp_translations_keys(ipp_translations):
-    for key, value in ipp_translations.iteritems():
-        assert '.' not in key, \
-            'Key in YAML file, converting IPP tables to parameters, must not contain a ".": {}'.format(
-                key.encode('utf-8'))
-    return collections.OrderedDict(
-        (
-            slugify_ipp_translation_key(key),
-            slugify_ipp_translations_keys(value) if isinstance(value, dict) else value,
-            )
-        for key, value in ipp_translations.iteritems()
-        )
-
-
-def sort_elements(element):
-    if element.tag in ('BAREME', 'NODE', 'TRANCHE'):
-        if element.tag == 'NODE':
-            children = list(element)
-            for child in children:
-                element.remove(child)
-            children.sort(key = lambda child: child.get('code'))
-            element.extend(children)
-        for child in element:
-            sort_elements(child)
-    else:
-        children = list(element)
-        for child in children:
-            element.remove(child)
-        children.sort(key = lambda child: child.get('deb') or '', reverse = True)
-        element.extend(children)
 
 
 def prepare_xml_values(name, leafs):
@@ -535,6 +337,24 @@ def reindent(elem, depth = 0):
     else:
         if depth and (not elem.tail or not elem.tail.strip()):
             elem.tail = indent
+
+
+def sort_elements(element):
+    if element.tag in ('BAREME', 'NODE', 'TRANCHE'):
+        if element.tag == 'NODE':
+            children = list(element)
+            for child in children:
+                element.remove(child)
+            children.sort(key = lambda child: child.get('code'))
+            element.extend(children)
+        for child in element:
+            sort_elements(child)
+    else:
+        children = list(element)
+        for child in children:
+            element.remove(child)
+        children.sort(key = lambda child: child.get('deb') or '', reverse = True)
+        element.extend(children)
 
 
 def transform_node_to_element(name, node):
