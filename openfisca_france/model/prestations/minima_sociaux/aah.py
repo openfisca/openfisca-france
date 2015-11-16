@@ -112,23 +112,27 @@ class aah_non_calculable(SimpleFormulaColumn):
 
 
 @reference_formula
-class aah_famille(SimpleFormulaColumn):
+class aah_base(SimpleFormulaColumn):
+    calculate_output = calculate_output_add
     column = FloatCol
-    label = u"Allocation adulte handicapé (Familles) mensualisée"
-    entity_class = Familles
+    label = u"Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
+    entity_class = Individus
 
     def function(self, simulation, period):
         period = period.this_month
         law = simulation.legislation_at(period.start)
 
-        br_aah = simulation.calculate('br_aah', period)
-        concub = simulation.calculate('concub', period)
-        af_nbenf = simulation.calculate('af_nbenf', period)
-        nb_eligib_aah = simulation.calculate('nb_eligib_aah', period)
+        aah_eligible = simulation.calculate('aah_eligible', period)
 
-        plaf_ress_aah = 12 * law.minim.aah.montant * (1 + concub + law.minim.aah.tx_plaf_supp * af_nbenf)
+        def montant_aah():
+            br_aah = simulation.calculate('br_aah', period)
+            concub = simulation.calculate('concub', period)
+            af_nbenf = simulation.calculate('af_nbenf', period)
+            plaf_ress_aah = 12 * law.minim.aah.montant * (1 + concub + law.minim.aah.tx_plaf_supp * af_nbenf)
+            return max_(plaf_ress_aah - br_aah, 0) / 12
 
-        return period, nb_eligib_aah * max_(plaf_ress_aah - br_aah, 0) / 12
+        # Le montant est à valeur pour une famille, il faut le caster pour l'individu
+        return period, aah_eligible * self.cast_from_entity_to_roles(montant_aah(), entity = 'famille')
 
 
 @reference_formula
@@ -141,17 +145,17 @@ class aah(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.this_month
 
-        aah_eligible = simulation.calculate('aah_eligible', period)
+        aah_base = simulation.calculate('aah_base', period)
 
-        aah_famille_holder = simulation.compute('aah_famille', period)
-        aah_famille = self.cast_from_entity_to_role(aah_famille_holder, role = VOUS)
+        return period, aah_base
 
-        nb_eligib_aah_holder = simulation.compute('nb_eligib_aah', period)
-        nb_eligib_aah = self.cast_from_entity_to_role(nb_eligib_aah_holder, role = VOUS)
 
-        return period, aah_eligible * (
-            (nb_eligib_aah > 0) * aah_famille / max_(nb_eligib_aah, 1)
-            )
+@reference_formula
+class aah_famille(PersonToEntityColumn):
+    label = u"Total des AAH sur la famille"
+    entity_class = Familles
+    operation = 'add'
+    variable = aah
 
 
 @reference_formula
