@@ -82,7 +82,7 @@ class aah_eligible(SimpleFormulaColumn):
         smic55 = simulation.calculate('smic55', period)
 
         eligible_aah = (
-            (taux_invalidite >= 0.8) *
+            (taux_invalidite >= 0.5) *
             (age <= law.minim.aah.age_legal_retraite) *
             ((age >= law.fam.aeeh.age) + ((age >= 16) * (smic55)))
         )
@@ -106,8 +106,9 @@ class aah_non_calculable(SimpleFormulaColumn):
     def function(self, simulation, period):
         period = period.this_month
         taux_invalidite = simulation.calculate('taux_invalidite')
-        return period, (taux_invalidite < 0.8) * (taux_invalidite >= 0.5)
+        aah_eligible = simulation.calculate('aah_eligible')
 
+        return period, self.any_by_roles(aah_eligible * (taux_invalidite < 0.8) * (taux_invalidite >= 0.5))
 
 
 @reference_formula
