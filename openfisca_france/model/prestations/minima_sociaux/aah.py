@@ -108,19 +108,6 @@ class aah_non_calculable(SimpleFormulaColumn):
         taux_invalidite = simulation.calculate('taux_invalidite')
         return period, (taux_invalidite < 0.8) * (taux_invalidite >= 0.5)
 
-@reference_formula
-class nb_eligib_aah(SimpleFormulaColumn):
-    column = FloatCol
-    label = "Nombre d'allocataires de l'AAH dans la famille"
-    entity_class = Familles
-
-    def function(self, simulation, period):
-        period = period.this_month
-        aah_eligible_holder = simulation.calculate('aah_eligible', period)
-
-        nb_eligib_aah = self.sum_by_entity(aah_eligible_holder)
-
-        return period, nb_eligib_aah
 
 
 @reference_formula
