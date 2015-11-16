@@ -39,3 +39,39 @@
     aah_famille: 8816.2*2 /12
   output_variables:
     aah: 8816.2/12  #  (28816.2 - )/2
+
+- name: "AAH Eligibilité personne seule"
+  description: Montant AAH pour une personne seule sans revenus
+  period: 2015-11
+  input_variables:
+    taux_invalidite: '> 0.8'
+#    br_aah: 9690
+    concub: 0
+    af_nbenf: 0
+# plafond aah = 12 x 807.65 (montant mensuel de l'AAH)
+  output_variables:
+    eligibilite_aah: 'true'
+
+- name: "AAH Eligibilité couple"
+  description: Montant AAH pour un couple sans revenus
+  period: 2015-11
+  input_variables:
+    taux_invalidite: '> 0.8'
+#    br_aah: 19380
+    concub: 1
+    af_nbenf: 0
+# plafond aah = 24 x 807.65 (montant mensuel de l'AAH)
+  output_variables:
+    eligibilite_aah: 'true'
+
+- name: "AAH Eligibilité couple"
+  description: Montant AAH pour un couple avec enfant sans revenus
+  period: 2015-11
+  input_variables:
+    taux_invalidite: '> 0.8'
+#    br_aah: 19780
+    concub: 1
+    af_nbenf: 1
+# plafond aah = 807.65 * (24 + 1/2)
+  output_variables:
+    eligibilite_aah: 'true'
