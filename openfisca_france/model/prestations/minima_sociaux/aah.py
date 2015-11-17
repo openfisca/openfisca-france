@@ -1,29 +1,145 @@
 # -*- coding: utf-8 -*-
 from __future__ import division
 
-from numpy import (maximum as max_)
+from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_)
 
 from ...base import *  # noqa analysis:ignore
 
-
+# TODO : Aujourd'hui, cette BR correspond uniquement au demandeur, pas au conjoint.
 @reference_formula
-class br_aah(SimpleFormulaColumn):
+class aah_base_ressources(SimpleFormulaColumn):
     column = FloatCol
     label = u"Base ressources de l'allocation adulte handicapé"
     entity_class = Familles
 
     def function(self, simulation, period):
         period = period.this_month
-    #        annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
+        law = simulation.legislation_at(period.start)
 
-    # inactifs ou travailleurs en ESAT :
-        br_pf_n_2 = simulation.calculate_add('br_pf', period)
-    #        asi_n_2 = simulation.calculate_add('asi', annee_fiscale_n_2)
-    #        aspa_n_2 = simulation.calculate_add('aspa', annee_fiscale_n_2)
-        # TODO: travailleurs en milieu protégé : les ressources celles des trois derniers mois.
-    # toujours la même base ressources ? http://www.guide-familial.fr/actualite-149654--nouvelle-etape-dans-la-reforme-de-l-aah--la-prise-en-compte-trimestrielle-des-ressources.html
+        salaire_this_month = simulation.compute('salaire_imposable', period)
+        demandeur_en_activite = self.filter_role(salaire_this_month, role = CHEF) > 0
 
-        return period, br_pf_n_2  # + asi_n_2 + aspa_n_2
+        def assiette_conjoint(revenus_conjoint):
+            return 0.9 * (1 - 0.2) * revenus_conjoint
+
+        def assiette_demandeur(revenus_demandeur):
+            smic_brut_annuel = 12 * law.cotsoc.gen.smic_h_b * law.cotsoc.gen.nb_heure_travail_mensuel
+            tranche1 = min_(0.3 * smic_brut_annuel, revenus_demandeur)
+            tranche2 = revenus_demandeur - tranche1
+            return (1 - 0.8) * tranche1 + (1 - 0.4) * tranche2
+
+        def base_ressource_eval_trim():
+            aah_base_ressources_eval_trimestrielle = simulation.compute('aah_base_ressources_eval_trimestrielle', period)
+            base_ressource_demandeur = self.filter_role(aah_base_ressources_eval_trimestrielle, role = CHEF)
+            base_ressource_conjoint = self.filter_role(aah_base_ressources_eval_trimestrielle, role = PART)
+
+            return assiette_demandeur(base_ressource_demandeur) + assiette_conjoint(base_ressource_conjoint)
+
+        def base_ressource_eval_annuelle():
+            aah_base_ressources_eval_annuelle = simulation.compute('aah_base_ressources_eval_annuelle', period)
+            base_ressource_demandeur = self.filter_role(aah_base_ressources_eval_annuelle, role = CHEF)
+            base_ressource_conjoint = self.filter_role(aah_base_ressources_eval_annuelle, role = PART)
+
+            return assiette_demandeur(base_ressource_demandeur) + assiette_conjoint(base_ressource_conjoint)
+
+        aah_base_ressource = (
+            demandeur_en_activite * base_ressource_eval_trim() +
+            not_(demandeur_en_activite) * base_ressource_eval_annuelle()
+        )
+
+        return period, aah_base_ressource
+
+
+@reference_formula
+class aah_base_ressources_eval_trimestrielle(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base de ressources de l'ASS pour un individu, évaluation trimestrielle"
+    entity_class = Individus
+
+    '''
+        N'entrent pas en compte dans les ressources :
+        L'allocation compensatrice tierce personne, les allocations familiales,
+        l'allocation de logement, la retraite du combattant, les rentes viagères
+        constituées en faveur d'une personne handicapée ou dans la limite d'un
+        montant fixé à l'article D.821-6 du code de la sécurité sociale (1 830 €/an),
+        lorsqu'elles ont été constituées par une personne handicapée pour elle-même.
+        Le RMI (article R 531-10 du code de la sécurité sociale).
+        A partir du 1er juillet 2007, votre Caf, pour le calcul de votre Aah,
+        continue à prendre en compte les ressources de votre foyer diminuées de 20%.
+        Notez, dans certaines situations, la Caf évalue forfaitairement vos
+        ressources à partir de votre revenu mensuel.
+    '''
+
+    def function(self, simulation, period):
+        period = period.this_month
+        three_previous_months = period.start.period('month', 3).offset(-3)
+        last_year = period.last_year
+
+        salaire_net = simulation.calculate_add('salaire_net', three_previous_months)
+        chonet = simulation.calculate_add('chonet', three_previous_months)
+        rstnet = simulation.calculate_add('rstnet', three_previous_months)
+        pensions_alimentaires_percues = simulation.calculate_add('pensions_alimentaires_percues', three_previous_months)
+        pensions_alimentaires_versees_individu = simulation.calculate_add(
+            'pensions_alimentaires_versees_individu', three_previous_months)
+        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', three_previous_months)
+        indemnites_journalieres_imposables = simulation.calculate_add('indemnites_journalieres_imposables', three_previous_months)
+        indemnites_stage = simulation.calculate_add('indemnites_stage', three_previous_months)
+        revenus_stage_formation_pro = simulation.calculate_add('revenus_stage_formation_pro', three_previous_months)
+        allocation_securisation_professionnelle = simulation.calculate_add(
+            'allocation_securisation_professionnelle', three_previous_months)
+        prestation_compensatoire = simulation.calculate_add('prestation_compensatoire', three_previous_months)
+        pensions_invalidite = simulation.calculate_add('pensions_invalidite', three_previous_months)
+        indemnites_chomage_partiel = simulation.calculate_add('indemnites_chomage_partiel', three_previous_months)
+        bourse_recherche = simulation.calculate_add('bourse_recherche', three_previous_months)
+        gains_exceptionnels = simulation.calculate_add('gains_exceptionnels', three_previous_months)
+
+        def revenus_tns():
+            revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', three_previous_months)
+
+            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year) * 3 / 12
+            tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year) * 3 / 12
+            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year) * 3 / 12
+
+            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+
+        result = (
+            salaire_net + indemnites_chomage_partiel + indemnites_stage + chonet + rstnet +
+            pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
+            rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
+            indemnites_journalieres_imposables + prestation_compensatoire +
+            pensions_invalidite + bourse_recherche + gains_exceptionnels + revenus_tns() +
+            revenus_stage_formation_pro
+        )
+
+        return period, result * 4
+
+
+@reference_formula
+class aah_base_ressources_eval_annuelle(SimpleFormulaColumn):
+    column = FloatCol
+    label = u"Base de ressources de l'ASS pour un individu, évaluation annuelle"
+    entity_class = Individus
+
+    '''
+        N'entrent pas en compte dans les ressources :
+        L'allocation compensatrice tierce personne, les allocations familiales,
+        l'allocation de logement, la retraite du combattant, les rentes viagères
+        constituées en faveur d'une personne handicapée ou dans la limite d'un
+        montant fixé à l'article D.821-6 du code de la sécurité sociale (1 830 €/an),
+        lorsqu'elles ont été constituées par une personne handicapée pour elle-même.
+        Le RMI (article R 531-10 du code de la sécurité sociale).
+        A partir du 1er juillet 2007, votre Caf, pour le calcul de votre Aah,
+        continue à prendre en compte les ressources de votre foyer diminuées de 20%.
+        Notez, dans certaines situations, la Caf évalue forfaitairement vos
+        ressources à partir de votre revenu mensuel.
+    '''
+
+    def function(self, simulation, period):
+        period = period.this_month
+        return period, simulation.calculate('rev_act', period.n_2) + simulation.calculate('rev_pen', period.n_2)
+
+
 
     '''
         Allocation adulte handicapé
@@ -52,20 +168,7 @@ class br_aah(SimpleFormulaColumn):
         En cas d'incapacité d'au moins 80 %, une AAH différentielle (c'est-à-dire une allocation mensuelle réduite)
         peut être versée au-delà de l'âge minimum légal de départ à la retraite en complément d'une retraite inférieure
         au minimum vieillesse.
-
-        N'entrent pas en compte dans les ressources :
-        L'allocation compensatrice tierce personne, les allocations familiales,
-        l'allocation de logement, la retraite du combattant, les rentes viagères
-        constituées en faveur d'une personne handicapée ou dans la limite d'un
-        montant fixé à l'article D.821-6 du code de la sécurité sociale (1 830 €/an),
-        lorsqu'elles ont été constituées par une personne handicapée pour elle-même.
-        Le RMI (article R 531-10 du code de la sécurité sociale).
-        A partir du 1er juillet 2007, votre Caf, pour le calcul de votre Aah,
-        continue à prendre en compte les ressources de votre foyer diminuées de 20%.
-        Notez, dans certaines situations, la Caf évalue forfaitairement vos
-        ressources à partir de votre revenu mensuel.
     '''
-
 
 @reference_formula
 class aah_eligible(SimpleFormulaColumn):
@@ -125,11 +228,11 @@ class aah_base(SimpleFormulaColumn):
         aah_eligible = simulation.calculate('aah_eligible', period)
 
         def montant_aah():
-            br_aah = simulation.calculate('br_aah', period)
+            aah_base_ressources = simulation.calculate('aah_base_ressources', period)
             concub = simulation.calculate('concub', period)
             af_nbenf = simulation.calculate('af_nbenf', period)
             plaf_ress_aah = 12 * law.minim.aah.montant * (1 + concub + law.minim.aah.tx_plaf_supp * af_nbenf)
-            return max_(plaf_ress_aah - br_aah, 0) / 12
+            return max_(plaf_ress_aah - aah_base_ressources, 0) / 12
 
         # Le montant est à valeur pour une famille, il faut le caster pour l'individu
         return period, aah_eligible * self.cast_from_entity_to_roles(montant_aah(), entity = 'famille')
