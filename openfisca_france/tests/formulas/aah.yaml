@@ -120,7 +120,7 @@
       2015-11: (1128.70 * 12) * 0.9 * 0.8
 
 - name: "AAH demandeur et conjoint salariés"
-  period: "month:2015-04"
+  period: "month:2015-11"
   relative_error_margin: 0.05
   familles:
     parents: ["parent1", "parent2"]
@@ -145,3 +145,7 @@
           2015-11: (1000 * 12) * 0.9 * 0.8 + 8494
         aah_base:
           2015-11: [187, 0]
+        aah:
+          2015-11: [187, 0]
+        aah_famille:
+          2015-11: 187
