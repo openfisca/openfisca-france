@@ -121,25 +121,16 @@ class aah_base_ressources_eval_annuelle(SimpleFormulaColumn):
     label = u"Base de ressources de l'ASS pour un individu, évaluation annuelle"
     entity_class = Individus
 
-    '''
-        N'entrent pas en compte dans les ressources :
-        L'allocation compensatrice tierce personne, les allocations familiales,
-        l'allocation de logement, la retraite du combattant, les rentes viagères
-        constituées en faveur d'une personne handicapée ou dans la limite d'un
-        montant fixé à l'article D.821-6 du code de la sécurité sociale (1 830 €/an),
-        lorsqu'elles ont été constituées par une personne handicapée pour elle-même.
-        Le RMI (article R 531-10 du code de la sécurité sociale).
-        A partir du 1er juillet 2007, votre Caf, pour le calcul de votre Aah,
-        continue à prendre en compte les ressources de votre foyer diminuées de 20%.
-        Notez, dans certaines situations, la Caf évalue forfaitairement vos
-        ressources à partir de votre revenu mensuel.
-    '''
-
     def function(self, simulation, period):
         period = period.this_month
         return period, simulation.calculate('rev_act', period.n_2) + simulation.calculate('rev_pen', period.n_2)
 
 
+@reference_formula
+class aah_eligible(SimpleFormulaColumn):
+    column = BoolCol
+    label = u"Eligibilité à  l'Allocation adulte handicapé"
+    entity_class = Individus
 
     '''
         Allocation adulte handicapé
@@ -169,12 +160,6 @@ class aah_base_ressources_eval_annuelle(SimpleFormulaColumn):
         peut être versée au-delà de l'âge minimum légal de départ à la retraite en complément d'une retraite inférieure
         au minimum vieillesse.
     '''
-
-@reference_formula
-class aah_eligible(SimpleFormulaColumn):
-    column = BoolCol
-    label = u"Eligibilité à  l'Allocation adulte handicapé"
-    entity_class = Individus
 
     def function(self, simulation, period):
         period = period.this_month
