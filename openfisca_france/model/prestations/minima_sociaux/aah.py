@@ -235,6 +235,8 @@ class aah(SimpleFormulaColumn):
         period = period.this_month
 
         aah_base = simulation.calculate('aah_base', period)
+        # caah
+        # mva
 
         return period, aah_base
 
