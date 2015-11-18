@@ -196,7 +196,8 @@ class aah_non_calculable(SimpleFormulaColumn):
         taux_invalidite = simulation.calculate('taux_invalidite')
         aah_eligible = simulation.calculate('aah_eligible')
 
-        return period, self.any_by_roles(aah_eligible * (taux_invalidite < 0.8) * (taux_invalidite >= 0.5))
+        # Pour le moment résultat "pas assez fiable, donc on renvoit une non calculabilité tout le temps.
+        return period, self.any_by_roles(aah_eligible) # * (taux_invalidite < 0.8)
 
 
 @reference_formula
@@ -221,7 +222,8 @@ class aah_base(SimpleFormulaColumn):
             return max_(plaf_ress_aah - aah_base_ressources, 0) / 12
 
         # Le montant est à valeur pour une famille, il faut le caster pour l'individu
-        return period, aah_eligible * not_(aah_non_calculable) * self.cast_from_entity_to_roles(montant_aah(), entity = 'famille')
+        # Pour le moment, on ne neutralise pas l'aah en cas de non calculabilité pour pouvoir tester
+        return period, aah_eligible * self.cast_from_entity_to_roles(montant_aah(), entity = 'famille') # * not_(aah_non_calculable)
 
 
 @reference_formula
