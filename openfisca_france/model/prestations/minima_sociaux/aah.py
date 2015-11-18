@@ -242,14 +242,6 @@ class aah(SimpleFormulaColumn):
 
 
 @reference_formula
-class aah_famille(PersonToEntityColumn):
-    label = u"Total des AAH sur la famille"
-    entity_class = Familles
-    operation = 'add'
-    variable = aah
-
-
-@reference_formula
 class caah(DatedFormulaColumn):
     calculate_output = calculate_output_add
     column = FloatCol
