@@ -51,11 +51,11 @@ def build_reform(tax_benefit_system):
             Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
             Note : le supplément familial de traitement est imposable.
             """
-    #        period = period.start.offset('first-of', 'month').period('month')
+    #        period = period.this_month
 
             # Get value for year and divide below.
             salaire_imposable_pour_inversion = simulation.get_array('salaire_imposable_pour_inversion',
-                period.start.offset('first-of', 'year').period('year'))
+                period.this_year)
             if salaire_imposable_pour_inversion is None:
                 salaire_net = simulation.get_array('salaire_net', period)
                 if salaire_net is not None:
@@ -181,7 +181,7 @@ def build_reform(tax_benefit_system):
             """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
             """
             # Get value for year and divide below.
-            choi = simulation.get_array('choi', period.start.offset('first-of', 'year').period('year'))
+            choi = simulation.get_array('choi', period.this_year)
             if choi is None:
                 chonet = simulation.get_array('chonet', period)
                 if chonet is not None:
@@ -229,10 +229,10 @@ def build_reform(tax_benefit_system):
         def function(self, simulation, period):
             """"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
             """
-            # period = period.start.offset('first-of', 'month').period('month')
+            # period = period.this_month
 
             # Get value for year and divide below.
-            rsti = simulation.get_array('rsti', period.start.offset('first-of', 'year').period('year'))
+            rsti = simulation.get_array('rsti', period.this_year)
             if rsti is None:
                 rstnet = simulation.get_array('rstnet', period)
                 if rstnet is not None:

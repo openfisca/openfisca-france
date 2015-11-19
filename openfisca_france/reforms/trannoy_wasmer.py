@@ -25,7 +25,7 @@ def build_reform(tax_benefit_system):
         reference = charges_deductibles.charges_deduc
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
+            period = period.this_year
             cd1 = simulation.calculate('cd1', period)
             cd2 = simulation.calculate('cd2', period)
             charge_loyer = simulation.calculate('charge_loyer', period)
@@ -39,7 +39,7 @@ def build_reform(tax_benefit_system):
         label = u"Charge déductible pour paiement d'un loyer"
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
+            period = period.this_year
             loyer_holder = simulation.calculate('loyer', period)
             nbptr = simulation.calculate('nbptr', period)
             loyer = self.cast_from_entity_to_role(loyer_holder, entity = "menage", role = PREF)

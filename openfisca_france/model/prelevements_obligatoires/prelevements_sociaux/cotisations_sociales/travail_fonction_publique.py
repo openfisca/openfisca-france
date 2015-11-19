@@ -18,7 +18,7 @@ class allocations_temporaires_invalidite(SimpleFormulaColumn):
     # patronale, non-contributive
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
@@ -76,7 +76,7 @@ class contribution_exceptionnelle_solidarite(SimpleFormulaColumn):
     label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         hsup = simulation.calculate('hsup', period)
         type_sal = simulation.calculate('type_sal', period)
@@ -127,7 +127,7 @@ class fonds_emploi_hospitalier(SimpleFormulaColumn):
     label = u"Fonds pour l'emploi hospitalier (employeur)"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
@@ -150,7 +150,7 @@ class ircantec_salarie(SimpleFormulaColumn):
     label = u"Ircantec salarié"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         type_sal = simulation.calculate('type_sal', period)
@@ -173,7 +173,7 @@ class ircantec_employeur(SimpleFormulaColumn):
     label = u"Ircantec employeur"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         type_sal = simulation.calculate('type_sal', period)
@@ -197,7 +197,7 @@ class pension_civile_salarie(SimpleFormulaColumn):
     url = u"http://www.ac-besancon.fr/spip.php?article2662",
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)  # TODO: check nbi
         type_sal = simulation.calculate('type_sal', period)
         _P = simulation.legislation_at(period.start)
@@ -221,7 +221,7 @@ class pension_civile_employeur(SimpleFormulaColumn):
     url = u"http://www.ac-besancon.fr/spip.php?article2662"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         # plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         type_sal = simulation.calculate('type_sal', period)
@@ -248,7 +248,7 @@ class rafp_salarie(SimpleFormulaColumn):
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         type_sal = simulation.calculate('type_sal', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
@@ -276,7 +276,7 @@ class rafp_employeur(SimpleFormulaColumn):
 
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         type_sal = simulation.calculate('type_sal', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)

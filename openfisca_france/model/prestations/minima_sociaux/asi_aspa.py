@@ -115,7 +115,7 @@ class br_mv(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         br_mv_i_holder = simulation.compute('br_mv_i', period)
         ass = simulation.calculate('ass', period)
 
@@ -130,7 +130,7 @@ class aspa_elig(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         age = simulation.calculate('age', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
@@ -152,7 +152,7 @@ class asi_elig(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         last_month = period.start.period('month').offset(-1)
 
         aspa_elig = simulation.calculate('aspa_elig', period)
@@ -188,7 +188,7 @@ class asi_aspa_nb_alloc(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         aspa_elig_holder = simulation.compute('aspa_elig', period)
         asi_elig_holder = simulation.compute('asi_elig', period)
 
@@ -208,7 +208,7 @@ class asi(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         asi_elig_holder = simulation.compute('asi_elig', period)
         aspa_elig_holder = simulation.compute('aspa_elig', period)
         maries = simulation.calculate('maries', period)
@@ -292,7 +292,7 @@ class aspa(SimpleFormulaColumn):
     url = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         asi_elig_holder = simulation.compute('asi_elig', period)
         aspa_elig_holder = simulation.compute('aspa_elig', period)
         maries = simulation.calculate('maries', period)

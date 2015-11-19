@@ -113,7 +113,7 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Familles
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'month').period('month')
+            period = period.this_month
             paris_logement_familles_br_i_holder = simulation.compute('paris_logement_familles_br_i', period)
             paris_logement_familles_br = self.sum_by_entity(paris_logement_familles_br_i_holder)
             result = paris_logement_familles_br
@@ -127,7 +127,7 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Individus
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'month').period('month')
+            period = period.this_month
 
             invalide = simulation.calculate('invalide', period)
             plf_enfant = simulation.calculate('plf_enfant', period)
@@ -141,7 +141,7 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Individus
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'month').period('month')
+            period = period.this_month
             est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
             enfant_place = simulation.calculate('enfant_place', period)
             a_charge_fiscale = simulation.calculate('a_charge_fiscale', period)
@@ -155,7 +155,7 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Individus
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'month').period('month')
+            period = period.this_month
             alt = simulation.calculate('alt', period)
             plf_enfant = simulation.calculate('plf_enfant', period)
 
@@ -168,7 +168,7 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Individus
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'month').period('month')
+            period = period.this_month
             alt = simulation.calculate('alt', period)
             plf_enfant_handicape = simulation.calculate('plf_enfant_handicape', period)
 
@@ -181,7 +181,7 @@ def build_reform(tax_benefit_system):
         label = u"Allocation Paris-Logement-Familles en cas d'enfant handicapé"
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'month').period('month')
+            period = period.this_month
             plf_enfant_handicape = simulation.compute('plf_enfant_handicape', period)
             plf_enfant_handicape_garde_alternee = simulation.compute('plf_enfant_handicape_garde_alternee', period)
             br = simulation.calculate('paris_logement_familles_br', period)
@@ -211,7 +211,7 @@ def build_reform(tax_benefit_system):
         url = "http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193"  # noqa
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'month').period('month')
+            period = period.this_month
             elig = simulation.calculate('paris_logement_familles_elig', period)
             br = simulation.calculate('paris_logement_familles_br', period)
             plf_enfant = simulation.compute('plf_enfant', period)

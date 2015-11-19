@@ -45,7 +45,7 @@ class paje(SimpleFormulaColumn):
         '''
         Prestation d'accueil du jeune enfant
         '''
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         paje_base = simulation.calculate('paje_base', period)
         paje_naissance = simulation.calculate('paje_naissance', period)
@@ -64,7 +64,7 @@ class paje_base_montant(SimpleFormulaColumn):
     start_date = date(2004, 1, 1)
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         couple_biactif = simulation.calculate('biact', period)
         parent_isole = simulation.calculate('isol', period)
         nombre_enfants = simulation.calculate('af_nbenf', period)
@@ -146,7 +146,7 @@ class paje_base_enfant_eligible_avant_reforme_2014(SimpleFormulaColumn):
     label = u"Enfant ouvrant droit à la PAJE de base né avant le 1er avril 2014"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
         birth = simulation.calculate('birth', period)
@@ -165,7 +165,7 @@ class paje_base_enfant_eligible_apres_reforme_2014(SimpleFormulaColumn):
     label = u"Enfant ouvrant droit à la PAJE de base né après le 1er avril 2014"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
         birth = simulation.calculate('birth', period)
@@ -190,7 +190,7 @@ class paje_naissance(SimpleFormulaColumn):
         '''
         Prestation d'accueil du jeune enfant - Allocation de naissance
         '''
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age_en_mois_holder = simulation.compute('age_en_mois', period)
         # age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
@@ -252,7 +252,7 @@ class paje_clca(SimpleFormulaColumn):
 
         http://www.caf.fr/wps/portal/particuliers/catalogue/metropole/paje
         """
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         age_en_mois_holder = simulation.compute('age_en_mois', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
@@ -306,7 +306,7 @@ class paje_clca_taux_plein(SimpleFormulaColumn):
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         paje_clca = simulation.calculate('paje_clca', period)
         inactif = simulation.calculate('inactif', period)
 
@@ -322,7 +322,7 @@ class paje_clca_taux_partiel(SimpleFormulaColumn):
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         paje_clca = simulation.calculate('paje_clca', period)
         partiel1 = simulation.calculate('partiel1', period)
 
@@ -369,7 +369,7 @@ class paje_clmg(SimpleFormulaColumn):
         soit au max 45,00 €.
         Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
         '''
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         aah_holder = simulation.compute('aah', period)
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
@@ -378,7 +378,7 @@ class paje_clmg(SimpleFormulaColumn):
         hsup_holder = simulation.compute('hsup', period)
         concub = simulation.calculate('concub', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
-        br_pf = simulation.calculate('br_pf', period.start.offset('first-of', 'month').period('month'))
+        br_pf = simulation.calculate('br_pf', period.this_month)
         empl_dir = simulation.calculate('empl_dir', period)
         ass_mat = simulation.calculate('ass_mat', period)
         gar_dom = simulation.calculate('gar_dom', period)
@@ -458,7 +458,7 @@ class paje_colca(SimpleFormulaColumn):
         '''
         Prestation d'accueil du jeune enfant - Complément optionnel de libre choix du mode de garde
         '''
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         af_nbenf = simulation.calculate('af_nbenf', period)
         age_en_mois_holder = simulation.compute('age_en_mois', period)
@@ -492,7 +492,7 @@ class paje_base(SimpleFormulaColumn):
         '''
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         paje_base_montant = simulation.calculate('paje_base_montant', period)
         cf_montant = simulation.calculate('cf_montant', period)
@@ -626,7 +626,7 @@ class ape_temp(SimpleFormulaColumn):
         L'allocation parentale d'éducation n'est pas soumise à condition de ressources, sauf l’APE à taux partiel pour
         les professions non salariées.
         '''
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', accept_other_period = True)
         inactif = simulation.calculate('inactif', period)
@@ -669,10 +669,10 @@ class apje_temp(SimpleFormulaColumn):
         '''
         Allocation pour jeune enfant
         '''
-        period = period.start.offset('first-of', 'month').period('month')
-        br_pf = simulation.calculate('br_pf', period.start.offset('first-of', 'month').period('month'))
+        period = period.this_month
+        br_pf = simulation.calculate('br_pf', period.this_month)
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period.start.offset('first-of', 'month').period('month'))
+        smic55_holder = simulation.compute('smic55', period.this_month)
         biact = simulation.calculate_add('biact', period)
         isol = simulation.calculate('isol', period)
         P = simulation.legislation_at(period.start).fam
@@ -719,7 +719,7 @@ class ape(SimpleFormulaColumn):
         '''
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         apje_temp = simulation.calculate('apje_temp', period)
         ape_temp = simulation.calculate('ape_temp', period)
         cf_montant = simulation.calculate('cf_montant', period)
@@ -738,7 +738,7 @@ class apje(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         # L'APJE n'est pas cumulable avec le complément familial et l'APE
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         apje_temp = simulation.calculate('apje_temp', period)
         ape_temp = simulation.calculate('ape_temp', period)
         cf_montant = simulation.calculate('cf_montant', period)
