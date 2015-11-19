@@ -19,8 +19,8 @@ class bourse_college(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        rfr = simulation.calculate('rfr', period.start.offset('first-of', 'year').period('year').offset(-2))
+        period = period.this_month
+        rfr = simulation.calculate('rfr', period.n_2)
         age_holder = simulation.compute('age', period)
         scolarite_holder = simulation.compute('scolarite', period)
         P = simulation.legislation_at(period.start).bourses_education.bourse_college
@@ -60,7 +60,7 @@ class bourse_lycee_points_de_charge(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age_holder = simulation.compute('age', period)
         isol = simulation.calculate('isol', period)
 
@@ -86,9 +86,9 @@ class bourse_lycee_nombre_parts(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         points_de_charge = simulation.calculate('bourse_lycee_points_de_charge', period)
-        rfr = simulation.calculate('rfr', period.start.offset('first-of', 'year').period('year').offset(-2))
+        rfr = simulation.calculate('rfr', period.n_2)
         plafonds_reference = simulation.legislation_at(period.start).bourses_education.bourse_lycee.plafonds_reference
         increments_par_point_de_charge = simulation.legislation_at(period.start).bourses_education.bourse_lycee.increments_par_point_de_charge
 
@@ -122,7 +122,7 @@ class bourse_lycee(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         nombre_parts = simulation.calculate('bourse_lycee_nombre_parts', period)
         scolarite_holder = simulation.compute('scolarite', period)
         valeur_part = simulation.legislation_at(period.start).bourses_education.bourse_lycee.valeur_part

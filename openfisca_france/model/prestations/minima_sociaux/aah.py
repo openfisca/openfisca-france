@@ -13,8 +13,8 @@ class br_aah(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-#        annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
+        period = period.this_month
+    #        annee_fiscale_n_2 = period.n_2
 
 # inactifs ou travailleurs en ESAT :
         br_pf_n_2 = simulation.calculate_add('br_pf', period)
