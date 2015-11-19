@@ -457,6 +457,12 @@ class nb_enfant_rsa(SimpleFormulaColumn):
 
         return period, nbenf
 
+reference_input_variable(
+    column = BoolCol,
+    entity_class = Menages,
+    label = u"Partipation aux frais de logement pour un hebergé à titre gratuit",
+    name = 'participation_frais',
+    )
 
 @reference_formula
 class psa(DatedFormulaColumn):
@@ -852,13 +858,21 @@ class rsa_forfait_logement(SimpleFormulaColumn):
         rmi = simulation.legislation_at(period.start).minim.rmi.rmi
 
         rmi_nbp = simulation.calculate('rmi_nbp', period)
-        statut_occupation_holder = simulation.compute('statut_occupation', period)
         aide_logement = simulation.calculate('aide_logement', period)
 
+        statut_occupation_holder = simulation.compute('statut_occupation', period)
         statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
         statut_occupation = self.filter_role(statut_occupation, role = CHEF)
 
-        avantage_nature = or_(statut_occupation == 2, statut_occupation == 6)
+        participation_frais_holder = simulation.compute('participation_frais', period)
+        participation_frais = self.cast_from_entity_to_roles(participation_frais_holder)
+        participation_frais = self.filter_role(participation_frais, role = CHEF)
+
+        avantage_nature = or_(
+            statut_occupation == 2,
+            (statut_occupation == 6) * (1 - participation_frais)
+        )
+
         avantage_al = aide_logement > 0
 
         montant_forfait = rmi * (
