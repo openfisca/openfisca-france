@@ -156,7 +156,7 @@ class aide_logement_neutralisation_rsa(SimpleFormulaColumn):
         period = period.this_month
         # Circular definition, as rsa depends on al.
         # We don't allow it, so default value of rsa will be returned if a recursion is detected.
-        rsa_last_month = simulation.calculate('rsa', period.last_month, max_nb_recursive_calls = 0)
+        rsa_last_month = simulation.calculate('rsa', period.last_month, max_nb_cycles = 0)
         activite = simulation.compute('salaire_imposable', period.n_2)
         chomage = simulation.compute('cho', period.n_2)
         activite_n_2 = self.sum_by_entity(activite)
