@@ -9,6 +9,7 @@ description: |
   
   Le montant de RSA calculé est le bon (cf. RSA non majoré) mais le simulateur affiche en résultat le montant de RSA majoré pour situation d'isolement sans critère de conditions https://wiki.openfisca.fr/index.php/RSA#R.C3.A8gles_de_calcul)
 period: "month:2015-07"
+relative_error_margin: 0.02
 individus:
   - a_charge_fiscale: true
     activite: 1
