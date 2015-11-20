@@ -51,7 +51,6 @@
   absolute_error_margin: 1
   input_variables:
     taux_incapacite: 0.9
-  #    br_aah: 19780
     concub: 1
     af_nbenf: 1
   # plafond aah = 807.65 * (24 + 1/2)
