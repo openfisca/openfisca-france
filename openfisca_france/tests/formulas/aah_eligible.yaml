@@ -7,7 +7,7 @@
     age: 50
   output_variables:
     aah_eligible: True
-    aah_non_calculable: False
+    # aah_non_calculable: False
 
 - name: "Eligibilité AAH - Invalide, âge inférieur à retraite, pas de AEEH - 2"
   description: "Eligible à AAH"
