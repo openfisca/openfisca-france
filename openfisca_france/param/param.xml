@@ -1512,10 +1512,10 @@
           <BAREME code="formprof_09" description="Formation professionnelle (0-9 salaries)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1993-01-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2005-01-01" fin="2013-12-31" valeur="0.0055" />
+                <VALUE deb="2005-01-01" fin="2015-12-31" valeur="0.0055" />
                 <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.004" />
                 <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.0015" />
               </TAUX>
@@ -1524,10 +1524,11 @@
           <BAREME code="formprof_1019" description="Formation professionnelle (10-19 salaries)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1992-01-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1992-01-01" fin="2015-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2005-01-01" fin="2013-12-01" valeur="0.0105" />
+                <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.01" />
+                <VALUE deb="2005-01-01" fin="2014-12-31" valeur="0.0105" />
                 <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.016" />
                 <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
                 <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
@@ -1537,10 +1538,11 @@
           <BAREME code="formprof_20" description="Formation professionnelle (plus de 20 salariés)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1992-01-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1992-01-01" fin="2015-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.016" />
+                <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.01" />
+                <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.016" />
                 <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
                 <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
               </TAUX>
