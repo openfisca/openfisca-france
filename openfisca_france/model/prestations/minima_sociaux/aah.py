@@ -165,7 +165,7 @@ class aah_eligible(SimpleFormulaColumn):
         period = period.this_month
         law = simulation.legislation_at(period.start)
 
-        taux_incapacite = simulation.calculate('taux_incapacite')
+        taux_incapacite = simulation.calculate('taux_incapacite', period)
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
 
@@ -193,8 +193,8 @@ class aah_non_calculable(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.this_month
-        taux_incapacite = simulation.calculate('taux_incapacite')
-        aah_eligible = simulation.calculate('aah_eligible')
+        taux_incapacite = simulation.calculate('taux_incapacite', period)
+        aah_eligible = simulation.calculate('aah_eligible', period)
 
         # Pour le moment résultat "pas assez fiable, donc on renvoit une non calculabilité tout le temps.
         return period, self.any_by_roles(aah_eligible) # * (taux_incapacite < 0.8)
