@@ -165,12 +165,12 @@ class aah_eligible(SimpleFormulaColumn):
         period = period.this_month
         law = simulation.legislation_at(period.start)
 
-        taux_invalidite = simulation.calculate('taux_invalidite')
+        taux_incapacite = simulation.calculate('taux_incapacite')
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
 
         eligible_aah = (
-            (taux_invalidite >= 0.5) *
+            (taux_incapacite >= 0.5) *
             (age <= law.minim.aah.age_legal_retraite) *
             ((age >= law.fam.aeeh.age) + ((age >= 16) * (smic55)))
         )
@@ -193,11 +193,11 @@ class aah_non_calculable(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.this_month
-        taux_invalidite = simulation.calculate('taux_invalidite')
+        taux_incapacite = simulation.calculate('taux_incapacite')
         aah_eligible = simulation.calculate('aah_eligible')
 
         # Pour le moment résultat "pas assez fiable, donc on renvoit une non calculabilité tout le temps.
-        return period, self.any_by_roles(aah_eligible) # * (taux_invalidite < 0.8)
+        return period, self.any_by_roles(aah_eligible) # * (taux_incapacite < 0.8)
 
 
 @reference_formula
@@ -316,12 +316,12 @@ class caah(DatedFormulaColumn):
 
         elig_cpl = ((aah > 0) | (benef_asi > 0))
         # TODO: & logement indépendant & inactif 12 derniers mois
-        # & capa de travail < 5% & taux d'invalidité >= 80%
+        # & capa de travail < 5% & taux d'incapacité >= 80%
         compl_ress = elig_cpl * max_(grph - aah_montant, 0)
 
         elig_mva = (al > 0) * ((aah > 0) | (benef_asi > 0))
         # TODO: & logement indépendant & pas de revenus professionnels
-        # propres & capa de travail < 5% & taux d'invalidité >= 80%
+        # propres & capa de travail < 5% & taux d'incapacité >= 80%
         mva = 0.0 * elig_mva  # TODO: rentrer mva dans paramètres. mva (mensuelle) = 104,77 en 2015, était de 101,80 en 2006, et de 119,72 en 2007
 
         return period, max_(compl_ress, mva)

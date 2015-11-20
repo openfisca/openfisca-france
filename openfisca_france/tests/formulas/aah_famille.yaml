@@ -9,7 +9,7 @@
     af_nbenf: 0
   individus:
     - id: "parent1"
-      taux_invalidite: 0.9
+      taux_incapacite: 0.9
       age: 50 # eligible aah
   output_variables:
     aah_base: 0
@@ -25,7 +25,7 @@
     af_nbenf: 0
   individus:
     - id: "parent1"
-      taux_invalidite: 0.9
+      taux_incapacite: 0.9
       age: 27
   output_variables:
     aah_base: 800.45  # l'aah taux plein

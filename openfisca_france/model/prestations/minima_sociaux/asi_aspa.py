@@ -15,10 +15,10 @@ reference_input_variable(
     )
 
 reference_input_variable(
-    name = "taux_invalidite",
+    name = "taux_incapacite",
     column = FloatCol,
     entity_class = Individus,
-    label = u"Taux d'invalidité",
+    label = u"Taux d'incapacité",
     )
 
 
@@ -134,9 +134,9 @@ class aspa_elig(SimpleFormulaColumn):
 
         age = simulation.calculate('age', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
-        taux_invalidite = simulation.calculate('taux_invalidite', period)
+        taux_incapacite = simulation.calculate('taux_incapacite', period)
         P = simulation.legislation_at(period.start).minim
-        condition_invalidite = (taux_invalidite > P.aspa.taux_invalidite_aspa_anticipe) + inapte_travail
+        condition_invalidite = (taux_incapacite > P.aspa.taux_incapacite_aspa_anticipe) + inapte_travail
         condition_age_base = (age >= P.aspa.age_min)
         condition_age_anticipe = (age >= P.aah.age_legal_retraite) * condition_invalidite
         condition_age = condition_age_base + condition_age_anticipe

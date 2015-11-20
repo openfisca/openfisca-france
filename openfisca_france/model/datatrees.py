@@ -156,7 +156,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""scolarite""",  # Scolarité de l'enfant : collège, lycée...
                     u"""boursier""",  # Élève ou étudiant boursier
                     u"""inapte_travail""",  # Reconnu inapte au travail
-                    u"""taux_invalidite""",  # Taux d'invalidité
+                    u"""taux_incapacite""",  # Taux d'incapacité
                     u"""ass_precondition_remplie""",  # Éligible à l'ASS
                     u"""categ_inv""",  # Catégorie de handicap (AEEH)
                     u"""pensions_alimentaires_versees_individu""",  # Pensions alimentaires versées pour un individu

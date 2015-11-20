@@ -19,7 +19,7 @@ individus:
   interets_epargne_sur_livrets:
     2012-01: 0
   invalide: 1
-  taux_invalidite: 0.3
+  taux_incapacite: 0.3
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
