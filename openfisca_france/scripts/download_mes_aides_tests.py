@@ -1,7 +1,17 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""Download tests from Ludwig (https://mes-aides.gouv.fr/tests/)."""
+"""
+Download tests from Ludwig (https://mes-aides.gouv.fr/tests/).
+
+Usage examples:
+    python openfisca_france/scripts/download_mes_aides_tests.py
+
+    python openfisca_france/scripts/download_mes_aides_tests.py --test-ids xxx
+    python openfisca_france/scripts/download_mes_aides_tests.py --test-ids xxx yyy ...
+
+    python openfisca_france/scripts/download_mes_aides_tests.py --api-base-url http://localhost:9000
+"""
 
 
 import argparse
@@ -18,7 +28,6 @@ import yaml
 
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
-default_api_domain = u'mes-aides.gouv.fr'
 log = logging.getLogger(app_name)
 
 source_file_dir_name = os.path.dirname(os.path.abspath(__file__))
@@ -33,20 +42,20 @@ def fetch_json(url):
     return r.json()
 
 
-def fetch_situation(api_domain, situation_id):
-    url = u'https://{}/api/situations/{}/openfisca-request'.format(api_domain, situation_id)
+def fetch_situation(api_base_url, situation_id):
+    url = u'{}/api/situations/{}/openfisca-request'.format(api_base_url, situation_id)
     log.info(u'fetch situation: GET "{}"'.format(url))
     return fetch_json(url)
 
 
-def fetch_tests(api_domain):
-    url = u'https://{}/api/public/acceptance-tests'.format(api_domain)
+def fetch_tests(api_base_url):
+    url = u'{}/api/public/acceptance-tests'.format(api_base_url)
     log.info(u'fetch tests: GET "{}"'.format(url))
     return fetch_json(url)
 
 
-def iter_yaml_items(api_domain, test):
-    situation_json = fetch_situation(api_domain = api_domain, situation_id = test['scenario']['situationId'])
+def iter_yaml_items(api_base_url, test):
+    situation_json = fetch_situation(api_base_url = api_base_url, situation_id = test['scenario']['situationId'])
     log.info(u'ID: {} [{}] {}'.format(test['_id'], u', '.join(sorted(test['keywords'])), test['name']))
     scenarios = situation_json['scenarios']
     assert len(scenarios) == 1, scenarios
@@ -77,7 +86,7 @@ def iter_yaml_items(api_domain, test):
 
 def main():
     parser = argparse.ArgumentParser(description = __doc__)
-    parser.add_argument('--api-domain', default = default_api_domain, help = u'Ludwig API domain URL')
+    parser.add_argument('--api-base-url', default = u'https://mes-aides.gouv.fr', help = u'Ludwig API base URL')
     parser.add_argument('--output-dir', default = tests_dir_path, help = u'Where to write the tests')
     parser.add_argument('--tests-json', default = None, help = u'Do not download tests, use given file')
     parser.add_argument('--test-ids', default = None, help = u'Download only those IDs', nargs = '+')
@@ -92,7 +101,7 @@ def main():
     existing_yaml_files_name = set(os.listdir(args.output_dir))
 
     if args.tests_json is None:
-        tests_json = fetch_tests(api_domain = args.api_domain)
+        tests_json = fetch_tests(api_base_url = args.api_base_url)
     else:
         log.info(u'load tests JSON file "{}"'.format(args.tests_json))
         with open(args.tests_json) as tests_json_file:
@@ -117,7 +126,8 @@ def main():
         yaml_file_name = u'test_mes_aides_{}.yaml'.format(test_json['_id'])
         yaml_file_path = os.path.join(args.output_dir, yaml_file_name)
         with open(yaml_file_path, 'w') as yaml_file:
-            for yaml_key, yaml_value, default_style in iter_yaml_items(api_domain = args.api_domain, test = test_json):
+            for yaml_key, yaml_value, default_style in iter_yaml_items(api_base_url = args.api_base_url,
+                    test = test_json):
                 yaml.safe_dump({yaml_key: yaml_value}, yaml_file, allow_unicode = True, encoding = 'utf-8',
                     default_flow_style = False, default_style = default_style, indent = 2, width = 120)
 
