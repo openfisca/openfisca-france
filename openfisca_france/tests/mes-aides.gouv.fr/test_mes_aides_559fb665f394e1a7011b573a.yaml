@@ -42,7 +42,7 @@ individus:
   interets_epargne_sur_livrets:
     2012-01: 0
   invalide: 1
-  taux_invalidite: 0.9
+  taux_incapacite: 0.9
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
   tns_micro_entreprise_type_activite: bic
