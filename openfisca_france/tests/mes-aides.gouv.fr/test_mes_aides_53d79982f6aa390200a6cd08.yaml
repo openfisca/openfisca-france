@@ -1,60 +1,60 @@
 name: Chômeur, 1 enfant, locataire
 keywords:
-  - majoration
-  - rsa
-description: "Réponse : affiche le RSA majoré (pas suffisamment d'infos pour trancher)"
-period: "month:2014-07"
+- majoration
+- rsa
+description: 'Réponse : affiche le RSA majoré (pas suffisamment d''infos pour trancher)'
+period: month:2014-07
 individus:
-  - age: 34
-    age_en_mois: 414
-    birth: "1979-12-21"
-    enceinte: false
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 53d79969f6aa390200a6cd01
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 54
-    birth: "2009-12-31"
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 53d79969f6aa390200a6cd00
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    pensions_alimentaires_percues:
-      2012: 600
-      2013-07: 0
-      2013-08: 0
-      2013-09: 0
-      2013-10: 0
-      2013-11: 0
-      2013-12: 0
-      2014-01: 0
-      2014-02: 0
-      2014-03: 0
-      2014-04: 200
-      2014-04:3: 600
-      2014-05: 200
-      2014-06: 200
-      2014-07: 200
-      year:2013-07: 600
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- age: 34
+  age_en_mois: 414
+  birth: '1979-12-21'
+  enceinte: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 53d79969f6aa390200a6cd01
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- age: 4
+  age_en_mois: 54
+  birth: '2009-12-31'
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 53d79969f6aa390200a6cd00
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  pensions_alimentaires_percues:
+    '2012': 600
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 200
+    2014-04:3: 600
+    2014-05: 200
+    2014-06: 200
+    2014-07: 200
+    year:2013-07: 600
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
     2013-07: 0
     2013-08: 0
     2013-09: 0
@@ -236,7 +236,8 @@ familles:
     2014-05: 0
     2014-06: 0
     year:2013-07: 0
-  enfants: 53d79969f6aa390200a6cd00
+  enfants:
+  - 53d79969f6aa390200a6cd00
   paje_base:
     2013-07: 0
     2013-08: 0
@@ -251,7 +252,8 @@ familles:
     2014-05: 0
     2014-06: 0
     year:2013-07: 0
-  parents: 53d79969f6aa390200a6cd01
+  parents:
+  - 53d79969f6aa390200a6cd01
   paris_logement_familles:
     2013-07: 0
     2013-08: 0
@@ -311,10 +313,13 @@ familles:
     2014-06: 0
     year:2013-07: 0
 foyers_fiscaux:
-  declarants: 53d79969f6aa390200a6cd01
-  personnes_a_charge: 53d79969f6aa390200a6cd00
+- declarants:
+  - 53d79969f6aa390200a6cd01
+  personnes_a_charge:
+  - 53d79969f6aa390200a6cd00
 menages:
-  enfants: 53d79969f6aa390200a6cd00
+- enfants:
+  - 53d79969f6aa390200a6cd00
   loyer: 499
   personne_de_reference: 53d79969f6aa390200a6cd01
   statut_occupation: 4

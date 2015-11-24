@@ -1,107 +1,107 @@
 name: Couple avec 1 enfant avant 01/04/2014 revenu < plafond
 keywords:
-  - paje
-  - plafonds
-description: |
+- paje
+- plafonds
+"description": |-
   Enfant né avant 01/04/2014
   Couple avec 1 revenu < plafond : 35 729 euros
-period: "month:2015-05"
+period: month:2015-05
 individus:
-  - age: 54
-    age_en_mois: 656
-    birth: "1960-09-08"
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 55688ea0a38f5d14462ec462
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    salaire_de_base:
-      2014-05: 4843.304843304843
-      2014-06: 4843.304843304843
-      2014-07: 4843.304843304843
-      2014-08: 4843.304843304843
-      2014-09: 4843.304843304843
-      2014-10: 4843.304843304843
-      2014-11: 4843.304843304843
-      2014-12: 4843.304843304843
-      2015-01: 4843.304843304843
-      2015-02: 0
-      2015-02:3: 0
-      2015-03: 0
-      2015-04: 0
-      year:2014-05: 43589.74358974359
-    salaire_imposable:
-      2013: 30000
-      2014-05: 3915.775641025641
-      2014-06: 3915.775641025641
-      2014-07: 3915.775641025641
-      2014-08: 3915.775641025641
-      2014-09: 3915.775641025641
-      2014-10: 3915.775641025641
-      2014-11: 3915.775641025641
-      2014-12: 3915.775641025641
-      2015-01: 3915.775641025641
-      2015-02: 0
-      2015-02:3: 0
-      2015-03: 0
-      2015-04: 0
-      year:2014-05: 35241.98076923077
-    salaire_net:
-      2014-05: 3777.777777777778
-      2014-06: 3777.777777777778
-      2014-07: 3777.777777777778
-      2014-08: 3777.777777777778
-      2014-09: 3777.777777777778
-      2014-10: 3777.777777777778
-      2014-11: 3777.777777777778
-      2014-12: 3777.777777777778
-      2015-01: 3777.777777777778
-      2015-02: 0
-      2015-02:3: 0
-      2015-03: 0
-      2015-04: 0
-      year:2014-05: 34000
-    statmarit: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 55
-    age_en_mois: 660
-    birth: "1960-05-03"
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 55688ea0a38f5d14462ec461
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    statmarit: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 1
-    age_en_mois: 21
-    birth: "2013-08-09"
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 55688ea0a38f5d14462ec460
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- age: 54
+  age_en_mois: 656
+  birth: '1960-09-08'
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 55688ea0a38f5d14462ec462
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  salaire_de_base:
+    2014-05: 4843.304843304843
+    2014-06: 4843.304843304843
+    2014-07: 4843.304843304843
+    2014-08: 4843.304843304843
+    2014-09: 4843.304843304843
+    2014-10: 4843.304843304843
+    2014-11: 4843.304843304843
+    2014-12: 4843.304843304843
+    2015-01: 4843.304843304843
+    2015-02: 0
+    2015-02:3: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 43589.74358974359
+  salaire_imposable:
+    '2013': 30000
+    2014-05: 3915.775641025641
+    2014-06: 3915.775641025641
+    2014-07: 3915.775641025641
+    2014-08: 3915.775641025641
+    2014-09: 3915.775641025641
+    2014-10: 3915.775641025641
+    2014-11: 3915.775641025641
+    2014-12: 3915.775641025641
+    2015-01: 3915.775641025641
+    2015-02: 0
+    2015-02:3: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 35241.98076923077
+  salaire_net:
+    2014-05: 3777.777777777778
+    2014-06: 3777.777777777778
+    2014-07: 3777.777777777778
+    2014-08: 3777.777777777778
+    2014-09: 3777.777777777778
+    2014-10: 3777.777777777778
+    2014-11: 3777.777777777778
+    2014-12: 3777.777777777778
+    2015-01: 3777.777777777778
+    2015-02: 0
+    2015-02:3: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 34000
+  statmarit: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- age: 55
+  age_en_mois: 660
+  birth: '1960-05-03'
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 55688ea0a38f5d14462ec461
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  statmarit: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- age: 1
+  age_en_mois: 21
+  birth: '2013-08-09'
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 55688ea0a38f5d14462ec460
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -283,7 +283,8 @@ familles:
     2015-03: 0
     2015-04: 0
     year:2014-05: 0
-  enfants: 55688ea0a38f5d14462ec460
+  enfants:
+  - 55688ea0a38f5d14462ec460
   paje_base:
     2014-05: 0
     2014-06: 0
@@ -299,8 +300,8 @@ familles:
     2015-04: 0
     year:2014-05: 0
   parents:
-    - 55688ea0a38f5d14462ec462
-    - 55688ea0a38f5d14462ec461
+  - 55688ea0a38f5d14462ec462
+  - 55688ea0a38f5d14462ec461
   paris_logement_familles:
     2014-05: 0
     2014-06: 0
@@ -358,15 +359,18 @@ familles:
     2015-04: 0
     year:2014-05: 0
 foyers_fiscaux:
-  declarants:
-    - 55688ea0a38f5d14462ec462
-    - 55688ea0a38f5d14462ec461
-  personnes_a_charge: 55688ea0a38f5d14462ec460
-  rfr:
+- declarants:
+  - 55688ea0a38f5d14462ec462
+  - 55688ea0a38f5d14462ec461
+  personnes_a_charge:
+  - 55688ea0a38f5d14462ec460
+  rfr: {}
 menages:
-  conjoint: 55688ea0a38f5d14462ec461
-  depcom: 76540
-  enfants: 55688ea0a38f5d14462ec460
+- conjoint: 55688ea0a38f5d14462ec461
+  depcom: '76540'
+  enfants:
+  - 55688ea0a38f5d14462ec460
+  participation_frais: false
   personne_de_reference: 55688ea0a38f5d14462ec462
   statut_occupation: 6
 output_variables:

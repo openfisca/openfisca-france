@@ -1,17 +1,14 @@
-name: "TNS agricole en métopole - personne seule"
+name: TNS agricole en métopole - personne seule
 keywords:
-  - rsa
-  - tns
-description: |
-  Éligibilité au RSA d'un TNS agricole seul 
-  Bénéfice agricole = 7000€ < 800*SMIC horaire = 7688€
-  
-  Ne pas afficher de montant
-period: "month:2015-04"
+- rsa
+- tns
+"description": "Éligibilité au RSA d'un TNS agricole seul \nBénéfice agricole = 7000€ < 800*SMIC horaire = 7688€\n\nNe pas\
+  \ afficher de montant"
+period: month:2015-04
 individus:
-  age: 35
+- age: 35
   age_en_mois: 420
-  birth: "1980-04-13"
+  birth: '1980-04-13'
   epargne_non_remuneree:
     2012-01: 0
   etu: 0
@@ -21,13 +18,13 @@ individus:
     2012-01: 0
   invalide: 0
   tns_benefice_exploitant_agricole:
-    2014: 7000
+    '2014': 7000
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -209,7 +206,7 @@ familles:
     2015-02: 0
     2015-03: 0
     year:2014-04: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -224,7 +221,8 @@ familles:
     2015-02: 0
     2015-03: 0
     year:2014-04: 0
-  parents: 553fb5c117d9db60391c3417
+  parents:
+  - 553fb5c117d9db60391c3417
   paris_logement_familles:
     2014-04: 0
     2014-05: 0
@@ -282,11 +280,13 @@ familles:
     2015-03: 0
     year:2014-04: 0
 foyers_fiscaux:
-  declarants: 553fb5c117d9db60391c3417
-  personnes_a_charge:
+- declarants:
+  - 553fb5c117d9db60391c3417
+  personnes_a_charge: []
 menages:
-  depcom: 14500
-  enfants:
+- depcom: '14500'
+  enfants: []
+  participation_frais: false
   personne_de_reference: 553fb5c117d9db60391c3417
   statut_occupation: 6
 output_variables:

@@ -1,60 +1,57 @@
 name: Personne seule + 65 ANS
 keywords:
-  - age
-  - al
-  - recette
-description: |
-  Test créé à partir d'un dossier de demande de RSA, APL…) : 
-  Rsa non simulé : personne + 65 ans doit faire valoir droit à retraite
-  La personne est bénéficiaire du RSA socle en attendant qu'elle ait fait valoir ses droits à la retraite et à l'ASPA. 
-  
-  différence APL= pas de neutralisation ressources annuelles en tant que bénéfciaire du RSA
-period: "month:2015-07"
+- age
+- al
+- recette
+"description": "Test créé à partir d'un dossier de demande de RSA, APL…) : \nRsa non simulé : personne + 65 ans doit faire\
+  \ valoir droit à retraite\nLa personne est bénéficiaire du RSA socle en attendant qu'elle ait fait valoir ses droits à la\
+  \ retraite et à l'ASPA. \n\ndifférence APL= pas de neutralisation ressources annuelles en tant que bénéfciaire du RSA"
+period: month:2015-07
 relative_error_margin: 0.02
 individus:
-  - a_charge_fiscale: true
-    age: 65
-    age_en_mois: 780
-    birth: "1950-06-27"
-    enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 559fb566ecfc1e52013e3e1d
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    tns_auto_entrepreneur_type_activite: bic
-    tns_autres_revenus_type_activite: bic
-    tns_micro_entreprise_type_activite: bic
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - a_charge_fiscale: true
-    age: 33
-    age_en_mois: 404
-    birth: "1981-10-11"
-    enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 5633aeabeeab276a0422a3c2
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 1
-    taux_incapacite: 0.9
-    tns_auto_entrepreneur_type_activite: bic
-    tns_autres_revenus_type_activite: bic
-    tns_micro_entreprise_type_activite: bic
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- a_charge_fiscale: true
+  age: 65
+  age_en_mois: 780
+  birth: '1950-06-27'
+  enfant_place: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 559fb566ecfc1e52013e3e1d
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  tns_auto_entrepreneur_type_activite: bic
+  tns_autres_revenus_type_activite: bic
+  tns_micro_entreprise_type_activite: bic
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- a_charge_fiscale: true
+  age: 33
+  age_en_mois: 404
+  birth: '1981-10-11'
+  enfant_place: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 5633aeabeeab276a0422a3c2
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 1
+  taux_invalidite: 0.9
+  tns_auto_entrepreneur_type_activite: bic
+  tns_autres_revenus_type_activite: bic
+  tns_micro_entreprise_type_activite: bic
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
     2014-07: 0
     2014-08: 0
     2014-09: 0
@@ -236,7 +233,8 @@ familles:
     2015-05: 0
     2015-06: 0
     year:2014-07: 0
-  enfants: 5633aeabeeab276a0422a3c2
+  enfants:
+  - 5633aeabeeab276a0422a3c2
   paje_base:
     2014-07: 0
     2014-08: 0
@@ -251,7 +249,8 @@ familles:
     2015-05: 0
     2015-06: 0
     year:2014-07: 0
-  parents: 559fb566ecfc1e52013e3e1d
+  parents:
+  - 559fb566ecfc1e52013e3e1d
   paris_logement_familles:
     2014-07: 0
     2014-08: 0
@@ -311,11 +310,14 @@ familles:
     2015-06: 0
     year:2014-07: 0
 foyers_fiscaux:
-  declarants: 559fb566ecfc1e52013e3e1d
-  personnes_a_charge: 5633aeabeeab276a0422a3c2
+- declarants:
+  - 559fb566ecfc1e52013e3e1d
+  personnes_a_charge:
+  - 5633aeabeeab276a0422a3c2
 menages:
-  depcom: 77062
-  enfants: 5633aeabeeab276a0422a3c2
+- depcom: '77062'
+  enfants:
+  - 5633aeabeeab276a0422a3c2
   loyer: 758
   parisien: false
   personne_de_reference: 559fb566ecfc1e52013e3e1d

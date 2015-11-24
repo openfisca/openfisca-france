@@ -1,20 +1,20 @@
-name: "APL - ABATTEMENT RETRAITE"
+name: APL - ABATTEMENT RETRAITE
 keywords:
-  - abattements
-  - base ressources
-  - recette
-description: |
-  Test créé à partir d'un dossier de demande de APL - personne isolée retraitée depuis 01/10/2014
-  Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : autres revenus - revenus trimestriels non connus pou RSA - montant  charges 
-  La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) : non application de l'abattement 30%personnes âgée sur les salaires année 2013
-period: "month:2015-09"
+- abattements
+- base ressources
+- recette
+"description": "Test créé à partir d'un dossier de demande de APL - personne isolée retraitée depuis 01/10/2014\nCes paramètres\
+  \ (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : autres revenus - revenus trimestriels\
+  \ non connus pou RSA - montant  charges \nLa différence observée provient a priori de (prestations manquantes, règles non\
+  \ prises en compte…) : non application de l'abattement 30%personnes âgée sur les salaires année 2013"
+period: month:2015-09
 relative_error_margin: 0.02
 individus:
-  a_charge_fiscale: true
+- a_charge_fiscale: true
   activite: 3
   age: 64
   age_en_mois: 775
-  birth: "1951-01-10"
+  birth: '1951-01-10'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
@@ -40,7 +40,7 @@ individus:
     2015-08: 0
     year:2014-09: 17765.38461538462
   salaire_imposable:
-    2013: 13857
+    '2013': 13857
     2014-09: 1595.9089134615385
     2014-10: 1595.9089134615385
     2014-11: 1595.9089134615385
@@ -75,7 +75,7 @@ individus:
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
     2014-09: 0
     2014-10: 0
     2014-11: 0
@@ -257,7 +257,7 @@ familles:
     2015-07: 0
     2015-08: 0
     year:2014-09: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-09: 0
     2014-10: 0
@@ -272,7 +272,8 @@ familles:
     2015-07: 0
     2015-08: 0
     year:2014-09: 0
-  parents: 55f01daa8c9ccb340464e89e
+  parents:
+  - 55f01daa8c9ccb340464e89e
   paris_logement_familles:
     2014-09: 0
     2014-10: 0
@@ -331,12 +332,13 @@ familles:
     2015-08: 0
     year:2014-09: 0
 foyers_fiscaux:
-  declarants: 55f01daa8c9ccb340464e89e
-  personnes_a_charge:
-  rfr:
+- declarants:
+  - 55f01daa8c9ccb340464e89e
+  personnes_a_charge: []
+  rfr: {}
 menages:
-  depcom: 44109
-  enfants:
+- depcom: '44109'
+  enfants: []
   loyer: 292
   parisien: false
   personne_de_reference: 55f01daa8c9ccb340464e89e

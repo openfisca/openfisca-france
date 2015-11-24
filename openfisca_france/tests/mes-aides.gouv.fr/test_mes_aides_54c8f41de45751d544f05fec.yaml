@@ -1,18 +1,19 @@
 name: Abattement de 30% pour le chômage indemnisé
 keywords:
-  - abattements
-  - base ressources
-  - "cmu-c/acs"
-description: "Un demandeur d'emploi touchant une ARE dans la limite de 30% au-dessus du plafond de la CMU-C doit pouvoir en bénéficier"
-period: "month:2015-01"
+- abattements
+- base ressources
+- cmu-c/acs
+description: Un demandeur d'emploi touchant une ARE dans la limite de 30% au-dessus du plafond de la CMU-C doit pouvoir en
+  bénéficier
+period: month:2015-01
 individus:
-  activite: 1
+- activite: 1
   age: 34
   age_en_mois: 418
   ass_precondition_remplie: false
-  birth: "1980-03-02"
+  birth: '1980-03-02'
   chobrut:
-    2013: 1.1035426477850518
+    '2013': 1.1035426477850518
     2014-01: 0
     2014-02: 0
     2014-03: 0
@@ -29,7 +30,7 @@ individus:
     2015-01: 1.1035426477850518
     year:2014-01: 1.1035426477850518
   chonet:
-    2013: 1
+    '2013': 1
     2014-01: 0
     2014-02: 0
     2014-03: 0
@@ -54,7 +55,7 @@ individus:
     2012-01: 0
   invalide: 0
   salaire_de_base:
-    2013: 14307.692307692305
+    '2013': 14307.692307692305
     2014-01: 1192.3076923076924
     2014-02: 1192.3076923076924
     2014-03: 1192.3076923076924
@@ -71,7 +72,7 @@ individus:
     2015-01: 1192.3076923076924
     year:2014-01: 14307.692307692305
   salaire_imposable:
-    2013: 11567.661923076921
+    '2013': 11567.661923076921
     2014-01: 963.971826923077
     2014-02: 963.971826923077
     2014-03: 963.971826923077
@@ -88,7 +89,7 @@ individus:
     2015-01: 963.971826923077
     year:2014-01: 11567.661923076921
   salaire_net:
-    2013: 11160
+    '2013': 11160
     2014-01: 930
     2014-02: 930
     2014-03: 930
@@ -109,7 +110,7 @@ individus:
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
     2014-01: 0
     2014-02: 0
     2014-03: 0
@@ -291,7 +292,7 @@ familles:
     2014-11: 0
     2014-12: 0
     year:2014-01: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -306,7 +307,8 @@ familles:
     2014-11: 0
     2014-12: 0
     year:2014-01: 0
-  parents: 54c8f2dbe45751d544f05fde
+  parents:
+  - 54c8f2dbe45751d544f05fde
   paris_logement_familles:
     2014-01: 0
     2014-02: 0
@@ -364,11 +366,12 @@ familles:
     2014-12: 0
     year:2014-01: 0
 foyers_fiscaux:
-  declarants: 54c8f2dbe45751d544f05fde
-  personnes_a_charge:
+- declarants:
+  - 54c8f2dbe45751d544f05fde
+  personnes_a_charge: []
 menages:
-  depcom: 75118
-  enfants:
+- depcom: '75118'
+  enfants: []
   personne_de_reference: 54c8f2dbe45751d544f05fde
   statut_occupation: 2
 output_variables:

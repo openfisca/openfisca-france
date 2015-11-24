@@ -1,63 +1,64 @@
-name: "Couple RSA neutralisation n-2"
-keywords: al
-description: "La perception du RSA socle entraîne la neutralisation des ressources N-2"
-period: "month:2015-06"
+name: Couple RSA neutralisation n-2
+keywords:
+- al
+description: La perception du RSA socle entraîne la neutralisation des ressources N-2
+period: month:2015-06
 relative_error_margin: 0.02
 individus:
-  - activite: 1
-    age: 55
-    age_en_mois: 665
-    ass_precondition_remplie: false
-    birth: "1960-01-01"
-    cho:
-      2013: 100000
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 5592b4049e2a9d0330e7a5b5
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    rst:
-      2013: 0
-    salaire_imposable:
-      2013: 100000
-    statmarit: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - activite: 1
-    age: 55
-    age_en_mois: 665
-    ass_precondition_remplie: false
-    birth: "1960-01-01"
-    cho:
-      2013: 0
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 5592b4049e2a9d0330e7a5b3
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    rst:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statmarit: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- activite: 1
+  age: 55
+  age_en_mois: 665
+  ass_precondition_remplie: false
+  birth: '1960-01-01'
+  cho:
+    '2013': 100000
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 5592b4049e2a9d0330e7a5b5
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  pensions_alimentaires_percues:
+    '2013': 0
+  rst:
+    '2013': 0
+  salaire_imposable:
+    '2013': 100000
+  statmarit: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- activite: 1
+  age: 55
+  age_en_mois: 665
+  ass_precondition_remplie: false
+  birth: '1960-01-01'
+  cho:
+    '2013': 0
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 5592b4049e2a9d0330e7a5b3
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  pensions_alimentaires_percues:
+    '2013': 0
+  rst:
+    '2013': 0
+  salaire_imposable:
+    '2013': 0
+  statmarit: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
     2014-06: 0
     2014-07: 0
     2014-08: 0
@@ -239,7 +240,7 @@ familles:
     2015-04: 0
     2015-05: 0
     year:2014-06: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-06: 0
     2014-07: 0
@@ -255,8 +256,8 @@ familles:
     2015-05: 0
     year:2014-06: 0
   parents:
-    - 5592b4049e2a9d0330e7a5b5
-    - 5592b4049e2a9d0330e7a5b3
+  - 5592b4049e2a9d0330e7a5b5
+  - 5592b4049e2a9d0330e7a5b3
   paris_logement_familles:
     2014-06: 0
     2014-07: 0
@@ -317,17 +318,17 @@ familles:
     2015-05: 0
     year:2014-06: 0
 foyers_fiscaux:
-  declarants:
-    - 5592b4049e2a9d0330e7a5b5
-    - 5592b4049e2a9d0330e7a5b3
+- declarants:
+  - 5592b4049e2a9d0330e7a5b5
+  - 5592b4049e2a9d0330e7a5b3
   pensions_alimentaires_versees:
-    2013: 0
-  personnes_a_charge:
-  rfr:
+    '2013': 0
+  personnes_a_charge: []
+  rfr: {}
 menages:
-  conjoint: 5592b4049e2a9d0330e7a5b3
-  depcom: 13209
-  enfants:
+- conjoint: 5592b4049e2a9d0330e7a5b3
+  depcom: '13209'
+  enfants: []
   loyer: 400
   personne_de_reference: 5592b4049e2a9d0330e7a5b5
   statut_occupation: 5

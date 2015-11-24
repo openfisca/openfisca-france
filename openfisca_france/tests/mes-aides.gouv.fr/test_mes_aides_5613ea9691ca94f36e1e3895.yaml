@@ -1,14 +1,15 @@
-name: "CMUC/ACS : abattement 30% appliqué à tort"
-keywords:
-description: La personne est demandeur d'emploi mais n'est pas indemnisée. L'abattement de 30% ne doit pas être appliqué. Le montant de ses ressources ne lui ouvre aucun droit CMUC/ACS
-period: "month:2015-10"
+name: 'CMUC/ACS : abattement 30% appliqué à tort'
+keywords: []
+description: La personne est demandeur d'emploi mais n'est pas indemnisée. L'abattement de 30% ne doit pas être appliqué.
+  Le montant de ses ressources ne lui ouvre aucun droit CMUC/ACS
+period: month:2015-10
 individus:
-  a_charge_fiscale: true
+- a_charge_fiscale: true
   activite: 1
   age: 51
   age_en_mois: 621
   ass_precondition_remplie: false
-  birth: "1964-01-01"
+  birth: '1964-01-01'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
@@ -16,7 +17,7 @@ individus:
   id: 5613ea8a9c6bb8f86e34da3a
   inapte_travail: 0
   indemnites_journalieres_maladie:
-    2013: 4000.0000000000005
+    '2013': 4000.0000000000005
     2014-10: 177.77777777777777
     2014-11: 177.77777777777777
     2014-12: 177.77777777777777
@@ -36,7 +37,7 @@ individus:
     2012-01: 0
   invalide: 0
   salaire_de_base:
-    2013: 11538.461538461537
+    '2013': 11538.461538461537
     2014-10: 1282.051282051282
     2014-11: 1282.051282051282
     2014-12: 1282.051282051282
@@ -52,7 +53,7 @@ individus:
     2015-09: 0
     year:2014-10: 11538.461538461537
   salaire_imposable:
-    2013: 9328.759615384613
+    '2013': 9328.759615384613
     2014-10: 1036.5288461538462
     2014-11: 1036.5288461538462
     2014-12: 1036.5288461538462
@@ -68,7 +69,7 @@ individus:
     2015-09: 0
     year:2014-10: 9328.759615384613
   salaire_net:
-    2013: 9000
+    '2013': 9000
     2014-10: 1000
     2014-11: 1000
     2014-12: 1000
@@ -88,7 +89,7 @@ individus:
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
     2014-10: 0
     2014-11: 0
     2014-12: 0
@@ -270,7 +271,7 @@ familles:
     2015-08: 0
     2015-09: 0
     year:2014-10: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-10: 0
     2014-11: 0
@@ -285,7 +286,8 @@ familles:
     2015-08: 0
     2015-09: 0
     year:2014-10: 0
-  parents: 5613ea8a9c6bb8f86e34da3a
+  parents:
+  - 5613ea8a9c6bb8f86e34da3a
   paris_logement_familles:
     2014-10: 0
     2014-11: 0
@@ -344,11 +346,12 @@ familles:
     2015-09: 0
     year:2014-10: 0
 foyers_fiscaux:
-  declarants: 5613ea8a9c6bb8f86e34da3a
-  personnes_a_charge:
+- declarants:
+  - 5613ea8a9c6bb8f86e34da3a
+  personnes_a_charge: []
 menages:
-  depcom: 77255
-  enfants:
+- depcom: '77255'
+  enfants: []
   loyer: 500
   parisien: false
   personne_de_reference: 5613ea8a9c6bb8f86e34da3a
