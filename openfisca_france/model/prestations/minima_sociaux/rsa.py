@@ -959,7 +959,7 @@ class rsa_non_calculable(SimpleFormulaColumn):
         default = 0
     )
     entity_class = Familles
-    label = u"RSA non calculable pour la Famille (voir rsa_non_calculable_i)"
+    label = u"RSA non calculable"
 
     def function(self, simulation, period):
         period = period.this_month

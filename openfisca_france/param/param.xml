@@ -429,6 +429,9 @@
         <VALUE deb="2002-07-01" fin="2003-06-30" valeur="6.83" />
         <VALUE deb="2001-08-01" fin="2002-06-30" valeur="6.67" />
       </CODE>
+      <CODE code="nb_heure_travail_mensuel" description="Nombre d'heures travaillées forfaitaires" format="float">
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="151.67" />
+      </CODE>
       <CODE code="plaf_th_1" description="Plafond d'exonération de la taxe d'habitation: première part" format="integer" type="monetary">
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="10224" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="10024" />
@@ -5347,12 +5350,8 @@
       <CODE code="age_min" description="Âge minimal requis" format="integer" type="age">
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="65" />
       </CODE>
-      <CODE code="taux_invalidite_aspa_anticipe" description="Taux d'invalidité nécessaire pour percevoir l'ASPA de manière anticipée" format="percent">
+      <CODE code="taux_incapacite_aspa_anticipe" description="Taux d'incapacité nécessaire pour percevoir l'ASPA de manière anticipée" format="percent">
         <VALUE deb="2002-01-01"  fin="2015-12-31" valeur="0.5"/>
-      </CODE>
-      <CODE code="abattement_forfaitaire_nb_h" description="Nombre d'heures travaillées forfaitaires" format="float">
-        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
-        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="151.67" />
       </CODE>
       <CODE code="abattement_forfaitaire_tx_seul" description="Fraction du SMIC pour l'abattement (personne seule)" format="float">
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
@@ -5478,6 +5477,7 @@
         <VALUE deb="2012-09-01" fin="2013-08-31" valeur="776.59" />
         <VALUE deb="2013-09-01" fin="2014-08-31" valeur="790.18" />
         <VALUE deb="2014-09-01" fin="2015-08-31" valeur="800.45" />
+        <VALUE deb="2015-09-01" fin="2016-08-31" valeur="807.65" />
       </CODE>
       <CODE code="age_legal_retraite" description="Âge légal de départ à la retraite" format="float" type="age">
         <VALUE deb="1983-07-01" fin="2011-10-31" valeur="60" />

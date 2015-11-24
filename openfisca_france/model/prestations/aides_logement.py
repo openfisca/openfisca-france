@@ -64,15 +64,15 @@ class al_pac(SimpleFormulaColumn):
             # Variables à valeur pour un individu
             br_pf_i = simulation.compute('br_pf_i', period).array
             inapte_travail = simulation.compute('inapte_travail', period).array
-            taux_invalidite = simulation.compute('taux_invalidite', period).array
+            taux_incapacite = simulation.compute('taux_incapacite', period).array
             age = age_holder.array
 
             # Parametres
             plafond_ressource = simulation.legislation_at(period.start).minim.aspa.plaf_seul
-            taux_invalidite_minimum = 0.8
+            taux_incapacite_minimum = 0.8
 
             adulte_handicape = (
-                (taux_invalidite > taux_invalidite_minimum) *
+                (taux_incapacite > taux_incapacite_minimum) *
                 (age >= age_max_enfant) *
                 (br_pf_i <= plafond_ressource)
             )

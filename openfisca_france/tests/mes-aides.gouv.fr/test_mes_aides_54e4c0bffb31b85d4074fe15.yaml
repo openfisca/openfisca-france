@@ -51,7 +51,7 @@ individus:
     2015-01: 92.6
     2015-02: 92.6
     year:2014-02: 1111.2
-  taux_invalidite: 0.7
+  taux_incapacite: 0.7
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
