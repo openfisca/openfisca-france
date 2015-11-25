@@ -99,12 +99,16 @@ def build_reform(tax_benefit_system):
             cho = simulation.calculate_add('cho', two_years_ago)
             revenus_capital = simulation.calculate_add('revenus_capital', previous_year)
             revenus_locatifs = simulation.calculate_add('revenus_locatifs', previous_year)
-            # pensions_alimentaires_percue = simulation.calculate_add('pensions_alimentaires_percue', two_years_ago)
-            # pensions_alimentaires_versees = simulation.calculate_add('pensions_alimentaires_versees', two_years_ago)
-            # valeur_locative_immo_non_loue =
-            # valeur_locative_terrains_non_loue =
+            # Prélevements libératoire forfaitaire à prendre en compte sans abattement
+            valeur_locative_immo_non_loue = simulation.calculate_add('valeur_locative_immo_non_loue', previous_year)
+            valeur_locative_terrains_non_loue = simulation.calculate_add('valeur_locative_terrains_non_loue', previous_year)
 
-            base_ressource_mensuelle = (salaire_imposable + rst + cho + revenus_locatifs + revenus_capital * 0.30) / 12
+            base_ressource_mensuelle = (
+                salaire_imposable + rst + cho + revenus_locatifs +
+                revenus_capital * 0.30 +
+                valeur_locative_immo_non_loue * 0.5 +
+                valeur_locative_terrains_non_loue * 0.8
+            ) / 12
 
             return period, base_ressource_mensuelle
 
