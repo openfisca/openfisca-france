@@ -45,7 +45,7 @@ def build_reform(tax_benefit_system):
 
 
     @Reform.formula
-    class adpa_elig(SimpleFormulaColumn):
+    class adpa_eligibilite(SimpleFormulaColumn):
         column = BoolCol
         label = u"Eligibilité à l'ADPA"
         entity_class = Individus
@@ -62,7 +62,7 @@ def build_reform(tax_benefit_system):
 
 
     @Reform.formula
-    class base_ressources_adpa_i(SimpleFormulaColumn):
+    class adpa_base_ressources_i(SimpleFormulaColumn):
         column = FloatCol
         label = u"Base ressources ADPA pour un individu"
         entity_class = Individus
@@ -90,17 +90,17 @@ def build_reform(tax_benefit_system):
 
 
     @Reform.formula
-    class base_ressources_adpa(SimpleFormulaColumn):
+    class adpa_base_ressources(SimpleFormulaColumn):
         column = FloatCol
         label = u"Base ressources ADPA pour une famille"
         entity_class = Familles
 
         def function(self, simulation, period):
             period = period.this_month
-            base_ressources_adpa_i = simulation.compute('base_ressources_adpa_i', period)
-            base_ressources_adpa = self.sum_by_entity(base_ressources_adpa_i)
+            adpa_base_ressources_i = simulation.compute('adpa_base_ressources_i', period)
+            adpa_base_ressources = self.sum_by_entity(adpa_base_ressources_i)
 
-            return period, base_ressources_adpa
+            return period, adpa_base_ressources
 
 
     @Reform.formula
@@ -112,9 +112,9 @@ def build_reform(tax_benefit_system):
         def function(self, simulation, period):
             period = period.this_month
 
-            adpa_elig_holder = simulation.compute('adpa_elig', period)
-            adpa_elig = self.any_by_roles(adpa_elig_holder)
-            base_ressource_mensuelle = simulation.calculate('base_ressources_adpa', period)
+            adpa_eligibilite_holder = simulation.compute('adpa_eligibilite', period)
+            adpa_eligibilite = self.any_by_roles(adpa_eligibilite_holder)
+            base_ressource_mensuelle = simulation.calculate('adpa_base_ressources', period)
             concub = simulation.calculate('concub', period)
             
             # On ne prend pas en compte le cas où le conjoint est placé.
@@ -134,7 +134,7 @@ def build_reform(tax_benefit_system):
 
             participation_departement = 100 - participation_usager
 
-            return period, participation_departement * adpa_elig
+            return period, participation_departement * adpa_eligibilite
 
     reform = Reform()
     return reform
