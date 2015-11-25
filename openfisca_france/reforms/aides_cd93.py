@@ -140,6 +140,12 @@ def build_reform(tax_benefit_system):
             adpa_elig = self.any_by_roles(adpa_elig_holder)
 
             base_ressource_mensuelle = simulation.calculate('base_ressources_adpa', period)
+            concub = simulation.calculate('concub', period)
+            
+            # On ne prend pas en compte le cas où le conjoint est placé.
+            quotient_familial = 1 + 0.7 * concub
+            base_ressource_mensuelle = base_ressource_mensuelle / quotient_familial
+
             # print("base_ressource_mensuelle")
             # print(base_ressource_mensuelle)
 
