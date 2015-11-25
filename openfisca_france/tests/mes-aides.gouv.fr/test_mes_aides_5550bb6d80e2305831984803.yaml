@@ -1,19 +1,17 @@
 name: TNS Agricole dans les DOM
 keywords:
-  - dom
-  - rsa
-  - tns
-description: |
-  Le droit au RSA d'un exploitant agricole dans les DOM se calcule sur la base de la superficie en hectare de son exploitation. 
-  
-  Cette superficie doit être inférieure à 3 hectares pour une personne seule, puis majorée de 50%, 30% et 40% de la même manière qu’est majoré le plafond du dernier bénéfice agricole connu pour les foyers métropolitains.
-  
-  On affiche une éligibilité potentielle au RSA alors qu'on ne capture les informations utiles au calcul de l'éligibilité.
-period: "month:2015-05"
+- dom
+- rsa
+- tns
+"description": "Le droit au RSA d'un exploitant agricole dans les DOM se calcule sur la base de la superficie en hectare de\
+  \ son exploitation. \n\nCette superficie doit être inférieure à 3 hectares pour une personne seule, puis majorée de 50%,\
+  \ 30% et 40% de la même manière qu’est majoré le plafond du dernier bénéfice agricole connu pour les foyers métropolitains.\n\
+  \nOn affiche une éligibilité potentielle au RSA alors qu'on ne capture les informations utiles au calcul de l'éligibilité."
+period: month:2015-05
 individus:
-  age: 32
+- age: 32
   age_en_mois: 394
-  birth: "1982-06-14"
+  birth: '1982-06-14'
   epargne_non_remuneree:
     2012-01: 0
   etu: 0
@@ -23,13 +21,13 @@ individus:
     2012-01: 0
   invalide: 0
   tns_benefice_exploitant_agricole:
-    2014: 5600
+    '2014': 5600
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -211,7 +209,7 @@ familles:
     2015-03: 0
     2015-04: 0
     year:2014-05: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-05: 0
     2014-06: 0
@@ -226,7 +224,8 @@ familles:
     2015-03: 0
     2015-04: 0
     year:2014-05: 0
-  parents: 5550a2ed80cc9b9f6118068e
+  parents:
+  - 5550a2ed80cc9b9f6118068e
   paris_logement_familles:
     2014-05: 0
     2014-06: 0
@@ -284,11 +283,13 @@ familles:
     2015-04: 0
     year:2014-05: 0
 foyers_fiscaux:
-  declarants: 5550a2ed80cc9b9f6118068e
-  personnes_a_charge:
+- declarants:
+  - 5550a2ed80cc9b9f6118068e
+  personnes_a_charge: []
 menages:
-  depcom: 97108
-  enfants:
+- depcom: '97108'
+  enfants: []
+  participation_frais: false
   personne_de_reference: 5550a2ed80cc9b9f6118068e
   statut_occupation: 6
 output_variables:

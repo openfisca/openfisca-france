@@ -1,141 +1,141 @@
 name: Foyer 3 enfants
 keywords:
-  - "cmu-c/acs"
-  - recette
-description: |
+- cmu-c/acs
+- recette
+"description": |-
   Écart peut être du à un écart sur l'ASF non perçue pendant les 12 mois de référence
-  
+
   Total des ressources calculé par la CPAM: 20 400 euros
-period: "month:2015-06"
+period: month:2015-06
 individus:
-  - age: 30
-    age_en_mois: 370
-    birth: "1984-08-20"
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 55915f1f2f56a0fd2f633197
-    inapte_travail: 0
-    indemnites_journalieres_maladie:
-      2013: 5167.170000000001
-      2014-06: 283.59
-      2014-07: 283.59
-      2014-08: 283.59
-      2014-09: 283.59
-      2014-10: 283.59
-      2014-11: 283.59
-      2014-12: 283.59
-      2015-01: 283.59
-      2015-02: 283.59
-      2015-03: 895.5
-      2015-03:3: 2614.86
-      2015-04: 1038.78
-      2015-05: 680.58
-      2015-06: 680.58
-      year:2014-06: 5167.170000000001
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    salaire_de_base:
-      2013: 8765.371794871795
-      2014-06: 973.9301994301994
-      2014-07: 973.9301994301994
-      2014-08: 973.9301994301994
-      2014-09: 973.9301994301994
-      2014-10: 973.9301994301994
-      2014-11: 973.9301994301994
-      2014-12: 973.9301994301994
-      2015-01: 973.9301994301994
-      2015-02: 973.9301994301994
-      2015-03: 0
-      2015-03:3: 0
-      2015-04: 0
-      2015-05: 0
-      year:2014-06: 8765.371794871795
-    salaire_imposable:
-      2013: 7086.737355865384
-      2014-06: 787.4152617628205
-      2014-07: 787.4152617628205
-      2014-08: 787.4152617628205
-      2014-09: 787.4152617628205
-      2014-10: 787.4152617628205
-      2014-11: 787.4152617628205
-      2014-12: 787.4152617628205
-      2015-01: 787.4152617628205
-      2015-02: 787.4152617628205
-      2015-03: 0
-      2015-03:3: 0
-      2015-04: 0
-      2015-05: 0
-      year:2014-06: 7086.737355865384
-    salaire_net:
-      2013: 6836.989999999999
-      2014-06: 759.6655555555556
-      2014-07: 759.6655555555556
-      2014-08: 759.6655555555556
-      2014-09: 759.6655555555556
-      2014-10: 759.6655555555556
-      2014-11: 759.6655555555556
-      2014-12: 759.6655555555556
-      2015-01: 759.6655555555556
-      2015-02: 759.6655555555556
-      2015-03: 0
-      2015-03:3: 0
-      2015-04: 0
-      2015-05: 0
-      year:2014-06: 6836.989999999999
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 12
-    age_en_mois: 149
-    birth: "2003-01-27"
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 55915f1f2f56a0fd2f633196
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    scolarite: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 8
-    age_en_mois: 98
-    birth: "2007-04-17"
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 55915f1f2f56a0fd2f633195
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 72
-    birth: "2009-06-29"
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 55915f1f2f56a0fd2f633194
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- age: 30
+  age_en_mois: 370
+  birth: '1984-08-20'
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 55915f1f2f56a0fd2f633197
+  inapte_travail: 0
+  indemnites_journalieres_maladie:
+    '2013': 5167.170000000001
+    2014-06: 283.59
+    2014-07: 283.59
+    2014-08: 283.59
+    2014-09: 283.59
+    2014-10: 283.59
+    2014-11: 283.59
+    2014-12: 283.59
+    2015-01: 283.59
+    2015-02: 283.59
+    2015-03: 895.5
+    2015-03:3: 2614.86
+    2015-04: 1038.78
+    2015-05: 680.58
+    2015-06: 680.58
+    year:2014-06: 5167.170000000001
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  salaire_de_base:
+    '2013': 8765.371794871795
+    2014-06: 973.9301994301994
+    2014-07: 973.9301994301994
+    2014-08: 973.9301994301994
+    2014-09: 973.9301994301994
+    2014-10: 973.9301994301994
+    2014-11: 973.9301994301994
+    2014-12: 973.9301994301994
+    2015-01: 973.9301994301994
+    2015-02: 973.9301994301994
+    2015-03: 0
+    2015-03:3: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 8765.371794871795
+  salaire_imposable:
+    '2013': 7086.737355865384
+    2014-06: 787.4152617628205
+    2014-07: 787.4152617628205
+    2014-08: 787.4152617628205
+    2014-09: 787.4152617628205
+    2014-10: 787.4152617628205
+    2014-11: 787.4152617628205
+    2014-12: 787.4152617628205
+    2015-01: 787.4152617628205
+    2015-02: 787.4152617628205
+    2015-03: 0
+    2015-03:3: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 7086.737355865384
+  salaire_net:
+    '2013': 6836.989999999999
+    2014-06: 759.6655555555556
+    2014-07: 759.6655555555556
+    2014-08: 759.6655555555556
+    2014-09: 759.6655555555556
+    2014-10: 759.6655555555556
+    2014-11: 759.6655555555556
+    2014-12: 759.6655555555556
+    2015-01: 759.6655555555556
+    2015-02: 759.6655555555556
+    2015-03: 0
+    2015-03:3: 0
+    2015-04: 0
+    2015-05: 0
+    year:2014-06: 6836.989999999999
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- age: 12
+  age_en_mois: 149
+  birth: '2003-01-27'
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 55915f1f2f56a0fd2f633196
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  scolarite: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- age: 8
+  age_en_mois: 98
+  birth: '2007-04-17'
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 55915f1f2f56a0fd2f633195
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- age: 6
+  age_en_mois: 72
+  birth: '2009-06-29'
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 55915f1f2f56a0fd2f633194
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
     2014-06: 0
     2014-07: 0
     2014-08: 0
@@ -150,7 +150,7 @@ familles:
     2015-05: 0
     year:2014-06: 0
   af:
-    2013: 3541
+    '2013': 3541
     2014-06: 295.09444444444443
     2014-07: 295.09444444444443
     2014-08: 295.09444444444443
@@ -223,7 +223,7 @@ familles:
     2015-05: 0
     year:2014-06: 0
   asf:
-    2013: 844.2700000000001
+    '2013': 844.2700000000001
     2014-06: 93.80777777777777
     2014-07: 93.80777777777777
     2014-08: 93.80777777777777
@@ -309,7 +309,7 @@ familles:
     2015-05: 0
     year:2014-06: 0
   cf:
-    2013: 2222
+    '2013': 2222
     2014-06: 185.15555555555557
     2014-07: 185.15555555555557
     2014-08: 185.15555555555557
@@ -326,9 +326,9 @@ familles:
     2015-06: 185.2
     year:2014-06: 2222
   enfants:
-    - 55915f1f2f56a0fd2f633196
-    - 55915f1f2f56a0fd2f633195
-    - 55915f1f2f56a0fd2f633194
+  - 55915f1f2f56a0fd2f633196
+  - 55915f1f2f56a0fd2f633195
+  - 55915f1f2f56a0fd2f633194
   paje_base:
     2014-06: 0
     2014-07: 0
@@ -343,7 +343,8 @@ familles:
     2015-04: 0
     2015-05: 0
     year:2014-06: 0
-  parents: 55915f1f2f56a0fd2f633197
+  parents:
+  - 55915f1f2f56a0fd2f633197
   paris_logement_familles:
     2014-06: 0
     2014-07: 0
@@ -403,17 +404,18 @@ familles:
     2015-05: 0
     year:2014-06: 0
 foyers_fiscaux:
-  declarants: 55915f1f2f56a0fd2f633197
+- declarants:
+  - 55915f1f2f56a0fd2f633197
   personnes_a_charge:
-    - 55915f1f2f56a0fd2f633196
-    - 55915f1f2f56a0fd2f633195
-    - 55915f1f2f56a0fd2f633194
+  - 55915f1f2f56a0fd2f633196
+  - 55915f1f2f56a0fd2f633195
+  - 55915f1f2f56a0fd2f633194
 menages:
-  depcom: 75112
+- depcom: '75112'
   enfants:
-    - 55915f1f2f56a0fd2f633196
-    - 55915f1f2f56a0fd2f633195
-    - 55915f1f2f56a0fd2f633194
+  - 55915f1f2f56a0fd2f633196
+  - 55915f1f2f56a0fd2f633195
+  - 55915f1f2f56a0fd2f633194
   loyer: 500
   personne_de_reference: 55915f1f2f56a0fd2f633197
   statut_occupation: 4

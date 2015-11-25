@@ -1,13 +1,13 @@
-name: "TNS - Entrepreneur CA > 32 900€"
+name: TNS - Entrepreneur CA > 32 900€
 keywords:
-  - rsa
-  - tns
+- rsa
+- tns
 description: Pas d'éligibilité au RSA pour un TNS dont le CA est > à 32 900€ pour une activité libérale
-period: "month:2015-04"
+period: month:2015-04
 individus:
-  age: 32
+- age: 32
   age_en_mois: 392
-  birth: "1982-08-12"
+  birth: '1982-08-12'
   epargne_non_remuneree:
     2012-01: 0
   etu: 0
@@ -17,9 +17,9 @@ individus:
     2012-01: 0
   invalide: 0
   tns_autres_revenus:
-    2014: 30000
+    '2014': 30000
   tns_autres_revenus_chiffre_affaires:
-    2014: 33000
+    '2014': 33000
   tns_autres_revenus_type_activite: bnc
   tns_micro_entreprise_type_activite: bnc
   valeur_locative_immo_non_loue:
@@ -27,7 +27,7 @@ individus:
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -209,7 +209,7 @@ familles:
     2015-02: 0
     2015-03: 0
     year:2014-04: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -224,7 +224,8 @@ familles:
     2015-02: 0
     2015-03: 0
     year:2014-04: 0
-  parents: 5540d71317d9db60391c36af
+  parents:
+  - 5540d71317d9db60391c36af
   paris_logement_familles:
     2014-04: 0
     2014-05: 0
@@ -282,11 +283,13 @@ familles:
     2015-03: 0
     year:2014-04: 0
 foyers_fiscaux:
-  declarants: 5540d71317d9db60391c36af
-  personnes_a_charge:
+- declarants:
+  - 5540d71317d9db60391c36af
+  personnes_a_charge: []
 menages:
-  depcom: 89024
-  enfants:
+- depcom: '89024'
+  enfants: []
+  participation_frais: false
   personne_de_reference: 5540d71317d9db60391c36af
   statut_occupation: 6
 output_variables:

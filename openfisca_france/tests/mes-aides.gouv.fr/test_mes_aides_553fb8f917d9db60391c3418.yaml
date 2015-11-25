@@ -1,50 +1,82 @@
-name: 38_RSA majoré et Congé parental, sabbatique, sans solde ou en disponibilité
+name: TNS agricole en métopole - 4 personnes au foyer
 keywords:
-- majoration
 - rsa
+- tns
 "description": |-
-  Ici, la personne est en congé parental, sabbatique, sans solde ou en disponibilité. Mais comme elle ouvre droit au RSA majoré, elle est éligible au RSA (L. 262-4, 4°).
+  Éligibilité au RSA d'un TNS agricole couple + 2 enfants
+  Bénéfice agricole < (800*SMIC horaire)*1,5 + (30%*800SMIC horaire) + (40%*800SMIC horaire) = 16513,6 €
 
-  Si l'ASF apparaît en sortie de simulation, elle doit être prise en compte pour le RSA, faute de quoi l'utilisateur pense qu'il va cumuler les deux prestations pour ces montants-là, soit un revenu total de 845,76€ : c'est faux.
-period: month:2014-12
-relative_error_margin: 0.02
+  Ne pas afficher de montant
+period: month:2015-04
 individus:
-- age: 34
-  age_en_mois: 419
-  birth: '1980-01-01'
+- age: 35
+  age_en_mois: 420
+  birth: '1980-04-13'
   epargne_non_remuneree:
     2012-01: 0
   etu: 0
-  id: 5481de589f3789cc06d5111b
+  id: 553fb8f314dd6d5d39443ccc
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
   invalide: 0
+  statmarit: 1
+  tns_benefice_exploitant_agricole:
+    '2014': 16500
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- age: 4
-  age_en_mois: 59
-  birth: '2010-01-01'
+- age: 32
+  age_en_mois: 392
+  birth: '1982-08-12'
   epargne_non_remuneree:
     2012-01: 0
   etu: 0
-  id: 5481de589f3789cc06d5111a
+  id: 553fb8f314dd6d5d39443ccb
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
   invalide: 0
+  statmarit: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- age: 13
+  age_en_mois: 164
+  birth: '2001-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 553fb8f314dd6d5d39443cca
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  scolarite: 2
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- age: 9
+  age_en_mois: 116
+  birth: '2005-08-14'
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 553fb8f314dd6d5d39443cc9
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  scolarite: 1
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
 - acs:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -53,12 +85,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   af:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -67,12 +99,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   aide_logement:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -81,12 +113,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   alf:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -95,12 +127,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   als:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -109,12 +141,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   apl:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -123,12 +155,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   asf:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -137,12 +169,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   asi:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -151,12 +183,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   aspa:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -165,12 +197,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   ass:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -179,12 +211,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   bourse_college:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -193,12 +225,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   bourse_lycee:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -207,12 +239,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   cf:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -221,14 +253,15 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   enfants:
-  - 5481de589f3789cc06d5111a
+  - 553fb8f314dd6d5d39443cca
+  - 553fb8f314dd6d5d39443cc9
   paje_base:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -237,14 +270,15 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   parents:
-  - 5481de589f3789cc06d5111b
+  - 553fb8f314dd6d5d39443ccc
+  - 553fb8f314dd6d5d39443ccb
   paris_logement_familles:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -253,12 +287,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   rsa:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -267,13 +301,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
-  rsa_isolement_recent: true
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   rsa_majore:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -282,12 +315,12 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   rsa_non_majore:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -296,19 +329,26 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-    year:2013-12: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
 foyers_fiscaux:
 - declarants:
-  - 5481de589f3789cc06d5111b
+  - 553fb8f314dd6d5d39443ccc
+  - 553fb8f314dd6d5d39443ccb
   personnes_a_charge:
-  - 5481de589f3789cc06d5111a
+  - 553fb8f314dd6d5d39443cca
+  - 553fb8f314dd6d5d39443cc9
 menages:
-- depcom: '91228'
+- conjoint: 553fb8f314dd6d5d39443ccb
+  depcom: '14500'
   enfants:
-  - 5481de589f3789cc06d5111a
+  - 553fb8f314dd6d5d39443cca
+  - 553fb8f314dd6d5d39443cc9
   participation_frais: false
-  personne_de_reference: 5481de589f3789cc06d5111b
+  personne_de_reference: 553fb8f314dd6d5d39443ccc
   statut_occupation: 6
 output_variables:
-  asf: 95.99
-  rsa: 653.78
+  rsa: 0

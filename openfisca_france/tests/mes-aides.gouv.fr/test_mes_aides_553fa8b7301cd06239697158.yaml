@@ -1,13 +1,14 @@
-name: "TNS - Entrepreneur CA > 82 200€"
+name: TNS - Entrepreneur CA > 82 200€
 keywords:
-  - rsa
-  - tns
-description: "Cas d'un TNS en activité commerciale dont le CA est supérieur au seuil micro-entreprise. Pas d'éligibilité au RSA."
-period: "month:2015-04"
+- rsa
+- tns
+description: Cas d'un TNS en activité commerciale dont le CA est supérieur au seuil micro-entreprise. Pas d'éligibilité au
+  RSA.
+period: month:2015-04
 individus:
-  age: 35
+- age: 35
   age_en_mois: 420
-  birth: "1980-04-13"
+  birth: '1980-04-13'
   epargne_non_remuneree:
     2012-01: 0
   etu: 0
@@ -17,9 +18,9 @@ individus:
     2012-01: 0
   invalide: 0
   tns_autres_revenus:
-    2014: 30000
+    '2014': 30000
   tns_autres_revenus_chiffre_affaires:
-    2014: 82000
+    '2014': 82000
   tns_autres_revenus_type_activite: achat_revente
   tns_micro_entreprise_type_activite: achat_revente
   valeur_locative_immo_non_loue:
@@ -27,7 +28,7 @@ individus:
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -209,7 +210,7 @@ familles:
     2015-02: 0
     2015-03: 0
     year:2014-04: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -224,7 +225,8 @@ familles:
     2015-02: 0
     2015-03: 0
     year:2014-04: 0
-  parents: 553fa8acf0058c5b39236fe1
+  parents:
+  - 553fa8acf0058c5b39236fe1
   paris_logement_familles:
     2014-04: 0
     2014-05: 0
@@ -282,11 +284,13 @@ familles:
     2015-03: 0
     year:2014-04: 0
 foyers_fiscaux:
-  declarants: 553fa8acf0058c5b39236fe1
-  personnes_a_charge:
+- declarants:
+  - 553fa8acf0058c5b39236fe1
+  personnes_a_charge: []
 menages:
-  depcom: 14500
-  enfants:
+- depcom: '14500'
+  enfants: []
+  participation_frais: false
   personne_de_reference: 553fa8acf0058c5b39236fe1
   statut_occupation: 6
 output_variables:

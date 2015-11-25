@@ -1,64 +1,64 @@
 name: 31_Personne isolée (1 enfant) depuis 6 mois
 keywords:
-  - majoration
-  - rsa
-description: |
+- majoration
+- rsa
+"description": |-
   Le demandeur a perçu 6 mois de RSA majoré sur les 12 derniers mois, dont les 3 derniers mois. Elle a encore droit au RSA majoré, donc.
-  
+
   En revanche, elle touche une pension alimentaire > ASF, donc pas d'ASF.
-period: "month:2014-11"
+period: month:2014-11
 individus:
-  - activite: 1
-    age: 28
-    age_en_mois: 346
-    ass_precondition_remplie: false
-    birth: "1986-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 546b4a76ba32fff66335d367
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 82
-    birth: "2008-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
-    etu: 0
-    id: 546b4a76ba32fff66335d366
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    invalide: 0
-    pensions_alimentaires_percues:
-      2012: 1200
-      2013-11: 100
-      2013-12: 100
-      2014-01: 100
-      2014-02: 100
-      2014-03: 100
-      2014-04: 100
-      2014-05: 100
-      2014-06: 100
-      2014-07: 100
-      2014-08: 100
-      2014-08:3: 300
-      2014-09: 100
-      2014-10: 100
-      2014-11: 100
-      year:2013-11: 1200
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- activite: 1
+  age: 28
+  age_en_mois: 346
+  ass_precondition_remplie: false
+  birth: '1986-01-01'
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 546b4a76ba32fff66335d367
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- age: 6
+  age_en_mois: 82
+  birth: '2008-01-01'
+  epargne_non_remuneree:
+    2012-01: 0
+  etu: 0
+  id: 546b4a76ba32fff66335d366
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  invalide: 0
+  pensions_alimentaires_percues:
+    '2012': 1200
+    2013-11: 100
+    2013-12: 100
+    2014-01: 100
+    2014-02: 100
+    2014-03: 100
+    2014-04: 100
+    2014-05: 100
+    2014-06: 100
+    2014-07: 100
+    2014-08: 100
+    2014-08:3: 300
+    2014-09: 100
+    2014-10: 100
+    2014-11: 100
+    year:2013-11: 1200
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
     2013-11: 0
     2013-12: 0
     2014-01: 0
@@ -240,7 +240,8 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  enfants: 546b4a76ba32fff66335d366
+  enfants:
+  - 546b4a76ba32fff66335d366
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -255,7 +256,8 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  parents: 546b4a76ba32fff66335d367
+  parents:
+  - 546b4a76ba32fff66335d367
   paris_logement_familles:
     2013-11: 0
     2013-12: 0
@@ -314,11 +316,15 @@ familles:
     2014-10: 0
     year:2013-11: 0
 foyers_fiscaux:
-  declarants: 546b4a76ba32fff66335d367
-  personnes_a_charge: 546b4a76ba32fff66335d366
+- declarants:
+  - 546b4a76ba32fff66335d367
+  personnes_a_charge:
+  - 546b4a76ba32fff66335d366
 menages:
-  depcom: 75114
-  enfants: 546b4a76ba32fff66335d366
+- depcom: '75114'
+  enfants:
+  - 546b4a76ba32fff66335d366
+  participation_frais: false
   personne_de_reference: 546b4a76ba32fff66335d367
   statut_occupation: 6
 output_variables:
