@@ -129,7 +129,7 @@ class aah_base_ressources_eval_annuelle(SimpleFormulaColumn):
 @reference_formula
 class aah_eligible(SimpleFormulaColumn):
     column = BoolCol
-    label = u"Eligibilité à  l'Allocation adulte handicapé"
+    label = u"Eligibilité à l'Allocation adulte handicapé"
     entity_class = Individus
 
     '''
