@@ -159,15 +159,15 @@ test_case_by_employee_type = dict(
 
 
 def test_check():
-    for employee_type, test_parameters in test_case_by_employee_type.iteritems():
-        Reform = reforms.make_reform(
-            key = u'smic_h_b_9_euros',
-            name = u"Réforme pour simulation ACOSS SMIC horaire brut fixe à 9 euros",
-            reference = tax_benefit_system,
-            )
-        reform = Reform()
-        reform.modify_legislation_json(modifier_function = modify_legislation_json)
+    Reform = reforms.make_reform(
+        key = u'smic_h_b_9_euros',
+        name = u"Réforme pour simulation ACOSS SMIC horaire brut fixe à 9 euros",
+        reference = tax_benefit_system,
+        )
+    reform = Reform()
+    reform.modify_legislation_json(modifier_function = modify_legislation_json)
 
+    for employee_type, test_parameters in test_case_by_employee_type.iteritems():
         simulation_period = 2013
         parent1 = dict(
             birth = datetime.date(periods.period(simulation_period).start.year - 40, 1, 1),
