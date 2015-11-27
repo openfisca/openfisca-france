@@ -4,9 +4,10 @@ from __future__ import division
 
 
 from functools import partial
+import numpy as np
 from numpy import (
     busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, maximum as max_,
-    minimum as min_, round as round_, timedelta64, fromiter
+    minimum as min_, round as round_, timedelta64
     )
 
 import logging
@@ -40,22 +41,18 @@ class allegement_fillon(DatedVariable):
 
     @dated_function(date(2005, 7, 1))
     def function(self, simulation, period):
-        function_by_mode = {
-            0: compute_allegement_fillon_annuel,
-            1: compute_allegement_fillon_anticipe,
-            2: compute_allegement_fillon_progressif,
-            }
         period = period.this_month
         stagiaire = simulation.calculate('stagiaire', period)
         apprenti = simulation.calculate('apprenti', period)
         allegement_fillon_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
-    
-        allegement = fromiter(
-            (
-                function_by_mode[mode](simulation, period)
-                for mode in allegement_fillon_mode_recouvrement
-                ),
-            float,
+        allegement = self.switch(
+            allegement_fillon_mode_recouvrement,
+            {
+                0: lambda _: compute_allegement_fillon_annuel(simulation, period),
+                1: lambda _: compute_allegement_fillon_anticipe(simulation, period),
+                2: lambda _: compute_allegement_fillon_progressif(simulation, period),
+                },
+            dtype = np.float,
             )
         return period, allegement * not_(stagiaire) * not_(apprenti)
 
