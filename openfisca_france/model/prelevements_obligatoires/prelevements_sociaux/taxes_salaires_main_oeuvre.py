@@ -202,6 +202,7 @@ class formation_professionnelle(SimpleFormulaColumn):
     column = FloatCol
     entity_class = Individus
     label = u"Formation professionnelle"
+    url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
 
     def function(self, simulation, period):
         taille_entreprise = simulation.calculate('taille_entreprise', period)
