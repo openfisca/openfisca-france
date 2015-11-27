@@ -56,7 +56,7 @@ def build_reform(tax_benefit_system):
             resident_93 = simulation.calculate('resident_93', period)
             perte_autonomie = simulation.calculate('perte_autonomie', period)
 
-            result = (age > 60) * resident_93 * perte_autonomie
+            result = (age >= 60) * resident_93 * perte_autonomie
 
             return period, result
 
