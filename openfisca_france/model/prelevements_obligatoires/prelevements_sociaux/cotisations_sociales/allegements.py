@@ -48,11 +48,10 @@ class allegement_fillon(DatedVariable):
         allegement = self.switch(
             allegement_fillon_mode_recouvrement,
             {
-                0: lambda _: compute_allegement_fillon_annuel(simulation, period),
-                1: lambda _: compute_allegement_fillon_anticipe(simulation, period),
-                2: lambda _: compute_allegement_fillon_progressif(simulation, period),
+                0: compute_allegement_fillon_annuel(simulation, period),
+                1: compute_allegement_fillon_anticipe(simulation, period),
+                2: compute_allegement_fillon_progressif(simulation, period),
                 },
-            dtype = np.float,
             )
         return period, allegement * not_(stagiaire) * not_(apprenti)
 
