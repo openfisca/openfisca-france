@@ -47,6 +47,7 @@ setup(
         'numpy >= 1.6,< 1.10',
         'OpenFisca-Core >= 0.5.0',
         'PyYAML >= 3.10',
+        'requests >= 2.8',
         ],
     message_extractors = {'openfisca_france': [
         ('**.py', 'python', None),

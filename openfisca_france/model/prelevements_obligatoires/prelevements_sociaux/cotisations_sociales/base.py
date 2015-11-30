@@ -30,7 +30,7 @@ def apply_bareme_for_relevant_type_sal(
 
 
 def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None, variable_name = None):
-    # period = period.start.offset('first-of', 'month').period('month')
+    # period = period.this_month
     cotisation_mode_recouvrement = simulation.calculate('cotisation_sociale_mode_recouvrement', period)
     cotisation = (
         # en fin d'année
@@ -85,7 +85,7 @@ def compute_cotisation_annuelle(simulation, period, cotisation_type = None, bare
     if period.start.month == 12:
         return compute_cotisation(
             simulation,
-            period.start.offset('first-of', 'year').period('year'),
+            period.this_year,
             cotisation_type = cotisation_type,
             bareme_name = bareme_name,
             )
@@ -95,7 +95,7 @@ def compute_cotisation_anticipee(simulation, period, cotisation_type = None, bar
     if period.start.month < 12:
         return compute_cotisation(
             simulation,
-            period.start.offset('first-of', 'month').period('month'),
+            period.this_month,
             cotisation_type = cotisation_type,
             bareme_name = bareme_name,
             )
@@ -106,7 +106,7 @@ def compute_cotisation_anticipee(simulation, period, cotisation_type = None, bar
 
         return compute_cotisation(
             simulation,
-            period.start.offset('first-of', 'year').period('year'),
+            period.this_year,
             cotisation_type = cotisation_type,
             bareme_name = bareme_name,
             ) - cumul

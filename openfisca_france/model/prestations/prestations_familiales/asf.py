@@ -16,7 +16,7 @@ class asf_elig_enfant(SimpleFormulaColumn):
     label = u"Enfant pouvant ouvrir droit à l'ASF"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
@@ -36,7 +36,7 @@ class asf_enfant(SimpleFormulaColumn):
     label = u"Montant du droit à l'ASF ouvert par l'enfant"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         asf_elig_enfant = simulation.calculate('asf_elig_enfant', period)
         pfam = simulation.legislation_at(period.start).fam
@@ -51,7 +51,7 @@ class asf_elig(SimpleFormulaColumn):
     label = u"Éligibilité à l'ASF"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         pensions_alimentaires_percues_holder = simulation.compute('pensions_alimentaires_percues', period)
         pensions_alimentaires_percues = self.sum_by_entity(pensions_alimentaires_percues_holder)
 
@@ -69,7 +69,7 @@ class asf(SimpleFormulaColumn):
     label = u"Allocation de soutien familial (ASF)"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         asf_elig = simulation.calculate('asf_elig', period)
         asf_enfant_holder = simulation.compute('asf_enfant', period)

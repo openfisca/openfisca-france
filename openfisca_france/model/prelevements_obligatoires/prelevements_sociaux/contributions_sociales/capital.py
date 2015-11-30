@@ -161,7 +161,7 @@ class csg_pv_mo(SimpleFormulaColumn):
         """
         Calcule la CSG sur les plus-values de cession mobilière
         """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
         _P = simulation.legislation_at(period.start)
 
@@ -179,7 +179,7 @@ class crds_pv_mo(SimpleFormulaColumn):
         """
         Calcule la CRDS sur les plus-values de cession mobilière
         """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
         _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
@@ -199,7 +199,7 @@ class prelsoc_pv_mo(DatedFormulaColumn):
         Calcule le prélèvement social sur les plus-values
         de cession de valeurs mobilières
         """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
         _P = simulation.legislation_at(period.start)
 
@@ -213,7 +213,7 @@ class prelsoc_pv_mo(DatedFormulaColumn):
         Calcule le prélèvement social sur les plus-values
         de cession de valeurs mobilières
         """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
         _P = simulation.legislation_at(period.start)
 
@@ -226,7 +226,7 @@ class prelsoc_pv_mo(DatedFormulaColumn):
         """
         Calcule le prélèvement social sur les plus-values de cession de valeurs mobilières
         """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
         _P = simulation.legislation_at(period.start)
 
@@ -249,7 +249,7 @@ class csg_pv_immo(SimpleFormulaColumn):
         """
         Calcule la CSG sur les plus-values de cession immobilière
         """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f3vz = simulation.calculate('f3vz', period)
         _P = simulation.legislation_at(period.start)
 
@@ -267,7 +267,7 @@ class crds_pv_immo(SimpleFormulaColumn):
         """
         Calcule la CRDS sur les plus-values de cession immobilière
         """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f3vz = simulation.calculate('f3vz', period)
         _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
@@ -286,7 +286,7 @@ class prelsoc_pv_immo(DatedFormulaColumn):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f3vz = simulation.calculate('f3vz', period)
         _P = simulation.legislation_at(period.start)
 
@@ -300,7 +300,7 @@ class prelsoc_pv_immo(DatedFormulaColumn):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f3vz = simulation.calculate('f3vz', period)
         _P = simulation.legislation_at(period.start)
 
@@ -314,7 +314,7 @@ class prelsoc_pv_immo(DatedFormulaColumn):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f3vz = simulation.calculate('f3vz', period)
         _P = simulation.legislation_at(period.start)
 
@@ -338,7 +338,7 @@ class csg_fon(SimpleFormulaColumn):
         Calcule la CSG sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         _P = simulation.legislation_at(period.start)
 
@@ -357,7 +357,7 @@ class crds_fon(SimpleFormulaColumn):
         Calcule la CRDS sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
@@ -377,7 +377,7 @@ class prelsoc_fon(DatedFormulaColumn):
         Calcule le prélèvement social sur les revenus fonciers
         TODO : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         _P = simulation.legislation_at(period.start)
 
@@ -392,7 +392,7 @@ class prelsoc_fon(DatedFormulaColumn):
         Calcule le prélèvement social sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         _P = simulation.legislation_at(period.start)
 
@@ -407,7 +407,7 @@ class prelsoc_fon(DatedFormulaColumn):
         Calcule le prélèvement social sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         _P = simulation.legislation_at(period.start)
 

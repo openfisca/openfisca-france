@@ -429,6 +429,9 @@
         <VALUE deb="2002-07-01" fin="2003-06-30" valeur="6.83" />
         <VALUE deb="2001-08-01" fin="2002-06-30" valeur="6.67" />
       </CODE>
+      <CODE code="nb_heure_travail_mensuel" description="Nombre d'heures travaillées forfaitaires" format="float">
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="151.67" />
+      </CODE>
       <CODE code="plaf_th_1" description="Plafond d'exonération de la taxe d'habitation: première part" format="integer" type="monetary">
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="10224" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="10024" />
@@ -1509,10 +1512,10 @@
           <BAREME code="formprof_09" description="Formation professionnelle (0-9 salaries)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1993-01-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2005-01-01" fin="2013-12-31" valeur="0.0055" />
+                <VALUE deb="2005-01-01" fin="2015-12-31" valeur="0.0055" />
                 <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.004" />
                 <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.0015" />
               </TAUX>
@@ -1521,10 +1524,11 @@
           <BAREME code="formprof_1019" description="Formation professionnelle (10-19 salaries)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1992-01-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1992-01-01" fin="2015-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2005-01-01" fin="2013-12-01" valeur="0.0105" />
+                <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.01" />
+                <VALUE deb="2005-01-01" fin="2014-12-31" valeur="0.0105" />
                 <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.016" />
                 <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
                 <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
@@ -1534,10 +1538,11 @@
           <BAREME code="formprof_20" description="Formation professionnelle (plus de 20 salariés)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1992-01-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1992-01-01" fin="2015-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.016" />
+                <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.01" />
+                <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.016" />
                 <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
                 <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
               </TAUX>
@@ -5479,6 +5484,7 @@
         <VALUE deb="2012-09-01" fin="2013-08-31" valeur="776.59" />
         <VALUE deb="2013-09-01" fin="2014-08-31" valeur="790.18" />
         <VALUE deb="2014-09-01" fin="2015-08-31" valeur="800.45" />
+        <VALUE deb="2015-09-01" fin="2016-08-31" valeur="807.65" />
       </CODE>
       <CODE code="age_legal_retraite" description="Âge légal de départ à la retraite" format="float" type="age">
         <VALUE deb="1983-07-01" fin="2011-10-31" valeur="60" />

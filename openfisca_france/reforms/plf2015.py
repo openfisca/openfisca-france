@@ -21,7 +21,7 @@ def build_reform(tax_benefit_system):
 
         @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
         def function_2013(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
+            period = period.this_year
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             nb_adult = simulation.calculate('nb_adult', period)
             plf = simulation.legislation_at(period.start).plf2015

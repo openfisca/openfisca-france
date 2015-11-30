@@ -24,7 +24,7 @@ def build_reform(tax_benefit_system):
         # PLF 2013 (rejeté) : 'taxe à 75%'
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
+            period = period.this_year
             salaire_imposable_holder = simulation.calculate("salaire_imposable", period)
             law_cesthra = simulation.legislation_at(period.start).cesthra
             salaire_imposable = self.split_by_roles(salaire_imposable_holder)
@@ -43,7 +43,7 @@ def build_reform(tax_benefit_system):
             '''
             Montant après seuil de recouvrement (hors ppe)
             '''
-            period = period.start.offset('first-of', 'year').period('year')
+            period = period.this_year
             iai = simulation.calculate('iai', period)
             credits_impot = simulation.calculate('credits_impot', period)
             cehr = simulation.calculate('cehr', period)

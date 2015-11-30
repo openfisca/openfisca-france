@@ -65,6 +65,8 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Individus
 
         def function(self, simulation, period):
+            period = period.this_month
+            last_year = period.last_year
             salaire_net = simulation.calculate('salaire_net', period)
             chonet = simulation.calculate('chonet', period)
             rstnet = simulation.calculate('rstnet', period)
@@ -82,14 +84,23 @@ def build_reform(tax_benefit_system):
             indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', period)
             bourse_recherche = simulation.calculate('bourse_recherche', period)
             gains_exceptionnels = simulation.calculate('gains_exceptionnels', period)
-            tns_total_revenus_net = simulation.calculate_add('tns_total_revenus_net', period)
+
+            def revenus_tns():
+                revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', period)
+
+                # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+                tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year) / 12
+                tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year) / 12
+                tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year) / 12
+
+                return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
             result = (
                 salaire_net + indemnites_chomage_partiel + indemnites_stage + chonet + rstnet +
                 pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
                 rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
                 indemnites_journalieres_imposables + prestation_compensatoire +
-                pensions_invalidite + bourse_recherche + gains_exceptionnels + tns_total_revenus_net +
+                pensions_invalidite + bourse_recherche + gains_exceptionnels + revenus_tns() +
                 revenus_stage_formation_pro
                 )
 
@@ -102,7 +113,7 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Familles
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'month').period('month')
+            period = period.this_month
             paris_logement_familles_br_i_holder = simulation.compute('paris_logement_familles_br_i', period)
             paris_logement_familles_br = self.sum_by_entity(paris_logement_familles_br_i_holder)
             result = paris_logement_familles_br
@@ -116,7 +127,7 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Individus
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'month').period('month')
+            period = period.this_month
 
             invalide = simulation.calculate('invalide', period)
             plf_enfant = simulation.calculate('plf_enfant', period)
@@ -130,7 +141,7 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Individus
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'month').period('month')
+            period = period.this_month
             est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
             enfant_place = simulation.calculate('enfant_place', period)
             a_charge_fiscale = simulation.calculate('a_charge_fiscale', period)
@@ -144,7 +155,7 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Individus
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'month').period('month')
+            period = period.this_month
             alt = simulation.calculate('alt', period)
             plf_enfant = simulation.calculate('plf_enfant', period)
 
@@ -157,7 +168,7 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Individus
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'month').period('month')
+            period = period.this_month
             alt = simulation.calculate('alt', period)
             plf_enfant_handicape = simulation.calculate('plf_enfant_handicape', period)
 
@@ -170,7 +181,7 @@ def build_reform(tax_benefit_system):
         label = u"Allocation Paris-Logement-Familles en cas d'enfant handicapé"
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'month').period('month')
+            period = period.this_month
             plf_enfant_handicape = simulation.compute('plf_enfant_handicape', period)
             plf_enfant_handicape_garde_alternee = simulation.compute('plf_enfant_handicape_garde_alternee', period)
             br = simulation.calculate('paris_logement_familles_br', period)
@@ -200,7 +211,7 @@ def build_reform(tax_benefit_system):
         url = "http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193"  # noqa
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'month').period('month')
+            period = period.this_month
             elig = simulation.calculate('paris_logement_familles_elig', period)
             br = simulation.calculate('paris_logement_familles_br', period)
             plf_enfant = simulation.compute('plf_enfant', period)

@@ -32,7 +32,7 @@ class aefa(DatedFormulaColumn):
 
     @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
     def function_2009__(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
@@ -69,7 +69,7 @@ class aefa(DatedFormulaColumn):
 
     @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
     def function_2008(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
@@ -107,7 +107,7 @@ class aefa(DatedFormulaColumn):
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
     def function__2008_(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
@@ -155,7 +155,7 @@ class api(DatedFormulaColumn):
         """
         Allocation de parent isolé
         """
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age_en_mois_holder = simulation.compute('age_en_mois', period)
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period)
@@ -243,7 +243,7 @@ class br_rmi(DatedFormulaColumn):
 
     @dated_function(stop = date(2009, 5, 31))
     def function_rmi(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         br_rmi_pf = simulation.calculate('br_rmi_pf', period)
         br_rmi_ms = simulation.calculate('br_rmi_ms', period)
         br_rmi_i_holder = simulation.compute('br_rmi_i', period)
@@ -253,7 +253,7 @@ class br_rmi(DatedFormulaColumn):
 
     @dated_function(start = date(2009, 6, 1))
     def function_rsa(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         br_rmi_pf = simulation.calculate('br_rmi_pf', period)
         br_rmi_ms = simulation.calculate('br_rmi_ms', period)
         br_rmi_i_holder = simulation.compute('br_rmi_i', period)
@@ -271,7 +271,7 @@ class br_rmi_i(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         three_previous_months = period.start.period('month', 3).offset(-3)
 
         r = rsa_ressource_calculator(simulation, period)
@@ -315,7 +315,7 @@ class br_rmi_ms(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         three_previous_months = period.start.period('month', 3).offset(-3)
         aspa = simulation.calculate('aspa', period)
         asi = simulation.calculate('asi', period)
@@ -337,7 +337,7 @@ class br_rmi_pf(DatedFormulaColumn):
 
     @dated_function(date(2002, 1, 1), date(2003, 12, 31))
     def function_2002(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         af_base = simulation.calculate('af_base', period)
         cf = simulation.calculate('cf', period)
         asf = simulation.calculate('asf', period)
@@ -349,7 +349,7 @@ class br_rmi_pf(DatedFormulaColumn):
 
     @dated_function(start = date(2004, 1, 1), stop = date(2014, 3, 31))
     def function_2003(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         af_base = simulation.calculate('af_base', period)
         cf = simulation.calculate('cf', period)
         asf = simulation.calculate('asf', period)
@@ -364,7 +364,7 @@ class br_rmi_pf(DatedFormulaColumn):
     @dated_function(start = date(2014, 4, 1))
     def function_2014(self, simulation, period):
         # TODO : Neutraliser les ressources de type prestations familiales quand elles sont interrompues
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         af_base = simulation.calculate('af_base', period)
         cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', period)
         cf = simulation.calculate('cf', period)
@@ -393,7 +393,7 @@ class crds_mini(DatedFormulaColumn):
         """
         CRDS sur les minima sociaux
         """
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         rsa_act = simulation.calculate('rsa_act', period)
         taux_crds = simulation.legislation_at(period.start).fam.af.crds
 
@@ -406,8 +406,8 @@ class div_ms(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        period_declaration = period.start.offset('first-of', 'year').period('year')
+        period = period.this_month
+        period_declaration = period.this_year
         f3vc_holder = simulation.compute('f3vc', period_declaration)
         f3ve_holder = simulation.compute('f3ve', period_declaration)
         f3vg_holder = simulation.compute('f3vg', period_declaration)
@@ -440,7 +440,6 @@ class enceinte_fam(SimpleFormulaColumn):
         enceinte_compat = and_(benjamin < 0, benjamin > -6)
         return period, or_(or_(enceinte_compat, enceinte[CHEF]), enceinte[PART])
 
-
 @reference_formula
 class nb_enfant_rsa(SimpleFormulaColumn):
     column = IntCol
@@ -448,7 +447,7 @@ class nb_enfant_rsa(SimpleFormulaColumn):
     label = u"Nombre d'enfants pris en compte pour le calcul du RSA"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         rmi = simulation.legislation_at(period.start).minim.rmi
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period)
@@ -458,6 +457,12 @@ class nb_enfant_rsa(SimpleFormulaColumn):
 
         return period, nbenf
 
+reference_input_variable(
+    column = BoolCol,
+    entity_class = Menages,
+    label = u"Partipation aux frais de logement pour un hebergé à titre gratuit",
+    name = 'participation_frais',
+    )
 
 @reference_formula
 class psa(DatedFormulaColumn):
@@ -477,7 +482,7 @@ class psa(DatedFormulaColumn):
         d’être âgé de plus de 25 ans ou d’avoir au moins un enfant à charge).
         La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.
         '''
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         api = simulation.calculate('api', period)
         rsa = simulation.calculate('rsa', period)
         activite_holder = simulation.compute('activite', period)
@@ -503,7 +508,7 @@ class ra_rsa(SimpleFormulaColumn):
     start_date = date(2009, 6, 1)
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         ra_rsa_i_holder = simulation.compute('ra_rsa_i', period)
 
         ra_rsa = self.sum_by_entity(ra_rsa_i_holder)
@@ -518,7 +523,7 @@ class ra_rsa_i(SimpleFormulaColumn):
     start_date = date(2009, 6, 1)
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         r = rsa_ressource_calculator(simulation, period)
 
@@ -556,8 +561,8 @@ class rfon_ms(SimpleFormulaColumn):
     label = u"Revenus fonciers pour la base ressource du rmi/rsa"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        period_declaration = period.start.offset('first-of', 'year').period('year')
+        period = period.this_month
+        period_declaration = period.this_year
         f4ba_holder = simulation.compute('f4ba', period_declaration)
         f4be_holder = simulation.compute('f4be', period_declaration)
 
@@ -575,7 +580,7 @@ class rmi(DatedFormulaColumn):
 
     @dated_function(start = date(1988, 12, 1), stop = date(2009, 5, 31))
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         activite = simulation.calculate('activite', period)
         br_rmi = simulation.calculate('br_rmi', period)
         rsa_socle = simulation.calculate('rsa_socle', period)
@@ -593,7 +598,7 @@ class rmi_nbp(SimpleFormulaColumn):
     label = u"Nombre de personne à charge au sens du Rmi/Rsa"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period)
         nb_par = simulation.calculate('nb_par', period)
@@ -614,7 +619,7 @@ class rsa(DatedFormulaColumn):
 
     @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         rsa_majore = simulation.calculate('rsa_majore', period)
         rsa_non_majore = simulation.calculate('rsa_non_majore', period)
         rsa_non_calculable = simulation.calculate('rsa_non_calculable', period)
@@ -684,7 +689,7 @@ class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
 
     @dated_function(start = date(2009, 6, 1))
     def function_2009_(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         interets_epargne_sur_livrets = simulation.calculate('interets_epargne_sur_livrets', period)
         epargne_non_remuneree = simulation.calculate('epargne_non_remuneree', period)
         revenus_capital = simulation.calculate('revenus_capital', period)
@@ -755,13 +760,14 @@ class rsa_eligibilite_tns(SimpleFormulaColumn):
     label = u"Eligibilité au RSA pour un travailleur non salarié"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
+        last_year = period.last_year
 
-        tns_benefice_exploitant_agricole_holder = simulation.compute('tns_benefice_exploitant_agricole', period)
+        tns_benefice_exploitant_agricole_holder = simulation.compute('tns_benefice_exploitant_agricole', last_year)
         tns_benefice_exploitant_agricole = self.sum_by_entity(tns_benefice_exploitant_agricole_holder)
         tns_employe_holder = simulation.compute('tns_employe', period)
         tns_employe = self.any_by_roles(tns_employe_holder)
-        tns_autres_revenus_chiffre_affaires_holder = simulation.compute('tns_autres_revenus_chiffre_affaires', period)
+        tns_autres_revenus_chiffre_affaires_holder = simulation.compute('tns_autres_revenus_chiffre_affaires', last_year)
         tns_autres_revenus_chiffre_affaires = self.split_by_roles(tns_autres_revenus_chiffre_affaires_holder)
         tns_autres_revenus_type_activite_holder = simulation.compute('tns_autres_revenus_type_activite', period)
         tns_autres_revenus_type_activite = self.split_by_roles(tns_autres_revenus_type_activite_holder)
@@ -813,7 +819,7 @@ class rsa_forfait_asf(SimpleFormulaColumn):
     start_date = date(2014, 4, 1)
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         asf_elig = simulation.calculate('asf_elig', period)
         rsa_forfait_asf_i_holder = simulation.compute('rsa_forfait_asf_i', period)
@@ -830,7 +836,7 @@ class rsa_forfait_asf_i(SimpleFormulaColumn):
     start_date = date(2014, 4, 1)
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         asf_elig_enfant = simulation.calculate('asf_elig_enfant', period)
         pfam = simulation.legislation_at(period.start).fam
@@ -846,19 +852,27 @@ class rsa_forfait_logement(SimpleFormulaColumn):
     label = u"Forfait logement intervenant dans le calcul du Rmi ou du Rsa"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         forf_logement = simulation.legislation_at(period.start).minim.rmi.forfait_logement
         rmi = simulation.legislation_at(period.start).minim.rmi.rmi
 
         rmi_nbp = simulation.calculate('rmi_nbp', period)
-        statut_occupation_holder = simulation.compute('statut_occupation', period)
         aide_logement = simulation.calculate('aide_logement', period)
 
+        statut_occupation_holder = simulation.compute('statut_occupation', period)
         statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
         statut_occupation = self.filter_role(statut_occupation, role = CHEF)
 
-        avantage_nature = or_(statut_occupation == 2, statut_occupation == 6)
+        participation_frais_holder = simulation.compute('participation_frais', period)
+        participation_frais = self.cast_from_entity_to_roles(participation_frais_holder)
+        participation_frais = self.filter_role(participation_frais, role = CHEF)
+
+        avantage_nature = or_(
+            statut_occupation == 2,
+            (statut_occupation == 6) * (1 - participation_frais)
+        )
+
         avantage_al = aide_logement > 0
 
         montant_forfait = rmi * (
@@ -873,6 +887,13 @@ class rsa_forfait_logement(SimpleFormulaColumn):
         return period, max_(montant_al, montant_nature)
 
 
+reference_input_variable(
+    column = BoolCol,
+    entity_class = Familles,
+    label = u"Situation d'isolement depuis moins de 18 mois",
+    name = 'rsa_isolement_recent',
+    )
+
 @reference_formula
 class rsa_majore(DatedFormulaColumn):
     column = FloatCol
@@ -881,7 +902,7 @@ class rsa_majore(DatedFormulaColumn):
 
     @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
         ra_rsa = simulation.calculate('ra_rsa', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
@@ -900,12 +921,29 @@ class rsa_majore_eligibilite(SimpleFormulaColumn):
     label = u"Eligibilité au RSA majoré pour parent isolé"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+
+        def has_enfant_moins_3_ans():
+            age_holder = simulation.compute('age', period)
+            smic55_holder = simulation.compute('smic55', period)
+            age_enf = self.split_by_roles(age_holder, roles = ENFS)
+            smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
+            nbenf = nb_enf(age_enf, smic55_enf, 0, 2)
+
+            return nbenf > 0
+
+        period = period.this_month
         isol = simulation.calculate('isol', period)
+        isolement_recent = simulation.calculate('rsa_isolement_recent', period)
+        enfant_moins_3_ans = has_enfant_moins_3_ans()
         enceinte_fam = simulation.calculate('enceinte_fam', period)
         nbenf = simulation.calculate('nb_enfant_rsa', period)
         rsa_eligibilite_tns = simulation.calculate('rsa_eligibilite_tns', period)
-        eligib = isol * (enceinte_fam | (nbenf > 0)) * rsa_eligibilite_tns
+        eligib = (
+            isol *
+            (enceinte_fam | (nbenf > 0)) *
+            (enfant_moins_3_ans | isolement_recent | enceinte_fam) *
+            rsa_eligibilite_tns
+        )
 
         return period, eligib
 
@@ -921,14 +959,20 @@ class rsa_non_calculable(SimpleFormulaColumn):
         default = 0
     )
     entity_class = Familles
-    label = u"RSA non calculable pour la Famille (voir rsa_non_calculable_i)"
+    label = u"RSA non calculable"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
+
+        # Si le montant du RSA est nul sans tenir compte des revenus
+        # TNS pouvant provoquer une non calculabilité (parce que
+        # les autres revenus sont trop importants), alors a fortiori
+        # la famille ne sera pas éligible au RSA en tenant compte de
+        # ces ressources. Il n'y a donc pas non calculabilité.
         eligible_rsa = (
-            simulation.calculate('rsa_eligibilite', period) +
-            simulation.calculate('rsa_majore_eligibilite', period)
-            )
+            simulation.calculate('rsa_majore', period) +
+            simulation.calculate('rsa_non_majore', period)
+            ) > 0
         non_calculable_tns_holder = simulation.compute('rsa_non_calculable_tns_i', period)
         non_calculable_tns_parents = self.split_by_roles(non_calculable_tns_holder, roles = [CHEF, PART])
         non_calculable = (
@@ -947,10 +991,11 @@ class rsa_non_calculable_tns_i(SimpleFormulaColumn):
     label = u"RSA non calculable du fait de la situation de l'individu. Dans le cas des TNS, l'utilisateur est renvoyé vers son PCG"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period)
-        tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period)
-        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
+        period = period.this_month
+        this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
+        tns_benefice_exploitant_agricole = simulation.calculate_add('tns_benefice_exploitant_agricole', this_year_and_last_year)
+        tns_micro_entreprise_chiffre_affaires = simulation.calculate_add('tns_micro_entreprise_chiffre_affaires', this_year_and_last_year)
+        tns_autres_revenus = simulation.calculate_add('tns_autres_revenus', this_year_and_last_year)
 
         return period, (
             (tns_benefice_exploitant_agricole > 0) + (tns_micro_entreprise_chiffre_affaires > 0) +
@@ -966,7 +1011,7 @@ class rsa_non_majore(DatedFormulaColumn):
 
     @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         rsa_socle = simulation.calculate('rsa_socle', period)
         ra_rsa = simulation.calculate('ra_rsa', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
@@ -1021,7 +1066,7 @@ class rsa_socle(SimpleFormulaColumn):
     label = "RSA socle"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         nb_par = simulation.calculate('nb_par', period)
         eligib = simulation.calculate('rsa_eligibilite', period)
         nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
@@ -1046,7 +1091,7 @@ class rsa_socle_majore(SimpleFormulaColumn):
     start_date = date(2009, 6, 1)
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         rmi = simulation.legislation_at(period.start).minim.rmi
         eligib = simulation.calculate('rsa_majore_eligibilite', period)
         nbenf = simulation.calculate('nb_enfant_rsa', period)

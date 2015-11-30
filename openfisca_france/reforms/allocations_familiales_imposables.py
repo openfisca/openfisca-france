@@ -23,7 +23,7 @@ def build_reform(tax_benefit_system):
         reference = ir.rbg
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
+            period = period.this_year
             allocations_familiales_imposables = simulation.calculate_add('allocations_familiales_imposables', period)
             deficit_ante = simulation.calculate('deficit_ante', period)
             f6gh = simulation.calculate('f6gh', period)
@@ -45,7 +45,7 @@ def build_reform(tax_benefit_system):
         reference = ir.rfr
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
+            period = period.this_year
 
             allocations_familiales_imposables = simulation.calculate('allocations_familiales_imposables')
             f3va_holder = simulation.calculate('f3va')
@@ -76,7 +76,7 @@ def build_reform(tax_benefit_system):
         label = u"Allocations familiales imposables"
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
+            period = period.this_year
             af_holder = simulation.calculate_add('af')
             imposition = simulation.legislation_at(period.start).allocations_familiales_imposables.imposition
 

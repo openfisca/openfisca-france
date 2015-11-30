@@ -20,7 +20,7 @@ class credits_impot(DatedFormulaColumn):
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
     def function_20020101_20021231(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2002 """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         accult = simulation.calculate('accult', period)
         acqgpl = simulation.calculate('acqgpl', period)
         aidper = simulation.calculate('aidper', period)
@@ -33,7 +33,7 @@ class credits_impot(DatedFormulaColumn):
     @dated_function(start = date(2003, 1, 1), stop = date(2004, 12, 31))
     def function_20030101_20041231(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2003 et 2004 """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         accult = simulation.calculate('accult', period)
         acqgpl = simulation.calculate('acqgpl', period)
         aidper = simulation.calculate('aidper', period)
@@ -47,7 +47,7 @@ class credits_impot(DatedFormulaColumn):
     @dated_function(start = date(2005, 1, 1), stop = date(2006, 12, 31))
     def function_20050101_20061231(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2005 et 2006 """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         accult = simulation.calculate('accult', period)
         acqgpl = simulation.calculate('acqgpl', period)
         aidmob = simulation.calculate('aidmob', period)
@@ -70,7 +70,7 @@ class credits_impot(DatedFormulaColumn):
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
     def function_20070101_20071231(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2007 """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         accult = simulation.calculate('accult', period)
         acqgpl = simulation.calculate('acqgpl', period)
         aidmob = simulation.calculate('aidmob', period)
@@ -95,7 +95,7 @@ class credits_impot(DatedFormulaColumn):
     @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
     def function_20080101_20081231(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2008 """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         accult = simulation.calculate('accult', period)
         aidmob = simulation.calculate('aidmob', period)
         aidper = simulation.calculate('aidper', period)
@@ -120,7 +120,7 @@ class credits_impot(DatedFormulaColumn):
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
     def function_20090101_20091231(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2009 """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         accult = simulation.calculate('accult', period)
         aidper = simulation.calculate('aidper', period)
         assloy = simulation.calculate('assloy', period)
@@ -142,7 +142,7 @@ class credits_impot(DatedFormulaColumn):
     @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
     def function_20100101_20101231(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2010 """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         accult = simulation.calculate('accult', period)
         aidper = simulation.calculate('aidper', period)
         assloy = simulation.calculate('assloy', period)
@@ -166,7 +166,7 @@ class credits_impot(DatedFormulaColumn):
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_20110101_20111231(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2011 """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         accult = simulation.calculate('accult', period)
         aidper = simulation.calculate('aidper', period)
         assloy = simulation.calculate('assloy', period)
@@ -188,7 +188,7 @@ class credits_impot(DatedFormulaColumn):
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2012 """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         accult = simulation.calculate('accult', period)
         aidper = simulation.calculate('aidper', period)
         assloy = simulation.calculate('assloy', period)
@@ -211,7 +211,7 @@ class credits_impot(DatedFormulaColumn):
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):
         """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         accult = simulation.calculate('accult', period)
         aidper = simulation.calculate('aidper', period)
         assloy = simulation.calculate('assloy', period)
@@ -239,7 +239,7 @@ class nb_pac2(SimpleFormulaColumn):
     label = u"nb_pac2"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         nbF = simulation.calculate('nbF', period)
         nbJ = simulation.calculate('nbJ', period)
         nbR = simulation.calculate('nbR', period)
@@ -260,7 +260,7 @@ class accult(SimpleFormulaColumn):
         Acquisition de biens culturels (case 7UO)
         2002-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7uo = simulation.calculate('f7uo', period)
         _P = simulation.legislation_at(period.start)
 
@@ -281,7 +281,7 @@ class acqgpl(SimpleFormulaColumn):
         Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte
         2002-2007
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7up = simulation.calculate('f7up', period)
         f7uq = simulation.calculate('f7uq', period)
         acqgpl = simulation.legislation_at(period.start).impot_revenu.credits_impot.acqgpl
@@ -302,7 +302,7 @@ class aidmob(SimpleFormulaColumn):
         Crédit d'impôt aide à la mobilité
         2005-2008
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f1ar = simulation.calculate('f1ar', period)
         f1br = simulation.calculate('f1br', period)
         f1cr = simulation.calculate('f1cr', period)
@@ -326,7 +326,7 @@ class aidper(DatedFormulaColumn):
         (cases 7WI, 7WJ, 7WL).
         2002-2003
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         nbH = simulation.calculate('nbH', period)
@@ -351,7 +351,7 @@ class aidper(DatedFormulaColumn):
         (cases 7WI, 7WJ).
         2004-2005
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         nbH = simulation.calculate('nbH', period)
@@ -380,7 +380,7 @@ class aidper(DatedFormulaColumn):
         2006-2009
         cf. cerfa 50796
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7wi = simulation.calculate('f7wi', period)
@@ -402,7 +402,7 @@ class aidper(DatedFormulaColumn):
         (cases 7SF, 7WI, 7WJ, 7WL).
         2010-2011
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7sf = simulation.calculate('f7sf', period)
@@ -425,7 +425,7 @@ class aidper(DatedFormulaColumn):
         (cases 7WI, 7WJ, 7WL, 7WR).
         2012
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7wi = simulation.calculate('f7wi', period)
@@ -451,7 +451,7 @@ class aidper(DatedFormulaColumn):
         (cases 7WI, 7WJ, 7WL).
         2013
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7wj = simulation.calculate('f7wj', period)
@@ -482,7 +482,7 @@ class assloy(SimpleFormulaColumn):
         Crédit d’impôt primes d’assurance pour loyers impayés (case 4BF)
         2005-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f4bf = simulation.calculate('f4bf', period)
         _P = simulation.legislation_at(period.start)
 
@@ -501,7 +501,7 @@ class autent(SimpleFormulaColumn):
         Auto-entrepreneur : versements d’impôt sur le revenu (case 8UY)
         2009-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f8uy = simulation.calculate('f8uy', period)
 
         return period, f8uy
@@ -519,7 +519,7 @@ class ci_garext(SimpleFormulaColumn):
         Frais de garde des enfants à l’extérieur du domicile (cases 7GA à 7GC et 7GE à 7GG)
         2005-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ga = simulation.calculate('f7ga', period)
         f7gb = simulation.calculate('f7gb', period)
         f7gc = simulation.calculate('f7gc', period)
@@ -549,7 +549,7 @@ class creimp_exc_2008(SimpleFormulaColumn):
         Crédit d'impôt exceptionnel sur les revenus 2008
         http://www11.minefi.gouv.fr/boi/boi2009/5fppub/textes/5b2509/5b2509.pdf
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rni = simulation.calculate('rni', period)
         nbptr = simulation.calculate('nbptr', period)
         iai = simulation.calculate('iai', period)
@@ -571,7 +571,7 @@ class creimp(DatedFormulaColumn):
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
     def function_20020101_20021231(self, simulation, period):
         '''Avoir fiscaux et crédits d'impôt 2002 '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -587,7 +587,7 @@ class creimp(DatedFormulaColumn):
     @dated_function(start = date(2003, 1, 1), stop = date(2003, 12, 31))
     def function_20030101_20031231(self, simulation, period):
         '''Avoir fiscaux et crédits d'impôt 2003 '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -605,7 +605,7 @@ class creimp(DatedFormulaColumn):
     @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
     def function_20040101_20041231(self, simulation, period):
         '''Avoir fiscaux et crédits d'impôt 2004 '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -625,7 +625,7 @@ class creimp(DatedFormulaColumn):
     @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
     def function_20050101_20051231(self, simulation, period):
         '''Avoir fiscaux et crédits d'impôt 2005 '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -650,7 +650,7 @@ class creimp(DatedFormulaColumn):
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
     def function_20060101_20061231(self, simulation, period):
         '''Avoir fiscaux et crédits d'impôt 2006 '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -679,7 +679,7 @@ class creimp(DatedFormulaColumn):
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
     def function_20070101_20071231(self, simulation, period):
         '''Avoir fiscaux et crédits d'impôt 2007 '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -709,7 +709,7 @@ class creimp(DatedFormulaColumn):
     @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
     def function_20080101_20081231(self, simulation, period):
         '''Avoir fiscaux et crédits d'impôt 2008'''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -740,7 +740,7 @@ class creimp(DatedFormulaColumn):
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
     def function_20090101_20091231(self, simulation, period):
         '''Avoir fiscaux et crédits d'impôt 2009'''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -769,7 +769,7 @@ class creimp(DatedFormulaColumn):
     @dated_function(start = date(2010, 1, 1), stop = date(2011, 12, 31))
     def function_20100101_20111231(self, simulation, period):
         '''Avoir fiscaux et crédits d'impôt 2010 et 2011 '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -797,7 +797,7 @@ class creimp(DatedFormulaColumn):
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
         '''Avoir fiscaux et crédits d'impôt 2012 '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -826,7 +826,7 @@ class creimp(DatedFormulaColumn):
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):
         '''Avoir fiscaux et crédits d'impôt 2013 '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f2ck = simulation.calculate('f2ck', period)
         f8ta = simulation.calculate('f8ta', period)
@@ -867,7 +867,7 @@ class direpa(SimpleFormulaColumn):
         Crédit d’impôt directive « épargne » (case 2BG)
         2006-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f2bg = simulation.calculate('f2bg', period)
 
         return period, f2bg
@@ -886,7 +886,7 @@ class divide(SimpleFormulaColumn):
         Crédit d'impôt dividendes
         2005-2009
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         f2dc = simulation.calculate('f2dc', period)
         f2gr = simulation.calculate('f2gr', period)
@@ -909,7 +909,7 @@ class drbail(SimpleFormulaColumn):
         Crédit d’impôt représentatif de la taxe additionnelle au droit de bail (case 4TQ)
         2002-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f4tq = simulation.calculate('f4tq', period)
         _P = simulation.legislation_at(period.start)
 
@@ -929,7 +929,7 @@ class inthab(DatedFormulaColumn):
         Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7UH)
         2007
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         caseP = simulation.calculate('caseP', period)
@@ -949,7 +949,7 @@ class inthab(DatedFormulaColumn):
         Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VX, 7VY et 7VZ)
         2008
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         caseP = simulation.calculate('caseP', period)
@@ -975,7 +975,7 @@ class inthab(DatedFormulaColumn):
         Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VX, 7VY et 7VZ)
         2009
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         caseP = simulation.calculate('caseP', period)
@@ -1004,7 +1004,7 @@ class inthab(DatedFormulaColumn):
         Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VW, 7VX, 7VY et 7VZ)
         2010
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         caseP = simulation.calculate('caseP', period)
@@ -1036,7 +1036,7 @@ class inthab(DatedFormulaColumn):
         Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VW, 7VX, 7VY et 7VZ)
         2011
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         caseP = simulation.calculate('caseP', period)
@@ -1074,7 +1074,7 @@ class inthab(DatedFormulaColumn):
         Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VW, 7VX, 7VY et 7VZ)
         2011
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         caseP = simulation.calculate('caseP', period)
@@ -1119,7 +1119,7 @@ class jeunes(SimpleFormulaColumn):
     stop_date = date(2008, 12, 31)
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         jeunes_ind_holder = simulation.compute('jeunes_ind', period)
 
         return period, self.sum_by_entity(jeunes_ind_holder)
@@ -1142,7 +1142,7 @@ class jeunes_ind(SimpleFormulaColumn):
         cf. http://www3.finances.gouv.fr/calcul_impot/2009/pdf/form-2041-GY.pdf
         Attention seuls certains
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         age = simulation.calculate('age', period)
         nbptr_holder = simulation.compute('nbptr', period)
         rfr_holder = simulation.compute('rfr', period)
@@ -1182,7 +1182,7 @@ class mecena(SimpleFormulaColumn):
         Mécénat d'entreprise (case 7US)
         2003-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7us = simulation.calculate('f7us', period)
 
         return period, f7us
@@ -1201,7 +1201,7 @@ class percvm(SimpleFormulaColumn):
         Crédit d’impôt pertes sur cessions de valeurs mobilières (3VV)
         -2010
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f3vv_end_2010 = simulation.calculate('f3vv_end_2010', period)
         _P = simulation.legislation_at(period.start)
 
@@ -1220,7 +1220,7 @@ class preetu(DatedFormulaColumn):
         Crédit d’impôt pour souscription de prêts étudiants (cases 7UK, 7VO et 7TD)
         2005
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7uk = simulation.calculate('f7uk', period)
         _P = simulation.legislation_at(period.start)
 
@@ -1234,7 +1234,7 @@ class preetu(DatedFormulaColumn):
         Crédit d’impôt pour souscription de prêts étudiants (cases 7UK, 7VO et 7TD)
         2006-2007
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7uk = simulation.calculate('f7uk', period)
         f7vo = simulation.calculate('f7vo', period)
         _P = simulation.legislation_at(period.start)
@@ -1250,7 +1250,7 @@ class preetu(DatedFormulaColumn):
         Crédit d’impôt pour souscription de prêts étudiants (cases 7UK, 7VO et 7TD)
         2008-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7uk = simulation.calculate('f7uk', period)
         f7vo = simulation.calculate('f7vo', period)
         f7td = simulation.calculate('f7td', period)
@@ -1275,7 +1275,7 @@ class prlire(SimpleFormulaColumn):
         2002-
         http://www2.impots.gouv.fr/documentation/2013/brochure_ir/index.html#122/z
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f2dh = simulation.calculate('f2dh', period)
         f2ch = simulation.calculate('f2ch', period)
         marpac = simulation.calculate('marpac', period)
@@ -1298,7 +1298,7 @@ class quaenv(DatedFormulaColumn):
         (cases 7WF, 7WG, 7WH)
         2005
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7wf = simulation.calculate('f7wf', period)
@@ -1324,7 +1324,7 @@ class quaenv(DatedFormulaColumn):
         (cases 7WF, 7WG, 7WH, 7WQ)
         2006-2008
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7wf = simulation.calculate('f7wf', period)
@@ -1352,7 +1352,7 @@ class quaenv(DatedFormulaColumn):
         (cases 7WF, 7WG, 7WH, 7WK, 7WQ, 7SB, 7SC, 7SD, 7SE)
         2009
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7we = simulation.calculate('f7we', period)
@@ -1397,7 +1397,7 @@ class quaenv(DatedFormulaColumn):
         (cases 7WF, 7WH, 7WK, 7WQ, 7SB, 7SD, 7SE et 7SH)
         2010-2011
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         marpac = simulation.calculate('marpac', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7we = simulation.calculate('f7we', period)
@@ -1439,7 +1439,7 @@ class quaenv(DatedFormulaColumn):
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
         2012
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7sd = simulation.calculate('f7sd', period)
         f7se = simulation.calculate('f7se', period)
         f7sf = simulation.calculate('f7sf', period)
@@ -1522,7 +1522,7 @@ class quaenv(DatedFormulaColumn):
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
         2013
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7sd = simulation.calculate('f7sd', period)
         f7se = simulation.calculate('f7se', period)
         f7sf = simulation.calculate('f7sf', period)
@@ -1599,7 +1599,7 @@ class quaenv_bouquet(SimpleFormulaColumn):
         Les dépenses de travaux dépendent d'un bouquet de travaux
         2013
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7sd = simulation.calculate('f7sd', period)
         f7se = simulation.calculate('f7se', period)
         f7sn = simulation.calculate('f7sn', period)
@@ -1643,7 +1643,7 @@ class saldom2(DatedFormulaColumn):
         Crédit d’impôt emploi d’un salarié à domicile (cases 7DB, 7DG)
         2007-2008
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7db = simulation.calculate('f7db', period)
         f7dg = simulation.calculate('f7dg', period)
@@ -1668,7 +1668,7 @@ class saldom2(DatedFormulaColumn):
         Crédit d’impôt emploi d’un salarié à domicile (cases 7DB, 7DG)
         2009-2010
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7db = simulation.calculate('f7db', period)
         f7dg = simulation.calculate('f7dg', period)

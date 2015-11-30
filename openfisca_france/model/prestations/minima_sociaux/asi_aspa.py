@@ -15,10 +15,10 @@ reference_input_variable(
     )
 
 reference_input_variable(
-    name = "taux_invalidite",
+    name = "taux_incapacite",
     column = FloatCol,
     entity_class = Individus,
-    label = u"Taux d'invalidité",
+    label = u"Taux d'incapacité",
     )
 
 
@@ -29,9 +29,10 @@ class br_mv_i(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
+        last_year = period.last_year
+        three_previous_months = period.last_3_months
 
-        three_previous_months = period.start.period('month', 3).offset(-3)
         aspa_elig = simulation.calculate('aspa_elig', period)
         aspa_couple_holder = simulation.compute('aspa_couple', period)
         salaire_de_base = simulation.calculate_add('salaire_de_base', three_previous_months)
@@ -61,7 +62,17 @@ class br_mv_i(SimpleFormulaColumn):
         indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', three_previous_months)
         indemnites_journalieres = simulation.calculate('indemnites_journalieres', three_previous_months)
         indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
-        tns_total_revenus_net = simulation.calculate_add('tns_total_revenus_net', three_previous_months)
+
+        def revenus_tns():
+            revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', three_previous_months)
+
+           # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year) * (3 / 12)
+            tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year) * (3 / 12)
+            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year) * (3 / 12)
+
+            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+
         rsa_base_ressources_patrimoine_i = simulation.calculate_add(
             'rsa_base_ressources_patrimoine_i', three_previous_months
             )
@@ -79,7 +90,7 @@ class br_mv_i(SimpleFormulaColumn):
 
         # Abattement sur les salaires (appliqué sur une base trimestrielle)
         abattement_forfaitaire_base = (
-            leg_1er_janvier.cotsoc.gen.smic_h_b * legislation.minim.aspa.abattement_forfaitaire_nb_h
+            leg_1er_janvier.cotsoc.gen.smic_h_b * legislation.cotsoc.gen.nb_heure_travail_mensuel
             )
         abattement_forfaitaire_taux = (aspa_couple * legislation.minim.aspa.abattement_forfaitaire_tx_couple +
             not_(aspa_couple) * legislation.minim.aspa.abattement_forfaitaire_tx_seul
@@ -93,7 +104,7 @@ class br_mv_i(SimpleFormulaColumn):
                revenus_stage_formation_pro + allocation_securisation_professionnelle +
                prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
                pensions_invalidite + gains_exceptionnels + indemnites_journalieres + indemnites_chomage_partiel +
-               indemnites_volontariat + tns_total_revenus_net + rsa_base_ressources_patrimoine_i + aah
+               indemnites_volontariat + revenus_tns() + rsa_base_ressources_patrimoine_i + aah
                ) / 3
 
 
@@ -104,7 +115,7 @@ class br_mv(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         br_mv_i_holder = simulation.compute('br_mv_i', period)
         ass = simulation.calculate('ass', period)
 
@@ -119,13 +130,13 @@ class aspa_elig(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         age = simulation.calculate('age', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
-        taux_invalidite = simulation.calculate('taux_invalidite', period)
+        taux_incapacite = simulation.calculate('taux_incapacite', period)
         P = simulation.legislation_at(period.start).minim
-        condition_invalidite = (taux_invalidite > P.aspa.taux_invalidite_aspa_anticipe) + inapte_travail
+        condition_invalidite = (taux_incapacite > P.aspa.taux_incapacite_aspa_anticipe) + inapte_travail
         condition_age_base = (age >= P.aspa.age_min)
         condition_age_anticipe = (age >= P.aah.age_legal_retraite) * condition_invalidite
         condition_age = condition_age_base + condition_age_anticipe
@@ -141,7 +152,7 @@ class asi_elig(SimpleFormulaColumn):
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         last_month = period.start.period('month').offset(-1)
 
         aspa_elig = simulation.calculate('aspa_elig', period)
@@ -177,7 +188,7 @@ class asi_aspa_nb_alloc(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         aspa_elig_holder = simulation.compute('aspa_elig', period)
         asi_elig_holder = simulation.compute('asi_elig', period)
 
@@ -197,7 +208,7 @@ class asi(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         asi_elig_holder = simulation.compute('asi_elig', period)
         aspa_elig_holder = simulation.compute('aspa_elig', period)
         maries = simulation.calculate('maries', period)
@@ -281,7 +292,7 @@ class aspa(SimpleFormulaColumn):
     url = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         asi_elig_holder = simulation.compute('asi_elig', period)
         aspa_elig_holder = simulation.compute('aspa_elig', period)
         maries = simulation.calculate('maries', period)
