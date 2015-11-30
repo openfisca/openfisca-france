@@ -7,3 +7,13 @@
   output_variables:
     arrco_employeur: -147.405
     arrco_salarie: -98.27
+
+- period: "2015-11"
+  description: ARRCO non-cadre 9510€
+  relative_error_margin: 0.01
+  input_variables:
+    salaire_de_base: 9510
+    type_sal: 0
+  output_variables:
+    arrco_employeur: -917.715
+    arrco_salarie: -611.81
