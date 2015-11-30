@@ -146,3 +146,5 @@ def preprocess_legislation(legislation_json):
         for category, bareme in baremes.iteritems():
             if category in CAT._nums:
                 cotsoc['children'][cotisation_name]['children'][category] = bareme
+
+    return legislation_json
