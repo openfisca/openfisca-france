@@ -1,0 +1,9 @@
+- period: "2015-11"
+  description: ARRCO cadre 12680€
+  relative_error_margin: 0.01
+  input_variables:
+    salaire_de_base: 12680
+    type_sal: 1
+  output_variables:
+    arrco_employeur: -147.405
+    arrco_salarie: -98.27
