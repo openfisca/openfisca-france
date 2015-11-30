@@ -110,7 +110,6 @@ def build_sal(node_json):
             'commun']['children']['solidarite']
 
     sal['children']['public_non_titulaire']['children'].update(sal['children']['commun']['children'])
-    del sal['children']['public_non_titulaire']['children']['arrco']
     del sal['children']['public_non_titulaire']['children']['assedic']
 
     # Cleaning
