@@ -26,7 +26,6 @@ reference_input_variable(
     )
 
 
-@reference_formula
 class stage_gratification(Variable):
     column = FloatCol
     entity_class = Individus
@@ -46,7 +45,6 @@ class stage_gratification(Variable):
             stage_gratification_taux, stage_gratification_taux_min)
 
 
-@reference_formula
 class stage_gratification_reintegration(Variable):
     column = FloatCol
     entity_class = Individus
@@ -65,7 +63,6 @@ class stage_gratification_reintegration(Variable):
         return period, max_(stage_gratification - stage_gratification_min, 0)
 
 
-@reference_formula
 class stagiaire(Variable):
     column = BoolCol
     entity_class = Individus
@@ -77,7 +74,6 @@ class stagiaire(Variable):
         return period, (stage_duree_heures > 0)
 
 
-@reference_formula
 class exoneration_cotisations_employeur_stagiaire(Variable):
     column = FloatCol
     entity_class = Individus
@@ -110,7 +106,6 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
         return period, - exoneration * stagiaire
 
 
-@reference_formula
 class exoneration_cotisations_salarie_stagiaire(Variable):
     column = FloatCol
     entity_class = Individus

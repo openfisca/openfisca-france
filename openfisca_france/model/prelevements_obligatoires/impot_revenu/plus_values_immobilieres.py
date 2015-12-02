@@ -72,7 +72,6 @@ from ...base import *  # noqa analysis:ignore
 #     return pv_net_impos
 
 
-@reference_formula
 class ir_pv_immo(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux

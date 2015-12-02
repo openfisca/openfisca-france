@@ -93,7 +93,6 @@ build_column('invalide', BoolCol(label = u'Invalide'))  # TODO: cerfa_field
 
 
 
-@reference_formula
 class nb_par(Variable):
     column = PeriodSizeIndependentIntCol(default = 0)
     entity_class = Familles
@@ -109,7 +108,6 @@ class nb_par(Variable):
         return period, 1 + 1 * (quifam == PART)
 
 
-@reference_formula
 class maries(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
@@ -126,7 +124,6 @@ class maries(Variable):
         return period, statmarit == 1
 
 
-@reference_formula
 class concub(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
@@ -144,7 +141,6 @@ class concub(Variable):
         return period, nb_par == 2
 
 
-@reference_formula
 class isol(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
@@ -158,7 +154,6 @@ class isol(Variable):
         return period, nb_par == 1
 
 
-@reference_formula
 class est_enfant_dans_famille(Variable):
     column = BoolCol
     entity_class = Individus
@@ -169,7 +164,6 @@ class est_enfant_dans_famille(Variable):
         return period, quifam > PART
 
 
-@reference_formula
 class etu(Variable):
     column = BoolCol(default = False)
     entity_class = Individus

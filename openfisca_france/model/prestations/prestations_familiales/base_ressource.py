@@ -6,7 +6,6 @@ from numpy import int32, logical_not as not_, logical_or as or_
 
 from ...base import *  # noqa analysis:ignore
 
-@reference_formula
 class smic55(Variable):
     column = BoolCol
     entity_class = Individus
@@ -24,7 +23,6 @@ class smic55(Variable):
         return period, salaire_net / 6 >= (_P.fam.af.seuil_rev_taux * smic_mensuel_brut)
 
 
-@reference_formula
 class pfam_enfant_a_charge(Variable):
     column = BoolCol(default = False)
     entity_class = Individus
@@ -47,7 +45,6 @@ class pfam_enfant_a_charge(Variable):
         return period, or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
 
 
-@reference_formula
 class pfam_ressources_i(Variable):
     column = FloatCol
     entity_class = Individus
@@ -63,7 +60,6 @@ class pfam_ressources_i(Variable):
         return period, or_(not_(est_enfant_dans_famille), pfam_enfant_a_charge) * br_pf_i
 
 
-@reference_formula
 class br_pf_i(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
@@ -80,7 +76,6 @@ class br_pf_i(Variable):
         return period, tspr + hsup + rpns
 
 
-@reference_formula
 class biact(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
@@ -99,7 +94,6 @@ class biact(Variable):
         return period, (br_pf_i[CHEF] >= seuil_rev) & (br_pf_i[PART] >= seuil_rev)
 
 
-@reference_formula
 class div(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
@@ -128,7 +122,6 @@ class div(Variable):
         return period, f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
 
-@reference_formula
 class rev_coll(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
@@ -168,7 +161,6 @@ class rev_coll(Variable):
             - f7gc - abat_spe + rev_cat_pv)
 
 
-@reference_formula
 class br_pf(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles

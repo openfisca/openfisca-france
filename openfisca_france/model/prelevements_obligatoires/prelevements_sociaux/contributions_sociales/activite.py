@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
 # TODO: prise_en_charge_employeur_retraite_supplementaire à la CSG/CRDS et au forfait social
 
 
-@reference_formula
 class assiette_csg_abattue(Variable):
     column = FloatCol
     label = u"Assiette CSG - CRDS"
@@ -40,7 +39,6 @@ class assiette_csg_abattue(Variable):
             )
 
 
-@reference_formula
 class assiette_csg_non_abattue(Variable):
     column = FloatCol
     label = u"Assiette CSG - CRDS"
@@ -53,7 +51,6 @@ class assiette_csg_non_abattue(Variable):
         return period, - prevoyance_obligatoire_cadre
 
 
-@reference_formula
 class csg_deductible_salaire(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
@@ -76,7 +73,6 @@ class csg_deductible_salaire(Variable):
         return period, montant_csg
 
 
-@reference_formula
 class csg_imposable_salaire(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
@@ -100,7 +96,6 @@ class csg_imposable_salaire(Variable):
         return period, montant_csg
 
 
-@reference_formula
 class crds_salaire(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
@@ -125,7 +120,6 @@ class crds_salaire(Variable):
         return period, montant_crds
 
 
-@reference_formula
 class forfait_social(Variable):
     column = FloatCol
     entity_class = Individus
@@ -154,7 +148,6 @@ class forfait_social(Variable):
             )
 
 
-@reference_formula
 class salaire_imposable(Variable):
     base_function = requested_period_added_value
     column = FloatCol(
@@ -191,7 +184,6 @@ class salaire_imposable(Variable):
             )
 
 
-@reference_formula
 class salaire_net(Variable):
     base_function = requested_period_added_value
     column = FloatCol
@@ -216,7 +208,6 @@ class salaire_net(Variable):
         return period, salaire_imposable + crds_salaire + csg_imposable_salaire
 
 
-@reference_formula
 class tehr(Variable):
     column = FloatCol
     entity_class = Individus
@@ -237,7 +228,6 @@ class tehr(Variable):
 ############################################################################
 
 
-@reference_formula
 class rev_microsocial(Variable):
     """Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)"""
     column = FloatCol
@@ -259,7 +249,6 @@ class rev_microsocial(Variable):
         return period, total - prelsoc_ms
 
 
-@reference_formula
 class rev_microsocial_declarant1(EntityToPersonColumn):
     entity_class = Individus
     label = u"Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur) (pour le premier déclarant du foyer fiscal)"  # noqa

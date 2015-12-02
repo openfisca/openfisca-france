@@ -1048,7 +1048,6 @@ reference_input_variable(
 
 # Computed variables
 
-@reference_formula
 class travailleur_non_salarie(Variable):
     label = u"L'individu a une activité professionnelle non salariée"
     column = BoolCol
@@ -1083,7 +1082,6 @@ def compute_benefice_auto_entrepreneur_micro_entreprise(bareme, type_activite, c
     return benefice
 
 
-@reference_formula
 class tns_auto_entrepreneur_benefice(Variable):
     column = FloatCol
     label = u"Bénéfice en tant qu'auto-entrepreneur"
@@ -1099,7 +1097,6 @@ class tns_auto_entrepreneur_benefice(Variable):
         return period, benefice
 
 
-@reference_formula
 class tns_micro_entreprise_benefice(Variable) :
     column = FloatCol
     label = u"Bénéfice de la micro entreprise"
@@ -1116,7 +1113,6 @@ class tns_micro_entreprise_benefice(Variable) :
 
 # The following formulas take into account 'cotisation sociales'. However, it seems that for all prestations, the 'base ressources' are only using the 'benefice', without deducting the 'cotisation sociales'. Although this rule seems unfair towards independent workers, we are now applying it for all presations and therefore we are not using the following formulas for calculating prestations.
 
-@reference_formula
 class tns_auto_entrepreneur_revenus_net(Variable) :
     column = FloatCol
     label = u"Revenu d'un auto-entrepreneur"
@@ -1138,7 +1134,6 @@ class tns_auto_entrepreneur_revenus_net(Variable) :
         return period, revenus
 
 
-@reference_formula
 class tns_micro_entreprise_revenus_net(Variable) :
     column = FloatCol
     label = u"Revenu d'un TNS dans une micro-entreprise"

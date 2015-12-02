@@ -41,7 +41,6 @@ def _mhsup(hsup):
 # revenus du capital soumis au barème
 
 
-@reference_formula
 class csg_cap_bar(Variable):
     """Calcule la CSG sur les revenus du capital soumis au barème."""
     column = FloatCol
@@ -57,7 +56,6 @@ class csg_cap_bar(Variable):
         return period, -rev_cap_bar * _P.csg.capital.glob
 
 
-@reference_formula
 class csg_cap_bar_declarant1(EntityToPersonColumn):
     entity_class = Individus
     label = u"CSG sur les revenus du capital soumis au barème (pour le premier déclarant du foyer fiscal)"
@@ -65,7 +63,6 @@ class csg_cap_bar_declarant1(EntityToPersonColumn):
     variable = csg_cap_bar
 
 
-@reference_formula
 class crds_cap_bar(Variable):
     """Calcule la CRDS sur les revenus du capital soumis au barème."""
     column = FloatCol
@@ -81,7 +78,6 @@ class crds_cap_bar(Variable):
         return period, -rev_cap_bar * _P.crds.capital
 
 
-@reference_formula
 class crds_cap_bar_declarant1(EntityToPersonColumn):
     entity_class = Individus
     label = u"CRDS sur les revenus du capital soumis au barème (pour le premier déclarant du foyer fiscal)"
@@ -89,7 +85,6 @@ class crds_cap_bar_declarant1(EntityToPersonColumn):
     variable = crds_cap_bar
 
 
-@reference_formula
 class prelsoc_cap_bar(DatedVariable):
     """Calcule le prélèvement social sur les revenus du capital soumis au barème"""
     column = FloatCol
@@ -125,7 +120,6 @@ class prelsoc_cap_bar(DatedVariable):
         return period, -rev_cap_bar * total
 
 
-@reference_formula
 class prelsoc_cap_bar_declarant1(EntityToPersonColumn):
     entity_class = Individus
     label = u"Prélèvements sociaux sur les revenus du capital soumis au barème (pour le premier déclarant du foyer fiscal)"  # noqa
@@ -136,7 +130,6 @@ class prelsoc_cap_bar_declarant1(EntityToPersonColumn):
 # plus-values de valeurs mobilières
 
 
-@reference_formula
 class csg_pv_mo(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -154,7 +147,6 @@ class csg_pv_mo(Variable):
         return period, -f3vg * _P.csg.capital.glob
 
 
-@reference_formula
 class crds_pv_mo(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -172,7 +164,6 @@ class crds_pv_mo(Variable):
         return period, -f3vg * _P.crds.capital
 
 
-@reference_formula
 class prelsoc_pv_mo(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -224,7 +215,6 @@ class prelsoc_pv_mo(DatedVariable):
 # plus-values immobilières
 
 
-@reference_formula
 class csg_pv_immo(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -242,7 +232,6 @@ class csg_pv_immo(Variable):
         return period, -f3vz * _P.csg.capital.glob
 
 
-@reference_formula
 class crds_pv_immo(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -260,7 +249,6 @@ class crds_pv_immo(Variable):
         return period, -f3vz * _P.crds.capital
 
 
-@reference_formula
 class prelsoc_pv_immo(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -312,7 +300,6 @@ class prelsoc_pv_immo(DatedVariable):
 # revenus fonciers
 
 
-@reference_formula
 class csg_fon(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -331,7 +318,6 @@ class csg_fon(Variable):
         return period, -rev_cat_rfon * _P.csg.capital.glob
 
 
-@reference_formula
 class crds_fon(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -350,7 +336,6 @@ class crds_fon(Variable):
         return period, -rev_cat_rfon * _P.crds.capital
 
 
-@reference_formula
 class prelsoc_fon(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -405,7 +390,6 @@ class prelsoc_fon(DatedVariable):
 # revenus du capital soumis au prélèvement libératoire
 
 
-@reference_formula
 class csg_cap_lib(Variable):
     """Calcule la CSG sur les revenus du capital soumis au prélèvement libératoire."""
     column = FloatCol
@@ -421,7 +405,6 @@ class csg_cap_lib(Variable):
         return period, -rev_cap_lib * _P.csg.capital.glob
 
 
-@reference_formula
 class csg_cap_lib_declarant1(EntityToPersonColumn):
     entity_class = Individus
     label = u"CSG sur les revenus du capital soumis au prélèvement libératoire (pour le premier déclarant du foyer fiscal)"  # noqa
@@ -429,7 +412,6 @@ class csg_cap_lib_declarant1(EntityToPersonColumn):
     variable = csg_cap_lib
 
 
-@reference_formula
 class crds_cap_lib(Variable):
     """Calcule la CRDS sur les revenus du capital soumis au prélèvement libératoire."""
     column = FloatCol
@@ -445,7 +427,6 @@ class crds_cap_lib(Variable):
         return period, -rev_cap_lib * _P.crds.capital
 
 
-@reference_formula
 class crds_cap_lib_declarant1(EntityToPersonColumn):
     entity_class = Individus
     label = u"CRDS sur les revenus du capital soumis au prélèvement libératoire (pour le premier déclarant du foyer fiscal)"  # noqa
@@ -453,7 +434,6 @@ class crds_cap_lib_declarant1(EntityToPersonColumn):
     variable = crds_cap_lib
 
 
-@reference_formula
 class prelsoc_cap_lib(Variable):
     """Calcule le prélèvement social sur les revenus du capital soumis au prélèvement libératoire."""
     column = FloatCol
@@ -476,7 +456,6 @@ class prelsoc_cap_lib(Variable):
         return period, -rev_cap_lib * total
 
 
-@reference_formula
 class prelsoc_cap_lib_declarant1(EntityToPersonColumn):
     entity_class = Individus
     label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire (pour le premier déclarant du foyer fiscal)"  # noqa

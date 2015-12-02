@@ -9,7 +9,6 @@ from numpy import datetime64, timedelta64
 from ....base import *  # noqa analysis:ignore
 
 
-@reference_formula
 class apprenti(Variable):
     column = BoolCol
     entity_class = Individus
@@ -29,7 +28,6 @@ class apprenti(Variable):
         return period, age_condition * anciennete_contrat
 
 
-@reference_formula
 class remuneration_apprenti(Variable):
     column = FloatCol
     entity_class = Individus
@@ -93,7 +91,6 @@ class remuneration_apprenti(Variable):
         return period, output * smic * apprenti
 
 
-@reference_formula
 class exoneration_cotisations_employeur_apprenti(Variable):
     column = FloatCol
     entity_class = Individus
@@ -141,7 +138,6 @@ class exoneration_cotisations_employeur_apprenti(Variable):
             ) * apprenti
 
 
-@reference_formula
 class exoneration_cotisations_salariales_apprenti(Variable):
     column = FloatCol
     entity_class = Individus
@@ -157,7 +153,6 @@ class exoneration_cotisations_salariales_apprenti(Variable):
         return period, - (cotisations_salariales_contributives + cotisations_salariales_non_contributives) * apprenti
 
 
-@reference_formula
 class prime_apprentissage(Variable):
     column = FloatCol
     entity_class = Individus
@@ -185,8 +180,7 @@ class prime_apprentissage(Variable):
         apprenti = simulation.calculate('apprenti', period)
         return period, 1000 * apprenti
 
-# @reference_formula
-# class credit_impot_emploi_apprenti(Variable):
+# # class credit_impot_emploi_apprenti(Variable):
 #     column = FloatCol
 #     entity_class = Individus
 #     label = u" Crédit d'impôt pour l'emploi d'apprentis"
@@ -210,8 +204,7 @@ class prime_apprentissage(Variable):
 #     # subventions perçues en contrepartie de leur embauche.
 
 
-# @reference_formula
-# class credit_impot_emploi_apprenti(Variable):
+# # class credit_impot_emploi_apprenti(Variable):
 #     column = FloatCol
 #     entity_class = Individus
 #     label = u"Déduction de la créance "bonus alternant"

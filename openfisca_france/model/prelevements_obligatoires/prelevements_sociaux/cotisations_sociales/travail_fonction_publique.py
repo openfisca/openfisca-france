@@ -10,7 +10,6 @@ from ....base import *  # noqa analysis:ignore
 from .base import apply_bareme_for_relevant_type_sal
 
 
-@reference_formula
 class allocations_temporaires_invalidite(Variable):
     column = FloatCol
     entity_class = Individus
@@ -43,7 +42,6 @@ class allocations_temporaires_invalidite(Variable):
         return period, cotisation_etat + cotisation_collectivites_locales
 
 
-@reference_formula
 class assiette_cotisations_sociales_public(Variable):
     column = FloatCol
     entity_class = Individus
@@ -69,7 +67,6 @@ class assiette_cotisations_sociales_public(Variable):
 # avantages en nature contrib exceptionnelle de solidarite, RAFP, CSG, CRDS.
 
 
-@reference_formula
 class contribution_exceptionnelle_solidarite(Variable):
     column = FloatCol
     entity_class = Individus
@@ -120,7 +117,6 @@ class contribution_exceptionnelle_solidarite(Variable):
         return period, cotisation
 
 
-@reference_formula
 class fonds_emploi_hospitalier(Variable):
     column = FloatCol
     entity_class = Individus
@@ -143,7 +139,6 @@ class fonds_emploi_hospitalier(Variable):
         return period, cotisation
 
 
-@reference_formula
 class ircantec_salarie(Variable):
     column = FloatCol
     entity_class = Individus
@@ -166,7 +161,6 @@ class ircantec_salarie(Variable):
         return period, ircantec
 
 
-@reference_formula
 class ircantec_employeur(Variable):
     column = FloatCol
     entity_class = Individus
@@ -189,7 +183,6 @@ class ircantec_employeur(Variable):
         return period, ircantec
 
 
-@reference_formula
 class pension_civile_salarie(Variable):
     column = FloatCol
     entity_class = Individus
@@ -213,7 +206,6 @@ class pension_civile_salarie(Variable):
         return period, -pension_civile_salarie
 
 
-@reference_formula
 class pension_civile_employeur(Variable):
     column = FloatCol
     entity_class = Individus
@@ -239,7 +231,6 @@ class pension_civile_employeur(Variable):
         return period, -cot_pat_pension_civile
 
 
-@reference_formula
 class rafp_salarie(Variable):
     column = FloatCol
     entity_class = Individus
@@ -268,7 +259,6 @@ class rafp_salarie(Variable):
         return period, -rafp_salarie
 
 
-@reference_formula
 class rafp_employeur(Variable):
     column = FloatCol
     entity_class = Individus

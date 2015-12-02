@@ -22,7 +22,6 @@ reference_input_variable(
     )
 
 
-@reference_formula
 class br_mv_i(Variable):
     column = FloatCol
     label = u"Base ressources individuelle du minimum vieillesse/ASPA"
@@ -108,7 +107,6 @@ class br_mv_i(Variable):
                ) / 3
 
 
-@reference_formula
 class br_mv(Variable):
     column = FloatCol
     label = u"Base ressource du minimum vieillesse et assimilés (ASPA)"
@@ -123,7 +121,6 @@ class br_mv(Variable):
         return period, ass + br_mv_i[CHEF] + br_mv_i[PART]
 
 
-@reference_formula
 class aspa_elig(Variable):
     column = BoolCol
     label = u"Indicatrice individuelle d'éligibilité à l'allocation de solidarité aux personnes agées"
@@ -145,7 +142,6 @@ class aspa_elig(Variable):
         return period, condition_age * condition_nationalite
 
 
-@reference_formula
 class asi_elig(Variable):
     column = BoolCol
     label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
@@ -167,7 +163,6 @@ class asi_elig(Variable):
         return period, condition_situation * condition_pensionnement * condition_nationalite
 
 
-@reference_formula
 class asi_aspa_condition_nationalite(Variable):
     column = BoolCol
     label = u"Condition de nationnalité et de titre de séjour pour bénéficier de l'ASPA ou l'ASI"
@@ -181,7 +176,6 @@ class asi_aspa_condition_nationalite(Variable):
         return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
 
-@reference_formula
 class asi_aspa_nb_alloc(Variable):
     column = IntCol
     label = u"Nombre d'allocataires ASI/ASPA"
@@ -198,7 +192,6 @@ class asi_aspa_nb_alloc(Variable):
         return period, (1 * aspa_elig[CHEF] + 1 * aspa_elig[PART] + 1 * asi_elig[CHEF] + 1 * asi_elig[PART])
 
 
-@reference_formula
 class asi(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
@@ -262,7 +255,6 @@ class asi(Variable):
         return period, elig * montant_servi_asi
 
 
-@reference_formula
 class aspa_couple(DatedVariable):
     column = BoolCol
     label = u"Couple au sens de l'ASPA"
@@ -283,7 +275,6 @@ class aspa_couple(DatedVariable):
         return period, concub
 
 
-@reference_formula
 class aspa(Variable):
     calculate_output = calculate_output_add
     column = FloatCol

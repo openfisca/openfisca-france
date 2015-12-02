@@ -17,7 +17,6 @@ reference_input_variable(
     )
 
 
-@reference_formula
 class exoneration_cotisations_employeur_geographiques(Variable):
     column = FloatCol
     entity_class = Individus
@@ -38,7 +37,6 @@ class exoneration_cotisations_employeur_geographiques(Variable):
         return period, exonerations_geographiques
 
 
-@reference_formula
 class exoneration_cotisations_employeur_jei(Variable):
     column = FloatCol
     entity_class = Individus
@@ -86,7 +84,6 @@ class exoneration_cotisations_employeur_jei(Variable):
         return period, - exoneration * jeune_entreprise_innovante
 
 
-@reference_formula
 class exoneration_cotisations_employeur_zfu(Variable):
     column = FloatCol
     entity_class = Individus
@@ -238,7 +235,6 @@ class exoneration_cotisations_employeur_zfu(Variable):
         # TODO: propager dans le temps
 
 
-@reference_formula
 class exoneration_cotisations_employeur_zrd(Variable):
     column = FloatCol
     entity_class = Individus
@@ -276,7 +272,6 @@ class exoneration_cotisations_employeur_zrd(Variable):
         return period, exoneration_cotisations_zrd
 
 
-@reference_formula
 class exoneration_cotisations_employeur_zrr(Variable):
     column = FloatCol
     entity_class = Individus
@@ -332,7 +327,6 @@ class exoneration_cotisations_employeur_zrr(Variable):
 
 
 # Aides à la création
-@reference_formula
 class exoneration_is_creation_zrr(Variable):
     column = FloatCol
     entity_class = Individus
@@ -379,8 +373,7 @@ class exoneration_is_creation_zrr(Variable):
         # TODO: mettre sur toutes les années
 
 
-# @reference_formula
-# class bassin_emploi_redynamiser(Variable):
+# # class bassin_emploi_redynamiser(Variable):
 #     column = BoolCol
 #     entity_class = Individus
 #     label = u"L'entreprise est située danns un bassin d'emploi à redynamiser(BER)"
@@ -392,7 +385,6 @@ class exoneration_is_creation_zrr(Variable):
 #         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 #         return period, (effectif_entreprise >= 1) * False
 
-@reference_formula
 class jeune_entreprise_innovante(Variable):
     column = BoolCol
     entity_class = Individus
@@ -451,7 +443,6 @@ class jeune_entreprise_innovante(Variable):
         return period, jeune_entreprise_innovante
 
 
-@reference_formula
 class bassin_emploi_redynamiser(Variable):
     column = BoolCol
     entity_class = Individus
@@ -466,7 +457,6 @@ class bassin_emploi_redynamiser(Variable):
         return period, (effectif_entreprise >= 1) * False
 
 
-@reference_formula
 class zone_restructuration_defense(Variable):
     column = BoolCol
     entity_class = Individus
@@ -477,7 +467,6 @@ class zone_restructuration_defense(Variable):
         return period, (effectif_entreprise >= 1) * False
 
 
-@reference_formula
 class zone_franche_urbaine(Variable):
     column = BoolCol
     entity_class = Individus
@@ -488,7 +477,6 @@ class zone_franche_urbaine(Variable):
         return period, (effectif_entreprise >= 1) * False
 
 
-@reference_formula
 class zone_revitalisation_rurale(Variable):
     column = BoolCol
     entity_class = Individus

@@ -8,7 +8,6 @@ from ...base import *  # noqa analysis:ignore
 from .base_ressource import nb_enf
 
 
-@reference_formula
 class ars(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles

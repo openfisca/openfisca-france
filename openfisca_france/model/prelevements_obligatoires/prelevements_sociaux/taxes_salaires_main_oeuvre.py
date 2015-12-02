@@ -30,7 +30,6 @@ from .cotisations_sociales.base import apply_bareme
 # Cotisations proprement dites
 
 
-@reference_formula
 class conge_individuel_formation_cdd(Variable):
     column = FloatCol
     entity_class = Individus
@@ -46,7 +45,6 @@ class conge_individuel_formation_cdd(Variable):
         return period, cotisation
 
 
-@reference_formula
 class contribution_developpement_apprentissage(Variable):
     column = FloatCol
     entity_class = Individus
@@ -64,7 +62,6 @@ class contribution_developpement_apprentissage(Variable):
         return period, cotisation * redevable_taxe_apprentissage
 
 
-@reference_formula
 class contribution_supplementaire_apprentissage(DatedVariable):
     column = FloatCol
     entity_class = Individus
@@ -93,7 +90,6 @@ class contribution_supplementaire_apprentissage(DatedVariable):
         return period, - taux_contribution * assiette_cotisations_sociales
 
 
-@reference_formula
 class cotisations_employeur_main_d_oeuvre(Variable):
     base_function = requested_period_added_value
     column = FloatCol
@@ -130,7 +126,6 @@ class cotisations_employeur_main_d_oeuvre(Variable):
         return period, cotisations_employeur_main_d_oeuvre
 
 
-@reference_formula
 class fnal(Variable):
     column = FloatCol
     entity_class = Individus
@@ -142,7 +137,6 @@ class fnal(Variable):
         return period, fnal_tranche_a + fnal_tranche_a_plus_20
 
 
-@reference_formula
 class fnal_tranche_a(Variable):
     column = FloatCol
     entity_class = Individus
@@ -160,7 +154,6 @@ class fnal_tranche_a(Variable):
         return period, cotisation * (taille_entreprise <= 2)
 
 
-@reference_formula
 class fnal_tranche_a_plus_20(Variable):
     column = FloatCol
     entity_class = Individus
@@ -178,7 +171,6 @@ class fnal_tranche_a_plus_20(Variable):
         return period, cotisation * (taille_entreprise > 2)
 
 
-@reference_formula
 class financement_organisations_syndicales(DatedVariable):
     column = FloatCol
     entity_class = Individus
@@ -197,7 +189,6 @@ class financement_organisations_syndicales(DatedVariable):
         return period, cotisation * or_(type_sal <= 1, type_sal == 6)
 
 
-@reference_formula
 class formation_professionnelle(Variable):
     column = FloatCol
     entity_class = Individus
@@ -229,7 +220,6 @@ class formation_professionnelle(Variable):
         return period, cotisation_0_9 + cotisation_10_19 + cotisation_20
 
 
-@reference_formula
 class participation_effort_construction(Variable):
     column = FloatCol
     entity_class = Individus
@@ -247,7 +237,6 @@ class participation_effort_construction(Variable):
         return period, cotisation
 
 
-@reference_formula
 class taxe_apprentissage(Variable):
     column = FloatCol
     entity_class = Individus
@@ -267,7 +256,6 @@ class taxe_apprentissage(Variable):
         return period, redevable_taxe_apprentissage * cotisation
 
 
-@reference_formula
 class taxe_salaires(Variable):
     column = FloatCol
     entity_class = Individus
@@ -297,7 +285,6 @@ class taxe_salaires(Variable):
             ) * assujettie_taxe_salaires
 
 
-@reference_formula
 class taux_versement_transport(Variable):
     column = FloatCol
     entity_class = Individus
@@ -331,7 +318,6 @@ class taux_versement_transport(Variable):
         return period, (taux_aot + taux_smt) * or_(effectif_entreprise > 9, public) / 100
 
 
-@reference_formula
 class versement_transport(Variable):
     column = FloatCol
     entity_class = Individus

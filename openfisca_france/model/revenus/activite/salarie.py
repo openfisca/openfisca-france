@@ -434,7 +434,6 @@ reference_input_variable(
     )
 
 
-@reference_formula
 class avantage_en_nature(Variable):
     base_function = requested_period_added_value
     column = FloatCol
@@ -449,7 +448,6 @@ class avantage_en_nature(Variable):
         return period, avantage_en_nature_valeur_reelle + avantage_en_nature_valeur_forfaitaire
 
 
-@reference_formula
 class avantage_en_nature_valeur_forfaitaire(Variable):
     # base_function = requested_period_added_value
     column = FloatCol
@@ -464,7 +462,6 @@ class avantage_en_nature_valeur_forfaitaire(Variable):
         return period, avantage_en_nature_valeur_reelle * 0
 
 
-@reference_formula
 class depense_cantine_titre_restaurant_employe(Variable):
     base_function = requested_period_added_value
     column = FloatCol
@@ -481,7 +478,6 @@ class depense_cantine_titre_restaurant_employe(Variable):
         return period, - valeur_unitaire * volume * (1 - taux_employeur)
 
 
-@reference_formula
 class depense_cantine_titre_restaurant_employeur(Variable):
     base_function = requested_period_added_value
     column = FloatCol
@@ -497,7 +493,6 @@ class depense_cantine_titre_restaurant_employeur(Variable):
         return period, valeur_unitaire * volume * taux_employeur
 
 
-@reference_formula
 class nombre_jours_calendaires(Variable):
     column = FloatCol
     entity_class = Individus
@@ -522,7 +517,6 @@ class nombre_jours_calendaires(Variable):
         return period, jours_travailles
 
 
-@reference_formula
 class remboursement_transport(Variable):
     column = FloatCol
     entity_class = Individus
@@ -537,7 +531,6 @@ class remboursement_transport(Variable):
 
 # Fonction publique
 
-@reference_formula
 class gipa(Variable):
     column = FloatCol
     entity_class = Individus
@@ -549,7 +542,6 @@ class gipa(Variable):
         return period, self.zeros()
 
 
-@reference_formula
 class indemnite_residence(Variable):
     column = FloatCol
     entity_class = Individus
@@ -575,7 +567,6 @@ class indemnite_residence(Variable):
             ) * (type_sal >= 2)
 
 
-@reference_formula
 class indice_majore(Variable):
     column = FloatCol
     entity_class = Individus
@@ -591,7 +582,6 @@ class indice_majore(Variable):
         return period, (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * (type_sal >= 2)
 
 
-@reference_formula
 class primes_fonction_publique(Variable):
     column = FloatCol
     entity_class = Individus
@@ -611,7 +601,6 @@ class primes_fonction_publique(Variable):
         return period, TAUX_DE_PRIME * traitement_indiciaire_brut * public
 
 
-@reference_formula
 class af_nbenf_fonc(Variable):
     column = IntCol
     entity_class = Familles
@@ -634,7 +623,6 @@ class af_nbenf_fonc(Variable):
         return period, af_nbenf
 
 
-@reference_formula
 class supp_familial_traitement(Variable):
     column = FloatCol
     entity_class = Individus
@@ -709,7 +697,6 @@ def _traitement_brut_mensuel(indice_maj, law):
     return traitement_brut
 
 
-@reference_formula
 class remuneration_principale(Variable):
     column = FloatCol
     entity_class = Individus
@@ -726,7 +713,6 @@ class remuneration_principale(Variable):
             )
 
 
-@reference_formula
 class salaire_net_a_payer(Variable):
     base_function = requested_period_added_value
     column = FloatCol
@@ -756,7 +742,6 @@ class salaire_net_a_payer(Variable):
         return period, salaire_net_a_payer
 
 
-@reference_formula
 class salsuperbrut(Variable):
     base_function = requested_period_added_value
     column = FloatCol

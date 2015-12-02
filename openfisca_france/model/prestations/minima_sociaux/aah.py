@@ -6,7 +6,6 @@ from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minim
 from ...base import *  # noqa analysis:ignore
 
 # TODO : Aujourd'hui, cette BR correspond uniquement au demandeur, pas au conjoint.
-@reference_formula
 class aah_base_ressources(Variable):
     column = FloatCol
     label = u"Base ressources de l'allocation adulte handicapé"
@@ -50,7 +49,6 @@ class aah_base_ressources(Variable):
         return period, aah_base_ressource
 
 
-@reference_formula
 class aah_base_ressources_eval_trimestrielle(Variable):
     column = FloatCol
     label = u"Base de ressources de l'ASS pour un individu, évaluation trimestrielle"
@@ -115,7 +113,6 @@ class aah_base_ressources_eval_trimestrielle(Variable):
         return period, result * 4
 
 
-@reference_formula
 class aah_base_ressources_eval_annuelle(Variable):
     column = FloatCol
     label = u"Base de ressources de l'ASS pour un individu, évaluation annuelle"
@@ -126,7 +123,6 @@ class aah_base_ressources_eval_annuelle(Variable):
         return period, simulation.calculate('rev_act', period.n_2) + simulation.calculate('rev_pen', period.n_2)
 
 
-@reference_formula
 class aah_eligible(Variable):
     column = BoolCol
     label = u"Eligibilité à l'Allocation adulte handicapé"
@@ -179,7 +175,6 @@ class aah_eligible(Variable):
     # TODO: dated_function : avant 2008, il fallait ne pas avoir travaillé pendant les 12 mois précédant la demande.
 
 
-@reference_formula
 class aah_non_calculable(Variable):
     column = EnumCol(
         enum = Enum([
@@ -200,7 +195,6 @@ class aah_non_calculable(Variable):
         return period, self.any_by_roles(aah_eligible) # * (taux_incapacite < 0.8)
 
 
-@reference_formula
 class aah_base(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
@@ -226,7 +220,6 @@ class aah_base(Variable):
         return period, aah_eligible * self.cast_from_entity_to_roles(montant_aah(), entity = 'famille') # * not_(aah_non_calculable)
 
 
-@reference_formula
 class aah(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
@@ -243,7 +236,6 @@ class aah(Variable):
         return period, aah_base
 
 
-@reference_formula
 class caah(DatedVariable):
     calculate_output = calculate_output_add
     column = FloatCol

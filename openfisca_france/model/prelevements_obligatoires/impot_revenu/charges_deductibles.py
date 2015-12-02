@@ -200,7 +200,6 @@ build_column('f6fl', IntCol(entity = 'foy',
                 cerfa_field = u'6FL'))
 
 
-@reference_formula
 class rfr_cd(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -217,7 +216,6 @@ class rfr_cd(Variable):
         return period, cd_acc75a + cd_doment + cd_eparet + cd_sofipe
 
 
-@reference_formula
 class cd1(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -316,7 +314,6 @@ class cd1(DatedVariable):
         return period, niches1
 
 
-@reference_formula
 class cd2(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -358,7 +355,6 @@ class cd2(DatedVariable):
         return period, niches2
 
 
-@reference_formula
 class rbg_int(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -372,7 +368,6 @@ class rbg_int(Variable):
         return period, max_(rbg - cd1, 0)
 
 
-@reference_formula
 class charges_deduc(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -387,7 +382,6 @@ class charges_deduc(Variable):
         return period, cd1 + cd2
 
 
-@reference_formula
 class cd_penali(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -420,7 +414,6 @@ class cd_penali(Variable):
                     f6gp * (1 + taux_jgt_2006) + f6gu)
 
 
-@reference_formula
 class cd_acc75a(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -439,7 +432,6 @@ class cd_acc75a(Variable):
         return period, min_(f6eu, amax)
 
 
-@reference_formula
 class cd_percap(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -478,7 +470,6 @@ class cd_percap(DatedVariable):
         return period, min_(min_(f6cb, max_cb) + min_(f6da, max_da), max_da)
 
 
-@reference_formula
 class cd_deddiv(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -494,7 +485,6 @@ class cd_deddiv(Variable):
         return period, f6dd
 
 
-@reference_formula
 class cd_doment(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -514,7 +504,6 @@ class cd_doment(Variable):
         return period, f6eh
 
 
-@reference_formula
 class cd_eparet(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -553,7 +542,6 @@ class cd_eparet(Variable):
                 (f6pu != 0) * min_(f6ru + f6su, f6pu))
 
 
-@reference_formula
 class cd_sofipe(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -577,7 +565,6 @@ class cd_sofipe(Variable):
         return period, min_(f6cc, max1)
 
 
-@reference_formula
 class cd_cinema(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -600,7 +587,6 @@ class cd_cinema(Variable):
         return period, min_(f6aa, max1)
 
 
-@reference_formula
 class cd_ecodev(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -623,7 +609,6 @@ class cd_ecodev(Variable):
         return period, min_(f6eh, max1)
 
 
-@reference_formula
 class cd_grorep(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux

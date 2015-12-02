@@ -21,7 +21,6 @@ log = logging.getLogger(__name__)
 # versement transport dépdendant de la localité (décommenter et compléter)
 
 
-@reference_formula
 class assiette_cotisations_sociales(Variable):
     column = FloatCol
     entity_class = Individus
@@ -39,7 +38,6 @@ class assiette_cotisations_sociales(Variable):
             )
 
 
-@reference_formula
 class assiette_cotisations_sociales_prive(Variable):
     column = FloatCol
     entity_class = Individus
@@ -75,7 +73,6 @@ class assiette_cotisations_sociales_prive(Variable):
         return period, max_(assiette, smic_proratise * not_(apprenti)) * (assiette > 0)
 
 
-@reference_formula
 class reintegration_titre_restaurant_employeur(Variable):
     column = FloatCol
     entity_class = Individus
@@ -106,7 +103,6 @@ class reintegration_titre_restaurant_employeur(Variable):
 # Cotisations proprement dites
 
 
-@reference_formula
 class accident_du_travail(Variable):
     column = FloatCol
     entity_class = Individus
@@ -122,7 +118,6 @@ class accident_du_travail(Variable):
         return period, - assiette_cotisations_sociales * taux_accident_travail * assujetti
 
 
-@reference_formula
 class agff_salarie(Variable):
     column = FloatCol
     entity_class = Individus
@@ -140,7 +135,6 @@ class agff_salarie(Variable):
         return period, cotisation
 
 
-@reference_formula
 class agff_employeur(Variable):
     column = FloatCol
     entity_class = Individus
@@ -174,7 +168,6 @@ class agff_employeur(Variable):
         return period, cotisation_cadre + cotisation_non_cadre
 
 
-@reference_formula
 class agirc_gmp_assiette(Variable):
     column = FloatCol
     entity_class = Individus
@@ -192,7 +185,6 @@ class agirc_gmp_assiette(Variable):
         return period, assiette
 
 
-@reference_formula
 class agirc_gmp_salarie(Variable):
     column = FloatCol
     entity_class = Individus
@@ -220,7 +212,6 @@ class agirc_gmp_salarie(Variable):
         return period, min_((cotisation - agirc_salarie) * (type_sal == 1), 0)  # cotisation are negative
 
 
-@reference_formula
 class agirc_gmp_employeur(Variable):
     column = FloatCol
     entity_class = Individus
@@ -249,7 +240,6 @@ class agirc_gmp_employeur(Variable):
         return period, min_((cotisation - agirc_employeur) * (type_sal == 1), 0)  # cotisation are negative
 
 
-@reference_formula
 class agirc_salarie(Variable):
     column = FloatCol
     entity_class = Individus
@@ -267,7 +257,6 @@ class agirc_salarie(Variable):
         return period, cotisation * (type_sal == 1)
 
 
-@reference_formula
 class agirc_employeur(Variable):
     column = FloatCol
     entity_class = Individus
@@ -284,7 +273,6 @@ class agirc_employeur(Variable):
         return period, cotisation * (type_sal == 1)
 
 
-@reference_formula
 class ags(Variable):
     column = FloatCol
     entity_class = Individus
@@ -300,7 +288,6 @@ class ags(Variable):
         return period, cotisation
 
 
-@reference_formula
 class apec_salarie(Variable):
     column = FloatCol
     entity_class = Individus
@@ -316,7 +303,6 @@ class apec_salarie(Variable):
         return period, cotisation  # TODO: check public notamment contractuel
 
 
-@reference_formula
 class apec_employeur(Variable):
     column = FloatCol
     entity_class = Individus
@@ -333,7 +319,6 @@ class apec_employeur(Variable):
         return period, cotisation  # TODO: check public notamment contractuel
 
 
-@reference_formula
 class arrco_salarie(Variable):
     column = FloatCol
     entity_class = Individus
@@ -362,7 +347,6 @@ class arrco_salarie(Variable):
             ) * (type_sal <= 1)
 
 
-@reference_formula
 class arrco_employeur(Variable):
     column = FloatCol
     entity_class = Individus
@@ -391,7 +375,6 @@ class arrco_employeur(Variable):
             ) * (type_sal <= 1)
 
 
-@reference_formula
 class chomage_salarie(Variable):
     column = FloatCol
     entity_class = Individus
@@ -408,7 +391,6 @@ class chomage_salarie(Variable):
         return period, cotisation
 
 
-@reference_formula
 class chomage_employeur(Variable):
     column = FloatCol
     entity_class = Individus
@@ -425,7 +407,6 @@ class chomage_employeur(Variable):
         return period, cotisation
 
 
-@reference_formula
 class contribution_solidarite_autonomie(Variable):
     column = FloatCol
     entity_class = Individus
@@ -442,7 +423,6 @@ class contribution_solidarite_autonomie(Variable):
         return period, cotisation
 
 
-@reference_formula
 class cotisation_exceptionnelle_temporaire_salarie(Variable):
     column = FloatCol
     entity_class = Individus
@@ -459,7 +439,6 @@ class cotisation_exceptionnelle_temporaire_salarie(Variable):
         return period, cotisation
 
 
-@reference_formula
 class cotisation_exceptionnelle_temporaire_employeur(Variable):
     column = FloatCol
     entity_class = Individus
@@ -476,7 +455,6 @@ class cotisation_exceptionnelle_temporaire_employeur(Variable):
         return period, cotisation
 
 
-@reference_formula
 class famille(Variable):
     column = FloatCol
     entity_class = Individus
@@ -493,7 +471,6 @@ class famille(Variable):
         return period, cotisation
 
 
-@reference_formula
 class mmid_salarie(Variable):
     column = FloatCol
     entity_class = Individus
@@ -510,7 +487,6 @@ class mmid_salarie(Variable):
         return period, cotisation
 
 
-@reference_formula
 class mmid_employeur(Variable):
     column = FloatCol
     entity_class = Individus
@@ -529,7 +505,6 @@ class mmid_employeur(Variable):
 
 
 # TODO: this formula is used only to check fiche_de_paie from memento
-@reference_formula
 class mmida_employeur(Variable):
     column = FloatCol
     entity_class = Individus
@@ -548,7 +523,6 @@ class mmida_employeur(Variable):
         return period, cotisation + contribution_solidarite_autonomie
 
 
-@reference_formula
 class mhsup(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
@@ -562,7 +536,6 @@ class mhsup(Variable):
         return period, -hsup
 
 
-@reference_formula
 class plafond_securite_sociale(Variable):
     column = FloatCol
     entity_class = Individus
@@ -581,7 +554,6 @@ class plafond_securite_sociale(Variable):
         return period, plafond_securite_sociale
 
 
-@reference_formula
 class prevoyance_obligatoire_cadre(Variable):
     column = FloatCol
     entity_class = Individus
@@ -604,7 +576,6 @@ class prevoyance_obligatoire_cadre(Variable):
         return period, cotisation
 
 
-@reference_formula
 class taille_entreprise(Variable):
     column = EnumCol(
         enum = Enum(
@@ -635,7 +606,6 @@ class taille_entreprise(Variable):
         return period, taille_entreprise
 
 
-@reference_formula
 class taux_accident_travail(Variable):
     column = FloatCol
     entity_class = Individus
@@ -651,7 +621,6 @@ class taux_accident_travail(Variable):
             + (exposition_accident == 2) * accident.eleve + (exposition_accident == 3) * accident.treseleve
 
 
-@reference_formula
 class vieillesse_deplafonnee_salarie(Variable):
     column = FloatCol
     entity_class = Individus
@@ -669,7 +638,6 @@ class vieillesse_deplafonnee_salarie(Variable):
         return period, cotisation
 
 
-@reference_formula
 class vieillesse_plafonnee_salarie(Variable):
     column = FloatCol
     entity_class = Individus
@@ -686,7 +654,6 @@ class vieillesse_plafonnee_salarie(Variable):
         return period, cotisation
 
 
-@reference_formula
 class vieillesse_deplafonnee_employeur(Variable):
     column = FloatCol
     entity_class = Individus
@@ -703,7 +670,6 @@ class vieillesse_deplafonnee_employeur(Variable):
         return period, cotisation
 
 
-@reference_formula
 class vieillesse_plafonnee_employeur(Variable):
     column = FloatCol
     entity_class = Individus

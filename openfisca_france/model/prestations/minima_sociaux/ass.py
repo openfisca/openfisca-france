@@ -11,7 +11,6 @@ from ...base import *  # noqa analysis:ignore
 build_column('ass_precondition_remplie', BoolCol(entity = "ind", label = u"Éligible à l'ASS"))
 
 
-@reference_formula
 class ass(Variable):
     column = FloatCol
     label = u"Montant de l'ASS pour une famille"
@@ -41,7 +40,6 @@ class ass(Variable):
         return period, ass
 
 
-@reference_formula
 class ass_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources de l'ASS"
@@ -58,7 +56,6 @@ class ass_base_ressources(Variable):
         return period, result
 
 
-@reference_formula
 class ass_base_ressources_i(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle de l'ASS"
@@ -103,7 +100,6 @@ class ass_base_ressources_i(Variable):
         )
 
 
-@reference_formula
 class ass_base_ressources_conjoint(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle pour le conjoint du demandeur de l'ASS"
@@ -172,7 +168,6 @@ class ass_base_ressources_conjoint(Variable):
         return period, result
 
 
-@reference_formula
 class ass_eligibilite_i(Variable):
     column = BoolCol
     label = u"Éligibilité individuelle à l'ASS"

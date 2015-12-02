@@ -20,7 +20,6 @@ log = logging.getLogger(__name__)
 # TODO: mettre les seuils entreprises dans les paramètres
 
 
-@reference_formula
 class penalite_egalite_professionnelle(Variable):
     column = FloatCol
     entity_class = Individus
@@ -34,7 +33,6 @@ class penalite_egalite_professionnelle(Variable):
         return period, not_(egalite_professionnelle_accord) * (effectif_entreprise >= 50) * taux
 
 
-@reference_formula
 class penalite_emploi_jeunes(Variable):
     column = FloatCol
     entity_class = Individus
@@ -49,7 +47,6 @@ class penalite_emploi_jeunes(Variable):
         return period, not_(emploi_jeunes_accord) * (effectif_entreprise >= 300) * taux
 
 
-@reference_formula
 class penalite_emploi_seniors(Variable):
     column = FloatCol
     entity_class = Individus
@@ -64,7 +61,6 @@ class penalite_emploi_seniors(Variable):
         return period, not_(emploi_senior_accord) * (effectif_entreprise >= 50) * taux
 
 
-@reference_formula
 class penalite_penibilite(Variable):
     column = FloatCol
     entity_class = Individus
@@ -78,7 +74,6 @@ class penalite_penibilite(Variable):
         return period, not_(penibilite_prevention_accord) * (effectif_entreprise >= 50) * taux
 
 
-@reference_formula
 class penalite_handicapes(Variable):
     column = FloatCol
     entity_class = Individus

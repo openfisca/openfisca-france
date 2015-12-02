@@ -10,7 +10,6 @@ from numpy import (absolute as abs_, apply_along_axis, array, int32, logical_not
 from ...base import *  # noqa analysis:ignore
 
 
-@reference_formula
 class acs_montant(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -31,7 +30,6 @@ class acs_montant(DatedVariable):
             nb_par_age(ages_couple, 60, 200) * P.acs_plus_60_ans)
 
 
-@reference_formula
 class cmu_forfait_logement_base(Variable):
     column = FloatCol
     entity_class = Familles
@@ -46,7 +44,6 @@ class cmu_forfait_logement_base(Variable):
         return period, forfait_logement(cmu_nbp_foyer, P, law_rsa)
 
 
-@reference_formula
 class cmu_forfait_logement_al(Variable):
     column = FloatCol
     entity_class = Familles
@@ -61,7 +58,6 @@ class cmu_forfait_logement_al(Variable):
         return period, forfait_logement(cmu_nbp_foyer, P, law_rsa)
 
 
-@reference_formula
 class cmu_nbp_foyer(Variable):
     column = PeriodSizeIndependentIntCol
     entity_class = Familles
@@ -75,7 +71,6 @@ class cmu_nbp_foyer(Variable):
         return period, nb_par + cmu_nb_pac
 
 
-@reference_formula
 class cmu_eligible_majoration_dom(Variable):
     column = BoolCol
     entity_class = Familles
@@ -90,7 +85,6 @@ class cmu_eligible_majoration_dom(Variable):
         return period, residence_guadeloupe | residence_martinique | residence_guyane | residence_reunion
 
 
-@reference_formula
 class cmu_c_plafond(Variable):
     column = FloatCol
     entity_class = Familles
@@ -142,7 +136,6 @@ class cmu_c_plafond(Variable):
             )
 
 
-@reference_formula
 class acs_plafond(Variable):
     column = FloatCol
     entity_class = Familles
@@ -156,7 +149,6 @@ class acs_plafond(Variable):
         return period, cmu_c_plafond * (1 + P.majoration_plafond_acs)
 
 
-@reference_formula
 class cmu_base_ressources_i(Variable):
     column = FloatCol
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
@@ -226,7 +218,6 @@ class cmu_base_ressources_i(Variable):
             gains_exceptionnels + revenus_tns() + revenus_stage_formation_pro)
 
 
-@reference_formula
 class cmu_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
@@ -274,7 +265,6 @@ class cmu_base_ressources(Variable):
         return period, res
 
 
-@reference_formula
 class cmu_nb_pac(Variable):
     column = PeriodSizeIndependentIntCol
     entity_class = Familles
@@ -289,7 +279,6 @@ class cmu_nb_pac(Variable):
         return period, nb_par_age(ages, 0, P.age_limite_pac)
 
 
-@reference_formula
 class cmu_c(Variable):
     '''
     Détermine si le foyer a droit à la CMU complémentaire
@@ -324,7 +313,6 @@ class cmu_c(Variable):
         return period, not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
 
 
-@reference_formula
 class acs(Variable):
     '''
     Calcule le montant de l'ACS auquel le foyer a droit

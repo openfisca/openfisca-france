@@ -33,7 +33,6 @@ build_column('gar_dom', BoolCol(entity = 'fam',
                     label = u"Garde à domicile (CLCMG)"))
 
 
-@reference_formula
 class paje(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -56,7 +55,6 @@ class paje(Variable):
         return period, paje_base + (paje_naissance + paje_clca + paje_clmg + paje_colca) / 12
 
 
-@reference_formula
 class paje_base_montant(Variable):
     column = FloatCol
     entity_class = Familles
@@ -139,7 +137,6 @@ class paje_base_montant(Variable):
         return period, montant
 
 
-@reference_formula
 class paje_base_enfant_eligible_avant_reforme_2014(Variable):
     column = BoolCol
     entity_class = Individus
@@ -158,7 +155,6 @@ class paje_base_enfant_eligible_avant_reforme_2014(Variable):
         return period, (age < age_limite) * not_(smic55) * ne_avant_2014
 
 
-@reference_formula
 class paje_base_enfant_eligible_apres_reforme_2014(Variable):
     column = BoolCol
     entity_class = Individus
@@ -177,7 +173,6 @@ class paje_base_enfant_eligible_apres_reforme_2014(Variable):
         return period, (age < age_limite) * not_(smic55) * not_(ne_avant_2014)
 
 
-@reference_formula
 class paje_naissance(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
@@ -222,7 +217,6 @@ class paje_naissance(Variable):
         return period, nais_brut
 
 
-@reference_formula
 class paje_clca(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
@@ -297,7 +291,6 @@ reference_input_variable(
     )
 
 
-@reference_formula
 class paje_clca_taux_plein(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
@@ -313,7 +306,6 @@ class paje_clca_taux_plein(Variable):
         return period, (paje_clca > 0) * inactif
 
 
-@reference_formula
 class paje_clca_taux_partiel(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
@@ -331,7 +323,6 @@ class paje_clca_taux_partiel(Variable):
     # TODO gérer les cumuls avec autres revenus et colca voir site caf
 
 
-@reference_formula
 class paje_clmg(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
@@ -445,7 +436,6 @@ class paje_clmg(Variable):
         return period, paje_clmg
 
 
-@reference_formula
 class paje_colca(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
@@ -479,7 +469,6 @@ class paje_colca(Variable):
 
 # TODO: cumul avec clca self.colca_tot_m
 
-@reference_formula
 class paje_base(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
@@ -588,7 +577,6 @@ class paje_base(Variable):
 #     return 12 * (aged3 + aged6)  # annualisé
 
 
-@reference_formula
 class ape_temp(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -657,7 +645,6 @@ class ape_temp(Variable):
         return period, ape  # annualisé
 
 
-@reference_formula
 class apje_temp(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -707,7 +694,6 @@ class apje_temp(Variable):
         return period, apje
 
 
-@reference_formula
 class ape(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -728,7 +714,6 @@ class ape(Variable):
         return period, round(ape, 2)
 
 
-@reference_formula
 class apje(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles

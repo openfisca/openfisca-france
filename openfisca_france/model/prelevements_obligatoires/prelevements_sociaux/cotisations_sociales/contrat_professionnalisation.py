@@ -9,7 +9,6 @@ from numpy import datetime64, timedelta64
 from ....base import *  # noqa analysis:ignore
 
 
-@reference_formula
 class professionnalisation(Variable):
     column = BoolCol
     entity_class = Individus
@@ -31,7 +30,6 @@ class professionnalisation(Variable):
         return period, (age_condition + dummy_ass + dummy_aah + dummy_rmi) > 0
 
 
-@reference_formula
 class remuneration_professionnalisation(Variable):
     column = FloatCol
     entity_class = Individus
@@ -97,7 +95,6 @@ class remuneration_professionnalisation(Variable):
         return period, taux_smic * smic * professionnalisation
 
 
-@reference_formula
 class exoneration_cotisations_employeur_apprenti(Variable):
     column = FloatCol
     entity_class = Individus
@@ -132,8 +129,7 @@ class exoneration_cotisations_employeur_apprenti(Variable):
         # plus de 45 ans?
 
 # O est d'accord aucun avantage pour l'employé ??
-#  @reference_formula
-#  class exoneration_cotisations_salariales_apprenti(Variable):
+#  #  class exoneration_cotisations_salariales_apprenti(Variable):
 #    column = FloatCol
 #    entity_class = Individus
 #    label = u"Exonération de cotisations salariales pour l'emploi d'un apprenti"

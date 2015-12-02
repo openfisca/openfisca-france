@@ -58,7 +58,6 @@ reference_input_variable(
 )
 
 
-@reference_formula
 class residence_dom(Variable):
     column = BoolCol
     entity_class = Familles
@@ -72,7 +71,6 @@ class residence_dom(Variable):
         return period, or_(or_(residence_guadeloupe, residence_martinique), or_(or_(residence_reunion, residence_guyane), residence_mayotte))
 
 
-@reference_formula
 class residence_guadeloupe(Variable):
     column = BoolCol
     entity_class = Familles
@@ -85,7 +83,6 @@ class residence_guadeloupe(Variable):
         return period, startswith(depcom, '971')
 
 
-@reference_formula
 class residence_martinique(Variable):
     column = BoolCol
     entity_class = Familles
@@ -98,7 +95,6 @@ class residence_martinique(Variable):
         return period, startswith(depcom, '972')
 
 
-@reference_formula
 class residence_guyane(Variable):
     column = BoolCol
     entity_class = Familles
@@ -111,7 +107,6 @@ class residence_guyane(Variable):
         return period, startswith(depcom, '973')
 
 
-@reference_formula
 class residence_reunion(Variable):
     column = BoolCol
     entity_class = Familles
@@ -124,7 +119,6 @@ class residence_reunion(Variable):
         return period, startswith(depcom, '974')
 
 
-@reference_formula
 class residence_mayotte(Variable):
     column = BoolCol
     entity_class = Familles

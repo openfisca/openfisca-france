@@ -17,7 +17,6 @@ from .....assets.holidays import holidays
 log = logging.getLogger(__name__)
 
 
-@reference_formula
 class assiette_allegement(Variable):
     base_function = requested_period_added_value
     column = FloatCol
@@ -34,7 +33,6 @@ class assiette_allegement(Variable):
             )
 
 
-@reference_formula
 class allegement_fillon(DatedVariable):
     column = FloatCol
     entity_class = Individus
@@ -62,7 +60,6 @@ class allegement_fillon(DatedVariable):
         return period, allegement * not_(stagiaire) * not_(apprenti)
 
 
-@reference_formula
 class coefficient_proratisation(Variable):
     column = FloatCol
     entity_class = Individus
@@ -128,7 +125,6 @@ class coefficient_proratisation(Variable):
         return period, coefficient
 
 
-@reference_formula
 class credit_impot_competitivite_emploi(DatedVariable):
     column = FloatCol
     entity_class = Individus
@@ -152,7 +148,6 @@ class credit_impot_competitivite_emploi(DatedVariable):
         return period, credit_impot_competitivite_emploi * non_cumul
 
 
-@reference_formula
 class smic_proratise(Variable):
     column = FloatCol
     entity_class = Individus
