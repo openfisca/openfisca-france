@@ -22,8 +22,7 @@ def build_reform(tax_benefit_system):
     )
 
 
-    @Reform.formula
-    class resident_93(Variable):
+    class resident_93(Reform.Variable):
         column = BoolCol
         label = u"Résident en Seine-Saint-Denis"
         entity_class = Menages
@@ -44,8 +43,7 @@ def build_reform(tax_benefit_system):
             return period, result
 
 
-    @Reform.formula
-    class adpa_eligibilite(Variable):
+    class adpa_eligibilite(Reform.Variable):
         column = BoolCol
         label = u"Eligibilité à l'ADPA"
         entity_class = Individus
@@ -61,8 +59,7 @@ def build_reform(tax_benefit_system):
             return period, result
 
 
-    @Reform.formula
-    class adpa_base_ressources_i(Variable):
+    class adpa_base_ressources_i(Reform.Variable):
         column = FloatCol
         label = u"Base ressources ADPA pour un individu"
         entity_class = Individus
@@ -89,8 +86,7 @@ def build_reform(tax_benefit_system):
             return period, base_ressource_mensuelle
 
 
-    @Reform.formula
-    class adpa_base_ressources(Variable):
+    class adpa_base_ressources(Reform.Variable):
         column = FloatCol
         label = u"Base ressources ADPA pour une famille"
         entity_class = Familles
@@ -103,8 +99,7 @@ def build_reform(tax_benefit_system):
             return period, adpa_base_ressources
 
 
-    @Reform.formula
-    class adpa(Variable):
+    class adpa(Reform.Variable):
         column = FloatCol
         label = u"ADPA"
         entity_class = Familles
