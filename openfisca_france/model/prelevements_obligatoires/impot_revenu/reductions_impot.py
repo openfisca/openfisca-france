@@ -413,7 +413,7 @@ class reductions(DatedFormulaColumn):
 
 
 @reference_formula
-class adhcga(SimpleFormulaColumn):
+class adhcga(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"adhcga"
@@ -432,7 +432,7 @@ class adhcga(SimpleFormulaColumn):
 
 
 @reference_formula
-class assvie(SimpleFormulaColumn):
+class assvie(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"assvie"
@@ -629,7 +629,7 @@ class cappme(DatedFormulaColumn):
 
 
 @reference_formula
-class cotsyn(SimpleFormulaColumn):
+class cotsyn(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cotsyn"
@@ -742,7 +742,7 @@ class creaen(DatedFormulaColumn):
 
 
 @reference_formula
-class deffor(SimpleFormulaColumn):
+class deffor(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"deffor"
@@ -761,7 +761,7 @@ class deffor(SimpleFormulaColumn):
 
 
 @reference_formula
-class daepad(SimpleFormulaColumn):
+class daepad(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"daepad"
@@ -1566,7 +1566,7 @@ class donapd(DatedFormulaColumn):
 
 
 @reference_formula
-class duflot(SimpleFormulaColumn):
+class duflot(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"duflot"
@@ -1588,7 +1588,7 @@ class duflot(SimpleFormulaColumn):
 #TODO: / 5 dans trois TOM
 
 @reference_formula
-class ecodev(SimpleFormulaColumn):
+class ecodev(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ecodev"
@@ -1609,7 +1609,7 @@ class ecodev(SimpleFormulaColumn):
 
 
 @reference_formula
-class ecpess(SimpleFormulaColumn):
+class ecpess(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ecpess"
@@ -1683,7 +1683,7 @@ class garext(DatedFormulaColumn):
 
 
 @reference_formula
-class intagr(SimpleFormulaColumn):
+class intagr(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"intagr"
@@ -1704,7 +1704,7 @@ class intagr(SimpleFormulaColumn):
 
 
 @reference_formula
-class intcon(SimpleFormulaColumn):
+class intcon(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"intcon"
@@ -1725,7 +1725,7 @@ class intcon(SimpleFormulaColumn):
 
 
 @reference_formula
-class intemp(SimpleFormulaColumn):
+class intemp(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"intemp"
@@ -2129,7 +2129,7 @@ class invlst(DatedFormulaColumn):
 
 
 @reference_formula
-class invrev(SimpleFormulaColumn):
+class invrev(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"invrev"
@@ -2317,7 +2317,7 @@ class locmeu(DatedFormulaColumn):
 
 
 @reference_formula
-class mohist(SimpleFormulaColumn):
+class mohist(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"mohist"
@@ -2401,7 +2401,7 @@ class patnat(DatedFormulaColumn):
 
 
 @reference_formula
-class prcomp(SimpleFormulaColumn):
+class prcomp(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"prcomp"
@@ -2431,7 +2431,7 @@ class prcomp(SimpleFormulaColumn):
 
 
 @reference_formula
-class repsoc(SimpleFormulaColumn):
+class repsoc(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"repsoc"
@@ -2542,7 +2542,7 @@ class resimm(DatedFormulaColumn):
 
 
 @reference_formula
-class rsceha(SimpleFormulaColumn):
+class rsceha(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"rsceha"
@@ -2981,7 +2981,7 @@ class scelli(DatedFormulaColumn):
 
 
 @reference_formula
-class sofica(SimpleFormulaColumn):
+class sofica(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"sofica"
@@ -3004,7 +3004,7 @@ class sofica(SimpleFormulaColumn):
 
 
 @reference_formula
-class sofipe(SimpleFormulaColumn):
+class sofipe(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"sofipe"

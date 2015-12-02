@@ -32,7 +32,7 @@ class acs_montant(DatedFormulaColumn):
 
 
 @reference_formula
-class cmu_forfait_logement_base(SimpleFormulaColumn):
+class cmu_forfait_logement_base(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
@@ -47,7 +47,7 @@ class cmu_forfait_logement_base(SimpleFormulaColumn):
 
 
 @reference_formula
-class cmu_forfait_logement_al(SimpleFormulaColumn):
+class cmu_forfait_logement_al(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Forfait logement applicable en cas d'aide au logement"
@@ -62,7 +62,7 @@ class cmu_forfait_logement_al(SimpleFormulaColumn):
 
 
 @reference_formula
-class cmu_nbp_foyer(SimpleFormulaColumn):
+class cmu_nbp_foyer(Variable):
     column = PeriodSizeIndependentIntCol
     entity_class = Familles
     label = u"Nombre de personnes dans le foyer CMU"
@@ -76,7 +76,7 @@ class cmu_nbp_foyer(SimpleFormulaColumn):
 
 
 @reference_formula
-class cmu_eligible_majoration_dom(SimpleFormulaColumn):
+class cmu_eligible_majoration_dom(Variable):
     column = BoolCol
     entity_class = Familles
 
@@ -91,7 +91,7 @@ class cmu_eligible_majoration_dom(SimpleFormulaColumn):
 
 
 @reference_formula
-class cmu_c_plafond(SimpleFormulaColumn):
+class cmu_c_plafond(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
@@ -143,7 +143,7 @@ class cmu_c_plafond(SimpleFormulaColumn):
 
 
 @reference_formula
-class acs_plafond(SimpleFormulaColumn):
+class acs_plafond(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Plafond annuel de ressources pour l'éligibilité à l'ACS"
@@ -157,7 +157,7 @@ class acs_plafond(SimpleFormulaColumn):
 
 
 @reference_formula
-class cmu_base_ressources_i(SimpleFormulaColumn):
+class cmu_base_ressources_i(Variable):
     column = FloatCol
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Individus
@@ -227,7 +227,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
 
 
 @reference_formula
-class cmu_base_ressources(SimpleFormulaColumn):
+class cmu_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Familles
@@ -275,7 +275,7 @@ class cmu_base_ressources(SimpleFormulaColumn):
 
 
 @reference_formula
-class cmu_nb_pac(SimpleFormulaColumn):
+class cmu_nb_pac(Variable):
     column = PeriodSizeIndependentIntCol
     entity_class = Familles
     label = u"Nombre de personnes à charge au titre de la CMU"
@@ -290,7 +290,7 @@ class cmu_nb_pac(SimpleFormulaColumn):
 
 
 @reference_formula
-class cmu_c(SimpleFormulaColumn):
+class cmu_c(Variable):
     '''
     Détermine si le foyer a droit à la CMU complémentaire
     '''
@@ -325,7 +325,7 @@ class cmu_c(SimpleFormulaColumn):
 
 
 @reference_formula
-class acs(SimpleFormulaColumn):
+class acs(Variable):
     '''
     Calcule le montant de l'ACS auquel le foyer a droit
     '''

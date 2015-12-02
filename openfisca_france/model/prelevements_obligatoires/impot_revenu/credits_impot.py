@@ -233,7 +233,7 @@ class credits_impot(DatedFormulaColumn):
 
 
 @reference_formula
-class nb_pac2(SimpleFormulaColumn):
+class nb_pac2(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"nb_pac2"
@@ -249,7 +249,7 @@ class nb_pac2(SimpleFormulaColumn):
 
 
 @reference_formula
-class accult(SimpleFormulaColumn):
+class accult(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"accult"
@@ -269,7 +269,7 @@ class accult(SimpleFormulaColumn):
 
 
 @reference_formula
-class acqgpl(SimpleFormulaColumn):
+class acqgpl(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"acqgpl"
@@ -290,7 +290,7 @@ class acqgpl(SimpleFormulaColumn):
 
 
 @reference_formula
-class aidmob(SimpleFormulaColumn):
+class aidmob(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"aidmob"
@@ -471,7 +471,7 @@ class aidper(DatedFormulaColumn):
 
 
 @reference_formula
-class assloy(SimpleFormulaColumn):
+class assloy(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"assloy"
@@ -490,7 +490,7 @@ class assloy(SimpleFormulaColumn):
 
 
 @reference_formula
-class autent(SimpleFormulaColumn):
+class autent(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"autent"
@@ -508,7 +508,7 @@ class autent(SimpleFormulaColumn):
 
 
 @reference_formula
-class ci_garext(SimpleFormulaColumn):
+class ci_garext(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ci_garext"
@@ -539,7 +539,7 @@ class ci_garext(SimpleFormulaColumn):
 
 
 @reference_formula
-class creimp_exc_2008(SimpleFormulaColumn):
+class creimp_exc_2008(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"creimp_exc_2008"
@@ -857,7 +857,7 @@ class creimp(DatedFormulaColumn):
 
 
 @reference_formula
-class direpa(SimpleFormulaColumn):
+class direpa(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"direpa"
@@ -874,7 +874,7 @@ class direpa(SimpleFormulaColumn):
 
 
 @reference_formula
-class divide(SimpleFormulaColumn):
+class divide(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"divide"
@@ -899,7 +899,7 @@ class divide(SimpleFormulaColumn):
 
 
 @reference_formula
-class drbail(SimpleFormulaColumn):
+class drbail(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"drbail"
@@ -1111,7 +1111,7 @@ class inthab(DatedFormulaColumn):
 
 
 @reference_formula
-class jeunes(SimpleFormulaColumn):
+class jeunes(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"jeunes"
@@ -1126,7 +1126,7 @@ class jeunes(SimpleFormulaColumn):
 
 
 @reference_formula
-class jeunes_ind(SimpleFormulaColumn):
+class jeunes_ind(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"jeunes_ind"
@@ -1171,7 +1171,7 @@ class jeunes_ind(SimpleFormulaColumn):
 
 
 @reference_formula
-class mecena(SimpleFormulaColumn):
+class mecena(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"mecena"
@@ -1189,7 +1189,7 @@ class mecena(SimpleFormulaColumn):
 
 
 @reference_formula
-class percvm(SimpleFormulaColumn):
+class percvm(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"percvm"
@@ -1263,7 +1263,7 @@ class preetu(DatedFormulaColumn):
 
 
 @reference_formula
-class prlire(SimpleFormulaColumn):
+class prlire(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Prélèvement libératoire à restituer (case 2DH)"
@@ -1588,7 +1588,7 @@ class quaenv(DatedFormulaColumn):
 
 
 @reference_formula
-class quaenv_bouquet(SimpleFormulaColumn):
+class quaenv_bouquet(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
     label = u"quaenv_bouquet"

@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 
 
 @reference_formula
-class cotisations_employeur(SimpleFormulaColumn):
+class cotisations_employeur(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -35,7 +35,7 @@ class cotisations_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class cotisations_employeur_contributives(SimpleFormulaColumn):
+class cotisations_employeur_contributives(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -82,7 +82,7 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
 
 
 @reference_formula
-class cotisations_employeur_non_contributives(SimpleFormulaColumn):
+class cotisations_employeur_non_contributives(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -110,7 +110,7 @@ class cotisations_employeur_non_contributives(SimpleFormulaColumn):
 
 
 @reference_formula
-class cotisations_salariales_contributives(SimpleFormulaColumn):
+class cotisations_salariales_contributives(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -154,7 +154,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
 
 
 @reference_formula
-class cotisations_salariales_non_contributives(SimpleFormulaColumn):
+class cotisations_salariales_non_contributives(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -178,7 +178,7 @@ class cotisations_salariales_non_contributives(SimpleFormulaColumn):
 
 
 @reference_formula
-class cotisations_salariales(SimpleFormulaColumn):
+class cotisations_salariales(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus

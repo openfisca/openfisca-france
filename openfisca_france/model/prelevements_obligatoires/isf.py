@@ -64,7 +64,7 @@ build_column('etr', IntCol())
 # 1 ACTIF BRUT
 
 @reference_formula
-class isf_imm_bati(SimpleFormulaColumn):
+class isf_imm_bati(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"isf_imm_bati"
@@ -82,7 +82,7 @@ class isf_imm_bati(SimpleFormulaColumn):
 
 
 @reference_formula
-class isf_imm_non_bati(SimpleFormulaColumn):
+class isf_imm_non_bati(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"isf_imm_non_bati"
@@ -113,7 +113,7 @@ class isf_imm_non_bati(SimpleFormulaColumn):
 
 
 @reference_formula
-class isf_actions_sal(SimpleFormulaColumn):  # # non présent en 2005##
+class isf_actions_sal(Variable):  # # non présent en 2005##
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"isf_actions_sal"
@@ -131,7 +131,7 @@ class isf_actions_sal(SimpleFormulaColumn):  # # non présent en 2005##
 
 
 @reference_formula
-class isf_droits_sociaux(SimpleFormulaColumn):
+class isf_droits_sociaux(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"isf_droits_sociaux"
@@ -151,7 +151,7 @@ class isf_droits_sociaux(SimpleFormulaColumn):
 
 
 @reference_formula
-class ass_isf(SimpleFormulaColumn):
+class ass_isf(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ass_isf"
@@ -198,7 +198,7 @@ class isf_iai(DatedFormulaColumn):
 
 
 @reference_formula
-class isf_avant_reduction(SimpleFormulaColumn):
+class isf_avant_reduction(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"isf_avant_reduction"
@@ -212,7 +212,7 @@ class isf_avant_reduction(SimpleFormulaColumn):
 
 
 @reference_formula
-class isf_reduc_pac(SimpleFormulaColumn):
+class isf_reduc_pac(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"isf_reduc_pac"
@@ -230,7 +230,7 @@ class isf_reduc_pac(SimpleFormulaColumn):
 
 
 @reference_formula
-class isf_inv_pme(SimpleFormulaColumn):
+class isf_inv_pme(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"isf_inv_pme"
@@ -258,7 +258,7 @@ class isf_inv_pme(SimpleFormulaColumn):
 
 
 @reference_formula
-class isf_org_int_gen(SimpleFormulaColumn):
+class isf_org_int_gen(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"isf_org_int_gen"
@@ -272,7 +272,7 @@ class isf_org_int_gen(SimpleFormulaColumn):
 
 
 @reference_formula
-class isf_avant_plaf(SimpleFormulaColumn):
+class isf_avant_plaf(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"isf_avant_plaf"
@@ -293,7 +293,7 @@ class isf_avant_plaf(SimpleFormulaColumn):
 
 # # calcul du plafonnement ##
 @reference_formula
-class tot_impot(SimpleFormulaColumn):
+class tot_impot(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"tot_impot"
@@ -323,7 +323,7 @@ class tot_impot(SimpleFormulaColumn):
 
 
 @reference_formula
-class revetproduits(SimpleFormulaColumn):
+class revetproduits(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenus et produits perçus (avant abattement)"
@@ -366,7 +366,7 @@ class revetproduits(SimpleFormulaColumn):
 
 
 @reference_formula
-class decote_isf(SimpleFormulaColumn):
+class decote_isf(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Décote de l'ISF"
@@ -435,7 +435,7 @@ class isf_apres_plaf(DatedFormulaColumn):
 
 
 @reference_formula
-class isf_tot(SimpleFormulaColumn):
+class isf_tot(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"isf_tot"
@@ -458,7 +458,7 @@ class isf_tot(SimpleFormulaColumn):
 
 # TODO: à reintégrer dans irpp
 @reference_formula
-class rvcm_plus_abat(SimpleFormulaColumn):
+class rvcm_plus_abat(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"rvcm_plus_abat"
@@ -475,7 +475,7 @@ class rvcm_plus_abat(SimpleFormulaColumn):
 
 
 @reference_formula
-class maj_cga_i(SimpleFormulaColumn):
+class maj_cga_i(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Majoration pour non adhésion à un centre de gestion agréé (pour chaque individu du foyer)"
@@ -521,7 +521,7 @@ class maj_cga(PersonToEntityColumn):
 
 
 @reference_formula
-class bouclier_rev(SimpleFormulaColumn):
+class bouclier_rev(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"bouclier_rev"
@@ -582,7 +582,7 @@ class bouclier_rev(SimpleFormulaColumn):
 
 
 @reference_formula
-class bouclier_imp_gen(SimpleFormulaColumn):  # # ajouter CSG- CRDS
+class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"bouclier_imp_gen"
@@ -633,7 +633,7 @@ class bouclier_imp_gen(SimpleFormulaColumn):  # # ajouter CSG- CRDS
 
 
 @reference_formula
-class restitutions(SimpleFormulaColumn):
+class restitutions(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"restitutions"
@@ -652,7 +652,7 @@ class restitutions(SimpleFormulaColumn):
 
 
 @reference_formula
-class bouclier_sumimp(SimpleFormulaColumn):
+class bouclier_sumimp(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"bouclier_sumimp"
@@ -671,7 +671,7 @@ class bouclier_sumimp(SimpleFormulaColumn):
 
 
 @reference_formula
-class bouclier_fiscal(SimpleFormulaColumn):
+class bouclier_fiscal(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"bouclier_fiscal"

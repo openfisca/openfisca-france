@@ -18,7 +18,7 @@ def build_reform(tax_benefit_system):
         )
 
     @Reform.formula
-    class rbg(formulas.SimpleFormulaColumn):
+    class rbg(formulas.Variable):
         label = u"Nouveau revenu brut global intégrant les allocations familiales"
         reference = ir.rbg
 
@@ -40,7 +40,7 @@ def build_reform(tax_benefit_system):
                 )
 
     @Reform.formula
-    class rfr(formulas.SimpleFormulaColumn):
+    class rfr(formulas.Variable):
         label = u"Nouveau revenu fiscal de référence intégrant les allocations familiales"
         reference = ir.rfr
 
@@ -70,7 +70,7 @@ def build_reform(tax_benefit_system):
                 )
 
     @Reform.formula
-    class allocations_familiales_imposables(formulas.SimpleFormulaColumn):
+    class allocations_familiales_imposables(formulas.Variable):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
         label = u"Allocations familiales imposables"

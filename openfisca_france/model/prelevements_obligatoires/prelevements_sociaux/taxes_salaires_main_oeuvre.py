@@ -31,7 +31,7 @@ from .cotisations_sociales.base import apply_bareme
 
 
 @reference_formula
-class conge_individuel_formation_cdd(SimpleFormulaColumn):
+class conge_individuel_formation_cdd(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Contribution au financement des congé individuel de formation (CIF) des salariées en CDD"
@@ -47,7 +47,7 @@ class conge_individuel_formation_cdd(SimpleFormulaColumn):
 
 
 @reference_formula
-class contribution_developpement_apprentissage(SimpleFormulaColumn):
+class contribution_developpement_apprentissage(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Contribution additionnelle au développement de l'apprentissage"
@@ -94,7 +94,7 @@ class contribution_supplementaire_apprentissage(DatedFormulaColumn):
 
 
 @reference_formula
-class cotisations_employeur_main_d_oeuvre(SimpleFormulaColumn):
+class cotisations_employeur_main_d_oeuvre(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -131,7 +131,7 @@ class cotisations_employeur_main_d_oeuvre(SimpleFormulaColumn):
 
 
 @reference_formula
-class fnal(SimpleFormulaColumn):
+class fnal(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation fonds national action logement (FNAL)"
@@ -143,7 +143,7 @@ class fnal(SimpleFormulaColumn):
 
 
 @reference_formula
-class fnal_tranche_a(SimpleFormulaColumn):
+class fnal_tranche_a(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation fonds national action logement (FNAL tout employeur)"
@@ -161,7 +161,7 @@ class fnal_tranche_a(SimpleFormulaColumn):
 
 
 @reference_formula
-class fnal_tranche_a_plus_20(SimpleFormulaColumn):
+class fnal_tranche_a_plus_20(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Fonds national action logement (FNAL, employeur avec plus de 20 salariés)"
@@ -198,7 +198,7 @@ class financement_organisations_syndicales(DatedFormulaColumn):
 
 
 @reference_formula
-class formation_professionnelle(SimpleFormulaColumn):
+class formation_professionnelle(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Formation professionnelle"
@@ -230,7 +230,7 @@ class formation_professionnelle(SimpleFormulaColumn):
 
 
 @reference_formula
-class participation_effort_construction(SimpleFormulaColumn):
+class participation_effort_construction(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Participation à l'effort de construction"
@@ -248,7 +248,7 @@ class participation_effort_construction(SimpleFormulaColumn):
 
 
 @reference_formula
-class taxe_apprentissage(SimpleFormulaColumn):
+class taxe_apprentissage(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Taxe d'apprentissage (employeur, entreprise redevable de la taxe d'apprentissage uniquement)"
@@ -268,7 +268,7 @@ class taxe_apprentissage(SimpleFormulaColumn):
 
 
 @reference_formula
-class taxe_salaires(SimpleFormulaColumn):
+class taxe_salaires(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Taxe sur les salaires"
@@ -298,7 +298,7 @@ class taxe_salaires(SimpleFormulaColumn):
 
 
 @reference_formula
-class taux_versement_transport(SimpleFormulaColumn):
+class taux_versement_transport(Variable):
     column = FloatCol
     entity_class = Individus
     label = u""
@@ -332,7 +332,7 @@ class taux_versement_transport(SimpleFormulaColumn):
 
 
 @reference_formula
-class versement_transport(SimpleFormulaColumn):
+class versement_transport(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Versement transport"

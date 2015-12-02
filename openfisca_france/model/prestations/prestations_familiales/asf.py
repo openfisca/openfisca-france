@@ -10,7 +10,7 @@ from ...base import *  # noqa analysis:ignore
 
 
 @reference_formula
-class asf_elig_enfant(SimpleFormulaColumn):
+class asf_elig_enfant(Variable):
     column = BoolCol(default = False)
     entity_class = Individus
     label = u"Enfant pouvant ouvrir droit à l'ASF"
@@ -30,7 +30,7 @@ class asf_elig_enfant(SimpleFormulaColumn):
         return period, eligibilite
 
 @reference_formula
-class asf_enfant(SimpleFormulaColumn):
+class asf_enfant(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Montant du droit à l'ASF ouvert par l'enfant"
@@ -45,7 +45,7 @@ class asf_enfant(SimpleFormulaColumn):
 
 
 @reference_formula
-class asf_elig(SimpleFormulaColumn):
+class asf_elig(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"Éligibilité à l'ASF"
@@ -62,7 +62,7 @@ class asf_elig(SimpleFormulaColumn):
 
 
 @reference_formula
-class asf(SimpleFormulaColumn):
+class asf(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles

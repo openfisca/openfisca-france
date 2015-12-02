@@ -73,7 +73,7 @@ from ...base import *  # noqa analysis:ignore
 
 
 @reference_formula
-class ir_pv_immo(SimpleFormulaColumn):
+class ir_pv_immo(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Impôt sur le revenu afférent à la plus-value immobilière"

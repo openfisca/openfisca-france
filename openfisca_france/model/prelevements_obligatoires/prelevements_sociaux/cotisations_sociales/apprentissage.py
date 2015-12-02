@@ -10,7 +10,7 @@ from ....base import *  # noqa analysis:ignore
 
 
 @reference_formula
-class apprenti(SimpleFormulaColumn):
+class apprenti(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"L'individu est apprenti"
@@ -30,7 +30,7 @@ class apprenti(SimpleFormulaColumn):
 
 
 @reference_formula
-class remuneration_apprenti(SimpleFormulaColumn):
+class remuneration_apprenti(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Rémunération de l'apprenti"
@@ -94,7 +94,7 @@ class remuneration_apprenti(SimpleFormulaColumn):
 
 
 @reference_formula
-class exoneration_cotisations_employeur_apprenti(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_apprenti(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Exonération de cotisations employeur pour l'emploi d'un apprenti"
@@ -142,7 +142,7 @@ class exoneration_cotisations_employeur_apprenti(SimpleFormulaColumn):
 
 
 @reference_formula
-class exoneration_cotisations_salariales_apprenti(SimpleFormulaColumn):
+class exoneration_cotisations_salariales_apprenti(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Exonération de cotisations salariales pour l'emploi d'un apprenti"
@@ -158,7 +158,7 @@ class exoneration_cotisations_salariales_apprenti(SimpleFormulaColumn):
 
 
 @reference_formula
-class prime_apprentissage(SimpleFormulaColumn):
+class prime_apprentissage(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Prime d'apprentissage pour les entreprise employant un apprenti"
@@ -186,7 +186,7 @@ class prime_apprentissage(SimpleFormulaColumn):
         return period, 1000 * apprenti
 
 # @reference_formula
-# class credit_impot_emploi_apprenti(SimpleFormulaColumn):
+# class credit_impot_emploi_apprenti(Variable):
 #     column = FloatCol
 #     entity_class = Individus
 #     label = u" Crédit d'impôt pour l'emploi d'apprentis"
@@ -211,7 +211,7 @@ class prime_apprentissage(SimpleFormulaColumn):
 
 
 # @reference_formula
-# class credit_impot_emploi_apprenti(SimpleFormulaColumn):
+# class credit_impot_emploi_apprenti(Variable):
 #     column = FloatCol
 #     entity_class = Individus
 #     label = u"Déduction de la créance "bonus alternant"

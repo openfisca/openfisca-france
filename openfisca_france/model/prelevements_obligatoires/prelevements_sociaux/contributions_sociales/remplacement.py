@@ -36,7 +36,7 @@ build_column(
 
 
 @reference_formula
-class csg_deductible_chomage(SimpleFormulaColumn):
+class csg_deductible_chomage(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
@@ -67,7 +67,7 @@ class csg_deductible_chomage(SimpleFormulaColumn):
 
 
 @reference_formula
-class csg_imposable_chomage(SimpleFormulaColumn):
+class csg_imposable_chomage(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
@@ -91,7 +91,7 @@ class csg_imposable_chomage(SimpleFormulaColumn):
 
 
 @reference_formula
-class crds_chomage(SimpleFormulaColumn):
+class crds_chomage(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
@@ -127,7 +127,7 @@ class crds_chomage(SimpleFormulaColumn):
 
 
 @reference_formula
-class cho(SimpleFormulaColumn):
+class cho(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -144,7 +144,7 @@ class cho(SimpleFormulaColumn):
 
 
 @reference_formula
-class chonet(SimpleFormulaColumn):
+class chonet(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -166,7 +166,7 @@ class chonet(SimpleFormulaColumn):
 ############################################################################
 
 @reference_formula
-class csg_deductible_retraite(SimpleFormulaColumn):
+class csg_deductible_retraite(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
@@ -190,7 +190,7 @@ class csg_deductible_retraite(SimpleFormulaColumn):
 
 
 @reference_formula
-class csg_imposable_retraite(SimpleFormulaColumn):
+class csg_imposable_retraite(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
@@ -211,7 +211,7 @@ class csg_imposable_retraite(SimpleFormulaColumn):
 
 
 @reference_formula
-class crds_retraite(SimpleFormulaColumn):
+class crds_retraite(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
@@ -256,7 +256,7 @@ class casa(DatedFormulaColumn):
 
 
 @reference_formula
-class rst(SimpleFormulaColumn):
+class rst(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -273,7 +273,7 @@ class rst(SimpleFormulaColumn):
 
 
 @reference_formula
-class rstnet(SimpleFormulaColumn):
+class rstnet(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -293,7 +293,7 @@ class rstnet(SimpleFormulaColumn):
 
 
 @reference_formula
-class crds_pfam(SimpleFormulaColumn):
+class crds_pfam(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"CRDS sur les prestations familiales)"

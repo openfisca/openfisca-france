@@ -24,7 +24,7 @@ def build_reform(tax_benefit_system):
         )
 
     @Reform.formula
-    class reduction_impot_exceptionnelle(formulas.SimpleFormulaColumn):
+    class reduction_impot_exceptionnelle(formulas.Variable):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
         label = u"Réduction d'impôt exceptionnelle"

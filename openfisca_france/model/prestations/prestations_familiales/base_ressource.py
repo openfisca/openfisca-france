@@ -7,7 +7,7 @@ from numpy import int32, logical_not as not_, logical_or as or_
 from ...base import *  # noqa analysis:ignore
 
 @reference_formula
-class smic55(SimpleFormulaColumn):
+class smic55(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
@@ -25,7 +25,7 @@ class smic55(SimpleFormulaColumn):
 
 
 @reference_formula
-class pfam_enfant_a_charge(SimpleFormulaColumn):
+class pfam_enfant_a_charge(Variable):
     column = BoolCol(default = False)
     entity_class = Individus
     label = u"Enfant considéré à charge au sens des prestations familiales"
@@ -48,7 +48,7 @@ class pfam_enfant_a_charge(SimpleFormulaColumn):
 
 
 @reference_formula
-class pfam_ressources_i(SimpleFormulaColumn):
+class pfam_ressources_i(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Ressources de l'individu prises en compte dans le cadre des prestations familiales"
@@ -64,7 +64,7 @@ class pfam_ressources_i(SimpleFormulaColumn):
 
 
 @reference_formula
-class br_pf_i(SimpleFormulaColumn):
+class br_pf_i(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Base ressource individuelle des prestations familiales"
@@ -81,7 +81,7 @@ class br_pf_i(SimpleFormulaColumn):
 
 
 @reference_formula
-class biact(SimpleFormulaColumn):
+class biact(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"Indicatrice de biactivité"
@@ -100,7 +100,7 @@ class biact(SimpleFormulaColumn):
 
 
 @reference_formula
-class div(SimpleFormulaColumn):
+class div(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"div"
@@ -129,7 +129,7 @@ class div(SimpleFormulaColumn):
 
 
 @reference_formula
-class rev_coll(SimpleFormulaColumn):
+class rev_coll(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Revenus collectifs"
@@ -169,7 +169,7 @@ class rev_coll(SimpleFormulaColumn):
 
 
 @reference_formula
-class br_pf(SimpleFormulaColumn):
+class br_pf(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Base ressource des prestations familiales"

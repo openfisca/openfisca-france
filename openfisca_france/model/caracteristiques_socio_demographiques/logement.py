@@ -59,7 +59,7 @@ reference_input_variable(
 
 
 @reference_formula
-class residence_dom(SimpleFormulaColumn):
+class residence_dom(Variable):
     column = BoolCol
     entity_class = Familles
 
@@ -73,7 +73,7 @@ class residence_dom(SimpleFormulaColumn):
 
 
 @reference_formula
-class residence_guadeloupe(SimpleFormulaColumn):
+class residence_guadeloupe(Variable):
     column = BoolCol
     entity_class = Familles
 
@@ -86,7 +86,7 @@ class residence_guadeloupe(SimpleFormulaColumn):
 
 
 @reference_formula
-class residence_martinique(SimpleFormulaColumn):
+class residence_martinique(Variable):
     column = BoolCol
     entity_class = Familles
 
@@ -99,7 +99,7 @@ class residence_martinique(SimpleFormulaColumn):
 
 
 @reference_formula
-class residence_guyane(SimpleFormulaColumn):
+class residence_guyane(Variable):
     column = BoolCol
     entity_class = Familles
 
@@ -112,7 +112,7 @@ class residence_guyane(SimpleFormulaColumn):
 
 
 @reference_formula
-class residence_reunion(SimpleFormulaColumn):
+class residence_reunion(Variable):
     column = BoolCol
     entity_class = Familles
 
@@ -125,7 +125,7 @@ class residence_reunion(SimpleFormulaColumn):
 
 
 @reference_formula
-class residence_mayotte(SimpleFormulaColumn):
+class residence_mayotte(Variable):
     column = BoolCol
     entity_class = Familles
 

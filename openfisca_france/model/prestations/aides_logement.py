@@ -21,7 +21,7 @@ zone_apl_by_depcom = None
 
 
 @reference_formula
-class al_pac(SimpleFormulaColumn):
+class al_pac(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Nombre de personne à charge au sens des allocations logement"
@@ -83,7 +83,7 @@ class al_pac(SimpleFormulaColumn):
 
 
 @reference_formula
-class aide_logement_base_ressources_eval_forfaitaire(SimpleFormulaColumn):
+class aide_logement_base_ressources_eval_forfaitaire(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Base ressources en évaluation forfaitaire des aides au logement (R351-7 du CCH)"
@@ -108,7 +108,7 @@ class aide_logement_base_ressources_eval_forfaitaire(SimpleFormulaColumn):
 
 
 @reference_formula
-class aide_logement_abattement_chomage_indemnise(SimpleFormulaColumn):
+class aide_logement_abattement_chomage_indemnise(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
@@ -128,7 +128,7 @@ class aide_logement_abattement_chomage_indemnise(SimpleFormulaColumn):
 
 
 @reference_formula
-class aide_logement_abattement_depart_retraite(SimpleFormulaColumn):
+class aide_logement_abattement_depart_retraite(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Montant de l'abattement sur les salaires en cas de départ en retraite"
@@ -147,7 +147,7 @@ class aide_logement_abattement_depart_retraite(SimpleFormulaColumn):
 
 
 @reference_formula
-class aide_logement_neutralisation_rsa(SimpleFormulaColumn):
+class aide_logement_neutralisation_rsa(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
@@ -169,7 +169,7 @@ class aide_logement_neutralisation_rsa(SimpleFormulaColumn):
         return period, abattement
 
 @reference_formula
-class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
+class aide_logement_base_ressources_defaut(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Base ressource par défaut des allocations logement"
@@ -203,7 +203,7 @@ class aide_logement_base_ressources_defaut(SimpleFormulaColumn):
 
 
 @reference_formula
-class aide_logement_base_ressources(SimpleFormulaColumn):
+class aide_logement_base_ressources(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Base ressources des allocations logement"
@@ -257,7 +257,7 @@ class aide_logement_base_ressources(SimpleFormulaColumn):
 
 
 @reference_formula
-class aide_logement_montant_brut(SimpleFormulaColumn):
+class aide_logement_montant_brut(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Formule des aides aux logements en secteur locatif en montant brut avant CRDS"
@@ -451,7 +451,7 @@ class aide_logement_montant_brut(SimpleFormulaColumn):
 
 
 @reference_formula
-class aide_logement_montant(SimpleFormulaColumn):
+class aide_logement_montant(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Montant des aides au logement net de CRDS"
@@ -466,7 +466,7 @@ class aide_logement_montant(SimpleFormulaColumn):
 
 
 @reference_formula
-class alf(SimpleFormulaColumn):
+class alf(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
@@ -486,7 +486,7 @@ class alf(SimpleFormulaColumn):
 
 
 @reference_formula
-class als_nonet(SimpleFormulaColumn):
+class als_nonet(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Allocation logement sociale (non étudiante)"
@@ -509,7 +509,7 @@ class als_nonet(SimpleFormulaColumn):
 
 
 @reference_formula
-class alset(SimpleFormulaColumn):
+class alset(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
@@ -535,7 +535,7 @@ class alset(SimpleFormulaColumn):
 
 
 @reference_formula
-class als(SimpleFormulaColumn):
+class als(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
@@ -552,7 +552,7 @@ class als(SimpleFormulaColumn):
 
 
 @reference_formula
-class apl(SimpleFormulaColumn):
+class apl(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
@@ -571,7 +571,7 @@ class apl(SimpleFormulaColumn):
 
 
 @reference_formula
-class aide_logement_non_calculable(SimpleFormulaColumn):
+class aide_logement_non_calculable(Variable):
     column = EnumCol(
         enum = Enum([
             u"",
@@ -591,7 +591,7 @@ class aide_logement_non_calculable(SimpleFormulaColumn):
 
 
 @reference_formula
-class aide_logement(SimpleFormulaColumn):
+class aide_logement(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Aide au logement (tout type)"
@@ -606,7 +606,7 @@ class aide_logement(SimpleFormulaColumn):
 
 
 @reference_formula
-class crds_logement(SimpleFormulaColumn):
+class crds_logement(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
@@ -636,7 +636,7 @@ class statut_occupation_famille(PersonToEntityColumn):
 
 
 @reference_formula
-class zone_apl(SimpleFormulaColumn):
+class zone_apl(Variable):
     column = EnumCol(
         enum = Enum([
             u"Non renseigné",

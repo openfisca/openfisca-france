@@ -38,7 +38,7 @@ def build_reform(tax_benefit_system):
         )
 
     @Reform.formula
-    class salaire_de_base(formulas.SimpleFormulaColumn):
+    class salaire_de_base(formulas.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Salaire brut ou traitement indiciaire brut"
@@ -171,7 +171,7 @@ def build_reform(tax_benefit_system):
     #        return period, salbrut + hsup
 
     @Reform.formula
-    class chobrut(formulas.SimpleFormulaColumn):
+    class chobrut(formulas.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Allocations chômage brutes"
@@ -220,7 +220,7 @@ def build_reform(tax_benefit_system):
             return period, fsolve(solve_function, choi)
 
     @Reform.formula
-    class rstbrut(formulas.SimpleFormulaColumn):
+    class rstbrut(formulas.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Pensions de retraite brutes"

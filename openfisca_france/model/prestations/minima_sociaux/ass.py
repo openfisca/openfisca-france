@@ -12,7 +12,7 @@ build_column('ass_precondition_remplie', BoolCol(entity = "ind", label = u"Élig
 
 
 @reference_formula
-class ass(SimpleFormulaColumn):
+class ass(Variable):
     column = FloatCol
     label = u"Montant de l'ASS pour une famille"
     entity_class = Familles
@@ -42,7 +42,7 @@ class ass(SimpleFormulaColumn):
 
 
 @reference_formula
-class ass_base_ressources(SimpleFormulaColumn):
+class ass_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources de l'ASS"
     entity_class = Familles
@@ -59,7 +59,7 @@ class ass_base_ressources(SimpleFormulaColumn):
 
 
 @reference_formula
-class ass_base_ressources_i(SimpleFormulaColumn):
+class ass_base_ressources_i(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle de l'ASS"
     entity_class = Individus
@@ -104,7 +104,7 @@ class ass_base_ressources_i(SimpleFormulaColumn):
 
 
 @reference_formula
-class ass_base_ressources_conjoint(SimpleFormulaColumn):
+class ass_base_ressources_conjoint(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle pour le conjoint du demandeur de l'ASS"
     entity_class = Individus
@@ -173,7 +173,7 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
 
 
 @reference_formula
-class ass_eligibilite_i(SimpleFormulaColumn):
+class ass_eligibilite_i(Variable):
     column = BoolCol
     label = u"Éligibilité individuelle à l'ASS"
     entity_class = Individus

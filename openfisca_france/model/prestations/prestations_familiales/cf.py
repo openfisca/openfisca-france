@@ -8,7 +8,7 @@ from ...base import *  # noqa analysis:ignore
 
 
 @reference_formula
-class cf_enfant_a_charge(SimpleFormulaColumn):
+class cf_enfant_a_charge(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Complément familial - Enfant considéré à charge"
@@ -29,7 +29,7 @@ class cf_enfant_a_charge(SimpleFormulaColumn):
 
 
 @reference_formula
-class cf_enfant_eligible(SimpleFormulaColumn):
+class cf_enfant_eligible(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Complément familial - Enfant pris en compte pour l'éligibilité"
@@ -51,7 +51,7 @@ class cf_enfant_eligible(SimpleFormulaColumn):
 
 
 @reference_formula
-class cf_dom_enfant_eligible(SimpleFormulaColumn):
+class cf_dom_enfant_eligible(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Complément familial (DOM) - Enfant pris en compte pour l'éligibilité"
@@ -72,7 +72,7 @@ class cf_dom_enfant_eligible(SimpleFormulaColumn):
 
 
 @reference_formula
-class cf_dom_enfant_trop_jeune(SimpleFormulaColumn):
+class cf_dom_enfant_trop_jeune(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Complément familial (DOM) - Enfant trop jeune pour ouvrir le droit"
@@ -91,7 +91,7 @@ class cf_dom_enfant_trop_jeune(SimpleFormulaColumn):
 
 
 @reference_formula
-class cf_ressources_i(SimpleFormulaColumn):
+class cf_ressources_i(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Complément familial - Ressources de l'individu prises en compte"
@@ -107,7 +107,7 @@ class cf_ressources_i(SimpleFormulaColumn):
 
 
 @reference_formula
-class cf_plafond(SimpleFormulaColumn):
+class cf_plafond(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Plafond d'éligibilité au Complément Familial"
@@ -161,7 +161,7 @@ class cf_majore_plafond(DatedFormulaColumn):
 
 
 @reference_formula
-class cf_ressources(SimpleFormulaColumn):
+class cf_ressources(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Ressources prises en compte pour l'éligibilité au complément familial"
@@ -174,7 +174,7 @@ class cf_ressources(SimpleFormulaColumn):
 
 
 @reference_formula
-class cf_eligibilite_base(SimpleFormulaColumn):
+class cf_eligibilite_base(Variable):
     column = BoolCol
     entity_class = Familles
     label = u"Éligibilité au complément familial sous condition de ressources et avant cumul"
@@ -190,7 +190,7 @@ class cf_eligibilite_base(SimpleFormulaColumn):
         return period, not_(residence_dom) * (cf_nbenf >= 3)
 
 @reference_formula
-class cf_eligibilite_dom(SimpleFormulaColumn):
+class cf_eligibilite_dom(Variable):
     column = BoolCol
     entity_class = Familles
     label = u"Éligibilité au complément familial pour les DOM sous condition de ressources et avant cumul"
@@ -215,7 +215,7 @@ class cf_eligibilite_dom(SimpleFormulaColumn):
 
 
 @reference_formula
-class cf_non_majore_avant_cumul(SimpleFormulaColumn):
+class cf_non_majore_avant_cumul(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Complément familial non majoré avant cumul"
@@ -275,7 +275,7 @@ class cf_majore_avant_cumul(DatedFormulaColumn):
 
 
 @reference_formula
-class cf_montant(SimpleFormulaColumn):
+class cf_montant(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Montant du complément familial, avant prise en compte d'éventuels cumuls"
@@ -290,7 +290,7 @@ class cf_montant(SimpleFormulaColumn):
 
 
 @reference_formula
-class cf(SimpleFormulaColumn):
+class cf(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles

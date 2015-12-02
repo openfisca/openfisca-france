@@ -10,7 +10,7 @@ from openfisca_core.formulas import (calculate_output_add, calculate_output_add_
     dated_function, DatedFormulaColumn, EntityToPersonColumn, last_duration_last_value,
     make_formula_decorator, missing_value, PersonToEntityColumn, reference_input_variable,
     requested_period_added_value, requested_period_default_value, requested_period_last_value,
-    set_input_dispatch_by_period, set_input_divide_by_period, SimpleFormulaColumn)
+    set_input_dispatch_by_period, set_input_divide_by_period, Variable)
 
 from ..entities import entity_class_by_symbol, Familles, FoyersFiscaux, Individus, Menages
 
@@ -60,7 +60,7 @@ __all__ = [
     'requested_period_last_value',
     'set_input_dispatch_by_period',
     'set_input_divide_by_period',
-    'SimpleFormulaColumn',
+    'Variable',
     'StrCol',
     'TAUX_DE_PRIME',
     'VOUS',

@@ -22,7 +22,7 @@ log = logging.getLogger(__name__)
 
 
 @reference_formula
-class assiette_cotisations_sociales(SimpleFormulaColumn):
+class assiette_cotisations_sociales(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Assiette des cotisations sociales des salaries"
@@ -40,7 +40,7 @@ class assiette_cotisations_sociales(SimpleFormulaColumn):
 
 
 @reference_formula
-class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
+class assiette_cotisations_sociales_prive(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Assiette des cotisations sociales des salaries du prive"
@@ -76,7 +76,7 @@ class assiette_cotisations_sociales_prive(SimpleFormulaColumn):
 
 
 @reference_formula
-class reintegration_titre_restaurant_employeur(SimpleFormulaColumn):
+class reintegration_titre_restaurant_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Prise en charge de l'employeur des dépenses de cantine et des titres restaurants non exonérés de charges sociales"  # noqa
@@ -107,7 +107,7 @@ class reintegration_titre_restaurant_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class accident_du_travail(SimpleFormulaColumn):
+class accident_du_travail(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisations employeur accident du travail et maladie professionelle"
@@ -123,7 +123,7 @@ class accident_du_travail(SimpleFormulaColumn):
 
 
 @reference_formula
-class agff_salarie(SimpleFormulaColumn):
+class agff_salarie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation retraite AGFF tranche A (salarié)"
@@ -141,7 +141,7 @@ class agff_salarie(SimpleFormulaColumn):
 
 
 @reference_formula
-class agff_employeur(SimpleFormulaColumn):
+class agff_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation retraite AGFF tranche A (employeur)"
@@ -175,7 +175,7 @@ class agff_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class agirc_gmp_assiette(SimpleFormulaColumn):
+class agirc_gmp_assiette(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Assiette de la cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)"
@@ -193,7 +193,7 @@ class agirc_gmp_assiette(SimpleFormulaColumn):
 
 
 @reference_formula
-class agirc_gmp_salarie(SimpleFormulaColumn):
+class agirc_gmp_salarie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)"
@@ -221,7 +221,7 @@ class agirc_gmp_salarie(SimpleFormulaColumn):
 
 
 @reference_formula
-class agirc_gmp_employeur(SimpleFormulaColumn):
+class agirc_gmp_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation AGIRC pour la garantie minimale de points (GMP, employeur)"
@@ -250,7 +250,7 @@ class agirc_gmp_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class agirc_salarie(SimpleFormulaColumn):
+class agirc_salarie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation AGIRC tranche B (salarié)"
@@ -268,7 +268,7 @@ class agirc_salarie(SimpleFormulaColumn):
 
 
 @reference_formula
-class agirc_employeur(SimpleFormulaColumn):
+class agirc_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation AGIRC tranche B (employeur)"
@@ -285,7 +285,7 @@ class agirc_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class ags(SimpleFormulaColumn):
+class ags(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)"  # noqa analysis:ignore
@@ -301,7 +301,7 @@ class ags(SimpleFormulaColumn):
 
 
 @reference_formula
-class apec_salarie(SimpleFormulaColumn):
+class apec_salarie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisations agence pour l'emploi des cadres (APEC,  salarié)"
@@ -317,7 +317,7 @@ class apec_salarie(SimpleFormulaColumn):
 
 
 @reference_formula
-class apec_employeur(SimpleFormulaColumn):
+class apec_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisations Agenece pour l'emploi des cadres (APEC, employeur)"
@@ -334,7 +334,7 @@ class apec_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class arrco_salarie(SimpleFormulaColumn):
+class arrco_salarie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation ARRCO tranche 1 (salarié)"
@@ -363,7 +363,7 @@ class arrco_salarie(SimpleFormulaColumn):
 
 
 @reference_formula
-class arrco_employeur(SimpleFormulaColumn):
+class arrco_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation ARRCO tranche 1 (employeur)"
@@ -392,7 +392,7 @@ class arrco_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class chomage_salarie(SimpleFormulaColumn):
+class chomage_salarie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation chômage tranche A (salarié)"
@@ -409,7 +409,7 @@ class chomage_salarie(SimpleFormulaColumn):
 
 
 @reference_formula
-class chomage_employeur(SimpleFormulaColumn):
+class chomage_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation chômage tranche A (employeur)"
@@ -426,7 +426,7 @@ class chomage_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class contribution_solidarite_autonomie(SimpleFormulaColumn):
+class contribution_solidarite_autonomie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Contribution solidarité autonomie (employeur)"
@@ -443,7 +443,7 @@ class contribution_solidarite_autonomie(SimpleFormulaColumn):
 
 
 @reference_formula
-class cotisation_exceptionnelle_temporaire_salarie(SimpleFormulaColumn):
+class cotisation_exceptionnelle_temporaire_salarie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation_exceptionnelle_temporaire (employe)"
@@ -460,7 +460,7 @@ class cotisation_exceptionnelle_temporaire_salarie(SimpleFormulaColumn):
 
 
 @reference_formula
-class cotisation_exceptionnelle_temporaire_employeur(SimpleFormulaColumn):
+class cotisation_exceptionnelle_temporaire_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation exceptionnelle temporaire (employeur)"
@@ -477,7 +477,7 @@ class cotisation_exceptionnelle_temporaire_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class famille(SimpleFormulaColumn):
+class famille(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation famille (employeur)"
@@ -494,7 +494,7 @@ class famille(SimpleFormulaColumn):
 
 
 @reference_formula
-class mmid_salarie(SimpleFormulaColumn):
+class mmid_salarie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation maladie (salarié)"
@@ -511,7 +511,7 @@ class mmid_salarie(SimpleFormulaColumn):
 
 
 @reference_formula
-class mmid_employeur(SimpleFormulaColumn):
+class mmid_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation maladie (employeur)"
@@ -530,7 +530,7 @@ class mmid_employeur(SimpleFormulaColumn):
 
 # TODO: this formula is used only to check fiche_de_paie from memento
 @reference_formula
-class mmida_employeur(SimpleFormulaColumn):
+class mmida_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation maladie (employeur)"
@@ -549,7 +549,7 @@ class mmida_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class mhsup(SimpleFormulaColumn):
+class mhsup(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
@@ -563,7 +563,7 @@ class mhsup(SimpleFormulaColumn):
 
 
 @reference_formula
-class plafond_securite_sociale(SimpleFormulaColumn):
+class plafond_securite_sociale(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Plafond de la securite sociale"
@@ -582,7 +582,7 @@ class plafond_securite_sociale(SimpleFormulaColumn):
 
 
 @reference_formula
-class prevoyance_obligatoire_cadre(SimpleFormulaColumn):
+class prevoyance_obligatoire_cadre(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation de prévoyance pour les cadres et assimilés"
@@ -605,7 +605,7 @@ class prevoyance_obligatoire_cadre(SimpleFormulaColumn):
 
 
 @reference_formula
-class taille_entreprise(SimpleFormulaColumn):
+class taille_entreprise(Variable):
     column = EnumCol(
         enum = Enum(
             [
@@ -636,7 +636,7 @@ class taille_entreprise(SimpleFormulaColumn):
 
 
 @reference_formula
-class taux_accident_travail(SimpleFormulaColumn):
+class taux_accident_travail(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Approximation du taux accident à partir de l'exposition au risque donnée"
@@ -652,7 +652,7 @@ class taux_accident_travail(SimpleFormulaColumn):
 
 
 @reference_formula
-class vieillesse_deplafonnee_salarie(SimpleFormulaColumn):
+class vieillesse_deplafonnee_salarie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation vieillesse déplafonnée (salarié)"
@@ -670,7 +670,7 @@ class vieillesse_deplafonnee_salarie(SimpleFormulaColumn):
 
 
 @reference_formula
-class vieillesse_plafonnee_salarie(SimpleFormulaColumn):
+class vieillesse_plafonnee_salarie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation vieillesse plafonnée (salarié)"
@@ -687,7 +687,7 @@ class vieillesse_plafonnee_salarie(SimpleFormulaColumn):
 
 
 @reference_formula
-class vieillesse_deplafonnee_employeur(SimpleFormulaColumn):
+class vieillesse_deplafonnee_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation vieillesse déplafonnée"
@@ -704,7 +704,7 @@ class vieillesse_deplafonnee_employeur(SimpleFormulaColumn):
 
 
 @reference_formula
-class vieillesse_plafonnee_employeur(SimpleFormulaColumn):
+class vieillesse_plafonnee_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation vieillesse plafonnée (employeur)"

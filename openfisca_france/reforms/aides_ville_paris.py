@@ -37,7 +37,7 @@ def build_reform(tax_benefit_system):
         )
 
     @Reform.formula
-    class paris_logement_familles_elig(formulas.SimpleFormulaColumn):
+    class paris_logement_familles_elig(formulas.Variable):
         column = columns.BoolCol
         label = u"Eligibilité à Paris-Logement-Familles"
         entity_class = entities.Familles
@@ -59,7 +59,7 @@ def build_reform(tax_benefit_system):
             return period, result
 
     @Reform.formula
-    class paris_logement_familles_br_i(formulas.SimpleFormulaColumn):
+    class paris_logement_familles_br_i(formulas.Variable):
         column = columns.FloatCol
         label = u"Base de ressources individuelle pour Paris Logement Famille"
         entity_class = entities.Individus
@@ -107,7 +107,7 @@ def build_reform(tax_benefit_system):
             return period, result
 
     @Reform.formula
-    class paris_logement_familles_br(formulas.SimpleFormulaColumn):
+    class paris_logement_familles_br(formulas.Variable):
         column = columns.FloatCol
         label = u"Base de ressource pour Paris Logement Famille"
         entity_class = entities.Familles
@@ -121,7 +121,7 @@ def build_reform(tax_benefit_system):
             return period, result
 
     @Reform.formula
-    class plf_enfant_handicape(formulas.SimpleFormulaColumn):
+    class plf_enfant_handicape(formulas.Variable):
         column = columns.BoolCol
         label = u"Enfant handicapé au sens de la mairie de Paris"
         entity_class = entities.Individus
@@ -135,7 +135,7 @@ def build_reform(tax_benefit_system):
             return period, plf_enfant * invalide
 
     @Reform.formula
-    class plf_enfant(formulas.SimpleFormulaColumn):
+    class plf_enfant(formulas.Variable):
         column = columns.BoolCol
         label = u"Enfant pris en compte par la mairie de Paris pour PLF"
         entity_class = entities.Individus
@@ -149,7 +149,7 @@ def build_reform(tax_benefit_system):
             return period, est_enfant_dans_famille * (1 - enfant_place) * a_charge_fiscale
 
     @Reform.formula
-    class plf_enfant_garde_alternee(formulas.SimpleFormulaColumn):
+    class plf_enfant_garde_alternee(formulas.Variable):
         column = columns.BoolCol
         label = u"Enfant en garde alternée pris en compte par la mairie de Paris pour PLF"
         entity_class = entities.Individus
@@ -162,7 +162,7 @@ def build_reform(tax_benefit_system):
             return period, alt * plf_enfant
 
     @Reform.formula
-    class plf_enfant_handicape_garde_alternee(formulas.SimpleFormulaColumn):
+    class plf_enfant_handicape_garde_alternee(formulas.Variable):
         column = columns.BoolCol
         label = u"Enfant handicapé en garde alternée pris en compte par la mairie de Paris pour PLF"
         entity_class = entities.Individus
@@ -175,7 +175,7 @@ def build_reform(tax_benefit_system):
             return period, alt * plf_enfant_handicape
 
     @Reform.formula
-    class plf_handicap(formulas.SimpleFormulaColumn):
+    class plf_handicap(formulas.Variable):
         column = columns.FloatCol
         entity_class = entities.Familles
         label = u"Allocation Paris-Logement-Familles en cas d'enfant handicapé"
@@ -204,7 +204,7 @@ def build_reform(tax_benefit_system):
             return period, plf_handicap
 
     @Reform.formula
-    class paris_logement_familles(formulas.SimpleFormulaColumn):
+    class paris_logement_familles(formulas.Variable):
         column = columns.FloatCol
         label = u"Allocation Paris Logement Familles"
         entity_class = entities.Familles

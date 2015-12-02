@@ -20,7 +20,7 @@ def build_reform(tax_benefit_system):
         )
 
     @Reform.formula
-    class charges_deduc(formulas.SimpleFormulaColumn):
+    class charges_deduc(formulas.Variable):
         label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
         reference = charges_deductibles.charges_deduc
 
@@ -33,7 +33,7 @@ def build_reform(tax_benefit_system):
             return period, cd1 + cd2 + charge_loyer
 
     @Reform.formula
-    class charge_loyer(formulas.SimpleFormulaColumn):
+    class charge_loyer(formulas.Variable):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
         label = u"Charge déductible pour paiement d'un loyer"

@@ -60,7 +60,7 @@ build_column('nbptr_n_2', PeriodSizeIndependentIntCol(entity = 'foy', label = u"
 
 
 @reference_formula
-class age(SimpleFormulaColumn):
+class age(Variable):
     base_function = missing_value
     column = AgeCol(val_type = "age")
     entity_class = Individus
@@ -88,7 +88,7 @@ class age(SimpleFormulaColumn):
 
 
 @reference_formula
-class age_en_mois(SimpleFormulaColumn):
+class age_en_mois(Variable):
     base_function = missing_value
     column = AgeCol(val_type = "months")
     entity_class = Individus
@@ -114,7 +114,7 @@ class age_en_mois(SimpleFormulaColumn):
 
 
 @reference_formula
-class nb_adult(SimpleFormulaColumn):
+class nb_adult(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Nombre d'adulte(s) dans le foyer fiscal"
@@ -129,7 +129,7 @@ class nb_adult(SimpleFormulaColumn):
 
 
 @reference_formula
-class nb_pac(SimpleFormulaColumn):
+class nb_pac(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Nombre de personnes à charge dans le foyer fiscal"
@@ -144,7 +144,7 @@ class nb_pac(SimpleFormulaColumn):
 
 
 @reference_formula
-class enfant_a_charge(SimpleFormulaColumn):
+class enfant_a_charge(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Enfant à charge non marié, de moins de 18 ans au 1er janvier de l'année de perception des" \
@@ -180,7 +180,7 @@ class nombre_enfants_a_charge_menage(PersonToEntityColumn):
 
 
 @reference_formula
-class enfant_a_charge_invalide(SimpleFormulaColumn):
+class enfant_a_charge_invalide(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Enfant à charge titulaire de la carte d'invalidité"
@@ -204,7 +204,7 @@ class nbG(PersonToEntityColumn):
 
 
 @reference_formula
-class enfant_a_charge_garde_alternee(SimpleFormulaColumn):
+class enfant_a_charge_garde_alternee(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Enfant à charge en résidence alternée, non marié, de moins de 18 ans au 1er janvier de l'année de" \
@@ -231,7 +231,7 @@ class nbH(PersonToEntityColumn):
 
 
 @reference_formula
-class enfant_a_charge_garde_alternee_invalide(SimpleFormulaColumn):
+class enfant_a_charge_garde_alternee_invalide(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Enfant à charge en résidence alternée titulaire de la carte d'invalidité"
@@ -255,7 +255,7 @@ class nbI(PersonToEntityColumn):
 
 
 @reference_formula
-class enfant_majeur_celibataire_sans_enfant(SimpleFormulaColumn):
+class enfant_majeur_celibataire_sans_enfant(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Enfant majeur célibataire sans enfant"
@@ -287,7 +287,7 @@ class nombre_enfants_majeurs_celibataires_sans_enfant(PersonToEntityColumn):
 
 
 @reference_formula
-class marpac(SimpleFormulaColumn):
+class marpac(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
     label = u"marpac"
@@ -306,7 +306,7 @@ class marpac(SimpleFormulaColumn):
 
 
 @reference_formula
-class celdiv(SimpleFormulaColumn):
+class celdiv(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
     label = u"celdiv"
@@ -325,7 +325,7 @@ class celdiv(SimpleFormulaColumn):
 
 
 @reference_formula
-class veuf(SimpleFormulaColumn):
+class veuf(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
     label = u"veuf"
@@ -344,7 +344,7 @@ class veuf(SimpleFormulaColumn):
 
 
 @reference_formula
-class jveuf(SimpleFormulaColumn):
+class jveuf(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
     label = u"jveuf"
@@ -368,7 +368,7 @@ class jveuf(SimpleFormulaColumn):
 
 
 @reference_formula
-class rev_sal(SimpleFormulaColumn):
+class rev_sal(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Revenu imposé comme des salaires (salaires, mais aussi 3vj, 3vk)"
@@ -382,7 +382,7 @@ class rev_sal(SimpleFormulaColumn):
 
 
 @reference_formula
-class salcho_imp(SimpleFormulaColumn):
+class salcho_imp(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Salaires et chômage imposables après abattements"
@@ -400,7 +400,7 @@ class salcho_imp(SimpleFormulaColumn):
 
 
 @reference_formula
-class rev_act_sal(SimpleFormulaColumn):
+class rev_act_sal(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"rev_act_sal"
@@ -414,7 +414,7 @@ class rev_act_sal(SimpleFormulaColumn):
 
 
 @reference_formula
-class rev_act_nonsal(SimpleFormulaColumn):
+class rev_act_nonsal(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"rev_act_nonsal"
@@ -428,7 +428,7 @@ class rev_act_nonsal(SimpleFormulaColumn):
 
 
 @reference_formula
-class rev_act(SimpleFormulaColumn):
+class rev_act(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"rev_act"
@@ -443,7 +443,7 @@ class rev_act(SimpleFormulaColumn):
 
 
 @reference_formula
-class rev_pen(SimpleFormulaColumn):
+class rev_pen(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)"
@@ -458,7 +458,7 @@ class rev_pen(SimpleFormulaColumn):
 
 
 @reference_formula
-class pen_net(SimpleFormulaColumn):
+class pen_net(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Pensions après abattements"
@@ -479,7 +479,7 @@ class pen_net(SimpleFormulaColumn):
 #    return max_(0, rev_pen - min_(round(max_(abatpen.taux*rev_pen , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
 
 @reference_formula
-class indu_plaf_abat_pen(SimpleFormulaColumn):
+class indu_plaf_abat_pen(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"indu_plaf_abat_pen"
@@ -502,7 +502,7 @@ class indu_plaf_abat_pen(SimpleFormulaColumn):
 
 
 @reference_formula
-class abat_sal_pen(SimpleFormulaColumn):
+class abat_sal_pen(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Abattement de 20% sur les salaires"
@@ -519,7 +519,7 @@ class abat_sal_pen(SimpleFormulaColumn):
 
 
 @reference_formula
-class sal_pen_net(SimpleFormulaColumn):
+class sal_pen_net(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Salaires et pensions après abattement de 20% sur les salaires"
@@ -534,7 +534,7 @@ class sal_pen_net(SimpleFormulaColumn):
 
 
 @reference_formula
-class rto(SimpleFormulaColumn):
+class rto(Variable):
     """Rentes viagères à titre onéreux (avant abattements)
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
@@ -566,7 +566,7 @@ class rto_declarant1(EntityToPersonColumn):
 
 
 @reference_formula
-class rto_net(SimpleFormulaColumn):
+class rto_net(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Rentes viagères après abattements"
@@ -592,7 +592,7 @@ class rto_net_declarant1(EntityToPersonColumn):
 
 
 @reference_formula
-class tspr(SimpleFormulaColumn):
+class tspr(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Traitements salaires pensions et rentes individuelles"
@@ -608,7 +608,7 @@ class tspr(SimpleFormulaColumn):
 
 
 @reference_formula
-class rev_cat_pv(SimpleFormulaColumn):
+class rev_cat_pv(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenu catégoriel - Plus-values"
@@ -624,7 +624,7 @@ class rev_cat_pv(SimpleFormulaColumn):
 
 
 @reference_formula
-class rev_cat_tspr(SimpleFormulaColumn):
+class rev_cat_tspr(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenu catégoriel - Traitements, salaires, pensions et rentes"
@@ -641,7 +641,7 @@ class rev_cat_tspr(SimpleFormulaColumn):
 
 
 @reference_formula
-class deficit_rcm(SimpleFormulaColumn):
+class deficit_rcm(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Deficit capitaux mobiliers"
@@ -816,7 +816,7 @@ class rev_cat_rvcm(DatedFormulaColumn):
 
 
 @reference_formula
-class rfr_rvcm(SimpleFormulaColumn):
+class rfr_rvcm(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"rfr_rvcm"
@@ -857,7 +857,7 @@ class rfr_rvcm(SimpleFormulaColumn):
 
 
 @reference_formula
-class rev_cat_rfon(SimpleFormulaColumn):
+class rev_cat_rfon(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenu catégoriel - Foncier"
@@ -892,7 +892,7 @@ class rev_cat_rfon(SimpleFormulaColumn):
 
 
 @reference_formula
-class rev_cat_rpns(SimpleFormulaColumn):
+class rev_cat_rpns(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenu catégoriel - Rpns"
@@ -919,7 +919,7 @@ class rev_cat_rpns(SimpleFormulaColumn):
 
 
 @reference_formula
-class rev_cat(SimpleFormulaColumn):
+class rev_cat(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenus catégoriels"
@@ -945,7 +945,7 @@ class rev_cat(SimpleFormulaColumn):
 
 
 @reference_formula
-class deficit_ante(SimpleFormulaColumn):
+class deficit_ante(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Déficit global antérieur"
@@ -967,7 +967,7 @@ class deficit_ante(SimpleFormulaColumn):
 
 
 @reference_formula
-class rbg(SimpleFormulaColumn):
+class rbg(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenu brut global"
@@ -992,7 +992,7 @@ class rbg(SimpleFormulaColumn):
 
 
 @reference_formula
-class csg_deduc_patrimoine(SimpleFormulaColumn):
+class csg_deduc_patrimoine(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Csg déductible sur le patrimoine"
@@ -1010,7 +1010,7 @@ class csg_deduc_patrimoine(SimpleFormulaColumn):
 
 
 @reference_formula
-class csg_deduc_patrimoine_simulated(SimpleFormulaColumn):
+class csg_deduc_patrimoine_simulated(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Csg déductible sur le patrimoine simulée"
@@ -1032,7 +1032,7 @@ class csg_deduc_patrimoine_simulated(SimpleFormulaColumn):
 
 
 @reference_formula
-class csg_deduc(SimpleFormulaColumn):  # f6de
+class csg_deduc(Variable):  # f6de
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Csg déductible sur le patrimoine"
@@ -1049,7 +1049,7 @@ class csg_deduc(SimpleFormulaColumn):  # f6de
 
 
 @reference_formula
-class rng(SimpleFormulaColumn):
+class rng(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenu net global"
@@ -1066,7 +1066,7 @@ class rng(SimpleFormulaColumn):
 
 
 @reference_formula
-class rni(SimpleFormulaColumn):
+class rni(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenu net imposable"
@@ -1082,7 +1082,7 @@ class rni(SimpleFormulaColumn):
 
 
 @reference_formula
-class ir_brut(SimpleFormulaColumn):
+class ir_brut(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Impot sur le revenu brut avant non imposabilité et plafonnement du quotient"
@@ -1098,7 +1098,7 @@ class ir_brut(SimpleFormulaColumn):
 
 
 @reference_formula
-class ir_ss_qf(SimpleFormulaColumn):
+class ir_ss_qf(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ir_ss_qf"
@@ -1118,7 +1118,7 @@ class ir_ss_qf(SimpleFormulaColumn):
 
 
 @reference_formula
-class ir_plaf_qf(SimpleFormulaColumn):
+class ir_plaf_qf(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ir_plaf_qf"
@@ -1217,7 +1217,7 @@ class ir_plaf_qf(SimpleFormulaColumn):
 
 
 @reference_formula
-class avantage_qf(SimpleFormulaColumn):
+class avantage_qf(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"avantage_qf"
@@ -1258,7 +1258,7 @@ class decote(DatedFormulaColumn):
 
 
 @reference_formula
-class decote_gain_fiscal(SimpleFormulaColumn):
+class decote_gain_fiscal(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Gain fiscal de la décote/Décote au sens Dgfip tel que sur la feuille d'impôt"
@@ -1276,7 +1276,7 @@ class decote_gain_fiscal(SimpleFormulaColumn):
 
 
 @reference_formula
-class nat_imp(SimpleFormulaColumn):
+class nat_imp(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
     label = u"nat_imp"
@@ -1296,7 +1296,7 @@ class nat_imp(SimpleFormulaColumn):
 
 
 @reference_formula
-class ip_net(SimpleFormulaColumn):
+class ip_net(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ip_net"
@@ -1315,7 +1315,7 @@ class ip_net(SimpleFormulaColumn):
 
 
 @reference_formula
-class iaidrdi(SimpleFormulaColumn):
+class iaidrdi(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"iaidrdi"
@@ -1332,7 +1332,7 @@ class iaidrdi(SimpleFormulaColumn):
 
 
 @reference_formula
-class cont_rev_loc(SimpleFormulaColumn):
+class cont_rev_loc(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cont_rev_loc"
@@ -1350,7 +1350,7 @@ class cont_rev_loc(SimpleFormulaColumn):
 
 
 @reference_formula
-class teicaa(SimpleFormulaColumn):  # f5rm
+class teicaa(Variable):  # f5rm
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"teicaa"
@@ -1370,7 +1370,7 @@ class teicaa(SimpleFormulaColumn):  # f5rm
 
 
 @reference_formula
-class assiette_vente(SimpleFormulaColumn):
+class assiette_vente(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"assiette_vente"
@@ -1387,7 +1387,7 @@ class assiette_vente(SimpleFormulaColumn):
 
 
 @reference_formula
-class assiette_service(SimpleFormulaColumn):
+class assiette_service(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"assiette_service"
@@ -1407,7 +1407,7 @@ class assiette_service(SimpleFormulaColumn):
 
 
 @reference_formula
-class assiette_proflib(SimpleFormulaColumn):
+class assiette_proflib(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"assiette_proflib"
@@ -1429,7 +1429,7 @@ class assiette_proflib(SimpleFormulaColumn):
 
 
 @reference_formula
-class microsocial(SimpleFormulaColumn):
+class microsocial(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"microsocial"
@@ -1450,7 +1450,7 @@ class microsocial(SimpleFormulaColumn):
 
 
 @reference_formula
-class microentreprise(SimpleFormulaColumn):
+class microentreprise(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"microentreprise"
@@ -1644,7 +1644,7 @@ class plus_values(DatedFormulaColumn):
 
 
 @reference_formula
-class iai(SimpleFormulaColumn):
+class iai(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Impôt avant imputations"
@@ -1664,7 +1664,7 @@ class iai(SimpleFormulaColumn):
 
 
 @reference_formula
-class cehr(SimpleFormulaColumn):
+class cehr(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Contribution exceptionnelle sur les hauts revenus"
@@ -1684,7 +1684,7 @@ class cehr(SimpleFormulaColumn):
 
 
 @reference_formula
-class irpp(SimpleFormulaColumn):
+class irpp(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Impôt sur le revenu des personnes physiques"
@@ -1715,7 +1715,7 @@ class irpp(SimpleFormulaColumn):
 
 
 @reference_formula
-class pensions_alimentaires_versees(SimpleFormulaColumn):
+class pensions_alimentaires_versees(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Pensions alimentaires versées"
@@ -1742,7 +1742,7 @@ class pensions_alimentaires_versees_declarant1(EntityToPersonColumn):
 
 
 @reference_formula
-class rfr(SimpleFormulaColumn):
+class rfr(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenu fiscal de référence"
@@ -1773,7 +1773,7 @@ class rfr(SimpleFormulaColumn):
 
 
 @reference_formula
-class glo(SimpleFormulaColumn):
+class glo(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Gain de levée d'options"
@@ -1795,7 +1795,7 @@ class glo(SimpleFormulaColumn):
 
 
 @reference_formula
-class rev_cap_bar(SimpleFormulaColumn):
+class rev_cap_bar(Variable):
     """Revenus du capital imposés au barème
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
@@ -1874,7 +1874,7 @@ class rev_cap_lib(DatedFormulaColumn):
 
 
 @reference_formula
-class avf(SimpleFormulaColumn):
+class avf(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"avf"
@@ -1929,7 +1929,7 @@ class imp_lib(DatedFormulaColumn):
 
 
 @reference_formula
-class fon(SimpleFormulaColumn):
+class fon(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"fon"
@@ -1951,7 +1951,7 @@ class fon(SimpleFormulaColumn):
 
 
 @reference_formula
-class rpns_pvce(SimpleFormulaColumn):
+class rpns_pvce(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"rpns_pvce"
@@ -1988,7 +1988,7 @@ class rpns_pvce(SimpleFormulaColumn):
 
 
 @reference_formula
-class rpns_exon(SimpleFormulaColumn):
+class rpns_exon(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"rpns_exon"
@@ -2040,7 +2040,7 @@ class rpns_exon(SimpleFormulaColumn):
 
 
 @reference_formula
-class defrag(SimpleFormulaColumn):
+class defrag(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Déficit agricole des années antérieures"
@@ -2070,7 +2070,7 @@ class defrag(SimpleFormulaColumn):
 
 
 @reference_formula
-class defacc(SimpleFormulaColumn):
+class defacc(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Déficit industriels et commerciaux non professionnels des années antérieures"
@@ -2106,7 +2106,7 @@ class defacc(SimpleFormulaColumn):
 
 
 @reference_formula
-class defncn(SimpleFormulaColumn):
+class defncn(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Déficit non commerciaux non professionnels des années antérieures"
@@ -2137,7 +2137,7 @@ class defncn(SimpleFormulaColumn):
 
 
 @reference_formula
-class defmeu(SimpleFormulaColumn):
+class defmeu(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Déficit des locations meublées non professionnelles des années antérieures"
@@ -2163,7 +2163,7 @@ class defmeu(SimpleFormulaColumn):
 
 
 @reference_formula
-class rag(SimpleFormulaColumn):
+class rag(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"rag"
@@ -2201,7 +2201,7 @@ class rag(SimpleFormulaColumn):
 
 
 @reference_formula
-class ric(SimpleFormulaColumn):
+class ric(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Bénéfices industriels et commerciaux"
@@ -2267,7 +2267,7 @@ class ric(SimpleFormulaColumn):
 
 
 @reference_formula
-class rac(SimpleFormulaColumn):
+class rac(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"rac"
@@ -2329,7 +2329,7 @@ class rac(SimpleFormulaColumn):
 
 
 @reference_formula
-class rnc(SimpleFormulaColumn):
+class rnc(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"rnc"
@@ -2371,7 +2371,7 @@ class rnc(SimpleFormulaColumn):
 
 
 @reference_formula
-class rpns(SimpleFormulaColumn):
+class rpns(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Revenus individuels des professions non salariées"
@@ -2387,7 +2387,7 @@ class rpns(SimpleFormulaColumn):
 
 
 @reference_formula
-class rpns_pvct(SimpleFormulaColumn):
+class rpns_pvct(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"rpns_pvct"
@@ -2413,7 +2413,7 @@ class rpns_pvct(SimpleFormulaColumn):
 
 
 @reference_formula
-class rpns_mvct(SimpleFormulaColumn):
+class rpns_mvct(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"rpns_mvct"
@@ -2437,7 +2437,7 @@ class rpns_mvct(SimpleFormulaColumn):
 
 
 @reference_formula
-class rpns_mvlt(SimpleFormulaColumn):
+class rpns_mvlt(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"rpns_mvlt"
@@ -2461,7 +2461,7 @@ class rpns_mvlt(SimpleFormulaColumn):
 
 
 @reference_formula
-class rpns_i(SimpleFormulaColumn):
+class rpns_i(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"rpns_i"
@@ -2607,7 +2607,7 @@ class rpns_i(SimpleFormulaColumn):
 
 
 @reference_formula
-class abat_spe(SimpleFormulaColumn):
+class abat_spe(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Abattements spéciaux"
@@ -2656,7 +2656,7 @@ class abat_spe(SimpleFormulaColumn):
 
 
 @reference_formula
-class taux_effectif(SimpleFormulaColumn):
+class taux_effectif(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"taux_effectif"
@@ -2685,7 +2685,7 @@ class taux_effectif(SimpleFormulaColumn):
 
 
 @reference_formula
-class nbptr(SimpleFormulaColumn):
+class nbptr(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Nombre de parts"
@@ -2798,7 +2798,7 @@ class nbptr(SimpleFormulaColumn):
 
 
 @reference_formula
-class ppe_coef(SimpleFormulaColumn):
+class ppe_coef(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ppe_coef"
@@ -2815,7 +2815,7 @@ class ppe_coef(SimpleFormulaColumn):
 
 
 @reference_formula
-class ppe_elig(SimpleFormulaColumn):
+class ppe_elig(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
     label = u"ppe_elig"
@@ -2841,7 +2841,7 @@ class ppe_elig(SimpleFormulaColumn):
 
 
 @reference_formula
-class ppe_rev(SimpleFormulaColumn):
+class ppe_rev(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"ppe_rev"
@@ -2866,7 +2866,7 @@ class ppe_rev(SimpleFormulaColumn):
 
 
 @reference_formula
-class ppe_coef_tp(SimpleFormulaColumn):
+class ppe_coef_tp(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"ppe_coef_tp"
@@ -2890,7 +2890,7 @@ class ppe_coef_tp(SimpleFormulaColumn):
 
 
 @reference_formula
-class ppe_base(SimpleFormulaColumn):
+class ppe_base(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"ppe_base"
@@ -2907,7 +2907,7 @@ class ppe_base(SimpleFormulaColumn):
 
 
 @reference_formula
-class ppe_elig_i(SimpleFormulaColumn):
+class ppe_elig_i(Variable):
     column = BoolCol(default = False)
     entity_class = Individus
     label = u"ppe_elig_i"
@@ -2927,7 +2927,7 @@ class ppe_elig_i(SimpleFormulaColumn):
 
 
 @reference_formula
-class ppe_brute(SimpleFormulaColumn):
+class ppe_brute(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Prime pour l'emploi brute"
@@ -3040,7 +3040,7 @@ class ppe_brute(SimpleFormulaColumn):
 
 
 @reference_formula
-class ppe(SimpleFormulaColumn):
+class ppe(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Prime pour l'emploi"

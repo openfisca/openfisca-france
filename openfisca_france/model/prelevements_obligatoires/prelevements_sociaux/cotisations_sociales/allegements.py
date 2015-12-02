@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
 
 
 @reference_formula
-class assiette_allegement(SimpleFormulaColumn):
+class assiette_allegement(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -63,7 +63,7 @@ class allegement_fillon(DatedFormulaColumn):
 
 
 @reference_formula
-class coefficient_proratisation(SimpleFormulaColumn):
+class coefficient_proratisation(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Coefficient de proratisation pour le calcul du SMIC et du plafond de la Sécurité socialele"
@@ -153,7 +153,7 @@ class credit_impot_competitivite_emploi(DatedFormulaColumn):
 
 
 @reference_formula
-class smic_proratise(SimpleFormulaColumn):
+class smic_proratise(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"SMIC proratisé"

@@ -34,7 +34,7 @@ build_column('gar_dom', BoolCol(entity = 'fam',
 
 
 @reference_formula
-class paje(SimpleFormulaColumn):
+class paje(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"PAJE - Ensemble des prestations"
@@ -57,7 +57,7 @@ class paje(SimpleFormulaColumn):
 
 
 @reference_formula
-class paje_base_montant(SimpleFormulaColumn):
+class paje_base_montant(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Montant de la PAJE"
@@ -140,7 +140,7 @@ class paje_base_montant(SimpleFormulaColumn):
 
 
 @reference_formula
-class paje_base_enfant_eligible_avant_reforme_2014(SimpleFormulaColumn):
+class paje_base_enfant_eligible_avant_reforme_2014(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Enfant ouvrant droit à la PAJE de base né avant le 1er avril 2014"
@@ -159,7 +159,7 @@ class paje_base_enfant_eligible_avant_reforme_2014(SimpleFormulaColumn):
 
 
 @reference_formula
-class paje_base_enfant_eligible_apres_reforme_2014(SimpleFormulaColumn):
+class paje_base_enfant_eligible_apres_reforme_2014(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Enfant ouvrant droit à la PAJE de base né après le 1er avril 2014"
@@ -178,7 +178,7 @@ class paje_base_enfant_eligible_apres_reforme_2014(SimpleFormulaColumn):
 
 
 @reference_formula
-class paje_naissance(SimpleFormulaColumn):
+class paje_naissance(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -223,7 +223,7 @@ class paje_naissance(SimpleFormulaColumn):
 
 
 @reference_formula
-class paje_clca(SimpleFormulaColumn):
+class paje_clca(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -298,7 +298,7 @@ reference_input_variable(
 
 
 @reference_formula
-class paje_clca_taux_plein(SimpleFormulaColumn):
+class paje_clca_taux_plein(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"Indicatrice Clca taux plein"
@@ -314,7 +314,7 @@ class paje_clca_taux_plein(SimpleFormulaColumn):
 
 
 @reference_formula
-class paje_clca_taux_partiel(SimpleFormulaColumn):
+class paje_clca_taux_partiel(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"Indicatrice Clca taux partiel"
@@ -332,7 +332,7 @@ class paje_clca_taux_partiel(SimpleFormulaColumn):
 
 
 @reference_formula
-class paje_clmg(SimpleFormulaColumn):
+class paje_clmg(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -446,7 +446,7 @@ class paje_clmg(SimpleFormulaColumn):
 
 
 @reference_formula
-class paje_colca(SimpleFormulaColumn):
+class paje_colca(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -480,7 +480,7 @@ class paje_colca(SimpleFormulaColumn):
 # TODO: cumul avec clca self.colca_tot_m
 
 @reference_formula
-class paje_base(SimpleFormulaColumn):
+class paje_base(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -589,7 +589,7 @@ class paje_base(SimpleFormulaColumn):
 
 
 @reference_formula
-class ape_temp(SimpleFormulaColumn):
+class ape_temp(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation parentale d'éducation"
@@ -658,7 +658,7 @@ class ape_temp(SimpleFormulaColumn):
 
 
 @reference_formula
-class apje_temp(SimpleFormulaColumn):
+class apje_temp(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation pour le jeune enfant"
@@ -708,7 +708,7 @@ class apje_temp(SimpleFormulaColumn):
 
 
 @reference_formula
-class ape(SimpleFormulaColumn):
+class ape(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation parentale d'éducation"
@@ -729,7 +729,7 @@ class ape(SimpleFormulaColumn):
 
 
 @reference_formula
-class apje(SimpleFormulaColumn):
+class apje(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation pour le jeune enfant"

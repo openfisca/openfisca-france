@@ -17,7 +17,7 @@ def build_reform(tax_benefit_system):
         )
 
     @Reform.formula
-    class cesthra(formulas.SimpleFormulaColumn):
+    class cesthra(formulas.Variable):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
         label = u"Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
@@ -35,7 +35,7 @@ def build_reform(tax_benefit_system):
             return period, cesthra
 
     @Reform.formula
-    class irpp(formulas.SimpleFormulaColumn):
+    class irpp(formulas.Variable):
         label = u"Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)"
         reference = ir.irpp
 

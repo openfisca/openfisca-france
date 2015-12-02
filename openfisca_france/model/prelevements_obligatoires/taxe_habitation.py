@@ -8,7 +8,7 @@ from ..base import *  # noqa analysis:ignore
 
 
 @reference_formula
-class exonere_taxe_habitation(SimpleFormulaColumn):
+class exonere_taxe_habitation(Variable):
     column = BoolCol(default = True)
     entity_class = Menages
     label = u"Exonération de la taxe d'habitation"
@@ -59,7 +59,7 @@ class exonere_taxe_habitation(SimpleFormulaColumn):
 
 
 @reference_formula
-class taxe_habitation(SimpleFormulaColumn):
+class taxe_habitation(Variable):
     column = FloatCol(default = 0)
     entity_class = Menages
     label = u"Taxe d'habitation"

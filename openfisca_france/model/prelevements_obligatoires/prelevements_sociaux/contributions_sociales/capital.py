@@ -42,7 +42,7 @@ def _mhsup(hsup):
 
 
 @reference_formula
-class csg_cap_bar(SimpleFormulaColumn):
+class csg_cap_bar(Variable):
     """Calcule la CSG sur les revenus du capital soumis au barème."""
     column = FloatCol
     entity_class = FoyersFiscaux
@@ -66,7 +66,7 @@ class csg_cap_bar_declarant1(EntityToPersonColumn):
 
 
 @reference_formula
-class crds_cap_bar(SimpleFormulaColumn):
+class crds_cap_bar(Variable):
     """Calcule la CRDS sur les revenus du capital soumis au barème."""
     column = FloatCol
     entity_class = FoyersFiscaux
@@ -137,7 +137,7 @@ class prelsoc_cap_bar_declarant1(EntityToPersonColumn):
 
 
 @reference_formula
-class csg_pv_mo(SimpleFormulaColumn):
+class csg_pv_mo(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"CSG sur les plus-values de cession de valeurs mobilières"
@@ -155,7 +155,7 @@ class csg_pv_mo(SimpleFormulaColumn):
 
 
 @reference_formula
-class crds_pv_mo(SimpleFormulaColumn):
+class crds_pv_mo(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"CRDS sur les plus-values de cession de valeurs mobilières"
@@ -225,7 +225,7 @@ class prelsoc_pv_mo(DatedFormulaColumn):
 
 
 @reference_formula
-class csg_pv_immo(SimpleFormulaColumn):
+class csg_pv_immo(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"CSG sur les plus-values immobilières"
@@ -243,7 +243,7 @@ class csg_pv_immo(SimpleFormulaColumn):
 
 
 @reference_formula
-class crds_pv_immo(SimpleFormulaColumn):
+class crds_pv_immo(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"CRDS sur les plus-values immobilières"
@@ -313,7 +313,7 @@ class prelsoc_pv_immo(DatedFormulaColumn):
 
 
 @reference_formula
-class csg_fon(SimpleFormulaColumn):
+class csg_fon(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"CSG sur les revenus fonciers"
@@ -332,7 +332,7 @@ class csg_fon(SimpleFormulaColumn):
 
 
 @reference_formula
-class crds_fon(SimpleFormulaColumn):
+class crds_fon(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"CRDS sur les revenus fonciers"
@@ -406,7 +406,7 @@ class prelsoc_fon(DatedFormulaColumn):
 
 
 @reference_formula
-class csg_cap_lib(SimpleFormulaColumn):
+class csg_cap_lib(Variable):
     """Calcule la CSG sur les revenus du capital soumis au prélèvement libératoire."""
     column = FloatCol
     entity_class = FoyersFiscaux
@@ -430,7 +430,7 @@ class csg_cap_lib_declarant1(EntityToPersonColumn):
 
 
 @reference_formula
-class crds_cap_lib(SimpleFormulaColumn):
+class crds_cap_lib(Variable):
     """Calcule la CRDS sur les revenus du capital soumis au prélèvement libératoire."""
     column = FloatCol
     entity_class = FoyersFiscaux
@@ -454,7 +454,7 @@ class crds_cap_lib_declarant1(EntityToPersonColumn):
 
 
 @reference_formula
-class prelsoc_cap_lib(SimpleFormulaColumn):
+class prelsoc_cap_lib(Variable):
     """Calcule le prélèvement social sur les revenus du capital soumis au prélèvement libératoire."""
     column = FloatCol
     entity_class = FoyersFiscaux

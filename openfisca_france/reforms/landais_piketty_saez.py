@@ -23,7 +23,7 @@ def build_extension(base_tax_benefit_system):
         )
 
     @Extension.formula
-    class assiette_csg(formulas.SimpleFormulaColumn):
+    class assiette_csg(formulas.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Assiette de la CSG"
@@ -40,7 +40,7 @@ def build_extension(base_tax_benefit_system):
             return period, salaire_de_base + chobrut + rstbrut + rev_cap_bar + rev_cap_lib
 
     @Extension.formula
-    class impot_revenu_lps(formulas.SimpleFormulaColumn):
+    class impot_revenu_lps(formulas.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
@@ -64,7 +64,7 @@ def build_extension(base_tax_benefit_system):
             return period, -max_(0, lps.bareme.calc(max_(assiette_csg - ae - ac, 0)) - re - rc) + ce
 
     @Extension.formula
-    class revenu_disponible(formulas.SimpleFormulaColumn):
+    class revenu_disponible(formulas.Variable):
         column = columns.FloatCol(default = 0)
         entity_class = entities.Menages
         label = u"Revenu disponible du ménage"

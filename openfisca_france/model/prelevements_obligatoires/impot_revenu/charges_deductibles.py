@@ -201,7 +201,7 @@ build_column('f6fl', IntCol(entity = 'foy',
 
 
 @reference_formula
-class rfr_cd(SimpleFormulaColumn):
+class rfr_cd(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Charges déductibles entrant dans le revenus fiscal de référence"
@@ -359,7 +359,7 @@ class cd2(DatedFormulaColumn):
 
 
 @reference_formula
-class rbg_int(SimpleFormulaColumn):
+class rbg_int(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenu brut global intermédiaire"
@@ -373,7 +373,7 @@ class rbg_int(SimpleFormulaColumn):
 
 
 @reference_formula
-class charges_deduc(SimpleFormulaColumn):
+class charges_deduc(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Charges déductibles"
@@ -388,7 +388,7 @@ class charges_deduc(SimpleFormulaColumn):
 
 
 @reference_formula
-class cd_penali(SimpleFormulaColumn):
+class cd_penali(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_penali"
@@ -421,7 +421,7 @@ class cd_penali(SimpleFormulaColumn):
 
 
 @reference_formula
-class cd_acc75a(SimpleFormulaColumn):
+class cd_acc75a(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_acc75a"
@@ -479,7 +479,7 @@ class cd_percap(DatedFormulaColumn):
 
 
 @reference_formula
-class cd_deddiv(SimpleFormulaColumn):
+class cd_deddiv(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_deddiv"
@@ -495,7 +495,7 @@ class cd_deddiv(SimpleFormulaColumn):
 
 
 @reference_formula
-class cd_doment(SimpleFormulaColumn):
+class cd_doment(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_doment"
@@ -515,7 +515,7 @@ class cd_doment(SimpleFormulaColumn):
 
 
 @reference_formula
-class cd_eparet(SimpleFormulaColumn):
+class cd_eparet(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_eparet"
@@ -554,7 +554,7 @@ class cd_eparet(SimpleFormulaColumn):
 
 
 @reference_formula
-class cd_sofipe(SimpleFormulaColumn):
+class cd_sofipe(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_sofipe"
@@ -578,7 +578,7 @@ class cd_sofipe(SimpleFormulaColumn):
 
 
 @reference_formula
-class cd_cinema(SimpleFormulaColumn):
+class cd_cinema(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_cinema"
@@ -601,7 +601,7 @@ class cd_cinema(SimpleFormulaColumn):
 
 
 @reference_formula
-class cd_ecodev(SimpleFormulaColumn):
+class cd_ecodev(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_ecodev"
@@ -624,7 +624,7 @@ class cd_ecodev(SimpleFormulaColumn):
 
 
 @reference_formula
-class cd_grorep(SimpleFormulaColumn):
+class cd_grorep(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_grorep"
