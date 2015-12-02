@@ -11,7 +11,7 @@ from ...base import *  # noqa analysis:ignore
 
 
 @reference_formula
-class acs_montant(DatedFormulaColumn):
+class acs_montant(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Montant de l'ACS en cas d'éligibilité"

@@ -147,7 +147,7 @@ class cf_plafond(Variable):
 
 
 @reference_formula
-class cf_majore_plafond(DatedFormulaColumn):
+class cf_majore_plafond(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Plafond d'éligibilité au Complément Familial majoré"
@@ -248,7 +248,7 @@ class cf_non_majore_avant_cumul(Variable):
 
 
 @reference_formula
-class cf_majore_avant_cumul(DatedFormulaColumn):
+class cf_majore_avant_cumul(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Complément familial majoré avant cumul"

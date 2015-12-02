@@ -218,7 +218,7 @@ class rfr_cd(Variable):
 
 
 @reference_formula
-class cd1(DatedFormulaColumn):
+class cd1(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Charges déductibles non plafonnées"
@@ -317,7 +317,7 @@ class cd1(DatedFormulaColumn):
 
 
 @reference_formula
-class cd2(DatedFormulaColumn):
+class cd2(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Charges déductibles plafonnées"
@@ -440,7 +440,7 @@ class cd_acc75a(Variable):
 
 
 @reference_formula
-class cd_percap(DatedFormulaColumn):
+class cd_percap(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_percap"

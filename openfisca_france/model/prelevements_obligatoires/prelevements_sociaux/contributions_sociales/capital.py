@@ -90,7 +90,7 @@ class crds_cap_bar_declarant1(EntityToPersonColumn):
 
 
 @reference_formula
-class prelsoc_cap_bar(DatedFormulaColumn):
+class prelsoc_cap_bar(DatedVariable):
     """Calcule le prélèvement social sur les revenus du capital soumis au barème"""
     column = FloatCol
     entity_class = FoyersFiscaux
@@ -173,7 +173,7 @@ class crds_pv_mo(Variable):
 
 
 @reference_formula
-class prelsoc_pv_mo(DatedFormulaColumn):
+class prelsoc_pv_mo(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Prélèvements sociaux sur les plus-values de cession de valeurs mobilières"
@@ -261,7 +261,7 @@ class crds_pv_immo(Variable):
 
 
 @reference_formula
-class prelsoc_pv_immo(DatedFormulaColumn):
+class prelsoc_pv_immo(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Prélèvements sociaux sur les plus-values immobilières"
@@ -351,7 +351,7 @@ class crds_fon(Variable):
 
 
 @reference_formula
-class prelsoc_fon(DatedFormulaColumn):
+class prelsoc_fon(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Prélèvements sociaux sur les revenus fonciers"

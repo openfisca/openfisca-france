@@ -9,7 +9,7 @@ from ..prestations_familiales.base_ressource import nb_enf, age_en_mois_benjamin
 
 
 @reference_formula
-class aefa(DatedFormulaColumn):
+class aefa(DatedVariable):
     '''
     Aide exceptionelle de fin d'année (prime de Noël)
     Instituée en 1998
@@ -144,7 +144,7 @@ class aefa(DatedFormulaColumn):
 
 
 @reference_formula
-class api(DatedFormulaColumn):
+class api(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Allocation de parent isolé"
@@ -236,7 +236,7 @@ class api(DatedFormulaColumn):
 
 
 @reference_formula
-class br_rmi(DatedFormulaColumn):
+class br_rmi(DatedVariable):
     column = FloatCol
     label = u"Base ressources du Rmi ou du Rsa"
     entity_class = Familles
@@ -330,7 +330,7 @@ class br_rmi_ms(Variable):
 
 
 @reference_formula
-class br_rmi_pf(DatedFormulaColumn):
+class br_rmi_pf(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Prestations familiales inclues dans la base ressource RSA/RMI"
@@ -383,7 +383,7 @@ class br_rmi_pf(DatedFormulaColumn):
 
 
 @reference_formula
-class crds_mini(DatedFormulaColumn):
+class crds_mini(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"CRDS versée sur les minimas sociaux"
@@ -465,7 +465,7 @@ reference_input_variable(
     )
 
 @reference_formula
-class psa(DatedFormulaColumn):
+class psa(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Prime de solidarité active"
@@ -573,7 +573,7 @@ class rfon_ms(Variable):
 
 
 @reference_formula
-class rmi(DatedFormulaColumn):
+class rmi(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Revenu Minimum d'Insertion"
@@ -611,7 +611,7 @@ class rmi_nbp(Variable):
 
 
 @reference_formula
-class rsa(DatedFormulaColumn):
+class rsa(DatedVariable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"Revenu de solidarité active"
@@ -630,7 +630,7 @@ class rsa(DatedFormulaColumn):
 
 
 @reference_formula
-class rsa_act(DatedFormulaColumn):
+class rsa_act(DatedVariable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Familles
@@ -651,7 +651,7 @@ class rsa_act(DatedFormulaColumn):
 
 
 @reference_formula
-class rsa_act_i(DatedFormulaColumn):
+class rsa_act_i(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Revenu de solidarité active - activité au niveau de l'individu"
@@ -681,7 +681,7 @@ class rsa_act_i(DatedFormulaColumn):
 
 
 @reference_formula
-class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
+class rsa_base_ressources_patrimoine_i(DatedVariable):
     column = FloatCol
     label = u"Base de ressources des revenus du patrimoine du RSA"
     entity_class = Individus
@@ -895,7 +895,7 @@ reference_input_variable(
     )
 
 @reference_formula
-class rsa_majore(DatedFormulaColumn):
+class rsa_majore(DatedVariable):
     column = FloatCol
     label = u"Revenu de solidarité active - majoré"
     entity_class = Familles
@@ -1004,7 +1004,7 @@ class rsa_non_calculable_tns_i(Variable):
 
 
 @reference_formula
-class rsa_non_majore(DatedFormulaColumn):
+class rsa_non_majore(DatedVariable):
     column = FloatCol
     label = u"Revenu de solidarité active - non majoré"
     entity_class = Familles

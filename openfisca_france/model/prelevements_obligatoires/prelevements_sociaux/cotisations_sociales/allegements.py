@@ -35,7 +35,7 @@ class assiette_allegement(Variable):
 
 
 @reference_formula
-class allegement_fillon(DatedFormulaColumn):
+class allegement_fillon(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
@@ -129,7 +129,7 @@ class coefficient_proratisation(Variable):
 
 
 @reference_formula
-class credit_impot_competitivite_emploi(DatedFormulaColumn):
+class credit_impot_competitivite_emploi(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Crédit d'imôt pour la compétitivité et l'emploi"

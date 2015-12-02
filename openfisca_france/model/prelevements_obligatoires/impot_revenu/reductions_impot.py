@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 
 
 @reference_formula
-class reductions(DatedFormulaColumn):
+class reductions(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"reductions"
@@ -456,7 +456,7 @@ class assvie(Variable):
 
 
 @reference_formula
-class cappme(DatedFormulaColumn):
+class cappme(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cappme"
@@ -666,7 +666,7 @@ class cotsyn(Variable):
 
 
 @reference_formula
-class creaen(DatedFormulaColumn):
+class creaen(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"creaen"
@@ -780,7 +780,7 @@ class daepad(Variable):
 
 
 @reference_formula
-class dfppce(DatedFormulaColumn):
+class dfppce(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"dfppce"
@@ -968,7 +968,7 @@ class dfppce(DatedFormulaColumn):
 
 # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
 @reference_formula
-class doment(DatedFormulaColumn):
+class doment(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"doment"
@@ -1275,7 +1275,7 @@ class doment(DatedFormulaColumn):
 #TODO: vérifier les dates des variables de doment et domsoc (y sont-elles encore en 2013 par ex ?)
 
 @reference_formula
-class domlog(DatedFormulaColumn):
+class domlog(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"domlog"
@@ -1483,7 +1483,7 @@ class domlog(DatedFormulaColumn):
 
 
 @reference_formula
-class domsoc(DatedFormulaColumn):
+class domsoc(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"domsoc"
@@ -1536,7 +1536,7 @@ class domsoc(DatedFormulaColumn):
 
 
 @reference_formula
-class donapd(DatedFormulaColumn):
+class donapd(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"donapd"
@@ -1633,7 +1633,7 @@ class ecpess(Variable):
 
 
 @reference_formula
-class garext(DatedFormulaColumn):
+class garext(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"garext"
@@ -1747,7 +1747,7 @@ class intemp(Variable):
 
 
 @reference_formula
-class invfor(DatedFormulaColumn):
+class invfor(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"invfor"
@@ -1909,7 +1909,7 @@ class invfor(DatedFormulaColumn):
 
 
 @reference_formula
-class invlst(DatedFormulaColumn):
+class invlst(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"invlst"
@@ -2159,7 +2159,7 @@ class invrev(Variable):
 
 
 @reference_formula
-class locmeu(DatedFormulaColumn):
+class locmeu(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"locmeu"
@@ -2336,7 +2336,7 @@ class mohist(Variable):
 
 
 @reference_formula
-class patnat(DatedFormulaColumn):
+class patnat(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"patnat"
@@ -2452,7 +2452,7 @@ class repsoc(Variable):
 
 
 @reference_formula
-class resimm(DatedFormulaColumn):
+class resimm(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"resimm"
@@ -2563,7 +2563,7 @@ class rsceha(Variable):
 
 
 @reference_formula
-class saldom(DatedFormulaColumn):
+class saldom(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"saldom"
@@ -2658,7 +2658,7 @@ class saldom(DatedFormulaColumn):
 
 
 @reference_formula
-class scelli(DatedFormulaColumn):
+class scelli(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"scelli"
@@ -3028,7 +3028,7 @@ class sofipe(Variable):
 
 
 @reference_formula
-class spfcpi(DatedFormulaColumn):
+class spfcpi(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"spfcpi"

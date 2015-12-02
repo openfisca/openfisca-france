@@ -176,7 +176,7 @@ class ass_isf(Variable):
 
 
 @reference_formula
-class isf_iai(DatedFormulaColumn):
+class isf_iai(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"isf_iai"
@@ -383,7 +383,7 @@ class decote_isf(Variable):
 
 
 @reference_formula
-class isf_apres_plaf(DatedFormulaColumn):
+class isf_apres_plaf(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Impôt sur la fortune après plafonnement"

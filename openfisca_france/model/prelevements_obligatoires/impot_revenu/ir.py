@@ -662,7 +662,7 @@ class deficit_rcm(Variable):
 
 
 @reference_formula
-class rev_cat_rvcm(DatedFormulaColumn):
+class rev_cat_rvcm(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenu catégoriel - Capitaux"
@@ -1231,7 +1231,7 @@ class avantage_qf(Variable):
 
 
 @reference_formula
-class decote(DatedFormulaColumn):
+class decote(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"décote"
@@ -1472,7 +1472,7 @@ class microentreprise(Variable):
 
 
 @reference_formula
-class plus_values(DatedFormulaColumn):
+class plus_values(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"plus_values"
@@ -1835,7 +1835,7 @@ class rev_cap_bar(Variable):
 
 
 @reference_formula
-class rev_cap_lib(DatedFormulaColumn):
+class rev_cap_lib(DatedVariable):
     '''Revenu du capital imposé au prélèvement libératoire
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
@@ -1890,7 +1890,7 @@ class avf(Variable):
 
 
 @reference_formula
-class imp_lib(DatedFormulaColumn):
+class imp_lib(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"imp_lib"

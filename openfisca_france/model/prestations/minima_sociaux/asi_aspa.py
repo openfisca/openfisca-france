@@ -263,7 +263,7 @@ class asi(Variable):
 
 
 @reference_formula
-class aspa_couple(DatedFormulaColumn):
+class aspa_couple(DatedVariable):
     column = BoolCol
     label = u"Couple au sens de l'ASPA"
     entity_class = Familles

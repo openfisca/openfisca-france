@@ -40,7 +40,7 @@ def build_reform(tax_benefit_system):
             return period, min_(max_(plafond + montant - rfr, 0), montant)
 
     @Reform.formula
-    class reductions(formulas.DatedFormulaColumn):
+    class reductions(formulas.DatedVariable):
         label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
         reference = reductions_impot.reductions
 

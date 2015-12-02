@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 
 
 @reference_formula
-class credits_impot(DatedFormulaColumn):
+class credits_impot(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"credits_impot"
@@ -314,7 +314,7 @@ class aidmob(Variable):
 
 
 @reference_formula
-class aidper(DatedFormulaColumn):
+class aidper(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"aidper"
@@ -563,7 +563,7 @@ class creimp_exc_2008(Variable):
 
 
 @reference_formula
-class creimp(DatedFormulaColumn):
+class creimp(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"creimp"
@@ -918,7 +918,7 @@ class drbail(Variable):
 
 
 @reference_formula
-class inthab(DatedFormulaColumn):
+class inthab(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"inthab"
@@ -1209,7 +1209,7 @@ class percvm(Variable):
 
 
 @reference_formula
-class preetu(DatedFormulaColumn):
+class preetu(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"preetu"
@@ -1286,7 +1286,7 @@ class prlire(Variable):
 
 
 @reference_formula
-class quaenv(DatedFormulaColumn):
+class quaenv(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"quaenv"
@@ -1632,7 +1632,7 @@ class quaenv_bouquet(Variable):
 
 
 @reference_formula
-class saldom2(DatedFormulaColumn):
+class saldom2(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"saldom2"

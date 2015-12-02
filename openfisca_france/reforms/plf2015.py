@@ -15,7 +15,7 @@ def build_reform(tax_benefit_system):
         )
 
     @Reform.formula
-    class decote(formulas.DatedFormulaColumn):
+    class decote(formulas.DatedVariable):
         label = u"Décote IR 2015 appliquée sur IR 2014 (revenus 2013)"
         reference = ir.decote
 

@@ -233,7 +233,7 @@ class crds_retraite(Variable):
 
 
 @reference_formula
-class casa(DatedFormulaColumn):
+class casa(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Contribution additionnelle de solidarité et d'autonomie"

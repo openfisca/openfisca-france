@@ -244,7 +244,7 @@ class aah(Variable):
 
 
 @reference_formula
-class caah(DatedFormulaColumn):
+class caah(DatedVariable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"Complément d'allocation adulte handicapé (mensualisé)"

@@ -65,7 +65,7 @@ class contribution_developpement_apprentissage(Variable):
 
 
 @reference_formula
-class contribution_supplementaire_apprentissage(DatedFormulaColumn):
+class contribution_supplementaire_apprentissage(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Contribution supplémentaire à l'apprentissage"
@@ -179,7 +179,7 @@ class fnal_tranche_a_plus_20(Variable):
 
 
 @reference_formula
-class financement_organisations_syndicales(DatedFormulaColumn):
+class financement_organisations_syndicales(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Contribution patronale au financement des organisations syndicales"

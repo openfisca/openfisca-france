@@ -47,7 +47,7 @@ class af_nbenf(Variable):
         return period, af_nbenf
 
 @reference_formula
-class af_coeff_garde_alternee(DatedFormulaColumn):
+class af_coeff_garde_alternee(DatedVariable):
     column = FloatCol(default = 1)
     entity_class = Familles
     label = u"Coefficient à appliquer aux af pour tenir compte de la garde alternée"
@@ -149,7 +149,7 @@ class af_base(Variable):
 
 
 @reference_formula
-class af_taux_modulation(DatedFormulaColumn):
+class af_taux_modulation(DatedVariable):
     column = FloatCol(default = 1)
     entity_class = Familles
     label = u"Taux de modulation à appliquer au montant des AF depuis 2015"
@@ -174,7 +174,7 @@ class af_taux_modulation(DatedFormulaColumn):
 
 
 @reference_formula
-class af_forf_taux_modulation(DatedFormulaColumn):
+class af_forf_taux_modulation(DatedVariable):
     column = FloatCol(default = 1)
     entity_class = Familles
     label = u"Taux de modulation à appliquer depuis 2007 à l'allocation forfaitaire des AF depuis 2015"
@@ -283,7 +283,7 @@ class af_majo(Variable):
 
 
 @reference_formula
-class af_complement_degressif(DatedFormulaColumn):
+class af_complement_degressif(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"AF - Complément dégressif en cas de dépassement du plafond"
@@ -313,7 +313,7 @@ class af_complement_degressif(DatedFormulaColumn):
 
 
 @reference_formula
-class af_forf_complement_degressif(DatedFormulaColumn):
+class af_forf_complement_degressif(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"AF - Complément dégressif pour l'allocation forfaitaire en cas de dépassement du plafond"
