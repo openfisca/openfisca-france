@@ -9,6 +9,7 @@ from openfisca_core import conv, legislations, legislationsxml
 from openfisca_france import init_country
 
 
+# Exceptionnaly for this test do not import TaxBenefitSystem from tests.base.
 TaxBenefitSystem = init_country()
 
 
