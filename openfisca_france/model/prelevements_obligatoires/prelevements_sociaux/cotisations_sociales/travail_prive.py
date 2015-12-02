@@ -351,8 +351,9 @@ class arrco_salarie(SimpleFormulaColumn):
         arrco_tranche_a_taux_salarie = simulation.calculate('arrco_tranche_a_taux_salarie', period)
         assiette_cotisations_sociales = simulation.calculate_add('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate_add('plafond_securite_sociale', period)
-
         type_sal = simulation.calculate('type_sal', period)
+
+        # cas où l'entreprise applique un taux spécifique
         cotisation_entreprise = - (
             min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale) *
             arrco_tranche_a_taux_salarie
@@ -382,6 +383,7 @@ class arrco_employeur(SimpleFormulaColumn):
         plafond_securite_sociale = simulation.calculate_add('plafond_securite_sociale', period)
         type_sal = simulation.calculate('type_sal', period)
 
+        # cas où l'entreprise applique un taux spécifique
         cotisation_entreprise = - (
             min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale) *
             arrco_tranche_a_taux_employeur

@@ -588,30 +588,6 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME code="arrco" description="Retraite complémentaire ARRCO Tranche 1" option="contrib">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".031" />
-              <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0305" />
-              <VALUE deb="1999-01-01" fin="2013-12-31" valeur=".03" />
-              <VALUE deb="1998-01-01" fin="1998-12-31" valeur=".0275" />
-              <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".025" />
-              <VALUE deb="1996-01-01" fin="1996-12-31" valeur=".0225" />
-              <VALUE deb="1993-01-01" fin="1995-12-31" valeur=".01968" />
-            </TAUX>
-          </TRANCHE>
-          <TRANCHE code="tranche1">
-            <SEUIL>
-              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="1" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
       </NODE>
       <NODE code="noncadre" description="Spécifiques aux non cadres">
         <BAREME code="arrco" description="Retraite complémentaire ARRCO pour les non cadres (Tranches 1 et 2)" option="contrib">
@@ -679,6 +655,30 @@
         </BAREME>
       </NODE>
       <NODE code="cadre" description="Spécifiques aux cadres">
+        <BAREME code="arrco" description="Retraite complémentaire ARRCO Tranche 1" option="contrib">
+          <TRANCHE code="tranche0">
+            <SEUIL>
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".031" />
+              <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0305" />
+              <VALUE deb="1999-01-01" fin="2013-12-31" valeur=".03" />
+              <VALUE deb="1998-01-01" fin="1998-12-31" valeur=".0275" />
+              <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".025" />
+              <VALUE deb="1996-01-01" fin="1996-12-31" valeur=".0225" />
+              <VALUE deb="1993-01-01" fin="1995-12-31" valeur=".01968" />
+            </TAUX>
+          </TRANCHE>
+          <TRANCHE code="tranche1">
+            <SEUIL>
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="1" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
         <BAREME code="agirc" description="Retraite complémentaire AGIRC (tranches B et C, avant 65 ans)" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
@@ -1655,10 +1655,10 @@
           </TRANCHE>
           <TRANCHE code="tranche1">
             <SEUIL>
-              <VALUE deb="1993-01-01" fin="2014-12-31" valeur="1" />
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="1" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="1993-01-01" fin="2014-12-31" valeur="0" />
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
             </TAUX>
           </TRANCHE>
         </BAREME>
