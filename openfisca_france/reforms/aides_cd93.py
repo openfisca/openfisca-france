@@ -14,13 +14,10 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    Reform.input_variable(
-        name = "perte_autonomie",
-        column = BoolCol,
-        entity_class = Individus,
+    class perte_autonomie(Reform.Variable):
+        column = BoolCol
+        entity_class = Individus
         label = u"Personne en perte d'autonomie"
-    )
-
 
     class resident_93(Reform.Variable):
         column = BoolCol
