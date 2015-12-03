@@ -1,0 +1,244 @@
+- name: "PPA - Pas d'activité, pas d'éligibilité"
+  period: 2016-01
+  input_variables:
+    age: 40
+    ppa_revenu_activite:
+      2015-12: 0
+      2015-11: 0
+      2015-10: 0
+  output_variables:
+    ppa_eligibilite: False
+
+- name: "PPA - Pas d'éligibilité si moins de 18 ans"
+  period: 2016-01
+  input_variables:
+    age: 17
+    ppa_revenu_activite:
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+  output_variables:
+    ppa_eligibilite: False
+
+- name: "PPA - Eligibilité"
+  period: 2016-01
+  input_variables:
+    age: 18
+    ppa_revenu_activite:
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+  output_variables:
+    ppa_eligibilite: True
+
+- name: "PPA personne seule sans revenu (cas théorique)"
+  period: 2016-01
+  input_variables:
+    age: 40
+    ppa_eligibilite: True
+  output_variables:
+    ppa:
+      2016-01: 524.16
+
+- name: "PPA personne en couple sans revenu (cas théorique)"
+  period: 2016-01
+  familles:
+    parents: ["parent1", "parent2"]
+    ppa_eligibilite: True
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "parent2"
+      age: 40
+  output_variables:
+    ppa:
+      2016-01: 524.16 * (1 + 0.5)
+
+- name: "PPA en couple avec 1 enfant"
+  period: 2016-01
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1"]
+    ppa_eligibilite: True
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "parent2"
+      age: 40
+    - id: "enfant1"
+      age: 10
+  output_variables:
+    ppa:
+      2016-01: 524.16 * (1 + 0.5 + 0.3)
+
+- name: "PPA en couple avec 3 enfant"
+  period: 2016-01
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2", "enfant3"]
+    ppa_eligibilite: True
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "parent2"
+      age: 40
+    - id: "enfant1"
+      age: 10
+    - id: "enfant2"
+      age: 11
+    - id: "enfant3"
+      age: 12
+  output_variables:
+    ppa:
+      2016-01: 524.16 * (1 + 0.5 + 2 * 0.3 + 0.4)
+
+- name: "PPA majoré: personne seule avec 1 enfant de moins de 3 ans"
+  period: 2016-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+    ppa_eligibilite: True
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 2
+  output_variables:
+    ppa:
+      2016-01: 524.16 * (1.28412 + 0.42804)
+
+- name: "PPA personne seule avec revenus"
+  period: 2016-01
+  input_variables:
+    age: 40
+    statut_occupation: 4 # locataire, pas de forfait logement
+    salaire_net:
+      2015-12: 300
+      2015-11: 300
+      2015-10: 300
+    ppa_eligibilite: True
+  output_variables:
+    ppa:
+      2016-01: 524.16 - 0.38 * 300
+
+- name: "PPA personne seule avec revenus variables"
+  period: 2016-01
+  input_variables:
+    age: 40
+    statut_occupation: 4 # locataire, pas de forfait logement
+    salaire_net:
+      2015-12: 200
+      2015-11: 300
+      2015-10: 400
+    ppa_eligibilite: True
+  output_variables:
+    ppa:
+      2016-01: 524.16 - 0.38 * 300 # Attention à la bonification. Peut être nécessaire d'avoir une PPA fictive.
+
+- name: "PPA personne en couple avec revenus"
+  period: 2016-01
+  familles:
+    parents: ["parent1", "parent2"]
+    ppa_eligibilite: True
+    statut_occupation_famille: 4 # locataire, pas de forfait logement
+  individus:
+    - id: "parent1"
+      age: 40
+      salaire_net:
+        2015-12: 300
+        2015-11: 300
+        2015-10: 300
+    - id: "parent2"
+      age: 40
+      salaire_net:
+        2015-12: 300
+        2015-11: 300
+        2015-10: 300
+  output_variables:
+    ppa:
+      2016-01: 524.16 * 1.5 - 0.38 * 600 # Attention à la bonification. Peut être nécessaire d'avoir une PPA fictive.
+
+- name: "PPA personne seule avec revenus bonifiés (>95 SMIC horaire brut)"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    age: 40
+    statut_occupation: 4 # locataire, pas de forfait logement
+    salaire_net:
+      2015-12: 913 # > 95 smic horaire brut
+      2015-11: 913
+      2015-10: 913
+    ppa_eligibilite: True
+  output_variables:
+    ppa:
+      2016-01: 524.16 + 67 - 0.38 * 913
+
+- name: "PPA personne seule avec revenus bonifiés (>59 SMIC horaire brut)"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    age: 40
+    statut_occupation: 4 # locataire, pas de forfait logement
+    salaire_net:
+      2015-12: 800 # > 59 smic horaire brut, < 95
+      2015-11: 800
+      2015-10: 800
+    ppa_eligibilite: True
+  output_variables:
+    ppa:
+      2016-01: 524.16 + 45 - 0.38 * 800 # 48 ?
+
+- name: "PPA personne seule avec revenus bonifiés (>59 SMIC horaire brut)"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    age: 40
+    statut_occupation: 4 # locataire, pas de forfait logement
+    salaire_net:
+      2015-12: 800 # > 59 smic horaire brut, < 95
+      2015-11: 800
+      2015-10: 800
+    ppa_eligibilite: True
+  output_variables:
+    ppa:
+      2016-01: 524.16 + 45 - 0.38 * 800 # 48 ?
+
+- name: "PPA forfait logement 1 personne "
+  period: 2016-01
+  input_variables:
+    statut_occupation_famille: 2 # propriétaire
+    age: 40
+  output_variables:
+    rsa_forfait_logement:
+      2016-01: 62.90
+
+- name: "PPA forfait logement 2 personnes "
+  period: 2016-01
+  familles:
+    parents: ["parent1", "parent2"]
+    statut_occupation_famille: 2 # propriétaire
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "parent2"
+      age: 40
+  output_variables:
+    rsa_forfait_logement:
+      2016-01: 125.80
+
+- name: "PPA forfait logement 3 personnes "
+  period: 2016-01
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1"]
+    statut_occupation_famille: 2 # propriétaire
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "parent2"
+      age: 40
+    - id: "enfant1"
+      age: 15
+  output_variables:
+    rsa_forfait_logement:
+      2016-01: 155.68
