@@ -754,6 +754,9 @@
       </NODE>
     </NODE>
     <NODE code="gen" description="Paramètres généraux">
+      <CODE code="nb_heure_travail_mensuel" description="Nombre d'heures travaillées forfaitaires" format="float">
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="151.67" />
+      </CODE>
       <CODE code="plaf_th_1" description="Plafond d'exonération de la taxe d'habitation: première part" format="integer" type="monetary">
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="10224" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="10024" />
@@ -1019,10 +1022,10 @@
           </TRANCHE>
           <TRANCHE code="tranche1">
             <SEUIL>
-              <VALUE deb="1993-01-01" fin="2014-12-31" valeur="1" />
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="1" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="1993-01-01" fin="2014-12-31" valeur="0" />
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
             </TAUX>
           </TRANCHE>
         </BAREME>
@@ -1229,10 +1232,10 @@
           <BAREME code="formprof_09" description="Formation professionnelle (0-9 salaries)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1993-01-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2005-01-01" fin="2013-12-31" valeur="0.0055" />
+                <VALUE deb="2005-01-01" fin="2015-12-31" valeur="0.0055" />
                 <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.004" />
                 <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.0015" />
               </TAUX>
@@ -1241,10 +1244,11 @@
           <BAREME code="formprof_1019" description="Formation professionnelle (10-19 salaries)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1992-01-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1992-01-01" fin="2015-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2005-01-01" fin="2013-12-01" valeur="0.0105" />
+                <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.01" />
+                <VALUE deb="2005-01-01" fin="2014-12-31" valeur="0.0105" />
                 <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.016" />
                 <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
                 <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
@@ -1254,10 +1258,11 @@
           <BAREME code="formprof_20" description="Formation professionnelle (plus de 20 salariés)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1992-01-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1992-01-01" fin="2015-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.016" />
+                <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.01" />
+                <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.016" />
                 <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
                 <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
               </TAUX>
@@ -1816,6 +1821,30 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
+        <BAREME code="arrco" description="Retraite complémentaire ARRCO Tranche 1" option="contrib">
+          <TRANCHE code="tranche0">
+            <SEUIL>
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".031" />
+              <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0305" />
+              <VALUE deb="1999-01-01" fin="2013-12-31" valeur=".03" />
+              <VALUE deb="1998-01-01" fin="1998-12-31" valeur=".0275" />
+              <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".025" />
+              <VALUE deb="1996-01-01" fin="1996-12-31" valeur=".0225" />
+              <VALUE deb="1993-01-01" fin="1995-12-31" valeur=".01968" />
+            </TAUX>
+          </TRANCHE>
+          <TRANCHE code="tranche1">
+            <SEUIL>
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="1" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
         <BAREME code="cet" description="Cotisation exceptionelle temporaire" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
@@ -1979,30 +2008,6 @@
         </BAREME>
       </NODE>
       <NODE code="commun" description="Communes aux cadres et non cadres">
-        <BAREME code="arrco" description="Retraite complémentaire ARRCO Tranche 1" option="contrib">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".031" />
-              <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0305" />
-              <VALUE deb="1999-01-01" fin="2013-12-31" valeur=".03" />
-              <VALUE deb="1998-01-01" fin="1998-12-31" valeur=".0275" />
-              <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".025" />
-              <VALUE deb="1996-01-01" fin="1996-12-31" valeur=".0225" />
-              <VALUE deb="1993-01-01" fin="1995-12-31" valeur=".01968" />
-            </TAUX>
-          </TRANCHE>
-          <TRANCHE code="tranche1">
-            <SEUIL>
-              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="1" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
         <BAREME code="assedic" description="Chômage-emploi ASSEDIC" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
@@ -7225,6 +7230,7 @@
         <VALUE deb="1983-07-01" fin="2011-10-31" valeur="60" />
       </CODE>
       <CODE code="montant" description="Montant mensuel de l'allocation adulte handicapé" format="float" type="monetary">
+        <VALUE deb="2015-09-01" fin="2016-08-31" valeur="807.65" />
         <VALUE deb="2014-09-01" fin="2015-08-31" valeur="800.45" />
         <VALUE deb="2013-09-01" fin="2014-08-31" valeur="790.18" />
         <VALUE deb="2012-09-01" fin="2013-08-31" valeur="776.59" />
@@ -7353,10 +7359,6 @@
       </CODE>
     </NODE>
     <NODE code="aspa" description="Allocation solidarité aux personne agées (ASPA - Minimum vieillesse)">
-      <CODE code="abattement_forfaitaire_nb_h" description="Nombre d'heures travaillées forfaitaires" format="float">
-        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="151.67" />
-        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
-      </CODE>
       <CODE code="abattement_forfaitaire_tx_couple" description="Fraction du SMIC pour l'abattement (couple)" format="float">
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="1.5" />
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
@@ -7443,8 +7445,8 @@
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="7102.56671" />
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="6997.60267" />
       </CODE>
-      <CODE code="taux_invalidite_aspa_anticipe" description="Taux d'invalidité nécessaire pour percevoir l'ASPA de manière anticipée" format="percent">
-        <VALUE deb="2002-01-01" valeur="0.5" />
+      <CODE code="taux_incapacite_aspa_anticipe" description="Taux d'incapacité nécessaire pour percevoir l'ASPA de manière anticipée" format="percent">
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.5" />
       </CODE>
     </NODE>
     <NODE code="ass" description="Allocation de solidarité spécifique">
