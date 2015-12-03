@@ -447,12 +447,10 @@ class nb_enfant_rsa(Variable):
 
         return period, nbenf
 
-reference_input_variable(
-    column = BoolCol,
-    entity_class = Menages,
-    label = u"Partipation aux frais de logement pour un hebergé à titre gratuit",
-    name = 'participation_frais',
-    )
+class participation_frais(Variable):
+    column = BoolCol
+    entity_class = Menages
+    label = u"Partipation aux frais de logement pour un hebergé à titre gratuit"
 
 class psa(DatedVariable):
     column = FloatCol
@@ -861,12 +859,10 @@ class rsa_forfait_logement(Variable):
         return period, max_(montant_al, montant_nature)
 
 
-reference_input_variable(
-    column = BoolCol,
-    entity_class = Familles,
-    label = u"Situation d'isolement depuis moins de 18 mois",
-    name = 'rsa_isolement_recent',
-    )
+class rsa_isolement_recent(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Situation d'isolement depuis moins de 18 mois"
 
 class rsa_majore(DatedVariable):
     column = FloatCol

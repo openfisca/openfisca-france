@@ -107,7 +107,7 @@ build_column(
         )
     )
 
-reference_input_variable(
+class allegement_fillon_mode_recouvrement(Variable):
     column = EnumCol(
         enum = Enum(
             [
@@ -116,48 +116,41 @@ reference_input_variable(
                 u"progressif",
                 ],
             ),
-        ),
-    entity_class = Individus,
-    label = u"Mode de recouvrement des allègements Fillon",
-    name = 'allegement_fillon_mode_recouvrement',
-    )
-reference_input_variable(
-    column = DateCol(),
-    entity_class = Individus,
-    label = u"Date de début du contrat d'apprentissage",
-    name = 'apprentissage_contrat_debut',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Taux ARRCO tranche A employeur) propre à l'entreprise",
-    name = 'arrco_tranche_a_taux_employeur',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Taux ARRCO tranche A salarié) propre à l'entreprise",
-    name = 'arrco_tranche_a_taux_salarie',
-    )
-reference_input_variable(
-    column = BoolCol(),
-    entity_class = Individus,
-    label = u"Entreprise assujettie à la taxe sur les salaires",
-    name = 'assujettie_taxe_salaires',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Avantages en nature (Valeur réelle)",
-    name = 'avantage_en_nature_valeur_reelle',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"indemnites_compensatrices_conges_payes",
-    name = 'indemnites_compensatrices_conges_payes',
-    )
-reference_input_variable(
+        )
+    entity_class = Individus
+    label = u"Mode de recouvrement des allègements Fillon"
+
+class apprentissage_contrat_debut(Variable):
+    column = DateCol()
+    entity_class = Individus
+    label = u"Date de début du contrat d'apprentissage"
+
+class arrco_tranche_a_taux_employeur(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Taux ARRCO tranche A employeur) propre à l'entreprise"
+
+class arrco_tranche_a_taux_salarie(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Taux ARRCO tranche A salarié) propre à l'entreprise"
+
+class assujettie_taxe_salaires(Variable):
+    column = BoolCol()
+    entity_class = Individus
+    label = u"Entreprise assujettie à la taxe sur les salaires"
+
+class avantage_en_nature_valeur_reelle(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Avantages en nature (Valeur réelle)"
+
+class indemnites_compensatrices_conges_payes(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"indemnites_compensatrices_conges_payes"
+
+class contrat_de_travail(Variable):
     column = EnumCol(
         enum = Enum(
             [
@@ -169,216 +162,184 @@ reference_input_variable(
                 u"forfait_jours_annee",
                 ],
             ),
-        ),
-    entity_class = Individus,
-    label = u"Type contrat de travail",
-    name = 'contrat_de_travail',
-    )
-reference_input_variable(
-    column = DateCol(default = date(1870, 1, 1)),
-    entity_class = Individus,
-    label = u"Date d'arrivée dans l'entreprise",
-    name = 'contrat_de_travail_debut',  # debut
-    )
-reference_input_variable(
-    column = DateCol(default = date(2099, 12, 31)),
-    entity_class = Individus,
-    label = u"Date de départ de l'entreprise",
-    name = 'contrat_de_travail_fin',   # fin
-    )
-reference_input_variable(
+        )
+    entity_class = Individus
+    label = u"Type contrat de travail"
+
+class contrat_de_travail_debut(Variable):
+    column = DateCol(default = date(1870, 1, 1))
+    entity_class = Individus
+    label = u"Date d'arrivée dans l'entreprise"
+
+class contrat_de_travail_fin(Variable):
+    column = DateCol(default = date(2099, 12, 31))
+    entity_class = Individus
+    label = u"Date de départ de l'entreprise"
+
+class contrat_de_travail_duree(Variable):
     column = EnumCol(
         enum = Enum([
             u"cdi",
             u"cdd",
             ]),
-        ),
-    entity_class = Individus,
-    label = u"Type (durée determinée ou indéterminée) du contrat de travail",
-    name = 'contrat_de_travail_duree',
-    )
-reference_input_variable(
+        )
+    entity_class = Individus
+    label = u"Type (durée determinée ou indéterminée) du contrat de travail"
+
+class cotisation_sociale_mode_recouvrement(Variable):
     column = EnumCol(
         enum = Enum([
             u"Mensuel avec régularisation en fin d'année",
             u"Annuel",
             ]),
-        ),
-    entity_class = Individus,
-    label = u"Mode de recouvrement des cotisations sociales",
-    name = 'cotisation_sociale_mode_recouvrement',
-    )
-reference_input_variable(
-    column = FixedStrCol(max_length = 5),
-    entity_class = Individus,
-    label = u"Localisation entreprise (depcom)",
-    name = 'depcom_entreprise',
-    )
-reference_input_variable(
-    column = FixedStrCol(max_length = 5),
-    entity_class = Individus,
-    label = u"Localisation entreprise (Code postal)",
-    name = 'code_postal_entreprise',
-    )
-reference_input_variable(
-    column = IntCol(),
-    entity_class = Individus,
-    base_function = requested_period_last_value,
-    label = u"Effectif de l'entreprise",
-    name = 'effectif_entreprise',
-    set_input = set_input_dispatch_by_period,
-    )
-reference_input_variable(
-    column = BoolCol(),
-    entity_class = Individus,
-    label = u"Entreprise assujettie à la contribution économique territoriale",
-    name = 'entreprise_assujettie_cet',
-    )
-reference_input_variable(
-    column = BoolCol(),
-    entity_class = Individus,
-    label = u"Entreprise assujettie à l'impôt sur les sociétés (IS)",
-    name = 'entreprise_assujettie_is',
-    )
-reference_input_variable(
-    column = BoolCol(),
-    entity_class = Individus,
-    label = u"Entreprise assujettie à la TVA",
-    name = 'entreprise_assujettie_tva',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Bénéfice de l'entreprise",
-    name = 'entreprise_benefice',
-    set_input = set_input_divide_by_period,
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Bilan de l'entreprise",
-    name = 'entreprise_bilan',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Chiffre d'affaire de l'entreprise",
-    name = 'entreprise_chiffre_affaire',
-    )
-reference_input_variable(
-    column = DateCol(),
-    entity_class = Individus,
-    label = u"Date de création de l'entreprise",
-    name = 'entreprise_creation',
-    )
-reference_input_variable(
-    base_function = requested_period_last_value,
-    column = IntCol(),
-    entity_class = Individus,
-    label = u"Nombre de tickets restaurant",
-    name = 'nombre_tickets_restaurant',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Nouvelle bonification indicaire",
-    name = 'nouvelle_bonification_indiciaire',
-    )
-reference_input_variable(
-    base_function = requested_period_last_value,
-    column = FloatCol(default = 0.015),  # 1.5% est le minimum en 2014
-    entity_class = Individus,
-    label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",
-    name = 'prevoyance_obligatoire_cadre_taux_employe',
-    )
-reference_input_variable(
-    base_function = requested_period_last_value,
-    column = FloatCol(default = 0.015),  # 1.5% est le minimum en 2014
-    entity_class = Individus,
-    label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres",
-    name = 'prevoyance_obligatoire_cadre_taux_employeur',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Indemnités, primes et avantages en argent",
-    name = 'primes_salaires',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Part salariale des cotisations de prévoyance complémentaire prise en charge par l'employeur",
-    name = 'prise_en_charge_employeur_prevoyance_complementaire',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Part salariale des cotisations de retraite complémentaire prise en charge par l'employeur",
-    name = 'prise_en_charge_employeur_retraite_complementaire',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Part salariale des cotisations de retraite supplémentaire prise en charge par l'employeur",
-    name = 'prise_en_charge_employeur_retraite_supplementaire',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Ratio d'alternants dans l'effectif moyen",
-    name = 'ratio_alternants',
-    )
-reference_input_variable(
-    column = BoolCol(default = True),
-    entity_class = Individus,
-    label = u"Entreprise redevable de la taxe d'apprentissage",
-    name = 'redevable_taxe_apprentissage',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Base pour le calcul du remboursement des frais de transport",
-    name = 'remboursement_transport_base',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Indemnités forfaitaires (transport, nourriture)",
-    name = 'indemnites_forfaitaires',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie",
-    name = 'salaire_de_base',
-    set_input = set_input_divide_by_period,
-    url = u'http://www.insee.fr/fr/methodes/default.asp?page=definitions/salaire-mensuel-base-smb.htm',
-    )
-reference_input_variable(
-    column = FloatCol(default = 0.5),
-    entity_class = Individus,
-    label = u"Taux de participation de l'employeur au titre restaurant",
-    name = 'titre_restaurant_taux_employeur',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Valeur faciale unitaire du titre restaurant",
-    name = 'titre_restaurant_valeur_unitaire',
-    )
-reference_input_variable(
-    column = IntCol(),
-    entity_class = Individus,
-    label = u"Volume des titres restaurant",
-    name = 'titre_restaurant_volume',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Traitement indiciaire brut (TIB)",
-    name = 'traitement_indiciaire_brut',
-    )
-reference_input_variable(
+        )
+    entity_class = Individus
+    label = u"Mode de recouvrement des cotisations sociales"
+
+class depcom_entreprise(Variable):
+    column = FixedStrCol(max_length = 5)
+    entity_class = Individus
+    label = u"Localisation entreprise (depcom)"
+
+class code_postal_entreprise(Variable):
+    column = FixedStrCol(max_length = 5)
+    entity_class = Individus
+    label = u"Localisation entreprise (Code postal)"
+
+class effectif_entreprise(Variable):
+    entity_class = Individus
+    column = IntCol()
+    base_function = requested_period_last_value
+    label = u"Effectif de l'entreprise"
+    set_input = set_input_dispatch_by_period
+
+class entreprise_assujettie_cet(Variable):
+    column = BoolCol()
+    entity_class = Individus
+    label = u"Entreprise assujettie à la contribution économique territoriale"
+
+class entreprise_assujettie_is(Variable):
+    column = BoolCol()
+    entity_class = Individus
+    label = u"Entreprise assujettie à l'impôt sur les sociétés (IS)"
+
+class entreprise_assujettie_tva(Variable):
+    column = BoolCol()
+    entity_class = Individus
+    label = u"Entreprise assujettie à la TVA"
+
+class entreprise_benefice(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    set_input = set_input_divide_by_period
+    label = u"Bénéfice de l'entreprise"
+
+class entreprise_bilan(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Bilan de l'entreprise"
+
+class entreprise_chiffre_affaire(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Chiffre d'affaire de l'entreprise"
+
+class entreprise_creation(Variable):
+    column = DateCol()
+    entity_class = Individus
+    label = u"Date de création de l'entreprise"
+
+class nombre_tickets_restaurant(Variable):
+    column = IntCol()
+    entity_class = Individus
+    base_function = requested_period_last_value
+    label = u"Nombre de tickets restaurant"
+
+class nouvelle_bonification_indiciaire(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Nouvelle bonification indicaire"
+
+class prevoyance_obligatoire_cadre_taux_employe(Variable):
+    column = FloatCol(default = 0.015)  # 1.5% est le minimum en 2014
+    entity_class = Individus
+    base_function = requested_period_last_value
+    label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres"
+
+class prevoyance_obligatoire_cadre_taux_employeur(Variable):
+    column = FloatCol(default = 0.015)  # 1.5% est le minimum en 2014
+    entity_class = Individus
+    base_function = requested_period_last_value
+    label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres"
+
+class primes_salaires(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Indemnités, primes et avantages en argent"
+
+class prise_en_charge_employeur_prevoyance_complementaire(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Part salariale des cotisations de prévoyance complémentaire prise en charge par l'employeur"
+
+class prise_en_charge_employeur_retraite_complementaire(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Part salariale des cotisations de retraite complémentaire prise en charge par l'employeur"
+
+class prise_en_charge_employeur_retraite_supplementaire(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Part salariale des cotisations de retraite supplémentaire prise en charge par l'employeur"
+
+class ratio_alternants(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Ratio d'alternants dans l'effectif moyen"
+
+class redevable_taxe_apprentissage(Variable):
+    column = BoolCol(default = True)
+    entity_class = Individus
+    label = u"Entreprise redevable de la taxe d'apprentissage"
+
+class remboursement_transport_base(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Base pour le calcul du remboursement des frais de transport"
+
+class indemnites_forfaitaires(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Indemnités forfaitaires (transport, nourriture)"
+
+class salaire_de_base(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie"
+    set_input = set_input_divide_by_period
+    url = u'http://www.insee.fr/fr/methodes/default.asp?page=definitions/salaire-mensuel-base-smb.htm'
+
+class titre_restaurant_taux_employeur(Variable):
+    column = FloatCol(default = 0.5)
+    entity_class = Individus
+    label = u"Taux de participation de l'employeur au titre restaurant"
+
+class titre_restaurant_valeur_unitaire(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Valeur faciale unitaire du titre restaurant"
+
+class titre_restaurant_volume(Variable):
+    column = IntCol()
+    entity_class = Individus
+    label = u"Volume des titres restaurant"
+
+class traitement_indiciaire_brut(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Traitement indiciaire brut (TIB)"
+
+class type_sal(Variable):
     column = EnumCol(
         enum = Enum(
             [
@@ -391,47 +352,40 @@ reference_input_variable(
                 u"public_non_titulaire",
                 ],
             ),
-        ),
-    entity_class = Individus,
-    label = u"Catégorie de salarié",
-    name = 'type_sal',
-    )
-reference_input_variable(
-    column = IntCol(),  # TODO default la valeur de la durée légale ?
-    entity_class = Individus,
-    label = u"Durée mensuelle collective dans l'entreprise (heures, temps plein)",
-    name = 'heures_duree_collective_entreprise',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)",
-    name = 'heures_non_remunerees_volume',
-    )
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Volume des heures rémunérées contractuellement (heures/mois, temps partiel)",
-    name = 'heures_remunerees_volume',
-    )
-reference_input_variable(
-    column = IntCol(),
-    entity_class = Individus,
-    label = u"Volume des heures rémunérées à un forfait heures",
-    name = 'forfait_heures_remunerees_volume',
-    )
-reference_input_variable(
-    column = IntCol(),
-    entity_class = Individus,
-    label = u"Volume des heures rémunérées à forfait jours",
-    name = 'forfait_jours_remuneres_volume',
-    )
-reference_input_variable(
-    column = IntCol(),
-    entity_class = Individus,
-    label = u"Volume des jours pour lesquels sont versés une idemnité journalière par la sécurité sociale",
-    name = 'volume_jours_ijss',
-    )
+        )
+    entity_class = Individus
+    label = u"Catégorie de salarié"
+
+class heures_duree_collective_entreprise(Variable):
+    column = IntCol()  # TODO default la valeur de la durée légale ?
+    entity_class = Individus
+    label = u"Durée mensuelle collective dans l'entreprise (heures, temps plein)"
+
+class heures_non_remunerees_volume(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)"
+
+class heures_remunerees_volume(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Volume des heures rémunérées contractuellement (heures/mois, temps partiel)"
+
+class forfait_heures_remunerees_volume(Variable):
+    column = IntCol()
+    entity_class = Individus
+    label = u"Volume des heures rémunérées à un forfait heures"
+
+class forfait_jours_remuneres_volume(Variable):
+    column = IntCol()
+    entity_class = Individus
+    label = u"Volume des heures rémunérées à forfait jours"
+
+class volume_jours_ijss(Variable):
+    column = IntCol()
+    entity_class = Individus
+    label = u"Volume des jours pour lesquels sont versés une idemnité journalière par la sécurité sociale"
+
 
 
 class avantage_en_nature(Variable):

@@ -12,12 +12,10 @@ build_column('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposa
                                QUIFOY['pac3']: u"1ES",
                                }))  # (f1as, f1bs, f1cs, f1ds, f1es)
 
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Retraite brute",
-    name = 'rstbrut',
-    )
+class rstbrut(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Retraite brute"
 
 # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
 build_column('aer', IntCol(label = u"Allocation équivalent retraite (AER)"))
