@@ -38,7 +38,7 @@ output_variables:
   # TODO à inclure dans la décomposition et à finir de coder forfait_social: -3.8 # 47.49 de base
   # TODO à coder taxe_handicapes: 18.40
 
-  # salsuperbrut: 0
+  # salaire_super_brut: 0
   # cotisations_employeur: 0
   remboursement_transport: 0
 

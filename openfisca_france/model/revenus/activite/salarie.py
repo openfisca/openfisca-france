@@ -696,7 +696,7 @@ class salaire_net_a_payer(Variable):
         return period, salaire_net_a_payer
 
 
-class salsuperbrut(Variable):
+class salaire_super_brut(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -729,7 +729,7 @@ class salsuperbrut(Variable):
         remuneration_principale = simulation.calculate('remuneration_principale', period)
 
         tehr = simulation.calculate_divide('tehr', period)
-        salsuperbrut = (
+        salaire_super_brut = (
             remuneration_apprenti +
             salaire_de_base + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +
             remuneration_principale +
@@ -744,4 +744,4 @@ class salsuperbrut(Variable):
             - tehr
             )
 
-        return period, salsuperbrut
+        return period, salaire_super_brut
