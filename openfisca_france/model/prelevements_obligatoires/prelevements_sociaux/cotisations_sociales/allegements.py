@@ -6,7 +6,7 @@ from functools import partial
 import logging
 
 from numpy import (
-    busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, maximum as max_,
+    busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, logical_and as and_, maximum as max_,
     minimum as min_, round as round_, timedelta64
     )
 
@@ -140,6 +140,42 @@ class credit_impot_competitivite_emploi(DatedVariable):
         non_cumul = (jeune_entreprise_innovante == 0 + stagiaire) > 0
 
         return period, credit_impot_competitivite_emploi * non_cumul
+
+
+@reference_formula
+class aide_premier_salarie(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Aide à l'embauche d'un premier salarié"
+
+    def function(self, simulation, period):
+        period = period.this_month
+
+        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
+        apprenti = simulation.calculate('apprenti', period)
+        contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
+        contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
+
+        date_eligible = and_(
+            contrat_de_travail_debut >= datetime64("2015-06-09"),
+            contrat_de_travail_debut <= datetime64("2016-06-08")
+        )
+        # Si CDD, durée du contrat doit être > 1 an
+        duree_eligible = or_(
+            # durée indéterminée
+            contrat_de_travail_duree == 0,
+            # durée déterminée supérieure à 1 an
+            and_(
+                contrat_de_travail_duree == 1,
+                contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')),
+            )
+        eligible = \
+            (effectif_entreprise == 0) * not_(apprenti) * date_eligible * duree_eligible
+
+        montant_max = 4000 # sur 24 mois
+
+        return period, eligible * (montant_max / 24)
 
 
 class smic_proratise(Variable):
