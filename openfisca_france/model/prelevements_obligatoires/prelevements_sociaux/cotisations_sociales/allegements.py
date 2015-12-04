@@ -156,6 +156,7 @@ class aide_premier_salarie(Variable):
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
+        coefficient_proratisation = simulation.calculate('coefficient_proratisation')
 
         date_eligible = and_(
             contrat_de_travail_debut >= datetime64("2015-06-09"),
@@ -173,9 +174,13 @@ class aide_premier_salarie(Variable):
         eligible = \
             (effectif_entreprise == 0) * not_(apprenti) * date_eligible * duree_eligible
 
+
         montant_max = 4000 # sur 24 mois
 
-        return period, eligible * (montant_max / 24)
+        # Si le salarié est embauché à temps partiel,
+        # l’aide est proratisée en fonction de sa durée de travail.
+        # TODO cette multiplication par le coefficient de proratisation suffit pour le cas du temps partiel ?
+        return period, eligible * (montant_max / 24) * coefficient_proratisation
 
 
 class smic_proratise(Variable):

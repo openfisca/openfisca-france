@@ -54,3 +54,20 @@
     contrat_de_travail_fin: 2016-06-30
   output_variables:
     aide_premier_salarie: 0
+
+
+- period: "2015-11"
+  name: Temps partiel
+  description: >
+    Si le salarié est embauché à temps partiel, l’aide est proratisée
+    en fonction de sa durée de travail.
+    TODO : ajouter une input_variable temps partiel et changer l'output_variable en conséquence
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1457.52
+    # necessary when requesting on a 1 month salary :
+    allegement_fillon_mode_recouvrement: 1
+    contrat_de_travail_debut: 2015-07-01
+    effectif_entreprise: 0
+  output_variables:
+    aide_premier_salarie: 166.67
