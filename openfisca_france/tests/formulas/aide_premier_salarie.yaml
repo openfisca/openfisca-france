@@ -71,3 +71,19 @@
     effectif_entreprise: 0
   output_variables:
     aide_premier_salarie: 166.67
+
+
+- period: "2017-07-01"
+  name: L'aide n'est plus disponible 2 ans après
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1457.52
+    # necessary when requesting on a 1 month salary :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 0
+    contrat_de_travail_duree: 1 # CDD
+    # supérieur à 1 an :
+    contrat_de_travail_debut: "2015-07-01"
+    contrat_de_travail_fin: "2019-06-30"
+  output_variables:
+    aide_premier_salarie: 0

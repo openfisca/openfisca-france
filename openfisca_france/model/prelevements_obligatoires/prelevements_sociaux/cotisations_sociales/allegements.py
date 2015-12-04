@@ -14,7 +14,7 @@ from ....base import *  # noqa analysis:ignore
 from .....assets.holidays import holidays
 
 log = logging.getLogger(__name__)
-
+from openfisca_core import periods
 
 class assiette_allegement(Variable):
     base_function = requested_period_added_value
@@ -149,16 +149,15 @@ class aide_premier_salarie(Variable):
     label = u"Aide à l'embauche d'un premier salarié"
 
     def function(self, simulation, period):
-        period = period.this_month
-
+        period_month = period.this_month
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        apprenti = simulation.calculate('apprenti', period)
+        apprenti = simulation.calculate('apprenti', period_month)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
-        coefficient_proratisation = simulation.calculate('coefficient_proratisation')
+        coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
 
-        date_eligible = and_(
+        contrat_eligible = and_(
             contrat_de_travail_debut >= datetime64("2015-06-09"),
             contrat_de_travail_debut <= datetime64("2016-06-08")
         )
@@ -171,11 +170,15 @@ class aide_premier_salarie(Variable):
                 contrat_de_travail_duree == 1,
                 contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')),
             )
+
+
+        date_eligible = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
+
         eligible = \
-            (effectif_entreprise == 0) * not_(apprenti) * date_eligible * duree_eligible
+            (effectif_entreprise == 0) * not_(apprenti) * contrat_eligible * duree_eligible * date_eligible
 
-
-        montant_max = 4000 # sur 24 mois
+        # somme sur 24 mois, à raison de 500 € maximum par trimestre
+        montant_max = 4000
 
         # Si le salarié est embauché à temps partiel,
         # l’aide est proratisée en fonction de sa durée de travail.
