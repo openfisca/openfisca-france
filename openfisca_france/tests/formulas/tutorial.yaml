@@ -54,8 +54,8 @@
     age: 22
     habitant_paris: True
     salaire_net:
-      2014-10: 1100
-      2014-09: 1100
-      2014-08: 1100
+      2014-10: 1500
+      2014-09: 1500
+      2014-08: 1500
   output_variables:
     tutorial: 0
