@@ -159,7 +159,7 @@ class aide_premier_salarie(Variable):
 
         # Cette aide est temporaire.
         # TODO : Si toutefois elle est reconduite en 2016, les dates et le montant seront à implémenter comme des params xml.
-        
+
         contrat_eligible = and_(
             contrat_de_travail_debut >= datetime64("2015-06-09"),
             contrat_de_travail_debut <= datetime64("2016-06-08")

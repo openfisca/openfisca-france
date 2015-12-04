@@ -723,7 +723,6 @@ class salaire_super_brut(Variable):
             'exoneration_cotisations_employeur_stagiaire', period)
 
         allegement_fillon = simulation.calculate_add('allegement_fillon', period)
-        credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
         reintegration_titre_restaurant_employeur = simulation.calculate(
             'reintegration_titre_restaurant_employeur', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
@@ -740,8 +739,26 @@ class salaire_super_brut(Variable):
             - exoneration_cotisations_employeur_jei
             - exoneration_cotisations_employeur_apprenti
             - exoneration_cotisations_employeur_stagiaire
-            - credit_impot_competitivite_emploi
             - tehr
             )
 
         return period, salaire_super_brut
+
+
+@reference_formula
+class cout_du_travail(SimpleFormulaColumn):
+    base_function = requested_period_added_value
+    column = FloatCol
+    entity_class = Individus
+    label = u"Coût du travail : salaire super brut - aides et crédits (non immédiats)"
+    set_input = set_input_divide_by_period
+
+    def function(self, simulation, period):
+        period = period
+        salaire_super_brut = simulation.calculate('salaire_super_brut', period)
+        credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
+        aide_premier_salarie = simulation.calculate_add('aide_premier_salarie', period)
+
+        aides_credits = credit_impot_competitivite_emploi + aide_premier_salarie
+
+        return period, salaire_super_brut - aides_credits
