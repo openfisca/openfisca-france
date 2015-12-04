@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from openfisca_core import columns, formulas, reforms
+from openfisca_core import columns, reforms
 from numpy import absolute as abs_, minimum as min_, maximum as max_
 
 from .. import entities
@@ -36,7 +36,7 @@ def build_reform(tax_benefit_system):
         label = u"Enfant placé en structure spécialisée ou famille d'accueil",
         )
 
-    
+
     class paris_logement_familles_elig(Reform.Variable):
         column = columns.BoolCol
         label = u"Eligibilité à Paris-Logement-Familles"

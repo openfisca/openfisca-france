@@ -7,12 +7,12 @@ from openfisca_core import periods
 from openfisca_core.tools import assert_near
 from openfisca_france.tests.base import tax_benefit_system
 
-from openfisca_france.reforms.landais_piketty_saez import build_extension
+from openfisca_france.reforms.landais_piketty_saez import build_reform
 
 
 def test():
     year = 2013
-    reform = build_extension(tax_benefit_system)
+    reform = build_reform(tax_benefit_system)
     scenario = reform.new_scenario().init_single_entity(
         axes = [
             dict(

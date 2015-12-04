@@ -10,20 +10,19 @@
 from __future__ import division
 
 from numpy import maximum as max_
-from openfisca_core import columns, formulas, reforms
+from openfisca_core import columns, reforms
 from openfisca_france import entities
 from openfisca_france.model.base import QUIFAM, QUIFOY
 
 
-def build_extension(base_tax_benefit_system):
-    Extension = reforms.make_reform(
+def build_reform(base_tax_benefit_system):
+    Reform = reforms.make_reform(
         reference = base_tax_benefit_system,
         key = 'landais_piketty_saez',
         name = u'Landais Piketty Saez',
         )
 
-    @Extension.formula
-    class assiette_csg(formulas.Variable):
+    class assiette_csg(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Assiette de la CSG"
@@ -39,8 +38,7 @@ def build_extension(base_tax_benefit_system):
             rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = QUIFOY['vous'])
             return period, salaire_de_base + chobrut + rstbrut + rev_cap_bar + rev_cap_lib
 
-    @Extension.formula
-    class impot_revenu_lps(formulas.Variable):
+    class impot_revenu_lps(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
@@ -63,8 +61,7 @@ def build_extension(base_tax_benefit_system):
             assiette_csg = simulation.calculate('assiette_csg')
             return period, -max_(0, lps.bareme.calc(max_(assiette_csg - ae - ac, 0)) - re - rc) + ce
 
-    @Extension.formula
-    class revenu_disponible(formulas.Variable):
+    class revenu_disponible(Reform.Variable):
         column = columns.FloatCol(default = 0)
         entity_class = entities.Menages
         label = u"Revenu disponible du ménage"
@@ -85,13 +82,13 @@ def build_extension(base_tax_benefit_system):
             rev_trav = self.sum_by_entity(rev_trav_holder)
             return rev_trav + pen + rev_cap + impot_revenu_lps + psoc
 
-    extension = Extension()
-    extension.modify_legislation_json(modifier_function = modify_legislation_json)
-    return extension
+    reform = Reform()
+    reform.modify_legislation_json(modifier_function = modify_legislation_json)
+    return reform
 
 
 def modify_legislation_json(reference_legislation_json_copy):
-    extension_legislation_subtree = {
+    reform_legislation_subtree = {
         "@type": "Node",
         "description": u"Impôt à base large proposé par Landais, Piketty et Saez",
         "children": {
@@ -165,5 +162,5 @@ def modify_legislation_json(reference_legislation_json_copy):
                 },
             },
         }
-    reference_legislation_json_copy['children']['landais_piketty_saez'] = extension_legislation_subtree
+    reference_legislation_json_copy['children']['landais_piketty_saez'] = reform_legislation_subtree
     return reference_legislation_json_copy

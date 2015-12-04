@@ -3,7 +3,7 @@
 from __future__ import division
 
 from numpy import maximum as max_
-from openfisca_core import columns, formulas, reforms
+from openfisca_core import columns, reforms
 
 from .. import entities
 from ..model.prelevements_obligatoires.impot_revenu import ir
@@ -16,8 +16,7 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    @Reform.formula
-    class cesthra(formulas.Variable):
+    class cesthra(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
         label = u"Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
@@ -34,8 +33,7 @@ def build_reform(tax_benefit_system):
                 cesthra += max_(rev - law_cesthra.seuil, 0) * law_cesthra.taux
             return period, cesthra
 
-    @Reform.formula
-    class irpp(formulas.Variable):
+    class irpp(Reform.Variable):
         label = u"Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)"
         reference = ir.irpp
 

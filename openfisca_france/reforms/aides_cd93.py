@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from openfisca_core import columns, formulas, reforms
+from openfisca_core import reforms
 from numpy import vectorize, maximum as max_, logical_not as not_, logical_or as or_, absolute as abs_
 
 from ..model.base import *
@@ -111,7 +111,7 @@ def build_reform(tax_benefit_system):
             adpa_eligibilite = self.any_by_roles(adpa_eligibilite_holder)
             base_ressource_mensuelle = simulation.calculate('adpa_base_ressources', period)
             concub = simulation.calculate('concub', period)
-            
+
             # On ne prend pas en compte le cas où le conjoint est placé.
             quotient_familial = 1 + 0.7 * concub
             base_ressource_mensuelle = base_ressource_mensuelle / quotient_familial

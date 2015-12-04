@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from openfisca_core import formulas, periods, reforms
+from openfisca_core import periods, reforms
 from ..model.base import *
 from ..model.prelevements_obligatoires.impot_revenu import ir
 
@@ -14,8 +14,7 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    @Reform.formula
-    class decote(formulas.DatedVariable):
+    class decote(Reform.DatedVariable):
         label = u"Décote IR 2015 appliquée sur IR 2014 (revenus 2013)"
         reference = ir.decote
 

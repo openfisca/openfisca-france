@@ -5,7 +5,7 @@ from __future__ import division
 from datetime import date
 
 from numpy import maximum as max_, minimum as min_
-from openfisca_core import columns, formulas, reforms
+from openfisca_core import columns, reforms
 
 from .. import entities
 from ..model.base import dated_function
@@ -23,8 +23,7 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    @Reform.formula
-    class reduction_impot_exceptionnelle(formulas.Variable):
+    class reduction_impot_exceptionnelle(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
         label = u"Réduction d'impôt exceptionnelle"
@@ -39,8 +38,7 @@ def build_reform(tax_benefit_system):
             montant = params.montant_plafond * nb_adult
             return period, min_(max_(plafond + montant - rfr, 0), montant)
 
-    @Reform.formula
-    class reductions(formulas.DatedVariable):
+    class reductions(Reform.DatedVariable):
         label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
         reference = reductions_impot.reductions
 
