@@ -157,6 +157,9 @@ class aide_premier_salarie(Variable):
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
 
+        # Cette aide est temporaire.
+        # TODO : Si toutefois elle est reconduite en 2016, les dates et le montant seront à implémenter comme des params xml.
+        
         contrat_eligible = and_(
             contrat_de_travail_debut >= datetime64("2015-06-09"),
             contrat_de_travail_debut <= datetime64("2016-06-08")
@@ -180,9 +183,14 @@ class aide_premier_salarie(Variable):
         # somme sur 24 mois, à raison de 500 € maximum par trimestre
         montant_max = 4000
 
+        # TODO comment implémenter la condition "premier employé" ? L'effectif est insuffisant en cas de rupture d'un premier contrat
+        # Condition : l’entreprise n’a pas conclu de contrat de travail avec un salarié,
+        # au-delà de la période d’essai, dans les 12 mois précédant la nouvelle
+        # embauche.
+
         # Si le salarié est embauché à temps partiel,
         # l’aide est proratisée en fonction de sa durée de travail.
-        # TODO cette multiplication par le coefficient de proratisation suffit pour le cas du temps partiel ?
+        # TODO cette multiplication par le coefficient de proratisation suffit-elle pour le cas du temps partiel ? A tester
         return period, eligible * (montant_max / 24) * coefficient_proratisation
 
 
