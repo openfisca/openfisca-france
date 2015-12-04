@@ -53,6 +53,7 @@ from prestations.minima_sociaux import (  # noqa analysis:ignore
     ass,
     cmu,
     rsa,
+    tutorial,
     )
 
 from prestations.prestations_familiales import (  # noqa analysis:ignore
