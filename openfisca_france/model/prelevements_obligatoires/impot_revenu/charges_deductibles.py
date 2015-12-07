@@ -200,8 +200,7 @@ build_column('f6fl', IntCol(entity = 'foy',
                 cerfa_field = u'6FL'))
 
 
-@reference_formula
-class rfr_cd(SimpleFormulaColumn):
+class rfr_cd(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Charges déductibles entrant dans le revenus fiscal de référence"
@@ -217,8 +216,7 @@ class rfr_cd(SimpleFormulaColumn):
         return period, cd_acc75a + cd_doment + cd_eparet + cd_sofipe
 
 
-@reference_formula
-class cd1(DatedFormulaColumn):
+class cd1(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Charges déductibles non plafonnées"
@@ -316,8 +314,7 @@ class cd1(DatedFormulaColumn):
         return period, niches1
 
 
-@reference_formula
-class cd2(DatedFormulaColumn):
+class cd2(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Charges déductibles plafonnées"
@@ -358,8 +355,7 @@ class cd2(DatedFormulaColumn):
         return period, niches2
 
 
-@reference_formula
-class rbg_int(SimpleFormulaColumn):
+class rbg_int(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenu brut global intermédiaire"
@@ -372,8 +368,7 @@ class rbg_int(SimpleFormulaColumn):
         return period, max_(rbg - cd1, 0)
 
 
-@reference_formula
-class charges_deduc(SimpleFormulaColumn):
+class charges_deduc(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Charges déductibles"
@@ -387,8 +382,7 @@ class charges_deduc(SimpleFormulaColumn):
         return period, cd1 + cd2
 
 
-@reference_formula
-class cd_penali(SimpleFormulaColumn):
+class cd_penali(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_penali"
@@ -420,8 +414,7 @@ class cd_penali(SimpleFormulaColumn):
                     f6gp * (1 + taux_jgt_2006) + f6gu)
 
 
-@reference_formula
-class cd_acc75a(SimpleFormulaColumn):
+class cd_acc75a(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_acc75a"
@@ -439,8 +432,7 @@ class cd_acc75a(SimpleFormulaColumn):
         return period, min_(f6eu, amax)
 
 
-@reference_formula
-class cd_percap(DatedFormulaColumn):
+class cd_percap(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_percap"
@@ -478,8 +470,7 @@ class cd_percap(DatedFormulaColumn):
         return period, min_(min_(f6cb, max_cb) + min_(f6da, max_da), max_da)
 
 
-@reference_formula
-class cd_deddiv(SimpleFormulaColumn):
+class cd_deddiv(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_deddiv"
@@ -494,8 +485,7 @@ class cd_deddiv(SimpleFormulaColumn):
         return period, f6dd
 
 
-@reference_formula
-class cd_doment(SimpleFormulaColumn):
+class cd_doment(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_doment"
@@ -514,8 +504,7 @@ class cd_doment(SimpleFormulaColumn):
         return period, f6eh
 
 
-@reference_formula
-class cd_eparet(SimpleFormulaColumn):
+class cd_eparet(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_eparet"
@@ -553,8 +542,7 @@ class cd_eparet(SimpleFormulaColumn):
                 (f6pu != 0) * min_(f6ru + f6su, f6pu))
 
 
-@reference_formula
-class cd_sofipe(SimpleFormulaColumn):
+class cd_sofipe(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_sofipe"
@@ -577,8 +565,7 @@ class cd_sofipe(SimpleFormulaColumn):
         return period, min_(f6cc, max1)
 
 
-@reference_formula
-class cd_cinema(SimpleFormulaColumn):
+class cd_cinema(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_cinema"
@@ -600,8 +587,7 @@ class cd_cinema(SimpleFormulaColumn):
         return period, min_(f6aa, max1)
 
 
-@reference_formula
-class cd_ecodev(SimpleFormulaColumn):
+class cd_ecodev(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_ecodev"
@@ -623,8 +609,7 @@ class cd_ecodev(SimpleFormulaColumn):
         return period, min_(f6eh, max1)
 
 
-@reference_formula
-class cd_grorep(SimpleFormulaColumn):
+class cd_grorep(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_grorep"

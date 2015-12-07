@@ -11,8 +11,7 @@ from ...base import *  # noqa analysis:ignore
 log = logging.getLogger(__name__)
 
 
-@reference_formula
-class credits_impot(DatedFormulaColumn):
+class credits_impot(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"credits_impot"
@@ -232,8 +231,7 @@ class credits_impot(DatedFormulaColumn):
                 preetu + prlire + quaenv + saldom2)
 
 
-@reference_formula
-class nb_pac2(SimpleFormulaColumn):
+class nb_pac2(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"nb_pac2"
@@ -248,8 +246,7 @@ class nb_pac2(SimpleFormulaColumn):
         return period, nbF + nbJ + nbR - nbH / 2
 
 
-@reference_formula
-class accult(SimpleFormulaColumn):
+class accult(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"accult"
@@ -268,8 +265,7 @@ class accult(SimpleFormulaColumn):
         return period, P.taux * f7uo
 
 
-@reference_formula
-class acqgpl(SimpleFormulaColumn):
+class acqgpl(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"acqgpl"
@@ -289,8 +285,7 @@ class acqgpl(SimpleFormulaColumn):
         return period, f7up * acqgpl.mont_up + f7uq * acqgpl.mont_uq
 
 
-@reference_formula
-class aidmob(SimpleFormulaColumn):
+class aidmob(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"aidmob"
@@ -313,8 +308,7 @@ class aidmob(SimpleFormulaColumn):
         return period, (f1ar + f1br + f1cr + f1dr + f1er) * _P.ir.credits_impot.aidmob.montant
 
 
-@reference_formula
-class aidper(DatedFormulaColumn):
+class aidper(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"aidper"
@@ -470,8 +464,7 @@ class aidper(DatedFormulaColumn):
                 min_(f7wj, max1))
 
 
-@reference_formula
-class assloy(SimpleFormulaColumn):
+class assloy(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"assloy"
@@ -489,8 +482,7 @@ class assloy(SimpleFormulaColumn):
         return period, _P.ir.credits_impot.assloy.taux * f4bf
 
 
-@reference_formula
-class autent(SimpleFormulaColumn):
+class autent(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"autent"
@@ -507,8 +499,7 @@ class autent(SimpleFormulaColumn):
         return period, f8uy
 
 
-@reference_formula
-class ci_garext(SimpleFormulaColumn):
+class ci_garext(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ci_garext"
@@ -538,8 +529,7 @@ class ci_garext(SimpleFormulaColumn):
                               min_(f7gg, max1 / 2))
 
 
-@reference_formula
-class creimp_exc_2008(SimpleFormulaColumn):
+class creimp_exc_2008(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"creimp_exc_2008"
@@ -562,8 +552,7 @@ class creimp_exc_2008(SimpleFormulaColumn):
                 (rpp > 11673) * max_(0, 8317 * (12475 - rpp) / 802)))
 
 
-@reference_formula
-class creimp(DatedFormulaColumn):
+class creimp(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"creimp"
@@ -856,8 +845,7 @@ class creimp(DatedFormulaColumn):
                 f8uz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
 
 
-@reference_formula
-class direpa(SimpleFormulaColumn):
+class direpa(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"direpa"
@@ -873,8 +861,7 @@ class direpa(SimpleFormulaColumn):
         return period, f2bg
 
 
-@reference_formula
-class divide(SimpleFormulaColumn):
+class divide(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"divide"
@@ -898,8 +885,7 @@ class divide(SimpleFormulaColumn):
         return period, min_(P.taux * (f2dc + f2gr), max1)
 
 
-@reference_formula
-class drbail(SimpleFormulaColumn):
+class drbail(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"drbail"
@@ -917,8 +903,7 @@ class drbail(SimpleFormulaColumn):
         return period, P.taux * f4tq
 
 
-@reference_formula
-class inthab(DatedFormulaColumn):
+class inthab(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"inthab"
@@ -1110,8 +1095,7 @@ class inthab(DatedFormulaColumn):
                     P.taux6 * min_(f7vt, max6))
 
 
-@reference_formula
-class jeunes(SimpleFormulaColumn):
+class jeunes(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"jeunes"
@@ -1125,8 +1109,7 @@ class jeunes(SimpleFormulaColumn):
         return period, self.sum_by_entity(jeunes_ind_holder)
 
 
-@reference_formula
-class jeunes_ind(SimpleFormulaColumn):
+class jeunes_ind(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"jeunes_ind"
@@ -1170,8 +1153,7 @@ class jeunes_ind(SimpleFormulaColumn):
                                 # somme calculée sur formulaire 2041
 
 
-@reference_formula
-class mecena(SimpleFormulaColumn):
+class mecena(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"mecena"
@@ -1188,8 +1170,7 @@ class mecena(SimpleFormulaColumn):
         return period, f7us
 
 
-@reference_formula
-class percvm(SimpleFormulaColumn):
+class percvm(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"percvm"
@@ -1208,8 +1189,7 @@ class percvm(SimpleFormulaColumn):
         return period, _P.ir.credits_impot.percvm.taux * f3vv_end_2010
 
 
-@reference_formula
-class preetu(DatedFormulaColumn):
+class preetu(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"preetu"
@@ -1262,8 +1242,7 @@ class preetu(DatedFormulaColumn):
         return period, P.taux * min_(f7uk, P.max) + P.taux * min_(f7td, max1)
 
 
-@reference_formula
-class prlire(SimpleFormulaColumn):
+class prlire(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Prélèvement libératoire à restituer (case 2DH)"
@@ -1285,8 +1264,7 @@ class prlire(SimpleFormulaColumn):
         return period, _P.ir.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
 
 
-@reference_formula
-class quaenv(DatedFormulaColumn):
+class quaenv(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"quaenv"
@@ -1587,8 +1565,7 @@ class quaenv(DatedFormulaColumn):
         return period, or_(not_(or_(f7we, f7wg)), (rfr < 30000)) * montant + f7sz
 
 
-@reference_formula
-class quaenv_bouquet(SimpleFormulaColumn):
+class quaenv_bouquet(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
     label = u"quaenv_bouquet"
@@ -1631,8 +1608,7 @@ class quaenv_bouquet(SimpleFormulaColumn):
         return period, or_(bouquet, f7wh)
 
 
-@reference_formula
-class saldom2(DatedFormulaColumn):
+class saldom2(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"saldom2"

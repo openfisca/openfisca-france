@@ -9,8 +9,7 @@ from ...base import *  # noqa analysis:ignore
 from .base_ressource import nb_enf
 
 
-@reference_formula
-class af_enfant_a_charge(SimpleFormulaColumn):
+class af_enfant_a_charge(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Enfant à charge au sens des allocations familiales"
@@ -32,8 +31,7 @@ class af_enfant_a_charge(SimpleFormulaColumn):
         return period, or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
 
 
-@reference_formula
-class af_nbenf(SimpleFormulaColumn):
+class af_nbenf(Variable):
     column = IntCol
     entity_class = Familles
     label = u"Nombre d'enfants dans la famille au sens des allocations familiales"
@@ -46,8 +44,7 @@ class af_nbenf(SimpleFormulaColumn):
 
         return period, af_nbenf
 
-@reference_formula
-class af_coeff_garde_alternee(DatedFormulaColumn):
+class af_coeff_garde_alternee(DatedVariable):
     column = FloatCol(default = 1)
     entity_class = Familles
     label = u"Coefficient à appliquer aux af pour tenir compte de la garde alternée"
@@ -67,8 +64,7 @@ class af_coeff_garde_alternee(DatedFormulaColumn):
 
         return period, coeff
 
-@reference_formula
-class af_forf_nbenf(SimpleFormulaColumn):
+class af_forf_nbenf(Variable):
     column = IntCol
     entity_class = Familles
     label = u"Nombre d'enfants dans la famille éligibles à l'allocation forfaitaire des AF"
@@ -85,8 +81,7 @@ class af_forf_nbenf(SimpleFormulaColumn):
         return period, af_forf_nbenf
 
 
-@reference_formula
-class af_eligibilite_base(SimpleFormulaColumn):
+class af_eligibilite_base(Variable):
     column = BoolCol
     entity_class = Familles
     label = u"Allocations familiales - Éligibilité pour la France métropolitaine sous condition de ressources"
@@ -100,8 +95,7 @@ class af_eligibilite_base(SimpleFormulaColumn):
         return period, not_(residence_dom) * (af_nbenf >= 2)
 
 
-@reference_formula
-class af_eligibilite_dom(SimpleFormulaColumn):
+class af_eligibilite_dom(Variable):
     column = BoolCol
     entity_class = Familles
     label = u"Allocations familiales - Éligibilité pour les DOM (hors Mayotte) sous condition de ressources"
@@ -116,8 +110,7 @@ class af_eligibilite_dom(SimpleFormulaColumn):
         return period, residence_dom * not_(residence_mayotte) * (af_nbenf >= 1)
 
 
-@reference_formula
-class af_base(SimpleFormulaColumn):
+class af_base(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Allocations familiales - allocation de base"
@@ -148,8 +141,7 @@ class af_base(SimpleFormulaColumn):
         return period, montant_base_module
 
 
-@reference_formula
-class af_taux_modulation(DatedFormulaColumn):
+class af_taux_modulation(DatedVariable):
     column = FloatCol(default = 1)
     entity_class = Familles
     label = u"Taux de modulation à appliquer au montant des AF depuis 2015"
@@ -173,8 +165,7 @@ class af_taux_modulation(DatedFormulaColumn):
         return period, taux
 
 
-@reference_formula
-class af_forf_taux_modulation(DatedFormulaColumn):
+class af_forf_taux_modulation(DatedVariable):
     column = FloatCol(default = 1)
     entity_class = Familles
     label = u"Taux de modulation à appliquer depuis 2007 à l'allocation forfaitaire des AF depuis 2015"
@@ -200,8 +191,7 @@ class af_forf_taux_modulation(DatedFormulaColumn):
         return period, taux
 
 
-@reference_formula
-class af_age_aine(SimpleFormulaColumn):
+class af_age_aine(Variable):
     column = IntCol
     entity_class = Familles
     label = u"Allocations familiales - Âge de l'aîné des enfants éligibles"
@@ -227,8 +217,7 @@ class af_age_aine(SimpleFormulaColumn):
         return period, age_aine
 
 
-@reference_formula
-class af_majoration_enfant(SimpleFormulaColumn):
+class af_majoration_enfant(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Allocations familiales - Majoration pour âge applicable à l'enfant"
@@ -265,8 +254,7 @@ class af_majoration_enfant(SimpleFormulaColumn):
         return period, af_enfant_a_charge * (af_base > 0) * pas_aine * montant
 
 
-@reference_formula
-class af_majo(SimpleFormulaColumn):
+class af_majo(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Allocations familiales - majoration pour âge"
@@ -282,8 +270,7 @@ class af_majo(SimpleFormulaColumn):
         return period, af_majoration_enfants_module
 
 
-@reference_formula
-class af_complement_degressif(DatedFormulaColumn):
+class af_complement_degressif(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"AF - Complément dégressif en cas de dépassement du plafond"
@@ -312,8 +299,7 @@ class af_complement_degressif(DatedFormulaColumn):
         return period, max_(0, af - depassement_mensuel) * (depassement_mensuel > 0)
 
 
-@reference_formula
-class af_forf_complement_degressif(DatedFormulaColumn):
+class af_forf_complement_degressif(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"AF - Complément dégressif pour l'allocation forfaitaire en cas de dépassement du plafond"
@@ -342,8 +328,7 @@ class af_forf_complement_degressif(DatedFormulaColumn):
         return period, max_(0, af_forf - depassement_mensuel) * (depassement_mensuel > 0)
 
 
-@reference_formula
-class af_forf(SimpleFormulaColumn):
+class af_forf(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Allocations familiales - forfait"
@@ -364,8 +349,7 @@ class af_forf(SimpleFormulaColumn):
         return period, af_forf_module
 
 
-@reference_formula
-class af(SimpleFormulaColumn):
+class af(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles

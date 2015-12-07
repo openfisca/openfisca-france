@@ -12,8 +12,7 @@ from ...base import *  # noqa analysis:ignore
 log = logging.getLogger(__name__)
 
 
-@reference_formula
-class reductions(DatedFormulaColumn):
+class reductions(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"reductions"
@@ -412,8 +411,7 @@ class reductions(DatedFormulaColumn):
     # TODO: plafonnement pour parti politiques depuis 2012 P.ir.reductions_impots.dfppce.max_niv
 
 
-@reference_formula
-class adhcga(SimpleFormulaColumn):
+class adhcga(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"adhcga"
@@ -431,8 +429,7 @@ class adhcga(SimpleFormulaColumn):
         return period, min_(f7ff, P.max * f7fg)
 
 
-@reference_formula
-class assvie(SimpleFormulaColumn):
+class assvie(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"assvie"
@@ -455,8 +452,7 @@ class assvie(SimpleFormulaColumn):
         return period, P.taux * min_(f7gw + f7gx + f7gy, max1)
 
 
-@reference_formula
-class cappme(DatedFormulaColumn):
+class cappme(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cappme"
@@ -628,8 +624,7 @@ class cappme(DatedFormulaColumn):
 #TODO: vérifier l'existence du "max_"
 
 
-@reference_formula
-class cotsyn(SimpleFormulaColumn):
+class cotsyn(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cotsyn"
@@ -665,8 +660,7 @@ class cotsyn(SimpleFormulaColumn):
         return period, P.taux * (min_(f7ac, maxv) + min_(f7ae, maxc) + min_(f7ag, maxp))
 
 
-@reference_formula
-class creaen(DatedFormulaColumn):
+class creaen(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"creaen"
@@ -741,8 +735,7 @@ class creaen(DatedFormulaColumn):
                     P.hand * (f7my / 2))
 
 
-@reference_formula
-class deffor(SimpleFormulaColumn):
+class deffor(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"deffor"
@@ -760,8 +753,7 @@ class deffor(SimpleFormulaColumn):
         return period, P.taux * min_(f7uc, P.max)
 
 
-@reference_formula
-class daepad(SimpleFormulaColumn):
+class daepad(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"daepad"
@@ -779,8 +771,7 @@ class daepad(SimpleFormulaColumn):
         return period, P.taux * (min_(f7cd, P.max) + min_(f7ce, P.max))
 
 
-@reference_formula
-class dfppce(DatedFormulaColumn):
+class dfppce(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"dfppce"
@@ -967,8 +958,7 @@ class dfppce(DatedFormulaColumn):
 
 
 # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
-@reference_formula
-class doment(DatedFormulaColumn):
+class doment(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"doment"
@@ -1274,8 +1264,7 @@ class doment(DatedFormulaColumn):
 
 #TODO: vérifier les dates des variables de doment et domsoc (y sont-elles encore en 2013 par ex ?)
 
-@reference_formula
-class domlog(DatedFormulaColumn):
+class domlog(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"domlog"
@@ -1482,8 +1471,7 @@ class domlog(DatedFormulaColumn):
 #En accord avec la DGFiP mais pas de 7ub et 7uj dans la notice
 
 
-@reference_formula
-class domsoc(DatedFormulaColumn):
+class domsoc(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"domsoc"
@@ -1535,8 +1523,7 @@ class domsoc(DatedFormulaColumn):
         return period,  fhra + fhrb + fhrc + fhrd + f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw + f7qx
 
 
-@reference_formula
-class donapd(DatedFormulaColumn):
+class donapd(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"donapd"
@@ -1565,8 +1552,7 @@ class donapd(DatedFormulaColumn):
         return period, P.taux * min_(f7ud + f7va, P.max)
 
 
-@reference_formula
-class duflot(SimpleFormulaColumn):
+class duflot(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"duflot"
@@ -1587,8 +1573,7 @@ class duflot(SimpleFormulaColumn):
 
 #TODO: / 5 dans trois TOM
 
-@reference_formula
-class ecodev(SimpleFormulaColumn):
+class ecodev(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ecodev"
@@ -1608,8 +1593,7 @@ class ecodev(SimpleFormulaColumn):
         return period, min_(f7uh * P.taux, min_(P.base * rbg_int, P.max))  # page3 ligne 18
 
 
-@reference_formula
-class ecpess(SimpleFormulaColumn):
+class ecpess(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ecpess"
@@ -1632,8 +1616,7 @@ class ecpess(SimpleFormulaColumn):
                 P.sup * (f7ef + f7eg / 2))
 
 
-@reference_formula
-class garext(DatedFormulaColumn):
+class garext(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"garext"
@@ -1682,8 +1665,7 @@ class garext(DatedFormulaColumn):
                            min_(f7gg, max2))
 
 
-@reference_formula
-class intagr(SimpleFormulaColumn):
+class intagr(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"intagr"
@@ -1703,8 +1685,7 @@ class intagr(SimpleFormulaColumn):
         return period, P.taux * min_(f7um, max1)
 
 
-@reference_formula
-class intcon(SimpleFormulaColumn):
+class intcon(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"intcon"
@@ -1724,8 +1705,7 @@ class intcon(SimpleFormulaColumn):
         return period, P.taux * min_(f7uh, max1)
 
 
-@reference_formula
-class intemp(SimpleFormulaColumn):
+class intemp(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"intemp"
@@ -1746,8 +1726,7 @@ class intemp(SimpleFormulaColumn):
         return period, P.taux * min_(f7wg, max1)
 
 
-@reference_formula
-class invfor(DatedFormulaColumn):
+class invfor(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"invfor"
@@ -1908,8 +1887,7 @@ class invfor(DatedFormulaColumn):
             P.taux_ass * min_(f7ul, P.ifortra_seuil * (marpac + 1)))
 
 
-@reference_formula
-class invlst(DatedFormulaColumn):
+class invlst(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"invlst"
@@ -2128,8 +2106,7 @@ class invlst(DatedFormulaColumn):
         return period, around(xi + xj + xo)
 
 
-@reference_formula
-class invrev(SimpleFormulaColumn):
+class invrev(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"invrev"
@@ -2158,8 +2135,7 @@ class invrev(SimpleFormulaColumn):
                  P.taux_gt * f7gt + P.taux_gt * f7gv)
 
 
-@reference_formula
-class locmeu(DatedFormulaColumn):
+class locmeu(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"locmeu"
@@ -2316,8 +2292,7 @@ class locmeu(DatedFormulaColumn):
                 f7ji + f7js)
 
 
-@reference_formula
-class mohist(SimpleFormulaColumn):
+class mohist(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"mohist"
@@ -2335,8 +2310,7 @@ class mohist(SimpleFormulaColumn):
         return period, P.taux * min_(f7nz, P.max)
 
 
-@reference_formula
-class patnat(DatedFormulaColumn):
+class patnat(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"patnat"
@@ -2400,8 +2374,7 @@ class patnat(DatedFormulaColumn):
         return period, P.taux * min_(f7ka, max1) + f7kb + f7kc + f7kd
 
 
-@reference_formula
-class prcomp(SimpleFormulaColumn):
+class prcomp(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"prcomp"
@@ -2430,8 +2403,7 @@ class prcomp(SimpleFormulaColumn):
                  P.taux * f7wp)
 
 
-@reference_formula
-class repsoc(SimpleFormulaColumn):
+class repsoc(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"repsoc"
@@ -2451,8 +2423,7 @@ class repsoc(SimpleFormulaColumn):
         return period, P.taux * min_(f7fh, seuil)
 
 
-@reference_formula
-class resimm(DatedFormulaColumn):
+class resimm(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"resimm"
@@ -2541,8 +2512,7 @@ class resimm(DatedFormulaColumn):
                 P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re + f7sx, max5))
 
 
-@reference_formula
-class rsceha(SimpleFormulaColumn):
+class rsceha(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"rsceha"
@@ -2562,8 +2532,7 @@ class rsceha(SimpleFormulaColumn):
         return period, P.taux * min_(f7gz, max1)
 
 
-@reference_formula
-class saldom(DatedFormulaColumn):
+class saldom(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"saldom"
@@ -2657,8 +2626,7 @@ class saldom(DatedFormulaColumn):
         return period, P.taux * min_(f7df, max1)
 
 
-@reference_formula
-class scelli(DatedFormulaColumn):
+class scelli(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"scelli"
@@ -2980,8 +2948,7 @@ class scelli(DatedFormulaColumn):
                 )
 
 
-@reference_formula
-class sofica(SimpleFormulaColumn):
+class sofica(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"sofica"
@@ -3003,8 +2970,7 @@ class sofica(SimpleFormulaColumn):
         return period, P.taux2 * min_(f7gn, max0) + P.taux3 * min_(f7fn, max1)
 
 
-@reference_formula
-class sofipe(SimpleFormulaColumn):
+class sofipe(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"sofipe"
@@ -3027,8 +2993,7 @@ class sofipe(SimpleFormulaColumn):
         return period, P.taux * min_(f7gs, max1)
 
 
-@reference_formula
-class spfcpi(DatedFormulaColumn):
+class spfcpi(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"spfcpi"

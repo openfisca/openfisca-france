@@ -8,7 +8,7 @@ import logging
 from numpy import logical_not as not_
 
 
-from openfisca_core.formulas import SimpleFormulaColumn
+from openfisca_core.formulas import Variable
 
 
 from ...base import *  # noqa analysis:ignore
@@ -20,8 +20,7 @@ log = logging.getLogger(__name__)
 # TODO: mettre les seuils entreprises dans les paramètres
 
 
-@reference_formula
-class penalite_egalite_professionnelle(SimpleFormulaColumn):
+class penalite_egalite_professionnelle(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Pénalité visant à favoriser l'égalité professionnelle homme-femme"
@@ -34,8 +33,7 @@ class penalite_egalite_professionnelle(SimpleFormulaColumn):
         return period, not_(egalite_professionnelle_accord) * (effectif_entreprise >= 50) * taux
 
 
-@reference_formula
-class penalite_emploi_jeunes(SimpleFormulaColumn):
+class penalite_emploi_jeunes(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Pénalité visant à favoriser l'emploi des jeunes"
@@ -49,8 +47,7 @@ class penalite_emploi_jeunes(SimpleFormulaColumn):
         return period, not_(emploi_jeunes_accord) * (effectif_entreprise >= 300) * taux
 
 
-@reference_formula
-class penalite_emploi_seniors(SimpleFormulaColumn):
+class penalite_emploi_seniors(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Pénalité visant à favoriser l'emploi des séniors"
@@ -64,8 +61,7 @@ class penalite_emploi_seniors(SimpleFormulaColumn):
         return period, not_(emploi_senior_accord) * (effectif_entreprise >= 50) * taux
 
 
-@reference_formula
-class penalite_penibilite(SimpleFormulaColumn):
+class penalite_penibilite(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Pénalité visant à favoriser la prévention de la pénibilité"
@@ -78,8 +74,7 @@ class penalite_penibilite(SimpleFormulaColumn):
         return period, not_(penibilite_prevention_accord) * (effectif_entreprise >= 50) * taux
 
 
-@reference_formula
-class penalite_handicapes(SimpleFormulaColumn):
+class penalite_handicapes(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Pénalité pour emploi insuffisant de personnes handicapées"
