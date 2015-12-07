@@ -241,35 +241,72 @@ def transform_ipp_tree(root):
     employeurs = ags.pop('employeurs')
     ags['employeur'] = fixed_bases_tax_scale(
         base_by_slice_name = dict(
-            tranche_a = 0,
+            tranche_a_b = 0,
             ),
         null_rate_base = 4,
         rates_tree = dict(
-            tranche_a = employeurs.pop('sous_4_pss'),
+            tranche_a_b = employeurs.pop('sous_4_pss'),
             ),
         )
     assert not employeurs, employeurs
     #
-    cotisations_sociales['apec'] = prelevements_sociaux.pop('apec_f')
-    # apec-f:
-    #   RENAME: cotisations_sociales.apec
-    # # TODO find a way to separate or combine these two baremes
-    # # apec:
-    # #   RENAME: cotisations_sociales.apec
-    # #   sous_4_pss:
-    # #     salarie:
-    # #       TYPE: BAREME
-    # #       TRANCHE: apec_s_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
-    # #     employeur:
-    # #       TYPE: BAREME
-    # #       TRANCHE: apec_p_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
-    # #   tranche_b_de_1_a_4_pss:
-    # #     salarie:
-    # #       TYPE: BAREME
-    # #       TRANCHE: apec_s_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
-    # #     employeur:
-    # #       TYPE: BAREME
-    # #       TRANCHE: apec_p_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
+    cotisations_sociales['apec'] = apec = prelevements_sociaux.pop('apec_f')
+    apec_baremes = prelevements_sociaux.pop('apec')
+    tranche_b = apec_baremes.pop('tranche_b_de_1_a_4_pss')
+    tranche_a_b = apec_baremes.pop('sous_4_pss')
+    apec['employeur_avant_2011'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_a = 0,
+            tranche_b = 1,
+            ),
+        null_rate_base = 4,
+        rates_tree = dict(
+            tranche_a = 0,
+            tranche_b = tranche_b.pop('employeur'),
+            ),
+        )
+    apec['employeur'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_a_b = 0,
+            ),
+        null_rate_base = 4,
+        rates_tree = dict(
+            tranche_a_b = tranche_a_b.pop('employeur'),
+            ),
+        )
+    apec['salarie_avant_2011'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_a = 0,
+            tranche_b = 1,
+            ),
+        null_rate_base = 4,
+        rates_tree = dict(
+            tranche_a = 0,
+            tranche_b = tranche_b.pop('salarie'),
+            ),
+        )
+    apec['salarie'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_a_b = 0,
+            ),
+        null_rate_base = 4,
+        rates_tree = dict(
+            tranche_a_b = tranche_a_b.pop('salarie'),
+            ),
+        )
+    assert not tranche_b, tranche_b
+    assert not tranche_a_b, tranche_a_b
+    #
+    cotisations_sociales['apprentissage'] = apprentissage = prelevements_sociaux.pop('apprentissage')
+    employeur_tout_salaire = apprentissage.pop('employeur_tout_salaire')
+    apprentissage['taxe_apprentissage'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        rates_tree = dict(
+            tranche_unique = employeur_tout_salaire.pop('taxe_apprentissage'),
+            ),
+        )
     #
     cotisations_sociales['chomage'] = chomage = prelevements_sociaux.pop('chomage')
     chomage['employeur'] = fixed_bases_tax_scale(

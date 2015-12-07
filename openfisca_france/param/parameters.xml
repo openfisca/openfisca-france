@@ -754,6 +754,9 @@
       </NODE>
     </NODE>
     <NODE code="gen" description="Paramètres généraux">
+      <CODE code="nb_heure_travail_mensuel" description="Nombre d'heures travaillées forfaitaires" format="float">
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="151.67" />
+      </CODE>
       <CODE code="plaf_th_1" description="Plafond d'exonération de la taxe d'habitation: première part" format="integer" type="monetary">
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="10224" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="10024" />
@@ -1229,10 +1232,10 @@
           <BAREME code="formprof_09" description="Formation professionnelle (0-9 salaries)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1993-01-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2005-01-01" fin="2013-12-31" valeur="0.0055" />
+                <VALUE deb="2005-01-01" fin="2015-12-31" valeur="0.0055" />
                 <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.004" />
                 <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.0015" />
               </TAUX>
@@ -1241,10 +1244,11 @@
           <BAREME code="formprof_1019" description="Formation professionnelle (10-19 salaries)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1992-01-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1992-01-01" fin="2015-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2005-01-01" fin="2013-12-01" valeur="0.0105" />
+                <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.01" />
+                <VALUE deb="2005-01-01" fin="2014-12-31" valeur="0.0105" />
                 <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.016" />
                 <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
                 <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
@@ -1254,10 +1258,11 @@
           <BAREME code="formprof_20" description="Formation professionnelle (plus de 20 salariés)" option="main-d-oeuvre">
             <TRANCHE code="tranche0">
               <SEUIL>
-                <VALUE deb="1992-01-01" fin="2013-12-31" valeur="0" />
+                <VALUE deb="1992-01-01" fin="2015-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
-                <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.016" />
+                <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.01" />
+                <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.016" />
                 <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
                 <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
               </TAUX>
@@ -7225,6 +7230,7 @@
         <VALUE deb="1983-07-01" fin="2011-10-31" valeur="60" />
       </CODE>
       <CODE code="montant" description="Montant mensuel de l'allocation adulte handicapé" format="float" type="monetary">
+        <VALUE deb="2015-09-01" fin="2016-08-31" valeur="807.65" />
         <VALUE deb="2014-09-01" fin="2015-08-31" valeur="800.45" />
         <VALUE deb="2013-09-01" fin="2014-08-31" valeur="790.18" />
         <VALUE deb="2012-09-01" fin="2013-08-31" valeur="776.59" />
@@ -7707,26 +7713,6 @@
         <CODE code="taux_max_au_smic">
           <VALUE deb="1996-10-01" fin="2003-06-30" valeur="0.182" />
           <VALUE deb="1995-09-01" fin="1996-09-30" valeur="0.128" />
-        </CODE>
-      </NODE>
-    </NODE>
-    <NODE code="apec">
-      <NODE code="sous_4_pss">
-        <CODE code="employeur" format="percent">
-          <VALUE deb="2011-01-01" valeur="0.00036" />
-        </CODE>
-        <CODE code="salarie" format="percent">
-          <VALUE deb="2011-01-01" valeur="0.00024" />
-        </CODE>
-      </NODE>
-      <NODE code="tranche_b_de_1_a_4_pss">
-        <CODE code="employeur" format="percent">
-          <VALUE deb="1975-01-01" fin="2010-12-31" valeur="0.00036" />
-          <VALUE deb="1971-01-01" fin="1974-12-31" valeur="0.00024" />
-        </CODE>
-        <CODE code="salarie" format="percent">
-          <VALUE deb="1975-01-01" fin="2010-12-31" valeur="0.00024" />
-          <VALUE deb="1971-01-01" fin="1974-12-31" valeur="0.00016" />
         </CODE>
       </NODE>
     </NODE>
@@ -8516,7 +8502,7 @@
       </NODE>
       <NODE code="ags">
         <BAREME code="employeur">
-          <TRANCHE code="tranche_a">
+          <TRANCHE code="tranche_a_b">
             <SEUIL>
               <VALUE deb="1974-01-01" valeur="0" />
             </SEUIL>
@@ -8558,6 +8544,53 @@
         </BAREME>
       </NODE>
       <NODE code="apec">
+        <BAREME code="employeur">
+          <TRANCHE code="tranche_a_b">
+            <SEUIL>
+              <VALUE deb="1971-01-01" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2011-01-01" valeur="0.00036" />
+              <VALUE deb="1971-01-01" fin="2010-12-31" valeur="0" />
+            </TAUX>
+          </TRANCHE>
+          <TRANCHE code="tranche_nulle">
+            <SEUIL>
+              <VALUE deb="1971-01-01" valeur="4" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="1971-01-01" valeur="0" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
+        <BAREME code="employeur_avant_2011">
+          <TRANCHE code="tranche_a">
+            <SEUIL>
+              <VALUE deb="1971-01-01" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="1971-01-01" valeur="0" />
+            </TAUX>
+          </TRANCHE>
+          <TRANCHE code="tranche_b">
+            <SEUIL>
+              <VALUE deb="1971-01-01" valeur="1" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2011-01-01" valeur="0" />
+              <VALUE deb="1975-01-01" fin="2010-12-31" valeur="0.00036" />
+              <VALUE deb="1971-01-01" fin="1974-12-31" valeur="0.00024" />
+            </TAUX>
+          </TRANCHE>
+          <TRANCHE code="tranche_nulle">
+            <SEUIL>
+              <VALUE deb="1971-01-01" valeur="4" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="1971-01-01" valeur="0" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
         <NODE code="forfait_annuel">
           <CODE code="employeur" format="float" type="monetary">
             <VALUE deb="2010-03-01" fin="2010-12-31" valeur="12.46" />
@@ -8634,6 +8667,53 @@
             <VALUE deb="1976-03-01" fin="1977-02-28" valeur="9.12" />
           </CODE>
         </NODE>
+        <BAREME code="salarie">
+          <TRANCHE code="tranche_a_b">
+            <SEUIL>
+              <VALUE deb="1971-01-01" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2011-01-01" valeur="0.00024" />
+              <VALUE deb="1971-01-01" fin="2010-12-31" valeur="0" />
+            </TAUX>
+          </TRANCHE>
+          <TRANCHE code="tranche_nulle">
+            <SEUIL>
+              <VALUE deb="1971-01-01" valeur="4" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="1971-01-01" valeur="0" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
+        <BAREME code="salarie_avant_2011">
+          <TRANCHE code="tranche_a">
+            <SEUIL>
+              <VALUE deb="1971-01-01" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="1971-01-01" valeur="0" />
+            </TAUX>
+          </TRANCHE>
+          <TRANCHE code="tranche_b">
+            <SEUIL>
+              <VALUE deb="1971-01-01" valeur="1" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2011-01-01" valeur="0" />
+              <VALUE deb="1975-01-01" fin="2010-12-31" valeur="0.00024" />
+              <VALUE deb="1971-01-01" fin="1974-12-31" valeur="0.00016" />
+            </TAUX>
+          </TRANCHE>
+          <TRANCHE code="tranche_nulle">
+            <SEUIL>
+              <VALUE deb="1971-01-01" valeur="4" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="1971-01-01" valeur="0" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
       </NODE>
       <NODE code="chomage">
         <BAREME code="employeur">
