@@ -65,6 +65,10 @@ from prestations.prestations_familiales import (  # noqa analysis:ignore
     cf,
     )
 
+from prestations.prestations_locales.paris import (  # noqa analysis:ignore
+    paris_logement
+    )
+
 from revenus import autres
 
 from revenus.activite import (  # noqa analysis:ignore
