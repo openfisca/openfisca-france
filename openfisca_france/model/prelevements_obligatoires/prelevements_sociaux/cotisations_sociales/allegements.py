@@ -17,8 +17,7 @@ from .....assets.holidays import holidays
 log = logging.getLogger(__name__)
 
 
-@reference_formula
-class assiette_allegement(SimpleFormulaColumn):
+class assiette_allegement(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -34,8 +33,7 @@ class assiette_allegement(SimpleFormulaColumn):
             )
 
 
-@reference_formula
-class allegement_fillon(DatedFormulaColumn):
+class allegement_fillon(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
@@ -62,8 +60,7 @@ class allegement_fillon(DatedFormulaColumn):
         return period, allegement * not_(stagiaire) * not_(apprenti)
 
 
-@reference_formula
-class coefficient_proratisation(SimpleFormulaColumn):
+class coefficient_proratisation(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Coefficient de proratisation pour le calcul du SMIC et du plafond de la Sécurité socialele"
@@ -128,8 +125,7 @@ class coefficient_proratisation(SimpleFormulaColumn):
         return period, coefficient
 
 
-@reference_formula
-class credit_impot_competitivite_emploi(DatedFormulaColumn):
+class credit_impot_competitivite_emploi(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Crédit d'imôt pour la compétitivité et l'emploi"
@@ -152,8 +148,7 @@ class credit_impot_competitivite_emploi(DatedFormulaColumn):
         return period, credit_impot_competitivite_emploi * non_cumul
 
 
-@reference_formula
-class smic_proratise(SimpleFormulaColumn):
+class smic_proratise(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"SMIC proratisé"

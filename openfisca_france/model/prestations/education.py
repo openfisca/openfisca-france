@@ -12,8 +12,7 @@ SCOLARITE_COLLEGE = 1
 SCOLARITE_LYCEE = 2
 
 
-@reference_formula
-class bourse_college(SimpleFormulaColumn):
+class bourse_college(Variable):
     column = FloatCol
     label = u"Montant mensuel de la bourse de collège"
     entity_class = Familles
@@ -53,8 +52,7 @@ class bourse_college(SimpleFormulaColumn):
         return period, montant / 12
 
 
-@reference_formula
-class bourse_lycee_points_de_charge(SimpleFormulaColumn):
+class bourse_lycee_points_de_charge(Variable):
     column = FloatCol
     label = u"Nombre de points de charge pour la bourse de lycée"
     entity_class = Familles
@@ -79,8 +77,7 @@ class bourse_lycee_points_de_charge(SimpleFormulaColumn):
         return period, points_de_charge
 
 
-@reference_formula
-class bourse_lycee_nombre_parts(SimpleFormulaColumn):
+class bourse_lycee_nombre_parts(Variable):
     column = FloatCol
     label = u"Nombre de parts pour le calcul du montant de la bourse de lycée"
     entity_class = Familles
@@ -115,8 +112,7 @@ class bourse_lycee_nombre_parts(SimpleFormulaColumn):
         return period, nombre_parts
 
 
-@reference_formula
-class bourse_lycee(SimpleFormulaColumn):
+class bourse_lycee(Variable):
     column = FloatCol
     label = u"Montant mensuel de la bourse de lycée"
     entity_class = Familles

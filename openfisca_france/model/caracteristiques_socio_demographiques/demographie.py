@@ -93,8 +93,7 @@ build_column('invalide', BoolCol(label = u'Invalide'))  # TODO: cerfa_field
 
 
 
-@reference_formula
-class nb_par(SimpleFormulaColumn):
+class nb_par(Variable):
     column = PeriodSizeIndependentIntCol(default = 0)
     entity_class = Familles
     label = u"Nombre d'adultes (parents) dans la famille"
@@ -109,8 +108,7 @@ class nb_par(SimpleFormulaColumn):
         return period, 1 + 1 * (quifam == PART)
 
 
-@reference_formula
-class maries(SimpleFormulaColumn):
+class maries(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"maries"
@@ -126,8 +124,7 @@ class maries(SimpleFormulaColumn):
         return period, statmarit == 1
 
 
-@reference_formula
-class concub(SimpleFormulaColumn):
+class concub(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"Indicatrice de vie en couple"
@@ -144,8 +141,7 @@ class concub(SimpleFormulaColumn):
         return period, nb_par == 2
 
 
-@reference_formula
-class isol(SimpleFormulaColumn):
+class isol(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"Parent (s'il y a lieu) isolé"
@@ -158,8 +154,7 @@ class isol(SimpleFormulaColumn):
         return period, nb_par == 1
 
 
-@reference_formula
-class est_enfant_dans_famille(SimpleFormulaColumn):
+class est_enfant_dans_famille(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Indique qe l'individu est un enfant dans une famille"
@@ -169,8 +164,7 @@ class est_enfant_dans_famille(SimpleFormulaColumn):
         return period, quifam > PART
 
 
-@reference_formula
-class etu(SimpleFormulaColumn):
+class etu(Variable):
     column = BoolCol(default = False)
     entity_class = Individus
     label = u"Indicatrice individuelle étudiant"

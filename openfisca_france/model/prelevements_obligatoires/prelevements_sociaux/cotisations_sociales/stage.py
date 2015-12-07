@@ -26,8 +26,7 @@ reference_input_variable(
     )
 
 
-@reference_formula
-class stage_gratification(SimpleFormulaColumn):
+class stage_gratification(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Gratification de stage"
@@ -46,8 +45,7 @@ class stage_gratification(SimpleFormulaColumn):
             stage_gratification_taux, stage_gratification_taux_min)
 
 
-@reference_formula
-class stage_gratification_reintegration(SimpleFormulaColumn):
+class stage_gratification_reintegration(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Part de la gratification de stage réintégrée à l'assiette des cotisations et contributions sociales"
@@ -65,8 +63,7 @@ class stage_gratification_reintegration(SimpleFormulaColumn):
         return period, max_(stage_gratification - stage_gratification_min, 0)
 
 
-@reference_formula
-class stagiaire(SimpleFormulaColumn):
+class stagiaire(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"L'individu est stagiaire"
@@ -77,8 +74,7 @@ class stagiaire(SimpleFormulaColumn):
         return period, (stage_duree_heures > 0)
 
 
-@reference_formula
-class exoneration_cotisations_employeur_stagiaire(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_stagiaire(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Exonrérations de cotisations employeur pour un stagaire"
@@ -110,8 +106,7 @@ class exoneration_cotisations_employeur_stagiaire(SimpleFormulaColumn):
         return period, - exoneration * stagiaire
 
 
-@reference_formula
-class exoneration_cotisations_salarie_stagiaire(SimpleFormulaColumn):
+class exoneration_cotisations_salarie_stagiaire(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Exonrérations de cotisations salarié pour un stagiaire"
