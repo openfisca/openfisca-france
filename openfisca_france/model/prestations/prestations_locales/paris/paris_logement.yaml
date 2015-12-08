@@ -1,0 +1,105 @@
+- name: "Personne agée qui es eligible à PL"
+  description: Personne agée qui es eligible à PL
+  period: 2014-11
+  input_variables:
+    age: 65
+    parisien: True
+    statut_occupation: 4
+    loyer: 350
+  output_variables:
+    paris_logement_elig: True
+
+
+- name: "Personne agée non éligible car n'habite pas à Paris"
+  description: "Personne agée non éligible car n'habite pas à Paris"
+  period: 2014-11
+  input_variables:
+    age: 65
+    statut_occupation: 4
+    loyer: 350
+  output_variables:
+    paris_logement_elig: False
+
+
+- name: "Personne agée non éligible car propriétaire"
+  description: Personne agée qui es eligible à PL
+  period: 2014-11
+  input_variables:
+    age: 65
+    parisien: True
+    statut_occupation: 2
+  output_variables:
+    paris_logement_elig: False
+
+
+- name: "Personne non éligible car trop jeune"
+  description: Personne agée qui es eligible à PL
+  period: 2014-11
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    loyer: 350
+  output_variables:
+    paris_logement_elig: False
+
+
+- name: "Personne  éligible car en situation de handicap"
+  period: 2014-11
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    loyer: 350
+    aah: 800
+  output_variables:
+    paris_logement_elig: True
+
+- name: "Personne  éligible car en situation de handicap et en couple"
+  period: 2014-11
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    loyer: 350
+    aah: 800
+    concub: True
+  output_variables:
+    paris_logement_elig: True
+
+- name: "Personne  éligible car en situation de handicap, en couple avec 1 enfant"
+  period: 2014-11
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    aah: 800
+    concub: True
+    paris_nb_enfants: 1
+    loyer: 350
+  output_variables:
+    paris_logement_elig: True
+
+- name: "Personne  éligible avec charges logement >= 30% des ressources"
+  period: 2014-11
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    aah: 800
+    loyer: 350
+    paris_logement_familles_br: 1000
+  output_variables:
+    paris_logement_elig: True
+
+- name: "Personne non éligible avec charges logement < 30% des ressources"
+  period: 2014-11
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    aah: 800
+    loyer: 250
+    paris_logement_familles_br: 1000
+  output_variables:
+    paris_logement_elig: False

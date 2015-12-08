@@ -182,7 +182,7 @@ def build_reform(tax_benefit_system):
             plf_handicap = (nb_enf_handicape > 0) * (br <= plafond) * montant
 
             # Si tous les enfants handicapés sont en garde alternée
-            garde_alternee = nb_enf_handicape - nb_enf_handicape_garde_alternee == 0
+            garde_alternee = (nb_enf_handicape - nb_enf_handicape_garde_alternee) == 0
             deduction_garde_alternee = garde_alternee * 0.5 * plf_handicap
 
             plf_handicap = plf_handicap - deduction_garde_alternee
