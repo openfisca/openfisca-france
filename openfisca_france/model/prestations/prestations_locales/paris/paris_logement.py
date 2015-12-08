@@ -4,7 +4,7 @@ from __future__ import division
 from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_, select)
 
 from ....base import *  # noqa analysis:ignore
-
+#Critères relatifs à PL (PA et PH)
 class paris_logement(Variable):
 	column=FloatCol
 	label=u"Paris Logement"
@@ -48,7 +48,7 @@ class parisien(Variable):
 
 class paris_logement_elig(Variable):
 	column=BoolCol
-	label=u"Personne qui est eligible"
+	label=u"Personne qui est eligible pour l'aide PL"
 	entity_class=Familles
 
 	def function(self,simulation,period):
@@ -150,3 +150,36 @@ class paris_logement_familles_br(Variable):
         result = paris_logement_familles_br
 
         return period, result
+
+#1.	Critères relatifs à PSOL (PA et PH) 
+
+class paris_logement_elig_psql(Variable):
+	column=FloatCol
+	label=u"Personne qui est eligible pour l'aide PSQL"
+	entity_class=Familles
+
+	def function(self,simulation,period):
+		parisien = simulation.calculate('parisien',period)
+		personnes_agees=simulation.compute('personnes_agees',period)
+		personnes_agees_famille = self.any_by_roles(personnes_agees)
+		personne_handicap_individu=simulation.compute('personnes_handicap_paris',period)
+		personne_handicap = self.any_by_roles(personne_handicap_individu)
+		condition_montant_aide_psql=simulation.calculate('condition_montant_aide_psql',period)
+		result=parisien*(personnes_agees_famille+personne_handicap)
+		return period, result*condition_montant_aide_psql
+
+class condition_montant_aide_psql(Variable):
+	column=FloatCol
+	label=u"Montant de l'aide PSQL"
+	entity_class=Familles
+
+	def function(self,simulation,period):
+		personnes_couple=simulation.calculate('concub',period)
+		ressources_mensuelles_famille=simulation.calculate('paris_logement_familles_br',period)
+		plafond_psql=select([personnes_couple,(personnes_couple!=1)],[1430,900])
+		condition_ressource= ressources_mensuelles_famille<=plafond_psql
+		#condition_aide_psql= 900-ressources_mensuelles_famille
+		result=select([condition_ressource,(condition_ressource!=1)],[(900-ressources_mensuelles_famille),0])
+		return period,result
+
+		

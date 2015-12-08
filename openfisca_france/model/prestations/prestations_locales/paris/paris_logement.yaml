@@ -103,3 +103,24 @@
     paris_logement_familles_br: 1000
   output_variables:
     paris_logement_elig: False
+
+- name: "Personne éligible pour l'aide PSQL"
+  period: 2014-11
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    aah: 800
+    paris_logement_familles_br: 800
+  output_variables:
+    paris_logement_elig_psql: 100
+
+- name: "Personne non éligible pour l'aide PSQL"
+  period: 2014-11
+  input_variables:
+    age: 65
+    parisien: True
+    statut_occupation: 4
+    paris_logement_familles_br: 1800
+  output_variables:
+    paris_logement_elig_psql: 0
