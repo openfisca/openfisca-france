@@ -30,12 +30,10 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    Reform.input_variable(
-        column = columns.FloatCol,
-        entity_class = entities.Individus,
-        label = u'Salaire imposable utilisé pour remonter au salaire brut',
-        name = 'salaire_imposable_pour_inversion',
-        )
+    class salaire_imposable_pour_inversion(Reform.Variable):
+        column = columns.FloatCol
+        entity_class = entities.Individus
+        label = u'Salaire imposable utilisé pour remonter au salaire brut'
 
     class salaire_de_base(Reform.Variable):
         column = columns.FloatCol
