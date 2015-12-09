@@ -88,7 +88,7 @@
     statut_occupation: 4
     aah: 800
     loyer: 350
-    paris_logement_familles_br: 1000
+    paris_base_ressources: 1000
   output_variables:
     paris_logement_elig: True
 
@@ -100,7 +100,7 @@
     statut_occupation: 4
     aah: 800
     loyer: 250
-    paris_logement_familles_br: 1000
+    paris_base_ressources: 1000
   output_variables:
     paris_logement_elig: False
 
@@ -111,7 +111,7 @@
     parisien: True
     statut_occupation: 4
     aah: 800
-    paris_logement_familles_br: 800
+    paris_base_ressources: 800
   output_variables:
     paris_logement_psol: 100
 
@@ -121,7 +121,7 @@
     age: 65
     parisien: True
     statut_occupation: 4
-    paris_logement_familles_br: 1800
+    paris_base_ressources: 1800
   output_variables:
     paris_logement_psol: 0
 
@@ -131,7 +131,7 @@
     parents: ["couple1", "couple2"]
     parisien: True
     statut_occupation_famille: 4
-    paris_logement_familles_br: 900
+    paris_base_ressources: 900
   individus:
   - id: "couple1"
     age: 55
@@ -158,7 +158,7 @@
     parents: ["couple1", "couple2"]
     parisien: True
     statut_occupation_famille: 4
-    paris_logement_familles_br: 900
+    paris_base_ressources: 900
   individus:
   - id: "couple1"
     age: 55

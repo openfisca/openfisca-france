@@ -20,7 +20,7 @@ class enfant_place(Variable):
     entity_class = Individus
     label = u"Enfant placé en structure spécialisée ou famille d'accueil"
 
-class paris_logement_familles_br_i(Variable):
+class paris_base_ressources_i(Variable):
         column = FloatCol
         label = u"Base de ressources individuelle pour Paris Logement Famille"
         entity_class = Individus
@@ -67,20 +67,20 @@ class paris_logement_familles_br_i(Variable):
 
             return period, result
 
-class paris_logement_familles_br(Variable):
+class paris_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressource pour Paris Logement Famille"
     entity_class = Familles
 
     def function(self, simulation, period):
         period = period.this_month
-        paris_logement_familles_br_i_holder = simulation.compute('paris_logement_familles_br_i', period)
-        paris_logement_familles_br = self.sum_by_entity(paris_logement_familles_br_i_holder)
-        result = paris_logement_familles_br
+        paris_base_ressources_i_holder = simulation.compute('paris_base_ressources_i', period)
+        paris_base_ressources = self.sum_by_entity(paris_base_ressources_i_holder)
+        result = paris_base_ressources
 
         return period, result
 
-class plf_enfant_handicape(Variable):
+class paris_enfant_handicape(Variable):
     column = BoolCol
     label = u"Enfant handicapé au sens de la mairie de Paris"
     entity_class = Individus
@@ -89,11 +89,11 @@ class plf_enfant_handicape(Variable):
         period = period.this_month
 
         invalide = simulation.calculate('invalide', period)
-        plf_enfant = simulation.calculate('plf_enfant', period)
+        paris_enfant = simulation.calculate('paris_enfant', period)
 
-        return period, plf_enfant * invalide
+        return period, paris_enfant * invalide
 
-class plf_enfant(Variable):
+class paris_enfant(Variable):
     column = BoolCol
     label = u"Enfant pris en compte par la mairie de Paris pour PLF"
     entity_class = Individus
@@ -106,7 +106,7 @@ class plf_enfant(Variable):
 
         return period, est_enfant_dans_famille * (1 - enfant_place) * a_charge_fiscale
 
-class plf_enfant_garde_alternee(Variable):
+class paris_enfant_garde_alternee(Variable):
     column = BoolCol
     label = u"Enfant en garde alternée pris en compte par la mairie de Paris pour PLF"
     entity_class = Individus
@@ -114,11 +114,11 @@ class plf_enfant_garde_alternee(Variable):
     def function(self, simulation, period):
         period = period.this_month
         alt = simulation.calculate('alt', period)
-        plf_enfant = simulation.calculate('plf_enfant', period)
+        paris_enfant = simulation.calculate('paris_enfant', period)
 
-        return period, alt * plf_enfant
+        return period, alt * paris_enfant
 
-class plf_enfant_handicape_garde_alternee(Variable):
+class paris_enfant_handicape_garde_alternee(Variable):
     column = BoolCol
     label = u"Enfant handicapé en garde alternée pris en compte par la mairie de Paris pour PLF"
     entity_class = Individus
@@ -126,6 +126,6 @@ class plf_enfant_handicape_garde_alternee(Variable):
     def function(self, simulation, period):
         period = period.this_month
         alt = simulation.calculate('alt', period)
-        plf_enfant_handicape = simulation.calculate('plf_enfant_handicape', period)
+        paris_enfant_handicape = simulation.calculate('paris_enfant_handicape', period)
 
-        return period, alt * plf_enfant_handicape
+        return period, alt * paris_enfant_handicape

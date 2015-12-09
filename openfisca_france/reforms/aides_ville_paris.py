@@ -44,12 +44,12 @@ def build_reform(tax_benefit_system):
 
         def function(self, simulation, period):
             period = period.this_month
-            plf_enfant_handicape = simulation.compute('plf_enfant_handicape', period)
-            plf_enfant_handicape_garde_alternee = simulation.compute('plf_enfant_handicape_garde_alternee', period)
-            br = simulation.calculate('paris_logement_familles_br', period)
+            paris_enfant_handicape = simulation.compute('paris_enfant_handicape', period)
+            paris_enfant_handicape_garde_alternee = simulation.compute('paris_enfant_handicape_garde_alternee', period)
+            br = simulation.calculate('paris_base_ressources', period)
 
-            nb_enf_handicape = self.sum_by_entity(plf_enfant_handicape)
-            nb_enf_handicape_garde_alternee = self.sum_by_entity(plf_enfant_handicape_garde_alternee)
+            nb_enf_handicape = self.sum_by_entity(paris_enfant_handicape)
+            nb_enf_handicape_garde_alternee = self.sum_by_entity(paris_enfant_handicape_garde_alternee)
 
             P = simulation.legislation_at(period.start).aides_locales.paris.paris_logement_familles
             plafond = P.plafond_haut_3enf
@@ -74,11 +74,11 @@ def build_reform(tax_benefit_system):
         def function(self, simulation, period):
             period = period.this_month
             elig = simulation.calculate('paris_logement_familles_elig', period)
-            br = simulation.calculate('paris_logement_familles_br', period)
-            plf_enfant = simulation.compute('plf_enfant', period)
-            nbenf = self.sum_by_entity(plf_enfant)
-            plf_enfant_garde_alternee = simulation.compute('plf_enfant_garde_alternee', period)
-            nbenf_garde_alternee = self.sum_by_entity(plf_enfant_garde_alternee)
+            br = simulation.calculate('paris_base_ressources', period)
+            paris_enfant = simulation.compute('paris_enfant', period)
+            nbenf = self.sum_by_entity(paris_enfant)
+            paris_enfant_garde_alternee = simulation.compute('paris_enfant_garde_alternee', period)
+            nbenf_garde_alternee = self.sum_by_entity(paris_enfant_garde_alternee)
             plf_handicap = simulation.calculate('plf_handicap', period)
             loyer = simulation.calculate('loyer', period) + simulation.calculate('charges_locatives', period)
             P = simulation.legislation_at(period.start).aides_locales.paris.paris_logement_familles

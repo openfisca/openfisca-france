@@ -11,7 +11,7 @@ class paris_logement(Variable):
 	entity_class=Familles
 
 	def function(self,simulation,period):
-		ressources_familiale=simulation.calculate('paris_logement_familles_br',period)
+		ressources_familiale=simulation.calculate('paris_base_ressources',period)
 		personnes_couple=simulation.calculate('concub',period)
 		paris_nb_enfants= simulation.compute('paris_nb_enfants',period)
 		nb_enfants=self.sum_by_entity(paris_nb_enfants)
@@ -70,7 +70,7 @@ class paris_nb_enfants(Variable):
 	entity_class=Familles
 
 	def function(self,simulation,period):
-		nb_enfants=simulation.compute('plf_enfant',period)
+		nb_enfants=simulation.compute('paris_enfant',period)
 		paris_nb_enfants=self.sum_by_entity(nb_enfants)
 		return period, paris_nb_enfants
 
@@ -81,7 +81,7 @@ class condition_taux_effort(Variable):
 
 	def function(self,simulation,period):
 		loyer=simulation.calculate('loyer',period)
-		ressources_mensuelles=simulation.calculate('paris_logement_familles_br',period)
+		ressources_mensuelles=simulation.calculate('paris_base_ressources',period)
 		condition_loyer=loyer>=(ressources_mensuelles*0.3)
 		return period,condition_loyer
 
@@ -110,7 +110,7 @@ class condition_montant_aide_psol(Variable):
 
 	def function(self,simulation,period):
 		personnes_couple=simulation.calculate('concub',period)
-		ressources_mensuelles_famille=simulation.calculate('paris_logement_familles_br',period)
+		ressources_mensuelles_famille=simulation.calculate('paris_base_ressources',period)
 		plafond_psol=select([personnes_couple,(personnes_couple!=1)],[1430,900])
 		condition_ressource= ressources_mensuelles_famille<=plafond_psol
 		#condition_aide_psql= 900-ressources_mensuelles_famille
@@ -127,7 +127,7 @@ class paris_forfait_famille(Variable):
 	def function(self,simulation,period):
 		nb_enfants=simulation.calculate('paris_nb_enfants',period)
 		parisien = simulation.calculate('parisien',period)
-		ressources_mensuelles_famille=simulation.calculate('paris_logement_familles_br',period)
+		ressources_mensuelles_famille=simulation.calculate('paris_base_ressources',period)
 		montant_aide=select([(ressources_mensuelles_famille<=3000),(ressources_mensuelles_famille<=5000)],[305,200])
 		result=(select([(nb_enfants>=3),(nb_enfants<3)],[montant_aide,0]))*parisien
 		return period,result
@@ -141,9 +141,9 @@ class paris_logement_aspeh(Variable):
 
 	def function(self,simulation,period):
 		parisien = simulation.calculate('parisien',period)
-		enfant_handicape=simulation.calculate('plf_enfant_handicape',period)
+		enfant_handicape=simulation.calculate('paris_enfant_handicape',period)
 		enfant=self.any_by_roles(enfant_handicape)
-		ressources_mensuelles_famille=simulation.calculate('paris_logement_familles_br',period)
+		ressources_mensuelles_famille=simulation.calculate('paris_base_ressources',period)
 		result = (select([ressources_mensuelles_famille<=5000,ressources_mensuelles_famille>5000],[153,0]))*parisien*enfant
 		return period,result
 
@@ -168,7 +168,7 @@ class paris_logement_plfm(Variable):
 			(statut_occupation==7)
 			)
 		loyer=simulation.calculate('loyer',period)
-		ressources_mensuelles_famille=simulation.calculate('paris_logement_familles_br',period)
+		ressources_mensuelles_famille=simulation.calculate('paris_base_ressources',period)
 		condition_plfm =select([(ressources_mensuelles_famille<=1140),(ressources_mensuelles_famille<=1600)],[150,128]) 
 		result=condition_plfm*parent_solo*(nb_enfants>=1)*parisien*statut_occupation_plfm
 
