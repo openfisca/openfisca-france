@@ -35,14 +35,15 @@ class bourse_college(Variable):
             scolarite == SCOLARITE_COLLEGE for scolarite in scolarites.itervalues()
         )
 
-        plafond_taux_1 = round_(P.plafond_taux_1 + P.plafond_taux_1 * nb_enfants * P.coeff_enfant_supplementaire)
-        plafond_taux_2 = round_(P.plafond_taux_2 + P.plafond_taux_2 * nb_enfants * P.coeff_enfant_supplementaire)
-        plafond_taux_3 = round_(P.plafond_taux_3 + P.plafond_taux_3 * nb_enfants * P.coeff_enfant_supplementaire)
-
         montant_par_enfant = apply_thresholds(
             rfr,
-            [plafond_taux_3, plafond_taux_2, plafond_taux_1], # plafond_taux_3 est le plus bas
-            [P.montant_taux_3, P.montant_taux_2, P.montant_taux_1]
+            thresholds = [
+                # plafond_taux_3 est le plus bas
+                round_(P.plafond_taux_3 + P.plafond_taux_3 * nb_enfants * P.coeff_enfant_supplementaire),
+                round_(P.plafond_taux_2 + P.plafond_taux_2 * nb_enfants * P.coeff_enfant_supplementaire),
+                round_(P.plafond_taux_1 + P.plafond_taux_1 * nb_enfants * P.coeff_enfant_supplementaire),
+                ],
+            choices = [P.montant_taux_3, P.montant_taux_2, P.montant_taux_1]
             )
 
         montant = nb_enfants_college * montant_par_enfant
@@ -87,19 +88,17 @@ class bourse_lycee_nombre_parts(Variable):
         plafonds_reference = simulation.legislation_at(period.start).bourses_education.bourse_lycee.plafonds_reference
         increments_par_point_de_charge = simulation.legislation_at(period.start).bourses_education.bourse_lycee.increments_par_point_de_charge
 
-        plafond_10_parts = round(plafonds_reference['10_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['10_parts']))
-        plafond_9_parts = round(plafonds_reference['9_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['9_parts']))
-        plafond_8_parts = round(plafonds_reference['8_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['8_parts']))
-        plafond_7_parts = round(plafonds_reference['7_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['7_parts']))
-        plafond_6_parts = round(plafonds_reference['6_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['6_parts']))
-        plafond_5_parts = round(plafonds_reference['5_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['5_parts']))
-        plafond_4_parts = round(plafonds_reference['4_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['4_parts']))
-        plafond_3_parts = round(plafonds_reference['3_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['3_parts']))
-
+        choices = [10, 9, 8, 7, 6, 5, 4, 3]
         nombre_parts = apply_thresholds(
             rfr,
-            [plafond_10_parts, plafond_9_parts, plafond_8_parts, plafond_7_parts, plafond_6_parts, plafond_5_parts, plafond_4_parts, plafond_3_parts],
-            [10, 9, 8, 7, 6, 5, 4, 3]
+            thresholds = [
+                round(
+                    plafonds_reference['{}_parts'.format(index)] +
+                    ((points_de_charge - 9) * increments_par_point_de_charge['{}_parts'.format(index)])
+                    )
+                for index in choices
+                ],
+            choices = choices,
             )
 
         return period, nombre_parts
