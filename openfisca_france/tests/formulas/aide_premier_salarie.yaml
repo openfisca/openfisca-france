@@ -10,7 +10,7 @@
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
     allegement_fillon_mode_recouvrement: 1
-    effectif_entreprise: 0
+    effectif_entreprise: 1
     contrat_de_travail_debut: 2015-07-01
   output_variables:
     aide_premier_salarie: 166.67
@@ -22,7 +22,7 @@
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
     allegement_fillon_mode_recouvrement: 1
-    effectif_entreprise: 1
+    effectif_entreprise: 2
   output_variables:
     aide_premier_salarie: 0
 
@@ -33,7 +33,7 @@
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
     allegement_fillon_mode_recouvrement: 1
-    effectif_entreprise: 0
+    effectif_entreprise: 1
     contrat_de_travail_duree: 1 # CDD
     contrat_de_travail_debut: 2015-07-01
     contrat_de_travail_fin: 2016-07-01
@@ -47,7 +47,7 @@
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
     allegement_fillon_mode_recouvrement: 1
-    effectif_entreprise: 0
+    effectif_entreprise: 1
     contrat_de_travail_duree: 1 # CDD
     # supérieur à 1 an :
     contrat_de_travail_debut: 2015-07-01
@@ -68,7 +68,7 @@
     # necessary when requesting on a 1 month salary :
     allegement_fillon_mode_recouvrement: 1
     contrat_de_travail_debut: 2015-07-01
-    effectif_entreprise: 0
+    effectif_entreprise: 1
   output_variables:
     aide_premier_salarie: 166.67
 
@@ -80,7 +80,7 @@
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
     allegement_fillon_mode_recouvrement: 1
-    effectif_entreprise: 0
+    effectif_entreprise: 1
     contrat_de_travail_duree: 1 # CDD
     # supérieur à 1 an :
     contrat_de_travail_debut: "2015-07-01"

@@ -177,7 +177,7 @@ class aide_premier_salarie(Variable):
         date_eligible = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
 
         eligible = \
-            (effectif_entreprise == 0) * not_(apprenti) * contrat_eligible * duree_eligible * date_eligible
+            (effectif_entreprise == 1) * not_(apprenti) * contrat_eligible * duree_eligible * date_eligible
 
         # somme sur 24 mois, à raison de 500 € maximum par trimestre
         montant_max = 4000
