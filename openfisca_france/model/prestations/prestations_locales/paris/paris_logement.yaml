@@ -124,3 +124,128 @@
     paris_logement_familles_br: 1800
   output_variables:
     paris_logement_elig_psql: 0
+
+- name: "Couple non éligible pour l'aide PSQL"
+  period: 2014-11
+  familles:
+    parents: ["couple1", "couple2"]
+    parisien: True
+    statut_occupation_famille: 4
+    paris_logement_familles_br: 900
+  individus:
+  - id: "couple1"
+    age: 55
+    chonet:
+      2014-10: 100
+      2014-09: 100
+      2014-08: 100
+  - id: "couple2"
+    age: 55
+    indemnites_stage:
+      2014-10: 100
+      2014-09: 100
+      2014-08: 100
+    salaire_net:
+      2014-10: 100
+      2014-09: 100
+      2014-08: 100
+  output_variables:
+    paris_logement_elig_psql: 0
+
+- name: "Couple éligible pour l'aide PSQL"
+  period: 2014-11
+  familles:
+    parents: ["couple1", "couple2"]
+    parisien: True
+    statut_occupation_famille: 4
+    paris_logement_familles_br: 900
+  individus:
+  - id: "couple1"
+    age: 55
+    aah: 800
+  - id: "couple2"
+    age: 55
+    indemnites_stage:
+      2014-10: 100
+      2014-09: 100
+      2014-08: 100
+  output_variables:
+    paris_logement_elig_psql: 0
+
+- name: "Couple non éligible pour l'aide paris forfait famille"
+  period: 2014-11
+  familles:
+    parents: ["couple1", "couple2"]
+    enfants: ["enfant1", "enfant2"]
+    parisien: True
+    statut_occupation_famille: 4
+  individus:
+  - id: "couple1"
+    age: 55
+    aah: 800
+  - id: "couple2"
+    age: 55
+    indemnites_stage:
+      2014-10: 100
+      2014-09: 100
+      2014-08: 100
+  - id: "enfant1"
+    age: 5
+  - id: "enfant2"
+    age: 10
+  output_variables:
+    paris_forfait_famille: 0
+
+- name: "Couple éligible pour l'aide paris forfait famille"
+  period: 2014-11
+  familles:
+    parents: ["couple1", "couple2"]
+    enfants: ["enfant1", "enfant2","enfant3", "enfant4"]
+    parisien: True
+    statut_occupation_famille: 4
+  individus:
+  - id: "couple1"
+    age: 55
+    aah: 800
+  - id: "couple2"
+    age: 55
+    indemnites_stage:
+      2014-10: 1000
+      2014-09: 1000
+      2014-08: 100
+  - id: "enfant1"
+    age: 5
+  - id: "enfant2"
+    age: 7
+  - id: "enfant3"
+    age: 9
+  - id: "enfant4"
+    age: 11
+  output_variables:
+    paris_forfait_famille: 305
+
+- name: "Couple éligible pour l'aide paris forfait famille"
+  period: 2014-11
+  familles:
+    parents: ["couple1", "couple2"]
+    enfants: ["enfant1", "enfant2","enfant3"]
+    parisien: True
+    statut_occupation_famille: 4
+  individus:
+  - id: "couple1"
+    age: 55
+    aah: 800
+  - id: "couple2"
+    age: 55
+    indemnites_stage:
+      2014-10: 1000
+      2014-09: 1000
+      2014-08: 1000
+  - id: "enfant1"
+    age: 5
+  - id: "enfant2"
+    age: 7
+  - id: "enfant3"
+    age: 9
+  output_variables:
+    paris_forfait_famille: 200

@@ -58,7 +58,7 @@ class paris_logement_elig(Variable):
 		personne_handicap_individu=simulation.compute('personnes_handicap_paris',period)
 		personne_handicap = self.any_by_roles(personne_handicap_individu)
 		personnes_couple=simulation.calculate('concub',period)
-		statut_occupation = simulation.calculate('statut_occupation',period)
+		statut_occupation = simulation.calculate('statut_occupation_famille',period)
 		statut_occupation_elig =(
 			(statut_occupation==3) +
 			(statut_occupation==4) +
@@ -151,7 +151,7 @@ class paris_logement_familles_br(Variable):
 
         return period, result
 
-#1.	Critères relatifs à PSOL (PA et PH) 
+# Critères relatifs à PSOL (PA et PH)
 
 class paris_logement_elig_psql(Variable):
 	column=FloatCol
@@ -182,4 +182,16 @@ class condition_montant_aide_psql(Variable):
 		result=select([condition_ressource,(condition_ressource!=1)],[(900-ressources_mensuelles_famille),0])
 		return period,result
 
-		
+# Paris forfait familles
+
+class paris_forfait_famille(Variable):
+	column=FloatCol
+	label=u"Famille qui est eligible à l'aide paris forfait famille "
+	entity_class=Familles
+
+	def function(self,simulation,period):
+		nb_enfants=simulation.calculate('paris_nb_enfants',period)
+		ressources_mensuelles_famille=simulation.calculate('paris_logement_familles_br',period)
+		montant_aide=select([(ressources_mensuelles_famille<=3000),(ressources_mensuelles_famille<=5000)],[305,200])
+		result=select([(nb_enfants>=3),(nb_enfants<3)],[montant_aide,0])
+		return period,result
