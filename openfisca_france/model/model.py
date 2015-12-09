@@ -66,6 +66,7 @@ from prestations.prestations_familiales import (  # noqa analysis:ignore
     )
 
 from prestations.prestations_locales.paris import (  # noqa analysis:ignore
+    paris,
     paris_logement
     )
 
