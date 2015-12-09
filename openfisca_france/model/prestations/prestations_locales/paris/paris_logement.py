@@ -88,7 +88,7 @@ class condition_taux_effort(Variable):
 
 # Critères relatifs à PSOL (PA et PH)
 
-class paris_logement_elig_psql(Variable):
+class paris_logement_psql(Variable):
 	column=FloatCol
 	label=u"Personne qui est eligible pour l'aide PSQL"
 	entity_class=Familles
@@ -130,3 +130,13 @@ class paris_forfait_famille(Variable):
 		montant_aide=select([(ressources_mensuelles_famille<=3000),(ressources_mensuelles_famille<=5000)],[305,200])
 		result=select([(nb_enfants>=3),(nb_enfants<3)],[montant_aide,0])
 		return period,result
+
+# Allocation de soutien aux parents d’enfants handicapés
+
+class paris_logement_elig_aspeh(Variable):
+	column=FloatCol
+	label=u"Famille qui est eligible à l'Allocation de soutien aux parents d’enfants handicapés"
+	entity_class=Familles
+
+	def function(self,simulation,period):
+		pass

@@ -113,7 +113,7 @@
     aah: 800
     paris_logement_familles_br: 800
   output_variables:
-    paris_logement_elig_psql: 100
+    paris_logement_psql: 100
 
 - name: "Personne non éligible pour l'aide PSQL"
   period: 2014-11
@@ -123,7 +123,7 @@
     statut_occupation: 4
     paris_logement_familles_br: 1800
   output_variables:
-    paris_logement_elig_psql: 0
+    paris_logement_psql: 0
 
 - name: "Couple non éligible pour l'aide PSQL"
   period: 2014-11
@@ -150,7 +150,7 @@
       2014-09: 100
       2014-08: 100
   output_variables:
-    paris_logement_elig_psql: 0
+    paris_logement_psql: 0
 
 - name: "Couple éligible pour l'aide PSQL"
   period: 2014-11
@@ -170,7 +170,7 @@
       2014-09: 100
       2014-08: 100
   output_variables:
-    paris_logement_elig_psql: 0
+    paris_logement_psql: 0
 
 - name: "Couple non éligible pour l'aide paris forfait famille"
   period: 2014-11
