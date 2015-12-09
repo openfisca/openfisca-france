@@ -11,7 +11,7 @@ class parisien(Variable):
     label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années"
 
 class a_charge_fiscale(Variable):
-    column = BoolCol
+    column = BoolCol(default = True)
     entity_class = Individus
     label = u"Enfant à charge fiscale du demandeur"
 

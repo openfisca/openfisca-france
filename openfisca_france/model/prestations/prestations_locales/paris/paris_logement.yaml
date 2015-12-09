@@ -186,7 +186,7 @@
   - id: "couple2"
     age: 55
     indemnites_stage:
-      2014-10: 100
+      2014-11: 100
       2014-09: 100
       2014-08: 100
   - id: "enfant1"
@@ -210,9 +210,7 @@
   - id: "couple2"
     age: 55
     indemnites_stage:
-      2014-10: 1000
-      2014-09: 1000
-      2014-08: 100
+      2014-11: 1000
   - id: "enfant1"
     age: 5
   - id: "enfant2"
@@ -234,13 +232,12 @@
   individus:
   - id: "couple1"
     age: 55
-    aah: 800
+    salaire_net:
+      2014-11: 3100
   - id: "couple2"
     age: 55
-    indemnites_stage:
-      2014-10: 1000
-      2014-09: 1000
-      2014-08: 1000
+    chonet:
+      2014-11: 400
   - id: "enfant1"
     age: 5
   - id: "enfant2"
