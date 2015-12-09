@@ -4,7 +4,7 @@ from __future__ import division
 
 from ...base import *  # noqa analysis:ignore
 
-from numpy import maximum as max_
+from numpy import maximum as max_, round as round_
 
 class ppa_eligibilite(Variable):
     column = BoolCol
@@ -37,12 +37,32 @@ class ppa_base_ressources(Variable):
     def function(self, simulation, period):
         period = period.this_month
         ppa_revenu_activite = simulation.calculate('ppa_revenu_activite', period)
-        pente = 0.38       
+        pente = 0.38
         return period, ppa_revenu_activite * pente
+
+class ppa_bonification(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Bonification de la PPA pour un individu"
+
+    def function(self, simulation, period):
+        period = period.this_month
+        P = simulation.legislation_at(period.start)
+        smic_horaire = P.cotsoc.gen.smic_h_b
+        rsa_base = P.minim.rmi.rmi
+        salaire = simulation.calculate_add('salaire_net', period.last_3_months) / 3
+        plancher_1 = 59 * smic_horaire
+        plancher_2 = 95 * smic_horaire
+        bonification_max = round_(0.12782 * rsa_base)
+
+        bonification = bonification_max * (salaire - plancher_1) / (plancher_2 - plancher_1)
+        bonification = max_(bonification, 0)
+
+        return period, bonification
 
 class ppa(Variable):
     column = FloatCol
-    entity_class = Familles 
+    entity_class = Familles
     label = u"Prime Pour l'Activité"
 
     def function(self, simulation, period):
@@ -51,4 +71,8 @@ class ppa(Variable):
         rsa_socle = simulation.calculate('rsa_socle', period)
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
         ppa_base_ressources = simulation.calculate('ppa_base_ressources', period)
-        return period, elig * max_(rsa_socle, rsa_socle_majore) - ppa_base_ressources
+        bonification_individus = simulation.compute('ppa_bonification', period)
+        bonification = self.sum_by_entity(bonification_individus)
+        ppa = elig * max_(rsa_socle, rsa_socle_majore) - ppa_base_ressources + bonification
+
+        return period, ppa
