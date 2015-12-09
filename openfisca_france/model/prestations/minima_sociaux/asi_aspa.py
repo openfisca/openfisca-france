@@ -7,19 +7,15 @@ from numpy import abs as abs_, logical_not as not_, logical_or as or_, maximum a
 from ...base import *  # noqa analysis:ignore
 
 
-reference_input_variable(
-    name = "inapte_travail",
-    column = BoolCol,
-    entity_class = Individus,
-    label = u"Reconnu inapte au travail",
-    )
+class inapte_travail(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Reconnu inapte au travail"
 
-reference_input_variable(
-    name = "taux_incapacite",
-    column = FloatCol,
-    entity_class = Individus,
-    label = u"Taux d'incapacité",
-    )
+class taux_incapacite(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Taux d'incapacité"
 
 
 class br_mv_i(Variable):

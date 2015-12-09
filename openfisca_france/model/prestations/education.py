@@ -134,7 +134,7 @@ class bourse_lycee(Variable):
         return period, montant / 12
 
 
-reference_input_variable(
+class scolarite(Variable):
     column = EnumCol(
         enum = Enum(
             [
@@ -144,16 +144,11 @@ reference_input_variable(
                 ],
             ),
         default = 0
-        ),
-    entity_class = Individus,
-    label = u"Scolarité de l'enfant : collège, lycée...",
-    name = "scolarite",
-    )
+        )
+    entity_class = Individus
+    label = u"Scolarité de l'enfant : collège, lycée..."
 
-
-reference_input_variable(
-    column = BoolCol,
-    entity_class = Individus,
-    label = u"Élève ou étudiant boursier",
-    name = 'boursier',
-    )
+class boursier(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Élève ou étudiant boursier"

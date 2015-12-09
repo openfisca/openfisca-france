@@ -176,23 +176,17 @@ class etu(Variable):
 
         return period, activite == 2
 
-reference_input_variable(
-    name = "rempli_obligation_scolaire",
-    column = BoolCol(default = True),
-    entity_class = Individus,
-    label = u"Rempli l'obligation scolaire",
-    )
+class rempli_obligation_scolaire(Variable):
+    column = BoolCol(default = True)
+    entity_class = Individus
+    label = u"Rempli l'obligation scolaire"
 
-reference_input_variable(
-    name ="ressortissant_eee",
-    column = BoolCol(default = True),
-    entity_class = Individus,
+class ressortissant_eee(Variable):
+    column = BoolCol(default = True)
+    entity_class = Individus
     label = u"Ressortissant de l'EEE ou de la Suisse."
-    )
 
-reference_input_variable(
-    name ="duree_possession_titre_sejour",
-    column = IntCol,
-    entity_class = Individus,
+class duree_possession_titre_sejour(Variable):
+    column = IntCol
+    entity_class = Individus
     label = u"Durée depuis laquelle l'individu possède un titre de séjour (en années)"
-    )

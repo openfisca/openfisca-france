@@ -10,20 +10,16 @@ from ....base import *  # noqa analysis:ignore
 from .base import apply_bareme_for_relevant_type_sal
 
 
-reference_input_variable(
-    column = IntCol(),
-    entity_class = Individus,
-    label = u"Nombre d'heures effectuées en stage",
-    name = 'stage_duree_heures',
-    )
+class stage_duree_heures(Variable):
+    column = IntCol()
+    entity_class = Individus
+    label = u"Nombre d'heures effectuées en stage"
 
 
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Individus,
-    label = u"Taux de gratification (en plafond de la Sécurité sociale)",
-    name = 'stage_gratification_taux',
-    )
+class stage_gratification_taux(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Taux de gratification (en plafond de la Sécurité sociale)"
 
 
 class stage_gratification(Variable):

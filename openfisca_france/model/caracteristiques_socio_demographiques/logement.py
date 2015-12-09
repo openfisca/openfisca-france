@@ -14,21 +14,17 @@ build_column('depcom', FixedStrCol(label = u"Code INSEE (depcom) du lieu de rés
 
 build_column('logement_chambre', BoolCol(label = u"Le logement est considéré comme une chambre"))
 
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Menages,
-    label = u"Loyer ou mensualité d'emprunt pour un primo-accédant",
-    name = "loyer",
-    set_input = set_input_divide_by_period,
-)
+class loyer(Variable):
+    column = FloatCol()
+    entity_class = Menages
+    set_input = set_input_divide_by_period
+    label = u"Loyer ou mensualité d'emprunt pour un primo-accédant"
 
-reference_input_variable(
-    column = FloatCol(),
-    entity_class = Menages,
-    label = u'Charges locatives',
-    name = 'charges_locatives',
-    set_input = set_input_divide_by_period,
-)
+class charges_locatives(Variable):
+    column = FloatCol()
+    entity_class = Menages
+    set_input = set_input_divide_by_period
+    label = u'Charges locatives'
 
 build_column(
     'proprietaire_proche_famille',
@@ -38,8 +34,7 @@ build_column(
     ),
 )
 
-reference_input_variable(
-    name = 'statut_occupation',
+class statut_occupation(Variable):
     column = EnumCol(
         enum = Enum([
             u"Non renseigné",
@@ -51,11 +46,10 @@ reference_input_variable(
             u"Logé gratuitement par des parents, des amis ou l'employeur",
             u"Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)",
             u"Sans domicile stable"])
-    ),
-    entity_class = Menages,
-    label = u"Statut d'occupation",
-    set_input = set_input_dispatch_by_period,
-)
+    )
+    entity_class = Menages
+    label = u"Statut d'occupation"
+    set_input = set_input_dispatch_by_period
 
 
 class residence_dom(Variable):
