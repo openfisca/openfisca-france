@@ -7,7 +7,7 @@ from ....base import *  # noqa analysis:ignore
 
 class parisien(Variable):
     column = BoolCol
-    entity_class = Menages
+    entity_class = Familles
     label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années"
 
 class a_charge_fiscale(Variable):

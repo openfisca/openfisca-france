@@ -88,9 +88,9 @@ class condition_taux_effort(Variable):
 
 # Critères relatifs à PSOL (PA et PH)
 
-class paris_logement_psql(Variable):
+class paris_logement_psol(Variable):
 	column=FloatCol
-	label=u"Personne qui est eligible pour l'aide PSQL"
+	label=u"Personne qui est eligible pour l'aide PSOL"
 	entity_class=Familles
 
 	def function(self,simulation,period):
@@ -99,20 +99,20 @@ class paris_logement_psql(Variable):
 		personnes_agees_famille = self.any_by_roles(personnes_agees)
 		personne_handicap_individu=simulation.compute('personnes_handicap_paris',period)
 		personne_handicap = self.any_by_roles(personne_handicap_individu)
-		condition_montant_aide_psql=simulation.calculate('condition_montant_aide_psql',period)
+		condition_montant_aide_psol=simulation.calculate('condition_montant_aide_psol',period)
 		result=parisien*(personnes_agees_famille+personne_handicap)
-		return period, result*condition_montant_aide_psql
+		return period, result*condition_montant_aide_psol
 
-class condition_montant_aide_psql(Variable):
+class condition_montant_aide_psol(Variable):
 	column=FloatCol
-	label=u"Montant de l'aide PSQL"
+	label=u"Montant de l'aide PSOL"
 	entity_class=Familles
 
 	def function(self,simulation,period):
 		personnes_couple=simulation.calculate('concub',period)
 		ressources_mensuelles_famille=simulation.calculate('paris_logement_familles_br',period)
-		plafond_psql=select([personnes_couple,(personnes_couple!=1)],[1430,900])
-		condition_ressource= ressources_mensuelles_famille<=plafond_psql
+		plafond_psol=select([personnes_couple,(personnes_couple!=1)],[1430,900])
+		condition_ressource= ressources_mensuelles_famille<=plafond_psol
 		#condition_aide_psql= 900-ressources_mensuelles_famille
 		result=select([condition_ressource,(condition_ressource!=1)],[(900-ressources_mensuelles_famille),0])
 		return period,result
@@ -126,17 +126,50 @@ class paris_forfait_famille(Variable):
 
 	def function(self,simulation,period):
 		nb_enfants=simulation.calculate('paris_nb_enfants',period)
+		parisien = simulation.calculate('parisien',period)
 		ressources_mensuelles_famille=simulation.calculate('paris_logement_familles_br',period)
 		montant_aide=select([(ressources_mensuelles_famille<=3000),(ressources_mensuelles_famille<=5000)],[305,200])
-		result=select([(nb_enfants>=3),(nb_enfants<3)],[montant_aide,0])
+		result=(select([(nb_enfants>=3),(nb_enfants<3)],[montant_aide,0]))*parisien
 		return period,result
 
 # Allocation de soutien aux parents d’enfants handicapés
 
-class paris_logement_elig_aspeh(Variable):
+class paris_logement_aspeh(Variable):
 	column=FloatCol
 	label=u"Famille qui est eligible à l'Allocation de soutien aux parents d’enfants handicapés"
 	entity_class=Familles
 
 	def function(self,simulation,period):
-		pass
+		parisien = simulation.calculate('parisien',period)
+		enfant_handicape=simulation.calculate('plf_enfant_handicape',period)
+		enfant=self.any_by_roles(enfant_handicape)
+		ressources_mensuelles_famille=simulation.calculate('paris_logement_familles_br',period)
+		result = (select([ressources_mensuelles_famille<=5000,ressources_mensuelles_famille>5000],[153,0]))*parisien*enfant
+		return period,result
+
+# Paris logement familles monoparentales
+
+class paris_logement_plfm(Variable):
+	column=FloatCol
+	label=u"Famille monoparentale qui est eligible à Paris logement familles monoparentales"
+	entity_class=Familles
+
+	def function(self,simulation,period):
+		parent_solo=simulation.calculate('isol',period)
+		nb_enfants = simulation.calculate('paris_nb_enfants',period)
+		parisien = simulation.calculate('parisien',period)
+		statut_occupation = simulation.calculate('statut_occupation_famille',period)
+		statut_occupation_plfm =(
+			(statut_occupation==1) +
+			(statut_occupation==2) +
+			(statut_occupation==3) +
+			(statut_occupation==4) +
+			(statut_occupation==5) +
+			(statut_occupation==7)
+			)
+		loyer=simulation.calculate('loyer',period)
+		ressources_mensuelles_famille=simulation.calculate('paris_logement_familles_br',period)
+		condition_plfm =select([(ressources_mensuelles_famille<=1140),(ressources_mensuelles_famille<=1600)],[150,128]) 
+		result=condition_plfm*parent_solo*(nb_enfants>=1)*parisien*statut_occupation_plfm
+
+		return period,result
