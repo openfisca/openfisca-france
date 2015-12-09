@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select)
+from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select, where)
 
 from ...base import *  # noqa analysis:ignore
 from ..prestations_familiales.base_ressource import nb_enf, age_en_mois_benjamin
@@ -1029,19 +1029,19 @@ class rsa_socle(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        nb_par = simulation.calculate('nb_par', period)
+        nb_parents = simulation.calculate('nb_par', period)
         eligib = simulation.calculate('rsa_eligibilite', period)
         nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         rmi = simulation.legislation_at(period.start).minim.rmi
 
-        nbp = nb_par + nb_enfant_rsa
+        nb_personnes = nb_parents + nb_enfant_rsa
 
         taux = (
             1 +
-            (nbp >= 2) * rmi.txp2 +
-            (nbp >= 3) * rmi.txp3 +
-            (nbp >= 4) * ((nb_par == 1) * rmi.txps + (nb_par != 1) * rmi.txp3) +
-            max_(nbp - 4, 0) * rmi.txps
+            (nb_personnes >= 2) * rmi.txp2 +
+            (nb_personnes >= 3) * rmi.txp3 +
+            (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3) + # Si nb_par == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
+            max_(nb_personnes - 4, 0) * rmi.txps
         )
         return period, eligib * rmi.rmi * taux
 
