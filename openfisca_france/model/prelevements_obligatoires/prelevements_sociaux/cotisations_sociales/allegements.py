@@ -43,7 +43,7 @@ class allegement_fillon(DatedVariable):
         stagiaire = simulation.calculate('stagiaire', period)
         apprenti = simulation.calculate('apprenti', period)
         allegement_fillon_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
-        allegement = self.switch(
+        allegement = switch(
             allegement_fillon_mode_recouvrement,
             {
                 0: compute_allegement_fillon_annuel(simulation, period),
