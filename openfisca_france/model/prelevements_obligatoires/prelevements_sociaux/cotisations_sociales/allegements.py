@@ -142,7 +142,6 @@ class credit_impot_competitivite_emploi(DatedVariable):
         return period, credit_impot_competitivite_emploi * non_cumul
 
 
-@reference_formula
 class aide_premier_salarie(Variable):
     column = FloatCol
     entity_class = Individus

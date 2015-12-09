@@ -745,8 +745,7 @@ class salaire_super_brut(Variable):
         return period, salaire_super_brut
 
 
-@reference_formula
-class cout_du_travail(SimpleFormulaColumn):
+class cout_du_travail(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
