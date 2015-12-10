@@ -254,11 +254,11 @@ class br_rmi(DatedVariable):
         br_rmi_pf = simulation.calculate('br_rmi_pf', period)
         br_rmi_ms = simulation.calculate('br_rmi_ms', period)
         br_rmi_i_holder = simulation.compute('br_rmi_i', period)
-        ra_rsa_i_holder = simulation.compute('ra_rsa_i', period)
+        rsa_revenu_activite_i_holder = simulation.compute('rsa_revenu_activite_i', period)
 
         br_rmi_i_total = self.sum_by_entity(br_rmi_i_holder)
-        ra_rsa_i_total = self.sum_by_entity(ra_rsa_i_holder)
-        return period, br_rmi_pf + br_rmi_ms + br_rmi_i_total + ra_rsa_i_total
+        rsa_revenu_activite_i_total = self.sum_by_entity(rsa_revenu_activite_i_holder)
+        return period, br_rmi_pf + br_rmi_ms + br_rmi_i_total + rsa_revenu_activite_i_total
 
 
 class br_rmi_i(Variable):
@@ -487,7 +487,7 @@ class psa(DatedVariable):
         return period, psa
 
 
-class ra_rsa(Variable):
+class rsa_revenu_activite(Variable):
     column = FloatCol
     label = u"Revenus d'activité du RSA"
     entity_class = Familles
@@ -495,13 +495,13 @@ class ra_rsa(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        ra_rsa_i_holder = simulation.compute('ra_rsa_i', period)
+        rsa_revenu_activite_i_holder = simulation.compute('rsa_revenu_activite_i', period)
 
-        ra_rsa = self.sum_by_entity(ra_rsa_i_holder)
-        return period, ra_rsa
+        rsa_revenu_activite = self.sum_by_entity(rsa_revenu_activite_i_holder)
+        return period, rsa_revenu_activite
 
 
-class ra_rsa_i(Variable):
+class rsa_revenu_activite_i(Variable):
     column = FloatCol
     label = u"Revenus d'activité du Rsa - Individuel"
     entity_class = Individus
@@ -871,12 +871,12 @@ class rsa_majore(DatedVariable):
     def function(self, simulation, period):
         period = period.this_month
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
-        ra_rsa = simulation.calculate('ra_rsa', period)
+        rsa_revenu_activite = simulation.calculate('rsa_revenu_activite', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
         br_rmi = simulation.calculate('br_rmi', period)
         P = simulation.legislation_at(period.start).minim.rmi
 
-        base_normalise = max_(rsa_socle_majore - rsa_forfait_logement - br_rmi + P.pente * ra_rsa, 0)
+        base_normalise = max_(rsa_socle_majore - rsa_forfait_logement - br_rmi + P.pente * rsa_revenu_activite, 0)
 
         return period, base_normalise * (base_normalise >= P.rsa_nv)
 
@@ -976,12 +976,12 @@ class rsa_non_majore(DatedVariable):
     def function(self, simulation, period):
         period = period.this_month
         rsa_socle = simulation.calculate('rsa_socle', period)
-        ra_rsa = simulation.calculate('ra_rsa', period)
+        rsa_revenu_activite = simulation.calculate('rsa_revenu_activite', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
         br_rmi = simulation.calculate('br_rmi', period)
         P = simulation.legislation_at(period.start).minim.rmi
 
-        base_normalise = max_(rsa_socle - rsa_forfait_logement - br_rmi + P.pente * ra_rsa, 0)
+        base_normalise = max_(rsa_socle - rsa_forfait_logement - br_rmi + P.pente * rsa_revenu_activite, 0)
 
         return period, base_normalise * (base_normalise >= P.rsa_nv)
 
@@ -1037,10 +1037,10 @@ class rsa_socle(Variable):
         nb_personnes = nb_parents + nb_enfant_rsa
 
         taux = (
-            1 + 
+            1 +
             (nb_personnes >= 2) * rmi.txp2 +
             (nb_personnes >= 3) * rmi.txp3 +
-            (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3) + # Si nb_par == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%. 
+            (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3) + # Si nb_par == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
             max_(nb_personnes - 4, 0) * rmi.txps
         )
         return period, eligib * rmi.rmi * taux
