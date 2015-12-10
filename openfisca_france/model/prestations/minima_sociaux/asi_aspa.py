@@ -41,7 +41,7 @@ class br_mv_i(Variable):
         rpns = simulation.calculate_add_divide('rpns', three_previous_months)
         rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
         rev_cap_lib_holder = simulation.compute_add_divide('rev_cap_lib', three_previous_months)
-        rfon_ms = simulation.calculate_add('rfon_ms', three_previous_months)
+        rsa_revenus_fonciers = simulation.calculate_add('rsa_revenus_fonciers', three_previous_months)
         div_ms = simulation.calculate_add('div_ms', three_previous_months)
         revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', three_previous_months)
         allocation_securisation_professionnelle = simulation.calculate(
@@ -95,7 +95,7 @@ class br_mv_i(Variable):
 
         return period, (salaire_de_base + chomage_net + retraite_brute + pensions_alimentaires_percues -
                abs_(pensions_alimentaires_versees_individu) + rto_declarant1 + rpns +
-               max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +  # max_(0,etr) +
+               max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rsa_revenus_fonciers) + max_(0, div_ms) +  # max_(0,etr) +
                revenus_stage_formation_pro + allocation_securisation_professionnelle +
                prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
                pensions_invalidite + gains_exceptionnels + indemnites_journalieres + indemnites_chomage_partiel +
