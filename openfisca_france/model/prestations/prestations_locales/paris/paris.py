@@ -129,3 +129,33 @@ class paris_enfant_handicape_garde_alternee(Variable):
         paris_enfant_handicape = simulation.calculate('paris_enfant_handicape', period)
 
         return period, alt * paris_enfant_handicape
+
+class personnes_agees(Variable):
+    column = BoolCol
+    label = u"Personne âgée"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        age = simulation.calculate('age', period)
+        condition_age = (age >= 65)
+        return period, condition_age
+
+class personnes_handicap_paris(Variable):
+    column = BoolCol
+    label = u"Personne qui possède l'AAH"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        aah = simulation.calculate('aah', period)
+        condition_aah = aah > 0
+        return period, condition_aah
+
+class paris_nb_enfants(Variable):
+    column = FloatCol
+    label = u"Nombre d'enfant dans la famille"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        nb_enfants = simulation.compute('paris_enfant', period)
+        paris_nb_enfants = self.sum_by_entity(nb_enfants)
+        return period, paris_nb_enfants

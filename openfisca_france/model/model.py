@@ -53,7 +53,6 @@ from prestations.minima_sociaux import (  # noqa analysis:ignore
     ass,
     cmu,
     rsa,
-    tutorial,
     )
 
 from prestations.prestations_familiales import (  # noqa analysis:ignore
@@ -67,7 +66,11 @@ from prestations.prestations_familiales import (  # noqa analysis:ignore
 
 from prestations.prestations_locales.paris import (  # noqa analysis:ignore
     paris,
-    paris_logement
+    paris_logement,
+    paris_logement_fam_mono,
+    aspeh,
+    paris_forfait_famille,
+    paris_solidarite
     )
 
 from revenus import autres

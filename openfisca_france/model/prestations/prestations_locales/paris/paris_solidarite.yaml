@@ -1,0 +1,67 @@
+- name: "Personne éligible pour l'aide PSOL"
+  period: 2014-11
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    aah: 800
+    paris_base_ressources: 800
+  output_variables:
+    paris_logement_psol: 100
+
+- name: "Personne non éligible pour l'aide PSOL"
+  period: 2014-11
+  input_variables:
+    age: 65
+    parisien: True
+    statut_occupation: 4
+    paris_base_ressources: 1800
+  output_variables:
+    paris_logement_psol: 0
+
+- name: "Couple non éligible pour l'aide PSOL"
+  period: 2014-11
+  familles:
+    parents: ["couple1", "couple2"]
+    parisien: True
+    statut_occupation_famille: 4
+    paris_base_ressources: 900
+  individus:
+  - id: "couple1"
+    age: 55
+    chonet:
+      2014-10: 100
+      2014-09: 100
+      2014-08: 100
+  - id: "couple2"
+    age: 55
+    indemnites_stage:
+      2014-10: 100
+      2014-09: 100
+      2014-08: 100
+    salaire_net:
+      2014-10: 100
+      2014-09: 100
+      2014-08: 100
+  output_variables:
+    paris_logement_psol: 0
+
+- name: "Couple éligible pour l'aide PSOL"
+  period: 2014-11
+  familles:
+    parents: ["couple1", "couple2"]
+    parisien: True
+    statut_occupation_famille: 4
+    paris_base_ressources: 900
+  individus:
+  - id: "couple1"
+    age: 55
+    aah: 800
+  - id: "couple2"
+    age: 55
+    indemnites_stage:
+      2014-10: 100
+      2014-09: 100
+      2014-08: 100
+  output_variables:
+    paris_logement_psol: 0
