@@ -6793,6 +6793,25 @@
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.4" />
       </CODE>
     </NODE>
+    <NODE code="ppa" description="Prime Pour l'Activité">
+      <CODE code="seuil_non_versement" description="Seuil de non versement de la PPA" format="percent" type="monetary">
+        <VALUE deb="2015-09-01" fin="2016-12-31" valeur="15" />
+      </CODE>
+      <CODE code="age_min" description="Âge minimal pour bénéficier de la PPA" format="integer" type="age">
+        <VALUE deb="2015-09-01" fin="2016-12-31" valeur="18" />
+      </CODE>
+      <NODE code="bonification">
+        <CODE code="montant_max" description="Bonification maximale, en pourcentage du montant de base du RSA" format="percent">
+          <VALUE deb="2015-09-01" fin="2016-12-31" valeur="0.12782" />
+        </CODE>
+        <CODE code="seuil_1" description="Seuil de salaire minimum pour bénéficier de la bonification, en multiple du smic horaire brut."           format="integer">
+          <VALUE deb="2015-09-01" fin="2016-12-31" valeur="59" />
+        </CODE>
+        <CODE code="seuil_2" description="Seuil de salaire pour bénéficier de la bonification maximale, en multiple du smic horaire brut."           format="integer">
+          <VALUE deb="2015-09-01" fin="2016-12-31" valeur="95" />
+        </CODE>
+      </NODE>
+    </NODE>
   </NODE>
   <NODE code="prelsoc" description="Prélèvement social et contributions additionnelles">
     <CODE code="add_pat" description="Contribution additionnelle solidarité autonomie (revenus du patrimoine)" format="percent">
