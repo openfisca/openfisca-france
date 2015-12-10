@@ -74,9 +74,10 @@ class paris_base_ressources(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
+        aspa = simulation.calculate('aspa', period)
         paris_base_ressources_i_holder = simulation.compute('paris_base_ressources_i', period)
         paris_base_ressources = self.sum_by_entity(paris_base_ressources_i_holder)
-        result = paris_base_ressources
+        result = paris_base_ressources + aspa
 
         return period, result
 
@@ -136,8 +137,9 @@ class personnes_agees(Variable):
     entity_class = Individus
 
     def function(self, simulation, period):
+        age_min = simulation.legislation_at(period.start).paris.paris_classes.age_pers_agee
         age = simulation.calculate('age', period)
-        condition_age = (age >= 65)
+        condition_age = (age >= age_min)
         return period, condition_age
 
 class personnes_handicap_paris(Variable):

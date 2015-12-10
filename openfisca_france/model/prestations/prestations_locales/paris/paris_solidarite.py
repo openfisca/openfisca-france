@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import division
 
-from numpy import (maximum as max_,  logical_not as not_,  absolute as abs_,  minimum as min_,  select)
+from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_, select)
 
 from ....base import *  # noqa analysis:ignore
 
@@ -28,9 +28,15 @@ class condition_montant_aide_psol(Variable):
     entity_class = Familles
 
     def function(self, simulation, period):
+        plafond_seul_psol = simulation.legislation_at(period.start).paris.paris_solidarite.plafond_seul_psol
+        plafond_couple_psol = simulation.legislation_at(period.start).paris.paris_solidarite.plafond_couple_psol
+
         personnes_couple = simulation.calculate('concub', period)
         ressources_mensuelles_famille = simulation.calculate('paris_base_ressources', period)
-        plafond_psol = select([personnes_couple, (personnes_couple != 1)], [1430, 900])
+        plafond_psol = select([personnes_couple, (personnes_couple != 1)], [plafond_couple_psol, plafond_seul_psol])
         condition_ressource = ressources_mensuelles_famille <= plafond_psol
-        result = select([condition_ressource, (condition_ressource != 1)], [(900 - ressources_mensuelles_famille), 0])
+        result = select([(condition_ressource * (personnes_couple != 1)), (condition_ressource * personnes_couple),
+            (condition_ressource != 1)],
+            [(plafond_seul_psol - ressources_mensuelles_famille), (plafond_couple_psol - ressources_mensuelles_famille),
+             0])
         return period, result

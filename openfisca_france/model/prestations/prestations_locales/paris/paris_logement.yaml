@@ -6,8 +6,9 @@
     parisien: True
     statut_occupation: 4
     loyer: 350
+    aspa: 800
   output_variables:
-    paris_logement_elig: True
+    paris_logement: 84
 
 
 - name: "Personne agée non éligible car n'habite pas à Paris"
@@ -18,7 +19,7 @@
     statut_occupation: 4
     loyer: 350
   output_variables:
-    paris_logement_elig: False
+    paris_logement: 0
 
 
 - name: "Personne agée non éligible car propriétaire"
@@ -29,7 +30,7 @@
     parisien: True
     statut_occupation: 2
   output_variables:
-    paris_logement_elig: False
+    paris_logement: 0
 
 
 - name: "Personne non éligible car trop jeune"
@@ -41,7 +42,7 @@
     statut_occupation: 4
     loyer: 350
   output_variables:
-    paris_logement_elig: False
+    paris_logement: 0
 
 
 - name: "Personne  éligible car en situation de handicap"
@@ -53,7 +54,7 @@
     loyer: 350
     aah: 800
   output_variables:
-    paris_logement_elig: True
+    paris_logement: 84
 
 - name: "Personne  éligible car en situation de handicap et en couple"
   period: 2014-11
@@ -65,7 +66,7 @@
     aah: 800
     concub: True
   output_variables:
-    paris_logement_elig: True
+    paris_logement: 95
 
 - name: "Personne  éligible car en situation de handicap, en couple avec 1 enfant"
   period: 2014-11
@@ -78,7 +79,7 @@
     paris_nb_enfants: 1
     loyer: 350
   output_variables:
-    paris_logement_elig: True
+    paris_logement: 116
 
 - name: "Personne  éligible avec charges logement >= 30% des ressources"
   period: 2014-11
@@ -90,7 +91,7 @@
     loyer: 350
     paris_base_ressources: 1000
   output_variables:
-    paris_logement_elig: True
+    paris_logement: 84
 
 - name: "Personne non éligible avec charges logement < 30% des ressources"
   period: 2014-11
@@ -102,5 +103,24 @@
     loyer: 250
     paris_base_ressources: 1000
   output_variables:
-    paris_logement_elig: False
+    paris_logement: 0
 
+- name: "Personne non éligible car parent mono"
+  period: 2014-11
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1"]
+    loyer: 400
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+    parisien: True
+    statut_occupation_famille: 4
+  individus:
+  - id: "parent1"
+    age: 55
+    aah: 800
+  - id: "enfant1"
+    age: 5
+  output_variables:
+    paris_logement: 0

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import division
 
-from numpy import (maximum as max_,  logical_not as not_,  absolute as abs_,  minimum as min_,  select)
+from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_, select)
 
 from ....base import *  # noqa analysis:ignore
 
@@ -13,14 +13,24 @@ class paris_logement(Variable):
     entity_class = Familles
 
     def function(self, simulation, period):
+        plafond_pl = simulation.legislation_at(period.start).paris.paris_logement.plafond_pl
+        plafond_pl_avec_enf = simulation.legislation_at(period.start).paris.paris_logement.plafond_pl_avec_enf
+        aide_pers_isol = simulation.legislation_at(period.start).paris.paris_logement.aide_pers_isol
+        aide_couple_ss_enf = simulation.legislation_at(period.start).paris.paris_logement.aide_couple_ss_enf
+        aide_couple_avec_enf = simulation.legislation_at(period.start).paris.paris_logement.aide_couple_avec_enf
+
         ressources_familiale = simulation.calculate('paris_base_ressources', period)
         personnes_couple = simulation.calculate('concub', period)
-        paris_nb_enfants = simulation.compute('paris_nb_enfants', period)
-        nb_enfants = self.sum_by_entity(paris_nb_enfants)
-        plafond = select([(nb_enfants >= 1), (nb_enfants < 1)], [1600, 1140])
+        nb_enfants = simulation.calculate('paris_nb_enfants', period)
+        paris_logement_elig = simulation.calculate('paris_logement_elig', period)
+
+        plafond = select([(nb_enfants >= 1), (nb_enfants < 1)], [plafond_pl_avec_enf, plafond_pl])
         condition_ressource = ressources_familiale <= plafond
-        result = select([(nb_enfants > 0), (personnes_couple), (personnes_couple != 1)], [116, 95, 84])
-        return period, result * condition_ressource
+        result = select([personnes_couple * (nb_enfants > 0), personnes_couple,
+            (personnes_couple != 1) * (nb_enfants == 0)],
+            [aide_couple_avec_enf, aide_couple_ss_enf, aide_pers_isol])
+
+        return period, result * condition_ressource * paris_logement_elig
 
 
 class paris_logement_elig(Variable):
@@ -51,7 +61,8 @@ class condition_taux_effort(Variable):
     entity_class = Familles
 
     def function(self, simulation, period):
+        taux_effort = simulation.legislation_at(period.start).paris.paris_logement.taux_effort
         loyer = simulation.calculate('loyer', period)
         ressources_mensuelles = simulation.calculate('paris_base_ressources', period)
-        condition_loyer = loyer >= (ressources_mensuelles * 0.3)
+        condition_loyer = loyer >= (ressources_mensuelles * taux_effort)
         return period, condition_loyer

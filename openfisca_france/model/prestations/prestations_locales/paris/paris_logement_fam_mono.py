@@ -14,6 +14,11 @@ class paris_logement_plfm(Variable):
     entity_class = Familles
 
     def function(self, simulation, period):
+        premier_plafond_plfm = simulation.legislation_at(period.start).paris.plfm.premier_plafond_plfm
+        deuxieme_plafond_plfm = simulation.legislation_at(period.start).paris.plfm.deuxieme_plafond_plfm
+        aide_1er_plafond_plfm = simulation.legislation_at(period.start).paris.plfm.aide_1er_plafond_plfm
+        aide_2eme_plafond_plfm = simulation.legislation_at(period.start).paris.plfm.aide_2eme_plafond_plfm
+
         parent_solo = simulation.calculate('isol', period)
         nb_enfants = simulation.calculate('paris_nb_enfants', period)
         parisien = simulation.calculate('parisien', period)
@@ -28,7 +33,8 @@ class paris_logement_plfm(Variable):
 
         loyer = simulation.calculate('loyer', period)
         ressources_mensuelles_famille = simulation.calculate('paris_base_ressources', period)
-        condition_plfm = select([(ressources_mensuelles_famille <= 1140), (ressources_mensuelles_famille <= 1600)], [150,128])
+        condition_plfm = select([(ressources_mensuelles_famille <= premier_plafond_plfm),
+            (ressources_mensuelles_famille <= deuxieme_plafond_plfm)], [aide_1er_plafond_plfm,aide_2eme_plafond_plfm])
         result = condition_plfm * parent_solo * (nb_enfants >= 1) * parisien * statut_occupation_plfm * (loyer > 0)
 
         return period, result
