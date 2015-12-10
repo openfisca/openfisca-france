@@ -832,9 +832,7 @@ class rsa_forfait_logement(Variable):
         rmi_nbp = simulation.calculate('rmi_nbp', period)
         aide_logement = simulation.calculate('aide_logement', period)
 
-        statut_occupation_holder = simulation.compute('statut_occupation', period)
-        statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
-        statut_occupation = self.filter_role(statut_occupation, role = CHEF)
+        statut_occupation = simulation.calculate('statut_occupation_famille', period)
 
         participation_frais_holder = simulation.compute('participation_frais', period)
         participation_frais = self.cast_from_entity_to_roles(participation_frais_holder)
