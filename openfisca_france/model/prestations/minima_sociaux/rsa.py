@@ -751,7 +751,7 @@ class rsa_eligibilite_tns(Variable):
         nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         P = simulation.legislation_at(period.start)
         P_agr = P.tns.exploitant_agricole
-        P_micro = P.impot_revenu.rpns.micro.microentreprise
+        P_micro = P.impot_revenu.rpns.micro
         maj_2p = P_agr.maj_2p
         maj_1e_2ad = P_agr.maj_1e_2ad
         maj_e_sup = P_agr.maj_e_sup
@@ -766,8 +766,8 @@ class rsa_eligibilite_tns(Variable):
             return tns_benefice_exploitant_agricole < plafond_benefice_agricole_majore
 
         def eligibilite_chiffre_affaire(ca, type_activite, P_micro):
-            plaf_vente = P_micro.vente.max
-            plaf_service = P_micro.servi.max
+            plaf_vente = P_micro.specialbnc.marchandises.max
+            plaf_service = P_micro.specialbnc.services.max
 
             return ((type_activite == 0) * (ca <= plaf_vente)) + ((type_activite >= 1) * (ca <= plaf_service))
 

@@ -116,7 +116,7 @@ class aide_logement_abattement_chomage_indemnise(Variable):
         chomage_net_m_2 = simulation.calculate('chonet', period.offset(-2))
         revenus_activite_pro = simulation.calculate('salaire_imposable', period.n_2)
         taux_abattement = simulation.legislation_at(period.start).al.ressources.abattement_chomage_indemnise
-        taux_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro.taux
+        taux_frais_pro = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro.taux
 
         abattement = and_(chomage_net_m_1 > 0, chomage_net_m_2 > 0) * taux_abattement * revenus_activite_pro
         abattement = round((1 - taux_frais_pro) * abattement)
@@ -134,7 +134,7 @@ class aide_logement_abattement_depart_retraite(Variable):
         retraite = simulation.calculate('activite', period) == 3
         activite_n_2 = simulation.calculate('salaire_imposable', period.n_2)
         retraite_n_2 = simulation.calculate('rst', period.n_2)
-        taux_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro.taux
+        taux_frais_pro = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro.taux
 
         abattement = 0.3 * activite_n_2 * (retraite_n_2 == 0) * retraite
         abattement = round((1 - taux_frais_pro) * abattement)
@@ -156,7 +156,7 @@ class aide_logement_neutralisation_rsa(Variable):
         chomage = simulation.compute('cho', period.n_2)
         activite_n_2 = self.sum_by_entity(activite)
         chomage_n_2 = self.sum_by_entity(chomage)
-        taux_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro.taux
+        taux_frais_pro = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro.taux
 
         abattement = (activite_n_2 + chomage_n_2) * rsa_last_month
         abattement = round((1 - taux_frais_pro) * abattement)
