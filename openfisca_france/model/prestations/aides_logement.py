@@ -265,9 +265,7 @@ class aide_logement_montant_brut(Variable):
         al_pac = simulation.calculate('al_pac', period)
 
         # Logement
-        statut_occupation_holder = simulation.compute('statut_occupation', period)
-        statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
-        statut_occupation = self.filter_role(statut_occupation, role = CHEF)
+        statut_occupation = simulation.calculate('statut_occupation_famille', period)
         loyer_holder = simulation.compute('loyer', period)
         loyer = self.cast_from_entity_to_roles(loyer_holder)
         loyer = self.filter_role(loyer, role = CHEF)
@@ -467,9 +465,8 @@ class alf(Variable):
         period = period.this_month
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         al_pac = simulation.calculate('al_pac', period)
-        statut_occupation_famille = simulation.calculate('statut_occupation_famille', period)
+        statut_occupation = simulation.calculate('statut_occupation_famille', period)
         proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
-        statut_occupation = statut_occupation_famille
 
         result = (al_pac >= 1) * (statut_occupation != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
         return period, result
@@ -485,10 +482,8 @@ class als_nonet(Variable):
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         al_pac = simulation.calculate('al_pac', period)
         etu_holder = simulation.compute('etu', period)
-        statut_occupation_famille = simulation.calculate('statut_occupation_famille', period)
+        statut_occupation = simulation.calculate('statut_occupation_famille', period)
         proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
-
-        statut_occupation = statut_occupation_famille
 
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         return period, (
@@ -509,11 +504,8 @@ class alset(Variable):
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         al_pac = simulation.calculate('al_pac', period)
         etu_holder = simulation.compute('etu', period)
-        statut_occupation_holder = simulation.compute('statut_occupation', period)
+        statut_occupation = simulation.calculate('statut_occupation_famille', period)
         proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
-
-        statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
-        statut_occupation = self.filter_role(statut_occupation, role = CHEF)
 
         etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         return period, (
@@ -549,10 +541,8 @@ class apl(Variable):
     def function(self, simulation, period):
         period = period.this_month
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
-        statut_occupation_holder = simulation.compute('statut_occupation', period)
+        statut_occupation = simulation.calculate('statut_occupation_famille', period)
 
-        statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
-        statut_occupation = self.filter_role(statut_occupation, role = CHEF)
         return period, aide_logement_montant * (statut_occupation == 3)
 
 
@@ -570,7 +560,7 @@ class aide_logement_non_calculable(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        statut_occupation = simulation.calculate('statut_occupation', period)
+        statut_occupation = simulation.calculate('statut_occupation_famille', period)
 
         return period, (statut_occupation == 1) * 1 + (statut_occupation == 7) * 2
 

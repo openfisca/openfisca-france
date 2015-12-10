@@ -5,7 +5,7 @@ from __future__ import division
 from functools import partial
 
 from numpy import (absolute as abs_, apply_along_axis, array, int32, logical_not as not_, logical_or as or_,
-                   maximum as max_, minimum as min_)
+                   maximum as max_, minimum as min_, select)
 
 from ...base import *  # noqa analysis:ignore
 
@@ -235,15 +235,12 @@ class cmu_base_ressources(Variable):
         paje_clca = simulation.calculate_add('paje_clca', previous_year)
         paje_prepare = simulation.calculate_add('paje_prepare', previous_year)
         aide_logement = simulation.calculate_add('aide_logement', previous_year)
-        statut_occupation_holder = simulation.compute('statut_occupation', period)
+        statut_occupation = simulation.calculate('statut_occupation_famille', period)
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
         cmu_forfait_logement_al = simulation.calculate('cmu_forfait_logement_al', period)
         age_holder = simulation.compute('age', period)
         cmu_base_ressources_i_holder = simulation.compute('cmu_base_ressources_i', period)
         P = simulation.legislation_at(period.start).cmu
-
-        statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
-        statut_occupation = self.filter_role(statut_occupation, role = CHEF)
 
         cmu_br_i_par = self.split_by_roles(cmu_base_ressources_i_holder, roles = [CHEF, PART])
         cmu_br_i_pac = self.split_by_roles(cmu_base_ressources_i_holder, roles = ENFS)
@@ -342,9 +339,10 @@ def forfait_logement(nbp_foyer, P, law_rsa):
     '''
     Calcule le forfait logement en fonction du nombre de personnes dans le "foyer CMU" et d'un jeu de taux
     '''
-    return (12 * rsa_socle_base(nbp_foyer, law_rsa) *
-        ((nbp_foyer == 1) * P.taux_1p + (nbp_foyer == 2) * P.taux_2p + (nbp_foyer > 2) * P.taux_3p_plus))
-
+    return 12 * rsa_socle_base(nbp_foyer, law_rsa) * select(
+            [nbp_foyer == 1, nbp_foyer == 2, nbp_foyer > 2],
+            [P.taux_1p, P.taux_2p, P.taux_3p_plus]
+            )
 
 def nb_par_age(age_by_role, min, max):
     '''
@@ -360,4 +358,8 @@ def rsa_socle_base(nbp, P):
     '''
     Calcule le RSA socle du foyer pour nombre de personnes donné
     '''
-    return P.rmi * (1 + P.txp2 * (nbp >= 2) + P.txp3 * (nbp >= 3) + P.txps * max_(0, nbp - 3))
+    return P.rmi * (1 +
+        P.txp2 * (nbp >= 2) +
+        P.txp3 * (nbp >= 3) +
+        P.txps * max_(0, nbp - 3)
+        )

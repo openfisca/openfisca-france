@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_)
+from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select)
 
 from ...base import *  # noqa analysis:ignore
 from ..prestations_familiales.base_ressource import nb_enf, age_en_mois_benjamin
@@ -832,9 +832,7 @@ class rsa_forfait_logement(Variable):
         rmi_nbp = simulation.calculate('rmi_nbp', period)
         aide_logement = simulation.calculate('aide_logement', period)
 
-        statut_occupation_holder = simulation.compute('statut_occupation', period)
-        statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
-        statut_occupation = self.filter_role(statut_occupation, role = CHEF)
+        statut_occupation = simulation.calculate('statut_occupation_famille', period)
 
         participation_frais_holder = simulation.compute('participation_frais', period)
         participation_frais = self.cast_from_entity_to_roles(participation_frais_holder)
@@ -942,9 +940,9 @@ class rsa_non_calculable(Variable):
             ) > 0
         non_calculable_tns_holder = simulation.compute('rsa_non_calculable_tns_i', period)
         non_calculable_tns_parents = self.split_by_roles(non_calculable_tns_holder, roles = [CHEF, PART])
-        non_calculable = (
-            (non_calculable_tns_parents[CHEF] > 0) * 1 +
-            ((1 - non_calculable_tns_parents[CHEF]) * non_calculable_tns_parents[PART] > 0) * 2
+        non_calculable = select(
+            [non_calculable_tns_parents[CHEF] > 0, non_calculable_tns_parents[PART] > 0],
+            [1, 2]
             )
         non_calculable = eligible_rsa * non_calculable
 
@@ -1039,7 +1037,8 @@ class rsa_socle(Variable):
         nbp = nb_par + nb_enfant_rsa
 
         taux = (
-            1 + (nbp >= 2) * rmi.txp2 +
+            1 + 
+            (nbp >= 2) * rmi.txp2 +
             (nbp >= 3) * rmi.txp3 +
             (nbp >= 4) * ((nb_par == 1) * rmi.txps + (nb_par != 1) * rmi.txp3) +
             max_(nbp - 4, 0) * rmi.txps

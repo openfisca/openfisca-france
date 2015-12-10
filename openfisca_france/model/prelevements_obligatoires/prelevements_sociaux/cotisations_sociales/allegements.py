@@ -2,14 +2,13 @@
 
 from __future__ import division
 
-
 from functools import partial
+import logging
+
 from numpy import (
     busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, maximum as max_,
     minimum as min_, round as round_, timedelta64
     )
-
-import logging
 
 from ....base import *  # noqa analysis:ignore
 from .....assets.holidays import holidays
@@ -44,18 +43,13 @@ class allegement_fillon(DatedVariable):
         stagiaire = simulation.calculate('stagiaire', period)
         apprenti = simulation.calculate('apprenti', period)
         allegement_fillon_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
-        allegement = (
-            # en fin d'année
-            allegement_fillon_mode_recouvrement == 0) * (
-                compute_allegement_fillon_annuel(simulation, period)
-                ) + (
-            # anticipé
-            allegement_fillon_mode_recouvrement == 1) * (
-                compute_allegement_fillon_anticipe(simulation, period)
-                ) + (
-            # cumul progressif
-            allegement_fillon_mode_recouvrement == 2) * (
-                compute_allegement_fillon_progressif(simulation, period)
+        allegement = switch(
+            allegement_fillon_mode_recouvrement,
+            {
+                0: compute_allegement_fillon_annuel(simulation, period),
+                1: compute_allegement_fillon_anticipe(simulation, period),
+                2: compute_allegement_fillon_progressif(simulation, period),
+                },
             )
         return period, allegement * not_(stagiaire) * not_(apprenti)
 
