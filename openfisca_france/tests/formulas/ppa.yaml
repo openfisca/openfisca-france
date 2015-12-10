@@ -242,3 +242,18 @@
   output_variables:
     rsa_forfait_logement:
       2016-01: 155.68
+
+- name: "PPA < seuil de versement"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    age: 40
+    statut_occupation: 4
+    salaire_net:
+      2015-12: 1520 # > 59 smic horaire brut, < 95
+      2015-11: 1520
+      2015-10: 1520
+    ppa_eligibilite: True
+  output_variables:
+    ppa:
+      2016-01: 0 # 525 + 67 - 0.38 * 1520 = 14.40 < 15

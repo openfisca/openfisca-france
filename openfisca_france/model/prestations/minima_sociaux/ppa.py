@@ -70,6 +70,7 @@ class ppa(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
+        seuil_non_versement = simulation.legislation_at(period.start).minim.ppa.seuil_non_versement
         elig = simulation.calculate('ppa_eligibilite', period)
         rsa_socle = simulation.calculate('rsa_socle', period)
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
@@ -79,5 +80,6 @@ class ppa(Variable):
         ppa = elig * (
             max_(rsa_socle, rsa_socle_majore) - ppa_base_ressources + bonification
             )
+        ppa = ppa * (ppa >= seuil_non_versement)
 
         return period, ppa
