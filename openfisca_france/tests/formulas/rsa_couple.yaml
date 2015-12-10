@@ -17,7 +17,7 @@
       "2014-01": 2
     rsa_revenu_activite_i:
       "2014-01": [0, 0]
-    br_rmi:
+    rsa_base_ressources:
       "2014-01": 0
     rsa_revenu_activite:
       "2014-01": 0
