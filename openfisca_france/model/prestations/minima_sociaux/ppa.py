@@ -12,8 +12,10 @@ class ppa_eligibilite(Variable):
     label = u"Eligibilité à la PPA"
 
     def function(self, simulation, period):
+        period = period.this_month
+        age_min = simulation.legislation_at(period.start).minim.ppa.age_min
         ppa_revenu_activite = simulation.calculate('ppa_revenu_activite', period.last_month)
-        condition_age_individus = simulation.calculate('age', period) >= 18
+        condition_age_individus = simulation.calculate('age', period) >= age_min
         condition_age = self.any_by_roles(condition_age_individus)
         elig = condition_age * ppa_revenu_activite
         return period, elig
@@ -36,9 +38,9 @@ class ppa_base_ressources(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
+        pente = simulation.legislation_at(period.start).minim.rmi.pente
         ppa_revenu_activite = simulation.calculate('ppa_revenu_activite', period)
-        pente = 0.38
-        return period, ppa_revenu_activite * pente
+        return period, ppa_revenu_activite * (1 - pente)
 
 class ppa_bonification(Variable):
     column = FloatCol
@@ -51,11 +53,11 @@ class ppa_bonification(Variable):
         smic_horaire = P.cotsoc.gen.smic_h_b
         rsa_base = P.minim.rmi.rmi
         salaire = simulation.calculate_add('salaire_net', period.last_3_months) / 3
-        plancher_1 = 59 * smic_horaire
-        plancher_2 = 95 * smic_horaire
-        bonification_max = round_(0.12782 * rsa_base)
+        seuil_1 = P.minim.ppa.bonification.seuil_1 * smic_horaire
+        seuil_2 = P.minim.ppa.bonification.seuil_2 * smic_horaire
+        bonification_max = round_(P.minim.ppa.bonification.montant_max * rsa_base)
 
-        bonification = bonification_max * (salaire - plancher_1) / (plancher_2 - plancher_1)
+        bonification = bonification_max * (salaire - seuil_1) / (seuil_2 - seuil_1)
         bonification = max_(bonification, 0)
 
         return period, bonification
