@@ -14,7 +14,7 @@
       "2014-01": 2
     rsa_revenu_activite_i:
       "2014-01": 0
-    br_rmi:
+    rsa_base_ressources:
       "2014-01": 0
     rsa_revenu_activite:
       "2014-01": 0
@@ -48,7 +48,7 @@
       "2014-01": 2
     rsa_revenu_activite_i:
       "2014-01": 416.67
-    br_rmi:
+    rsa_base_ressources:
       "2014-01": 416.67
     rsa_revenu_activite:
       "2014-01": 416.67
@@ -82,7 +82,7 @@
       "2014-01": 2
     rsa_revenu_activite_i:
       "2014-01": 833.33
-    br_rmi:
+    rsa_base_ressources:
       "2014-01": 833.33
     rsa_revenu_activite:
       "2014-01": 833.33
@@ -116,7 +116,7 @@
       "2014-01": 2
     rsa_revenu_activite_i:
       "2014-01": 1000
-    br_rmi:
+    rsa_base_ressources:
       "2014-01": 1000
     rsa_revenu_activite:
       "2014-01": 1000
@@ -150,7 +150,7 @@
       "2014-01": 2
     rsa_revenu_activite_i:
       "2014-01": 1083.33
-    br_rmi:
+    rsa_base_ressources:
       "2014-01": 1083.33
     rsa_revenu_activite:
       "2014-01": 1083.33
@@ -184,7 +184,7 @@
       "2014-01": 2
     rsa_revenu_activite_i:
       "2014-01": 1166.67
-    br_rmi:
+    rsa_base_ressources:
       "2014-01": 1166.67
     rsa_revenu_activite:
       "2014-01": 1166.67
@@ -218,7 +218,7 @@
       "2014-01": 2
     rsa_revenu_activite_i:
       "2014-01": 1250
-    br_rmi:
+    rsa_base_ressources:
       "2014-01": 1250
     rsa_revenu_activite:
       "2014-01": 1250
@@ -252,7 +252,7 @@
       "2014-01": 2
     rsa_revenu_activite_i:
       "2014-01": 1666.67
-    br_rmi:
+    rsa_base_ressources:
       "2014-01": 1666.67
     rsa_revenu_activite:
       "2014-01": 1666.67
