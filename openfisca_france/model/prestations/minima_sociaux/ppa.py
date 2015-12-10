@@ -4,7 +4,7 @@ from __future__ import division
 
 from ...base import *  # noqa analysis:ignore
 
-from numpy import maximum as max_, round as round_
+from numpy import maximum as max_, round as round_, minimum as min_
 
 class ppa_eligibilite(Variable):
     column = BoolCol
@@ -52,13 +52,14 @@ class ppa_bonification(Variable):
         P = simulation.legislation_at(period.start)
         smic_horaire = P.cotsoc.gen.smic_h_b
         rsa_base = P.minim.rmi.rmi
-        salaire = simulation.calculate_add('salaire_net', period.last_3_months) / 3
+        salaire = simulation.calculate('salaire_net', period)
         seuil_1 = P.minim.ppa.bonification.seuil_1 * smic_horaire
         seuil_2 = P.minim.ppa.bonification.seuil_2 * smic_horaire
         bonification_max = round_(P.minim.ppa.bonification.montant_max * rsa_base)
 
         bonification = bonification_max * (salaire - seuil_1) / (seuil_2 - seuil_1)
         bonification = max_(bonification, 0)
+        bonification = min_(bonification, bonification_max)
 
         return period, bonification
 
@@ -73,8 +74,10 @@ class ppa(Variable):
         rsa_socle = simulation.calculate('rsa_socle', period)
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
         ppa_base_ressources = simulation.calculate('ppa_base_ressources', period)
-        bonification_individus = simulation.compute('ppa_bonification', period)
-        bonification = self.sum_by_entity(bonification_individus)
-        ppa = elig * max_(rsa_socle, rsa_socle_majore) - ppa_base_ressources + bonification
+        bonification_individus_last_3_months = simulation.compute_add('ppa_bonification', period.last_3_months)
+        bonification = self.sum_by_entity(bonification_individus_last_3_months) / 3
+        ppa = elig * (
+            max_(rsa_socle, rsa_socle_majore) - ppa_base_ressources + bonification
+            )
 
         return period, ppa
