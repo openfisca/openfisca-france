@@ -12,11 +12,11 @@
       "2014-01": 1
     statut_occupation:
       "2014-01": 2
-    ra_rsa_i:
+    rsa_revenu_activite_i:
       "2014-01": 0
     br_rmi:
       "2014-01": 0
-    ra_rsa:
+    rsa_revenu_activite:
       "2014-01": 0
     rsa_forfait_logement:
       "2014-01": 59.92
@@ -46,11 +46,11 @@
       "2014-01": 1
     statut_occupation:
       "2014-01": 2
-    ra_rsa_i:
+    rsa_revenu_activite_i:
       "2014-01": 416.67
     br_rmi:
       "2014-01": 416.67
-    ra_rsa:
+    rsa_revenu_activite:
       "2014-01": 416.67
     rsa_forfait_logement:
       "2014-01": 59.92
@@ -80,11 +80,11 @@
       "2014-01": 1
     statut_occupation:
       "2014-01": 2
-    ra_rsa_i:
+    rsa_revenu_activite_i:
       "2014-01": 833.33
     br_rmi:
       "2014-01": 833.33
-    ra_rsa:
+    rsa_revenu_activite:
       "2014-01": 833.33
     rsa_forfait_logement:
       "2014-01": 59.92
@@ -114,11 +114,11 @@
       "2014-01": 1
     statut_occupation:
       "2014-01": 2
-    ra_rsa_i:
+    rsa_revenu_activite_i:
       "2014-01": 1000
     br_rmi:
       "2014-01": 1000
-    ra_rsa:
+    rsa_revenu_activite:
       "2014-01": 1000
     rsa_forfait_logement:
       "2014-01": 59.92
@@ -148,11 +148,11 @@
       "2014-01": 1
     statut_occupation:
       "2014-01": 2
-    ra_rsa_i:
+    rsa_revenu_activite_i:
       "2014-01": 1083.33
     br_rmi:
       "2014-01": 1083.33
-    ra_rsa:
+    rsa_revenu_activite:
       "2014-01": 1083.33
     rsa_forfait_logement:
       "2014-01": 59.92
@@ -182,11 +182,11 @@
       "2014-01": 1
     statut_occupation:
       "2014-01": 2
-    ra_rsa_i:
+    rsa_revenu_activite_i:
       "2014-01": 1166.67
     br_rmi:
       "2014-01": 1166.67
-    ra_rsa:
+    rsa_revenu_activite:
       "2014-01": 1166.67
     rsa_forfait_logement:
       "2014-01": 59.92
@@ -216,11 +216,11 @@
       "2014-01": 1
     statut_occupation:
       "2014-01": 2
-    ra_rsa_i:
+    rsa_revenu_activite_i:
       "2014-01": 1250
     br_rmi:
       "2014-01": 1250
-    ra_rsa:
+    rsa_revenu_activite:
       "2014-01": 1250
     rsa_forfait_logement:
       "2014-01": 59.92
@@ -250,11 +250,11 @@
       "2014-01": 1
     statut_occupation:
       "2014-01": 2
-    ra_rsa_i:
+    rsa_revenu_activite_i:
       "2014-01": 1666.67
     br_rmi:
       "2014-01": 1666.67
-    ra_rsa:
+    rsa_revenu_activite:
       "2014-01": 1666.67
     rsa_forfait_logement:
       "2014-01": 59.92

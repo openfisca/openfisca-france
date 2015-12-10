@@ -15,11 +15,11 @@
       "2014-01": 0
     rmi_nbp:
       "2014-01": 2
-    ra_rsa_i:
+    rsa_revenu_activite_i:
       "2014-01": [0, 0]
     br_rmi:
       "2014-01": 0
-    ra_rsa:
+    rsa_revenu_activite:
       "2014-01": 0
     rsa_forfait_logement:
       "2014-01": 119.83
