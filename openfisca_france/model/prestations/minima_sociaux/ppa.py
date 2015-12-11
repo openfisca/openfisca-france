@@ -27,8 +27,20 @@ class ppa_revenu_activite(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        salaire_individus_3_months = simulation.compute_add('salaire_net', period.last_3_months)
-        salaire = self.sum_by_entity(salaire_individus_3_months) / 3
+        ppa_revenu_activite_individus = simulation.compute('ppa_revenu_activite_i', period)
+        ppa_revenu_activite = self.sum_by_entity(ppa_revenu_activite_individus)
+
+        return period, ppa_revenu_activite
+
+class ppa_revenu_activite_i(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Revenu d'activité pris en compte pour la PPA (Individus)"
+
+    def function(self, simulation, period):
+        period = period.this_month
+        salaire = simulation.calculate_add('salaire_net', period.last_3_months) / 3
+
         return period, salaire
 
 class ppa_base_ressources(Variable):
@@ -52,12 +64,12 @@ class ppa_bonification(Variable):
         P = simulation.legislation_at(period.start)
         smic_horaire = P.cotsoc.gen.smic_h_b
         rsa_base = P.minim.rmi.rmi
-        salaire = simulation.calculate('salaire_net', period)
+        revenu_activite = simulation.calculate('ppa_revenu_activite_i', period)
         seuil_1 = P.minim.ppa.bonification.seuil_1 * smic_horaire
         seuil_2 = P.minim.ppa.bonification.seuil_2 * smic_horaire
         bonification_max = round_(P.minim.ppa.bonification.montant_max * rsa_base)
 
-        bonification = bonification_max * (salaire - seuil_1) / (seuil_2 - seuil_1)
+        bonification = bonification_max * (revenu_activite - seuil_1) / (revenu_activite - seuil_1)
         bonification = max_(bonification, 0)
         bonification = min_(bonification, bonification_max)
 
