@@ -746,18 +746,25 @@ class salaire_super_brut(Variable):
 
 
 class cout_du_travail(Variable):
-    base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
     label = u"Coût du travail : salaire super brut - aides et crédits (non immédiats)"
-    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         period = period
         salaire_super_brut = simulation.calculate('salaire_super_brut', period)
+        aides_et_credits = simulation.calculate('aides_et_credits', period)
+
+        return period, salaire_super_brut - aides_et_credits
+
+
+class aides_et_credits(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Aides et crédits (non immédiats)"
+
+    def function(self, simulation, period):
         credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
         aide_premier_salarie = simulation.calculate_add('aide_premier_salarie', period)
 
-        aides_credits = credit_impot_competitivite_emploi + aide_premier_salarie
-
-        return period, salaire_super_brut - aides_credits
+        return period, credit_impot_competitivite_emploi + aide_premier_salarie
