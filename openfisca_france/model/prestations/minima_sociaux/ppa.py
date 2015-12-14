@@ -27,19 +27,19 @@ class ppa_revenu_activite(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        ppa_revenu_activite_individus = simulation.compute('ppa_revenu_activite_i', period)
-        ppa_revenu_activite = self.sum_by_entity(ppa_revenu_activite_individus)
+        ppa_revenu_activite_individus = simulation.compute_add('ppa_revenu_activite_i', period.last_3_months)
+        ppa_revenu_activite = self.sum_by_entity(ppa_revenu_activite_individus) / 3
 
         return period, ppa_revenu_activite
 
 class ppa_revenu_activite_i(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"Revenu d'activité pris en compte pour la PPA (Individus)"
+    label = u"Revenu d'activité pris en compte pour la PPA (Individus) pour un mois"
 
     def function(self, simulation, period):
         period = period.this_month
-        salaire = simulation.calculate_add('salaire_net', period.last_3_months) / 3
+        salaire = simulation.calculate('salaire_net', period)
 
         return period, salaire
 
@@ -50,9 +50,8 @@ class ppa_base_ressources(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        pente = simulation.legislation_at(period.start).minim.rmi.pente
         ppa_revenu_activite = simulation.calculate('ppa_revenu_activite', period)
-        return period, ppa_revenu_activite * (1 - pente)
+        return period, ppa_revenu_activite
 
 class ppa_bonification(Variable):
     column = FloatCol
@@ -69,7 +68,7 @@ class ppa_bonification(Variable):
         seuil_2 = P.minim.ppa.bonification.seuil_2 * smic_horaire
         bonification_max = round_(P.minim.ppa.bonification.montant_max * rsa_base)
 
-        bonification = bonification_max * (revenu_activite - seuil_1) / (revenu_activite - seuil_1)
+        bonification = bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
         bonification = max_(bonification, 0)
         bonification = min_(bonification, bonification_max)
 
@@ -83,15 +82,29 @@ class ppa(Variable):
     def function(self, simulation, period):
         period = period.this_month
         seuil_non_versement = simulation.legislation_at(period.start).minim.ppa.seuil_non_versement
+        pente = simulation.legislation_at(period.start).minim.rmi.pente
+
         elig = simulation.calculate('ppa_eligibilite', period)
+
         rsa_socle = simulation.calculate('rsa_socle', period)
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
+        montant_forfaitaire_familialise = max_(rsa_socle, rsa_socle_majore)
+
         ppa_base_ressources = simulation.calculate('ppa_base_ressources', period)
+        ppa_revenu_activite = simulation.calculate('ppa_revenu_activite', period)
+        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
+
         bonification_individus_last_3_months = simulation.compute_add('ppa_bonification', period.last_3_months)
         bonification = self.sum_by_entity(bonification_individus_last_3_months) / 3
-        ppa = elig * (
-            max_(rsa_socle, rsa_socle_majore) - ppa_base_ressources + bonification
+
+        ppa_montant_base = (
+            montant_forfaitaire_familialise +
+            bonification +
+            pente * ppa_revenu_activite - ppa_base_ressources - rsa_forfait_logement
             )
-        ppa = ppa * (ppa >= seuil_non_versement)
+        ppa_deduction = montant_forfaitaire_familialise - ppa_base_ressources - rsa_forfait_logement
+        ppa = ppa_montant_base - max_(ppa_deduction,0)
+
+        ppa = ppa * elig * (ppa >= seuil_non_versement)
 
         return period, ppa
