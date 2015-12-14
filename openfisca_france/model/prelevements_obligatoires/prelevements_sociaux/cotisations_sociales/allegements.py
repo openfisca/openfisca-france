@@ -142,11 +142,12 @@ class credit_impot_competitivite_emploi(DatedVariable):
         return period, credit_impot_competitivite_emploi * non_cumul
 
 
-class aide_premier_salarie(Variable):
+class aide_premier_salarie(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Aide à l'embauche d'un premier salarié"
 
+    @dated_function(start = date(2015, 6, 9))
     def function(self, simulation, period):
         period_month = period.this_month
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
