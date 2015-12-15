@@ -87,3 +87,48 @@
     age: 66
   output_variables:
     paris_logement_psol: 188
+
+- name: "Couple avec revenus inférieurs au plancher pour l'aide PSOL"
+  period: 2015-11
+  familles:
+    parents: ["couple1", "couple2"]
+    parisien: True
+    statut_occupation_famille: 4
+    aspa:
+      2015-10: 850
+  individus:
+  - id: "couple1"
+    age: 65
+    salaire_net:
+      2015-10: 100
+  - id: "couple2"
+    age: 66
+  output_variables:
+    paris_logement_psol: 188
+
+- name: "Couple éligible pour l'aide PSOL"
+  period: 2014-11
+  familles:
+    parents: ["couple1", "couple2"]
+    parisien: True
+    statut_occupation_famille: 4
+    paris_base_ressources: 900
+    aspa:
+      2014-10: 100
+      2014-09: 100
+      2014-08: 100
+  individus:
+  - id: "couple1"
+    age: 65
+  - id: "couple2"
+    age: 65
+    indemnites_stage:
+      2014-10: 100
+      2014-09: 100
+      2014-08: 100
+    salaire_net:
+      2014-10: 100
+      2014-09: 100
+      2014-08: 100
+  output_variables:
+    paris_logement_psol: 188

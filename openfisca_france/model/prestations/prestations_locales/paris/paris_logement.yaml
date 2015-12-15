@@ -238,3 +238,32 @@
         year:2013-07: 22000
   output_variables:
     paris_logement: 84
+
+- name: "Personne agée qui es eligible à PL"
+  description: Personne agée qui es eligible à PL
+  period: 2015-12
+  menages:
+    personne_de_reference: "parent1"
+    loyer: 500
+  familles:
+    parents: ["parent1"]
+    parisien: True
+    statut_occupation_famille: 4
+    aspa:
+        2014-12: 0
+        2015-01: 0
+        2015-02: 0
+        2015-03: 0
+        2015-04: 0
+        2015-05: 0
+        2015-06: 0
+        2015-07: 0
+        2015-08: 0
+        2015-09: 0
+        2015-10: 0
+        2015-11: 850
+  individus:
+    - id: "parent1"
+      age: 65
+  output_variables:
+    paris_logement: 84
