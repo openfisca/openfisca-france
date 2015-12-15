@@ -1,16 +1,15 @@
 - name: "Personne éligible pour l'aide PSOL"
-  period: 2014-11
+  period: 2015-11
   input_variables:
     age: 55
     parisien: True
     statut_occupation: 4
     aah: 800
-    paris_base_ressources: 800
   output_variables:
-    paris_logement_psol: 100
+    paris_logement_psol: 92.35
 
 - name: "Personne éligible pour l'aide PSOL"
-  period: 2014-11
+  period: 2015-11
   input_variables:
     age: 65
     parisien: True
@@ -21,7 +20,7 @@
     paris_logement_psol: 100
 
 - name: "Personne non éligible pour l'aide PSOL"
-  period: 2014-11
+  period: 2015-11
   input_variables:
     age: 65
     parisien: True
@@ -31,7 +30,7 @@
     paris_logement_psol: 0
 
 - name: "Couple non éligible pour l'aide PSOL"
-  period: 2014-11
+  period: 2015-11
   familles:
     parents: ["couple1", "couple2"]
     parisien: True
@@ -58,7 +57,7 @@
     paris_logement_psol: 0
 
 - name: "Couple éligible pour l'aide PSOL"
-  period: 2014-11
+  period: 2015-11
   familles:
     parents: ["couple1", "couple2"]
     parisien: True
@@ -76,7 +75,7 @@
     paris_logement_psol: 530
 
 - name: "Couple éligible pour l'aide PSOL"
-  period: 2014-11
+  period: 2015-11
   familles:
     parents: ["couple1", "couple2"]
     parisien: True

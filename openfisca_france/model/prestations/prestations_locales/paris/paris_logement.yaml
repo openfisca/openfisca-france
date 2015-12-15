@@ -5,7 +5,7 @@
     age: 65
     parisien: True
     statut_occupation: 4
-    loyer: 350
+    loyer: 750
     aspa: 800
   output_variables:
     paris_logement: 84
@@ -51,7 +51,7 @@
     age: 55
     parisien: True
     statut_occupation: 4
-    loyer: 350
+    loyer: 550
     aah: 800
   output_variables:
     paris_logement: 84
@@ -61,8 +61,9 @@
   input_variables:
     age: 55
     parisien: True
+    concub: True
     statut_occupation: 4
-    loyer: 350
+    loyer: 550
     aah: 800
     concub: True
   output_variables:
@@ -77,7 +78,7 @@
     aah: 800
     concub: True
     paris_nb_enfants: 1
-    loyer: 350
+    loyer: 550
   output_variables:
     paris_logement: 116
 
@@ -88,8 +89,7 @@
     parisien: True
     statut_occupation: 4
     aah: 800
-    loyer: 350
-    paris_base_ressources: 1000
+    loyer: 550
   output_variables:
     paris_logement: 84
 
@@ -101,26 +101,38 @@
     statut_occupation: 4
     aah: 800
     loyer: 250
-    paris_base_ressources: 1000
   output_variables:
     paris_logement: 0
 
+- name: "Personne éligible car personne qui bénéficie d’un avantage vieillesse au titre de l’inaptitude au travail "
+  period: 2014-11
+  input_variables:
+    age: 60
+    parisien: True
+    aspa_elig: True
+    statut_occupation: 4
+    loyer: 550
+  output_variables:
+    paris_logement: 84
+
 - name: "Personne non éligible car parent mono"
   period: 2014-11
-  menages:
-    personne_de_reference: "parent1"
-    enfants: ["enfant1"]
-    loyer: 400
   familles:
     parents: ["parent1"]
-    enfants: ["enfant1"]
+    enfants: ["enfant1", "enfant2"]
     parisien: True
     statut_occupation_famille: 4
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1", "enfant2"]
+    loyer: 550
   individus:
-  - id: "parent1"
-    age: 55
-    aah: 800
-  - id: "enfant1"
-    age: 5
+    - id: "parent1"
+      age: 55
+      aah: 800
+    - id: "enfant1"
+      age: 5
+    - id: "enfant2"
+      age: 9
   output_variables:
     paris_logement: 0

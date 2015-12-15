@@ -45,6 +45,7 @@ class paris_base_ressources_i(Variable):
             indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', period)
             bourse_recherche = simulation.calculate('bourse_recherche', period)
             gains_exceptionnels = simulation.calculate('gains_exceptionnels', period)
+            aah = simulation.calculate('aah', period)
 
             def revenus_tns():
                 revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', period)
@@ -62,7 +63,7 @@ class paris_base_ressources_i(Variable):
                 rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
                 indemnites_journalieres_imposables + prestation_compensatoire +
                 pensions_invalidite + bourse_recherche + gains_exceptionnels + revenus_tns() +
-                revenus_stage_formation_pro
+                revenus_stage_formation_pro + aah
                 )
 
             return period, result
@@ -139,8 +140,9 @@ class personnes_agees(Variable):
     def function(self, simulation, period):
         age_min = simulation.legislation_at(period.start).paris.paris_classes.age_pers_agee
         age = simulation.calculate('age', period)
-        condition_age = (age >= age_min)
-        return period, condition_age
+        aspa_elig = simulation.calculate('aspa_elig', period)
+        personne_agee = (age >= age_min) + (aspa_elig)
+        return period, personne_agee
 
 class personnes_handicap_paris(Variable):
     column = BoolCol
@@ -161,3 +163,51 @@ class paris_nb_enfants(Variable):
         nb_enfants = simulation.compute('paris_enfant', period)
         paris_nb_enfants = self.sum_by_entity(nb_enfants)
         return period, paris_nb_enfants
+
+class ressources_mensuelles_ind(Variable):
+    column = FloatCol
+    label = u"Ressources mensuelles d'un individu"
+    entity_class = Individus
+
+    def function():
+        pass
+
+class condition_taux_effort(Variable):
+    column = BoolCol
+    label = u"Taux d'effort"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        taux_effort = simulation.legislation_at(period.start).paris.paris_logement.taux_effort
+        loyer = simulation.calculate('loyer', period)
+
+        ressources_mensuelles = simulation.calculate('paris_base_ressources', period)
+        charges_forfaitaire_logement = simulation.calculate('charges_forfaitaire_logement', period)
+        montant_aide_logement = simulation.calculate('montant_aide_logement', period)
+        calcul_taux_effort = (loyer + charges_forfaitaire_logement - montant_aide_logement) / ressources_mensuelles
+        condition_loyer = calcul_taux_effort > taux_effort
+        return period, condition_loyer
+
+
+class charges_forfaitaire_logement(Variable):
+    column = FloatCol
+    label = u"Charges Forfaitaire Logement (CAF)"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        charges_forf_pers_isol = simulation.legislation_at(period.start).paris.paris_classes.charges_forf_pers_isol
+        charges_forf_coloc = simulation.legislation_at(period.start).paris.paris_classes.charges_forf_coloc
+        charges_forf_couple_ss_enf = simulation.legislation_at(period.start).paris.paris_classes.charges_forf_couple_ss_enf
+        charges_forf_couple_enf = simulation.legislation_at(period.start).paris.paris_classes.charges_forf_couple_enf
+
+        colocation_obj = simulation.compute('coloc', period)
+        colocation = self.any_by_roles(colocation_obj)
+        nb_enfants = simulation.calculate('paris_nb_enfants', period)
+        couple = simulation.calculate('concub', period)
+        personne_isol = (couple != 1) * (False != 1)
+        personne_isol_coloc = (couple != 1) * colocation
+        result = select([(personne_isol * (nb_enfants < 1)),
+            (personne_isol_coloc * (nb_enfants < 1)), (couple * (nb_enfants < 1)),
+            (couple * (nb_enfants >= 1)), (personne_isol * (nb_enfants >= 1))],
+            [charges_forf_pers_isol, charges_forf_coloc, charges_forf_couple_ss_enf, charges_forf_couple_enf, 0])
+        return period, result

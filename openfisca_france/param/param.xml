@@ -6870,6 +6870,18 @@
       <CODE code="age_pers_agee" description="Age minimale d'une personne agée" format="float" type="monetary">
         <VALUE deb="2015-01-01" fin="2016-01-01" valeur="65"/>
       </CODE>
+      <CODE code="charges_forf_pers_isol" description="Charges forfaitaire de la CAF pour une personne isolée" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="53.23"/>
+      </CODE>
+      <CODE code="charges_forf_coloc" description="Charges forfaitaire de la CAF en colocation" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="26.61"/>
+      </CODE>
+      <CODE code="charges_forf_couple_ss_enf" description="Charges forfaitaire de la CAF pour un couple sans enfant" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="53.23"/>
+      </CODE>
+      <CODE code="charges_forf_couple_enf" description="Charges forfaitaire de la CAF pour un couple avec enfant" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="65.29"/>
+      </CODE>
     </NODE>
     <NODE code="paris_solidarite" description="Paris Solidarité">
       <CODE code="plafond_seul_psol" description="plafond pour une personne seule" format="float" type="monetary">
