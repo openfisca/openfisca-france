@@ -16,7 +16,7 @@ REVENUES_CATEGORIES = {
 def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6de = False, start_from = 'imposable'
     """Create a country-specific TaxBenefitSystem."""
     # from openfisca_core.columns import FloatCol
-    from openfisca_core.taxbenefitsystems import LegacyTaxBenefitSystem
+    from openfisca_core.taxbenefitsystems import MultipleXmlBasedTaxBenefitSystem
     if qt:
         from openfisca_qt import widgets as qt_widgets
 
@@ -46,7 +46,7 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
     if qt:
         qt_widgets.CompositionWidget = CompositionWidget
 
-    class TaxBenefitSystem(LegacyTaxBenefitSystem):
+    class TaxBenefitSystem(MultipleXmlBasedTaxBenefitSystem):
         """French tax benefit system"""
         check_consistency = None  # staticmethod(utils.check_consistency)
         CURRENCY = CURRENCY
@@ -64,7 +64,16 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
 
         columns_name_tree_by_entity = datatrees.columns_name_tree_by_entity
 
-        legislation_xml_file_path = os.path.join(COUNTRY_DIR, 'param', 'param.xml')
+        legislation_xml_info_list = [
+            (
+                os.path.join(COUNTRY_DIR, 'param', 'param.xml'),
+                None,
+                ),
+            # (
+            #     os.path.join(COUNTRY_DIR, 'assets', 'xxx', 'yyy.xml'),
+            #     ('insert', 'into', 'existing', 'element'),
+            #     ),
+            ]
 
         preprocess_legislation = staticmethod(preprocessing.preprocess_legislation)
 
