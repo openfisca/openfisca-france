@@ -138,7 +138,7 @@ class personnes_agees(Variable):
     entity_class = Individus
 
     def function(self, simulation, period):
-        age_min = simulation.legislation_at(period.start).paris.paris_classes.age_pers_agee
+        age_min = simulation.legislation_at(period.start).paris.age_pers_agee
         age = simulation.calculate('age', period)
         aspa_elig = simulation.calculate('aspa_elig', period)
         personne_agee = (age >= age_min) + (aspa_elig)
@@ -164,14 +164,6 @@ class paris_nb_enfants(Variable):
         paris_nb_enfants = self.sum_by_entity(nb_enfants)
         return period, paris_nb_enfants
 
-class ressources_mensuelles_ind(Variable):
-    column = FloatCol
-    label = u"Ressources mensuelles d'un individu"
-    entity_class = Individus
-
-    def function():
-        pass
-
 class condition_taux_effort(Variable):
     column = BoolCol
     label = u"Taux d'effort"
@@ -183,9 +175,9 @@ class condition_taux_effort(Variable):
 
         ressources_mensuelles = simulation.calculate('paris_base_ressources', period)
         charges_forfaitaire_logement = simulation.calculate('charges_forfaitaire_logement', period)
-        montant_aide_logement = simulation.calculate('montant_aide_logement', period)
+        montant_aide_logement = simulation.calculate('aide_logement', period)
         calcul_taux_effort = (loyer + charges_forfaitaire_logement - montant_aide_logement) / ressources_mensuelles
-        condition_loyer = calcul_taux_effort > taux_effort
+        condition_loyer = calcul_taux_effort >= taux_effort
         return period, condition_loyer
 
 
@@ -195,16 +187,16 @@ class charges_forfaitaire_logement(Variable):
     entity_class = Familles
 
     def function(self, simulation, period):
-        charges_forf_pers_isol = simulation.legislation_at(period.start).paris.paris_classes.charges_forf_pers_isol
-        charges_forf_coloc = simulation.legislation_at(period.start).paris.paris_classes.charges_forf_coloc
-        charges_forf_couple_ss_enf = simulation.legislation_at(period.start).paris.paris_classes.charges_forf_couple_ss_enf
-        charges_forf_couple_enf = simulation.legislation_at(period.start).paris.paris_classes.charges_forf_couple_enf
+        charges_forf_pers_isol = simulation.legislation_at(period.start).paris.charges_forf_pers_isol
+        charges_forf_coloc = simulation.legislation_at(period.start).paris.charges_forf_coloc
+        charges_forf_couple_ss_enf = simulation.legislation_at(period.start).paris.charges_forf_couple_ss_enf
+        charges_forf_couple_enf = simulation.legislation_at(period.start).paris.charges_forf_couple_enf
 
         colocation_obj = simulation.compute('coloc', period)
         colocation = self.any_by_roles(colocation_obj)
         nb_enfants = simulation.calculate('paris_nb_enfants', period)
         couple = simulation.calculate('concub', period)
-        personne_isol = (couple != 1) * (False != 1)
+        personne_isol = (couple != 1) * (colocation != 1)
         personne_isol_coloc = (couple != 1) * colocation
         result = select([(personne_isol * (nb_enfants < 1)),
             (personne_isol_coloc * (nb_enfants < 1)), (couple * (nb_enfants < 1)),
