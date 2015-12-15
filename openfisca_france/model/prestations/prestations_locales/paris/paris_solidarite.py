@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import division
 
-from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_, select)
+from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_, select, where)
 
 from ....base import *  # noqa analysis:ignore
 
@@ -43,12 +43,8 @@ class montant_aide_personne_agee(Variable):
 
         plafond_psol = select([personnes_couple, (personnes_couple != 1)], [plafond_couple_psol, plafond_seul_psol])
 
-        ressources_mensuelles_min = select([(personnes_couple != 1) * (ressources_mensuelles < montant_seul),
-            personnes_couple * (ressources_mensuelles < montant_couple),
-            (personnes_couple != 1) * (ressources_mensuelles >= montant_seul),
-            personnes_couple * (ressources_mensuelles >= montant_couple),
-            (ressources_mensuelles >= plafond_psol)],
-            [montant_seul, montant_couple, ressources_mensuelles, ressources_mensuelles, ressources_mensuelles])
+        plancher_ressources = where(personnes_couple, montant_couple, montant_seul)
+        ressources_mensuelles_min = where(ressources_mensuelles < plancher_ressources, plancher_ressources, ressources_mensuelles)
 
         result = select([((personnes_couple != 1) * (ressources_mensuelles_min <= plafond_psol)),
             personnes_couple * (ressources_mensuelles_min <= plafond_psol),
