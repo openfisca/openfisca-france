@@ -136,3 +136,105 @@
       age: 9
   output_variables:
     paris_logement: 0
+
+- name: "Personne agée qui es eligible à PL"
+  description: Personne agée qui es eligible à PL
+  period: 2014-11
+  menages:
+    personne_de_reference: "parent1"
+    loyer: 550
+  familles:
+    parents: ["parent1"]
+    parisien: True
+    statut_occupation_famille: 4
+    apl:
+      2013-07: 0
+      2013-08: 0
+      2013-09: 0
+      2013-10: 0
+      2013-11: 0
+      2013-12: 0
+      2014-01: 0
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      year:2013-07: 5000
+    aspa:
+      2013-07: 0
+      2013-08: 0
+      2013-09: 0
+      2013-10: 0
+      2013-11: 0
+      2013-12: 0
+      2014-01: 0
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      year:2013-07: 9600
+  individus:
+    - id: "parent1"
+      age: 65
+  output_variables:
+    paris_logement: 84
+
+- name: "Personne handicapé qui es eligible à PL"
+  description: Personne handicapé qui es eligible à PL
+  period: 2014-07
+  menages:
+    personne_de_reference: "parent1"
+    loyer: 550
+  familles:
+    parents: ["parent1"]
+    parisien: True
+    statut_occupation_famille: 4
+    apl:
+      2013-07: 0
+      2013-08: 0
+      2013-09: 0
+      2013-10: 0
+      2013-11: 0
+      2013-12: 0
+      2014-01: 0
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      year:2013-07: 5000
+  individus:
+    - id: "parent1"
+      age: 65
+      aah:
+        2013-07: 0
+        2013-08: 0
+        2013-09: 0
+        2013-10: 0
+        2013-11: 0
+        2013-12: 0
+        2014-01: 0
+        2014-02: 0
+        2014-03: 0
+        2014-04: 0
+        2014-05: 0
+        2014-06: 0
+        year:2013-07: 4500
+      chonet:
+        2013-07: 0
+        2013-08: 0
+        2013-09: 0
+        2013-10: 0
+        2013-11: 0
+        2013-12: 0
+        2014-01: 0
+        2014-02: 0
+        2014-03: 0
+        2014-04: 0
+        2014-05: 0
+        2014-06: 2000
+        year:2013-07: 22000
+  output_variables:
+    paris_logement: 84
