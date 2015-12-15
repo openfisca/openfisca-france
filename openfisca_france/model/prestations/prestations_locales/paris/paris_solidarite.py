@@ -45,11 +45,13 @@ class montant_aide_personne_agee(Variable):
 
         plafond_psol = select([personnes_couple, (personnes_couple != 1)], [plafond_couple_psol, plafond_seul_psol])
 
-        ressources_mensuelles_min = select([(personnes_couple != 1) * (ressources_mensuelles <= plafond_psol) *
+        ressources_mensuelles_min = select([(personnes_couple != 1) * (ressources_mensuelles < montant_seul) *
             (personne_handicap != 1),
-            personnes_couple * (ressources_mensuelles <= plafond_psol) * (personne_handicap != 1),
+            personnes_couple * (ressources_mensuelles >= montant_couple) * (personne_handicap != 1),
+            (personnes_couple != 1) * (ressources_mensuelles >= montant_seul) * (personne_handicap != 1),
+            personnes_couple * (ressources_mensuelles < montant_couple) * (personne_handicap != 1),
             (ressources_mensuelles >= plafond_psol) * (personne_handicap != 1), personne_handicap],
-            [montant_seul, montant_couple, ressources_mensuelles, ressources_mensuelles])
+            [montant_seul, montant_couple, ressources_mensuelles, ressources_mensuelles, ressources_mensuelles, ressources_mensuelles])
 
         result = select([((personnes_couple != 1) * (ressources_mensuelles_min <= plafond_psol)),
             personnes_couple * (ressources_mensuelles_min <= plafond_psol),

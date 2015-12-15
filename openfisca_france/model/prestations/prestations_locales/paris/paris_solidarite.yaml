@@ -14,10 +14,9 @@
     age: 65
     parisien: True
     statut_occupation: 4
-    aspa: 800
-    paris_base_ressources: 800
+    paris_base_ressources: 850
   output_variables:
-    paris_logement_psol: 100
+    paris_logement_psol: 50
 
 - name: "Personne non éligible pour l'aide PSOL"
   period: 2015-11
@@ -25,7 +24,7 @@
     age: 65
     parisien: True
     statut_occupation: 4
-    paris_base_ressources: 1800
+    paris_base_ressources: 900
   output_variables:
     paris_logement_psol: 0
 
