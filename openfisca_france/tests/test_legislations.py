@@ -67,9 +67,3 @@ def check_legislation_xml_file(year):
 def test_legislation_xml_file():
     for year in range(2006, datetime.date.today().year + 1):
         yield check_legislation_xml_file, year
-
-
-if __name__ == '__main__':
-    test_legislation_xml_file()
-    import nose
-    nose.core.runmodule(argv = [__file__, '-v', 'test_legislations:test_legislation_xml_file'])
