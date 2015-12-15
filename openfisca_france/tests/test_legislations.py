@@ -2,7 +2,6 @@
 
 import datetime
 import json
-import xml.etree.ElementTree
 
 from openfisca_core import conv, legislations, legislationsxml
 
@@ -14,9 +13,12 @@ TaxBenefitSystem = init_country()
 
 
 def check_legislation_xml_file(year):
-    legislation_tree = xml.etree.ElementTree.parse(TaxBenefitSystem.legislation_xml_file_path)
-    legislation_xml_json = conv.check(legislationsxml.xml_legislation_to_json)(legislation_tree.getroot(),
-        state = conv.default_state)
+    legislation_tree = conv.check(legislationsxml.xml_legislation_info_list_to_xml_element)(
+        TaxBenefitSystem.legislation_xml_info_list, state = conv.default_state)
+    legislation_xml_json = conv.check(legislationsxml.xml_legislation_to_json)(
+        legislation_tree,
+        state = conv.default_state,
+        )
 
     legislation_xml_json, errors = legislationsxml.validate_legislation_xml_json(legislation_xml_json,
         state = conv.default_state)
