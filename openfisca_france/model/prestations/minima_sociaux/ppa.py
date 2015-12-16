@@ -39,9 +39,17 @@ class ppa_revenu_activite_i(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        salaire = simulation.calculate('salaire_net', period)
+        ressources = [
+            'salaire_net',
+            'revenus_stage_formation_pro',
+            'bourse_recherche',
+            'indemnites_chomage_partiel',
+            'indemnites_journalieres'
+            ]
 
-        return period, salaire
+        ppa_revenu_activite_i = sum(simulation.calculate(ressource, period) for ressource in ressources)
+
+        return period, ppa_revenu_activite_i
 
 class ppa_base_ressources(Variable):
     column = FloatCol
