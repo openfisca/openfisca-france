@@ -241,53 +241,213 @@ def transform_ipp_tree(root):
     employeurs = ags.pop('employeurs')
     ags['employeur'] = fixed_bases_tax_scale(
         base_by_slice_name = dict(
-            tranche_a = 0,
+            tranche_a_b = 0,
             ),
         null_rate_base = 4,
         rates_tree = dict(
-            tranche_a = employeurs.pop('sous_4_pss'),
+            tranche_a_b = employeurs.pop('sous_4_pss'),
             ),
         )
     assert not employeurs, employeurs
     #
-    cotisations_sociales['apec'] = prelevements_sociaux.pop('apec_f')
-    # apec-f:
-    #   RENAME: cotisations_sociales.apec
-    # # TODO find a way to separate or combine these two baremes
-    # # apec:
-    # #   RENAME: cotisations_sociales.apec
-    # #   sous_4_pss:
-    # #     salarie:
-    # #       TYPE: BAREME
-    # #       TRANCHE: apec_s_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
-    # #     employeur:
-    # #       TYPE: BAREME
-    # #       TRANCHE: apec_p_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
-    # #   tranche_b_de_1_a_4_pss:
-    # #     salarie:
-    # #       TYPE: BAREME
-    # #       TRANCHE: apec_s_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
-    # #     employeur:
-    # #       TYPE: BAREME
-    # #       TRANCHE: apec_p_(?P<SEUIL_MIN>\d+)_(?P<SEUIL_MAX>\d+)$
+    cotisations_sociales['apec'] = apec = prelevements_sociaux.pop('apec_f')
+    apec_baremes = prelevements_sociaux.pop('apec')
+    tranche_b = apec_baremes.pop('tranche_b_de_1_a_4_pss')
+    tranche_a_b = apec_baremes.pop('sous_4_pss')
+    apec['employeur_avant_2011'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_a = 0,
+            tranche_b = 1,
+            ),
+        null_rate_base = 4,
+        rates_tree = dict(
+            tranche_a = 0,
+            tranche_b = tranche_b.pop('employeur'),
+            ),
+        )
+    apec['employeur'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_a_b = 0,
+            ),
+        null_rate_base = 4,
+        rates_tree = dict(
+            tranche_a_b = tranche_a_b.pop('employeur'),
+            ),
+        )
+    apec['salarie_avant_2011'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_a = 0,
+            tranche_b = 1,
+            ),
+        null_rate_base = 4,
+        rates_tree = dict(
+            tranche_a = 0,
+            tranche_b = tranche_b.pop('salarie'),
+            ),
+        )
+    apec['salarie'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_a_b = 0,
+            ),
+        null_rate_base = 4,
+        rates_tree = dict(
+            tranche_a_b = tranche_a_b.pop('salarie'),
+            ),
+        )
+    assert not tranche_b, tranche_b
+    assert not tranche_a_b, tranche_a_b
     #
-    cotisations_sociales['chomage'] = chomage = prelevements_sociaux.pop('chomage')
-    chomage['employeur'] = fixed_bases_tax_scale(
+    cotisations_sociales['apprentissage'] = apprentissage = prelevements_sociaux.pop('apprentissage')
+    employeur_tout_salaire = apprentissage.pop('employeur_tout_salaire')
+    apprentissage['taxe_apprentissage'] = fixed_bases_tax_scale(
         base_by_slice_name = dict(
-            tranche_a = 0,
-            tranche_b = 1,
+            tranche_unique = 0,
             ),
-        null_rate_base = 4,
-        rates_tree = chomage.pop('employeurs'),
+        rates_tree = dict(
+            tranche_unique = employeur_tout_salaire.pop('taxe_d_apprentissage'),
+            ),
         )
-    chomage['salarie'] = fixed_bases_tax_scale(
+    # assert not employeur_tout_salaire
+    del employeur_tout_salaire
+    #
+    cotisations_sociales['arrco'] = arrco = prelevements_sociaux.pop('arrco')
+    taux_effectifs_salaries_employeurs = arrco.pop('taux_effectifs_salaries_employeurs')
+    arrco_taux_effectifs_tranche_1 = taux_effectifs_salaries_employeurs.pop('tranche_1')
+    arrco_taux_effectifs_tranche_2 = taux_effectifs_salaries_employeurs.pop('tranche_2_apres_1997')
+    arrco['employeur'] = fixed_bases_tax_scale(
         base_by_slice_name = dict(
-            tranche_a = 0,
-            tranche_b = 1,
+            tranche_1 = 0,
+            tranche_2 = 1,
             ),
-        null_rate_base = 4,
-        rates_tree = chomage.pop('salaries'),
+        null_rate_base = 3,
+        rates_tree = dict(
+            tranche_1 = arrco_taux_effectifs_tranche_1.pop('employeur'),
+            tranche_2 = arrco_taux_effectifs_tranche_2.pop('employeur'),
+            )
         )
+    arrco['salarie'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_1 = 0,
+            tranche_2 = 1,
+            ),
+        null_rate_base = 3,
+        rates_tree = dict(
+            tranche_1 = arrco_taux_effectifs_tranche_1.pop('salarie'),
+            tranche_2 = arrco_taux_effectifs_tranche_2.pop('salarie'),
+            )
+        )
+    assert not arrco_taux_effectifs_tranche_1
+    assert not arrco_taux_effectifs_tranche_2
+    #
+    # TODO asf 1984-2001
+    # TODO aubry
+    # TODO auto_entrepreneur
+    #
+    cotisations_sociales['casa'] = casa = prelevements_sociaux.pop('casa')
+    casa['pension'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        rates_tree = dict(
+            tranche_unique = casa.pop('pensions_de_retraite_de_preretraite_et_d_invalidite'),
+            )
+        )
+    #
+    cotisations_sociales['cet'] = cet = prelevements_sociaux.pop('cet')
+    tranche_c_salaire_sous_8_pss = cet.pop('tranche_c_salaire_sous_8_pss')
+    cet['employeur'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_c = 0,
+            ),
+        null_rate_base = 8,
+        rates_tree = dict(
+            tranche_c = tranche_c_salaire_sous_8_pss.pop('employeur'),
+            )
+        )
+    cet['salarie'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_c = 0,
+            ),
+        null_rate_base = 8,
+        rates_tree = dict(
+            tranche_c = tranche_c_salaire_sous_8_pss.pop('salarie'),
+            )
+        )
+    assert not tranche_c_salaire_sous_8_pss
+    #
+    vieillesse = prelevements_sociaux.pop('cnav')
+    cotisations_sociales['vieillesse_deplafonnee'] = vieillesse_deplafonnee = vieillesse.pop('sur_tout_salaire')
+    cotisations_sociales['vieillesse_plafonnee'] = vieillesse_plafonnee = vieillesse.pop('salaire_sous_plafond')
+    vieillesse_deplafonnee['employeur'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        rates_tree = dict(
+            tranche_unique = vieillesse_deplafonnee.pop('employeurs'),
+            )
+        )
+    vieillesse_deplafonnee['salarie'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        rates_tree = dict(
+            tranche_unique = vieillesse_deplafonnee.pop('salaries'),
+            )
+        )
+    vieillesse_plafonnee['employeur'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        null_rate_base = 1,
+        rates_tree = dict(
+            tranche_unique = vieillesse_plafonnee.pop('employeurs'),
+            )
+        )
+    vieillesse_plafonnee['salarie'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        null_rate_base = 1,
+        rates_tree = dict(
+            tranche_unique = vieillesse_plafonnee.pop('salaries'),
+            )
+        )
+    # assert not vieillesse_deplafonnee
+    # assert not vieillesse_plafonnee
+    #
+    # TODO CNRACL 
+    #
+    cotisations_sociales['construction'] = construction = prelevements_sociaux.pop('construction')
+    construction_employeur_sur_tout_salaire = construction.pop('employeur_sur_tout_salaire')
+    construction['construction_10_19'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        rates_tree = dict(
+            tranche_unique = construction_employeur_sur_tout_salaire.pop('de_10_a_19_salaries'),
+            ),
+        )
+    construction['construction_20'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        rates_tree = dict(
+            tranche_unique = construction_employeur_sur_tout_salaire.pop('plus_de_20_salaries'),
+            ),
+        )
+    assert not construction_employeur_sur_tout_salaire
+    # 
+    famille = prelevements_sociaux.pop('famille')
+    famille_sur_tout_salaire = famille.pop('sur_tout_salaire')
+    cotisations_sociales['famille'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        rates_tree = dict(
+            tranche_unique = famille_sur_tout_salaire.pop('employeurs'),
+            ),
+        )
+    assert not famille_sur_tout_salaire
     #
     cotisations_sociales['mmid'] = mmid = prelevements_sociaux.pop('mmid')
     salaire_sous_plafond = mmid.pop('salaire_sous_plafond')
