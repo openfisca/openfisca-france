@@ -16,15 +16,17 @@ class indemnites_journalieres(Variable):
     entity_class = Individus
 
     def function(self, simulation, period):
-        indemnites_journalieres_maternite = simulation.calculate('indemnites_journalieres_maternite', period)
-        indemnites_journalieres_paternite = simulation.calculate('indemnites_journalieres_paternite', period)
-        indemnites_journalieres_adoption = simulation.calculate('indemnites_journalieres_adoption', period)
-        indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
-        indemnites_journalieres_accident_travail = simulation.calculate('indemnites_journalieres_accident_travail', period)
-        indemnites_journalieres_maladie_professionnelle = simulation.calculate('indemnites_journalieres_accident_travail', period)
-        result = indemnites_journalieres_maternite + indemnites_journalieres_paternite + indemnites_journalieres_adoption + indemnites_journalieres_maladie + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle
+        ressources = [
+            'indemnites_journalieres_maternite',
+            'indemnites_journalieres_paternite',
+            'indemnites_journalieres_adoption',
+            'indemnites_journalieres_maladie',
+            'indemnites_journalieres_accident_travail',
+            'indemnites_journalieres_maladie_professionnelle',
+            ]
+        total = sum(simulation.calculate(ressource, period) for ressource in ressources)
 
-        return period, result
+        return period, total
 
 
 class indemnites_journalieres_imposables(Variable):
