@@ -3,7 +3,7 @@
 from __future__ import division
 
 from numpy import maximum as max_
-from openfisca_core import columns, formulas, reforms
+from openfisca_core import columns, reforms
 
 from .. import entities
 from ..model.base import QUIFOY
@@ -17,8 +17,7 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    @Reform.formula
-    class rbg(formulas.SimpleFormulaColumn):
+    class rbg(Reform.Variable):
         label = u"Nouveau revenu brut global intégrant les allocations familiales"
         reference = ir.rbg
 
@@ -39,8 +38,7 @@ def build_reform(tax_benefit_system):
                 (self.sum_by_entity(nbic_impm_holder) + nacc_pvce) * (1 + cga) - deficit_ante
                 )
 
-    @Reform.formula
-    class rfr(formulas.SimpleFormulaColumn):
+    class rfr(Reform.Variable):
         label = u"Nouveau revenu fiscal de référence intégrant les allocations familiales"
         reference = ir.rfr
 
@@ -69,8 +67,7 @@ def build_reform(tax_benefit_system):
                 rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vz + microentreprise
                 )
 
-    @Reform.formula
-    class allocations_familiales_imposables(formulas.SimpleFormulaColumn):
+    class allocations_familiales_imposables(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
         label = u"Allocations familiales imposables"

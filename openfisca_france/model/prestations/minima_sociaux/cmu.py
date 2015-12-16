@@ -5,13 +5,12 @@ from __future__ import division
 from functools import partial
 
 from numpy import (absolute as abs_, apply_along_axis, array, int32, logical_not as not_, logical_or as or_,
-                   maximum as max_, minimum as min_)
+                   maximum as max_, minimum as min_, select)
 
 from ...base import *  # noqa analysis:ignore
 
 
-@reference_formula
-class acs_montant(DatedFormulaColumn):
+class acs_montant(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Montant de l'ACS en cas d'éligibilité"
@@ -31,8 +30,7 @@ class acs_montant(DatedFormulaColumn):
             nb_par_age(ages_couple, 60, 200) * P.acs_plus_60_ans)
 
 
-@reference_formula
-class cmu_forfait_logement_base(SimpleFormulaColumn):
+class cmu_forfait_logement_base(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
@@ -46,8 +44,7 @@ class cmu_forfait_logement_base(SimpleFormulaColumn):
         return period, forfait_logement(cmu_nbp_foyer, P, law_rsa)
 
 
-@reference_formula
-class cmu_forfait_logement_al(SimpleFormulaColumn):
+class cmu_forfait_logement_al(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Forfait logement applicable en cas d'aide au logement"
@@ -61,8 +58,7 @@ class cmu_forfait_logement_al(SimpleFormulaColumn):
         return period, forfait_logement(cmu_nbp_foyer, P, law_rsa)
 
 
-@reference_formula
-class cmu_nbp_foyer(SimpleFormulaColumn):
+class cmu_nbp_foyer(Variable):
     column = PeriodSizeIndependentIntCol
     entity_class = Familles
     label = u"Nombre de personnes dans le foyer CMU"
@@ -75,8 +71,7 @@ class cmu_nbp_foyer(SimpleFormulaColumn):
         return period, nb_par + cmu_nb_pac
 
 
-@reference_formula
-class cmu_eligible_majoration_dom(SimpleFormulaColumn):
+class cmu_eligible_majoration_dom(Variable):
     column = BoolCol
     entity_class = Familles
 
@@ -90,8 +85,7 @@ class cmu_eligible_majoration_dom(SimpleFormulaColumn):
         return period, residence_guadeloupe | residence_martinique | residence_guyane | residence_reunion
 
 
-@reference_formula
-class cmu_c_plafond(SimpleFormulaColumn):
+class cmu_c_plafond(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
@@ -142,8 +136,7 @@ class cmu_c_plafond(SimpleFormulaColumn):
             )
 
 
-@reference_formula
-class acs_plafond(SimpleFormulaColumn):
+class acs_plafond(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Plafond annuel de ressources pour l'éligibilité à l'ACS"
@@ -156,8 +149,7 @@ class acs_plafond(SimpleFormulaColumn):
         return period, cmu_c_plafond * (1 + P.majoration_plafond_acs)
 
 
-@reference_formula
-class cmu_base_ressources_i(SimpleFormulaColumn):
+class cmu_base_ressources_i(Variable):
     column = FloatCol
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Individus
@@ -226,8 +218,7 @@ class cmu_base_ressources_i(SimpleFormulaColumn):
             gains_exceptionnels + revenus_tns() + revenus_stage_formation_pro)
 
 
-@reference_formula
-class cmu_base_ressources(SimpleFormulaColumn):
+class cmu_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Familles
@@ -244,15 +235,12 @@ class cmu_base_ressources(SimpleFormulaColumn):
         paje_clca = simulation.calculate_add('paje_clca', previous_year)
         paje_prepare = simulation.calculate_add('paje_prepare', previous_year)
         aide_logement = simulation.calculate_add('aide_logement', previous_year)
-        statut_occupation_holder = simulation.compute('statut_occupation', period)
+        statut_occupation = simulation.calculate('statut_occupation_famille', period)
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
         cmu_forfait_logement_al = simulation.calculate('cmu_forfait_logement_al', period)
         age_holder = simulation.compute('age', period)
         cmu_base_ressources_i_holder = simulation.compute('cmu_base_ressources_i', period)
         P = simulation.legislation_at(period.start).cmu
-
-        statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
-        statut_occupation = self.filter_role(statut_occupation, role = CHEF)
 
         cmu_br_i_par = self.split_by_roles(cmu_base_ressources_i_holder, roles = [CHEF, PART])
         cmu_br_i_pac = self.split_by_roles(cmu_base_ressources_i_holder, roles = ENFS)
@@ -274,8 +262,7 @@ class cmu_base_ressources(SimpleFormulaColumn):
         return period, res
 
 
-@reference_formula
-class cmu_nb_pac(SimpleFormulaColumn):
+class cmu_nb_pac(Variable):
     column = PeriodSizeIndependentIntCol
     entity_class = Familles
     label = u"Nombre de personnes à charge au titre de la CMU"
@@ -289,8 +276,7 @@ class cmu_nb_pac(SimpleFormulaColumn):
         return period, nb_par_age(ages, 0, P.age_limite_pac)
 
 
-@reference_formula
-class cmu_c(SimpleFormulaColumn):
+class cmu_c(Variable):
     '''
     Détermine si le foyer a droit à la CMU complémentaire
     '''
@@ -324,8 +310,7 @@ class cmu_c(SimpleFormulaColumn):
         return period, not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
 
 
-@reference_formula
-class acs(SimpleFormulaColumn):
+class acs(Variable):
     '''
     Calcule le montant de l'ACS auquel le foyer a droit
     '''
@@ -354,9 +339,10 @@ def forfait_logement(nbp_foyer, P, law_rsa):
     '''
     Calcule le forfait logement en fonction du nombre de personnes dans le "foyer CMU" et d'un jeu de taux
     '''
-    return (12 * rsa_socle_base(nbp_foyer, law_rsa) *
-        ((nbp_foyer == 1) * P.taux_1p + (nbp_foyer == 2) * P.taux_2p + (nbp_foyer > 2) * P.taux_3p_plus))
-
+    return 12 * rsa_socle_base(nbp_foyer, law_rsa) * select(
+            [nbp_foyer == 1, nbp_foyer == 2, nbp_foyer > 2],
+            [P.taux_1p, P.taux_2p, P.taux_3p_plus]
+            )
 
 def nb_par_age(age_by_role, min, max):
     '''
@@ -372,4 +358,8 @@ def rsa_socle_base(nbp, P):
     '''
     Calcule le RSA socle du foyer pour nombre de personnes donné
     '''
-    return P.rmi * (1 + P.txp2 * (nbp >= 2) + P.txp3 * (nbp >= 3) + P.txps * max_(0, nbp - 3))
+    return P.rmi * (1 +
+        P.txp2 * (nbp >= 2) +
+        P.txp3 * (nbp >= 3) +
+        P.txps * max_(0, nbp - 3)
+        )

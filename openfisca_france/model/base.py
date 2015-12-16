@@ -7,16 +7,17 @@ from openfisca_core.columns import (AgeCol, BoolCol, build_column, DateCol, Enum
     PeriodSizeIndependentIntCol, StrCol)
 from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import (calculate_output_add, calculate_output_add_divide, calculate_output_divide,
-    dated_function, DatedFormulaColumn, EntityToPersonColumn, last_duration_last_value,
-    make_formula_decorator, missing_value, PersonToEntityColumn, reference_input_variable,
+    dated_function, DatedVariable, EntityToPersonColumn, last_duration_last_value, missing_value, PersonToEntityColumn,
     requested_period_added_value, requested_period_default_value, requested_period_last_value,
-    set_input_dispatch_by_period, set_input_divide_by_period, SimpleFormulaColumn)
+    set_input_dispatch_by_period, set_input_divide_by_period, Variable)
+from openfisca_core.formula_helpers import apply_thresholds, switch
 
 from ..entities import entity_class_by_symbol, Familles, FoyersFiscaux, Individus, Menages
 
 
 __all__ = [
     'AgeCol',
+    'apply_thresholds',
     'build_column',
     'BoolCol',
     'calculate_output_add',
@@ -29,7 +30,7 @@ __all__ = [
     'date',
     'DateCol',
     'dated_function',
-    'DatedFormulaColumn',
+    'DatedVariable',
     'ENFS',
     'EntityToPersonColumn',
     'Enum',
@@ -53,14 +54,13 @@ __all__ = [
     'QUIFAM',
     'QUIFOY',
     'QUIMEN',
-    'reference_formula',
-    'reference_input_variable',
     'requested_period_added_value',
     'requested_period_default_value',
     'requested_period_last_value',
     'set_input_dispatch_by_period',
     'set_input_divide_by_period',
-    'SimpleFormulaColumn',
+    'switch',
+    'Variable',
     'StrCol',
     'TAUX_DE_PRIME',
     'VOUS',
@@ -104,5 +104,3 @@ build_column = functools.partial(
     build_column,
     entity_class_by_symbol = entity_class_by_symbol,
     )
-
-reference_formula = make_formula_decorator(entity_class_by_symbol = entity_class_by_symbol)

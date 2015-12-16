@@ -2,14 +2,13 @@
 
 from __future__ import division
 
-
 from functools import partial
+import logging
+
 from numpy import (
     busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, maximum as max_,
     minimum as min_, round as round_, timedelta64
     )
-
-import logging
 
 from ....base import *  # noqa analysis:ignore
 from .....assets.holidays import holidays
@@ -17,8 +16,7 @@ from .....assets.holidays import holidays
 log = logging.getLogger(__name__)
 
 
-@reference_formula
-class assiette_allegement(SimpleFormulaColumn):
+class assiette_allegement(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -34,8 +32,7 @@ class assiette_allegement(SimpleFormulaColumn):
             )
 
 
-@reference_formula
-class allegement_fillon(DatedFormulaColumn):
+class allegement_fillon(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
@@ -46,24 +43,18 @@ class allegement_fillon(DatedFormulaColumn):
         stagiaire = simulation.calculate('stagiaire', period)
         apprenti = simulation.calculate('apprenti', period)
         allegement_fillon_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
-        allegement = (
-            # en fin d'année
-            allegement_fillon_mode_recouvrement == 0) * (
-                compute_allegement_fillon_annuel(simulation, period)
-                ) + (
-            # anticipé
-            allegement_fillon_mode_recouvrement == 1) * (
-                compute_allegement_fillon_anticipe(simulation, period)
-                ) + (
-            # cumul progressif
-            allegement_fillon_mode_recouvrement == 2) * (
-                compute_allegement_fillon_progressif(simulation, period)
+        allegement = switch(
+            allegement_fillon_mode_recouvrement,
+            {
+                0: compute_allegement_fillon_annuel(simulation, period),
+                1: compute_allegement_fillon_anticipe(simulation, period),
+                2: compute_allegement_fillon_progressif(simulation, period),
+                },
             )
         return period, allegement * not_(stagiaire) * not_(apprenti)
 
 
-@reference_formula
-class coefficient_proratisation(SimpleFormulaColumn):
+class coefficient_proratisation(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Coefficient de proratisation pour le calcul du SMIC et du plafond de la Sécurité socialele"
@@ -128,8 +119,7 @@ class coefficient_proratisation(SimpleFormulaColumn):
         return period, coefficient
 
 
-@reference_formula
-class credit_impot_competitivite_emploi(DatedFormulaColumn):
+class credit_impot_competitivite_emploi(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Crédit d'imôt pour la compétitivité et l'emploi"
@@ -152,8 +142,7 @@ class credit_impot_competitivite_emploi(DatedFormulaColumn):
         return period, credit_impot_competitivite_emploi * non_cumul
 
 
-@reference_formula
-class smic_proratise(SimpleFormulaColumn):
+class smic_proratise(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"SMIC proratisé"

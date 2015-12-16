@@ -4,7 +4,7 @@ from __future__ import division
 
 # import logging
 
-from openfisca_core import columns, formulas, reforms
+from openfisca_core import columns, reforms
 # from openfisca_core.taxscales import MarginalRateTaxScale
 
 from .. import entities
@@ -30,15 +30,12 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    Reform.input_variable(
-        column = columns.FloatCol,
-        entity_class = entities.Individus,
-        label = u'Salaire imposable utilisé pour remonter au salaire brut',
-        name = 'salaire_imposable_pour_inversion',
-        )
+    class salaire_imposable_pour_inversion(Reform.Variable):
+        column = columns.FloatCol
+        entity_class = entities.Individus
+        label = u'Salaire imposable utilisé pour remonter au salaire brut'
 
-    @Reform.formula
-    class salaire_de_base(formulas.SimpleFormulaColumn):
+    class salaire_de_base(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Salaire brut ou traitement indiciaire brut"
@@ -170,8 +167,7 @@ def build_reform(tax_benefit_system):
     #        #<NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence"/>
     #        return period, salbrut + hsup
 
-    @Reform.formula
-    class chobrut(formulas.SimpleFormulaColumn):
+    class chobrut(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Allocations chômage brutes"
@@ -219,8 +215,7 @@ def build_reform(tax_benefit_system):
                     ) - choi
             return period, fsolve(solve_function, choi)
 
-    @Reform.formula
-    class rstbrut(formulas.SimpleFormulaColumn):
+    class rstbrut(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Pensions de retraite brutes"

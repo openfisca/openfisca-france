@@ -2,14 +2,13 @@
 
 from __future__ import division
 
-from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_)
+from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select)
 
 from ...base import *  # noqa analysis:ignore
 from ..prestations_familiales.base_ressource import nb_enf, age_en_mois_benjamin
 
 
-@reference_formula
-class aefa(DatedFormulaColumn):
+class aefa(DatedVariable):
     '''
     Aide exceptionelle de fin d'année (prime de Noël)
     Instituée en 1998
@@ -143,8 +142,7 @@ class aefa(DatedFormulaColumn):
         return period, aefa
 
 
-@reference_formula
-class api(DatedFormulaColumn):
+class api(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Allocation de parent isolé"
@@ -235,8 +233,7 @@ class api(DatedFormulaColumn):
         # pris en compte pour le calcul de son API.
 
 
-@reference_formula
-class br_rmi(DatedFormulaColumn):
+class br_rmi(DatedVariable):
     column = FloatCol
     label = u"Base ressources du Rmi ou du Rsa"
     entity_class = Familles
@@ -264,8 +261,7 @@ class br_rmi(DatedFormulaColumn):
         return period, br_rmi_pf + br_rmi_ms + br_rmi_i_total + ra_rsa_i_total
 
 
-@reference_formula
-class br_rmi_i(SimpleFormulaColumn):
+class br_rmi_i(Variable):
     column = FloatCol
     label = u"Base ressource individuelle du RSA/RMI (hors revenus d'actvité)"
     entity_class = Individus
@@ -308,8 +304,7 @@ class br_rmi_i(SimpleFormulaColumn):
         return period, result
 
 
-@reference_formula
-class br_rmi_ms(SimpleFormulaColumn):
+class br_rmi_ms(Variable):
     column = FloatCol
     label = u"Minima sociaux inclus dans la base ressource RSA/RMI"
     entity_class = Familles
@@ -329,8 +324,7 @@ class br_rmi_ms(SimpleFormulaColumn):
         return period, aspa + asi + ass + aah + caah
 
 
-@reference_formula
-class br_rmi_pf(DatedFormulaColumn):
+class br_rmi_pf(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Prestations familiales inclues dans la base ressource RSA/RMI"
@@ -382,8 +376,7 @@ class br_rmi_pf(DatedFormulaColumn):
             paje_prepare + paje_colca)
 
 
-@reference_formula
-class crds_mini(DatedFormulaColumn):
+class crds_mini(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"CRDS versée sur les minimas sociaux"
@@ -400,8 +393,7 @@ class crds_mini(DatedFormulaColumn):
         return period, - taux_crds * rsa_act
 
 
-@reference_formula
-class div_ms(SimpleFormulaColumn):
+class div_ms(Variable):
     column = FloatCol
     entity_class = Individus
 
@@ -423,8 +415,7 @@ class div_ms(SimpleFormulaColumn):
         return period, (f3vc + f3ve + f3vg + f3vl + f3vm) / 12
 
 
-@reference_formula
-class enceinte_fam(SimpleFormulaColumn):
+class enceinte_fam(Variable):
     column = BoolCol
     entity_class = Familles
 
@@ -440,8 +431,7 @@ class enceinte_fam(SimpleFormulaColumn):
         enceinte_compat = and_(benjamin < 0, benjamin > -6)
         return period, or_(or_(enceinte_compat, enceinte[CHEF]), enceinte[PART])
 
-@reference_formula
-class nb_enfant_rsa(SimpleFormulaColumn):
+class nb_enfant_rsa(Variable):
     column = IntCol
     entity_class = Familles
     label = u"Nombre d'enfants pris en compte pour le calcul du RSA"
@@ -457,15 +447,12 @@ class nb_enfant_rsa(SimpleFormulaColumn):
 
         return period, nbenf
 
-reference_input_variable(
-    column = BoolCol,
-    entity_class = Menages,
-    label = u"Partipation aux frais de logement pour un hebergé à titre gratuit",
-    name = 'participation_frais',
-    )
+class participation_frais(Variable):
+    column = BoolCol
+    entity_class = Menages
+    label = u"Partipation aux frais de logement pour un hebergé à titre gratuit"
 
-@reference_formula
-class psa(DatedFormulaColumn):
+class psa(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Prime de solidarité active"
@@ -500,8 +487,7 @@ class psa(DatedFormulaColumn):
         return period, psa
 
 
-@reference_formula
-class ra_rsa(SimpleFormulaColumn):
+class ra_rsa(Variable):
     column = FloatCol
     label = u"Revenus d'activité du RSA"
     entity_class = Familles
@@ -515,8 +501,7 @@ class ra_rsa(SimpleFormulaColumn):
         return period, ra_rsa
 
 
-@reference_formula
-class ra_rsa_i(SimpleFormulaColumn):
+class ra_rsa_i(Variable):
     column = FloatCol
     label = u"Revenus d'activité du Rsa - Individuel"
     entity_class = Individus
@@ -554,8 +539,7 @@ class ra_rsa_i(SimpleFormulaColumn):
         return period, result
 
 
-@reference_formula
-class rfon_ms(SimpleFormulaColumn):
+class rfon_ms(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Revenus fonciers pour la base ressource du rmi/rsa"
@@ -572,8 +556,7 @@ class rfon_ms(SimpleFormulaColumn):
         return period, (f4ba + f4be) / 12
 
 
-@reference_formula
-class rmi(DatedFormulaColumn):
+class rmi(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Revenu Minimum d'Insertion"
@@ -591,8 +574,7 @@ class rmi(DatedFormulaColumn):
         # TODO: Migré lors de la mensualisation. Probablement faux
 
 
-@reference_formula
-class rmi_nbp(SimpleFormulaColumn):
+class rmi_nbp(Variable):
     column = IntCol
     entity_class = Familles
     label = u"Nombre de personne à charge au sens du Rmi/Rsa"
@@ -610,8 +592,7 @@ class rmi_nbp(SimpleFormulaColumn):
         return period, nb_par + nb_enf(age, smic55, 0, P.age_pac - 1)  # TODO: check limite d'âge in legislation
 
 
-@reference_formula
-class rsa(DatedFormulaColumn):
+class rsa(DatedVariable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"Revenu de solidarité active"
@@ -629,8 +610,7 @@ class rsa(DatedFormulaColumn):
         return period, rsa
 
 
-@reference_formula
-class rsa_act(DatedFormulaColumn):
+class rsa_act(DatedVariable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Familles
@@ -650,8 +630,7 @@ class rsa_act(DatedFormulaColumn):
         return period, max_(rsa - rmi, 0)
 
 
-@reference_formula
-class rsa_act_i(DatedFormulaColumn):
+class rsa_act_i(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Revenu de solidarité active - activité au niveau de l'individu"
@@ -680,8 +659,7 @@ class rsa_act_i(DatedFormulaColumn):
         return period, rsa_act_i
 
 
-@reference_formula
-class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
+class rsa_base_ressources_patrimoine_i(DatedVariable):
     column = FloatCol
     label = u"Base de ressources des revenus du patrimoine du RSA"
     entity_class = Individus
@@ -707,8 +685,7 @@ class rsa_base_ressources_patrimoine_i(DatedFormulaColumn):
             revenus_locatifs
             )
 
-@reference_formula
-class rsa_condition_nationalite(SimpleFormulaColumn):
+class rsa_condition_nationalite(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Conditions de nationnalité et de titre de séjour pour bénéficier du RSA"
@@ -722,8 +699,7 @@ class rsa_condition_nationalite(SimpleFormulaColumn):
         return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
 
-@reference_formula
-class rsa_eligibilite(SimpleFormulaColumn):
+class rsa_eligibilite(Variable):
     column = BoolCol
     entity_class = Familles
     label = u"Eligibilité au RSA"
@@ -753,8 +729,7 @@ class rsa_eligibilite(SimpleFormulaColumn):
         return period, eligib
 
 
-@reference_formula
-class rsa_eligibilite_tns(SimpleFormulaColumn):
+class rsa_eligibilite_tns(Variable):
     column = BoolCol
     entity_class = Familles
     label = u"Eligibilité au RSA pour un travailleur non salarié"
@@ -811,8 +786,7 @@ class rsa_eligibilite_tns(SimpleFormulaColumn):
         return period, eligibilite_agricole * (1 - tns_employe) * eligibilite_chiffre_affaire
 
 
-@reference_formula
-class rsa_forfait_asf(SimpleFormulaColumn):
+class rsa_forfait_asf(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation de soutien familial forfaitisée pour le RSA"
@@ -828,8 +802,7 @@ class rsa_forfait_asf(SimpleFormulaColumn):
         return period, asf_elig * montant
 
 
-@reference_formula
-class rsa_forfait_asf_i(SimpleFormulaColumn):
+class rsa_forfait_asf_i(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"RSA - Montant individuel de forfait ASF"
@@ -845,8 +818,7 @@ class rsa_forfait_asf_i(SimpleFormulaColumn):
         return period, asf_elig_enfant * pfam.af.bmaf * minim.rmi.forfait_asf.taux1
 
 
-@reference_formula
-class rsa_forfait_logement(SimpleFormulaColumn):
+class rsa_forfait_logement(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Forfait logement intervenant dans le calcul du Rmi ou du Rsa"
@@ -860,9 +832,7 @@ class rsa_forfait_logement(SimpleFormulaColumn):
         rmi_nbp = simulation.calculate('rmi_nbp', period)
         aide_logement = simulation.calculate('aide_logement', period)
 
-        statut_occupation_holder = simulation.compute('statut_occupation', period)
-        statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
-        statut_occupation = self.filter_role(statut_occupation, role = CHEF)
+        statut_occupation = simulation.calculate('statut_occupation_famille', period)
 
         participation_frais_holder = simulation.compute('participation_frais', period)
         participation_frais = self.cast_from_entity_to_roles(participation_frais_holder)
@@ -887,15 +857,12 @@ class rsa_forfait_logement(SimpleFormulaColumn):
         return period, max_(montant_al, montant_nature)
 
 
-reference_input_variable(
-    column = BoolCol,
-    entity_class = Familles,
-    label = u"Situation d'isolement depuis moins de 18 mois",
-    name = 'rsa_isolement_recent',
-    )
+class rsa_isolement_recent(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Situation d'isolement depuis moins de 18 mois"
 
-@reference_formula
-class rsa_majore(DatedFormulaColumn):
+class rsa_majore(DatedVariable):
     column = FloatCol
     label = u"Revenu de solidarité active - majoré"
     entity_class = Familles
@@ -914,8 +881,7 @@ class rsa_majore(DatedFormulaColumn):
         return period, base_normalise * (base_normalise >= P.rsa_nv)
 
 
-@reference_formula
-class rsa_majore_eligibilite(SimpleFormulaColumn):
+class rsa_majore_eligibilite(Variable):
     column = BoolCol
     entity_class = Familles
     label = u"Eligibilité au RSA majoré pour parent isolé"
@@ -948,8 +914,7 @@ class rsa_majore_eligibilite(SimpleFormulaColumn):
         return period, eligib
 
 
-@reference_formula
-class rsa_non_calculable(SimpleFormulaColumn):
+class rsa_non_calculable(Variable):
     column = EnumCol(
         enum = Enum([
             u"",
@@ -975,17 +940,16 @@ class rsa_non_calculable(SimpleFormulaColumn):
             ) > 0
         non_calculable_tns_holder = simulation.compute('rsa_non_calculable_tns_i', period)
         non_calculable_tns_parents = self.split_by_roles(non_calculable_tns_holder, roles = [CHEF, PART])
-        non_calculable = (
-            (non_calculable_tns_parents[CHEF] > 0) * 1 +
-            ((1 - non_calculable_tns_parents[CHEF]) * non_calculable_tns_parents[PART] > 0) * 2
+        non_calculable = select(
+            [non_calculable_tns_parents[CHEF] > 0, non_calculable_tns_parents[PART] > 0],
+            [1, 2]
             )
         non_calculable = eligible_rsa * non_calculable
 
         return period, non_calculable
 
 
-@reference_formula
-class rsa_non_calculable_tns_i(SimpleFormulaColumn):
+class rsa_non_calculable_tns_i(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"RSA non calculable du fait de la situation de l'individu. Dans le cas des TNS, l'utilisateur est renvoyé vers son PCG"
@@ -1003,8 +967,7 @@ class rsa_non_calculable_tns_i(SimpleFormulaColumn):
             )
 
 
-@reference_formula
-class rsa_non_majore(DatedFormulaColumn):
+class rsa_non_majore(DatedVariable):
     column = FloatCol
     label = u"Revenu de solidarité active - non majoré"
     entity_class = Familles
@@ -1059,8 +1022,7 @@ class rsa_ressource_calculator:
                 ressource_trois_derniers_mois - condition * self.neutral_max_forfaitaire)
 
 
-@reference_formula
-class rsa_socle(SimpleFormulaColumn):
+class rsa_socle(Variable):
     column = FloatCol
     entity_class = Familles
     label = "RSA socle"
@@ -1075,7 +1037,8 @@ class rsa_socle(SimpleFormulaColumn):
         nbp = nb_par + nb_enfant_rsa
 
         taux = (
-            1 + (nbp >= 2) * rmi.txp2 +
+            1 + 
+            (nbp >= 2) * rmi.txp2 +
             (nbp >= 3) * rmi.txp3 +
             (nbp >= 4) * ((nb_par == 1) * rmi.txps + (nb_par != 1) * rmi.txp3) +
             max_(nbp - 4, 0) * rmi.txps
@@ -1083,8 +1046,7 @@ class rsa_socle(SimpleFormulaColumn):
         return period, eligib * rmi.rmi * taux
 
 
-@reference_formula
-class rsa_socle_majore(SimpleFormulaColumn):
+class rsa_socle_majore(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Majoration pour parent isolé du Revenu de solidarité active socle"

@@ -12,8 +12,7 @@ SCOLARITE_COLLEGE = 1
 SCOLARITE_LYCEE = 2
 
 
-@reference_formula
-class bourse_college(SimpleFormulaColumn):
+class bourse_college(Variable):
     column = FloatCol
     label = u"Montant mensuel de la bourse de collège"
     entity_class = Familles
@@ -30,31 +29,29 @@ class bourse_college(SimpleFormulaColumn):
             age >= 0 for age in ages.itervalues()
         )
 
-        plafond_taux_1 = round_(P.plafond_taux_1 + P.plafond_taux_1 * nb_enfants * P.coeff_enfant_supplementaire)
-        plafond_taux_2 = round_(P.plafond_taux_2 + P.plafond_taux_2 * nb_enfants * P.coeff_enfant_supplementaire)
-        plafond_taux_3 = round_(P.plafond_taux_3 + P.plafond_taux_3 * nb_enfants * P.coeff_enfant_supplementaire)
-
-        eligible_taux_3 = rfr <= plafond_taux_3
-        eligible_taux_2 = not_(eligible_taux_3) * (rfr <= plafond_taux_2)
-        eligible_taux_1 = not_(or_(eligible_taux_2, eligible_taux_3)) * (rfr <= plafond_taux_1)
-
         scolarites = self.split_by_roles(scolarite_holder, roles = ENFS)
 
         nb_enfants_college = sum(
             scolarite == SCOLARITE_COLLEGE for scolarite in scolarites.itervalues()
         )
 
-        montant = nb_enfants_college * (
-            eligible_taux_3 * P.montant_taux_3 +
-            eligible_taux_2 * P.montant_taux_2 +
-            eligible_taux_1 * P.montant_taux_1
+        montant_par_enfant = apply_thresholds(
+            rfr,
+            thresholds = [
+                # plafond_taux_3 est le plus bas
+                round_(P.plafond_taux_3 + P.plafond_taux_3 * nb_enfants * P.coeff_enfant_supplementaire),
+                round_(P.plafond_taux_2 + P.plafond_taux_2 * nb_enfants * P.coeff_enfant_supplementaire),
+                round_(P.plafond_taux_1 + P.plafond_taux_1 * nb_enfants * P.coeff_enfant_supplementaire),
+                ],
+            choices = [P.montant_taux_3, P.montant_taux_2, P.montant_taux_1]
             )
+
+        montant = nb_enfants_college * montant_par_enfant
 
         return period, montant / 12
 
 
-@reference_formula
-class bourse_lycee_points_de_charge(SimpleFormulaColumn):
+class bourse_lycee_points_de_charge(Variable):
     column = FloatCol
     label = u"Nombre de points de charge pour la bourse de lycée"
     entity_class = Familles
@@ -79,8 +76,7 @@ class bourse_lycee_points_de_charge(SimpleFormulaColumn):
         return period, points_de_charge
 
 
-@reference_formula
-class bourse_lycee_nombre_parts(SimpleFormulaColumn):
+class bourse_lycee_nombre_parts(Variable):
     column = FloatCol
     label = u"Nombre de parts pour le calcul du montant de la bourse de lycée"
     entity_class = Familles
@@ -92,31 +88,23 @@ class bourse_lycee_nombre_parts(SimpleFormulaColumn):
         plafonds_reference = simulation.legislation_at(period.start).bourses_education.bourse_lycee.plafonds_reference
         increments_par_point_de_charge = simulation.legislation_at(period.start).bourses_education.bourse_lycee.increments_par_point_de_charge
 
-        plafond_10_parts = round(plafonds_reference['10_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['10_parts']))
-        plafond_9_parts = round(plafonds_reference['9_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['9_parts']))
-        plafond_8_parts = round(plafonds_reference['8_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['8_parts']))
-        plafond_7_parts = round(plafonds_reference['7_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['7_parts']))
-        plafond_6_parts = round(plafonds_reference['6_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['6_parts']))
-        plafond_5_parts = round(plafonds_reference['5_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['5_parts']))
-        plafond_4_parts = round(plafonds_reference['4_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['4_parts']))
-        plafond_3_parts = round(plafonds_reference['3_parts'] + ((points_de_charge - 9) * increments_par_point_de_charge['3_parts']))
-
-        nombre_parts = (
-            (rfr <= plafond_10_parts) * 10 +
-            (rfr > plafond_10_parts) * (rfr <= plafond_9_parts) * 9 +
-            (rfr > plafond_9_parts) * (rfr <= plafond_8_parts) * 8 +
-            (rfr > plafond_8_parts) * (rfr <= plafond_7_parts) * 7 +
-            (rfr > plafond_7_parts) * (rfr <= plafond_6_parts) * 6 +
-            (rfr > plafond_6_parts) * (rfr <= plafond_5_parts) * 5 +
-            (rfr > plafond_5_parts) * (rfr <= plafond_4_parts) * 4 +
-            (rfr > plafond_4_parts) * (rfr <= plafond_3_parts) * 3
-        )
+        choices = [10, 9, 8, 7, 6, 5, 4, 3]
+        nombre_parts = apply_thresholds(
+            rfr,
+            thresholds = [
+                round(
+                    plafonds_reference['{}_parts'.format(index)] +
+                    ((points_de_charge - 9) * increments_par_point_de_charge['{}_parts'.format(index)])
+                    )
+                for index in choices
+                ],
+            choices = choices,
+            )
 
         return period, nombre_parts
 
 
-@reference_formula
-class bourse_lycee(SimpleFormulaColumn):
+class bourse_lycee(Variable):
     column = FloatCol
     label = u"Montant mensuel de la bourse de lycée"
     entity_class = Familles
@@ -138,7 +126,7 @@ class bourse_lycee(SimpleFormulaColumn):
         return period, montant / 12
 
 
-reference_input_variable(
+class scolarite(Variable):
     column = EnumCol(
         enum = Enum(
             [
@@ -148,16 +136,11 @@ reference_input_variable(
                 ],
             ),
         default = 0
-        ),
-    entity_class = Individus,
-    label = u"Scolarité de l'enfant : collège, lycée...",
-    name = "scolarite",
-    )
+        )
+    entity_class = Individus
+    label = u"Scolarité de l'enfant : collège, lycée..."
 
-
-reference_input_variable(
-    column = BoolCol,
-    entity_class = Individus,
-    label = u"Élève ou étudiant boursier",
-    name = 'boursier',
-    )
+class boursier(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Élève ou étudiant boursier"

@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from openfisca_core import columns, formulas, reforms
+from openfisca_core import reforms
 from numpy import vectorize, maximum as max_, logical_not as not_, logical_or as or_, absolute as abs_
 
 from ..model.base import *
@@ -14,16 +14,12 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    Reform.input_variable(
-        name = "perte_autonomie",
-        column = BoolCol,
-        entity_class = Individus,
+    class perte_autonomie(Reform.Variable):
+        column = BoolCol
+        entity_class = Individus
         label = u"Personne en perte d'autonomie"
-    )
 
-
-    @Reform.formula
-    class resident_93(SimpleFormulaColumn):
+    class resident_93(Reform.Variable):
         column = BoolCol
         label = u"Résident en Seine-Saint-Denis"
         entity_class = Menages
@@ -44,8 +40,7 @@ def build_reform(tax_benefit_system):
             return period, result
 
 
-    @Reform.formula
-    class adpa_eligibilite(SimpleFormulaColumn):
+    class adpa_eligibilite(Reform.Variable):
         column = BoolCol
         label = u"Eligibilité à l'ADPA"
         entity_class = Individus
@@ -61,8 +56,7 @@ def build_reform(tax_benefit_system):
             return period, result
 
 
-    @Reform.formula
-    class adpa_base_ressources_i(SimpleFormulaColumn):
+    class adpa_base_ressources_i(Reform.Variable):
         column = FloatCol
         label = u"Base ressources ADPA pour un individu"
         entity_class = Individus
@@ -89,8 +83,7 @@ def build_reform(tax_benefit_system):
             return period, base_ressource_mensuelle
 
 
-    @Reform.formula
-    class adpa_base_ressources(SimpleFormulaColumn):
+    class adpa_base_ressources(Reform.Variable):
         column = FloatCol
         label = u"Base ressources ADPA pour une famille"
         entity_class = Familles
@@ -103,8 +96,7 @@ def build_reform(tax_benefit_system):
             return period, adpa_base_ressources
 
 
-    @Reform.formula
-    class adpa(SimpleFormulaColumn):
+    class adpa(Reform.Variable):
         column = FloatCol
         label = u"ADPA"
         entity_class = Familles
@@ -116,7 +108,7 @@ def build_reform(tax_benefit_system):
             adpa_eligibilite = self.any_by_roles(adpa_eligibilite_holder)
             base_ressource_mensuelle = simulation.calculate('adpa_base_ressources', period)
             concub = simulation.calculate('concub', period)
-            
+
             # On ne prend pas en compte le cas où le conjoint est placé.
             quotient_familial = 1 + 0.7 * concub
             base_ressource_mensuelle = base_ressource_mensuelle / quotient_familial

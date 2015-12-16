@@ -9,16 +9,13 @@ from ....base import *  # noqa analysis:ignore
 from .base import apply_bareme_for_relevant_type_sal
 
 
-reference_input_variable(
-    column = DateCol(default = date(2099, 12, 31)),
-    entity_class = Individus,
-    label = u"Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)",
-    name = 'jei_date_demande',
-    )
+class jei_date_demande(Variable):
+    column = DateCol(default = date(2099, 12, 31))
+    entity_class = Individus
+    label = u"Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)"
 
 
-@reference_formula
-class exoneration_cotisations_employeur_geographiques(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_geographiques(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Exonérations de cotisations employeur dépendant d'une zone géographique"
@@ -38,8 +35,7 @@ class exoneration_cotisations_employeur_geographiques(SimpleFormulaColumn):
         return period, exonerations_geographiques
 
 
-@reference_formula
-class exoneration_cotisations_employeur_jei(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_jei(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Exonrérations de cotisations employeur pour une jeune entreprise innovante"
@@ -86,8 +82,7 @@ class exoneration_cotisations_employeur_jei(SimpleFormulaColumn):
         return period, - exoneration * jeune_entreprise_innovante
 
 
-@reference_formula
-class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_zfu(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Exonrérations de cotisations employeur pour l'embauche en zone franche urbaine (ZFU)"
@@ -238,8 +233,7 @@ class exoneration_cotisations_employeur_zfu(SimpleFormulaColumn):
         # TODO: propager dans le temps
 
 
-@reference_formula
-class exoneration_cotisations_employeur_zrd(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_zrd(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Exonrérations de cotisations employeur pour l'embauche en zone de restructuration de la Défense (ZRD)"
@@ -276,8 +270,7 @@ class exoneration_cotisations_employeur_zrd(SimpleFormulaColumn):
         return period, exoneration_cotisations_zrd
 
 
-@reference_formula
-class exoneration_cotisations_employeur_zrr(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_zrr(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Exonrérations de cotisations employeur pour l'embauche en zone de revitalisation rurale (ZRR)"
@@ -332,8 +325,7 @@ class exoneration_cotisations_employeur_zrr(SimpleFormulaColumn):
 
 
 # Aides à la création
-@reference_formula
-class exoneration_is_creation_zrr(SimpleFormulaColumn):
+class exoneration_is_creation_zrr(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Exonrérations fiscales pour création d'une entreprise en zone de revitalisation rurale (ZRR)"
@@ -379,8 +371,7 @@ class exoneration_is_creation_zrr(SimpleFormulaColumn):
         # TODO: mettre sur toutes les années
 
 
-# @reference_formula
-# class bassin_emploi_redynamiser(SimpleFormulaColumn):
+# # class bassin_emploi_redynamiser(Variable):
 #     column = BoolCol
 #     entity_class = Individus
 #     label = u"L'entreprise est située danns un bassin d'emploi à redynamiser(BER)"
@@ -392,8 +383,7 @@ class exoneration_is_creation_zrr(SimpleFormulaColumn):
 #         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 #         return period, (effectif_entreprise >= 1) * False
 
-@reference_formula
-class jeune_entreprise_innovante(SimpleFormulaColumn):
+class jeune_entreprise_innovante(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"L'entreprise est une jeune entreprise innovante"
@@ -451,8 +441,7 @@ class jeune_entreprise_innovante(SimpleFormulaColumn):
         return period, jeune_entreprise_innovante
 
 
-@reference_formula
-class bassin_emploi_redynamiser(SimpleFormulaColumn):
+class bassin_emploi_redynamiser(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"L'entreprise est située danns un bassin d'emploi à redynamiser (BER)"
@@ -466,8 +455,7 @@ class bassin_emploi_redynamiser(SimpleFormulaColumn):
         return period, (effectif_entreprise >= 1) * False
 
 
-@reference_formula
-class zone_restructuration_defense(SimpleFormulaColumn):
+class zone_restructuration_defense(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"L'entreprise est située dans une zone de restructuration de la Défense (ZRD)"
@@ -477,8 +465,7 @@ class zone_restructuration_defense(SimpleFormulaColumn):
         return period, (effectif_entreprise >= 1) * False
 
 
-@reference_formula
-class zone_franche_urbaine(SimpleFormulaColumn):
+class zone_franche_urbaine(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"L'entreprise est située danns une zone franche urbaine (ZFU)"
@@ -488,8 +475,7 @@ class zone_franche_urbaine(SimpleFormulaColumn):
         return period, (effectif_entreprise >= 1) * False
 
 
-@reference_formula
-class zone_revitalisation_rurale(SimpleFormulaColumn):
+class zone_revitalisation_rurale(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"L'entreprise est située dans une zone de revitalisation rurale (ZRR)"

@@ -33,8 +33,7 @@ build_column('gar_dom', BoolCol(entity = 'fam',
                     label = u"Garde à domicile (CLCMG)"))
 
 
-@reference_formula
-class paje(SimpleFormulaColumn):
+class paje(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"PAJE - Ensemble des prestations"
@@ -56,8 +55,7 @@ class paje(SimpleFormulaColumn):
         return period, paje_base + (paje_naissance + paje_clca + paje_clmg + paje_colca) / 12
 
 
-@reference_formula
-class paje_base_montant(SimpleFormulaColumn):
+class paje_base_montant(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Montant de la PAJE"
@@ -139,8 +137,7 @@ class paje_base_montant(SimpleFormulaColumn):
         return period, montant
 
 
-@reference_formula
-class paje_base_enfant_eligible_avant_reforme_2014(SimpleFormulaColumn):
+class paje_base_enfant_eligible_avant_reforme_2014(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Enfant ouvrant droit à la PAJE de base né avant le 1er avril 2014"
@@ -158,8 +155,7 @@ class paje_base_enfant_eligible_avant_reforme_2014(SimpleFormulaColumn):
         return period, (age < age_limite) * not_(smic55) * ne_avant_2014
 
 
-@reference_formula
-class paje_base_enfant_eligible_apres_reforme_2014(SimpleFormulaColumn):
+class paje_base_enfant_eligible_apres_reforme_2014(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Enfant ouvrant droit à la PAJE de base né après le 1er avril 2014"
@@ -177,8 +173,7 @@ class paje_base_enfant_eligible_apres_reforme_2014(SimpleFormulaColumn):
         return period, (age < age_limite) * not_(smic55) * not_(ne_avant_2014)
 
 
-@reference_formula
-class paje_naissance(SimpleFormulaColumn):
+class paje_naissance(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -222,8 +217,7 @@ class paje_naissance(SimpleFormulaColumn):
         return period, nais_brut
 
 
-@reference_formula
-class paje_clca(SimpleFormulaColumn):
+class paje_clca(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -288,17 +282,14 @@ class paje_clca(SimpleFormulaColumn):
                                 partiel2 * P.paje.clca.avecab_tx_partiel2))
         return period, paje_clca
 
-reference_input_variable(
-    name ='paje_prepare',
-    column = FloatCol,
-    entity_class = Familles,
-    label = u"Prestation Partagée d’éducation de l’Enfant (PreParE)",
+class paje_prepare(Variable):
+    column = FloatCol
+    entity_class = Familles
     set_input = set_input_divide_by_period
-    )
+    label = u"Prestation Partagée d’éducation de l’Enfant (PreParE)"
 
 
-@reference_formula
-class paje_clca_taux_plein(SimpleFormulaColumn):
+class paje_clca_taux_plein(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"Indicatrice Clca taux plein"
@@ -313,8 +304,7 @@ class paje_clca_taux_plein(SimpleFormulaColumn):
         return period, (paje_clca > 0) * inactif
 
 
-@reference_formula
-class paje_clca_taux_partiel(SimpleFormulaColumn):
+class paje_clca_taux_partiel(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"Indicatrice Clca taux partiel"
@@ -331,8 +321,7 @@ class paje_clca_taux_partiel(SimpleFormulaColumn):
     # TODO gérer les cumuls avec autres revenus et colca voir site caf
 
 
-@reference_formula
-class paje_clmg(SimpleFormulaColumn):
+class paje_clmg(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -445,8 +434,7 @@ class paje_clmg(SimpleFormulaColumn):
         return period, paje_clmg
 
 
-@reference_formula
-class paje_colca(SimpleFormulaColumn):
+class paje_colca(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -479,8 +467,7 @@ class paje_colca(SimpleFormulaColumn):
 
 # TODO: cumul avec clca self.colca_tot_m
 
-@reference_formula
-class paje_base(SimpleFormulaColumn):
+class paje_base(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -588,8 +575,7 @@ class paje_base(SimpleFormulaColumn):
 #     return 12 * (aged3 + aged6)  # annualisé
 
 
-@reference_formula
-class ape_temp(SimpleFormulaColumn):
+class ape_temp(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation parentale d'éducation"
@@ -657,8 +643,7 @@ class ape_temp(SimpleFormulaColumn):
         return period, ape  # annualisé
 
 
-@reference_formula
-class apje_temp(SimpleFormulaColumn):
+class apje_temp(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation pour le jeune enfant"
@@ -707,8 +692,7 @@ class apje_temp(SimpleFormulaColumn):
         return period, apje
 
 
-@reference_formula
-class ape(SimpleFormulaColumn):
+class ape(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation parentale d'éducation"
@@ -728,8 +712,7 @@ class ape(SimpleFormulaColumn):
         return period, round(ape, 2)
 
 
-@reference_formula
-class apje(SimpleFormulaColumn):
+class apje(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation pour le jeune enfant"

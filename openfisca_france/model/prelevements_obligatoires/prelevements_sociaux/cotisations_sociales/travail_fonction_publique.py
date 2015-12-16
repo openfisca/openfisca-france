@@ -10,8 +10,7 @@ from ....base import *  # noqa analysis:ignore
 from .base import apply_bareme_for_relevant_type_sal
 
 
-@reference_formula
-class allocations_temporaires_invalidite(SimpleFormulaColumn):
+class allocations_temporaires_invalidite(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Allocations temporaires d'invalidité (ATI, fonction publique et collectivités locales)"
@@ -43,8 +42,7 @@ class allocations_temporaires_invalidite(SimpleFormulaColumn):
         return period, cotisation_etat + cotisation_collectivites_locales
 
 
-@reference_formula
-class assiette_cotisations_sociales_public(SimpleFormulaColumn):
+class assiette_cotisations_sociales_public(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Assiette des cotisations sociales des agents titulaires de la fonction publique"
@@ -69,8 +67,7 @@ class assiette_cotisations_sociales_public(SimpleFormulaColumn):
 # avantages en nature contrib exceptionnelle de solidarite, RAFP, CSG, CRDS.
 
 
-@reference_formula
-class contribution_exceptionnelle_solidarite(SimpleFormulaColumn):
+class contribution_exceptionnelle_solidarite(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
@@ -120,8 +117,7 @@ class contribution_exceptionnelle_solidarite(SimpleFormulaColumn):
         return period, cotisation
 
 
-@reference_formula
-class fonds_emploi_hospitalier(SimpleFormulaColumn):
+class fonds_emploi_hospitalier(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Fonds pour l'emploi hospitalier (employeur)"
@@ -143,8 +139,7 @@ class fonds_emploi_hospitalier(SimpleFormulaColumn):
         return period, cotisation
 
 
-@reference_formula
-class ircantec_salarie(SimpleFormulaColumn):
+class ircantec_salarie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Ircantec salarié"
@@ -166,8 +161,7 @@ class ircantec_salarie(SimpleFormulaColumn):
         return period, ircantec
 
 
-@reference_formula
-class ircantec_employeur(SimpleFormulaColumn):
+class ircantec_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Ircantec employeur"
@@ -189,8 +183,7 @@ class ircantec_employeur(SimpleFormulaColumn):
         return period, ircantec
 
 
-@reference_formula
-class pension_civile_salarie(SimpleFormulaColumn):
+class pension_civile_salarie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Pension civile salarié"
@@ -213,8 +206,7 @@ class pension_civile_salarie(SimpleFormulaColumn):
         return period, -pension_civile_salarie
 
 
-@reference_formula
-class pension_civile_employeur(SimpleFormulaColumn):
+class pension_civile_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation patronale pension civile"
@@ -239,8 +231,7 @@ class pension_civile_employeur(SimpleFormulaColumn):
         return period, -cot_pat_pension_civile
 
 
-@reference_formula
-class rafp_salarie(SimpleFormulaColumn):
+class rafp_salarie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Part salariale de la retraite additionelle de la fonction publique"
@@ -268,8 +259,7 @@ class rafp_salarie(SimpleFormulaColumn):
         return period, -rafp_salarie
 
 
-@reference_formula
-class rafp_employeur(SimpleFormulaColumn):
+class rafp_employeur(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Part patronale de la retraite additionnelle de la fonction publique"

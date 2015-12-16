@@ -7,23 +7,18 @@ from numpy import abs as abs_, logical_not as not_, logical_or as or_, maximum a
 from ...base import *  # noqa analysis:ignore
 
 
-reference_input_variable(
-    name = "inapte_travail",
-    column = BoolCol,
-    entity_class = Individus,
-    label = u"Reconnu inapte au travail",
-    )
+class inapte_travail(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Reconnu inapte au travail"
 
-reference_input_variable(
-    name = "taux_incapacite",
-    column = FloatCol,
-    entity_class = Individus,
-    label = u"Taux d'incapacité",
-    )
+class taux_incapacite(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Taux d'incapacité"
 
 
-@reference_formula
-class br_mv_i(SimpleFormulaColumn):
+class br_mv_i(Variable):
     column = FloatCol
     label = u"Base ressources individuelle du minimum vieillesse/ASPA"
     entity_class = Individus
@@ -108,8 +103,7 @@ class br_mv_i(SimpleFormulaColumn):
                ) / 3
 
 
-@reference_formula
-class br_mv(SimpleFormulaColumn):
+class br_mv(Variable):
     column = FloatCol
     label = u"Base ressource du minimum vieillesse et assimilés (ASPA)"
     entity_class = Familles
@@ -123,8 +117,7 @@ class br_mv(SimpleFormulaColumn):
         return period, ass + br_mv_i[CHEF] + br_mv_i[PART]
 
 
-@reference_formula
-class aspa_elig(SimpleFormulaColumn):
+class aspa_elig(Variable):
     column = BoolCol
     label = u"Indicatrice individuelle d'éligibilité à l'allocation de solidarité aux personnes agées"
     entity_class = Individus
@@ -145,8 +138,7 @@ class aspa_elig(SimpleFormulaColumn):
         return period, condition_age * condition_nationalite
 
 
-@reference_formula
-class asi_elig(SimpleFormulaColumn):
+class asi_elig(Variable):
     column = BoolCol
     label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
     entity_class = Individus
@@ -167,8 +159,7 @@ class asi_elig(SimpleFormulaColumn):
         return period, condition_situation * condition_pensionnement * condition_nationalite
 
 
-@reference_formula
-class asi_aspa_condition_nationalite(SimpleFormulaColumn):
+class asi_aspa_condition_nationalite(Variable):
     column = BoolCol
     label = u"Condition de nationnalité et de titre de séjour pour bénéficier de l'ASPA ou l'ASI"
     entity_class = Individus
@@ -181,8 +172,7 @@ class asi_aspa_condition_nationalite(SimpleFormulaColumn):
         return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
 
-@reference_formula
-class asi_aspa_nb_alloc(SimpleFormulaColumn):
+class asi_aspa_nb_alloc(Variable):
     column = IntCol
     label = u"Nombre d'allocataires ASI/ASPA"
     entity_class = Familles
@@ -198,8 +188,7 @@ class asi_aspa_nb_alloc(SimpleFormulaColumn):
         return period, (1 * aspa_elig[CHEF] + 1 * aspa_elig[PART] + 1 * asi_elig[CHEF] + 1 * asi_elig[PART])
 
 
-@reference_formula
-class asi(SimpleFormulaColumn):
+class asi(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"Allocation supplémentaire d'invalidité"
@@ -262,8 +251,7 @@ class asi(SimpleFormulaColumn):
         return period, elig * montant_servi_asi
 
 
-@reference_formula
-class aspa_couple(DatedFormulaColumn):
+class aspa_couple(DatedVariable):
     column = BoolCol
     label = u"Couple au sens de l'ASPA"
     entity_class = Familles
@@ -283,8 +271,7 @@ class aspa_couple(DatedFormulaColumn):
         return period, concub
 
 
-@reference_formula
-class aspa(SimpleFormulaColumn):
+class aspa(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles

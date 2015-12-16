@@ -26,7 +26,7 @@
 * implement true_decote that is the decote amount provided by dgfip (at list on their simulator) which is the fiscal gain accountable to the decote mechanism
 * add a test for irpp couples
 * Actualize legislation for min/max abattements pour frais pro add a test for IR 2015 ; change label of reform plf 2015.
-* Change reforms.plf2015 decote to a DatedFormulaColumn
+* Change reforms.plf2015 decote to a DatedVariable
 * Conform to instructions given by @benjello for PR
 * add empty line
 * add an empty line for two empty lines between two classes
