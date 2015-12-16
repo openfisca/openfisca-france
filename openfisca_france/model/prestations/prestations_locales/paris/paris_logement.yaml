@@ -50,6 +50,7 @@
   input_variables:
     age: 55
     parisien: True
+    invalide: True
     statut_occupation: 4
     loyer: 550
     aah: 800
@@ -62,6 +63,7 @@
     age: 55
     parisien: True
     concub: True
+    invalide: True
     statut_occupation: 4
     loyer: 550
     aah: 800
@@ -74,6 +76,7 @@
   input_variables:
     age: 55
     parisien: True
+    invalide: True
     statut_occupation: 4
     aah: 800
     concub: True
@@ -87,22 +90,24 @@
   input_variables:
     age: 55
     parisien: True
+    invalide: True
     statut_occupation: 4
     aah: 800
     loyer: 550
   output_variables:
     paris_logement: 84
 
-- name: "Personne non éligible avec charges logement < 30% des ressources"
+- name: "Personne éligible avec charges logement >= 30% des ressources"
   period: 2014-11
   input_variables:
     age: 55
     parisien: True
+    invalide: True
     statut_occupation: 4
     aah: 800
     loyer: 250
   output_variables:
-    paris_logement: 0
+    paris_logement: 84
 
 - name: "Personne éligible car personne qui bénéficie d’un avantage vieillesse au titre de l’inaptitude au travail "
   period: 2014-11
@@ -130,6 +135,7 @@
     - id: "parent1"
       age: 55
       aah: 800
+      invalide: True
     - id: "enfant1"
       age: 5
     - id: "enfant2"
@@ -208,6 +214,7 @@
   individus:
     - id: "parent1"
       age: 65
+      invalide: True
       aah:
         2013-07: 0
         2013-08: 0
@@ -267,3 +274,29 @@
       age: 65
   output_variables:
     paris_logement: 84
+
+- name: "Personne éligible car personne qui bénéficie d’un avantage vieillesse au titre de l’inaptitude au travail et 200e d'apl"
+  period: 2014-11
+  input_variables:
+    age: 60
+    parisien: True
+    aspa_elig: True
+    statut_occupation: 4
+    loyer: 550
+    apl: 200
+    aspa: 850
+  output_variables:
+    paris_logement: 84
+
+- name: "Personne non éligible car charges < taux effort "
+  period: 2014-11
+  input_variables:
+    age: 60
+    parisien: True
+    aspa_elig: True
+    statut_occupation: 4
+    loyer: 500
+    apl: 320
+    aspa: 850
+  output_variables:
+    paris_logement: 0

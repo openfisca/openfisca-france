@@ -45,7 +45,6 @@ class paris_base_ressources_i(Variable):
             indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', period)
             bourse_recherche = simulation.calculate('bourse_recherche', period)
             gains_exceptionnels = simulation.calculate('gains_exceptionnels', period)
-            aah = simulation.calculate('aah', period)
 
             def revenus_tns():
                 revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', period)
@@ -63,7 +62,7 @@ class paris_base_ressources_i(Variable):
                 rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
                 indemnites_journalieres_imposables + prestation_compensatoire +
                 pensions_invalidite + bourse_recherche + gains_exceptionnels + revenus_tns() +
-                revenus_stage_formation_pro + aah
+                revenus_stage_formation_pro
                 )
 
             return period, result
@@ -150,9 +149,8 @@ class personnes_handicap_paris(Variable):
     entity_class = Individus
 
     def function(self, simulation, period):
-        aah = simulation.calculate('aah', period)
-        condition_aah = aah > 0
-        return period, condition_aah
+        handicap = simulation.calculate('invalide', period)
+        return period, handicap
 
 class paris_nb_enfants(Variable):
     column = FloatCol
@@ -175,8 +173,8 @@ class condition_taux_effort(Variable):
 
         ressources_mensuelles = simulation.calculate('paris_base_ressources', period)
         charges_forfaitaire_logement = simulation.calculate('charges_forfaitaire_logement', period)
-        montant_aide_logement = simulation.calculate('aide_logement', period)
-        calcul_taux_effort = (loyer + charges_forfaitaire_logement - montant_aide_logement) / ressources_mensuelles
+        apl = simulation.calculate('apl', period)
+        calcul_taux_effort = (loyer + charges_forfaitaire_logement - apl) / ressources_mensuelles
         condition_loyer = calcul_taux_effort >= taux_effort
         return period, condition_loyer
 

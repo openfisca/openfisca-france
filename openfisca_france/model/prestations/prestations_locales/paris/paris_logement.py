@@ -39,8 +39,8 @@ class paris_logement_elig(Variable):
 
     def function(self, simulation, period):
         parisien = simulation.calculate('parisien', period)
-        aspa_elig = simulation.compute('aspa_elig', period)
-        personnes_agees_famille = self.any_by_roles(aspa_elig)
+        personnes_agees = simulation.compute('personnes_agees', period)
+        personnes_agees_famille = self.any_by_roles(personnes_agees)
         personne_handicap_individu = simulation.compute('personnes_handicap_paris', period)
         personne_handicap = self.any_by_roles(personne_handicap_individu)
         statut_occupation = simulation.calculate('statut_occupation_famille', period)
