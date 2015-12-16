@@ -306,3 +306,17 @@
   output_variables:
     ppa:
       2016-01: 0 # 525 + 67 - 0.38 * 1520 = 14.40 < 15
+
+- name: "PPA: ressources prises en compte pour l'activité"
+  period: 2016-01
+  input_variables:
+    salaire_net: 300
+    revenus_stage_formation_pro: 300
+    bourse_recherche: 300
+    indemnites_journalieres_maternite: 300
+    indemnites_journalieres_accident_travail: 300
+    indemnites_chomage_partiel: 300
+    chonet: 300
+  output_variables:
+    ppa_revenu_activite:
+      2016-02: 700
