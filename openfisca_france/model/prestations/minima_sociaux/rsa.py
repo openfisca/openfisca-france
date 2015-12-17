@@ -339,7 +339,7 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
         ape = simulation.calculate('ape', period)
         P = simulation.legislation_at(period.start).minim
 
-        return period, P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
+        return period, af_base + cf + asf + apje + ape
 
     @dated_function(start = date(2004, 1, 1), stop = date(2014, 3, 31))
     def function_2003(self, simulation, period):
@@ -353,7 +353,7 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
         paje_colca = simulation.calculate('paje_colca', period)
         P = simulation.legislation_at(period.start).minim
 
-        return period, P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_prepare + paje_colca)
+        return period, af_base + cf + asf + paje_base + paje_clca + paje_prepare + paje_colca
 
     @dated_function(start = date(2014, 4, 1))
     def function_2014(self, simulation, period):
@@ -372,8 +372,8 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
         # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
         cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
 
-        return period, P.rmi.pfInBRrmi * (af_base + rsa_forfait_asf + cf_non_majore + paje_base + paje_clca +
-            paje_prepare + paje_colca)
+        return period, af_base + rsa_forfait_asf + cf_non_majore + paje_base + paje_clca +
+            paje_prepare + paje_colca
 
 
 class crds_mini(DatedVariable):
