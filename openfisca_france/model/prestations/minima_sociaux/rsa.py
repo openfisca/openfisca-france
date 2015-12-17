@@ -800,12 +800,12 @@ class rsa_forfait_asf(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-
-        asf_elig = simulation.calculate('asf_elig', period)
+        # Si un ASF est versé, on ne prend pas en compte le montant réel mais un forfait.
+        asf_verse = simulation.calculate('asf', period) > 0
         rsa_forfait_asf_i_holder = simulation.compute('rsa_forfait_asf_i', period)
         montant = self.sum_by_entity(rsa_forfait_asf_i_holder, roles = ENFS)
 
-        return period, asf_elig * montant
+        return period, asf_verse * montant
 
 
 class rsa_forfait_asf_i(Variable):
