@@ -47,9 +47,44 @@ class ppa_revenu_activite_i(Variable):
             'indemnites_journalieres'
             ]
 
-        ppa_revenu_activite_i = sum(simulation.calculate(ressource, period) for ressource in ressources)
+        ppa_revenu_activite_i = sum(
+            simulation.calculate(ressource, period) for ressource in ressources)
 
         return period, ppa_revenu_activite_i
+
+class ppa_ressources_hors_activite(Variable):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Revenu hors activité pris en compte pour la PPA"
+
+    def function(self, simulation, period):
+        pf = simulation.calculate_add('rsa_base_ressources_prestations_familiales', period.last_3_months) / 3
+        ressources_hors_activite_individus = simulation.compute_add('ppa_ressources_hors_activite_i', period.last_3_months)
+        ressources_hors_activite = self.sum_by_entity(ressources_hors_activite_individus) / 3 + pf
+
+        return period, ressources_hors_activite
+
+class ppa_ressources_hors_activite_i(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Revenu hors activité pris en compte pour la PPA (Individus) pour un mois"
+
+    def function(self, simulation, period):
+        period = period.this_month
+
+        ressources = [
+            'chonet',
+            'rstnet',
+            'retraite_combattant',
+            'dedommagement_victime_amiante',
+            'pensions_alimentaires_percues',
+            'prestation_compensatoire',
+            ]
+
+        ressources_hors_activite_i = sum(
+            simulation.calculate(ressource, period) for ressource in ressources)
+
+        return period, ressources_hors_activite_i
 
 class ppa_base_ressources(Variable):
     column = FloatCol
@@ -59,7 +94,8 @@ class ppa_base_ressources(Variable):
     def function(self, simulation, period):
         period = period.this_month
         ppa_revenu_activite = simulation.calculate('ppa_revenu_activite', period)
-        return period, ppa_revenu_activite
+        ppa_ressources_hors_activite = simulation.calculate('ppa_ressources_hors_activite', period)
+        return period, ppa_revenu_activite + ppa_ressources_hors_activite
 
 class ppa_bonification(Variable):
     column = FloatCol
