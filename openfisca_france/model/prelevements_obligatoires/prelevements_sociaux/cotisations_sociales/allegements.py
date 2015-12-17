@@ -149,9 +149,9 @@ class aide_premier_salarie(DatedVariable):
 
     @dated_function(start = date(2015, 6, 9))
     def function(self, simulation, period):
-        period_month = period.this_month
+        period = period.this_month
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        apprenti = simulation.calculate('apprenti', period_month)
+        apprenti = simulation.calculate('apprenti', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
