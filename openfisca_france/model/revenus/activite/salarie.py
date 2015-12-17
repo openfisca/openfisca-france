@@ -5,7 +5,6 @@ from numpy import (
     busday_count as original_busday_count, datetime64, maximum as max_, minimum as min_, timedelta64,
     )
 
-from openfisca_france.model.revenus.activite.salarie import salaire_super_brut
 from ...base import *  # noqa analysis:ignore
 from ...prestations.prestations_familiales.base_ressource import nb_enf
 

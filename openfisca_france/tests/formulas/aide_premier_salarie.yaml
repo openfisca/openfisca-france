@@ -73,7 +73,7 @@
     aide_premier_salarie: 166.67
 
 
-- period: "2017-07-01"
+- period: "2017-07"
   name: L'aide n'est plus disponible 2 ans après
   relative_error_margin: 0.001
   input_variables:
