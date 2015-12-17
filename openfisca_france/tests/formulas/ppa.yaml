@@ -316,7 +316,25 @@
     indemnites_journalieres_maternite: 300
     indemnites_journalieres_accident_travail: 300
     indemnites_chomage_partiel: 300
-    chonet: 300
   output_variables:
     ppa_revenu_activite:
-      2016-02: 700
+      2016-02: 600
+
+- name: "PPA: ressources prises en compte hors activité"
+  period: 2016-01
+  input_variables:
+    af_base: 300
+    paje_base: 300
+    rsa_forfait_asf: 300
+    paje_clca: 300
+    paje_prepare: 300
+    paje_colca: 300
+    chonet: 300
+    rstnet: 300
+    retraite_combattant: 300
+    dedommagement_victime_amiante: 300
+    pensions_alimentaires_percues: 300
+    prestation_compensatoire: 300
+  output_variables:
+    ppa_ressources_hors_activite:
+      2016-02: 1200
