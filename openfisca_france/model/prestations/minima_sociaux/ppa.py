@@ -4,7 +4,7 @@ from __future__ import division
 
 from ...base import *  # noqa analysis:ignore
 
-from numpy import maximum as max_, round as round_, minimum as min_
+from numpy import maximum as max_, round as round_, minimum as min_, logical_not as not_
 
 class ppa_eligibilite(Variable):
     column = BoolCol
@@ -13,11 +13,25 @@ class ppa_eligibilite(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        age_min = simulation.legislation_at(period.start).minim.ppa.age_min
+        P = simulation.legislation_at(period.start)
+        age_min = P.minim.ppa.age_min
         ppa_revenu_activite = simulation.calculate('ppa_revenu_activite', period.last_month)
         condition_age_individus = simulation.calculate('age', period) >= age_min
         condition_age = self.any_by_roles(condition_age_individus)
-        elig = condition_age * ppa_revenu_activite
+        def eligibilite_etudiants():
+            # Pour un individu
+            etudiant = simulation.calculate('etu', period) # individu
+            plancher_ressource = 169 * P.cotsoc.gen.smic_h_b * P.fam.af.seuil_rev_taux
+            revenu_activite = simulation.calculate('ppa_revenu_activite_i', period)
+            condition_ressources_etudiant_i = not_(etudiant) + (revenu_activite > plancher_ressource)
+
+            # Pour la famille
+            condition_ressources_etudiant_array = self.split_by_roles(condition_ressources_etudiant_i)
+            condition_ressources_etudiant = condition_ressources_etudiant_array[CHEF] + condition_ressources_etudiant_array[CONJ]
+            eligibe_ppa_majore = simulation.calculate('rsa_majore_eligibilite', period)
+            return eligibe_ppa_majore + condition_ressources_etudiant
+
+        elig = condition_age * ppa_revenu_activite * eligibilite_etudiants()
         return period, elig
 
 class ppa_revenu_activite(Variable):
