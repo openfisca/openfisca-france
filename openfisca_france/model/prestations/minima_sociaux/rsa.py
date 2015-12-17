@@ -332,48 +332,54 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
     @dated_function(date(2002, 1, 1), date(2003, 12, 31))
     def function_2002(self, simulation, period):
         period = period.this_month
-        af_base = simulation.calculate('af_base', period)
-        cf = simulation.calculate('cf', period)
-        asf = simulation.calculate('asf', period)
-        apje = simulation.calculate('apje', period)
-        ape = simulation.calculate('ape', period)
-        P = simulation.legislation_at(period.start).minim
+        prestations = [
+            'af_base',
+            'cf',
+            'asf',
+            'apje',
+            'ape',
+            ]
+        result = sum(simulation.calculate(prestation, period) for prestation in prestations)
 
-        return period, af_base + cf + asf + apje + ape
+        return period, result
 
     @dated_function(start = date(2004, 1, 1), stop = date(2014, 3, 31))
     def function_2003(self, simulation, period):
         period = period.this_month
-        af_base = simulation.calculate('af_base', period)
-        cf = simulation.calculate('cf', period)
-        asf = simulation.calculate('asf', period)
-        paje_base = simulation.calculate('paje_base', period)
-        paje_clca = simulation.calculate('paje_clca', period)
-        paje_prepare = simulation.calculate('paje_prepare', period)
-        paje_colca = simulation.calculate('paje_colca', period)
-        P = simulation.legislation_at(period.start).minim
+        prestations = [
+            'af_base',
+            'cf',
+            'asf',
+            'paje_base',
+            'paje_clca',
+            'paje_prepare',
+            'paje_colca',
+            ]
 
-        return period, af_base + cf + asf + paje_base + paje_clca + paje_prepare + paje_colca
+        result = sum(simulation.calculate(prestation, period) for prestation in prestations)
+
+        return period, result
 
     @dated_function(start = date(2014, 4, 1))
     def function_2014(self, simulation, period):
         # TODO : Neutraliser les ressources de type prestations familiales quand elles sont interrompues
         period = period.this_month
-        af_base = simulation.calculate('af_base', period)
+        prestations = [
+            'af_base',
+            'rsa_forfait_asf',
+            'paje_base',
+            'paje_clca',
+            'paje_prepare',
+            'paje_colca',
+            ]
+        result = sum(simulation.calculate(prestation, period) for prestation in prestations)
         cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', period)
         cf = simulation.calculate('cf', period)
-        rsa_forfait_asf = simulation.calculate('rsa_forfait_asf', period)
-        paje_base = simulation.calculate('paje_base', period)
-        paje_clca = simulation.calculate('paje_clca', period)
-        paje_prepare = simulation.calculate('paje_prepare', period)
-        paje_colca = simulation.calculate('paje_colca', period)
-        P = simulation.legislation_at(period.start).minim
-
         # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
         cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
+        result = result + cf_non_majore
 
-        return period, af_base + rsa_forfait_asf + cf_non_majore + paje_base + paje_clca +
-            paje_prepare + paje_colca
+        return period, result
 
 
 class crds_mini(DatedVariable):
