@@ -338,3 +338,34 @@
   output_variables:
     ppa_ressources_hors_activite:
       2016-02: 1200
+
+- name: "PPA: étudiant éligible (ressources > plancher)"
+  period: 2016-01
+  input_variables:
+    salaire_net:
+      2015-12: 900
+      2015-11: 900
+      2015-10: 900
+  output_variables:
+    ppa_eligibilite: True
+
+- name: "PPA: étudiant non éligible (ressources < plancher)"
+  period: 2016-01
+  input_variables:
+    salaire_net:
+      2015-12: 800
+      2015-11: 800
+      2015-10: 800
+  output_variables:
+    ppa_eligibilite: True
+
+- name: "PPA: étudiant éligible (majoré)"
+  period: 2016-01
+  input_variables:
+    salaire_net:
+      2015-12: 800
+      2015-11: 800
+      2015-10: 800
+    rsa_majore_eligibilite: True
+  output_variables:
+    ppa_eligibilite: True
