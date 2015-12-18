@@ -364,11 +364,10 @@
     chonet: 100
     rstnet: 100
     retraite_combattant: 100
-    dedommagement_victime_amiante: 100
     pensions_alimentaires_percues: 100
     prestation_compensatoire: 100
   output_variables:
-    ppa_ressources_hors_activite: 1200
+    ppa_ressources_hors_activite: 1100
 
 - name: "PPA: étudiant éligible (ressources > plancher)"
   period: 2016-01
