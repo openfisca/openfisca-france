@@ -131,7 +131,6 @@ class ppa_ressources_hors_activite_i(Variable):
             'chonet',
             'rstnet',
             'retraite_combattant',
-            'dedommagement_victime_amiante',
             'pensions_alimentaires_percues',
             'prestation_compensatoire',
             ]
