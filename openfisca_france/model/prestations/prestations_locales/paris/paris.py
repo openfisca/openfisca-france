@@ -74,10 +74,9 @@ class paris_base_ressources(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        aspa = simulation.calculate('aspa', period)
         paris_base_ressources_i_holder = simulation.compute('paris_base_ressources_i', period)
         paris_base_ressources = self.sum_by_entity(paris_base_ressources_i_holder)
-        result = paris_base_ressources + aspa
+        result = paris_base_ressources
 
         return period, result
 
@@ -145,7 +144,7 @@ class personnes_agees(Variable):
 
 class personnes_handicap_paris(Variable):
     column = BoolCol
-    label = u"Personne qui possède l'AAH"
+    label = u"Personne qui a le statut Handicapé"
     entity_class = Individus
 
     def function(self, simulation, period):
@@ -170,10 +169,10 @@ class condition_taux_effort(Variable):
     def function(self, simulation, period):
         taux_effort = simulation.legislation_at(period.start).paris.paris_logement.taux_effort
         loyer = simulation.calculate('loyer', period)
+        apl = simulation.calculate('apl', period)
 
         ressources_mensuelles = simulation.calculate('paris_base_ressources', period)
         charges_forfaitaire_logement = simulation.calculate('charges_forfaitaire_logement', period)
-        apl = simulation.calculate('apl', period)
         calcul_taux_effort = (loyer + charges_forfaitaire_logement - apl) / ressources_mensuelles
         condition_loyer = calcul_taux_effort >= taux_effort
         return period, condition_loyer

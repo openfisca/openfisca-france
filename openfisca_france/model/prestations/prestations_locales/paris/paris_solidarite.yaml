@@ -4,9 +4,10 @@
     age: 55
     parisien: True
     statut_occupation: 4
+    invalide: True
     aah: 800
   output_variables:
-    paris_logement_psol: 92.35
+    paris_logement_psol: 100
 
 - name: "Personne éligible pour l'aide PSOL"
   period: 2015-11
@@ -66,12 +67,13 @@
   - id: "couple1"
     age: 55
     aah: 800
+    invalide: True
   - id: "couple2"
     age: 55
     indemnites_stage:
       2014-11: 100
   output_variables:
-    paris_logement_psol: 530
+    paris_logement_psol: 188
 
 - name: "Couple éligible pour l'aide PSOL"
   period: 2015-11

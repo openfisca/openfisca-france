@@ -145,7 +145,7 @@
 
 - name: "Personne agée qui es eligible à PL"
   description: Personne agée qui es eligible à PL
-  period: 2014-11
+  period: 2015-11
   menages:
     personne_de_reference: "parent1"
     loyer: 550
@@ -154,42 +154,42 @@
     parisien: True
     statut_occupation_famille: 4
     apl:
-      2013-07: 0
-      2013-08: 0
-      2013-09: 0
-      2013-10: 0
-      2013-11: 0
-      2013-12: 0
-      2014-01: 0
-      2014-02: 0
-      2014-03: 0
-      2014-04: 0
-      2014-05: 0
-      2014-06: 0
-      year:2013-07: 5000
+      2014-12: 0
+      2015-01: 0
+      2015-02: 0
+      2015-03: 0
+      2015-04: 0
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      2015-08: 0
+      2015-09: 0
+      2015-10: 0
+      2015-11: 200
+      year:2014-11: 5000
     aspa:
-      2013-07: 0
-      2013-08: 0
-      2013-09: 0
-      2013-10: 0
-      2013-11: 0
-      2013-12: 0
-      2014-01: 0
-      2014-02: 0
-      2014-03: 0
-      2014-04: 0
-      2014-05: 0
-      2014-06: 0
-      year:2013-07: 9600
+      2014-12: 0
+      2015-01: 0
+      2015-02: 0
+      2015-03: 0
+      2015-04: 0
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      2015-08: 0
+      2015-09: 0
+      2015-10: 0
+      2015-11: 850
+      year:2014-11: 9600
   individus:
     - id: "parent1"
       age: 65
   output_variables:
     paris_logement: 84
 
-- name: "Personne handicapé qui es eligible à PL"
-  description: Personne handicapé qui es eligible à PL
-  period: 2014-07
+- name: "Personne handicapé qui n'es pas eligible à PL car revenus trop important"
+  description: Personne handicapé qui n'es pas eligible à PL car revenus trop important
+  period: 2015-11
   menages:
     personne_de_reference: "parent1"
     loyer: 550
@@ -198,53 +198,53 @@
     parisien: True
     statut_occupation_famille: 4
     apl:
-      2013-07: 0
-      2013-08: 0
-      2013-09: 0
-      2013-10: 0
-      2013-11: 0
-      2013-12: 0
-      2014-01: 0
-      2014-02: 0
-      2014-03: 0
-      2014-04: 0
-      2014-05: 0
-      2014-06: 0
-      year:2013-07: 5000
+      2014-12: 0
+      2015-01: 0
+      2015-02: 0
+      2015-03: 0
+      2015-04: 0
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      2015-08: 0
+      2015-09: 0
+      2015-10: 0
+      2015-11: 0
+      year:2014-11: 5000
   individus:
     - id: "parent1"
-      age: 65
+      age: 55
       invalide: True
       aah:
-        2013-07: 0
-        2013-08: 0
-        2013-09: 0
-        2013-10: 0
-        2013-11: 0
-        2013-12: 0
-        2014-01: 0
-        2014-02: 0
-        2014-03: 0
-        2014-04: 0
-        2014-05: 0
-        2014-06: 0
-        year:2013-07: 4500
+        2014-12: 0
+        2015-01: 0
+        2015-02: 0
+        2015-03: 0
+        2015-04: 0
+        2015-05: 0
+        2015-06: 0
+        2015-07: 0
+        2015-08: 0
+        2015-09: 0
+        2015-10: 0
+        2015-11: 0
+        year:2014-11: 4500
       chonet:
-        2013-07: 0
-        2013-08: 0
-        2013-09: 0
-        2013-10: 0
-        2013-11: 0
-        2013-12: 0
-        2014-01: 0
-        2014-02: 0
-        2014-03: 0
-        2014-04: 0
-        2014-05: 0
-        2014-06: 2000
-        year:2013-07: 22000
+        2014-12: 0
+        2015-01: 0
+        2015-02: 0
+        2015-03: 0
+        2015-04: 0
+        2015-05: 0
+        2015-06: 0
+        2015-07: 0
+        2015-08: 0
+        2015-09: 0
+        2015-10: 0
+        2015-11: 2000
+        year:2014-11: 22000
   output_variables:
-    paris_logement: 84
+    paris_logement: 0
 
 - name: "Personne agée qui es eligible à PL"
   description: Personne agée qui es eligible à PL
@@ -257,18 +257,18 @@
     parisien: True
     statut_occupation_famille: 4
     aspa:
-        2014-12: 0
-        2015-01: 0
-        2015-02: 0
-        2015-03: 0
-        2015-04: 0
-        2015-05: 0
-        2015-06: 0
-        2015-07: 0
-        2015-08: 0
-        2015-09: 0
-        2015-10: 0
-        2015-11: 850
+      2014-12: 0
+      2015-01: 0
+      2015-02: 0
+      2015-03: 0
+      2015-04: 0
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      2015-08: 0
+      2015-09: 0
+      2015-10: 0
+      2015-11: 850
   individus:
     - id: "parent1"
       age: 65
@@ -299,4 +299,93 @@
     apl: 320
     aspa: 850
   output_variables:
-    paris_logement: 0
+    paris_logement: 84
+
+- name: "Personne éligible car personne agé plus de 65 ans"
+  period: 2015-11
+  input_variables:
+    age: 66
+    parisien: True
+    statut_occupation: 4
+    loyer: 550
+    apl: 200
+    salaire_net: 850
+    aspa: 0
+  output_variables:
+    paris_logement: 84
+
+- name: "Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 1600"
+  period: 2014-11
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+    parisien: True
+    statut_occupation_famille: 4
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2"]
+    loyer: 550
+  individus:
+    - id: "parent1"
+      age: 55
+      salaire_net:
+        2014-11: 1000
+    - id: "parent2"
+      age: 55
+      invalide: True
+      aah:
+        2014-11: 350
+    - id: "enfant1"
+      age: 5
+    - id: "enfant2"
+      age: 9
+  output_variables:
+    paris_logement: 116
+
+- name: "Couple éligible pour l'aide Paris logement car un couple avec ressources < 1140"
+  period: 2014-11
+  familles:
+    parents: ["parent1", "parent2"]
+    parisien: True
+    statut_occupation_famille: 4
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    loyer: 550
+  individus:
+    - id: "parent1"
+      age: 55
+      salaire_net:
+        2014-11: 1000
+    - id: "parent2"
+      age: 55
+      invalide: True
+      aah:
+        2014-11: 350
+  output_variables:
+    paris_logement: 95
+
+- name: "Couple éligible pour l'aide Paris logement car un couple avec ressources < 1140"
+  period: 2014-11
+  familles:
+    parents: ["parent1", "parent2"]
+    parisien: True
+    statut_occupation_famille: 4
+
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    loyer: 550
+  individus:
+    - id: "parent1"
+      age: 65
+      salaire_net:
+        2014-11: 1000
+    - id: "parent2"
+      age: 55
+      invalide: True
+      aah:
+        2014-11: 350
+  output_variables:
+    paris_logement: 95

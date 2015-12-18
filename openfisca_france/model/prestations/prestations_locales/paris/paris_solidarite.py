@@ -18,14 +18,13 @@ class paris_logement_psol(Variable):
         personnes_agees_famille = self.any_by_roles(personnes_agees)
         personne_handicap_individu = simulation.compute('personnes_handicap_paris', period)
         personne_handicap = self.any_by_roles(personne_handicap_individu)
-        montant_aide_personne_agee = simulation.calculate('montant_aide_personne_agee', period)
-        montant_aide_handicape = simulation.calculate('montant_aide_handicape', period)
+        montant_aide = simulation.calculate('montant_aide', period)
         result = parisien * (personnes_agees_famille + personne_handicap)
-        montant = select([personnes_agees_famille, personne_handicap],
-            [montant_aide_personne_agee, montant_aide_handicape])
+        montant = select([personnes_agees_famille + personne_handicap],
+            [montant_aide])
         return period, result * montant
 
-class montant_aide_personne_agee(Variable):
+class montant_aide(Variable):
     column = FloatCol
     label = u"Montant de l'aide PSOL pour les personnes âgées"
     entity_class = Familles
@@ -52,29 +51,3 @@ class montant_aide_personne_agee(Variable):
             [(plafond_seul_psol - ressources_mensuelles_min), (plafond_couple_psol - ressources_mensuelles_min), 0])
         return period, result
 
-class montant_aide_handicape(Variable):
-    column = FloatCol
-    label = u"Montant de l'aide PSOL pour les personnes handicapées"
-    entity_class = Familles
-
-
-    def function(self, simulation, period):
-        aah = simulation.legislation_at(period.start).minim.aah.montant
-        plafond_seul_psol = simulation.legislation_at(period.start).paris.paris_solidarite.plafond_seul_psol
-        plafond_couple_psol = simulation.legislation_at(period.start).paris.paris_solidarite.plafond_couple_psol
-
-        personne_handicap_individu = simulation.compute('personnes_handicap_paris', period)
-        personne_handicap = self.any_by_roles(personne_handicap_individu)
-        personnes_couple = simulation.calculate('concub', period)
-        ressources_mensuelles = simulation.calculate('paris_base_ressources', period)
-
-        plafond_psol = select([personnes_couple, (personnes_couple != 1)], [plafond_couple_psol, plafond_seul_psol])
-
-        ressources_mensuelles_min = select([(ressources_mensuelles <= aah) * personne_handicap,
-            (ressources_mensuelles >= aah) * personne_handicap], [aah, ressources_mensuelles])
-
-        result = select([((personnes_couple != 1) * (ressources_mensuelles_min <= plafond_psol)),
-            personnes_couple * (ressources_mensuelles_min <= plafond_psol),
-            ((personnes_couple != 1) + personnes_couple) * (ressources_mensuelles_min >= plafond_psol)],
-            [(plafond_seul_psol - ressources_mensuelles_min), (plafond_couple_psol - ressources_mensuelles_min), 0])
-        return period, result
