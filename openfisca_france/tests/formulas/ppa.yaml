@@ -1,35 +1,49 @@
-- name: "PPA - Pas d'activité, pas d'éligibilité"
-  period: 2016-01
-  input_variables:
-    age: 40
-    ppa_revenu_activite:
-      2015-12: 0
-      2015-11: 0
-      2015-10: 0
-  output_variables:
-    ppa_eligibilite: False
-
 - name: "PPA - Pas d'éligibilité si moins de 18 ans"
   period: 2016-01
+  relative_error_margin: 0.05
   input_variables:
-    age: 17
+    birth: '1998-01-01' # age < 18 sur le trimestre de référence
     ppa_revenu_activite:
       2015-12: 500
       2015-11: 500
       2015-10: 500
   output_variables:
-    ppa_eligibilite: False
+    ppa_eligibilite:
+      2015-12: False
+      2015-11: False
+      2015-10: False
+    ppa: 0
 
-- name: "PPA - Eligibilité"
+- name: "PPA - Eligibilité si age > 18"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    birth: '1997-01-01' # age > 18 sur le trimestre de référence
+    ppa_revenu_activite_i:
+      2015-12: 913
+      2015-11: 913
+      2015-10: 913
+  output_variables:
+    ppa_eligibilite:
+      2015-12: True
+      2015-11: True
+      2015-10: True
+    ppa: 177.21 + 67
+
+- name: "PPA - Eligibilité sur certains mois seulement"
   period: 2016-01
   input_variables:
-    age: 18
-    ppa_revenu_activite:
-      2015-12: 500
-      2015-11: 500
-      2015-10: 500
+    birth: '1997-11-15' # age > 18 seulemet sur 1 mois du TR
+    ppa_revenu_activite_i:
+      2015-12: 913
+      2015-11: 913
+      2015-10: 913
   output_variables:
-    ppa_eligibilite: True
+    ppa_eligibilite:
+      2015-12: True
+      2015-11: False
+      2015-10: False
+    ppa: (177.21 + 67) / 3
 
 - name: "PPA personne seule, pas de bonification"
   period: 2016-01
@@ -59,7 +73,7 @@
         2015-11: 500
         2015-10: 500
   output_variables:
-    # mff = 524.16 * (1 + 0.5) = 786.24
+    ppa_montant_forfaitaire_familial: 524.16 * (1 + 0.5) # = 786.24
     rsa: 786.24 - 500
     ppa: 786.24 - 0.38 * 500 - (786.24 - 500)
 
@@ -81,7 +95,7 @@
     - id: "enfant1"
       age: 10
   output_variables:
-    # mff = 524.16 * (1 + 0.5 + 0.3) = 943.49
+    ppa_montant_forfaitaire_familial: 524.16 * (1 + 0.5 + 0.3) # =943.49
     rsa: 943.49 - 500
     ppa: 943.49 - 0.38 * 500 - (943.49 - 500)
 
@@ -108,7 +122,7 @@
     - id: "enfant3"
       age: 12
   output_variables:
-    # mff = 524.16 * (1 + 0.5 + 2 * 0.3 + 0.4) = 1310.40
+    ppa_montant_forfaitaire_familial: 524.16 * (1 + 0.5 + 2 * 0.3 + 0.4) # =1310.40
     rsa: 1310.40 - 500
     ppa: 1310.40 - 0.38 * 500 - (1310.40 - 500)
 
@@ -129,13 +143,28 @@
     - id: "enfant1"
       age: 2
   output_variables:
-    # mff = 524.16 * (1.28412 + 0.42804) = 897.45
+    ppa_montant_forfaitaire_familial: 524.16 * (1.28412 + 0.42804) # =897.45
     rsa: 897.45 - 500
     ppa: 897.45 - 0.38 * 500 - (897.45 - 500)
 
+- name: "PPA: pas de moyennisation des ressources"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    salaire_net:
+      2015-12: 10000
+      2015-11: 913
+      2015-10: 0
+  output_variables:
+    ppa_fictive:
+      2015-12: 0
+      2015-11: 244.21
+      2015-10: 0
+    ppa: 244.21 / 3
 
 - name: "PPA personne seule, revenus variables, pas de bonification"
   period: 2016-01
+  relative_error_margin: 0.05
   input_variables:
     age: 40
     salaire_net:
@@ -144,8 +173,12 @@
       2015-11: 450
       2015-10: 550
   output_variables:
+    ppa_fictive:
+      2015-12: 524.16 - 0.38 * 500 - (524.16 - 500) # =310
+      2015-11: 524.16 - 0.38 * 450 - (524.16 - 450) # =279
+      2015-10: 524.16 - 0.38 * 550 - 0 # =315, pas de second terme car < 0
     rsa: 524.16 - 500
-    ppa: 524.16 - 0.38 * 500 - (524.16 - 500)
+    ppa: (310 + 279 + 315) / 3
 
 - name: "PPA personne en couple avec deux sources de revenus, pas de bonification"
   period: 2016-01
@@ -169,7 +202,7 @@
         2015-11: 300
         2015-10: 300
   output_variables:
-    # mff = 524.16 * 1.5 = 786.24
+    ppa_montant_forfaitaire_familial:  524.16 * 1.5 # =786.24
     rsa_revenu_activite: 600
     rsa: 786.24 - 600
     ppa: 786.24 - 0.38 * 600 - (786.24 - 600)
@@ -233,7 +266,7 @@
         2015-11: 800
         2015-10: 800
   output_variables:
-    # mff = 524.16 * 1.5 = 786.24
+    ppa_montant_forfaitaire_familial: 524.16 * 1.5 # =786.24
     rsa: 0
     ppa: 786.24 - 0.38 * (800 + 913) + 67 + 45
 
@@ -310,44 +343,45 @@
 - name: "PPA: ressources prises en compte pour l'activité"
   period: 2016-01
   input_variables:
-    salaire_net: 300
-    revenus_stage_formation_pro: 300
-    bourse_recherche: 300
-    indemnites_journalieres_maternite: 300
-    indemnites_journalieres_accident_travail: 300
-    indemnites_chomage_partiel: 300
+    salaire_net: 100
+    revenus_stage_formation_pro: 100
+    bourse_recherche: 100
+    indemnites_journalieres_maternite: 100
+    indemnites_journalieres_accident_travail: 100
+    indemnites_chomage_partiel: 100
   output_variables:
-    ppa_revenu_activite:
-      2016-02: 600
+    ppa_revenu_activite: 600
 
 - name: "PPA: ressources prises en compte hors activité"
   period: 2016-01
   input_variables:
-    af_base: 300
-    paje_base: 300
-    rsa_forfait_asf: 300
-    paje_clca: 300
-    paje_prepare: 300
-    paje_colca: 300
-    chonet: 300
-    rstnet: 300
-    retraite_combattant: 300
-    dedommagement_victime_amiante: 300
-    pensions_alimentaires_percues: 300
-    prestation_compensatoire: 300
+    af_base: 100
+    paje_base: 100
+    rsa_forfait_asf: 100
+    paje_clca: 100
+    paje_prepare: 100
+    paje_colca: 100
+    chonet: 100
+    rstnet: 100
+    retraite_combattant: 100
+    dedommagement_victime_amiante: 100
+    pensions_alimentaires_percues: 100
+    prestation_compensatoire: 100
   output_variables:
-    ppa_ressources_hors_activite:
-      2016-02: 1200
+    ppa_ressources_hors_activite: 1200
 
 - name: "PPA: étudiant éligible (ressources > plancher)"
   period: 2016-01
+  relative_error_margin: 0.05
   input_variables:
     salaire_net:
-      2015-12: 900
-      2015-11: 900
-      2015-10: 900
+      2015-12: 913
+      2015-11: 913
+      2015-10: 913
+    etu: True
   output_variables:
-    ppa_eligibilite: True
+    ppa_eligibilite_etudiants: True
+    ppa: 244.21
 
 - name: "PPA: étudiant non éligible (ressources < plancher)"
   period: 2016-01
@@ -356,8 +390,10 @@
       2015-12: 800
       2015-11: 800
       2015-10: 800
+    etu: True
   output_variables:
-    ppa_eligibilite: True
+    ppa_eligibilite_etudiants: False
+    ppa: 0
 
 - name: "PPA: étudiant éligible (majoré)"
   period: 2016-01
@@ -366,6 +402,43 @@
       2015-12: 800
       2015-11: 800
       2015-10: 800
+    etu: True
     rsa_majore_eligibilite: True
   output_variables:
-    ppa_eligibilite: True
+    ppa_eligibilite_etudiants: True
+
+- name: "PPA: étudiant non éligible car plancher non atteint pour un mois du trimestre de référence"
+  period: 2016-01
+  input_variables:
+    salaire_net:
+      2015-12: 800
+      2015-11: 900
+      2015-10: 900
+    etu: True
+  output_variables:
+    ppa_eligibilite_etudiants: False
+    ppa: 0
+
+- name: "PPA: couple d'étudiants avec enfant:  pas de ppa"
+  period: 2016-01
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants:  ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+      etu: True
+      salaire_net:
+        2015-12: 800
+        2015-11: 800
+        2015-10: 800
+    - id: "parent2"
+      age: 40
+      etu: True
+      salaire_net:
+        2015-12: 800
+        2015-11: 800
+        2015-10: 800
+    - id: "enfant1"
+  output_variables:
+    ppa: 0
