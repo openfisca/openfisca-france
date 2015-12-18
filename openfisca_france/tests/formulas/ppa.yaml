@@ -20,9 +20,9 @@
   input_variables:
     birth: '1997-01-01' # age > 18 sur le trimestre de référence
     ppa_revenu_activite_i:
-      2015-12: 913
-      2015-11: 913
-      2015-10: 913
+      2015-12: 918
+      2015-11: 918
+      2015-10: 918
   output_variables:
     ppa_eligibilite:
       2015-12: True
@@ -35,15 +35,15 @@
   input_variables:
     birth: '1997-11-15' # age > 18 seulemet sur 1 mois du TR
     ppa_revenu_activite_i:
-      2015-12: 913
-      2015-11: 913
-      2015-10: 913
+      2015-12: 918
+      2015-11: 918
+      2015-10: 918
   output_variables:
     ppa_eligibilite:
       2015-12: True
       2015-11: False
       2015-10: False
-    ppa: (177.21 + 67) / 3
+    ppa: 80.77
 
 - name: "PPA personne seule, pas de bonification"
   period: 2016-01
@@ -153,7 +153,7 @@
   input_variables:
     salaire_net:
       2015-12: 10000
-      2015-11: 913
+      2015-11: 918
       2015-10: 0
   output_variables:
     ppa_fictive:
@@ -213,17 +213,17 @@
   input_variables:
     age: 40
     salaire_net:
-      2016-01: 913 # > 95 smic horaire brut
-      2015-12: 913
-      2015-11: 913
-      2015-10: 913
+      2016-01: 918 # > 95 smic horaire brut
+      2015-12: 918
+      2015-11: 918
+      2015-10: 918
   output_variables:
     ppa_bonification:
       2015-12: 67
       2015-11: 67
       2015-10: 67
     rsa: 0
-    ppa: 524.16 + 67 - 0.38 * 913 # =244.21
+    ppa: 524.16 + 67 - 0.38 * 918 # =244.21
 
 - name: "PPA personne seule avec revenus bonifiés (>59 SMIC horaire brut)"
   period: 2016-01
@@ -237,13 +237,13 @@
       2015-10: 800
   output_variables:
     ppa_bonification:
-      2015-12: 45
-      2015-11: 45
-      2015-10: 45
+      2015-12: 44
+      2015-11: 44
+      2015-10: 44
     rsa: 0
-    ppa: 524.16 + 45 - 0.38 * 800
+    ppa: 524.16 + 44 - 0.38 * 800
 
-- name: "PPA personne en couple avec deux sources de revenus, pas de bonification"
+- name: "PPA personne en couple avec deux sources de revenus"
   period: 2016-01
   relative_error_margin: 0.05
   familles:
@@ -254,10 +254,10 @@
     - id: "parent1"
       age: 40
       salaire_net:
-        2016-01: 913
-        2015-12: 913
-        2015-11: 913
-        2015-10: 913
+        2016-01: 918
+        2015-12: 918
+        2015-11: 918
+        2015-10: 918
     - id: "parent2"
       age: 40
       salaire_net:
@@ -268,7 +268,7 @@
   output_variables:
     ppa_montant_forfaitaire_familial: 524.16 * 1.5 # =786.24
     rsa: 0
-    ppa: 786.24 - 0.38 * (800 + 913) + 67 + 45
+    ppa: 786.24 - 0.38 * (800 + 918) + 67 + 44
 
 - name: "PPA/RSA forfait logement 1 personne"
   period: 2016-01
@@ -317,10 +317,10 @@
     age: 40
     statut_occupation_famille: 2 # propriétaire
     salaire_net:
-      2016-01: 913 # > 95 smic horaire brut
-      2015-12: 913
-      2015-11: 913
-      2015-10: 913
+      2016-01: 918 # > 95 smic horaire brut
+      2015-12: 918
+      2015-11: 918
+      2015-10: 918
   output_variables:
     rsa_forfait_logement: 62.90
     ppa: 244.21 - 62.90
@@ -332,13 +332,13 @@
     age: 40
     statut_occupation: 4
     salaire_net:
-      2015-12: 1520 # > 59 smic horaire brut, < 95
+      2015-12: 1520
       2015-11: 1520
       2015-10: 1520
     ppa_eligibilite: True
   output_variables:
     ppa:
-      2016-01: 0 # 525 + 67 - 0.38 * 1520 = 14.40 < 15
+      2016-01: 0 # 524.16 + 67 - 0.38 * 1520 = 14.40 < 15
 
 - name: "PPA: ressources prises en compte pour l'activité"
   period: 2016-01
@@ -357,7 +357,7 @@
   input_variables:
     af_base: 100
     paje_base: 100
-    rsa_forfait_asf: 100
+    rsa_forfait_asf: 91.40
     paje_clca: 100
     paje_prepare: 100
     paje_colca: 100
@@ -367,16 +367,16 @@
     pensions_alimentaires_percues: 100
     prestation_compensatoire: 100
   output_variables:
-    ppa_ressources_hors_activite: 1100
+    ppa_ressources_hors_activite: 1091.40
 
 - name: "PPA: étudiant éligible (ressources > plancher)"
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
     salaire_net:
-      2015-12: 913
-      2015-11: 913
-      2015-10: 913
+      2015-12: 900
+      2015-11: 900
+      2015-10: 900
     etu: True
   output_variables:
     ppa_eligibilite_etudiants: True
@@ -386,9 +386,9 @@
   period: 2016-01
   input_variables:
     salaire_net:
-      2015-12: 800
-      2015-11: 800
-      2015-10: 800
+      2015-12: 890
+      2015-11: 890
+      2015-10: 890
     etu: True
   output_variables:
     ppa_eligibilite_etudiants: False
@@ -398,9 +398,9 @@
   period: 2016-01
   input_variables:
     salaire_net:
-      2015-12: 800
-      2015-11: 800
-      2015-10: 800
+      2015-12: 890
+      2015-11: 890
+      2015-10: 890
     etu: True
     rsa_majore_eligibilite: True
   output_variables:
