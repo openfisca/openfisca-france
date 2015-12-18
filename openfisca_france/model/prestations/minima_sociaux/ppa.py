@@ -99,13 +99,24 @@ class ppa_revenu_activite_i(Variable):
             'revenus_stage_formation_pro',
             'bourse_recherche',
             'indemnites_chomage_partiel',
-            'indemnites_journalieres'
+            'indemnites_journalieres',
+            'tns_auto_entrepreneur_benefice',
             ]
 
-        ppa_revenu_activite_i = sum(
+        revenus_mensualises = sum(
             simulation.calculate(ressource, period) for ressource in ressources)
 
-        return period, ppa_revenu_activite_i
+        def get_last_known(variable_name):
+            valeur_n = simulation.calculate(variable_name, period.this_year)
+            valeur_n_1 = simulation.calculate(variable_name, period.last_year)
+            valeur_n_2 = simulation.calculate(variable_name, period.n_2)
+            return select(
+                [valeur_n > 0, valeur_n_1 > 0, valeur_n_2 > 0],
+                [valeur_n, valeur_n_1, valeur_n_2]
+                ) / 12
+        revenus_annualises = get_last_known('tns_benefice_exploitant_agricole') + get_last_known('tns_autres_revenus') + get_last_known('tns_micro_entreprise_benefice')
+
+        return period, revenus_mensualises + revenus_annualises
 
 class ppa_ressources_hors_activite(Variable):
     column = FloatCol

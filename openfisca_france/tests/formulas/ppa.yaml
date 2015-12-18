@@ -441,3 +441,42 @@
     - id: "enfant1"
   output_variables:
     ppa: 0
+
+- name: "PPA: Auto-entrepreneur - activité libérale (BNC)"
+  period: 2016-01
+  input_variables:
+    tns_benefice_exploitant_agricole:
+      2014: 12000
+  output_variables:
+    ppa_revenu_activite: 1000
+
+- name: "PPA: Exploitant agricole, prise en compte du dernier bénéfice agricole connu"
+  period: 2016-01
+  input_variables:
+    tns_auto_entrepreneur_type_activite: 2 # BNC, abattement de 34%
+    tns_auto_entrepreneur_chiffre_affaires:
+      2015-12: 3000
+      2015-11: 3000
+      2015-10: 3000
+  output_variables:
+    ppa_revenu_activite:
+      2015-12: 1980
+      2015-11: 1980
+      2015-10: 1980
+
+- name: "PPA: Travailleur non salarié, prise en compte des derniers revenus déclarés. (Dans mes-aides, N-2)"
+  period: 2016-01
+  input_variables:
+    tns_autres_revenus:
+      2014: 12000
+  output_variables:
+    ppa_revenu_activite: 1000
+
+- name: "PPA: Travailleur non salarié en micro-entreprise, on applique l'abattement sur le CA"
+  period: 2016-01
+  input_variables:
+    tns_micro_entreprise_chiffre_affaires:
+      2014: 12000
+    tns_micro_entreprise_type_activite: 2 # BNC, abattement de 34%
+  output_variables:
+    ppa_revenu_activite: 1000 * (1 - 0.34)
