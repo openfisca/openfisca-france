@@ -46,6 +46,11 @@ class paris_base_ressources_i(Variable):
             bourse_recherche = simulation.calculate('bourse_recherche', period)
             gains_exceptionnels = simulation.calculate('gains_exceptionnels', period)
 
+            personne_handicape = simulation.calculate('invalide', period)
+            aah = simulation.calculate('aah', period)
+
+            allocation_aah = personne_handicape * aah
+
             def revenus_tns():
                 revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', period)
 
@@ -62,7 +67,7 @@ class paris_base_ressources_i(Variable):
                 rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
                 indemnites_journalieres_imposables + prestation_compensatoire +
                 pensions_invalidite + bourse_recherche + gains_exceptionnels + revenus_tns() +
-                revenus_stage_formation_pro
+                revenus_stage_formation_pro + allocation_aah
                 )
 
             return period, result

@@ -5,7 +5,43 @@
     parisien: True
     statut_occupation: 4
     invalide: True
+    aah: 2000
+  output_variables:
+    paris_logement_psol: 0
+
+- name: "Personne éligible pour l'aide PSOL"
+  period: 2015-11
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    invalide: False
+    aah: 500
+    paris_base_ressources: 80
+  output_variables:
+    paris_logement_psol: 0
+
+- name: "Personne éligible pour l'aide PSOL"
+  period: 2015-11
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    invalide: True
+    aah: 500
+    paris_base_ressources: 80
+  output_variables:
+    paris_logement_psol: 100
+
+- name: "Personne éligible pour l'aide PSOL"
+  period: 2015-11
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    invalide: True
     aah: 800
+    paris_base_ressources: 600
   output_variables:
     paris_logement_psol: 100
 
