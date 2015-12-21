@@ -33,7 +33,8 @@ note_names = (
     u"Notes",
     u"Notes bis",
     )
-parameters_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'param'))
+package_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
+param_dir = os.path.join(package_dir, 'param')
 reference_names = (
     u"Parution au JO",
     u"Références BOI",
@@ -70,17 +71,17 @@ def iter_ipp_values(node):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--ipp-translations',
-        default = os.path.join(parameters_dir, 'ipp-tax-and-benefit-tables-to-parameters.yaml'),
+        default = os.path.join(param_dir, 'ipp-tax-and-benefit-tables-to-parameters.yaml'),
         help = 'path of YAML file containing the association between IPP fields and OpenFisca parameters')
-    parser.add_argument('-o', '--origin', default = os.path.join(parameters_dir, 'param.xml'),
+    parser.add_argument('-o', '--origin', default = os.path.join(param_dir, 'param.xml'),
         help = 'path of XML file containing the original OpenFisca parameters')
     parser.add_argument('-p', '--param-translations',
-        default = os.path.join(parameters_dir, 'param-to-parameters.yaml'),
+        default = os.path.join(param_dir, 'param-to-parameters.yaml'),
         help = 'path of YAML file containing the association between param elements and OpenFisca parameters')
     parser.add_argument('-s', '--source-dir', default = 'yaml-clean',
         help = 'path of source directory containing clean IPP YAML files')
-    parser.add_argument('-t', '--target', default = os.path.join(parameters_dir, 'parameters.xml'),
-        help = 'path of generated YAML file containing the association of IPP fields with OpenFisca parameters')
+    parser.add_argument('-t', '--target', default = os.path.join(package_dir, 'parameters'),
+        help = 'path of generated directory of XML files merging IPP fields with OpenFisca parameters')
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
@@ -235,11 +236,18 @@ def main():
     root_element.set('deb', original_root_element.get('deb'))
     root_element.set('fin', original_root_element.get('fin'))
     merge_elements(root_element, original_root_element)
-    sort_elements(root_element)
-    reindent(root_element)
 
+    if not os.path.exists(args.target):
+        os.mkdir(args.target)
+    for child_element in root_element[:]:
+        root_element.remove(child_element)
+        element_tree = etree.ElementTree(child_element)
+        sort_elements(child_element)
+        reindent(child_element)
+        element_tree.write(os.path.join(args.target, '{}.xml'.format(child_element.attrib['code'])), encoding = 'utf-8')
     element_tree = etree.ElementTree(root_element)
-    element_tree.write(args.target, encoding = 'utf-8')
+    reindent(root_element)
+    element_tree.write(os.path.join(args.target, '__root__.xml'), encoding = 'utf-8')
 
     return 0
 
