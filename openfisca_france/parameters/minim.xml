@@ -147,7 +147,7 @@
       <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
     </CODE>
     <CODE code="age_min" description="Âge minimal requis" format="integer" type="age">
-      <VALUE deb="2002-01-01" valeur="65" />
+      <VALUE deb="2002-01-01" fuzzy="true" valeur="65" />
     </CODE>
     <CODE code="duree_min_titre_sejour" description="Durée minimale de titre du séjour permettant de bénéficier de l'ASPA ou de l'ASI" format="integer">
       <VALUE deb="2002-01-01" fin="2015-12-31" valeur="10" />

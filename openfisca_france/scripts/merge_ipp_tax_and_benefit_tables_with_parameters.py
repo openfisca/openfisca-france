@@ -126,6 +126,11 @@ def main():
             element.set('code', name)
             parent_element.append(element)
 
+    # Add "fuzzy" attributes to original value elements without "fin" attribute.
+    for value_element in original_root_element.iter('VALUE'):
+        if value_element.attrib.get('deb') is None or value_element.attrib.get('fin') is None:
+            value_element.attrib['fuzzy'] = "true"
+
     tree = collections.OrderedDict()
     for source_dir_encoded, directories_name_encoded, filenames_encoded in os.walk(args.source_dir):
         directories_name_encoded.sort()
@@ -441,6 +446,8 @@ def transform_value_to_element(leaf):
     stop = leaf.get('stop')
     if stop is not None:
         value_element.set('fin', stop.isoformat())
+    if start is None or stop is None:
+        value_element.set('fuzzy', 'true')
     return value_element
 
 

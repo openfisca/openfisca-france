@@ -2,7 +2,7 @@
   <NODE code="bareme_isf">
     <NODE code="seuils_des_tranches_du_bareme_de_l_isf">
       <CODE code="1ere_tranche" format="float" type="monetary">
-        <VALUE deb="2011-01-01" valeur="800000" />
+        <VALUE deb="2011-01-01" fuzzy="true" valeur="800000" />
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="790000" />
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="770000" />
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="760000" />
@@ -25,7 +25,7 @@
         <VALUE deb="1982-01-01" fin="1982-12-31" valeur="3000000" />
       </CODE>
       <CODE code="2eme_tranche" format="float" type="monetary">
-        <VALUE deb="2013-01-01" valeur="1300000" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="1300000" />
         <VALUE deb="2011-01-01" fin="2012-12-31" valeur="1310000" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="1290000" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="1280000" />
@@ -50,7 +50,7 @@
         <VALUE deb="1982-01-01" fin="1982-12-31" valeur="5000000" />
       </CODE>
       <CODE code="3eme_tranche" format="float" type="monetary">
-        <VALUE deb="2011-01-01" valeur="2570000" />
+        <VALUE deb="2011-01-01" fuzzy="true" valeur="2570000" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="2530000" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="2520000" />
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="2450000" />
@@ -74,7 +74,7 @@
         <VALUE deb="1982-01-01" fin="1982-12-31" valeur="10000000" />
       </CODE>
       <CODE code="4eme_tranche" format="float" type="monetary">
-        <VALUE deb="2013-01-01" valeur="5000000" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="5000000" />
         <VALUE deb="2011-01-01" fin="2012-12-31" valeur="4040000" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="3980000" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="3960000" />
@@ -96,7 +96,7 @@
         <VALUE deb="1985-01-01" fin="1985-12-31" valeur="20000000" />
       </CODE>
       <CODE code="5eme_tranche" format="float" type="monetary">
-        <VALUE deb="2013-01-01" valeur="10000000" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="10000000" />
         <VALUE deb="2011-01-01" fin="2012-12-31" valeur="7710000" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="7600000" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="7570000" />
@@ -127,27 +127,27 @@
     </NODE>
     <NODE code="taux_marginaux_des_tranches_du_bareme_de_l_isf">
       <CODE code="1ere_tranche" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.005" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.005" />
         <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.0055" />
         <VALUE deb="1989-01-01" fin="1998-12-31" valeur="0.005" />
         <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
         <VALUE deb="1982-01-01" fin="1986-12-31" valeur="0.005" />
       </CODE>
       <CODE code="2eme_tranche" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.007" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.007" />
         <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.0075" />
         <VALUE deb="1989-01-01" fin="1998-12-31" valeur="0.007" />
         <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
         <VALUE deb="1982-01-01" fin="1986-12-31" valeur="0.01" />
       </CODE>
       <CODE code="3eme_tranche" format="percent">
-        <VALUE deb="1999-01-01" valeur="0.01" />
+        <VALUE deb="1999-01-01" fuzzy="true" valeur="0.01" />
         <VALUE deb="1989-01-01" fin="1998-12-31" valeur="0.009" />
         <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
         <VALUE deb="1982-01-01" fin="1986-12-31" valeur="0.015" />
       </CODE>
       <CODE code="4eme_tranche" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.0125" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.0125" />
         <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.013" />
         <VALUE deb="1990-01-01" fin="1998-12-31" valeur="0.012" />
         <VALUE deb="1989-01-01" fin="1989-12-31" valeur="0.011" />
@@ -155,7 +155,7 @@
         <VALUE deb="1985-01-01" fin="1986-12-31" valeur="0.02" />
       </CODE>
       <CODE code="5eme_tranche" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.015" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.015" />
         <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.0165" />
         <VALUE deb="1990-01-01" fin="1998-12-31" valeur="0.015" />
       </CODE>
@@ -163,7 +163,7 @@
         <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.018" />
       </CODE>
       <CODE code="nombre_de_tranches_du_bareme">
-        <VALUE deb="2013-01-01" valeur="5" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="5" />
         <VALUE deb="1999-01-01" fin="2012-12-31" valeur="6" />
         <VALUE deb="1990-01-01" fin="1998-12-31" valeur="5" />
         <VALUE deb="1989-01-01" fin="1989-12-31" valeur="4" />
@@ -181,18 +181,18 @@
   </NODE>
   <NODE code="decote">
     <CODE code="borne_superieure_de_la_decote" format="float" type="monetary">
-      <VALUE deb="2013-01-01" valeur="1400000" />
+      <VALUE deb="2013-01-01" fuzzy="true" valeur="1400000" />
     </CODE>
     <CODE code="parametre_de_calcul_de_la_decote_isf" format="float" type="monetary">
-      <VALUE deb="2013-01-01" valeur="17500" />
+      <VALUE deb="2013-01-01" fuzzy="true" valeur="17500" />
     </CODE>
     <CODE code="taux_de_la_decote_isf" format="percent">
-      <VALUE deb="2013-01-01" valeur="0.0125" />
+      <VALUE deb="2013-01-01" fuzzy="true" valeur="0.0125" />
     </CODE>
   </NODE>
   <NODE code="forfait_mobilier">
     <CODE code="majoration_forfaitaire" format="percent">
-      <VALUE deb="1989-01-01" valeur="0.05" />
+      <VALUE deb="1989-01-01" fuzzy="true" valeur="0.05" />
       <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
       <VALUE deb="1982-01-01" fin="1986-12-31" valeur="0.05" />
     </CODE>
@@ -200,24 +200,24 @@
   <NODE code="pfl">
     <NODE code="autres_produits_de_placement_a_revenu_fixe_comptes_sur_livrets_creances_depots_cautionnement_et_comptes_courants">
       <CODE code="courus_entre_le_16_7_78_et_31_12_79" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.24" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="1979-07-01" fin="2012-12-31" valeur="0.4" />
         <VALUE deb="1974-01-01" fin="1979-06-30" valeur="0.333" />
       </CODE>
       <CODE code="courus_entre_le_1_1_80_et_31_12_82" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.24" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="1980-01-01" fin="2012-12-31" valeur="0.38" />
       </CODE>
       <CODE code="courus_entre_le_1_1_83_et_31_12_89" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.24" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="1983-01-01" fin="2012-12-31" valeur="0.45" />
       </CODE>
       <CODE code="courus_entre_le_1_1_90_et_31_12_94" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.24" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="1990-06-15" fin="2012-12-31" valeur="0.35" />
       </CODE>
       <CODE code="courus_entre_le_1_1_95_et_apres" format="percent">
-        <VALUE deb="2012-01-01" valeur="0.24" />
+        <VALUE deb="2012-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.19" />
         <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.18" />
         <VALUE deb="2004-01-01" fin="2007-12-31" valeur="0.16" />
@@ -226,52 +226,52 @@
     </NODE>
     <NODE code="bons_de_caisse_des_banque_bons_du_tresor_sur_formules_bons_d_epargne_des_ptt">
       <CODE code="emis_a_partir_du_1_1_95_et_sans_anonymat" format="percent">
-        <VALUE deb="2012-01-01" valeur="0.24" />
+        <VALUE deb="2012-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.19" />
         <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.18" />
         <VALUE deb="2004-01-01" fin="2007-12-31" valeur="0.16" />
         <VALUE deb="1995-01-01" fin="2003-12-31" valeur="0.15" />
       </CODE>
       <CODE code="emis_avant_1_6_78" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.24" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="1974-01-01" fin="2012-12-31" valeur="0.333" />
       </CODE>
       <CODE code="emis_entre_1_1_83_et_1_1_1998_avec_anonymat" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.42" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.42" />
         <VALUE deb="1999-04-01" fin="2012-12-31" valeur="0.6" />
         <VALUE deb="1983-01-01" fin="1999-03-31" valeur="0.5" />
       </CODE>
       <CODE code="emis_entre_1_1_83_et_31_12_89_sans_anonymat" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.24" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="1983-01-01" fin="2012-12-31" valeur="0.45" />
       </CODE>
       <CODE code="emis_entre_1_1_90_et_31_12_94_sans_anonymat" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.24" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="1990-06-15" fin="2012-12-31" valeur="0.35" />
       </CODE>
       <CODE code="emis_entre_1_6_78_et_20_1_80" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.24" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="1979-07-01" fin="2012-12-31" valeur="0.4" />
       </CODE>
       <CODE code="emis_entre_21_1_80_et_31_12_82_avec_anonymat" format="percent">
-        <VALUE deb="1980-01-01" valeur="0.42" />
+        <VALUE deb="1980-01-01" fuzzy="true" valeur="0.42" />
       </CODE>
       <CODE code="emis_entre_21_1_80_et_31_12_82_sans_anonymat" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.24" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="1980-01-01" fin="2012-12-31" valeur="0.38" />
       </CODE>
     </NODE>
     <CODE code="dividendes" format="percent">
-      <VALUE deb="2012-01-01" valeur="0.21" />
+      <VALUE deb="2012-01-01" fuzzy="true" valeur="0.21" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.19" />
       <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.18" />
     </CODE>
     <CODE code="emis_a_partir_de_1_1_1998_avec_anonymat" format="percent">
-      <VALUE deb="1999-04-01" valeur="0.6" />
+      <VALUE deb="1999-04-01" fuzzy="true" valeur="0.6" />
       <VALUE deb="1997-04-01" fin="1999-03-31" valeur="0.5" />
     </CODE>
     <CODE code="obligations_titres_participatifs_fonds_salariaux" format="percent">
-      <VALUE deb="2012-01-01" valeur="0.24" />
+      <VALUE deb="2012-01-01" fuzzy="true" valeur="0.24" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.19" />
       <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.18" />
       <VALUE deb="2004-01-01" fin="2007-12-31" valeur="0.16" />
@@ -294,7 +294,7 @@
       </CODE>
     </NODE>
     <CODE code="titres_de_creances_negociables_billets_de_tresorerie_certificats_de_depots_negociables_bons_du_tresor_negociables_et_bons_des_institutions_financieres_specialisees" format="percent">
-      <VALUE deb="2012-01-01" valeur="0.24" />
+      <VALUE deb="2012-01-01" fuzzy="true" valeur="0.24" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.19" />
       <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.18" />
       <VALUE deb="2004-01-01" fin="2007-12-31" valeur="0.16" />
@@ -307,21 +307,21 @@
   <NODE code="pfl_av">
     <NODE code="bons_ou_contrats_de_capitalisation_et_placements_de_meme_nature_assurance_vie_lors_du_denouement_du_contrat">
       <CODE code="avec_anonymat" format="percent">
-        <VALUE deb="1999-04-01" valeur="0.6" />
+        <VALUE deb="1999-04-01" fuzzy="true" valeur="0.6" />
         <VALUE deb="1983-01-01" fin="1999-03-31" valeur="0.5" />
       </CODE>
       <NODE code="souscrits_apres_le_1_1_90_et_le_pour_une_duree_de">
         <CODE code="4_a_8_ans" format="percent">
-          <VALUE deb="1990-01-01" valeur="0.15" />
+          <VALUE deb="1990-01-01" fuzzy="true" valeur="0.15" />
         </CODE>
         <CODE code="8_ans_et_plus_pour_les_primes_versees_avant_le_01_01_1998_et_les_produits_afferents_acquis_apres_cette_date" format="percent">
-          <VALUE deb="1990-01-01" valeur="0" />
+          <VALUE deb="1990-01-01" fuzzy="true" valeur="0" />
         </CODE>
         <CODE code="8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5" format="percent">
-          <VALUE deb="1998-01-01" valeur="0.075" />
+          <VALUE deb="1998-01-01" fuzzy="true" valeur="0.075" />
         </CODE>
         <CODE code="moins_de_4_ans" format="percent">
-          <VALUE deb="1990-01-01" valeur="0.35" />
+          <VALUE deb="1990-01-01" fuzzy="true" valeur="0.35" />
         </CODE>
       </NODE>
       <NODE code="souscrits_entre_le_1_1_83_et_le_31_12_89_pour_une_duree_de">
@@ -332,10 +332,10 @@
           <VALUE deb="1983-01-01" fin="1997-12-31" valeur="0.15" />
         </CODE>
         <CODE code="6_ans_et_plus_pour_les_primes_versees_avant_le_01_01_1998_et_les_produits_afferents_acquis_apres_cette_date" format="percent">
-          <VALUE deb="1983-01-01" valeur="0" />
+          <VALUE deb="1983-01-01" fuzzy="true" valeur="0" />
         </CODE>
         <CODE code="6_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5" format="percent">
-          <VALUE deb="1998-01-01" valeur="0.075" />
+          <VALUE deb="1998-01-01" fuzzy="true" valeur="0.075" />
         </CODE>
         <CODE code="moins_de_2_ans_2" format="percent">
           <VALUE deb="1983-01-01" fin="1997-12-31" valeur="0.45" />
@@ -345,12 +345,12 @@
   </NODE>
   <NODE code="plaf">
     <CODE code="plafonnement_du_plafonnement" format="percent">
-      <VALUE deb="2013-01-01" valeur="0.5" />
+      <VALUE deb="2013-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0" />
       <VALUE deb="1996-01-01" fin="2011-12-31" valeur="0.5" />
     </CODE>
     <CODE code="plafonnement_taux_d_imposition_isf" format="percent">
-      <VALUE deb="2013-01-01" valeur="0.75" />
+      <VALUE deb="2013-01-01" fuzzy="true" valeur="0.75" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0" />
       <VALUE deb="1991-01-01" fin="2011-12-31" valeur="0.85" />
       <VALUE deb="1989-01-01" fin="1990-12-31" valeur="0.7" />
@@ -362,10 +362,10 @@
     </CODE>
     <NODE code="caps">
       <CODE code="produits_de_placement" format="percent">
-        <VALUE deb="2004-07-01" valeur="0.003" />
+        <VALUE deb="2004-07-01" fuzzy="true" valeur="0.003" />
       </CODE>
       <CODE code="revenus_du_patrimoine" description="Contribution additionnelle au prélèvement social (revenus du patrimoine)" format="percent">
-        <VALUE deb="2004-07-01" valeur="0.003" />
+        <VALUE deb="2004-07-01" fuzzy="true" valeur="0.003" />
         <VALUE deb="2003-01-01" fin="2004-06-30" valeur="0.0015" />
       </CODE>
       <CODE code="rsa" description="Contribution au financement du revenu de solidarité active" format="percent">
@@ -380,22 +380,22 @@
     </CODE>
     <NODE code="crds">
       <CODE code="produits_de_placement" format="percent">
-        <VALUE deb="1996-02-01" valeur="0.005" />
+        <VALUE deb="1996-02-01" fuzzy="true" valeur="0.005" />
       </CODE>
       <CODE code="revenus_du_patrimoine" format="percent">
-        <VALUE deb="1996-02-01" valeur="0.005" />
+        <VALUE deb="1996-02-01" fuzzy="true" valeur="0.005" />
       </CODE>
     </NODE>
     <NODE code="prelevement_social">
       <CODE code="produits_de_placement" description="Prélèvement social (revenus des produits de placement)" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.045" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.045" />
         <VALUE deb="2012-07-01" fin="2012-12-31" valeur="0.054" />
         <VALUE deb="2011-10-01" fin="2012-06-30" valeur="0.034" />
         <VALUE deb="2011-01-01" fin="2011-09-30" valeur="0.022" />
         <VALUE deb="1998-01-01" fin="2010-12-31" valeur="0.02" />
       </CODE>
       <CODE code="revenus_du_patrimoine" description="Prélèvement social (revenus du patrimoine)" format="percent">
-        <VALUE deb="2012-01-01" valeur="0.045" />
+        <VALUE deb="2012-01-01" fuzzy="true" valeur="0.045" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.034" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.022" />
         <VALUE deb="1997-01-01" fin="2009-12-31" valeur="0.02" />
@@ -406,19 +406,19 @@
     </CODE>
     <NODE code="prelevements_solidarite">
       <CODE code="produits_de_placement" format="percent">
-        <VALUE deb="2013-01-01" valeur="0.02" />
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.02" />
       </CODE>
       <CODE code="revenus_du_patrimoine" format="percent">
-        <VALUE deb="2012-01-01" valeur="0.02" />
+        <VALUE deb="2012-01-01" fuzzy="true" valeur="0.02" />
       </CODE>
     </NODE>
     <NODE code="taux_deductible_de_csg">
       <CODE code="produits_de_placement_2" format="percent">
-        <VALUE deb="2012-01-01" valeur="0.051" />
+        <VALUE deb="2012-01-01" fuzzy="true" valeur="0.051" />
         <VALUE deb="2007-01-01" fin="2011-12-31" valeur="0.058" />
       </CODE>
       <CODE code="revenus_du_patrimoine_1" format="percent">
-        <VALUE deb="2012-01-01" valeur="0.051" />
+        <VALUE deb="2012-01-01" fuzzy="true" valeur="0.051" />
         <VALUE deb="2004-01-01" fin="2011-12-31" valeur="0.058" />
         <VALUE deb="1997-01-01" fin="2003-12-31" valeur="0.051" />
         <VALUE deb="1996-01-01" fin="1996-12-31" valeur="0.01" />
@@ -426,14 +426,14 @@
     </NODE>
     <NODE code="taux_global_de_csg">
       <CODE code="produits_de_placement" format="percent">
-        <VALUE deb="2005-01-01" valeur="0.082" />
+        <VALUE deb="2005-01-01" fuzzy="true" valeur="0.082" />
         <VALUE deb="1998-01-01" fin="2004-12-31" valeur="0.075" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.034" />
         <VALUE deb="1993-07-01" fin="1996-12-31" valeur="0.024" />
         <VALUE deb="1991-02-01" fin="1993-06-30" valeur="0.011" />
       </CODE>
       <CODE code="revenus_du_patrimoine" format="percent">
-        <VALUE deb="2004-01-01" valeur="0.082" />
+        <VALUE deb="2004-01-01" fuzzy="true" valeur="0.082" />
         <VALUE deb="1997-01-01" fin="2003-12-31" valeur="0.075" />
         <VALUE deb="1996-01-01" fin="1996-12-31" valeur="0.034" />
         <VALUE deb="1993-07-01" fin="1995-12-31" valeur="0.024" />
@@ -443,7 +443,7 @@
   </NODE>
   <NODE code="reduc_exo">
     <CODE code="abattement_sur_residence_principale" format="percent">
-      <VALUE deb="2008-01-01" valeur="0.3" />
+      <VALUE deb="2008-01-01" fuzzy="true" valeur="0.3" />
       <VALUE deb="1999-01-01" fin="2007-12-31" valeur="0.2" />
     </CODE>
     <CODE code="reduction_isf_enfant_a_charge" format="float" type="monetary">
