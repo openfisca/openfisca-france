@@ -82,7 +82,6 @@ class paris_base_ressources(Variable):
         paris_base_ressources_i_holder = simulation.compute('paris_base_ressources_i', period)
         paris_base_ressources = self.sum_by_entity(paris_base_ressources_i_holder)
         result = paris_base_ressources
-
         return period, result
 
 class paris_enfant_handicape(Variable):

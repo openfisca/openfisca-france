@@ -288,7 +288,7 @@
   output_variables:
     paris_logement: 84
 
-- name: "Personne non éligible car charges < taux effort "
+- name: "Personne éligible car charges < taux effort "
   period: 2014-11
   input_variables:
     age: 60
@@ -343,7 +343,7 @@
   output_variables:
     paris_logement: 116
 
-- name: "Couple éligible pour l'aide Paris logement car un couple avec ressources < 1140"
+- name: "Couple éligible pour l'aide Paris logement car un couple avec ressources > 1140"
   period: 2014-11
   familles:
     parents: ["parent1", "parent2"]
@@ -352,31 +352,7 @@
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"
-    loyer: 550
-  individus:
-    - id: "parent1"
-      age: 55
-      salaire_net:
-        2014-11: 1000
-    - id: "parent2"
-      age: 55
-      invalide: True
-      aah:
-        2014-11: 350
-  output_variables:
-    paris_logement: 95
-
-- name: "Couple éligible pour l'aide Paris logement car un couple avec ressources < 1140"
-  period: 2014-11
-  familles:
-    parents: ["parent1", "parent2"]
-    parisien: True
-    statut_occupation_famille: 4
-
-  menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    loyer: 550
+    loyer: 500
   individus:
     - id: "parent1"
       age: 65
@@ -387,5 +363,31 @@
       invalide: True
       aah:
         2014-11: 350
+  output_variables:
+    paris_logement: 0
+
+- name: "couple éligible pour l'aide Paris logement car un couple handicapé"
+  period: 2014-11
+  familles:
+    parents: ["parent1", "parent2"]
+    parisien: True
+    statut_occupation_famille: 4
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    loyer: 550
+  individus:
+    - id: "parent1"
+      age: 55
+      salaire_net:
+        2014-11: 500
+      invalide: True
+      aah:
+        2014-11: 250
+    - id: "parent2"
+      age: 55
+      invalide: True
+      aah:
+        2014-11: 150
   output_variables:
     paris_logement: 95
