@@ -46,11 +46,6 @@ class paris_base_ressources_i(Variable):
             bourse_recherche = simulation.calculate('bourse_recherche', period)
             gains_exceptionnels = simulation.calculate('gains_exceptionnels', period)
 
-            personne_handicape = simulation.calculate('invalide', period)
-            aah = simulation.calculate('aah', period)
-
-            allocation_aah = personne_handicape * aah
-
             def revenus_tns():
                 revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', period)
 
@@ -67,7 +62,7 @@ class paris_base_ressources_i(Variable):
                 rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
                 indemnites_journalieres_imposables + prestation_compensatoire +
                 pensions_invalidite + bourse_recherche + gains_exceptionnels + revenus_tns() +
-                revenus_stage_formation_pro + allocation_aah
+                revenus_stage_formation_pro
                 )
 
             return period, result
@@ -82,6 +77,32 @@ class paris_base_ressources(Variable):
         paris_base_ressources_i_holder = simulation.compute('paris_base_ressources_i', period)
         paris_base_ressources = self.sum_by_entity(paris_base_ressources_i_holder)
         result = paris_base_ressources
+        return period, result
+
+class paris_base_ressources_aah_i(Variable):
+    column = FloatCol
+    label = u"Base de ressources individuelle pour Paris Logement et Paris solidarité"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        aah = simulation.calculate('aah', period)
+        ressources = simulation.calculate('paris_base_ressources_i', period)
+
+        result = ressources + aah
+
+        return period, result
+
+class paris_base_ressources_aah(Variable):
+    column = FloatCol
+    label = u"Base de ressources individuelle pour Paris Logement et Paris solidarité"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        ressources_i = simulation.compute('paris_base_ressources_aah_i', period)
+        ressources_mensuelles = self.sum_by_entity(ressources_i)
+
+        result = ressources_mensuelles
+
         return period, result
 
 class paris_enfant_handicape(Variable):
