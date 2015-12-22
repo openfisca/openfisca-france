@@ -126,11 +126,6 @@ def main():
             element.set('code', name)
             parent_element.append(element)
 
-    # Add "fuzzy" attributes to original value elements without "fin" attribute.
-    for value_element in original_root_element.iter('VALUE'):
-        if value_element.attrib.get('deb') is None or value_element.attrib.get('fin') is None:
-            value_element.attrib['fuzzy'] = "true"
-
     tree = collections.OrderedDict()
     for source_dir_encoded, directories_name_encoded, filenames_encoded in os.walk(args.source_dir):
         directories_name_encoded.sort()
@@ -238,8 +233,6 @@ def main():
     ipp_tax_and_benefit_tables_to_parameters.transform_ipp_tree(tree)
 
     root_element = transform_node_to_element(u'root', tree)
-    root_element.set('deb', original_root_element.get('deb'))
-    root_element.set('fin', original_root_element.get('fin'))
     merge_elements(root_element, original_root_element)
 
     if not os.path.exists(args.target):
