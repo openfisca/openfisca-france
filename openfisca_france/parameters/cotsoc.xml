@@ -1,21 +1,26 @@
 <NODE code="cotsoc" description="Cotisations sociales">
   <NODE code="accident" description="Accident du travail"> # Wild distinction between the rates. TODO: handle the extreme diversity...
       <CODE code="eleve" description="Accident du travail (taux eleve)">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.05" />
       <VALUE deb="2012-01-01" fin="2014-12-31" valeur="0.05" /> # TODO: update, get more info...
       </CODE>
     <CODE code="faible" description="Accident du travail (taux bureau)">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.011" />
       <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.011" />
       <VALUE deb="1996-01-01" fin="2012-12-31" valeur="0.010" />
     </CODE>
     <CODE code="moyen" description="Accident du travail (taux moyen)">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.03" />
       <VALUE deb="2012-01-01" fin="2014-12-31" valeur="0.03" /> # TODO: update, get more info...
       </CODE>
     <CODE code="treseleve" description="Accident du travail (taux tres eleve)">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.10" />
       <VALUE deb="2012-01-01" fin="2014-12-31" valeur="0.10" /> # TODO: update, get more info..
       </CODE>
   </NODE>
   <NODE code="agirc_gmp" description="Garantie minimale de points AGIRC">  # Find a better place
       <CODE code="cotisation_employeur" description="Cotisation forfaitaire mensuelle employeur">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="41.17" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="41.17" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="41.13" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="40.74" />
@@ -31,6 +36,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="32.42" />
     </CODE>
     <CODE code="cotisation_salarie" description="Cotisation forfaitaire mensuelle salarié">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="25.17" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="25.17" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="25.13" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="24.90" />
@@ -46,6 +52,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="19.45" />
     </CODE>
     <CODE code="salaire_charniere" description="Salaire charnière annuel">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="41913.84" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="41913.84" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="41444.64" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="40948.70" />
@@ -65,46 +72,57 @@
   <NODE code="assiette" description="Paramètres régissant l'assiette des cotisations sociales">
     <NODE code="cantines_titres_restaurants" description="Cantines et titres restaurants">
       <CODE code="seuil_prix_titre" description="Taux de prise en charge par l'entreprise maximum pour non intégration dans l'assiette des cotisations sociales" format="float" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="5.66" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="5.66" />
         <VALUE deb="2000-01-01" fin="2014-12-31" valeur="5.33" /> # TODO check starting dates
       </CODE>
       <CODE code="taux_maximum_exoneration" description="Taux de prise en charge par l'entreprise maximum pour non intégration dans l'assiette des cotisations sociales" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.6" />
         <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.6" /> # TODO check starting dates
       </CODE>
       <CODE code="taux_minimum_exoneration" description="Taux de prise en charge par l'entreprise minimum pour non intégration dans l'assiette des cotisations sociales" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.5" />
         <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.5" />  # TODO check starting dates
       </CODE>
     </NODE>
   </NODE>
   <NODE code="conge_individuel_formation" description="Congé individuel de formation"> # TODO: find a better place
       <CODE code="cdd" description="Taux pour les salariés en contrat à durée déterminée" format="percent">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur=".01" />
       <VALUE deb="1990-07-14" fin="2015-12-31" valeur=".01" />
     </CODE>
   </NODE>
   <NODE code="contribution_supplementaire_apprentissage" description="Contribution supplémentaire d'apprentissage"> # TODO: find a better place
       <CODE code="entre_1_2_pc_alternants" description="Taux pour les entreprises comprenant 1%  à 2% d'atlernants" format="percent">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur=".002" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".002" />
       <VALUE deb="2013-01-01" fin="2014-12-31" valeur=".001" />
     </CODE>
     <CODE code="entre_2_3_pc_alternants" description="Taux pour les entreprises comprenant 2%  à 3% d'atlernants" format="percent">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur=".001" />
       <VALUE deb="2013-01-01" fin="2015-12-31" valeur=".001" />
     </CODE>
     <CODE code="entre_3_4_pc_alternants" description="Taux pour les entreprises comprenant 3%  à 4% d'atlernants" format="percent">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur=".0005" />
       <VALUE deb="2013-01-01" fin="2015-12-31" valeur=".0005" />
     </CODE>
     <CODE code="entre_4_5_pc_alternants" description="Taux pour les entreprises comprenant 4%  à 5% d'atlernants" format="percent">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur=".0005" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".0005" />
       <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.0" />
     </CODE>
     <CODE code="moins_2000_moins_1pc_alternants" description="Taux pour les entreprises de moins de 2000 salariés et avec moins de 1% d'atlernants" format="percent">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur=".004" />
       <VALUE deb="2014-01-01" fin="2015-12-31" valeur=".004" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur=".003" />
     </CODE>
     <CODE code="plus_2000_moins_1pc_alternants" description="Taux pour les entreprises de plus de 2000 salariés et avec moins de 1% d'atlernants" format="percent">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur=".006" />
       <VALUE deb="2014-01-01" fin="2015-12-31" valeur=".006" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur=".005" />
     </CODE>
     <CODE code="plus_de_250" description="Taux pour les entreprises comprenant plus de 250 salariés" format="percent">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur=".001" />
       <VALUE deb="2013-01-01" fin="2015-12-31" valeur=".001" /> # TODO check and check for coherence with previous taux
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur=".001" /> # TODO check and check for coherence with previous taux
       </CODE>
@@ -112,24 +130,29 @@
   <NODE code="exo_bas_sal" description="Exonération sur les bas salaires">
     <NODE code="cice" description="Crédit d'impot compétitivité emploi">
       <CODE code="max" description="Plafond" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="2.5" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="2.5" />
       </CODE>
       <CODE code="taux" description="Taux du CICE" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur=".06" />
         <VALUE deb="2014-09-25" fin="2014-12-31" valeur=".06" />
         <VALUE deb="2013-01-01" fin="2014-09-24" valeur=".04" />
       </CODE>
     </NODE>
     <NODE code="fillon" description="Exonération Fillon">
       <CODE code="seuil" description="Point de sortie (en smic)" format="percent">
+        <VALUE deb="2017-01-01" fuzzy="true" valeur="1.6" />
         <VALUE deb="2005-07-01" fin="2016-12-31" valeur="1.6" />
       </CODE>
       <CODE code="tx_max" description="Taux maximum (plus de 20 salariés)" format="percent">
+        <VALUE deb="2018-01-01" fuzzy="true" valeur=".2850" />
         <VALUE deb="2017-01-01" fin="2017-12-31" valeur=".2850" />
         <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".2845" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".2835" />
         <VALUE deb="2005-07-01" fin="2014-12-31" valeur=".26" />
       </CODE>
       <CODE code="tx_max2" description="Taux maximum (moins de 20 salariés)" format="percent">
+        <VALUE deb="2018-01-01" fuzzy="true" valeur=".2810" />
         <VALUE deb="2017-01-01" fin="2017-12-31" valeur=".2810" />
         <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".2805" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".2795" />
@@ -140,6 +163,7 @@
   </NODE>
   <NODE code="gen" description="Paramètres généraux">
     <CODE code="nb_heure_travail_mensuel" description="Nombre d'heures travaillées forfaitaires" format="float">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="151.67" />
       <VALUE deb="2002-01-01" fin="2015-12-31" valeur="151.67" />
     </CODE>
     <CODE code="plaf_th_1" description="Plafond d'exonération de la taxe d'habitation: première part" format="integer" type="monetary">
@@ -221,6 +245,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="2359" />
     </CODE>
     <CODE code="plafond_securite_sociale" description="Plafond annuel de la sécurité sociale" format="integer" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="3170" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="3170" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3129" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3086" />
@@ -238,12 +263,14 @@
       <VALUE deb="2001-01-01" fin="2001-12-31" valeur="2279" />
     </CODE>
     <CODE code="plafond_securite_sociale_horaire" description="Plafond horaire de la sécurité sociale " format="integer" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="24" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="24" />
       <VALUE deb="2012-01-01" fin="2014-12-31" valeur="23" />
       <VALUE deb="2010-01-01" fin="2011-12-31" valeur="22" />
       <VALUE deb="2009-01-01" fin="2009-12-31" valeur="21" />
     </CODE>
     <CODE code="smic_h_b" description="SMIC horaire brut" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="9.61" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="9.61" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="9.53" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="9.43" />
@@ -288,25 +315,31 @@
       <BAREME code="agffc" description="AGFF" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".012" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur=".012" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.013" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0.013" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche2">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="4" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="4" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -314,17 +347,21 @@
       <BAREME code="agirc" description="Retraite complémentaire AGIRC (Tranche B et C)" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur=".1275" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".1275" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".1268" />
             <VALUE deb="2006-01-01" fin="2013-12-31" valeur=".126" />
@@ -339,9 +376,11 @@
         </TRANCHE>
         <TRANCHE code="tranche2">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="4" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="4" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur=".1275" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".1275" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".1268" />
             <VALUE deb="2006-01-01" fin="2013-12-31" valeur=".126" />
@@ -356,9 +395,11 @@
         </TRANCHE>
         <TRANCHE code="tranche3">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="8" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="8" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -366,26 +407,32 @@
       <BAREME code="apec" description="Chômage: APEC" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.00036" />
             <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0.00036" />
             <VALUE deb="1993-07-01" fin="2010-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.00036" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0.00036" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche2">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="4" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="4" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -393,9 +440,11 @@
       <BAREME code="arrco" description="Retraite complémentaire ARRCO (Tranche A)" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur=".0465" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".0465" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0458" />
             <VALUE deb="1999-01-01" fin="2013-12-31" valeur=".045" />
@@ -407,9 +456,11 @@
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -417,9 +468,11 @@
       <BAREME code="cet" description="Cotisation exceptionnelle temporaire" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1997-01-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".0022" />
             <VALUE deb="2001-01-01" fin="2014-12-31" valeur=".0022" />
             <VALUE deb="2000-01-01" fin="2000-12-31" valeur=".0017" />
             <VALUE deb="1999-01-01" fin="1999-12-31" valeur=".0013" />
@@ -429,9 +482,11 @@
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="8" />
             <VALUE deb="1997-01-01" fin="2014-12-31" valeur="8" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1997-01-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -442,9 +497,11 @@
         <BAREME code="apprentissage" description="Taxe d'apprentissage (toutes entreprises)" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2017-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1993-07-01" fin="2016-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0068" />
               <VALUE deb="2014-01-01" fin="2016-12-31" valeur="0.0068" />
               <VALUE deb="1993-07-01" fin="2013-12-31" valeur="0.005" />
             </TAUX>
@@ -453,9 +510,11 @@
         <BAREME code="apprentissage_250" description="Taxe d'apprentissage (plus de 250 salariés)" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0.005" />
               <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0.005" />
             </TAUX>
           </TRANCHE>
@@ -463,9 +522,11 @@
         <BAREME code="apprentissage_add" description="Contribution additionnelle au développement de l'apprentissage (toutes entreprises)" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2017-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="2014-01-01" fin="2016-12-31" valeur="0" />
               <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.0018" />
               <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.0012" />
@@ -477,9 +538,11 @@
       <BAREME code="assedic" description="Chômage ASSEDIC (non cadres et cadres)" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.04" />
             <VALUE deb="2007-01-01" fin="2014-12-31" valeur="0.04" />
             <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.0404" />
             <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.04" />
@@ -495,9 +558,11 @@
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="4" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="4" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -538,9 +603,11 @@
         <BAREME code="construction_20" description="Effort à la construction (plus de 20 salariés)" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1992-01-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0045" />
               <VALUE deb="1992-01-01" fin="2014-12-31" valeur="0.0045" />
             </TAUX>
           </TRANCHE>
@@ -549,9 +616,11 @@
       <BAREME code="csa" description="Contribution solidarité autonomie (dépendance)" option="main-d-oeuvre">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2004-07-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".003" />
             <VALUE deb="2004-07-01" fin="2014-12-31" valeur=".003" />
           </TAUX>
         </TRANCHE>
@@ -559,9 +628,11 @@
       <BAREME code="famille" description="Allocation familiales" option="noncontrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".0525" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0525" />
             <VALUE deb="1993-07-01" fin="2013-12-31" valeur=".054" />
           </TAUX>
@@ -570,9 +641,11 @@
       <BAREME code="financement_organisations_syndicales" description="Contribution au financement des organisations syndicales" option="main-d-oeuvre">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur=".00016" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".00016" />
           </TAUX>
         </TRANCHE>
@@ -580,17 +653,21 @@
       <BAREME code="fnal1" description="Fonds national action logement (FNAL, tout employeur)" option="main-d-oeuvre">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".001" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur=".001" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -598,9 +675,11 @@
       <BAREME code="fnal2" description="Fonds national action logement (FNAL, plus de 20 salariés)" option="main-d-oeuvre">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1991-07-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".005" />
             <VALUE deb="1991-07-01" fin="2014-12-31" valeur=".005" />
           </TAUX>
         </TRANCHE>
@@ -617,9 +696,11 @@
         <BAREME code="formprof_09" description="Formation professionnelle (0-9 salaries)" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2016-01-01" fuzzy="true" valeur="0.0055" />
               <VALUE deb="2005-01-01" fin="2015-12-31" valeur="0.0055" />
               <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.004" />
               <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.0015" />
@@ -629,9 +710,11 @@
         <BAREME code="formprof_1019" description="Formation professionnelle (10-19 salaries)" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1992-01-01" fin="2015-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2016-01-01" fuzzy="true" valeur="0.01" />
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.01" />
               <VALUE deb="2005-01-01" fin="2014-12-31" valeur="0.0105" />
               <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.016" />
@@ -643,9 +726,11 @@
         <BAREME code="formprof_20" description="Formation professionnelle (plus de 20 salariés)" option="main-d-oeuvre">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1992-01-01" fin="2015-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2016-01-01" fuzzy="true" valeur="0.01" />
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.01" />
               <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.016" />
               <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
@@ -657,9 +742,11 @@
       <BAREME code="maladie" description="Maladie, maternité, invalidité, décès" option="noncontrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1992-07-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.128" />
             <VALUE deb="1992-07-01" fin="2014-12-31" valeur="0.128" />
           </TAUX>
         </TRANCHE>
@@ -667,9 +754,11 @@
       <BAREME code="transport" description="Transport (valeur non différenciée selon la localité, Lyon reférence)">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0175" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0.0175" />
           </TAUX>
         </TRANCHE>
@@ -677,9 +766,11 @@
       <BAREME code="vieillesse_deplafonnee" description="Vieillesse déplafonnée" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1991-02-01" fin="2015-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0.018" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.018" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0175" />
             <VALUE deb="1991-02-01" fin="2013-12-31" valeur="0.016" />
@@ -689,9 +780,11 @@
       <BAREME code="vieillesse_plafonnee" description="Vieillesse plafonnée (régime de base)" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1979-01-01" fin="2016-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur=".0855" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".0855" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".085" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0845" />
@@ -702,9 +795,11 @@
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="1979-01-01" fin="2016-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1979-01-01" fin="2016-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -715,6 +810,7 @@
         <BAREME code="atiacl" description="Allocations temporaires d'invalidité (hors NBI)" option="noncontrib">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2021-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="2003-01-01" fin="2020-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
@@ -729,6 +825,7 @@
               <VALUE deb="1984-01-01" fin="2012-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2021-01-01" fuzzy="true" valeur="0.3035" />
               <VALUE deb="2016-01-01" fin="2020-12-31" valeur="0.3035" />
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.3030" />
               <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.3025" />
@@ -747,9 +844,11 @@
           <BAREME code="feh" description="Fonds pour l'emploi hospitalier" option="contrib">
             <TRANCHE code="tranche0">
               <SEUIL>
+                <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
                 <VALUE deb="1995-01-01" fin="2014-12-31" valeur="0" />
               </SEUIL>
               <TAUX>
+                <VALUE deb="2021-01-01" fuzzy="true" valeur="0.01" />
                 <VALUE deb="2002-01-01" fin="2020-12-31" valeur="0.01" />
                 <VALUE deb="2000-01-01" fin="2001-12-31" valeur="0.008" />
                 <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.0067" />
@@ -761,9 +860,11 @@
         <BAREME code="maladie" description="Maladie" option="noncontrib">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1984-01-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0.115" />
               <VALUE deb="1984-01-01" fin="2014-12-31" valeur="0.115" />
             </TAUX>
           </TRANCHE>
@@ -771,9 +872,11 @@
         <BAREME code="rafp" description="Régime additionnel de retraite (RAFP, totalité sauf TI et NBI, min 20% TI )" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2021-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1993-01-01" fin="2020-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2021-01-01" fuzzy="true" valeur="0.05" />
               <VALUE deb="2005-01-01" fin="2020-12-31" valeur="0.05" />
             </TAUX>
           </TRANCHE>
@@ -796,12 +899,15 @@
         <BAREME code="ircantec" description="IRCANTEC" option="contrib">
           <TRANCHE code="tranche0">
             <ASSIETTE>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="1.25" />
               <VALUE deb="1992-01-01" fin="2017-12-31" valeur="1.25" />
             </ASSIETTE>
             <SEUIL>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1992-01-01" fin="2017-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="0.0336" />
               <VALUE deb="2017-01-01" fin="2017-12-31" valeur="0.0336" />
               <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0326" />
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0317" />
@@ -814,12 +920,15 @@
           </TRANCHE>
           <TRANCHE code="tranche1">
             <ASSIETTE>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="1.25" />
               <VALUE deb="1992-01-01" fin="2017-12-31" valeur="1.25" />
             </ASSIETTE>
             <SEUIL>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="1" />
               <VALUE deb="1992-01-01" fin="2017-12-31" valeur="1" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="0.1004" />
               <VALUE deb="2017-01-01" fin="2017-12-31" valeur="0.1004" />
               <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0988" />
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0974" />
@@ -832,9 +941,11 @@
           </TRANCHE>
           <TRANCHE code="tranche2">
             <SEUIL>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="8" />
               <VALUE deb="1992-01-01" fin="2017-12-31" valeur="8" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="0.0" />
               <VALUE deb="1992-01-01" fin="2017-12-31" valeur="0.0" />
             </TAUX>
           </TRANCHE>
@@ -844,6 +955,7 @@
         <BAREME code="ati" description="Allocations temporaires d'invalidité (ATI)" option="noncontrib">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2021-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="2003-01-01" fin="2020-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
@@ -858,9 +970,11 @@
         <BAREME code="maladie" description="Maladie" option="noncontrib">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1984-01-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0.097" />
               <VALUE deb="1984-01-01" fin="2014-12-31" valeur="0.097" />
             </TAUX>
           </TRANCHE>
@@ -871,6 +985,7 @@
               <VALUE deb="1993-01-01" fin="2012-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0.7428" />
               <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.7428" />
               <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.6859" />
               <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.6539" />
@@ -899,25 +1014,31 @@
       <BAREME code="agffnc" description="Cotisation AGFF" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".012" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur=".012" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.013" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0.013" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche2">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="3" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -925,9 +1046,11 @@
       <BAREME code="arrco" description="Retraite complémentaire" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur=".0465" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".0465" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0458" />
             <VALUE deb="1999-01-01" fin="2013-12-31" valeur=".045" />
@@ -939,9 +1062,11 @@
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="2000-01-01" fin="2015-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur=".1215" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".1215" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".1208" />
             <VALUE deb="2005-01-01" fin="2013-12-31" valeur=".12" />
@@ -952,9 +1077,11 @@
         </TRANCHE>
         <TRANCHE code="tranche2">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="3" />
             <VALUE deb="2000-01-01" fin="2015-12-31" valeur="3" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2000-01-01" fin="2015-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -966,9 +1093,11 @@
       <BAREME code="famille" description="Cotisation Famille" option="noncontrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".054" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur=".054" />
           </TAUX>
         </TRANCHE>
@@ -976,9 +1105,11 @@
       <BAREME code="forprof" description="Formation professionnelle">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".0029" />
             <VALUE deb="2008-01-01" fin="2014-12-31" valeur=".0029" />
             <VALUE deb="2004-01-01" fin="2007-12-31" valeur=".0024" />
           </TAUX>
@@ -987,17 +1118,21 @@
       <BAREME code="indjour" description="Sécurité sociale/ Indemnités journalières" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".007" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur=".007" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="5" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="5" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1005,18 +1140,22 @@
       <BAREME code="invdec" description="Invalidité, décès">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".016" />
             <VALUE deb="2013-01-01" fin="2014-12-31" valeur=".016" />
             <VALUE deb="2003-01-01" fin="2012-12-31" valeur=".018" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1024,9 +1163,11 @@
       <BAREME code="maladie" description="Sécurité sociale/ Maladie, maternité" option="noncontrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".065" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur=".065" />
           </TAUX>
         </TRANCHE>
@@ -1050,9 +1191,11 @@
       <BAREME code="retrbase" description="Retraite de base" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2016-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur=".1715" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".1715" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".1705" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".1695" />
@@ -1064,9 +1207,11 @@
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="2003-01-01" fin="2016-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2016-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1074,27 +1219,33 @@
       <BAREME code="retrcompl" description="Retraite complémentaire" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".070" />
             <VALUE deb="2013-01-01" fin="2014-12-31" valeur=".070" />
             <VALUE deb="2003-01-01" fin="2012-12-31" valeur=".072" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.080" />
             <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.080" />
             <VALUE deb="2003-01-01" fin="2012-12-31" valeur="0.076" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche2">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="4" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="4" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1104,25 +1255,31 @@
       <BAREME code="agff" description="Cotisation AGFF" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".008" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur=".008" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.009" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0.009" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche2">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="4" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="4" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1130,17 +1287,21 @@
       <BAREME code="agirc" description="Retraite complémentaire AGIRC (tranches B et C, avant 65 ans)" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2015-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2015-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="1993-07-01" fin="2015-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur=".078" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".078" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0775" />
             <VALUE deb="2006-01-01" fin="2013-12-31" valeur=".077" />
@@ -1155,9 +1316,11 @@
         </TRANCHE>
         <TRANCHE code="tranche2">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="4" />
             <VALUE deb="1993-07-01" fin="2015-12-31" valeur="4" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur=".078" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".078" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0775" />
             <VALUE deb="2006-01-01" fin="2013-12-31" valeur=".077" />
@@ -1172,9 +1335,11 @@
         </TRANCHE>
         <TRANCHE code="tranche3">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="8" />
             <VALUE deb="1993-07-01" fin="2015-12-31" valeur="8" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2015-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1182,26 +1347,32 @@
       <BAREME code="apec" description="Chômage-emploi APEC" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.00024" />
             <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0.00024" />
             <VALUE deb="1993-07-01" fin="2010-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.00024" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0.00024" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche2">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="4" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="4" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1209,9 +1380,11 @@
       <BAREME code="arrco" description="Retraite complémentaire ARRCO Tranche 1" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur=".031" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".031" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0305" />
             <VALUE deb="1999-01-01" fin="2013-12-31" valeur=".03" />
@@ -1223,9 +1396,11 @@
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1233,9 +1408,11 @@
       <BAREME code="cet" description="Cotisation exceptionelle temporaire" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1997-01-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".0013" />
             <VALUE deb="2001-01-01" fin="2014-12-31" valeur=".0013" />
             <VALUE deb="2000-01-01" fin="2000-12-31" valeur=".0011" />
             <VALUE deb="1999-01-01" fin="1999-12-31" valeur=".0008" />
@@ -1245,9 +1422,11 @@
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="8" />
             <VALUE deb="1997-01-01" fin="2014-12-31" valeur="8" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1997-01-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1257,9 +1436,11 @@
       <BAREME code="famille" description="Famille" option="noncontrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".054" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur=".054" />
           </TAUX>
         </TRANCHE>
@@ -1267,9 +1448,11 @@
       <BAREME code="forprofcom" description="Formation professionnelle">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2012-01-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".0025" />
             <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0025" />
             <VALUE deb="1992-01-01" fin="2011-12-31" valeur=".0015" />
           </TAUX>
@@ -1296,18 +1479,22 @@
       <BAREME code="invdec" description="Invalidité, décès" option="noncontrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2007-01-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".011" />
             <VALUE deb="2013-01-01" fin="2014-12-31" valeur=".011" />
             <VALUE deb="2007-01-01" fin="2012-12-31" valeur=".013" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="2007-01-01" fin="2014-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2007-01-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1342,9 +1529,11 @@
       <BAREME code="retrbase" description="Retraite de base" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur=".1715" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".1715" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".1705" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".1695" />
@@ -1356,9 +1545,11 @@
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1366,27 +1557,33 @@
       <BAREME code="retrcompl" description="Retraite complémentaire" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2005-01-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".07" />
             <VALUE deb="2013-01-01" fin="2014-12-31" valeur=".07" />
             <VALUE deb="2005-01-01" fin="2012-12-31" valeur=".065" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="2005-01-01" fin="2014-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".07" />
             <VALUE deb="2013-01-01" fin="2014-12-31" valeur=".07" />
             <VALUE deb="2005-01-01" fin="2012-12-31" valeur="0.065" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche2">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
             <VALUE deb="2005-01-01" fin="2014-12-31" valeur="3" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2005-01-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1396,9 +1593,11 @@
       <BAREME code="assedic" description="Chômage-emploi ASSEDIC" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".024" />
             <VALUE deb="2007-01-01" fin="2014-12-31" valeur=".024" />
             <VALUE deb="2006-01-01" fin="2006-12-31" valeur=".0244" />
             <VALUE deb="2003-01-01" fin="2005-12-31" valeur=".024" />
@@ -1414,9 +1613,11 @@
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="4" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="4" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1436,9 +1637,11 @@
       <BAREME code="vieillesse" description="Vieillesse (régime de base de la retraite CNAV)" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2016-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur=".0690" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".0690" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".0685" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0680" />
@@ -1449,9 +1652,11 @@
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="1993-07-01" fin="2016-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2016-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1459,9 +1664,11 @@
       <BAREME code="vieillesse_deplafonnee" description="Vieillesse déplafonnée (ancienne assurance veuvage transférée à la CNAV en 2004)" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2004-07-01" fin="2015-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur=".003" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".003" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0025" />
             <VALUE deb="2004-07-01" fin="2013-12-31" valeur=".001" />
@@ -1474,9 +1681,11 @@
         <BAREME code="cnracl1" description="Retraites des agents des collectivités locales (taux hors NBI)" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2021-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1984-01-01" fin="2020-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2021-01-01" fuzzy="true" valeur="0.1055" />
               <VALUE deb="2020-01-01" fin="2020-12-31" valeur="0.1055" />
               <VALUE deb="2019-01-01" fin="2019-12-31" valeur="0.1028" />
               <VALUE deb="2018-01-01" fin="2018-12-31" valeur="0.1001" />
@@ -1494,9 +1703,11 @@
         <BAREME code="cnracl2" description="Retraites des agents des collectivités locales (taux NBI)" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2021-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1984-01-01" fin="2020-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2021-01-01" fuzzy="true" valeur="0.1080" />
               <VALUE deb="2020-01-01" fin="2020-12-31" valeur="0.1080" /> # TODO: CHECK change because reforme
                 <VALUE deb="2019-01-01" fin="2019-12-31" valeur="0.1053" />
               <VALUE deb="2018-01-01" fin="2018-12-31" valeur="0.1026" />
@@ -1515,6 +1726,7 @@
       </NODE>
       <NODE code="commun" description="Commune à toutes les fonctions publiques">
         <CODE code="ind_maj_ref" description="Indice majoré de référence" format="integer" type="monetary">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="309" />
           <VALUE deb="2013-01-01" fin="2014-12-31" valeur="309" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="302" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="295" />
@@ -1526,9 +1738,11 @@
           <VALUE deb="2001-05-01" fin="2006-06-30" valeur="285" />
         </CODE>
         <CODE code="plafond_base_solidarite" description="Plafond de la contribution exceptionnelle de solidarité " format="float" type="monetary">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="12516" />
           <VALUE deb="2002-01-01" fin="2014-12-31" valeur="12516" />  # TODO check. Pas dispo dans barème IPP
           </CODE>
         <CODE code="pt_ind" description="Valeur annuelle point de FP" format="float" type="monetary">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="55.5635" />
           <VALUE deb="2010-07-01" fin="2014-12-31" valeur="55.5635" />
           <VALUE deb="2009-10-01" fin="2010-06-30" valeur="55.2871" />
           <VALUE deb="2009-07-01" fin="2009-09-30" valeur="55.1217" />
@@ -1547,17 +1761,21 @@
         <BAREME code="solidarite" description="Contribution exceptionnelle de solidarité (seuil d'assujetissment variable)" option="noncontrib"> # TODO: c'est une contribution donc à mettre avec la CSG/CRDS
             <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1983-01-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0.01" />
               <VALUE deb="1983-01-01" fin="2014-12-31" valeur="0.01" />
             </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche1">
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="4" />
               <VALUE deb="1983-01-01" fin="2014-12-31" valeur="4" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1983-01-01" fin="2014-12-31" valeur="0" />
             </TAUX>
           </TRANCHE>
@@ -1567,6 +1785,7 @@
         <BAREME code="ircantec" description="IRCANTEC" option="contrib">
           <TRANCHE code="tranche0">
             <ASSIETTE>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="1.25" />
               <VALUE deb="1992-01-01" fin="2017-12-31" valeur="1.25" />
               <VALUE deb="1991-04-01" fin="1991-12-31" valeur="1.20" />
               <VALUE deb="1989-01-01" fin="1991-03-31" valeur="1.09" />
@@ -1575,9 +1794,11 @@
               <VALUE deb="1971-01-01" fin="1982-12-31" valeur=".60" />
             </ASSIETTE>
             <SEUIL>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1971-01-01" fin="2017-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="0.0224" />
               <VALUE deb="2017-01-01" fin="2017-12-31" valeur="0.0224" />
               <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0218" />
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0211" />
@@ -1591,6 +1812,7 @@
           </TRANCHE>
           <TRANCHE code="tranche1">
             <ASSIETTE>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="1.25" />
               <VALUE deb="1992-01-01" fin="2017-12-31" valeur="1.25" />
               <VALUE deb="1991-04-01" fin="1991-12-31" valeur="1.20" />
               <VALUE deb="1989-01-01" fin="1991-03-31" valeur="1.09" />
@@ -1599,9 +1821,11 @@
               <VALUE deb="1971-01-01" fin="1982-12-31" valeur=".60" />
             </ASSIETTE>
             <SEUIL>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="1" />
               <VALUE deb="1971-01-01" fin="2017-12-31" valeur="1" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="0.0556" />
               <VALUE deb="2017-01-01" fin="2017-12-31" valeur="0.0556" />
               <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0540" />
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0526" />
@@ -1615,10 +1839,12 @@
           </TRANCHE>
           <TRANCHE code="tranche2">
             <SEUIL>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="8" />
               <VALUE deb="1992-01-01" fin="2017-12-31" valeur="8" />
               <VALUE deb="1971-01-01" fin="1991-12-31" valeur="4.75" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="0.0" />
               <VALUE deb="1971-01-01" fin="2017-12-31" valeur="0.0" />
             </TAUX>
           </TRANCHE>
@@ -1628,9 +1854,11 @@
         <BAREME code="pension" description="Retenue pour pension civile (assiette=TI + NBI)" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2021-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="2003-01-01" fin="2020-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2021-01-01" fuzzy="true" valeur="0.1055" />
               <VALUE deb="2020-01-01" fin="2020-12-31" valeur="0.1055" />
               <VALUE deb="2019-01-01" fin="2019-12-31" valeur="0.1028" />
               <VALUE deb="2018-01-01" fin="2018-12-31" valeur="0.1001" />
@@ -1648,34 +1876,41 @@
         <BAREME code="rafp" description="Régime additionnel de retraite (RAFP, totalité sauf TI et NBI, min 20% TI )" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1993-01-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0.05" />
               <VALUE deb="2005-01-01" fin="2014-12-31" valeur="0.05" />
             </TAUX>
           </TRANCHE>
         </BAREME>
         <CODE code="rafp_plaf_assiette" description="Plafond d'assiette" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.2" />
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur="0.2" />
         </CODE>
       </NODE>
     </NODE>
     <NODE code="microsocial" description="Régime micro-social">
       <CODE code="cipav" description="Taux professions libérales relevant du  CIPAV" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.252" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.252" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.233" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.213" />
         <VALUE deb="2009-01-01" fin="2012-12-31" valeur="0.183" />
       </CODE>
       <CODE code="rsi" description="Taux professions libérales relevant du RSI" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.246" />
         <VALUE deb="2013-01-01" fin="2015-12-31" valeur="0.246" />
         <VALUE deb="2009-01-01" fin="2012-12-31" valeur="0.213" />
       </CODE>
       <CODE code="servi" description="Taux pour les activités de prestations et de services" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.246" />
         <VALUE deb="2013-01-01" fin="2015-12-31" valeur="0.246" />
         <VALUE deb="2009-01-01" fin="2012-12-31" valeur="0.213" />
       </CODE>
       <CODE code="vente" description="Taux pour les activités de ventes" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.141" />
         <VALUE deb="2014-01-01" fin="2015-12-31" valeur="0.141" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.14" />
         <VALUE deb="2009-01-01" fin="2012-12-31" valeur="0.12" />
@@ -1685,25 +1920,31 @@
       <BAREME code="agff" description="Cotisation AGFF" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur=".008" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur=".008" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.009" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0.009" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche2">
           <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="3" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1711,9 +1952,11 @@
       <BAREME code="arrco" description="Retraite complémentaire ARRCO pour les non cadres (Tranches 1 et 2)" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur=".031" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".031" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0305" />
             <VALUE deb="1999-01-01" fin="2013-12-31" valeur=".03" />
@@ -1725,9 +1968,11 @@
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="1" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="1" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur=".081" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".081" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0805" />
             <VALUE deb="2005-01-01" fin="2013-12-31" valeur=".08" />
@@ -1738,9 +1983,11 @@
         </TRANCHE>
         <TRANCHE code="tranche2">
           <SEUIL>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="3" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="3" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-01-01" fin="2015-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1750,26 +1997,32 @@
   <NODE code="taxes_sal" description="Taxes sur les salaires">
     <NODE code="taux" description="Taxes sur les salaires : taux normal">
       <CODE code="guy" description="Taxes sur les salaires : Guyane" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0255" />
         <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0.0255" />
       </CODE>
       <CODE code="metro" description="Taxes sur les salaires : France métropolitaine" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0425" />
         <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0.0425" />
       </CODE>
       <CODE code="mgr" description="Taxes sur les salaires : Guadeloupe, Martinique, Réunion" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0295" />
         <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0.0295" />
       </CODE>
     </NODE>
     <BAREME code="taux_maj" description="Taxes sur les salaires : taux majorés (France métropolitaine seulement)">
       <TRANCHE code="tranche0">
         <SEUIL>
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
           <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
         </SEUIL>
         <TAUX>
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.00" />
           <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0.00" />
         </TAUX>
       </TRANCHE>
       <TRANCHE code="tranche1">
         <SEUIL>
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="7666" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="7666" />
           <VALUE deb="2011-01-01" fin="2013-12-31" valeur="7604" />
           <VALUE deb="2010-01-01" fin="2010-12-31" valeur="7491" />
@@ -1784,11 +2037,13 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="6459.26" />
         </SEUIL>
         <TAUX>
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0425" />
           <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0.0425" />
         </TAUX>
       </TRANCHE>
       <TRANCHE code="tranche2">
         <SEUIL>
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="15308" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="15308" />
           <VALUE deb="2011-01-01" fin="2013-12-31" valeur="15185" />
           <VALUE deb="2010-01-01" fin="2010-12-31" valeur="14960" />
@@ -1803,15 +2058,18 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="12906.33" />
         </SEUIL>
         <TAUX>
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0935" />
           <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0.0935" />
         </TAUX>
       </TRANCHE>
       <TRANCHE code="tranche3">
         <SEUIL>
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="151208" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="151208" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="150000" />
         </SEUIL>
         <TAUX>
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.1575" />
           <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.1575" />
         </TAUX>
       </TRANCHE>
@@ -1820,9 +2078,11 @@
   <BAREME code="tehr" description="Taxes exceptionnelles sur les hauts revenus">
     <TRANCHE code="tranche0">
       <SEUIL>
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="1000000" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="1000000" />
       </SEUIL>
       <TAUX>
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.50" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.50" />
       </TAUX>
     </TRANCHE>

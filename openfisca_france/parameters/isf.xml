@@ -2,14 +2,17 @@
     <BAREME code="bareme" description="Impôt de solidarité" type="monetary">
     <TRANCHE code="tranche0">
       <SEUIL>
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
         <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
       </SEUIL>
       <TAUX>
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
         <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche1">
       <SEUIL>
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="800000" />
         <VALUE deb="2011-01-01" fin="2014-12-31" valeur="800000" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="790000" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="790000" />
@@ -19,12 +22,14 @@
         <VALUE deb="2002-01-01" fin="2004-12-31" valeur="720000" />
       </SEUIL>
       <TAUX>
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0050" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.0050" />
         <VALUE deb="2002-01-01" fin="2012-12-31" valeur="0.0055" />
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche2">
       <SEUIL>
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="1300000" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="1300000" />
         <VALUE deb="2011-01-01" fin="2012-12-31" valeur="1310000" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="1290000" />
@@ -35,12 +40,14 @@
         <VALUE deb="2002-01-01" fin="2004-12-31" valeur="1160000" />
       </SEUIL>
       <TAUX>
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.007" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.007" />
         <VALUE deb="2002-01-01" fin="2012-12-31" valeur="0.0075" />
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche3">
       <SEUIL>
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="2570000" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="2570000" />
         <VALUE deb="2011-01-01" fin="2012-12-31" valeur="2570000" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="2530000" />
@@ -51,11 +58,13 @@
         <VALUE deb="2002-01-01" fin="2004-12-31" valeur="2300000" />
       </SEUIL>
       <TAUX>
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.01" />
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.01" />
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche4">
       <SEUIL>
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="5000000" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="5000000" />
         <VALUE deb="2011-01-01" fin="2012-12-31" valeur="4040000" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="3980000" />
@@ -66,12 +75,14 @@
         <VALUE deb="2002-01-01" fin="2004-12-31" valeur="3600000" />
       </SEUIL>
       <TAUX>
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0125" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.0125" />
         <VALUE deb="2002-01-01" fin="2012-12-31" valeur="0.013" />
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche5">
       <SEUIL>
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="10000000" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="10000000" />
         <VALUE deb="2011-01-01" fin="2012-12-31" valeur="7710000" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="7600000" />
@@ -82,6 +93,7 @@
         <VALUE deb="2002-01-01" fin="2004-12-31" valeur="6900000" />
       </SEUIL>
       <TAUX>
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.015" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.015" />
         <VALUE deb="2002-01-01" fin="2012-12-31" valeur="0.0165" />
       </TAUX>
@@ -103,15 +115,19 @@
   </BAREME>
   <NODE code="decote" description="Décôte de l'ISF">
     <CODE code="base" description="Base montant décote" format="float">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="17500" />
       <VALUE deb="2013-01-01" fin="2014-12-31" valeur="17500" />
     </CODE>
     <CODE code="max" description="Plafond de la décote" format="float" type="monetary">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="1400000" />
       <VALUE deb="2013-01-01" fin="2014-12-31" valeur="1400000" />
     </CODE>
     <CODE code="min" description="Plancher de la décote" format="float" type="monetary">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="1300000" />
       <VALUE deb="2013-01-01" fin="2014-12-31" valeur="1300000" />
     </CODE>
     <CODE code="taux" description="Taux de la décote" format="percent">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0125" />
       <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.0125" />
     </CODE>
   </NODE>
@@ -173,6 +189,7 @@
   </NODE>
   <NODE code="plafonnement" description="Revenus et produits de l'année">
     <CODE code="taux" description="Taux appliqué aux revenus et produits de l'année pour le calcul du plafonnement" format="percent">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.75" />
       <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.75" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0" />
       <VALUE deb="2002-01-01" fin="2011-12-31" valeur="0.85" />

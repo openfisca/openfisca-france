@@ -1,6 +1,7 @@
 <NODE code="minim" description="Minima sociaux">
   <NODE code="aah" description="Allocation pour adulte handicapé (AAH)">
     <CODE code="age_legal_retraite" description="Âge légal de départ à la retraite" format="float" type="age">
+      <VALUE deb="2050-07-01" fuzzy="true" valeur="62" />
       <VALUE deb="2017-01-01" fin="2050-06-30" valeur="62" />
       <VALUE deb="2015-08-01" fin="2016-12-31" valeur="61.583" />
       <VALUE deb="2014-04-01" fin="2015-07-31" valeur="61.167" />
@@ -9,6 +10,7 @@
       <VALUE deb="1983-07-01" fin="2011-10-31" valeur="60" />
     </CODE>
     <CODE code="montant" description="Montant mensuel de l'allocation adulte handicapé" format="float" type="monetary">
+      <VALUE deb="2016-09-01" fuzzy="true" valeur="807.65" />
       <VALUE deb="2015-09-01" fin="2016-08-31" valeur="807.65" />
       <VALUE deb="2014-09-01" fin="2015-08-31" valeur="800.45" />
       <VALUE deb="2013-09-01" fin="2014-08-31" valeur="790.18" />
@@ -32,6 +34,7 @@
       <VALUE deb="2000-01-01" fin="2000-12-31" valeur="545.13" />
     </CODE>
     <CODE code="tx_plaf_supp" description="Majoration de plafond pour personne à charge (en pourcentage du plafond de base)" format="percent">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur=".5" />
       <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".5" />
     </CODE>
   </NODE>
@@ -57,9 +60,11 @@
   </NODE>
   <NODE code="api" description="Allocation parent isolé">
     <CODE code="age" description="Limite d'âge des enfants ouvrant droit" format="integer" type="age">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
       <VALUE deb="1977-10-01" fin="2014-12-31" valeur="3" />
     </CODE>
     <CODE code="age_pac" description="Limite d'âge des enfants comptés à charge" format="integer" type="age">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="25" />
       <VALUE deb="2009-06-01" fin="2014-12-31" valeur="25" />
       <VALUE deb="1977-10-01" fin="2009-05-31" valeur="20" />
     </CODE>
@@ -72,6 +77,7 @@
   </NODE>
   <NODE code="asi" description="Allocation supplémentaire d'invalidité">
     <CODE code="montant_couple" description="Montant annuel couple" format="float" type="monetary">
+      <VALUE deb="2015-04-01" fuzzy="true" valeur="7995.28" />
       <VALUE deb="2014-04-01" fin="2015-03-31" valeur="7995.28" />
       <VALUE deb="2013-04-01" fin="2014-03-31" valeur="7947.60" />
       <VALUE deb="2012-04-01" fin="2013-03-31" valeur="7845.61" />
@@ -88,6 +94,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0" />
     </CODE>
     <CODE code="montant_seul" description="Montant annuel personne seule" format="float" type="monetary">
+      <VALUE deb="2015-04-01" fuzzy="true" valeur="4845.17" />
       <VALUE deb="2014-04-01" fin="2015-03-31" valeur="4845.17" />
       <VALUE deb="2013-04-01" fin="2014-03-31" valeur="4816.28" />
       <VALUE deb="2012-04-01" fin="2013-03-31" valeur="4754.48" />
@@ -104,6 +111,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0" />
     </CODE>
     <CODE code="plaf_couple" description="Plafond de ressources (allocation comprise) pour un couple" format="float" type="monetary">
+      <VALUE deb="2015-04-01" fuzzy="true" valeur="14755.32" />
       <VALUE deb="2014-04-01" fin="2015-03-31" valeur="14755.32" />
       <VALUE deb="2013-04-01" fin="2014-03-31" valeur="14667.32" />
       <VALUE deb="2012-04-01" fin="2013-03-31" valeur="14479.10" />
@@ -120,6 +128,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="12256.79786" />
     </CODE>
     <CODE code="plaf_seul" description="Plafond de ressources (allocation comprise) pour une personne seule" format="float" type="monetary">
+      <VALUE deb="2015-04-01" fuzzy="true" valeur="8424.05" />
       <VALUE deb="2014-04-01" fin="2015-03-31" valeur="8424.05" />
       <VALUE deb="2013-04-01" fin="2014-03-31" valeur="8373.81" />
       <VALUE deb="2012-04-01" fin="2013-03-31" valeur="8266.35" />
@@ -139,10 +148,12 @@
   </NODE>
   <NODE code="aspa" description="Allocation solidarité aux personne agées (ASPA - Minimum vieillesse)">
     <CODE code="abattement_forfaitaire_tx_couple" description="Fraction du SMIC pour l'abattement (couple)" format="float">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="1.5" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="1.5" />
       <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
     </CODE>
     <CODE code="abattement_forfaitaire_tx_seul" description="Fraction du SMIC pour l'abattement (personne seule)" format="float">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="0.9" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.9" />
       <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
     </CODE>
@@ -150,13 +161,16 @@
       <VALUE deb="2002-01-01" fuzzy="true" valeur="65" />
     </CODE>
     <CODE code="duree_min_titre_sejour" description="Durée minimale de titre du séjour permettant de bénéficier de l'ASPA ou de l'ASI" format="integer">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="10" />
       <VALUE deb="2002-01-01" fin="2015-12-31" valeur="10" />
     </CODE>
     <CODE code="maj_3enf" description="Majoration pour 3 enfants" format="percent">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
       <VALUE deb="2007-02-01" fin="2015-12-31" valeur="0" />
       <VALUE deb="1986-01-01" fin="2007-01-31" valeur="0.1" />
     </CODE>
     <CODE code="montant_couple" description="Montant annuel pour un couple marié" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="14904" />
       <VALUE deb="2014-10-01" fin="2015-12-31" valeur="14904" />
       <VALUE deb="2014-04-01" fin="2014-09-30" valeur="14755.32" />
       <VALUE deb="2013-04-01" fin="2014-03-31" valeur="14667.32" />
@@ -174,6 +188,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="12256.78818" />
     </CODE>
     <CODE code="montant_seul" description="Montant annuel pour une personne seule" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="9600" />
       <VALUE deb="2014-10-01" fin="2015-12-31" valeur="9600" />
       <VALUE deb="2014-04-01" fin="2014-09-30" valeur="9503.89" />
       <VALUE deb="2013-04-01" fin="2014-03-31" valeur="9447.21" />
@@ -191,6 +206,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="6832.4335" />
     </CODE>
     <CODE code="plaf_couple" description="Plafond de ressources annuelles pour un couple" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="14904" />
       <VALUE deb="2014-10-01" fin="2015-12-31" valeur="14904" />
       <VALUE deb="2014-04-01" fin="2014-09-30" valeur="14755.32" />
       <VALUE deb="2013-04-01" fin="2014-03-31" valeur="14667.32" />
@@ -208,6 +224,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="12256.79786" />
     </CODE>
     <CODE code="plaf_seul" description="Plafond de ressources annuelles pour une personne seule" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="9600" />
       <VALUE deb="2014-10-01" fin="2015-12-31" valeur="9600" />
       <VALUE deb="2014-04-01" fin="2014-09-30" valeur="9503.89" />
       <VALUE deb="2013-04-01" fin="2014-03-31" valeur="9447.21" />
@@ -225,19 +242,23 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="6997.60267" />
     </CODE>
     <CODE code="taux_incapacite_aspa_anticipe" description="Taux d'incapacité nécessaire pour percevoir l'ASPA de manière anticipée" format="percent">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.5" />
     </CODE>
   </NODE>
   <NODE code="ass" description="Allocation de solidarité spécifique">
     <CODE code="abat_rev_non_subst_conj" description="Abbatement appliqué aux revenus interompus et non substitués du conjoint (pas de pension de retraite, ni de chômage, etc.">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="1" />
       <VALUE deb="2008-05-01" fin="2015-12-31" valeur="1" />
       <VALUE deb="2005-01-01" fin="2008-04-30" valeur="0" />
     </CODE>
     <CODE code="abat_rev_subst_conj" description="Abbatement appliqué aux revenus interompus et substitués du conjoint, en cas de licenciement, départ en retraite, etc.">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="0.3" />
       <VALUE deb="2008-05-01" fin="2015-12-31" valeur="0.3" />
       <VALUE deb="2005-01-01" fin="2008-04-30" valeur="0" />
     </CODE>
     <CODE code="montant_maj" description="Montant journalier majoré" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="23.32" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="23.32" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="23.12" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="22.82" />
@@ -255,6 +276,7 @@
       <VALUE deb="2001-01-01" fin="2001-12-31" valeur="18.81" />
     </CODE>
     <CODE code="montant_plein" description="Montant journalier à taux plein" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="16.25" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="16.25" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="16.11" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="15.90" />
@@ -272,9 +294,11 @@
       <VALUE deb="2001-01-01" fin="2001-12-31" valeur="13.10" />
     </CODE>
     <CODE code="plaf_coup" description="Plafond de ressources pour un couple (mensuel), en multiple du montant journalier à taux plein" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="110" />
       <VALUE deb="2005-01-01" fin="2015-12-31" valeur="110" />
     </CODE>
     <CODE code="plaf_seul" description="Plafond de ressources pour une personne seule (mensuel), en multiple du montant journalier à taux plein" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="70" />
       <VALUE deb="2005-01-01" fin="2015-12-31" valeur="70" />
     </CODE>
   </NODE>
@@ -283,9 +307,11 @@
       <VALUE deb="2002-01-01" fin="2008-08-31" valeur="0.16" />
     </CODE>
     <CODE code="cpltx_1" description="Montant mensuel du complément de ressources aux adultes handicapés (à partir de 2007)" format="float" type="monetary">
+      <VALUE deb="2015-09-01" fuzzy="true" valeur="179.31" />
       <VALUE deb="2007-01-01" fin="2015-08-31" valeur="179.31" />
     </CODE>
     <CODE code="grph" description="Garantie de ressources pour les personnes handicapées (cpltx_1+aah)" format="float" type="monetary">
+      <VALUE deb="2015-09-01" fuzzy="true" valeur="979.76" />
       <VALUE deb="2014-09-01" fin="2015-08-31" valeur="979.76" />
       <VALUE deb="2013-09-01" fin="2014-08-31" valeur="969.49" />
       <VALUE deb="2012-09-01" fin="2013-08-31" valeur="955.90" />
@@ -303,6 +329,7 @@
       <VALUE deb="2006-01-01" fin="2006-06-30" valeur="776.79" />
     </CODE>
     <CODE code="mva" description="Majoration pour la vie autonome" format="float" type="monetary">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="104.77" />
       <VALUE deb="2008-01-01" fin="2014-12-31" valeur="104.77" />
       <VALUE deb="2007-01-01" fin="2007-12-31" valeur="103.63" />
       <VALUE deb="2006-01-01" fin="2006-12-31" valeur="101.80" />
@@ -310,24 +337,30 @@
   </NODE>
   <NODE code="rmi" description="Revenu de solidarité active">
     <CODE code="RMI_fixe" description="Fixe le Rmi dans les simulations" format="bool">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
       <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
     </CODE>
     <CODE code="age_pac" description="Limite d'âge des enfants comptés à charge" format="integer" type="age">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="24" />
       <VALUE deb="1977-10-01" fin="2014-12-31" valeur="24" />
     </CODE>
     <CODE code="duree_min_titre_sejour" description="Durée minimale de titre du séjour permettant de bénéficier du RSA" format="integer">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="5" />
       <VALUE deb="2002-01-01" fin="2015-12-31" valeur="5" />
     </CODE>
     <NODE code="forfait_asf" description="Forfait Allocation de Soutien Familial">
       <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent">
+        <VALUE deb="2015-04-01" fuzzy="true" valeur="0.225" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.225" />
       </CODE>
       <CODE code="taux2" description="Orphelin (de père et de mère), ou situation assimilée" format="percent">
+        <VALUE deb="2015-04-01" fuzzy="true" valeur="0.3" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.3" />
       </CODE>
     </NODE>
     <NODE code="forfait_logement" description="Forfait logement">
       <CODE code="taux1" description="Fofait logement pour 1 personne (en % du rsa_socle)" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.12" />
         <VALUE deb="1998-12-14" fin="2014-12-31" valeur="0.12" />
       </CODE>
       <CODE code="taux2" description="Forfait logement pour 2 personnes" format="percent">
@@ -339,30 +372,37 @@
     </NODE>
     <NODE code="majo_rsa" description="Majoration du RSA socle pour parent isolé">
       <CODE code="age" description="Âge limite du benjamin pour un versement sans condition de durée" format="integer" type="age">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
         <VALUE deb="2009-06-01" fin="2014-12-31" valeur="3" />
         <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
       </CODE>
       <CODE code="pac0" description="Taux de la majoration du RSA socle pour une femme enceinte sans enfant (en pourcentage du rsa de base pour un célibataire sans personne à charge)" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="1.28412" />
         <VALUE deb="2009-06-20" fin="2014-12-31" valeur="1.28412" />
         <VALUE deb="2009-06-01" fin="2009-06-19" valeur="1.284" />
       </CODE>
       <CODE code="pac_enf_sup" description="Majoration du RSA socle par enfant supplémentaire (en pourcentage du rsa de base)" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.42804" />
         <VALUE deb="2009-06-20" fin="2014-12-31" valeur="0.42804" />
         <VALUE deb="2009-06-01" fin="2009-06-19" valeur="0.428" />
       </CODE>
     </NODE>
     <NODE code="patrimoine" description="Revenus liés au patrimoine">
       <CODE code="abattement_valeur_locative_immo_non_loue" description="Abattement appliqué sur la valeur locative des biens immobiliers non loués" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.5" />
         <VALUE deb="2009-01-01" fin="2014-12-31" valeur="0.5" />
       </CODE>
       <CODE code="abattement_valeur_locative_terrains_non_loue" description="Abattement appliqué sur la valeur locative des terrains non loués" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.8" />
         <VALUE deb="2009-01-01" fin="2014-12-31" valeur="0.8" />
       </CODE>
       <CODE code="taux_interet_forfaitaire_epargne_non_remunere" description="Taux d'intérêt forfaitaire appliqué à l'épargne non rémunérée" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.03" />
         <VALUE deb="2009-01-01" fin="2014-12-31" valeur="0.03" />
       </CODE>
     </NODE>
     <CODE code="pente" description="Pente du RSA" format="percent">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.62" />
       <VALUE deb="2009-07-01" fin="2014-12-31" valeur="0.62" />
       <VALUE deb="2002-01-01" fin="2009-06-30" valeur="0.00" />
     </CODE>
@@ -373,6 +413,7 @@
       <VALUE deb="2009-01-01" fin="2009-12-31" valeur="200" />
     </CODE>
     <CODE code="rmi" description="Rsa socle" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="524.16" />
       <VALUE deb="2015-09-01" fin="2015-12-31" valeur="524.16" />
       <VALUE deb="2015-01-01" fin="2015-08-31" valeur="513.88" />
       <VALUE deb="2014-09-01" fin="2014-12-31" valeur="509.30" />
@@ -393,15 +434,19 @@
       <VALUE deb="2001-01-01" fin="2001-12-31" valeur="397.6" />
     </CODE>
     <CODE code="rsa_nv" description="Seuil de non versement" format="integer" type="monetary">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="6" />
       <VALUE deb="2002-01-01" fin="2014-12-31" valeur="6" />
     </CODE>
     <CODE code="txp2" description="Taux pour une 2nde personne" format="percent">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.5" />
     </CODE>
     <CODE code="txp3" description="Taux pour une 3e personne" format="percent">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.3" />
       <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.3" />
     </CODE>
     <CODE code="txps" description="Taux par personne supplémentaire" format="percent">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.4" />
       <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.4" />
     </CODE>
   </NODE>

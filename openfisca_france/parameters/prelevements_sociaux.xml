@@ -1397,24 +1397,29 @@
         <BAREME code="abattement" description="Abattement de la base de la CSG déductible">
           <TRANCHE code="tranche0">
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur=".0175" />
               <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0175" />
               <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".03" />
               <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".05" />
             </TAUX>
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
           </TRANCHE>
           <TRANCHE code="tranche1">
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="4" />
               <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0" />
             </TAUX>
           </TRANCHE>
         </BAREME>
         <CODE code="taux" description="taux de la CSG déductible" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur=".051" />
           <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".051" />
         </CODE>
       </NODE>
@@ -1422,24 +1427,29 @@
         <BAREME code="abattement" description="Abattement de la base de la CSG imposable">
           <TRANCHE code="tranche0">
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur=".0175" />
               <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0175" />
               <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".03" />
               <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".05" />
             </TAUX>
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
           </TRANCHE>
           <TRANCHE code="tranche1">
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="4" />
               <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0" />
             </TAUX>
           </TRANCHE>
         </BAREME>
         <CODE code="taux" description="taux de la CSG imposable" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur=".024" />
           <VALUE deb="1993-07-01" fin="2014-12-31" valeur=".024" />
           <VALUE deb="1991-02-01" fin="1993-06-30" valeur=".011" />
         </CODE>
@@ -1485,29 +1495,35 @@
         <BAREME code="abattement" description="Abattement de la base de la CSG déductible">
           <TRANCHE code="tranche0">
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur=".0175" />
               <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0175" />
               <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".03" />
               <VALUE deb="1997-01-01" fin="2004-12-31" valeur=".05" />
             </TAUX>
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
           </TRANCHE>
           <TRANCHE code="tranche1">
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="4" />
               <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0" />
             </TAUX>
           </TRANCHE>
         </BAREME>
         <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur=".042" />
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
           <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
         </CODE>
         <CODE code="taux_reduit" description="taux réduit de la CSG déductible" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur=".038" />
           <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
         </CODE>
@@ -1516,34 +1532,41 @@
         <BAREME code="abattement" description="Abattement de la base de la CSG imposable">
           <TRANCHE code="tranche0">
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur=".0175" />
               <VALUE deb="2012-01-01" fin="2014-12-31" valeur=".0175" />
               <VALUE deb="2005-01-01" fin="2011-12-31" valeur=".03" />
               <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".05" />
             </TAUX>
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="1998-01-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
           </TRANCHE>
           <TRANCHE code="tranche1">
             <SEUIL>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="4" />
               <VALUE deb="2011-01-01" fin="2014-12-31" valeur="4" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
               <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0" />
             </TAUX>
           </TRANCHE>
         </BAREME>
         <CODE code="taux" description="taux de la CSG imposable" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur=".024" />
           <VALUE deb="1997-01-01" fin="2014-12-31" valeur=".024" />
         </CODE>
       </NODE>
       <CODE code="min_exo" description="Revenu minimum imposable (en multiple du smic annuel brut)">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="1" />
       </CODE>
     </NODE>
     <NODE code="indemnites_journalieres" description="Indemnités journalières">
       <NODE code="deductible" description="CSG déductible">
         <CODE code="taux" description="taux plein de la CSG déductible" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur=".038" />
           <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
         </CODE>
@@ -1557,16 +1580,19 @@
     <NODE code="preretraite" description="Allocations de préretraite">
       <NODE code="deductible" description="CSG déductible">
         <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur=".042" />
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
           <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
         </CODE>
         <CODE code="taux_reduit" description="taux réduit de la CSG déductible" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur=".038" />
           <VALUE deb="2008-01-01" fin="2014-12-31" valeur=".038" />
         </CODE>
       </NODE>
       <NODE code="imposable" description="CSG imposable">
         <CODE code="taux" description="taux de la CSG imposable" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur=".033" />
           <VALUE deb="2007-10-11" fin="2014-12-31" valeur=".033" />
           <VALUE deb="1998-01-01" fin="2007-10-10" valeur=".024" />
         </CODE>
@@ -1627,17 +1653,20 @@
     <NODE code="retraite" description="Pensions de retraites et d'invalidité">
       <NODE code="deductible" description="CSG déductible">
         <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur=".042" />
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
           <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
         </CODE>
         <CODE code="taux_reduit" description="taux réduit de la CSG déductible" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur=".038" />
           <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
         </CODE>
       </NODE>
       <NODE code="imposable" description="CSG imposable">
         <CODE code="taux" description="taux de la CSG imposable" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur=".024" />
           <VALUE deb="1997-01-01" fin="2014-12-31" valeur=".024" />
         </CODE>
       </NODE>
