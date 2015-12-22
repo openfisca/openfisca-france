@@ -45,6 +45,7 @@ from .prelevements_obligatoires.prelevements_sociaux import taxes_salaires_main_
 from .prestations import (  # noqa analysis:ignore
     aides_logement,
     education,
+    handicap,
     )
 
 from prestations.minima_sociaux import (  # noqa analysis:ignore
