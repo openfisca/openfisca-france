@@ -6881,6 +6881,10 @@
     <CODE code="charges_forf_couple_enf" description="Charges forfaitaire de la CAF pour un couple avec enfant" format="float" type="monetary">
       <VALUE deb="2015-01-01" fin="2016-01-01" valeur="65.29"/>
     </CODE>
+    <CODE code="smic_net_mensuel" description="Montant du smic net mensuel" format="float" type="monetary">
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="1140"/>
+      <VALUE deb="2016-01-01" fin="2016-12-31" valeur="1150"/>
+    </CODE>
     <NODE code="paris_solidarite" description="Paris Solidarité">
       <CODE code="plafond_seul_psol" description="plafond pour une personne seule" format="float" type="monetary">
         <VALUE deb="2015-01-01" fin="2016-01-01" valeur="900"/>

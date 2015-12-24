@@ -38,7 +38,12 @@ class montant_aide(Variable):
         montant_seul = montant_seul_annuel / 12
         montant_couple = montant_couple_annuel / 12
         personnes_couple = simulation.calculate('concub', period)
-        ressources_mensuelles = simulation.calculate('paris_base_ressources_aah', period)
+        paris_base_ressources_commun = simulation.calculate('paris_base_ressources_commun', period)
+        aspa = simulation.calculate('paris_base_ressources_aspa', period)
+        asi = simulation.calculate('paris_base_ressources_asi', period)
+        aah = simulation.calculate('paris_base_ressources_aah', period)
+
+        ressources_mensuelles = paris_base_ressources_commun + asi + aspa + aah
 
         plafond_psol = select([personnes_couple, (personnes_couple != 1)], [plafond_couple_psol, plafond_seul_psol])
 

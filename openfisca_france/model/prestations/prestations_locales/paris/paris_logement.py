@@ -19,7 +19,13 @@ class paris_logement(Variable):
         aide_couple_ss_enf = simulation.legislation_at(period.start).paris.paris_logement.aide_couple_ss_enf
         aide_couple_avec_enf = simulation.legislation_at(period.start).paris.paris_logement.aide_couple_avec_enf
 
-        ressources_familiale = simulation.calculate('paris_base_ressources_aah', period)
+        paris_base_ressources_commun = simulation.calculate('paris_base_ressources_commun', period)
+        aspa = simulation.calculate('paris_base_ressources_aspa', period)
+        asi = simulation.calculate('paris_base_ressources_asi', period)
+        aah = simulation.calculate('paris_base_ressources_aah', period)
+        aide_logement = simulation.calculate('paris_base_ressources_aide_logement', period)
+        ressources_familiale = paris_base_ressources_commun + aspa + asi + aah + aide_logement
+
         personnes_couple = simulation.calculate('concub', period)
         nb_enfants = simulation.calculate('paris_nb_enfants', period)
         paris_logement_elig = simulation.calculate('paris_logement_elig', period)

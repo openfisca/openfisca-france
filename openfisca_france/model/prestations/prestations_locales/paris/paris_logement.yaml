@@ -1,3 +1,15 @@
+- name: "Personne  éligible car en situation de handicap"
+  period: 2014-11
+  input_variables:
+    age: 55
+    parisien: True
+    invalide: True
+    statut_occupation: 4
+    loyer: 550
+    salaire_net: 800
+  output_variables:
+    paris_logement: 84
+
 - name: "Personne agée qui es eligible à PL"
   description: Personne agée qui es eligible à PL
   period: 2014-11
@@ -29,6 +41,7 @@
     age: 65
     parisien: True
     statut_occupation: 2
+    aspa : 0
   output_variables:
     paris_logement: 0
 
@@ -116,6 +129,7 @@
     parisien: True
     aspa_elig: True
     statut_occupation: 4
+    aspa : 0
     loyer: 550
   output_variables:
     paris_logement: 84
@@ -134,7 +148,6 @@
   individus:
     - id: "parent1"
       age: 55
-      aah: 800
       invalide: True
     - id: "enfant1"
       age: 5
@@ -179,7 +192,7 @@
       2015-08: 0
       2015-09: 0
       2015-10: 0
-      2015-11: 850
+      2015-11: 0
       year:2014-11: 9600
   individus:
     - id: "parent1"
@@ -210,7 +223,6 @@
       2015-09: 0
       2015-10: 0
       2015-11: 0
-      year:2014-11: 5000
   individus:
     - id: "parent1"
       age: 55
@@ -228,7 +240,6 @@
         2015-09: 0
         2015-10: 0
         2015-11: 0
-        year:2014-11: 4500
       chonet:
         2014-12: 0
         2015-01: 0
@@ -242,13 +253,12 @@
         2015-09: 0
         2015-10: 0
         2015-11: 2000
-        year:2014-11: 22000
   output_variables:
     paris_logement: 0
 
 - name: "Personne agée qui es eligible à PL"
   description: Personne agée qui es eligible à PL
-  period: 2015-12
+  period: 2015-11
   menages:
     personne_de_reference: "parent1"
     loyer: 500
@@ -299,7 +309,7 @@
     apl: 320
     aspa: 850
   output_variables:
-    paris_logement: 84
+    paris_logement: 0
 
 - name: "Personne éligible car personne agé plus de 65 ans"
   period: 2015-11
@@ -321,6 +331,7 @@
     enfants: ["enfant1", "enfant2"]
     parisien: True
     statut_occupation_famille: 4
+    aide_logement: 0
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"
@@ -349,6 +360,7 @@
     parents: ["parent1", "parent2"]
     parisien: True
     statut_occupation_famille: 4
+    aspa : 0
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"
@@ -372,6 +384,7 @@
     parents: ["parent1", "parent2"]
     parisien: True
     statut_occupation_famille: 4
+    aide_logement: 0
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"

@@ -32,9 +32,17 @@ class paris_logement_plfm(Variable):
             (statut_occupation == 7))
 
         loyer = simulation.calculate('loyer', period)
-        ressources_mensuelles_famille = simulation.calculate('paris_base_ressources', period)
+        charges_locatives = simulation.calculate('charges_locatives', period)
+        paris_base_ressources_commun = simulation.calculate('paris_base_ressources_commun', period)
+        aide_logement = simulation.calculate('paris_base_ressources_aide_logement', period)
+        print loyer
+        print charges_locatives
+
+        ressources_mensuelles_famille = paris_base_ressources_commun + aide_logement
+
         condition_plfm = select([(ressources_mensuelles_famille <= premier_plafond_plfm),
-            (ressources_mensuelles_famille <= deuxieme_plafond_plfm)], [aide_1er_plafond_plfm,aide_2eme_plafond_plfm])
-        result = condition_plfm * parent_solo * (nb_enfants >= 1) * parisien * statut_occupation_plfm * (loyer > 0)
+            (ressources_mensuelles_famille <= deuxieme_plafond_plfm)], [aide_1er_plafond_plfm, aide_2eme_plafond_plfm])
+
+        result = condition_plfm * parent_solo * (nb_enfants >= 1) * parisien * statut_occupation_plfm * ((loyer > 0) + (charges_locatives > 0))
 
         return period, result

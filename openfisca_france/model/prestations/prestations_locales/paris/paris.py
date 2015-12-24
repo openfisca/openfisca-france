@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import division
 
-from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_, select)
+from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_, select, where)
 
 from ....base import *  # noqa analysis:ignore
 
@@ -20,7 +20,7 @@ class enfant_place(Variable):
     entity_class = Individus
     label = u"Enfant placé en structure spécialisée ou famille d'accueil"
 
-class paris_base_ressources_i(Variable):
+class paris_base_ressources_commun_i(Variable):
         column = FloatCol
         label = u"Base de ressources individuelle pour Paris Logement Famille"
         entity_class = Individus
@@ -28,23 +28,27 @@ class paris_base_ressources_i(Variable):
         def function(self, simulation, period):
             period = period.this_month
             last_year = period.last_year
+
             salaire_net = simulation.calculate('salaire_net', period)
+            indemnites_stage = simulation.calculate('indemnites_stage', period)
+            smic = simulation.legislation_at(period.start).paris.smic_net_mensuel
+            indemnites_stage_imposable = where((smic >= indemnites_stage), indemnites_stage, 0)
+            revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', period)
+
             chonet = simulation.calculate('chonet', period)
-            rstnet = simulation.calculate('rstnet', period)
+            allocation_securisation_professionnelle = simulation.calculate(
+                'allocation_securisation_professionnelle', period)
+
+            indemnites_journalieres = simulation.calculate('indemnites_journalieres', period)
+            indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', period)
+            indemnites_volontariat = simulation.calculate('indemnites_volontariat', period)
+
             pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
             pensions_alimentaires_versees_individu = simulation.calculate(
                 'pensions_alimentaires_versees_individu', period)
-            rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', period)
-            indemnites_journalieres_imposables = simulation.calculate('indemnites_journalieres_imposables', period)
-            indemnites_stage = simulation.calculate('indemnites_stage', period)
-            revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', period)
-            allocation_securisation_professionnelle = simulation.calculate(
-                'allocation_securisation_professionnelle', period)
             prestation_compensatoire = simulation.calculate('prestation_compensatoire', period)
+            rstnet = simulation.calculate('rstnet', period)
             pensions_invalidite = simulation.calculate('pensions_invalidite', period)
-            indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', period)
-            bourse_recherche = simulation.calculate('bourse_recherche', period)
-            gains_exceptionnels = simulation.calculate('gains_exceptionnels', period)
 
             def revenus_tns():
                 revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', period)
@@ -57,53 +61,120 @@ class paris_base_ressources_i(Variable):
                 return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
             result = (
-                salaire_net + indemnites_chomage_partiel + indemnites_stage + chonet + rstnet +
+                salaire_net + indemnites_chomage_partiel + chonet + rstnet +
                 pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
-                rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
-                indemnites_journalieres_imposables + prestation_compensatoire +
-                pensions_invalidite + bourse_recherche + gains_exceptionnels + revenus_tns() +
-                revenus_stage_formation_pro
+                allocation_securisation_professionnelle + prestation_compensatoire +
+                pensions_invalidite + revenus_tns() + revenus_stage_formation_pro +
+                indemnites_stage_imposable + indemnites_journalieres + indemnites_volontariat
                 )
 
             return period, result
 
-class paris_base_ressources(Variable):
+class paris_base_ressources_commun(Variable):
     column = FloatCol
     label = u"Base de ressource pour Paris Logement Famille"
     entity_class = Familles
 
     def function(self, simulation, period):
         period = period.this_month
-        paris_base_ressources_i_holder = simulation.compute('paris_base_ressources_i', period)
+        ass = simulation.calculate('ass', period)
+        paris_base_ressources_i_holder = simulation.compute('paris_base_ressources_commun_i', period)
         paris_base_ressources = self.sum_by_entity(paris_base_ressources_i_holder)
-        result = paris_base_ressources
+        result = paris_base_ressources + ass
         return period, result
+
+class paris_indemnite_enfant_i(Variable):
+    column = FloatCol
+    label = u"Indemnités de maternité, paternité, adoption"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        indemnites_maternite = simulation.calculate('indemnites_journalieres_maternite', period)
+        indemnites_paternite = simulation.calculate('indemnites_journalieres_paternite', period)
+        indemnites_adoption = simulation.calculate('indemnites_journalieres_adoption', period)
+
+        result = indemnites_maternite + indemnites_paternite + indemnites_adoption
+
+        return result
+
+class paris_indemnite_enfant_i(Variable):
+    column = FloatCol
+    label = u"Base de ressources pour Indemnités de maternité, paternité, adoption"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        paris_indemnite_enfant_i = simulation.compute('paris_indemnite_enfant_i', period)
+        paris_indemnite_enfant = self.sum_by_entity(paris_indemnite_enfant_i)
+
+        return period, paris_indemnite_enfant
+
 
 class paris_base_ressources_aah_i(Variable):
     column = FloatCol
-    label = u"Base de ressources individuelle pour Paris Logement et Paris solidarité"
+    label = u"Base de ressources individuelle pour l'AAH"
     entity_class = Individus
 
     def function(self, simulation, period):
         aah = simulation.calculate('aah', period)
-        ressources = simulation.calculate('paris_base_ressources_i', period)
-
-        result = ressources + aah
-
-        return period, result
+        return period, aah
 
 class paris_base_ressources_aah(Variable):
     column = FloatCol
-    label = u"Base de ressources individuelle pour Paris Logement et Paris solidarité"
+    label = u"Base de ressources pour l'AAH"
     entity_class = Familles
 
     def function(self, simulation, period):
-        ressources_i = simulation.compute('paris_base_ressources_aah_i', period)
-        ressources_mensuelles = self.sum_by_entity(ressources_i)
+        aah = simulation.compute('paris_base_ressources_aah_i', period)
+        aah_famille = self.sum_by_entity(aah)
+        return period, aah_famille
 
-        result = ressources_mensuelles
+class paris_base_ressources_aspa(Variable):
+    column = FloatCol
+    label = u"Base de ressources pour l'ASPA"
+    entity_class = Familles
 
-        return period, result
+    def function(self, simulation, period):
+        aspa = simulation.calculate('aspa', period)
+        return period, aspa
+
+class paris_base_ressources_asi(Variable):
+    column = FloatCol
+    label = u"Base de ressources pour l'ASI"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        asi = simulation.calculate('asi', period)
+        return period, asi
+
+class paris_base_ressources_aide_logement(Variable):
+    column = FloatCol
+    label = u"Base de ressources pour l'aide au logement (APL, ALS, ALF)"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        aide_logement = simulation.calculate('aide_logement', period)
+
+        return period, aide_logement
+
+class paris_base_ressources_rsa(Variable):
+    column = FloatCol
+    label = u"Base de ressources pour le RSA"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        rsa = simulation.calculate('rsa', period)
+
+        return period, rsa
+
+class paris_base_ressources_paje_clca(Variable):
+    column = FloatCol
+    label = u"Base de ressources pour le RSA"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        paje_clca = simulation.calculate('paje_clca', period)
+
+        return period, paje_clca
 
 class paris_enfant_handicape(Variable):
     column = BoolCol
@@ -196,7 +267,7 @@ class condition_taux_effort(Variable):
         loyer = simulation.calculate('loyer', period)
         apl = simulation.calculate('apl', period)
 
-        ressources_mensuelles = simulation.calculate('paris_base_ressources', period)
+        ressources_mensuelles = simulation.calculate('paris_base_ressources_commun', period)
         charges_forfaitaire_logement = simulation.calculate('charges_forfaitaire_logement', period)
         calcul_taux_effort = (loyer + charges_forfaitaire_logement - apl) / ressources_mensuelles
         condition_loyer = calcul_taux_effort >= taux_effort

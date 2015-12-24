@@ -1,4 +1,32 @@
-- name: "Couple éligible pour l'aide PSOL"
+- name: "Personne éligible pour l'aide PSOL car revenus < 900"
+  description: Personne handicape
+  period: 2015-11
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    invalide: True
+    loyer: 600
+    apl: 100
+    salaire_net: 600
+  output_variables:
+    paris_logement_psol: 100
+
+- name: "Personne éligible pour l'aide PSOL car revenus < 900"
+  description: Personne agée
+  period: 2015-11
+  input_variables:
+    age: 65
+    parisien: True
+    statut_occupation: 4
+    loyer: 600
+    apl: 100
+    aspa: 0
+    salaire_net: 2500
+  output_variables:
+    paris_logement_psol: 0
+
+- name: "Couple non éligible pour l'aide PSOL"
   description: Personne agée
   period: 2014-11
   familles:
@@ -27,15 +55,16 @@
       2014-11: 5
     aah: 5
   output_variables:
-    paris_logement_psol: 20
+    paris_logement_psol: 0
 
-- name: "Couple éligible pour l'aide PSOL car statut handicapé"
+- name: "Couple non éligible pour l'aide PSOL car statut handicapé"
   description: Personne handicape
   period: 2015-11
   familles:
     parents: ["couple1", "couple2"]
     parisien: True
     statut_occupation_famille: 4
+    aspa : 0
   individus:
   - id: "couple1"
     age: 65
@@ -45,10 +74,11 @@
   - id: "couple2"
     age: 65
     invalide: True
-    aah: 10
+    aah: 100
     salaire_net: 10
   output_variables:
-    paris_logement_psol: 10
+    paris_logement_psol: 0
+
 - name: "Personne non éligible pour l'aide PSOL car revenus > 900"
   description: Personne handicape
   period: 2015-11
@@ -166,6 +196,7 @@
     age: 65
     parisien: True
     statut_occupation: 4
+    aspa: 0
   output_variables:
     paris_logement_psol: 100
 
@@ -176,6 +207,7 @@
     parents: ["couple1"]
     parisien: True
     statut_occupation_famille: 4
+    aspa: 0
   individus:
   - id: "couple1"
     age: 65
@@ -231,7 +263,7 @@
     aspa:
       2014-10: 100
       2014-09: 100
-      2014-08: 100
+      2014-11: 100
   individus:
   - id: "couple1"
     age: 65
