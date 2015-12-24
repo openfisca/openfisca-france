@@ -46,16 +46,16 @@
     paris_logement: 0
 
 
-- name: "Personne non éligible car trop jeune"
-  description: Personne agée qui es eligible à PL
+- name: "eligible au PL aide aux parsiens en difficulté"
   period: 2014-11
   input_variables:
     age: 55
     parisien: True
     statut_occupation: 4
+    aide_logement: 0
     loyer: 350
   output_variables:
-    paris_logement: 0
+    paris_logement: 84
 
 
 - name: "Personne  éligible car en situation de handicap"
@@ -66,7 +66,6 @@
     invalide: True
     statut_occupation: 4
     loyer: 550
-    aah: 800
   output_variables:
     paris_logement: 84
 
@@ -354,7 +353,7 @@
   output_variables:
     paris_logement: 116
 
-- name: "Couple éligible pour l'aide Paris logement car un couple avec ressources > 1140"
+- name: "Couple non éligible pour l'aide Paris logement car un couple avec ressources > 1140"
   period: 2014-11
   familles:
     parents: ["parent1", "parent2"]
@@ -404,3 +403,31 @@
         2014-11: 150
   output_variables:
     paris_logement: 95
+
+- name: "Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 1600"
+  period: 2014-11
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+    parisien: True
+    statut_occupation_famille: 4
+    aide_logement: 0
+    rsa: 0
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2"]
+    loyer: 550
+  individus:
+    - id: "parent1"
+      age: 55
+      salaire_net:
+        2014-11: 1000
+    - id: "parent2"
+      age: 55
+    - id: "enfant1"
+      age: 5
+    - id: "enfant2"
+      age: 9
+  output_variables:
+    paris_logement: 116

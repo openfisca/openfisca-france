@@ -95,9 +95,9 @@ class paris_indemnite_enfant_i(Variable):
 
         result = indemnites_maternite + indemnites_paternite + indemnites_adoption
 
-        return result
+        return period, result
 
-class paris_indemnite_enfant_i(Variable):
+class paris_indemnite_enfant(Variable):
     column = FloatCol
     label = u"Base de ressources pour Indemnités de maternité, paternité, adoption"
     entity_class = Familles

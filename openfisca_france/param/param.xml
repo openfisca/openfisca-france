@@ -6900,6 +6900,12 @@
       <CODE code="plafond_pl_avec_enf" description="plafond des ressources mensuelles pour un couple avec enfant" format="float" type="monetary">
         <VALUE deb="2015-01-01" fin="2016-01-01" valeur="1600"/>
       </CODE>
+      <CODE code="plafond_pl_fam" description="plafond des ressources mensuelles pour un couple avec enfant" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="1600"/>
+      </CODE>
+      <CODE code="plafond_pl_apd" description="plafond des ressources mensuelles pour un couple avec enfant" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="1140"/>
+      </CODE>
       <CODE code="aide_pers_isol" description="Montant de l'aide pour une personne isolée" format="float" type="monetary">
         <VALUE deb="2015-01-01" fin="2016-01-01" valeur="84"/>
       </CODE>
@@ -6908,6 +6914,15 @@
       </CODE>
       <CODE code="aide_couple_avec_enf" description="Montant de l'aide pour un couple avec enfant" format="float" type="monetary">
         <VALUE deb="2015-01-01" fin="2016-01-01" valeur="116"/>
+      </CODE>
+      <CODE code="aide_pl_fam" description="Montant de l'aide pour un couple avec enfant" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="116"/>
+      </CODE>
+      <CODE code="aide_pl_apd_pers_isol" description="Montant de l'aide pour une personne isolée" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="84"/>
+      </CODE>
+      <CODE code="aide_pl_apd_couple" description="Montant de l'aide pour un couple" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="95"/>
       </CODE>
       <CODE code="taux_effort" description="charges de logement représentant 30% des ressources" format="float" type="monetary">
         <VALUE deb="2015-01-01" fin="2016-01-01" valeur="0.3"/>
