@@ -14,11 +14,8 @@ class paris_logement(Variable):
 
     def function(self, simulation, period):
         paris_logement_pa_ph = simulation.calculate('paris_logement_pa_ph', period)
-        print paris_logement_pa_ph
         paris_logement_fam = simulation.calculate('paris_logement_fam', period)
-        print paris_logement_fam
         paris_logement_apd = simulation.calculate('paris_logement_apd', period)
-        print paris_logement_apd
 
         return period, paris_logement_pa_ph + paris_logement_fam + paris_logement_apd
 
@@ -169,5 +166,7 @@ class paris_logement_elig_apd(Variable):
             (statut_occupation == 5) +
             (statut_occupation == 7))
         charges_logement = simulation.calculate('condition_taux_effort', period)
+
         result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap != 1) * charges_logement * (loyer > 0) * (nb_enfants == 0)
+
         return period, result
