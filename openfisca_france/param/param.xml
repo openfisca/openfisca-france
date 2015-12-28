@@ -6964,5 +6964,25 @@
         <VALUE deb="2015-01-01" fin="2016-01-01" valeur="128"/>
       </CODE>
     </NODE>
+    <NODE code="pef" description="Paris Energie Famille">
+      <CODE code="premier_plafond_pef" description="1er Plafond des ressources pour l'aide paris énergie famille " format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="2000"/>
+      </CODE>
+      <CODE code="deuxieme_plafond_pef" description="2ème Plafond des ressources pour l'aide paris énergie famille" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="2500"/>
+      </CODE>
+      <CODE code="troisieme_plafond_pef" description="2ème Plafond des ressources pour l'aide paris énergie famille" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="5000"/>
+      </CODE>
+      <CODE code="aide_1er_plafond_pef" description="Le montant de l'aide du 1er plafond" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="138"/>
+      </CODE>
+      <CODE code="aide_2eme_plafond_pef" description="Le montant de l'aide du 2ème plafond" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="138"/>
+      </CODE>
+      <CODE code="aide_3eme_plafond_pef" description="Le montant de l'aide du 3ème plafond" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-01" valeur="275"/>
+      </CODE>
+    </NODE>
   </NODE>
 </NODE>

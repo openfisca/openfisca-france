@@ -22,9 +22,9 @@ class paris_logement_aspeh(Variable):
         nb_enfant = self.sum_by_entity(enfant_handicape)
         paris_base_ressources_commun = simulation.calculate('paris_base_ressources_commun', period)
         clca = simulation.calculate('paris_base_ressources_paje_clca', period)
-        print clca
+
         ressources_mensuelles_famille = paris_base_ressources_commun + clca
-        print ressources_mensuelles_famille
+
         result = (select([ressources_mensuelles_famille <= plafond_aspeh],
             [aide_aspeh])) * parisien * enfant
         return period, result * nb_enfant
