@@ -13,7 +13,7 @@ TaxBenefitSystem = init_country()
 
 
 def check_legislation_xml_file(year):
-    legislation_tree = conv.check(legislationsxml.xml_legislation_info_list_to_xml_element)(
+    legislation_tree = conv.check(legislationsxml.make_xml_legislation_info_list_to_xml_element(False))(
         TaxBenefitSystem.legislation_xml_info_list, state = conv.default_state)
     legislation_xml_json = conv.check(legislationsxml.xml_legislation_to_json)(
         legislation_tree,
