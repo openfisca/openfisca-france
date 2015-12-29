@@ -1601,7 +1601,7 @@ class cehr(Variable):
     label = u"Contribution exceptionnelle sur les hauts revenus"
     url = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2099, 12, 31))
+    @dated_function(start = date(2011, 1, 1))
     def function(self, simulation, period):
         '''
         Contribution exceptionnelle sur les hauts revenus
@@ -1612,7 +1612,7 @@ class cehr(Variable):
         nb_adult = simulation.calculate('nb_adult', period)
         bareme = simulation.legislation_at(period.start).ir.cehr
 
-        return period, bareme.calc(rfr / nb_adult) * nb_adult
+        return period, bareme.calc(rfr / nb_adult) * nb_adult #TODO: Gérer le II.-1 du lissage interannuel ? (problème de non recours)
 
 
 class irpp(Variable):
