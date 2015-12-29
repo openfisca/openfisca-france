@@ -1,0 +1,7 @@
+- name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €"
+  period: 2011
+  absolute_error_margin: 0.5
+  input_variables:
+    salaire_imposable: 0
+  output_variables:
+    irpp: -0
