@@ -45,6 +45,17 @@
       2015-10: False
     ppa: 80.77
 
+- name: "Pas de PPA avant 2016"
+  period: 2015-12
+  input_variables:
+    age: 40
+    salaire_net:
+      2015-11: 500
+      2015-10: 500
+      2015-09: 500
+  output_variables:
+    ppa: 0
+
 - name: "PPA personne seule, pas de bonification"
   period: 2016-01
   input_variables:
