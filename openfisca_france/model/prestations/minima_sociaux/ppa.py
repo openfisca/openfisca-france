@@ -210,11 +210,12 @@ class ppa_fictive(Variable):
         ppa_fictive = max_(ppa_fictive, 0)
         return period, elig * ppa_fictive
 
-class ppa(Variable):
+class ppa(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Prime Pour l'Activité"
 
+    @dated_function(start = date(2016, 1, 1))
     def function(self, simulation, period):
         period = period.this_month
         seuil_non_versement = simulation.legislation_at(period.start).minim.ppa.seuil_non_versement
