@@ -1,0 +1,120 @@
+- name: "Personne éligible au CSP"
+  description: Paris Complementaire Santé
+  period: 2015-11
+  input_variables:
+    age: 45
+    parisien: True
+    statut_occupation: 4
+    invalide: True
+    concub: False
+    loyer: 550
+    aah: 500
+    ass: 0
+    aide_logement: 200
+    acs_montant: 0
+  output_variables:
+    paris_complement_sante: 468
+
+- name: "Personne éligible au CSP"
+  description: Paris Complementaire Santé
+  period: 2015-11
+  input_variables:
+    age: 45
+    parisien: True
+    statut_occupation: 4
+    invalide: True
+    concub: False
+    loyer: 550
+    aah: 500
+    ass: 0
+    aide_logement: 200
+    acs_montant: 200
+  output_variables:
+    paris_complement_sante: 268
+
+- name: "Personne non éligible au CSP"
+  description: Paris Complementaire Santé
+  period: 2015-11
+  input_variables:
+    age: 65
+    parisien: True
+    statut_occupation: 4
+    concub: False
+    loyer: 550
+    ass: 0
+    aide_logement: 200
+    acs_montant: 0
+  output_variables:
+    paris_complement_sante: 0
+
+- name: "Couple éligible au CSP"
+  description: Paris Complementaire Santé
+  period: 2015-11
+  input_variables:
+    age: 65
+    parisien: True
+    statut_occupation: 4
+    concub: True
+    loyer: 550
+    ass: 0
+    aide_logement: 200
+    acs_montant: 0
+    aspa: 1200
+  output_variables:
+    paris_complement_sante: 468
+
+- name: "Famille éligible pour l'aide paris energie famille sans l'aide ACS"
+  period: 2014-11
+  familles:
+    parents: ["Couple1", "Couple2"]
+    parisien: True
+    concub: True
+    statut_occupation_famille: 4
+    aspa: 800
+    aide_logement: 200
+    acs_montant: 0
+    ass: 0
+    cmu_c: False
+  menages:
+    personne_de_reference: "Couple1"
+    conjoint: "Couple2"
+    loyer: 550
+  individus:
+  - id: "Couple1"
+    age: 65
+    salaire_net:
+      2014-11: 100
+  - id: "Couple2"
+    age: 45
+    chonet:
+      2014-11: 50
+  output_variables:
+    paris_complement_sante: 468
+
+- name: "Famille éligible pour l'aide paris energie famille avec une aide ACS"
+  period: 2014-11
+  familles:
+    parents: ["Couple1", "Couple2"]
+    parisien: True
+    concub: True
+    statut_occupation_famille: 4
+    aspa: 800
+    aide_logement: 200
+    acs_montant: 200
+    ass: 0
+    cmu_c: False
+  menages:
+    personne_de_reference: "Couple1"
+    conjoint: "Couple2"
+    loyer: 550
+  individus:
+  - id: "Couple1"
+    age: 65
+    salaire_net:
+      2014-11: 100
+  - id: "Couple2"
+    age: 45
+    chonet:
+      2014-11: 50
+  output_variables:
+    paris_complement_sante: 268

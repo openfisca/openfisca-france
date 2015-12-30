@@ -6984,5 +6984,19 @@
         <VALUE deb="2015-01-01" fin="2016-01-01" valeur="275"/>
       </CODE>
     </NODE>
+    <NODE code="complement_sante" description="Complementaire Santé">
+      <CODE code="plafond_pers_isol_cs" description="Plafond de la Complementaire Santé pour une personne isolée " format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="900"/>
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="900"/>
+      </CODE>
+      <CODE code="plafond_couple_cs" description="Plafond de la Complementaire Santé pour un couple " format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="1430"/>
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="1430"/>
+      </CODE>
+      <CODE code="montant_aide_cs" description="Montant de l'aide Complémentaire Santé " format="float" type="monetary">
+        <VALUE deb="2015-01-01" fin="2016-01-31" valeur="468"/>
+        <VALUE deb="2016-02-01" fin="2016-12-31" valeur="468"/>
+      </CODE>
+    </NODE>
   </NODE>
 </NODE>
