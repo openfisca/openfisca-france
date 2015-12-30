@@ -69,6 +69,7 @@ from prestations.prestations_locales.paris import (  # noqa analysis:ignore
     paris,
     paris_logement,
     paris_logement_fam_mono,
+    paris_logement_famille,
     aspeh,
     paris_forfait_famille,
     paris_solidarite,
