@@ -34,8 +34,7 @@ class paris_complement_sante(Variable):
         ressources_pers_isol = ressources[CHEF] + aspa + ass + asi + aide_logement
 
         ressources_couple = ressources[CHEF] + ressources[PART]
-        print ressources[CHEF]
-        print ressources[PART]
+
         ressources_couple += aspa + ass + asi + aide_logement
 
         plafond = where(concub, plafond_couple_cs, plafond_pers_isol_cs)

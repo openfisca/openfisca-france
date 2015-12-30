@@ -168,7 +168,7 @@ class paris_base_ressources_rsa(Variable):
 
 class paris_base_ressources_paje_clca(Variable):
     column = FloatCol
-    label = u"Base de ressources pour le RSA"
+    label = u"Base de ressources pour le paje"
     entity_class = Familles
 
     def function(self, simulation, period):
