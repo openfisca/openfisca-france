@@ -2935,12 +2935,13 @@ class ppe_brute(Variable):
         return period, ppe_tot
 
 
-class ppe(Variable):
+class ppe(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Prime pour l'emploi"
     url = "http://vosdroits.service-public.fr/particuliers/F2882.xhtml"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         """
         PPE effectivement versée
