@@ -1,5 +1,5 @@
 - name: "Famille non éligible pour l'aide Paris logement familles monoparentales "
-  period: 2014-11
+  period: 2015-11
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
@@ -13,14 +13,14 @@
     - id: "parent1"
       age: 55
       salaire_net:
-        2014-11: 4100
+        2015-11: 4100
     - id: "enfant1"
       age: 5
   output_variables:
     paris_logement_plfm: 0
 
 - name: "Famille éligible pour l'aide Paris logement familles monoparentales"
-  period: 2014-11
+  period: 2015-11
   familles:
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2"]
@@ -35,7 +35,7 @@
     - id: "parent1"
       age: 55
       salaire_net:
-        2014-11: 1100
+        2015-11: 1100
     - id: "enfant1"
       age: 5
     - id: "enfant2"
@@ -44,7 +44,7 @@
     paris_logement_plfm: 150
 
 - name: "Famille non éligible pour l'aide Paris logement familles monoparentales"
-  period: 2014-11
+  period: 2015-11
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
@@ -59,11 +59,11 @@
     - id: "parent1"
       age: 55
       salaire_net:
-        2014-11: 4100
+        2015-11: 4100
     - id: "parent2"
       age: 55
       chonet:
-        2014-11: 400
+        2015-11: 400
     - id: "enfant1"
       age: 5
     - id: "enfant2"
@@ -72,7 +72,7 @@
     paris_logement_plfm: 0
 
 - name: "Famille éligible pour l'aide Paris logement familles monoparentales"
-  period: 2014-11
+  period: 2015-11
   familles:
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2"]
@@ -87,7 +87,7 @@
     - id: "parent1"
       age: 55
       salaire_net:
-        2014-11: 1500
+        2015-11: 1500
     - id: "enfant1"
       age: 5
     - id: "enfant2"
@@ -96,7 +96,7 @@
     paris_logement_plfm: 128
 
 - name: "Famille éligible pour l'aide Paris logement familles monoparentales"
-  period: 2014-11
+  period: 2015-11
   familles:
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2"]
@@ -112,7 +112,7 @@
     - id: "parent1"
       age: 55
       salaire_net:
-        2014-11: 1500
+        2015-11: 1500
     - id: "enfant1"
       age: 5
     - id: "enfant2"
@@ -121,7 +121,7 @@
     paris_logement_plfm: 128
 
 - name: "Famille éligible pour l'aide Paris logement familles monoparentales"
-  period: 2014-11
+  period: 2015-11
   familles:
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2"]
@@ -135,7 +135,7 @@
     - id: "parent1"
       age: 55
       salaire_net:
-        2014-11: 1500
+        2015-11: 1500
     - id: "enfant1"
       age: 5
     - id: "enfant2"
