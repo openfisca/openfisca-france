@@ -4,7 +4,7 @@ keywords:
   - patrimoine
 description: |
   perception de loyers supérieur au plafond de ressource : 1127.70 E
-  
+
   Chiffres revenus imposables
   Demandeur: salaire= 1000 X 3 mois (année glissante: 12000)
 period: "month:2014-12"
@@ -31,7 +31,7 @@ individus:
     2014-11: 1064.9186551125752
     2014-12: 1064.9186551125752
     year:2013-12: 12779.023861350901
-  chonet:
+  chomage_net:
     2012: 11580
     2013-12: 965
     2014-01: 965

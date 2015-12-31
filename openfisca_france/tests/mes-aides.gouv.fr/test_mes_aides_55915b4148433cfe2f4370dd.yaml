@@ -6,7 +6,7 @@ description: |
   L'ASF n'est pas perçue et le montant des allocations familiales est réduit (partage / garde alternée ?)
   Forfait logement de 152,62 à intégrer dans BR
   Total des ressources calculé par la CPAM: 15 540 < 16 338 (plafond ACS)
-  
+
   Avant la capture des prestations: AF de 130 euros
 period: "month:2015-06"
 individus:
@@ -30,7 +30,7 @@ individus:
       2015-05: 989.0832043567863
       2015-06: 989.0832043567863
       year:2014-06: 9960.57593890788
-    chonet:
+    chomage_net:
       2013: 9026.000000000002
       2014-06: 706.4188888888889
       2014-07: 706.4188888888889

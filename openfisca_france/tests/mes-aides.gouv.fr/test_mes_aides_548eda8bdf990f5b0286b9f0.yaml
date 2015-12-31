@@ -4,7 +4,7 @@ keywords:
   - base ressources
 description: |
   le système ne retient que les indemnités de retraites
-  
+
   Chiffres revenus imposables:
   Demandeur: ARE = 1000 X 3 mois (année glissante: 12000)
   Conjoint: ARE = année glissante 9000 et retraite = 1500 X 3 mois (année glissante= 18000)
@@ -32,7 +32,7 @@ individus:
       2014-11: 1064.9186551125752
       2014-12: 1064.9186551125752
       year:2013-12: 12779.023861350901
-    chonet:
+    chomage_net:
       2012: 11580
       2013-12: 965
       2014-01: 965
@@ -83,7 +83,7 @@ individus:
       2014-10: 0
       2014-11: 0
       year:2013-12: 9582.060810717607
-    chonet:
+    chomage_net:
       2012: 8682.999999999998
       2013-12: 964.7777777777778
       2014-01: 964.7777777777778

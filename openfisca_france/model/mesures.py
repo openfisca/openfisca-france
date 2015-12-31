@@ -235,7 +235,7 @@ class pen(Variable):
         Pensions
         '''
         period = period.start.period('year').offset('first-of')
-        chonet = simulation.calculate('chonet', period)
+        chomage_net = simulation.calculate('chomage_net', period)
         rstnet = simulation.calculate('rstnet', period)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
         pensions_alimentaires_versees_declarant1 = simulation.calculate(
@@ -243,7 +243,7 @@ class pen(Variable):
             )
         rto_declarant1 = simulation.calculate_add('rto_declarant1', period)
 
-        return period, (chonet + rstnet + pensions_alimentaires_percues + pensions_alimentaires_versees_declarant1 +
+        return period, (chomage_net + rstnet + pensions_alimentaires_percues + pensions_alimentaires_versees_declarant1 +
                     rto_declarant1)
 
 

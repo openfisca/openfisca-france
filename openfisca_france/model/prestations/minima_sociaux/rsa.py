@@ -273,7 +273,7 @@ class br_rmi_i(Variable):
         r = rsa_ressource_calculator(simulation, period)
 
         # Ressources professionelles
-        chonet = r.calcule_ressource('chonet', revenu_pro = True)
+        chomage_net = r.calcule_ressource('chomage_net', revenu_pro = True)
         rstnet = r.calcule_ressource('rstnet', revenu_pro = True)
 
         pensions_alimentaires_percues = r.calcule_ressource('pensions_alimentaires_percues')
@@ -294,7 +294,7 @@ class br_rmi_i(Variable):
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
         result = (
-            chonet + rstnet + pensions_alimentaires_percues + rto_declarant1 + rev_cap_bar +
+            chomage_net + rstnet + pensions_alimentaires_percues + rto_declarant1 + rev_cap_bar +
             rev_cap_lib + rfon_ms + div_ms +
             gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
             allocation_securisation_professionnelle + prestation_compensatoire +
@@ -994,7 +994,7 @@ class rsa_ressource_calculator:
         self.three_previous_months = self.period.start.period('month', 3).offset(-3)
         self.last_month = period.start.period('month').offset(-1)
         self.has_ressources_substitution = (
-            simulation.calculate('chonet', period) +
+            simulation.calculate('chomage_net', period) +
             simulation.calculate('indemnites_journalieres', period) +
             simulation.calculate('rstnet', period)  # +
             # simulation.calculate('ass', last_month)
@@ -1037,7 +1037,7 @@ class rsa_socle(Variable):
         nbp = nb_par + nb_enfant_rsa
 
         taux = (
-            1 + 
+            1 +
             (nbp >= 2) * rmi.txp2 +
             (nbp >= 3) * rmi.txp3 +
             (nbp >= 4) * ((nb_par == 1) * rmi.txps + (nb_par != 1) * rmi.txp3) +

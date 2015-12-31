@@ -139,7 +139,7 @@ class cho(Variable):
         return period, chobrut + csg_deductible_chomage
 
 
-class chonet(Variable):
+class chomage_net(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus

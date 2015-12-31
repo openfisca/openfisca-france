@@ -75,7 +75,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             'typ_tot': {
                 'chobrut': u"Chômage brut",
                 'cho': u"Chômage",
-                'chonet': u"Chômage net",
+                'chomage_net': u"Chômage net",
                 },
             'typ_tot_default': 'cho'
             },

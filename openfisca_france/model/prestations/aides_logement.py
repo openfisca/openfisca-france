@@ -112,8 +112,8 @@ class aide_logement_abattement_chomage_indemnise(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        chomage_net_m_1 = simulation.calculate('chonet', period.offset(-1))
-        chomage_net_m_2 = simulation.calculate('chonet', period.offset(-2))
+        chomage_net_m_1 = simulation.calculate('chomage_net', period.offset(-1))
+        chomage_net_m_2 = simulation.calculate('chomage_net', period.offset(-2))
         revenus_activite_pro = simulation.calculate('salaire_imposable', period.n_2)
         taux_abattement = simulation.legislation_at(period.start).al.ressources.abattement_chomage_indemnise
         taux_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro.taux

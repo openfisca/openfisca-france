@@ -4,7 +4,7 @@ keywords:
   - eligibilité
 description: |
   L'intéressé doit être en fin de droit ARE pour bénéficier de l'ASS, ici il n'a pas décoché la case "je continuerai à percevoir cette ressource", donc pas droit à l'ASS.
-  
+
   Chiffres revenus imposables
   Demandeur: ARE: 500 X 3 mois (année glissante: 6000 euros)
 period: "month:2014-12"
@@ -31,7 +31,7 @@ individus:
     2014-11: 531.907556232395
     2014-12: 531.907556232395
     year:2013-12: 6382.89067478874
-  chonet:
+  chomage_net:
     2012: 5784
     2013-12: 482
     2014-01: 482

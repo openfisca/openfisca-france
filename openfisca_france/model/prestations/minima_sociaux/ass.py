@@ -114,7 +114,7 @@ class ass_base_ressources_conjoint(Variable):
         last_year = period.last_year
 
         has_ressources_substitution = (
-            simulation.calculate('chonet', last_month) +
+            simulation.calculate('chomage_net', last_month) +
             simulation.calculate('indemnites_journalieres', last_month) +
             simulation.calculate('rstnet', last_month)
         ) > 0
@@ -141,7 +141,7 @@ class ass_base_ressources_conjoint(Variable):
         salaire_imposable = calculateWithAbatement('salaire_imposable')
         indemnites_stage = calculateWithAbatement('indemnites_stage', neutral_totale = True)
         revenus_stage_formation_pro = calculateWithAbatement('revenus_stage_formation_pro')
-        chonet = calculateWithAbatement('chonet', neutral_totale = True)
+        chomage_net = calculateWithAbatement('chomage_net', neutral_totale = True)
         indemnites_journalieres = calculateWithAbatement('indemnites_journalieres')
         aah = calculateWithAbatement('aah')
         rstnet = calculateWithAbatement('rstnet')
@@ -161,7 +161,7 @@ class ass_base_ressources_conjoint(Variable):
 
         result = (
             salaire_imposable + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
-            aah + indemnites_stage + revenus_stage_formation_pro + rstnet + chonet +
+            aah + indemnites_stage + revenus_stage_formation_pro + rstnet + chomage_net +
             indemnites_journalieres + revenus_tns()
         )
 
@@ -182,6 +182,6 @@ class ass_eligibilite_i(Variable):
         # Indique que l'user a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = simulation.calculate('ass_precondition_remplie', period)
 
-        are_perceived_this_month = simulation.calculate('chonet', period)
+        are_perceived_this_month = simulation.calculate('chomage_net', period)
 
         return period, and_(and_(activite == 1, ass_precondition_remplie), are_perceived_this_month == 0)

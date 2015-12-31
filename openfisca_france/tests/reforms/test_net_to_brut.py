@@ -10,7 +10,7 @@ from openfisca_france.tests import base
 from openfisca_france.reforms import inversion_revenus
 
 
-def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
+def check_chomage_net_to_chobrut(count, chobrut_max, chobrut_min, year):
     scenario_args = dict(
         axes = [
             dict(
@@ -30,7 +30,7 @@ def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
         ).new_simulation(debug = True)
 
     chobrut = simulation.get_holder('chobrut').array
-    chonet = simulation.calculate('chonet')
+    chomage_net = simulation.calculate('chomage_net')
 
     inversion_reform = inversion_revenus.build_reform(base.tax_benefit_system)
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
@@ -38,18 +38,18 @@ def check_chonet_to_chobrut(count, chobrut_max, chobrut_min, year):
         ).new_simulation(debug = True)
 
     inverse_simulation.get_holder('chobrut').delete_arrays()
-    inverse_simulation.get_or_new_holder('chonet').array = chonet
+    inverse_simulation.get_or_new_holder('chomage_net').array = chomage_net
     new_chobrut = inverse_simulation.calculate('chobrut')
 
     assert_near(new_chobrut, chobrut, absolute_error_margin = 0.1)
 
 
-def test_chonet_to_chobrut():
+def test_chomage_net_to_chobrut():
     count = 101
     chobrut_max = 5000
     chobrut_min = 2000
     for year in range(2006, 2015):
-        yield check_chonet_to_chobrut, count, chobrut_max, chobrut_min, year
+        yield check_chomage_net_to_chobrut, count, chobrut_max, chobrut_min, year
 
 
 def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
@@ -156,7 +156,7 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    # TOD0 test_chonet_to_chobrut,
-    for test in (test_chonet_to_chobrut, test_rstnet_to_rstbrut, test_salaire_net_to_salaire_de_base):
+    # TOD0 test_chomage_net_to_chobrut,
+    for test in (test_chomage_net_to_chobrut, test_rstnet_to_rstbrut, test_salaire_net_to_salaire_de_base):
         for function_and_arguments in test():
             function_and_arguments[0](*function_and_arguments[1:])

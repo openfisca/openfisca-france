@@ -179,22 +179,22 @@ def build_reform(tax_benefit_system):
             # Get value for year and divide below.
             choi = simulation.get_array('choi', period.this_year)
             if choi is None:
-                chonet = simulation.get_array('chonet', period)
-                if chonet is not None:
+                chomage_net = simulation.get_array('chomage_net', period)
+                if chomage_net is not None:
                     # Calcule les allocations chomage brutes à partir des allocations nettes par inversion numérique.
-                    if (chonet == 0).all():
+                    if (chomage_net == 0).all():
                         # Quick path to avoid fsolve when using default value of input variables.
-                        return period, chonet
+                        return period, chomage_net
                     simulation = self.holder.entity.simulation
 
                     def solve_function(chobrut):
                         return brut_to_target(
                             chobrut = chobrut,
-                            target_name = 'chonet',
+                            target_name = 'chomage_net',
                             period = period,
                             simulation = simulation,
-                            ) - chonet
-                    return period, fsolve(solve_function, chonet)
+                            ) - chomage_net
+                    return period, fsolve(solve_function, chomage_net)
 
                 choi = simulation.calculate_add_divide('choi', period)
 

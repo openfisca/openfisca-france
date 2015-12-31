@@ -7,7 +7,7 @@
       age: 40
       ass_precondition_remplie: true
       activite: 1
-      chonet:
+      chomage_net:
         2015-01: 200
         2015-02: 200
         2015-03: 200
@@ -47,7 +47,7 @@
         2015-02: 400
         2015-03: 0
         year:2014-04: 4000
-      chonet:
+      chomage_net:
         2015-01: 200
         2015-02: 200
         2015-03: 200

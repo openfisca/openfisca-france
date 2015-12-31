@@ -5,7 +5,7 @@ keywords:
 description: |
   Le demandeur perçoit des salaires et son conjoint perçoit l’ARE et des salaires.
   Les 2 salaires ainsi que l'ARE du conjoint doivent être intégrés dans les ressources.
-  
+
   Chiffres revenus imposables
   Demandeur: salaires = 500 + 1600 + 300 (année glissante:4575)
   Conjoint: salaires = 300 + 200 + 100 (année glissante: 1877) et ARE: 900 + 1000 + 100 (année glissante: 9912)
@@ -103,7 +103,7 @@ individus:
       2014-11: 993.1883830065467
       2014-12: 993.1883830065467
       year:2013-12: 10933.900554254295
-    chonet:
+    chomage_net:
       2012: 9908
       2013-12: 878.6666666666666
       2014-01: 878.6666666666666

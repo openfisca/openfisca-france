@@ -5,7 +5,7 @@ keywords:
   - base ressources
 description: |
   conjoint perd son activité salariée et remplacement par allocation chômage (abattement de 30% activité salariée perdue)
-  
+
   Chiffres revenus imposables:
   Demandeur: salaires = 796 X 3 mois
   Conjoint: salaires = 1930 X 1 mois (année glissante 20 000 euros) et ARE = 1300 X 2 mois (année glissante 2600)
@@ -33,7 +33,7 @@ individus:
       2014-10: 878.4199476369013
       2014-11: 878.4199476369013
       year:2013-12: 10541.039371642815
-    chonet:
+    chomage_net:
       2012: 9552
       2013-12: 796
       2014-01: 796
@@ -84,7 +84,7 @@ individus:
       2014-11: 1434.6054421205674
       2014-12: 1434.6054421205674
       year:2013-12: 2869.210884241135
-    chonet:
+    chomage_net:
       2012: 2600
       2013-12: 0
       2014-01: 0
