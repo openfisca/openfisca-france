@@ -35,8 +35,6 @@ class paris_logement_plfm(Variable):
         charges_locatives = simulation.calculate('charges_locatives', period)
         paris_base_ressources_commun = simulation.calculate('paris_base_ressources_commun', period)
         aide_logement = simulation.calculate('paris_base_ressources_aide_logement', period)
-        print loyer
-        print charges_locatives
 
         ressources_mensuelles_famille = paris_base_ressources_commun + aide_logement
 

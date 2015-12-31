@@ -16,7 +16,6 @@ class paris_complement_sante(Variable):
         montant_aide_cs = simulation.legislation_at(period.start).paris.complement_sante.montant_aide_cs
 
         parisien = simulation.calculate('parisien', period)
-        print parisien
         personnes_agees_i = simulation.compute('personnes_agees', period)
         personnes_agees = self.any_by_roles(personnes_agees_i)
         personnes_handicape_i = simulation.compute('personnes_handicap_paris', period)
