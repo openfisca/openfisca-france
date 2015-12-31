@@ -426,9 +426,9 @@ class rev_pen(Variable):
         period = period.this_year
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
         pensions_alimentaires_percues_decl = simulation.calculate('pensions_alimentaires_percues_decl', period)
-        rst = simulation.calculate('rst', period)
+        retraite_imposable = simulation.calculate('retraite_imposable', period)
 
-        return period, pensions_alimentaires_percues * pensions_alimentaires_percues_decl + rst
+        return period, pensions_alimentaires_percues * pensions_alimentaires_percues_decl + retraite_imposable
 
 
 class pen_net(Variable):

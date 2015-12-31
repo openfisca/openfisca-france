@@ -133,7 +133,7 @@ class aide_logement_abattement_depart_retraite(Variable):
         period = period.this_month
         retraite = simulation.calculate('activite', period) == 3
         activite_n_2 = simulation.calculate('salaire_imposable', period.n_2)
-        retraite_n_2 = simulation.calculate('rst', period.n_2)
+        retraite_n_2 = simulation.calculate('retraite_imposable', period.n_2)
         taux_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro.taux
 
         abattement = 0.3 * activite_n_2 * (retraite_n_2 == 0) * retraite

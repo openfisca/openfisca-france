@@ -259,7 +259,7 @@ def build_reform(tax_benefit_system):
                 return brut_to_target(
                     retraite_brute = retraite_brute,
                     taux_csg_remplacement = taux_csg_remplacement,
-                    target_name = 'rst',
+                    target_name = 'retraite_imposable',
                     period = period,
                     simulation = simulation,
                     ) - rsti

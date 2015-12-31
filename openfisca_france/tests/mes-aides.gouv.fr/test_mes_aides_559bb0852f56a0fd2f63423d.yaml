@@ -25,7 +25,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 0
-    rst:
+    retraite_imposable:
       2013: 0
     salaire_imposable:
       2013: 118488.88888888889
@@ -49,7 +49,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 0
-    rst:
+    retraite_imposable:
       2013: 0
     salaire_imposable:
       2013: 0

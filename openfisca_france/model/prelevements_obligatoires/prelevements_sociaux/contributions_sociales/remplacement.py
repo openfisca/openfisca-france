@@ -246,7 +246,7 @@ class casa(DatedVariable):
         return period, - casa
 
 
-class rst(Variable):
+class retraite_imposable(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -270,15 +270,15 @@ class retraite_nette(Variable):
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
 
-    # def function(self, rst, csg_imposable_retraite, crds_retraite, casa):
-    # return rst + csg_imposable_retraite + crds_retraite + casa
+    # def function(self, retraite_imposable, csg_imposable_retraite, crds_retraite, casa):
+    # return retraite_imposable + csg_imposable_retraite + crds_retraite + casa
     def function(self, simulation, period):
         period = period
-        rst = simulation.calculate('rst', period)
+        retraite_imposable = simulation.calculate('retraite_imposable', period)
         csg_imposable_retraite = simulation.calculate_add('csg_imposable_retraite', period)
         crds_retraite = simulation.calculate_add('crds_retraite', period)
 
-        return period, rst + csg_imposable_retraite + crds_retraite
+        return period, retraite_imposable + csg_imposable_retraite + crds_retraite
 
 
 class crds_pfam(Variable):

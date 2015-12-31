@@ -49,7 +49,7 @@ def test_rst(year = 2014):
         **single_entity_kwargs
         ).new_simulation(debug = True)
     brut = simulation.get_holder('retraite_brute').array
-    imposable = simulation.calculate('rst')
+    imposable = simulation.calculate('retraite_imposable')
 
     inversion_reform = inversion_revenus.build_reform(tax_benefit_system)
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(

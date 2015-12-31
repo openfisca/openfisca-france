@@ -42,7 +42,7 @@ individus:
     2015-03: 100
     2015-04: 100
     year:2014-04: 1200
-  rst:
+  retraite_imposable:
     2013: 0
   salaire_de_base:
     2014-04: 897.4358974358975

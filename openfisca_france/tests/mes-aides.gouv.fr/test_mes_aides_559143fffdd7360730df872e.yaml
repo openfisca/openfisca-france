@@ -24,7 +24,7 @@ individus:
   invalide: 0
   pensions_alimentaires_percues:
     '2013': 0
-  rst:
+  retraite_imposable:
     '2013': 0
   salaire_de_base:
     2014-06: 11396.011396011396

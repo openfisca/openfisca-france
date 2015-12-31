@@ -46,7 +46,7 @@ individus:
   invalide: 0
   pensions_alimentaires_percues:
     2013: 0
-  rst:
+  retraite_imposable:
     2013: 12000
   retraite_brute:
     2014-02: 1079.913606911447
