@@ -7,7 +7,7 @@ description: |
   Montant de base pour 3 enfants: 73,76 euros
   Majoration pour un enfant de plus de 14 ans: 16,17 euros
   73,76 + 16,17 = 89,93
-  
+
   96 000 + 95 085 = 915
   CD = 89,93 - (915/12) = 13,68
   AF = 89,93 + 13,68 = 103,61
@@ -18,7 +18,7 @@ individus:
   - age: 54
     age_en_mois: 657
     birth: "1960-09-08"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0

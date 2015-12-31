@@ -3,9 +3,9 @@ keywords:
   - af
   - barêmes 1er juillet 2015
 description: |
-  Test créé à partir d'un dossier de demande de (RSA, APL…) : 
-  Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : 
-  La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) : 
+  Test créé à partir d'un dossier de demande de (RSA, APL…) :
+  Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés :
+  La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) :
   On veut 90000 € de revenus nets, donc on déclare 100000 € de revenus imposables.
 period: "month:2015-07"
 relative_error_margin: 0.02
@@ -13,7 +13,7 @@ individus:
   - age: 54
     age_en_mois: 657
     birth: "1960-09-08"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0

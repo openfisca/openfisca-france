@@ -6,7 +6,7 @@ description: |
   Montant brut : BMAF * Tx = 203,06 €
   CRDS : 0,5 % * 203,06 = 1,02 €
   Montant net : 203,06 - 1,02 = 202,04 €
-  
+
   Remarque : test à mettre à jour quand le montant de la BMAF au 1er avril 2015 sera connue.
 period: "month:2015-04"
 relative_error_margin: 0.02
@@ -14,7 +14,7 @@ individus:
   - age: 35
     age_en_mois: 423
     birth: "1980-01-01"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0

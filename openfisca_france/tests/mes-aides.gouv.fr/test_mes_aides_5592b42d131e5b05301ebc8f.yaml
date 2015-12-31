@@ -10,7 +10,7 @@ individus:
   age_en_mois: 665
   ass_precondition_remplie: false
   birth: '1960-01-01'
-  cho:
+  chomage_imposable:
     '2013': 100000
   epargne_non_remuneree:
     2012-01: 0
@@ -36,7 +36,7 @@ individus:
   age_en_mois: 665
   ass_precondition_remplie: false
   birth: '1960-01-01'
-  cho:
+  chomage_imposable:
     '2013': 0
   epargne_non_remuneree:
     2012-01: 0

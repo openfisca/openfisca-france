@@ -14,7 +14,7 @@ individus:
   age_en_mois: 294
   ass_precondition_remplie: true
   birth: "1990-10-10"
-  cho:
+  chomage_imposable:
     2013: 0
   epargne_non_remuneree:
     2012-01: 0

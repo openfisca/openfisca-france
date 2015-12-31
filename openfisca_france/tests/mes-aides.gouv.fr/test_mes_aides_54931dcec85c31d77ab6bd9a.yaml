@@ -10,7 +10,7 @@ description: |
   loyer 500 €
   non meublé
   zone 2
-  
+
   L	418,01
   C	89,41
   E	507,42
@@ -26,7 +26,7 @@ description: |
   P1	91,57
   Pp	134,7
   AL	370,86
-  
+
   caf.fr : 370,64
 period: "month:2014-12"
 relative_error_margin: 0.02
@@ -34,7 +34,7 @@ individus:
   - age: 42
     age_en_mois: 515
     birth: "1972-01-09"
-    cho:
+    chomage_imposable:
       2012: 0
     epargne_non_remuneree:
       2012-01: 0
@@ -102,7 +102,7 @@ individus:
   - age: 43
     age_en_mois: 524
     birth: "1971-04-02"
-    cho:
+    chomage_imposable:
       2012: 0
     epargne_non_remuneree:
       2012-01: 0

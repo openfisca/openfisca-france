@@ -6,7 +6,7 @@ keywords:
 description: |
   On veut rentrer dans ce test dans le cas où RL est supérieur à 75.
   Dans l'exemple, personne seule en zone 1, loyer > loyer plafond, salaires 2013 = 9000 euros
-  
+
   L	292,62
   C	53,23
   E	345,85
@@ -22,7 +22,7 @@ description: |
   P1	113,45
   Pp	148,18
   AL	196,68
-  
+
   Sur CAF.FR on trouve 175,79 euros : ils sont faux
 period: "month:2015-01"
 relative_error_margin: 0.02
@@ -30,7 +30,7 @@ individus:
   age: 34
   age_en_mois: 413
   birth: "1980-08-12"
-  cho:
+  chomage_imposable:
     2013: 0
   epargne_non_remuneree:
     2012-01: 0

@@ -32,7 +32,7 @@
     </NODE>
     <NODE code="pen" color="97,75,150" desc="Pensions" shortname="Pensions">
       <NODE code="chomage_net" color="136,120,178" desc="Chômage net" shortname="Chômage net">
-        <NODE code="cho" desc="Chômage" shortname="Chômage decl.">
+        <NODE code="chomage_imposable" desc="Chômage" shortname="Chômage decl.">
           <NODE code="chomage_brut" desc="Chômage brut" shortname="Chômage brut" />
           <NODE code="csg_deductible_chomage" color="235,114,118" desc="CSG déductible (chômage)" shortname="CSG déd. chôm." />
         </NODE>

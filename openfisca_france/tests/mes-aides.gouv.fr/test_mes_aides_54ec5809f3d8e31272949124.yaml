@@ -3,7 +3,7 @@ keywords:
   - cf
   - dom
 description: |
-  Dans les DOM, les règles du CF sont différentes  : ouverture de droit pour les familles d'un ou de plusieurs enfants tous âgés de plus de trois ans, à la condition qu'au moins l'un d'entre eux ait moins de cinq ans. 
+  Dans les DOM, les règles du CF sont différentes  : ouverture de droit pour les familles d'un ou de plusieurs enfants tous âgés de plus de trois ans, à la condition qu'au moins l'un d'entre eux ait moins de cinq ans.
   Le barème du plafond de ressources est différent de celui de la métropole, de même que le montant du CF et du montant majoré du CF.
   Dans le cas précis, la famille a droit au CF de base soit 96,16 €.
 period: "month:2015-02"
@@ -12,7 +12,7 @@ individus:
   - age: 43
     age_en_mois: 517
     birth: "1972-01-09"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0

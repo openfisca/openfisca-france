@@ -5,7 +5,7 @@ keywords:
 description: |
   Les ressources du foyer n'excèdent pas le plafond du Cf majoré.
   Donc l'allocataire a droit au Cf majoré métropole, d'un montant de 185,20 €.
-  
+
   Or le simulateur restitue un droit au Cf de 170 €.
 period: "month:2015-02"
 relative_error_margin: 0.02
@@ -13,7 +13,7 @@ individus:
   - age: 65
     age_en_mois: 780
     birth: "1950-02-01"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0

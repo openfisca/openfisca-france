@@ -5,7 +5,7 @@ keywords:
   - location
 description: |
   On teste ici simplement que le forfait de charges spécial pour les personnes seules en colocation n'est pas appliqué aux couples, qui gardent le même forfait de charges qu'un couple qui n'est pas en colocation.
-  
+
   L	264,69
   C	53,23
   E	317,92
@@ -21,14 +21,14 @@ description: |
   P1	0
   Pp	34,73
   AL	281,77
-  
+
   caf.fr : 281,78
 period: "month:2015-02"
 individus:
   - age: 34
     age_en_mois: 413
     birth: "1980-08-12"
-    cho:
+    chomage_imposable:
       2013: 0
     coloc: 1
     epargne_non_remuneree:
@@ -53,7 +53,7 @@ individus:
   - age: 34
     age_en_mois: 413
     birth: "1980-08-12"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0

@@ -13,7 +13,7 @@ individus:
   - age: 35
     age_en_mois: 424
     birth: "1980-03-02"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0

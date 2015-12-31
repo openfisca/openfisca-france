@@ -6,7 +6,7 @@ keywords:
 description: |
   On veut rentrer dans ce test dans le cas où RL est compris entre 45 et 75
   Dans l'exemple, personne seule en zone 1, loyer = 150 euros, salaires 2013 = 9000 euros
-  
+
   L	150
   C	53,23
   E	203,23
@@ -27,7 +27,7 @@ individus:
   age: 34
   age_en_mois: 413
   birth: "1980-08-12"
-  cho:
+  chomage_imposable:
     2013: 0
   epargne_non_remuneree:
     2012-01: 0

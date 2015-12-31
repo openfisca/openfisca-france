@@ -355,9 +355,9 @@ class rev_sal(Variable):
     def function(self, simulation, period):
         period = period.this_year
         salaire_imposable =  simulation.calculate_add('salaire_imposable', period)
-        cho = simulation.calculate('cho', period)
+        chomage_imposable = simulation.calculate('chomage_imposable', period)
 
-        return period, salaire_imposable + cho
+        return period, salaire_imposable + chomage_imposable
 
 
 class salcho_imp(Variable):

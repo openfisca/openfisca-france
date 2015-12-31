@@ -209,7 +209,7 @@ def build_reform(tax_benefit_system):
                 return brut_to_target(
                     chomage_brut = chomage_brut,
                     # taux_csg_remplacement = taux_csg_remplacement,
-                    target_name = 'cho',
+                    target_name = 'chomage_imposable',
                     period = period,
                     simulation = simulation,
                     ) - choi

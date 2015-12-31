@@ -123,7 +123,7 @@ class crds_chomage(Variable):
         return period, -crds_chomage
 
 
-class cho(Variable):
+class chomage_imposable(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -149,11 +149,11 @@ class chomage_net(Variable):
 
     def function(self, simulation, period):
         period = period
-        cho = simulation.calculate('cho', period)
+        chomage_imposable = simulation.calculate('chomage_imposable', period)
         csg_imposable_chomage = simulation.calculate_add('csg_imposable_chomage', period)
         crds_chomage = simulation.calculate_add('crds_chomage', period)
 
-        return period, cho + csg_imposable_chomage + crds_chomage
+        return period, chomage_imposable + csg_imposable_chomage + crds_chomage
 
 
 ############################################################################

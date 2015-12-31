@@ -2,13 +2,13 @@ name: Foyer 5 enfants > plafond CF
 keywords:
   - cf
   - dom
-description: 
+description:
 period: "month:2015-04"
 individus:
   - age: 44
     age_en_mois: 535
     birth: "1970-09-09"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0

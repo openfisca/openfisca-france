@@ -195,14 +195,14 @@ class nivvie_ini(Variable):
         return period, revini / uc
 
 
-def _revprim(rev_trav, cho, rev_cap, cotisations_employeur, cotisations_salariales):
+def _revprim(rev_trav, chomage_imposable, rev_cap, cotisations_employeur, cotisations_salariales):
     '''
     Revenu primaire du ménage
     Ensemble des revenus d'activités superbruts avant tout prélèvement
     Il est égale à la valeur ajoutée produite par les résidents
     'men'
     '''
-    return rev_trav + rev_cap - cotisations_employeur - cotisations_salariales - cho
+    return rev_trav + rev_cap - cotisations_employeur - cotisations_salariales - chomage_imposable
 
 
 class rev_trav(Variable):

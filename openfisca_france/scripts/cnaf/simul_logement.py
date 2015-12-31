@@ -39,7 +39,7 @@ actPro = Question('actPro', ['oui', 'non'])
 beneRsa = Question('beneRsa', ['oui', 'non'])
 page6 = Page([actPro, beneRsa, BCContinuer])
 
-sitActNon = Question('sitActNon', ['cho', 'ebo', 'etu', "parfoy",
+sitActNon = Question('sitActNon', ['chomage_imposable', 'ebo', 'etu', "parfoy",
                                    'retre', 'arrtrav', 'han', 'inc'
                                    'aut'])
 page7 = Page([sitActNon, BCContinuer])
@@ -73,10 +73,10 @@ if __name__ == '__main__':
                '500',
                'oui', '01/04/1980', '05/03/1975', 'non', 'non', '2', '0',
                'oui', 'oui',
-               'cho',
-               'sup2m', 'ass']     
-    
-    
+               'chomage_imposable',
+               'sup2m', 'ass']
+
+
     logement.set_choice(exemple)
     logement.fill_in()
 

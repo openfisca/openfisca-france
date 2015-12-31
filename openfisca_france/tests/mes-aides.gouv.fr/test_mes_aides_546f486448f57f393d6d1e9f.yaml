@@ -10,7 +10,7 @@ individus:
   age_en_mois: 411
   ass_precondition_remplie: true
   birth: "1980-08-12"
-  cho:
+  chomage_imposable:
     2012: 0
   chomage_brut:
     2013-11: 11035.426477850518

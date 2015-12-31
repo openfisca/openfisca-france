@@ -8,7 +8,7 @@ individus:
   - age: 34
     age_en_mois: 415
     birth: "1980-09-09"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0

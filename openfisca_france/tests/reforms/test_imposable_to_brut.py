@@ -24,7 +24,7 @@ def test_cho(year = 2014):
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         **single_entity_kwargs).new_simulation(debug = True)
     brut = simulation.get_holder('chomage_brut').array
-    imposable = simulation.calculate('cho')
+    imposable = simulation.calculate('chomage_imposable')
 
     inversion_reform = inversion_revenus.build_reform(tax_benefit_system)
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(

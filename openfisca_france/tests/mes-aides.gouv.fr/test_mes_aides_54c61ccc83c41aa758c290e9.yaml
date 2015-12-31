@@ -5,7 +5,7 @@ keywords:
 description: |
   Ce test vérifie simplement que les ressources n-2 déclarées par le conjoint sont bien intégrées dans la base de ressources.
   Ici il déclare 3597 * 4 = 14388 euros de revenus et 3000 euros de pensions alimentaires versées donc R = (14388 * 0.9) - 3000 ~= 10000
-  
+
   L	352,92
   C	53,23
   E	406,15
@@ -27,7 +27,7 @@ individus:
   - age: 34
     age_en_mois: 413
     birth: "1980-08-12"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
@@ -51,7 +51,7 @@ individus:
   - age: 34
     age_en_mois: 413
     birth: "1980-08-12"
-    cho:
+    chomage_imposable:
       2013: 3597
     epargne_non_remuneree:
       2012-01: 0

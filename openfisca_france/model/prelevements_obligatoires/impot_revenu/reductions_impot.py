@@ -636,7 +636,7 @@ class cotsyn(Variable):
         period = period.this_year
         f7ac_holder = simulation.compute('f7ac', period)
         salaire_imposable_holder = simulation.compute_add('salaire_imposable', period)
-        cho_holder = simulation.compute('cho', period)
+        cho_holder = simulation.compute('chomage_imposable', period)
         rst_holder = simulation.compute('rst', period)
         P = simulation.legislation_at(period.start).ir.reductions_impots.cotsyn
 
@@ -644,14 +644,14 @@ class cotsyn(Variable):
         f7ae = self.filter_role(f7ac_holder, role = CONJ)
         f7ag = self.filter_role(f7ac_holder, role = PAC1)
 
-        cho = self.split_by_roles(cho_holder)
+        chomage_imposable = self.split_by_roles(cho_holder)
         rst = self.split_by_roles(rst_holder)
         salaire_imposable = self.split_by_roles(salaire_imposable_holder)
 
         tx = P.seuil
 
         salv, salc, salp = salaire_imposable[VOUS], salaire_imposable[CONJ], salaire_imposable[PAC1]
-        chov, choc, chop = cho[VOUS], cho[CONJ], cho[PAC1]
+        chov, choc, chop = chomage_imposable[VOUS], chomage_imposable[CONJ], chomage_imposable[PAC1]
         rstv, rstc, rstp = rst[VOUS], rst[CONJ], rst[PAC1]
         maxv = (salv + chov + rstv) * tx
         maxc = (salc + choc + rstc) * tx

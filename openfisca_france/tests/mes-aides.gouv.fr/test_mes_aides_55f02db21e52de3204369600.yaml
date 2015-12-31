@@ -15,7 +15,7 @@ individus:
   age_en_mois: 302
   ass_precondition_remplie: false
   birth: "1990-07-09"
-  cho:
+  chomage_imposable:
     2013: 6983
   chomage_brut:
     2014-09: 856.2264788314465

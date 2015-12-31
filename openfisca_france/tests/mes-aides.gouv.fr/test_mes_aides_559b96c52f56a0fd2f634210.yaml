@@ -12,11 +12,11 @@ description: |
   67 140 < 70 000 < 89 490 €
   Les ressources sont comprises entre le 1er et le 2ème plafond de ressources pour deux enfants à charge donc il y a un droit aux Af de la tranche 2 (50%)
   Montant du forfait Af :
-  Le montant du forfait Af est déterminé sur la base des plafonds Af trois enfants. 
-  70 000 < 72 735 € 
+  Le montant du forfait Af est déterminé sur la base des plafonds Af trois enfants.
+  70 000 < 72 735 €
   Les ressources n’excèdent pas le 1er plafond de ressources pour trois enfants à charge donc il y un droit au forfait Af de la tranche 1 (100%)
-  
-  Donc 
+
+  Donc
   AF = 130€ / 2 = 65€
   AF forf = 82€
   AF  = 147 €
@@ -27,7 +27,7 @@ individus:
   - age: 35
     age_en_mois: 426
     birth: "1980-01-01"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
@@ -51,7 +51,7 @@ individus:
   - age: 35
     age_en_mois: 426
     birth: "1980-01-01"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
