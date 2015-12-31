@@ -17,7 +17,7 @@ individus:
     age_en_mois: 541
     ass_precondition_remplie: true
     birth: "1969-10-26"
-    chobrut:
+    chomage_brut:
       2012: 10541.039371642815
       2013-12: 878.4199476369013
       2014-01: 878.4199476369013
@@ -67,7 +67,7 @@ individus:
     age_en_mois: 541
     ass_precondition_remplie: false
     birth: "1969-10-26"
-    chobrut:
+    chomage_brut:
       2012: 2869.210884241135
       2013-12: 0
       2014-01: 0

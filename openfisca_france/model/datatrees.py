@@ -271,7 +271,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f3vi""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %
                     u"""f3vj""",  # Gains imposables sur option dans la catégorie des salaires
                     u"""f3va""",  # Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values
-                    u"""chobrut""",  # Chômage brut
+                    u"""chomage_brut""",  # Chômage brut
                     u"""indemnites_chomage_partiel""",  # Indemnités de chômage partiel
                     u"""rstbrut""",  # Retraite brute
                     u"""aer""",  # Allocation équivalent retraite (AER)

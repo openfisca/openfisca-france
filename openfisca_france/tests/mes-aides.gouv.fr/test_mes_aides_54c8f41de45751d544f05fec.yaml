@@ -12,7 +12,7 @@ individus:
   age_en_mois: 418
   ass_precondition_remplie: false
   birth: '1980-03-02'
-  chobrut:
+  chomage_brut:
     '2013': 1.1035426477850518
     2014-01: 0
     2014-02: 0

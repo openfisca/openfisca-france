@@ -21,7 +21,7 @@ build_column('choi', IntCol(label = u"Autres revenus imposables (chômage, prér
                                QUIFOY['pac3']: u"1EP",
                                }))  # (f1ap, f1bp, f1cp, f1dp, f1ep)
 
-class chobrut(Variable):
+class chomage_brut(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Chômage brut"

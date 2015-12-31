@@ -15,7 +15,7 @@ from openfisca_france.tests.base import assert_near, tax_benefit_system
 def test_cho(year = 2014):
     period = periods.period("{}-01".format(year))
     single_entity_kwargs = dict(
-        axes = [dict(count = 101, max = 2000, min = 0, name = 'chobrut')],
+        axes = [dict(count = 101, max = 2000, min = 0, name = 'chomage_brut')],
         period = period,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
@@ -23,16 +23,16 @@ def test_cho(year = 2014):
         )
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         **single_entity_kwargs).new_simulation(debug = True)
-    brut = simulation.get_holder('chobrut').array
+    brut = simulation.get_holder('chomage_brut').array
     imposable = simulation.calculate('cho')
 
     inversion_reform = inversion_revenus.build_reform(tax_benefit_system)
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
         **single_entity_kwargs).new_simulation(debug = True)
 
-    inverse_simulation.get_holder('chobrut').delete_arrays()
+    inverse_simulation.get_holder('chomage_brut').delete_arrays()
     inverse_simulation.get_or_new_holder('choi').array = imposable.copy()
-    new_brut = inverse_simulation.calculate('chobrut')
+    new_brut = inverse_simulation.calculate('chomage_brut')
     assert_near(new_brut, brut, absolute_error_margin = 1)
 
 

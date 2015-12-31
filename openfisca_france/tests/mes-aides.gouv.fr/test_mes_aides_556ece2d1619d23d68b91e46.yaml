@@ -11,7 +11,7 @@ individus:
   age_en_mois: 665
   ass_precondition_remplie: true
   birth: "1960-01-01"
-  chobrut:
+  chomage_brut:
     2013: 19863.767660130936
     2014-06: 1655.313971677578
     2014-07: 1655.313971677578

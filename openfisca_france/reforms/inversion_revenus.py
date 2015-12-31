@@ -167,7 +167,7 @@ def build_reform(tax_benefit_system):
     #        #<NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence"/>
     #        return period, salbrut + hsup
 
-    class chobrut(Reform.Variable):
+    class chomage_brut(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Allocations chômage brutes"
@@ -187,9 +187,9 @@ def build_reform(tax_benefit_system):
                         return period, chomage_net
                     simulation = self.holder.entity.simulation
 
-                    def solve_function(chobrut):
+                    def solve_function(chomage_brut):
                         return brut_to_target(
-                            chobrut = chobrut,
+                            chomage_brut = chomage_brut,
                             target_name = 'chomage_net',
                             period = period,
                             simulation = simulation,
@@ -205,9 +205,9 @@ def build_reform(tax_benefit_system):
                 return period, choi
             simulation = self.holder.entity.simulation
 
-            def solve_function(chobrut):
+            def solve_function(chomage_brut):
                 return brut_to_target(
-                    chobrut = chobrut,
+                    chomage_brut = chomage_brut,
                     # taux_csg_remplacement = taux_csg_remplacement,
                     target_name = 'cho',
                     period = period,

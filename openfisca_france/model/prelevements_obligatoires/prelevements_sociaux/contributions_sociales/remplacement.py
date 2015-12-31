@@ -44,12 +44,12 @@ class csg_deductible_chomage(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        chobrut = simulation.calculate('chobrut', period)
+        chomage_brut = simulation.calculate('chomage_brut', period)
         csg_imposable_chomage = simulation.calculate('csg_imposable_chomage', period)
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
         montant_csg = montant_csg_crds(
-            base_avec_abattement = chobrut,
+            base_avec_abattement = chomage_brut,
             indicatrice_taux_plein = (taux_csg_remplacement == 3),
             indicatrice_taux_reduit = (taux_csg_remplacement == 2),
             law_node = law.csg.chomage.deductible,
@@ -58,7 +58,7 @@ class csg_deductible_chomage(Variable):
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
         cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
         csg_deductible_chomage = max_(
-            - montant_csg - max_(cho_seuil_exo - (chobrut + csg_imposable_chomage + montant_csg), 0),
+            - montant_csg - max_(cho_seuil_exo - (chomage_brut + csg_imposable_chomage + montant_csg), 0),
             0,
             )
 
@@ -74,17 +74,17 @@ class csg_imposable_chomage(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        chobrut = simulation.calculate('chobrut', period)
+        chomage_brut = simulation.calculate('chomage_brut', period)
         law = simulation.legislation_at(period.start)
 
         montant_csg = montant_csg_crds(
-            base_avec_abattement = chobrut,
+            base_avec_abattement = chomage_brut,
             law_node = law.csg.chomage.imposable,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
         cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
-        csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chobrut + montant_csg), 0), 0)
+        csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chomage_brut + montant_csg), 0), 0)
         return period, - csg_imposable_chomage
 
 
@@ -97,27 +97,27 @@ class crds_chomage(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        chobrut = simulation.calculate('chobrut', period)
+        chomage_brut = simulation.calculate('chomage_brut', period)
         csg_deductible_chomage = simulation.calculate('csg_deductible_chomage', period)
         csg_imposable_chomage = simulation.calculate('csg_imposable_chomage', period)
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
         smic_h_b = law.cotsoc.gen.smic_h_b
-        # salaire_mensuel_reference = chobrut / .7
+        # salaire_mensuel_reference = chomage_brut / .7
         # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
         heures_mensuelles = 35 * 52 / 12
         cho_seuil_exo = law.csg.chomage.min_exo * heures_mensuelles * smic_h_b
 
         montant_crds = montant_csg_crds(
-            base_avec_abattement = chobrut,
+            base_avec_abattement = chomage_brut,
             law_node = law.crds.activite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * (2 <= taux_csg_remplacement)
 
         crds_chomage = max_(
             -montant_crds - max_(
-                cho_seuil_exo - (chobrut + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0
+                cho_seuil_exo - (chomage_brut + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0
                 ), 0
             )
         return period, -crds_chomage
@@ -133,10 +133,10 @@ class cho(Variable):
 
     def function(self, simulation, period):
         period = period
-        chobrut = simulation.calculate('chobrut', period)
+        chomage_brut = simulation.calculate('chomage_brut', period)
         csg_deductible_chomage = simulation.calculate_add('csg_deductible_chomage', period)
 
-        return period, chobrut + csg_deductible_chomage
+        return period, chomage_brut + csg_deductible_chomage
 
 
 class chomage_net(Variable):

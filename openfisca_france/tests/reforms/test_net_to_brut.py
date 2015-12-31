@@ -10,14 +10,14 @@ from openfisca_france.tests import base
 from openfisca_france.reforms import inversion_revenus
 
 
-def check_chomage_net_to_chobrut(count, chobrut_max, chobrut_min, year):
+def check_chomage_net_to_chomage_brut(count, chomage_brut_max, chomage_brut_min, year):
     scenario_args = dict(
         axes = [
             dict(
                 count = count,
-                name = 'chobrut',
-                max = chobrut_max,
-                min = chobrut_min,
+                name = 'chomage_brut',
+                max = chomage_brut_max,
+                min = chomage_brut_min,
                 ),
             ],
         period = "{}-01".format(year),
@@ -29,7 +29,7 @@ def check_chomage_net_to_chobrut(count, chobrut_max, chobrut_min, year):
         **scenario_args
         ).new_simulation(debug = True)
 
-    chobrut = simulation.get_holder('chobrut').array
+    chomage_brut = simulation.get_holder('chomage_brut').array
     chomage_net = simulation.calculate('chomage_net')
 
     inversion_reform = inversion_revenus.build_reform(base.tax_benefit_system)
@@ -37,19 +37,19 @@ def check_chomage_net_to_chobrut(count, chobrut_max, chobrut_min, year):
         **scenario_args
         ).new_simulation(debug = True)
 
-    inverse_simulation.get_holder('chobrut').delete_arrays()
+    inverse_simulation.get_holder('chomage_brut').delete_arrays()
     inverse_simulation.get_or_new_holder('chomage_net').array = chomage_net
-    new_chobrut = inverse_simulation.calculate('chobrut')
+    new_chomage_brut = inverse_simulation.calculate('chomage_brut')
 
-    assert_near(new_chobrut, chobrut, absolute_error_margin = 0.1)
+    assert_near(new_chomage_brut, chomage_brut, absolute_error_margin = 0.1)
 
 
-def test_chomage_net_to_chobrut():
+def test_chomage_net_to_chomage_brut():
     count = 101
-    chobrut_max = 5000
-    chobrut_min = 2000
+    chomage_brut_max = 5000
+    chomage_brut_min = 2000
     for year in range(2006, 2015):
-        yield check_chomage_net_to_chobrut, count, chobrut_max, chobrut_min, year
+        yield check_chomage_net_to_chomage_brut, count, chomage_brut_max, chomage_brut_min, year
 
 
 def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
@@ -156,7 +156,7 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    # TOD0 test_chomage_net_to_chobrut,
-    for test in (test_chomage_net_to_chobrut, test_rstnet_to_rstbrut, test_salaire_net_to_salaire_de_base):
+    # TOD0 test_chomage_net_to_chomage_brut,
+    for test in (test_chomage_net_to_chomage_brut, test_rstnet_to_rstbrut, test_salaire_net_to_salaire_de_base):
         for function_and_arguments in test():
             function_and_arguments[0](*function_and_arguments[1:])
