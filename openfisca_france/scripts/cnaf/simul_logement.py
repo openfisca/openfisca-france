@@ -39,7 +39,7 @@ actPro = Question('actPro', ['oui', 'non'])
 beneRsa = Question('beneRsa', ['oui', 'non'])
 page6 = Page([actPro, beneRsa, BCContinuer])
 
-sitActNon = Question('sitActNon', ['chomage_imposable', 'ebo', 'etu', "parfoy",
+sitActNon = Question('sitActNon', ['chomage_imposable', 'ebo', 'etudiant', "parfoy",
                                    'retre', 'arrtrav', 'han', 'inc'
                                    'aut'])
 page7 = Page([sitActNon, BCContinuer])

@@ -21,7 +21,7 @@ description: |
   P1	45,52
   Pp	80,25
   AL	264,27
-  
+
   caf.fr : 259,48
 period: "month:2015-02"
 relative_error_margin: 0.02
@@ -33,7 +33,7 @@ individus:
   boursier: true
   epargne_non_remuneree:
     2012-01: 0
-  etu: 1
+  etudiant: 1
   id: 54d34e17af6bfed9447f9411
   inapte_travail: 0
   interets_epargne_sur_livrets:

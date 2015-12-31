@@ -236,7 +236,7 @@ class aide_logement_base_ressources(Variable):
         # Planchers de ressources pour étudiants
         # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
         Pr = simulation.legislation_at(period.start).al.ressources
-        etu_holder = simulation.compute('etu', period)
+        etu_holder = simulation.compute('etudiant', period)
         boursier_holder = simulation.compute('boursier', period)
         etudiant = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
@@ -481,14 +481,14 @@ class als_nonet(Variable):
         period = period.this_month
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         al_pac = simulation.calculate('al_pac', period)
-        etu_holder = simulation.compute('etu', period)
+        etu_holder = simulation.compute('etudiant', period)
         statut_occupation = simulation.calculate('statut_occupation_famille', period)
         proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
 
-        etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
+        etudiant = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         return period, (
             (al_pac == 0) * (statut_occupation != 3) * not_(proprietaire_proche_famille) *
-            not_(etu[CHEF] | etu[PART]) * aide_logement_montant
+            not_(etudiant[CHEF] | etudiant[PART]) * aide_logement_montant
         )
 
 
@@ -503,14 +503,14 @@ class alset(Variable):
         period = period.this_month
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         al_pac = simulation.calculate('al_pac', period)
-        etu_holder = simulation.compute('etu', period)
+        etu_holder = simulation.compute('etudiant', period)
         statut_occupation = simulation.calculate('statut_occupation_famille', period)
         proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
 
-        etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
+        etudiant = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         return period, (
             (al_pac == 0) * (statut_occupation != 3) * not_(proprietaire_proche_famille) *
-            (etu[CHEF] | etu[PART]) * aide_logement_montant
+            (etudiant[CHEF] | etudiant[PART]) * aide_logement_montant
         )
 
 

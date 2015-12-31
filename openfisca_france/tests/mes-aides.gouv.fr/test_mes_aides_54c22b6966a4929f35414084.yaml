@@ -31,7 +31,7 @@ individus:
   enceinte: true
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54c22a358a248fab3505d37a
   inapte_travail: 0
   interets_epargne_sur_livrets:

@@ -19,7 +19,7 @@ description: |
   P1	0
   Pp	34,73
   AL	309,56
-  
+
   caf.fr : 309,57
 period: "month:2014-10"
 relative_error_margin: 0.02
@@ -29,7 +29,7 @@ individus:
   birth: "1980-08-12"
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 542ec2625e3a9c02007e90c3
   inapte_travail: 0
   interets_epargne_sur_livrets:

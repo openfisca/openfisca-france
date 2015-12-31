@@ -15,7 +15,7 @@ individus:
     birth: "1948-08-14"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5485b08f5f35e8cf064ba47f
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -65,7 +65,7 @@ individus:
     birth: "1954-08-17"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5485b08f5f35e8cf064ba472
     inapte_travail: 0
     indemnites_journalieres_maladie:

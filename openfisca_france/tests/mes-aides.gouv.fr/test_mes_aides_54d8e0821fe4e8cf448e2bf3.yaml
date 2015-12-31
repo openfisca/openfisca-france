@@ -33,7 +33,7 @@ individus:
     coloc: 1
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54d8e0041fe4e8cf448e2bf2
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -57,7 +57,7 @@ individus:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54d8e0041fe4e8cf448e2bf1
     inapte_travail: 0
     interets_epargne_sur_livrets:

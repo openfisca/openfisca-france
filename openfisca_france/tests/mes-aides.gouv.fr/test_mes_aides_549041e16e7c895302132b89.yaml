@@ -14,7 +14,7 @@ individus:
     birth: "1974-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5490416440562f54026efb60
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -78,7 +78,7 @@ individus:
     birth: "1974-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5490416440562f54026efb53
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -141,7 +141,7 @@ individus:
     birth: "1999-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5490416440562f54026efb52
     inapte_travail: 0
     interets_epargne_sur_livrets:

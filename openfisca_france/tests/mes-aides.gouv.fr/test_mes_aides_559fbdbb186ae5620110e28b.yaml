@@ -53,7 +53,7 @@ individus:
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 559fbd84f394e1a7011b5779
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -77,7 +77,7 @@ individus:
   birth: '1997-05-19'
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 559fbd84f394e1a7011b5778
   inapte_travail: 0
   interets_epargne_sur_livrets:

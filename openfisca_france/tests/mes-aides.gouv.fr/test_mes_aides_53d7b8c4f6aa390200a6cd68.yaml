@@ -9,7 +9,7 @@ individus:
     enceinte: false
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 53d7b8a5f6aa390200a6cd67
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -24,7 +24,7 @@ individus:
     birth: "2007-09-14"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54bd2361177a6f0a23f5aa2e
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -39,7 +39,7 @@ individus:
     birth: "2007-09-14"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54bd2361177a6f0a23f5aa2d
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -54,7 +54,7 @@ individus:
     birth: "1992-09-14"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54bd23c7177a6f0a23f5aa2f
     inapte_travail: 0
     interets_epargne_sur_livrets:

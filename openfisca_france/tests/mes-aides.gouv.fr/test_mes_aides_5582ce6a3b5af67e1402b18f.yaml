@@ -48,7 +48,7 @@ individus:
       year:2014-06: 10116
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5582ce61433935771434ce8c
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -100,7 +100,7 @@ individus:
       year:2014-06: 12073.000000000002
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5582ce61433935771434ce71
     inapte_travail: 0
     interets_epargne_sur_livrets:

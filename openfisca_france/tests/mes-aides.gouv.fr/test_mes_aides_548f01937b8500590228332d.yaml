@@ -19,7 +19,7 @@ individus:
     birth: "1969-10-26"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 548efdbe40562f54026ef19a
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -122,7 +122,7 @@ individus:
       year:2013-12: 9908
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 548efdbe40562f54026ef180
     inapte_travail: 0
     interets_epargne_sur_livrets:

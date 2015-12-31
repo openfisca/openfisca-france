@@ -14,7 +14,7 @@ individus:
   birth: "1940-10-10"
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55364e375808ef7e2d505449
   inapte_travail: 0
   interets_epargne_sur_livrets:

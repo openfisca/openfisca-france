@@ -98,7 +98,7 @@ individus:
     year:2013-10: 540
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   gains_exceptionnels:
     2012: 540
     2013-10: 45

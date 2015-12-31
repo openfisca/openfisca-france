@@ -9,7 +9,7 @@ individus:
     birth: "1955-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54857348bf1777d606ad1be5
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -60,7 +60,7 @@ individus:
     enceinte: true
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54857348bf1777d606ad1bd7
     inapte_travail: 0
     interets_epargne_sur_livrets:
