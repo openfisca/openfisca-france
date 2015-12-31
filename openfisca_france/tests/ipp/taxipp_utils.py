@@ -213,7 +213,7 @@ def run_OF(ipp2of_input_variables, path_dta_input, param_scenario = None, dic = 
         del ipp2of_input_variables['sal_irpp_old']
         ipp2of_input_variables['sal_brut'] = 'salbrut'
         ipp2of_input_variables['chom_brut'] = 'chomage_brut'
-        ipp2of_input_variables['pension_brut'] = 'rstbrut'
+        ipp2of_input_variables['pension_brut'] = 'retraite_brute'
     else:
         tax_benefit_system_class = init_country()
         tax_benefit_system = tax_benefit_system_class()

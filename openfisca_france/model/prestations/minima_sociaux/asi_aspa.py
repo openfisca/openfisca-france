@@ -32,7 +32,7 @@ class br_mv_i(Variable):
         aspa_couple_holder = simulation.compute('aspa_couple', period)
         salaire_de_base = simulation.calculate_add('salaire_de_base', three_previous_months)
         chomage_net = simulation.calculate_add('chomage_net', three_previous_months)
-        rstbrut = simulation.calculate_add('rstbrut', three_previous_months)
+        retraite_brute = simulation.calculate_add('retraite_brute', three_previous_months)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
         pensions_alimentaires_versees_individu = simulation.calculate(
             'pensions_alimentaires_versees_individu', three_previous_months
@@ -93,7 +93,7 @@ class br_mv_i(Variable):
         abattement_forfaitaire = abattement_forfaitaire_base * abattement_forfaitaire_taux
         salaire_de_base = max_(0, salaire_de_base - abattement_forfaitaire)
 
-        return period, (salaire_de_base + chomage_net + rstbrut + pensions_alimentaires_percues -
+        return period, (salaire_de_base + chomage_net + retraite_brute + pensions_alimentaires_percues -
                abs_(pensions_alimentaires_versees_individu) + rto_declarant1 + rpns +
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +  # max_(0,etr) +
                revenus_stage_formation_pro + allocation_securisation_professionnelle +

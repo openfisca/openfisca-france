@@ -83,7 +83,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
             'name': 'rst',
             'col_name': 'rsti',
             'typ_tot': {
-                'rstbrut': u"Retraite brut",
+                'retraite_brute': u"Retraite brut",
                 'rst': u"Retraite",
                 'rstnet': u"Retraite net"
                 },

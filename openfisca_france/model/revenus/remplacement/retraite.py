@@ -12,7 +12,7 @@ build_column('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposa
                                QUIFOY['pac3']: u"1ES",
                                }))  # (f1as, f1bs, f1cs, f1ds, f1es)
 
-class rstbrut(Variable):
+class retraite_brute(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Retraite brute"

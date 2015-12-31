@@ -169,12 +169,12 @@ class csg_deductible_retraite(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        rstbrut = simulation.calculate('rstbrut', period)
+        retraite_brute = simulation.calculate('retraite_brute', period)
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
         montant_csg = montant_csg_crds(
-            base_sans_abattement = rstbrut,
+            base_sans_abattement = retraite_brute,
             indicatrice_taux_plein = (taux_csg_remplacement == 3),
             indicatrice_taux_reduit = (taux_csg_remplacement == 2),
             law_node = law.csg.retraite.deductible,
@@ -192,11 +192,11 @@ class csg_imposable_retraite(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        rstbrut = simulation.calculate('rstbrut', period)
+        retraite_brute = simulation.calculate('retraite_brute', period)
         law = simulation.legislation_at(period.start)
 
         montant_csg = montant_csg_crds(
-            base_sans_abattement = rstbrut,
+            base_sans_abattement = retraite_brute,
             law_node = law.csg.retraite.imposable,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
@@ -212,12 +212,12 @@ class crds_retraite(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        rstbrut = simulation.calculate('rstbrut', period)
+        retraite_brute = simulation.calculate('retraite_brute', period)
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
         montant_crds = montant_csg_crds(
-            base_sans_abattement = rstbrut,
+            base_sans_abattement = retraite_brute,
             law_node = law.crds.retraite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * (taux_csg_remplacement == 1)
@@ -233,14 +233,14 @@ class casa(DatedVariable):
     @dated_function(date(2013, 4, 1))
     def function_2013(self, simulation, period):
         period = period.this_month
-        rstbrut = simulation.calculate('rstbrut', period)
+        retraite_brute = simulation.calculate('retraite_brute', period)
         rfr_holder = simulation.compute('rfr', period.start.offset('first-of', 'year').offset(-2, 'year').period('year'))
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
         rfr = self.cast_from_entity_to_roles(rfr_holder)
 
-        casa = (taux_csg_remplacement == 3) * law.prelsoc.add_ret * rstbrut * (rfr > 13900)
+        casa = (taux_csg_remplacement == 3) * law.prelsoc.add_ret * retraite_brute * (rfr > 13900)
         # TODO: insert in parameters file and deal with nombre de part fiscales
 
         return period, - casa
@@ -256,10 +256,10 @@ class rst(Variable):
 
     def function(self, simulation, period):
         period = period
-        rstbrut = simulation.calculate_add('rstbrut', period)
+        retraite_brute = simulation.calculate_add('retraite_brute', period)
         csg_deductible_retraite = simulation.calculate_add('csg_deductible_retraite', period)
 
-        return period, rstbrut + csg_deductible_retraite
+        return period, retraite_brute + csg_deductible_retraite
 
 
 class rstnet(Variable):

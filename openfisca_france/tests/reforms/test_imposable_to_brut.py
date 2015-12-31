@@ -39,7 +39,7 @@ def test_cho(year = 2014):
 def test_rst(year = 2014):
     period = periods.period("{}-01".format(year))
     single_entity_kwargs = dict(
-        axes = [dict(count = 101, max = 2000, min = 0, name = 'rstbrut')],
+        axes = [dict(count = 101, max = 2000, min = 0, name = 'retraite_brute')],
         period = period,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
@@ -48,16 +48,16 @@ def test_rst(year = 2014):
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         **single_entity_kwargs
         ).new_simulation(debug = True)
-    brut = simulation.get_holder('rstbrut').array
+    brut = simulation.get_holder('retraite_brute').array
     imposable = simulation.calculate('rst')
 
     inversion_reform = inversion_revenus.build_reform(tax_benefit_system)
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
         **single_entity_kwargs).new_simulation(debug = True)
 
-    inverse_simulation.get_holder('rstbrut').delete_arrays()
+    inverse_simulation.get_holder('retraite_brute').delete_arrays()
     inverse_simulation.get_or_new_holder('rsti').array = imposable.copy()
-    new_brut = inverse_simulation.calculate('rstbrut')
+    new_brut = inverse_simulation.calculate('retraite_brute')
     assert_near(new_brut, brut, absolute_error_margin = 1)
 
 

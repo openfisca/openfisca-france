@@ -273,7 +273,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f3va""",  # Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values
                     u"""chomage_brut""",  # Chômage brut
                     u"""indemnites_chomage_partiel""",  # Indemnités de chômage partiel
-                    u"""rstbrut""",  # Retraite brute
+                    u"""retraite_brute""",  # Retraite brute
                     u"""aer""",  # Allocation équivalent retraite (AER)
                     u"""retraite_combattant""",  # Retraite du combattant
                     u"""indemnites_journalieres_maternite""",  # Indemnités journalières de maternité

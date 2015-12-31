@@ -21,7 +21,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
-    rstbrut:
+    retraite_brute:
       2012: 7200
       2013-12: 600
       2014-01: 600

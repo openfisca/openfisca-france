@@ -4,7 +4,7 @@ keywords:
   - pension alimentaire
 description: |
   Pension de retraite : 787.1/mois net donc 850€/mois brut selon estimation.
-  Retraite brut > 800€ 
+  Retraite brut > 800€
   mais pension alimentaire = 200 €/mois donc ressources : 850 - 200 = 650 euros donc droit à 150 euros d'ASPA
 period: "month:2015-04"
 individus:
@@ -37,7 +37,7 @@ individus:
     2015-03: 200
     2015-04: 200
     year:2014-04: 2400
-  rstbrut:
+  retraite_brute:
     2013: 10199.784017278616
     2014-04: 849.9760019198463
     2014-05: 849.9760019198463

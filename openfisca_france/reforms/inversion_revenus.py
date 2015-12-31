@@ -215,7 +215,7 @@ def build_reform(tax_benefit_system):
                     ) - choi
             return period, fsolve(solve_function, choi)
 
-    class rstbrut(Reform.Variable):
+    class retraite_brute(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Pensions de retraite brutes"
@@ -237,11 +237,11 @@ def build_reform(tax_benefit_system):
                         return period, rstnet
                     simulation = self.holder.entity.simulation
 
-                    def solve_function(rstbrut):
+                    def solve_function(retraite_brute):
                         return brut_to_target(
                             target_name = 'rstnet',
                             period = period,
-                            rstbrut = rstbrut,
+                            retraite_brute = retraite_brute,
                             simulation = simulation,
                             ) - rstnet
                     return period, fsolve(solve_function, rstnet)
@@ -255,9 +255,9 @@ def build_reform(tax_benefit_system):
                 return period, rsti
             simulation = self.holder.entity.simulation
 
-            def solve_function(rstbrut):
+            def solve_function(retraite_brute):
                 return brut_to_target(
-                    rstbrut = rstbrut,
+                    retraite_brute = retraite_brute,
                     taux_csg_remplacement = taux_csg_remplacement,
                     target_name = 'rst',
                     period = period,

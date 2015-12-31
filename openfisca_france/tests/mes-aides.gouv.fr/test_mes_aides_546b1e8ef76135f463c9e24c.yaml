@@ -4,9 +4,9 @@ keywords:
   - base ressources
 description: |
   J'ai indiqué avoir 2 enfants mineurs à charge et le simulateur ne me demande pas le montant de mes allocations familiales.
-  
+
   Pour autant le résultat du montant ASPA est juste car les prestations familiales sont exclues des ressources à retenir pour le calcul de l'ASPA (article R 815-22 du code de la sécurité sociale).
-  
+
   Edit Arnaud Kleinpeter : c'est normal, le montant simulé des allocations familiales est suffisamment précis pour qu'on n'ait pas besoin de le demander
 period: "month:2014-11"
 individus:
@@ -22,7 +22,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
-    rstbrut:
+    retraite_brute:
       2012: 7200
       2013-11: 600
       2013-12: 600
