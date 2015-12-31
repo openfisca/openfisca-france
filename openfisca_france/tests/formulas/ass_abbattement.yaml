@@ -72,7 +72,7 @@
         2015-02: 1000
         2015-03: 0
         year:2014-04: 10000
-      rstnet:
+      retraite_nette:
         2015-03: 1000
         year:2014-04: 1000
   output_variables:

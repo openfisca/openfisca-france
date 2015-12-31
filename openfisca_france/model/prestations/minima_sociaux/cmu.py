@@ -164,7 +164,7 @@ class cmu_base_ressources_i(Variable):
 
         salaire_net = simulation.calculate_add('salaire_net', previous_year)
         chomage_net = simulation.calculate('chomage_net', previous_year)
-        rstnet = simulation.calculate('rstnet', previous_year)
+        retraite_nette = simulation.calculate('retraite_nette', previous_year)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
         pensions_alimentaires_versees_individu = simulation.calculate(
             'pensions_alimentaires_versees_individu', previous_year
@@ -210,7 +210,7 @@ class cmu_base_ressources_i(Variable):
         abattement_chomage_fp = or_(chomage_last_month > 0, revenus_stage_formation_pro_last_month > 0)
 
         return period, ((salaire_net + indemnites_chomage_partiel) * (1 - abattement_chomage_fp * P.abattement_chomage) +
-            indemnites_stage + aah + chomage_net + rstnet + pensions_alimentaires_percues -
+            indemnites_stage + aah + chomage_net + retraite_nette + pensions_alimentaires_percues -
             abs_(pensions_alimentaires_versees_individu) + rsa_base_ressources_patrimoine_i +
             allocation_securisation_professionnelle + indemnites_journalieres +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +

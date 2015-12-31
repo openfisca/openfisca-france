@@ -229,22 +229,22 @@ def build_reform(tax_benefit_system):
             # Get value for year and divide below.
             rsti = simulation.get_array('rsti', period.this_year)
             if rsti is None:
-                rstnet = simulation.get_array('rstnet', period)
-                if rstnet is not None:
+                retraite_nette = simulation.get_array('retraite_nette', period)
+                if retraite_nette is not None:
                     # Calcule les pensions de retraite brutes à partir des pensions nettes par inversion numérique.
-                    if (rstnet == 0).all():
+                    if (retraite_nette == 0).all():
                         # Quick path to avoid fsolve when using default value of input variables.
-                        return period, rstnet
+                        return period, retraite_nette
                     simulation = self.holder.entity.simulation
 
                     def solve_function(retraite_brute):
                         return brut_to_target(
-                            target_name = 'rstnet',
+                            target_name = 'retraite_nette',
                             period = period,
                             retraite_brute = retraite_brute,
                             simulation = simulation,
-                            ) - rstnet
-                    return period, fsolve(solve_function, rstnet)
+                            ) - retraite_nette
+                    return period, fsolve(solve_function, retraite_nette)
 
                 rsti = simulation.calculate_add_divide('rsti', period)
 

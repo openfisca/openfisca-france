@@ -262,7 +262,7 @@ class rst(Variable):
         return period, retraite_brute + csg_deductible_retraite
 
 
-class rstnet(Variable):
+class retraite_nette(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus

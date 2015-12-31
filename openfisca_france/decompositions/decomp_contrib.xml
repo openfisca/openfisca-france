@@ -40,7 +40,7 @@
         <NODE code="csg_imposable_chomage" color="235,114,118" desc="CSG non déductible (chômage)" shortname="CSG imp. chôm." />
         <NODE code="crds_chomage" color="229,48,56" desc="CRDS (chômage)" shortname="CRDS chôm." />
       </NODE>
-      <NODE code="rstnet" color="87,88,138" desc="Retraites nettes" shortname="Retraites nettes">
+      <NODE code="retraite_nette" color="87,88,138" desc="Retraites nettes" shortname="Retraites nettes">
         <NODE code="rst" desc="Retraites imposables" shortname="Retr. décl.">
           <NODE code="retraite_brute" desc="Retraites brutes" shortname="Retr. brutes" />
           <NODE code="csg_deductible_retraite" color="235,114,118" desc="CSG déductible (retraite)" shortname="CSG déd. ret." />

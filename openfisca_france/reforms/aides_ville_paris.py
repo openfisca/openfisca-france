@@ -61,7 +61,7 @@ def build_reform(tax_benefit_system):
             last_year = period.last_year
             salaire_net = simulation.calculate('salaire_net', period)
             chomage_net = simulation.calculate('chomage_net', period)
-            rstnet = simulation.calculate('rstnet', period)
+            retraite_nette = simulation.calculate('retraite_nette', period)
             pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
             pensions_alimentaires_versees_individu = simulation.calculate(
                 'pensions_alimentaires_versees_individu', period)
@@ -88,7 +88,7 @@ def build_reform(tax_benefit_system):
                 return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
             result = (
-                salaire_net + indemnites_chomage_partiel + indemnites_stage + chomage_net + rstnet +
+                salaire_net + indemnites_chomage_partiel + indemnites_stage + chomage_net + retraite_nette +
                 pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
                 rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
                 indemnites_journalieres_imposables + prestation_compensatoire +

@@ -73,7 +73,7 @@ def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
         ).new_simulation(debug = True)
 
     retraite_brute = simulation.get_holder('retraite_brute').array
-    rstnet = simulation.calculate('rstnet')
+    retraite_nette = simulation.calculate('retraite_nette')
 
     inversion_reform = inversion_revenus.build_reform(base.tax_benefit_system)
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
@@ -81,7 +81,7 @@ def check_rstnet_to_rstbrut(count, rstbrut_max, rstbrut_min, year):
         ).new_simulation(debug = True)
 
     inverse_simulation.get_holder('retraite_brute').delete_arrays()
-    inverse_simulation.get_or_new_holder('rstnet').array = rstnet
+    inverse_simulation.get_or_new_holder('retraite_nette').array = retraite_nette
     new_rstbrut = inverse_simulation.calculate('retraite_brute')
 
     assert_near(new_rstbrut, retraite_brute, absolute_error_margin = 0.1)
