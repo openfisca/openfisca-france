@@ -29,7 +29,7 @@ def build_reform(tax_benefit_system):
         column = columns.BoolCol
         entity_class = entities.Individus
         label = u"Enfant placé en structure spécialisée ou famille d'accueil"
-    
+
     class paris_logement_familles_elig(Reform.Variable):
         column = columns.BoolCol
         label = u"Eligibilité à Paris-Logement-Familles"
@@ -258,56 +258,56 @@ def modify_legislation_json(reference_legislation_json_copy):
                                 "description": "Plafond haut de PLF pour les familles à 3 enfants, aussi plafond de PLF avec enfant handicapé",  # noqa
                                 "unit": "currency",
                                 "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 5000}],
+                                "values": [{'start': u'2014-01-01', 'stop': u'2016-12-31', 'value': 5000}],
                                 },
                             "plafond_bas_3enf": {
                                 "@type": "Parameter",
                                 "description": "Plafond bas de PLF pour les familles à 3 enfants",
                                 "unit": "currency",
                                 "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 3000}],
+                                "values": [{'start': u'2014-01-01', 'stop': u'2016-12-31', 'value': 3000}],
                                 },
                             "plafond_2enf": {
                                 "@type": "Parameter",
                                 "description": "Plafond de PLF pour les familles à deux enfants.",
                                 "unit": "currency",
                                 "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 2000}],
+                                "values": [{'start': u'2014-01-01', 'stop': u'2016-12-31', 'value': 2000}],
                                 },
                             "montant_haut_3enf": {
                                 "@type": "Parameter",
                                 "description": "Montant haut PLF pour famille à 3 enfants",
                                 "unit": "currency",
                                 "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 128}],
+                                "values": [{'start': u'2014-01-01', 'stop': u'2016-12-31', 'value': 128}],
                             },
                             "montant_bas_3enf": {
                                 "@type": "Parameter",
                                 "description": "Montant bas PLF pour famille à 3 enfants.",
                                 "unit": "currency",
                                 "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 84}],
+                                "values": [{'start': u'2014-01-01', 'stop': u'2016-12-31', 'value': 84}],
                                 },
                             "montant_2enf": {
                                 "@type": "Parameter",
                                 "description": "Montant PLF pour les familles à deux enfants.",
                                 "unit": "currency",
                                 "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 116}],
+                                "values": [{'start': u'2014-01-01', 'stop': u'2016-12-31', 'value': 116}],
                                 },
                             "montant_haut_enf_sup": {
                                 "@type": "Parameter",
                                 "description": "Montant haut sup par enfant",
                                 "unit": "currency",
                                 "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 41}],
+                                "values": [{'start': u'2014-01-01', 'stop': u'2016-12-31', 'value': 41}],
                                 },
                             "montant_bas_enf_sup": {
                                 "@type": "Parameter",
                                 "description": "Montant bas sup par enfant.",
                                 "unit": "currency",
                                 "format": "float",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2015-12-31', 'value': 21}],
+                                "values": [{'start': u'2014-01-01', 'stop': u'2016-12-31', 'value': 21}],
                                 },
                             }
                         }
