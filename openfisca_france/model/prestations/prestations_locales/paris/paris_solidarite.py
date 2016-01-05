@@ -14,17 +14,17 @@ class paris_logement_psol(Variable):
 
     def function(self, simulation, period):
         parisien = simulation.calculate('parisien', period)
-        personnes_agees = simulation.compute('personnes_agees', period)
+        personnes_agees = simulation.compute('paris_personnes_agees', period)
         personnes_agees_famille = self.any_by_roles(personnes_agees)
         personne_handicap_individu = simulation.compute('personnes_handicap_paris', period)
         personne_handicap = self.any_by_roles(personne_handicap_individu)
-        montant_aide = simulation.calculate('montant_aide', period)
+        montant_aide = simulation.calculate('paris_logement_psol_montant', period)
         result = parisien * (personnes_agees_famille + personne_handicap)
         montant = select([personnes_agees_famille + personne_handicap],
             [montant_aide])
         return period, result * montant
 
-class montant_aide(Variable):
+class paris_logement_psol_montant(Variable):
     column = FloatCol
     label = u"Montant de l'aide PSOL pour les personnes âgées"
     entity_class = Familles
@@ -39,8 +39,8 @@ class montant_aide(Variable):
         montant_couple = montant_couple_annuel / 12
         personnes_couple = simulation.calculate('concub', period)
         paris_base_ressources_commun = simulation.calculate('paris_base_ressources_commun', period)
-        aspa = simulation.calculate('paris_base_ressources_aspa', period)
-        asi = simulation.calculate('paris_base_ressources_asi', period)
+        aspa = simulation.calculate('aspa', period)
+        asi = simulation.calculate('asi', period)
         aah = simulation.calculate('paris_base_ressources_aah', period)
 
         ressources_mensuelles = paris_base_ressources_commun + asi + aspa + aah

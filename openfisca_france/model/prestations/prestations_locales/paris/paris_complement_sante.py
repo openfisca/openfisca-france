@@ -7,7 +7,7 @@ from ....base import *  # noqa analysis:ignore
 
 class paris_complement_sante(Variable):
     column = FloatCol
-    label = u"L'aide Paris Energie Famille"
+    label = u"L'aide Complémentaire Santé Paris"
     entity_class = Familles
 
     def function(self, simulation, period):
@@ -16,7 +16,7 @@ class paris_complement_sante(Variable):
         montant_aide_cs = simulation.legislation_at(period.start).paris.complement_sante.montant_aide_cs
 
         parisien = simulation.calculate('parisien', period)
-        personnes_agees_i = simulation.compute('personnes_agees', period)
+        personnes_agees_i = simulation.compute('paris_personnes_agees', period)
         personnes_agees = self.any_by_roles(personnes_agees_i)
         personnes_handicape_i = simulation.compute('personnes_handicap_paris', period)
         personnes_handicap = self.any_by_roles(personnes_handicape_i)

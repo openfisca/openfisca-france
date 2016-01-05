@@ -108,73 +108,15 @@ class paris_indemnite_enfant(Variable):
 
         return period, paris_indemnite_enfant
 
-
-class paris_base_ressources_aah_i(Variable):
-    column = FloatCol
-    label = u"Base de ressources individuelle pour l'AAH"
-    entity_class = Individus
-
-    def function(self, simulation, period):
-        aah = simulation.calculate('aah', period)
-        return period, aah
-
 class paris_base_ressources_aah(Variable):
     column = FloatCol
     label = u"Base de ressources pour l'AAH"
     entity_class = Familles
 
     def function(self, simulation, period):
-        aah = simulation.compute('paris_base_ressources_aah_i', period)
+        aah = simulation.compute('aah', period)
         aah_famille = self.sum_by_entity(aah)
         return period, aah_famille
-
-class paris_base_ressources_aspa(Variable):
-    column = FloatCol
-    label = u"Base de ressources pour l'ASPA"
-    entity_class = Familles
-
-    def function(self, simulation, period):
-        aspa = simulation.calculate('aspa', period)
-        return period, aspa
-
-class paris_base_ressources_asi(Variable):
-    column = FloatCol
-    label = u"Base de ressources pour l'ASI"
-    entity_class = Familles
-
-    def function(self, simulation, period):
-        asi = simulation.calculate('asi', period)
-        return period, asi
-
-class paris_base_ressources_aide_logement(Variable):
-    column = FloatCol
-    label = u"Base de ressources pour l'aide au logement (APL, ALS, ALF)"
-    entity_class = Familles
-
-    def function(self, simulation, period):
-        aide_logement = simulation.calculate('aide_logement', period)
-
-        return period, aide_logement
-
-class paris_base_ressources_rsa(Variable):
-    column = FloatCol
-    label = u"Base de ressources pour le RSA"
-    entity_class = Familles
-
-    def function(self, simulation, period):
-        rsa = simulation.calculate('rsa', period)
-
-        return period, rsa
-
-class paris_base_ressources_paje_clca(Variable):
-    column = FloatCol
-    label = u"Base de ressources pour le paje"
-    entity_class = Familles
-
-    def function(self, simulation, period):
-        paje_clca = simulation.calculate('paje_clca', period)
-
-        return period, paje_clca
 
 class paris_enfant_handicape(Variable):
     column = BoolCol
@@ -226,7 +168,7 @@ class paris_enfant_handicape_garde_alternee(Variable):
 
         return period, alt * paris_enfant_handicape
 
-class personnes_agees(Variable):
+class paris_personnes_agees(Variable):
     column = BoolCol
     label = u"Personne âgée"
     entity_class = Individus
@@ -257,7 +199,7 @@ class paris_nb_enfants(Variable):
         paris_nb_enfants = self.sum_by_entity(nb_enfants)
         return period, paris_nb_enfants
 
-class condition_taux_effort(Variable):
+class paris_condition_taux_effort(Variable):
     column = BoolCol
     label = u"Taux d'effort"
     entity_class = Familles
@@ -268,13 +210,13 @@ class condition_taux_effort(Variable):
         apl = simulation.calculate('apl', period)
 
         ressources_mensuelles = simulation.calculate('paris_base_ressources_commun', period)
-        charges_forfaitaire_logement = simulation.calculate('charges_forfaitaire_logement', period)
+        charges_forfaitaire_logement = simulation.calculate('paris_charges_forfaitaire_logement', period)
         calcul_taux_effort = (loyer + charges_forfaitaire_logement - apl) / ressources_mensuelles
         condition_loyer = calcul_taux_effort >= taux_effort
         return period, condition_loyer
 
 
-class charges_forfaitaire_logement(Variable):
+class paris_charges_forfaitaire_logement(Variable):
     column = FloatCol
     label = u"Charges Forfaitaire Logement (CAF)"
     entity_class = Familles

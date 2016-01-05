@@ -21,7 +21,7 @@ class paris_logement_aspeh(Variable):
         enfant = self.any_by_roles(enfant_handicape)
         nb_enfant = self.sum_by_entity(enfant_handicape)
         paris_base_ressources_commun = simulation.calculate('paris_base_ressources_commun', period)
-        clca = simulation.calculate('paris_base_ressources_paje_clca', period)
+        clca = simulation.calculate('paje_clca', period)
 
         ressources_mensuelles_famille = paris_base_ressources_commun + clca
 
