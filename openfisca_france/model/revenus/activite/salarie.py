@@ -726,7 +726,7 @@ class salaire_super_brut_hors_allegements(Variable):
 
         return period, salaire_super_brut_hors_allegements
 
-class cout_du_travail(Variable):
+class salaire_super_brut(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Coût du travail à court terme. Inclut les exonérations et allègements de charges"
@@ -772,10 +772,10 @@ class cout_du_travail_final(Variable):
 
     def function(self, simulation, period):
         period = period
-        cout_du_travail = simulation.calculate('cout_du_travail', period)
+        salaire_super_brut = simulation.calculate('salaire_super_brut', period)
         cout_differe = simulation.calculate('cout_differe', period)
 
-        return period, cout_du_travail - cout_differe
+        return period, salaire_super_brut - cout_differe
 
 
 class cout_differe(Variable):

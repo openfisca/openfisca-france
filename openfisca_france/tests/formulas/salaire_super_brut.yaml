@@ -9,7 +9,7 @@
     cotisations_employeur: -613.55
     allegement_fillon: 409.56
     salaire_super_brut_hors_allegements: 2058
-    cout_du_travail: 1648 # fillon
+    salaire_super_brut: 1648 # fillon
 
 - period: "2015-04"
   relative_error_margin: 0.01
@@ -25,5 +25,5 @@
     exoneration_cotisations_employeur_jei: 413.2
     exonerations_et_allegements: 820.6 # fillon + JEI
     salaire_super_brut_hors_allegements: 2058
-    cout_du_travail: 1238
+    salaire_super_brut: 1238
 

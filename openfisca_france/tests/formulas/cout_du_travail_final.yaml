@@ -13,7 +13,7 @@
     effectif_entreprise: 1
     contrat_de_travail_debut: 2015-07-01
   output_variables:
-    cout_du_travail: 1664
+    salaire_super_brut: 1664
     cout_du_travail_final: 1410
 
 - period: "2015-11"
@@ -26,5 +26,5 @@
     effectif_entreprise: 2
     contrat_de_travail_debut: 2015-07-01
   output_variables:
-    cout_du_travail: 1664
+    salaire_super_brut: 1664
     cout_du_travail_final: 1576
