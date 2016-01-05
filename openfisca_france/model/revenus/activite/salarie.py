@@ -695,11 +695,11 @@ class salaire_net_a_payer(Variable):
         return period, salaire_net_a_payer
 
 
-class salaire_super_brut(Variable):
+class salaire_super_brut_hors_allegements(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
-    label = u"Salaire super-brut (fiche de paie): salaire de base + charges employeur"
+    label = u"Salaire super-brut (fiche de paie): rémunération + cotisations sociales employeur"
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
@@ -717,14 +717,14 @@ class salaire_super_brut(Variable):
         reintegration_titre_restaurant_employeur = simulation.calculate(
             'reintegration_titre_restaurant_employeur', period)
 
-        salaire_super_brut = (
+        salaire_super_brut_hors_allegements = (
             salaire_de_base + remuneration_principale + remuneration_apprenti
             + primes_fonction_publique + indemnite_residence + supp_familial_traitement
             + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur
             - cotisations_employeur
             )
 
-        return period, salaire_super_brut
+        return period, salaire_super_brut_hors_allegements
 
 class cout_du_travail(Variable):
     column = FloatCol
@@ -734,12 +734,10 @@ class cout_du_travail(Variable):
 
     def function(self, simulation, period):
         period = period
-        salaire_super_brut = simulation.calculate('salaire_super_brut', period)
+        salaire_super_brut_hors_allegements = simulation.calculate('salaire_super_brut_hors_allegements', period)
         exonerations_et_allegements = simulation.calculate('exonerations_et_allegements', period)
 
-        salaire_super_brut - exonerations_et_allegements
-
-        return period, salaire_super_brut - exonerations_et_allegements
+        return period, salaire_super_brut_hors_allegements - exonerations_et_allegements
 
 class exonerations_et_allegements(Variable):
     column = FloatCol

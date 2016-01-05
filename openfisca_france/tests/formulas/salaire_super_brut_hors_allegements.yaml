@@ -10,7 +10,7 @@
     cotisations_employeur: -613.55
     allegement_fillon: 409.56
     jeune_entreprise_innovante: 0
-    salaire_super_brut: 2058
+    salaire_super_brut_hors_allegements: 2058
 
 - period: "2015-04"
   name: "Salaire super-brut : pas d'allègements et exos."
@@ -29,4 +29,4 @@
     cotisations_employeur: -613.55
     allegement_fillon: 409.56
     exoneration_cotisations_employeur_jei: 413.2
-    salaire_super_brut: 2058 # le même
+    salaire_super_brut_hors_allegements: 2058 # le même
