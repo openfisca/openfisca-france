@@ -14,7 +14,7 @@
     contrat_de_travail_debut: 2015-07-01
   output_variables:
     salaire_super_brut: 1664
-    cout_du_travail_final: 1410
+    cout_du_travail: 1410
 
 - period: "2015-11"
   name: Cout du travail micro entreprise ayant déjà des employés
@@ -27,4 +27,4 @@
     contrat_de_travail_debut: 2015-07-01
   output_variables:
     salaire_super_brut: 1664
-    cout_du_travail_final: 1576
+    cout_du_travail: 1576

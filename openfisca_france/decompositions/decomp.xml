@@ -8,7 +8,7 @@
             <NODE code="credit_impot_competitivite_emploi" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
             <NODE code="aide_premier_salarie" desc="Aide à l'embauche d'un premier salarié" shortname="Aide 1er sal." />
             <NODE code="tehr" desc="Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" />
-            <NODE code="cout_du_travail_final" color="0,66,92" desc="Coût du travail final" shortname="Coût trav. final">
+            <NODE code="cout_du_travail" color="0,66,92" desc="Coût du travail final" shortname="Coût trav. final">
               <NODE code="allegement_fillon" color="0,171,208" desc="Allègement sur les bas salaires (Fillon)" shortname="Allèg. sal." />
               <!-- Autres variables particulières présentes dans exonerations_et_allegements -->
               <NODE code="salaire_super_brut" color="0,66,92" desc="Coût du travail" shortname="Coût travail">

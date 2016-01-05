@@ -764,7 +764,7 @@ class exonerations_et_allegements(Variable):
             + exoneration_cotisations_employeur_stagiaire
             )
 
-class cout_du_travail_final(Variable):
+class cout_du_travail(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Coût du travail à long terme. Inclut les charges, aides et crédits différés"
