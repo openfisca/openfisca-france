@@ -130,7 +130,7 @@ class paris_logement_apd(Variable):
 
         paris_base_ressources_commun = simulation.calculate('paris_base_ressources_commun', period)
 
-        rsa = simulation.calculate('paris_base_ressources_rsa', period)
+        rsa = simulation.calculate('rsa', period)
         indemnite = simulation.calculate('paris_indemnite_enfant', period)
         aah = simulation.calculate('paris_base_ressources_aah', period)
         aide_logement = simulation.calculate('aide_logement', period)

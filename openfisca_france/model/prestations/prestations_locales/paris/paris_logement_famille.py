@@ -12,7 +12,7 @@ class paris_logement_familles_elig(Variable):
 
     def function(self, simulation, period):
         parisien = simulation.calculate('parisien', period)
-        statut_occupation = simulation.calculate('statut_occupation', period)
+        statut_occupation = simulation.calculate('statut_occupation_famille', period)
         charge_logement = (
             (statut_occupation == 1) +
             (statut_occupation == 2) +
@@ -85,19 +85,13 @@ class paris_logement_familles(Variable):
             )
         montant_3enfs = montant_base_3enfs + montant_enf_sup * max_(nbenf - 3, 0)
         montant_2enfs = (nbenf == 2) * (br <= P.plafond_2enf) * P.montant_2enf
-
         plf = montant_2enfs + montant_3enfs
-
         deduction_garde_alternee = (nbenf_garde_alternee > 0) * (
             (nbenf - nbenf_garde_alternee < 3) * 0.5 * plf +
             (nbenf - nbenf_garde_alternee >= 3) * nbenf_garde_alternee * 0.5 * montant_enf_sup
             )
-
         plf = plf - deduction_garde_alternee
-
         plf = max_(plf, plf_handicap)
         plf = elig * plf
         plf = min_(plf, loyer)
-
         return period, plf
-
