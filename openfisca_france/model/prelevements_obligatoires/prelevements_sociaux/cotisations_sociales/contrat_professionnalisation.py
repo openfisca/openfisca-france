@@ -95,7 +95,7 @@ class remuneration_professionnalisation(Variable):
         return period, taux_smic * smic * professionnalisation
 
 
-class exoneration_cotisations_employeur_apprenti(Variable):
+class exoneration_cotisations_employeur_professionnalisation(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Exonération de cotisations patronales pour l'emploi d'un apprenti"
@@ -121,20 +121,12 @@ class exoneration_cotisations_employeur_apprenti(Variable):
         age = simulation.calculate('age', period)
         mmid_employeur = simulation.calculate('mmid_employeur', period)
         famille = simulation.calculate('famille', period)
-        vieillesse_plafonnee_employeur = simulation.calculate('vieillesse_plafonnee_employeur', period)  # correspond à
-        # vieillesse de base?
+        vieillesse_plafonnee_employeur = simulation.calculate('vieillesse_plafonnee_employeur', period)
+        # FIXME: correspond bien à vieillesse de base ?
         cotisations_exonerees = mmid_employeur + famille + vieillesse_plafonnee_employeur
 
-        return period, cotisations_exonerees * (age > 45)  # On est bien d'accord qu'il y a les exos uniquement pour les
+        return period, cotisations_exonerees * (age > 45)
+        # FIXME: On est bien d'accord qu'il y a les exos uniquement pour les
         # plus de 45 ans?
 
-# O est d'accord aucun avantage pour l'employé ??
-#  #  class exoneration_cotisations_salariales_apprenti(Variable):
-#    column = FloatCol
-#    entity_class = Individus
-#    label = u"Exonération de cotisations salariales pour l'emploi d'un apprenti"
-#    url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
-#
-#    def function(self, simulation, period):
-#        cotisations_salariales = simulation.calculate('cotisations_salariales', period)
-#        return period, - cotisations_salariales
+# TODO: vérifier aucun avantage pour l'employé ??
