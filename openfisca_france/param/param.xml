@@ -5818,7 +5818,7 @@
           <CODE code="taux" description="Taux" format="percent">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.50" />
             <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.50" />  # Check 2014
-          <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.52" />
+            <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.52" />
             <VALUE deb="1991-01-01" fin="2001-12-31" valeur="0.50" />
           </CODE>
         </NODE>
