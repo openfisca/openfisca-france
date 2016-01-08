@@ -41,9 +41,8 @@ class plf_handicap(Variable):
         nb_enf_handicape = self.sum_by_entity(paris_enfant_handicape)
         nb_enf_handicape_garde_alternee = self.sum_by_entity(paris_enfant_handicape_garde_alternee)
 
-        P = simulation.legislation_at(period.start).paris.paris_logement_familles
-        plafond = P.plafond_haut_3enf
-        montant = P.montant_haut_3enf
+        plafond = simulation.legislation_at(period.start).paris.paris_logement_familles.plafond_haut_3enf
+        montant = simulation.legislation_at(period.start).paris.paris_logement_familles.montant_haut_3enf
 
         plf_handicap = (nb_enf_handicape > 0) * (br <= plafond) * montant
 
