@@ -357,14 +357,15 @@
     </CODE>
   </NODE>
   <NODE code="prelevements_sociaux" description="Prélèvement social et contributions additionnelles">
-    <CODE code="add_ret" description="Contribution additionnelle au prélèvement social (pensions de retraites, pré-retraites et invalidité)" format="percent">
+    <CODE code="add_ret" description="Contribution additionnelle solidarité autonomie (pensions de retraites, pré-retraites et invalidité)" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur=".003" />
       <VALUE deb="2013-04-01" fin="2013-12-31" valeur=".003" />
     </CODE>
     <NODE code="caps">
       <CODE code="produits_de_placement" format="percent">
         <VALUE deb="2004-07-01" fuzzy="true" valeur="0.003" />
       </CODE>
-      <CODE code="revenus_du_patrimoine" description="Contribution additionnelle au prélèvement social (revenus du patrimoine)" format="percent">
+      <CODE code="revenus_du_patrimoine" description="Contribution additionnelle solidarité autonomie (revenus du patrimoine)" format="percent">
         <VALUE deb="2004-07-01" fuzzy="true" valeur="0.003" />
         <VALUE deb="2003-01-01" fin="2004-06-30" valeur="0.0015" />
       </CODE>

@@ -1481,12 +1481,14 @@
     </NODE>
     <NODE code="capital" description="Revenus du capital">
       <CODE code="deduc" description="dont CSG déductible" format="percent">
-        <VALUE deb="2012-01-01" fuzzy="true" valeur=".051" />
+        <VALUE deb="2014-01-01" fuzzy="true" valeur=".051" />
+        <VALUE deb="2012-01-01" fin="2013-12-31" valeur=".051" />
         <VALUE deb="2004-01-01" fin="2011-12-31" valeur=".058" />
         <VALUE deb="2000-01-01" fin="2003-12-31" valeur=".051" />
       </CODE>
       <CODE code="glob" description="Taux global" format="percent">
-        <VALUE deb="2004-01-01" fuzzy="true" valeur="0.082" />
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.082" />
+        <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.082" />
         <VALUE deb="2000-01-01" fin="2003-12-31" valeur="0.075" />
       </CODE>
     </NODE>
@@ -1573,6 +1575,7 @@
       </NODE>
       <NODE code="imposable" description="CSG imposable">
         <CODE code="taux" description="taux de la CSG imposable" format="percent">
+          <VALUE deb="2014-10-11" fuzzy="true" valeur=".024" />
           <VALUE deb="1997-01-01" fin="2014-10-10" valeur=".024" />
         </CODE>
       </NODE>

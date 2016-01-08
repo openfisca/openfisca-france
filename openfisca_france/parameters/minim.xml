@@ -43,18 +43,23 @@
       <VALUE deb="2008-01-01" fin="2008-12-31" valeur="67.55" />
     </CODE>
     <CODE code="mon_maj" description="Montant majoré" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="219.53" />
       <VALUE deb="2005-01-01" fin="2013-12-31" valeur="219.53" />
     </CODE>
     <CODE code="mon_seul" description="Montant de l'aide pour une personne seule" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="152.45" />
       <VALUE deb="2001-01-01" fin="2013-12-31" valeur="152.45" />
     </CODE>
     <CODE code="tx_2p" description="Taux pour la seconde personne" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur=".50" />
       <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".50" />
     </CODE>
     <CODE code="tx_3pac" description="Taux au delà de la troisième personne à charge incluse" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur=".40" />
       <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".40" />
     </CODE>
     <CODE code="tx_supp" description="Taux personne supplémentaire" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur=".30" />
       <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".30" />
     </CODE>
   </NODE>
@@ -158,7 +163,8 @@
       <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0" />
     </CODE>
     <CODE code="age_min" description="Âge minimal requis" format="integer" type="age">
-      <VALUE deb="2002-01-01" fuzzy="true" valeur="65" />
+      <VALUE deb="2014-04-01" fuzzy="true" valeur="65" />
+      <VALUE deb="2002-01-01" fin="2014-03-31" valeur="65" />
     </CODE>
     <CODE code="duree_min_titre_sejour" description="Durée minimale de titre du séjour permettant de bénéficier de l'ASPA ou de l'ASI" format="integer">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="10" />
@@ -364,9 +370,11 @@
         <VALUE deb="1998-12-14" fin="2014-12-31" valeur="0.12" />
       </CODE>
       <CODE code="taux2" description="Forfait logement pour 2 personnes" format="percent">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.24" />
       </CODE>
       <CODE code="taux3" description="Forfait logement pour 3 personnes ou plus" format="percent">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.297" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.297" />
       </CODE>
     </NODE>
@@ -407,6 +415,7 @@
       <VALUE deb="2002-01-01" fin="2009-06-30" valeur="0.00" />
     </CODE>
     <CODE code="pfInBRrmi" description="Prise en compte des PF dans la BR du RMI" format="bool">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="1" />
       <VALUE deb="2001-01-01" fin="2013-12-31" valeur="1" />
     </CODE>
     <CODE code="psa" description="Prime de solidarité active" format="integer" type="monetary">

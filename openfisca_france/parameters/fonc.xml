@@ -73,6 +73,7 @@
     <CODE code="IM_max" description="Indice majoré plafond" format="integer">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="717" />
       <VALUE deb="2006-01-01" fin="2014-12-31" valeur="717" />
+      <VALUE deb="1988-03-01" fin="2005-12-31" valeur="716" />
     </CODE>
     <CODE code="IM_min" description="Indice majoré plancher" format="integer">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="449" />

@@ -133,30 +133,37 @@
   </NODE>
   <NODE code="droits_soc" description="Droits sociaux"> ## parts actions détenus par salariés et mandataires sociaux intro en 2006 ##
      <CODE code="taux1" description="Taux parts et actions détenues par les salariés et mandataires sociaux" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
       <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.25" />
     </CODE>
     <CODE code="taux2" description="Taux parts et actions avec engagement de conservation de 6 ans minimum" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
       <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.25" />
       <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.5" />
     </CODE>
   </NODE>
   <NODE code="forf_mob" description="Forfait mobilier">
     <CODE code="taux" description="Taux forfait mobilier" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.05" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.05" />
     </CODE>
   </NODE>
   <NODE code="nonbat" description="Immeubles non bâtis">
     <CODE code="seuil" description="Seuil biens ruraux" format="integer" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="101897" />
       <VALUE deb="2011-01-01" fin="2013-12-31" valeur="101897" />
       <VALUE deb="2004-01-01" fin="2010-12-31" valeur="76000" />
     </CODE>
     <CODE code="taux_f" description="Taux bois et forêts" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.25" />
     </CODE>
     <CODE code="taux_r1" description="Taux biens ruraux" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.25" />
     </CODE>
     <CODE code="taux_r2" description="Taux biens ruraux" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
     </CODE>
   </NODE>
@@ -182,6 +189,7 @@
       <VALUE deb="2004-01-01" fin="2004-12-31" valeur="21940" />
     </CODE>
     <CODE code="taux" description="Taux appliqué quand le montant de l'ISF avant plafonnement est supérieur au second seuil " format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.5" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0" />
       <VALUE deb="1996-01-01" fin="2011-12-31" valeur="0.5" />
@@ -197,27 +205,32 @@
   </NODE>
   <NODE code="pme" description="Investissement PME">
     <CODE code="max" description="Plafond pour investissement dans les PME" format="integer" type="monetary"> ## ce type de réductions apparaît seulement en 2008 ##
-      # <VALUE deb="2011-01-01" fin="2013-12-31" valeur="45000" />
+      # <VALUE deb="2014-01-01" fuzzy="true" valeur="45000" />
+      <VALUE deb="2011-01-01" fin="2013-12-31" valeur="45000" />
       <VALUE deb="2009-01-01" fin="2010-12-31" valeur="50000" />
       <VALUE deb="2008-01-01" fin="2008-12-31" valeur="50000000" /> ## no upperbound before 2009- set arbitrarily large##
       <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0" /> # taux set to 0 to avoid error- expect prog to pass when date inf to 2008 #
       # </CODE>
     <CODE code="taux1" description="Taux pour investissement direct soc, holdings, fip, fcpi" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2008-01-01" fin="2013-12-31" valeur="0.5" />
       <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0" /> # taux set to 0 to avoid error- expect prog to pass when date inf to 2008 #
       </CODE>
     <CODE code="taux2" description="Taux pour dons à certains organismes d'intérêt général" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.75" />
       <VALUE deb="2008-01-01" fin="2013-12-31" valeur="0.75" />
       <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0" /> # taux set to 0 to avoid error- expect prog to pass when date inf to 2008 #
       </CODE>
   </NODE>
   <NODE code="reduc_pac" description="Réductions pour personnes à charges">
     <CODE code="reduc_1" description="Réduction pac sans garde alternée" format="integer" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="300" />
       <VALUE deb="2002-01-01" fin="2011-12-31" valeur="150" />
     </CODE>
     <CODE code="reduc_2" description="Réduction pac avec garde alternée" format="integer" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="150" />
       <VALUE deb="2002-01-01" fin="2011-12-31" valeur="75" />
@@ -225,6 +238,7 @@
   </NODE>
   <NODE code="res_princ" description="Immeubles bâtis">
     <CODE code="taux" description="Taux d'abattement résidence principale" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.30" />
       <VALUE deb="2008-01-01" fin="2013-12-31" valeur="0.30" />
       <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.20" />
     </CODE>

@@ -351,30 +351,36 @@
   </NODE>
   <NODE code="ressources" description="Dispositions applicables aux ressources">
     <CODE code="abattement_chomage_indemnise" description="Abattement pour chômage indemnisé (R351-13)" format="percent">
-      <VALUE deb="2002-01-01" fuzzy="true" valeur="0.3" />
+      <VALUE deb="2018-01-01" fuzzy="true" valeur="0.3" />
+      <VALUE deb="2002-01-01" fin="2017-12-31" valeur="0.3" />
     </CODE>
     <CODE code="dar_1" description="Abattement R. 351-6 (double activité)" format="integer" type="monetary">
-      <VALUE deb="2007-07-01" fuzzy="true" valeur="95" />
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="95" />
+      <VALUE deb="2007-07-01" fin="2013-12-31" valeur="95" />
       <VALUE deb="2002-01-01" fin="2007-06-30" valeur="76" />
     </CODE>
     <CODE code="dar_10" description="Abattement forfaitaire R351-11" format="integer" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="2589" />
       <VALUE deb="2007-07-01" fin="2013-12-31" valeur="2589" />
       <VALUE deb="2003-07-01" fin="2007-06-30" valeur="2071" />
       <VALUE deb="2002-07-01" fin="2003-06-30" valeur="2034" />
       <VALUE deb="2002-01-01" fin="2002-06-30" valeur="0" />
     </CODE>
     <CODE code="dar_2" description="Plancher ressources APL en secteur accession R. 351-7-1" format="float" type="monetary">
-      <VALUE deb="2007-07-01" fuzzy="true" valeur="8000" />
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="8000" />
+      <VALUE deb="2007-07-01" fin="2013-12-31" valeur="8000" />
       <VALUE deb="2003-07-01" fin="2007-06-30" valeur="6400" />
       <VALUE deb="2002-07-01" fin="2003-06-30" valeur="6300" />
       <VALUE deb="2002-01-01" fin="2002-06-30" valeur="6173.82" />
     </CODE>
     <CODE code="dar_2_2" description="Plancher ressources AL en secteur accession R. 351-7-1" format="float" type="monetary">
-      <VALUE deb="2007-07-01" fuzzy="true" valeur="3900" />
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="3900" />
+      <VALUE deb="2007-07-01" fin="2013-12-31" valeur="3900" />
       <VALUE deb="2002-07-01" fin="2007-06-30" valeur="3100" />
     </CODE>
     <CODE code="dar_3" description="Coefficient R. 351-7-1" format="float">
-      <VALUE deb="2007-07-01" fuzzy="true" valeur="16.25" />
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="16.25" />
+      <VALUE deb="2007-07-01" fin="2013-12-31" valeur="16.25" />
       <VALUE deb="2002-01-01" fin="2007-06-30" valeur="13" />
     </CODE>
     <CODE code="dar_4" description="Plancher de ressources pour les étudiants (R. 351-7-2)" format="float" type="monetary">
@@ -409,6 +415,7 @@
       <VALUE deb="2002-01-01" fin="2002-06-30" valeur="0" />
     </CODE>
     <CODE code="dar_8" description="Montant 2ème alinéa du III de R. 351-7" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="1273.52" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1273.52" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="1248.55" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="1222.87" />
@@ -418,6 +425,7 @@
       <VALUE deb="2002-01-01" fin="2002-06-30" valeur="0" />
     </CODE>
     <CODE code="dar_9" description="Montant 3ème alinéa du III de R. 351-7" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="1910.29" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1910.29" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="1872.83" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="1834.31" />
@@ -444,6 +452,7 @@
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="6770.05" />
       </CODE>
       <CODE code="dar_2b" description="Évaluation forfaitaire des ressources pour un employeur ou un travailleur indépendant R. 351-7" format="float" type="monetary">
+        <VALUE deb="2014-07-01" fuzzy="true" valeur="14145" />
         <VALUE deb="2013-07-01" fin="2014-06-30" valeur="14145" />
         <VALUE deb="2012-07-01" fin="2013-06-30" valeur="14100" />
         <VALUE deb="2011-07-01" fin="2012-06-30" valeur="13500" />
@@ -459,10 +468,11 @@
         <VALUE deb="2001-07-01" fin="2002-06-30" valeur="10005" />
       </CODE>
       <CODE code="dar_3a" description="Coefficient multiplicateur du smic horaire brut au 31/12/n-2 (R. 351-7) pour un salarié" format="float">
-        <VALUE deb="2007-07-01" fuzzy="true" valeur="1015" />
+        <VALUE deb="2007-07-01" fin="2012-12-31" valeur="1015" />
       </CODE>
       <CODE code="dar_3b" description="Coefficient multiplicateur du smic horaire brut au 01/07 précédent la date d'ouverture des droits (R. 351-7) pour un employeur ou un travailleur indépendant" format="float">
-        <VALUE deb="2007-07-01" fuzzy="true" valeur="1500" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="1500" />
+        <VALUE deb="2007-07-01" fin="2015-12-31" valeur="1500" />
       </CODE>
     </NODE>
   </NODE>

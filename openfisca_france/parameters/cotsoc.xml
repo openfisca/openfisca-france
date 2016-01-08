@@ -167,6 +167,7 @@
       <VALUE deb="2002-01-01" fin="2015-12-31" valeur="151.67" />
     </CODE>
     <CODE code="plaf_th_1" description="Plafond d'exonération de la taxe d'habitation: première part" format="integer" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="10224" />
       <VALUE deb="2012-01-01" fin="2013-12-31" valeur="10224" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="10024" />
       <VALUE deb="2010-01-01" fin="2010-12-31" valeur="9876" />
@@ -180,6 +181,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="6928" />
     </CODE>
     <CODE code="plaf_th_1_dom" description="Plafond d'exonération de la taxe d'habitation: première part DOM" format="integer" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="12098" />
       <VALUE deb="2012-01-01" fin="2013-12-31" valeur="12098" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="11861" />
       <VALUE deb="2010-01-01" fin="2010-12-31" valeur="11686" />
@@ -193,6 +195,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="8198" />
     </CODE>
     <CODE code="plaf_th_1_guy" description="Plafond d'exonération de la taxe d'habitation: première part Guyane" format="integer" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="12650" />
       <VALUE deb="2012-01-01" fin="2013-12-31" valeur="12650" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="12402" />
       <VALUE deb="2010-01-01" fin="2010-12-31" valeur="12219" />
@@ -206,6 +209,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="8570" />
     </CODE>
     <CODE code="plaf_th_supp" description="Plafond d'exonération de la taxe d'habitation: demi-part supplémentaire" format="integer" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="2730" />
       <VALUE deb="2012-01-01" fin="2013-12-31" valeur="2730" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="2676" />
       <VALUE deb="2010-01-01" fin="2010-12-31" valeur="2637" />
@@ -219,6 +223,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="1851" />
     </CODE>
     <CODE code="plaf_th_supp1_dom" description="Plafond d'exonération de la taxe d'habitation: 1ère demi-part supplémentaire DOM" format="integer" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="2890" />
       <VALUE deb="2012-01-01" fin="2013-12-31" valeur="2890" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="2833" />
       <VALUE deb="2010-01-01" fin="2010-12-31" valeur="2791" />
@@ -232,6 +237,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="1958" />
     </CODE>
     <CODE code="plaf_th_supp1_guy" description="Plafond d'exonération de la taxe d'habitation: 1ère demi-part supplémentaire Guyane" format="integer" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="3482" />
       <VALUE deb="2012-01-01" fin="2013-12-31" valeur="3482" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="3414" />
       <VALUE deb="2010-01-01" fin="2010-12-31" valeur="3364" />
@@ -292,21 +298,26 @@
     </CODE>
   </NODE>
   <CODE code="hsup_exo" description="Exonération des heures supplémentaires" format="bool"> # TODO: find a better place
-      <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0" />
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
+    <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0" />
     <VALUE deb="2007-01-01" fin="2011-12-31" valeur="1" />
     <VALUE deb="2002-01-01" fin="2006-12-31" valeur="0" />
   </CODE>
   <NODE code="microsocial" description="Cotisations sociales pour régime micro-social">
     <CODE code="cipav" description="Taux professions libérales relevant du  CIPAV" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.233" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.233" />
     </CODE>
     <CODE code="rsi" description="Taux professions libérales relevant du RSI" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.246" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.246" />
     </CODE>
     <CODE code="servi" description="Taux pour les activités de prestations et de services" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.246" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.246" />
     </CODE>
     <CODE code="vente" description="Taux pour les activités de ventes" format="percent">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.141" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.141" />
     </CODE>
   </NODE>
@@ -570,9 +581,11 @@
       <BAREME code="chomfg" description="Chômage: fond national de garantie des salaires (FNGS)" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2014-04-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2014-03-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2014-04-01" fuzzy="true" valeur="0.003" />
             <VALUE deb="2011-04-01" fin="2014-03-31" valeur="0.003" />
             <VALUE deb="2009-11-01" fin="2011-03-31" valeur="0.004" />
             <VALUE deb="2009-08-01" fin="2009-10-31" valeur="0.003" />
@@ -592,9 +605,11 @@
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2014-04-01" fuzzy="true" valeur="4" />
             <VALUE deb="1993-07-01" fin="2014-03-31" valeur="4" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2014-04-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2014-03-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -814,6 +829,7 @@
               <VALUE deb="2003-01-01" fin="2020-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2014-01-01" fuzzy="true" valeur="0.004" />
               <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.004" />
               <VALUE deb="1982-01-01" fin="2012-12-31" valeur="0.005" />
             </TAUX>
@@ -959,6 +975,7 @@
               <VALUE deb="2003-01-01" fin="2020-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
+              <VALUE deb="2014-01-01" fuzzy="true" valeur="0.0032" />
               <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0032" />
               <VALUE deb="2010-01-01" fin="2012-12-31" valeur="0.0033" />
               <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.0032" />
@@ -1461,17 +1478,21 @@
       <BAREME code="indjour" description="Sécurité sociale/ Indemnités journalières" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2013-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2014-01-01" fuzzy="true" valeur=".007" />
             <VALUE deb="2003-01-01" fin="2013-12-31" valeur=".007" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
+            <VALUE deb="2014-01-01" fuzzy="true" valeur="5" />
             <VALUE deb="2003-01-01" fin="2013-12-31" valeur="5" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2013-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1502,6 +1523,7 @@
       <BAREME code="maladie" description="Sécurité sociale/ Maladie, maternité" option="noncontrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="2003-01-01" fin="2013-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
@@ -1625,9 +1647,11 @@
       <BAREME code="maladie" description="Assurance maladie, maternité, invalidité, décès " option="noncontrib">
         <TRANCHE code="tranche0">
           <SEUIL>
+            <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1993-07-01" fin="2013-12-31" valeur="0" />
           </SEUIL>
           <TAUX>
+            <VALUE deb="2014-01-01" fuzzy="true" valeur=".0075" />
             <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".0075" />
             <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".055" />
             <VALUE deb="1993-07-01" fin="1996-12-31" valeur=".068" />

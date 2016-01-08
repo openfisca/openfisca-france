@@ -30,6 +30,7 @@
     </CODE>
   </NODE>
   <CODE code="capital" description="Revenus du capital" format="percent">
+    <VALUE deb="2014-01-01" fuzzy="true" valeur=".005" />
     <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".005" />
   </CODE>
   <NODE code="retraite" description="Retraites et pensions d'invalidité">
