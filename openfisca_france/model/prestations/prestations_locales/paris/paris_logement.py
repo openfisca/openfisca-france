@@ -33,10 +33,10 @@ class paris_logement_pa_ph(Variable):
         aide_couple_avec_enf = simulation.legislation_at(period.start).paris.paris_logement.aide_couple_avec_enf
 
         paris_base_ressources_commun = simulation.calculate('paris_base_ressources_commun', period)
-        aspa = simulation.calculate('paris_base_ressources_aspa', period)
-        asi = simulation.calculate('paris_base_ressources_asi', period)
+        aspa = simulation.calculate('aspa', period)
+        asi = simulation.calculate('asi', period)
         aah = simulation.calculate('paris_base_ressources_aah', period)
-        aide_logement = simulation.calculate('paris_base_ressources_aide_logement', period)
+        aide_logement = simulation.calculate('aide_logement', period)
         ressources_familiale = paris_base_ressources_commun + aspa + asi + aah + aide_logement
 
         personnes_couple = simulation.calculate('concub', period)
@@ -58,7 +58,7 @@ class paris_logement_elig_pa_ph(Variable):
 
     def function(self, simulation, period):
         parisien = simulation.calculate('parisien', period)
-        personnes_agees = simulation.compute('personnes_agees', period)
+        personnes_agees = simulation.compute('paris_personnes_agees', period)
         personnes_agees_famille = self.any_by_roles(personnes_agees)
         personne_handicap_individu = simulation.compute('personnes_handicap_paris', period)
         personne_handicap = self.any_by_roles(personne_handicap_individu)
@@ -68,7 +68,7 @@ class paris_logement_elig_pa_ph(Variable):
             (statut_occupation == 4) +
             (statut_occupation == 5) +
             (statut_occupation == 7))
-        charges_logement = simulation.calculate('condition_taux_effort', period)
+        charges_logement = simulation.calculate('paris_condition_taux_effort', period)
         result = parisien * statut_occupation_elig * (personnes_agees_famille + personne_handicap) * charges_logement
         return period, result
 
@@ -82,9 +82,9 @@ class paris_logement_fam(Variable):
         aide_pl_fam = simulation.legislation_at(period.start).paris.paris_logement.aide_pl_fam
 
         paris_base_ressources_commun = simulation.calculate('paris_base_ressources_commun', period)
-        rsa = simulation.calculate('paris_base_ressources_rsa', period)
+        rsa = simulation.calculate('rsa', period)
         aah = simulation.calculate('paris_base_ressources_aah', period)
-        aide_logement = simulation.calculate('paris_base_ressources_aide_logement', period)
+        aide_logement = simulation.calculate('aide_logement', period)
         ressources_familiale = paris_base_ressources_commun + rsa + aah + aide_logement
 
         personnes_couple = simulation.calculate('concub', period)
@@ -104,7 +104,7 @@ class paris_logement_elig_fam(Variable):
 
     def function(self, simulation, period):
         parisien = simulation.calculate('parisien', period)
-        personnes_agees = simulation.compute('personnes_agees', period)
+        personnes_agees = simulation.compute('paris_personnes_agees', period)
         personnes_agees_famille = self.any_by_roles(personnes_agees)
         personne_handicap_individu = simulation.compute('personnes_handicap_paris', period)
         personne_handicap = self.any_by_roles(personne_handicap_individu)
@@ -114,7 +114,7 @@ class paris_logement_elig_fam(Variable):
             (statut_occupation == 4) +
             (statut_occupation == 5) +
             (statut_occupation == 7))
-        charges_logement = simulation.calculate('condition_taux_effort', period)
+        charges_logement = simulation.calculate('paris_condition_taux_effort', period)
         result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap != 1) * charges_logement
         return period, result
 
@@ -133,7 +133,7 @@ class paris_logement_apd(Variable):
         rsa = simulation.calculate('paris_base_ressources_rsa', period)
         indemnite = simulation.calculate('paris_indemnite_enfant', period)
         aah = simulation.calculate('paris_base_ressources_aah', period)
-        aide_logement = simulation.calculate('paris_base_ressources_aide_logement', period)
+        aide_logement = simulation.calculate('aide_logement', period)
         ressources_familiale = paris_base_ressources_commun + aah + aide_logement + rsa - indemnite
 
         personnes_couple = simulation.calculate('concub', period)
@@ -152,7 +152,7 @@ class paris_logement_elig_apd(Variable):
 
     def function(self, simulation, period):
         parisien = simulation.calculate('parisien', period)
-        personnes_agees = simulation.compute('personnes_agees', period)
+        personnes_agees = simulation.compute('paris_personnes_agees', period)
         personnes_agees_famille = self.any_by_roles(personnes_agees)
         personne_handicap_individu = simulation.compute('personnes_handicap_paris', period)
         personne_handicap = self.any_by_roles(personne_handicap_individu)
@@ -165,7 +165,7 @@ class paris_logement_elig_apd(Variable):
             (statut_occupation == 4) +
             (statut_occupation == 5) +
             (statut_occupation == 7))
-        charges_logement = simulation.calculate('condition_taux_effort', period)
+        charges_logement = simulation.calculate('paris_condition_taux_effort', period)
 
         result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap != 1) * charges_logement * (loyer > 0) * (nb_enfants == 0)
 
