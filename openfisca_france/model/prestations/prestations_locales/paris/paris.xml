@@ -132,7 +132,7 @@
     </CODE>
   </NODE>
   <NODE code="paris_logement_familles" description="Paris Logement Famille">
-  <CODE code="plafond_haut_3enf" description="Plafond haut de PLF pour les familles à 3 enfants, aussi plafond de PLF avec enfant handicapé" format="float" type="monetary">
+    <CODE code="plafond_haut_3enf" description="Plafond haut de PLF pour les familles à 3 enfants, aussi plafond de PLF avec enfant handicapé" format="float" type="monetary">
       <VALUE deb="2014-01-01" fin="2015-12-31" valeur="5000" />
     </CODE>
     <CODE code="plafond_bas_3enf" description="Plafond bas de PLF pour les familles à 3 enfants" format="float" type="monetary">
