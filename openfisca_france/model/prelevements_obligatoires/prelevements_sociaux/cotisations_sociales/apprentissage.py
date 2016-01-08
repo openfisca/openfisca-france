@@ -216,4 +216,3 @@ class prime_apprentissage(Variable):
 # moyen de l'entreprise au 31 décembre de l'année précédente x un montant forfaitaire de 400 € par alternant.
 # Par exemple, une entreprise de 300 salariés employant 6 % de salariés en alternance, ce qui porte le nombre
 # d'alternants ouvrant droit à l'aide à 2 % (6 % - 4 %), peut bénéficier d'une prime de : 2 % x 300 x 400 = 2 400 €.
-pPP
