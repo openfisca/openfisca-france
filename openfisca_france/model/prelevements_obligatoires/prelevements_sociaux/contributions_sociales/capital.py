@@ -98,8 +98,8 @@ class prelsoc_cap_bar(DatedVariable):
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
         return period, -rev_cap_bar * total
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2012, 12, 31))
-    def function_2009_2015(self, simulation, period):
+    @dated_function(start = date(2009, 1, 1), stop = date(2011, 12, 31))
+    def function_2009_2011(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
@@ -107,8 +107,8 @@ class prelsoc_cap_bar(DatedVariable):
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
         return period, -rev_cap_bar * total
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2013, 12, 31))
-    def function_2009_2015(self, simulation, period):
+    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
+    def function_2012(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
@@ -120,7 +120,7 @@ class prelsoc_cap_bar(DatedVariable):
         return period, -rev_cap_bar * total
 
     @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
-    def function_2009_2015(self, simulation, period):
+    def function_2013_2015(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
@@ -323,8 +323,7 @@ class prelsoc_pv_immo(DatedVariable):
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
         return period, -f3vz * total
 
-
-    @dated_function(start = date(2009, 1, 1))
+    @dated_function(start = date(2013, 1, 1))
     def function_20120101_(self, simulation, period):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
@@ -426,7 +425,6 @@ class prelsoc_fon(DatedVariable):
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
         return period, -rev_cat_rfon * total
-
 
     @dated_function(start = date(2013, 1, 1))
     def function_20130101_(self, simulation, period):
