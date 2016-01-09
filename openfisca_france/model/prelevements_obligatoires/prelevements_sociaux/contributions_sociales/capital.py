@@ -212,8 +212,8 @@ class prelsoc_pv_mo(DatedVariable):
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
         return period, -f3vg * total
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
-    def function_20090101_20151231(self, simulation, period):
+    @dated_function(start = date(2009, 1, 1), stop = date(2012, 12, 31))
+    def function_20090101_20121231(self, simulation, period):
         """
         Calcule le prélèvement social sur les plus-values de cession de valeurs mobilières
         """
@@ -223,6 +223,19 @@ class prelsoc_pv_mo(DatedVariable):
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
+        return period, -f3vg * total
+
+    @dated_function(start = date(2013, 1, 1))
+    def function_20130101_(self, simulation, period):
+        """
+        Calcule le prélèvement social sur les plus-values de cession de valeurs mobilières
+        """
+        period = period.this_year
+        f3vg = simulation.calculate('f3vg', period)
+        _P = simulation.legislation_at(period.start)
+
+        P = _P.taxation_capital.prelevements_sociaux
+        total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
         return period, -f3vg * total
 
 
@@ -297,8 +310,8 @@ class prelsoc_pv_immo(DatedVariable):
 
         return period, -f3vz * total
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
-    def function_20090101_20151231(self, simulation, period):
+    @dated_function(start = date(2009, 1, 1), stop = date(2012, 12, 31))
+    def function_20090101_20121231(self, simulation, period):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
@@ -308,6 +321,20 @@ class prelsoc_pv_immo(DatedVariable):
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
+        return period, -f3vz * total
+
+
+    @dated_function(start = date(2009, 1, 1))
+    def function_20120101_(self, simulation, period):
+        """
+        Calcule le prélèvement social sur les plus-values de cession immobilière
+        """
+        period = period.this_year
+        f3vz = simulation.calculate('f3vz', period)
+        _P = simulation.legislation_at(period.start)
+
+        P = _P.taxation_capital.prelevements_sociaux
+        total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
         return period, -f3vz * total
 
 
@@ -347,7 +374,7 @@ class crds_fon(Variable):
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
-        return period, -rev_cat_rfon * _P.crds.capital
+        return period, -rev_cat_rfon * _P.crds.revenus_du_patrimoine
 
 
 class prelsoc_fon(DatedVariable):
@@ -386,11 +413,11 @@ class prelsoc_fon(DatedVariable):
 
         return period, -rev_cat_rfon * total
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
-    def function_20090101_20151231(self, simulation, period):
+    @dated_function(start = date(2009, 1, 1), stop = date(2012, 12, 31))
+    def function_20090101_20121231(self, simulation, period):
         '''
         Calcule le prélèvement social sur les revenus fonciers
-        Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
+        Attention : assiette CSG = assiette IR valable 2006-2014 mais pourrait changer
         '''
         period = period.this_year
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
@@ -398,6 +425,21 @@ class prelsoc_fon(DatedVariable):
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
+        return period, -rev_cat_rfon * total
+
+
+    @dated_function(start = date(2013, 1, 1))
+    def function_20130101_(self, simulation, period):
+        '''
+        Calcule le prélèvement social sur les revenus fonciers
+        Attention : assiette CSG = assiette IR valable 2006-2014 mais pourrait changer
+        '''
+        period = period.this_year
+        rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
+        _P = simulation.legislation_at(period.start)
+
+        P = _P.taxation_capital.prelevements_sociaux
+        total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
         return period, -rev_cat_rfon * total
 
 

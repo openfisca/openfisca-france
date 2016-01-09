@@ -1395,13 +1395,14 @@ class microentreprise(Variable):
         ebnc_impo_holder = simulation.compute('ebnc_impo', period)
         ebic_imps_holder = simulation.compute('ebic_imps', period)
         ebic_impv_holder = simulation.compute('ebic_impv', period)
-        me = simulation.legislation_at(period.start).impot_revenu.rpns.micro.microentreprise
-
+        micro = simulation.legislation_at(period.start).impot_revenu.rpns.micro
         ebnc_impo = self.sum_by_entity(ebnc_impo_holder)
         ebic_imps = self.sum_by_entity(ebic_imps_holder)
         ebic_impv = self.sum_by_entity(ebic_impv_holder)
         return period, (
-            ebnc_impo * (1 - me.specialbnc.taux) + ebic_imps * (1 - me.servi.taux) + ebic_impv * (1 - me.vente.taux)
+            ebnc_impo * (1 - micro.specialbnc.taux) +
+            ebic_imps * (1 - micro.microentreprise.taux_prestations_de_services) +
+            ebic_impv * (1 - micro.microentreprise.taux_ventes_de_marchandises)
             )
 
 

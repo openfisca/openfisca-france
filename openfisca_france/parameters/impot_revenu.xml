@@ -3881,8 +3881,7 @@
         <VALUE deb="1978-01-01" fin="1991-12-31" valeur="1800" />
       </CODE>
       <CODE code="taux" description="Taux de l'abattement" format="percent">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.10" />
-        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.10" />
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.10" />
       </CODE>
     </NODE>
     <NODE code="abatpro" description="Abattement forfaitaire pour frais professionnels">
