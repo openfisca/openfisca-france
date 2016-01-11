@@ -5,7 +5,7 @@
         <NODE code="salaire_net" color="0,138,201" desc="Salaires nets" shortname="Sal. nets">
           <NODE code="salaire_imposable" color="0,115,170" desc="Salaires imposables" shortname="Sal. impos.">
             <NODE code="salaire_brut" color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
-              <NODE code="salaire_super_brut_hors_allegements" color="0,66,92" desc="Salaires super bruts hors allègements" shortname="Sal. sup. brut hors allèg." >
+              <NODE code="salaire_super_brut_hors_allegements" color="0,66,92" desc="Salaires super bruts hors allègements" shortname="Sal. sup. brut hors allèg." />
               <NODE code="cotisations_employeur" color="249,208,211" desc="Cotisations sociales employeur" shortname="Cotsoc pat" />
               <NODE code="allegement_fillon" desc="Allègement sur les bas salaires (Fillon)" shortname="Allèg. sal." />
               <NODE code="credit_impot_competitivite_emploi" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
