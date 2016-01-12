@@ -415,7 +415,8 @@
       <VALUE deb="2002-01-01" fin="2009-06-30" valeur="0.00" />
     </CODE>
     <CODE code="pfInBRrmi" description="Prise en compte des PF dans la BR du RMI" format="bool">
-      <VALUE deb="2001-01-01" fin="2015-12-31" valeur="1" />
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="1" />
+      <VALUE deb="2001-01-01" fin="2013-12-31" valeur="1" />
     </CODE>
     <CODE code="psa" description="Prime de solidarité active" format="integer" type="monetary">
       <VALUE deb="2009-01-01" fin="2009-12-31" valeur="200" />

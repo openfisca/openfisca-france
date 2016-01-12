@@ -895,7 +895,8 @@
             <VALUE deb="1972-07-01" fuzzy="true" valeur="0" />
           </SEUIL>
           <TAUX>
-            <VALUE deb="1993-01-01" fuzzy="true" valeur="0.005" />
+            <VALUE deb="2014-01-01" fuzzy="true" valeur="0.0068" />
+            <VALUE deb="1993-01-01" fin="2013-12-31" valeur="0.005" />
             <VALUE deb="1977-01-01" fin="1992-12-31" valeur="0.006" />
             <VALUE deb="1972-07-01" fin="1976-12-31" valeur="0.005" />
           </TAUX>
