@@ -200,7 +200,7 @@ class agirc_gmp_salarie(Variable):
 
         law = simulation.legislation_at(period.start).cotsoc.agirc_gmp
         cotisation_forfaitaire = law.cotisation_salarie
-        taux = simulation.legislation_at(period.start).cotsoc.cotisations_salarie['prive_cadre']['agirc'].rates[1]
+        taux = simulation.legislation_at(period.start).cotsoc.cotisations_salarie.prive_cadre.agirc.rates[1]
 
         sous_plafond_securite_sociale = (
             (assiette_cotisations_sociales <= plafond_securite_sociale) & (assiette_cotisations_sociales > 0)

@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# TODO switch to to average tax rates
-
 from __future__ import division
 
 from numpy import logical_not as not_, minimum as min_

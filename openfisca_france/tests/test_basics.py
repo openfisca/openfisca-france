@@ -21,7 +21,7 @@ scenarios_arguments = [
             zone_apl = 1,
             ),
         )
-    for year in range(2015, 2009, -1)
+    for year in range(2009, 2015)
     ]
 
 
