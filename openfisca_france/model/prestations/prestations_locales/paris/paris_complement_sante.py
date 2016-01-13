@@ -23,6 +23,7 @@ class paris_complement_sante(Variable):
         concub = simulation.calculate('concub', period)
         cmu_c = simulation.calculate('cmu_c', period)
         acs_montant = simulation.calculate('acs_montant', period)
+        acs = simulation.calculate('acs', period)
         aspa = simulation.calculate('aspa', period)
         ass = simulation.calculate('ass', period)
         asi = simulation.calculate('asi', period)
@@ -39,15 +40,15 @@ class paris_complement_sante(Variable):
         plafond = where(concub, plafond_couple_cs, plafond_pers_isol_cs)
 
         montant_pers_handicap = where(parisien * personnes_handicap * (concub != 1) *
-            (ressources_pers_isol <= plafond) * (montant_aide_cs >= acs_montant),
-            montant_aide_cs - acs_montant, 0)
+            (ressources_pers_isol <= plafond) * (montant_aide_cs >= acs),
+            montant_aide_cs - acs, 0)
 
         montant_couple = where(parisien * concub * (personnes_handicap + personnes_agees) *
-            (acs_montant != 0) * (ressources_couple <= plafond) * (montant_aide_cs >= acs_montant),
-            montant_aide_cs - acs_montant, 0)
+            (acs != 0) * (ressources_couple <= plafond) * (montant_aide_cs >= acs),
+            montant_aide_cs - acs, 0)
 
         montant_couple_ss_acs = where(parisien * concub * (personnes_handicap + personnes_agees) *
-            (acs_montant == 0) * (cmu_c != 1) * (ressources_couple <= plafond), montant_aide_cs, 0)
+            (acs == 0) * (cmu_c != 1) * (ressources_couple <= plafond), montant_aide_cs, 0)
 
         return period, montant_pers_handicap + montant_couple + montant_couple_ss_acs
 
