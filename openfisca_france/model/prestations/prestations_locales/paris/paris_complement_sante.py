@@ -43,7 +43,8 @@ class paris_complement_sante(Variable):
             montant_aide_cs - acs_montant, 0)
 
         montant_couple = where(parisien * concub * (personnes_handicap + personnes_agees) *
-            (acs_montant != 0) * (ressources_couple <= plafond), montant_aide_cs - acs_montant, 0)
+            (acs_montant != 0) * (ressources_couple <= plafond) * (montant_aide_cs >= acs_montant),
+            montant_aide_cs - acs_montant, 0)
 
         montant_couple_ss_acs = where(parisien * concub * (personnes_handicap + personnes_agees) *
             (acs_montant == 0) * (cmu_c != 1) * (ressources_couple <= plafond), montant_aide_cs, 0)
