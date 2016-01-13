@@ -22,11 +22,7 @@ class paris_complement_sante(Variable):
         personnes_handicap = self.any_by_roles(personnes_handicape_i)
         concub = simulation.calculate('concub', period)
         cmu_c = simulation.calculate('cmu_c', period)
-        print cmu_c
-        acs_montant = simulation.calculate('acs_montant', period)
-        print acs_montant
         acs = simulation.calculate('acs', period)
-        print acs
         aspa = simulation.calculate('aspa', period)
         ass = simulation.calculate('ass', period)
         asi = simulation.calculate('asi', period)
