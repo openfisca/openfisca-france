@@ -88,7 +88,7 @@
     chonet:
       2015-11: 150
   output_variables:
-    paris_complement_sante: 0
+    paris_complement_sante: 468
 
 - name: "Famille éligible pour l'aide paris energie famille avec une aide ACS"
   period: 2015-11
@@ -161,4 +161,4 @@
     salaire_net:
       2015-11: 200
   output_variables:
-    paris_complement_sante: 0
+    paris_complement_sante: 468
