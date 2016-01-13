@@ -139,6 +139,7 @@ class ppa_ressources_hors_activite_i(Variable):
         period = period.this_month
 
         ressources = [
+            'aah',
             'chonet',
             'rstnet',
             'retraite_combattant',
