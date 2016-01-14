@@ -186,7 +186,6 @@ def compute_allegement_fillon_progressif(simulation, period):
         up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
         up_to_previous_month = period.start.offset('first-of', 'year').period('month', period.start.month - 1)
         cumul = simulation.calculate_add('allegement_fillon', up_to_previous_month, max_nb_cycles = 1)
-        up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
         return compute_allegement_fillon(simulation, up_to_this_month) - cumul
 
 
