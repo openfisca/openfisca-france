@@ -8,7 +8,7 @@
     invalide: True
     loyer: 600
     apl: 100
-    salaire_net: 600
+    chonet: 600
   output_variables:
     paris_logement_psol: 100
 

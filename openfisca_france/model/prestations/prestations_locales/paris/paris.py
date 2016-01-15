@@ -186,7 +186,11 @@ class personnes_handicap_paris(Variable):
     entity_class = Individus
 
     def function(self, simulation, period):
-        handicap = simulation.calculate('invalide', period)
+        age_min = simulation.legislation_at(period.start).paris.age_pers_inapte
+        invalide = simulation.calculate('invalide', period)
+        inapte_travail = simulation.calculate('inapte_travail', period)
+        age = simulation.calculate('age', period)
+        handicap = invalide + ((age < age_min) * inapte_travail)
         return period, handicap
 
 class paris_nb_enfants(Variable):

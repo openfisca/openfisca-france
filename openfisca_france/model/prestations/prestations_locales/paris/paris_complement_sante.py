@@ -43,13 +43,13 @@ class paris_complement_sante(Variable):
             montant_aide_cs - acs, 0)
 
         montant_couple = where(parisien * concub * (personnes_handicap + personnes_agees) *
-         (ressources_couple <= plafond) * (montant_aide_cs >= acs), montant_aide_cs - acs, 0)
+         (ressources_couple <= plafond) * (montant_aide_cs >= acs) * ((acs > 0) + cmu_c),
+         montant_aide_cs - acs, 0)
 
         montant_couple_ss_acs = where(parisien * concub * (personnes_handicap + personnes_agees) *
             (acs == 0) * (cmu_c != 1) * (ressources_couple <= plafond), montant_aide_cs, 0)
 
         return period, montant_pers_handicap + montant_couple + montant_couple_ss_acs
-
 
 class paris_complement_sante_i(Variable):
     column = FloatCol

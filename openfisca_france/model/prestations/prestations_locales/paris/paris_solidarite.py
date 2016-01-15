@@ -48,7 +48,8 @@ class paris_logement_psol_montant(Variable):
         plafond_psol = select([personnes_couple, (personnes_couple != 1)], [plafond_couple_psol, plafond_seul_psol])
 
         plancher_ressources = where(personnes_couple, montant_couple, montant_seul)
-        ressources_mensuelles_min = where(ressources_mensuelles < plancher_ressources, plancher_ressources, ressources_mensuelles)
+        ressources_mensuelles_min = where(ressources_mensuelles < plancher_ressources, plancher_ressources,
+            ressources_mensuelles)
 
         result = select([((personnes_couple != 1) * (ressources_mensuelles_min <= plafond_psol)),
             personnes_couple * (ressources_mensuelles_min <= plafond_psol),

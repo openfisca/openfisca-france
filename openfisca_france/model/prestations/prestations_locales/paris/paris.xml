@@ -3,6 +3,10 @@
     <VALUE deb="2016-01-01" fuzzy="true" valeur="65" />
     <VALUE deb="2015-01-01" fin="2015-12-31" valeur="65" />
   </CODE>
+  <CODE code="age_pers_inapte" description="Age minimale d'une personne inapte au travail pour être une personne âgée" format="float" type="monetary">
+    <VALUE deb="2016-01-01" fuzzy="true" valeur="60" />
+    <VALUE deb="2015-01-01" fin="2015-12-31" valeur="60" />
+  </CODE>
   <CODE code="charges_forf_pers_isol" description="Charges forfaitaire de la CAF pour une personne isolée" format="float" type="monetary">
     <VALUE deb="2016-01-01" fuzzy="true" valeur="53.23" />
     <VALUE deb="2015-01-01" fin="2015-12-31" valeur="53.23" />
