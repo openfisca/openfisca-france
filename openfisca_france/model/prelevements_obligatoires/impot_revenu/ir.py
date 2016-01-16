@@ -1186,8 +1186,9 @@ class decote(DatedVariable):
         period = period.this_year
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         decote = simulation.legislation_at(period.start).ir.decote
+        decote_coefficient = simulation.legislation_at(period.start).ir.decote.coefficient
 
-        return period, (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
+        return period, (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * decote_coefficient
 
     @dated_function(start = date(2014, 1, 1))
     def function_2014_2015(self, simulation, period):
