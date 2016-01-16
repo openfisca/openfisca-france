@@ -45,14 +45,14 @@
      decote_gain_fiscal: 238
 
 
-- name: "IRPP - Célibataire ayant des 	Revenu net imposable de 16000 € (teste la décote)"
+- name: "IRPP - Célibataire ayant des 	Revenu net imposable de 16000 € (teste la décote)" #Non passing
   period: 2013
   absolute_error_margin: 0.9 #TODO : check why the error margin is so large, is there bottom round made by dgfip ?
   input_variables:
     salaire_imposable: 16000
   output_variables:
-    #irpp: 491
-    #decote_gain_fiscal: 175
+    irpp: 491
+    decote_gain_fiscal: 175
 
 
 - name: "IRPP - Célibataire ayant des 	Revenu net imposable de 16000 € (teste la décote)"
