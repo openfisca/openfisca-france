@@ -4821,6 +4821,11 @@
       </CODE>
     </NODE>
     <NODE code="decote" description="Décote">
+        <CODE code="coefficient" description="Coefficient de la décote" format="float">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.75" />
+        <VALUE deb="2014-01-01" fin="2015-12-31" valeur="1" />
+        <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0.5" />
+      </CODE>
       <CODE code="seuil" description="Seuil de la décôte" format="integer" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="1016" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1016" />
