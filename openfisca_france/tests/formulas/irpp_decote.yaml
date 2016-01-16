@@ -2,10 +2,19 @@
   period: 2011
   absolute_error_margin: 0.9 #TODO : check why the error margin is so large, is there bottom round made by dgfip ?
   input_variables:
+    salaire_imposable: 12000
+  output_variables:
+    irpp: -0
+    decote_gain_fiscal: 266
+- name: "IRPP - Célibataire ayant des 	Revenu net imposable de 16000 € (teste la décote)"
+  period: 2011
+  absolute_error_margin: 0.9 #TODO : check why the error margin is so large, is there bottom round made by dgfip ?
+  input_variables:
     salaire_imposable: 15000
   output_variables:
     irpp: -387
     decote_gain_fiscal: 164
+
 
 
 - name: "IRPP - Célibataire ayant des 	Revenu net imposable de 16000 € (teste la décote)"
