@@ -961,8 +961,9 @@
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="2399" />
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="2359" />
       </CODE>
-      <CODE code="plafond_securite_sociale" description="Plafond annuel de la sécurité sociale" format="integer" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="3170" />
+      <CODE code="plafond_securite_sociale" description="Plafond mensuel de la sécurité sociale" format="integer" type="monetary">
+        <VALUE deb="2017-01-01" fuzzy="true" valeur="3218" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="3218" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="3170" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3129" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3086" />
@@ -980,7 +981,8 @@
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="2279" />
       </CODE>
       <CODE code="plafond_securite_sociale_horaire" description="Plafond horaire de la sécurité sociale " format="integer" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="24" />
+        <VALUE deb="2017-01-01" fuzzy="true" valeur="24" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="24" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="24" />
         <VALUE deb="2012-01-01" fin="2014-12-31" valeur="23" />
         <VALUE deb="2010-01-01" fin="2011-12-31" valeur="22" />
