@@ -731,8 +731,9 @@
     </NODE>
     <NODE code="agirc_gmp" description="Garantie minimale de points AGIRC">  # Find a better place
       <CODE code="cotisation_employeur" description="Cotisation forfaitaire mensuelle employeur">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="41.17" />
-        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="41.17" />
+        <VALUE deb="2017-01-01" fuzzy="true" valeur="42.23" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="42.23" />
+        <VALUE deb="2014-01-01" fin="2015-12-31" valeur="41.17" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="41.13" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="40.74" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="39.84" />
@@ -747,8 +748,9 @@
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="32.42" />
       </CODE>
       <CODE code="cotisation_salarie" description="Cotisation forfaitaire mensuelle salarié">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="25.17" />
-        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="25.17" />
+        <VALUE deb="2017-01-01" fuzzy="true" valeur="25.84" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="25.84" />
+        <VALUE deb="2014-01-01" fin="2015-12-31" valeur="25.17" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="25.13" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="24.90" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="24.35" />
@@ -763,7 +765,8 @@
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="19.45" />
       </CODE>
       <CODE code="salaire_charniere" description="Salaire charnière annuel">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="41913.84" />
+        <VALUE deb="2017-01-01" fuzzy="true" valeur="42590.88" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="42590.88" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="41913.84" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="41444.64" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="40948.70" />
