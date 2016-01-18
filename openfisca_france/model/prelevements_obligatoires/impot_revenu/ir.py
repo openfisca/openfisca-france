@@ -1595,7 +1595,7 @@ class iai(Variable):
         return period, iaidrdi + plus_values + cont_rev_loc + teicaa
 
 
-class cehr(Variable):
+class cehr(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Contribution exceptionnelle sur les hauts revenus"
