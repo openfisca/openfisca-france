@@ -989,7 +989,7 @@
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="21" />
       </CODE>
       <CODE code="smic_h_b" description="SMIC horaire brut" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="9.61" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="9.67" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="9.61" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="9.53" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="9.43" />
