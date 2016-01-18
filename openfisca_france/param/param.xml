@@ -1298,8 +1298,9 @@
               <VALUE deb="1993-07-01" fin="2014-03-31" valeur="0" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2014-04-01" fuzzy="true" valeur="0.003" />
-              <VALUE deb="2011-04-01" fin="2014-03-31" valeur="0.003" />
+              <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0025" />
+              <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0025" />
+              <VALUE deb="2011-04-01" fin="2015-12-31" valeur="0.003" />
               <VALUE deb="2009-11-01" fin="2011-03-31" valeur="0.004" />
               <VALUE deb="2009-08-01" fin="2009-10-31" valeur="0.003" />
               <VALUE deb="2006-07-01" fin="2009-07-31" valeur="0.0015" />
