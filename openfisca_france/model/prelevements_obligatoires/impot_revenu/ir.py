@@ -1187,7 +1187,7 @@ class decote(DatedVariable):
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         decote_seuil = simulation.legislation_at(period.start).ir.decote.seuil
         decote_coefficient = simulation.legislation_at(period.start).ir.decote.coefficient
-        decote = max_(0,(decote_seuil - decote_coefficient * ir_plaf_qf))
+        decote = max_(0, decote_seuil - decote_coefficient * ir_plaf_qf)
 
         return period, decote
 
@@ -1199,8 +1199,8 @@ class decote(DatedVariable):
         decote_seuil_celib = simulation.legislation_at(period.start).ir.decote.seuil_celib
         decote_seuil_couple = simulation.legislation_at(period.start).ir.decote.seuil_couple
         decote_coefficient = simulation.legislation_at(period.start).ir.decote.coefficient
-        decote_celib = max_(0, (decote_seuil_celib - decote_coefficient * ir_plaf_qf))
-        decote_couple = max_(0,(decote_seuil_couple - decote_coefficient * ir_plaf_qf))
+        decote_celib = max_(0, decote_seuil_celib - decote_coefficient * ir_plaf_qf)
+        decote_couple = max_(0, decote_seuil_couple - decote_coefficient * ir_plaf_qf)
 
         return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
