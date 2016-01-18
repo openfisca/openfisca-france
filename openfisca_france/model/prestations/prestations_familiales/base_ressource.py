@@ -6,14 +6,13 @@ from numpy import int32, logical_not as not_, logical_or as or_
 
 from ...base import *  # noqa analysis:ignore
 
-@reference_formula
-class smic55(SimpleFormulaColumn):
+class smic55(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         salaire_net = simulation.calculate_add('salaire_net', period.start.period('month', 6).offset(-6))
         _P = simulation.legislation_at(period.start)
 
@@ -24,14 +23,13 @@ class smic55(SimpleFormulaColumn):
         return period, salaire_net / 6 >= (_P.fam.af.seuil_rev_taux * smic_mensuel_brut)
 
 
-@reference_formula
-class pfam_enfant_a_charge(SimpleFormulaColumn):
+class pfam_enfant_a_charge(Variable):
     column = BoolCol(default = False)
     entity_class = Individus
     label = u"Enfant considéré à charge au sens des prestations familiales"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
         smic55 = simulation.calculate('smic55', period)
@@ -47,14 +45,13 @@ class pfam_enfant_a_charge(SimpleFormulaColumn):
         return period, or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
 
 
-@reference_formula
-class pfam_ressources_i(SimpleFormulaColumn):
+class pfam_ressources_i(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Ressources de l'individu prises en compte dans le cadre des prestations familiales"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         br_pf_i = simulation.calculate('br_pf_i', period)
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
@@ -63,15 +60,14 @@ class pfam_ressources_i(SimpleFormulaColumn):
         return period, or_(not_(est_enfant_dans_famille), pfam_enfant_a_charge) * br_pf_i
 
 
-@reference_formula
-class br_pf_i(SimpleFormulaColumn):
+class br_pf_i(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Base ressource individuelle des prestations familiales"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
+        period = period.this_month
+        annee_fiscale_n_2 = period.n_2
 
         tspr = simulation.calculate('tspr', annee_fiscale_n_2)
         hsup = simulation.calculate('hsup', annee_fiscale_n_2)
@@ -80,15 +76,14 @@ class br_pf_i(SimpleFormulaColumn):
         return period, tspr + hsup + rpns
 
 
-@reference_formula
-class biact(SimpleFormulaColumn):
+class biact(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"Indicatrice de biactivité"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
+        period = period.this_month
+        annee_fiscale_n_2 = period.n_2
 
         br_pf_i_holder = simulation.compute('br_pf_i', period)
         br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
@@ -99,8 +94,7 @@ class biact(SimpleFormulaColumn):
         return period, (br_pf_i[CHEF] >= seuil_rev) & (br_pf_i[PART] >= seuil_rev)
 
 
-@reference_formula
-class div(SimpleFormulaColumn):
+class div(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"div"
@@ -128,8 +122,7 @@ class div(SimpleFormulaColumn):
         return period, f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
 
-@reference_formula
-class rev_coll(SimpleFormulaColumn):
+class rev_coll(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Revenus collectifs"
@@ -168,8 +161,7 @@ class rev_coll(SimpleFormulaColumn):
             - f7gc - abat_spe + rev_cat_pv)
 
 
-@reference_formula
-class br_pf(SimpleFormulaColumn):
+class br_pf(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Base ressource des prestations familiales"
@@ -179,9 +171,9 @@ class br_pf(SimpleFormulaColumn):
         Base ressource des prestations familiales de la famille
         'fam'
         '''
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         # period_legacy = period.start.offset('first-of', 'month').period('year')
-        annee_fiscale_n_2 = period.start.offset('first-of', 'year').period('year').offset(-2)
+        annee_fiscale_n_2 = period.n_2
 
         pfam_ressources_i_holder = simulation.compute('pfam_ressources_i', period)
         rev_coll_holder = simulation.compute('rev_coll', annee_fiscale_n_2)

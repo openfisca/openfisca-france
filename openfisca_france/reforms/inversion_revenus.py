@@ -4,7 +4,7 @@ from __future__ import division
 
 # import logging
 
-from openfisca_core import columns, formulas, reforms
+from openfisca_core import columns, reforms
 # from openfisca_core.taxscales import MarginalRateTaxScale
 
 from .. import entities
@@ -30,15 +30,12 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    Reform.input_variable(
-        column = columns.FloatCol,
-        entity_class = entities.Individus,
-        label = u'Salaire imposable utilisé pour remonter au salaire brut',
-        name = 'salaire_imposable_pour_inversion',
-        )
+    class salaire_imposable_pour_inversion(Reform.Variable):
+        column = columns.FloatCol
+        entity_class = entities.Individus
+        label = u'Salaire imposable utilisé pour remonter au salaire brut'
 
-    @Reform.formula
-    class salaire_de_base(formulas.SimpleFormulaColumn):
+    class salaire_de_base(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Salaire brut ou traitement indiciaire brut"
@@ -51,11 +48,11 @@ def build_reform(tax_benefit_system):
             Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
             Note : le supplément familial de traitement est imposable.
             """
-    #        period = period.start.offset('first-of', 'month').period('month')
+    #        period = period.this_month
 
             # Get value for year and divide below.
             salaire_imposable_pour_inversion = simulation.get_array('salaire_imposable_pour_inversion',
-                period.start.offset('first-of', 'year').period('year'))
+                period.this_year)
             if salaire_imposable_pour_inversion is None:
                 salaire_net = simulation.get_array('salaire_net', period)
                 if salaire_net is not None:
@@ -170,8 +167,7 @@ def build_reform(tax_benefit_system):
     #        #<NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence"/>
     #        return period, salbrut + hsup
 
-    @Reform.formula
-    class chobrut(formulas.SimpleFormulaColumn):
+    class chobrut(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Allocations chômage brutes"
@@ -181,7 +177,7 @@ def build_reform(tax_benefit_system):
             """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
             """
             # Get value for year and divide below.
-            choi = simulation.get_array('choi', period.start.offset('first-of', 'year').period('year'))
+            choi = simulation.get_array('choi', period.this_year)
             if choi is None:
                 chonet = simulation.get_array('chonet', period)
                 if chonet is not None:
@@ -219,8 +215,7 @@ def build_reform(tax_benefit_system):
                     ) - choi
             return period, fsolve(solve_function, choi)
 
-    @Reform.formula
-    class rstbrut(formulas.SimpleFormulaColumn):
+    class rstbrut(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Pensions de retraite brutes"
@@ -229,10 +224,10 @@ def build_reform(tax_benefit_system):
         def function(self, simulation, period):
             """"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
             """
-            # period = period.start.offset('first-of', 'month').period('month')
+            # period = period.this_month
 
             # Get value for year and divide below.
-            rsti = simulation.get_array('rsti', period.start.offset('first-of', 'year').period('year'))
+            rsti = simulation.get_array('rsti', period.this_year)
             if rsti is None:
                 rstnet = simulation.get_array('rstnet', period)
                 if rstnet is not None:

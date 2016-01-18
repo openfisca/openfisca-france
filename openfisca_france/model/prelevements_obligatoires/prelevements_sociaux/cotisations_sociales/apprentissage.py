@@ -9,15 +9,14 @@ from numpy import datetime64, timedelta64
 from ....base import *  # noqa analysis:ignore
 
 
-@reference_formula
-class apprenti(SimpleFormulaColumn):
+class apprenti(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"L'individu est apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age = simulation.calculate('age', period)
         age_condition = (16 <= age) * (age < 25)
         apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
@@ -29,8 +28,7 @@ class apprenti(SimpleFormulaColumn):
         return period, age_condition * anciennete_contrat
 
 
-@reference_formula
-class remuneration_apprenti(SimpleFormulaColumn):
+class remuneration_apprenti(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Rémunération de l'apprenti"
@@ -45,7 +43,7 @@ class remuneration_apprenti(SimpleFormulaColumn):
     # alternance (DIMA).
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age = simulation.calculate('age', period)
         apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
         smic = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
@@ -93,8 +91,7 @@ class remuneration_apprenti(SimpleFormulaColumn):
         return period, output * smic * apprenti
 
 
-@reference_formula
-class exoneration_cotisations_employeur_apprenti(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_apprenti(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Exonération de cotisations employeur pour l'emploi d'un apprenti"
@@ -118,7 +115,7 @@ class exoneration_cotisations_employeur_apprenti(SimpleFormulaColumn):
     # de conclusion du contrat d'apprentissage.
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         accident_du_travail = simulation.calculate('accident_du_travail', period)
         apprenti = simulation.calculate('apprenti', period)
         cotisations_employeur = simulation.calculate('cotisations_employeur', period)
@@ -141,15 +138,14 @@ class exoneration_cotisations_employeur_apprenti(SimpleFormulaColumn):
             ) * apprenti
 
 
-@reference_formula
-class exoneration_cotisations_salariales_apprenti(SimpleFormulaColumn):
+class exoneration_cotisations_salariales_apprenti(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Exonération de cotisations salariales pour l'emploi d'un apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         apprenti = simulation.calculate('apprenti', period)
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         cotisations_salariales_non_contributives = simulation.calculate(
@@ -157,8 +153,7 @@ class exoneration_cotisations_salariales_apprenti(SimpleFormulaColumn):
         return period, - (cotisations_salariales_contributives + cotisations_salariales_non_contributives) * apprenti
 
 
-@reference_formula
-class prime_apprentissage(SimpleFormulaColumn):
+class prime_apprentissage(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Prime d'apprentissage pour les entreprise employant un apprenti"
@@ -181,12 +176,11 @@ class prime_apprentissage(SimpleFormulaColumn):
     # Son versement cesse lorsque l'apprenti n'est plus salarié dans l'entreprise ou l'établissement qui l'a embauché.
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         apprenti = simulation.calculate('apprenti', period)
         return period, 1000 * apprenti
 
-# @reference_formula
-# class credit_impot_emploi_apprenti(SimpleFormulaColumn):
+# # class credit_impot_emploi_apprenti(Variable):
 #     column = FloatCol
 #     entity_class = Individus
 #     label = u" Crédit d'impôt pour l'emploi d'apprentis"
@@ -202,7 +196,7 @@ class prime_apprentissage(SimpleFormulaColumn):
 #     # Le crédit d'impôt est égal au nombre moyen d'apprentis dont le contrat de travail a atteint une durée d'au moins
 #     # 1 mois au cours de l'année civile multiplié par :
 #     # - 1 600 €,
-#     # - ou 2 200 € si l'apprenti est reconnu travailleur handicapé et qu'il bénéficie d'un accompagnement personnalisé,
+#     # - ou 2 200€ si l'apprenti est reconnu travailleur handicapé et qu'il bénéficie d'un accompagnement personnalisé,
 #     # ou si l'apprenti est employé par une entreprise portant le label "Entreprise du patrimoine vivant", ou s'il est
 #     # recruté dans le cadre d'une "formation apprentissage junior".
 #     #
@@ -210,12 +204,15 @@ class prime_apprentissage(SimpleFormulaColumn):
 #     # subventions perçues en contrepartie de leur embauche.
 
 
-# @reference_formula
-# class credit_impot_emploi_apprenti(SimpleFormulaColumn):
+# # class credit_impot_emploi_apprenti(Variable):
 #     column = FloatCol
 #     entity_class = Individus
 #     label = u"Déduction de la créance "bonus alternant"
-# Les entreprises de plus de 250 salariés, tous établissements confondus, redevables de la taxe d'apprentissage, qui emploient plus de 4 % de jeunes en apprentissage (5 % pour la taxe payable en 2016 au titre de 2015), dans la limite de 6 % d'alternants, peuvent bénéficier d'une créance à déduire du hors quota de la taxe d'apprentissage (TA).
+# Les entreprises de plus de 250 salariés, tous établissements confondus, redevables de la taxe d'apprentissage,
+# qui emploient plus de 4 % de jeunes en apprentissage (5 % pour la taxe payable en 2016 au titre de 2015), dans la
+# limite de 6 % d'alternants, peuvent bénéficier d'une créance à déduire du hors quota de la taxe d'apprentissage (TA).
 # Les entreprises concernées doivent calculer elles-mêmes le montant de la créance à déduire de leur TA.
-# Son montant est calculé selon la formule suivante : pourcentage d'alternants ouvrant droit à l'aide x effectif annuel moyen de l'entreprise au 31 décembre de l'année précédente x un montant forfaitaire de 400 € par alternant.
-# Par exemple, une entreprise de 300 salariés employant 6 % de salariés en alternance, ce qui porte le nombre d'alternants ouvrant droit à l'aide à 2 % (6 % - 4 %), peut bénéficier d'une prime de : 2 % x 300 x 400 = 2 400 €.
+# Son montant est calculé selon la formule suivante : pourcentage d'alternants ouvrant droit à l'aide x effectif annuel
+# moyen de l'entreprise au 31 décembre de l'année précédente x un montant forfaitaire de 400 € par alternant.
+# Par exemple, une entreprise de 300 salariés employant 6 % de salariés en alternance, ce qui porte le nombre
+# d'alternants ouvrant droit à l'aide à 2 % (6 % - 4 %), peut bénéficier d'une prime de : 2 % x 300 x 400 = 2 400 €.

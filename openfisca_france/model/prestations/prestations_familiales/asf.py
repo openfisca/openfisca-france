@@ -9,14 +9,13 @@ from ...base import *  # noqa analysis:ignore
 # from .base_ressource import nb_enf
 
 
-@reference_formula
-class asf_elig_enfant(SimpleFormulaColumn):
+class asf_elig_enfant(Variable):
     column = BoolCol(default = False)
     entity_class = Individus
     label = u"Enfant pouvant ouvrir droit à l'ASF"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
@@ -29,14 +28,13 @@ class asf_elig_enfant(SimpleFormulaColumn):
 
         return period, eligibilite
 
-@reference_formula
-class asf_enfant(SimpleFormulaColumn):
+class asf_enfant(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Montant du droit à l'ASF ouvert par l'enfant"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         asf_elig_enfant = simulation.calculate('asf_elig_enfant', period)
         pfam = simulation.legislation_at(period.start).fam
@@ -44,14 +42,13 @@ class asf_enfant(SimpleFormulaColumn):
         return period, asf_elig_enfant * pfam.af.bmaf * pfam.asf.taux1
 
 
-@reference_formula
-class asf_elig(SimpleFormulaColumn):
+class asf_elig(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"Éligibilité à l'ASF"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         pensions_alimentaires_percues_holder = simulation.compute('pensions_alimentaires_percues', period)
         pensions_alimentaires_percues = self.sum_by_entity(pensions_alimentaires_percues_holder)
 
@@ -61,15 +58,14 @@ class asf_elig(SimpleFormulaColumn):
         return period, not_(residence_mayotte) * isol * not_(pensions_alimentaires_percues)  # Parent isolé et ne résident pas à Mayotte
 
 
-@reference_formula
-class asf(SimpleFormulaColumn):
+class asf(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation de soutien familial (ASF)"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         asf_elig = simulation.calculate('asf_elig', period)
         asf_enfant_holder = simulation.compute('asf_enfant', period)

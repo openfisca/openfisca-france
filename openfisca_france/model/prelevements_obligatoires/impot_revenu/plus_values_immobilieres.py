@@ -72,8 +72,7 @@ from ...base import *  # noqa analysis:ignore
 #     return pv_net_impos
 
 
-@reference_formula
-class ir_pv_immo(SimpleFormulaColumn):
+class ir_pv_immo(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Impôt sur le revenu afférent à la plus-value immobilière"
@@ -83,7 +82,7 @@ class ir_pv_immo(SimpleFormulaColumn):
         """
         Impôt sur le revenu afférent à la plus-value immobilière (CGI, art. 150 U, 150 UC-I et 150 UD)
         """
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f3vz = simulation.calculate('f3vz', period)
         pv_immo = simulation.legislation_at(period.start).ir.pv_immo
 

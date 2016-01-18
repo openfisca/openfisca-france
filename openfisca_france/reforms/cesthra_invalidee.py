@@ -3,7 +3,7 @@
 from __future__ import division
 
 from numpy import maximum as max_
-from openfisca_core import columns, formulas, reforms
+from openfisca_core import columns, reforms
 
 from .. import entities
 from ..model.prelevements_obligatoires.impot_revenu import ir
@@ -16,15 +16,14 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    @Reform.formula
-    class cesthra(formulas.SimpleFormulaColumn):
+    class cesthra(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
         label = u"Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
         # PLF 2013 (rejeté) : 'taxe à 75%'
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
+            period = period.this_year
             salaire_imposable_holder = simulation.calculate("salaire_imposable", period)
             law_cesthra = simulation.legislation_at(period.start).cesthra
             salaire_imposable = self.split_by_roles(salaire_imposable_holder)
@@ -34,8 +33,7 @@ def build_reform(tax_benefit_system):
                 cesthra += max_(rev - law_cesthra.seuil, 0) * law_cesthra.taux
             return period, cesthra
 
-    @Reform.formula
-    class irpp(formulas.SimpleFormulaColumn):
+    class irpp(Reform.Variable):
         label = u"Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)"
         reference = ir.irpp
 
@@ -43,7 +41,7 @@ def build_reform(tax_benefit_system):
             '''
             Montant après seuil de recouvrement (hors ppe)
             '''
-            period = period.start.offset('first-of', 'year').period('year')
+            period = period.this_year
             iai = simulation.calculate('iai', period)
             credits_impot = simulation.calculate('credits_impot', period)
             cehr = simulation.calculate('cehr', period)

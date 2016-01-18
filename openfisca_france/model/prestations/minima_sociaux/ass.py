@@ -11,14 +11,13 @@ from ...base import *  # noqa analysis:ignore
 build_column('ass_precondition_remplie', BoolCol(entity = "ind", label = u"Éligible à l'ASS"))
 
 
-@reference_formula
-class ass(SimpleFormulaColumn):
+class ass(Variable):
     column = FloatCol
     label = u"Montant de l'ASS pour une famille"
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         ass_base_ressources = simulation.calculate('ass_base_ressources', period)
         ass_eligibilite_i_holder = simulation.compute('ass_eligibilite_i', period)
@@ -41,14 +40,13 @@ class ass(SimpleFormulaColumn):
         return period, ass
 
 
-@reference_formula
-class ass_base_ressources(SimpleFormulaColumn):
+class ass_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources de l'ASS"
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         ass_base_ressources_i_holder = simulation.compute('ass_base_ressources_i', period)
         ass_base_ressources_demandeur = self.filter_role(ass_base_ressources_i_holder, role = CHEF)
         ass_base_ressources_conjoint_holder = simulation.compute('ass_base_ressources_conjoint', period)
@@ -58,15 +56,17 @@ class ass_base_ressources(SimpleFormulaColumn):
         return period, result
 
 
-@reference_formula
-class ass_base_ressources_i(SimpleFormulaColumn):
+class ass_base_ressources_i(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle de l'ASS"
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
+        # Rolling year
         previous_year = period.start.period('year').offset(-1)
+        # N-1
+        last_year = period.last_year
 
         salaire_imposable = simulation.calculate_add('salaire_imposable', previous_year)
         salaire_imposable_this_month = simulation.calculate('salaire_imposable', period)
@@ -74,10 +74,17 @@ class ass_base_ressources_i(SimpleFormulaColumn):
         # Le Salaire d'une activité partielle est neutralisé en cas d'interruption
         salaire_imposable = (1 - salaire_imposable_interrompu) * salaire_imposable
         rstnet = simulation.calculate('rstnet', previous_year)
-        tns_auto_entrepreneur_benefice = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
-        tns_micro_entreprise_benefice = simulation.calculate_add('tns_micro_entreprise_benefice', period)
-        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period)
-        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
+
+        def revenus_tns():
+            revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
+
+            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year)
+            tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year)
+            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year)
+
+            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
         pensions_alimentaires_versees_individu = simulation.calculate(
             'pensions_alimentaires_versees_individu', previous_year
@@ -89,21 +96,22 @@ class ass_base_ressources_i(SimpleFormulaColumn):
 
         return period, (
             salaire_imposable + rstnet + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
-            aah + indemnites_stage + revenus_stage_formation_pro + tns_auto_entrepreneur_benefice +
-            tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+            aah + indemnites_stage + revenus_stage_formation_pro + revenus_tns()
         )
 
 
-@reference_formula
-class ass_base_ressources_conjoint(SimpleFormulaColumn):
+class ass_base_ressources_conjoint(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle pour le conjoint du demandeur de l'ASS"
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        previous_year = period.start.period('year').offset(-1)
+        period = period.this_month
         last_month = period.start.period('month').offset(-1)
+        # Rolling year
+        previous_year = period.start.period('year').offset(-1)
+        # N-1
+        last_year = period.last_year
 
         has_ressources_substitution = (
             simulation.calculate('chonet', last_month) +
@@ -138,33 +146,35 @@ class ass_base_ressources_conjoint(SimpleFormulaColumn):
         aah = calculateWithAbatement('aah')
         rstnet = calculateWithAbatement('rstnet')
         pensions_alimentaires_percues = calculateWithAbatement('pensions_alimentaires_percues')
-        tns_auto_entrepreneur_benefice = calculateWithAbatement('tns_auto_entrepreneur_benefice')
 
-        tns_micro_entreprise_benefice = simulation.calculate_add('tns_micro_entreprise_benefice', period)
-        tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', period)
-        tns_autres_revenus = simulation.calculate('tns_autres_revenus', period)
-        pensions_alimentaires_versees_individu = simulation.calculate_add(
-            'pensions_alimentaires_versees_individu', previous_year
-            )
+        def revenus_tns():
+            revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
+
+            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year)
+            tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year)
+            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year)
+
+            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+
+        pensions_alimentaires_versees_individu = simulation.calculate_add('pensions_alimentaires_versees_individu', previous_year)
 
         result = (
             salaire_imposable + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
             aah + indemnites_stage + revenus_stage_formation_pro + rstnet + chonet +
-            indemnites_journalieres + tns_auto_entrepreneur_benefice + tns_micro_entreprise_benefice +
-            tns_benefice_exploitant_agricole + tns_autres_revenus
+            indemnites_journalieres + revenus_tns()
         )
 
         return period, result
 
 
-@reference_formula
-class ass_eligibilite_i(SimpleFormulaColumn):
+class ass_eligibilite_i(Variable):
     column = BoolCol
     label = u"Éligibilité individuelle à l'ASS"
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         # 1 si demandeur d'emploi
         activite = simulation.calculate('activite', period)

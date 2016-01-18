@@ -35,8 +35,7 @@ build_column(
 ############################################################################
 
 
-@reference_formula
-class csg_deductible_chomage(SimpleFormulaColumn):
+class csg_deductible_chomage(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
@@ -44,7 +43,7 @@ class csg_deductible_chomage(SimpleFormulaColumn):
     url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         chobrut = simulation.calculate('chobrut', period)
         csg_imposable_chomage = simulation.calculate('csg_imposable_chomage', period)
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
@@ -66,8 +65,7 @@ class csg_deductible_chomage(SimpleFormulaColumn):
         return period, - csg_deductible_chomage
 
 
-@reference_formula
-class csg_imposable_chomage(SimpleFormulaColumn):
+class csg_imposable_chomage(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
@@ -75,7 +73,7 @@ class csg_imposable_chomage(SimpleFormulaColumn):
     url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         chobrut = simulation.calculate('chobrut', period)
         law = simulation.legislation_at(period.start)
 
@@ -90,8 +88,7 @@ class csg_imposable_chomage(SimpleFormulaColumn):
         return period, - csg_imposable_chomage
 
 
-@reference_formula
-class crds_chomage(SimpleFormulaColumn):
+class crds_chomage(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
@@ -99,7 +96,7 @@ class crds_chomage(SimpleFormulaColumn):
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         chobrut = simulation.calculate('chobrut', period)
         csg_deductible_chomage = simulation.calculate('csg_deductible_chomage', period)
         csg_imposable_chomage = simulation.calculate('csg_imposable_chomage', period)
@@ -126,8 +123,7 @@ class crds_chomage(SimpleFormulaColumn):
         return period, -crds_chomage
 
 
-@reference_formula
-class cho(SimpleFormulaColumn):
+class cho(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -143,8 +139,7 @@ class cho(SimpleFormulaColumn):
         return period, chobrut + csg_deductible_chomage
 
 
-@reference_formula
-class chonet(SimpleFormulaColumn):
+class chonet(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -165,8 +160,7 @@ class chonet(SimpleFormulaColumn):
 # # Pensions
 ############################################################################
 
-@reference_formula
-class csg_deductible_retraite(SimpleFormulaColumn):
+class csg_deductible_retraite(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
@@ -174,7 +168,7 @@ class csg_deductible_retraite(SimpleFormulaColumn):
     url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         rstbrut = simulation.calculate('rstbrut', period)
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
@@ -189,8 +183,7 @@ class csg_deductible_retraite(SimpleFormulaColumn):
         return period, montant_csg
 
 
-@reference_formula
-class csg_imposable_retraite(SimpleFormulaColumn):
+class csg_imposable_retraite(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
@@ -198,7 +191,7 @@ class csg_imposable_retraite(SimpleFormulaColumn):
     url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         rstbrut = simulation.calculate('rstbrut', period)
         law = simulation.legislation_at(period.start)
 
@@ -210,8 +203,7 @@ class csg_imposable_retraite(SimpleFormulaColumn):
         return period, montant_csg
 
 
-@reference_formula
-class crds_retraite(SimpleFormulaColumn):
+class crds_retraite(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Individus
@@ -219,7 +211,7 @@ class crds_retraite(SimpleFormulaColumn):
     url = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"  # noqa
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         rstbrut = simulation.calculate('rstbrut', period)
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
@@ -232,8 +224,7 @@ class crds_retraite(SimpleFormulaColumn):
         return period, montant_crds
 
 
-@reference_formula
-class casa(DatedFormulaColumn):
+class casa(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Contribution additionnelle de solidarité et d'autonomie"
@@ -241,7 +232,7 @@ class casa(DatedFormulaColumn):
 
     @dated_function(date(2013, 4, 1))
     def function_2013(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         rstbrut = simulation.calculate('rstbrut', period)
         rfr_holder = simulation.compute('rfr', period.start.offset('first-of', 'year').offset(-2, 'year').period('year'))
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
@@ -255,8 +246,7 @@ class casa(DatedFormulaColumn):
         return period, - casa
 
 
-@reference_formula
-class rst(SimpleFormulaColumn):
+class rst(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -272,8 +262,7 @@ class rst(SimpleFormulaColumn):
         return period, rstbrut + csg_deductible_retraite
 
 
-@reference_formula
-class rstnet(SimpleFormulaColumn):
+class rstnet(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -292,8 +281,7 @@ class rstnet(SimpleFormulaColumn):
         return period, rst + csg_imposable_retraite + crds_retraite
 
 
-@reference_formula
-class crds_pfam(SimpleFormulaColumn):
+class crds_pfam(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"CRDS sur les prestations familiales)"

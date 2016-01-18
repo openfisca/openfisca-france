@@ -7,14 +7,13 @@ from numpy import (round, maximum as max_, minimum as min_, logical_not as not_,
 from ...base import *  # noqa analysis:ignore
 
 
-@reference_formula
-class cf_enfant_a_charge(SimpleFormulaColumn):
+class cf_enfant_a_charge(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Complément familial - Enfant considéré à charge"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
         smic55 = simulation.calculate('smic55', period)
@@ -28,14 +27,13 @@ class cf_enfant_a_charge(SimpleFormulaColumn):
         return period, condition_age * condition_situation
 
 
-@reference_formula
-class cf_enfant_eligible(SimpleFormulaColumn):
+class cf_enfant_eligible(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Complément familial - Enfant pris en compte pour l'éligibilité"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         cf_enfant_a_charge = simulation.calculate('cf_enfant_a_charge', period)
         age = simulation.calculate('age', period)
@@ -50,14 +48,13 @@ class cf_enfant_eligible(SimpleFormulaColumn):
         return period, or_(condition_enfant, condition_jeune) * cf_enfant_a_charge
 
 
-@reference_formula
-class cf_dom_enfant_eligible(SimpleFormulaColumn):
+class cf_dom_enfant_eligible(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Complément familial (DOM) - Enfant pris en compte pour l'éligibilité"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         cf_enfant_a_charge = simulation.calculate('cf_enfant_a_charge', period)
         age = simulation.calculate('age', period)
@@ -71,14 +68,13 @@ class cf_dom_enfant_eligible(SimpleFormulaColumn):
         return period, condition_age * condition_situation
 
 
-@reference_formula
-class cf_dom_enfant_trop_jeune(SimpleFormulaColumn):
+class cf_dom_enfant_trop_jeune(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Complément familial (DOM) - Enfant trop jeune pour ouvrir le droit"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
         age = simulation.calculate('age', period)
@@ -90,14 +86,13 @@ class cf_dom_enfant_trop_jeune(SimpleFormulaColumn):
         return period, condition_age * est_enfant_dans_famille
 
 
-@reference_formula
-class cf_ressources_i(SimpleFormulaColumn):
+class cf_ressources_i(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Complément familial - Ressources de l'individu prises en compte"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         br_pf_i = simulation.calculate('br_pf_i', period)
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
@@ -106,14 +101,13 @@ class cf_ressources_i(SimpleFormulaColumn):
         return period, or_(not_(est_enfant_dans_famille), cf_enfant_a_charge) * br_pf_i
 
 
-@reference_formula
-class cf_plafond(SimpleFormulaColumn):
+class cf_plafond(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Plafond d'éligibilité au Complément Familial"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         pfam = simulation.legislation_at(period.start).fam
 
@@ -146,41 +140,38 @@ class cf_plafond(SimpleFormulaColumn):
         return period, plafond
 
 
-@reference_formula
-class cf_majore_plafond(DatedFormulaColumn):
+class cf_majore_plafond(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Plafond d'éligibilité au Complément Familial majoré"
 
     @dated_function(date(2014, 4, 1))
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         plafond_base = simulation.calculate('cf_plafond', period)
         pfam = simulation.legislation_at(period.start).fam
         return period, plafond_base * pfam.cf.plafond_cf_majore
 
 
-@reference_formula
-class cf_ressources(SimpleFormulaColumn):
+class cf_ressources(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Ressources prises en compte pour l'éligibilité au complément familial"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         cf_ressources_i_holder = simulation.compute('cf_ressources_i', period)
         ressources = self.sum_by_entity(cf_ressources_i_holder)
         return period, ressources
 
 
-@reference_formula
-class cf_eligibilite_base(SimpleFormulaColumn):
+class cf_eligibilite_base(Variable):
     column = BoolCol
     entity_class = Familles
     label = u"Éligibilité au complément familial sous condition de ressources et avant cumul"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         residence_dom = simulation.calculate('residence_dom', period)
 
@@ -189,15 +180,14 @@ class cf_eligibilite_base(SimpleFormulaColumn):
 
         return period, not_(residence_dom) * (cf_nbenf >= 3)
 
-@reference_formula
-class cf_eligibilite_dom(SimpleFormulaColumn):
+class cf_eligibilite_dom(Variable):
     column = BoolCol
     entity_class = Familles
     label = u"Éligibilité au complément familial pour les DOM sous condition de ressources et avant cumul"
 
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         residence_dom = simulation.calculate('residence_dom', period)
         residence_mayotte = simulation.calculate('residence_mayotte', period)
@@ -214,14 +204,13 @@ class cf_eligibilite_dom(SimpleFormulaColumn):
         return period, condition_composition_famille * condition_residence
 
 
-@reference_formula
-class cf_non_majore_avant_cumul(SimpleFormulaColumn):
+class cf_non_majore_avant_cumul(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Complément familial non majoré avant cumul"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         eligibilite_base = simulation.calculate('cf_eligibilite_base', period)
         eligibilite_dom = simulation.calculate('cf_eligibilite_dom', period)
@@ -247,15 +236,14 @@ class cf_non_majore_avant_cumul(SimpleFormulaColumn):
         return period, max_(eligibilite * montant, eligibilite_diff * montant_diff)
 
 
-@reference_formula
-class cf_majore_avant_cumul(DatedFormulaColumn):
+class cf_majore_avant_cumul(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Complément familial majoré avant cumul"
 
     @dated_function(date(2014, 4, 1))
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         eligibilite_base = simulation.calculate('cf_eligibilite_base', period)
         eligibilite_dom = simulation.calculate('cf_eligibilite_dom', period)
@@ -274,14 +262,13 @@ class cf_majore_avant_cumul(DatedFormulaColumn):
         return period, eligibilite * montant
 
 
-@reference_formula
-class cf_montant(SimpleFormulaColumn):
+class cf_montant(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Montant du complément familial, avant prise en compte d'éventuels cumuls"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', period)
         cf_majore_avant_cumul = simulation.calculate('cf_majore_avant_cumul', period)
@@ -289,8 +276,7 @@ class cf_montant(SimpleFormulaColumn):
         return period, max_(cf_non_majore_avant_cumul, cf_majore_avant_cumul)
 
 
-@reference_formula
-class cf(SimpleFormulaColumn):
+class cf(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -301,7 +287,7 @@ class cf(SimpleFormulaColumn):
         '''
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         paje_base_montant = simulation.calculate('paje_base_montant', period)
         apje_temp = simulation.calculate('apje_temp', period)
         ape_temp = simulation.calculate('ape_temp', period)

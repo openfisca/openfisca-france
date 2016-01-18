@@ -56,6 +56,14 @@ def test_decomposition_xml_files():
         yield check_decomposition_xml_file, file_path
 
 
-if __name__ == '__main__':
-    import nose
-    nose.core.runmodule(argv = [__file__, '-v', 'test_decompositions:test_decomposition_xml_files'])
+def test_decomposition_calculate():
+    decompositions_directory = base.tax_benefit_system.DECOMP_DIR
+    xml_file_path = os.path.join(decompositions_directory, base.tax_benefit_system.DEFAULT_DECOMP_FILE)
+    decomposition_json = decompositions.get_decomposition_json(base.tax_benefit_system, xml_file_path)
+    year = 2013
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+        period = year,
+        parent1 = {},
+        ).new_simulation(debug = True)
+    decomposition = decompositions.calculate([simulation], decomposition_json)
+    assert isinstance(decomposition, dict)

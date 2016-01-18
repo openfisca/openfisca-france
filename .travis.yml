@@ -8,7 +8,7 @@ install:
   - pip install -r requirements.txt
 language: python
 python: "2.7"
-script: make test-ci
+script: bash run-travis-tests.sh
 sudo: false
 virtualenv:
   system_site_packages: true

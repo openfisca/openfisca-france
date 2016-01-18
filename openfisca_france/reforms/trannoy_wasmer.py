@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# TODO switch to to average tax rates
-
 from __future__ import division
 
 from numpy import logical_not as not_, minimum as min_
-from openfisca_core import columns, formulas, reforms
+from openfisca_core import columns, reforms
 
 from .. import entities
 from ..model.base import PREF
@@ -19,27 +17,25 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    @Reform.formula
-    class charges_deduc(formulas.SimpleFormulaColumn):
+    class charges_deduc(Reform.Variable):
         label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
         reference = charges_deductibles.charges_deduc
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
+            period = period.this_year
             cd1 = simulation.calculate('cd1', period)
             cd2 = simulation.calculate('cd2', period)
             charge_loyer = simulation.calculate('charge_loyer', period)
 
             return period, cd1 + cd2 + charge_loyer
 
-    @Reform.formula
-    class charge_loyer(formulas.SimpleFormulaColumn):
+    class charge_loyer(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.FoyersFiscaux
         label = u"Charge déductible pour paiement d'un loyer"
 
         def function(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
+            period = period.this_year
             loyer_holder = simulation.calculate('loyer', period)
             nbptr = simulation.calculate('nbptr', period)
             loyer = self.cast_from_entity_to_role(loyer_holder, entity = "menage", role = PREF)

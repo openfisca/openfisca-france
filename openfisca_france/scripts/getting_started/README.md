@@ -1,6 +1,6 @@
 # Getting started scripts
 
 These scripts are mentioned in the
-[getting started](http://www.openfisca.fr/documentation/getting-started.html)
+[getting started](http://doc.openfisca.fr/getting-started.html)
 section of the
-[OpenFisca documentation](http://www.openfisca.fr/documentation).
+[OpenFisca documentation](http://doc.openfisca.fr/).

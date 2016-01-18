@@ -200,15 +200,14 @@ build_column('f6fl', IntCol(entity = 'foy',
                 cerfa_field = u'6FL'))
 
 
-@reference_formula
-class rfr_cd(SimpleFormulaColumn):
+class rfr_cd(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Charges déductibles entrant dans le revenus fiscal de référence"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_doment = simulation.calculate('cd_doment', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
@@ -217,8 +216,7 @@ class rfr_cd(SimpleFormulaColumn):
         return period, cd_acc75a + cd_doment + cd_eparet + cd_sofipe
 
 
-@reference_formula
-class cd1(DatedFormulaColumn):
+class cd1(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Charges déductibles non plafonnées"
@@ -229,7 +227,7 @@ class cd1(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2002
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         cd_penali = simulation.calculate('cd_penali', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_percap = simulation.calculate('cd_percap', period)
@@ -244,7 +242,7 @@ class cd1(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2004
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         cd_penali = simulation.calculate('cd_penali', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_percap = simulation.calculate('cd_percap', period)
@@ -260,7 +258,7 @@ class cd1(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2006
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         cd_penali = simulation.calculate('cd_penali', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_percap = simulation.calculate('cd_percap', period)
@@ -275,7 +273,7 @@ class cd1(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2007
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         cd_penali = simulation.calculate('cd_penali', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
@@ -289,7 +287,7 @@ class cd1(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2009
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         cd_penali = simulation.calculate('cd_penali', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
@@ -304,7 +302,7 @@ class cd1(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2014
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         cd_penali = simulation.calculate('cd_penali', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
@@ -316,8 +314,7 @@ class cd1(DatedFormulaColumn):
         return period, niches1
 
 
-@reference_formula
-class cd2(DatedFormulaColumn):
+class cd2(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Charges déductibles plafonnées"
@@ -328,7 +325,7 @@ class cd2(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         cd_sofipe = simulation.calculate('cd_sofipe', period)
         cd_cinema = simulation.calculate('cd_cinema', period)
 
@@ -340,7 +337,7 @@ class cd2(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         cd_sofipe = simulation.calculate('cd_sofipe', period)
 
         niches2 = cd_sofipe
@@ -351,44 +348,41 @@ class cd2(DatedFormulaColumn):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         cd_ecodev = simulation.calculate('cd_ecodev', period)
 
         niches2 = cd_ecodev
         return period, niches2
 
 
-@reference_formula
-class rbg_int(SimpleFormulaColumn):
+class rbg_int(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Revenu brut global intermédiaire"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rbg = simulation.calculate('rbg', period)
         cd1 = simulation.calculate('cd1', period)
 
         return period, max_(rbg - cd1, 0)
 
 
-@reference_formula
-class charges_deduc(SimpleFormulaColumn):
+class charges_deduc(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Charges déductibles"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         cd1 = simulation.calculate('cd1', period)
         cd2 = simulation.calculate('cd2', period)
 
         return period, cd1 + cd2
 
 
-@reference_formula
-class cd_penali(SimpleFormulaColumn):
+class cd_penali(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_penali"
@@ -398,7 +392,7 @@ class cd_penali(SimpleFormulaColumn):
         '''
         Pensions alimentaires
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f6gi = simulation.calculate('f6gi', period)
         f6gj = simulation.calculate('f6gj', period)
         f6gp = simulation.calculate('f6gp', period)
@@ -420,8 +414,7 @@ class cd_penali(SimpleFormulaColumn):
                     f6gp * (1 + taux_jgt_2006) + f6gu)
 
 
-@reference_formula
-class cd_acc75a(SimpleFormulaColumn):
+class cd_acc75a(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_acc75a"
@@ -430,7 +423,7 @@ class cd_acc75a(SimpleFormulaColumn):
         '''
         Frais d’accueil sous votre toit d’une personne de plus de 75 ans
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f6eu = simulation.calculate('f6eu', period)
         f6ev = simulation.calculate('f6ev', period)
         acc75a = simulation.legislation_at(period.start).ir.charges_deductibles.acc75a
@@ -439,8 +432,7 @@ class cd_acc75a(SimpleFormulaColumn):
         return period, min_(f6eu, amax)
 
 
-@reference_formula
-class cd_percap(DatedFormulaColumn):
+class cd_percap(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_percap"
@@ -452,7 +444,7 @@ class cd_percap(DatedFormulaColumn):
         nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
         complémentaire)
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f6cb = simulation.calculate('f6cb', period)
         marpac = simulation.calculate('marpac', period)
         percap = simulation.legislation_at(period.start).ir.charges_deductibles.percap
@@ -467,7 +459,7 @@ class cd_percap(DatedFormulaColumn):
         nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
         complémentaire)
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f6cb = simulation.calculate('f6cb', period)
         f6da = simulation.calculate('f6da', period)
         marpac = simulation.calculate('marpac', period)
@@ -478,8 +470,7 @@ class cd_percap(DatedFormulaColumn):
         return period, min_(min_(f6cb, max_cb) + min_(f6da, max_da), max_da)
 
 
-@reference_formula
-class cd_deddiv(SimpleFormulaColumn):
+class cd_deddiv(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_deddiv"
@@ -488,14 +479,13 @@ class cd_deddiv(SimpleFormulaColumn):
         '''
         Déductions diverses (case DD)
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f6dd = simulation.calculate('f6dd', period)
 
         return period, f6dd
 
 
-@reference_formula
-class cd_doment(SimpleFormulaColumn):
+class cd_doment(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_doment"
@@ -508,14 +498,13 @@ class cd_doment(SimpleFormulaColumn):
         déclaration n° 2042 complémentaire)
         2002-2005
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f6eh = simulation.calculate('f6eh', period)
 
         return period, f6eh
 
 
-@reference_formula
-class cd_eparet(SimpleFormulaColumn):
+class cd_eparet(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_eparet"
@@ -526,7 +515,7 @@ class cd_eparet(SimpleFormulaColumn):
         Épargne retraite - PERP, PRÉFON, COREM et CGOS
         2004-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f6ps_holder = simulation.compute('f6ps', period)
         f6rs_holder = simulation.compute('f6rs', period)
         f6ss_holder = simulation.compute('f6ss', period)
@@ -553,8 +542,7 @@ class cd_eparet(SimpleFormulaColumn):
                 (f6pu != 0) * min_(f6ru + f6su, f6pu))
 
 
-@reference_formula
-class cd_sofipe(SimpleFormulaColumn):
+class cd_sofipe(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_sofipe"
@@ -567,7 +555,7 @@ class cd_sofipe(SimpleFormulaColumn):
         complémentaire)
         2002-2006
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f6cc = simulation.calculate('f6cc', period)
         rbg_int = simulation.calculate('rbg_int', period)
         marpac = simulation.calculate('marpac', period)
@@ -577,8 +565,7 @@ class cd_sofipe(SimpleFormulaColumn):
         return period, min_(f6cc, max1)
 
 
-@reference_formula
-class cd_cinema(SimpleFormulaColumn):
+class cd_cinema(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_cinema"
@@ -591,7 +578,7 @@ class cd_cinema(SimpleFormulaColumn):
         déclaration n° 2042 complémentaire)
         2002-2005
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f6aa = simulation.calculate('f6aa', period)
         rbg_int = simulation.calculate('rbg_int', period)
         cinema = simulation.legislation_at(period.start).ir.charges_deductibles.cinema
@@ -600,8 +587,7 @@ class cd_cinema(SimpleFormulaColumn):
         return period, min_(f6aa, max1)
 
 
-@reference_formula
-class cd_ecodev(SimpleFormulaColumn):
+class cd_ecodev(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_ecodev"
@@ -614,7 +600,7 @@ class cd_ecodev(SimpleFormulaColumn):
         complémentaire)
         2007-2008
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f6eh = simulation.calculate('f6eh', period)
         rbg_int = simulation.calculate('rbg_int', period)
         ecodev = simulation.legislation_at(period.start).ir.charges_deductibles.ecodev
@@ -623,8 +609,7 @@ class cd_ecodev(SimpleFormulaColumn):
         return period, min_(f6eh, max1)
 
 
-@reference_formula
-class cd_grorep(SimpleFormulaColumn):
+class cd_grorep(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cd_grorep"
@@ -635,7 +620,7 @@ class cd_grorep(SimpleFormulaColumn):
         Dépenses de grosses réparations des nus-propriétaires (case 6CB et 6HJ)
         2009-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f6cb = simulation.calculate('f6cb', period)
         f6hj = simulation.calculate('f6hj', period)
         f6hk = simulation.calculate('f6hk', period)

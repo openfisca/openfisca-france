@@ -8,8 +8,7 @@ from ...base import *  # noqa analysis:ignore
 from .base_ressource import nb_enf
 
 
-@reference_formula
-class ars(SimpleFormulaColumn):
+class ars(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation de rentrée scolaire"
@@ -19,7 +18,7 @@ class ars(SimpleFormulaColumn):
         '''
         Allocation de rentrée scolaire brute de CRDS
         '''
-        period_br = period.start.offset('first-of', 'year').period('year')
+        period_br = period.this_year
         period = period.start.offset('first-of', 'year').offset(9, 'month').period('month')
         age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
