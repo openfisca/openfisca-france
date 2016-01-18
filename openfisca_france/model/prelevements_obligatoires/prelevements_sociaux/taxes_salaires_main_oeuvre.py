@@ -317,7 +317,7 @@ class taux_versement_transport(Variable):
             )
         # "L'entreprise emploie-t-elle plus de 9 salariés  dans le périmètre de l'Autorité organisatrice de transport
         # (AOT) suivante ou syndicat mixte de transport (SMT)"
-        return period, (taux_aot + taux_smt) * or_(effectif_entreprise > seuil_effectif, public) / 100
+        return period, (taux_aot + taux_smt) * or_(effectif_entreprise >= seuil_effectif, public) / 100
 
 
 class versement_transport(Variable):
