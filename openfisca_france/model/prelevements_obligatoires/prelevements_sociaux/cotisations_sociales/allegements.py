@@ -36,6 +36,7 @@ class allegement_fillon(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
+    # Attention : cet allègement a des règles de cumul spécifiques
 
     @dated_function(date(2005, 7, 1))
     def function(self, simulation, period):
