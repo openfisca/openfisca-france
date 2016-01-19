@@ -323,38 +323,6 @@
   </NODE>
   <NODE code="pat" description="employeur">
     <NODE code="cadre" description="Spécifiques aux cadres">
-      <BAREME code="agffc" description="AGFF" option="contrib">
-        <TRANCHE code="tranche0">
-          <SEUIL>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
-            <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur=".012" />
-            <VALUE deb="2001-04-01" fin="2014-12-31" valeur=".012" />
-          </TAUX>
-        </TRANCHE>
-        <TRANCHE code="tranche1">
-          <SEUIL>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
-            <VALUE deb="2001-04-01" fin="2014-12-31" valeur="1" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.013" />
-            <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0.013" />
-          </TAUX>
-        </TRANCHE>
-        <TRANCHE code="tranche2">
-          <SEUIL>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="4" />
-            <VALUE deb="2001-04-01" fin="2014-12-31" valeur="4" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
-            <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0" />
-          </TAUX>
-        </TRANCHE>
-      </BAREME>
       <BAREME code="agirc" description="Retraite complémentaire AGIRC (Tranche B et C)" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>

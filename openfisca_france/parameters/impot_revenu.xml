@@ -3469,7 +3469,9 @@
     <NODE code="micro" description="Régime microentreprise/Spécial bnc">
       <NODE code="imputation_sur_le_revenu_global">
         <CODE code="plafond_deficits_agricoles" format="float" type="monetary">
-          <VALUE deb="2011-01-01" fuzzy="true" valeur="106225" />
+          <VALUE deb="2014-01-01" fuzzy="true" valeur="107610" />
+          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="107075" />
+          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="106225" />
           <VALUE deb="2010-01-01" fin="2010-12-31" valeur="104665" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="104238" />
           <VALUE deb="2007-01-01" fin="2008-12-31" valeur="101300" />

@@ -170,6 +170,20 @@ def transform_ipp_tree(root):
         'baremes_ipp_prelevements_sociaux_social_security_contributions')
     prelevements_sociaux['cotisations_sociales'] = cotisations_sociales = {}
     #
+    cotisations_sociales['agff'] = agff = prelevements_sociaux.pop('agff')
+    tranche_1_a = agff.pop('tranche_1_a')
+    tranche_2 = agff.pop('tranche_2')
+    agff['employeur'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_1 = 0,
+            tranche_2 = 1,
+            ),
+        null_rate_base = 3,
+        rates_tree = dict(
+            tranche_1 = tranche_1_a.pop('employeur'),
+            tranche_2 = tranche_2.pop('employeur'),
+            ),
+        )
     cotisations_sociales['agirc'] = agirc = prelevements_sociaux.pop('agirc')
     taux_effectifs_salaries_employeurs = agirc.pop('taux_effectifs_salaries_employeurs')
     tranche_b_avant_81 = taux_effectifs_salaries_employeurs.pop('tranche_b_avant_81')

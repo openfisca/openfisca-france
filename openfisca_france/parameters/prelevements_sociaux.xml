@@ -27,32 +27,6 @@
       <VALUE deb="1991-01-01" fin="1991-12-31" valeur="0.013" />
     </CODE>
   </NODE>
-  <NODE code="agff">
-    <NODE code="tranche_1_a">
-      <CODE code="employeur" format="percent">
-        <VALUE deb="2001-04-01" fuzzy="true" valeur="0.012" />
-      </CODE>
-      <CODE code="salarie" format="percent">
-        <VALUE deb="2001-04-01" fuzzy="true" valeur="0.008" />
-      </CODE>
-    </NODE>
-    <NODE code="tranche_2">
-      <CODE code="employeur" format="percent">
-        <VALUE deb="2001-04-01" fuzzy="true" valeur="0.013" />
-      </CODE>
-      <CODE code="salarie" format="percent">
-        <VALUE deb="2001-04-01" fuzzy="true" valeur="0.009" />
-      </CODE>
-    </NODE>
-    <NODE code="tranche_b">
-      <CODE code="employeur" format="percent">
-        <VALUE deb="2001-04-01" fuzzy="true" valeur="0.013" />
-      </CODE>
-      <CODE code="salarie" format="percent">
-        <VALUE deb="2001-04-01" fuzzy="true" valeur="0.009" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="alleg_gen">
     <NODE code="dispositifs_de_reductions_des_cotisations_famille_1993_1996">
       <CODE code="0_1_1_smic" format="percent">
@@ -431,6 +405,42 @@
     </NODE>
   </NODE>
   <NODE code="cotisations_sociales">
+    <NODE code="agff">
+      <BAREME code="employeur" description="AGFF">
+        <TRANCHE code="tranche_1">
+          <SEUIL>
+            <VALUE deb="2001-04-01" fuzzy="true" valeur="0" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2001-04-01" fuzzy="true" valeur="0.012" />
+          </TAUX>
+        </TRANCHE>
+        <TRANCHE code="tranche_2">
+          <SEUIL>
+            <VALUE deb="2001-04-01" fuzzy="true" valeur="1" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2001-04-01" fuzzy="true" valeur="0.013" />
+          </TAUX>
+        </TRANCHE>
+        <TRANCHE code="tranche_nulle">
+          <SEUIL>
+            <VALUE deb="2001-04-01" fuzzy="true" valeur="3" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2001-04-01" fuzzy="true" valeur="0" />
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+      <NODE code="tranche_b">
+        <CODE code="employeur" format="percent">
+          <VALUE deb="2001-04-01" fuzzy="true" valeur="0.013" />
+        </CODE>
+        <CODE code="salarie" format="percent">
+          <VALUE deb="2001-04-01" fuzzy="true" valeur="0.009" />
+        </CODE>
+      </NODE>
+    </NODE>
     <NODE code="agirc">
       <BAREME code="employeur">
         <TRANCHE code="tranche_a">
@@ -2008,7 +2018,8 @@
         <VALUE deb="1986-01-01" fin="1988-12-31" valeur="0.0013" />
       </CODE>
       <CODE code="sous_pss" format="percent">
-        <VALUE deb="1991-07-01" fuzzy="true" valeur="0.004" />
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.005" />
+        <VALUE deb="1991-07-01" fin="2014-12-31" valeur="0.004" />
         <VALUE deb="1989-01-01" fin="1991-06-30" valeur="0.002" />
         <VALUE deb="1986-01-01" fin="1988-12-31" valeur="0.0013" />
       </CODE>
@@ -2048,7 +2059,8 @@
     </NODE>
     <NODE code="employeur_tout_salaire">
       <CODE code="20_salaries_et_plus" format="percent">
-        <VALUE deb="2004-01-01" fuzzy="true" valeur="0.016" />
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.01" />
+        <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.016" />
         <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
         <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
         <VALUE deb="1987-01-01" fin="1991-12-31" valeur="0.012" />
@@ -2057,7 +2069,8 @@
         <VALUE deb="1972-01-01" fin="1973-12-31" valeur="0.008" />
       </CODE>
       <CODE code="de_10_a_19_salaries" format="percent">
-        <VALUE deb="2005-01-01" fuzzy="true" valeur="0.0105" />
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.01" />
+        <VALUE deb="2005-01-01" fin="2014-12-31" valeur="0.0105" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.016" />
         <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
         <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
