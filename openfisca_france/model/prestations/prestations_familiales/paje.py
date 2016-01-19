@@ -147,7 +147,7 @@ class paje_base_enfant_eligible_avant_reforme_2014(Variable):
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
         birth = simulation.calculate('birth', period)
-        ne_avant_2014 =  (datetime64('2014-04-01') - birth) > 0
+        ne_avant_2014 = datetime64('2014-04-01') > birth
         age_limite = simulation.legislation_at(period.start).fam.paje.base.age
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
@@ -165,7 +165,7 @@ class paje_base_enfant_eligible_apres_reforme_2014(Variable):
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
         birth = simulation.calculate('birth', period)
-        ne_avant_2014 =  (datetime64('2014-04-01') - birth) > 0
+        ne_avant_2014 = datetime64('2014-04-01') > birth
         age_limite = simulation.legislation_at(period.start).fam.paje.base.age
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
