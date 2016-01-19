@@ -173,17 +173,56 @@ def transform_ipp_tree(root):
     cotisations_sociales['agff'] = agff = prelevements_sociaux.pop('agff')
     tranche_1_a = agff.pop('tranche_1_a')
     tranche_2 = agff.pop('tranche_2')
-    agff['employeur'] = fixed_bases_tax_scale(
+    tranche_b = agff.pop('tranche_b')
+    tranche_1_a_employeur = tranche_1_a.pop('employeur')
+    tranche_1_a_salarie = tranche_1_a.pop('salarie')
+    agff['employeur'] = dict()
+    agff['employeur']['non_cadre'] = fixed_bases_tax_scale(
         base_by_slice_name = dict(
             tranche_1 = 0,
             tranche_2 = 1,
             ),
         null_rate_base = 3,
         rates_tree = dict(
-            tranche_1 = tranche_1_a.pop('employeur'),
+            tranche_1 = tranche_1_a_employeur,
             tranche_2 = tranche_2.pop('employeur'),
             ),
         )
+    agff['employeur']['cadre'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_1 = 0,
+            tranche_2 = 1,
+            ),
+        null_rate_base = 4,
+        rates_tree = dict(
+            tranche_1 = tranche_1_a_employeur,
+            tranche_2 = tranche_b.pop('employeur'),
+            ),
+        )
+    agff['salarie'] = dict()
+    agff['salarie']['non_cadre'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_1 = 0,
+            tranche_2 = 1,
+            ),
+        null_rate_base = 3,
+        rates_tree = dict(
+            tranche_1 = tranche_1_a_salarie,
+            tranche_2 = tranche_2.pop('salarie'),
+            ),
+        )
+    agff['salarie']['cadre'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_1 = 0,
+            tranche_2 = 1,
+            ),
+        null_rate_base = 4,
+        rates_tree = dict(
+            tranche_1 = tranche_1_a_salarie,
+            tranche_2 = tranche_b.pop('salarie'),
+            ),
+        )
+
     cotisations_sociales['agirc'] = agirc = prelevements_sociaux.pop('agirc')
     taux_effectifs_salaries_employeurs = agirc.pop('taux_effectifs_salaries_employeurs')
     tranche_b_avant_81 = taux_effectifs_salaries_employeurs.pop('tranche_b_avant_81')

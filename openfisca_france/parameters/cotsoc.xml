@@ -996,38 +996,6 @@
       </NODE>
     </NODE>
     <NODE code="noncadre" description="Non cadres">
-      <BAREME code="agffnc" description="Cotisation AGFF" option="contrib">
-        <TRANCHE code="tranche0">
-          <SEUIL>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
-            <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur=".012" />
-            <VALUE deb="2001-04-01" fin="2014-12-31" valeur=".012" />
-          </TAUX>
-        </TRANCHE>
-        <TRANCHE code="tranche1">
-          <SEUIL>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
-            <VALUE deb="2001-04-01" fin="2014-12-31" valeur="1" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.013" />
-            <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0.013" />
-          </TAUX>
-        </TRANCHE>
-        <TRANCHE code="tranche2">
-          <SEUIL>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
-            <VALUE deb="2001-04-01" fin="2014-12-31" valeur="3" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
-            <VALUE deb="2001-04-01" fin="2014-12-31" valeur="0" />
-          </TAUX>
-        </TRANCHE>
-      </BAREME>
       <BAREME code="arrco" description="Retraite complémentaire" option="contrib">
         <TRANCHE code="tranche0">
           <SEUIL>

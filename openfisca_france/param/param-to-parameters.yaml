@@ -24,10 +24,11 @@ impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles.max_da: im
 impot_revenu.rpns.microentreprise: impot_revenu.rpns.micro
 impot_revenu.rpns.micro.vente: impot_revenu.rpns.micro.specialbnc.marchandises
 impot_revenu.rpns.micro.servi: impot_revenu.rpns.micro.specialbnc.services
-impot_revenu.rpns.micro.specialbnc.max: null  # using srveices since they are the same
+impot_revenu.rpns.micro.specialbnc.max: null  # using services since they are the same
 impot_revenu.rpns.micro.specialbnc.min: null  # using services since they are the same
 impot_revenu.microfoncier: impot_revenu.rpns.micro.microfoncier
-cotsoc.pat.cadre.agffc: prelevements_sociaux.cotisations_sociales.agff.employeur
+cotsoc.pat.cadre.agffc: prelevements_sociaux.cotisations_sociales.agff.employeur.cadre
+cotsoc.pat.noncadre.agffnc: prelevements_sociaux.cotisations_sociales.agff.employeur.non_cadre
 csg: prelevements_sociaux.csg
 prelsoc: taxation_capital.prelevements_sociaux
 taxation_capital.prelevements_sociaux.base_pat: taxation_capital.prelevements_sociaux.prelevement_social.revenus_du_patrimoine
