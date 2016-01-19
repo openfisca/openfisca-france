@@ -46,8 +46,8 @@
   input_variables:
     salaire_imposable: 14000
   output_variables:
-    # irpp: 0
-    #decote_gain_fiscal: 238
+     irpp: 0
+     decote_gain_fiscal: 238
 - name: "IRPP - Célibataire ayant des 	Revenu net imposable de 16000 € (teste la décote)" # TODO: Test fail
   period: 2013
   absolute_error_margin: 0.9 # TODO: check why the error margin is so large, is there bottom round made by dgfip ?
