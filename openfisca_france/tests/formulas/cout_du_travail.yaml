@@ -1,0 +1,35 @@
+- period: "2015-11"
+  name: Cout du travail
+  description: >
+    Dans le cas d'une première embauche (effectif = 1) et en CDI,
+    le coût du travail final est plus faible que le salaire super brut,
+    grâce à l'aide à la première embauche mensuelle de 167 € et
+    au CICE de 87,45
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1457.52
+    # necessary when requesting on a 1 month salary :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 1
+    contrat_de_travail_debut: 2015-07-01
+  output_variables:
+    salaire_super_brut: 1664
+    cout_du_travail: 1410
+    salaire_super_brut_hors_allegements: 2071
+    salaire_net: 1136
+    cotisations_employeur: -613.5
+    allegement_fillon: 407
+    aide_premier_salarie: 166.7
+    credit_impot_competitivite_emploi: 87.5
+- period: "2015-11"
+  name: Cout du travail micro entreprise ayant déjà des employés
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1457.52
+    # necessary when requesting on a 1 month salary :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 2
+    contrat_de_travail_debut: 2015-07-01
+  output_variables:
+    salaire_super_brut: 1664
+    cout_du_travail: 1576

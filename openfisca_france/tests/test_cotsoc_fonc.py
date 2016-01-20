@@ -72,7 +72,7 @@ def test():
                 crds_salaire = -12.58,
                 indemnite_residence = 60,
                 salaire_net = 2147.26,
-                salsuperbrut = 4328.40 + 2000 * (0.0175 - 0.026),  # Correction transport
+                salaire_super_brut = 4328.40 + 2000 * (0.0175 - 0.026),  # Correction transport
                 ),
             ),
         dict(
@@ -124,7 +124,7 @@ def test():
                 crds_salaire = -12.58,
                 indemnite_residence = 60,
                 salaire_net = 2147.26,
-                salsuperbrut = 3542 + 2000 * (0.0175 - 0.026),
+                salaire_super_brut = 3542 + 2000 * (0.0175 - 0.026),
                 ),
             ),
         dict(
@@ -179,7 +179,7 @@ def test():
                 crds_salaire = -12.58,
                 indemnite_residence = 60,
                 salaire_net = 2147.26,
-                salsuperbrut = 3562 + 2000 * (0.0175 - 0.026),
+                salaire_super_brut = 3562 + 2000 * (0.0175 - 0.026),
                 ),
             ),
         dict(
@@ -240,7 +240,7 @@ def test():
                 crds_salaire = -12.58,
                 indemnite_residence = 60,
                 # salaire_net = 2091.20, # TODO: Trouver source extérieur site IPP buggé
-                # salsuperbrut = 3367.36 + 2560 * (0.0175 - 0.026),
+                # salaire_super_brut = 3367.36 + 2560 * (0.0175 - 0.026),
                 ),
             ),
         dict(
@@ -297,7 +297,7 @@ def test():
                 csg_imposable_salaire = -62.09,
                 indemnite_residence = 60,
                 # salaire_net = 2213.83,
-                salsuperbrut = 4401.44 + 2000 * (.0175 - .026),
+                salaire_super_brut = 4401.44 + 2000 * (.0175 - .026),
                 supp_familial_traitement = 73.04,
                 ),
             ),
@@ -362,7 +362,7 @@ def test():
                 # csg_deductible_salaire = -131.94 * 2, # TODO: Gérer un seulf sft
                 # csg_imposable_salaire = -62.09 * 2,  # # TODO: Gérer un seulf sft
                 indemnite_residence = 240 * 2 / 12,
-                salsuperbrut = (2000 + 500 + 20 + 1751.4) * 2 + 73.04,
+                salaire_super_brut = (2000 + 500 + 20 + 1751.4) * 2 + 73.04,
                 supp_familial_traitement = 73.04,
                 ),
             ),

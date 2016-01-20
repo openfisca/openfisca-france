@@ -35,7 +35,7 @@ input_variables:
   type_sal: 0  # non cadre
   volume_jours_ijss: 0
 output_variables:
-  IGNORE_salsuperbrut: 0
+  IGNORE_salaire_super_brut: 0
   remboursement_transport: 0
 
   # # cotisations_employeur_contributives: 0

@@ -32,7 +32,7 @@ input_variables:
   type_sal: 1  # non cadre
   volume_jours_ijss: 0
 output_variables:
-  # salsuperbrut: 0
+  # salaire_super_brut: 0
   # cotisations_employeur: 0
   remboursement_transport: 0
   ircantec_employeur: 0
