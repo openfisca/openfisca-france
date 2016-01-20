@@ -59,7 +59,6 @@ class plf_handicap(Variable):
         plf_handicap = plf_handicap + suppl_enfant
 
         plf_handicap = plf_handicap - deduction_garde_alternee
-        print plf_handicap
         return period, plf_handicap
 
 class paris_logement_familles(Variable):
