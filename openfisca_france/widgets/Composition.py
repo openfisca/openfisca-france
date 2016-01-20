@@ -62,7 +62,7 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
         'salaire_imposable': {
             'name': 'salaire_imposable',
             'typ_tot': {
-                'salsuperbrut': 'Salaire super brut',
+                'salaire_super_brut': 'Salaire super brut',
                 'salbrut': 'Salaire brut',
                 'salaire_imposable': 'Salaire imposable',
                 'salaire_net': 'Salaire net'

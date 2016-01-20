@@ -6,7 +6,7 @@ from functools import partial
 import logging
 
 from numpy import (
-    busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, maximum as max_,
+    busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, logical_and as and_, maximum as max_,
     minimum as min_, round as round_, timedelta64
     )
 
@@ -14,7 +14,7 @@ from ....base import *  # noqa analysis:ignore
 from .....assets.holidays import holidays
 
 log = logging.getLogger(__name__)
-
+from openfisca_core import periods
 
 class assiette_allegement(Variable):
     base_function = requested_period_added_value
@@ -140,6 +140,58 @@ class credit_impot_competitivite_emploi(DatedVariable):
         non_cumul = (jeune_entreprise_innovante == 0 + stagiaire) > 0
 
         return period, credit_impot_competitivite_emploi * non_cumul
+
+
+class aide_premier_salarie(DatedVariable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Aide à l'embauche d'un premier salarié"
+
+    @dated_function(start = date(2015, 6, 9))
+    def function(self, simulation, period):
+        period = period.this_month
+        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
+        apprenti = simulation.calculate('apprenti', period)
+        contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
+        contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
+        coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
+
+        # Cette aide est temporaire.
+        # TODO : Si toutefois elle est reconduite en 2016, les dates et le montant seront à implémenter comme des params xml.
+
+        contrat_eligible = and_(
+            contrat_de_travail_debut >= datetime64("2015-06-09"),
+            contrat_de_travail_debut <= datetime64("2016-06-08")
+        )
+        # Si CDD, durée du contrat doit être > 1 an
+        duree_eligible = or_(
+            # durée indéterminée
+            contrat_de_travail_duree == 0,
+            # durée déterminée supérieure à 1 an
+            and_(
+                contrat_de_travail_duree == 1,
+                contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')),
+            )
+
+
+        date_eligible = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
+
+        eligible = \
+            (effectif_entreprise == 1) * not_(apprenti) * contrat_eligible * duree_eligible * date_eligible
+
+        # somme sur 24 mois, à raison de 500 € maximum par trimestre
+        montant_max = 4000
+
+        # TODO comment implémenter la condition "premier employé" ? L'effectif est insuffisant en cas de rupture d'un premier contrat
+        # Condition : l’entreprise n’a pas conclu de contrat de travail avec un salarié,
+        # au-delà de la période d’essai, dans les 12 mois précédant la nouvelle
+        # embauche.
+
+        # Si le salarié est embauché à temps partiel,
+        # l’aide est proratisée en fonction de sa durée de travail.
+        # TODO cette multiplication par le coefficient de proratisation suffit-elle pour le cas du temps partiel ? A tester
+        return period, eligible * (montant_max / 24) * coefficient_proratisation
 
 
 class smic_proratise(Variable):

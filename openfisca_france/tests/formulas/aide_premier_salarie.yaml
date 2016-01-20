@@ -1,0 +1,89 @@
+- period: "2015-11"
+  name: Base
+  description: >
+    Aide à l'embauche d'un premier salarié.
+    Le montant total de l’aide est égal à 4 000 €,
+    réparti sur 24 mois maximum, à raison de 500 €
+    sur chaque période de 3 mois d’exécution du contrat de travail.
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1457.52
+    # necessary when requesting on a 1 month salary :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 1
+    contrat_de_travail_debut: 2015-07-01
+  output_variables:
+    aide_premier_salarie: 166.67
+
+- period: "2015-11"
+  name: Pas le premier salarier
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1457.52
+    # necessary when requesting on a 1 month salary :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 2
+  output_variables:
+    aide_premier_salarie: 0
+
+- period: "2015-11"
+  name: Le CDD doit être de plus de 12 mois
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1457.52
+    # necessary when requesting on a 1 month salary :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 1
+    contrat_de_travail_duree: 1 # CDD
+    contrat_de_travail_debut: 2015-07-01
+    contrat_de_travail_fin: 2016-07-01
+  output_variables:
+    aide_premier_salarie: 166.67
+
+- period: "2015-11"
+  name: Le CDD est < 12 mois
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1457.52
+    # necessary when requesting on a 1 month salary :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 1
+    contrat_de_travail_duree: 1 # CDD
+    # supérieur à 1 an :
+    contrat_de_travail_debut: 2015-07-01
+    contrat_de_travail_fin: 2016-06-30
+  output_variables:
+    aide_premier_salarie: 0
+
+
+- period: "2015-11"
+  name: Temps partiel
+  description: >
+    Si le salarié est embauché à temps partiel, l’aide est proratisée
+    en fonction de sa durée de travail.
+    TODO : ajouter une input_variable temps partiel et changer l'output_variable en conséquence
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1457.52
+    # necessary when requesting on a 1 month salary :
+    allegement_fillon_mode_recouvrement: 1
+    contrat_de_travail_debut: 2015-07-01
+    effectif_entreprise: 1
+  output_variables:
+    aide_premier_salarie: 166.67
+
+
+- period: "2017-07"
+  name: L'aide n'est plus disponible 2 ans après
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1457.52
+    # necessary when requesting on a 1 month salary :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 1
+    contrat_de_travail_duree: 1 # CDD
+    # supérieur à 1 an :
+    contrat_de_travail_debut: "2015-07-01"
+    contrat_de_travail_fin: "2019-06-30"
+  output_variables:
+    aide_premier_salarie: 0

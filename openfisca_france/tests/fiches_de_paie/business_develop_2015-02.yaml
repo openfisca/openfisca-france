@@ -81,4 +81,4 @@ output_variables:
   hsup: 0
   depense_cantine_titre_restaurant_employe: 0
   salaire_net_a_payer: 1663.75 +.01
-  IGNORE_salsuperbrut: 2172.90 + 496.76
+  IGNORE_salaire_super_brut: 2172.90 + 496.76

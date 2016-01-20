@@ -1,0 +1,29 @@
+- period: "2015-04"
+  relative_error_margin: 0.01
+  input_variables:
+    salaire_de_base: 1445.38
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 1
+    type_sal: 0
+  output_variables:
+    cotisations_employeur: -613.55
+    allegement_fillon: 409.56
+    salaire_super_brut_hors_allegements: 2058
+    salaire_super_brut: 1648 # fillon
+
+- period: "2015-04"
+  relative_error_margin: 0.01
+  input_variables:
+    salaire_de_base: 1445.38
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 1
+    type_sal: 0
+    jeune_entreprise_innovante: 1
+  output_variables:
+    cotisations_employeur: -613.55
+    allegement_fillon: 407.4
+    exoneration_cotisations_employeur_jei: 413.2
+    exonerations_et_allegements: 820.6 # fillon + JEI
+    salaire_super_brut_hors_allegements: 2058
+    salaire_super_brut: 1238
+
