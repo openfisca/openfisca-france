@@ -20,8 +20,7 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    @Reform.formula
-    class decote(formulas.DatedFormulaColumn):
+    class decote(Reform.DatedVariable):
         label = u"Décote IR 2016 appliquée en 2015 sur revenus 2014"
         reference = ir.decote
 
@@ -75,8 +74,7 @@ def build_counterfactual_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    @Reform.formula
-    class decote(formulas.DatedFormulaColumn):
+    class decote(Reform.DatedVariable):
         label = u"Décote IR 2015 appliquée sur revenus 2015 (contrefactuel)"
         reference = ir.decote
 
@@ -152,8 +150,7 @@ def build_counterfactual_2014_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    @Reform.formula
-    class decote(formulas.DatedFormulaColumn):
+    class decote(Reform.DatedVariable):
         reference = ir.decote
 
         @dated_function(start = date(2015, 1, 1))
@@ -186,7 +183,6 @@ def build_counterfactual_2014_reform(tax_benefit_system):
             montant = montant_plafond * nb_adult
             return period, min_(max_(plafond + montant - rfr, 0), montant)
 
-    @Reform.formula
     class reductions(formulas.DatedFormulaColumn):
         label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
         reference = reductions_impot.reductions

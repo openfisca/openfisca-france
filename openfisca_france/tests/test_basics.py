@@ -4,13 +4,11 @@ from __future__ import division
 
 import datetime
 
-
-from openfisca_core import periods
 from openfisca_france.model.base import CAT
 from openfisca_france.tests import base
 
 
-tests_infos = [
+scenarios_arguments = [
     dict(
         period = year,
         parent1 = dict(
@@ -32,10 +30,11 @@ def check_run(simulation, period):
     assert simulation.calculate('salaire_super_brut') is not None, "Can't compute salaire_super_brut on period {}".format(period)
 
 
-def test():
-    for scenario_arguments in tests_infos:
-        simulation = base.tax_benefit_system.new_scenario().init_single_entity(**scenario_arguments).new_simulation(
-            debug = False)
+def test_basics():
+    for scenario_arguments in scenarios_arguments:
+        scenario = base.tax_benefit_system.new_scenario()
+        scenario.init_single_entity(**scenario_arguments)
+        simulation = scenario.new_simulation(debug = False)
         period = scenario_arguments['period']
         yield check_run, simulation, period
 
@@ -43,6 +42,7 @@ def test():
 if __name__ == '__main__':
     import logging
     import sys
+
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     for _, simulation, period in test_basics():
         check_run(simulation, period)

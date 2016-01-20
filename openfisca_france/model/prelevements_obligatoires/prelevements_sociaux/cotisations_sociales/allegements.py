@@ -116,12 +116,6 @@ class coefficient_proratisation(Variable):
             #      Forfait en jours
             (contrat_de_travail == 4) * forfait_jours_remuneres_volume / 218
             )
-        # print 'contrat_de_travail'
-        # print contrat_de_travail
-        # print 'heures_remunerees_volume'
-        # print heures_remunerees_volume
-        # print 'coefficient'
-        # print coefficient
         return period, coefficient
 
 

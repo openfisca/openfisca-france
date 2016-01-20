@@ -5567,6 +5567,17 @@
           <VALUE deb="2000-01-01" fin="2013-12-31" valeur="0.25" />
         </CODE>
       </NODE>
+      <NODE code="reduction_impot_exceptionnelle" description="Réduction d'impôt exceptionnelle">
+        <CODE code="montant_plafond" description="Montant plafond par part pour les deux premières parts" format="integer" type="monetary">
+          <VALUE deb="2013-01-01" fin="2015-12-31" valeur="350" />
+        </CODE>
+        <CODE code="seuil" description="Seuil (à partir duquel la réduction décroît) par part pour les deux premières parts" format="integer" type="monetary">
+          <VALUE deb="2013-01-01" fin="2015-12-31" valeur="13795" />
+        </CODE>
+        <CODE code="majoration_seuil" description="Majoration du seuil par demi-part supplémentaire" format="integer" type="monetary">
+          <VALUE deb="2013-01-01" fin="2015-12-31" valeur="3536" />
+        </CODE>
+      </NODE>
       <NODE code="repsoc" description="Intérêts d'emprunts pour reprises de société">
         <CODE code="seuil" description="Seuil" format="integer" type="monetary">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="20000" />

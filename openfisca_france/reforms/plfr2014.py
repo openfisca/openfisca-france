@@ -23,10 +23,8 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    class reduction_impot_exceptionnelle(Reform.Variable):
-        column = columns.FloatCol
-        entity_class = entities.FoyersFiscaux
-        label = u"Réduction d'impôt exceptionnelle"
+    class reduction_impot_exceptionnelle(Reform.DatedVariable):
+        reference = reductions_impot.reduction_impot_exceptionnelle
 
         def function(self, simulation, period):
             period = period.this_year

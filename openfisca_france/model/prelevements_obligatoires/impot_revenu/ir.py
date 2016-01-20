@@ -1062,7 +1062,7 @@ class ir_ss_qf(Variable):
         rni = simulation.calculate('rni', period)
         nb_adult = simulation.calculate('nb_adult', period)
         bareme = simulation.legislation_at(period.start).ir.bareme
-        print bareme
+
         A = bareme.calc(rni / nb_adult)
         return period, nb_adult * A
 
@@ -1188,8 +1188,8 @@ class decote(DatedVariable):
         period = period.start.offset('first-of', 'year').period('year')
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         nb_adult = simulation.calculate('nb_adult', period)
-        decote_seuil_celib = simulation.legislation_at(period.start).ir.decote_seuil_celib.seuil
-        decote_seuil_couple = simulation.legislation_at(period.start).ir.decote_seuil_couple.seuil
+        decote_seuil_celib = simulation.legislation_at(period.start).ir.decote.seuil_celib
+        decote_seuil_couple = simulation.legislation_at(period.start).ir.decote.seuil_couple
         decote_celib = (ir_plaf_qf < 4 / 3 * decote_seuil_celib) * (decote_seuil_celib - 3 / 4 * ir_plaf_qf)
         decote_couple = (ir_plaf_qf < 4 / 3 * decote_seuil_couple) * (decote_seuil_couple - 3 / 4 * ir_plaf_qf)
 
@@ -1200,8 +1200,8 @@ class decote(DatedVariable):
         period = period.this_year
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         nb_adult = simulation.calculate('nb_adult', period)
-        decote_seuil_celib = simulation.legislation_at(period.start).ir.decote_seuil_celib.seuil
-        decote_seuil_couple = simulation.legislation_at(period.start).ir.decote_seuil_couple.seuil
+        decote_seuil_celib = simulation.legislation_at(period.start).ir.decote.seuil_celib
+        decote_seuil_couple = simulation.legislation_at(period.start).ir.decote.seuil_couple
         decote_celib = (ir_plaf_qf < decote_seuil_celib) * (decote_seuil_celib - ir_plaf_qf)
         decote_couple = (ir_plaf_qf < decote_seuil_couple) * (decote_seuil_couple - ir_plaf_qf)
 
