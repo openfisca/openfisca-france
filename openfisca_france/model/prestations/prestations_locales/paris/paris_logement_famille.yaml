@@ -57,3 +57,63 @@
       age: 9
   output_variables:
     paris_logement_familles: 128
+
+- name: "Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 3000"
+  description: Paris Logement Famille
+  period: 2015-11
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1", "enfant2", "enfant3"]
+    parisien: True
+    statut_occupation_famille: 2
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1", "enfant2", "enfant3"]
+    loyer: 550
+  individus:
+    - id: "parent1"
+      age: 55
+      salaire_net:
+        2015-11: 4000
+    - id: "enfant1"
+      age: 5
+    - id: "enfant2"
+      age: 9
+    - id: "enfant3"
+      age: 9
+  output_variables:
+    paris_logement_familles: 84
+
+- name: "Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 3000"
+  description: Paris Logement Famille
+  period: 2015-11
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
+    parisien: True
+    statut_occupation_famille: 4
+    aide_logement: 0
+    concub: True
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
+    loyer: 550
+  individus:
+    - id: "parent1"
+      age: 55
+      salaire_net:
+        2015-11: 4900
+    - id: "parent2"
+      age: 55
+    - id: "enfant1"
+      age: 5
+    - id: "enfant2"
+      age: 9
+    - id: "enfant3"
+      age: 9
+    - id: "enfant4"
+      age: 12
+      invalide: True
+  output_variables:
+    paris_logement_familles: 169
