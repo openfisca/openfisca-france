@@ -296,7 +296,7 @@ class taux_versement_transport(Variable):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         type_sal = simulation.calculate('type_sal', period)
 
-        seuil_effectif = simulation.legislation_at(period.start).cotsoc.cotisations_employeur.commun.versement_transport.seuil_effectif
+        seuil_effectif = simulation.legislation_at(period.start).cotsoc.versement_transport.seuil_effectif
 
         preload_taux_versement_transport()
         public = (type_sal >= 2)

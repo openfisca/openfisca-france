@@ -1034,6 +1034,12 @@
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.141" />
       </CODE>
     </NODE>
+    <NODE code="versement_transport" description="Versement transport">
+      <CODE code="seuil_effectif" description="Effectif de l'entreprise à partir duquel le versement transport est dû" >
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="11" />
+        <VALUE deb="1996-02-21" fin="2015-12-31" valeur="10" />
+      </CODE>
+    </NODE>
     <NODE code="pat" description="employeur">
       <NODE code="cadre" description="Spécifiques aux cadres">
         <BAREME code="agffc" description="AGFF" option="contrib">
@@ -1479,12 +1485,6 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <NODE code="versement_transport" description="Versement transport">
-          <CODE code="seuil_effectif" description="Effectif de l'entreprise à partir duquel le versement transport est dû" >
-            <VALUE deb="2016-01-01" fuzzy="true" valeur="11" />
-            <VALUE deb="1996-02-21" fin="2015-12-31" valeur="10" />
-          </CODE>
-        </NODE>
         <BAREME code="vieillesse_deplafonnee" description="Vieillesse déplafonnée" option="contrib">
           <TRANCHE code="tranche0">
             <SEUIL>
