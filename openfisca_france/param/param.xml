@@ -1479,18 +1479,6 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <BAREME code="transport" description="Transport (valeur non différenciée selon la localité, Lyon reférence)">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
-              <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0175" />
-              <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0.0175" />
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
         <NODE code="versement_transport" description="Versement transport">
           <CODE code="seuil_effectif" description="Effectif de l'entreprise à partir duquel le versement transport est dû" >
             <VALUE deb="2016-01-01" fuzzy="true" valeur="11" />
