@@ -22,12 +22,13 @@ class paris_complement_sante(Variable):
         personnes_handicap = self.any_by_roles(personnes_handicape_i)
         concub = simulation.calculate('concub', period)
         cmu_c = simulation.calculate('cmu_c', period)
-        acs = simulation.calculate('acs', period)
         aspa = simulation.calculate('aspa', period)
         ass = simulation.calculate('ass', period)
         asi = simulation.calculate('asi', period)
         aide_logement = simulation.calculate('aide_logement', period)
         ressources_i = simulation.compute('paris_complement_sante_i', period)
+        acs_montant = simulation.calculate('acs_montant', period)
+        acs_plafond = simulation.calculate('acs_plafond', period)
         ressources = self.split_by_roles(ressources_i, roles = [CHEF, PART])
 
         ressources_pers_isol = ressources[CHEF] + aspa + ass + asi + aide_logement
@@ -39,15 +40,16 @@ class paris_complement_sante(Variable):
         plafond = where(concub, plafond_couple_cs, plafond_pers_isol_cs)
 
         montant_pers_handicap = where(parisien * personnes_handicap * (concub != 1) *
-            (ressources_pers_isol <= plafond) * (montant_aide_cs >= acs) * (cmu_c != 1),
-            montant_aide_cs - acs, 0)
+            (ressources_pers_isol <= plafond) * (ressources_pers_isol <= acs_plafond) *
+            (montant_aide_cs >= acs_montant) * (cmu_c != 1), montant_aide_cs - acs_montant, 0)
 
         montant_couple = where(parisien * concub * (personnes_handicap + personnes_agees) *
-         (ressources_couple <= plafond) * (montant_aide_cs >= acs) * (acs > 0) * (cmu_c != 1),
-         montant_aide_cs - acs, 0)
+         (ressources_couple <= plafond) * (ressources_couple <= acs_plafond) * (montant_aide_cs >= acs_montant) *
+         (acs_montant > 0) * (cmu_c != 1), montant_aide_cs - acs_montant, 0)
 
         montant_couple_ss_acs = where(parisien * concub * (personnes_handicap + personnes_agees) *
-            (acs == 0) * (cmu_c != 1) * (ressources_couple <= plafond), montant_aide_cs, 0)
+            (ressources_couple <= acs_plafond) * (acs_montant == 0) * (cmu_c != 1) *
+            (ressources_couple <= plafond), montant_aide_cs, 0)
 
         return period, montant_pers_handicap + montant_couple + montant_couple_ss_acs
 

@@ -23,7 +23,58 @@
      2016-01: 300
      year:2015-01: 3000
   output_variables:
-    paris_complement_sante: 468
+    paris_complement_sante: 0
+
+- name: "Famille éligible pour l'aide complementaire sante paris"
+  period: 2016-01
+  familles:
+    parents: ["Couple1", "Couple2"]
+    parisien: True
+    concub: True
+    statut_occupation_famille: 4
+    aspa: 0
+    aide_logement: 0
+  menages:
+    personne_de_reference: "Couple1"
+    conjoint: "Couple2"
+    loyer: 500
+  individus:
+  - id: "Couple1"
+    age: 75
+    salaire_net:
+     2016-01: 900
+     year:2015-01: 9000
+  - id: "Couple2"
+    age: 75
+    salaire_net:
+     2016-01: 400
+     year:2015-01: 4000
+  output_variables:
+    paris_complement_sante: 0
+
+- name: "Famille éligible pour l'aide complementaire sante paris"
+  period: 2016-01
+  familles:
+    parents: ["Couple1", "Couple2"]
+    parisien: True
+    concub: True
+    statut_occupation_famille: 4
+    aspa: 1
+    aide_logement: 1
+  menages:
+    personne_de_reference: "Couple1"
+    conjoint: "Couple2"
+    loyer: 500
+  individus:
+  - id: "Couple1"
+    age: 75
+    salaire_net:
+     2016-01: 1300
+     year:2015-01: 13000
+  - id: "Couple2"
+    age: 75
+  output_variables:
+    paris_complement_sante: 0
 
 - name: "Personne éligible au CSP"
   description: Paris Complementaire Santé
@@ -75,7 +126,7 @@
     ass: 0
     aide_logement: 0
   output_variables:
-    paris_complement_sante: 451.33334351
+    paris_complement_sante: 268
 
 - name: "Personne éligible au CSP"
   description: Paris Complementaire Santé
