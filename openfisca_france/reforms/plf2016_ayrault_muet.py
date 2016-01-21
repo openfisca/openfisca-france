@@ -20,15 +20,12 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    Reform.input_variable(
+    class variator(Reform.Variable):
         column = FloatCol(default = 1),
         entity_class = FoyersFiscaux,
         label = u'Multiplicateur du seuil de régularisation',
-        name = 'variator',
-        )
 
-    @Reform.formula
-    class reduction_csg(formulas.DatedFormulaColumn):
+    class reduction_csg(Reform.DatedVariable):
         column = FloatCol
         entity_class = Individus
         label = u"Réduction dégressive de CSG"
@@ -53,15 +50,13 @@ def build_reform(tax_benefit_system):
 
             return period, taux_allegement_csg * assiette_csg_abattue
 
-    @Reform.formula
-    class reduction_csg_foyer_fiscal(PersonToEntityColumn):
+    class reduction_csg_foyer_fiscal(Reform.PersonToEntityColumn):
         entity_class = FoyersFiscaux
         label = u"Réduction dégressive de CSG des memebres du foyer fiscal"
         operation = 'add'
         variable = reduction_csg
 
-    @Reform.formula
-    class reduction_csg_nette(formulas.DatedFormulaColumn):
+    class reduction_csg_nette(Reform.DatedVariable):
         column = FloatCol
         entity_class = Individus
         label = u"Réduction dégressive de CSG"
@@ -73,8 +68,7 @@ def build_reform(tax_benefit_system):
             ppe_elig_bis_individu = simulation.calculate('ppe_elig_bis_individu', period)
             return period, reduction_csg * ppe_elig_bis_individu
 
-    @Reform.formula
-    class ppe_elig_bis(SimpleFormulaColumn):
+    class ppe_elig_bis(Reform.Variable):
         column = BoolCol(default = False)
         entity_class = FoyersFiscaux
         label = u"ppe_elig_bis"
@@ -94,16 +88,14 @@ def build_reform(tax_benefit_system):
             variator = simulation.calculate('variator', period)
             ppe = simulation.legislation_at(period.start).ir.credits_impot.ppe
             seuil = (veuf | celdiv) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
-                    + marpac * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
+                + marpac * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
             return period, (rfr * ppe_coef) <= (seuil * variator)
 
-    @Reform.formula
-    class ppe_elig_bis_individu(EntityToPersonColumn):
+    class ppe_elig_bis_individu(Reform.EntityToPersonColumn):
         entity_class = Individus
         variable = ppe_elig_bis
 
-    @Reform.formula
-    class regularisation_reduction_csg(formulas.DatedFormulaColumn):
+    class regularisation_reduction_csg(Reform.DatedVariable):
         column = FloatCol
         entity_class = FoyersFiscaux
         label = u"Régularisation complète réduction dégressive de CSG"

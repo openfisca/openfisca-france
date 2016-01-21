@@ -210,7 +210,7 @@ class agirc_gmp_salarie(Variable):
             sous_plafond_securite_sociale * cotisation_forfaitaire +
             not_(sous_plafond_securite_sociale) * agirc_gmp_assiette * taux
             )
-        return period, 0 * min_((cotisation - agirc_salarie) * (type_sal == 1), 0)  # cotisation are negative
+        return period, min_((cotisation - agirc_salarie) * (type_sal == 1), 0)  # cotisation are negative
 
 
 class agirc_gmp_employeur(Variable):

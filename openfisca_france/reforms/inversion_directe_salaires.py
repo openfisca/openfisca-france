@@ -22,15 +22,12 @@ def build_reform(tax_benefit_system):
         reference = tax_benefit_system,
         )
 
-    Reform.input_variable(
+    class salaire_imposable_pour_inversion(Reform.Variable):
         column = columns.FloatCol,
         entity_class = entities.Individus,
         label = u'Salaire imposable utilisé pour remonter au salaire brut',
-        name = 'salaire_imposable_pour_inversion',
-        )
 
-    @Reform.formula
-    class salaire_de_base(formulas.SimpleFormulaColumn):
+    class salaire_de_base(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Salaire brut"
@@ -89,8 +86,7 @@ def build_reform(tax_benefit_system):
                 )
             return period, salaire_de_base + hsup
 
-    @Reform.formula
-    class traitement_indiciaire_brut(formulas.SimpleFormulaColumn):
+    class traitement_indiciaire_brut(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Traitement indiciaire brut"
@@ -156,8 +152,7 @@ def build_reform(tax_benefit_system):
             # indemnite_residence = 0  # TODO: fix bug
             return period, traitement_indiciaire_brut
 
-    @Reform.formula
-    class primes_fonction_publique(formulas.SimpleFormulaColumn):
+    class primes_fonction_publique(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Primes de la fonction publique"
