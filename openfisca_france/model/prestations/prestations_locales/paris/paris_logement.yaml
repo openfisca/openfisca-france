@@ -7,6 +7,19 @@
     invalide: True
     statut_occupation: 4
     loyer: 550
+    salaire_net: 600
+  output_variables:
+    paris_logement: 84
+
+- name: "Personne  éligible car en situation de handicap"
+  description: Paris Logement PA et PH
+  period: 2015-11
+  input_variables:
+    age: 55
+    parisien: True
+    invalide: True
+    statut_occupation: 4
+    loyer: 550
     salaire_net: 800
   output_variables:
     paris_logement: 84
