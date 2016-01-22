@@ -84,7 +84,8 @@
         2015-11: 500
         2015-10: 500
   output_variables:
-    ppa_montant_forfaitaire_familial: 524.16 * (1 + 0.5) # = 786.24
+    ppa_montant_forfaitaire_familial_non_majore: 524.16 * (1 + 0.5) # = 786.24
+    rsa_majore_eligibilite: False
     rsa: 786.24 - 500
     ppa: 786.24 - 0.38 * 500 - (786.24 - 500)
 
@@ -106,7 +107,8 @@
     - id: "enfant1"
       age: 10
   output_variables:
-    ppa_montant_forfaitaire_familial: 524.16 * (1 + 0.5 + 0.3) # =943.49
+    ppa_montant_forfaitaire_familial_non_majore: 524.16 * (1 + 0.5 + 0.3) # =943.49
+    rsa_majore_eligibilite: False
     rsa: 943.49 - 500
     ppa: 943.49 - 0.38 * 500 - (943.49 - 500)
 
@@ -133,7 +135,8 @@
     - id: "enfant3"
       age: 12
   output_variables:
-    ppa_montant_forfaitaire_familial: 524.16 * (1 + 0.5 + 2 * 0.3 + 0.4) # =1310.40
+    ppa_montant_forfaitaire_familial_non_majore: 524.16 * (1 + 0.5 + 2 * 0.3 + 0.4) # =1310.40
+    rsa_majore_eligibilite: False
     rsa: 1310.40 - 500
     ppa: 1310.40 - 0.38 * 500 - (1310.40 - 500)
 
@@ -154,7 +157,8 @@
     - id: "enfant1"
       age: 2
   output_variables:
-    ppa_montant_forfaitaire_familial: 524.16 * (1.28412 + 0.42804) # =897.45
+    ppa_montant_forfaitaire_familial_majore: 524.16 * (1.28412 + 0.42804) # =897.45
+    rsa_majore_eligibilite: True
     rsa: 897.45 - 500
     ppa: 897.45 - 0.38 * 500 - (897.45 - 500)
 
@@ -167,10 +171,10 @@
       2015-11: 918
       2015-10: 0
   output_variables:
-    ppa_fictive:
-      2015-12: 0
-      2015-11: 244.21
-      2015-10: 0
+    # ppa_fictive:
+    #   2015-12: 0
+    #   2015-11: 244.21
+    #   2015-10: 0
     ppa: 244.21 / 3
 
 - name: "PPA personne seule, revenus variables, pas de bonification"
@@ -184,10 +188,10 @@
       2015-11: 450
       2015-10: 550
   output_variables:
-    ppa_fictive:
-      2015-12: 524.16 - 0.38 * 500 - (524.16 - 500) # =310
-      2015-11: 524.16 - 0.38 * 450 - (524.16 - 450) # =279
-      2015-10: 524.16 - 0.38 * 550 - 0 # =315, pas de second terme car < 0
+    # ppa_fictive:
+    #   2015-12: 524.16 - 0.38 * 500 - (524.16 - 500) # =310
+    #   2015-11: 524.16 - 0.38 * 450 - (524.16 - 450) # =279
+    #   2015-10: 524.16 - 0.38 * 550 - 0 # =315, pas de second terme car < 0
     rsa: 524.16 - 500
     ppa: (310 + 279 + 315) / 3
 
@@ -213,7 +217,8 @@
         2015-11: 300
         2015-10: 300
   output_variables:
-    ppa_montant_forfaitaire_familial:  524.16 * 1.5 # =786.24
+    ppa_montant_forfaitaire_familial_non_majore:  524.16 * 1.5 # =786.24
+    rsa_majore_eligibilite: False
     rsa_revenu_activite: 600
     rsa: 786.24 - 600
     ppa: 786.24 - 0.38 * 600 - (786.24 - 600)
@@ -277,7 +282,8 @@
         2015-11: 800
         2015-10: 800
   output_variables:
-    ppa_montant_forfaitaire_familial: 524.16 * 1.5 # =786.24
+    ppa_montant_forfaitaire_familial_non_majore: 524.16 * 1.5 # =786.24
+    rsa_majore_eligibilite: False
     rsa: 0
     ppa: 786.24 - 0.38 * (800 + 918) + 67 + 44
 
