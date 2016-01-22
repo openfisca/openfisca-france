@@ -1493,8 +1493,9 @@
               <VALUE deb="1992-07-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2015-01-01" fuzzy="true" valeur="0.128" />
-              <VALUE deb="1992-07-01" fin="2014-12-31" valeur="0.128" />
+              <VALUE deb="2017-01-01" fuzzy="true" valeur="0.1284" />
+              <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.1284" />
+              <VALUE deb="1992-07-01" fin="2015-12-31" valeur="0.128" />
             </TAUX>
           </TRANCHE>
         </BAREME>
