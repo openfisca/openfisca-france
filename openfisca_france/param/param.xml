@@ -1506,7 +1506,9 @@
               <VALUE deb="1991-02-01" fin="2015-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2016-01-01" fuzzy="true" valeur="0.018" />
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="0.019" />
+              <VALUE deb="2017-01-01" fin="2017-12-31" valeur="0.019" />
+              <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0185" />
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.018" />
               <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0175" />
               <VALUE deb="1991-02-01" fin="2013-12-31" valeur="0.016" />
@@ -2413,7 +2415,9 @@
               <VALUE deb="2004-07-01" fin="2015-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2016-01-01" fuzzy="true" valeur=".003" />
+              <VALUE deb="2018-01-01" fuzzy="true" valeur=".004" />
+              <VALUE deb="2017-01-01" fin="2017-12-31" valeur=".004" />
+              <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".0035" />
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".003" />
               <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0025" />
               <VALUE deb="2004-07-01" fin="2013-12-31" valeur=".001" />
