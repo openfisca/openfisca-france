@@ -36,6 +36,7 @@ class allegement_fillon(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
+    # Attention : cet allègement a des règles de cumul spécifiques
 
     @dated_function(date(2005, 7, 1))
     def function(self, simulation, period):
@@ -238,7 +239,6 @@ def compute_allegement_fillon_progressif(simulation, period):
         up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
         up_to_previous_month = period.start.offset('first-of', 'year').period('month', period.start.month - 1)
         cumul = simulation.calculate_add('allegement_fillon', up_to_previous_month, max_nb_cycles = 1)
-        up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
         return compute_allegement_fillon(simulation, up_to_this_month) - cumul
 
 
