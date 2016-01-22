@@ -198,55 +198,23 @@ class allegement_fillon(DatedVariable):
         stagiaire = simulation.calculate('stagiaire', period)
         apprenti = simulation.calculate('apprenti', period)
         allegement_fillon_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
-        allegement = switch(
-            allegement_fillon_mode_recouvrement,
-            {
-                0: compute_allegement_fillon_annuel(simulation, period),
-                1: compute_allegement_fillon_anticipe(simulation, period),
-                2: compute_allegement_fillon_progressif(simulation, period),
-                },
-            )
+
+        # switch on 3 possible payment options
+        allegement = switch_on_allegement_mode(
+                simulation, period,
+                allegement_fillon_mode_recouvrement,
+                self.__class__.__name__,
+                )
+                
         return period, allegement * not_(stagiaire) * not_(apprenti)
 
 
-# Helper functions
-
-def compute_allegement_fillon_annuel(simulation, period):
-    if period.start.month < 12:
-        return 0
-    if period.start.month == 12:
-        return compute_allegement_fillon(simulation, period.this_year)
-
-
-def compute_allegement_fillon_anticipe(simulation, period):
-    if period.start.month < 12:
-        return compute_allegement_fillon(simulation, period.this_month)
-    if period.start.month == 12:
-        cumul = simulation.calculate_add(
-            'allegement_fillon',
-            period.start.offset('first-of', 'year').period('month', 11), max_nb_cycles = 1)
-        return compute_allegement_fillon(
-            simulation, period.this_year
-            ) - cumul
-
-
-def compute_allegement_fillon_progressif(simulation, period):
-    if period.start.month == 1:
-        return compute_allegement_fillon(simulation, period.this_month)
-
-    if period.start.month > 1:
-        up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
-        up_to_previous_month = period.start.offset('first-of', 'year').period('month', period.start.month - 1)
-        cumul = simulation.calculate_add('allegement_fillon', up_to_previous_month, max_nb_cycles = 1)
-        return compute_allegement_fillon(simulation, up_to_this_month) - cumul
-
-
 def compute_allegement_fillon(simulation, period):
-    '''
-    Exonération Fillon
-    http://www.securite-sociale.fr/comprendre/dossiers/exocotisations/exoenvigueur/fillon.htm
-    '''
-    assiette_allegement = simulation.calculate_add('assiette_allegement', period)
+    """
+        Exonération Fillon
+        http://www.securite-sociale.fr/comprendre/dossiers/exocotisations/exoenvigueur/fillon.htm
+    """
+    assiette = simulation.calculate_add('assiette_allegement', period)
     smic_proratise = simulation.calculate_add('smic_proratise', period)
     taille_entreprise = simulation.calculate('taille_entreprise', period)
     majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
@@ -264,13 +232,65 @@ def compute_allegement_fillon(simulation, period):
     tx_max = (Pf.tx_max * not_(majoration) + Pf.tx_max2 * majoration)
     if seuil <= 1:
         return 0
-    ratio_smic_salaire = smic_proratise / (assiette_allegement + 1e-16)
+    ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
     # règle d'arrondi: 4 décimales au dix-millième le plus proche
     taux_fillon = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
 
     # Montant de l'allegment
-    allegement_fillon = taux_fillon * assiette_allegement
-    return allegement_fillon
+    return taux_fillon * assiette
+
+
+###############################
+#  Helper functions and classes
+###############################
+
+
+def switch_on_allegement_mode(simulation, period, mode_recouvrement, variable_name):
+    """
+        Switch on 3 possible payment options for allegements
+
+        Name of the computation method specific to the allegement
+        should precisely be the variable name prefixed with 'compute_'
+    """
+    compute_function = globals()['compute_' + variable_name]
+    return switch(
+            mode_recouvrement,
+            {
+                0: compute_allegement_annuel(simulation, period, 'allegement_fillon', compute_function),
+                1: compute_allegement_anticipe(simulation, period, 'allegement_fillon', compute_function),
+                2: compute_allegement_progressif(simulation, period, 'allegement_fillon', compute_function),
+                },
+            )
+
+
+def compute_allegement_annuel(simulation, period, variable_name, compute_function):
+    if period.start.month < 12:
+        return 0
+    if period.start.month == 12:
+        return compute_function(simulation, period.this_year)
+
+
+def compute_allegement_anticipe(simulation, period, variable_name, compute_function):
+    if period.start.month < 12:
+        return compute_function(simulation, period.this_month)
+    if period.start.month == 12:
+        cumul = simulation.calculate_add(
+            variable_name,
+            period.start.offset('first-of', 'year').period('month', 11), max_nb_cycles = 1)
+        return compute_function(
+            simulation, period.this_year
+            ) - cumul
+
+
+def compute_allegement_progressif(simulation, period, variable_name, compute_function):
+    if period.start.month == 1:
+        return compute_function(simulation, period.this_month)
+
+    if period.start.month > 1:
+        up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
+        up_to_previous_month = period.start.offset('first-of', 'year').period('month', period.start.month - 1)
+        cumul = simulation.calculate_add(variable_name, up_to_previous_month, max_nb_cycles = 1)
+        return compute_function(simulation, up_to_this_month) - cumul
 
 
 def taux_exo_cice(assiette_allegement, smic_proratise, P):
