@@ -21,9 +21,9 @@ def build_reform(tax_benefit_system):
         )
 
     class variator(Reform.Variable):
-        column = FloatCol(default = 1),
-        entity_class = FoyersFiscaux,
-        label = u'Multiplicateur du seuil de régularisation',
+        column = FloatCol(default = 1)
+        entity_class = FoyersFiscaux
+        label = u'Multiplicateur du seuil de régularisation'
 
     class reduction_csg(Reform.DatedVariable):
         column = FloatCol

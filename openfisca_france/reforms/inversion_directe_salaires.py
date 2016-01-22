@@ -23,9 +23,9 @@ def build_reform(tax_benefit_system):
         )
 
     class salaire_imposable_pour_inversion(Reform.Variable):
-        column = columns.FloatCol,
-        entity_class = entities.Individus,
-        label = u'Salaire imposable utilisé pour remonter au salaire brut',
+        column = columns.FloatCol
+        entity_class = entities.Individus
+        label = u'Salaire imposable utilisé pour remonter au salaire brut'
 
     class salaire_de_base(Reform.Variable):
         column = columns.FloatCol
