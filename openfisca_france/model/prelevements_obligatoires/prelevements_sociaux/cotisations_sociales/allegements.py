@@ -197,12 +197,12 @@ class allegement_fillon(DatedVariable):
         period = period.this_month
         stagiaire = simulation.calculate('stagiaire', period)
         apprenti = simulation.calculate('apprenti', period)
-        allegement_fillon_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
+        allegement_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
 
         # switch on 3 possible payment options
         allegement = switch_on_allegement_mode(
                 simulation, period,
-                allegement_fillon_mode_recouvrement,
+                allegement_mode_recouvrement,
                 self.__class__.__name__,
                 )
                 
@@ -238,6 +238,46 @@ def compute_allegement_fillon(simulation, period):
 
     # Montant de l'allegment
     return taux_fillon * assiette
+
+
+class allegement_cotisation_allocations_familiales(DatedVariable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Allègement de la cotisation d'allocationos familiales sur les bas et moyens salaires"
+    url = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
+
+    @dated_function(date(2015, 1, 1))
+    def function(self, simulation, period):
+        period = period.this_month
+        stagiaire = simulation.calculate('stagiaire', period)
+        apprenti = simulation.calculate('apprenti', period)
+        allegement_mode_recouvrement = \
+            simulation.calculate('allegement_cotisation_allocations_familiales_mode_recouvrement', period)
+
+        # switch on 3 possible payment options
+        allegement = switch_on_allegement_mode(
+                simulation, period,
+                allegement_mode_recouvrement,
+                self.__class__.__name__,
+                )
+
+        return period, allegement * not_(stagiaire) * not_(apprenti)
+
+
+def compute_allegement_cotisation_allocations_familiales(simulation, period):
+    """
+        La réduction du taux de la cotisation d’allocations familiales
+    """
+    assiette = simulation.calculate_add('assiette_allegement', period)
+    smic_proratise = simulation.calculate_add('smic_proratise', period)
+    taille_entreprise = simulation.calculate('taille_entreprise', period)
+
+    law = simulation.legislation_at(period.start).cotsoc.exo_bas_sal.allegement_cotisation_allocations_familiales
+
+    ratio_smic_salaire = assiette / smic_proratise
+
+    # Montant de l'allegment
+    return (ratio_smic_salaire < law.seuil) * law.taux * assiette
 
 
 ###############################

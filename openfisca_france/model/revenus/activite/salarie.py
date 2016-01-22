@@ -755,9 +755,11 @@ class exonerations_et_allegements(Variable):
             'exoneration_cotisations_employeur_stagiaire', period)
 
         allegement_fillon = simulation.calculate_add('allegement_fillon', period)
+        allegement_cot_alloc_fam = simulation.calculate_add('allegement_cotisation_allocations_familiales', period)
 
         return period, (
             allegement_fillon
+            + allegement_cot_alloc_fam
             + exoneration_cotisations_employeur_geographiques
             + exoneration_cotisations_employeur_jei
             + exoneration_cotisations_employeur_apprenti
