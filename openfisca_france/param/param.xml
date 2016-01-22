@@ -877,7 +877,7 @@
           <VALUE deb="2015-01-01" fin="2016-03-31" valeur="1.6" />
         </CODE>
         <CODE code="taux" description="Taux de la réduction" format="percent">
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="1.8" />
+          <VALUE deb="2015-01-01" fuzzy="true" valeur=".018" />
         </CODE>
       </NODE>
     </NODE>

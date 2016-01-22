@@ -10,11 +10,12 @@
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
     allegement_fillon_mode_recouvrement: 1
+    allegement_cotisation_allocations_familiales_mode_recouvrement: 1
     effectif_entreprise: 1
     contrat_de_travail_debut: 2015-07-01
   output_variables:
-    salaire_super_brut: 1664
-    cout_du_travail: 1410
+    salaire_super_brut: 1637
+    cout_du_travail: 1383
     salaire_super_brut_hors_allegements: 2071
     salaire_net: 1136
     cotisations_employeur: -613.5
@@ -28,8 +29,9 @@
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
     allegement_fillon_mode_recouvrement: 1
+    allegement_cotisation_allocations_familiales_mode_recouvrement: 1
     effectif_entreprise: 2
     contrat_de_travail_debut: 2015-07-01
   output_variables:
-    salaire_super_brut: 1664
-    cout_du_travail: 1576
+    salaire_super_brut: 1637
+    cout_du_travail: 1550
