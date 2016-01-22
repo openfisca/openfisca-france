@@ -212,6 +212,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""tva_ent""",  # L'entreprise employant le salarié paye de la TVA
                     u"""exposition_accident""",  # Exposition au risque pour les accidents du travail
                     u"""allegement_fillon_mode_recouvrement""",  # Mode de recouvrement des allègements Fillon
+                    u"""allegement_cotisation_allocations_familiales_mode_recouvrement""",  # Mode de recouvrement de l'allègement de la cotisation d'allocations familiales
                     u"""apprentissage_contrat_debut""",  # Date de début du contrat d'apprentissage
                     u"""arrco_tranche_a_taux_employeur""",  # Taux ARRCO tranche A employeur) propre à l'entreprise
                     u"""arrco_tranche_a_taux_salarie""",  # Taux ARRCO tranche A salarié) propre à l'entreprise
