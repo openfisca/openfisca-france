@@ -88,6 +88,7 @@ class remuneration_apprenti(Variable):
                 (anciennete_contrat[age_condition] == np.array([anciennete], dtype = 'timedelta64[Y]')) * part_de_smic
                 for anciennete, part_de_smic in age_interval['part_de_smic_by_anciennete'].iteritems()
                 ])
+        print output
         return period, output * smic * apprenti
 
 
