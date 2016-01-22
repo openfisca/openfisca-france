@@ -32,29 +32,6 @@ class assiette_allegement(Variable):
             )
 
 
-class allegement_fillon(DatedVariable):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
-    # Attention : cet allègement a des règles de cumul spécifiques
-
-    @dated_function(date(2005, 7, 1))
-    def function(self, simulation, period):
-        period = period.this_month
-        stagiaire = simulation.calculate('stagiaire', period)
-        apprenti = simulation.calculate('apprenti', period)
-        allegement_fillon_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
-        allegement = switch(
-            allegement_fillon_mode_recouvrement,
-            {
-                0: compute_allegement_fillon_annuel(simulation, period),
-                1: compute_allegement_fillon_anticipe(simulation, period),
-                2: compute_allegement_fillon_progressif(simulation, period),
-                },
-            )
-        return period, allegement * not_(stagiaire) * not_(apprenti)
-
-
 class coefficient_proratisation(Variable):
     column = FloatCol
     entity_class = Individus
@@ -209,8 +186,30 @@ class smic_proratise(Variable):
         return period, smic_proratise
 
 
-# Helper functions
+class allegement_fillon(DatedVariable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
+    # Attention : cet allègement a des règles de cumul spécifiques
 
+    @dated_function(date(2005, 7, 1))
+    def function(self, simulation, period):
+        period = period.this_month
+        stagiaire = simulation.calculate('stagiaire', period)
+        apprenti = simulation.calculate('apprenti', period)
+        allegement_fillon_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
+        allegement = switch(
+            allegement_fillon_mode_recouvrement,
+            {
+                0: compute_allegement_fillon_annuel(simulation, period),
+                1: compute_allegement_fillon_anticipe(simulation, period),
+                2: compute_allegement_fillon_progressif(simulation, period),
+                },
+            )
+        return period, allegement * not_(stagiaire) * not_(apprenti)
+
+
+# Helper functions
 
 def compute_allegement_fillon_annuel(simulation, period):
     if period.start.month < 12:
