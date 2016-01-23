@@ -503,7 +503,7 @@ class sal_pen_net(Variable):
         return period, salcho_imp + pen_net - abat_sal_pen
 
 
-class rto(Variable):
+class retraite_titre_onereux(Variable):
     """Rentes viagères à titre onéreux (avant abattements)
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
@@ -530,7 +530,7 @@ class rto_declarant1(EntityToPersonColumn):
     entity_class = Individus
     label = u"Rentes viagères (rentes à titre onéreux) (pour le premier déclarant du foyer fiscal)"
     role = VOUS
-    variable = rto
+    variable = retraite_titre_onereux
 
 
 class rto_net(Variable):
@@ -977,10 +977,10 @@ class csg_deduc_patrimoine_simulated(Variable):
         period = period.this_year
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         rev_cap_bar = simulation.calculate('rev_cap_bar', period)
-        rto = simulation.calculate('rto', period)
+        retraite_titre_onereux = simulation.calculate('retraite_titre_onereux', period)
         taux = simulation.legislation_at(period.start).csg.capital.deduc
 
-        patrimoine_deduc = rev_cat_rfon + rev_cap_bar + rto
+        patrimoine_deduc = rev_cat_rfon + rev_cap_bar + retraite_titre_onereux
         return period, taux * patrimoine_deduc
 
 

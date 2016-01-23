@@ -49,7 +49,7 @@
       </NODE>
       <NODE code="pensions_alimentaires_percues" color="136,120,178" desc="Pensions alimentaires reçues" shortname="P. alim. reç." />
       <NODE code="pensions_alimentaires_versees" color="136,120,178" desc="Pensions alimentaires versée" shortname="P. alim. vers." />
-      <NODE code="rto" color="125,185,86" desc="Rentes viagères" shortname="Rentes viag." />
+      <NODE code="retraite_titre_onereux" color="125,185,86" desc="Rentes viagères" shortname="Rentes viag." />
     </NODE>
     <NODE code="rev_cap_net" color="255,222,48" desc="Revenus du capital net" shortname="Rev. cap. net">
       <NODE code="rev_cap_brut" color="255,222,48" desc="Revenus du capital brut" shortname="Rev. cap. brut">
