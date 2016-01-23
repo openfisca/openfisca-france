@@ -45,6 +45,7 @@ from .prelevements_obligatoires.prelevements_sociaux import taxes_salaires_main_
 from .prestations import (  # noqa analysis:ignore
     aides_logement,
     education,
+    handicap,
     )
 
 from prestations.minima_sociaux import (  # noqa analysis:ignore
@@ -62,6 +63,18 @@ from prestations.prestations_familiales import (  # noqa analysis:ignore
     asf,
     paje,
     cf,
+    )
+
+from prestations.prestations_locales.paris import (  # noqa analysis:ignore
+    paris,
+    paris_logement,
+    paris_logement_fam_mono,
+    paris_logement_famille,
+    aspeh,
+    paris_forfait_famille,
+    paris_solidarite,
+    paris_energie_famille,
+    paris_complement_sante
     )
 
 from revenus import autres

@@ -69,6 +69,10 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
                 os.path.join(COUNTRY_DIR, 'param', 'param.xml'),
                 None,
                 ),
+            (
+                os.path.join(COUNTRY_DIR, 'model', 'prestations', 'prestations_locales', 'paris', 'paris.xml'),
+                None,
+                ),
             # (
             #     os.path.join(COUNTRY_DIR, 'assets', 'xxx', 'yyy.xml'),
             #     ('insert', 'into', 'existing', 'element'),
