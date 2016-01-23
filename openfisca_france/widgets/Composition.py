@@ -69,9 +69,9 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
                 },
             'typ_tot_default': 'salaire_imposable',
             },
-        'choi': {
+        'chomage_imposable': {
             'name': 'chomage_imposable',
-            'col_name': 'choi',
+            'col_name': 'chomage_imposable',
             'typ_tot': {
                 'chomage_brut': u"Chômage brut",
                 'chomage_imposable': u"Chômage",

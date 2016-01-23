@@ -35,6 +35,11 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Individus
         label = u'Salaire imposable utilisé pour remonter au salaire brut'
 
+    class chomage_imposable_pour_inversion(Reform.Variable):
+        column = columns.FloatCol
+        entity_class = entities.Individus
+        label = u'Autres revenus imposables (chômage, préretraite), utilisé pour l’inversion'
+
     class salaire_de_base(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
@@ -177,8 +182,8 @@ def build_reform(tax_benefit_system):
             """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
             """
             # Get value for year and divide below.
-            choi = simulation.get_array('choi', period.this_year)
-            if choi is None:
+            chomage_imposable_pour_inversion = simulation.get_array('chomage_imposable_pour_inversion', period.this_year)
+            if chomage_imposable_pour_inversion is None:
                 chomage_net = simulation.get_array('chomage_net', period)
                 if chomage_net is not None:
                     # Calcule les allocations chomage brutes à partir des allocations nettes par inversion numérique.
@@ -196,13 +201,13 @@ def build_reform(tax_benefit_system):
                             ) - chomage_net
                     return period, fsolve(solve_function, chomage_net)
 
-                choi = simulation.calculate_add_divide('choi', period)
+                chomage_imposable_pour_inversion = simulation.calculate_add_divide('chomage_imposable_pour_inversion', period)
 
             # Calcule les allocations chômage brutes à partir des allocations imposables.
             # taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
-            if (choi == 0).all():
+            if (chomage_imposable_pour_inversion == 0).all():
                 # Quick path to avoid fsolve when using default value of input variables.
-                return period, choi
+                return period, chomage_imposable_pour_inversion
             simulation = self.holder.entity.simulation
 
             def solve_function(chomage_brut):
@@ -212,8 +217,8 @@ def build_reform(tax_benefit_system):
                     target_name = 'chomage_imposable',
                     period = period,
                     simulation = simulation,
-                    ) - choi
-            return period, fsolve(solve_function, choi)
+                    ) - chomage_imposable_pour_inversion
+            return period, fsolve(solve_function, chomage_imposable_pour_inversion)
 
     class retraite_brute(Reform.Variable):
         column = columns.FloatCol

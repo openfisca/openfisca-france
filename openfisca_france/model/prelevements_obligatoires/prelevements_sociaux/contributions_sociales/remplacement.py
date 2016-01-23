@@ -125,7 +125,14 @@ class crds_chomage(Variable):
 
 class chomage_imposable(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    column = FloatCol(
+        val_type = "monetary",
+        cerfa_field = {QUIFOY['vous']: u"1AP",
+                   QUIFOY['conj']: u"1BP",
+                   QUIFOY['pac1']: u"1CP",
+                   QUIFOY['pac2']: u"1DP",
+                   QUIFOY['pac3']: u"1EP",
+                   })  # (f1ap, f1bp, f1cp, f1dp, f1ep)
     entity_class = Individus
     label = u"Allocations chômage imposables"
     set_input = set_input_divide_by_period

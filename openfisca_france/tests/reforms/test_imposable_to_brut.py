@@ -31,7 +31,7 @@ def test_cho(year = 2014):
         **single_entity_kwargs).new_simulation(debug = True)
 
     inverse_simulation.get_holder('chomage_brut').delete_arrays()
-    inverse_simulation.get_or_new_holder('choi').array = imposable.copy()
+    inverse_simulation.get_or_new_holder('chomage_imposable_pour_inversion').array = imposable.copy()
     new_brut = inverse_simulation.calculate('chomage_brut')
     assert_near(new_brut, brut, absolute_error_margin = 1)
 
