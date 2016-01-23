@@ -40,6 +40,11 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Individus
         label = u'Autres revenus imposables (chômage, préretraite), utilisé pour l’inversion'
 
+    class retraite_imposable_pour_inversion(Reform.Variable):
+        column = columns.FloatCol
+        entity_class = entities.Individus
+        label = u'Pensions, retraites, rentes connues imposables, utilisé pour l’inversion'
+
     class salaire_de_base(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
@@ -232,8 +237,8 @@ def build_reform(tax_benefit_system):
             # period = period.this_month
 
             # Get value for year and divide below.
-            rsti = simulation.get_array('rsti', period.this_year)
-            if rsti is None:
+            retraite_imposable_pour_inversion = simulation.get_array('retraite_imposable_pour_inversion', period.this_year)
+            if retraite_imposable_pour_inversion is None:
                 retraite_nette = simulation.get_array('retraite_nette', period)
                 if retraite_nette is not None:
                     # Calcule les pensions de retraite brutes à partir des pensions nettes par inversion numérique.
@@ -251,13 +256,13 @@ def build_reform(tax_benefit_system):
                             ) - retraite_nette
                     return period, fsolve(solve_function, retraite_nette)
 
-                rsti = simulation.calculate_add_divide('rsti', period)
+                retraite_imposable_pour_inversion = simulation.calculate_add_divide('retraite_imposable_pour_inversion', period)
 
             # Calcule les pensions de retraite brutes à partir des pensions imposables.
             taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
-            if (rsti == 0).all():
+            if (retraite_imposable_pour_inversion == 0).all():
                 # Quick path to avoid fsolve when using default value of input variables.
-                return period, rsti
+                return period, retraite_imposable_pour_inversion
             simulation = self.holder.entity.simulation
 
             def solve_function(retraite_brute):
@@ -267,7 +272,7 @@ def build_reform(tax_benefit_system):
                     target_name = 'retraite_imposable',
                     period = period,
                     simulation = simulation,
-                    ) - rsti
-            return period, fsolve(solve_function, rsti)
+                    ) - retraite_imposable_pour_inversion
+            return period, fsolve(solve_function, retraite_imposable_pour_inversion)
 
     return Reform()

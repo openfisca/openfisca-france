@@ -13,7 +13,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'statmarit',  # Statut marital
                     'salaire_de_base',  # Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie
                     'chomage_imposable',  # Autres revenus imposables (chômage, préretraite)
-                    'rsti',  # Pensions, retraites, rentes connues imposables
+                    'retraite_imposable',  # Pensions, retraites, rentes connues imposables
                     ]),
                 ]),
             collections.OrderedDict([

@@ -79,9 +79,9 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
                 },
             'typ_tot_default': 'chomage_imposable'
             },
-        'rsti': {
+        'retraite_imposable': {
             'name': 'retraite_imposable',
-            'col_name': 'rsti',
+            'col_name': 'retraite_imposable',
             'typ_tot': {
                 'retraite_brute': u"Retraite brut",
                 'retraite_imposable': u"Retraite",

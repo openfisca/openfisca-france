@@ -255,9 +255,16 @@ class casa(DatedVariable):
 
 class retraite_imposable(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    column = FloatCol(
+            val_type = "monetary",
+            cerfa_field = {QUIFOY['vous']: u"1AS",
+                           QUIFOY['conj']: u"1BS",
+                           QUIFOY['pac1']: u"1CS",
+                           QUIFOY['pac2']: u"1DS",
+                           QUIFOY['pac3']: u"1ES",
+                            })  # (f1as, f1bs, f1cs, f1ds, f1es)
     entity_class = Individus
-    label = u"Pensions de retraite imposables"
+    label = u"Retraites au sens strict imposables (rentes à titre onéreux exclues)"
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
 
