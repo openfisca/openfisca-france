@@ -1,0 +1,260 @@
+- name: "Famille éligible pour l'aide complementaire sante paris"
+  period: 2016-01
+  familles:
+    parents: ["Couple1", "Couple2"]
+    parisien: True
+    concub: True
+    statut_occupation_famille: 4
+    aspa: 0
+    aide_logement: 0
+  menages:
+    personne_de_reference: "Couple1"
+    conjoint: "Couple2"
+    loyer: 500
+  individus:
+  - id: "Couple1"
+    age: 75
+    salaire_net:
+     2016-01: 900
+     year:2015-01: 9000
+  - id: "Couple2"
+    age: 75
+    salaire_net:
+     2016-01: 300
+     year:2015-01: 3000
+  output_variables:
+    paris_complement_sante: 0
+
+- name: "Famille éligible pour l'aide complementaire sante paris"
+  period: 2016-01
+  familles:
+    parents: ["Couple1", "Couple2"]
+    parisien: True
+    concub: True
+    statut_occupation_famille: 4
+    aspa: 0
+    aide_logement: 0
+  menages:
+    personne_de_reference: "Couple1"
+    conjoint: "Couple2"
+    loyer: 500
+  individus:
+  - id: "Couple1"
+    age: 75
+    salaire_net:
+     2016-01: 900
+     year:2015-01: 9000
+  - id: "Couple2"
+    age: 75
+    salaire_net:
+     2016-01: 400
+     year:2015-01: 4000
+  output_variables:
+    paris_complement_sante: 0
+
+- name: "Famille éligible pour l'aide complementaire sante paris"
+  period: 2016-01
+  familles:
+    parents: ["Couple1", "Couple2"]
+    parisien: True
+    concub: True
+    statut_occupation_famille: 4
+    aspa: 1
+    aide_logement: 1
+  menages:
+    personne_de_reference: "Couple1"
+    conjoint: "Couple2"
+    loyer: 500
+  individus:
+  - id: "Couple1"
+    age: 75
+    salaire_net:
+     2016-01: 1300
+     year:2015-01: 13000
+  - id: "Couple2"
+    age: 75
+  output_variables:
+    paris_complement_sante: 0
+
+- name: "Personne éligible au CSP"
+  description: Paris Complementaire Santé
+  period: 2015-11
+  input_variables:
+    age: 45
+    parisien: True
+    statut_occupation: 4
+    invalide: True
+    concub: False
+    salaire_net: 895
+    loyer: 700
+    aah: 0
+    ass: 0
+    aide_logement: 0
+  output_variables:
+    paris_complement_sante: 0
+
+- name: "Personne éligible au CSP"
+  description: Paris Complementaire Santé
+  period: 2015-11
+  input_variables:
+    age: 45
+    parisien: True
+    statut_occupation: 4
+    invalide: True
+    concub: False
+    salaire_net: 900
+    loyer: 700
+    aah: 0
+    ass: 0
+    aide_logement: 0
+  output_variables:
+    paris_complement_sante: 0
+
+- name: "Personne éligible au CSP"
+  description: Paris Complementaire Santé
+  period: 2015-11
+  input_variables:
+    age: 45
+    parisien: True
+    statut_occupation: 4
+    invalide: True
+    concub: False
+    cmu_c: False
+    salaire_net: 900
+    loyer: 700
+    aah: 0
+    ass: 0
+    aide_logement: 0
+  output_variables:
+    paris_complement_sante: 268
+
+- name: "Personne éligible au CSP"
+  description: Paris Complementaire Santé
+  period: 2015-11
+  input_variables:
+    age: 45
+    parisien: True
+    statut_occupation: 4
+    invalide: True
+    concub: False
+    salaire_net: 910
+    loyer: 700
+    aah: 0
+    ass: 0
+    aide_logement: 0
+  output_variables:
+    paris_complement_sante: 0
+
+- name: "Personne non éligible au CSP"
+  description: Paris Complementaire Santé
+  period: 2015-11
+  input_variables:
+    age: 45
+    parisien: True
+    statut_occupation: 4
+    invalide: True
+    concub: False
+    salaire_net: 915
+    loyer: 700
+    aah: 0
+    ass: 0
+    aide_logement: 0
+  output_variables:
+    paris_complement_sante: 0
+
+- name: "Famille éligible pour l'aide complementaire sante paris"
+  period: 2015-11
+  familles:
+    parents: ["Couple1", "Couple2"]
+    parisien: True
+    concub: True
+    statut_occupation_famille: 4
+    aspa: 800
+    aide_logement: 200
+    ass: 0
+  menages:
+    personne_de_reference: "Couple1"
+    conjoint: "Couple2"
+    loyer: 550
+  individus:
+  - id: "Couple1"
+    age: 65
+  - id: "Couple2"
+    age: 45
+    chonet:
+      2015-11: 150
+  output_variables:
+    paris_complement_sante: 0
+
+- name: "Famille éligible pour l'aide paris energie famille avec une aide ACS"
+  period: 2015-11
+  familles:
+    parents: ["Couple1", "Couple2"]
+    parisien: True
+    concub: True
+    statut_occupation_famille: 4
+    aide_logement: 200
+    ass: 0
+  menages:
+    personne_de_reference: "Couple1"
+    conjoint: "Couple2"
+    loyer: 550
+  individus:
+  - id: "Couple1"
+    age: 45
+    salaire_net:
+      2015-11: 335
+  - id: "Couple2"
+    age: 45
+    aah:
+      2015-11: 800
+  output_variables:
+    paris_complement_sante: 0
+
+- name: "Famille éligible pour l'aide paris energie famille avec une aide ACS"
+  period: 2015-11
+  familles:
+    parents: ["Couple1", "Couple2"]
+    parisien: True
+    concub: True
+    statut_occupation_famille: 4
+    aide_logement: 200
+    ass: 0
+    aspa: 1200
+  menages:
+    personne_de_reference: "Couple1"
+    conjoint: "Couple2"
+    loyer: 550
+  individus:
+  - id: "Couple1"
+    age: 65
+  - id: "Couple2"
+    age: 45
+    salaire_net:
+      2015-11: 200
+  output_variables:
+    paris_complement_sante: 0
+
+- name: "Famille éligible pour l'aide paris energie famille avec une aide ACS"
+  period: 2015-11
+  familles:
+    parents: ["Couple1", "Couple2"]
+    parisien: True
+    concub: True
+    statut_occupation_famille: 4
+    aide_logement: 0
+    ass: 0
+    aspa: 1200
+  menages:
+    personne_de_reference: "Couple1"
+    conjoint: "Couple2"
+    loyer: 550
+  individus:
+  - id: "Couple1"
+    age: 65
+  - id: "Couple2"
+    age: 45
+    salaire_net:
+      2015-11: 200
+  output_variables:
+    paris_complement_sante: 0
