@@ -3311,6 +3311,10 @@
           <VALUE deb="2000-01-01" fin="2003-06-30" valeur="0" />
         </CODE>
       </NODE>
+      <CODE code="facteur_garde_alternee" description="Facteur multiplicatif pour un enfant en cas de garde alternée">
+        <VALUE deb="2007-05-01" fuzzy="true" valeur="0.5"/>
+        <VALUE deb="2000-01-01" fin="2007-04-30" valeur="1" />
+      </CODE>
     </NODE>
     <NODE code="afeama" description="Aide à la famille pour l'emploi d'une assistante maternelle agréée">
       <CODE code="age1" description="Limite d'âge (stricte) pour bénéficier de l'AFEAMA" format="integer" type="age">
