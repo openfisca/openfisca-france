@@ -3,7 +3,7 @@ keywords:
   - base ressources
   - rsa
 description: |
-  Neutral dans la limite du montant forfaitaire pour 1 personne 
+  Neutral dans la limite du montant forfaitaire pour 1 personne
   800-513.88 = 286.12
   513.88 - 286.12 = 227.76
 period: "month:2015-01"
@@ -13,7 +13,7 @@ individus:
   birth: "1980-01-01"
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54bfdf0bd337b5d372377d43
   inapte_travail: 0
   interets_epargne_sur_livrets:

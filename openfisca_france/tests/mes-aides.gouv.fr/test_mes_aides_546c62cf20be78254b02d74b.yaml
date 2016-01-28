@@ -1,6 +1,6 @@
 name: 62_remuneration de stage hors formation professionnelle #OpenLab
 keywords: rsa
-description: 
+description:
 period: "month:2014-11"
 relative_error_margin: 0.02
 individus:
@@ -11,7 +11,7 @@ individus:
   birth: "1986-01-01"
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 546c61f120be78254b02d73d
   inapte_travail: 0
   indemnites_stage:

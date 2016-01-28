@@ -12,8 +12,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'birth',  # Date de naissance
                     'statmarit',  # Statut marital
                     'salaire_de_base',  # Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie
-                    'choi',  # Autres revenus imposables (chômage, préretraite)
-                    'rsti',  # Pensions, retraites, rentes connues imposables
+                    'chomage_imposable',  # Autres revenus imposables (chômage, préretraite)
+                    'retraite_imposable',  # Pensions, retraites, rentes connues imposables
                     ]),
                 ]),
             collections.OrderedDict([
@@ -271,9 +271,9 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f3vi""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %
                     u"""f3vj""",  # Gains imposables sur option dans la catégorie des salaires
                     u"""f3va""",  # Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values
-                    u"""chobrut""",  # Chômage brut
+                    u"""chomage_brut""",  # Chômage brut
                     u"""indemnites_chomage_partiel""",  # Indemnités de chômage partiel
-                    u"""rstbrut""",  # Retraite brute
+                    u"""retraite_brute""",  # Retraite brute
                     u"""aer""",  # Allocation équivalent retraite (AER)
                     u"""retraite_combattant""",  # Retraite du combattant
                     u"""indemnites_journalieres_maternite""",  # Indemnités journalières de maternité

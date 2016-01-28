@@ -3,16 +3,7 @@
 from ...base import *  # noqa analysis:ignore
 
 
-build_column('rsti', IntCol(label = u"Pensions, retraites, rentes connues imposables",
-                val_type = "monetary",
-                cerfa_field = {QUIFOY['vous']: u"1AS",
-                               QUIFOY['conj']: u"1BS",
-                               QUIFOY['pac1']: u"1CS",
-                               QUIFOY['pac2']: u"1DS",
-                               QUIFOY['pac3']: u"1ES",
-                               }))  # (f1as, f1bs, f1cs, f1ds, f1es)
-
-class rstbrut(Variable):
+class retraite_brute(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Retraite brute"

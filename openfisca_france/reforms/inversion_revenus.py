@@ -35,6 +35,16 @@ def build_reform(tax_benefit_system):
         entity_class = entities.Individus
         label = u'Salaire imposable utilisé pour remonter au salaire brut'
 
+    class chomage_imposable_pour_inversion(Reform.Variable):
+        column = columns.FloatCol
+        entity_class = entities.Individus
+        label = u'Autres revenus imposables (chômage, préretraite), utilisé pour l’inversion'
+
+    class retraite_imposable_pour_inversion(Reform.Variable):
+        column = columns.FloatCol
+        entity_class = entities.Individus
+        label = u'Pensions, retraites, rentes connues imposables, utilisé pour l’inversion'
+
     class salaire_de_base(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
@@ -167,7 +177,7 @@ def build_reform(tax_benefit_system):
     #        #<NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence"/>
     #        return period, salbrut + hsup
 
-    class chobrut(Reform.Variable):
+    class chomage_brut(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Allocations chômage brutes"
@@ -177,45 +187,45 @@ def build_reform(tax_benefit_system):
             """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
             """
             # Get value for year and divide below.
-            choi = simulation.get_array('choi', period.this_year)
-            if choi is None:
-                chonet = simulation.get_array('chonet', period)
-                if chonet is not None:
+            chomage_imposable_pour_inversion = simulation.get_array('chomage_imposable_pour_inversion', period.this_year)
+            if chomage_imposable_pour_inversion is None:
+                chomage_net = simulation.get_array('chomage_net', period)
+                if chomage_net is not None:
                     # Calcule les allocations chomage brutes à partir des allocations nettes par inversion numérique.
-                    if (chonet == 0).all():
+                    if (chomage_net == 0).all():
                         # Quick path to avoid fsolve when using default value of input variables.
-                        return period, chonet
+                        return period, chomage_net
                     simulation = self.holder.entity.simulation
 
-                    def solve_function(chobrut):
+                    def solve_function(chomage_brut):
                         return brut_to_target(
-                            chobrut = chobrut,
-                            target_name = 'chonet',
+                            chomage_brut = chomage_brut,
+                            target_name = 'chomage_net',
                             period = period,
                             simulation = simulation,
-                            ) - chonet
-                    return period, fsolve(solve_function, chonet)
+                            ) - chomage_net
+                    return period, fsolve(solve_function, chomage_net)
 
-                choi = simulation.calculate_add_divide('choi', period)
+                chomage_imposable_pour_inversion = simulation.calculate_add_divide('chomage_imposable_pour_inversion', period)
 
             # Calcule les allocations chômage brutes à partir des allocations imposables.
             # taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
-            if (choi == 0).all():
+            if (chomage_imposable_pour_inversion == 0).all():
                 # Quick path to avoid fsolve when using default value of input variables.
-                return period, choi
+                return period, chomage_imposable_pour_inversion
             simulation = self.holder.entity.simulation
 
-            def solve_function(chobrut):
+            def solve_function(chomage_brut):
                 return brut_to_target(
-                    chobrut = chobrut,
+                    chomage_brut = chomage_brut,
                     # taux_csg_remplacement = taux_csg_remplacement,
-                    target_name = 'cho',
+                    target_name = 'chomage_imposable',
                     period = period,
                     simulation = simulation,
-                    ) - choi
-            return period, fsolve(solve_function, choi)
+                    ) - chomage_imposable_pour_inversion
+            return period, fsolve(solve_function, chomage_imposable_pour_inversion)
 
-    class rstbrut(Reform.Variable):
+    class retraite_brute(Reform.Variable):
         column = columns.FloatCol
         entity_class = entities.Individus
         label = u"Pensions de retraite brutes"
@@ -227,42 +237,42 @@ def build_reform(tax_benefit_system):
             # period = period.this_month
 
             # Get value for year and divide below.
-            rsti = simulation.get_array('rsti', period.this_year)
-            if rsti is None:
-                rstnet = simulation.get_array('rstnet', period)
-                if rstnet is not None:
+            retraite_imposable_pour_inversion = simulation.get_array('retraite_imposable_pour_inversion', period.this_year)
+            if retraite_imposable_pour_inversion is None:
+                retraite_nette = simulation.get_array('retraite_nette', period)
+                if retraite_nette is not None:
                     # Calcule les pensions de retraite brutes à partir des pensions nettes par inversion numérique.
-                    if (rstnet == 0).all():
+                    if (retraite_nette == 0).all():
                         # Quick path to avoid fsolve when using default value of input variables.
-                        return period, rstnet
+                        return period, retraite_nette
                     simulation = self.holder.entity.simulation
 
-                    def solve_function(rstbrut):
+                    def solve_function(retraite_brute):
                         return brut_to_target(
-                            target_name = 'rstnet',
+                            target_name = 'retraite_nette',
                             period = period,
-                            rstbrut = rstbrut,
+                            retraite_brute = retraite_brute,
                             simulation = simulation,
-                            ) - rstnet
-                    return period, fsolve(solve_function, rstnet)
+                            ) - retraite_nette
+                    return period, fsolve(solve_function, retraite_nette)
 
-                rsti = simulation.calculate_add_divide('rsti', period)
+                retraite_imposable_pour_inversion = simulation.calculate_add_divide('retraite_imposable_pour_inversion', period)
 
             # Calcule les pensions de retraite brutes à partir des pensions imposables.
             taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
-            if (rsti == 0).all():
+            if (retraite_imposable_pour_inversion == 0).all():
                 # Quick path to avoid fsolve when using default value of input variables.
-                return period, rsti
+                return period, retraite_imposable_pour_inversion
             simulation = self.holder.entity.simulation
 
-            def solve_function(rstbrut):
+            def solve_function(retraite_brute):
                 return brut_to_target(
-                    rstbrut = rstbrut,
+                    retraite_brute = retraite_brute,
                     taux_csg_remplacement = taux_csg_remplacement,
-                    target_name = 'rst',
+                    target_name = 'retraite_imposable',
                     period = period,
                     simulation = simulation,
-                    ) - rsti
-            return period, fsolve(solve_function, rsti)
+                    ) - retraite_imposable_pour_inversion
+            return period, fsolve(solve_function, retraite_imposable_pour_inversion)
 
     return Reform()

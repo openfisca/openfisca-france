@@ -5,7 +5,7 @@ keywords:
   - eval forfaitaire
 description: |
   Salaire en m-1 et RNC n-2 = 0, on n'applique pas l'évaluation forfaitaire car bénéficiaire de l'AAH, donc R = 0.
-  
+
   L	292,62
   C	53,23
   E	345,85
@@ -42,11 +42,11 @@ individus:
   age: 35
   age_en_mois: 426
   birth: "1979-07-12"
-  cho:
+  chomage_imposable:
     2013: 0
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54be86a5d337b5d372377c27
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -54,7 +54,7 @@ individus:
   invalide: 1
   pensions_alimentaires_percues:
     2013: 0
-  rst:
+  retraite_imposable:
     2013: 0
   salaire_de_base:
     2014-01: 341.8846153846154

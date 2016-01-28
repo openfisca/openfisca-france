@@ -13,7 +13,7 @@ individus:
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55edaa67dbd69f2b04f56320
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -77,7 +77,7 @@ individus:
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55edaa67dbd69f2b04f56313
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -141,7 +141,7 @@ individus:
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55edaa67dbd69f2b04f56312
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -158,7 +158,7 @@ individus:
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55edaa67dbd69f2b04f56311
   inapte_travail: 0
   interets_epargne_sur_livrets:

@@ -11,7 +11,7 @@ individus:
   birth: "1940-10-01"
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 548ac1ccc498cde71866d641
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -34,7 +34,7 @@ individus:
     2014-11: 100
     2014-12: 100
     year:2013-12: 1200
-  rstbrut:
+  retraite_brute:
     2012: 7200
     2013-12: 600
     2014-01: 600
@@ -51,7 +51,7 @@ individus:
     2014-11: 600
     2014-12: 600
     year:2013-12: 7200
-  rstnet:
+  retraite_nette:
     2012: 6667.200000000002
     2013-12: 555.6
     2014-01: 555.6

@@ -5,10 +5,10 @@ keywords:
   - location
 description: |
   http://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029558125&cidTexte=LEGITEXT000006074213
-  
+
   Pour les chambres, on doit multiplier le loyer plafond calculé par 0.9
   Ici la personne est seul en zone 1 donc L = 292,62 * 0.9 = 263,36
-  
+
   L	263,36
   C	53,23
   E	316,59
@@ -24,18 +24,18 @@ description: |
   P1	0
   Pp	34,73
   AL	280,45
-  
+
   caf.fr : 280,46 €
 period: "month:2015-02"
 individus:
   age: 34
   age_en_mois: 414
   birth: "1980-08-12"
-  cho:
+  chomage_imposable:
     2013: 0
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54ef4cd17516fb5d75533549
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -44,7 +44,7 @@ individus:
   logement_chambre: 1
   pensions_alimentaires_percues:
     2013: 0
-  rst:
+  retraite_imposable:
     2013: 0
   salaire_imposable:
     2013: 0

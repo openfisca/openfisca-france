@@ -69,25 +69,25 @@ class CompositionWidget(OpenfiscaPluginWidget, Ui_Menage):
                 },
             'typ_tot_default': 'salaire_imposable',
             },
-        'choi': {
-            'name': 'cho',
-            'col_name': 'choi',
+        'chomage_imposable': {
+            'name': 'chomage_imposable',
+            'col_name': 'chomage_imposable',
             'typ_tot': {
-                'chobrut': u"Chômage brut",
-                'cho': u"Chômage",
-                'chonet': u"Chômage net",
+                'chomage_brut': u"Chômage brut",
+                'chomage_imposable': u"Chômage",
+                'chomage_net': u"Chômage net",
                 },
-            'typ_tot_default': 'cho'
+            'typ_tot_default': 'chomage_imposable'
             },
-        'rsti': {
-            'name': 'rst',
-            'col_name': 'rsti',
+        'retraite_imposable': {
+            'name': 'retraite_imposable',
+            'col_name': 'retraite_imposable',
             'typ_tot': {
-                'rstbrut': u"Retraite brut",
-                'rst': u"Retraite",
-                'rstnet': u"Retraite net"
+                'retraite_brute': u"Retraite brut",
+                'retraite_imposable': u"Retraite",
+                'retraite_nette': u"Retraite net"
                 },
-            'typ_tot_default': 'rst'
+            'typ_tot_default': 'retraite_imposable'
             },
         'f2da': {
             'name': 'divpfl',

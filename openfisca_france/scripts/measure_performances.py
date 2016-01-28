@@ -134,20 +134,20 @@ def main():
     test_irpp(2013, -7889, salaire_imposable =  50000)
     test_irpp(2013, -43076, salaire_imposable =  150000)
 
-    print 'rst'
+    print 'retraite_imposable'
 
-    test_irpp(2010, -1181, rst = 20000)
-    test_irpp(2010, -8336, rst = 50000)
-    test_irpp(2010, -46642, rst = 150000)
-    test_irpp(2011, -1181, rst = 20000)
-    test_irpp(2011, -8336, rst = 50000)
-    test_irpp(2011, -46642, rst = 150000)
-    test_irpp(2012, -1181, rst = 20000)
-    test_irpp(2012, -8336, rst = 50000)
-    test_irpp(2012, -46642, rst = 150000)
-    test_irpp(2013, -1170, rst = 20000)
-    test_irpp(2013, -8283, rst = 50000)
-    test_irpp(2013, -46523, rst = 150000)
+    test_irpp(2010, -1181, retraite_imposable = 20000)
+    test_irpp(2010, -8336, retraite_imposable = 50000)
+    test_irpp(2010, -46642, retraite_imposable = 150000)
+    test_irpp(2011, -1181, retraite_imposable = 20000)
+    test_irpp(2011, -8336, retraite_imposable = 50000)
+    test_irpp(2011, -46642, retraite_imposable = 150000)
+    test_irpp(2012, -1181, retraite_imposable = 20000)
+    test_irpp(2012, -8336, retraite_imposable = 50000)
+    test_irpp(2012, -46642, retraite_imposable = 150000)
+    test_irpp(2013, -1170, retraite_imposable = 20000)
+    test_irpp(2013, -8283, retraite_imposable = 50000)
+    test_irpp(2013, -46523, retraite_imposable = 150000)
 
     print 'f2da'
 

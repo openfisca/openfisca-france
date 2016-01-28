@@ -7,7 +7,7 @@ description: |
   Le résultat du droit RSA semble prendre en compte l'allocation de base PAJE de la personne alors qu'elle n'a déclaré aucune ressource. Il serait plus cohérent et lisible sur la page des résultats, :
   - ou bien de recenser l'ensemble des prestations prises en compte pour le calcul du RSA (et autres peut-être),
   - ou bien de ne pas prendre en compte cette prestation.
-  
+
   Par ailleurs, il y a une erreur certes marginale, mais dont l'origine devrait être explicitée, sur le montant RSA : Le MF est de 749,77€. On y enleve 91,40€ (ASF) et 185,54€ (AB PAJE), cela fait 472,83€ et non 471,72€. Quelle est l'origine de cette différence ?
 period: "month:2014-11"
 relative_error_margin: 0.02
@@ -17,7 +17,7 @@ individus:
     birth: "1986-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5458f6acaf63db2c33f15db6
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -32,7 +32,7 @@ individus:
     birth: "2012-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5458f6acaf63db2c33f15db5
     inapte_travail: 0
     interets_epargne_sur_livrets:

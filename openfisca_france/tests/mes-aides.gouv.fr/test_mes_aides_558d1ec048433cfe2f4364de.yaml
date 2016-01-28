@@ -11,11 +11,11 @@ individus:
   - age: 54
     age_en_mois: 657
     birth: "1960-09-08"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 558d1ea09e2a9d0330e79753
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -23,7 +23,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 0
-    rst:
+    retraite_imposable:
       2013: 0
     salaire_de_base:
       2014-07: 10604.621715732826
@@ -80,7 +80,7 @@ individus:
     birth: "2005-08-03"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 558d1ea09e2a9d0330e79752
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -96,7 +96,7 @@ individus:
     birth: "2006-09-08"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 558d1ea09e2a9d0330e79751
     inapte_travail: 0
     interets_epargne_sur_livrets:

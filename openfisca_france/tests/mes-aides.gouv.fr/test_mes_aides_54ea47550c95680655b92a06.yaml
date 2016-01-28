@@ -4,7 +4,7 @@ keywords:
   - caf.fr
 description: |
   Zone 2
-  
+
   L	255,03
   C	53,23
   E	308,26
@@ -20,7 +20,7 @@ description: |
   P1	100,54
   Pp	135,27
   AL	172,13
-  
+
   caf.fr : 173,72
 period: "month:2015-02"
 individus:
@@ -29,9 +29,9 @@ individus:
   age_en_mois: 414
   ass_precondition_remplie: false
   birth: "1980-08-12"
-  cho:
+  chomage_imposable:
     2013: 8580
-  chobrut:
+  chomage_brut:
     2014-02: 749.3054578460502
     2014-03: 749.3054578460502
     2014-04: 749.3054578460502
@@ -47,7 +47,7 @@ individus:
     2015-01: 749.3054578460502
     2015-02: 749.3054578460502
     year:2014-02: 8991.665494152605
-  chonet:
+  chomage_net:
     2014-02: 679
     2014-03: 679
     2014-04: 679
@@ -65,7 +65,7 @@ individus:
     year:2014-02: 8148
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54ea473f0f7afafd54c4d64d
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -73,7 +73,7 @@ individus:
   invalide: 0
   pensions_alimentaires_percues:
     2013: 0
-  rst:
+  retraite_imposable:
     2013: 0
   salaire_imposable:
     2013: 0

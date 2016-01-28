@@ -3,8 +3,8 @@ keywords:
   - recette
   - rsa
 description: |
-  Test créé à partir d'un dossier de demande de (RSA, APL…) : 
-  Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : 
+  Test créé à partir d'un dossier de demande de (RSA, APL…) :
+  Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés :
   La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) : majoration AF prise en compte à tort pr RSA
 period: "month:2015-07"
 relative_error_margin: 0.02
@@ -13,12 +13,12 @@ individus:
     age: 34
     age_en_mois: 408
     birth: "1981-07-11"
-    cho:
+    chomage_imposable:
       2013: 0
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f45
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -41,7 +41,7 @@ individus:
       2015-06: 146
       2015-07: 146
       year:2014-07: 1752
-    rst:
+    retraite_imposable:
       2013: 1967
     salaire_imposable:
       2013: 0
@@ -56,9 +56,9 @@ individus:
     age_en_mois: 356
     ass_precondition_remplie: false
     birth: "1985-11-28"
-    cho:
+    chomage_imposable:
       2013: 0
-    chobrut:
+    chomage_brut:
       2014-07: 120.28614860857066
       2014-08: 120.28614860857066
       2014-09: 120.28614860857066
@@ -73,7 +73,7 @@ individus:
       2015-05: 0
       2015-06: 0
       year:2014-07: 1443.4337833028476
-    chonet:
+    chomage_net:
       2014-07: 109
       2014-08: 109
       2014-09: 109
@@ -91,7 +91,7 @@ individus:
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f2b
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -99,7 +99,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 0
-    rst:
+    retraite_imposable:
       2013: 0
     salaire_de_base:
       2014-07: 1588.4615384615383
@@ -162,7 +162,7 @@ individus:
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f2a
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -179,7 +179,7 @@ individus:
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f29
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -196,7 +196,7 @@ individus:
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f28
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -214,7 +214,7 @@ individus:
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f27
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -232,7 +232,7 @@ individus:
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f26
     inapte_travail: 0
     interets_epargne_sur_livrets:

@@ -8,8 +8,8 @@ description: |
   droit rsa calculé 650€ et droit Asf 90 et droit Cmu
   Le parti pris est je suppose de calculer un droit au rsa sans majoration.
   si oui droit Rsa attendu : 551 (763 - 122-90)
-  
-  dans l'hypothèse où l'usager n'a fait aucune démarche en caf et qu'il n'a pas encore de droit à l'Asf, il ne cochera pas, dans la page "ressources", l'Asf. 
+
+  dans l'hypothèse où l'usager n'a fait aucune démarche en caf et qu'il n'a pas encore de droit à l'Asf, il ne cochera pas, dans la page "ressources", l'Asf.
   Anomalie : l'Asf est bien calculée en page résultat mais pas déduite dans le montant Rsa estimé
 period: "month:2014-11"
 relative_error_margin: 0.02
@@ -19,7 +19,7 @@ individus:
     birth: "1980-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 546b06c0de0b44f86312e845
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -34,7 +34,7 @@ individus:
     birth: "2005-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 546b06c0de0b44f86312e844
     inapte_travail: 0
     interets_epargne_sur_livrets:

@@ -12,7 +12,7 @@ individus:
   birth: "1980-08-12"
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54661c45f36fa43e7789896c
   inapte_travail: 0
   indemnites_volontariat:

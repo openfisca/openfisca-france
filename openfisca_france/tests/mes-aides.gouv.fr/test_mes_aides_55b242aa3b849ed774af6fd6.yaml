@@ -1,6 +1,6 @@
 name: PLF Titre de séjour valide
 keywords:
-  - 
+  -
   - PLF
   - Paris
   - titre de séjour
@@ -14,7 +14,7 @@ individus:
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55b2429e3b849ed774af6fc9
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -83,7 +83,7 @@ individus:
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55b2429e3b849ed774af6fc8
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -101,7 +101,7 @@ individus:
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55b2429e3b849ed774af6fc6
     inapte_travail: 0
     interets_epargne_sur_livrets:

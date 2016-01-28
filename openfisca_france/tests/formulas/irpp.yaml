@@ -95,7 +95,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    rst: 20000
+    retraite_imposable: 20000
   output_variables:
     irpp: -1181
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €"
@@ -106,7 +106,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    rst: 50000
+    retraite_imposable: 50000
   output_variables:
     irpp: -8336
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €"
@@ -117,7 +117,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    rst: 150000
+    retraite_imposable: 150000
   output_variables:
     irpp: -46642
 
@@ -129,7 +129,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    rst: 20000
+    retraite_imposable: 20000
   output_variables:
     irpp: -1181
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €"
@@ -140,7 +140,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    rst: 50000
+    retraite_imposable: 50000
   output_variables:
     irpp: -8336
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €"
@@ -151,7 +151,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    rst: 150000
+    retraite_imposable: 150000
   output_variables:
     irpp: -46642
 
@@ -163,7 +163,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    rst: 20000
+    retraite_imposable: 20000
   output_variables:
     irpp: -1181
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €"
@@ -174,7 +174,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    rst: 50000
+    retraite_imposable: 50000
   output_variables:
     irpp: -8336
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €"
@@ -185,7 +185,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    rst: 150000
+    retraite_imposable: 150000
   output_variables:
     irpp: -46642
 
@@ -197,7 +197,7 @@
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
-    rst: 20000
+    retraite_imposable: 20000
   output_variables:
     irpp: -1170
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €"
@@ -208,7 +208,7 @@
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
-    rst: 50000
+    retraite_imposable: 50000
   output_variables:
     irpp: -8283
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €"
@@ -219,7 +219,7 @@
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
-    rst: 150000
+    retraite_imposable: 150000
   output_variables:
     irpp: -46523
 

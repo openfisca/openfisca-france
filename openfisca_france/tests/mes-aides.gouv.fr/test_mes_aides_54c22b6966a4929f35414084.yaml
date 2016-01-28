@@ -4,7 +4,7 @@ keywords:
   - location
 description: |
   Pour une femme enceinte isolée sans enfants, on fait comme si elle était en couple. cf. D542-6 du CSS : http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737370&cidTexte=LEGITEXT000006073189
-  
+
   L	352,92
   C	53,23
   E	406,15
@@ -26,12 +26,12 @@ individus:
   age: 34
   age_en_mois: 413
   birth: "1980-08-12"
-  cho:
+  chomage_imposable:
     2013: 0
   enceinte: true
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54c22a358a248fab3505d37a
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -39,7 +39,7 @@ individus:
   invalide: 0
   pensions_alimentaires_percues:
     2013: 0
-  rst:
+  retraite_imposable:
     2013: 0
   salaire_imposable:
     2013: 9000
