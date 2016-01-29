@@ -163,8 +163,7 @@ def build_counterfactual_2014_reform(tax_benefit_system):
             print 'decote', decote
             return period, (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
-    @Reform.formula
-    class reduction_impot_exceptionnelle(formulas.SimpleFormulaColumn):
+    class reduction_impot_exceptionnelle(Reform.Variable):
         column = FloatCol
         entity_class = FoyersFiscaux
         label = u"Réduction d'impôt exceptionnelle"
@@ -183,7 +182,7 @@ def build_counterfactual_2014_reform(tax_benefit_system):
             montant = montant_plafond * nb_adult
             return period, min_(max_(plafond + montant - rfr, 0), montant)
 
-    class reductions(formulas.DatedFormulaColumn):
+    class reductions(Reform.DatedVariable):
         label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
         reference = reductions_impot.reductions
 
