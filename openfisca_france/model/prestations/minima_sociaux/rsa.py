@@ -361,20 +361,26 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
         return period, result
 
     @dated_function(start = date(2014, 4, 1))
-    def function_2014(self, simulation, period):
+    def function_2014(self, simulation, period, referencePeriod = None):
         # TODO : Neutraliser les ressources de type prestations familiales quand elles sont interrompues
         period = period.this_month
-        prestations = [
+        referencePeriod = referencePeriod if referencePeriod else period
+
+        prestations_calculees = [
             'af_base',
             'rsa_forfait_asf',
             'paje_base',
+           ]
+        prestations_autres = [
             'paje_clca',
             'paje_prepare',
             'paje_colca',
             ]
-        result = sum(simulation.calculate(prestation, period) for prestation in prestations)
-        cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', period)
-        cf = simulation.calculate('cf', period)
+
+        result = sum(simulation.calculate(prestation, referencePeriod) for prestation in prestations_calculees)
+        result += sum(simulation.calculate(prestation, period) for prestation in prestations_autres)
+        cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', referencePeriod)
+        cf = simulation.calculate('cf', referencePeriod)
         # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
         cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
         result = result + cf_non_majore
