@@ -2400,13 +2400,12 @@ class prcomp(Variable):
                  P.taux * f7wp)
 
 
-class reduction_impot_exceptionnelle(Variable):
+class reduction_impot_exceptionnelle(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Réduction d'impôt exceptionnelle"
-    start_date = date(2013, 1, 1)
-    stop_date = date(2013, 12, 31)
 
+    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
         nb_adult = simulation.calculate('nb_adult')
