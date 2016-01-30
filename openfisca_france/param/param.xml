@@ -3311,6 +3311,10 @@
           <VALUE deb="2000-01-01" fin="2003-06-30" valeur="0" />
         </CODE>
       </NODE>
+      <CODE code="facteur_garde_alternee" description="Facteur multiplicatif pour un enfant en cas de garde alternée">
+        <VALUE deb="2007-05-01" fuzzy="true" valeur="0.5"/>
+        <VALUE deb="2000-01-01" fin="2007-04-30" valeur="1" />
+      </CODE>
     </NODE>
     <NODE code="afeama" description="Aide à la famille pour l'emploi d'une assistante maternelle agréée">
       <CODE code="age1" description="Limite d'âge (stricte) pour bénéficier de l'AFEAMA" format="integer" type="age">
@@ -4056,17 +4060,18 @@
     <BAREME code="bareme" description="Tranches de l'IR" type="monetary">
       <TRANCHE code="tranche0">
         <SEUIL>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
-          <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
+          <VALUE deb="2001-01-01" fin="2015-12-31" valeur="0" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
-          <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
+          <VALUE deb="2001-01-01" fin="2015-12-31" valeur="0" />
         </TAUX>
       </TRANCHE>
       <TRANCHE code="tranche1">
         <SEUIL>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="9690" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="9700" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="9700" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="9690" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="6011" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="5963" />
@@ -4081,8 +4086,8 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="4121" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.14" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.14" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.14" />
+          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="0.14" />
           <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.055" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.0683" />
           <VALUE deb="2001-01-01" fin="2002-12-31" valeur="0.0705" />
@@ -4090,7 +4095,8 @@
       </TRANCHE>
       <TRANCHE code="tranche2">
         <SEUIL>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="26764" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="26791" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="26791" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="26764" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="11991" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="11896" />
@@ -4105,8 +4111,8 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="8104" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.30" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.30" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.30" />
+          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="0.30" />
           <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.14" />
           <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.1914" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.21" />
@@ -4114,7 +4120,8 @@
       </TRANCHE>
       <TRANCHE code="tranche3">
         <SEUIL>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="71754" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="71826" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="71826" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="71754" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="26631" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="26420" />
@@ -4129,8 +4136,8 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="14264" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.4100" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.4100" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.4100" />
+          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="0.4100" />
           <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.3000" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.2826" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.2914" />
@@ -4139,7 +4146,8 @@
       </TRANCHE>
       <TRANCHE code="tranche4">
         <SEUIL>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="151956" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="152108" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="152108" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="151956" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="71397" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="70830" />
@@ -4154,8 +4162,8 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="23096" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.4500" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.4500" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.4500" />
+          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="0.4500" />
           <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.4100" />
           <VALUE deb="2006-01-01" fin="2009-12-31" valeur="0.4000" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.3738" />
@@ -4165,7 +4173,6 @@
       </TRANCHE>
       <TRANCHE code="tranche5">
         <SEUIL>
-          <VALUE deb="2014-01-01" fuzzy="true" valeur="151200" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="151200" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="150000" />
           <VALUE deb="2005-01-01" fin="2005-12-31" valeur="40241" />
@@ -4175,7 +4182,6 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="37579" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2014-01-01" fuzzy="true" valeur="0.4500" />
           <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.4500" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.4262" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.4394" />
