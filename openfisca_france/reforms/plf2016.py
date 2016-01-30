@@ -6,7 +6,7 @@ from __future__ import division
 from numpy import maximum as max_, minimum as min_
 
 
-from openfisca_core import formulas, periods, reforms
+from openfisca_core import periods, reforms
 from ..model.base import *  # analysis.ignore
 from ..model.prelevements_obligatoires.impot_revenu import ir, reductions_impot
 
@@ -158,16 +158,15 @@ def build_counterfactual_2014_reform(tax_benefit_system):
             period = period.start.offset('first-of', 'year').period('year')
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             inflator = 1 + .001 + .005
-
             decote = simulation.legislation_at(period.start).ir.decote
-            print 'decote', decote
+            assert decote.seuil == 1016
             return period, (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
     class reduction_impot_exceptionnelle(Reform.DatedVariable):
         reference = reductions_impot.reduction_impot_exceptionnelle
 
-        @dated_function(start = date(2015, 1, 1))
-        def function(self, simulation, period):
+        @dated_function(start = date(2015, 1, 1), stop = date(2015, 12, 31))
+        def function_2015(self, simulation, period):
             period = period.start.offset('first-of', 'year').period('year')
             nb_adult = simulation.calculate('nb_adult')
             nb_par = simulation.calculate('nb_par')
@@ -182,7 +181,7 @@ def build_counterfactual_2014_reform(tax_benefit_system):
             return period, min_(max_(plafond + montant - rfr, 0), montant)
 
     class reductions(Reform.DatedVariable):
-        label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
+        label = u"Somme des réductions d'impôt"
         reference = reductions_impot.reductions
 
         @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
@@ -234,7 +233,6 @@ def counterfactual_2014_modify_legislation_json(reference_legislation_json_copy)
     inflator = 1 + .001 + .005
     reform_year = 2015
     reform_period = periods.period('year', reform_year)
-    print reform_period
 #    reference_legislation_json_copy = reforms.update_legislation(
 #        legislation_json = reference_legislation_json_copy,
 #        path = ('children', 'ir', 'children', 'reductions_impots', 'children', 'reduction_impot_exceptionnelle',

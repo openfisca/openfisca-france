@@ -9,6 +9,39 @@ from openfisca_core import periods
 from openfisca_france.tests import base
 
 
+def test_counterfactual_2014():
+    # Célibataire sans enfants1 part : revenu mensuel net = 1593 IR2015 = 1138 IR2016 = 828
+    year = 2015
+    reform = base.get_cached_reform(
+        reform_key = 'plf2016_counterfactual_2014',
+        tax_benefit_system = base.tax_benefit_system,
+        )
+    scenario = reform.new_scenario().init_single_entity(
+        period = periods.period('year', year),
+        parent1 = dict(
+            birth = datetime.date(year - 40, 1, 1),
+            salaire_imposable = 15000
+            ),
+        )
+    reference_simulation = scenario.new_simulation(debug = True, reference = True)
+    reform_simulation = scenario.new_simulation(debug = True)
+    error_margin = 2
+
+    reform_decote = reform_simulation.calculate('decote')
+    reference_decote = reference_simulation.calculate('decote')
+
+    reference_reduction_impot_exceptionnelle = reference_simulation.calculate('reduction_impot_exceptionnelle')
+    reform_reduction_impot_exceptionnelle = reform_simulation.calculate('reduction_impot_exceptionnelle')
+
+    print 'reduction_impot_exceptionnelle', reference_reduction_impot_exceptionnelle, reform_reduction_impot_exceptionnelle
+    print 'decote', reference_decote, reform_decote
+    impo = reference_simulation.calculate('impo')
+    reform_impo = reform_simulation.calculate('impo')
+    print 'impo', impo, reform_impo
+    assert_less((abs(0 - impo)), error_margin)
+    assert_less((abs(0 - reform_impo)), error_margin)
+
+
 def test_dossier_de_presse_1():
     # Célibataire sans enfants1 part : revenu mensuel net = 1593 IR2015 = 1138 IR2016 = 828
     year = 2015
