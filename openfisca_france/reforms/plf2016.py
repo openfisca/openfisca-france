@@ -163,11 +163,10 @@ def build_counterfactual_2014_reform(tax_benefit_system):
             print 'decote', decote
             return period, (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
-    class reduction_impot_exceptionnelle(Reform.Variable):
-        column = FloatCol
-        entity_class = FoyersFiscaux
-        label = u"Réduction d'impôt exceptionnelle"
+    class reduction_impot_exceptionnelle(Reform.DatedVariable):
+        reference = reductions_impot.reduction_impot_exceptionnelle
 
+        @dated_function(start = date(2015, 1, 1))
         def function(self, simulation, period):
             period = period.start.offset('first-of', 'year').period('year')
             nb_adult = simulation.calculate('nb_adult')
