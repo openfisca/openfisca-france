@@ -287,7 +287,7 @@ class cmu_c(Variable):
     def function(self, simulation, period):
         # Note : Cette variable est calculée pour un an, mais si elle est demandée pour une période plus petite, elle
         # répond pour la période demandée.
-        this_month = period.start.period('month').offset('first-of')
+        this_month = period.this_month
         this_rolling_year = this_month.start.period('year')
         if period.stop > this_rolling_year.stop:
             period = this_rolling_year
@@ -311,15 +311,12 @@ class cmu_c(Variable):
 
 
 class acs(Variable):
-    '''
-    Calcule le montant de l'ACS auquel le foyer a droit
-    '''
     column = FloatCol
-    label = u"Éligibilité à l'ACS"
+    label = u"Montant (mensuel) de l'ACS"
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.period('month').offset('first-of')
+        period = period.this_month
 
         cmu_c = simulation.calculate('cmu_c', period)
         cmu_base_ressources = simulation.calculate('cmu_base_ressources', period)
