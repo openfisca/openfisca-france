@@ -131,8 +131,8 @@ class ppa_ressources_hors_activite(Variable):
     entity_class = Familles
     label = u"Revenu hors activité pris en compte pour la PPA"
 
-    def function(self, simulation, period):
-        pf = simulation.calculate('rsa_base_ressources_prestations_familiales', period)
+    def function(self, simulation, period, referencePeriod = None):
+        pf = simulation.calculate('rsa_base_ressources_prestations_familiales', period, referencePeriod = referencePeriod)
         ressources_hors_activite_individus = simulation.compute('ppa_ressources_hors_activite_i', period)
         ressources_hors_activite = self.sum_by_entity(ressources_hors_activite_individus) + pf
 
@@ -165,10 +165,10 @@ class ppa_base_ressources(Variable):
     entity_class = Familles
     label = u"Bases ressource prise en compte pour la PPA"
 
-    def function(self, simulation, period):
+    def function(self, simulation, period, referencePeriod = None):
         period = period.this_month
         ppa_revenu_activite = simulation.calculate('ppa_revenu_activite', period)
-        ppa_ressources_hors_activite = simulation.calculate('ppa_ressources_hors_activite', period)
+        ppa_ressources_hors_activite = simulation.calculate('ppa_ressources_hors_activite', period, referencePeriod = referencePeriod)
         return period, ppa_revenu_activite + ppa_ressources_hors_activite
 
 class ppa_bonification(Variable):
@@ -192,6 +192,44 @@ class ppa_bonification(Variable):
 
         return period, bonification
 
+class ppa_fictive(Variable):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Prime pour l'activité fictive pour un mois"
+
+    def function(self, simulation, period, referencePeriod = None):
+        period = period.this_month
+        referencePeriod = referencePeriod if referencePeriod else period
+
+        forfait_logement = simulation.calculate('rsa_forfait_logement', referencePeriod)
+        ppa_majoree_eligibilite = simulation.calculate('rsa_majore_eligibilite', referencePeriod)
+
+        elig = simulation.calculate('ppa_eligibilite', period)
+        pente = simulation.legislation_at(period.start).minim.rmi.pente
+        mff_non_majore = simulation.calculate('ppa_montant_forfaitaire_familial_non_majore', period)
+        mff_majore = simulation.calculate('ppa_montant_forfaitaire_familial_majore', period)
+        montant_forfaitaire_familialise = where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
+        ppa_base_ressources = simulation.calculate('ppa_base_ressources', period, referencePeriod = referencePeriod)
+        ppa_revenu_activite = simulation.calculate('ppa_revenu_activite', period)
+        bonification_individus = simulation.compute('ppa_bonification', period)
+        bonification = self.sum_by_entity(bonification_individus)
+
+        ppa_montant_base = (
+            montant_forfaitaire_familialise +
+            bonification +
+            pente * ppa_revenu_activite - ppa_base_ressources
+            - forfait_logement
+            )
+
+        ppa_deduction = (
+            montant_forfaitaire_familialise
+            - ppa_base_ressources
+            - forfait_logement
+            )
+
+        ppa_fictive = ppa_montant_base - max_(ppa_deduction,0)
+        ppa_fictive = max_(ppa_fictive, 0)
+        return period, elig * ppa_fictive
 
 class ppa(DatedVariable):
     column = FloatCol
@@ -201,39 +239,8 @@ class ppa(DatedVariable):
     @dated_function(start = date(2016, 1, 1))
     def function(self, simulation, period):
         period = period.this_month
-        forfait_logement = simulation.calculate('rsa_forfait_logement', period)
-        ppa_majoree_eligibilite = simulation.calculate('rsa_majore_eligibilite', period)
 
         # Prime pour l'activité fictive pour un mois. Ne peut pas être une classe indépendante, car elle dépend de paramètres évalués pour le trimestre de droit. Par exemple, ppa<2016-01> dépend de ppa_fictive<2015-09>, qui elle dépend de rsa_forfait_logement<2016-01>.
-        def ppa_fictive(period):
-
-            period = period.this_month
-            elig = simulation.calculate('ppa_eligibilite', period)
-            pente = simulation.legislation_at(period.start).minim.rmi.pente
-            mff_non_majore = simulation.calculate('ppa_montant_forfaitaire_familial_non_majore', period)
-            mff_majore = simulation.calculate('ppa_montant_forfaitaire_familial_majore', period)
-            montant_forfaitaire_familialise = where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
-            ppa_base_ressources = simulation.calculate('ppa_base_ressources', period)
-            ppa_revenu_activite = simulation.calculate('ppa_revenu_activite', period)
-            bonification_individus = simulation.compute('ppa_bonification', period)
-            bonification = self.sum_by_entity(bonification_individus)
-
-            ppa_montant_base = (
-                montant_forfaitaire_familialise +
-                bonification +
-                pente * ppa_revenu_activite - ppa_base_ressources
-                - forfait_logement
-                )
-
-            ppa_deduction = (
-                montant_forfaitaire_familialise
-                - ppa_base_ressources
-                - forfait_logement
-                )
-
-            ppa_fictive = ppa_montant_base - max_(ppa_deduction,0)
-            ppa_fictive = max_(ppa_fictive, 0)
-            return elig * ppa_fictive
 
         seuil_non_versement = simulation.legislation_at(period.start).minim.ppa.seuil_non_versement
         # éligibilité étudiants
@@ -242,7 +249,7 @@ class ppa(DatedVariable):
         m_1 = period.last_month
         m_2 = m_1.last_month
         m_3 = m_2.last_month
-        ppa = sum(ppa_fictive(period2)
+        ppa = sum(simulation.calculate('ppa_fictive', period2, referencePeriod = period)
             for period2 in [m_1, m_2, m_3]) / 3
         ppa = ppa * ppa_eligibilite_etudiants * (ppa >= seuil_non_versement)
 
