@@ -362,7 +362,7 @@ class paje_clmg(Variable):
         aah_holder = simulation.compute('aah', period)
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
-        etu_holder = simulation.compute('etu', period)
+        etu_holder = simulation.compute('etudiant', period)
         salaire_imposable_holder = simulation.compute('salaire_imposable', period)
         hsup_holder = simulation.compute('hsup', period)
         concub = simulation.calculate('concub', period)
@@ -377,7 +377,7 @@ class paje_clmg(Variable):
         P_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
 
         age = self.split_by_roles(age_holder, roles = ENFS)
-        etu = self.split_by_roles(etu_holder, roles = [CHEF, PART])
+        etudiant = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         hsup = self.split_by_roles(hsup_holder, roles = [CHEF, PART])
         salaire_imposable = self.split_by_roles(salaire_imposable_holder, roles = [CHEF, PART])
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
@@ -394,7 +394,7 @@ class paje_clmg(Variable):
     # TODO:    cond_rpns    =
         cond_act = cond_sal  # | cond_rpns
 
-        cond_nonact = (aah > 0) | (etu[CHEF] & etu[PART])  # | (ass>0)
+        cond_nonact = (aah > 0) | (etudiant[CHEF] & etudiant[PART])  # | (ass>0)
     #  TODO: RSA insertion, alloc insertion, ass
         elig = cond_age_enf & (cond_act | cond_nonact)
         nbenf = af_nbenf

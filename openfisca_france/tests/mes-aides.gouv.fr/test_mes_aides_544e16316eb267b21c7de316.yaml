@@ -1,13 +1,13 @@
 name: Neutralisation du RSA par l'ARE
 keywords: rsa
-description: 
+description:
 period: "month:2014-10"
 individus:
   activite: 1
   age: 32
   age_en_mois: 393
   birth: "1982-01-01"
-  chobrut:
+  chomage_brut:
     2012: 10594.009418736501
     2013-10: 882.8341182280416
     2013-11: 882.8341182280416
@@ -24,7 +24,7 @@ individus:
     2014-09: 882.8341182280416
     2014-10: 882.8341182280416
     year:2013-10: 10594.009418736501
-  chonet:
+  chomage_net:
     2012: 9600
     2013-10: 800
     2013-11: 800
@@ -43,7 +43,7 @@ individus:
     year:2013-10: 9600
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 544e15fd1dddcaa51c2c8ef0
   inapte_travail: 0
   interets_epargne_sur_livrets:

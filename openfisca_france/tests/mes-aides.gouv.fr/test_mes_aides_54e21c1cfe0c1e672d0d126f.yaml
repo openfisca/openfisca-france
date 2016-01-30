@@ -4,7 +4,7 @@ keywords:
   - aspa
   - plafonds
 description: |
-  Retraite = 650 
+  Retraite = 650
   Salaire = 500 auquel il faut appliquer l'abattement de 0,9 SMIC = 437,26 soit 62,73 euros
   d'où 650 + 62,73 = 712,73
   800 - 712,73 = 87,27
@@ -17,13 +17,13 @@ individus:
   birth: "1940-05-05"
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54e21c1421f5286b2df324ab
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
   invalide: 0
-  rstbrut:
+  retraite_brute:
     2013: 7800
     2014-02: 650
     2014-03: 650
@@ -40,7 +40,7 @@ individus:
     2015-01: 650
     2015-02: 650
     year:2014-02: 7800
-  rstnet:
+  retraite_nette:
     2013: 7222.799999999998
     2014-02: 601.9
     2014-03: 601.9

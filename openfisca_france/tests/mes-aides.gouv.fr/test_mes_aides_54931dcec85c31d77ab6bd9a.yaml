@@ -10,7 +10,7 @@ description: |
   loyer 500 €
   non meublé
   zone 2
-  
+
   L	418,01
   C	89,41
   E	507,42
@@ -26,7 +26,7 @@ description: |
   P1	91,57
   Pp	134,7
   AL	370,86
-  
+
   caf.fr : 370,64
 period: "month:2014-12"
 relative_error_margin: 0.02
@@ -34,11 +34,11 @@ individus:
   - age: 42
     age_en_mois: 515
     birth: "1972-01-09"
-    cho:
+    chomage_imposable:
       2012: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54931cd7145ac2e27afc0100
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -46,7 +46,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2012: 0
-    rst:
+    retraite_imposable:
       2012: 0
     salaire_de_base:
       2013-12: 980.9102564102564
@@ -102,11 +102,11 @@ individus:
   - age: 43
     age_en_mois: 524
     birth: "1971-04-02"
-    cho:
+    chomage_imposable:
       2012: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54931cd7145ac2e27afc00f3
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -114,7 +114,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2012: 0
-    rst:
+    retraite_imposable:
       2012: 0
     salaire_de_base:
       2013-12: 980.9102564102564
@@ -171,7 +171,7 @@ individus:
     birth: "2001-03-08"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54931cd7145ac2e27afc00f2
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -187,7 +187,7 @@ individus:
     birth: "2003-11-23"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54931cd7145ac2e27afc00f1
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -203,7 +203,7 @@ individus:
     birth: "2007-01-17"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54931cd7145ac2e27afc00f0
     inapte_travail: 0
     interets_epargne_sur_livrets:

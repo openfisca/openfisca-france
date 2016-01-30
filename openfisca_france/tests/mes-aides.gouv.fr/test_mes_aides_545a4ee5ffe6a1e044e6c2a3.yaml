@@ -6,7 +6,7 @@ description: |
   Ecart de qq centimes sur le RSA ?
   MF = 765.48
   AB PAJE (non déclarée par le demandeur, ni restituée par le simulateur) : 185,54
-  
+
   Réponse : ajout de la PAJE base dans le résultat
 period: "month:2014-11"
 relative_error_margin: 0.02
@@ -16,7 +16,7 @@ individus:
     birth: "1986-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 545a4e1bd7459ce24407afd8
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -32,7 +32,7 @@ individus:
     birth: "1986-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 545a4e1bd7459ce24407afd7
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -47,7 +47,7 @@ individus:
     birth: "2012-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 545a4e1bd7459ce24407afd6
     inapte_travail: 0
     interets_epargne_sur_livrets:

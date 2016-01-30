@@ -15,7 +15,7 @@ individus:
     birth: "1990-10-10"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55364722c03d26772db57794
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -82,7 +82,7 @@ individus:
     birth: "1990-10-10"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55364722c03d26772db57793
     inapte_travail: 0
     interets_epargne_sur_livrets:

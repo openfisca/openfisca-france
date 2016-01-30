@@ -14,11 +14,11 @@ individus:
   age_en_mois: 294
   ass_precondition_remplie: true
   birth: "1990-10-10"
-  cho:
+  chomage_imposable:
     2013: 0
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55364c4bc03d26772db577ac
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -42,7 +42,7 @@ individus:
     2015-03: 100
     2015-04: 100
     year:2014-04: 1200
-  rst:
+  retraite_imposable:
     2013: 0
   salaire_de_base:
     2014-04: 897.4358974358975

@@ -4,18 +4,18 @@ keywords:
   - dom
 description: |
   Dans les DOM droit au CF dès un enfant à charge d'au moins 3 ans et de moins de 5 ans mais plafond de ressources spécifique (24 306€ par an pour 1 enfant à charge)
-  
+
   Dans le cas d'espèce pas de droit au CF car ressources excèdent le plafond de ressources applicable
 period: "month:2015-02"
 individus:
   - age: 43
     age_en_mois: 517
     birth: "1972-01-09"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54eca9e37bcef51072ca0903
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -23,7 +23,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 0
-    rst:
+    retraite_imposable:
       2013: 0
     salaire_de_base:
       2014-02: 2670.5128205128203
@@ -83,7 +83,7 @@ individus:
     birth: "2011-01-02"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54eca9e37bcef51072ca0902
     inapte_travail: 0
     interets_epargne_sur_livrets:

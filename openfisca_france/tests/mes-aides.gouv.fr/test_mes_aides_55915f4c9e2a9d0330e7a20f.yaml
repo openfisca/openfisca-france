@@ -13,7 +13,7 @@ individus:
   birth: '1984-08-20'
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55915f1f2f56a0fd2f633197
   inapte_travail: 0
   indemnites_journalieres_maladie:
@@ -93,7 +93,7 @@ individus:
   birth: '2003-01-27'
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55915f1f2f56a0fd2f633196
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -109,7 +109,7 @@ individus:
   birth: '2007-04-17'
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55915f1f2f56a0fd2f633195
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -124,7 +124,7 @@ individus:
   birth: '2009-06-29'
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55915f1f2f56a0fd2f633194
   inapte_travail: 0
   interets_epargne_sur_livrets:

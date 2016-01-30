@@ -6,9 +6,9 @@ description: |
   Ce test vérifie que les cases "autres montants imposables" (préretraite, chômage), "pensions, retraites, rentes" et "pensions alimentaires reçues", sont bien prises en compte de la même manière que les revenus d'activité (abattement de 10% pour frais professionnels).
   Ici, somme des revenus = 2738 * 4 = 10952
   R = 10952 * 0.9 ~= 9900
-  
+
   Zone 3
-  
+
   L	371,45
   C	77,35
   E	448,8
@@ -30,11 +30,11 @@ individus:
   - age: 46
     age_en_mois: 555
     birth: "1968-11-25"
-    cho:
+    chomage_imposable:
       2013: 2738
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54edcd5028793d0972ec4dc2
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -42,7 +42,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 2738
-    rst:
+    retraite_imposable:
       2013: 2738
     salaire_imposable:
       2013: 2738
@@ -55,7 +55,7 @@ individus:
     birth: "1996-05-03"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54edcd5028793d0972ec4dc1
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -71,7 +71,7 @@ individus:
     birth: "2000-01-09"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54edcd5028793d0972ec4dc0
     inapte_travail: 0
     interets_epargne_sur_livrets:

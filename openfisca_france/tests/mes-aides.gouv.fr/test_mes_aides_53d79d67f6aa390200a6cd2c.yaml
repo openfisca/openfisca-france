@@ -12,13 +12,13 @@ individus:
     enceinte: false
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 53d79d42f6aa390200a6cd28
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
-    rstbrut:
+    retraite_brute:
       2012: 647.9481641468683
       2014-04: 215.9827213822894
       2014-04:3: 647.9481641468683
@@ -26,7 +26,7 @@ individus:
       2014-06: 215.9827213822894
       2014-07: 215.9827213822894
       year:2013-07: 647.9481641468683
-    rstnet:
+    retraite_nette:
       2012: 600
       2014-04: 200
       2014-04:3: 600
@@ -44,7 +44,7 @@ individus:
     birth: "1980-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 53d79d42f6aa390200a6cd27
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -59,7 +59,7 @@ individus:
     birth: "2010-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 53d79d42f6aa390200a6cd26
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -74,7 +74,7 @@ individus:
     birth: "2010-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 53d79d42f6aa390200a6cd25
     inapte_travail: 0
     interets_epargne_sur_livrets:

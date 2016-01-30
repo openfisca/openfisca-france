@@ -5,7 +5,7 @@ keywords:
   - base ressources
 description: |
   le conjoint perçoit une pension de retraite suite à une activité salariée.  ressources à prendre en compte : 70% activités salariée + 100% de la pension de retraite
-  
+
   Chiffres revenus imposables:
   Demandeur: ARE = 796 X 3 mois (année glissante: 9215)
   Conjoint: salaire = 2000 X 1 mois (année glissante: 20 000) et retraite = 1300 X 2 mois (année glissante 2600)
@@ -17,7 +17,7 @@ individus:
     age_en_mois: 541
     ass_precondition_remplie: true
     birth: "1969-10-26"
-    chobrut:
+    chomage_brut:
       2012: 10541.039371642815
       2013-12: 878.4199476369013
       2014-01: 878.4199476369013
@@ -33,7 +33,7 @@ individus:
       2014-10: 878.4199476369013
       2014-11: 878.4199476369013
       year:2013-12: 10541.039371642815
-    chonet:
+    chomage_net:
       2012: 9552
       2013-12: 796
       2014-01: 796
@@ -51,7 +51,7 @@ individus:
       year:2013-12: 9552
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 548f04ffdf990f5b0286bac2
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -68,13 +68,13 @@ individus:
     birth: "1952-10-26"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 548f04ffdf990f5b0286baa8
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
-    rstbrut:
+    retraite_brute:
       2012: 2807.7753779697623
       2013-12: 0
       2014-01: 0
@@ -91,7 +91,7 @@ individus:
       2014-11: 1403.8876889848812
       2014-12: 1403.8876889848812
       year:2013-12: 2807.7753779697623
-    rstnet:
+    retraite_nette:
       2012: 2600
       2013-12: 0
       2014-01: 0

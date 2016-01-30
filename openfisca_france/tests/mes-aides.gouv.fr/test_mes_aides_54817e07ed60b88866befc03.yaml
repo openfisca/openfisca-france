@@ -10,7 +10,7 @@ individus:
   birth: "1980-01-01"
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54817dd876be8a87669fc438
   inapte_travail: 0
   indemnites_chomage_partiel:

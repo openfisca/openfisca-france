@@ -16,7 +16,7 @@ individus:
     birth: "1970-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 545a52d90e9bb9d9441ed67c
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -32,7 +32,7 @@ individus:
     birth: "1970-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 545a52d90e9bb9d9441ed67b
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -47,7 +47,7 @@ individus:
     birth: "2006-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 545a52d90e9bb9d9441ed67a
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -62,7 +62,7 @@ individus:
     birth: "2008-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 545a52d90e9bb9d9441ed679
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -77,7 +77,7 @@ individus:
     birth: "2010-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 545a52d90e9bb9d9441ed678
     inapte_travail: 0
     interets_epargne_sur_livrets:

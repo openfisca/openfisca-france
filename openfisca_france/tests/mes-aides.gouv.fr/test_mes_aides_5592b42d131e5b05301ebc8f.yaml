@@ -10,11 +10,11 @@ individus:
   age_en_mois: 665
   ass_precondition_remplie: false
   birth: '1960-01-01'
-  cho:
+  chomage_imposable:
     '2013': 100000
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 5592b4049e2a9d0330e7a5b5
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -22,7 +22,7 @@ individus:
   invalide: 0
   pensions_alimentaires_percues:
     '2013': 0
-  rst:
+  retraite_imposable:
     '2013': 0
   salaire_imposable:
     '2013': 100000
@@ -36,11 +36,11 @@ individus:
   age_en_mois: 665
   ass_precondition_remplie: false
   birth: '1960-01-01'
-  cho:
+  chomage_imposable:
     '2013': 0
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 5592b4049e2a9d0330e7a5b3
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -48,7 +48,7 @@ individus:
   invalide: 0
   pensions_alimentaires_percues:
     '2013': 0
-  rst:
+  retraite_imposable:
     '2013': 0
   salaire_imposable:
     '2013': 0

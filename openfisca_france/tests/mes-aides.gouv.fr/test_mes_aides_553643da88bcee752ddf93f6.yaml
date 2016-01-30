@@ -4,7 +4,7 @@ keywords:
   - base ressources
   - montant
 description: |
-  Revenu = 600 < 644.4 
+  Revenu = 600 < 644.4
   donc ASS complète = 487,50
 period: "month:2015-04"
 individus:
@@ -15,7 +15,7 @@ individus:
   birth: "1990-10-10"
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 553643d3b2f8f07f2d4461e3
   inapte_travail: 0
   interets_epargne_sur_livrets:

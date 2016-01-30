@@ -29,7 +29,7 @@ def build_reform(tax_benefit_system):
         column = columns.BoolCol
         entity_class = entities.Individus
         label = u"Enfant placé en structure spécialisée ou famille d'accueil"
-    
+
     class paris_logement_familles_elig(Reform.Variable):
         column = columns.BoolCol
         label = u"Eligibilité à Paris-Logement-Familles"
@@ -60,8 +60,8 @@ def build_reform(tax_benefit_system):
             period = period.this_month
             last_year = period.last_year
             salaire_net = simulation.calculate('salaire_net', period)
-            chonet = simulation.calculate('chonet', period)
-            rstnet = simulation.calculate('rstnet', period)
+            chomage_net = simulation.calculate('chomage_net', period)
+            retraite_nette = simulation.calculate('retraite_nette', period)
             pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
             pensions_alimentaires_versees_individu = simulation.calculate(
                 'pensions_alimentaires_versees_individu', period)
@@ -88,7 +88,7 @@ def build_reform(tax_benefit_system):
                 return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
             result = (
-                salaire_net + indemnites_chomage_partiel + indemnites_stage + chonet + rstnet +
+                salaire_net + indemnites_chomage_partiel + indemnites_stage + chomage_net + retraite_nette +
                 pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
                 rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
                 indemnites_journalieres_imposables + prestation_compensatoire +

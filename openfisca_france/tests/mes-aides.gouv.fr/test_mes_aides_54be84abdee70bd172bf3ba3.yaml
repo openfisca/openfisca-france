@@ -7,7 +7,7 @@ description: |
   Pas d'application de l'évaluation forfaitaire dans le cas d'un allocataire qui perçoit une rémunération mensuelle en m-1 et dont les RNC N-2 sont supérieurs à 1015 fois le SMIC horaire brut n-2 (9,43 € en 2013).
   9,43 * 1015 = 9571
   Ici revenus d'activité = 11000 > 9571
-  
+
   L	160
   C	53,23
   E	213,23
@@ -23,7 +23,7 @@ description: |
   P1	154,43
   Pp	189,16
   AL	23,95
-  
+
   Résultat caf.fr = 22,53€
 period: "month:2015-01"
 relative_error_margin: 0.02
@@ -31,11 +31,11 @@ individus:
   age: 36
   age_en_mois: 441
   birth: "1978-04-12"
-  cho:
+  chomage_imposable:
     2013: 0
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54be835fd337b5d372377c19
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -43,7 +43,7 @@ individus:
   invalide: 0
   pensions_alimentaires_percues:
     2013: 0
-  rst:
+  retraite_imposable:
     2013: 0
   salaire_de_base:
     2014-01: 4273.5

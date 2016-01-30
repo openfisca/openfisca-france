@@ -74,8 +74,8 @@ class aah_base_ressources_eval_trimestrielle(Variable):
         last_year = period.last_year
 
         salaire_net = simulation.calculate_add('salaire_net', three_previous_months)
-        chonet = simulation.calculate_add('chonet', three_previous_months)
-        rstnet = simulation.calculate_add('rstnet', three_previous_months)
+        chomage_net = simulation.calculate_add('chomage_net', three_previous_months)
+        retraite_nette = simulation.calculate_add('retraite_nette', three_previous_months)
         pensions_alimentaires_percues = simulation.calculate_add('pensions_alimentaires_percues', three_previous_months)
         pensions_alimentaires_versees_individu = simulation.calculate_add(
             'pensions_alimentaires_versees_individu', three_previous_months)
@@ -102,7 +102,7 @@ class aah_base_ressources_eval_trimestrielle(Variable):
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
         result = (
-            salaire_net + indemnites_chomage_partiel + indemnites_stage + chonet + rstnet +
+            salaire_net + indemnites_chomage_partiel + indemnites_stage + chomage_net + retraite_nette +
             pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
             rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
             indemnites_journalieres_imposables + prestation_compensatoire +

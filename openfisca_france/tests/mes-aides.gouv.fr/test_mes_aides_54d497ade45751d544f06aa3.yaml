@@ -6,13 +6,13 @@ keywords:
 description: |
   Article 157 bis du code général des impôts
   http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042269&cidTexte=LEGITEXT000006069577&dateTexte=20150112
-  
+
   Le contribuable âgé de plus de soixante-cinq ans au 31 décembre de l'année d'imposition, ou remplissant l'une des conditions d'invalidité mentionnées à l'article 195, peut déduire de son revenu global net une somme de :
   -2 332 € si ce revenu n'excède pas 14 630 €
   -1 166 € si ce revenu est compris entre 14 630 € et 23 580 €
-  
+
   On est ici dans le cas où le revenu est < à 23580 (22000 euros de retraites)
-  
+
   L	398,87
   C	65,29
   E	464,16
@@ -35,11 +35,11 @@ individus:
     age: 88
     age_en_mois: 1061
     birth: "1926-09-05"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54d4951fd4e3b0d74454c76f
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -47,9 +47,9 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 0
-    rst:
+    retraite_imposable:
       2013: 22000
-    rstbrut:
+    retraite_brute:
       2014-02: 1955.8435325173984
       2014-03: 1955.8435325173984
       2014-04: 1955.8435325173984
@@ -65,7 +65,7 @@ individus:
       2015-01: 2051.8358531317494
       2015-02: 2051.8358531317494
       year:2014-02: 23758.099352051835
-    rstnet:
+    retraite_nette:
       2014-02: 1811.111111111111
       2014-03: 1811.111111111111
       2014-04: 1811.111111111111
@@ -93,7 +93,7 @@ individus:
     birth: "2000-08-12"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54d496deaf6bfed9447f95bc
     inapte_travail: 0
     interets_epargne_sur_livrets:

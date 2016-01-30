@@ -1,7 +1,7 @@
 name: RSA ALS PERSONNE ISOLEE SANS ENFANT
 keywords: recette
 description: |
-  Test créé à partir d'un dossier de demande de (RSA, ALS…) : 
+  Test créé à partir d'un dossier de demande de (RSA, ALS…) :
   Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : aucune
   La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) : aucune
 period: "month:2015-09"
@@ -13,7 +13,7 @@ individus:
   age_en_mois: 369
   ass_precondition_remplie: true
   birth: "1984-11-19"
-  chobrut:
+  chomage_brut:
     2014-09: -218.37882841168638
     2014-10: -218.37882841168638
     2014-11: -218.37882841168638
@@ -29,7 +29,7 @@ individus:
     2015-08: 742.6842019593399
     2015-09: 742.6842019593399
     year:2014-09: 3.979039320256561e-13
-  chonet:
+  chomage_net:
     2014-09: -197.88888888888889
     2014-10: -197.88888888888889
     2014-11: -197.88888888888889
@@ -48,7 +48,7 @@ individus:
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55f02af4bb8d0c3804776986
   inapte_travail: 0
   interets_epargne_sur_livrets:

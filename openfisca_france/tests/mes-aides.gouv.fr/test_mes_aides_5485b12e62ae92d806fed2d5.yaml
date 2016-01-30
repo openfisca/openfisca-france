@@ -15,13 +15,13 @@ individus:
     birth: "1948-08-14"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5485b08f5f35e8cf064ba47f
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
-    rstbrut:
+    retraite_brute:
       2012: 7200
       2013-12: 600
       2014-01: 600
@@ -38,7 +38,7 @@ individus:
       2014-11: 600
       2014-12: 600
       year:2013-12: 7200
-    rstnet:
+    retraite_nette:
       2012: 6667.200000000002
       2013-12: 555.6
       2014-01: 555.6
@@ -65,7 +65,7 @@ individus:
     birth: "1954-08-17"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5485b08f5f35e8cf064ba472
     inapte_travail: 0
     indemnites_journalieres_maladie:

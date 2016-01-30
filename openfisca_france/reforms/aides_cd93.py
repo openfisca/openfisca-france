@@ -65,8 +65,8 @@ def build_reform(tax_benefit_system):
             period = period.this_month
             previous_year = period.start.period('year').offset(-1)
             salaire_imposable = simulation.calculate_add('salaire_imposable', period.n_2)
-            rst = simulation.calculate_add('rst', period.n_2)
-            cho = simulation.calculate_add('cho', period.n_2)
+            retraite_imposable = simulation.calculate_add('retraite_imposable', period.n_2)
+            chomage_imposable = simulation.calculate_add('chomage_imposable', period.n_2)
             revenus_capital = simulation.calculate_add('revenus_capital', previous_year)
             revenus_locatifs = simulation.calculate_add('revenus_locatifs', previous_year)
             # Prélevements libératoire forfaitaire à prendre en compte sans abattement
@@ -74,7 +74,7 @@ def build_reform(tax_benefit_system):
             valeur_locative_terrains_non_loue = simulation.calculate_add('valeur_locative_terrains_non_loue', previous_year)
 
             base_ressource_mensuelle = (
-                salaire_imposable + rst + cho + revenus_locatifs +
+                salaire_imposable + retraite_imposable + chomage_imposable + revenus_locatifs +
                 revenus_capital * 0.30 +
                 valeur_locative_immo_non_loue * 0.5 +
                 valeur_locative_terrains_non_loue * 0.8

@@ -11,7 +11,7 @@ individus:
   age_en_mois: 708
   ass_precondition_remplie: false
   birth: "1956-06-26"
-  chobrut:
+  chomage_brut:
     2013: 3716.731637740055
     2014-07: 309.7276364783379
     2014-08: 309.7276364783379
@@ -28,7 +28,7 @@ individus:
     2015-06: 335.4769649266558
     2015-07: 335.4769649266558
     year:2014-07: 3716.731637740055
-  chonet:
+  chomage_net:
     2013: 3367.9999999999995
     2014-07: 280.6666666666667
     2014-08: 280.6666666666667
@@ -47,7 +47,7 @@ individus:
     year:2014-07: 3367.9999999999995
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 559fc21bf394e1a7011b57a5
   inapte_travail: 0
   interets_epargne_sur_livrets:
