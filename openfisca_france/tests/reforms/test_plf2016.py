@@ -77,12 +77,12 @@ def test_dossier_de_presse_2():
         period = periods.period('year', year),
         parent1 = dict(
             birth = datetime.date(year - 70, 1, 1),
-            rst = 1530.75 * 12,
+            retraite_imposable = 1530.75 * 12,
             statmarit = 1
             ),
         parent2 = dict(
             birth = datetime.date(year - 65, 1, 1),
-            rst = 1530.75 * 12,
+            retraite_imposable = 1530.75 * 12,
             statmarit = 1
             ),
         )
