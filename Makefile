@@ -3,6 +3,9 @@ TESTS_DIR=openfisca_france/tests
 
 all: flake8 test
 
+check-no-prints:
+	test -z "`git grep -w print openfisca_france/model`"
+
 check-syntax-errors:
 	@# This is a hack around flake8 not displaying E910 errors with the select option.
 	@# Do not analyse .gitignored files.
@@ -27,7 +30,7 @@ flake8: clean-pyc
 test: check-syntax-errors
 	nosetests $(TESTS_DIR) $(IGNORE_OPT) --exe --stop --with-doctest
 
-test-ci: check-syntax-errors
+test-ci: check-syntax-errors check-no-prints
 	nosetests $(TESTS_DIR) $(IGNORE_OPT) --exe --with-doctest
 
 test-with-coverage:
