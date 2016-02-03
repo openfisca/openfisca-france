@@ -26,6 +26,7 @@ def build_reform(tax_benefit_system):
     class reduction_impot_exceptionnelle(Reform.DatedVariable):
         reference = reductions_impot.reduction_impot_exceptionnelle
 
+        @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
         def function(self, simulation, period):
             period = period.this_year
             nb_adult = simulation.calculate('nb_adult')

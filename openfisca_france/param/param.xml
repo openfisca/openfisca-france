@@ -5986,7 +5986,9 @@
     <NODE code="tspr" description="Total salaires pensions et rentes">
       <NODE code="abatpen" description="Abattement sur les pensions">
         <CODE code="max" description="Abattement maximum pour l'ensemble du foyer" format="integer" type="monetary">
-          <VALUE deb="2014-01-01" fuzzy="true" valeur="3689" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="3711" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="3711" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3707" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3689" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="3660" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="3606" />
@@ -6000,7 +6002,8 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="3160" />
         </CODE>
         <CODE code="min" description="Abattement minimum par bénéficiaire" format="integer" type="monetary">
-          <VALUE deb="2014-01-01" fuzzy="true" valeur="374" />
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="379" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="379" />
           <VALUE deb="2010-01-01" fin="2013-12-31" valeur="374" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="368" />
           <VALUE deb="2008-01-01" fin="2008-12-31" valeur="367" />
@@ -6019,7 +6022,8 @@
       </NODE>
       <NODE code="abatpro" description="Abattement forfaitaire pour frais professionnels">
         <CODE code="max" description="Abattement maximum" format="integer" type="monetary">
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="12157" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="12170" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="12170" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="12157" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="12097" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="12000" />
@@ -6035,8 +6039,8 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="12229" />
         </CODE>
         <CODE code="min" description="Abattement minimum - Cas général" format="integer" type="monetary">
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="426" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="426" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="426" />
+          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="426" />
           <VALUE deb="2010-01-01" fin="2013-12-31" valeur="421" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="415" />
           <VALUE deb="2008-01-01" fin="2008-12-31" valeur="413" />
@@ -6049,7 +6053,8 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="364" />
         </CODE>
         <CODE code="min2" description="Abattement minimum - Demandeur d'emploi" format="integer" type="monetary">
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="936" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="937" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="937" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="936" />
           <VALUE deb="2010-01-01" fin="2013-12-31" valeur="924" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="910" />

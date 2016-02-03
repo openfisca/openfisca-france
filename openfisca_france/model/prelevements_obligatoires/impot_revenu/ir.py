@@ -1195,8 +1195,8 @@ class decote(DatedVariable):
 
         return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
-    @dated_function(start = date(2014, 1, 1))
-    def function_2014__(self, simulation, period):
+    @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
+    def function_2014(self, simulation, period):
         period = period.this_year
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         nb_adult = simulation.calculate('nb_adult', period)
