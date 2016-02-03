@@ -4,7 +4,7 @@ keywords:
   - rsa
 description: |
   Prise en compte de 50% de la valeur
-  
+
   Edit Arnaud Kleinpeter : la valeur locative s'exprime sur un montant annuel, on la considère comme un montant mensuel, à corriger.
 period: "month:2015-01"
 relative_error_margin: 0.02
@@ -14,7 +14,7 @@ individus:
   birth: "1980-01-01"
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54bfd9a1715c97ca720ca785
   inapte_travail: 0
   interets_epargne_sur_livrets:

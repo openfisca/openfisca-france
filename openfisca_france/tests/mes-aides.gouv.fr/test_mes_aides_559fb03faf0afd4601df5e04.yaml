@@ -3,9 +3,9 @@ keywords:
   - recette
   - rsa
 description: |
-  Test créé à partir d'un dossier de demande de RSA, 
-  Couple - 25 ans mais présence d'1 enfant  = droit RSA 
-  
+  Test créé à partir d'un dossier de demande de RSA,
+  Couple - 25 ans mais présence d'1 enfant  = droit RSA
+
   RSA non calculé
 period: "month:2015-07"
 relative_error_margin: 0.02
@@ -15,7 +15,7 @@ individus:
     birth: "1995-09-11"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 559fb03cf92fd455017e6e11
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -31,7 +31,7 @@ individus:
     birth: "1991-09-05"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 559fb03cf92fd455017e6e10
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -47,7 +47,7 @@ individus:
     birth: "2014-03-08"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 559fb03cf92fd455017e6e0f
     inapte_travail: 0
     interets_epargne_sur_livrets:

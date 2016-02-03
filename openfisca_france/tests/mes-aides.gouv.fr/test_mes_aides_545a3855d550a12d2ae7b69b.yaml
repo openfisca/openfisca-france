@@ -8,7 +8,7 @@ individus:
   birth: "1986-01-01"
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 545a3823d550a12d2ae7b68e
   inapte_travail: 0
   interets_epargne_sur_livrets:

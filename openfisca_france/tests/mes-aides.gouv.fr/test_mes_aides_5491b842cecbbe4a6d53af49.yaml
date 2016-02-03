@@ -10,7 +10,7 @@ individus:
     birth: "1980-08-12"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5491b824871dd4466d370b3a
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -25,7 +25,7 @@ individus:
     birth: "2010-08-12"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5491b824871dd4466d370b39
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -40,7 +40,7 @@ individus:
     birth: "1994-06-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5491b824871dd4466d370b38
     inapte_travail: 0
     interets_epargne_sur_livrets:

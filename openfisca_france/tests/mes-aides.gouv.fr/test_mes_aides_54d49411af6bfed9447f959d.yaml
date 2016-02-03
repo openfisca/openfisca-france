@@ -6,11 +6,11 @@ keywords:
 description: |
   Article 157 bis du code général des impôts
   http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042269&cidTexte=LEGITEXT000006069577&dateTexte=20150112
-  
+
   Le contribuable âgé de plus de soixante-cinq ans au 31 décembre de l'année d'imposition, ou remplissant l'une des conditions d'invalidité mentionnées à l'article 195, peut déduire de son revenu global net une somme de :
   -2 332 € si ce revenu n'excède pas 14 630 €
   -1 166 € si ce revenu est compris entre 14 630 € et 23 580 €
-  
+
   On est ici dans le cas où le revenu est < à 14630 (12000 euros de retraites)
   L	292,62
   C	53,23
@@ -34,11 +34,11 @@ individus:
   age: 88
   age_en_mois: 1061
   birth: "1926-09-05"
-  cho:
+  chomage_imposable:
     2013: 0
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54d49218f675ddd34432ea79
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -46,9 +46,9 @@ individus:
   invalide: 0
   pensions_alimentaires_percues:
     2013: 0
-  rst:
+  retraite_imposable:
     2013: 12000
-  rstbrut:
+  retraite_brute:
     2014-02: 1079.913606911447
     2014-03: 1079.913606911447
     2014-04: 1079.913606911447
@@ -64,7 +64,7 @@ individus:
     2015-01: 1079.913606911447
     2015-02: 1079.913606911447
     year:2014-02: 12958.96328293736
-  rstnet:
+  retraite_nette:
     2014-02: 1000
     2014-03: 1000
     2014-04: 1000

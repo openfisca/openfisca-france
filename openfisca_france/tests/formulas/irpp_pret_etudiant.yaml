@@ -2,7 +2,7 @@
   period: 2005
   absolute_error_margin: 0.5
   input_variables:
-    cho: 0
+    chomage_imposable: 0
     salaire_imposable: 20000
     f7uk: 4000
     f7vo: 1
@@ -13,7 +13,7 @@
   period: 2006
   absolute_error_margin: 0.5
   input_variables:
-    cho: 0
+    chomage_imposable: 0
     salaire_imposable: 20000
     f7uk: 4000
     f7vo: 1
@@ -24,7 +24,7 @@
   period: 2007
   absolute_error_margin: 0.5
   input_variables:
-    cho: 0
+    chomage_imposable: 0
     salaire_imposable: 20000
     f7uk: 4000
     f7vo: 1
@@ -35,7 +35,7 @@
   period: 2008
   absolute_error_margin: 0.5
   input_variables:
-    cho: 0
+    chomage_imposable: 0
     salaire_imposable: 20000
     f7td: 2000
     f7uk: 4000
@@ -47,7 +47,7 @@
   period: 2009
   absolute_error_margin: 0.5
   input_variables:
-    cho: 0
+    chomage_imposable: 0
     salaire_imposable: 20000
     f7td: 2000
     f7uk: 4000
@@ -59,7 +59,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    cho: 0
+    chomage_imposable: 0
     salaire_imposable: 20000
     f7td: 2000
     f7uk: 4000
@@ -71,7 +71,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    cho: 0
+    chomage_imposable: 0
     salaire_imposable: 20000
     f7td: 2000
     f7uk: 4000
@@ -83,7 +83,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    cho: 0
+    chomage_imposable: 0
     salaire_imposable: 20000
     f7td: 2000
     f7uk: 4000
@@ -95,7 +95,7 @@
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
-    cho: 0
+    chomage_imposable: 0
     salaire_imposable: 20000
     f7td: 2000
     f7uk: 4000

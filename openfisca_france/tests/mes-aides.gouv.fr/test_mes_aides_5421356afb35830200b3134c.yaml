@@ -2,7 +2,7 @@ name: Montant soustrait de 3% des revenus théoriques de l'épargne ne généran
 keywords:
   - patrimoine
   - rsa
-description: 
+description:
 period: "month:2014-09"
 individus:
   age: 34
@@ -11,7 +11,7 @@ individus:
   enceinte: false
   epargne_non_remuneree:
     2012-01: 30000
-  etu: 0
+  etudiant: 0
   id: 54213529fb35830200b3134b
   inapte_travail: 0
   interets_epargne_sur_livrets:

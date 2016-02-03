@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import round, maximum as max_, logical_not as not_, logical_or as or_, vectorize
+from numpy import round, maximum as max_, logical_not as not_, logical_or as or_, vectorize, where
 
 
 from ...base import *  # noqa analysis:ignore
@@ -227,6 +227,7 @@ class af_majoration_enfant(Variable):
 
         af_enfant_a_charge = simulation.calculate('af_enfant_a_charge', period)
         age = simulation.calculate('age', period)
+        alt = simulation.calculate('alt', period)
         age_aine_holder = simulation.compute('af_age_aine', period)
         age_aine = self.cast_from_entity_to_roles(age_aine_holder, roles = ENFS)
         af_nbenf_holder = simulation.compute('af_nbenf', period)
@@ -251,7 +252,9 @@ class af_majoration_enfant(Variable):
         # Attention ! Ne fonctionne pas pour les enfants du même âge (typiquement les jumeaux...)
         pas_aine = or_(af_nbenf != 2, (af_nbenf == 2) * not_(age == age_aine))
 
-        return period, af_enfant_a_charge * (af_base > 0) * pas_aine * montant
+        coeff_garde_alternee = where(alt, pfam.af.facteur_garde_alternee, 1)
+
+        return period, af_enfant_a_charge * (af_base > 0) * pas_aine * montant * coeff_garde_alternee
 
 
 class af_majo(Variable):

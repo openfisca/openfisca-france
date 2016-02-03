@@ -16,7 +16,7 @@ individus:
   boursier: false
   epargne_non_remuneree:
     2012-01: 0
-  etu: 1
+  etudiant: 1
   id: 54818d591c33cd86661874e2
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -31,7 +31,7 @@ individus:
   birth: '2010-01-01'
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54818d591c33cd86661874e1
   inapte_travail: 0
   interets_epargne_sur_livrets:

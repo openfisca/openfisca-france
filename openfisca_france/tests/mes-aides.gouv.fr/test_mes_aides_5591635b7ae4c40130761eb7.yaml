@@ -14,13 +14,13 @@ individus:
     birth: "1950-05-08"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5591634afdd7360730df878c
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
-    rstbrut:
+    retraite_brute:
       2013: 13710.23758099352
       2014-06: 1142.517398608111
       2014-07: 1142.517398608111
@@ -37,7 +37,7 @@ individus:
       2015-05: 1142.5269978401727
       2015-06: 1142.5269978401727
       year:2014-06: 13710.23758099352
-    rstnet:
+    retraite_nette:
       2013: 12695.679999999997
       2014-06: 1057.971111111111
       2014-07: 1057.971111111111
@@ -64,7 +64,7 @@ individus:
     birth: "1962-08-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5591634afdd7360730df878b
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -80,7 +80,7 @@ individus:
     birth: "2000-10-25"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5591634afdd7360730df878a
     inapte_travail: 0
     interets_epargne_sur_livrets:

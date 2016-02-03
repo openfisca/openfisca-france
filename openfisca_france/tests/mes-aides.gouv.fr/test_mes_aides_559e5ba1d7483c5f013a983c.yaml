@@ -16,7 +16,7 @@ individus:
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 559e560decfc1e52013e3b51
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -34,7 +34,7 @@ individus:
   birth: '2003-07-30'
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 559e560decfc1e52013e3b50
   inapte_travail: 0
   interets_epargne_sur_livrets:

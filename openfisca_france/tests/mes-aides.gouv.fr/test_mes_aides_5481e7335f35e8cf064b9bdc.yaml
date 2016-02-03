@@ -2,7 +2,7 @@ name: Pas d'ASI si pas retraité
 keywords:
   - asi
   - eligibilité
-description: 
+description:
 period: "month:2014-12"
 individus:
   age: 34
@@ -10,7 +10,7 @@ individus:
   birth: "1980-08-12"
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 5481e7029f3789cc06d512f5
   inapte_travail: 0
   interets_epargne_sur_livrets:

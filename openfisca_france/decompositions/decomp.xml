@@ -31,17 +31,17 @@
       <NODE code="rnc" desc="Revenus non commerciaux" shortname="R. non comm." />
     </NODE>
     <NODE code="pen" color="97,75,150" desc="Pensions" shortname="Pensions">
-      <NODE code="chonet" color="136,120,178" desc="Chômage net" shortname="Chômage net">
-        <NODE code="cho" desc="Chômage" shortname="Chômage decl.">
-          <NODE code="chobrut" desc="Chômage brut" shortname="Chômage brut" />
+      <NODE code="chomage_net" color="136,120,178" desc="Chômage net" shortname="Chômage net">
+        <NODE code="chomage_imposable" desc="Chômage" shortname="Chômage decl.">
+          <NODE code="chomage_brut" desc="Chômage brut" shortname="Chômage brut" />
           <NODE code="csg_deductible_chomage" color="235,114,118" desc="CSG déductible (chômage)" shortname="CSG déd. chôm." />
         </NODE>
         <NODE code="csg_imposable_chomage" color="235,114,118" desc="CSG non déductible (chômage)" shortname="CSG imp. chôm." />
         <NODE code="crds_chomage" color="229,48,56" desc="CRDS (chômage)" shortname="CRDS chôm." />
       </NODE>
-      <NODE code="rstnet" color="87,88,138" desc="Retraites nettes" shortname="Retraites nettes">
-        <NODE code="rst" desc="Retraites" shortname="Retr. décl.">
-          <NODE code="rstbrut" desc="Retraites brutes" shortname="Retr. brutes" />
+      <NODE code="retraite_nette" color="87,88,138" desc="Retraites nettes" shortname="Retraites nettes">
+        <NODE code="retraite_imposable" desc="Retraites" shortname="Retr. décl.">
+          <NODE code="retraite_brute" desc="Retraites brutes" shortname="Retr. brutes" />
           <NODE code="csg_deductible_retraite" color="235,114,118" desc="CSG déductible (retraite)" shortname="CSG déd. ret." />
         </NODE>
         <NODE code="csg_imposable_retraite" color="235,114,118" desc="CSG non déductible (pensions)" shortname="CSG imp. pens." />
@@ -49,7 +49,7 @@
       </NODE>
       <NODE code="pensions_alimentaires_percues" color="136,120,178" desc="Pensions alimentaires reçues" shortname="P. alim. reç." />
       <NODE code="pensions_alimentaires_versees" color="136,120,178" desc="Pensions alimentaires versée" shortname="P. alim. vers." />
-      <NODE code="rto" color="125,185,86" desc="Rentes viagères" shortname="Rentes viag." />
+      <NODE code="retraite_titre_onereux" color="125,185,86" desc="Rentes viagères" shortname="Rentes viag." />
     </NODE>
     <NODE code="rev_cap_net" color="255,222,48" desc="Revenus du capital net" shortname="Rev. cap. net">
       <NODE code="rev_cap_brut" color="255,222,48" desc="Revenus du capital brut" shortname="Rev. cap. brut">

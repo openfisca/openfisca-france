@@ -164,7 +164,7 @@ class est_enfant_dans_famille(Variable):
         return period, quifam > PART
 
 
-class etu(Variable):
+class etudiant(Variable):
     column = BoolCol(default = False)
     entity_class = Individus
     label = u"Indicatrice individuelle étudiant"

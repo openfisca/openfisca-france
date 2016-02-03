@@ -163,8 +163,8 @@ class cmu_base_ressources_i(Variable):
         last_month = period.last_month
 
         salaire_net = simulation.calculate_add('salaire_net', previous_year)
-        chonet = simulation.calculate('chonet', previous_year)
-        rstnet = simulation.calculate('rstnet', previous_year)
+        chomage_net = simulation.calculate('chomage_net', previous_year)
+        retraite_nette = simulation.calculate('retraite_nette', previous_year)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
         pensions_alimentaires_versees_individu = simulation.calculate(
             'pensions_alimentaires_versees_individu', previous_year
@@ -189,7 +189,7 @@ class cmu_base_ressources_i(Variable):
         bourse_recherche = simulation.calculate('bourse_recherche', previous_year)
         gains_exceptionnels = simulation.calculate('gains_exceptionnels', previous_year)
         revenus_stage_formation_pro_last_month = simulation.calculate('revenus_stage_formation_pro', last_month)
-        chomage_last_month = simulation.calculate('chonet', last_month)
+        chomage_last_month = simulation.calculate('chomage_net', last_month)
 
         def revenus_tns():
             revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
@@ -210,7 +210,7 @@ class cmu_base_ressources_i(Variable):
         abattement_chomage_fp = or_(chomage_last_month > 0, revenus_stage_formation_pro_last_month > 0)
 
         return period, ((salaire_net + indemnites_chomage_partiel) * (1 - abattement_chomage_fp * P.abattement_chomage) +
-            indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues -
+            indemnites_stage + aah + chomage_net + retraite_nette + pensions_alimentaires_percues -
             abs_(pensions_alimentaires_versees_individu) + rsa_base_ressources_patrimoine_i +
             allocation_securisation_professionnelle + indemnites_journalieres +
             prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
@@ -287,7 +287,7 @@ class cmu_c(Variable):
     def function(self, simulation, period):
         # Note : Cette variable est calculée pour un an, mais si elle est demandée pour une période plus petite, elle
         # répond pour la période demandée.
-        this_month = period.start.period('month').offset('first-of')
+        this_month = period.this_month
         this_rolling_year = this_month.start.period('year')
         if period.stop > this_rolling_year.stop:
             period = this_rolling_year
@@ -311,15 +311,12 @@ class cmu_c(Variable):
 
 
 class acs(Variable):
-    '''
-    Calcule le montant de l'ACS auquel le foyer a droit
-    '''
     column = FloatCol
-    label = u"Éligibilité à l'ACS"
+    label = u"Montant (mensuel) de l'ACS"
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.period('month').offset('first-of')
+        period = period.this_month
 
         cmu_c = simulation.calculate('cmu_c', period)
         cmu_base_ressources = simulation.calculate('cmu_base_ressources', period)

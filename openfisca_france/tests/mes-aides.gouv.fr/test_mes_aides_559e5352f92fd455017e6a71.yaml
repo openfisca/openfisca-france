@@ -8,11 +8,11 @@ individus:
   - age: 47
     age_en_mois: 573
     birth: "1967-09-22"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 559e52b3fa617858013d9a58
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -20,7 +20,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 700
-    rst:
+    retraite_imposable:
       2013: 0
     salaire_imposable:
       2013: 0
@@ -33,7 +33,7 @@ individus:
     birth: "1995-04-28"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 559e52fab205974e01346b47
     inapte_travail: 0
     interets_epargne_sur_livrets:

@@ -6,7 +6,7 @@ keywords:
 description: |
   Le demandeur a 34 ans mais le conjoint a 22 ans.
   On n'applique pas l'eval forfaitaire car le demandeur n'a déclaré que 1000 euros mensuels, ce qui est inférieur au plafond de 1273 euros.
-  
+
   L	352,92
   C	53,23
   E	406,15
@@ -27,11 +27,11 @@ individus:
   - age: 34
     age_en_mois: 414
     birth: "1980-08-12"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54e5c1d77c92ea5940ba4e55
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -39,7 +39,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 0
-    rst:
+    retraite_imposable:
       2013: 0
     salaire_de_base:
       2014-02: 1282.051282051282
@@ -98,11 +98,11 @@ individus:
   - age: 22
     age_en_mois: 270
     birth: "1992-08-12"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54e5c1d77c92ea5940ba4e54
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -110,7 +110,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 0
-    rst:
+    retraite_imposable:
       2013: 0
     salaire_imposable:
       2013: 0

@@ -12,11 +12,11 @@ individus:
   - age: 34
     age_en_mois: 415
     birth: "1980-08-12"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55016b6ce471d52f5a015635
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -24,7 +24,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 0
-    rst:
+    retraite_imposable:
       2013: 0
     salaire_imposable:
       2013: 0
@@ -36,11 +36,11 @@ individus:
   - age: 34
     age_en_mois: 415
     birth: "1980-08-12"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55016b6ce471d52f5a015634
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -48,7 +48,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 0
-    rst:
+    retraite_imposable:
       2013: 0
     salaire_imposable:
       2013: 0
@@ -62,7 +62,7 @@ individus:
     birth: "2000-08-12"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55016b6ce471d52f5a015633
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -78,7 +78,7 @@ individus:
     birth: "2014-08-12"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55016b6ce471d52f5a015632
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -93,7 +93,7 @@ individus:
     birth: "2014-08-12"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55016b6ce471d52f5a015631
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -108,7 +108,7 @@ individus:
     birth: "2014-08-12"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 55016b6ce471d52f5a015630
     inapte_travail: 0
     interets_epargne_sur_livrets:

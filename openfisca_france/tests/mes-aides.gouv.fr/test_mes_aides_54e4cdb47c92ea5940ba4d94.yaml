@@ -6,7 +6,7 @@ keywords:
 description: |
   cf. R351-7 du CCH : l'eval forfaitaire n'est pas appliquée pour les personnes de moins de 25 ans et dont le salaire mensuel est < à 1273 euros.
   Ici, RNC N-2 = 0, salaire m-1 = 1200 euros => pas d'eval forfaitaire donc R = 0.
-  
+
   L	292,62
   C	53,23
   E	345,85
@@ -22,18 +22,18 @@ description: |
   P1	0
   Pp	34,73
   AL	309,56
-  
+
   caf.fr : 309,57
 period: "month:2015-02"
 individus:
   age: 22
   age_en_mois: 273
   birth: "1992-05-17"
-  cho:
+  chomage_imposable:
     2013: 0
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54e4cd8f70a3f65f40b60d48
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -41,7 +41,7 @@ individus:
   invalide: 0
   pensions_alimentaires_percues:
     2013: 0
-  rst:
+  retraite_imposable:
     2013: 0
   salaire_de_base:
     2014-02: 512.8205128205128

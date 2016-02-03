@@ -5,7 +5,7 @@ keywords:
 description: |
   Le loyer pris en compte est égal à 2/3 du loyer CC pour un meublé ou un hôtel
   http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737243&cidTexte=LEGITEXT000006073189
-  
+
   L	133,33
   C	53,23
   E	186,56
@@ -27,11 +27,11 @@ individus:
   age_en_mois: 412
   birth: "1980-08-12"
   boursier: true
-  cho:
+  chomage_imposable:
     2012: 0
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 548ef9d98dac136002468a88
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -39,7 +39,7 @@ individus:
   invalide: 0
   pensions_alimentaires_percues:
     2012: 0
-  rst:
+  retraite_imposable:
     2012: 0
   salaire_imposable:
     2012: 0

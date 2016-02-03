@@ -15,7 +15,7 @@ from openfisca_france.tests.base import assert_near, tax_benefit_system
 def test_cho(year = 2014):
     period = periods.period("{}-01".format(year))
     single_entity_kwargs = dict(
-        axes = [dict(count = 101, max = 2000, min = 0, name = 'chobrut')],
+        axes = [dict(count = 101, max = 2000, min = 0, name = 'chomage_brut')],
         period = period,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
@@ -23,23 +23,23 @@ def test_cho(year = 2014):
         )
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         **single_entity_kwargs).new_simulation(debug = True)
-    brut = simulation.get_holder('chobrut').array
-    imposable = simulation.calculate('cho')
+    brut = simulation.get_holder('chomage_brut').array
+    imposable = simulation.calculate('chomage_imposable')
 
     inversion_reform = inversion_revenus.build_reform(tax_benefit_system)
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
         **single_entity_kwargs).new_simulation(debug = True)
 
-    inverse_simulation.get_holder('chobrut').delete_arrays()
-    inverse_simulation.get_or_new_holder('choi').array = imposable.copy()
-    new_brut = inverse_simulation.calculate('chobrut')
+    inverse_simulation.get_holder('chomage_brut').delete_arrays()
+    inverse_simulation.get_or_new_holder('chomage_imposable_pour_inversion').array = imposable.copy()
+    new_brut = inverse_simulation.calculate('chomage_brut')
     assert_near(new_brut, brut, absolute_error_margin = 1)
 
 
-def test_rst(year = 2014):
+def test_retraite(year = 2014):
     period = periods.period("{}-01".format(year))
     single_entity_kwargs = dict(
-        axes = [dict(count = 101, max = 2000, min = 0, name = 'rstbrut')],
+        axes = [dict(count = 101, max = 2000, min = 0, name = 'retraite_brute')],
         period = period,
         parent1 = dict(
             birth = datetime.date(year - 40, 1, 1),
@@ -48,16 +48,16 @@ def test_rst(year = 2014):
     simulation = tax_benefit_system.new_scenario().init_single_entity(
         **single_entity_kwargs
         ).new_simulation(debug = True)
-    brut = simulation.get_holder('rstbrut').array
-    imposable = simulation.calculate('rst')
+    brut = simulation.get_holder('retraite_brute').array
+    imposable = simulation.calculate('retraite_imposable')
 
     inversion_reform = inversion_revenus.build_reform(tax_benefit_system)
     inverse_simulation = inversion_reform.new_scenario().init_single_entity(
         **single_entity_kwargs).new_simulation(debug = True)
 
-    inverse_simulation.get_holder('rstbrut').delete_arrays()
-    inverse_simulation.get_or_new_holder('rsti').array = imposable.copy()
-    new_brut = inverse_simulation.calculate('rstbrut')
+    inverse_simulation.get_holder('retraite_brute').delete_arrays()
+    inverse_simulation.get_or_new_holder('retraite_imposable_pour_inversion').array = imposable.copy()
+    new_brut = inverse_simulation.calculate('retraite_brute')
     assert_near(new_brut, brut, absolute_error_margin = 1)
 
 
@@ -109,6 +109,6 @@ if __name__ == '__main__':
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     test_cho()
-    test_rst()
+    test_retraite()
     for function, type_sal, year in test_sal():
         function(type_sal, year)

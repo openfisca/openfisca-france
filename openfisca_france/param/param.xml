@@ -731,8 +731,9 @@
     </NODE>
     <NODE code="agirc_gmp" description="Garantie minimale de points AGIRC">  # Find a better place
       <CODE code="cotisation_employeur" description="Cotisation forfaitaire mensuelle employeur">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="41.17" />
-        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="41.17" />
+        <VALUE deb="2017-01-01" fuzzy="true" valeur="42.23" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="42.23" />
+        <VALUE deb="2014-01-01" fin="2015-12-31" valeur="41.17" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="41.13" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="40.74" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="39.84" />
@@ -747,8 +748,9 @@
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="32.42" />
       </CODE>
       <CODE code="cotisation_salarie" description="Cotisation forfaitaire mensuelle salarié">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="25.17" />
-        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="25.17" />
+        <VALUE deb="2017-01-01" fuzzy="true" valeur="25.84" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="25.84" />
+        <VALUE deb="2014-01-01" fin="2015-12-31" valeur="25.17" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="25.13" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="24.90" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="24.35" />
@@ -763,7 +765,8 @@
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="19.45" />
       </CODE>
       <CODE code="salaire_charniere" description="Salaire charnière annuel">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="41913.84" />
+        <VALUE deb="2017-01-01" fuzzy="true" valeur="42590.88" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="42590.88" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="41913.84" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="41444.64" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="40948.70" />
@@ -858,17 +861,26 @@
         <CODE code="tx_max" description="Taux maximum (plus de 20 salariés)" format="percent">
           <VALUE deb="2018-01-01" fuzzy="true" valeur=".2850" />
           <VALUE deb="2017-01-01" fin="2017-12-31" valeur=".2850" />
-          <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".2845" />
+          <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".2842" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".2835" />
           <VALUE deb="2005-07-01" fin="2014-12-31" valeur=".26" />
         </CODE>
         <CODE code="tx_max2" description="Taux maximum (moins de 20 salariés)" format="percent">
           <VALUE deb="2018-01-01" fuzzy="true" valeur=".2810" />
           <VALUE deb="2017-01-01" fin="2017-12-31" valeur=".2810" />
-          <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".2805" />
+          <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".2802" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".2795" />
           <VALUE deb="2007-07-01" fin="2014-12-31" valeur=".281" />
           <VALUE deb="2005-07-01" fin="2007-06-30" valeur=".26" />
+        </CODE>
+      </NODE>
+      <NODE code="allegement_cotisation_allocations_familiales" description="La réduction du taux de la cotisation d’allocations familiales">
+        <CODE code="seuil" description="Point de sortie (en smic)" format="percent">
+          <VALUE deb="2016-04-01" fuzzy="true" valeur="3.5" />
+          <VALUE deb="2015-01-01" fin="2016-03-31" valeur="1.6" />
+        </CODE>
+        <CODE code="taux" description="Taux de la réduction" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur=".018" />
         </CODE>
       </NODE>
     </NODE>
@@ -1032,6 +1044,12 @@
       <CODE code="vente" description="Taux pour les activités de ventes" format="percent">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.141" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.141" />
+      </CODE>
+    </NODE>
+    <NODE code="versement_transport" description="Versement transport">
+      <CODE code="seuil_effectif" description="Effectif de l'entreprise à partir duquel le versement transport est dû" >
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="11" />
+        <VALUE deb="1996-02-21" fin="2015-12-31" valeur="10" />
       </CODE>
     </NODE>
     <NODE code="pat" description="employeur">
@@ -1298,8 +1316,9 @@
               <VALUE deb="1993-07-01" fin="2014-03-31" valeur="0" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2014-04-01" fuzzy="true" valeur="0.003" />
-              <VALUE deb="2011-04-01" fin="2014-03-31" valeur="0.003" />
+              <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0025" />
+              <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0025" />
+              <VALUE deb="2011-04-01" fin="2015-12-31" valeur="0.003" />
               <VALUE deb="2009-11-01" fin="2011-03-31" valeur="0.004" />
               <VALUE deb="2009-08-01" fin="2009-10-31" valeur="0.003" />
               <VALUE deb="2006-07-01" fin="2009-07-31" valeur="0.0015" />
@@ -1474,20 +1493,9 @@
               <VALUE deb="1992-07-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2015-01-01" fuzzy="true" valeur="0.128" />
-              <VALUE deb="1992-07-01" fin="2014-12-31" valeur="0.128" />
-            </TAUX>
-          </TRANCHE>
-        </BAREME>
-        <BAREME code="transport" description="Transport (valeur non différenciée selon la localité, Lyon reférence)">
-          <TRANCHE code="tranche0">
-            <SEUIL>
-              <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
-              <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0" />
-            </SEUIL>
-            <TAUX>
-              <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0175" />
-              <VALUE deb="2003-01-01" fin="2014-12-31" valeur="0.0175" />
+              <VALUE deb="2017-01-01" fuzzy="true" valeur="0.1284" />
+              <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.1284" />
+              <VALUE deb="1992-07-01" fin="2015-12-31" valeur="0.128" />
             </TAUX>
           </TRANCHE>
         </BAREME>
@@ -1498,7 +1506,9 @@
               <VALUE deb="1991-02-01" fin="2015-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2016-01-01" fuzzy="true" valeur="0.018" />
+              <VALUE deb="2018-01-01" fuzzy="true" valeur="0.019" />
+              <VALUE deb="2017-01-01" fin="2017-12-31" valeur="0.019" />
+              <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0185" />
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.018" />
               <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0175" />
               <VALUE deb="1991-02-01" fin="2013-12-31" valeur="0.016" />
@@ -2405,7 +2415,9 @@
               <VALUE deb="2004-07-01" fin="2015-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2016-01-01" fuzzy="true" valeur=".003" />
+              <VALUE deb="2018-01-01" fuzzy="true" valeur=".004" />
+              <VALUE deb="2017-01-01" fin="2017-12-31" valeur=".004" />
+              <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".0035" />
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".003" />
               <VALUE deb="2014-01-01" fin="2014-12-31" valeur=".0025" />
               <VALUE deb="2004-07-01" fin="2013-12-31" valeur=".001" />
@@ -3299,6 +3311,10 @@
           <VALUE deb="2000-01-01" fin="2003-06-30" valeur="0" />
         </CODE>
       </NODE>
+      <CODE code="facteur_garde_alternee" description="Facteur multiplicatif pour un enfant en cas de garde alternée">
+        <VALUE deb="2007-05-01" fuzzy="true" valeur="0.5"/>
+        <VALUE deb="2000-01-01" fin="2007-04-30" valeur="1" />
+      </CODE>
     </NODE>
     <NODE code="afeama" description="Aide à la famille pour l'emploi d'une assistante maternelle agréée">
       <CODE code="age1" description="Limite d'âge (stricte) pour bénéficier de l'AFEAMA" format="integer" type="age">
@@ -4044,17 +4060,18 @@
     <BAREME code="bareme" description="Tranches de l'IR" type="monetary">
       <TRANCHE code="tranche0">
         <SEUIL>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
-          <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
+          <VALUE deb="2001-01-01" fin="2015-12-31" valeur="0" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
-          <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
+          <VALUE deb="2001-01-01" fin="2015-12-31" valeur="0" />
         </TAUX>
       </TRANCHE>
       <TRANCHE code="tranche1">
         <SEUIL>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="9690" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="9700" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="9700" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="9690" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="6011" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="5963" />
@@ -4069,8 +4086,8 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="4121" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.14" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.14" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.14" />
+          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="0.14" />
           <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.055" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.0683" />
           <VALUE deb="2001-01-01" fin="2002-12-31" valeur="0.0705" />
@@ -4078,7 +4095,8 @@
       </TRANCHE>
       <TRANCHE code="tranche2">
         <SEUIL>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="26764" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="26791" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="26791" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="26764" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="11991" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="11896" />
@@ -4093,8 +4111,8 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="8104" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.30" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.30" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.30" />
+          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="0.30" />
           <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.14" />
           <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.1914" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.21" />
@@ -4102,7 +4120,8 @@
       </TRANCHE>
       <TRANCHE code="tranche3">
         <SEUIL>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="71754" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="71826" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="71826" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="71754" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="26631" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="26420" />
@@ -4117,8 +4136,8 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="14264" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.4100" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.4100" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.4100" />
+          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="0.4100" />
           <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.3000" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.2826" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.2914" />
@@ -4127,7 +4146,8 @@
       </TRANCHE>
       <TRANCHE code="tranche4">
         <SEUIL>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="151956" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="152108" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="152108" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="151956" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="71397" />
           <VALUE deb="2010-01-01" fin="2012-12-31" valeur="70830" />
@@ -4142,8 +4162,8 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="23096" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.4500" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.4500" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.4500" />
+          <VALUE deb="2014-01-01" fin="2015-12-31" valeur="0.4500" />
           <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.4100" />
           <VALUE deb="2006-01-01" fin="2009-12-31" valeur="0.4000" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.3738" />
@@ -4153,7 +4173,6 @@
       </TRANCHE>
       <TRANCHE code="tranche5">
         <SEUIL>
-          <VALUE deb="2014-01-01" fuzzy="true" valeur="151200" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="151200" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="150000" />
           <VALUE deb="2005-01-01" fin="2005-12-31" valeur="40241" />
@@ -4163,7 +4182,6 @@
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="37579" />
         </SEUIL>
         <TAUX>
-          <VALUE deb="2014-01-01" fuzzy="true" valeur="0.4500" />
           <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.4500" />
           <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.4262" />
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.4394" />

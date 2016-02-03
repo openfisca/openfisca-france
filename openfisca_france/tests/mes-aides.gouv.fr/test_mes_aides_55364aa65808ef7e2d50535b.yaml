@@ -4,10 +4,10 @@ keywords:
   - pension alimentaire
 description: |
   Plafond CMUC 1 personne = 8644
-  Salaire = 8760 > plafond 
-  Après déduction, salaire - pension alimentaire versée = 8760 - 200 = 8560 < plafond 
+  Salaire = 8760 > plafond
+  Après déduction, salaire - pension alimentaire versée = 8760 - 200 = 8560 < plafond
   Donc droit à la CMUC
-  
+
   Note : Propriétaire membre de la famille pour neutraliser les APL
 period: "month:2015-04"
 individus:
@@ -16,7 +16,7 @@ individus:
   birth: "1990-10-10"
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55364a9b01d81a812d2dfa62
   inapte_travail: 0
   interets_epargne_sur_livrets:

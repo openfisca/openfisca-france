@@ -12,12 +12,12 @@ individus:
   age: 24
   age_en_mois: 295
   birth: '1990-12-18'
-  cho:
+  chomage_imposable:
     '2013': 0
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55b8807e40cf7dab6b31aa21
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -25,7 +25,7 @@ individus:
   invalide: 0
   pensions_alimentaires_percues:
     '2013': 0
-  rst:
+  retraite_imposable:
     '2013': 0
   salaire_de_base:
     2014-07: 607.6923076923076
@@ -87,7 +87,7 @@ individus:
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55b8807e40cf7dab6b31aa20
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -104,7 +104,7 @@ individus:
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 55b8807e40cf7dab6b31aa1f
   inapte_travail: 0
   interets_epargne_sur_livrets:

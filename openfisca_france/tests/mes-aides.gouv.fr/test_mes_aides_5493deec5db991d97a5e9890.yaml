@@ -6,7 +6,7 @@ keywords:
 description: |
   isolé touchant 2 SMIC
   Zone 2, loyer 700 euros, salaires n-2 = 27542 euros
-  
+
   L	657,97
   C	127,65
   E	785,62
@@ -22,7 +22,7 @@ description: |
   P1	299,51
   Pp	366,29
   AL	417,23
-  
+
   caf.fr : 421 €
 period: "month:2014-12"
 relative_error_margin: 0.02
@@ -30,11 +30,11 @@ individus:
   - age: 42
     age_en_mois: 515
     birth: "1972-01-09"
-    cho:
+    chomage_imposable:
       2012: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5493dde7c54524d87a61aaca
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -42,7 +42,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2012: 0
-    rst:
+    retraite_imposable:
       2012: 0
     salaire_de_base:
       2013-12: 3922.364672364672
@@ -99,7 +99,7 @@ individus:
     birth: "2001-03-08"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5493dde7c54524d87a61aac9
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -115,7 +115,7 @@ individus:
     birth: "2003-11-23"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5493dde7c54524d87a61aac8
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -131,7 +131,7 @@ individus:
     birth: "2005-01-02"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5493dde7c54524d87a61aac7
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -147,7 +147,7 @@ individus:
     birth: "2007-07-17"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5493dde7c54524d87a61aac6
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -162,7 +162,7 @@ individus:
     birth: "2008-12-08"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5493dde7c54524d87a61aac5
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -177,7 +177,7 @@ individus:
     birth: "2010-03-02"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5493dde7c54524d87a61aac4
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -192,7 +192,7 @@ individus:
     birth: "2013-09-15"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 5493dde7c54524d87a61aac3
     inapte_travail: 0
     interets_epargne_sur_livrets:
