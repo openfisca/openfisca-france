@@ -397,7 +397,7 @@ class aides_logement(Variable):
 class impo(Variable):
     column = FloatCol(default = 0)
     entity_class = Menages
-    label = u"Impôts sur le revenu"
+    label = u"Impôts directs"
     url = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
 
     def function(self, simulation, period):

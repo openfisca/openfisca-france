@@ -1,4 +1,4 @@
-IGNORE_OPT=--ignore-files='(test_from_taxipp.py|test_jsons.py|taxipp_utils.py|test_plf2015.py|test_imposable_to_brut.py|test_net_to_brut.py)'
+IGNORE_OPT=--ignore-files='(test_from_taxipp.py|test_jsons.py|taxipp_utils.py|test_plf2015.py|test_imposable_to_brut.py|test_net_to_brut.py|test_plf2016.py|test_plfr2014.py|test_inversion_directe_salaires.py)'
 TESTS_DIR=openfisca_france/tests
 
 all: flake8 test

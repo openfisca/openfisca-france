@@ -36,7 +36,7 @@ def test_cho(year = 2014):
     assert_near(new_brut, brut, absolute_error_margin = 1)
 
 
-def test_rst(year = 2014):
+def test_retraite(year = 2014):
     period = periods.period("{}-01".format(year))
     single_entity_kwargs = dict(
         axes = [dict(count = 101, max = 2000, min = 0, name = 'retraite_brute')],
@@ -109,6 +109,6 @@ if __name__ == '__main__':
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     test_cho()
-    test_rst()
+    test_retraite()
     for function, type_sal, year in test_sal():
         function(type_sal, year)
