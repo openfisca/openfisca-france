@@ -2,7 +2,6 @@
 
 from __future__ import division
 
-import numpy as np
 from numpy import datetime64, timedelta64
 
 
@@ -85,7 +84,7 @@ class remuneration_apprenti(Variable):
         for age_interval in salaire_en_smic:
             age_condition = (age_interval["age_min"] <= age) * (age < age_interval["age_max"])
             output[age_condition] = sum([
-                (anciennete_contrat[age_condition] == np.array([anciennete], dtype = 'timedelta64[Y]')) * part_de_smic
+                (anciennete_contrat[age_condition] == timedelta64(anciennete, 'Y')) * part_de_smic
                 for anciennete, part_de_smic in age_interval['part_de_smic_by_anciennete'].iteritems()
                 ])
         return period, output * smic * apprenti
