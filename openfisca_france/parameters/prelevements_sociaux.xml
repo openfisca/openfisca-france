@@ -754,7 +754,8 @@
             <VALUE deb="1974-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
           <TAUX>
-            <VALUE deb="2011-04-01" fuzzy="true" valeur="0.003" />
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="0.0025" />
+            <VALUE deb="2011-04-01" fin="2015-12-31" valeur="0.003" />
             <VALUE deb="2009-10-01" fin="2011-03-31" valeur="0.004" />
             <VALUE deb="2009-07-01" fin="2009-09-30" valeur="0.003" />
             <VALUE deb="2009-04-01" fin="2009-06-30" valeur="0.002" />
@@ -2053,11 +2054,15 @@
       </CODE>
       <NODE code="reduction_maximale">
         <CODE code="entreprises_de_20_salaries_et_plus">
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.2835" />
+          <VALUE deb="2017-01-01" fuzzy="true" valeur="0.2847" />
+          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.2842" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.2835" />
           <VALUE deb="2005-07-01" fin="2014-12-31" valeur="0.26" />
         </CODE>
         <CODE code="entreprises_de_moins_de_20_salaries">
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.2795" />
+          <VALUE deb="2017-01-01" fuzzy="true" valeur="0.2807" />
+          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.2802" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.2795" />
           <VALUE deb="2007-07-01" fin="2014-12-31" valeur="0.281" />
           <VALUE deb="2005-07-01" fin="2007-06-30" valeur="0.26" />
         </CODE>
@@ -2194,7 +2199,8 @@
   </NODE>
   <NODE code="gmp">
     <CODE code="cotisation_forfaitaire_annuelle_en_euros" format="float" type="monetary">
-      <VALUE deb="2014-01-01" fuzzy="true" valeur="796.08" />
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="816.84" />
+      <VALUE deb="2014-01-01" fin="2015-12-31" valeur="796.08" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="795.12" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="787.68" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="770.28" />
@@ -2223,7 +2229,8 @@
     </CODE>
     <NODE code="cotisation_forfaitaire_mensuelle_en_euros">
       <CODE code="cotisation_totale" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="66.34" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="68.07" />
+        <VALUE deb="2014-01-01" fin="2015-12-31" valeur="66.34" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="66.26" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="65.64" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="64.19" />
@@ -2251,7 +2258,8 @@
         <VALUE deb="1989-01-01" fin="1989-12-31" valeur="236.916666667" />
       </CODE>
       <CODE code="part_patronale" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="41.17" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="42.23" />
+        <VALUE deb="2014-01-01" fin="2015-12-31" valeur="41.17" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="41.13" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="40.74" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="39.84" />
@@ -2279,7 +2287,8 @@
         <VALUE deb="1989-01-01" fin="1989-12-31" valeur="177.6875" />
       </CODE>
       <CODE code="part_salariale" format="float" type="monetary">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="25.17" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="25.84" />
+        <VALUE deb="2014-01-01" fin="2015-12-31" valeur="25.17" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="25.13" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="24.9" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="24.35" />
@@ -2308,7 +2317,9 @@
       </CODE>
     </NODE>
     <CODE code="salaire_charniere_annuel" format="float" type="monetary">
-      <VALUE deb="2014-01-01" fuzzy="true" valeur="41444.64" />
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="42590.88" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="41913.84" />
+      <VALUE deb="2014-01-01" fin="2014-12-31" valeur="41444.64" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="40948.7" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="40251.98" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="39146.63" />
@@ -2749,7 +2760,8 @@
   </NODE>
   <NODE code="pss">
     <CODE code="plafond_de_la_securite_sociale_annuel" format="float" type="monetary">
-      <VALUE deb="2015-01-01" fuzzy="true" valeur="38040" />
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="38616" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="38040" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="37548" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="37032" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="36372" />
@@ -2828,7 +2840,8 @@
       <VALUE deb="1930-07-01" fin="1935-12-31" valeur="10800" />
     </CODE>
     <CODE code="plafond_de_la_securite_sociale_mensuel" format="float" type="monetary">
-      <VALUE deb="2015-01-01" fuzzy="true" valeur="3170" />
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="3218" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="3170" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3129" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3086" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="3031" />

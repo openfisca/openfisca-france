@@ -135,6 +135,10 @@
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.005" />
       <VALUE deb="1996-01-01" fin="2013-12-31" valeur="0.005" />
     </CODE>
+    <CODE code="facteur_garde_alternee" description="Facteur multiplicatif pour un enfant en cas de garde alternée">
+      <VALUE deb="2007-05-01" fuzzy="true" valeur="0.5" />
+      <VALUE deb="2000-01-01" fin="2007-04-30" valeur="1" />
+    </CODE>
     <NODE code="maj_age_deux_enfants" description="Majorations pour âge">
       <CODE code="age1" description="Âge de début de la 1ere majoration" format="integer" type="age">
         <VALUE deb="2014-04-01" fuzzy="true" valeur="11" />

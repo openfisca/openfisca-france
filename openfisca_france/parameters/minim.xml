@@ -333,7 +333,8 @@
       <VALUE deb="2007-01-01" fin="2007-12-31" valeur="800.58" />
       <VALUE deb="2006-07-01" fin="2006-12-31" valeur="789.59" />
       <VALUE deb="2006-01-01" fin="2006-06-30" valeur="776.79" />
-    </CODE>
+      <VALUE deb="2005-07-01" fin="2005-12-31" valeur="776.79" />  # TODO FIXME
+      </CODE>
     <CODE code="mva" description="Majoration pour la vie autonome" format="float" type="monetary">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="104.77" />
       <VALUE deb="2008-01-01" fin="2014-12-31" valeur="104.77" />
