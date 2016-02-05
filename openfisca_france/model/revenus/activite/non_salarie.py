@@ -1074,42 +1074,49 @@ def compute_benefice_auto_entrepreneur_micro_entreprise(bareme, type_activite, c
     return benefice
 
 
-class tns_auto_entrepreneur_benefice(Variable):
+class tns_auto_entrepreneur_benefice(DatedVariable):
     column = FloatCol
     label = u"Bénéfice en tant qu'auto-entrepreneur"
     entity_class = Individus
 
+    @dated_function(start = date(2008, 1, 1))
     def function(self, simulation, period):
         period = period.this_month
         tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
         bareme = simulation.legislation_at(period.start).tns
 
-        benefice = compute_benefice_auto_entrepreneur_micro_entreprise(bareme, tns_auto_entrepreneur_type_activite, tns_auto_entrepreneur_chiffre_affaires)
+        benefice = compute_benefice_auto_entrepreneur_micro_entreprise(
+            bareme, tns_auto_entrepreneur_type_activite, tns_auto_entrepreneur_chiffre_affaires)
         return period, benefice
 
 
-class tns_micro_entreprise_benefice(Variable) :
+class tns_micro_entreprise_benefice(DatedVariable):
     column = FloatCol
     label = u"Bénéfice de la micro entreprise"
     entity_class = Individus
 
+    @dated_function(start = date(2008, 1, 1))
     def function(self, simulation, period):
         period = period.this_year
         tns_micro_entreprise_type_activite = simulation.calculate('tns_micro_entreprise_type_activite', period)
         tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period)
         bareme = simulation.legislation_at(period.start).tns
 
-        benefice =  compute_benefice_auto_entrepreneur_micro_entreprise(bareme, tns_micro_entreprise_type_activite, tns_micro_entreprise_chiffre_affaires)
+        benefice = compute_benefice_auto_entrepreneur_micro_entreprise(
+            bareme, tns_micro_entreprise_type_activite, tns_micro_entreprise_chiffre_affaires)
         return period, benefice
 
-# The following formulas take into account 'cotisation sociales'. However, it seems that for all prestations, the 'base ressources' are only using the 'benefice', without deducting the 'cotisation sociales'. Although this rule seems unfair towards independent workers, we are now applying it for all presations and therefore we are not using the following formulas for calculating prestations.
-
-class tns_auto_entrepreneur_revenus_net(Variable) :
+# The following formulas take into account 'cotisation sociales'. However, it seems that for all prestations,
+# the 'base ressources' are only using the 'benefice', without deducting the 'cotisation sociales'.
+# Although this rule seems unfair towards independent workers, we are now applying it for all presations and therefore
+# we are not using the following formulas for calculating prestations.
+class tns_auto_entrepreneur_revenus_net(DatedVariable) :
     column = FloatCol
     label = u"Revenu d'un auto-entrepreneur"
     entity_class = Individus
 
+    @dated_function(start = date(2008, 1, 1))
     def function(self, simulation, period):
         period = period.this_month
         tns_auto_entrepreneur_benefice = simulation.calculate('tns_auto_entrepreneur_benefice', period)
@@ -1117,9 +1124,9 @@ class tns_auto_entrepreneur_revenus_net(Variable) :
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
         bareme_cs_ae = simulation.legislation_at(period.start).tns.auto_entrepreneur
         taux_cotisations_sociales_sur_CA = (
-         (tns_auto_entrepreneur_type_activite == 0) * bareme_cs_ae.achat_revente +
-         (tns_auto_entrepreneur_type_activite == 1) * bareme_cs_ae.bic +
-         (tns_auto_entrepreneur_type_activite == 2) * bareme_cs_ae.bnc)
+            (tns_auto_entrepreneur_type_activite == 0) * bareme_cs_ae.achat_revente +
+            (tns_auto_entrepreneur_type_activite == 1) * bareme_cs_ae.bic +
+            (tns_auto_entrepreneur_type_activite == 2) * bareme_cs_ae.bnc)
         tns_auto_entrepreneur_charges_sociales = taux_cotisations_sociales_sur_CA * tns_auto_entrepreneur_chiffre_affaires
         revenus = tns_auto_entrepreneur_benefice - tns_auto_entrepreneur_charges_sociales
 

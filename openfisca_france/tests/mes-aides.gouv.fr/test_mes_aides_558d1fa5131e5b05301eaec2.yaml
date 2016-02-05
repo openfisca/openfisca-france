@@ -3,7 +3,7 @@ keywords:
   - af
   - barêmes 1er juillet 2015
 description: |
-  
+
   On veut 68000 € de revenus nets, donc on déclare 75556 € de revenus imposables.
 period: "month:2015-07"
 relative_error_margin: 0.02
@@ -11,11 +11,11 @@ individus:
   - age: 55
     age_en_mois: 660
     birth: "1960-06-05"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 558d1f9048433cfe2f436510
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -23,7 +23,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 0
-    rst:
+    retraite_imposable:
       2013: 0
     salaire_de_base:
       2014-07: 10762.89965178854
@@ -80,7 +80,7 @@ individus:
     birth: "2005-09-08"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 558d1f9048433cfe2f43650f
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -96,7 +96,7 @@ individus:
     birth: "2005-09-08"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 558d1f9048433cfe2f43650e
     inapte_travail: 0
     interets_epargne_sur_livrets:

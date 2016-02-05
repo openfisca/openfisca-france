@@ -231,13 +231,14 @@ class pension_civile_employeur(Variable):
         return period, -cot_pat_pension_civile
 
 
-class rafp_salarie(Variable):
+class rafp_salarie(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Part salariale de la retraite additionelle de la fonction publique"
     # Part salariale de la retraite additionelle de la fonction publique
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
 
+    @dated_function(start = date(2005, 1, 1))
     def function(self, simulation, period):
         period = period.this_month
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
@@ -259,12 +260,13 @@ class rafp_salarie(Variable):
         return period, -rafp_salarie
 
 
-class rafp_employeur(Variable):
+class rafp_employeur(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Part patronale de la retraite additionnelle de la fonction publique"
 
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
+    @dated_function(start = date(2005, 1, 1))
     def function(self, simulation, period):
         period = period.this_month
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)

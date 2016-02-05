@@ -195,14 +195,14 @@ class nivvie_ini(Variable):
         return period, revini / uc
 
 
-def _revprim(rev_trav, cho, rev_cap, cotisations_employeur, cotisations_salariales):
+def _revprim(rev_trav, chomage_imposable, rev_cap, cotisations_employeur, cotisations_salariales):
     '''
     Revenu primaire du ménage
     Ensemble des revenus d'activités superbruts avant tout prélèvement
     Il est égale à la valeur ajoutée produite par les résidents
     'men'
     '''
-    return rev_trav + rev_cap - cotisations_employeur - cotisations_salariales - cho
+    return rev_trav + rev_cap - cotisations_employeur - cotisations_salariales - chomage_imposable
 
 
 class rev_trav(Variable):
@@ -235,15 +235,15 @@ class pen(Variable):
         Pensions
         '''
         period = period.start.period('year').offset('first-of')
-        chonet = simulation.calculate('chonet', period)
-        rstnet = simulation.calculate('rstnet', period)
+        chomage_net = simulation.calculate('chomage_net', period)
+        retraite_nette = simulation.calculate('retraite_nette', period)
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
         pensions_alimentaires_versees_declarant1 = simulation.calculate(
             'pensions_alimentaires_versees_declarant1', period
             )
         rto_declarant1 = simulation.calculate_add('rto_declarant1', period)
 
-        return period, (chonet + rstnet + pensions_alimentaires_percues + pensions_alimentaires_versees_declarant1 +
+        return period, (chomage_net + retraite_nette + pensions_alimentaires_percues + pensions_alimentaires_versees_declarant1 +
                     rto_declarant1)
 
 
@@ -397,7 +397,7 @@ class aides_logement(Variable):
 class impo(Variable):
     column = FloatCol(default = 0)
     entity_class = Menages
-    label = u"Impôts sur le revenu"
+    label = u"Impôts directs"
     url = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
 
     def function(self, simulation, period):

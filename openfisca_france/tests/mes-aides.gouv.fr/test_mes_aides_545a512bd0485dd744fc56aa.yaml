@@ -3,7 +3,7 @@ keywords:
   - foyer
   - rsa
 description: |
-  MF RSA : 918,27 
+  MF RSA : 918,27
   AF : 129,99
   PAJE : 185,54
   => RSA : 602,74
@@ -15,7 +15,7 @@ individus:
     birth: "1986-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 545a50a5ffe6a1e044e6c2a8
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -31,7 +31,7 @@ individus:
     birth: "1994-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 545a50a5ffe6a1e044e6c2a7
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -46,7 +46,7 @@ individus:
     birth: "2010-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 545a50a5ffe6a1e044e6c2a6
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -61,7 +61,7 @@ individus:
     birth: "2012-01-01"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 545a50a5ffe6a1e044e6c2a5
     inapte_travail: 0
     interets_epargne_sur_livrets:

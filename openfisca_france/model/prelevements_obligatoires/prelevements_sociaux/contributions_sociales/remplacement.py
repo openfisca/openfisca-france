@@ -44,12 +44,12 @@ class csg_deductible_chomage(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        chobrut = simulation.calculate('chobrut', period)
+        chomage_brut = simulation.calculate('chomage_brut', period)
         csg_imposable_chomage = simulation.calculate('csg_imposable_chomage', period)
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
         montant_csg = montant_csg_crds(
-            base_avec_abattement = chobrut,
+            base_avec_abattement = chomage_brut,
             indicatrice_taux_plein = (taux_csg_remplacement == 3),
             indicatrice_taux_reduit = (taux_csg_remplacement == 2),
             law_node = law.prelevements_sociaux.csg.chomage.deductible,
@@ -58,7 +58,7 @@ class csg_deductible_chomage(Variable):
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
         cho_seuil_exo = law.prelevements_sociaux.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
         csg_deductible_chomage = max_(
-            - montant_csg - max_(cho_seuil_exo - (chobrut + csg_imposable_chomage + montant_csg), 0),
+            - montant_csg - max_(cho_seuil_exo - (chomage_brut + csg_imposable_chomage + montant_csg), 0),
             0,
             )
 
@@ -74,17 +74,17 @@ class csg_imposable_chomage(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        chobrut = simulation.calculate('chobrut', period)
+        chomage_brut = simulation.calculate('chomage_brut', period)
         law = simulation.legislation_at(period.start)
 
         montant_csg = montant_csg_crds(
-            base_avec_abattement = chobrut,
+            base_avec_abattement = chomage_brut,
             law_node = law.prelevements_sociaux.csg.chomage.imposable,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
         cho_seuil_exo = law.prelevements_sociaux.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
-        csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chobrut + montant_csg), 0), 0)
+        csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chomage_brut + montant_csg), 0), 0)
         return period, - csg_imposable_chomage
 
 
@@ -97,35 +97,42 @@ class crds_chomage(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        chobrut = simulation.calculate('chobrut', period)
+        chomage_brut = simulation.calculate('chomage_brut', period)
         csg_deductible_chomage = simulation.calculate('csg_deductible_chomage', period)
         csg_imposable_chomage = simulation.calculate('csg_imposable_chomage', period)
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
         smic_h_b = law.cotsoc.gen.smic_h_b
-        # salaire_mensuel_reference = chobrut / .7
+        # salaire_mensuel_reference = chomage_brut / .7
         # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
         heures_mensuelles = 35 * 52 / 12
         cho_seuil_exo = law.prelevements_sociaux.csg.chomage.min_exo * heures_mensuelles * smic_h_b
 
         montant_crds = montant_csg_crds(
-            base_avec_abattement = chobrut,
+            base_avec_abattement = chomage_brut,
             law_node = law.crds.activite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * (2 <= taux_csg_remplacement)
 
         crds_chomage = max_(
             -montant_crds - max_(
-                cho_seuil_exo - (chobrut + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0
+                cho_seuil_exo - (chomage_brut + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0
                 ), 0
             )
         return period, -crds_chomage
 
 
-class cho(Variable):
+class chomage_imposable(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    column = FloatCol(
+        val_type = "monetary",
+        cerfa_field = {QUIFOY['vous']: u"1AP",
+                   QUIFOY['conj']: u"1BP",
+                   QUIFOY['pac1']: u"1CP",
+                   QUIFOY['pac2']: u"1DP",
+                   QUIFOY['pac3']: u"1EP",
+                   })  # (f1ap, f1bp, f1cp, f1dp, f1ep)
     entity_class = Individus
     label = u"Allocations chômage imposables"
     set_input = set_input_divide_by_period
@@ -133,13 +140,13 @@ class cho(Variable):
 
     def function(self, simulation, period):
         period = period
-        chobrut = simulation.calculate('chobrut', period)
+        chomage_brut = simulation.calculate('chomage_brut', period)
         csg_deductible_chomage = simulation.calculate_add('csg_deductible_chomage', period)
 
-        return period, chobrut + csg_deductible_chomage
+        return period, chomage_brut + csg_deductible_chomage
 
 
-class chonet(Variable):
+class chomage_net(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -149,11 +156,11 @@ class chonet(Variable):
 
     def function(self, simulation, period):
         period = period
-        cho = simulation.calculate('cho', period)
+        chomage_imposable = simulation.calculate('chomage_imposable', period)
         csg_imposable_chomage = simulation.calculate_add('csg_imposable_chomage', period)
         crds_chomage = simulation.calculate_add('crds_chomage', period)
 
-        return period, cho + csg_imposable_chomage + crds_chomage
+        return period, chomage_imposable + csg_imposable_chomage + crds_chomage
 
 
 ############################################################################
@@ -169,12 +176,12 @@ class csg_deductible_retraite(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        rstbrut = simulation.calculate('rstbrut', period)
+        retraite_brute = simulation.calculate('retraite_brute', period)
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
         montant_csg = montant_csg_crds(
-            base_sans_abattement = rstbrut,
+            base_sans_abattement = retraite_brute,
             indicatrice_taux_plein = (taux_csg_remplacement == 3),
             indicatrice_taux_reduit = (taux_csg_remplacement == 2),
             law_node = law.prelevements_sociaux.csg.retraite.deductible,
@@ -192,11 +199,11 @@ class csg_imposable_retraite(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        rstbrut = simulation.calculate('rstbrut', period)
+        retraite_brute = simulation.calculate('retraite_brute', period)
         law = simulation.legislation_at(period.start)
 
         montant_csg = montant_csg_crds(
-            base_sans_abattement = rstbrut,
+            base_sans_abattement = retraite_brute,
             law_node = law.prelevements_sociaux.csg.retraite.imposable,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
@@ -212,12 +219,12 @@ class crds_retraite(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        rstbrut = simulation.calculate('rstbrut', period)
+        retraite_brute = simulation.calculate('retraite_brute', period)
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
         montant_crds = montant_csg_crds(
-            base_sans_abattement = rstbrut,
+            base_sans_abattement = retraite_brute,
             law_node = law.crds.retraite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * (taux_csg_remplacement == 1)
@@ -233,35 +240,43 @@ class casa(DatedVariable):
     @dated_function(date(2013, 4, 1))
     def function_2013(self, simulation, period):
         period = period.this_month
-        rstbrut = simulation.calculate('rstbrut', period)
+        retraite_brute = simulation.calculate('retraite_brute', period)
         rfr_holder = simulation.compute('rfr', period.start.offset('first-of', 'year').offset(-2, 'year').period('year'))
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
         law = simulation.legislation_at(period.start)
 
         rfr = self.cast_from_entity_to_roles(rfr_holder)
-        casa = (taux_csg_remplacement == 3) * law.prelsoc.add_ret * rstbrut * (rfr > 13900)
+
+        casa = (taux_csg_remplacement == 3) * law.prelsoc.add_ret * retraite_brute * (rfr > 13900)
         # TODO: insert in parameters file and deal with nombre de part fiscales
 
         return period, - casa
 
 
-class rst(Variable):
+class retraite_imposable(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    column = FloatCol(
+            val_type = "monetary",
+            cerfa_field = {QUIFOY['vous']: u"1AS",
+                           QUIFOY['conj']: u"1BS",
+                           QUIFOY['pac1']: u"1CS",
+                           QUIFOY['pac2']: u"1DS",
+                           QUIFOY['pac3']: u"1ES",
+                            })  # (f1as, f1bs, f1cs, f1ds, f1es)
     entity_class = Individus
-    label = u"Pensions de retraite imposables"
+    label = u"Retraites au sens strict imposables (rentes à titre onéreux exclues)"
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
 
     def function(self, simulation, period):
         period = period
-        rstbrut = simulation.calculate_add('rstbrut', period)
+        retraite_brute = simulation.calculate_add('retraite_brute', period)
         csg_deductible_retraite = simulation.calculate_add('csg_deductible_retraite', period)
 
-        return period, rstbrut + csg_deductible_retraite
+        return period, retraite_brute + csg_deductible_retraite
 
 
-class rstnet(Variable):
+class retraite_nette(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -269,15 +284,15 @@ class rstnet(Variable):
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
 
-    # def function(self, rst, csg_imposable_retraite, crds_retraite, casa):
-    # return rst + csg_imposable_retraite + crds_retraite + casa
+    # def function(self, retraite_imposable, csg_imposable_retraite, crds_retraite, casa):
+    # return retraite_imposable + csg_imposable_retraite + crds_retraite + casa
     def function(self, simulation, period):
         period = period
-        rst = simulation.calculate('rst', period)
+        retraite_imposable = simulation.calculate('retraite_imposable', period)
         csg_imposable_retraite = simulation.calculate_add('csg_imposable_retraite', period)
         crds_retraite = simulation.calculate_add('crds_retraite', period)
 
-        return period, rst + csg_imposable_retraite + crds_retraite
+        return period, retraite_imposable + csg_imposable_retraite + crds_retraite
 
 
 class crds_pfam(Variable):

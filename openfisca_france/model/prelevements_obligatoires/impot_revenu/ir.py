@@ -114,7 +114,7 @@ class age_en_mois(Variable):
 class nb_adult(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"Nombre d'adulte(s) dans le foyer fiscal"
+    label = u"Nombre d'adulte(s) déclarants dans le foyer fiscal"
 
     def function(self, simulation, period):
         period = period.this_year
@@ -355,9 +355,9 @@ class rev_sal(Variable):
     def function(self, simulation, period):
         period = period.this_year
         salaire_imposable =  simulation.calculate_add('salaire_imposable', period)
-        cho = simulation.calculate('cho', period)
+        chomage_imposable = simulation.calculate('chomage_imposable', period)
 
-        return period, salaire_imposable + cho
+        return period, salaire_imposable + chomage_imposable
 
 
 class salcho_imp(Variable):
@@ -374,7 +374,9 @@ class salcho_imp(Variable):
 
         abattement_minimum = abatpro.min * not_(chomeur_longue_duree) + abatpro.min2 * chomeur_longue_duree
         abatfor = round(min_(max_(abatpro.taux * rev_sal, abattement_minimum), abatpro.max))
-        return period, (frais_reels > abatfor) * (rev_sal - frais_reels) + (frais_reels <= abatfor) * max_(0, rev_sal - abatfor)
+        return period, (
+            (frais_reels > abatfor) * (rev_sal - frais_reels) + (frais_reels <= abatfor) * max_(0, rev_sal - abatfor)
+            )
 
 
 class rev_act_sal(Variable):
@@ -426,9 +428,9 @@ class rev_pen(Variable):
         period = period.this_year
         pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
         pensions_alimentaires_percues_decl = simulation.calculate('pensions_alimentaires_percues_decl', period)
-        rst = simulation.calculate('rst', period)
+        retraite_imposable = simulation.calculate('retraite_imposable', period)
 
-        return period, pensions_alimentaires_percues * pensions_alimentaires_percues_decl + rst
+        return period, pensions_alimentaires_percues * pensions_alimentaires_percues_decl + retraite_imposable
 
 
 class pen_net(Variable):
@@ -503,7 +505,7 @@ class sal_pen_net(Variable):
         return period, salcho_imp + pen_net - abat_sal_pen
 
 
-class rto(Variable):
+class retraite_titre_onereux(Variable):
     """Rentes viagères à titre onéreux (avant abattements)
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
@@ -530,7 +532,7 @@ class rto_declarant1(EntityToPersonColumn):
     entity_class = Individus
     label = u"Rentes viagères (rentes à titre onéreux) (pour le premier déclarant du foyer fiscal)"
     role = VOUS
-    variable = rto
+    variable = retraite_titre_onereux
 
 
 class rto_net(Variable):
@@ -977,10 +979,10 @@ class csg_deduc_patrimoine_simulated(Variable):
         period = period.this_year
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         rev_cap_bar = simulation.calculate('rev_cap_bar', period)
-        rto = simulation.calculate('rto', period)
+        retraite_titre_onereux = simulation.calculate('retraite_titre_onereux', period)
         taux = simulation.legislation_at(period.start).csg.capital.deduc
 
-        patrimoine_deduc = rev_cat_rfon + rev_cap_bar + rto
+        patrimoine_deduc = rev_cat_rfon + rev_cap_bar + retraite_titre_onereux
         return period, taux * patrimoine_deduc
 
 
@@ -1181,16 +1183,20 @@ class decote(DatedVariable):
     entity_class = FoyersFiscaux
     label = u"décote"
 
-    @dated_function(start = date(2001, 1, 1), stop = date(2013, 12, 31))
-    def function_2001_2013(self, simulation, period):
-        period = period.this_year
+    @dated_function(start = date(2015, 1, 1))
+    def function_2015(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
-        decote = simulation.legislation_at(period.start).impot_revenu.decote
+        nb_adult = simulation.calculate('nb_adult', period)
+        decote_seuil_celib = simulation.legislation_at(period.start).impot_revenu.decote.seuil_celib
+        decote_seuil_couple = simulation.legislation_at(period.start).impot_revenu.decote.seuil_couple
+        decote_celib = (ir_plaf_qf < 4 / 3 * decote_seuil_celib) * (decote_seuil_celib - 3 / 4 * ir_plaf_qf)
+        decote_couple = (ir_plaf_qf < 4 / 3 * decote_seuil_couple) * (decote_seuil_couple - 3 / 4 * ir_plaf_qf)
 
-        return period, (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
+        return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
-    @dated_function(start = date(2014, 1, 1))
-    def function_2014__(self, simulation, period):
+    @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
+    def function_2014(self, simulation, period):
         period = period.this_year
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         nb_adult = simulation.calculate('nb_adult', period)
@@ -1200,6 +1206,14 @@ class decote(DatedVariable):
         decote_couple = (ir_plaf_qf < decote_seuil_couple) * (decote_seuil_couple - ir_plaf_qf)
 
         return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
+
+    @dated_function(start = date(2001, 1, 1), stop = date(2013, 12, 31))
+    def function_2001_2013(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
+        ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
+        decote = simulation.legislation_at(period.start).impot_revenu.decote
+
+        return period, (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
 
 
 class decote_gain_fiscal(Variable):
@@ -1596,12 +1610,13 @@ class iai(Variable):
         return period, iaidrdi + plus_values + cont_rev_loc + teicaa
 
 
-class cehr(Variable):
+class cehr(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Contribution exceptionnelle sur les hauts revenus"
     url = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
 
+    @dated_function(start = date(2011, 1, 1))
     def function(self, simulation, period):
         '''
         Contribution exceptionnelle sur les hauts revenus
@@ -1613,6 +1628,7 @@ class cehr(Variable):
         bareme = simulation.legislation_at(period.start).impot_revenu.cehr
 
         return period, bareme.calc(rfr / nb_adult) * nb_adult
+        # TODO: Gérer le II.-1 du lissage interannuel ? (problème de non recours)
 
 
 class irpp(Variable):
@@ -1631,14 +1647,26 @@ class irpp(Variable):
         cehr = simulation.calculate('cehr', period)
         P = simulation.legislation_at(period.start).impot_revenu.recouvrement
 
-        # TODO: crade ?
         pre_result = iai - credits_impot + cehr
-        return period, ((iai > P.seuil) *
-            ((pre_result < P.min) * (pre_result > 0) * iai * 0 +
-            ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)) +
-            (iai <= P.seuil) * ((pre_result < 0) * (-pre_result) +
-            (pre_result >= 0) * 0 * iai))
+        return period, (
+            (iai > P.seuil) * (
+                (pre_result < P.min) * (pre_result > 0) * iai * 0 +
+                ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)
+                ) +
+            (iai <= P.seuil) * (
+                (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
+            )
 
+
+class foyer_impose(Variable):
+    column = BoolCol(default = False)
+    entity_class = FoyersFiscaux
+    label = u"Le foyer fiscal est imposé"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
+        irpp = simulation.calculate('irpp', period)
+        return period, (irpp < 0)
 
 ###############################################################################
 # # Autres totaux utiles pour la suite
@@ -2612,6 +2640,20 @@ class taux_effectif(Variable):
         return period, trigger * nbptr * bareme.calc(base_fictive / nbptr) / max_(1, base_fictive)
 
 
+class taux_moyen_imposition(Variable):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"Taux moyen d'imposition"
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
+        rni = simulation.calculate('rni', period)
+        irpp = simulation.calculate('irpp', period)
+        return period, (
+            (- irpp) / (rni + (rni == 0))
+            ) * (rni > 0)
+
+
 ###############################################################################
 # # Calcul du nombre de parts
 ###############################################################################
@@ -2956,10 +2998,6 @@ class ppe_brute(Variable):
         ppe_tot = ppe_vous + ppe_conj + ppe_pac1 + ppe_pac2 + ppe_pac3 + maj_pac
 
         ppe_tot = (ppe_tot != 0) * max_(ppe.versmin, ppe_tot)
-        # from pandas import DataFrame
-        # decompo = {0: ppev, 1 :ppe_vous, 2: ppec,3: ppe_conj, 4: maj_pac, 5 : ppe_monact_vous, 6: ppe_monact_conj,
-            #8: basev, 81 : basevi, 9: basec, 91 : baseci, 10:ppe_tot}
-        # ppe DataFrame(decompo).to_string()
 
         return period, ppe_tot
 
@@ -2979,10 +3017,10 @@ class ppe(Variable):
         ppe_brute = simulation.calculate('ppe_brute', period)
         rsa_act_i_holder = simulation.compute('rsa_act_i', period)
 
-        #   TODO: les foyers qui paient l'ISF n'ont pas le droit à la PPE
+        # TODO: les foyers qui paient l'ISF n'ont pas le droit à la PPE
         rsa_act_i = self.split_by_roles(rsa_act_i_holder, roles = [VOUS, CONJ])
 
-    #   On retranche le RSA activité de la PPE
-    #   Dans les agrégats officiels de la DGFP, c'est la PPE brute qu'il faut comparer
+        #   On retranche le RSA activité de la PPE
+        #   Dans les agrégats officiels de la DGFP, c'est la PPE brute qu'il faut comparer
         ppe = max_(ppe_brute - rsa_act_i[VOUS] - rsa_act_i[CONJ], 0)
         return period, ppe

@@ -30,13 +30,13 @@ def build_reform(base_tax_benefit_system):
         def function(self, simulation, period):
             period = period.start.offset('first-of', 'month').period('year')
             salaire_de_base = simulation.calculate('salaire_de_base', period)
-            chobrut = simulation.calculate('chobrut', period)
-            rstbrut = simulation.calculate('rstbrut', period)
+            chomage_brut = simulation.calculate('chomage_brut', period)
+            retraite_brute = simulation.calculate('retraite_brute', period)
             rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', period)
             rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', period)
             rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = QUIFOY['vous'])
             rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = QUIFOY['vous'])
-            return period, salaire_de_base + chobrut + rstbrut + rev_cap_bar + rev_cap_lib
+            return period, salaire_de_base + chomage_brut + retraite_brute + rev_cap_bar + rev_cap_lib
 
     class impot_revenu_lps(Reform.Variable):
         column = columns.FloatCol

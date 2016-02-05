@@ -51,7 +51,7 @@ if __name__ == '__main__':
         period = period,
         parent1 = parent1,
         )
-    variables = ["salsuperbrut"]
+    variables = ["salaire_super_brut"]
     trace(
         scenario,
         variables,

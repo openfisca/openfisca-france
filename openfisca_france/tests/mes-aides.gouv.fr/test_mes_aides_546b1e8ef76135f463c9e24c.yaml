@@ -4,9 +4,9 @@ keywords:
   - base ressources
 description: |
   J'ai indiqué avoir 2 enfants mineurs à charge et le simulateur ne me demande pas le montant de mes allocations familiales.
-  
+
   Pour autant le résultat du montant ASPA est juste car les prestations familiales sont exclues des ressources à retenir pour le calcul de l'ASPA (article R 815-22 du code de la sécurité sociale).
-  
+
   Edit Arnaud Kleinpeter : c'est normal, le montant simulé des allocations familiales est suffisamment précis pour qu'on n'ait pas besoin de le demander
 period: "month:2014-11"
 individus:
@@ -16,13 +16,13 @@ individus:
     birth: "1947-02-27"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 546b190bfc9936ff63f8566c
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
     invalide: 0
-    rstbrut:
+    retraite_brute:
       2012: 7200
       2013-11: 600
       2013-12: 600
@@ -39,7 +39,7 @@ individus:
       2014-10: 600
       2014-11: 600
       year:2013-11: 7200
-    rstnet:
+    retraite_nette:
       2012: 6667.200000000002
       2013-11: 555.6
       2013-12: 555.6
@@ -65,7 +65,7 @@ individus:
     birth: "2004-12-21"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 546b190bfc9936ff63f8566b
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -80,7 +80,7 @@ individus:
     birth: "2012-10-09"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 546b190bfc9936ff63f8566a
     inapte_travail: 0
     interets_epargne_sur_livrets:

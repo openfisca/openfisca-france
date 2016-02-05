@@ -6,10 +6,10 @@ description: |
   Ce test vérifie que les pensions alimentaires versées sont bien prises en compte dans le calcul de la base ressources.
   cf. article 156 du CGI
   http://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307893
-  
+
   Ici la personne déclare 15000 euros de revenus d'activité et 5000 de pensions
   R = (15000 * 0.9) - 5000 = 8500 euros
-  
+
   L	292,62
   C	53,23
   E	345,85
@@ -25,7 +25,7 @@ description: |
   P1	126,39
   Pp	161,12
   AL	183,81
-  
+
   caf.fr : 182,23 euros
 period: "month:2015-03"
 relative_error_margin: 0.02
@@ -33,11 +33,11 @@ individus:
   age: 43
   age_en_mois: 516
   birth: "1972-02-17"
-  cho:
+  chomage_imposable:
     2013: 0
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54f5d9fc932d38203b89280c
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -45,7 +45,7 @@ individus:
   invalide: 0
   pensions_alimentaires_percues:
     2013: 0
-  rst:
+  retraite_imposable:
     2013: 0
   salaire_imposable:
     2013: 15000

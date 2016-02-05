@@ -213,6 +213,7 @@ class tehr(Variable):
     entity_class = Individus
     label = u"Taxe exceptionnelle de solidarité sur les très hautes rémunérations"
     url = u"http://vosdroits.service-public.fr/professionnels-entreprises/F32096.xhtml"
+    calculate_output = calculate_output_divide
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')

@@ -76,8 +76,9 @@ class exoneration_cotisations_employeur_jei(Variable):
             7: 1,
             }  # TODO: move to legislation parameters file
         for year_passed, rate in rate_by_year_passed.iteritems():
-            if (exoneration_relative_year_passed == year_passed).any():
-                exoneration[exoneration_relative_year_passed == year_passed] = rate * exoneration
+            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            if condition_on_year_passed.any():
+                exoneration[condition_on_year_passed] = rate * exoneration
 
         return period, - exoneration * jeune_entreprise_innovante
 
@@ -218,12 +219,13 @@ class exoneration_cotisations_employeur_zfu(Variable):
         large_taux_exoneration = eligible * 0.0
         small_taux_exoneration = eligible * 0.0
         for year_passed, rate in large_rate_by_year_passed.iteritems():
-            if (exoneration_relative_year_passed == year_passed).any():
-                large_taux_exoneration[exoneration_relative_year_passed == year_passed] = rate * taux_exoneration
+            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            if condition_on_year_passed.any():
+                large_taux_exoneration[condition_on_year_passed] = rate * taux_exoneration
 
         for year_passed, rate in small_rate_by_year_passed.iteritems():
-            if (exoneration_relative_year_passed == year_passed).any():
-                small_taux_exoneration[exoneration_relative_year_passed == year_passed] = rate * taux_exoneration
+            if condition_on_year_passed.any():
+                small_taux_exoneration[condition_on_year_passed] = rate * taux_exoneration
 
         exoneration_cotisations_zfu = eligible * assiette_allegement * (
             small_taux_exoneration * (effectif_entreprise <= 5) +
@@ -262,8 +264,9 @@ class exoneration_cotisations_employeur_zrd(Variable):
             }  # TODO: move to legislation parameters file
         ratio = eligible * 0.0
         for year_passed, rate in rate_by_year_passed.iteritems():
-            if (exoneration_relative_year_passed == year_passed).any():
-                ratio[exoneration_relative_year_passed == year_passed] = rate
+            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            if condition_on_year_passed.any():
+                ratio[condition_on_year_passed] = rate
 
         exoneration_cotisations_zrd = ratio * taux_exoneration * assiette_allegement * eligible
 
@@ -307,7 +310,8 @@ class exoneration_cotisations_employeur_zrr(Variable):
             )
 
         duree_validite = (
-            datetime64(period.start) + timedelta64(1, 'D') - contrat_de_travail_debut).astype('timedelta64[Y]') < 1
+            datetime64(period.start) + timedelta64(1, 'D') - contrat_de_travail_debut
+            ).astype('timedelta64[Y]') < timedelta64(1, 'Y')
 
         eligible = (
             contrat_de_travail_eligible *
@@ -365,7 +369,8 @@ class exoneration_is_creation_zrr(Variable):
             }  # TODO: move to legislation parameters file
         taux_exoneraion = eligible * 0.0
         for year_passed, rate in rate_by_year_passed.iteritems():
-            taux_exoneraion[exoneration_relative_year_passed == year_passed] = rate
+            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            taux_exoneraion[condition_on_year_passed] = rate
 
         return period, taux_exoneraion * entreprise_benefice
         # TODO: mettre sur toutes les années
@@ -434,7 +439,10 @@ class jeune_entreprise_innovante(Variable):
             independance *
             (effectif_entreprise < 250) *
             (entreprise_creation <= datetime64("2016-12-31")) *
-            ((jei_date_demande + timedelta64(1, 'D') - entreprise_creation).astype('timedelta64[Y]') < 8) *
+            (
+                (jei_date_demande + timedelta64(1, 'D') - entreprise_creation).astype('timedelta64[Y]') <
+                timedelta64(8, 'Y')
+                ) *
             (entreprise_chiffre_affaire < 50e6) *
             (entreprise_bilan < 43e6)
             )

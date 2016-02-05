@@ -296,6 +296,8 @@ class taux_versement_transport(Variable):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         type_sal = simulation.calculate('type_sal', period)
 
+        seuil_effectif = simulation.legislation_at(period.start).cotsoc.versement_transport.seuil_effectif
+
         preload_taux_versement_transport()
         public = (type_sal >= 2)
         default_value = 0.0
@@ -315,7 +317,7 @@ class taux_versement_transport(Variable):
             )
         # "L'entreprise emploie-t-elle plus de 9 salariés  dans le périmètre de l'Autorité organisatrice de transport
         # (AOT) suivante ou syndicat mixte de transport (SMT)"
-        return period, (taux_aot + taux_smt) * or_(effectif_entreprise > 9, public) / 100
+        return period, (taux_aot + taux_smt) * or_(effectif_entreprise >= seuil_effectif, public) / 100
 
 
 class versement_transport(Variable):

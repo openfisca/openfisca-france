@@ -125,6 +125,7 @@ class agff_salarie(Variable):
     # AGFF: Association pour la gestion du fonds de financement (sous-entendu des départs entre 60 et 65 ans)
 
     def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
         cotisation = apply_bareme(
             simulation,
             period,
@@ -246,6 +247,7 @@ class agirc_salarie(Variable):
     label = u"Cotisation AGIRC tranche B (salarié)"
 
     def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
         cotisation = apply_bareme(
             simulation,
             period,
@@ -294,13 +296,15 @@ class apec_salarie(Variable):
     label = u"Cotisations agence pour l'emploi des cadres (APEC,  salarié)"
 
     def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        type_sal = simulation.calculate('type_sal', period)
         cotisation = apply_bareme(
             simulation, period,
             cotisation_type = "salarie",
             bareme_name = "apec",
             variable_name = self.__class__.__name__,
             )
-        return period, cotisation  # TODO: check public notamment contractuel
+        return period, cotisation * (type_sal == 1)  # TODO: check public notamment contractuel
 
 
 class apec_employeur(Variable):
@@ -326,6 +330,7 @@ class arrco_salarie(Variable):
     # TODO: check gestion mensuel/annuel
 
     def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
         cotisation_minimale = apply_bareme(
             simulation,
             period,
@@ -383,6 +388,7 @@ class chomage_salarie(Variable):
     label = u"Cotisation chômage tranche A (salarié)"
 
     def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
         cotisation = apply_bareme(
             simulation,
             period,
@@ -428,7 +434,7 @@ class contribution_solidarite_autonomie(Variable):
 class cotisation_exceptionnelle_temporaire_salarie(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"Cotisation_exceptionnelle_temporaire (employe)"
+    label = u"Cotisation_exceptionnelle_temporaire (salarie)"
 
     def function(self, simulation, period):
         cotisation = apply_bareme(
@@ -479,6 +485,7 @@ class mmid_salarie(Variable):
     label = u"Cotisation maladie (salarié)"
 
     def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
         cotisation = apply_bareme(
             simulation,
             period,
@@ -553,6 +560,10 @@ class plafond_securite_sociale(Variable):
         plafond_temps_plein = _P.cotsoc.gen.plafond_securite_sociale
         jours_travailles = nombre_jours_calendaires - heures_non_remunerees_volume / 7
         plafond_securite_sociale = min_(jours_travailles, 30) / 30 * plafond_temps_plein
+        # TODO Fix months < 30 days, for example with:
+        # plafond_securite_sociale = (
+            # max_(heures_non_remunerees_volume == 0, min_(jours_travailles, 30) / 30) * plafond_temps_plein)
+            # temps plein ou non pour gérer le mois de février qui à 28 ou 29 jours
         return period, plafond_securite_sociale
 
 

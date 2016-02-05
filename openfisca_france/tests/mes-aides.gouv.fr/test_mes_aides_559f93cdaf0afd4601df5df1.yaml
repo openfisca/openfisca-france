@@ -11,7 +11,7 @@ individus:
   - age: 51
     age_en_mois: 622
     birth: "1963-09-09"
-    chobrut:
+    chomage_brut:
       2013: 1315.4228361597823
       2014-07: 109.61856967998182
       2014-08: 109.61856967998182
@@ -28,7 +28,7 @@ individus:
       2015-06: 105.94009418736498
       2015-07: 105.94009418736498
       year:2014-07: 1315.4228361597823
-    chonet:
+    chomage_net:
       2013: 1192
       2014-07: 99.33333333333333
       2014-08: 99.33333333333333
@@ -47,7 +47,7 @@ individus:
       year:2014-07: 1192
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 559f9375f92fd455017e6dd6
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -114,7 +114,7 @@ individus:
     birth: "1960-11-08"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 559f9375f92fd455017e6dd5
     inapte_travail: 0
     interets_epargne_sur_livrets:

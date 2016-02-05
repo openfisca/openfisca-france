@@ -5,7 +5,6 @@ from numpy import (
     busday_count as original_busday_count, datetime64, maximum as max_, minimum as min_, timedelta64,
     )
 
-
 from ...base import *  # noqa analysis:ignore
 from ...prestations.prestations_familiales.base_ressource import nb_enf
 
@@ -41,11 +40,12 @@ build_column('frais_reels', IntCol(label = u"Frais réels",
 build_column('hsup', IntCol(label = u"Heures supplémentaires : revenus exonérés connus",
                 val_type = "monetary",
                 start = date(2007, 1, 1),
+                end = date(2013, 12, 13),  # Il y a des heures supplémentaires effectuées en 2013 payées en 2013
                 cerfa_field = {QUIFOY['vous']: u"1AU",
                                QUIFOY['conj']: u"1BU",
                                QUIFOY['pac1']: u"1CU",
                                QUIFOY['pac2']: u"1DU",
-                               }))  # (f1au, f1bu, f1cu, f1du, f1eu)
+                               }))  # (f1au, f1bu, f1cu, f1du)
 
 build_column('ppe_du_sa', IntCol(label = u"Prime pour l'emploi des salariés: nombre d'heures payées dans l'année",
                      cerfa_field = {QUIFOY['vous']: u"1AV",
@@ -119,6 +119,19 @@ class allegement_fillon_mode_recouvrement(Variable):
         )
     entity_class = Individus
     label = u"Mode de recouvrement des allègements Fillon"
+
+class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
+    column = EnumCol(
+        enum = Enum(
+            [
+                u"fin_d_annee",
+                u"anticipe_regularisation_fin_de_periode",
+                u"progressif",
+                ],
+            ),
+        )
+    entity_class = Individus
+    label = u"Mode de recouvrement de l'allègement de la cotisation d'allocations familiales"
 
 class apprentissage_contrat_debut(Variable):
     column = DateCol()
@@ -696,23 +709,56 @@ class salaire_net_a_payer(Variable):
         return period, salaire_net_a_payer
 
 
-class salsuperbrut(Variable):
+class salaire_super_brut_hors_allegements(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
-    label = u"Salaires superbruts/coût du travail"
+    label = u"Salaire super-brut (fiche de paie): rémunération + cotisations sociales employeur"
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         period = period
-        remuneration_apprenti = simulation.calculate_add('remuneration_apprenti', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
+        remuneration_principale = simulation.calculate('remuneration_principale', period)
+        remuneration_apprenti = simulation.calculate_add('remuneration_apprenti', period)
+
         primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
         indemnite_residence = simulation.calculate_add('indemnite_residence', period)
         supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
         cotisations_employeur = simulation.calculate('cotisations_employeur', period)
         depense_cantine_titre_restaurant_employeur = simulation.calculate(
             'depense_cantine_titre_restaurant_employeur', period)
+        reintegration_titre_restaurant_employeur = simulation.calculate(
+            'reintegration_titre_restaurant_employeur', period)
+
+        salaire_super_brut_hors_allegements = (
+            salaire_de_base + remuneration_principale + remuneration_apprenti
+            + primes_fonction_publique + indemnite_residence + supp_familial_traitement
+            + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur
+            - cotisations_employeur
+            )
+
+        return period, salaire_super_brut_hors_allegements
+
+class salaire_super_brut(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Coût du travail à court terme. Inclut les exonérations et allègements de charges"
+    set_input = set_input_divide_by_period
+
+    def function(self, simulation, period):
+        period = period
+        salaire_super_brut_hors_allegements = simulation.calculate('salaire_super_brut_hors_allegements', period)
+        exonerations_et_allegements = simulation.calculate('exonerations_et_allegements', period)
+
+        return period, salaire_super_brut_hors_allegements - exonerations_et_allegements
+
+class exonerations_et_allegements(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Charges, aides et crédits différées ou particulières"
+
+    def function(self, simulation, period):
         exoneration_cotisations_employeur_apprenti = simulation.calculate_add(
             'exoneration_cotisations_employeur_apprenti', period)
         exoneration_cotisations_employeur_geographiques = simulation.calculate(
@@ -723,25 +769,39 @@ class salsuperbrut(Variable):
             'exoneration_cotisations_employeur_stagiaire', period)
 
         allegement_fillon = simulation.calculate_add('allegement_fillon', period)
-        credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
-        reintegration_titre_restaurant_employeur = simulation.calculate(
-            'reintegration_titre_restaurant_employeur', period)
-        remuneration_principale = simulation.calculate('remuneration_principale', period)
+        allegement_cot_alloc_fam = simulation.calculate_add('allegement_cotisation_allocations_familiales', period)
 
-        tehr = simulation.calculate_divide('tehr', period)
-        salsuperbrut = (
-            remuneration_apprenti +
-            salaire_de_base + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur +
-            remuneration_principale +
-            primes_fonction_publique + indemnite_residence + supp_familial_traitement
-            - cotisations_employeur
-            - allegement_fillon
-            - exoneration_cotisations_employeur_geographiques
-            - exoneration_cotisations_employeur_jei
-            - exoneration_cotisations_employeur_apprenti
-            - exoneration_cotisations_employeur_stagiaire
-            - credit_impot_competitivite_emploi
-            - tehr
+        return period, (
+            allegement_fillon
+            + allegement_cot_alloc_fam
+            + exoneration_cotisations_employeur_geographiques
+            + exoneration_cotisations_employeur_jei
+            + exoneration_cotisations_employeur_apprenti
+            + exoneration_cotisations_employeur_stagiaire
             )
 
-        return period, salsuperbrut
+class cout_du_travail(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Coût du travail à long terme. Inclut les charges, aides et crédits différés"
+    set_input = set_input_divide_by_period
+
+    def function(self, simulation, period):
+        period = period
+        salaire_super_brut = simulation.calculate('salaire_super_brut', period)
+        cout_differe = simulation.calculate('cout_differe', period)
+
+        return period, salaire_super_brut - cout_differe
+
+
+class cout_differe(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Charges, aides et crédits différées ou particulières"
+
+    def function(self, simulation, period):
+        credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
+        aide_premier_salarie = simulation.calculate_add('aide_premier_salarie', period)
+        tehr = simulation.calculate_divide('tehr', period)
+
+        return period, credit_impot_competitivite_emploi + aide_premier_salarie + tehr

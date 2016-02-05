@@ -2,7 +2,6 @@
 
 from __future__ import division
 
-
 from numpy import datetime64, timedelta64
 
 
@@ -85,7 +84,7 @@ class remuneration_apprenti(Variable):
         for age_interval in salaire_en_smic:
             age_condition = (age_interval["age_min"] <= age) * (age < age_interval["age_max"])
             output[age_condition] = sum([
-                (anciennete_contrat[age_condition] == anciennete) * part_de_smic
+                (anciennete_contrat[age_condition] == timedelta64(anciennete, 'Y')) * part_de_smic
                 for anciennete, part_de_smic in age_interval['part_de_smic_by_anciennete'].iteritems()
                 ])
         return period, output * smic * apprenti
@@ -196,7 +195,7 @@ class prime_apprentissage(Variable):
 #     # Le crédit d'impôt est égal au nombre moyen d'apprentis dont le contrat de travail a atteint une durée d'au moins
 #     # 1 mois au cours de l'année civile multiplié par :
 #     # - 1 600 €,
-#     # - ou 2 200 € si l'apprenti est reconnu travailleur handicapé et qu'il bénéficie d'un accompagnement personnalisé,
+#     # - ou 2 200€ si l'apprenti est reconnu travailleur handicapé et qu'il bénéficie d'un accompagnement personnalisé,
 #     # ou si l'apprenti est employé par une entreprise portant le label "Entreprise du patrimoine vivant", ou s'il est
 #     # recruté dans le cadre d'une "formation apprentissage junior".
 #     #
@@ -208,7 +207,11 @@ class prime_apprentissage(Variable):
 #     column = FloatCol
 #     entity_class = Individus
 #     label = u"Déduction de la créance "bonus alternant"
-# Les entreprises de plus de 250 salariés, tous établissements confondus, redevables de la taxe d'apprentissage, qui emploient plus de 4 % de jeunes en apprentissage (5 % pour la taxe payable en 2016 au titre de 2015), dans la limite de 6 % d'alternants, peuvent bénéficier d'une créance à déduire du hors quota de la taxe d'apprentissage (TA).
+# Les entreprises de plus de 250 salariés, tous établissements confondus, redevables de la taxe d'apprentissage,
+# qui emploient plus de 4 % de jeunes en apprentissage (5 % pour la taxe payable en 2016 au titre de 2015), dans la
+# limite de 6 % d'alternants, peuvent bénéficier d'une créance à déduire du hors quota de la taxe d'apprentissage (TA).
 # Les entreprises concernées doivent calculer elles-mêmes le montant de la créance à déduire de leur TA.
-# Son montant est calculé selon la formule suivante : pourcentage d'alternants ouvrant droit à l'aide x effectif annuel moyen de l'entreprise au 31 décembre de l'année précédente x un montant forfaitaire de 400 € par alternant.
-# Par exemple, une entreprise de 300 salariés employant 6 % de salariés en alternance, ce qui porte le nombre d'alternants ouvrant droit à l'aide à 2 % (6 % - 4 %), peut bénéficier d'une prime de : 2 % x 300 x 400 = 2 400 €.
+# Son montant est calculé selon la formule suivante : pourcentage d'alternants ouvrant droit à l'aide x effectif annuel
+# moyen de l'entreprise au 31 décembre de l'année précédente x un montant forfaitaire de 400 € par alternant.
+# Par exemple, une entreprise de 300 salariés employant 6 % de salariés en alternance, ce qui porte le nombre
+# d'alternants ouvrant droit à l'aide à 2 % (6 % - 4 %), peut bénéficier d'une prime de : 2 % x 300 x 400 = 2 400 €.

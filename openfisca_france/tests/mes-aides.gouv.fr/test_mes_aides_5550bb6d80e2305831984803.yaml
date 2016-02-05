@@ -14,7 +14,7 @@ individus:
   birth: '1982-06-14'
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 5550a2ed80cc9b9f6118068e
   inapte_travail: 0
   interets_epargne_sur_livrets:

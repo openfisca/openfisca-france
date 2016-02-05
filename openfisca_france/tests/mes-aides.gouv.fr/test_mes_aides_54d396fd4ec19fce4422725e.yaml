@@ -9,7 +9,7 @@ description: |
   Ici, revenus d'activité connus = 13764 €
   13764 * 0.7 = 9635 €
   R = 9635 * 0.9 ~= 8700
-  
+
   L	292,62
   C	53,23
   E	345,85
@@ -25,7 +25,7 @@ description: |
   P1	132,86
   Pp	167,59
   AL	177,37
-  
+
   caf.fr : 175,79 €
 period: "month:2015-02"
 relative_error_margin: 0.02
@@ -35,9 +35,9 @@ individus:
   age_en_mois: 413
   ass_precondition_remplie: false
   birth: "1980-08-12"
-  cho:
+  chomage_imposable:
     2013: 0
-  chobrut:
+  chomage_brut:
     2014-02: 1265.7634170094545
     2014-03: 1265.7634170094545
     2014-04: 1265.7634170094545
@@ -53,7 +53,7 @@ individus:
     2015-01: 1265.7634170094545
     2015-02: 1265.7634170094545
     year:2014-02: 15189.161004113457
-  chonet:
+  chomage_net:
     2014-02: 1147
     2014-03: 1147
     2014-04: 1147
@@ -71,7 +71,7 @@ individus:
     year:2014-02: 13764
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 54d38d8ad4e3b0d74454c68e
   inapte_travail: 0
   interets_epargne_sur_livrets:
@@ -79,7 +79,7 @@ individus:
   invalide: 0
   pensions_alimentaires_percues:
     2013: 0
-  rst:
+  retraite_imposable:
     2013: 0
   salaire_imposable:
     2013: 13764

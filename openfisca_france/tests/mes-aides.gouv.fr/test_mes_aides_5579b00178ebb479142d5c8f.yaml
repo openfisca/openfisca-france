@@ -6,7 +6,7 @@ description: |
   M-3 et M-2: salaires de 300€
   Plus de ressources en M-1 et ne percevra plus cette ressource au mois M
   Pas de neutralisation des ressources dans la BR
-  
+
   (513,88 + 62%[(2*300)/3]) - ([(2*300)/3] - 61,67) = 128,21€
 period: "month:2015-06"
 individus:
@@ -15,7 +15,7 @@ individus:
   birth: "1982-08-12"
   epargne_non_remuneree:
     2012-01: 0
-  etu: 0
+  etudiant: 0
   id: 5579affb85a12b87142c5706
   inapte_travail: 0
   interets_epargne_sur_livrets:

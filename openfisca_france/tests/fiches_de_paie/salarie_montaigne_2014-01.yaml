@@ -35,7 +35,7 @@ input_variables:
   volume_jours_ijss: 0
 output_variables:
 
-  # salsuperbrut: 0
+  # salaire_super_brut: 0
   # cotisations_employeur: 0
   remboursement_transport: 33.55
 

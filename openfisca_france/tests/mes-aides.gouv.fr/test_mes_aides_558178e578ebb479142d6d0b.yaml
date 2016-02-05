@@ -10,11 +10,11 @@ individus:
     age_en_mois: 622
     ass_precondition_remplie: true
     birth: "1963-08-01"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 558178aa78ebb479142d6cfd
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -22,7 +22,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 0
-    rst:
+    retraite_imposable:
       2013: 0
     salaire_de_base:
       2014-06: 923.1851851851851
@@ -81,11 +81,11 @@ individus:
   - age: 55
     age_en_mois: 665
     birth: "1960-01-01"
-    cho:
+    chomage_imposable:
       2013: 0
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 558178aa78ebb479142d6cef
     inapte_travail: 0
     interets_epargne_sur_livrets:
@@ -93,7 +93,7 @@ individus:
     invalide: 0
     pensions_alimentaires_percues:
       2013: 0
-    rst:
+    retraite_imposable:
       2013: 0
     salaire_de_base:
       2014-06: 1797.3361823361822

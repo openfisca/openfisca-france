@@ -392,6 +392,7 @@ class reductions(DatedVariable):
         mohist = simulation.calculate('mohist', period)
         patnat = simulation.calculate('patnat', period)
         prcomp = simulation.calculate('prcomp', period)
+        reduction_impot_exceptionnelle = simulation.calculate('reduction_impot_exceptionnelle', period)
         repsoc = simulation.calculate('repsoc', period)
         resimm = simulation.calculate('resimm', period)
         rsceha = simulation.calculate('rsceha', period)
@@ -402,7 +403,8 @@ class reductions(DatedVariable):
 
         total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist +
-        patnat + prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi)
+        patnat + prcomp + reduction_impot_exceptionnelle + repsoc + resimm + rsceha + saldom + scelli + sofica +
+        spfcpi)
         return period, min_(ip_net, total_reductions)
 
 
@@ -621,9 +623,6 @@ class cappme(DatedVariable):
                 min_(f7cu + f7cq, seuil2))
 
 
-#TODO: vérifier l'existence du "max_"
-
-
 class cotsyn(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -636,23 +635,23 @@ class cotsyn(Variable):
         period = period.this_year
         f7ac_holder = simulation.compute('f7ac', period)
         salaire_imposable_holder = simulation.compute_add('salaire_imposable', period)
-        cho_holder = simulation.compute('cho', period)
-        rst_holder = simulation.compute('rst', period)
+        cho_holder = simulation.compute('chomage_imposable', period)
+        rst_holder = simulation.compute('retraite_imposable', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.cotsyn
 
         f7ac = self.filter_role(f7ac_holder, role = VOUS)
         f7ae = self.filter_role(f7ac_holder, role = CONJ)
         f7ag = self.filter_role(f7ac_holder, role = PAC1)
 
-        cho = self.split_by_roles(cho_holder)
-        rst = self.split_by_roles(rst_holder)
+        chomage_imposable = self.split_by_roles(cho_holder)
+        retraite_imposable = self.split_by_roles(rst_holder)
         salaire_imposable = self.split_by_roles(salaire_imposable_holder)
 
         tx = P.seuil
 
         salv, salc, salp = salaire_imposable[VOUS], salaire_imposable[CONJ], salaire_imposable[PAC1]
-        chov, choc, chop = cho[VOUS], cho[CONJ], cho[PAC1]
-        rstv, rstc, rstp = rst[VOUS], rst[CONJ], rst[PAC1]
+        chov, choc, chop = chomage_imposable[VOUS], chomage_imposable[CONJ], chomage_imposable[PAC1]
+        rstv, rstc, rstp = retraite_imposable[VOUS], retraite_imposable[CONJ], retraite_imposable[PAC1]
         maxv = (salv + chov + rstv) * tx
         maxc = (salc + choc + rstc) * tx
         maxp = (salp + chop + rstp) * tx
@@ -1255,14 +1254,13 @@ class doment(DatedVariable):
                     f7qg + f7qi + f7qo + f7qp + f7qr + f7qv + f7qz + f7rg + f7ri + f7rj + f7rk + f7rl + f7rm + f7ro + f7rp +
                     f7rq + f7rr + f7rt + f7ru + f7rv + f7rw)
 
+        # TODO: vérifier pour 2002
+        # TODO: pb 7ul 2005-2009 (ITRED = 0 au lieu de 20€ (forfaitaire), dû à ça : Cochez [7UL] si vous déclarez en ligne pour
+        # la première fois vos revenus 2008 et si vous utilisez un moyen automatique de paiement (prélèvement mensuel ou à
+        # l'échéance ou paiement par voie électronique))
 
-#TODO: vérifier pour 2002
-#TODO: pb 7ul 2005-2009 (ITRED = 0 au lieu de 20€ (forfaitaire), dû à ça : Cochez [7UL] si vous déclarez en ligne pour
-#la première fois vos revenus 2008 et si vous utilisez un moyen automatique de paiement (prélèvement mensuel ou à
-#l'échéance ou paiement par voie électronique))
 
-
-#TODO: vérifier les dates des variables de doment et domsoc (y sont-elles encore en 2013 par ex ?)
+        # TODO: vérifier les dates des variables de doment et domsoc (y sont-elles encore en 2013 par ex ?)
 
 class domlog(DatedVariable):
     column = FloatCol(default = 0)
@@ -2401,6 +2399,23 @@ class prcomp(Variable):
                                   (f7wn > f7wm) * (f7wo <= P.seuil) * P.taux * f7wn +
                                   max_(0, (f7wn > f7wm) * (f7wo >= P.seuil) * P.taux * f7wn / div)) +
                  P.taux * f7wp)
+
+
+class reduction_impot_exceptionnelle(DatedVariable):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"Réduction d'impôt exceptionnelle"
+
+    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
+        nb_adult = simulation.calculate('nb_adult')
+        nbptr = simulation.calculate('nbptr')
+        rfr = simulation.calculate('rfr')
+        params = simulation.legislation_at(period.start).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
+        plafond = params.seuil * nb_adult + (nbptr - nb_adult) * 2 * params.majoration_seuil
+        montant = params.montant_plafond * nb_adult
+        return period, min_(max_(plafond + montant - rfr, 0), montant)
 
 
 class repsoc(Variable):

@@ -212,8 +212,8 @@ def run_OF(ipp2of_input_variables, path_dta_input, param_scenario = None, dic = 
         tax_benefit_system = TaxBenefitSystem()
         del ipp2of_input_variables['sal_irpp_old']
         ipp2of_input_variables['sal_brut'] = 'salbrut'
-        ipp2of_input_variables['chom_brut'] = 'chobrut'
-        ipp2of_input_variables['pension_brut'] = 'rstbrut'
+        ipp2of_input_variables['chom_brut'] = 'chomage_brut'
+        ipp2of_input_variables['pension_brut'] = 'retraite_brute'
     else:
         tax_benefit_system_class = init_country()
         tax_benefit_system = tax_benefit_system_class()
@@ -322,7 +322,7 @@ def build_input_OF(data, ipp2of_input_variables, tax_benefit_system):
     def _var_to_pfam(data):
         data['inactif'] = 0
         data.loc[(data['activite'].isin([3, 4, 5, 6])), 'inactif'] = 1
-        data.loc[(data['activite'] == 1) & (data['choi'] == 0), 'inactif'] = 1
+        data.loc[(data['activite'] == 1) & (data['chomage_imposable'] == 0), 'inactif'] = 1
         data.loc[(data['activite'] == 0) & (data['salaire_imposable'] == 0), 'inactif'] = 1
         data['partiel1'] = 0
         data.loc[(data['nbh'] / 12 <= 77) & (data['nbh'] / 12 > 0), 'partiel1'] = 1
