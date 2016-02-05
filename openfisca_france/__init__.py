@@ -75,63 +75,63 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'al.xml'),
-                (),
+                None,
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'bouclier_fiscal.xml'),
-                (),
+                None,
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'bourses_education.xml'),
-                (),
+                None,
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'cmu.xml'),
-                (),
+                None,
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'cotsoc.xml'),
-                (),
+                None,
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'crds.xml'),
-                (),
+                None,
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'fam.xml'),
-                (),
+                None,
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'fonc.xml'),
-                (),
+                None,
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'forfait_social.xml'),
-                (),
+                None,
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'impot_revenu.xml'),
-                (),
+                None,
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'isf.xml'),
-                (),
+                None,
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'minim.xml'),
-                (),
+                None,
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'prelevements_sociaux.xml'),
-                (),
+                None,
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'taxation_capital.xml'),
-                (),
+                None,
                 ),
             (
                 os.path.join(COUNTRY_DIR, 'parameters', 'tns.xml'),
-                (),
+                None,
                 ),
             # (
             #     os.path.join(COUNTRY_DIR, 'assets', 'xxx', 'yyy.xml'),
