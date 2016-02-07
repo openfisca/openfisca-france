@@ -32,6 +32,7 @@ impot_revenu.microfoncier: impot_revenu.rpns.micro.microfoncier
 csg: prelevements_sociaux.csg
 prelsoc: taxation_capital.prelevements_sociaux
 cotsoc.exo_bas_sal.fillon: null
+cotsoc.exo_bas_sal.cice: null
 taxation_capital.prelevements_sociaux.base_pat: taxation_capital.prelevements_sociaux.prelevement_social.revenus_du_patrimoine
 taxation_capital.prelevements_sociaux.base_plac: taxation_capital.prelevements_sociaux.prelevement_social.produits_de_placement
 taxation_capital.prelevements_sociaux.add_pat: taxation_capital.prelevements_sociaux.caps.revenus_du_patrimoine

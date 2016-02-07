@@ -140,17 +140,6 @@
         <VALUE deb="2015-01-01" fuzzy="true" valeur=".018" />
       </CODE>
     </NODE>
-    <NODE code="cice" description="Crédit d'impot compétitivité emploi">
-      <CODE code="max" description="Plafond" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="2.5" />
-        <VALUE deb="2013-01-01" fin="2014-12-31" valeur="2.5" />
-      </CODE>
-      <CODE code="taux" description="Taux du CICE" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur=".06" />
-        <VALUE deb="2014-09-25" fin="2014-12-31" valeur=".06" />
-        <VALUE deb="2013-01-01" fin="2014-09-24" valeur=".04" />
-      </CODE>
-    </NODE>
   </NODE>
   <NODE code="gen" description="Paramètres généraux">
     <CODE code="nb_heure_travail_mensuel" description="Nombre d'heures travaillées forfaitaires" format="float">
