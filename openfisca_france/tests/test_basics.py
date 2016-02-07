@@ -21,13 +21,14 @@ scenarios_arguments = [
             zone_apl = 1,
             ),
         )
-    for year in range(2016, 2005, -1)
+    for year in range(2016, 2004, -1)
     ]
 
 
 def check_run(simulation, period):
     assert simulation.calculate('revdisp') is not None, "Can't compute revdisp on period {}".format(period)
-    assert simulation.calculate('salaire_super_brut') is not None, "Can't compute salaire_super_brut on period {}".format(period)
+    assert simulation.calculate('salaire_super_brut') is not None, \
+        "Can't compute salaire_super_brut on period {}".format(period)
 
 
 def test_basics():

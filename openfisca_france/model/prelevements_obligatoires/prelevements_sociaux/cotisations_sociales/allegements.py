@@ -6,15 +6,15 @@ from functools import partial
 import logging
 
 from numpy import (
-    busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, logical_and as and_, maximum as max_,
-    minimum as min_, round as round_, timedelta64
+    busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, logical_and as and_,
+    maximum as max_, minimum as min_, round as round_, timedelta64
     )
 
 from ....base import *  # noqa analysis:ignore
 from .....assets.holidays import holidays
 
 log = logging.getLogger(__name__)
-from openfisca_core import periods
+
 
 class assiette_allegement(Variable):
     base_function = requested_period_added_value
@@ -112,8 +112,7 @@ class credit_impot_competitivite_emploi(DatedVariable):
         cotsoc = simulation.legislation_at(period.start).cotsoc
         taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, cotsoc)
         credit_impot_competitivite_emploi = (
-            taux_cice
-            * assiette_allegement
+            taux_cice * assiette_allegement
             )
         non_cumul = (jeune_entreprise_innovante == 0 + stagiaire) > 0
 
@@ -136,12 +135,13 @@ class aide_premier_salarie(DatedVariable):
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
 
         # Cette aide est temporaire.
-        # TODO : Si toutefois elle est reconduite en 2016, les dates et le montant seront à implémenter comme des params xml.
+        # TODO : Si toutefois elle est reconduite en 2016, les dates et le montant seront à implémenter
+        # comme des params xml.
 
         contrat_eligible = and_(
             contrat_de_travail_debut >= datetime64("2015-06-09"),
             contrat_de_travail_debut <= datetime64("2016-06-08")
-        )
+            )
         # Si CDD, durée du contrat doit être > 1 an
         duree_eligible = or_(
             # durée indéterminée
@@ -152,7 +152,6 @@ class aide_premier_salarie(DatedVariable):
                 contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')),
             )
 
-
         date_eligible = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
 
         eligible = \
@@ -161,14 +160,16 @@ class aide_premier_salarie(DatedVariable):
         # somme sur 24 mois, à raison de 500 € maximum par trimestre
         montant_max = 4000
 
-        # TODO comment implémenter la condition "premier employé" ? L'effectif est insuffisant en cas de rupture d'un premier contrat
+        # TODO comment implémenter la condition "premier employé" ? L'effectif est insuffisant en cas de rupture
+        # d'un premier contrat
         # Condition : l’entreprise n’a pas conclu de contrat de travail avec un salarié,
         # au-delà de la période d’essai, dans les 12 mois précédant la nouvelle
         # embauche.
 
         # Si le salarié est embauché à temps partiel,
         # l’aide est proratisée en fonction de sa durée de travail.
-        # TODO cette multiplication par le coefficient de proratisation suffit-elle pour le cas du temps partiel ? A tester
+        # TODO cette multiplication par le coefficient de proratisation suffit-elle pour le cas du temps partiel ?
+        # A tester
         return period, eligible * (montant_max / 24) * coefficient_proratisation
 
 
@@ -201,11 +202,11 @@ class allegement_fillon(DatedVariable):
 
         # switch on 3 possible payment options
         allegement = switch_on_allegement_mode(
-                simulation, period,
-                allegement_mode_recouvrement,
-                self.__class__.__name__,
-                )
-                
+            simulation, period,
+            allegement_mode_recouvrement,
+            self.__class__.__name__,
+            )
+
         return period, allegement * not_(stagiaire) * not_(apprenti)
 
 
@@ -227,15 +228,25 @@ def compute_allegement_fillon(simulation, period):
     # Ce montant est majoré de 10 % pour les entreprises de travail temporaire
     # au titre des salariés temporaires pour lesquels elle est tenue à
     # l’obligation d’indemnisation compensatrice de congés payés.
-    Pf = simulation.legislation_at(period.start).cotsoc.exo_bas_sal.fillon
-    seuil = Pf.seuil
-    tx_max = (Pf.tx_max * not_(majoration) + Pf.tx_max2 * majoration)
+
+    fillon = simulation.legislation_at(period.start).prelevements_sociaux.fillon
+
+    # Du 2003-07-01 au 2005-06-30
+    if date(2003, 7, 1) <= period.start.date <= date(2005, 6, 30):
+        seuil = fillon.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
+        tx_max = fillon.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
+    # Après le 2005-07-01
+    else:
+        seuil = fillon.ensemble_des_entreprises.plafond
+        tx_max = (
+            fillon.ensemble_des_entreprises.reduction_maximale.entreprises_de_20_salaries_et_plus * not_(majoration) +
+            fillon.ensemble_des_entreprises.reduction_maximale.entreprises_de_moins_de_20_salaries * majoration
+            )
     if seuil <= 1:
         return 0
     ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
     # règle d'arrondi: 4 décimales au dix-millième le plus proche
     taux_fillon = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
-
     # Montant de l'allegment
     return taux_fillon * assiette
 
@@ -256,10 +267,10 @@ class allegement_cotisation_allocations_familiales(DatedVariable):
 
         # switch on 3 possible payment options
         allegement = switch_on_allegement_mode(
-                simulation, period,
-                allegement_mode_recouvrement,
-                self.__class__.__name__,
-                )
+            simulation, period,
+            allegement_mode_recouvrement,
+            self.__class__.__name__,
+            )
 
         return period, allegement * not_(stagiaire) * not_(apprenti)
 
@@ -270,12 +281,10 @@ def compute_allegement_cotisation_allocations_familiales(simulation, period):
     """
     assiette = simulation.calculate_add('assiette_allegement', period)
     smic_proratise = simulation.calculate_add('smic_proratise', period)
-    taille_entreprise = simulation.calculate('taille_entreprise', period)
-
+    # TODO: Ne semble pas dépendre de la taille de l'entreprise mais à vérifier
+    # taille_entreprise = simulation.calculate('taille_entreprise', period)
     law = simulation.legislation_at(period.start).cotsoc.exo_bas_sal.allegement_cotisation_allocations_familiales
-
     ratio_smic_salaire = assiette / smic_proratise
-
     # Montant de l'allegment
     return (ratio_smic_salaire < law.seuil) * law.taux * assiette
 
@@ -294,13 +303,13 @@ def switch_on_allegement_mode(simulation, period, mode_recouvrement, variable_na
     """
     compute_function = globals()['compute_' + variable_name]
     return switch(
-            mode_recouvrement,
-            {
-                0: compute_allegement_annuel(simulation, period, 'allegement_fillon', compute_function),
-                1: compute_allegement_anticipe(simulation, period, 'allegement_fillon', compute_function),
-                2: compute_allegement_progressif(simulation, period, 'allegement_fillon', compute_function),
-                },
-            )
+        mode_recouvrement,
+        {
+            0: compute_allegement_annuel(simulation, period, 'allegement_fillon', compute_function),
+            1: compute_allegement_anticipe(simulation, period, 'allegement_fillon', compute_function),
+            2: compute_allegement_progressif(simulation, period, 'allegement_fillon', compute_function),
+            },
+        )
 
 
 def compute_allegement_annuel(simulation, period, variable_name, compute_function):
