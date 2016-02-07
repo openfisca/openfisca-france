@@ -169,7 +169,9 @@ def transform_ipp_tree(root):
     root['prelevements_sociaux'] = prelevements_sociaux = root.pop(
         'baremes_ipp_prelevements_sociaux_social_security_contributions')
     prelevements_sociaux['cotisations_sociales'] = cotisations_sociales = {}
+    # TODO: abat_red non modifié
     #
+    # TODO: accidents (AT-MP) non modifié
     cotisations_sociales['agff'] = agff = prelevements_sociaux.pop('agff')
     tranche_1_a = agff.pop('tranche_1_a')
     tranche_2 = agff.pop('tranche_2')
@@ -303,6 +305,8 @@ def transform_ipp_tree(root):
         )
     assert not employeurs, employeurs
     #
+    # alleg_gen allégements généraux de cotisations sociales (ristourne Juppé)
+    # apec-f et apec traité ci dessous
     cotisations_sociales['apec'] = apec = prelevements_sociaux.pop('apec_f')
     apec_baremes = prelevements_sociaux.pop('apec')
     tranche_b = apec_baremes.pop('tranche_b_de_1_a_4_pss')
@@ -428,6 +432,31 @@ def transform_ipp_tree(root):
         )
     assert not tranche_c_salaire_sous_8_pss
     #
+    # TODO chômage
+    cotisations_sociales['chomage'] = chomage = prelevements_sociaux.pop('chomage')
+    chomage['employeur'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_a = 0,
+            tranche_b = 1,
+            ),
+        null_rate_base = 4,
+        rates_tree = dict(
+            tranche_a = chomage['employeurs'].pop('tranche_a'),
+            tranche_b = chomage['employeurs'].pop('tranche_b'),
+            )
+        )
+    chomage['salarie'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_a = 0,
+            tranche_b = 1,
+            ),
+        null_rate_base = 4,
+        rates_tree = dict(
+            tranche_a = chomage['salaries'].pop('tranche_a'),
+            tranche_b = chomage['salaries'].pop('tranche_b'),
+            )
+        )
+    # cice unchaged done
     vieillesse = prelevements_sociaux.pop('cnav')
     cotisations_sociales['vieillesse_deplafonnee'] = vieillesse_deplafonnee = vieillesse.pop('sur_tout_salaire')
     cotisations_sociales['vieillesse_plafonnee'] = vieillesse_plafonnee = vieillesse.pop('salaire_sous_plafond')
