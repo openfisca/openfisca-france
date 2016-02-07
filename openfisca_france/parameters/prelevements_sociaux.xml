@@ -165,105 +165,6 @@
       <VALUE deb="2013-01-01" fin="2014-09-24" valeur="0.04" />
     </CODE>
   </NODE>
-  <NODE code="cnracl">
-    <NODE code="atiacl">
-      <CODE code="hors_nbi" format="percent">
-        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.004" />
-        <VALUE deb="1982-01-01" fin="2012-12-31" valeur="0.005" />
-        <VALUE deb="1980-07-01" fin="1981-12-31" valeur="0.004" />
-        <VALUE deb="1972-10-01" fin="1980-06-30" valeur="0.002" />
-        <VALUE deb="1967-05-01" fin="1972-09-30" valeur="0.003" />
-        <VALUE deb="1964-07-01" fin="1967-04-30" valeur="0.006" />
-      </CODE>
-    </NODE>
-    <NODE code="cnracl">
-      <NODE code="agents">
-        <CODE code="hors_nbi" format="percent">
-          <VALUE deb="2020-01-01" fuzzy="true" valeur="0.1086" />
-          <VALUE deb="2019-01-01" fin="2019-12-31" valeur="0.1059" />
-          <VALUE deb="2018-01-01" fin="2018-12-31" valeur="0.1032" />
-          <VALUE deb="2017-01-01" fin="2017-12-31" valeur="0.1005" />
-          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0978" />
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0946" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0914" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0876" />
-          <VALUE deb="2012-11-01" fin="2012-12-31" valeur="0.0849" />
-          <VALUE deb="2012-01-01" fin="2012-10-31" valeur="0.0839" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.0812" />
-          <VALUE deb="1991-02-01" fin="2010-12-31" valeur="0.0785" />
-          <VALUE deb="1989-01-01" fin="1991-01-31" valeur="0.089" />
-          <VALUE deb="1987-07-01" fin="1988-12-31" valeur="0.079" />
-          <VALUE deb="1986-08-01" fin="1987-06-30" valeur="0.077" />
-          <VALUE deb="1984-01-01" fin="1986-07-31" valeur="0.07" />
-          <VALUE deb="1947-09-19" fin="1983-12-31" valeur="0.06" />
-        </CODE>
-        <CODE code="nbi" format="percent">
-          <VALUE deb="2020-01-01" fuzzy="true" valeur="0.1086" />
-          <VALUE deb="2019-01-01" fin="2019-12-31" valeur="0.1059" />
-          <VALUE deb="2018-01-01" fin="2018-12-31" valeur="0.1032" />
-          <VALUE deb="2017-01-01" fin="2017-12-31" valeur="0.1005" />
-          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0978" />
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0946" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0914" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0876" />
-          <VALUE deb="2012-11-01" fin="2012-12-31" valeur="0.0849" />
-          <VALUE deb="2012-01-01" fin="2012-10-31" valeur="0.0839" />
-          <VALUE deb="2011-02-21" fin="2011-12-31" valeur="0.0812" />
-          <VALUE deb="1991-02-01" fin="2011-02-20" valeur="0.0785" />
-          <VALUE deb="1989-01-01" fin="1991-01-31" valeur="0.089" />
-          <VALUE deb="1987-07-01" fin="1988-12-31" valeur="0.079" />
-          <VALUE deb="1986-08-01" fin="1987-06-30" valeur="0.077" />
-          <VALUE deb="1984-01-01" fin="1986-07-31" valeur="0.07" />
-          <VALUE deb="1947-09-19" fin="1983-12-31" valeur="0.06" />
-        </CODE>
-      </NODE>
-      <CODE code="employeurs" format="percent">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.305" />
-        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.3045" />
-        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.304" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.2885" />
-        <VALUE deb="2012-11-01" fin="2012-12-31" valeur="0.274" />
-        <VALUE deb="2005-01-01" fin="2012-10-31" valeur="0.273" />
-        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.269" />
-        <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0.265" />
-        <VALUE deb="2001-01-01" fin="2002-12-31" valeur="0.261" />
-        <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.256" />
-        <VALUE deb="1995-01-01" fin="1999-12-31" valeur="0.251" />
-        <VALUE deb="1991-02-01" fin="1994-12-31" valeur="0.213" />
-        <VALUE deb="1989-01-01" fin="1991-01-31" valeur="0.197" />
-        <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.182" />
-        <VALUE deb="1987-01-01" fin="1987-12-31" valeur="0.152" />
-        <VALUE deb="1984-01-01" fin="1986-12-31" valeur="0.102" />
-        <VALUE deb="1983-01-25" fin="1983-12-31" valeur="0.107" />
-        <VALUE deb="1982-04-01" fin="1983-01-24" valeur="0.125" />
-        <VALUE deb="1981-01-01" fin="1982-03-31" valeur="0.13" />
-        <VALUE deb="1980-07-01" fin="1980-12-31" valeur="0.06" />
-        <VALUE deb="1977-01-01" fin="1980-06-30" valeur="0.18" />
-        <VALUE deb="1974-01-01" fin="1976-12-31" valeur="0.196" />
-        <VALUE deb="1970-08-01" fin="1973-12-31" valeur="0.182" />
-        <VALUE deb="1962-01-01" fin="1970-07-31" valeur="0.18" />
-        <VALUE deb="1961-01-01" fin="1961-12-31" valeur="0.2" />
-        <VALUE deb="1955-04-01" fin="1960-12-31" valeur="0.18" />
-        <VALUE deb="1954-04-01" fin="1955-03-31" valeur="0.21" />
-        <VALUE deb="1951-01-01" fin="1954-03-31" valeur="0.18" />
-        <VALUE deb="1947-09-19" fin="1950-12-31" valeur="0.12" />
-      </CODE>
-    </NODE>
-    <NODE code="fccpa">
-      <CODE code="hors_hospi" format="percent">
-        <VALUE deb="2002-01-01" fin="2010-12-31" valeur="0.005" />
-        <VALUE deb="1984-01-01" fin="2001-12-31" valeur="0.002" />
-      </CODE>
-    </NODE>
-    <NODE code="feh">
-      <CODE code="hors_cl" format="percent">
-        <VALUE deb="2002-01-01" fuzzy="true" valeur="0.01" />
-        <VALUE deb="2000-01-01" fin="2001-12-31" valeur="0.008" />
-        <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.0067" />
-        <VALUE deb="1995-01-01" fin="1998-12-31" valeur="0.0045" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="cont_sur_options">
     <NODE code="employeur">
       <CODE code="taux_plein" format="percent">
@@ -1269,6 +1170,140 @@
           </TAUX>
         </TRANCHE>
       </BAREME>
+    </NODE>
+    <NODE code="cnracl">
+      <NODE code="atiacl">
+        <BAREME code="employeur">
+          <TRANCHE code="tranche_unique">
+            <SEUIL>
+              <VALUE deb="1947-09-19" fuzzy="true" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2013-01-01" fuzzy="true" valeur="0.004" />
+              <VALUE deb="1982-01-01" fin="2012-12-31" valeur="0.005" />
+              <VALUE deb="1980-07-01" fin="1981-12-31" valeur="0.004" />
+              <VALUE deb="1972-10-01" fin="1980-06-30" valeur="0.002" />
+              <VALUE deb="1967-05-01" fin="1972-09-30" valeur="0.003" />
+              <VALUE deb="1964-07-01" fin="1967-04-30" valeur="0.006" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
+      </NODE>
+      <NODE code="cnracl">
+        <BAREME code="employeur">
+          <TRANCHE code="tranche_unique">
+            <SEUIL>
+              <VALUE deb="1947-09-19" fuzzy="true" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2016-01-01" fuzzy="true" valeur="0.305" />
+              <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.3045" />
+              <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.304" />
+              <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.2885" />
+              <VALUE deb="2012-11-01" fin="2012-12-31" valeur="0.274" />
+              <VALUE deb="2005-01-01" fin="2012-10-31" valeur="0.273" />
+              <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.269" />
+              <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0.265" />
+              <VALUE deb="2001-01-01" fin="2002-12-31" valeur="0.261" />
+              <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.256" />
+              <VALUE deb="1995-01-01" fin="1999-12-31" valeur="0.251" />
+              <VALUE deb="1991-02-01" fin="1994-12-31" valeur="0.213" />
+              <VALUE deb="1989-01-01" fin="1991-01-31" valeur="0.197" />
+              <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.182" />
+              <VALUE deb="1987-01-01" fin="1987-12-31" valeur="0.152" />
+              <VALUE deb="1984-01-01" fin="1986-12-31" valeur="0.102" />
+              <VALUE deb="1983-01-25" fin="1983-12-31" valeur="0.107" />
+              <VALUE deb="1982-04-01" fin="1983-01-24" valeur="0.125" />
+              <VALUE deb="1981-01-01" fin="1982-03-31" valeur="0.13" />
+              <VALUE deb="1980-07-01" fin="1980-12-31" valeur="0.06" />
+              <VALUE deb="1977-01-01" fin="1980-06-30" valeur="0.18" />
+              <VALUE deb="1974-01-01" fin="1976-12-31" valeur="0.196" />
+              <VALUE deb="1970-08-01" fin="1973-12-31" valeur="0.182" />
+              <VALUE deb="1962-01-01" fin="1970-07-31" valeur="0.18" />
+              <VALUE deb="1961-01-01" fin="1961-12-31" valeur="0.2" />
+              <VALUE deb="1955-04-01" fin="1960-12-31" valeur="0.18" />
+              <VALUE deb="1954-04-01" fin="1955-03-31" valeur="0.21" />
+              <VALUE deb="1951-01-01" fin="1954-03-31" valeur="0.18" />
+              <VALUE deb="1947-09-19" fin="1950-12-31" valeur="0.12" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
+        <NODE code="salarie">
+          <BAREME code="hors_nbi">
+            <TRANCHE code="tranche_unique">
+              <SEUIL>
+                <VALUE deb="1947-09-19" fuzzy="true" valeur="0" />
+              </SEUIL>
+              <TAUX>
+                <VALUE deb="2020-01-01" fuzzy="true" valeur="0.1086" />
+                <VALUE deb="2019-01-01" fin="2019-12-31" valeur="0.1059" />
+                <VALUE deb="2018-01-01" fin="2018-12-31" valeur="0.1032" />
+                <VALUE deb="2017-01-01" fin="2017-12-31" valeur="0.1005" />
+                <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0978" />
+                <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0946" />
+                <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0914" />
+                <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0876" />
+                <VALUE deb="2012-11-01" fin="2012-12-31" valeur="0.0849" />
+                <VALUE deb="2012-01-01" fin="2012-10-31" valeur="0.0839" />
+                <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.0812" />
+                <VALUE deb="1991-02-01" fin="2010-12-31" valeur="0.0785" />
+                <VALUE deb="1989-01-01" fin="1991-01-31" valeur="0.089" />
+                <VALUE deb="1987-07-01" fin="1988-12-31" valeur="0.079" />
+                <VALUE deb="1986-08-01" fin="1987-06-30" valeur="0.077" />
+                <VALUE deb="1984-01-01" fin="1986-07-31" valeur="0.07" />
+                <VALUE deb="1947-09-19" fin="1983-12-31" valeur="0.06" />
+              </TAUX>
+            </TRANCHE>
+          </BAREME>
+          <BAREME code="nbi">
+            <TRANCHE code="tranche_unique">
+              <SEUIL>
+                <VALUE deb="1947-09-19" fuzzy="true" valeur="0" />
+              </SEUIL>
+              <TAUX>
+                <VALUE deb="2020-01-01" fuzzy="true" valeur="0.1086" />
+                <VALUE deb="2019-01-01" fin="2019-12-31" valeur="0.1059" />
+                <VALUE deb="2018-01-01" fin="2018-12-31" valeur="0.1032" />
+                <VALUE deb="2017-01-01" fin="2017-12-31" valeur="0.1005" />
+                <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0978" />
+                <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0946" />
+                <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0914" />
+                <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0876" />
+                <VALUE deb="2012-11-01" fin="2012-12-31" valeur="0.0849" />
+                <VALUE deb="2012-01-01" fin="2012-10-31" valeur="0.0839" />
+                <VALUE deb="2011-02-21" fin="2011-12-31" valeur="0.0812" />
+                <VALUE deb="1991-02-01" fin="2011-02-20" valeur="0.0785" />
+                <VALUE deb="1989-01-01" fin="1991-01-31" valeur="0.089" />
+                <VALUE deb="1987-07-01" fin="1988-12-31" valeur="0.079" />
+                <VALUE deb="1986-08-01" fin="1987-06-30" valeur="0.077" />
+                <VALUE deb="1984-01-01" fin="1986-07-31" valeur="0.07" />
+                <VALUE deb="1947-09-19" fin="1983-12-31" valeur="0.06" />
+              </TAUX>
+            </TRANCHE>
+          </BAREME>
+        </NODE>
+      </NODE>
+      <NODE code="fccpa">
+        <CODE code="hors_hospi" format="percent">
+          <VALUE deb="2002-01-01" fin="2010-12-31" valeur="0.005" />
+          <VALUE deb="1984-01-01" fin="2001-12-31" valeur="0.002" />
+        </CODE>
+      </NODE>
+      <NODE code="feh">
+        <BAREME code="employeur">
+          <TRANCHE code="tranche_unique">
+            <SEUIL>
+              <VALUE deb="1947-09-19" fuzzy="true" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2002-01-01" fuzzy="true" valeur="0.01" />
+              <VALUE deb="2000-01-01" fin="2001-12-31" valeur="0.008" />
+              <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.0067" />
+              <VALUE deb="1995-01-01" fin="1998-12-31" valeur="0.0045" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
+      </NODE>
     </NODE>
     <NODE code="construction">
       <BAREME code="construction_10_19">

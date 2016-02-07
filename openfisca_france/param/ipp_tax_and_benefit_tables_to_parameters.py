@@ -456,7 +456,9 @@ def transform_ipp_tree(root):
             tranche_b = chomage['salaries'].pop('tranche_b'),
             )
         )
-    # cice unchaged done
+    #
+    # CICE unchanged done
+    #
     vieillesse = prelevements_sociaux.pop('cnav')
     cotisations_sociales['vieillesse_deplafonnee'] = vieillesse_deplafonnee = vieillesse.pop('sur_tout_salaire')
     cotisations_sociales['vieillesse_plafonnee'] = vieillesse_plafonnee = vieillesse.pop('salaire_sous_plafond')
@@ -499,6 +501,53 @@ def transform_ipp_tree(root):
     #
     # TODO CNRACL 
     #
+    cotisations_sociales['cnracl'] = cnracl_node = prelevements_sociaux.pop('cnracl')
+    cnracl_node['cnracl'] = cnracl = cnracl_node.pop('cnracl')
+    cnracl['salarie'] = cnracl_salarie = cnracl.pop('agents')
+    cnracl_salarie['hors_nbi'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        rates_tree = dict(
+            tranche_unique = cnracl_salarie.pop('hors_nbi'),
+            )
+        )
+    cnracl_salarie['nbi'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        rates_tree = dict(
+            tranche_unique = cnracl_salarie.pop('nbi'),
+            )
+        )
+    cnracl['employeur'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        rates_tree = dict(
+            tranche_unique = cnracl.pop('employeurs'),
+            )
+        )
+    cnracl_node['atiacl'] = atiacl = cnracl_node.pop('atiacl')
+    atiacl['employeur'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        rates_tree = dict(
+            tranche_unique = atiacl.pop('hors_nbi'),
+            )
+        )
+    # TODO: FCPPA
+    cnracl_node['feh'] = feh = cnracl_node.pop('feh')
+    feh['employeur'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        rates_tree = dict(
+            tranche_unique = feh.pop('hors_cl'),
+            )
+        )
+    #
     cotisations_sociales['construction'] = construction = prelevements_sociaux.pop('construction')
     construction_employeur_sur_tout_salaire = construction.pop('employeur_sur_tout_salaire')
     construction['construction_10_19'] = fixed_bases_tax_scale(
@@ -519,6 +568,19 @@ def transform_ipp_tree(root):
         )
     assert not construction_employeur_sur_tout_salaire
     #
+    prelevements_sociaux['csg'] = csg = prelevements_sociaux.pop('csg_1')
+    csg['activite'] = csg.pop('revenus_d_activite')
+    csg['remplacement'] = prelevements_sociaux.pop('csg_2')
+    #
+    deces_ac = prelevements_sociaux['deces_ac']
+    commercants_industriels = deces_ac['commercants_industriels']
+    del commercants_industriels['deces']
+    del commercants_industriels['invalidite']
+    #
+    # TODO css-chom
+    #
+    # TODO: famille-ind
+    #
     famille = prelevements_sociaux.pop('famille')
     famille_sur_tout_salaire = famille.pop('sur_tout_salaire')
     cotisations_sociales['famille'] = fixed_bases_tax_scale(
@@ -530,6 +592,8 @@ def transform_ipp_tree(root):
             ),
         )
     assert not famille_sur_tout_salaire
+    #
+    # TODO fds RESTART HERE
     #
     cotisations_sociales['mmid'] = mmid = prelevements_sociaux.pop('mmid')
     salaire_sous_plafond = mmid.pop('salaire_sous_plafond')
@@ -571,15 +635,6 @@ def transform_ipp_tree(root):
         )
     assert not sur_tout_salaire, sur_tout_salaire
     assert not salaire_sous_plafond, salaire_sous_plafond
-    #
-    prelevements_sociaux['csg'] = csg = prelevements_sociaux.pop('csg_1')
-    csg['activite'] = csg.pop('revenus_d_activite')
-    csg['remplacement'] = prelevements_sociaux.pop('csg_2')
-    #
-    deces_ac = prelevements_sociaux['deces_ac']
-    commercants_industriels = deces_ac['commercants_industriels']
-    del commercants_industriels['deces']
-    del commercants_industriels['invalidite']
     #
     fillon = prelevements_sociaux['fillon']
     # Deleted, because value must be a float.
