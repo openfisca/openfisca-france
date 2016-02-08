@@ -283,10 +283,10 @@ def compute_allegement_cotisation_allocations_familiales(simulation, period):
     smic_proratise = simulation.calculate_add('smic_proratise', period)
     # TODO: Ne semble pas dépendre de la taille de l'entreprise mais à vérifier
     # taille_entreprise = simulation.calculate('taille_entreprise', period)
-    law = simulation.legislation_at(period.start).cotsoc.exo_bas_sal.allegement_cotisation_allocations_familiales
+    law = simulation.legislation_at(period.start).prelevements_sociaux.allegement_cotisation_allocations_familiales
     ratio_smic_salaire = assiette / smic_proratise
     # Montant de l'allegment
-    return (ratio_smic_salaire < law.seuil) * law.taux * assiette
+    return (ratio_smic_salaire < law.seuil_smic) * law.reduction * assiette
 
 
 ###############################

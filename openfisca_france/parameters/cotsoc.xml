@@ -130,17 +130,6 @@
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur=".001" /> # TODO check and check for coherence with previous taux
       </CODE>
   </NODE>
-  <NODE code="exo_bas_sal" description="Exonération sur les bas salaires">
-    <NODE code="allegement_cotisation_allocations_familiales" description="La réduction du taux de la cotisation d’allocations familiales">
-      <CODE code="seuil" description="Point de sortie (en smic)" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="3.5" />
-        <VALUE deb="2015-01-01" fin="2016-03-31" valeur="1.6" />
-      </CODE>
-      <CODE code="taux" description="Taux de la réduction" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur=".018" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="gen" description="Paramètres généraux">
     <CODE code="nb_heure_travail_mensuel" description="Nombre d'heures travaillées forfaitaires" format="float">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="151.67" />

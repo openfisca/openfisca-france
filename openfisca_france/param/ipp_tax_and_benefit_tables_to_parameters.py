@@ -642,6 +642,8 @@ def transform_ipp_tree(root):
     del fillon['entreprises_restees_aux_39_heures_hebdomadaires_au_30_06_2003']['salaire_de_reference']
     del fillon['entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003']['salaire_de_reference']
 
+    prelevements_sociaux['allegement_cotisation_allocations_familiales'] = prelevements_sociaux.pop('reduc_famille')
+
     del root['baremes_ipp_prestations_sociales_social_benefits']
     # root['prestations'] = root.pop('baremes_ipp_prestations_sociales_social_benefits')
     # baremes_ipp_prestations_sociales_social_benefits:

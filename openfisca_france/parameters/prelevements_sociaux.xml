@@ -57,6 +57,15 @@
       </CODE>
     </NODE>
   </NODE>
+  <NODE code="allegement_cotisation_allocations_familiales">
+    <CODE code="reduction" format="percent">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.018" />
+    </CODE>
+    <CODE code="seuil_smic">
+      <VALUE deb="2016-04-01" fuzzy="true" valeur="3.5" />
+      <VALUE deb="2015-01-01" fin="2016-03-31" valeur="1.6" />
+    </CODE>
+  </NODE>
   <NODE code="asf">
     <NODE code="tranche_a">
       <CODE code="employeur" format="percent">
@@ -3725,7 +3734,8 @@
       <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.1575" />
     </CODE>
     <CODE code="plafond1" format="float" type="monetary">
-      <VALUE deb="2015-01-01" fuzzy="true" valeur="7705" />
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="7713" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="7705" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="7666" />
       <VALUE deb="2011-01-01" fin="2013-12-31" valeur="7604" />
       <VALUE deb="2010-01-01" fin="2010-12-31" valeur="7491" />
@@ -3754,7 +3764,8 @@
       <VALUE deb="1968-11-01" fin="1978-12-31" valeur="30000" />
     </CODE>
     <CODE code="plafond2" format="float" type="monetary">
-      <VALUE deb="2015-01-01" fuzzy="true" valeur="15385" />
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="15401" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="15385" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="15308" />
       <VALUE deb="2011-01-01" fin="2013-12-31" valeur="15185" />
       <VALUE deb="2010-01-01" fin="2010-12-31" valeur="14960" />
@@ -3783,7 +3794,8 @@
       <VALUE deb="1968-11-01" fin="1978-12-31" valeur="60000" />
     </CODE>
     <CODE code="plafond_3" format="float" type="monetary">
-      <VALUE deb="2015-01-01" fuzzy="true" valeur="151965" />
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="152117" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="151965" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="151208" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="150000" />
     </CODE>
