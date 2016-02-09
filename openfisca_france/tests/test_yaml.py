@@ -60,6 +60,14 @@ options_by_dir = collections.OrderedDict((
             default_absolute_error_margin = 0.005,
             ),
         ),
+    (
+        os.path.abspath(os.path.join(os.path.dirname(__file__), 'reforms')),
+        dict(
+            calculate_output = False,
+            default_absolute_error_margin = 0.005,
+            reforms = ['de_net_a_brut'],
+            ),
+        ),
     ))
 
 
