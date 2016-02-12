@@ -615,18 +615,19 @@ def transform_ipp_tree(root):
             sous_pss = tout_employeur.pop('sous_pss'),
             ),
         )
-    entreprises_de_plus_de_20_salaries = fnal.pop('entreprises_de_plus_de_20_salaries')
-    fnal['entreprises_de_plus_de_20_salaries'] = fixed_bases_tax_scale(
-        base_by_slice_name = dict(
-            sous_pss = 0,
-            au_dessus_du_pss = 1
-            ),
-        rates_tree = dict(
-            sous_pss = entreprises_de_plus_de_20_salaries.pop('sous_pss'),
-            au_dessus_du_pss = entreprises_de_plus_de_20_salaries.pop('au_dessus_du_pss'),
-            ),
-        )
-    # TODO  RESTART HERE
+    # TODO date mismatch debug wth test_legislation
+    # entreprises_de_plus_de_20_salaries = fnal.pop('entreprises_de_plus_de_20_salaries')
+    # fnal['entreprises_de_plus_de_20_salaries'] = fixed_bases_tax_scale(
+    #     base_by_slice_name = dict(
+    #         sous_pss = 0,
+    #         au_dessus_du_pss = 1
+    #         ),
+    #     rates_tree = dict(
+    #         sous_pss = entreprises_de_plus_de_20_salaries.pop('sous_pss'),
+    #         au_dessus_du_pss = entreprises_de_plus_de_20_salaries.pop('au_dessus_du_pss'),
+    #         ),
+    #     )
+    # forfait_social already ok
     #
     cotisations_sociales['mmid'] = mmid = prelevements_sociaux.pop('mmid')
     salaire_sous_plafond = mmid.pop('salaire_sous_plafond')
