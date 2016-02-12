@@ -109,7 +109,7 @@ class contribution_exceptionnelle_solidarite(Variable):
                     primes_fonction_publique +
                     (type_sal == CAT['public_non_titulaire']) * cotisations_salariales_contributives
                     ),
-                _P.cotsoc.sal.fonc.commun.plafond_base_solidarite,
+                _P.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
                 ),
             plafond_securite_sociale = plafond_securite_sociale,
             type_sal = type_sal,
@@ -293,7 +293,7 @@ def seuil_fds(law):
     '''
     Calcul du seuil mensuel d'assujetissement à la contribution au fond de solidarité
     '''
-    ind_maj_ref = law.cotsoc.sal.fonc.commun.ind_maj_ref
+    fds = law.prelevements_sociaux.cotisations_sociales.fds
     pt_ind_mensuel = law.cotsoc.sal.fonc.commun.pt_ind / 12
-    seuil_mensuel = math.floor((pt_ind_mensuel * ind_maj_ref))
+    seuil_mensuel = math.floor((pt_ind_mensuel * fds.indice_majore_de_reference))  # TODO improve
     return seuil_mensuel

@@ -1726,10 +1726,6 @@
           <VALUE deb="2006-07-01" fin="2007-01-31" valeur="286" />
           <VALUE deb="2001-05-01" fin="2006-06-30" valeur="285" />
         </CODE>
-        <CODE code="plafond_base_solidarite" description="Plafond de la contribution exceptionnelle de solidarité " format="float" type="monetary">
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="12516" />
-          <VALUE deb="2002-01-01" fin="2014-12-31" valeur="12516" />  # TODO check. Pas dispo dans barème IPP
-          </CODE>
         <CODE code="pt_ind" description="Valeur annuelle point de FP" format="float" type="monetary">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="55.5635" />
           <VALUE deb="2010-07-01" fin="2014-12-31" valeur="55.5635" />

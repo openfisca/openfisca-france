@@ -593,7 +593,17 @@ def transform_ipp_tree(root):
         )
     assert not famille_sur_tout_salaire
     #
-    # TODO fds RESTART HERE
+    cotisations_sociales['fds'] = fds = prelevements_sociaux.pop('fds')
+    fds['cotisation_exceptionnelle_solidarite'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_unique = 0,
+            ),
+        null_rate_base = 4,
+        rates_tree = dict(
+            tranche_unique = fds.pop('taux'),
+            ),
+        )
+    # TODO  RESTART HERE
     #
     cotisations_sociales['mmid'] = mmid = prelevements_sociaux.pop('mmid')
     salaire_sous_plafond = mmid.pop('salaire_sous_plafond')
@@ -618,10 +628,10 @@ def transform_ipp_tree(root):
     mmid['reduction_65_ans'] = salaire_sous_plafond.pop('reduction_65_ans')
     mmid['salarie'] = fixed_bases_tax_scale(
         base_by_slice_name = dict(
-            tranche_a = 0,
+            tout_salaire = 0,
             ),
         rates_tree = dict(
-            tranche_a = sur_tout_salaire.pop('salaries'),
+            tout_salaire = sur_tout_salaire.pop('salaries'),
             ),
         )
     mmid['salarie2'] = fixed_bases_tax_scale(
