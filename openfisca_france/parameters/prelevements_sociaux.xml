@@ -1558,6 +1558,50 @@
         <VALUE deb="1989-09-01" fin="1989-12-31" valeur="281.29" />
       </CODE>
     </NODE>
+    <NODE code="fnal">
+      <BAREME code="entreprises_de_plus_de_20_salaries">
+        <TRANCHE code="au_dessus_du_pss">
+          <SEUIL>
+            <VALUE deb="1972-07-01" fuzzy="true" valeur="1" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2011-01-01" fuzzy="true" valeur="0.005" />
+            <VALUE deb="1991-07-01" fin="2010-12-31" valeur="0.004" />
+            <VALUE deb="1989-01-01" fin="1991-06-30" valeur="0.002" />
+            <VALUE deb="1986-01-01" fin="1988-12-31" valeur="0.0013" />
+          </TAUX>
+        </TRANCHE>
+        <TRANCHE code="sous_pss">
+          <SEUIL>
+            <VALUE deb="1972-07-01" fuzzy="true" valeur="0" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.005" />
+            <VALUE deb="1991-07-01" fin="2014-12-31" valeur="0.004" />
+            <VALUE deb="1989-01-01" fin="1991-06-30" valeur="0.002" />
+            <VALUE deb="1986-01-01" fin="1988-12-31" valeur="0.0013" />
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+      <BAREME code="tout_employeur">
+        <TRANCHE code="sous_pss">
+          <SEUIL>
+            <VALUE deb="1972-07-01" fuzzy="true" valeur="0" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="1972-07-01" fuzzy="true" valeur="0.001" />
+          </TAUX>
+        </TRANCHE>
+        <TRANCHE code="tranche_nulle">
+          <SEUIL>
+            <VALUE deb="1972-07-01" fuzzy="true" valeur="1" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="1972-07-01" fuzzy="true" valeur="0" />
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+    </NODE>
     <NODE code="mmid">
       <BAREME code="employeur">
         <TRANCHE code="tranche_a">
@@ -2186,27 +2230,6 @@
       <CODE code="reduction_maximale">
         <VALUE deb="2004-07-01" fin="2005-06-30" valeur="0.234" />
         <VALUE deb="2003-07-01" fin="2004-06-30" valeur="0.208" />
-      </CODE>
-    </NODE>
-  </NODE>
-  <NODE code="fnal">
-    <NODE code="entreprises_de_plus_de_20_salaries">
-      <CODE code="au_dessus_du_pss" format="percent">
-        <VALUE deb="2011-01-01" fuzzy="true" valeur="0.005" />
-        <VALUE deb="1991-07-01" fin="2010-12-31" valeur="0.004" />
-        <VALUE deb="1989-01-01" fin="1991-06-30" valeur="0.002" />
-        <VALUE deb="1986-01-01" fin="1988-12-31" valeur="0.0013" />
-      </CODE>
-      <CODE code="sous_pss" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.005" />
-        <VALUE deb="1991-07-01" fin="2014-12-31" valeur="0.004" />
-        <VALUE deb="1989-01-01" fin="1991-06-30" valeur="0.002" />
-        <VALUE deb="1986-01-01" fin="1988-12-31" valeur="0.0013" />
-      </CODE>
-    </NODE>
-    <NODE code="tout_employeur">
-      <CODE code="sous_pss" format="percent">
-        <VALUE deb="1972-07-01" fuzzy="true" valeur="0.001" />
       </CODE>
     </NODE>
   </NODE>

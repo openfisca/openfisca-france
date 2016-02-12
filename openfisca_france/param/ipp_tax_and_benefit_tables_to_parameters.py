@@ -603,6 +603,29 @@ def transform_ipp_tree(root):
             tranche_unique = fds.pop('taux'),
             ),
         )
+    #
+    cotisations_sociales['fnal'] = fnal = prelevements_sociaux.pop('fnal')
+    tout_employeur = fnal.pop('tout_employeur')
+    fnal['tout_employeur'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            sous_pss = 0,
+            ),
+        null_rate_base = 1,
+        rates_tree = dict(
+            sous_pss = tout_employeur.pop('sous_pss'),
+            ),
+        )
+    entreprises_de_plus_de_20_salaries = fnal.pop('entreprises_de_plus_de_20_salaries')
+    fnal['entreprises_de_plus_de_20_salaries'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            sous_pss = 0,
+            au_dessus_du_pss = 1
+            ),
+        rates_tree = dict(
+            sous_pss = entreprises_de_plus_de_20_salaries.pop('sous_pss'),
+            au_dessus_du_pss = entreprises_de_plus_de_20_salaries.pop('au_dessus_du_pss'),
+            ),
+        )
     # TODO  RESTART HERE
     #
     cotisations_sociales['mmid'] = mmid = prelevements_sociaux.pop('mmid')
