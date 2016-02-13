@@ -1668,6 +1668,166 @@
         </CODE>
       </NODE>
     </NODE>
+    <NODE code="ircantec">
+      <BAREME code="employeur">
+        <TRANCHE code="tranche_a">
+          <SEUIL>
+            <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.042" />
+            <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0408" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0396" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.038025" />
+            <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.03675" />
+            <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.03525" />
+            <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.034125" />
+            <VALUE deb="1992-01-01" fin="2010-12-31" valeur="0.03375" />
+            <VALUE deb="1991-04-01" fin="1991-12-31" valeur="0.0324" />
+            <VALUE deb="1989-01-01" fin="1991-03-31" valeur="0.02943" />
+            <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.021" />
+            <VALUE deb="1983-01-01" fin="1987-12-31" valeur="0.0168" />
+            <VALUE deb="1971-01-01" fin="1982-12-31" valeur="0.0126" />
+          </TAUX>
+        </TRANCHE>
+        <TRANCHE code="tranche_b_1_4_75_puis_1_a_8_pss">
+          <SEUIL>
+            <VALUE deb="1971-01-01" fuzzy="true" valeur="1" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.1255" />
+            <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.1235" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.12175" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.11975" />
+            <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.11825" />
+            <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.117" />
+            <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.116" />
+            <VALUE deb="1992-01-01" fin="2010-12-31" valeur="0.1155" />
+            <VALUE deb="1991-04-01" fin="1991-12-31" valeur="0.11088" />
+            <VALUE deb="1989-01-01" fin="1991-03-31" valeur="0.100716" />
+            <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.0825" />
+            <VALUE deb="1983-01-01" fin="1987-12-31" valeur="0.066" />
+            <VALUE deb="1971-01-01" fin="1982-12-31" valeur="0.0495" />
+          </TAUX>
+        </TRANCHE>
+        <TRANCHE code="tranche_nulle">
+          <SEUIL>
+            <VALUE deb="1971-01-01" fuzzy="true" valeur="8" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+      <BAREME code="salarie">
+        <TRANCHE code="tranche_a">
+          <SEUIL>
+            <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.028" />
+            <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0272" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0264" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0254" />
+            <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0245" />
+            <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0235" />
+            <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.02275" />
+            <VALUE deb="1992-01-01" fin="2010-12-31" valeur="0.0225" />
+            <VALUE deb="1991-04-01" fin="1991-12-31" valeur="0.0216" />
+            <VALUE deb="1989-01-01" fin="1991-03-31" valeur="0.01962" />
+            <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.014" />
+            <VALUE deb="1983-01-01" fin="1987-12-31" valeur="0.0112" />
+            <VALUE deb="1971-01-01" fin="1982-12-31" valeur="0.0084" />
+          </TAUX>
+        </TRANCHE>
+        <TRANCHE code="tranche_b_1_4_75_puis_1_a_8_pss">
+          <SEUIL>
+            <VALUE deb="1971-01-01" fuzzy="true" valeur="1" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0695" />
+            <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0675" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0658" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0638" />
+            <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0623" />
+            <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.061" />
+            <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.06" />
+            <VALUE deb="1992-01-01" fin="2010-12-31" valeur="0.0595" />
+            <VALUE deb="1991-04-01" fin="1991-12-31" valeur="0.05712" />
+            <VALUE deb="1989-01-01" fin="1991-03-31" valeur="0.051884" />
+            <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.0425" />
+            <VALUE deb="1983-01-01" fin="1987-12-31" valeur="0.034" />
+            <VALUE deb="1971-01-01" fin="1982-12-31" valeur="0.0255" />
+          </TAUX>
+        </TRANCHE>
+        <TRANCHE code="tranche_nulle">
+          <SEUIL>
+            <VALUE deb="1971-01-01" fuzzy="true" valeur="8" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+      <CODE code="taux_d_appel" format="percent">
+        <VALUE deb="1992-01-01" fuzzy="true" valeur="1.25" />
+        <VALUE deb="1991-04-01" fin="1991-12-31" valeur="1.2" />
+        <VALUE deb="1989-01-01" fin="1991-03-31" valeur="1.09" />
+        <VALUE deb="1988-01-01" fin="1988-12-31" valeur="1" />
+        <VALUE deb="1983-01-01" fin="1987-12-31" valeur="0.8" />
+        <VALUE deb="1971-01-01" fin="1982-12-31" valeur="0.6" />
+      </CODE>
+      <NODE code="taux_de_cotisations_contractuels">
+        <NODE code="tranche_a">
+          <CODE code="agent" format="percent">
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0224" />
+            <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.02176" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.02112" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.02028" />
+            <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0196" />
+            <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0188" />
+            <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.0182" />
+            <VALUE deb="1989-01-01" fin="2010-12-31" valeur="0.018" />
+            <VALUE deb="1971-01-01" fin="1988-12-31" valeur="0.014" />
+          </CODE>
+          <CODE code="employeur" format="percent">
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0336" />
+            <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.03264" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.03168" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.03042" />
+            <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0294" />
+            <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0282" />
+            <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.0273" />
+            <VALUE deb="1989-01-01" fin="2010-12-31" valeur="0.027" />
+            <VALUE deb="1971-01-01" fin="1988-12-31" valeur="0.021" />
+          </CODE>
+        </NODE>
+        <NODE code="tranche_b">
+          <CODE code="agent" format="percent">
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0556" />
+            <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.054" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0526" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.051" />
+            <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0498" />
+            <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0488" />
+            <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.048" />
+            <VALUE deb="1989-01-01" fin="2010-12-31" valeur="0.0476" />
+            <VALUE deb="1971-01-01" fin="1988-12-31" valeur="0.0425" />
+          </CODE>
+          <CODE code="employeur" format="percent">
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.1004" />
+            <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0988" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0974" />
+            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0958" />
+            <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0946" />
+            <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0936" />
+            <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.0928" />
+            <VALUE deb="1989-01-01" fin="2010-12-31" valeur="0.0924" />
+            <VALUE deb="1971-01-01" fin="1988-12-31" valeur="0.0825" />
+          </CODE>
+        </NODE>
+      </NODE>
+    </NODE>
     <NODE code="mmid">
       <BAREME code="employeur">
         <TRANCHE code="tranche_a">
@@ -1747,6 +1907,28 @@
           </SEUIL>
           <TAUX>
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0" />
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+    </NODE>
+    <NODE code="rafp">
+      <BAREME code="employeur">
+        <TRANCHE code="tranche_a">
+          <SEUIL>
+            <VALUE deb="2005-01-01" fuzzy="true" valeur="0" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2005-01-01" fuzzy="true" valeur="0.05" />
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+      <BAREME code="salarie">
+        <TRANCHE code="tranche_a">
+          <SEUIL>
+            <VALUE deb="2005-01-01" fuzzy="true" valeur="0" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2005-01-01" fuzzy="true" valeur="0.05" />
           </TAUX>
         </TRANCHE>
       </BAREME>
@@ -2482,132 +2664,6 @@
       <VALUE deb="1989-01-01" fin="1989-12-31" valeur="156619.22743" />
     </CODE>
   </NODE>
-  <NODE code="ircantec">
-    <CODE code="taux_d_appel" format="percent">
-      <VALUE deb="1992-01-01" fuzzy="true" valeur="1.25" />
-      <VALUE deb="1991-04-01" fin="1991-12-31" valeur="1.2" />
-      <VALUE deb="1989-01-01" fin="1991-03-31" valeur="1.09" />
-      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="1" />
-      <VALUE deb="1983-01-01" fin="1987-12-31" valeur="0.8" />
-      <VALUE deb="1971-01-01" fin="1982-12-31" valeur="0.6" />
-    </CODE>
-    <NODE code="taux_de_cotisations_contractuels">
-      <NODE code="tranche_a">
-        <CODE code="agent" format="percent">
-          <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0224" />
-          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.02176" />
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.02112" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.02028" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0196" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0188" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.0182" />
-          <VALUE deb="1989-01-01" fin="2010-12-31" valeur="0.018" />
-          <VALUE deb="1971-01-01" fin="1988-12-31" valeur="0.014" />
-        </CODE>
-        <CODE code="employeur" format="percent">
-          <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0336" />
-          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.03264" />
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.03168" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.03042" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0294" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0282" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.0273" />
-          <VALUE deb="1989-01-01" fin="2010-12-31" valeur="0.027" />
-          <VALUE deb="1971-01-01" fin="1988-12-31" valeur="0.021" />
-        </CODE>
-      </NODE>
-      <NODE code="tranche_b">
-        <CODE code="agent" format="percent">
-          <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0556" />
-          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.054" />
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0526" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.051" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0498" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0488" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.048" />
-          <VALUE deb="1989-01-01" fin="2010-12-31" valeur="0.0476" />
-          <VALUE deb="1971-01-01" fin="1988-12-31" valeur="0.0425" />
-        </CODE>
-        <CODE code="employeur" format="percent">
-          <VALUE deb="2017-01-01" fuzzy="true" valeur="0.1004" />
-          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0988" />
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0974" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0958" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0946" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0936" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.0928" />
-          <VALUE deb="1989-01-01" fin="2010-12-31" valeur="0.0924" />
-          <VALUE deb="1971-01-01" fin="1988-12-31" valeur="0.0825" />
-        </CODE>
-      </NODE>
-    </NODE>
-    <NODE code="taux_de_cotisations_effectifs">
-      <NODE code="tranche_a">
-        <CODE code="agent" format="percent">
-          <VALUE deb="2017-01-01" fuzzy="true" valeur="0.028" />
-          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0272" />
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0264" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0254" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0245" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0235" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.02275" />
-          <VALUE deb="1992-01-01" fin="2010-12-31" valeur="0.0225" />
-          <VALUE deb="1991-04-01" fin="1991-12-31" valeur="0.0216" />
-          <VALUE deb="1989-01-01" fin="1991-03-31" valeur="0.01962" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.014" />
-          <VALUE deb="1983-01-01" fin="1987-12-31" valeur="0.0112" />
-          <VALUE deb="1971-01-01" fin="1982-12-31" valeur="0.0084" />
-        </CODE>
-        <CODE code="employeur" format="percent">
-          <VALUE deb="2017-01-01" fuzzy="true" valeur="0.042" />
-          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0408" />
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0396" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.038025" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.03675" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.03525" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.034125" />
-          <VALUE deb="1992-01-01" fin="2010-12-31" valeur="0.03375" />
-          <VALUE deb="1991-04-01" fin="1991-12-31" valeur="0.0324" />
-          <VALUE deb="1989-01-01" fin="1991-03-31" valeur="0.02943" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.021" />
-          <VALUE deb="1983-01-01" fin="1987-12-31" valeur="0.0168" />
-          <VALUE deb="1971-01-01" fin="1982-12-31" valeur="0.0126" />
-        </CODE>
-      </NODE>
-      <NODE code="tranche_b_1_4_75_puis_1_a_8_pss">
-        <CODE code="agent" format="percent">
-          <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0695" />
-          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0675" />
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0658" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0638" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0623" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.061" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.06" />
-          <VALUE deb="1992-01-01" fin="2010-12-31" valeur="0.0595" />
-          <VALUE deb="1991-04-01" fin="1991-12-31" valeur="0.05712" />
-          <VALUE deb="1989-01-01" fin="1991-03-31" valeur="0.051884" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.0425" />
-          <VALUE deb="1983-01-01" fin="1987-12-31" valeur="0.034" />
-          <VALUE deb="1971-01-01" fin="1982-12-31" valeur="0.0255" />
-        </CODE>
-        <CODE code="employeur" format="percent">
-          <VALUE deb="2017-01-01" fuzzy="true" valeur="0.1255" />
-          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.1235" />
-          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.12175" />
-          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.11975" />
-          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.11825" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.117" />
-          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.116" />
-          <VALUE deb="1992-01-01" fin="2010-12-31" valeur="0.1155" />
-          <VALUE deb="1991-04-01" fin="1991-12-31" valeur="0.11088" />
-          <VALUE deb="1989-01-01" fin="1991-03-31" valeur="0.100716" />
-          <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.0825" />
-          <VALUE deb="1983-01-01" fin="1987-12-31" valeur="0.066" />
-          <VALUE deb="1971-01-01" fin="1982-12-31" valeur="0.0495" />
-        </CODE>
-      </NODE>
-    </NODE>
-  </NODE>
   <NODE code="mm_pl">
     <NODE code="assures_actifs">
       <CODE code="sous_4_pss" format="percent">
@@ -3061,16 +3117,6 @@
       <VALUE deb="1946-10-01" fin="1947-09-30" valeur="12500" />
       <VALUE deb="1946-07-01" fin="1946-09-30" valeur="10000" />
     </CODE>
-  </NODE>
-  <NODE code="rafp">
-    <NODE code="taux_de_cotisation">
-      <CODE code="agent" format="percent">
-        <VALUE deb="2005-01-01" fuzzy="true" valeur="0.05" />
-      </CODE>
-      <CODE code="etat" format="percent">
-        <VALUE deb="2005-01-01" fuzzy="true" valeur="0.05" />
-      </CODE>
-    </NODE>
   </NODE>
   <NODE code="red_a">
     <NODE code="accidents_du_travail">

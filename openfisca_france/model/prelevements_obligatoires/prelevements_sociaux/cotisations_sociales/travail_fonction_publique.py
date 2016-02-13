@@ -195,7 +195,7 @@ class pension_civile_salarie(Variable):
         type_sal = simulation.calculate('type_sal', period)
         _P = simulation.legislation_at(period.start)
 
-        sal =  _P.cotsoc.cotisations_salarie
+        sal = _P.cotsoc.cotisations_salarie
         terr_or_hosp = (
             type_sal == CAT['public_titulaire_territoriale']) | (type_sal == CAT['public_titulaire_hospitaliere'])
         pension_civile_salarie = (

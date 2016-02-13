@@ -499,8 +499,7 @@ def transform_ipp_tree(root):
     # assert not vieillesse_deplafonnee
     # assert not vieillesse_plafonnee
     #
-    # TODO CNRACL 
-    #
+    # cnracl
     cotisations_sociales['cnracl'] = cnracl_node = prelevements_sociaux.pop('cnracl')
     cnracl_node['cnracl'] = cnracl = cnracl_node.pop('cnracl')
     cnracl['salarie'] = cnracl_salarie = cnracl.pop('agents')
@@ -604,6 +603,12 @@ def transform_ipp_tree(root):
             ),
         )
     #
+    fillon = prelevements_sociaux['fillon']
+    # Deleted, because value must be a float.
+    del fillon['ensemble_des_entreprises']['salaire_de_reference']
+    del fillon['entreprises_restees_aux_39_heures_hebdomadaires_au_30_06_2003']['salaire_de_reference']
+    del fillon['entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003']['salaire_de_reference']
+    #
     cotisations_sociales['fnal'] = fnal = prelevements_sociaux.pop('fnal')
     tout_employeur = fnal.pop('tout_employeur')
     fnal['tout_employeur'] = fixed_bases_tax_scale(
@@ -656,7 +661,35 @@ def transform_ipp_tree(root):
             ),
         )
     # TODO atlerannce, cdd, DIF
+    # TODO formation-ac et formation-pl
     # gmp no need to change anything here
+    cotisations_sociales['ircantec'] = ircantec = prelevements_sociaux.pop('ircantec')
+    taux_effectifs = ircantec.pop('taux_de_cotisations_effectifs')
+    ircantec['employeur'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_a = 0,
+            tranche_b_1_4_75_puis_1_a_8_pss = 1,
+            ),
+        null_rate_base = 8,
+        rates_tree = dict(
+            tranche_a = taux_effectifs['tranche_a'].pop('employeur'),
+            tranche_b_1_4_75_puis_1_a_8_pss = taux_effectifs['tranche_b_1_4_75_puis_1_a_8_pss'].pop('employeur'),
+            )
+        )
+    ircantec['salarie'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_a = 0,
+            tranche_b_1_4_75_puis_1_a_8_pss = 1,
+            ),
+        null_rate_base = 8,
+        rates_tree = dict(
+            tranche_a = taux_effectifs['tranche_a'].pop('agent'),
+            tranche_b_1_4_75_puis_1_a_8_pss = taux_effectifs['tranche_b_1_4_75_puis_1_a_8_pss'].pop('agent'),
+            )
+        )
+    # TODO tranche à 4.75
+    del taux_effectifs
+    #
     cotisations_sociales['mmid'] = mmid = prelevements_sociaux.pop('mmid')
     salaire_sous_plafond = mmid.pop('salaire_sous_plafond')
     sur_tout_salaire = mmid.pop('sur_tout_salaire')
@@ -697,15 +730,33 @@ def transform_ipp_tree(root):
         )
     assert not sur_tout_salaire, sur_tout_salaire
     assert not salaire_sous_plafond, salaire_sous_plafond
+    # TODO: mmid-ac.yaml, mmid-am.yaml, mmid-cl.yaml, mmid-etat.yaml, mmid-ret.yaml, mm-pl
     #
-    fillon = prelevements_sociaux['fillon']
-    # Deleted, because value must be a float.
-    del fillon['ensemble_des_entreprises']['salaire_de_reference']
-    del fillon['entreprises_restees_aux_39_heures_hebdomadaires_au_30_06_2003']['salaire_de_reference']
-    del fillon['entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003']['salaire_de_reference']
-
+    # TODO: prévoyance
+    cotisations_sociales['rafp'] = rafp = prelevements_sociaux.pop('rafp')
+    taux_de_cotisation = rafp.pop('taux_de_cotisation')
+    rafp['employeur'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_a = 0,
+            ),
+        rates_tree = dict(
+            tranche_a = taux_de_cotisation.pop('etat'),
+            ),
+        )
+    rafp['salarie'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tranche_a = 0,
+            ),
+        rates_tree = dict(
+            tranche_a = taux_de_cotisation.pop('agent'),
+            ),
+        )
+    del taux_de_cotisation
+    #
+    # TODO red-a, red-j, red-m
     prelevements_sociaux['allegement_cotisation_allocations_familiales'] = prelevements_sociaux.pop('reduc_famille')
-
+    # TODO ret-ac.yaml, ret-comp-ac.yaml, ret-comp-pl.yaml, ret-pl.yaml, ret-etat.yaml
+    # TODO retraite chapeau
     del root['baremes_ipp_prestations_sociales_social_benefits']
     # root['prestations'] = root.pop('baremes_ipp_prestations_sociales_social_benefits')
     # baremes_ipp_prestations_sociales_social_benefits:
