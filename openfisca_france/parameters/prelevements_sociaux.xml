@@ -1592,6 +1592,82 @@
         </TRANCHE>
       </BAREME>
     </NODE>
+    <NODE code="formation">
+      <NODE code="10_salaries_ou_plus">
+        <CODE code="conges_de_formation" format="percent">
+          <VALUE deb="1993-01-01" fuzzy="true" valeur="0.002" />
+          <VALUE deb="1991-01-01" fin="1992-12-31" valeur="0.0015" />
+          <VALUE deb="1984-01-01" fin="1990-12-31" valeur="0.001" />
+        </CODE>
+        <CODE code="contrats_et_periodes_de_professionnalisation_et_dif" format="percent">
+          <VALUE deb="2005-01-01" fuzzy="true" valeur="0.005" />
+        </CODE>
+        <CODE code="cotisation_formation_alternee" format="percent">
+          <VALUE deb="1993-01-01" fin="2008-04-30" valeur="0.004" />
+          <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.003" />
+        </CODE>
+      </NODE>
+      <NODE code="employeur">
+        <BAREME code="20_salaries_et_plus">
+          <TRANCHE code="tout_salaire">
+            <SEUIL>
+              <VALUE deb="1972-01-01" fuzzy="true" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0.01" />
+              <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.016" />
+              <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
+              <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
+              <VALUE deb="1987-01-01" fin="1991-12-31" valeur="0.012" />
+              <VALUE deb="1978-01-01" fin="1986-12-31" valeur="0.011" />
+              <VALUE deb="1974-01-01" fin="1977-12-31" valeur="0.01" />
+              <VALUE deb="1972-01-01" fin="1973-12-31" valeur="0.008" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
+        <BAREME code="de_10_a_19_salaries">
+          <TRANCHE code="tout_salaire">
+            <SEUIL>
+              <VALUE deb="1972-01-01" fuzzy="true" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2015-01-01" fuzzy="true" valeur="0.01" />
+              <VALUE deb="2005-01-01" fin="2014-12-31" valeur="0.0105" />
+              <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.016" />
+              <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
+              <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
+              <VALUE deb="1987-01-01" fin="1991-12-31" valeur="0.012" />
+              <VALUE deb="1978-01-01" fin="1986-12-31" valeur="0.011" />
+              <VALUE deb="1974-01-01" fin="1977-12-31" valeur="0.01" />
+              <VALUE deb="1972-01-01" fin="1973-12-31" valeur="0.008" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
+        <BAREME code="moins_de_10_salaries">
+          <TRANCHE code="tout_salaire">
+            <SEUIL>
+              <VALUE deb="1972-01-01" fuzzy="true" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2005-01-01" fuzzy="true" valeur="0.0055" />
+              <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.004" />
+              <VALUE deb="1992-01-01" fin="2003-12-31" valeur="0.0015" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
+      </NODE>
+      <NODE code="moins_de_10_salaries">
+        <CODE code="contribution_sur_contrats_d_insertion_en_alternance" format="percent">
+          <VALUE deb="2004-01-01" fin="2008-04-30" valeur="0" />
+          <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.001" />
+        </CODE>
+      </NODE>
+      <NODE code="toute_entreprise">
+        <CODE code="salaires_cdd" format="percent">
+          <VALUE deb="1990-07-14" fuzzy="true" valeur="0.01" />
+        </CODE>
+      </NODE>
+    </NODE>
     <NODE code="mmid">
       <BAREME code="employeur">
         <TRANCHE code="tranche_a">
@@ -2234,61 +2310,6 @@
     <CODE code="taux_reduit" format="percent">
       <VALUE deb="2012-08-01" fuzzy="true" valeur="0.08" />
     </CODE>
-  </NODE>
-  <NODE code="formation">
-    <NODE code="10_salaries_ou_plus">
-      <CODE code="conges_de_formation" format="percent">
-        <VALUE deb="1993-01-01" fuzzy="true" valeur="0.002" />
-        <VALUE deb="1991-01-01" fin="1992-12-31" valeur="0.0015" />
-        <VALUE deb="1984-01-01" fin="1990-12-31" valeur="0.001" />
-      </CODE>
-      <CODE code="contrats_et_periodes_de_professionnalisation_et_dif" format="percent">
-        <VALUE deb="2005-01-01" fuzzy="true" valeur="0.005" />
-      </CODE>
-      <CODE code="cotisation_formation_alternee" format="percent">
-        <VALUE deb="1993-01-01" fin="2008-04-30" valeur="0.004" />
-        <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.003" />
-      </CODE>
-    </NODE>
-    <NODE code="employeur_tout_salaire">
-      <CODE code="20_salaries_et_plus" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.01" />
-        <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.016" />
-        <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
-        <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
-        <VALUE deb="1987-01-01" fin="1991-12-31" valeur="0.012" />
-        <VALUE deb="1978-01-01" fin="1986-12-31" valeur="0.011" />
-        <VALUE deb="1974-01-01" fin="1977-12-31" valeur="0.01" />
-        <VALUE deb="1972-01-01" fin="1973-12-31" valeur="0.008" />
-      </CODE>
-      <CODE code="de_10_a_19_salaries" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.01" />
-        <VALUE deb="2005-01-01" fin="2014-12-31" valeur="0.0105" />
-        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.016" />
-        <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
-        <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.014" />
-        <VALUE deb="1987-01-01" fin="1991-12-31" valeur="0.012" />
-        <VALUE deb="1978-01-01" fin="1986-12-31" valeur="0.011" />
-        <VALUE deb="1974-01-01" fin="1977-12-31" valeur="0.01" />
-        <VALUE deb="1972-01-01" fin="1973-12-31" valeur="0.008" />
-      </CODE>
-      <CODE code="moins_de_10_salaries" format="percent">
-        <VALUE deb="2005-01-01" fuzzy="true" valeur="0.0055" />
-        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.004" />
-        <VALUE deb="1992-01-01" fin="2003-12-31" valeur="0.0015" />
-      </CODE>
-    </NODE>
-    <NODE code="moins_de_10_salaries">
-      <CODE code="contribution_sur_contrats_d_insertion_en_alternance" format="percent">
-        <VALUE deb="2004-01-01" fin="2008-04-30" valeur="0" />
-        <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.001" />
-      </CODE>
-    </NODE>
-    <NODE code="toute_entreprise">
-      <CODE code="salaires_cdd" format="percent">
-        <VALUE deb="1990-07-14" fuzzy="true" valeur="0.01" />
-      </CODE>
-    </NODE>
   </NODE>
   <NODE code="formation_ac">
     <CODE code="artisans_sous_pss" format="percent">

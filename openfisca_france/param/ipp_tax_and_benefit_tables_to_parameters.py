@@ -629,6 +629,34 @@ def transform_ipp_tree(root):
     #     )
     # forfait_social already ok
     #
+    cotisations_sociales['formation'] = formation = prelevements_sociaux.pop('formation')
+    formation['employeur'] = employeur = formation.pop('employeur_tout_salaire')
+    employeur['moins_de_10_salaries'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tout_salaire = 0,
+            ),
+        rates_tree = dict(
+            tout_salaire = employeur.pop('moins_de_10_salaries'),
+            ),
+        )
+    employeur['de_10_a_19_salaries'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tout_salaire = 0,
+            ),
+        rates_tree = dict(
+            tout_salaire = employeur.pop('de_10_a_19_salaries'),
+            ),
+        )
+    employeur['20_salaries_et_plus'] = fixed_bases_tax_scale(
+        base_by_slice_name = dict(
+            tout_salaire = 0,
+            ),
+        rates_tree = dict(
+            tout_salaire = employeur.pop('20_salaries_et_plus'),
+            ),
+        )
+    # TODO atlerannce, cdd, DIF
+
     cotisations_sociales['mmid'] = mmid = prelevements_sociaux.pop('mmid')
     salaire_sous_plafond = mmid.pop('salaire_sous_plafond')
     sur_tout_salaire = mmid.pop('sur_tout_salaire')
