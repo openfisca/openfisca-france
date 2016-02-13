@@ -178,9 +178,9 @@ class agirc_gmp_assiette(Variable):
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
-        salaire_charniere = simulation.legislation_at(period.start).cotsoc.agirc_gmp.salaire_charniere  # annuel
+        gmp = simulation.legislation_at(period.start).prelevements_sociaux.gmp
         assiette = max_(
-            (salaire_charniere / 12 - assiette_cotisations_sociales) * (assiette_cotisations_sociales > 0),
+            (gmp.salaire_charniere_annuel / 12 - assiette_cotisations_sociales) * (assiette_cotisations_sociales > 0),
             0,
             )
         return period, assiette
@@ -199,10 +199,9 @@ class agirc_gmp_salarie(Variable):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         type_sal = simulation.calculate('type_sal', period)
 
-        law = simulation.legislation_at(period.start).cotsoc.agirc_gmp
-        cotisation_forfaitaire = law.cotisation_salarie
+        gmp = simulation.legislation_at(period.start).prelevements_sociaux.gmp
+        cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale
         taux = simulation.legislation_at(period.start).cotsoc.cotisations_salarie.prive_cadre.agirc.rates[1]
-
         sous_plafond_securite_sociale = (
             (assiette_cotisations_sociales <= plafond_securite_sociale) & (assiette_cotisations_sociales > 0)
             )
@@ -227,8 +226,8 @@ class agirc_gmp_employeur(Variable):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         type_sal = simulation.calculate('type_sal', period)
 
-        law = simulation.legislation_at(period.start).cotsoc.agirc_gmp
-        cotisation_forfaitaire = law.cotisation_employeur
+        gmp = simulation.legislation_at(period.start).prelevements_sociaux.gmp
+        cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_patronale
         taux = simulation.legislation_at(period.start).cotsoc.cotisations_employeur['prive_cadre']['agirc'].rates[1]
 
         sous_plafond_securite_sociale = (

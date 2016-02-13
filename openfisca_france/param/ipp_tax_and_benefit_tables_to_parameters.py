@@ -656,7 +656,7 @@ def transform_ipp_tree(root):
             ),
         )
     # TODO atlerannce, cdd, DIF
-
+    # gmp no need to change anything here
     cotisations_sociales['mmid'] = mmid = prelevements_sociaux.pop('mmid')
     salaire_sous_plafond = mmid.pop('salaire_sous_plafond')
     sur_tout_salaire = mmid.pop('sur_tout_salaire')
