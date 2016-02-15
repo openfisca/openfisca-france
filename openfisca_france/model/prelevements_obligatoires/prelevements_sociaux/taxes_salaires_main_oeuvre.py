@@ -227,13 +227,21 @@ class participation_effort_construction(Variable):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(
+        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
+
+        bareme = apply_bareme(
             simulation,
             period,
             cotisation_type = 'employeur',
             bareme_name = 'construction',
             variable_name = self.__class__.__name__,
             )
+
+        cotisation = (
+            bareme * (effectif_entreprise >= 20) +
+            self.zeros() * (effectif_entreprise < 20)
+            )
+
         return period, cotisation
 
 
