@@ -237,6 +237,8 @@ class participation_effort_construction(Variable):
             variable_name = self.__class__.__name__,
             )
 
+        # TODO : seuil passé de 10 à 20 avec l'Ordonnance n° 2005-895 du 2 août 2005
+
         cotisation = (
             bareme * (effectif_entreprise >= 20) +
             self.zeros() * (effectif_entreprise < 20)
