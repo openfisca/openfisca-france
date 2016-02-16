@@ -802,6 +802,7 @@ class cout_differe(Variable):
     def function(self, simulation, period):
         credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
         aide_premier_salarie = simulation.calculate_add('aide_premier_salarie', period)
+        aide_embauche_PME = simulation.calculate_add('aide_embauche_PME', period)
         tehr = simulation.calculate_divide('tehr', period)
 
-        return period, credit_impot_competitivite_emploi + aide_premier_salarie + tehr
+        return period, credit_impot_competitivite_emploi + aide_premier_salarie + aide_embauche_PME + tehr
