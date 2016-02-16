@@ -7,8 +7,9 @@ import logging
 
 from numpy import (
     busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, logical_and as and_, maximum as max_,
-    minimum as min_, round as round_, timedelta64
+    minimum as min_, round as round_, timedelta64, vectorize
     )
+from datetime import datetime
 
 from ....base import *  # noqa analysis:ignore
 from .....assets.holidays import holidays
@@ -119,6 +120,15 @@ class credit_impot_competitivite_emploi(DatedVariable):
 
         return period, credit_impot_competitivite_emploi * non_cumul
 
+# Utility functions to offset input date variables using OpenFisca-core periods
+@vectorize
+def offset_datetime(my_datetime, n, unit):
+    return datetime64(periods.instant(my_datetime).offset(n, unit))
+
+def shift_date(my_datetime64, n, unit):
+    date = my_datetime64.astype(datetime)
+    return offset_datetime(date, n, unit)
+
 
 class aide_premier_salarie(DatedVariable):
     column = FloatCol
@@ -136,27 +146,32 @@ class aide_premier_salarie(DatedVariable):
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
 
         # Cette aide est temporaire.
-        # TODO : Si toutefois elle est reconduite en 2016, les dates et le montant seront à implémenter comme des params xml.
+        # TODO : Si toutefois elle est reconduite et modifiée pour 2017, les dates et le montant seront à implémenter comme des params xml.
 
-        contrat_eligible = and_(
+        eligible_contrat = and_(
             contrat_de_travail_debut >= datetime64("2015-06-09"),
-            contrat_de_travail_debut <= datetime64("2016-06-08")
+            contrat_de_travail_debut <= datetime64("2016-12-31")
         )
+
         # Si CDD, durée du contrat doit être > 1 an
-        duree_eligible = or_(
+        eligible_duree = or_(
             # durée indéterminée
             contrat_de_travail_duree == 0,
             # durée déterminée supérieure à 1 an
             and_(
-                contrat_de_travail_duree == 1,
-                contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')),
+                contrat_de_travail_duree == 1, # CDD
+                # > 6 mois
+                contrat_de_travail_fin > shift_date(contrat_de_travail_debut, 6, 'month')
+                # Initialement, la condition était d'un contrat >= 12 mois,
+                # pour les demandes transmises jusqu'au 26 janvier.
+                )
             )
 
 
-        date_eligible = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
+        eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
 
         eligible = \
-            (effectif_entreprise == 1) * not_(apprenti) * contrat_eligible * duree_eligible * date_eligible
+            (effectif_entreprise == 1) * not_(apprenti) * eligible_contrat * eligible_duree * eligible_date
 
         # somme sur 24 mois, à raison de 500 € maximum par trimestre
         montant_max = 4000
@@ -225,8 +240,8 @@ class aide_embauche_PME(DatedVariable):
         eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
 
         eligible = \
-            eligible_salaire * eligible_effectif * non_cumulee * eligible_contrat * eligible_duree * eligible_date
-            * not_(apprenti)
+            eligible_salaire * eligible_effectif * non_cumulee * eligible_contrat * eligible_duree * eligible_date * not_(apprenti)
+
 
         # somme sur 24 mois, à raison de 500 € maximum par trimestre
         montant_max = 4000
