@@ -17,7 +17,9 @@ def import_extension(extension_directory):
 	for module_name in module_names:
 		module = find_module(module_name, [extension_directory])
 		load_module(module_name, *module)
-	extensions_parameters.append(os.path.join(extension_directory, extension_name + '.xml'))
+	param_file = os.path.join(extension_directory, extension_name + '.xml')
+	if os.path.isfile(param_file):
+		extensions_parameters.append(param_file)
 
 for extension_dir in EXTENSIONS_DIRECTORIES:
 	import_extension(extension_dir)
