@@ -64,6 +64,8 @@ from prestations.prestations_familiales import (  # noqa analysis:ignore
     cf,
     )
 
+from . import extensions
+
 from revenus import autres
 
 from revenus.activite import (  # noqa analysis:ignore
