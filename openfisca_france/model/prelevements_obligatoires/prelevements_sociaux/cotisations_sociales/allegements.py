@@ -61,28 +61,37 @@ class coefficient_proratisation(Variable):
         # Décompte des jours en début et fin de contrat
         # http://www.gestiondelapaie.com/flux-paie/?1029-la-bonne-premiere-paye
 
+        #  * Tous les calculs sont faits sur le mois *
+
+        # Méthode numpy de calcul des jours travaillés
+        # @holidays : jours feriés français
         busday_count = partial(original_busday_count, holidays = holidays)
+
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
-        fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D')
+        fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D') # busday ignores the last day
 
         mois_incomplet = or_(contrat_de_travail_debut > debut_mois, contrat_de_travail_fin < fin_mois)
-        jours_travailles = busday_count(
+        # jours travaillés ce mois-ci : intersection du contrat de travail et du mois en cours
+        jours_travailles_ce_mois = busday_count(
             max_(contrat_de_travail_debut, debut_mois),
             min_(contrat_de_travail_fin, fin_mois)
             )
 
-        duree_legale = 35 * 52 / 12  # mensuelle_temps_plein
+        duree_legale_mensuelle = 35 * 52 / 12  # mensuelle_temps_plein
         heures_temps_plein = (
-            (heures_duree_collective_entreprise == 0) * duree_legale + heures_duree_collective_entreprise
+            (heures_duree_collective_entreprise == 0) * duree_legale_mensuelle + heures_duree_collective_entreprise
             )
         # heures remunerees avant conges sans soldes/ijss
         heures_remunerees_volume = (
+            # Salariés à temps plein
             (contrat_de_travail == 0) * (
-                heures_temps_plein * not_(mois_incomplet) +  # 151.67
-                jours_travailles * 7 * mois_incomplet  # TODO: 7 = heures / jours
+                heures_temps_plein * not_(mois_incomplet) +  # par défaut 151.67
+                jours_travailles_ce_mois * 7 * mois_incomplet  # TODO: 7 = heures / jours
                 ) +
+            # Salariés sans convention de forfait à temps partiel
             (contrat_de_travail == 1) * heures_remunerees_volume
             )
+
         heures_realisees = heures_remunerees_volume - heures_non_remunerees_volume
 
         coefficient = (
