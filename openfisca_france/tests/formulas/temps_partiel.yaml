@@ -10,7 +10,7 @@
   output_variables:
     # le plafond_securite_sociale est proratisé
     # le FNAL (effectif < 20) est donc plafonné à un montant < plafond_securite_sociale
-    plafond_securite_sociale: 3218
+    plafond_securite_sociale: 3218 * (6 / 7)
     fnal: -3218 * (6 / 7) * 0.001
 
 - period: "2016-01"
