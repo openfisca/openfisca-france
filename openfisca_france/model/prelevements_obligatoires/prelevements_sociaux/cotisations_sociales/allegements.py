@@ -40,7 +40,7 @@ class assiette_allegement(Variable):
 class coefficient_proratisation(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"Coefficient de proratisation pour le calcul du SMIC et du plafond de la Sécurité socialele"
+    label = u"Coefficient de proratisation pour le calcul du SMIC et du plafond de la Sécurité sociale"
 
     def function(self, simulation, period):
         # u"temps_plein",
