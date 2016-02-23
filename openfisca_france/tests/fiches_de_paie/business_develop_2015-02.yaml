@@ -50,7 +50,7 @@ output_variables:
   IGNORE_taxe_apprentissage: 0
   versement_transport: 0 # -.027 * 2172.9
   allegement_fillon: 0
-  credit_impot_competitivite_emploi: 0
+  credit_impot_competitivite_emploi: 130.37
   tehr:
     "year:2015": 0
   # assiette_cotisations_sociales
