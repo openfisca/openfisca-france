@@ -7,7 +7,7 @@ import logging
 
 from numpy import (
     busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, logical_and as and_, maximum as max_,
-    minimum as min_, round as round_, timedelta64, vectorize
+    minimum as min_, round as round_, timedelta64
     )
 from datetime import datetime
 
@@ -120,16 +120,6 @@ class credit_impot_competitivite_emploi(DatedVariable):
 
         return period, credit_impot_competitivite_emploi * non_cumul
 
-# Utility functions to offset input date variables using OpenFisca-core periods
-@vectorize
-def offset_datetime(my_datetime, n, unit):
-    return datetime64(periods.instant(my_datetime).offset(n, unit))
-
-def shift_date(my_datetime64, n, unit):
-    date = my_datetime64.astype(datetime)
-    return offset_datetime(date, n, unit)
-
-
 class aide_premier_salarie(DatedVariable):
     column = FloatCol
     entity_class = Individus
@@ -161,7 +151,7 @@ class aide_premier_salarie(DatedVariable):
             and_(
                 contrat_de_travail_duree == 1, # CDD
                 # > 6 mois
-                contrat_de_travail_fin > shift_date(contrat_de_travail_debut, 6, 'month')
+                (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
                 # Initialement, la condition était d'un contrat >= 12 mois,
                 # pour les demandes transmises jusqu'au 26 janvier.
                 )
@@ -232,7 +222,7 @@ class aide_embauche_PME(DatedVariable):
                 # CDD
                 contrat_de_travail_duree == 1,
                 # > 6 mois
-                contrat_de_travail_fin > shift_date(contrat_de_travail_debut, 6, 'month')
+                (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
                 )
             )
 

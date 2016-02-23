@@ -89,7 +89,7 @@
     effectif_entreprise: 29
     contrat_de_travail_duree: 1 # CDD
     contrat_de_travail_debut: 2016-01-25
-    contrat_de_travail_fin: 2016-05-01
+    contrat_de_travail_fin: 2016-07-23
   output_variables:
     aide_embauche_PME: 0
 
