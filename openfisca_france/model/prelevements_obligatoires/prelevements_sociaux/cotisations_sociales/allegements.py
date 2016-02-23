@@ -115,7 +115,8 @@ class credit_impot_competitivite_emploi(DatedVariable):
             taux_cice
             * assiette_allegement
             )
-        non_cumul = (jeune_entreprise_innovante == 0 + stagiaire) > 0
+
+        non_cumul = not_(stagiaire)
 
         return period, credit_impot_competitivite_emploi * non_cumul
 
@@ -205,7 +206,7 @@ class allegement_fillon(DatedVariable):
                 allegement_mode_recouvrement,
                 self.__class__.__name__,
                 )
-                
+
         return period, allegement * not_(stagiaire) * not_(apprenti)
 
 
