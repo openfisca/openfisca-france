@@ -17,7 +17,7 @@ def brut_to_target(target_name = None, period = None, simulation = None, **input
     simulation = simulation.clone(debug = simulation.debug, debug_all = simulation.debug_all, trace = simulation.trace)
     simulation.get_or_new_holder(target_name).delete_arrays()
     for variable_name, array in input_array_by_name.iteritems():
-        simulation.get_or_new_holder(variable_name).set_array(period, array)
+        simulation.get_or_new_holder(variable_name).put_in_cache(array, period)
     return simulation.calculate_add(target_name)
 
 

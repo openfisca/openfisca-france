@@ -60,7 +60,7 @@ def add_member(entity, **variables_value_by_name):
                 if array is None:
                     array = np.empty(entity.count, dtype = column.dtype)
                     array.fill(column.default)
-                    variable_holder.set_array(period, array)
+                    variable_holder.put_in_cache(array, period)
                 array[member_index] = period_value
         else:
             period = simulation.period
@@ -68,7 +68,7 @@ def add_member(entity, **variables_value_by_name):
             if array is None:
                 array = np.empty(entity.count, dtype = column.dtype)
                 array.fill(column.default)
-                variable_holder.set_array(period, array)
+                variable_holder.put_in_cache(array, period)
             array[member_index] = value
 
     return member_index
