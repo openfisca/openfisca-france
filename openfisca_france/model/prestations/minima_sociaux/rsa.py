@@ -628,7 +628,7 @@ class rsa_act(DatedVariable):
     label = u"Revenu de solidarité active - activité"
     start_date = date(2009, 6, 1)
 
-    @dated_function(start = date(2009, 6, 1))
+    @dated_function(start = date(2009, 6, 1), stop = date(2015, 12, 31))
     def function_2009(self, simulation, period):
         '''
         Calcule le montant du RSA activité
@@ -891,6 +891,18 @@ class rsa_majore(DatedVariable):
 
         return period, base_normalise * (base_normalise >= P.rsa_nv)
 
+    @dated_function(start = date(2016, 01, 01))
+    def function_2016(self, simulation, period):
+        period = period.this_month
+        rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
+        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
+        rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
+        P = simulation.legislation_at(period.start).minim.rmi
+
+        base_normalise = max_(rsa_socle_majore - rsa_forfait_logement - rsa_base_ressources, 0)
+
+        return period, base_normalise * (base_normalise >= P.rsa_nv)
+
 
 class rsa_majore_eligibilite(Variable):
     column = BoolCol
@@ -993,6 +1005,18 @@ class rsa_non_majore(DatedVariable):
         P = simulation.legislation_at(period.start).minim.rmi
 
         base_normalise = max_(rsa_socle - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite, 0)
+
+        return period, base_normalise * (base_normalise >= P.rsa_nv)
+
+    @dated_function(start = date(2016, 01, 01))
+    def function_2016(self, simulation, period):
+        period = period.this_month
+        rsa_socle = simulation.calculate('rsa_socle', period)
+        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
+        rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
+        P = simulation.legislation_at(period.start).minim.rmi
+
+        base_normalise = max_(rsa_socle - rsa_forfait_logement - rsa_base_ressources, 0)
 
         return period, base_normalise * (base_normalise >= P.rsa_nv)
 
