@@ -849,8 +849,12 @@ class rsa_forfait_logement(Variable):
         participation_frais = self.cast_from_entity_to_roles(participation_frais_holder)
         participation_frais = self.filter_role(participation_frais, role = CHEF)
 
+        loyer_holder = simulation.compute('loyer', period)
+        loyer = self.cast_from_entity_to_roles(loyer_holder)
+        loyer = self.filter_role(loyer, role = CHEF)
+
         avantage_nature = or_(
-            statut_occupation == 2,
+            (statut_occupation == 2) * not_(loyer),
             (statut_occupation == 6) * (1 - participation_frais)
         )
 
