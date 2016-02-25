@@ -21,6 +21,33 @@ class ppa_eligibilite(Variable):
 
         return period, elig
 
+class ppa_eligibilite_etudiants(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Eligibilité à la PPA (condition sur tout le trimestre)"
+
+    def function(self, simulation, period):
+        P = simulation.legislation_at(period.start)
+        period = period.this_month
+        ppa_majoree_eligibilite = simulation.calculate('rsa_majore_eligibilite', period)
+
+        # Pour un individu
+        etudiant = simulation.calculate('etudiant', period) # individu
+        plancher_ressource = 169 * P.cotsoc.gen.smic_h_b * P.fam.af.seuil_rev_taux
+        def condition_ressource(period):
+            revenu_activite = simulation.calculate('ppa_revenu_activite_i', period)
+            return revenu_activite > plancher_ressource
+        m_1 = period.offset(-1, 'month')
+        m_2 = period.offset(-2, 'month')
+        m_3 = period.offset(-3, 'month')
+        condition_etudiant_i = condition_ressource(m_1) * condition_ressource(m_2) * condition_ressource(m_3)
+        condition_non_etudiant_i = simulation.calculate_add('ppa_revenu_activite_i', period.last_3_months) > 0
+        condition_i = where(etudiant, condition_etudiant_i, condition_non_etudiant_i)
+
+        # Au moins une personne de la famille doit être non étudiant ou avoir des ressources > plancher
+        condition_famille = self.any_by_roles(condition_i)
+        return period, ppa_majoree_eligibilite + condition_famille
+
 class ppa_montant_forfaitaire_familial_non_majore(Variable):
     column = FloatCol
     entity_class = Familles
@@ -232,3 +259,23 @@ class ppa_fictive(Variable):
         ppa_fictive = max_(ppa_fictive, 0)
         return period, elig * ppa_fictive
 
+class ppa(DatedVariable):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Prime Pour l'Activité"
+
+    @dated_function(start = date(2016, 1, 1))
+    def function(self, simulation, period):
+        period = period.this_month
+        seuil_non_versement = simulation.legislation_at(period.start).minim.ppa.seuil_non_versement
+        # éligibilité étudiants
+
+        ppa_eligibilite_etudiants = simulation.calculate('ppa_eligibilite_etudiants', period)
+        m_1 = period.last_month
+        m_2 = m_1.last_month
+        m_3 = m_2.last_month
+        ppa = sum(simulation.calculate('ppa_fictive', period2, extra_params = [period])
+            for period2 in [m_1, m_2, m_3]) / 3
+        ppa = ppa * ppa_eligibilite_etudiants * (ppa >= seuil_non_versement)
+
+        return period, ppa
