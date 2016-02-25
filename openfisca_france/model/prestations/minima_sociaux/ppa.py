@@ -195,3 +195,40 @@ class ppa_bonification(Variable):
 
         return period, bonification
 
+class ppa_fictive(Variable):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Prime pour l'activité fictive pour un mois"
+
+    def function(self, simulation, period, reference_period):
+        period = period.this_month
+        forfait_logement = simulation.calculate('rsa_forfait_logement', reference_period)
+        ppa_majoree_eligibilite = simulation.calculate('rsa_majore_eligibilite', reference_period)
+
+        elig = simulation.calculate('ppa_eligibilite', period)
+        pente = simulation.legislation_at(period.start).minim.rmi.pente
+        mff_non_majore = simulation.calculate('ppa_montant_forfaitaire_familial_non_majore', period)
+        mff_majore = simulation.calculate('ppa_montant_forfaitaire_familial_majore', period)
+        montant_forfaitaire_familialise = where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
+        ppa_base_ressources = simulation.calculate('ppa_base_ressources', period, extra_params = [reference_period])
+        ppa_revenu_activite = simulation.calculate('ppa_revenu_activite', period)
+        bonification_individus = simulation.compute('ppa_bonification', period)
+        bonification = self.sum_by_entity(bonification_individus)
+
+        ppa_montant_base = (
+            montant_forfaitaire_familialise +
+            bonification +
+            pente * ppa_revenu_activite - ppa_base_ressources
+            - forfait_logement
+            )
+
+        ppa_deduction = (
+            montant_forfaitaire_familialise
+            - ppa_base_ressources
+            - forfait_logement
+            )
+
+        ppa_fictive = ppa_montant_base - max_(ppa_deduction,0)
+        ppa_fictive = max_(ppa_fictive, 0)
+        return period, elig * ppa_fictive
+
