@@ -22,7 +22,7 @@ build_column('allocation_securisation_professionnelle', FloatCol(entity = 'ind',
 build_column('prime_forfaitaire_mensuelle_reprise_activite', FloatCol(entity = 'ind', label = u"Prime forfaitaire mensuelle pour la reprise d'activité"))
 build_column('indemnites_volontariat', FloatCol(entity = 'ind', label = u"Indemnités de volontariat"))
 build_column('dedommagement_victime_amiante', FloatCol(entity = 'ind', label = u"Dédommagement versé aux victimes de l'amiante"))
-build_column('prestation_compensatoire', FloatCol(entity = 'ind', label = u"Dédommagement versé aux victimes de l'amiante"))
+build_column('prestation_compensatoire', FloatCol(entity = 'ind', label = u"Prestation compensatoire"))
 build_column('pensions_invalidite', FloatCol(entity = 'ind', label = u"Pensions d'invalidité"))
 build_column('bourse_enseignement_sup', FloatCol(entity = 'ind', label = u"Bourse de l'enseignement supérieur"))
 
