@@ -173,3 +173,25 @@ class ppa_base_ressources(Variable):
         ppa_revenu_activite = simulation.calculate('ppa_revenu_activite', period)
         ppa_ressources_hors_activite = simulation.calculate('ppa_ressources_hors_activite', period, extra_params = [reference_period])
         return period, ppa_revenu_activite + ppa_ressources_hors_activite
+
+class ppa_bonification(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Bonification de la PPA pour un individu"
+
+    def function(self, simulation, period):
+        period = period.this_month
+        P = simulation.legislation_at(period.start)
+        smic_horaire = P.cotsoc.gen.smic_h_b
+        rsa_base = P.minim.rmi.rmi
+        revenu_activite = simulation.calculate('ppa_revenu_activite_i', period)
+        seuil_1 = P.minim.ppa.bonification.seuil_1 * smic_horaire
+        seuil_2 = P.minim.ppa.bonification.seuil_2 * smic_horaire
+        bonification_max = round_(P.minim.ppa.bonification.montant_max * rsa_base)
+
+        bonification = bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
+        bonification = max_(bonification, 0)
+        bonification = min_(bonification, bonification_max)
+
+        return period, bonification
+
