@@ -71,7 +71,7 @@ individus:
       2012-01: 0
   - age: 16
     age_en_mois: 203
-    alt: true
+    garde_alternee: true
     birth: "1998-01-01"
     epargne_non_remuneree:
       2012-01: 0

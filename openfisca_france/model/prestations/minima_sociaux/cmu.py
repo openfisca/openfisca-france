@@ -93,7 +93,7 @@ class cmu_c_plafond(Variable):
     def function(self, simulation, period):
         period = period.this_month
         age_holder = simulation.compute('age', period)
-        alt_holder = simulation.compute('alt', period)
+        alt_holder = simulation.compute('garde_alternee', period)
         cmu_eligible_majoration_dom = simulation.calculate('cmu_eligible_majoration_dom', period)
         # cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
         P = simulation.legislation_at(period.start).cmu

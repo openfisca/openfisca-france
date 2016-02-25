@@ -147,7 +147,7 @@ individus:
   - a_charge_fiscale: true
     age: 5
     age_en_mois: 66
-    alt: true
+    garde_alternee: true
     birth: "2010-01-01"
     enfant_place: false
     epargne_non_remuneree:
@@ -165,7 +165,7 @@ individus:
   - a_charge_fiscale: true
     age: 3
     age_en_mois: 42
-    alt: true
+    garde_alternee: true
     birth: "2012-01-01"
     enfant_place: false
     epargne_non_remuneree:
