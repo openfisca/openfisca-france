@@ -281,7 +281,7 @@ class rsa_base_ressources_i(Variable):
         allocation_securisation_professionnelle = r.calcule_ressource('allocation_securisation_professionnelle')
         prestation_compensatoire = r.calcule_ressource('prestation_compensatoire')
         rto_declarant1 = r.calcule_ressource('rto_declarant1')
-        rfon_ms = r.calcule_ressource('rfon_ms')
+        revenus_fonciers_minima_sociaux = r.calcule_ressource('revenus_fonciers_minima_sociaux')
         div_ms = r.calcule_ressource('div_ms')
         gains_exceptionnels = r.calcule_ressource('gains_exceptionnels')
         dedommagement_victime_amiante = r.calcule_ressource('dedommagement_victime_amiante')
@@ -295,7 +295,7 @@ class rsa_base_ressources_i(Variable):
 
         result = (
             chomage_net + retraite_nette + pensions_alimentaires_percues + rto_declarant1 + rev_cap_bar +
-            rev_cap_lib + rfon_ms + div_ms +
+            rev_cap_lib + revenus_fonciers_minima_sociaux + div_ms +
             gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
             allocation_securisation_professionnelle + prestation_compensatoire +
             rsa_base_ressources_patrimoine_i
@@ -539,7 +539,7 @@ class rsa_revenu_activite_i(Variable):
         return period, result
 
 
-class rfon_ms(Variable):
+class revenus_fonciers_minima_sociaux(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Revenus fonciers pour la base ressource du rmi/rsa"
