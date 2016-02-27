@@ -14,11 +14,11 @@
     effectif_entreprise: 1
     contrat_de_travail_debut: 2015-07-01
   output_variables:
-    salaire_super_brut: 1637
-    cout_du_travail: 1383
-    salaire_super_brut_hors_allegements: 2071
+    salaire_super_brut: 1630.4
+    cout_du_travail: 1376.4
+    salaire_super_brut_hors_allegements: 2064.4
     salaire_net: 1136
-    cotisations_employeur: -613.5
+    cotisations_employeur: -606.9
     allegement_fillon: 407
     aide_premier_salarie: 166.7
     credit_impot_competitivite_emploi: 87.5
@@ -33,5 +33,5 @@
     effectif_entreprise: 2
     contrat_de_travail_debut: 2015-07-01
   output_variables:
-    salaire_super_brut: 1637
-    cout_du_travail: 1550
+    salaire_super_brut: 1630.4
+    cout_du_travail: 1543.4

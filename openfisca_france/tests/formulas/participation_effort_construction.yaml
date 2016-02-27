@@ -1,0 +1,17 @@
+- period: "2016-01"
+  name: Participation à l'effort de construction
+  relative_error_margin: 0.01
+  input_variables:
+    salaire_de_base: 1467
+    effectif_entreprise: 20
+  output_variables:
+    participation_effort_construction: -1467 * .0045
+
+- period: "2016-01"
+  name: Participation à l'effort de construction - entreprise en dessous du seuil
+  relative_error_margin: 0.01
+  input_variables:
+    salaire_de_base: 1467
+    effectif_entreprise: 19
+  output_variables:
+    participation_effort_construction: 0
