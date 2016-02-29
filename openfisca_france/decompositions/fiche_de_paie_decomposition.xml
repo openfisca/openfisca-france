@@ -45,7 +45,7 @@
         <NODE code="allegement_fillon" color="0,171,208" desc="Allègement sur les bas salaires (Fillon)" shortname="Allèg. sal." />
         <NODE code="credit_impot_competitivite_emploi" color="0,171,255" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
         <NODE code="aide_premier_salarie" desc="Aide à l'embauche d'un premier salarié" shortname="Aide 1er sal." />
-        <NODE code="aide_embauche_PME" desc="Aide PME à l'embauche d'un salarié" shortname="Aide PME" />
+        <NODE code="aide_embauche_pme" desc="Aide PME à l'embauche d'un salarié" shortname="Aide PME" />
         <NODE code="tehr" desc="Taxe exceptionnelle sur les hauts revenus" shortname="TEHR" />
       </NODE>
       <NODE code="cotisations_salariales" color="243,166,171" desc="Cotisations sociales salariées" shortname="Cot. soc. sal.">

@@ -177,7 +177,7 @@ class aide_premier_salarie(DatedVariable):
         return period, eligible * (montant_max / 24) * coefficient_proratisation
 
 
-class aide_embauche_PME(DatedVariable):
+class aide_embauche_pme(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Aide à l'embauche d'un salarié pour les PME"
