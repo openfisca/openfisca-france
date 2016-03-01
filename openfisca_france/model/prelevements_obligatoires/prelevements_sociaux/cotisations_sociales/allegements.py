@@ -6,16 +6,20 @@ from functools import partial
 import logging
 
 from numpy import (
-    busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, logical_and as and_, maximum as max_,
-    minimum as min_, round as round_, timedelta64
+    busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, logical_and as and_,
+    maximum as max_, minimum as min_, round as round_, timedelta64
     )
 from datetime import datetime
+
+
+from openfisca_core import periods
 
 from ....base import *  # noqa analysis:ignore
 from .....assets.holidays import holidays
 
+
 log = logging.getLogger(__name__)
-from openfisca_core import periods
+
 
 class assiette_allegement(Variable):
     base_function = requested_period_added_value
@@ -112,14 +116,11 @@ class credit_impot_competitivite_emploi(DatedVariable):
         stagiaire = simulation.calculate('stagiaire', period)
         cotsoc = simulation.legislation_at(period.start).cotsoc
         taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, cotsoc)
-        credit_impot_competitivite_emploi = (
-            taux_cice
-            * assiette_allegement
-            )
-
+        credit_impot_competitivite_emploi = taux_cice * assiette_allegement
         non_cumul = not_(stagiaire)
 
         return period, credit_impot_competitivite_emploi * non_cumul
+
 
 class aide_premier_salarie(DatedVariable):
     column = FloatCol
@@ -137,12 +138,13 @@ class aide_premier_salarie(DatedVariable):
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
 
         # Cette aide est temporaire.
-        # TODO : Si toutefois elle est reconduite et modifiée pour 2017, les dates et le montant seront à implémenter comme des params xml.
+        # TODO : Si toutefois elle est reconduite et modifiée pour 2017, les dates et le montant seront à
+        # implémenter comme des params xml.
 
         eligible_contrat = and_(
             contrat_de_travail_debut >= datetime64("2015-06-09"),
             contrat_de_travail_debut <= datetime64("2016-12-31")
-        )
+            )
 
         # Si CDD, durée du contrat doit être > 1 an
         eligible_duree = or_(
@@ -150,7 +152,7 @@ class aide_premier_salarie(DatedVariable):
             contrat_de_travail_duree == 0,
             # durée déterminée supérieure à 1 an
             and_(
-                contrat_de_travail_duree == 1, # CDD
+                contrat_de_travail_duree == 1,  # CDD
                 # > 6 mois
                 (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
                 # Initialement, la condition était d'un contrat >= 12 mois,
@@ -158,23 +160,23 @@ class aide_premier_salarie(DatedVariable):
                 )
             )
 
-
         eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
-
         eligible = \
             (effectif_entreprise == 1) * not_(apprenti) * eligible_contrat * eligible_duree * eligible_date
 
         # somme sur 24 mois, à raison de 500 € maximum par trimestre
         montant_max = 4000
 
-        # TODO comment implémenter la condition "premier employé" ? L'effectif est insuffisant en cas de rupture d'un premier contrat
+        # TODO comment implémenter la condition "premier employé" ? L'effectif est insuffisant en cas de rupture
+        # d'un premier contrat
         # Condition : l’entreprise n’a pas conclu de contrat de travail avec un salarié,
         # au-delà de la période d’essai, dans les 12 mois précédant la nouvelle
         # embauche.
 
         # Si le salarié est embauché à temps partiel,
         # l’aide est proratisée en fonction de sa durée de travail.
-        # TODO cette multiplication par le coefficient de proratisation suffit-elle pour le cas du temps partiel ? A tester
+        # TODO cette multiplication par le coefficient de proratisation suffit-elle pour le cas du temps partiel ?
+        # A tester
         return period, eligible * (montant_max / 24) * coefficient_proratisation
 
 
@@ -197,7 +199,8 @@ class aide_embauche_pme(DatedVariable):
         salaire_de_base = simulation.calculate('salaire_de_base', period)
 
         # Cette aide est temporaire.
-        # Si toutefois elle est reconduite et modifiée pour 2017, les dates et le montant seront à implémenter comme des params xml.
+        # Si toutefois elle est reconduite et modifiée pour 2017, les dates et le montant seront à implémenter comme
+        # des params xml.
 
         # jusqu’à 1,3 fois le Smic
         eligible_salaire = salaire_de_base <= (1.3 * smic_proratise)
@@ -230,16 +233,17 @@ class aide_embauche_pme(DatedVariable):
         # Valable 2 ans seulement
         eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
 
-        eligible = \
-            eligible_salaire * eligible_effectif * non_cumulee * eligible_contrat * eligible_duree * eligible_date * not_(apprenti)
-
-
+        eligible = (
+            eligible_salaire * eligible_effectif * non_cumulee * eligible_contrat * eligible_duree *
+            eligible_date * not_(apprenti)
+            )
         # somme sur 24 mois, à raison de 500 € maximum par trimestre
         montant_max = 4000
 
         # Si le salarié est embauché à temps partiel,
         # l’aide est proratisée en fonction de sa durée de travail.
-        # TODO cette multiplication par le coefficient de proratisation suffit-elle pour le cas du temps partiel ? A tester
+        # TODO cette multiplication par le coefficient de proratisation suffit-elle pour le cas du temps partiel ?
+        # A tester
         return period, eligible * (montant_max / 24) * coefficient_proratisation
 
 
@@ -272,10 +276,10 @@ class allegement_fillon(DatedVariable):
 
         # switch on 3 possible payment options
         allegement = switch_on_allegement_mode(
-                simulation, period,
-                allegement_mode_recouvrement,
-                self.__class__.__name__,
-                )
+            simulation, period,
+            allegement_mode_recouvrement,
+            self.__class__.__name__,
+            )
 
         return period, allegement * not_(stagiaire) * not_(apprenti)
 
@@ -327,10 +331,10 @@ class allegement_cotisation_allocations_familiales(DatedVariable):
 
         # switch on 3 possible payment options
         allegement = switch_on_allegement_mode(
-                simulation, period,
-                allegement_mode_recouvrement,
-                self.__class__.__name__,
-                )
+            simulation, period,
+            allegement_mode_recouvrement,
+            self.__class__.__name__,
+            )
 
         return period, allegement * not_(stagiaire) * not_(apprenti)
 
@@ -365,13 +369,13 @@ def switch_on_allegement_mode(simulation, period, mode_recouvrement, variable_na
     """
     compute_function = globals()['compute_' + variable_name]
     return switch(
-            mode_recouvrement,
-            {
-                0: compute_allegement_annuel(simulation, period, 'allegement_fillon', compute_function),
-                1: compute_allegement_anticipe(simulation, period, 'allegement_fillon', compute_function),
-                2: compute_allegement_progressif(simulation, period, 'allegement_fillon', compute_function),
-                },
-            )
+        mode_recouvrement,
+        {
+            0: compute_allegement_annuel(simulation, period, 'allegement_fillon', compute_function),
+            1: compute_allegement_anticipe(simulation, period, 'allegement_fillon', compute_function),
+            2: compute_allegement_progressif(simulation, period, 'allegement_fillon', compute_function),
+            },
+        )
 
 
 def compute_allegement_annuel(simulation, period, variable_name, compute_function):
