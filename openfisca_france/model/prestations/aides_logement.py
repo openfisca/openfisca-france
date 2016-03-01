@@ -11,6 +11,7 @@ from numpy import (ceil, fromiter, int16, logical_not as not_, logical_or as or_
     minimum as min_, round)
 
 import openfisca_france
+from openfisca_core.periods import Instant
 
 from ..base import *  # noqa  analysis:ignore
 from .prestations_familiales.base_ressource import nb_enf
@@ -88,21 +89,32 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        salaire_imposable_holder = simulation.compute('salaire_imposable', period.offset(-1))
-        salaire_imposable = self.sum_by_entity(salaire_imposable_holder, roles = [CHEF, PART])
 
-        # Application de l'abattement pour frais professionnels
-        params_abattement = simulation.legislation_at(period.start).ir.tspr.abatpro
-        somme_salaires_mois_precedent = 12 * salaire_imposable
-        montant_abattement = round(
-            min_(
-                max_(params_abattement.taux * somme_salaires_mois_precedent, params_abattement.min),
-                params_abattement.max
+        def eval_forfaitaire_salaries():
+            salaire_imposable_holder = simulation.compute('salaire_imposable', period.offset(-1))
+            salaire_imposable = self.sum_by_entity(salaire_imposable_holder, roles = [CHEF, PART])
+
+            # Application de l'abattement pour frais professionnels
+            params_abattement = simulation.legislation_at(period.start).ir.tspr.abatpro
+            somme_salaires_mois_precedent = 12 * salaire_imposable
+            montant_abattement = round_(
+                min_(
+                    max_(params_abattement.taux * somme_salaires_mois_precedent, params_abattement.min),
+                    params_abattement.max
+                    )
                 )
-            )
-        result = max_(0, somme_salaires_mois_precedent - montant_abattement)
+            return max_(0, somme_salaires_mois_precedent - montant_abattement)
 
-        return period, result
+        def eval_forfaitaire_tns():
+            last_july_first= Instant(
+                (period.start.year if period.start.month >= 7 else period.start.year - 1,
+                7, 1))
+            smic_horaire_brut = simulation.legislation_at(last_july_first).cotsoc.gen.smic_h_b
+            travailleur_non_salarie_holder = simulation.compute('travailleur_non_salarie', period);
+            any_tns = self.any_by_roles(travailleur_non_salarie_holder)
+            return any_tns * 1500 * smic_horaire_brut
+
+        return period, max_(eval_forfaitaire_salaries(), eval_forfaitaire_tns())
 
 
 class aide_logement_abattement_chomage_indemnise(Variable):
