@@ -69,7 +69,7 @@ output_variables:
   financement_organisations_syndicales: -.11  # -35 * 52 * 9.61 * .49 / 12 * 0.00016
   formation_professionnelle: -3.93
   fnal: -.71
-  participation_effort_construction: -3.21
+  participation_effort_construction: 0 # was incorrectly : -3.21
   prevoyance_obligatoire_cadre: 0
   taxe_apprentissage: 0
   versement_transport: 0
@@ -81,8 +81,8 @@ output_variables:
   assiette_cotisations_sociales: 35 * 52 * 9.61 * .49 / 12
 
   cotisations_employeur: -284.96 - 10.71 -.11
-  cotisations_employeur: -2.14 -8.57 -33.21 -28.57 -12.86 -60.71 -10.71 -37.49 -91.42 -2.14 -3.93 -.71 -3.21 -.11
-  exoneration_cotisations_employeur_apprenti: 285.07
+  cotisations_employeur: -2.14 -8.57 -33.21 -28.57 -12.86 -60.71 -10.71 -37.49 -91.42 -2.14 -3.93 -.71 -.11
+  exoneration_cotisations_employeur_apprenti: 281.86
 
   #
   cotisations_salariales: 0  #-5.71 -22.14 -17.14 -2.14 -48.92 -5.36

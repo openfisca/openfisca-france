@@ -15,6 +15,7 @@
             <NODE code="allegement_fillon" desc="Allègement sur les bas salaires" shortname="Allèg. sal." />
             <NODE code="credit_impot_competitivite_emploi" desc="Crédit d'impôt compétitivité-emploi" shortname="CICE" />
             <NODE code="aide_premier_salarie" desc="Aide à l'embauche d'un premier salarié" shortname="Aide 1er sal." />
+            <NODE code="aide_embauche_pme" desc="Aide PME à l'embauche d'un salarié" shortname="Aide PME" />
           </NODE>
           <NODE code="cotisations_salariales" color="243,166,171" desc="Cotisations sociales salariées" shortname="Cotsoc sal">
             <NODE code="cotisations_salariales_contrib" color="243,166,171" desc="Cotisations sociales salariales contributtives" shortname="Cotsoc sal cont." />

@@ -6,10 +6,10 @@
     effectif_entreprise: 1
     type_sal: 0
   output_variables:
-    cotisations_employeur: -613.55
+    cotisations_employeur: -607
     allegement_fillon: 409.56
-    salaire_super_brut_hors_allegements: 2058
-    salaire_super_brut: 1648 # fillon
+    salaire_super_brut_hors_allegements: 2051.5
+    salaire_super_brut: 1641.5
 
 - period: "2015-04"
   relative_error_margin: 0.01
@@ -20,10 +20,9 @@
     type_sal: 0
     jeune_entreprise_innovante: 1
   output_variables:
-    cotisations_employeur: -613.55
+    cotisations_employeur: -607
     allegement_fillon: 407.4
     exoneration_cotisations_employeur_jei: 413.2
     exonerations_et_allegements: 820.6 # fillon + JEI
-    salaire_super_brut_hors_allegements: 2058
-    salaire_super_brut: 1238
-
+    salaire_super_brut_hors_allegements: 2051.5
+    salaire_super_brut: 1231.5

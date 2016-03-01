@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import os
+import os, itertools
 
 
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -137,7 +137,7 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
             #     os.path.join(COUNTRY_DIR, 'assets', 'xxx', 'yyy.xml'),
             #     ('insert', 'into', 'existing', 'element'),
             #     ),
-            ]
+            ] + zip(model.extensions.extensions_parameters, itertools.repeat(None))
 
         preprocess_legislation = staticmethod(preprocessing.preprocess_legislation)
 
