@@ -16,7 +16,7 @@
     aide_premier_salarie: 166.67
 
 - period: "2015-11"
-  name: Pas le premier salarier
+  name: Pas le premier salarié
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1457.52
@@ -27,7 +27,7 @@
     aide_premier_salarie: 0
 
 - period: "2015-11"
-  name: Le CDD doit être de plus de 12 mois
+  name: CDD > de 12 mois
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1457.52
@@ -41,7 +41,7 @@
     aide_premier_salarie: 166.67
 
 - period: "2015-11"
-  name: Le CDD est < 12 mois
+  name: CDD > 6 mois
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1457.52
@@ -53,8 +53,22 @@
     contrat_de_travail_debut: 2015-07-01
     contrat_de_travail_fin: 2016-06-30
   output_variables:
-    aide_premier_salarie: 0
+    aide_premier_salarie: 166.67
 
+- period: "2015-11"
+  name: CDD < 6 mois
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1457.52
+    # necessary when requesting on a 1 month salary :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 1
+    contrat_de_travail_duree: 1 # CDD
+    # supérieur à 1 an :
+    contrat_de_travail_debut: 2015-07-01
+    contrat_de_travail_fin: 2015-12-30
+  output_variables:
+    aide_premier_salarie: 0
 
 - period: "2015-11"
   name: Temps partiel

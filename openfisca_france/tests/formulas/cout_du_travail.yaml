@@ -22,6 +22,7 @@
     allegement_fillon: 407
     aide_premier_salarie: 166.7
     credit_impot_competitivite_emploi: 87.5
+
 - period: "2015-11"
   name: Cout du travail micro entreprise ayant déjà des employés
   relative_error_margin: 0.001
@@ -35,3 +36,17 @@
   output_variables:
     salaire_super_brut: 1630.4
     cout_du_travail: 1543.4
+
+- period: "2016-02"
+  name: Cout du travail 2016, pas d'aide 1er sal. mais aide PME
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1467
+    # necessary when requesting on a 1 month salary :
+    allegement_fillon_mode_recouvrement: 1
+    allegement_cotisation_allocations_familiales_mode_recouvrement: 1
+    effectif_entreprise: 249
+    contrat_de_travail_debut: 2016-01-25
+  output_variables:
+    salaire_super_brut: 1655
+    cout_du_travail: 1401

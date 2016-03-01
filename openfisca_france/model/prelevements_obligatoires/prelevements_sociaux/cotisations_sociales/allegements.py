@@ -9,6 +9,7 @@ from numpy import (
     busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, logical_and as and_, maximum as max_,
     minimum as min_, round as round_, timedelta64
     )
+from datetime import datetime
 
 from ....base import *  # noqa analysis:ignore
 from .....assets.holidays import holidays
@@ -120,7 +121,6 @@ class credit_impot_competitivite_emploi(DatedVariable):
 
         return period, credit_impot_competitivite_emploi * non_cumul
 
-
 class aide_premier_salarie(DatedVariable):
     column = FloatCol
     entity_class = Individus
@@ -137,27 +137,32 @@ class aide_premier_salarie(DatedVariable):
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
 
         # Cette aide est temporaire.
-        # TODO : Si toutefois elle est reconduite en 2016, les dates et le montant seront à implémenter comme des params xml.
+        # TODO : Si toutefois elle est reconduite et modifiée pour 2017, les dates et le montant seront à implémenter comme des params xml.
 
-        contrat_eligible = and_(
+        eligible_contrat = and_(
             contrat_de_travail_debut >= datetime64("2015-06-09"),
-            contrat_de_travail_debut <= datetime64("2016-06-08")
+            contrat_de_travail_debut <= datetime64("2016-12-31")
         )
+
         # Si CDD, durée du contrat doit être > 1 an
-        duree_eligible = or_(
+        eligible_duree = or_(
             # durée indéterminée
             contrat_de_travail_duree == 0,
             # durée déterminée supérieure à 1 an
             and_(
-                contrat_de_travail_duree == 1,
-                contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')),
+                contrat_de_travail_duree == 1, # CDD
+                # > 6 mois
+                (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
+                # Initialement, la condition était d'un contrat >= 12 mois,
+                # pour les demandes transmises jusqu'au 26 janvier.
+                )
             )
 
 
-        date_eligible = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
+        eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
 
         eligible = \
-            (effectif_entreprise == 1) * not_(apprenti) * contrat_eligible * duree_eligible * date_eligible
+            (effectif_entreprise == 1) * not_(apprenti) * eligible_contrat * eligible_duree * eligible_date
 
         # somme sur 24 mois, à raison de 500 € maximum par trimestre
         montant_max = 4000
@@ -166,6 +171,71 @@ class aide_premier_salarie(DatedVariable):
         # Condition : l’entreprise n’a pas conclu de contrat de travail avec un salarié,
         # au-delà de la période d’essai, dans les 12 mois précédant la nouvelle
         # embauche.
+
+        # Si le salarié est embauché à temps partiel,
+        # l’aide est proratisée en fonction de sa durée de travail.
+        # TODO cette multiplication par le coefficient de proratisation suffit-elle pour le cas du temps partiel ? A tester
+        return period, eligible * (montant_max / 24) * coefficient_proratisation
+
+
+class aide_embauche_pme(DatedVariable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Aide à l'embauche d'un salarié pour les PME"
+    url = u"http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
+
+    @dated_function(start = date(2016, 1, 18))
+    def function(self, simulation, period):
+        period = period.this_month
+        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
+        apprenti = simulation.calculate('apprenti', period)
+        contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
+        contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
+        contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
+        coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
+        smic_proratise = simulation.calculate('smic_proratise', period)
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
+
+        # Cette aide est temporaire.
+        # Si toutefois elle est reconduite et modifiée pour 2017, les dates et le montant seront à implémenter comme des params xml.
+
+        # jusqu’à 1,3 fois le Smic
+        eligible_salaire = salaire_de_base <= (1.3 * smic_proratise)
+
+        # pour les PME
+        eligible_effectif = effectif_entreprise < 250
+
+        # non cumulable avec l'aide pour la première embauche
+        # qui est identique, si ce n'est qu'elle couvre tous les salaires
+        non_cumulee = effectif_entreprise > 1
+
+        eligible_contrat = and_(
+            contrat_de_travail_debut >= datetime64("2016-01-18"),
+            contrat_de_travail_debut <= datetime64("2016-12-31")
+        )
+
+        # Si CDD, durée du contrat doit être > 1 an
+        eligible_duree = or_(
+            # durée indéterminée
+            contrat_de_travail_duree == 0,
+            # durée déterminée supérieure à 1 an
+            and_(
+                # CDD
+                contrat_de_travail_duree == 1,
+                # > 6 mois
+                (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
+                )
+            )
+
+        # Valable 2 ans seulement
+        eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
+
+        eligible = \
+            eligible_salaire * eligible_effectif * non_cumulee * eligible_contrat * eligible_duree * eligible_date * not_(apprenti)
+
+
+        # somme sur 24 mois, à raison de 500 € maximum par trimestre
+        montant_max = 4000
 
         # Si le salarié est embauché à temps partiel,
         # l’aide est proratisée en fonction de sa durée de travail.
