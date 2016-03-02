@@ -138,7 +138,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
                     u"""adoption""",  # Enfant adopté
-                    u"""alt""",  # Enfant en garde alternée
+                    u"""garde_alternee""",  # Enfant en garde alternée
                     u"""enceinte""",  # Est enceinte
                     u"""invalide""",  # Invalide
                     u"""rempli_obligation_scolaire""",  # Rempli l'obligation scolaire

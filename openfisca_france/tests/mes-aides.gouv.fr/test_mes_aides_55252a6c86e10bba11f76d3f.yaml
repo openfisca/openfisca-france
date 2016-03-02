@@ -126,7 +126,7 @@ individus:
       2012-01: 0
   - age: 12
     age_en_mois: 150
-    alt: true
+    garde_alternee: true
     birth: "2002-09-09"
     epargne_non_remuneree:
       2012-01: 0
@@ -143,7 +143,7 @@ individus:
       2012-01: 0
   - age: 11
     age_en_mois: 138
-    alt: true
+    garde_alternee: true
     birth: "2003-09-09"
     epargne_non_remuneree:
       2012-01: 0

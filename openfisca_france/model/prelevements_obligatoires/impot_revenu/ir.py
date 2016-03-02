@@ -148,11 +148,11 @@ class enfant_a_charge(Variable):
     def function(self, simulation, period):
         period = period.this_year
         age = simulation.calculate('age', period)
-        alt = simulation.calculate('alt', period)
+        garde_alternee = simulation.calculate('garde_alternee', period)
         invalide = simulation.calculate('invalide', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, and_(and_(quifoy >= 2, or_(age < 18, invalide)), not_(alt))
+        return period, and_(and_(quifoy >= 2, or_(age < 18, invalide)), not_(garde_alternee))
 
 
 class nbF(PersonToEntityColumn):
@@ -179,11 +179,11 @@ class enfant_a_charge_invalide(Variable):
 
     def function(self, simulation, period):
         period = period.this_year
-        alt = simulation.calculate('alt', period)
+        garde_alternee = simulation.calculate('garde_alternee', period)
         invalide = simulation.calculate('invalide', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, and_(and_(quifoy >= 2, invalide), not_(alt))
+        return period, and_(and_(quifoy >= 2, invalide), not_(garde_alternee))
 
 
 class nbG(PersonToEntityColumn):
@@ -203,11 +203,11 @@ class enfant_a_charge_garde_alternee(Variable):
     def function(self, simulation, period):
         period = period.this_year
         age = simulation.calculate('age', period)
-        alt = simulation.calculate('alt', period)
+        garde_alternee = simulation.calculate('garde_alternee', period)
         invalide = simulation.calculate('invalide', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, and_(and_(quifoy >= 2, or_(age < 18, invalide)), alt)
+        return period, and_(and_(quifoy >= 2, or_(age < 18, invalide)), garde_alternee)
 
 
 class nbH(PersonToEntityColumn):
@@ -226,11 +226,11 @@ class enfant_a_charge_garde_alternee_invalide(Variable):
 
     def function(self, simulation, period):
         period = period.this_year
-        alt = simulation.calculate('alt', period)
+        garde_alternee = simulation.calculate('garde_alternee', period)
         invalide = simulation.calculate('invalide', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, and_(and_(quifoy >= 2, invalide), alt)
+        return period, and_(and_(quifoy >= 2, invalide), garde_alternee)
 
 
 class nbI(PersonToEntityColumn):
@@ -2973,12 +2973,13 @@ class ppe_brute(Variable):
         return period, ppe_tot
 
 
-class ppe(Variable):
+class ppe(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Prime pour l'emploi"
     url = "http://vosdroits.service-public.fr/particuliers/F2882.xhtml"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         """
         PPE effectivement versée

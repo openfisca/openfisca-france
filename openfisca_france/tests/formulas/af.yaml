@@ -1613,7 +1613,7 @@
       birth: "2011-01-01"
     - id: "enfant3"
       birth: "2012-01-01"
-      alt: true
+      garde_alternee: true
   output_variables:
     af_coeff_garde_alternee: 0.8333
     af: (296.53 * 0.8333)
@@ -1643,7 +1643,7 @@
       birth: "2001-01-01"
     - id: "enfant3"
       birth: "2002-01-01"
-      alt: true
+      garde_alternee: true
   output_variables:
     af_coeff_garde_alternee: 1
     af: 268.55
@@ -1668,7 +1668,7 @@
       birth: "1966-01-01"
     - id: "enfant1"
       birth: "2000-01-01"
-      alt: True
+      garde_alternee: True
     - id: "enfant2"
       birth: "2010-01-01"
     - id: "enfant3"
@@ -1696,7 +1696,7 @@
       birth: "1956-01-01"
     - id: "enfant1"
       birth: "1990-01-01"
-      alt: true
+      garde_alternee: true
     - id: "enfant2"
       birth: "2000-01-01"
     - id: "enfant3"

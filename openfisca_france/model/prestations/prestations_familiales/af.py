@@ -53,11 +53,11 @@ class af_coeff_garde_alternee(DatedVariable):
     def function_2007(self, simulation, period):
         period = period.this_month
         nb_enf = simulation.calculate('af_nbenf', period)
-        alt = simulation.compute('alt', period)
+        garde_alternee = simulation.compute('garde_alternee', period)
         af_enfant_a_charge = simulation.compute('af_enfant_a_charge', period)
 
-        # Le nombre d'enfants à charge en garde alternée, qui vérifient donc af_enfant_a_charge = true et alt = true
-        nb_enf_garde_alternee = self.sum_by_entity(alt.array * af_enfant_a_charge.array)
+        # Le nombre d'enfants à charge en garde alternée, qui vérifient donc af_enfant_a_charge = true et garde_alternee = true
+        nb_enf_garde_alternee = self.sum_by_entity(garde_alternee.array * af_enfant_a_charge.array)
 
         # Avoid division by zero. If nb_enf == 0, necessarily nb_enf_garde_alternee = 0 so coeff = 1
         coeff = 1 - (nb_enf_garde_alternee / (nb_enf + (nb_enf == 0))) * 0.5
@@ -227,7 +227,7 @@ class af_majoration_enfant(Variable):
 
         af_enfant_a_charge = simulation.calculate('af_enfant_a_charge', period)
         age = simulation.calculate('age', period)
-        alt = simulation.calculate('alt', period)
+        garde_alternee = simulation.calculate('garde_alternee', period)
         age_aine_holder = simulation.compute('af_age_aine', period)
         age_aine = self.cast_from_entity_to_roles(age_aine_holder, roles = ENFS)
         af_nbenf_holder = simulation.compute('af_nbenf', period)
@@ -252,7 +252,7 @@ class af_majoration_enfant(Variable):
         # Attention ! Ne fonctionne pas pour les enfants du même âge (typiquement les jumeaux...)
         pas_aine = or_(af_nbenf != 2, (af_nbenf == 2) * not_(age == age_aine))
 
-        coeff_garde_alternee = where(alt, pfam.af.facteur_garde_alternee, 1)
+        coeff_garde_alternee = where(garde_alternee, pfam.af.facteur_garde_alternee, 1)
 
         return period, af_enfant_a_charge * (af_base > 0) * pas_aine * montant * coeff_garde_alternee
 

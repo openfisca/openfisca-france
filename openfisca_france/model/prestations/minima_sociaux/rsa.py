@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select)
+from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select, where)
 
 from ...base import *  # noqa analysis:ignore
 from ..prestations_familiales.base_ressource import nb_enf, age_en_mois_benjamin
@@ -159,7 +159,7 @@ class api(DatedVariable):
         smic55_holder = simulation.compute('smic55', period)
         isol = simulation.calculate('isol', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
-        br_rmi = simulation.calculate('br_rmi', period)
+        rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
         af_majo = simulation.calculate('af_majo', period)
         rsa = simulation.calculate('rsa', period)
         af = simulation.legislation_at(period.start).fam.af
@@ -204,7 +204,7 @@ class api(DatedVariable):
         # moins de 25 ans après inclusion dans rsa
         api1 = eligib * af.bmaf * (api.base + api.enf_sup * nb_enf(age, smic55, af.age1, api.age_pac - 1))
         rsa = (api.age_pac >= 25)  # dummy passage au rsa majoré
-        br_api = br_rmi + af_majo * not_(rsa)
+        br_api = rsa_base_ressources + af_majo * not_(rsa)
         # On pourrait mensualiser RMI, BRrmi et forfait logement
         api = max_(0, api1 - rsa_forfait_logement / 12 - br_api / 12 - rsa / 12)
         # L'API est exonérée de CRDS
@@ -233,7 +233,7 @@ class api(DatedVariable):
         # pris en compte pour le calcul de son API.
 
 
-class br_rmi(DatedVariable):
+class rsa_base_ressources(DatedVariable):
     column = FloatCol
     label = u"Base ressources du Rmi ou du Rsa"
     entity_class = Familles
@@ -241,34 +241,34 @@ class br_rmi(DatedVariable):
     @dated_function(stop = date(2009, 5, 31))
     def function_rmi(self, simulation, period):
         period = period.this_month
-        br_rmi_pf = simulation.calculate('br_rmi_pf', period)
-        br_rmi_ms = simulation.calculate('br_rmi_ms', period)
-        br_rmi_i_holder = simulation.compute('br_rmi_i', period)
+        rsa_base_ressources_prestations_familiales = simulation.calculate('rsa_base_ressources_prestations_familiales', period)
+        rsa_base_ressources_minima_sociaux = simulation.calculate('rsa_base_ressources_minima_sociaux', period)
+        rsa_base_ressources_i_holder = simulation.compute('rsa_base_ressources_i', period)
 
-        br_rmi_i_total = self.sum_by_entity(br_rmi_i_holder)
-        return period, br_rmi_pf + br_rmi_ms + br_rmi_i_total
+        rsa_base_ressources_i_total = self.sum_by_entity(rsa_base_ressources_i_holder)
+        return period, rsa_base_ressources_prestations_familiales + rsa_base_ressources_minima_sociaux + rsa_base_ressources_i_total
 
     @dated_function(start = date(2009, 6, 1))
     def function_rsa(self, simulation, period):
         period = period.this_month
-        br_rmi_pf = simulation.calculate('br_rmi_pf', period)
-        br_rmi_ms = simulation.calculate('br_rmi_ms', period)
-        br_rmi_i_holder = simulation.compute('br_rmi_i', period)
-        ra_rsa_i_holder = simulation.compute('ra_rsa_i', period)
+        rsa_base_ressources_prestations_familiales = simulation.calculate('rsa_base_ressources_prestations_familiales', period)
+        rsa_base_ressources_minima_sociaux = simulation.calculate('rsa_base_ressources_minima_sociaux', period)
+        rsa_base_ressources_i_holder = simulation.compute('rsa_base_ressources_i', period)
+        rsa_revenu_activite_i_holder = simulation.compute('rsa_revenu_activite_i', period)
 
-        br_rmi_i_total = self.sum_by_entity(br_rmi_i_holder)
-        ra_rsa_i_total = self.sum_by_entity(ra_rsa_i_holder)
-        return period, br_rmi_pf + br_rmi_ms + br_rmi_i_total + ra_rsa_i_total
+        rsa_base_ressources_i_total = self.sum_by_entity(rsa_base_ressources_i_holder)
+        rsa_revenu_activite_i_total = self.sum_by_entity(rsa_revenu_activite_i_holder)
+        return period, rsa_base_ressources_prestations_familiales + rsa_base_ressources_minima_sociaux + rsa_base_ressources_i_total + rsa_revenu_activite_i_total
 
 
-class br_rmi_i(Variable):
+class rsa_base_ressources_i(Variable):
     column = FloatCol
     label = u"Base ressource individuelle du RSA/RMI (hors revenus d'actvité)"
     entity_class = Individus
 
     def function(self, simulation, period):
         period = period.this_month
-        three_previous_months = period.start.period('month', 3).offset(-3)
+        three_previous_months = period.last_3_months
 
         r = rsa_ressource_calculator(simulation, period)
 
@@ -281,7 +281,7 @@ class br_rmi_i(Variable):
         allocation_securisation_professionnelle = r.calcule_ressource('allocation_securisation_professionnelle')
         prestation_compensatoire = r.calcule_ressource('prestation_compensatoire')
         rto_declarant1 = r.calcule_ressource('rto_declarant1')
-        rfon_ms = r.calcule_ressource('rfon_ms')
+        revenus_fonciers_minima_sociaux = r.calcule_ressource('revenus_fonciers_minima_sociaux')
         div_ms = r.calcule_ressource('div_ms')
         gains_exceptionnels = r.calcule_ressource('gains_exceptionnels')
         dedommagement_victime_amiante = r.calcule_ressource('dedommagement_victime_amiante')
@@ -295,7 +295,7 @@ class br_rmi_i(Variable):
 
         result = (
             chomage_net + retraite_nette + pensions_alimentaires_percues + rto_declarant1 + rev_cap_bar +
-            rev_cap_lib + rfon_ms + div_ms +
+            rev_cap_lib + revenus_fonciers_minima_sociaux + div_ms +
             gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
             allocation_securisation_professionnelle + prestation_compensatoire +
             rsa_base_ressources_patrimoine_i
@@ -304,14 +304,14 @@ class br_rmi_i(Variable):
         return period, result
 
 
-class br_rmi_ms(Variable):
+class rsa_base_ressources_minima_sociaux(Variable):
     column = FloatCol
     label = u"Minima sociaux inclus dans la base ressource RSA/RMI"
     entity_class = Familles
 
     def function(self, simulation, period):
         period = period.this_month
-        three_previous_months = period.start.period('month', 3).offset(-3)
+        three_previous_months = period.last_3_months
         aspa = simulation.calculate('aspa', period)
         asi = simulation.calculate('asi', period)
         ass = simulation.calculate('ass', period)
@@ -324,7 +324,7 @@ class br_rmi_ms(Variable):
         return period, aspa + asi + ass + aah + caah
 
 
-class br_rmi_pf(DatedVariable):
+class rsa_base_ressources_prestations_familiales(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Prestations familiales inclues dans la base ressource RSA/RMI"
@@ -332,48 +332,59 @@ class br_rmi_pf(DatedVariable):
     @dated_function(date(2002, 1, 1), date(2003, 12, 31))
     def function_2002(self, simulation, period):
         period = period.this_month
-        af_base = simulation.calculate('af_base', period)
-        cf = simulation.calculate('cf', period)
-        asf = simulation.calculate('asf', period)
-        apje = simulation.calculate('apje', period)
-        ape = simulation.calculate('ape', period)
-        P = simulation.legislation_at(period.start).minim
+        prestations = [
+            'af_base',
+            'cf',
+            'asf',
+            'apje',
+            'ape',
+            ]
+        result = sum(simulation.calculate(prestation, period) for prestation in prestations)
 
-        return period, P.rmi.pfInBRrmi * (af_base + cf + asf + apje + ape)
+        return period, result
 
     @dated_function(start = date(2004, 1, 1), stop = date(2014, 3, 31))
     def function_2003(self, simulation, period):
         period = period.this_month
-        af_base = simulation.calculate('af_base', period)
-        cf = simulation.calculate('cf', period)
-        asf = simulation.calculate('asf', period)
-        paje_base = simulation.calculate('paje_base', period)
-        paje_clca = simulation.calculate('paje_clca', period)
-        paje_prepare = simulation.calculate('paje_prepare', period)
-        paje_colca = simulation.calculate('paje_colca', period)
-        P = simulation.legislation_at(period.start).minim
+        prestations = [
+            'af_base',
+            'cf',
+            'asf',
+            'paje_base',
+            'paje_clca',
+            'paje_prepare',
+            'paje_colca',
+            ]
 
-        return period, P.rmi.pfInBRrmi * (af_base + cf + asf + paje_base + paje_clca + paje_prepare + paje_colca)
+        result = sum(simulation.calculate(prestation, period) for prestation in prestations)
+
+        return period, result
 
     @dated_function(start = date(2014, 4, 1))
     def function_2014(self, simulation, period):
         # TODO : Neutraliser les ressources de type prestations familiales quand elles sont interrompues
         period = period.this_month
-        af_base = simulation.calculate('af_base', period)
+
+        prestations_calculees = [
+            'af_base',
+            'rsa_forfait_asf',
+            'paje_base',
+           ]
+        prestations_autres = [
+            'paje_clca',
+            'paje_prepare',
+            'paje_colca',
+            ]
+
+        result = sum(simulation.calculate(prestation, period) for prestation in prestations_calculees)
+        result += sum(simulation.calculate_add(prestation, period.last_3_months) / 3 for prestation in prestations_autres)
         cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', period)
         cf = simulation.calculate('cf', period)
-        rsa_forfait_asf = simulation.calculate('rsa_forfait_asf', period)
-        paje_base = simulation.calculate('paje_base', period)
-        paje_clca = simulation.calculate('paje_clca', period)
-        paje_prepare = simulation.calculate('paje_prepare', period)
-        paje_colca = simulation.calculate('paje_colca', period)
-        P = simulation.legislation_at(period.start).minim
-
         # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
         cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
+        result = result + cf_non_majore
 
-        return period, P.rmi.pfInBRrmi * (af_base + rsa_forfait_asf + cf_non_majore + paje_base + paje_clca +
-            paje_prepare + paje_colca)
+        return period, result
 
 
 class crds_mini(DatedVariable):
@@ -487,7 +498,7 @@ class psa(DatedVariable):
         return period, psa
 
 
-class ra_rsa(Variable):
+class rsa_revenu_activite(Variable):
     column = FloatCol
     label = u"Revenus d'activité du RSA"
     entity_class = Familles
@@ -495,13 +506,13 @@ class ra_rsa(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        ra_rsa_i_holder = simulation.compute('ra_rsa_i', period)
+        rsa_revenu_activite_i_holder = simulation.compute('rsa_revenu_activite_i', period)
 
-        ra_rsa = self.sum_by_entity(ra_rsa_i_holder)
-        return period, ra_rsa
+        rsa_revenu_activite = self.sum_by_entity(rsa_revenu_activite_i_holder)
+        return period, rsa_revenu_activite
 
 
-class ra_rsa_i(Variable):
+class rsa_revenu_activite_i(Variable):
     column = FloatCol
     label = u"Revenus d'activité du Rsa - Individuel"
     entity_class = Individus
@@ -539,7 +550,7 @@ class ra_rsa_i(Variable):
         return period, result
 
 
-class rfon_ms(Variable):
+class revenus_fonciers_minima_sociaux(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Revenus fonciers pour la base ressource du rmi/rsa"
@@ -565,12 +576,12 @@ class rmi(DatedVariable):
     def function(self, simulation, period):
         period = period.this_month
         activite = simulation.calculate('activite', period)
-        br_rmi = simulation.calculate('br_rmi', period)
+        rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
         rsa_socle = simulation.calculate('rsa_socle', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
 
         return period, (activite != 0) * (activite != 2) * (activite != 3) * (
-            max_(0, rsa_socle - rsa_forfait_logement - br_rmi))
+            max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources))
         # TODO: Migré lors de la mensualisation. Probablement faux
 
 
@@ -617,7 +628,7 @@ class rsa_act(DatedVariable):
     label = u"Revenu de solidarité active - activité"
     start_date = date(2009, 6, 1)
 
-    @dated_function(start = date(2009, 6, 1))
+    @dated_function(start = date(2009, 6, 1), stop = date(2015, 12, 31))
     def function_2009(self, simulation, period):
         '''
         Calcule le montant du RSA activité
@@ -871,12 +882,24 @@ class rsa_majore(DatedVariable):
     def function(self, simulation, period):
         period = period.this_month
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
-        ra_rsa = simulation.calculate('ra_rsa', period)
+        rsa_revenu_activite = simulation.calculate('rsa_revenu_activite', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
-        br_rmi = simulation.calculate('br_rmi', period)
+        rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
         P = simulation.legislation_at(period.start).minim.rmi
 
-        base_normalise = max_(rsa_socle_majore - rsa_forfait_logement - br_rmi + P.pente * ra_rsa, 0)
+        base_normalise = max_(rsa_socle_majore - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite, 0)
+
+        return period, base_normalise * (base_normalise >= P.rsa_nv)
+
+    @dated_function(start = date(2016, 01, 01))
+    def function_2016(self, simulation, period):
+        period = period.this_month
+        rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
+        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
+        rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
+        P = simulation.legislation_at(period.start).minim.rmi
+
+        base_normalise = max_(rsa_socle_majore - rsa_forfait_logement - rsa_base_ressources, 0)
 
         return period, base_normalise * (base_normalise >= P.rsa_nv)
 
@@ -976,12 +999,24 @@ class rsa_non_majore(DatedVariable):
     def function(self, simulation, period):
         period = period.this_month
         rsa_socle = simulation.calculate('rsa_socle', period)
-        ra_rsa = simulation.calculate('ra_rsa', period)
+        rsa_revenu_activite = simulation.calculate('rsa_revenu_activite', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
-        br_rmi = simulation.calculate('br_rmi', period)
+        rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
         P = simulation.legislation_at(period.start).minim.rmi
 
-        base_normalise = max_(rsa_socle - rsa_forfait_logement - br_rmi + P.pente * ra_rsa, 0)
+        base_normalise = max_(rsa_socle - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite, 0)
+
+        return period, base_normalise * (base_normalise >= P.rsa_nv)
+
+    @dated_function(start = date(2016, 01, 01))
+    def function_2016(self, simulation, period):
+        period = period.this_month
+        rsa_socle = simulation.calculate('rsa_socle', period)
+        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
+        rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
+        P = simulation.legislation_at(period.start).minim.rmi
+
+        base_normalise = max_(rsa_socle - rsa_forfait_logement - rsa_base_ressources, 0)
 
         return period, base_normalise * (base_normalise >= P.rsa_nv)
 
@@ -991,8 +1026,8 @@ class rsa_ressource_calculator:
     def __init__(self, simulation, period):
         self.period = period
         self.simulation = simulation
-        self.three_previous_months = self.period.start.period('month', 3).offset(-3)
-        self.last_month = period.start.period('month').offset(-1)
+        self.three_previous_months = period.last_3_months
+        self.last_month = period.last_month
         self.has_ressources_substitution = (
             simulation.calculate('chomage_net', period) +
             simulation.calculate('indemnites_journalieres', period) +
@@ -1029,19 +1064,19 @@ class rsa_socle(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        nb_par = simulation.calculate('nb_par', period)
+        nb_parents = simulation.calculate('nb_par', period)
         eligib = simulation.calculate('rsa_eligibilite', period)
         nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         rmi = simulation.legislation_at(period.start).minim.rmi
 
-        nbp = nb_par + nb_enfant_rsa
+        nb_personnes = nb_parents + nb_enfant_rsa
 
         taux = (
             1 +
-            (nbp >= 2) * rmi.txp2 +
-            (nbp >= 3) * rmi.txp3 +
-            (nbp >= 4) * ((nb_par == 1) * rmi.txps + (nb_par != 1) * rmi.txp3) +
-            max_(nbp - 4, 0) * rmi.txps
+            (nb_personnes >= 2) * rmi.txp2 +
+            (nb_personnes >= 3) * rmi.txp3 +
+            (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3) + # Si nb_par == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
+            max_(nb_personnes - 4, 0) * rmi.txps
         )
         return period, eligib * rmi.rmi * taux
 

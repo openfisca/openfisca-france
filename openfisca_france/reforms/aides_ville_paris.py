@@ -144,10 +144,10 @@ def build_reform(tax_benefit_system):
 
         def function(self, simulation, period):
             period = period.this_month
-            alt = simulation.calculate('alt', period)
+            garde_alternee = simulation.calculate('garde_alternee', period)
             plf_enfant = simulation.calculate('plf_enfant', period)
 
-            return period, alt * plf_enfant
+            return period, garde_alternee * plf_enfant
 
     class plf_enfant_handicape_garde_alternee(Reform.Variable):
         column = columns.BoolCol
@@ -156,10 +156,10 @@ def build_reform(tax_benefit_system):
 
         def function(self, simulation, period):
             period = period.this_month
-            alt = simulation.calculate('alt', period)
+            garde_alternee = simulation.calculate('garde_alternee', period)
             plf_enfant_handicape = simulation.calculate('plf_enfant_handicape', period)
 
-            return period, alt * plf_enfant_handicape
+            return period, garde_alternee * plf_enfant_handicape
 
     class plf_handicap(Reform.Variable):
         column = columns.FloatCol

@@ -16,8 +16,11 @@ build_column('birth', DateCol(default = date(1970, 1, 1), is_permanent = True, l
 
 build_column('adoption', BoolCol(entity = "ind", label = u"Enfant adopté"))
 
-build_column('alt', BoolCol(label = u'Enfant en garde alternée'))  # TODO: cerfa_field
-
+class garde_alternee(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u'Enfant en garde alternée'
+    base_function = requested_period_last_or_next_value
 
 build_column('activite', EnumCol(label = u'Activité',
                      enum = Enum([u'Actif occupé',
