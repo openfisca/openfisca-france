@@ -2404,6 +2404,8 @@ class reduction_impot_exceptionnelle(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Réduction d'impôt exceptionnelle"
+    url = "https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=2342AB1B1727908BFF5295A7F51A5A65.\
+        tpdjo13v_1?cidTexte=JORFTEXT000029349482&idArticle=LEGIARTI000029350526&dateTexte=20140809&categorieLien=cid"
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function(self, simulation, period):
