@@ -24,9 +24,9 @@ def calculate_net_from(salaire_de_base, simulation, period, requested_variable_n
         del temp_simulation.holder_by_name[name]
 
     # Force recomputing of salaire_net
-    del temp_simulation.holder_by_name['salaire_net']
+    del temp_simulation.holder_by_name['salaire_net_a_payer']
 
-    net = temp_simulation.calculate('salaire_net', period)[0]
+    net = temp_simulation.calculate('salaire_net_a_payer', period)[0]
 
     return net
 
@@ -49,7 +49,7 @@ def build_reform(tax_benefit_system):
         def function(self, simulation, period):
             # Calcule le salaire brut à partir du salaire net par inversion numérique.
 
-            net = simulation.get_array('salaire_net', period)
+            net = simulation.get_array('salaire_net_a_payer', period)
 
             assert net is not None
 

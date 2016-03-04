@@ -1,7 +1,7 @@
 - period: "2016-02"
   relative_error_margin: 0.005
   input_variables:
-    salaire_net: 1790
+    salaire_net_a_payer: 1790
     effectif_entreprise: 1
     type_sal: prive_non_cadre
     allegement_fillon_mode_recouvrement: anticipe_regularisation_fin_de_periode
