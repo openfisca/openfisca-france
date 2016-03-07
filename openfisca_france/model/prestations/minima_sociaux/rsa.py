@@ -805,12 +805,12 @@ class rsa_forfait_asf(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-
-        asf_elig = simulation.calculate('asf_elig', period)
+        # Si un ASF est versé, on ne prend pas en compte le montant réel mais un forfait.
+        asf_verse = simulation.calculate('asf', period) > 0
         rsa_forfait_asf_i_holder = simulation.compute('rsa_forfait_asf_i', period)
         montant = self.sum_by_entity(rsa_forfait_asf_i_holder, roles = ENFS)
 
-        return period, asf_elig * montant
+        return period, asf_verse * montant
 
 
 class rsa_forfait_asf_i(Variable):
@@ -849,8 +849,12 @@ class rsa_forfait_logement(Variable):
         participation_frais = self.cast_from_entity_to_roles(participation_frais_holder)
         participation_frais = self.filter_role(participation_frais, role = CHEF)
 
+        loyer_holder = simulation.compute('loyer', period)
+        loyer = self.cast_from_entity_to_roles(loyer_holder)
+        loyer = self.filter_role(loyer, role = CHEF)
+
         avantage_nature = or_(
-            statut_occupation == 2,
+            (statut_occupation == 2) * not_(loyer),
             (statut_occupation == 6) * (1 - participation_frais)
         )
 
