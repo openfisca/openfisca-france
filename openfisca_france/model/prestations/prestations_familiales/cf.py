@@ -288,11 +288,11 @@ class cf(Variable):
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
         period = period.this_month
-        paje_base_montant = simulation.calculate('paje_base_montant', period)
+        paje_base = simulation.calculate('paje_base', period)
         apje_temp = simulation.calculate('apje_temp', period)
         ape_temp = simulation.calculate('ape_temp', period)
         cf_montant = simulation.calculate('cf_montant', period)
         residence_mayotte = simulation.calculate('residence_mayotte', period)
 
-        cf_brut = (paje_base_montant < cf_montant) * (apje_temp <= cf_montant) * (ape_temp <= cf_montant) * cf_montant
+        cf_brut = not_(paje_base) * (apje_temp <= cf_montant) * (ape_temp <= cf_montant) * cf_montant
         return period, not_(residence_mayotte) * round(cf_brut, 2)
