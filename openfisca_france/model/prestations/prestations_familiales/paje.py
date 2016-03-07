@@ -55,11 +55,13 @@ class paje(Variable):
         return period, paje_base + (paje_naissance + paje_clca + paje_clmg + paje_colca) / 12
 
 
-class paje_base_montant(Variable):
+class paje_base(Variable):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
-    label = u"Montant de la PAJE"
+    label = u"Allocation de base de la PAJE"
     start_date = date(2004, 1, 1)
+    url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
 
     def function(self, simulation, period):
         period = period.this_month
@@ -466,27 +468,6 @@ class paje_colca(Variable):
 
 
 # TODO: cumul avec clca self.colca_tot_m
-
-class paje_base(Variable):
-    calculate_output = calculate_output_add
-    column = FloatCol(default = 0)
-    entity_class = Familles
-    label = u"Allocation de base de la PAJE"
-    start_date = date(2004, 1, 1)
-    url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
-
-    def function(self, simulation, period):
-        '''
-        L'allocation de base de la paje n'est pas cumulable avec le complément familial
-        '''
-        period = period.this_month
-
-        paje_base_montant = simulation.calculate('paje_base_montant', period)
-        cf_montant = simulation.calculate('cf_montant', period)
-
-        # On regarde ce qui est le plus intéressant pour la famille, chaque mois
-        paje_base = (paje_base_montant >= cf_montant) * paje_base_montant
-        return period, paje_base
 
 
 # def _afeama(self, age_holder, smic55_holder, ape, af_nbenf, br_pf, P = law.fam):
