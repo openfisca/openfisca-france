@@ -303,9 +303,10 @@ class cmu_c(Variable):
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', this_month)
         rsa_base_ressources = simulation.calculate('rsa_base_ressources', this_month)
         socle = max_(rsa_socle, rsa_socle_majore)
+        rsa = simulation.calculate('rsa', this_month)
 
         eligibilite_basique = cmu_base_ressources <= cmu_c_plafond
-        eligibilite_rsa = (socle > 0) * (rsa_base_ressources < socle - rsa_forfait_logement)
+        eligibilite_rsa = (rsa > 0) * (rsa_base_ressources < socle - rsa_forfait_logement)
 
         return period, not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
 
