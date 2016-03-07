@@ -69,7 +69,8 @@ class assiette_cotisations_sociales_prive(Variable):
             indemnites_compensatrices_conges_payes +
             remuneration_apprenti +
             (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
-            reintegration_titre_restaurant_employeur
+            reintegration_titre_restaurant_employeur +
+            indemnite_fin_contrat
             )
         return period, max_(assiette, smic_proratise * not_(apprenti)) * (assiette > 0)
 
