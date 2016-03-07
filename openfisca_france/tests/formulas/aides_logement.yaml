@@ -4,12 +4,6 @@
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
-  foyers_fiscaux:
-    declarants: ["parent1"]
-    personnes_a_charge: ["enfant1"]
-  menages:
-    personne_de_reference: "parent1"
-    enfants: ["enfant1"]
   individus:
     - id: "parent1"
       age: 40
@@ -23,12 +17,6 @@
   period: 2015-01
   familles:
     parents: ["parent1"]
-    enfants: ["enfant1"]
-  foyers_fiscaux:
-    declarants: ["parent1"]
-    personnes_a_charge: ["enfant1"]
-  menages:
-    personne_de_reference: "parent1"
     enfants: ["enfant1"]
   individus:
     - id: "parent1"
@@ -60,17 +48,27 @@
   output_variables:
     al_pac: 1
 
-- name: "Aides logements - les enfants de plus de 21 ans handicapés (<80%) ne sont pas considérés à charge"
+- name: "Aides logements - les enfants de plus de 21 ans inaptes au travail sont considérés à charge"
   description: Nombre de personnes à charge pour les AL
   period: 2015-01
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
-  foyers_fiscaux:
-    declarants: ["parent1"]
-    personnes_a_charge: ["enfant1"]
-  menages:
-    personne_de_reference: "parent1"
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 30
+      invalide: true
+      inapte_travail: true
+  output_variables:
+    al_pac: 1
+
+- name: "Aides logements - les enfants de plus de 21 ans handicapés (<80%) ne sont pas considérés à charge"
+  description: Nombre de personnes à charge pour les AL
+  period: 2015-01
+  familles:
+    parents: ["parent1"]
     enfants: ["enfant1"]
   individus:
     - id: "parent1"
@@ -81,3 +79,66 @@
       taux_incapacite: 0.7
   output_variables:
     al_pac: 0
+
+- name: "Aides logements - les enfants de plus de 21 ans indaptes au travail ou handicapés sont considérés à charge si ressources <= 12000 en 2016"
+  description: Nombre de personnes à charge pour les AL
+  period: 2016-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 30
+      invalide: true
+      inapte_travail: true
+      br_pf_i: 11900
+  output_variables:
+    al_pac: 1
+
+- name: "Aides logements - les enfants de plus de 21 ans indaptes au travail ou handicapés ne sont pas considérés à charge si ressources > 12000 en 2016"
+  description: Nombre de personnes à charge pour les AL
+  period: 2015-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 30
+      invalide: true
+      inapte_travail: true
+      br_pf_i: 12100
+  output_variables:
+    al_pac: 0
+
+- name: "Abattement sur les ressources des enfants à hauteur de 125% du plafond ASPA personne seule"
+  period: 2016-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 19
+      br_pf_i: 12500
+  output_variables:
+    aide_logement_base_ressources: 500
+
+# Pour vérifier qu'on prend le plafond ASPA pour la bonne période
+- name: "Abattement sur les ressources des enfants à hauteur de 125% du plafond ASPA personne seule (autre période)"
+  period: 2012-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 19
+      br_pf_i: 12500
+  output_variables:
+    aide_logement_base_ressources_defaut: 12500 - 10634.36

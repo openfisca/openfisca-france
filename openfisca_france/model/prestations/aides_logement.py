@@ -67,11 +67,11 @@ class al_pac(Variable):
             age = age_holder.array
 
             # Parametres
-            plafond_ressource = simulation.legislation_at(period.start).minim.aspa.plaf_seul
+            plafond_ressource = simulation.legislation_at(period.n_2.stop).minim.aspa.plaf_seul * 1.25
             taux_incapacite_minimum = 0.8
 
             adulte_handicape = (
-                (taux_incapacite > taux_incapacite_minimum) *
+                ((taux_incapacite > taux_incapacite_minimum) + inapte_travail) *
                 (age >= age_max_enfant) *
                 (br_pf_i <= plafond_ressource)
             )
@@ -170,20 +170,22 @@ class aide_logement_base_ressources_defaut(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        br_pf_i_holder = simulation.compute('br_pf_i', period)
         rev_coll_holder = simulation.compute('rev_coll', period.n_2)
         rev_coll = self.sum_by_entity(rev_coll_holder)
         biact = simulation.calculate('biact', period)
         Pr = simulation.legislation_at(period.start).al.ressources
-        br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
+        br_pf_i_holder = simulation.compute('br_pf_i', period)
+        br_pf_parents = self.sum_by_entity(br_pf_i_holder, roles = [CHEF, PART])
         abattement_chomage_indemnise_holder = simulation.compute('aide_logement_abattement_chomage_indemnise', period)
         abattement_chomage_indemnise = self.sum_by_entity(abattement_chomage_indemnise_holder, roles = [CHEF, PART])
         abattement_depart_retraite_holder = simulation.compute('aide_logement_abattement_depart_retraite', period)
         abattement_depart_retraite = self.sum_by_entity(abattement_depart_retraite_holder, roles = [CHEF, PART])
         neutralisation_rsa = simulation.calculate('aide_logement_neutralisation_rsa', period)
-
+        abattement_ressources_enfant = simulation.legislation_at(period.n_2.stop).minim.aspa.plaf_seul * 1.25
+        br_enfants = self.sum_by_entity(
+            max_(0, br_pf_i_holder.array - abattement_ressources_enfant), roles = ENFS)
         ressources = (
-            br_pf_i[CHEF] + br_pf_i[PART] + rev_coll -
+            br_pf_parents + br_enfants + rev_coll -
             (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
         )
 
