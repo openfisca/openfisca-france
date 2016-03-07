@@ -2,6 +2,7 @@ name: "Meublé : 2/3 du loyer charges comprises"
 keywords:
   - al
   - location
+relative_error_margin: 0.02
 description: |
   Le loyer pris en compte est égal à 2/3 du loyer CC pour un meublé ou un hôtel
   http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737243&cidTexte=LEGITEXT000006073189
