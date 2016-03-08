@@ -31,6 +31,7 @@ from .prelevements_obligatoires.prelevements_sociaux.contributions_sociales impo
 
 from .prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import (  # noqa analysis:ignore
     allegements,
+    temps_partiel,
     apprentissage,
     exonerations,
     # penalites,
