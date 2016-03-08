@@ -22,7 +22,7 @@ zone_apl_by_depcom = None
 
 
 class al_pac(Variable):
-    column = FloatCol
+    column = IntCol
     entity_class = Familles
     label = u"Nombre de personne à charge au sens des allocations logement"
 
@@ -81,6 +81,17 @@ class al_pac(Variable):
 
         return period, al_nb_enfants() + al_nb_adultes_handicapes()
 
+class al_couple(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u'Situation de couple pour le calcul des AL'
+
+    def function(self, simulation, period):
+        concub = simulation.calculate('concub', period)
+        enceinte = simulation.calculate('enceinte_fam', period)
+        couple = concub + enceinte # le barème "couple" est utilisé pour les femmes enceintes isolées
+
+        return period, couple
 
 class aide_logement_base_ressources_eval_forfaitaire(Variable):
     column = FloatCol
@@ -116,7 +127,6 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
 
         return period, max_(eval_forfaitaire_salaries(), eval_forfaitaire_tns())
 
-
 class aide_logement_abattement_chomage_indemnise(Variable):
     column = FloatCol
     entity_class = Individus
@@ -135,7 +145,6 @@ class aide_logement_abattement_chomage_indemnise(Variable):
 
         return period, abattement
 
-
 class aide_logement_abattement_depart_retraite(Variable):
     column = FloatCol
     entity_class = Individus
@@ -152,7 +161,6 @@ class aide_logement_abattement_depart_retraite(Variable):
         abattement = round_((1 - taux_frais_pro) * abattement)
 
         return period, abattement
-
 
 class aide_logement_neutralisation_rsa(Variable):
     column = FloatCol
@@ -209,7 +217,6 @@ class aide_logement_base_ressources_defaut(Variable):
 
         return period, result
 
-
 class aide_logement_base_ressources(Variable):
     column = FloatCol
     entity_class = Familles
@@ -262,6 +269,98 @@ class aide_logement_base_ressources(Variable):
 
         return period, ressources
 
+class aide_logement_loyer_retenu(Variable):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Loyer retenu (hors charge) dans le calcul des aides au logement"
+
+    def function(self, simulation, period):
+        period = period.this_month
+        al = simulation.legislation_at(period.start).al
+        al_pac = simulation.calculate('al_pac', period)
+        personne_seule = not_(simulation.calculate('al_couple', period))
+        statut_occupation = simulation.calculate('statut_occupation_famille', period)
+        loyer_holder = simulation.compute('loyer', period)
+        loyer = self.cast_from_entity_to_roles(loyer_holder)
+        loyer = self.filter_role(loyer, role = CHEF)
+        coloc_holder = simulation.compute('coloc', period)
+        coloc = self.any_by_roles(coloc_holder)
+        logement_chambre_holder = simulation.compute('logement_chambre', period)
+        chambre = self.any_by_roles(logement_chambre_holder)
+        zone_apl = simulation.calculate('zone_apl_famille', period)
+
+        def loyer_reel(): #L1
+            coeff_meuble = where(statut_occupation == 5, 2 / 3, 1) # Coeff de 2/3 pour les meublés
+            return round_(loyer * coeff_meuble)
+
+        def loyer_plafond(): #L2
+            # Preprocessing pour pouvoir accéder aux paramètres dynamiquement par zone.
+            plafonds_by_zone = [[0] + [al.loyers_plafond[ 'zone' + str(zone) ][ 'L' + str(i) ] for zone in range(1, 4)] for i in range(1, 5)]
+            plafond_personne_seule = take(plafonds_by_zone[0], zone_apl)
+            plafond_couple = take(plafonds_by_zone[1], zone_apl)
+            plafond_famille = take(plafonds_by_zone[2], zone_apl) + (al_pac > 1) * (al_pac - 1) * take(plafonds_by_zone[3], zone_apl)
+
+            plafond = select(
+                [personne_seule * (al_pac == 0) + chambre, al_pac > 0],
+                [plafond_personne_seule, plafond_famille],
+                default = plafond_couple
+                )
+
+            coeff_coloc = where(coloc, al.loyers_plafond.colocation, 1)
+            coeff_chambre = where(chambre, al.loyers_plafond.chambre, 1)
+
+            return round_(plafond * coeff_coloc * coeff_chambre, 2)
+
+        # loyer retenu
+        return period, min_(loyer_reel(), loyer_plafond())
+
+class aide_logement_charges(Variable):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Charges retenues dans le calcul des aides au logement"
+
+    def function(self, simulation, period):
+        P = simulation.legislation_at(period.start).al.forfait_charges
+        al_pac = simulation.calculate('al_pac', period)
+        couple = simulation.calculate('al_couple', period)
+        coloc_holder = simulation.compute('coloc', period)
+        coloc = self.any_by_roles(coloc_holder)
+        montant_coloc = where(couple, 1, 0.5) * P.fc1 + al_pac * P.fc2
+        montant_cas_general = P.fc1 + al_pac * P.fc2
+
+        return period, where(coloc, montant_coloc, montant_cas_general)
+
+class aide_logement_R0(Variable):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Revenu de référence, basé sur la situation familiale, pris en compte dans le calcul des AL."
+
+    def function(self, simulation, period):
+        period = period.this_month
+        al = simulation.legislation_at(period.start).al
+        pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
+        couple = simulation.calculate('al_couple', period)
+        al_pac = simulation.calculate('al_pac', period)
+        residence_dom = simulation.calculate('residence_dom')
+
+
+        R1 = al.rmi * (
+            al.R1.taux1 * not_(couple) * (al_pac == 0) +
+            al.R1.taux2 * couple * (al_pac == 0) +
+            al.R1.taux3 * (al_pac == 1) +
+            al.R1.taux4 * (al_pac >= 2) +
+            al.R1.taux5 * (al_pac > 2) * (al_pac - 2)
+            )
+        R2 = pfam_n_2.af.bmaf * (
+            al.R2.taux3_dom * residence_dom * (al_pac == 1) +
+            al.R2.taux4 * (al_pac >= 2) +
+            al.R2.taux5 * (al_pac > 2) * (al_pac - 2)
+            )
+
+
+        R0 = round_(12 * (R1 - R2) * (1 - al.autres.abat_sal))
+
+        return period, R0
 
 class aide_logement_montant_brut(Variable):
     column = FloatCol
@@ -272,108 +371,34 @@ class aide_logement_montant_brut(Variable):
         period = period.this_month
 
         # Situation familiale
-        concub = simulation.calculate('concub', period)
-        enceinte_fam = simulation.calculate('enceinte_fam', period)
-        couple = or_(concub, enceinte_fam) # le barème "couple" est utilisé pour les femmes enceintes isolées
+        couple = simulation.calculate('al_couple', period)
         personne_seule = not_(couple)
         al_pac = simulation.calculate('al_pac', period)
 
-        # Logement
         statut_occupation = simulation.calculate('statut_occupation_famille', period)
-        loyer_holder = simulation.compute('loyer', period)
-        loyer = self.cast_from_entity_to_roles(loyer_holder)
-        loyer = self.filter_role(loyer, role = CHEF)
-        coloc_holder = simulation.compute('coloc', period)
-        coloc = self.any_by_roles(coloc_holder)
-        logement_chambre_holder = simulation.compute('logement_chambre', period)
-        chambre = self.any_by_roles(logement_chambre_holder)
         locataire = ((3 <= statut_occupation) & (5 >= statut_occupation)) | (statut_occupation == 7)
         accedant = (statut_occupation == 1)
 
         # Ressources
-        aide_logement_base_ressources = simulation.calculate('aide_logement_base_ressources', period)
 
         # Parametres législatifs
         al = simulation.legislation_at(period.start).al
-        pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
 
-        def loyer_retenu():
+        loyer_retenu = simulation.calculate('aide_logement_loyer_retenu', period)
+        charges_retenues = simulation.calculate('aide_logement_charges', period)
+        residence_dom = simulation.calculate('residence_dom', period)
 
-            # loyer mensuel réel, multiplié par 2/3 pour les meublés
-            L1 = round_(loyer * where(statut_occupation == 5, 2 / 3, 1))
-
-            zone_apl = simulation.calculate('zone_apl_famille', period)
-
-            # Paramètres contenant les plafonds de loyer pour cette zone
-            plafonds_by_zone = [[0] + [al.loyers_plafond[ 'zone' + str(zone) ][ 'L' + str(i) ] for zone in range(1, 4)] for i in range(1, 5)]
-            L2_personne_seule = take(plafonds_by_zone[0], zone_apl)
-            L2_couple = take(plafonds_by_zone[1], zone_apl)
-            L2_famille = take(plafonds_by_zone[2], zone_apl) + (al_pac > 1) * (al_pac - 1) * take(plafonds_by_zone[3], zone_apl)
-
-            L2 = select(
-                [personne_seule * (al_pac == 0) + chambre, al_pac > 0],
-                [L2_personne_seule, L2_famille],
-                default = L2_couple
-                )
-
-            # taux à appliquer sur le loyer plafond
-            coeff_chambre_colloc = select(
-                [chambre, coloc],
-                [al.loyers_plafond.chambre, al.loyers_plafond.colocation],
-                default = 1)
-
-            L2 = round_(L2 * coeff_chambre_colloc, 2)
-
-            # loyer retenu
-            L = min_(L1, L2)
-
-            return L
-        loyer_retenu = loyer_retenu()
-
-        def depense_eligible():
-            # Loyer chargé pris en compte par la CAF comme montant des dépenses liées au logement
-
-            # forfait de charges
-            P_fc = al.forfait_charges
-            C = where(coloc,
-                (personne_seule * 0.5 + couple) * P_fc.fc1 + al_pac * P_fc.fc2,
-                P_fc.fc1 + al_pac * P_fc.fc2)
-
-            # dépense éligible
-            E = loyer_retenu + C
-
-            return E
-        depense_eligible = depense_eligible()
 
         def indice_ressources_Rp():
             # Indice de ressource utilisé par la CAF, en €
             # Différence entre les ressources du foyer et un revenu R0 de référence
+            R = simulation.calculate('aide_logement_base_ressources', period)
+            R0 = simulation.calculate('aide_logement_R0', period)
 
-            # ressources prises en compte
-            R = aide_logement_base_ressources
-
-            # Plafond RO
-            R1 = al.rmi * (
-                al.R1.taux1 * personne_seule * (al_pac == 0) +
-                al.R1.taux2 * couple * (al_pac == 0) +
-                al.R1.taux3 * (al_pac == 1) +
-                al.R1.taux4 * (al_pac >= 2) +
-                al.R1.taux5 * (al_pac > 2) * (al_pac - 2)
-                )
-
-            R2 = pfam_n_2.af.bmaf * (
-                al.R2.taux4 * (al_pac >= 2) +
-                al.R2.taux5 * (al_pac > 2) * (al_pac - 2)
-                )
-
-            Ro = round_(12 * (R1 - R2) * (1 - al.autres.abat_sal))
-
-            Rp = max_(0, R - Ro)
-
-            return Rp
+            return max_(0, R - R0)
 
         def taux_famille():
-            # Taux représentant la situation familiale. Plus il est faible, moins la famille a de personnes à charge.
+            # Taux représentant la situation familiale. Plus il est faible, plus la famille a de personnes à charge.
             TF = (
                 al.TF.taux1 * (personne_seule) * (al_pac == 0) +
                 al.TF.taux2 * (couple) * (al_pac == 0) +
@@ -414,7 +439,7 @@ class aide_logement_montant_brut(Variable):
             # Participation du demandeur à ses dépenses de logement
 
             # Depense eligible
-            E = depense_eligible
+            E = loyer_retenu + charges_retenues
 
             # participatioion personnelle minimale
             Po = max_(al.pp.taux * E, al.pp.min)
@@ -429,7 +454,7 @@ class aide_logement_montant_brut(Variable):
 
             return Pp
 
-        al_locataire = max_(0, depense_eligible - participation_personelle()) * locataire
+        al_locataire = max_(0, loyer_retenu + charges_retenues - participation_personelle()) * locataire
 
         # Montant minimal de versement
         al_locataire = al_locataire * (al_locataire >= al.autres.nv_seuil)
