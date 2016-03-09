@@ -50,6 +50,7 @@ class al_pac(Variable):
         period = period.this_month
         age_holder = simulation.compute('age', period)
         age_max_enfant = simulation.legislation_at(period.start).fam.cf.age2
+        residence_dom = simulation.calculate('residence_dom', period)
 
         def al_nb_enfants():
             smic55_holder = simulation.compute('smic55', period)
@@ -79,7 +80,10 @@ class al_pac(Variable):
 
             return self.sum_by_entity(adulte_handicape)
 
-        return period, al_nb_enfants() + al_nb_adultes_handicapes()
+        nb_pac = al_nb_enfants() + al_nb_adultes_handicapes()
+        nb_pac = where(residence_dom, min_(nb_pac, 6), nb_pac) # Dans les DOMs, le barème est fixe à partir de 6 enfants.
+
+        return period, nb_pac
 
 class al_couple(Variable):
     column = BoolCol
@@ -399,7 +403,7 @@ class aide_logement_montant_brut(Variable):
 
         def taux_famille():
             # Taux représentant la situation familiale. Plus il est faible, plus la famille a de personnes à charge.
-            TF = (
+            TF_metropole = (
                 al.TF.taux1 * (personne_seule) * (al_pac == 0) +
                 al.TF.taux2 * (couple) * (al_pac == 0) +
                 al.TF.taux3 * (al_pac == 1) +
@@ -409,7 +413,19 @@ class aide_logement_montant_brut(Variable):
                 al.TF.taux7 * (al_pac > 4) * (al_pac - 4)
             )
 
-            return TF
+            TF_dom = (
+                al.TF.dom.taux1 * (personne_seule) * (al_pac == 0) +
+                al.TF.dom.taux2 * (couple) * (al_pac == 0) +
+                al.TF.dom.taux3 * (al_pac == 1) +
+                al.TF.dom.taux4 * (al_pac == 2) +
+                al.TF.dom.taux5 * (al_pac == 3) +
+                al.TF.dom.taux6 * (al_pac == 4) +
+                al.TF.dom.taux7 * (al_pac == 5) +
+                al.TF.dom.taux8 * (al_pac >= 6)
+            )
+            print('TF', where(residence_dom, TF_dom, TF_metropole))
+
+            return where(residence_dom, TF_dom, TF_metropole)
 
         def taux_loyer():
             # Taux obscur basé sur une comparaison du loyer retenu à un loyer de référence.
