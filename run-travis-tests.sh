@@ -16,4 +16,4 @@ if [ "$TRAVIS_BRANCH" != "master" ]; then
 fi
 
 
-make test-ci
+make test
