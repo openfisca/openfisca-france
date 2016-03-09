@@ -89,6 +89,9 @@ class indemnite_fin_contrat(Variable):
 
         # Un grand nombre de conditions peuvent invalider cette indemnité, voir le lien ci-dessus.
         # A ajouter au fur et à mesure
+        # Pour l'instant, cette variable d'entrée peut les remplacer
+        indemnite_fin_contrat_non_due = simulation.calculate('indemnite_fin_contrat_non_due', period)
+
         result = (
             # CDD
             (contrat_de_travail_duree == 1) *
@@ -98,6 +101,7 @@ class indemnite_fin_contrat(Variable):
                 (type_sal == 1)
             ) *
             not_(apprenti) *
+            not_(indemnite_fin_contrat_non_due) *
             # 10% du brut
             .1 * salaire_de_base
             )
