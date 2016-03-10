@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.5.dev0 - next release
+
+* TODO Fill this changes list while developing
+
 ## 0.5.4.2, 0.5.4.3
 
 * Update OpenFisca-Core requirement version
