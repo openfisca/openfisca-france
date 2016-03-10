@@ -586,6 +586,11 @@ class plafond_securite_sociale(Variable):
     # TODO gérer les plafonds mensuel, trimestriel, annuel
 
     def function(self, simulation, period):
+
+        # Pour les salariés entrés ou sortis en cours de mois,
+        # le plafond applicable est égal à autant de trentièmes du plafond mensuel
+        # que le salarié a été présent de jours calendaires. Source urssaf.fr "L’assiette maximale"
+
         period = period.start.period(u'month').offset('first-of')
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
         _P = simulation.legislation_at(period.start)

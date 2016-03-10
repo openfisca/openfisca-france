@@ -150,7 +150,6 @@ class exoneration_cotisations_employeur_zfu(Variable):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         entreprise_chiffre_affaire = simulation.calculate('entreprise_chiffre_affaire', period)
         entreprise_bilan = simulation.calculate('entreprise_bilan', period)
-        smic_proratise = simulation.calculate('smic_proratise', period)
         taux_versement_transport = simulation.calculate('taux_versement_transport', period)
 
         # TODO: move to legislation parameters file
