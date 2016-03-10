@@ -17,7 +17,6 @@ from .....assets.holidays import holidays
 log = logging.getLogger(__name__)
 
 
-
 class coefficient_proratisation(Variable):
     column = FloatCol
     entity_class = Individus
@@ -65,7 +64,8 @@ class coefficient_proratisation(Variable):
             min_(contrat_de_travail_fin, fin_mois)
             )
 
-        duree_legale_mensuelle = 35 * 52 / 12  # 151,67
+        duree_legale_mensuelle = 35 * 52 / 12  # ~151,67
+
         heures_temps_plein = (
             (heures_duree_collective_entreprise == 0) * duree_legale_mensuelle + heures_duree_collective_entreprise
             )

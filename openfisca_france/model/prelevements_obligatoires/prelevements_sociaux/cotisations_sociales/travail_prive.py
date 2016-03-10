@@ -5,7 +5,7 @@ from __future__ import division
 import logging
 
 
-from numpy import int16, maximum as max_, minimum as min_, logical_not as not_
+from numpy import int16, maximum as max_, minimum as min_, logical_not as not_, logical_or as or_
 
 
 from ....base import *  # noqa analysis:ignore
@@ -587,16 +587,43 @@ class plafond_securite_sociale(Variable):
 
     def function(self, simulation, period):
 
+        period = period.start.period(u'month').offset('first-of')
+        plafond_temps_plein = simulation.legislation_at(period.start).cotsoc.gen.plafond_securite_sociale
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
+        contrat_de_travail = simulation.calculate('contrat_de_travail', period)
+        heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period)
+        forfait_jours_remuneres_volume = simulation.calculate('forfait_jours_remuneres_volume', period)
+        heures_duree_collective_entreprise = simulation.calculate('heures_duree_collective_entreprise', period)
+
+        # TODO : handle contrat_de_travail > 1
+
+        # 1) Proratisation pour temps partiel
+
+        duree_legale_mensuelle = 35 * 52 / 12  # ~151,67
+        heures_temps_plein = switch(heures_duree_collective_entreprise, {0: duree_legale_mensuelle, 1: heures_duree_collective_entreprise})
+
+        plafond = switch(
+            contrat_de_travail,
+             {  # temps plein
+                0: plafond_temps_plein,
+                # temps partiel
+                1: plafond_temps_plein * (heures_remunerees_volume / heures_temps_plein),
+                # forfait jour
+                5: plafond_temps_plein * (forfait_jours_remuneres_volume / 218)
+             })
+
+        # 2) Proratisation pour mois incomplet selon la méthode des 30èmes
+
+        # calcul du nombre de jours calendaires de présence du salarié
+        nombre_jours_calendaires = simulation.calculate('nombre_jours_calendaires', period)
+
         # Pour les salariés entrés ou sortis en cours de mois,
         # le plafond applicable est égal à autant de trentièmes du plafond mensuel
         # que le salarié a été présent de jours calendaires. Source urssaf.fr "L’assiette maximale"
 
-        period = period.start.period(u'month').offset('first-of')
-        coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
-        _P = simulation.legislation_at(period.start)
+        plafond = plafond * (min_(nombre_jours_calendaires, 30) / 30)
 
-        plafond_temps_plein = _P.cotsoc.gen.plafond_securite_sociale
-        return period, plafond_temps_plein * coefficient_proratisation
+        return period, plafond
 
 
 class prevoyance_obligatoire_cadre(Variable):
