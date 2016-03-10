@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.4.2
+
+* Update OpenFisca-Core requirement version
+
 ## 0.5.4.1
 
 * Add missing assets for versement_transport
