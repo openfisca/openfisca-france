@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.5.4.dev0 - next release
+## 0.5.4
 
-* TODO Fill this changes list while developing
+* Many updates
 
 ## 0.5.3
 
