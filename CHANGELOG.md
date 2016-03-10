@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.5.4.2
+## 0.5.4.2, 0.5.4.3
 
 * Update OpenFisca-Core requirement version
 
