@@ -8,15 +8,13 @@ import logging
 from numpy import (
     busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, logical_and as and_,
     maximum as max_, minimum as min_, round as round_, timedelta64
-    )
+)
 from datetime import datetime
-
 
 from openfisca_core import periods
 
 from ....base import *  # noqa analysis:ignore
 from .....assets.holidays import holidays
-
 
 log = logging.getLogger(__name__)
 
@@ -40,7 +38,7 @@ class assiette_allegement(Variable):
 class coefficient_proratisation(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"Coefficient de proratisation pour le calcul du SMIC et du plafond de la Sécurité sociale"
+    label = u"Coefficient de proratisation du salaire notamment pour le calcul du SMIC"
 
     def function(self, simulation, period):
         #  * Tous les calculs sont faits sur le mois *
@@ -71,51 +69,59 @@ class coefficient_proratisation(Variable):
         # http://www.gestiondelapaie.com/flux-paie/?1029-la-bonne-premiere-paye
 
         # Méthode numpy de calcul des jours travaillés
-        # @holidays : jours feriés français
-        busday_count = partial(original_busday_count, holidays = holidays)
+        busday_count = partial(original_busday_count, holidays=holidays)  # @holidays : jours feriés français
 
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
-        fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1, 'D') # busday ignores the last day
+        fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1,
+                                                                                     'D')  # busday ignores the last day
+
+        jours_ouvres_ce_mois = busday_count(
+            debut_mois,
+            fin_mois,
+            weekmask='1111100'
+        )
 
         mois_incomplet = or_(contrat_de_travail_debut > debut_mois, contrat_de_travail_fin < fin_mois)
-        # jours travaillés sur l'intersection du contrat de travail et du mois en cours
-        jours_travailles_ce_mois = busday_count(
+        # jours travaillables sur l'intersection du contrat de travail et du mois en cours
+        jours_ouvres_ce_mois_incomplet = busday_count(
             max_(contrat_de_travail_debut, debut_mois),
-            min_(contrat_de_travail_fin, fin_mois)
-            )
+            min_(contrat_de_travail_fin, fin_mois),
+            weekmask='1111100'
+        )
 
         duree_legale_mensuelle = 35 * 52 / 12  # ~151,67
 
-        heures_temps_plein = (
-            (heures_duree_collective_entreprise == 0) * duree_legale_mensuelle + heures_duree_collective_entreprise
-            )
-        # heures remunerees avant conges sans soldes/ijss
-        heures_remunerees_volume = (
-            # Salariés à temps plein
-            (contrat_de_travail == 0) * (
-                heures_temps_plein * not_(mois_incomplet) +  # par défaut 151.67
-                jours_travailles_ce_mois * 7 * mois_incomplet  # TODO: 7 = heures / jours
-                ) +
-            # Salariés sans convention de forfait à temps partiel
-            (contrat_de_travail == 1) * heures_remunerees_volume
-            )
+        heures_temps_plein = switch(heures_duree_collective_entreprise,
+                                    {0: duree_legale_mensuelle, 1: heures_duree_collective_entreprise})
 
-        heures_realisees = heures_remunerees_volume - heures_non_remunerees_volume
+        jours_absence = heures_non_remunerees_volume / 7
 
-        coefficient = (
-            # Salariés à temps plein
-            (contrat_de_travail == 0) * heures_realisees / heures_temps_plein +
-            # Salariés à temps partiel : plafond proratisé en fonction du ratio durée travaillée / durée du temps plein
-            #   Salariés sans convention de forfait à temps partiel
-            (contrat_de_travail == 1) * heures_realisees / heures_temps_plein +
-            #   Salariés avec convention de forfait
-            #      Forfait en heures
-            (contrat_de_travail >= 2) * (contrat_de_travail <= 3) * (
-                forfait_heures_remunerees_volume / 45.7 * 52 / 12
-                ) +
-            #      Forfait en jours
-            (contrat_de_travail == 4) * forfait_jours_remuneres_volume / 218
-            )
+        coefficient_proratisation_temps_partiel = heures_remunerees_volume / heures_temps_plein
+        coefficient_proratisation_forfait_jours = forfait_jours_remuneres_volume / 218
+
+        # temps plein
+        coefficient = switch(
+            contrat_de_travail,
+            {  # temps plein
+                0: ((jours_ouvres_ce_mois_incomplet - jours_absence) /
+                    jours_ouvres_ce_mois
+                    ),
+                # temps partiel
+                # (en l'absence du détail pour chaque jour de la semaine ou chaque semaine du mois)
+                1: coefficient_proratisation_temps_partiel * (
+                    (jours_ouvres_ce_mois_incomplet * coefficient_proratisation_temps_partiel - jours_absence) /
+                    (jours_ouvres_ce_mois * coefficient_proratisation_temps_partiel + 1e-16)
+                ),
+                5: coefficient_proratisation_forfait_jours * (
+                    (jours_ouvres_ce_mois_incomplet * coefficient_proratisation_forfait_jours - jours_absence) /
+                    (jours_ouvres_ce_mois * coefficient_proratisation_forfait_jours + 1e-16)
+                )
+            })
+
+        #      Forfait en heures
+        # coefficient = (contrat_de_travail >= 2) * (contrat_de_travail <= 3) * (
+        #     forfait_heures_remunerees_volume / 45.7 * 52 / 12
+        #     ) +
         return period, coefficient
 
 
@@ -144,7 +150,7 @@ class aide_premier_salarie(DatedVariable):
     entity_class = Individus
     label = u"Aide à l'embauche d'un premier salarié"
 
-    @dated_function(start = date(2015, 6, 9))
+    @dated_function(start=date(2015, 6, 9))
     def function(self, simulation, period):
         period = period.this_month
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
@@ -161,7 +167,7 @@ class aide_premier_salarie(DatedVariable):
         eligible_contrat = and_(
             contrat_de_travail_debut >= datetime64("2015-06-09"),
             contrat_de_travail_debut <= datetime64("2016-12-31")
-            )
+        )
 
         # Si CDD, durée du contrat doit être > 1 an
         eligible_duree = or_(
@@ -174,8 +180,8 @@ class aide_premier_salarie(DatedVariable):
                 (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
                 # Initialement, la condition était d'un contrat >= 12 mois,
                 # pour les demandes transmises jusqu'au 26 janvier.
-                )
             )
+        )
 
         eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
         eligible = \
@@ -203,7 +209,7 @@ class aide_embauche_pme(DatedVariable):
     label = u"Aide à l'embauche d'un salarié pour les PME"
     url = u"http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
 
-    @dated_function(start = date(2016, 1, 18))
+    @dated_function(start=date(2016, 1, 18))
     def function(self, simulation, period):
         period = period.this_month
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
@@ -244,8 +250,8 @@ class aide_embauche_pme(DatedVariable):
                 contrat_de_travail_duree == 1,
                 # > 6 mois
                 (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
-                )
             )
+        )
 
         # Valable 2 ans seulement
         eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
@@ -253,7 +259,7 @@ class aide_embauche_pme(DatedVariable):
         eligible = (
             eligible_salaire * eligible_effectif * non_cumulee * eligible_contrat * eligible_duree *
             eligible_date * not_(apprenti)
-            )
+        )
         # somme sur 24 mois, à raison de 500 € maximum par trimestre
         montant_max = 4000
 
@@ -282,6 +288,7 @@ class allegement_fillon(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
+
     # Attention : cet allègement a des règles de cumul spécifiques
 
     @dated_function(date(2005, 7, 1))
@@ -296,7 +303,7 @@ class allegement_fillon(DatedVariable):
             simulation, period,
             allegement_mode_recouvrement,
             self.__class__.__name__,
-            )
+        )
 
         return period, allegement * not_(stagiaire) * not_(apprenti)
 
@@ -351,7 +358,7 @@ class allegement_cotisation_allocations_familiales(DatedVariable):
             simulation, period,
             allegement_mode_recouvrement,
             self.__class__.__name__,
-            )
+        )
 
         return period, allegement * not_(stagiaire) * not_(apprenti)
 
@@ -391,8 +398,8 @@ def switch_on_allegement_mode(simulation, period, mode_recouvrement, variable_na
             0: compute_allegement_annuel(simulation, period, 'allegement_fillon', compute_function),
             1: compute_allegement_anticipe(simulation, period, 'allegement_fillon', compute_function),
             2: compute_allegement_progressif(simulation, period, 'allegement_fillon', compute_function),
-            },
-        )
+        },
+    )
 
 
 def compute_allegement_annuel(simulation, period, variable_name, compute_function):
@@ -408,10 +415,10 @@ def compute_allegement_anticipe(simulation, period, variable_name, compute_funct
     if period.start.month == 12:
         cumul = simulation.calculate_add(
             variable_name,
-            period.start.offset('first-of', 'year').period('month', 11), max_nb_cycles = 1)
+            period.start.offset('first-of', 'year').period('month', 11), max_nb_cycles=1)
         return compute_function(
             simulation, period.this_year
-            ) - cumul
+        ) - cumul
 
 
 def compute_allegement_progressif(simulation, period, variable_name, compute_function):
@@ -421,7 +428,7 @@ def compute_allegement_progressif(simulation, period, variable_name, compute_fun
     if period.start.month > 1:
         up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)
         up_to_previous_month = period.start.offset('first-of', 'year').period('month', period.start.month - 1)
-        cumul = simulation.calculate_add(variable_name, up_to_previous_month, max_nb_cycles = 1)
+        cumul = simulation.calculate_add(variable_name, up_to_previous_month, max_nb_cycles=1)
         return compute_function(simulation, up_to_this_month) - cumul
 
 
