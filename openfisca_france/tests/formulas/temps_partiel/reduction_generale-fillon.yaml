@@ -1,6 +1,6 @@
 - period: "2016-01"
   name: Base
-  relative_error_margin: 0.001
+  relative_error_margin: 0.0001
   input_variables:
     allegement_fillon_mode_recouvrement: 1
     effectif_entreprise: 1
