@@ -9,7 +9,8 @@ from ...base import *  # noqa analysis:ignore
 from ...prestations.prestations_familiales.base_ressource import nb_enf
 
 build_column('indemnites_stage', FloatCol(entity = 'ind', label = u"Indemnités de stage"))
-build_column('revenus_stage_formation_pro', FloatCol(entity = 'ind', label = u"Revenus de stage de formation professionnelle"))
+build_column(
+    'revenus_stage_formation_pro', FloatCol(entity = 'ind', label = u"Revenus de stage de formation professionnelle"))
 build_column('bourse_recherche', FloatCol(entity = 'ind', label = u"Bourse de recherche"))
 
 
@@ -37,15 +38,18 @@ build_column('frais_reels', IntCol(label = u"Frais réels",
                               }))  # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
 
-build_column('hsup', IntCol(label = u"Heures supplémentaires : revenus exonérés connus",
-                val_type = "monetary",
-                start = date(2007, 1, 1),
-                end = date(2013, 12, 13),  # Il y a des heures supplémentaires effectuées en 2013 payées en 2013
-                cerfa_field = {QUIFOY['vous']: u"1AU",
-                               QUIFOY['conj']: u"1BU",
-                               QUIFOY['pac1']: u"1CU",
-                               QUIFOY['pac2']: u"1DU",
-                               }))  # (f1au, f1bu, f1cu, f1du)
+build_column(
+    'hsup', IntCol(
+        label = u"Heures supplémentaires : revenus exonérés connus",
+        val_type = "monetary",
+        start = date(2007, 1, 1),
+        end = date(2013, 12, 13),  # Il y a des heures supplémentaires effectuées en 2013 payées en 2013
+        cerfa_field = {
+            QUIFOY['vous']: u"1AU",
+            QUIFOY['conj']: u"1BU",
+            QUIFOY['pac1']: u"1CU",
+            QUIFOY['pac2']: u"1DU",
+            }))  # (f1au, f1bu, f1cu, f1du)
 
 build_column('ppe_du_sa', IntCol(label = u"Prime pour l'emploi des salariés: nombre d'heures payées dans l'année",
                      cerfa_field = {QUIFOY['vous']: u"1AV",
@@ -92,7 +96,8 @@ build_column(
 build_column('tva_ent', BoolCol(label = u"L'entreprise employant le salarié paye de la TVA",
                     default = True))
 
-#    build_column('code_risque', EnumCol(label = u"Code risque pour les accidents du travail"))  # TODO: Complete label, add enum and relevant default.
+# build_column('code_risque', EnumCol(label = u"Code risque pour les accidents du travail"))
+# TODO: Complete label, add enum and relevant default.
 
 build_column(
     'exposition_accident',
@@ -107,6 +112,7 @@ build_column(
         )
     )
 
+
 class allegement_fillon_mode_recouvrement(Variable):
     column = EnumCol(
         enum = Enum(
@@ -119,6 +125,7 @@ class allegement_fillon_mode_recouvrement(Variable):
         )
     entity_class = Individus
     label = u"Mode de recouvrement des allègements Fillon"
+
 
 class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
     column = EnumCol(
@@ -133,35 +140,42 @@ class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
     entity_class = Individus
     label = u"Mode de recouvrement de l'allègement de la cotisation d'allocations familiales"
 
+
 class apprentissage_contrat_debut(Variable):
     column = DateCol()
     entity_class = Individus
     label = u"Date de début du contrat d'apprentissage"
+
 
 class arrco_tranche_a_taux_employeur(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Taux ARRCO tranche A employeur) propre à l'entreprise"
 
+
 class arrco_tranche_a_taux_salarie(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Taux ARRCO tranche A salarié) propre à l'entreprise"
+
 
 class assujettie_taxe_salaires(Variable):
     column = BoolCol()
     entity_class = Individus
     label = u"Entreprise assujettie à la taxe sur les salaires"
 
+
 class avantage_en_nature_valeur_reelle(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Avantages en nature (Valeur réelle)"
 
+
 class indemnites_compensatrices_conges_payes(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"indemnites_compensatrices_conges_payes"
+
 
 class contrat_de_travail(Variable):
     column = EnumCol(
@@ -179,15 +193,18 @@ class contrat_de_travail(Variable):
     entity_class = Individus
     label = u"Type contrat de travail"
 
+
 class contrat_de_travail_debut(Variable):
     column = DateCol(default = date(1870, 1, 1))
     entity_class = Individus
     label = u"Date d'arrivée dans l'entreprise"
 
+
 class contrat_de_travail_fin(Variable):
     column = DateCol(default = date(2099, 12, 31))
     entity_class = Individus
     label = u"Date de départ de l'entreprise"
+
 
 class contrat_de_travail_duree(Variable):
     column = EnumCol(
@@ -199,6 +216,7 @@ class contrat_de_travail_duree(Variable):
     entity_class = Individus
     label = u"Type (durée determinée ou indéterminée) du contrat de travail"
 
+
 class cotisation_sociale_mode_recouvrement(Variable):
     column = EnumCol(
         enum = Enum([
@@ -209,15 +227,18 @@ class cotisation_sociale_mode_recouvrement(Variable):
     entity_class = Individus
     label = u"Mode de recouvrement des cotisations sociales"
 
+
 class depcom_entreprise(Variable):
     column = FixedStrCol(max_length = 5)
     entity_class = Individus
     label = u"Localisation entreprise (depcom)"
 
+
 class code_postal_entreprise(Variable):
     column = FixedStrCol(max_length = 5)
     entity_class = Individus
     label = u"Localisation entreprise (Code postal)"
+
 
 class effectif_entreprise(Variable):
     entity_class = Individus
@@ -226,20 +247,24 @@ class effectif_entreprise(Variable):
     label = u"Effectif de l'entreprise"
     set_input = set_input_dispatch_by_period
 
+
 class entreprise_assujettie_cet(Variable):
     column = BoolCol()
     entity_class = Individus
     label = u"Entreprise assujettie à la contribution économique territoriale"
+
 
 class entreprise_assujettie_is(Variable):
     column = BoolCol()
     entity_class = Individus
     label = u"Entreprise assujettie à l'impôt sur les sociétés (IS)"
 
+
 class entreprise_assujettie_tva(Variable):
     column = BoolCol()
     entity_class = Individus
     label = u"Entreprise assujettie à la TVA"
+
 
 class entreprise_benefice(Variable):
     column = FloatCol()
@@ -247,20 +272,24 @@ class entreprise_benefice(Variable):
     set_input = set_input_divide_by_period
     label = u"Bénéfice de l'entreprise"
 
+
 class entreprise_bilan(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Bilan de l'entreprise"
+
 
 class entreprise_chiffre_affaire(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Chiffre d'affaire de l'entreprise"
 
+
 class entreprise_creation(Variable):
     column = DateCol()
     entity_class = Individus
     label = u"Date de création de l'entreprise"
+
 
 class nombre_tickets_restaurant(Variable):
     column = IntCol()
@@ -268,10 +297,12 @@ class nombre_tickets_restaurant(Variable):
     base_function = requested_period_last_value
     label = u"Nombre de tickets restaurant"
 
+
 class nouvelle_bonification_indiciaire(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Nouvelle bonification indicaire"
+
 
 class prevoyance_obligatoire_cadre_taux_employe(Variable):
     column = FloatCol(default = 0.015)  # 1.5% est le minimum en 2014
@@ -279,51 +310,61 @@ class prevoyance_obligatoire_cadre_taux_employe(Variable):
     base_function = requested_period_last_value
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres"
 
+
 class prevoyance_obligatoire_cadre_taux_employeur(Variable):
     column = FloatCol(default = 0.015)  # 1.5% est le minimum en 2014
     entity_class = Individus
     base_function = requested_period_last_value
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres"
 
+
 class primes_salaires(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Indemnités, primes et avantages en argent"
+
 
 class prise_en_charge_employeur_prevoyance_complementaire(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Part salariale des cotisations de prévoyance complémentaire prise en charge par l'employeur"
 
+
 class prise_en_charge_employeur_retraite_complementaire(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Part salariale des cotisations de retraite complémentaire prise en charge par l'employeur"
+
 
 class prise_en_charge_employeur_retraite_supplementaire(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Part salariale des cotisations de retraite supplémentaire prise en charge par l'employeur"
 
+
 class ratio_alternants(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Ratio d'alternants dans l'effectif moyen"
+
 
 class redevable_taxe_apprentissage(Variable):
     column = BoolCol(default = True)
     entity_class = Individus
     label = u"Entreprise redevable de la taxe d'apprentissage"
 
+
 class remboursement_transport_base(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Base pour le calcul du remboursement des frais de transport"
 
+
 class indemnites_forfaitaires(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Indemnités forfaitaires (transport, nourriture)"
+
 
 class salaire_de_base(Variable):
     column = FloatCol()
@@ -332,25 +373,30 @@ class salaire_de_base(Variable):
     set_input = set_input_divide_by_period
     url = u'http://www.insee.fr/fr/methodes/default.asp?page=definitions/salaire-mensuel-base-smb.htm'
 
+
 class titre_restaurant_taux_employeur(Variable):
     column = FloatCol(default = 0.5)
     entity_class = Individus
     label = u"Taux de participation de l'employeur au titre restaurant"
+
 
 class titre_restaurant_valeur_unitaire(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Valeur faciale unitaire du titre restaurant"
 
+
 class titre_restaurant_volume(Variable):
     column = IntCol()
     entity_class = Individus
     label = u"Volume des titres restaurant"
 
+
 class traitement_indiciaire_brut(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Traitement indiciaire brut (TIB)"
+
 
 class type_sal(Variable):
     column = EnumCol(
@@ -369,36 +415,41 @@ class type_sal(Variable):
     entity_class = Individus
     label = u"Catégorie de salarié"
 
+
 class heures_duree_collective_entreprise(Variable):
     column = IntCol()  # TODO default la valeur de la durée légale ?
     entity_class = Individus
     label = u"Durée mensuelle collective dans l'entreprise (heures, temps plein)"
+
 
 class heures_non_remunerees_volume(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)"
 
+
 class heures_remunerees_volume(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Volume des heures rémunérées contractuellement (heures/mois, temps partiel)"
+
 
 class forfait_heures_remunerees_volume(Variable):
     column = IntCol()
     entity_class = Individus
     label = u"Volume des heures rémunérées à un forfait heures"
 
+
 class forfait_jours_remuneres_volume(Variable):
     column = IntCol()
     entity_class = Individus
     label = u"Volume des heures rémunérées à forfait jours"
 
+
 class volume_jours_ijss(Variable):
     column = IntCol()
     entity_class = Individus
     label = u"Volume des jours pour lesquels sont versés une idemnité journalière par la sécurité sociale"
-
 
 
 class avantage_en_nature(Variable):
@@ -561,9 +612,9 @@ class primes_fonction_publique(Variable):
 
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         public = (
-            (type_sal == CAT['public_titulaire_etat'])
-            + (type_sal == CAT['public_titulaire_territoriale'])
-            + (type_sal == CAT['public_titulaire_hospitaliere'])
+            (type_sal == CAT['public_titulaire_etat']) +
+            (type_sal == CAT['public_titulaire_territoriale']) +
+            (type_sal == CAT['public_titulaire_hospitaliere'])
             )
         return period, TAUX_DE_PRIME * traitement_indiciaire_brut * public
 
@@ -610,16 +661,16 @@ class supp_familial_traitement(Variable):
         part_fixe_2 = P.fixe.enf2
         part_fixe_supp = P.fixe.enfsupp
         part_fixe = (
-            part_fixe_1 * (fonc_nbenf == 1) + part_fixe_2 * (fonc_nbenf == 2)
-            + part_fixe_supp * max_(0, fonc_nbenf - 2)
+            part_fixe_1 * (fonc_nbenf == 1) + part_fixe_2 * (fonc_nbenf == 2) +
+            part_fixe_supp * max_(0, fonc_nbenf - 2)
             )
         # pct_variable_1 = 0
         pct_variable_2 = P.prop.enf2
         pct_variable_3 = P.prop.enf3
         pct_variable_supp = P.prop.enfsupp
         pct_variable = (
-            pct_variable_2 * (fonc_nbenf == 2) + (pct_variable_3) * (fonc_nbenf == 3)
-            + pct_variable_supp * max_(0, fonc_nbenf - 3))
+            pct_variable_2 * (fonc_nbenf == 2) + (pct_variable_3) * (fonc_nbenf == 3) +
+            pct_variable_supp * max_(0, fonc_nbenf - 3))
 
         indice_maj_min = P.IM_min
         indice_maj_max = P.IM_max
@@ -732,13 +783,14 @@ class salaire_super_brut_hors_allegements(Variable):
             'reintegration_titre_restaurant_employeur', period)
 
         salaire_super_brut_hors_allegements = (
-            salaire_de_base + remuneration_principale + remuneration_apprenti
-            + primes_fonction_publique + indemnite_residence + supp_familial_traitement
-            + depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur
+            salaire_de_base + remuneration_principale + remuneration_apprenti +
+            primes_fonction_publique + indemnite_residence + supp_familial_traitement +
+            depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur
             - cotisations_employeur
             )
 
         return period, salaire_super_brut_hors_allegements
+
 
 class salaire_super_brut(Variable):
     column = FloatCol
@@ -752,6 +804,7 @@ class salaire_super_brut(Variable):
         exonerations_et_allegements = simulation.calculate('exonerations_et_allegements', period)
 
         return period, salaire_super_brut_hors_allegements - exonerations_et_allegements
+
 
 class exonerations_et_allegements(Variable):
     column = FloatCol
@@ -772,13 +825,14 @@ class exonerations_et_allegements(Variable):
         allegement_cot_alloc_fam = simulation.calculate_add('allegement_cotisation_allocations_familiales', period)
 
         return period, (
-            allegement_fillon
-            + allegement_cot_alloc_fam
-            + exoneration_cotisations_employeur_geographiques
-            + exoneration_cotisations_employeur_jei
-            + exoneration_cotisations_employeur_apprenti
-            + exoneration_cotisations_employeur_stagiaire
+            allegement_fillon +
+            allegement_cot_alloc_fam +
+            exoneration_cotisations_employeur_geographiques +
+            exoneration_cotisations_employeur_jei +
+            exoneration_cotisations_employeur_apprenti +
+            exoneration_cotisations_employeur_stagiaire
             )
+
 
 class cout_du_travail(Variable):
     column = FloatCol
