@@ -200,3 +200,49 @@
     rsa_base_ressources: 0
     # rsa calculé = 524
     rsa: 582 # = 524 * (1.28 + 0.43) - 314
+
+- name: "Avant 2016, application de la pente, inclusion dans le foyer."
+  period: 2015-02
+  relative_error_margin: 0.02
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+    rsa_base_ressources_prestations_familiales: 0
+    rsa_base_ressources_minima_sociaux: 0
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 17
+      salaire_net:
+        2014-11: 524 * 0.55 # 288 -> 109 après pente < 40% du RSA
+        2014-12: 524 * 0.55
+        2015-01: 524 * 0.55
+        2015-02: 524 * 0.55
+  output_variables:
+    nb_enfant_rsa: 1
+    rsa_base_ressources: 288
+    rsa: 513 * 1.5 - 109 # > 513 * 1.5 - 288 = 498
+
+- name: "Après 2016, application de la pente, exclusion du foyer."
+  period: 2015-02
+  relative_error_margin: 0.02
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+    rsa_base_ressources_prestations_familiales: 0
+    rsa_base_ressources_minima_sociaux: 0
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 17
+      salaire_net:
+        2014-11: 1000 # 380 après pente > 40% du RSA
+        2014-12: 1000
+        2015-01: 1000
+        2015-02: 1000
+  output_variables:
+    nb_enfant_rsa: 0
+    rsa_base_ressources: 0
+    rsa: 513 # > 513 * 1.5 - 288 = 498

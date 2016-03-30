@@ -453,12 +453,14 @@ class rsa_enfant_a_charge(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
+
+        P_rsa = simulation.legislation_at(period.start).minim.rmi
+
         enfant = simulation.calculate('est_enfant_dans_famille', period)
         age = simulation.calculate('age', period)
         smic55 = simulation.calculate('smic55', period)
-        ressources = simulation.calculate('rsa_base_ressources_i', period) + simulation.calculate('rsa_revenu_activite_i', period)
+        ressources = simulation.calculate('rsa_base_ressources_i', period) + (1 - P_rsa.pente) * simulation.calculate('rsa_revenu_activite_i', period)
 
-        P_rsa = simulation.legislation_at(period.start).minim.rmi
 
         # Règle CAF: Si un enfant touche des ressources, et que son impact global (augmentation du montant forfaitaire - ressources prises en compte) fait baisser le montant du RSA, alors il doit être exclu du calcul du RSA.
         # Cette règle est complexe, on applique donc l'approximation suivante:
