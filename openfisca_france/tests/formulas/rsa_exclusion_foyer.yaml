@@ -1,0 +1,202 @@
+# Règle: un enfant doit être exclu du calcul du RSA si sa prise en compte fait diminuer le RSA de la famille.
+# Traitée avec les approximations et limites explicitées ici.
+
+- name: "En cas de RSA non majoré, exclusion de l'enfant si ressources > 40% du RSA"
+  period: 2016-02
+  relative_error_margin: 0.02
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+    rsa_base_ressources_prestations_familiales: 0
+    rsa_base_ressources_minima_sociaux: 0
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 17
+      salaire_net:
+        2015-11: 524 * 0.55 # 288
+        2015-12: 524 * 0.55
+        2016-01: 524 * 0.55
+        2016-02: 524 * 0.55
+  output_variables:
+    rsa_enfant_a_charge: [0, 0]
+    nb_enfant_rsa: 0
+    rsa_base_ressources: 0
+    rsa: 524 # > 524 * 1.5 - 288 = 498
+
+
+- name: "En cas de RSA non majoré, inclusion de l'enfant si ressources <= 40% du RSA"
+  period: 2016-02
+  relative_error_margin: 0.02
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+    rsa_base_ressources_prestations_familiales: 0
+    rsa_base_ressources_minima_sociaux: 0
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 17
+      salaire_net:
+        2015-11: 524 * 0.38 # 199
+        2015-12: 524 * 0.38
+        2016-01: 524 * 0.38
+        2016-02: 524 * 0.38
+  output_variables:
+    nb_enfant_rsa: 1
+    rsa_base_ressources: 524 * 0.38
+    rsa: 587 # 524 * 1.5 - 199 > 524
+
+- name: "Tranche problématique: Enfant rejeté à tort. Ressources entre 40% et 50% du RSA. Erreur finale d'au max 10%"
+  period: 2016-02
+  relative_error_margin: 0.10
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+    rsa_base_ressources_prestations_familiales: 0
+    rsa_base_ressources_minima_sociaux: 0
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 17
+      salaire_net:
+        2015-11: 524 * 0.45 # 236
+        2015-12: 524 * 0.45
+        2016-01: 524 * 0.45
+        2016-02: 524 * 0.45
+  output_variables:
+    rsa: 551 # Résultat réel: 524 < 551.
+
+- name: "Tranche problématique: Enfant accepté à tort. Ressources entre 30% et 40% du RSA. Erreur finale d'au max 10%"
+  period: 2016-02
+  relative_error_margin: 0.10
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1", "enfant2"]
+    rsa_base_ressources_prestations_familiales: 0
+    rsa_base_ressources_minima_sociaux: 0
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 15
+    - id: "enfant2"
+      age: 17
+      salaire_net:
+        2015-11: 524 * 0.38 # 199
+        2015-12: 524 * 0.38
+        2016-01: 524 * 0.38
+        2016-02: 524 * 0.38
+  output_variables:
+    rsa: 786 # = 524 * 1.5 > Résultat réel: 524 * 1.8 - 200 = 744
+
+- name: "En cas de RSA majoré, exclusion de l'enfant si ressources <= 70% du RSA"
+  period: 2016-02
+  relative_error_margin: 0.02
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+    rsa_base_ressources_prestations_familiales: 0
+    rsa_base_ressources_minima_sociaux: 0
+    isol: True
+    rsa_isolement_recent: True
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 17
+      salaire_net:
+        2015-11: 524 * 0.50 # 262
+        2015-12: 524 * 0.50
+        2016-01: 524 * 0.50
+        2016-02: 524 * 0.50
+  output_variables:
+    nb_enfant_rsa: 1
+    rsa_base_ressources: 524 * 0.50
+    rsa: 634 # = 524 * (1.28 + 0.43) - 262 > 524
+
+- name: "En cas de RSA majoré, exclusion de l'enfant si ressources > 70% du RSA"
+  period: 2016-02
+  relative_error_margin: 0.02
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+    rsa_base_ressources_prestations_familiales: 0
+    rsa_base_ressources_minima_sociaux: 0
+    isol: True
+    rsa_isolement_recent: True
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 17
+      salaire_net:
+        2015-11: 524 * 0.85 # 445
+        2015-12: 524 * 0.85
+        2016-01: 524 * 0.85
+        2016-02: 524 * 0.85
+  output_variables:
+    nb_enfant_rsa: 0
+    rsa_base_ressources: 0
+    rsa: 524 # > = 524 * (1.28 + 0.43) - 445 = 451
+
+- name: "RSA majoré 2 enfants, dont un avec ressources"
+  period: 2016-02
+  relative_error_margin: 0.02
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1", "enfant2"]
+    rsa_base_ressources_prestations_familiales: 0
+    rsa_base_ressources_minima_sociaux: 0
+    isol: True
+    rsa_isolement_recent: True
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant2"
+      age: 16
+    - id: "enfant1"
+      age: 17
+      salaire_net:
+        2015-11: 524 * 0.60 # 314
+        2015-12: 524 * 0.60
+        2016-01: 524 * 0.60
+        2016-02: 524 * 0.60
+  output_variables:
+    rsa_base_ressources: 0
+    rsa: 896 # = 524 * (1.28 + 0.43)
+
+- name: "Cas problématique: 2 enfants avec ressources. On ne devrait en exclure qu'un, on exclut les deux. Erreur < 10%"
+  period: 2016-02
+  relative_error_margin: 0.10
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1", "enfant2"]
+    rsa_base_ressources_prestations_familiales: 0
+    rsa_base_ressources_minima_sociaux: 0
+    isol: True
+    rsa_isolement_recent: True
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant2"
+      age: 16
+      salaire_net:
+        2015-11: 524 * 0.60 # 314
+        2015-12: 524 * 0.60
+        2016-01: 524 * 0.60
+        2016-02: 524 * 0.60
+    - id: "enfant1"
+      age: 17
+      salaire_net:
+        2015-11: 524 * 0.60 # 314
+        2015-12: 524 * 0.60
+        2016-01: 524 * 0.60
+        2016-02: 524 * 0.60
+  output_variables:
+    rsa_base_ressources: 0
+    # rsa calculé = 524
+    rsa: 582 # = 524 * (1.28 + 0.43) - 314

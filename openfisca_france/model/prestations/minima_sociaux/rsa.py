@@ -253,12 +253,16 @@ class rsa_base_ressources(DatedVariable):
         period = period.this_month
         rsa_base_ressources_prestations_familiales = simulation.calculate('rsa_base_ressources_prestations_familiales', period)
         rsa_base_ressources_minima_sociaux = simulation.calculate('rsa_base_ressources_minima_sociaux', period)
-        rsa_base_ressources_i_holder = simulation.compute('rsa_base_ressources_i', period)
-        rsa_revenu_activite_i_holder = simulation.compute('rsa_revenu_activite_i', period)
 
-        rsa_base_ressources_i_total = self.sum_by_entity(rsa_base_ressources_i_holder)
-        rsa_revenu_activite_i_total = self.sum_by_entity(rsa_revenu_activite_i_holder)
-        return period, rsa_base_ressources_prestations_familiales + rsa_base_ressources_minima_sociaux + rsa_base_ressources_i_total + rsa_revenu_activite_i_total
+        enfant_i = simulation.calculate('est_enfant_dans_famille', period)
+        rsa_enfant_a_charge_i = simulation.calculate('rsa_enfant_a_charge', period)
+        ressources_individuelles_i = simulation.calculate('rsa_base_ressources_i', period) + simulation.calculate('rsa_revenu_activite_i', period)
+
+        ressources_individuelles = self.sum_by_entity(
+            (not_(enfant_i) + rsa_enfant_a_charge_i)  * ressources_individuelles_i
+            )
+
+        return period, rsa_base_ressources_prestations_familiales + rsa_base_ressources_minima_sociaux + ressources_individuelles
 
 
 class rsa_base_ressources_i(Variable):
@@ -442,21 +446,50 @@ class enceinte_fam(Variable):
         enceinte_compat = and_(benjamin < 0, benjamin > -6)
         return period, or_(or_(enceinte_compat, enceinte[CHEF]), enceinte[PART])
 
+class rsa_enfant_a_charge(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Enfant pris en compte dans le calcul du RSA"
+
+    def function(self, simulation, period):
+        period = period.this_month
+        enfant = simulation.calculate('est_enfant_dans_famille', period)
+        age = simulation.calculate('age', period)
+        smic55 = simulation.calculate('smic55', period)
+        ressources = simulation.calculate('rsa_base_ressources_i', period) + simulation.calculate('rsa_revenu_activite_i', period)
+
+        P_rsa = simulation.legislation_at(period.start).minim.rmi
+
+        # Règle CAF: Si un enfant touche des ressources, et que son impact global (augmentation du montant forfaitaire - ressources prises en compte) fait baisser le montant du RSA, alors il doit être exclu du calcul du RSA.
+        # Cette règle est complexe, on applique donc l'approximation suivante:
+        #       - Cas général: enfant pris en compte si ressources <= augmentation du MF pour un enfant supplémentaire (taux marginal).
+        #       - Si la présence de l'enfant ouvre droit au RSA majoré, pris en compte si ressources <= majoration du RSA pour isolement avec un enfant.
+
+        def ouvre_droit_majoration():
+            enceinte_fam = simulation.calculate('enceinte_fam', period)
+            isol = simulation.calculate('isol', period)
+            isolement_recent = simulation.calculate('rsa_isolement_recent', period)
+            presence_autres_enfants = self.sum_by_entity(enfant * not_(smic55) * (age <= P_rsa.age_pac), entity = "famille") > 1
+
+            return self.cast_from_entity_to_roles(not_(enceinte_fam) * isol * isolement_recent * not_(presence_autres_enfants), entity = 'famille')
+
+        return period, (
+            enfant * not_(smic55) *
+            (age <= P_rsa.age_pac) *
+            where(ouvre_droit_majoration(),
+                ressources < (P_rsa.majo_rsa.pac0 - 1 + P_rsa.majo_rsa.pac_enf_sup) * P_rsa.rmi,
+                ressources < P_rsa.txps * P_rsa.rmi
+                )
+            )
+
 class nb_enfant_rsa(Variable):
     column = IntCol
     entity_class = Familles
     label = u"Nombre d'enfants pris en compte pour le calcul du RSA"
 
     def function(self, simulation, period):
-        period = period.this_month
-        rmi = simulation.legislation_at(period.start).minim.rmi
-        age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
-        age_enf = self.split_by_roles(age_holder, roles = ENFS)
-        smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
-        nbenf = nb_enf(age_enf, smic55_enf, 0, rmi.age_pac)
 
-        return period, nbenf
+        return period, self.sum_by_entity(simulation.compute('rsa_enfant_a_charge', period))
 
 class participation_frais(Variable):
     column = BoolCol
@@ -506,11 +539,13 @@ class rsa_revenu_activite(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        rsa_revenu_activite_i_holder = simulation.compute('rsa_revenu_activite_i', period)
+        rsa_revenu_activite_i = simulation.calculate('rsa_revenu_activite_i', period)
+        rsa_enfant_a_charge_i = simulation.calculate('rsa_enfant_a_charge', period)
+        enfant_i = simulation.calculate('est_enfant_dans_famille', period)
 
-        rsa_revenu_activite = self.sum_by_entity(rsa_revenu_activite_i_holder)
-        return period, rsa_revenu_activite
-
+        return period, self.sum_by_entity(
+            (not_(enfant_i) + rsa_enfant_a_charge_i)  * rsa_revenu_activite_i
+            )
 
 class rsa_revenu_activite_i(Variable):
     column = FloatCol
