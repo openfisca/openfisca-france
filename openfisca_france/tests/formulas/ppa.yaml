@@ -383,6 +383,8 @@
       2016-02: 100
     rsa_forfait_asf:
       2016-02: 91.40
+    ass:
+      2016-02: 100
     # Autres ressources, on utilise le mois M-1
     paje_clca:
       2016-01: 100
@@ -408,7 +410,7 @@
     ppa_ressources_hors_activite_i:
       2016-01: 600
     ppa_ressources_hors_activite:
-      2016-01: 1191.40
+      2016-01: 1291.40
 
 - name: "PPA: étudiant éligible (ressources > plancher)"
   period: 2016-01

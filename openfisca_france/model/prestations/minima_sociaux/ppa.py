@@ -134,7 +134,8 @@ class ppa_ressources_hors_activite(Variable):
     def function(self, simulation, period, reference_period):
         pf = simulation.calculate('ppa_base_ressources_prestations_familiales', period, extra_params = [reference_period])
         ressources_hors_activite_individus = simulation.compute('ppa_ressources_hors_activite_i', period)
-        ressources_hors_activite = self.sum_by_entity(ressources_hors_activite_individus) + pf
+        ass = simulation.calculate('ass', reference_period)
+        ressources_hors_activite = self.sum_by_entity(ressources_hors_activite_individus) + pf + ass
 
         return period, ressources_hors_activite
 
