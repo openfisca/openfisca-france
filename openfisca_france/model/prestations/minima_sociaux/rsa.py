@@ -914,12 +914,11 @@ class rsa_isolement_recent(Variable):
     entity_class = Familles
     label = u"Situation d'isolement depuis moins de 18 mois"
 
-class rsa_majore(DatedVariable):
+class rsa_majore(Variable):
     column = FloatCol
     label = u"Revenu de solidarité active - majoré"
     entity_class = Familles
 
-    @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
         period = period.this_month
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
@@ -931,19 +930,6 @@ class rsa_majore(DatedVariable):
         base_normalise = max_(rsa_socle_majore - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite, 0)
 
         return period, base_normalise * (base_normalise >= P.rsa_nv)
-
-    @dated_function(start = date(2016, 01, 01))
-    def function_2016(self, simulation, period):
-        period = period.this_month
-        rsa_socle_majore = simulation.calculate('rsa_socle_majore', period)
-        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
-        rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
-        P = simulation.legislation_at(period.start).minim.rmi
-
-        base_normalise = max_(rsa_socle_majore - rsa_forfait_logement - rsa_base_ressources, 0)
-
-        return period, base_normalise * (base_normalise >= P.rsa_nv)
-
 
 class rsa_majore_eligibilite(Variable):
     column = BoolCol
@@ -1031,12 +1017,11 @@ class rsa_non_calculable_tns_i(Variable):
             )
 
 
-class rsa_non_majore(DatedVariable):
+class rsa_non_majore(Variable):
     column = FloatCol
     label = u"Revenu de solidarité active - non majoré"
     entity_class = Familles
 
-    @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
         period = period.this_month
         rsa_socle = simulation.calculate('rsa_socle', period)
@@ -1046,18 +1031,6 @@ class rsa_non_majore(DatedVariable):
         P = simulation.legislation_at(period.start).minim.rmi
 
         base_normalise = max_(rsa_socle - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite, 0)
-
-        return period, base_normalise * (base_normalise >= P.rsa_nv)
-
-    @dated_function(start = date(2016, 01, 01))
-    def function_2016(self, simulation, period):
-        period = period.this_month
-        rsa_socle = simulation.calculate('rsa_socle', period)
-        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
-        rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
-        P = simulation.legislation_at(period.start).minim.rmi
-
-        base_normalise = max_(rsa_socle - rsa_forfait_logement - rsa_base_ressources, 0)
 
         return period, base_normalise * (base_normalise >= P.rsa_nv)
 
