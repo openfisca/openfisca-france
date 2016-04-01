@@ -230,6 +230,31 @@ class credits_impot(DatedVariable):
         return period, (accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena +
                 preetu + prlire + quaenv + saldom2)
 
+    @dated_function(start = date(2014, 1, 1))  # Not checked
+    def function_2014__(self, simulation, period):
+        """ Crédits d'impôt crédités l'impôt sur les revenus de 2014 et + (non vérifié)"""
+        period = period.this_year
+        accult = simulation.calculate('accult', period)
+        aidper = simulation.calculate('aidper', period)
+        assloy = simulation.calculate('assloy', period)
+        autent = simulation.calculate('autent', period)
+        ci_garext = simulation.calculate('ci_garext', period)
+        cotsyn = simulation.calculate('cotsyn', period)
+        creimp = simulation.calculate('creimp', period)
+        direpa = simulation.calculate('direpa', period)
+        drbail = simulation.calculate('drbail', period)
+        inthab = simulation.calculate('inthab', period)
+        mecena = simulation.calculate('mecena', period)
+        preetu = simulation.calculate('preetu', period)
+        prlire = simulation.calculate('prlire', period)
+        quaenv = simulation.calculate('quaenv', period)
+        saldom2 = simulation.calculate('saldom2', period)
+
+        return period, (accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena +
+                preetu + prlire + quaenv + saldom2)
+
+
+
 
 class nb_pac2(Variable):
     column = FloatCol(default = 0)
@@ -455,7 +480,32 @@ class aidper(DatedVariable):
 
         P = _P.ir.credits_impot.aidper
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements et de la nature des
-        #travaux, c'est un peu le bordel)
+        # travaux, c'est un peu le bordel)
+        max00 = P.max * (1 + marpac)
+        max0 = max00 + P.pac1 * nb_pac2
+        max1 = max_(0, max0 - max_(0,f7wl-max00))
+
+        return period, (P.taux_wr * f7wr + P.taux_wl * min_(f7wl, max00) + P.taux_wl * max_(f7wl - max00, 0) + P.taux_wj *
+                min_(f7wj, max1))
+
+    @dated_function(start = date(2014, 1, 1))
+    def function_2014__(self, simulation, period):
+        '''
+        Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
+        (cases 7WI, 7WJ, 7WL).
+        2014 et supérieurs non vérifiée
+        '''
+        period = period.this_year
+        marpac = simulation.calculate('marpac', period)
+        nb_pac2 = simulation.calculate('nb_pac2', period)
+        f7wj = simulation.calculate('f7wj', period)
+        f7wl = simulation.calculate('f7wl', period)
+        f7wr = simulation.calculate('f7wr', period)
+        _P = simulation.legislation_at(period.start)
+
+        P = _P.ir.credits_impot.aidper
+        # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements et de la nature des
+        # travaux, c'est un peu le bordel)
         max00 = P.max * (1 + marpac)
         max0 = max00 + P.pac1 * nb_pac2
         max1 = max_(0, max0 - max_(0,f7wl-max00))
