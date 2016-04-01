@@ -407,6 +407,50 @@ class reductions(DatedVariable):
         spfcpi)
         return period, min_(ip_net, total_reductions)
 
+    @dated_function(start = date(2014, 1, 1))  # Not checked
+    def function_2014__(self, simulation, period):
+        '''
+        Renvoie la somme des réductions d'impôt à intégrer pour l'année 2014 et + (non vérifiée)
+        '''
+        period = period.this_year
+        accult = simulation.calculate('accult', period)
+        adhcga = simulation.calculate('adhcga', period)
+        cappme = simulation.calculate('cappme', period)
+        creaen = simulation.calculate('creaen', period)
+        daepad = simulation.calculate('daepad', period)
+        deffor = simulation.calculate('deffor', period)
+        dfppce = simulation.calculate('dfppce', period)
+        doment = simulation.calculate('doment', period)
+        domlog = simulation.calculate('domlog', period)
+        donapd = simulation.calculate('donapd', period)
+        duflot = simulation.calculate('duflot', period)
+        ecpess = simulation.calculate('ecpess', period)
+        garext = simulation.calculate('garext', period)
+        intagr = simulation.calculate('intagr', period)
+        invfor = simulation.calculate('invfor', period)
+        invlst = simulation.calculate('invlst', period)
+        ip_net = simulation.calculate('ip_net', period)
+        locmeu = simulation.calculate('locmeu', period)
+        mecena = simulation.calculate('mecena', period)
+        mohist = simulation.calculate('mohist', period)
+        patnat = simulation.calculate('patnat', period)
+        prcomp = simulation.calculate('prcomp', period)
+        reduction_impot_exceptionnelle = simulation.calculate('reduction_impot_exceptionnelle', period)
+        repsoc = simulation.calculate('repsoc', period)
+        resimm = simulation.calculate('resimm', period)
+        rsceha = simulation.calculate('rsceha', period)
+        saldom = simulation.calculate('saldom', period)
+        scelli = simulation.calculate('scelli', period)
+        sofica = simulation.calculate('sofica', period)
+        spfcpi = simulation.calculate('spfcpi', period)
+
+        total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
+        duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist +
+        patnat + prcomp + reduction_impot_exceptionnelle + repsoc + resimm + rsceha + saldom + scelli + sofica +
+        spfcpi)
+        return period, min_(ip_net, total_reductions)
+
+
         # pour tous les dfppce:
         # : note de bas de page
         # TODO: plafonnement pour parti politiques depuis 2012 P.ir.reductions_impots.dfppce.max_niv
@@ -929,6 +973,28 @@ class dfppce(DatedVariable):
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):
+        '''
+        Dons aux autres oeuvres et dons effectués pour le financement des partis
+        politiques et des campagnes électorales (2011-2013)
+        '''
+        period = period.this_year
+        rbg_int = simulation.calculate('rbg_int', period)
+        f7uf = simulation.calculate('f7uf', period)
+        f7uh = simulation.calculate('f7uh', period)
+        f7xs = simulation.calculate('f7xs', period)
+        f7xt = simulation.calculate('f7xt', period)
+        f7xu = simulation.calculate('f7xu', period)
+        f7xw = simulation.calculate('f7xw', period)
+        f7xy = simulation.calculate('f7xy', period)
+        f7vc = simulation.calculate('f7vc', period)
+        P = simulation.legislation_at(period.start).ir.reductions_impots.dfppce
+
+        base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
+        max1 = P.max * rbg_int
+        return period, P.taux * min_(base, max1)
+
+    @dated_function(start = date(2014, 1, 1))  # Not checked
+    def function_2014__(self, simulation, period):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales (2011-2013)
