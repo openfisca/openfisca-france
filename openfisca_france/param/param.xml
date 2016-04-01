@@ -6763,8 +6763,8 @@
         </CODE>
       </NODE>
       <CODE code="pente" description="Pente du RSA" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.62" />
-        <VALUE deb="2009-07-01" fin="2014-12-31" valeur="0.62" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
+        <VALUE deb="2009-07-01" fin="2015-12-31" valeur="0.62" />
         <VALUE deb="2002-01-01" fin="2009-06-30" valeur="0.00" />
       </CODE>
       <CODE code="psa" description="Prime de solidarité active" format="integer" type="monetary">
