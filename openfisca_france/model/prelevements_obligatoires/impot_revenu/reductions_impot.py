@@ -2476,9 +2476,9 @@ class reduction_impot_exceptionnelle(DatedVariable):
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
-        nb_adult = simulation.calculate('nb_adult')
-        nbptr = simulation.calculate('nbptr')
-        rfr = simulation.calculate('rfr')
+        nb_adult = simulation.calculate('nb_adult', period)
+        nbptr = simulation.calculate('nbptr', period)
+        rfr = simulation.calculate('rfr', period)
         params = simulation.legislation_at(period.start).ir.reductions_impots.reduction_impot_exceptionnelle
         plafond = params.seuil * nb_adult + (nbptr - nb_adult) * 2 * params.majoration_seuil
         montant = params.montant_plafond * nb_adult
