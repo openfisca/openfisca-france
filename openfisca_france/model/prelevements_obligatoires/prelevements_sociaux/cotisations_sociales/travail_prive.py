@@ -90,7 +90,8 @@ class indemnite_fin_contrat(Variable):
         # Un grand nombre de conditions peuvent invalider cette indemnité, voir le lien ci-dessus.
         # A ajouter au fur et à mesure
         # Pour l'instant, cette variable d'entrée peut les remplacer
-        indemnite_fin_contrat_non_due = simulation.calculate('indemnite_fin_contrat_non_due', period)
+        # Elle est cependant fixée à False par défaut
+        indemnite_fin_contrat_due = simulation.calculate('indemnite_fin_contrat_due', period)
 
         taux = simulation.legislation_at(period.start).cotsoc.indemnite_fin_contrat.taux
 
@@ -103,7 +104,7 @@ class indemnite_fin_contrat(Variable):
                 (type_sal == 1)
             ) *
             not_(apprenti) *
-            not_(indemnite_fin_contrat_non_due) *
+            indemnite_fin_contrat_due *
             # 10% du brut
             taux * salaire_de_base
             )

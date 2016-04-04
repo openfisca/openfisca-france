@@ -177,10 +177,10 @@ class indemnites_compensatrices_conges_payes(Variable):
     label = u"indemnites_compensatrices_conges_payes"
 
 
-class indemnite_fin_contrat_non_due(Variable):
+class indemnite_fin_contrat_due(Variable):
     column = BoolCol()
     entity_class = Individus
-    label = u"indemnite_fin_contrat_non_due"
+    label = u"indemnite_fin_contrat_due"
 
 
 class contrat_de_travail(Variable):

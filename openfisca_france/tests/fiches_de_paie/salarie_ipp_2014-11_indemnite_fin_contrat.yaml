@@ -16,6 +16,7 @@ input_variables:
   titre_restaurant_valeur_unitaire: 9
   titre_restaurant_volume: 19
   type_sal: 1
+  indemnite_fin_contrat_due: 1
 output_variables:
   conge_individuel_formation_cdd: -50.6
   contribution_solidarite_autonomie: -15.18

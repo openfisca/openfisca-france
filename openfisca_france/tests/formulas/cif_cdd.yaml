@@ -12,7 +12,7 @@
     conge_individuel_formation_cdd: 0
 
 - period: "2016-03"
-  name: CDD, 1% de cotisation CIF-CDD
+  name: CDD, 1% de cotisation CIF-CDD, indemité de fin de contrat
   relative_error_margin: 0.01
   input_variables:
     salaire_de_base: 1467
@@ -21,6 +21,7 @@
     contrat_de_travail_duree: 1 # CDD
     effectif_entreprise: 94
     type_sal: 0
+    indemnite_fin_contrat_due: 1
   output_variables:
     indemnite_fin_contrat: .1 * 1467
     conge_individuel_formation_cdd: -(1467 * 1.1) * 0.01
