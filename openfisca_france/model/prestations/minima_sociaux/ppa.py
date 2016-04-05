@@ -234,7 +234,7 @@ class ppa_fictive(Variable):
         ppa_majoree_eligibilite = simulation.calculate('rsa_majore_eligibilite', reference_period)
 
         elig = simulation.calculate('ppa_eligibilite', period)
-        pente = simulation.legislation_at(period.start).minim.rmi.pente
+        pente = simulation.legislation_at(period.start).minim.ppa.pente
         mff_non_majore = simulation.calculate('ppa_montant_forfaitaire_familial_non_majore', period)
         mff_majore = simulation.calculate('ppa_montant_forfaitaire_familial_majore', period)
         montant_forfaitaire_familialise = where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
