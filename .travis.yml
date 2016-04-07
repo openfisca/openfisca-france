@@ -3,6 +3,7 @@ addons:
     packages:
     - python-numpy
     - python-yaml
+    - python-scipy
 install:
   - pip install flake8  # Not yet available in Ubuntu precise (https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise)
   - pip install -r requirements.txt
