@@ -1058,7 +1058,6 @@ class ir_ss_qf(Variable):
         Impôt sans quotient familial
         '''
         period = period.this_year
-        ir_brut = simulation.calculate('ir_brut', period)
         rni = simulation.calculate('rni', period)
         nb_adult = simulation.calculate('nb_adult', period)
         bareme = simulation.legislation_at(period.start).ir.bareme
