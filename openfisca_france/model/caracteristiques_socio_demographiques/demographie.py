@@ -127,20 +127,19 @@ class maries(Variable):
         return period, statmarit == 1
 
 
-class concub(Variable):
+class en_couple(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"Indicatrice de vie en couple"
 
     def function(self, simulation, period):
         '''
-        concub = 1 si vie en couple TODO: pas très heureux
+        en_couple = 1 si vie en couple TODO: pas très heureux
         '''
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         nb_parents = simulation.calculate('nb_parents', period)
 
-        # TODO: concub n'est pas égal à 1 pour les conjoints
         return period, nb_parents == 2
 
 

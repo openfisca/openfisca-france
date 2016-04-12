@@ -372,7 +372,7 @@ class paje_clmg(Variable):
         etu_holder = simulation.compute('etudiant', period)
         salaire_imposable_holder = simulation.compute('salaire_imposable', period)
         hsup_holder = simulation.compute('hsup', period)
-        concub = simulation.calculate('concub', period)
+        en_couple = simulation.calculate('en_couple', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
         br_pf = simulation.calculate('br_pf', period.this_month)
         empl_dir = simulation.calculate('empl_dir', period)
@@ -396,7 +396,7 @@ class paje_clmg(Variable):
         cond_age_enf = (nb_enf(age, smic55, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
         cond_sal = (
             salaire_imposable[CHEF] + salaire_imposable[PART] + hsup[CHEF] + hsup[PART] >
-            12 * bmaf_n_2 * (1 + concub)
+            12 * bmaf_n_2 * (1 + en_couple)
             )
     # TODO:    cond_rpns    =
         cond_act = cond_sal  # | cond_rpns

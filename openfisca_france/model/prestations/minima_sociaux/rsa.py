@@ -688,15 +688,15 @@ class rsa_act_i(DatedVariable):
     def function_2009_(self, simulation, period):
         period = period   # TODO: rentre dans le calcul de la PPE check period !!!
         rsa_act_holder = simulation.compute('rsa_act', period)
-        concub_holder = simulation.compute('concub', period)
+        en_couple_holder = simulation.compute('en_couple', period)
         maries_holder = simulation.compute('maries', period)
         quifam = simulation.calculate('quifam', period)
 
-        concub = self.cast_from_entity_to_roles(concub_holder)
+        en_couple = self.cast_from_entity_to_roles(en_couple_holder)
         maries = self.cast_from_entity_to_roles(maries_holder)
         rsa_act = self.cast_from_entity_to_roles(rsa_act_holder)
 
-        conj = or_(concub, maries)
+        conj = or_(en_couple, maries)
 
         rsa_act_i = self.zeros()
 

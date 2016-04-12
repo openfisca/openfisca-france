@@ -107,10 +107,10 @@ def build_reform(tax_benefit_system):
             adpa_eligibilite_holder = simulation.compute('adpa_eligibilite', period)
             adpa_eligibilite = self.any_by_roles(adpa_eligibilite_holder)
             base_ressource_mensuelle = simulation.calculate('adpa_base_ressources', period)
-            concub = simulation.calculate('concub', period)
+            en_couple = simulation.calculate('en_couple', period)
 
             # On ne prend pas en compte le cas où le conjoint est placé.
-            quotient_familial = 1 + 0.7 * concub
+            quotient_familial = 1 + 0.7 * en_couple
             base_ressource_mensuelle = base_ressource_mensuelle / quotient_familial
 
             majorationTiercePersonne = 1103.08

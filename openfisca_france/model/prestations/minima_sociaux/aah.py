@@ -210,9 +210,9 @@ class aah_base(Variable):
 
         def montant_aah():
             aah_base_ressources = simulation.calculate('aah_base_ressources', period)
-            concub = simulation.calculate('concub', period)
+            en_couple = simulation.calculate('en_couple', period)
             af_nbenf = simulation.calculate('af_nbenf', period)
-            plaf_ress_aah = 12 * law.minim.aah.montant * (1 + concub + law.minim.aah.tx_plaf_supp * af_nbenf)
+            plaf_ress_aah = 12 * law.minim.aah.montant * (1 + en_couple + law.minim.aah.tx_plaf_supp * af_nbenf)
             return max_(plaf_ress_aah - aah_base_ressources, 0) / 12
 
         # Le montant est à valeur pour une famille, il faut le caster pour l'individu

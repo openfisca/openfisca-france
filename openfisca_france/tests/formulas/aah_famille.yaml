@@ -4,7 +4,7 @@
   absolute_error_margin: 100
   familles:
     parents: ["parent1"]
-    concub: 0
+    en_couple: 0
     aah_base_ressources: 9700
     af_nbenf: 0
   individus:
@@ -20,7 +20,7 @@
   absolute_error_margin: 100
   familles:
     parents: ["parent1"]
-    concub: 0
+    en_couple: 0
     aah_base_ressources: 0
     af_nbenf: 0
   individus:
@@ -36,7 +36,7 @@
   absolute_error_margin: 100
   familles:
     parents: ["parent1", "parent2"]
-    concub: 'True'
+    en_couple: 'True'
     aah_base_ressources: 15000
     af_nbenf: 0
   individus:
@@ -53,7 +53,7 @@
   absolute_error_margin: 100
   familles:
     parents: ["parent1", "parent2"]
-    concub: 'True'
+    en_couple: 'True'
     aah_base_ressources: 15000
     af_nbenf: 0
   individus:
@@ -70,7 +70,7 @@
   absolute_error_margin: 100
   familles:
     parents: ["parent1", "parent2"]
-    concub: 'True'
+    en_couple: 'True'
     aah_base_ressources: 20000
     af_nbenf: 1
   individus:
@@ -88,7 +88,7 @@
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
-    concub: 'True'
+    en_couple: 'True'
     aah_base_ressources: 25000
     af_nbenf: 2
   individus:

@@ -201,7 +201,7 @@ class asi(Variable):
         asi_elig_holder = simulation.compute('asi_elig', period)
         aspa_elig_holder = simulation.compute('aspa_elig', period)
         maries = simulation.calculate('maries', period)
-        concub = simulation.calculate('concub', period)
+        en_couple = simulation.calculate('en_couple', period)
         asi_aspa_nb_alloc = simulation.calculate('asi_aspa_nb_alloc', period)
         br_mv = simulation.calculate('br_mv', period)
         P = simulation.legislation_at(period.start).minim
@@ -230,7 +230,7 @@ class asi(Variable):
 
         ressources = br_mv + montant_max
 
-        plafond_ressources = (elig1 * (P.asi.plaf_seul * not_(concub) + P.asi.plaf_couple * concub) +
+        plafond_ressources = (elig1 * (P.asi.plaf_seul * not_(en_couple) + P.asi.plaf_couple * en_couple) +
             elig2 * P.asi.plaf_couple +
             elig3 * P.asi.plaf_couple +
             elig4 * P.aspa.plaf_couple +
@@ -266,9 +266,9 @@ class aspa_couple(DatedVariable):
     @dated_function(date(2007, 1, 1))
     def function_2007(self, simulation, period):
         period = period
-        concub = simulation.calculate('concub', period)
+        en_couple = simulation.calculate('en_couple', period)
 
-        return period, concub
+        return period, en_couple
 
 
 class aspa(Variable):
@@ -283,7 +283,7 @@ class aspa(Variable):
         asi_elig_holder = simulation.compute('asi_elig', period)
         aspa_elig_holder = simulation.compute('aspa_elig', period)
         maries = simulation.calculate('maries', period)
-        concub = simulation.calculate('concub', period)
+        en_couple = simulation.calculate('en_couple', period)
         asi_aspa_nb_alloc = simulation.calculate('asi_aspa_nb_alloc', period)
         br_mv = simulation.calculate('br_mv', period)
         P = simulation.legislation_at(period.start).minim
@@ -311,7 +311,7 @@ class aspa(Variable):
 
         ressources = br_mv + montant_max
 
-        plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub) +
+        plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(en_couple) + P.aspa.plaf_couple * en_couple) +
             (elig2 | elig3 | elig4) * P.aspa.plaf_couple) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)

@@ -21,7 +21,7 @@ class ass(Variable):
 
         ass_base_ressources = simulation.calculate('ass_base_ressources', period)
         ass_eligibilite_i_holder = simulation.compute('ass_eligibilite_i', period)
-        concub = simulation.calculate('concub', period)
+        en_couple = simulation.calculate('en_couple', period)
         ass_params = simulation.legislation_at(period.start).minim.ass
 
         ass_eligibilite_i = self.split_by_roles(ass_eligibilite_i_holder, roles = [CHEF, PART])
@@ -29,7 +29,7 @@ class ass(Variable):
         elig = or_(ass_eligibilite_i[CHEF], ass_eligibilite_i[PART])
         montant_journalier = ass_params.montant_plein
         montant_mensuel = 30 * montant_journalier
-        plafond_mensuel = montant_journalier * (ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub)
+        plafond_mensuel = montant_journalier * (ass_params.plaf_seul * not_(en_couple) + ass_params.plaf_coup * en_couple)
         revenus = ass_base_ressources / 12
 
         ass = min_(montant_mensuel, plafond_mensuel - revenus)

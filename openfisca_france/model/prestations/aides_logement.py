@@ -222,7 +222,7 @@ class aide_logement_base_ressources(Variable):
         base_ressources_defaut = simulation.calculate('aide_logement_base_ressources_defaut', period)
         base_ressources_eval_forfaitaire = simulation.calculate(
             'aide_logement_base_ressources_eval_forfaitaire', period)
-        concub = simulation.calculate('concub', period)
+        en_couple = simulation.calculate('en_couple', period)
         aah_holder = simulation.compute('aah', mois_precedent)
         aah = self.sum_by_entity(aah_holder, roles = [CHEF, PART])
         age_holder = simulation.compute('age', period)
@@ -235,9 +235,9 @@ class aide_logement_base_ressources(Variable):
 
         plafond_salaire_jeune_isole = simulation.legislation_at(period.start).al.ressources.dar_8
         plafond_salaire_jeune_couple = simulation.legislation_at(period.start).al.ressources.dar_9
-        plafond_salaire_jeune = where(concub, plafond_salaire_jeune_couple, plafond_salaire_jeune_isole)
+        plafond_salaire_jeune = where(en_couple, plafond_salaire_jeune_couple, plafond_salaire_jeune_isole)
 
-        neutral_jeune = or_(age[CHEF] < 25, and_(concub, age[PART] < 25))
+        neutral_jeune = or_(age[CHEF] < 25, and_(en_couple, age[PART] < 25))
         neutral_jeune &= somme_salaires < plafond_salaire_jeune
 
         eval_forfaitaire = base_ressources_defaut <= plafond_eval_forfaitaire
@@ -272,9 +272,9 @@ class aide_logement_montant_brut(Variable):
         period = period.this_month
 
         # Situation familiale
-        concub = simulation.calculate('concub', period)
+        en_couple = simulation.calculate('en_couple', period)
         enceinte_fam = simulation.calculate('enceinte_fam', period)
-        couple = or_(concub, enceinte_fam) # le barème "couple" est utilisé pour les femmes enceintes isolées
+        couple = or_(en_couple, enceinte_fam) # le barème "couple" est utilisé pour les femmes enceintes isolées
         personne_seule = not_(couple)
         al_pac = simulation.calculate('al_pac', period)
 
