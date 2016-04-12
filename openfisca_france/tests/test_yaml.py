@@ -143,7 +143,7 @@ def assert_near_calculate_output(value, target_value, absolute_error_margin = 0,
 def check(yaml_path, name, period_str, test, force):
     scenario = test['scenario']
     scenario.suggest()
-    simulation = scenario.new_simulation(debug = True)
+    simulation = scenario.new_simulation()
     output_variables = test.get(u'output_variables')
     if output_variables is not None:
         output_variables_name_to_ignore = test.get(u'output_variables_name_to_ignore') or set()
@@ -172,7 +172,7 @@ def check(yaml_path, name, period_str, test, force):
 def check_calculate_output(yaml_path, name, period_str, test, force):
     scenario = test['scenario']
     scenario.suggest()
-    simulation = scenario.new_simulation(debug = True)
+    simulation = scenario.new_simulation()
     output_variables = test.get(u'output_variables')
     if output_variables is not None:
         output_variables_name_to_ignore = test.get(u'output_variables_name_to_ignore') or set()
