@@ -3204,7 +3204,7 @@
         <VALUE deb="2003-07-01" fin="2014-03-31" valeur="20" />
       </CODE>
       <CODE code="bmaf" description="Base mensuelle des allocations familiales" format="float" type="monetary">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="406.21" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="406.62" />
         <VALUE deb="2014-04-01" fin="2016-03-31" valeur="406.21" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="403.79" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="399" />
