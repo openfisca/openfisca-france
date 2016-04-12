@@ -3483,14 +3483,14 @@
       </CODE>
     </NODE>
     <NODE code="asf" description="Allocation de soutien familial">
-      <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.2476" />
+      <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée, en pourcentage de la BMAF" format="percent">
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.2589" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.2476" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2363" />
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.225" />
       </CODE>
       <CODE code="taux2" description="Orphelin (de père et de mère), ou situation assimilée" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.33" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.3450" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.33" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.315" />
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.3" />
