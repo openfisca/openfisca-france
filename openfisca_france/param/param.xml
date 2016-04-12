@@ -3568,13 +3568,13 @@
         <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.2379" />
       </CODE>
       <CODE code="tx_majore" description="Taux du complément familial majoré" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.4999" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.5416" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.4999" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.4582" />
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.4165" />
       </CODE>
       <CODE code="tx_majore_dom" description="Taux du complément familial majoré dans les DOM" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.2855" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.3093" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.2855" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2617" />
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.2379" />
