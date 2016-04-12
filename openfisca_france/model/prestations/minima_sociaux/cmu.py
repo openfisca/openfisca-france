@@ -65,10 +65,10 @@ class cmu_nbp_foyer(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        nb_par = simulation.calculate('nb_par', period)
+        nb_parents = simulation.calculate('nb_parents', period)
         cmu_nb_pac = simulation.calculate('cmu_nb_pac', period)
 
-        return period, nb_par + cmu_nb_pac
+        return period, nb_parents + cmu_nb_pac
 
 
 class cmu_eligible_majoration_dom(Variable):

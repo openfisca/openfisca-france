@@ -96,7 +96,7 @@ build_column('invalide', BoolCol(label = u'Invalide'))  # TODO: cerfa_field
 
 
 
-class nb_par(Variable):
+class nb_parents(Variable):
     column = PeriodSizeIndependentIntCol(default = 0)
     entity_class = Familles
     label = u"Nombre d'adultes (parents) dans la famille"
@@ -138,10 +138,10 @@ class concub(Variable):
         '''
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        nb_par = simulation.calculate('nb_par', period)
+        nb_parents = simulation.calculate('nb_parents', period)
 
         # TODO: concub n'est pas égal à 1 pour les conjoints
-        return period, nb_par == 2
+        return period, nb_parents == 2
 
 
 class isol(Variable):
@@ -152,9 +152,9 @@ class isol(Variable):
     def function(self, simulation, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        nb_par = simulation.calculate('nb_par', period)
+        nb_parents = simulation.calculate('nb_parents', period)
 
-        return period, nb_par == 1
+        return period, nb_parents == 1
 
 
 class est_enfant_dans_famille(Variable):

@@ -55,7 +55,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        nb_parents = simulation.calculate('nb_par', period)
+        nb_parents = simulation.calculate('nb_parents', period)
         nb_enfants = simulation.calculate('nb_enfant_rsa', period)
         ppa_majoree_eligibilite = simulation.calculate('rsa_majore_eligibilite', period)
         rmi = simulation.legislation_at(period.start).minim.rmi
@@ -65,7 +65,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
             1 +
             (nb_personnes >= 2) * rmi.txp2 +
             (nb_personnes >= 3) * rmi.txp3 +
-            (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3) + # Si nb_par == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
+            (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3) + # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
             max_(nb_personnes - 4, 0) * rmi.txps
             )
 

@@ -35,7 +35,7 @@ class aefa(DatedVariable):
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
-        nb_par = simulation.calculate('nb_par', period)
+        nb_parents = simulation.calculate('nb_parents', period)
         ass = simulation.calculate_add('ass', period)
         aer_holder = simulation.compute('aer', period)
         api = simulation.calculate_add('api', period)
@@ -58,8 +58,8 @@ class aefa(DatedVariable):
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
         aefa = condition * P.mon_seul * (
-            1 + (nb_par == 2) * P.tx_2p +
-            nbPAC * P.tx_supp * (nb_par <= 2) +
+            1 + (nb_parents == 2) * P.tx_2p +
+            nbPAC * P.tx_supp * (nb_parents <= 2) +
             nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
             )
         aefa_maj = P.mon_seul * maj
@@ -72,7 +72,7 @@ class aefa(DatedVariable):
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
-        nb_par = simulation.calculate('nb_par', period)
+        nb_parents = simulation.calculate('nb_parents', period)
         ass = simulation.calculate_add('ass', period)
         aer_holder = simulation.compute('aer', period)
         api = simulation.calculate_add('api', period)
@@ -95,8 +95,8 @@ class aefa(DatedVariable):
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
         aefa = condition * P.mon_seul * (
-            1 + (nb_par == 2) * P.tx_2p +
-            nbPAC * P.tx_supp * (nb_par <= 2) +
+            1 + (nb_parents == 2) * P.tx_2p +
+            nbPAC * P.tx_supp * (nb_parents <= 2) +
             nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
             )
         aefa += condition * P.forf2008
@@ -110,7 +110,7 @@ class aefa(DatedVariable):
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
-        nb_par = simulation.calculate('nb_par', period)
+        nb_parents = simulation.calculate('nb_parents', period)
         ass = simulation.calculate_add('ass', period)
         aer_holder = simulation.compute('aer', period)
         api = simulation.calculate_add('api', period)
@@ -133,8 +133,8 @@ class aefa(DatedVariable):
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
         aefa = condition * P.mon_seul * (
-            1 + (nb_par == 2) * P.tx_2p +
-            nbPAC * P.tx_supp * (nb_par <= 2) +
+            1 + (nb_parents == 2) * P.tx_2p +
+            nbPAC * P.tx_supp * (nb_parents <= 2) +
             nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
             )
         aefa_maj = P.mon_seul * maj
@@ -631,13 +631,13 @@ class rmi_nbp(Variable):
         period = period.this_month
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period)
-        nb_par = simulation.calculate('nb_par', period)
+        nb_parents = simulation.calculate('nb_parents', period)
         P = simulation.legislation_at(period.start).minim.rmi
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
 
-        return period, nb_par + nb_enf(age, smic55, 0, P.age_pac - 1)  # TODO: check limite d'âge in legislation
+        return period, nb_parents + nb_enf(age, smic55, 0, P.age_pac - 1)  # TODO: check limite d'âge in legislation
 
 
 class rsa(DatedVariable):
@@ -795,7 +795,7 @@ class rsa_eligibilite_tns(Variable):
         tns_autres_revenus_type_activite_holder = simulation.compute('tns_autres_revenus_type_activite', period)
         tns_autres_revenus_type_activite = self.split_by_roles(tns_autres_revenus_type_activite_holder)
 
-        has_conjoint = simulation.calculate('nb_par', period) > 1
+        has_conjoint = simulation.calculate('nb_parents', period) > 1
         nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         P = simulation.legislation_at(period.start)
         P_agr = P.tns.exploitant_agricole
@@ -1078,7 +1078,7 @@ class rsa_socle(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        nb_parents = simulation.calculate('nb_par', period)
+        nb_parents = simulation.calculate('nb_parents', period)
         eligib = simulation.calculate('rsa_eligibilite', period)
         nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
         rmi = simulation.legislation_at(period.start).minim.rmi
@@ -1089,7 +1089,7 @@ class rsa_socle(Variable):
             1 +
             (nb_personnes >= 2) * rmi.txp2 +
             (nb_personnes >= 3) * rmi.txp3 +
-            (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3) + # Si nb_par == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
+            (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3) + # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
             max_(nb_personnes - 4, 0) * rmi.txps
         )
         return period, eligib * rmi.rmi * taux

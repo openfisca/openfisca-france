@@ -30,10 +30,10 @@ def build_reform(tax_benefit_system):
         def function(self, simulation, period):
             period = period.this_year
             nb_adult = simulation.calculate('nb_adult')
-            nb_par = simulation.calculate('nb_par')
+            nb_parents = simulation.calculate('nb_parents')
             rfr = simulation.calculate('rfr')
             params = simulation.legislation_at(period.start).plfr2014.reduction_impot_exceptionnelle
-            plafond = params.seuil * nb_adult + (nb_par - nb_adult) * 2 * params.majoration_seuil
+            plafond = params.seuil * nb_adult + (nb_parents - nb_adult) * 2 * params.majoration_seuil
             montant = params.montant_plafond * nb_adult
             return period, min_(max_(plafond + montant - rfr, 0), montant)
 
