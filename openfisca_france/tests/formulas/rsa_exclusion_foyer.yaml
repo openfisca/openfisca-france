@@ -21,7 +21,7 @@
         2016-02: 524 * 0.55
   output_variables:
     rsa_enfant_a_charge: [0, 0]
-    nb_enfant_rsa: 0
+    rsa_nb_enfants: 0
     rsa_base_ressources: 0
     rsa: 524 # > 524 * 1.5 - 288 = 498
 
@@ -45,7 +45,7 @@
         2016-01: 524 * 0.38
         2016-02: 524 * 0.38
   output_variables:
-    nb_enfant_rsa: 1
+    rsa_nb_enfants: 1
     rsa_base_ressources: 524 * 0.38
     rsa: 587 # 524 * 1.5 - 199 > 524
 
@@ -114,7 +114,7 @@
         2016-01: 524 * 0.50
         2016-02: 524 * 0.50
   output_variables:
-    nb_enfant_rsa: 1
+    rsa_nb_enfants: 1
     rsa_base_ressources: 524 * 0.50
     rsa: 634 # = 524 * (1.28 + 0.43) - 262 > 524
 
@@ -139,7 +139,7 @@
         2016-01: 524 * 0.85
         2016-02: 524 * 0.85
   output_variables:
-    nb_enfant_rsa: 0
+    rsa_nb_enfants: 0
     rsa_base_ressources: 0
     rsa: 524 # > = 524 * (1.28 + 0.43) - 445 = 451
 
@@ -220,7 +220,7 @@
         2015-01: 524 * 0.55
         2015-02: 524 * 0.55
   output_variables:
-    nb_enfant_rsa: 1
+    rsa_nb_enfants: 1
     rsa_base_ressources: 288
     rsa: 513 * 1.5 - 109 # > 513 * 1.5 - 288 = 498
 
@@ -243,6 +243,6 @@
         2015-01: 1000
         2015-02: 1000
   output_variables:
-    nb_enfant_rsa: 0
+    rsa_nb_enfants: 0
     rsa_base_ressources: 0
     rsa: 513 # > 513 * 1.5 - 288 = 498

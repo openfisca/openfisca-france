@@ -484,7 +484,7 @@ class rsa_enfant_a_charge(Variable):
                 )
             )
 
-class nb_enfant_rsa(Variable):
+class rsa_nb_enfants(Variable):
     column = IntCol
     entity_class = Familles
     label = u"Nombre d'enfants pris en compte pour le calcul du RSA"
@@ -740,12 +740,12 @@ class rsa_eligibilite(Variable):
         age_parents = self.split_by_roles(age_holder, roles = [CHEF, PART])
         activite_holder = simulation.compute('activite', period)
         activite_parents = self.split_by_roles(activite_holder, roles = [CHEF, PART])
-        nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
+        rsa_nb_enfants = simulation.calculate('rsa_nb_enfants', period)
         rsa_eligibilite_tns = simulation.calculate('rsa_eligibilite_tns', period)
         rsa_condition_nationalite = simulation.compute('rsa_condition_nationalite', period)
         condition_nationalite = self.any_by_roles(rsa_condition_nationalite, roles = [CHEF, PART])
         rmi = simulation.legislation_at(period.start).minim.rmi
-        age_min = (nb_enfant_rsa == 0) * rmi.age_pac
+        age_min = (rsa_nb_enfants == 0) * rmi.age_pac
 
         eligib = (
             (age_parents[CHEF] >= age_min) * not_(activite_parents[CHEF] == 2) +
@@ -778,7 +778,7 @@ class rsa_eligibilite_tns(Variable):
         tns_autres_revenus_type_activite = self.split_by_roles(tns_autres_revenus_type_activite_holder)
 
         has_conjoint = simulation.calculate('nb_parents', period) > 1
-        nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
+        rsa_nb_enfants = simulation.calculate('rsa_nb_enfants', period)
         P = simulation.legislation_at(period.start)
         P_agr = P.tns.exploitant_agricole
         P_micro = P.ir.rpns.microentreprise
@@ -786,10 +786,10 @@ class rsa_eligibilite_tns(Variable):
         maj_1e_2ad = P_agr.maj_1e_2ad
         maj_e_sup = P_agr.maj_e_sup
 
-        def eligibilite_agricole(has_conjoint, nb_enfant_rsa, tns_benefice_exploitant_agricole, P_agr):
+        def eligibilite_agricole(has_conjoint, rsa_nb_enfants, tns_benefice_exploitant_agricole, P_agr):
             plafond_benefice_agricole = P_agr.plafond_rsa * P.cotsoc.gen.smic_h_b
-            taux_avec_conjoint = 1 + maj_2p + maj_1e_2ad * (nb_enfant_rsa > 0) + maj_e_sup * max_(nb_enfant_rsa - 1, 0)
-            taux_sans_conjoint = 1 + maj_2p * (nb_enfant_rsa > 0) + maj_e_sup * max_(nb_enfant_rsa - 1, 0)
+            taux_avec_conjoint = 1 + maj_2p + maj_1e_2ad * (rsa_nb_enfants > 0) + maj_e_sup * max_(rsa_nb_enfants - 1, 0)
+            taux_sans_conjoint = 1 + maj_2p * (rsa_nb_enfants > 0) + maj_e_sup * max_(rsa_nb_enfants - 1, 0)
             taux_majoration = has_conjoint * taux_avec_conjoint + (1 - has_conjoint) * taux_sans_conjoint
             plafond_benefice_agricole_majore = taux_majoration * plafond_benefice_agricole
 
@@ -802,7 +802,7 @@ class rsa_eligibilite_tns(Variable):
             return ((type_activite == 0) * (ca <= plaf_vente)) + ((type_activite >= 1) * (ca <= plaf_service))
 
         eligibilite_agricole = eligibilite_agricole(
-            has_conjoint, nb_enfant_rsa, tns_benefice_exploitant_agricole, P_agr
+            has_conjoint, rsa_nb_enfants, tns_benefice_exploitant_agricole, P_agr
             )
         eligibilite_chiffre_affaire = (
             eligibilite_chiffre_affaire(
@@ -934,7 +934,7 @@ class rsa_majore_eligibilite(Variable):
         isolement_recent = simulation.calculate('rsa_isolement_recent', period)
         enfant_moins_3_ans = has_enfant_moins_3_ans()
         enceinte_fam = simulation.calculate('enceinte_fam', period)
-        nbenf = simulation.calculate('nb_enfant_rsa', period)
+        nbenf = simulation.calculate('rsa_nb_enfants', period)
         rsa_eligibilite_tns = simulation.calculate('rsa_eligibilite_tns', period)
         eligib = (
             isole *
@@ -1062,10 +1062,10 @@ class rsa_socle(Variable):
         period = period.this_month
         nb_parents = simulation.calculate('nb_parents', period)
         eligib = simulation.calculate('rsa_eligibilite', period)
-        nb_enfant_rsa = simulation.calculate('nb_enfant_rsa', period)
+        rsa_nb_enfants = simulation.calculate('rsa_nb_enfants', period)
         rmi = simulation.legislation_at(period.start).minim.rmi
 
-        nb_personnes = nb_parents + nb_enfant_rsa
+        nb_personnes = nb_parents + rsa_nb_enfants
 
         taux = (
             1 +
@@ -1087,6 +1087,6 @@ class rsa_socle_majore(Variable):
         period = period.this_month
         rmi = simulation.legislation_at(period.start).minim.rmi
         eligib = simulation.calculate('rsa_majore_eligibilite', period)
-        nbenf = simulation.calculate('nb_enfant_rsa', period)
+        nbenf = simulation.calculate('rsa_nb_enfants', period)
         taux = rmi.majo_rsa.pac0 + rmi.majo_rsa.pac_enf_sup * nbenf
         return period, eligib * rmi.rmi * taux

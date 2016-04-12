@@ -56,7 +56,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
     def function(self, simulation, period):
         period = period.this_month
         nb_parents = simulation.calculate('nb_parents', period)
-        nb_enfants = simulation.calculate('nb_enfant_rsa', period)
+        nb_enfants = simulation.calculate('rsa_nb_enfants', period)
         ppa_majoree_eligibilite = simulation.calculate('rsa_majore_eligibilite', period)
         rmi = simulation.legislation_at(period.start).minim.rmi
         nb_personnes = nb_parents + nb_enfants
@@ -77,7 +77,7 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
     label = u"Montant forfaitaire familial (avec majoration)"
 
     def function(self, simulation, period):
-        nb_enfants = simulation.calculate('nb_enfant_rsa', period)
+        nb_enfants = simulation.calculate('rsa_nb_enfants', period)
         rmi = simulation.legislation_at(period.start).minim.rmi
         taux_majore = rmi.majo_rsa.pac0 + rmi.majo_rsa.pac_enf_sup * nb_enfants
 
