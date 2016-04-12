@@ -3852,11 +3852,11 @@
         </CODE>
       </NODE>
       <NODE code="nais" description="Prime à la naissance">
-        <CODE code="adopt" description="facteur multitplicatif de la prime à l'adoption" format="percent">
+        <CODE code="adopt" description="facteur multitplicatif de la prime à l'adoption, en pourcentage de la BMAF" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="2" />
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="2" />
         </CODE>
-        <CODE code="prime_tx" description="Prime à la naissance et à l'adoption" format="percent">
+        <CODE code="prime_tx" description="Prime à la naissance et à l'adoption, en pourcentage de la BMAF" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="2.2975" />
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="2.2975" />
         </CODE>
