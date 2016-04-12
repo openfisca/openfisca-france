@@ -128,7 +128,7 @@ class maries(Variable):
 
 
 class en_couple(Variable):
-    column = BoolCol(default = False)
+    column = BoolCol
     entity_class = Familles
     label = u"Indicatrice de vie en couple"
 
@@ -141,19 +141,6 @@ class en_couple(Variable):
         nb_parents = simulation.calculate('nb_parents', period)
 
         return period, nb_parents == 2
-
-
-class isol(Variable):
-    column = BoolCol(default = False)
-    entity_class = Familles
-    label = u"Parent (s'il y a lieu) isolé"
-
-    def function(self, simulation, period):
-        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
-        # jour, sans changer la période.
-        nb_parents = simulation.calculate('nb_parents', period)
-
-        return period, nb_parents == 1
 
 
 class est_enfant_dans_famille(Variable):

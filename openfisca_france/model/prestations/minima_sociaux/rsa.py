@@ -157,7 +157,7 @@ class api(DatedVariable):
         age_en_mois_holder = simulation.compute('age_en_mois', period)
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period)
-        isol = simulation.calculate('isol', period)
+        isole = not_(simulation.calculate('en_couple', period))
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
         rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
         af_majo = simulation.calculate('af_majo', period)
@@ -198,7 +198,7 @@ class api(DatedVariable):
         # # Calcul de l'année et mois de naissance du benjamin
 
         condition = (floor(benjamin / 12) <= api.age - 1)
-        eligib = isol * ((enceinte != 0) | (nb_enf(age, smic55, 0, api.age - 1) > 0)) * condition
+        eligib = isole * ((enceinte != 0) | (nb_enf(age, smic55, 0, api.age - 1) > 0)) * condition
 
         # moins de 20 ans avant inclusion dans rsa
         # moins de 25 ans après inclusion dans rsa
@@ -469,11 +469,11 @@ class rsa_enfant_a_charge(Variable):
 
         def ouvre_droit_majoration():
             enceinte_fam = simulation.calculate('enceinte_fam', period)
-            isol = simulation.calculate('isol', period)
+            isole = not_(simulation.calculate('en_couple', period))
             isolement_recent = simulation.calculate('rsa_isolement_recent', period)
             presence_autres_enfants = self.sum_by_entity(enfant * not_(smic55) * (age <= P_rsa.age_pac), entity = "famille") > 1
 
-            return self.cast_from_entity_to_roles(not_(enceinte_fam) * isol * isolement_recent * not_(presence_autres_enfants), entity = 'famille')
+            return self.cast_from_entity_to_roles(not_(enceinte_fam) * isole * isolement_recent * not_(presence_autres_enfants), entity = 'famille')
 
         return period, (
             enfant * not_(smic55) *
@@ -948,14 +948,14 @@ class rsa_majore_eligibilite(Variable):
             return nbenf > 0
 
         period = period.this_month
-        isol = simulation.calculate('isol', period)
+        isole = not_(simulation.calculate('en_couple', period))
         isolement_recent = simulation.calculate('rsa_isolement_recent', period)
         enfant_moins_3_ans = has_enfant_moins_3_ans()
         enceinte_fam = simulation.calculate('enceinte_fam', period)
         nbenf = simulation.calculate('nb_enfant_rsa', period)
         rsa_eligibilite_tns = simulation.calculate('rsa_eligibilite_tns', period)
         eligib = (
-            isol *
+            isole *
             (enceinte_fam | (nbenf > 0)) *
             (enfant_moins_3_ans | isolement_recent | enceinte_fam) *
             rsa_eligibilite_tns

@@ -101,7 +101,7 @@
     enfants: ["enfant1"]
     rsa_base_ressources_prestations_familiales: 0
     rsa_base_ressources_minima_sociaux: 0
-    isol: True
+    en_couple: False
     rsa_isolement_recent: True
   individus:
     - id: "parent1"
@@ -126,7 +126,7 @@
     enfants: ["enfant1"]
     rsa_base_ressources_prestations_familiales: 0
     rsa_base_ressources_minima_sociaux: 0
-    isol: True
+    en_couple: False
     rsa_isolement_recent: True
   individus:
     - id: "parent1"
@@ -151,7 +151,7 @@
     enfants: ["enfant1", "enfant2"]
     rsa_base_ressources_prestations_familiales: 0
     rsa_base_ressources_minima_sociaux: 0
-    isol: True
+    en_couple: False
     rsa_isolement_recent: True
   individus:
     - id: "parent1"
@@ -177,7 +177,7 @@
     enfants: ["enfant1", "enfant2"]
     rsa_base_ressources_prestations_familiales: 0
     rsa_base_ressources_minima_sociaux: 0
-    isol: True
+    en_couple: False
     rsa_isolement_recent: True
   individus:
     - id: "parent1"

@@ -67,7 +67,7 @@ class paje_base(Variable):
     def function(self, simulation, period):
         period = period.this_month
         couple_biactif = simulation.calculate('biact', period)
-        parent_isole = simulation.calculate('isol', period)
+        parent_isole = not_(simulation.calculate('en_couple', period))
         nombre_enfants = simulation.calculate('af_nbenf', period)
         pfam = simulation.legislation_at(period.start).fam
 
@@ -196,7 +196,7 @@ class paje_naissance(Variable):
         # age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
         br_pf = simulation.calculate('br_pf', period)
-        isol = simulation.calculate('isol', period)
+        isole = not_(simulation.calculate('en_couple', period))
         biact = simulation.calculate('biact', period)
         P = simulation.legislation_at(period.start).fam
 
@@ -217,7 +217,7 @@ class paje_naissance(Variable):
 
         # Est-ce que ces taux n'ont pas été mis à jour en avril 2014 ?
         plaf_tx = (nbenf > 0) + P.paje.base.avant_2014.plaf_tx1 * min_(nbenf, 2) + P.paje.base.avant_2014.plaf_tx2 * max_(nbenf - 2, 0)
-        majo = isol | biact
+        majo = isole | biact
         plaf = P.paje.base.avant_2014.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.avant_2014.plaf_maj * majo
         elig = (br_pf <= plaf) * (nbnais != 0)
         nais_brut = nais_prime * elig * (nbnais)
@@ -645,7 +645,7 @@ class apje_temp(Variable):
         age_holder = simulation.compute('age', period)
         smic55_holder = simulation.compute('smic55', period.this_month)
         biact = simulation.calculate_add('biact', period)
-        isol = simulation.calculate('isol', period)
+        isole = not_(simulation.calculate('en_couple', period))
         P = simulation.legislation_at(period.start).fam
         P_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
 
@@ -660,7 +660,7 @@ class apje_temp(Variable):
         base2 = round(P.apje.taux * bmaf_n_2, 2)
 
         plaf_tx = (nbenf > 0) + P.apje.plaf_tx1 * min_(nbenf, 2) + P.apje.plaf_tx2 * max_(nbenf - 2, 0)
-        majo = isol | biact
+        majo = isole | biact
         plaf = P.apje.plaf * plaf_tx + P.apje.plaf_maj * majo
         plaf2 = plaf + 12 * base2
 

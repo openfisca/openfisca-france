@@ -52,10 +52,10 @@ class asf_elig(Variable):
         pensions_alimentaires_percues_holder = simulation.compute('pensions_alimentaires_percues', period)
         pensions_alimentaires_percues = self.sum_by_entity(pensions_alimentaires_percues_holder)
 
-        isol = simulation.calculate('isol', period)
+        isole = not_(simulation.calculate('en_couple', period))
         residence_mayotte = simulation.calculate('residence_mayotte', period)
 
-        return period, not_(residence_mayotte) * isol * not_(pensions_alimentaires_percues)  # Parent isolé et ne résident pas à Mayotte
+        return period, not_(residence_mayotte) * isole * not_(pensions_alimentaires_percues)  # Parent isolé et ne résident pas à Mayotte
 
 
 class asf(Variable):
