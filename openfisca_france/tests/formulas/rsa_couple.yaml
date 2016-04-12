@@ -13,8 +13,6 @@
   output_variables:
     aide_logement:
       "2014-01": 0
-    rmi_nbp:
-      "2014-01": 2
     rsa_revenu_activite_i:
       "2014-01": [0, 0]
     rsa_base_ressources:

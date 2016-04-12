@@ -622,24 +622,6 @@ class rmi(DatedVariable):
         # TODO: Migré lors de la mensualisation. Probablement faux
 
 
-class rmi_nbp(Variable):
-    column = IntCol
-    entity_class = Familles
-    label = u"Nombre de personne à charge au sens du Rmi/Rsa"
-
-    def function(self, simulation, period):
-        period = period.this_month
-        age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
-        nb_parents = simulation.calculate('nb_parents', period)
-        P = simulation.legislation_at(period.start).minim.rmi
-
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
-
-        return period, nb_parents + nb_enf(age, smic55, 0, P.age_pac - 1)  # TODO: check limite d'âge in legislation
-
-
 class rsa(DatedVariable):
     calculate_output = calculate_output_add
     column = FloatCol
@@ -877,7 +859,7 @@ class rsa_forfait_logement(Variable):
         forf_logement = simulation.legislation_at(period.start).minim.rmi.forfait_logement
         rmi = simulation.legislation_at(period.start).minim.rmi.rmi
 
-        rmi_nbp = simulation.calculate('rmi_nbp', period)
+        nb_pac = simulation.calculate('nb_parents', period) + simulation.calculate('rsa_nb_enfants', period)
         aide_logement = simulation.calculate('aide_logement', period)
 
         statut_occupation = simulation.calculate('statut_occupation_famille', period)
@@ -898,9 +880,9 @@ class rsa_forfait_logement(Variable):
         avantage_al = aide_logement > 0
 
         montant_forfait = rmi * (
-            (rmi_nbp == 1) * forf_logement.taux1 +
-            (rmi_nbp == 2) * forf_logement.taux2 +
-            (rmi_nbp >= 3) * forf_logement.taux3
+            (nb_pac == 1) * forf_logement.taux1 +
+            (nb_pac == 2) * forf_logement.taux2 +
+            (nb_pac >= 3) * forf_logement.taux3
         )
 
         montant_al = avantage_al * min_(aide_logement, montant_forfait)
