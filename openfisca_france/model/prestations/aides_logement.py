@@ -494,7 +494,7 @@ class als_non_etudiant(Variable):
         )
 
 
-class alset(Variable):
+class als_etudiant(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
@@ -526,8 +526,8 @@ class als(Variable):
     def function(self, simulation, period):
         period = period.this_month
         als_non_etudiant = simulation.calculate('als_non_etudiant', period)
-        alset = simulation.calculate('alset', period)
-        result = (als_non_etudiant + alset)
+        als_etudiant = simulation.calculate('als_etudiant', period)
+        result = (als_non_etudiant + als_etudiant)
 
         return period, result
 

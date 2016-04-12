@@ -120,7 +120,7 @@
       <NODE code="apl" color="255,245,155" desc="Aide personalisée au logement" shortname="APL" />
       <NODE code="als" color="255,239,103" desc="Allocation logement social" shortname="ALS" />
       <NODE code="alf" color="255,233,28" desc="Allocation de logement familiale" shortname="ALF" />
-      <NODE code="alset" color="247,221,0" desc="Allocation logement étudiant" shortname="AL étudiant" />
+      <NODE code="als_etudiant" color="247,221,0" desc="Allocation logement étudiant" shortname="AL étudiant" />
       <NODE code="crds_logement" color="229,48,56" desc="CRDS (allocation logement)" shortname="CRDS log." />
     </NODE>
   </NODE>
