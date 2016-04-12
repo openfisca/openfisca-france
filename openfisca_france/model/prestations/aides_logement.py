@@ -474,7 +474,7 @@ class alf(Variable):
         return period, result
 
 
-class als_nonet(Variable):
+class als_non_etudiant(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Allocation logement sociale (non étudiante)"
@@ -525,9 +525,9 @@ class als(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        als_nonet = simulation.calculate('als_nonet', period)
+        als_non_etudiant = simulation.calculate('als_non_etudiant', period)
         alset = simulation.calculate('alset', period)
-        result = (als_nonet + alset)
+        result = (als_non_etudiant + alset)
 
         return period, result
 
