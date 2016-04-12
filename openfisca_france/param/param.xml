@@ -3149,7 +3149,8 @@
         <VALUE deb="1991-09-24" fin="2002-03-31" valeur="0" />
       </CODE>
       <CODE code="cpl6" description="Complément de catégorie 6 (majoration pour assistance d’une tierce personne invalide de 3e catégorie) " format="float" type="monetary">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur="1096.50" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="1104.18" />
+        <VALUE deb="2014-04-01" fin="2016-03-31" valeur="1103.08" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="1096.50" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="1082.43" />
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="1060.17" />
