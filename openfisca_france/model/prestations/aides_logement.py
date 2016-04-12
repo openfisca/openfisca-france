@@ -184,7 +184,7 @@ class aide_logement_base_ressources_defaut(Variable):
         period = period.this_month
         rev_coll_holder = simulation.compute('rev_coll', period.n_2)
         rev_coll = self.sum_by_entity(rev_coll_holder)
-        biact = simulation.calculate('biact', period)
+        biactivite = simulation.calculate('biactivite', period)
         Pr = simulation.legislation_at(period.start).al.ressources
         br_pf_i_holder = simulation.compute('br_pf_i', period)
         br_pf_parents = self.sum_by_entity(br_pf_i_holder, roles = [CHEF, PART])
@@ -202,7 +202,7 @@ class aide_logement_base_ressources_defaut(Variable):
         )
 
         # Abattement forfaitaire pour double activité
-        abattement_double_activite = biact * Pr.dar_1
+        abattement_double_activite = biactivite * Pr.dar_1
 
         # Arrondi aux 100 euros supérieurs
         result = max_(ressources - abattement_double_activite, 0)

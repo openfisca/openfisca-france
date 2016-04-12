@@ -114,7 +114,7 @@ class cf_plafond(Variable):
         eligibilite_base = simulation.calculate('cf_eligibilite_base', period)
         eligibilite_dom = simulation.calculate('cf_eligibilite_dom', period)
         isole = not_(simulation.calculate('en_couple', period))
-        biact = simulation.calculate('biact', period)
+        biactivite = simulation.calculate('biactivite', period)
         cf_enfant_a_charge_holder = simulation.compute('cf_enfant_a_charge', period)
 
         # Calcul du nombre d'enfants à charge au sens du CF
@@ -124,7 +124,7 @@ class cf_plafond(Variable):
         taux_plafond_metropole = 1 + pfam.cf.majoration_plafond_tx1 * min_(cf_nbenf, 2) + pfam.cf.majoration_plafond_tx2 * max_(cf_nbenf - 2, 0)
 
         # Majoration du plafond pour biactivité ou isolement (France métropolitaine)
-        majoration_plafond = (isole | biact)
+        majoration_plafond = (isole | biactivite)
 
         # Calcul du plafond pour la France métropolitaine
         plafond_metropole = pfam.cf.plafond * taux_plafond_metropole + pfam.cf.majoration_plafond_biact_isole * majoration_plafond

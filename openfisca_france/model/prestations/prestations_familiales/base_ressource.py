@@ -76,7 +76,7 @@ class br_pf_i(Variable):
         return period, tspr + hsup + rpns
 
 
-class biact(Variable):
+class biactivite(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"Indicatrice de biactivité"
