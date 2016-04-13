@@ -11,7 +11,7 @@ build_column('quimen', EnumCol(QUIMEN, is_permanent = True))
 build_column('quifoy', EnumCol(QUIFOY, is_permanent = True))
 build_column('quifam', EnumCol(QUIFAM, is_permanent = True))
 
-build_column('birth', DateCol(default = date(1970, 1, 1), is_permanent = True, label = u"Date de naissance"))
+build_column('date_naissance', DateCol(default = date(1970, 1, 1), is_permanent = True, label = u"Date de naissance"))
 
 
 build_column('adoption', BoolCol(entity = "ind", label = u"Enfant adopté"))

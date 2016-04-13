@@ -8,7 +8,7 @@ relative_error_margin: 0.02
 individus:
   age: 20
   age_en_mois: 250
-  birth: "1994-01-01"
+  date_naissance: "1994-01-01"
   enceinte: true
   epargne_non_remuneree:
     2012-01: 0

@@ -10,7 +10,7 @@ period: "month:2014-09"
 individus:
   age: 44
   age_en_mois: 536
-  birth: "1970-01-01"
+  date_naissance: "1970-01-01"
   enceinte: false
   epargne_non_remuneree:
     2012-01: 0

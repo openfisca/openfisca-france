@@ -7,7 +7,7 @@ period: "month:2015-04"
 individus:
   - age: 34
     age_en_mois: 416
-    birth: "1980-08-12"
+    date_naissance: "1980-08-12"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:
@@ -74,7 +74,7 @@ individus:
       2012-01: 0
   - age: 3
     age_en_mois: 43
-    birth: "2011-09-09"
+    date_naissance: "2011-09-09"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -89,7 +89,7 @@ individus:
       2012-01: 0
   - age: 6
     age_en_mois: 79
-    birth: "2008-09-08"
+    date_naissance: "2008-09-08"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0

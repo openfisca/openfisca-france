@@ -478,7 +478,7 @@ def test_check():
         name = test_parameters["name"]
         period = test_parameters["period"]
         parent1 = dict(
-            birth = datetime.date(periods.period(period).start.year - 40, 1, 1),
+            date_naissance = datetime.date(periods.period(period).start.year - 40, 1, 1),
             )
         foyer_fiscal = dict()
         foyer_fiscal.update(test_parameters['input_variables'])

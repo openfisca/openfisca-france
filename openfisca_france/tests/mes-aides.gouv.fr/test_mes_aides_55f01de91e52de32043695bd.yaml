@@ -14,7 +14,7 @@ individus:
   activite: 3
   age: 64
   age_en_mois: 775
-  birth: '1951-01-10'
+  date_naissance: '1951-01-10'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0

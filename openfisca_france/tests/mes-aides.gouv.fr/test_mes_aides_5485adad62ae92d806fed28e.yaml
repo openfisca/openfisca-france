@@ -12,7 +12,7 @@ individus:
   - activite: 3
     age: 65
     age_en_mois: 783
-    birth: "1949-08-14"
+    date_naissance: "1949-08-14"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -64,7 +64,7 @@ individus:
     age: 54
     age_en_mois: 651
     ass_precondition_remplie: true
-    birth: "1960-08-17"
+    date_naissance: "1960-08-17"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0

@@ -8,7 +8,7 @@ relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 414
-    birth: "1980-01-01"
+    date_naissance: "1980-01-01"
     enceinte: false
     epargne_non_remuneree:
       2012-01: 0
@@ -33,7 +33,7 @@ individus:
       2012-01: 0
   - age: 34
     age_en_mois: 414
-    birth: "1980-01-01"
+    date_naissance: "1980-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -48,7 +48,7 @@ individus:
       2012-01: 0
   - age: 4
     age_en_mois: 54
-    birth: "2010-01-01"
+    date_naissance: "2010-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -63,7 +63,7 @@ individus:
       2012-01: 0
   - age: 4
     age_en_mois: 54
-    birth: "2010-01-01"
+    date_naissance: "2010-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0

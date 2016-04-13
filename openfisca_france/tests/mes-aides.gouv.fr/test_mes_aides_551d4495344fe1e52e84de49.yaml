@@ -12,7 +12,7 @@ individus:
   age: 34
   age_en_mois: 415
   ass_precondition_remplie: false
-  birth: "1980-08-06"
+  date_naissance: "1980-08-06"
   chomage_brut:
     2013: 1986.3767660130934
     2014-04: 0

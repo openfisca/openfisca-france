@@ -43,7 +43,7 @@ if __name__ == '__main__':
     from openfisca_france.tests.base import tax_benefit_system
     period = "2014-12"
     parent1 = dict(
-        birth = datetime.date(periods.period(period).start.year - 40, 1, 1),
+        date_naissance = datetime.date(periods.period(period).start.year - 40, 1, 1),
         salbrut = {"2014-12": 1445.38},
         )
 

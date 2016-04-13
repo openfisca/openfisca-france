@@ -9,7 +9,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
-                    'birth',  # Date de naissance
+                    'date_naissance',  # Date de naissance
                     'statmarit',  # Statut marital
                     'salaire_de_base',  # Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie
                     'chomage_imposable',  # Autres revenus imposables (chômage, préretraite)

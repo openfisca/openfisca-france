@@ -12,7 +12,7 @@ individus:
   - a_charge_fiscale: true
     age: 34
     age_en_mois: 408
-    birth: "1981-07-11"
+    date_naissance: "1981-07-11"
     chomage_imposable:
       2013: 0
     enfant_place: false
@@ -55,7 +55,7 @@ individus:
     age: 29
     age_en_mois: 356
     ass_precondition_remplie: false
-    birth: "1985-11-28"
+    date_naissance: "1985-11-28"
     chomage_imposable:
       2013: 0
     chomage_brut:
@@ -158,7 +158,7 @@ individus:
   - a_charge_fiscale: true
     age: 3
     age_en_mois: 43
-    birth: "2011-12-17"
+    date_naissance: "2011-12-17"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -175,7 +175,7 @@ individus:
   - a_charge_fiscale: true
     age: 8
     age_en_mois: 97
-    birth: "2007-06-01"
+    date_naissance: "2007-06-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -192,7 +192,7 @@ individus:
   - a_charge_fiscale: true
     age: 10
     age_en_mois: 120
-    birth: "2005-07-16"
+    date_naissance: "2005-07-16"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -210,7 +210,7 @@ individus:
   - a_charge_fiscale: true
     age: 13
     age_en_mois: 156
-    birth: "2002-07-10"
+    date_naissance: "2002-07-10"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -228,7 +228,7 @@ individus:
   - a_charge_fiscale: true
     age: 14
     age_en_mois: 179
-    birth: "2000-08-07"
+    date_naissance: "2000-08-07"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0

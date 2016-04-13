@@ -29,7 +29,7 @@ individus:
   activite: 2
   age: 24
   age_en_mois: 293
-  birth: "1990-08-12"
+  date_naissance: "1990-08-12"
   boursier: true
   epargne_non_remuneree:
     2012-01: 0

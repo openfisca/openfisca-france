@@ -996,7 +996,7 @@
   absolute_error_margin: 0.5
   name: "IRPP Couple, salaire_net = [30000, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01"]  # 29 ans
+    date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
     idfoy: [0, 0]
     quifoy: [VOUS, CONJ]
     salaire_imposable:

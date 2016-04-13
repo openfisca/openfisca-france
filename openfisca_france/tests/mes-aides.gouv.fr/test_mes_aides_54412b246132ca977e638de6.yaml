@@ -26,7 +26,7 @@ individus:
     year:2013-10: 1199988
   age: 36
   age_en_mois: 434
-  birth: "1978-08-12"
+  date_naissance: "1978-08-12"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0

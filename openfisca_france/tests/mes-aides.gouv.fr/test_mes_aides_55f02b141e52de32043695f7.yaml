@@ -12,7 +12,7 @@ individus:
   age: 30
   age_en_mois: 369
   ass_precondition_remplie: true
-  birth: "1984-11-19"
+  date_naissance: "1984-11-19"
   chomage_brut:
     2014-09: -218.37882841168638
     2014-10: -218.37882841168638

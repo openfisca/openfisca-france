@@ -170,7 +170,7 @@ def test_check():
     for employee_type, test_parameters in test_case_by_employee_type.iteritems():
         simulation_period = 2013
         parent1 = dict(
-            birth = datetime.date(periods.period(simulation_period).start.year - 40, 1, 1),
+            date_naissance = datetime.date(periods.period(simulation_period).start.year - 40, 1, 1),
             )
         parent1.update(test_parameters['input_variables'])
 

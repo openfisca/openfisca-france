@@ -11,7 +11,7 @@ individus:
   - a_charge_fiscale: true
     age: 45
     age_en_mois: 544
-    birth: "1970-04-13"
+    date_naissance: "1970-04-13"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -96,7 +96,7 @@ individus:
   - a_charge_fiscale: true
     age: 15
     age_en_mois: 186
-    birth: "2000-02-14"
+    date_naissance: "2000-02-14"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0

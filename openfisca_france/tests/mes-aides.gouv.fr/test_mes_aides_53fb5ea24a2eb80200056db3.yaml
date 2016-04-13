@@ -13,7 +13,7 @@ individus:
     year:2013-08: 2370
   age: 33
   age_en_mois: 407
-  birth: "1980-09-14"
+  date_naissance: "1980-09-14"
   enceinte: false
   epargne_non_remuneree:
     2012-01: 0

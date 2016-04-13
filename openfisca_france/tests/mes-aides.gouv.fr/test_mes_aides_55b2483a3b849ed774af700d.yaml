@@ -9,7 +9,7 @@ individus:
   - a_charge_fiscale: true
     age: 35
     age_en_mois: 426
-    birth: "1980-01-01"
+    date_naissance: "1980-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -78,7 +78,7 @@ individus:
   - a_charge_fiscale: true
     age: 35
     age_en_mois: 426
-    birth: "1980-01-01"
+    date_naissance: "1980-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0

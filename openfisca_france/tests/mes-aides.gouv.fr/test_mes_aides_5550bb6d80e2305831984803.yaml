@@ -11,7 +11,7 @@ period: month:2015-05
 individus:
 - age: 32
   age_en_mois: 394
-  birth: '1982-06-14'
+  date_naissance: '1982-06-14'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0

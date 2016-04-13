@@ -8,7 +8,7 @@ individus:
   - a_charge_fiscale: true
     age: 35
     age_en_mois: 426
-    birth: "1980-01-01"
+    date_naissance: "1980-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -77,7 +77,7 @@ individus:
   - a_charge_fiscale: true
     age: 33
     age_en_mois: 402
-    birth: "1982-01-01"
+    date_naissance: "1982-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -95,7 +95,7 @@ individus:
   - a_charge_fiscale: true
     age: 7
     age_en_mois: 90
-    birth: "2008-01-01"
+    date_naissance: "2008-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -112,7 +112,7 @@ individus:
   - a_charge_fiscale: true
     age: 5
     age_en_mois: 66
-    birth: "2010-01-01"
+    date_naissance: "2010-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -129,7 +129,7 @@ individus:
   - a_charge_fiscale: true
     age: 10
     age_en_mois: 126
-    birth: "2005-01-01"
+    date_naissance: "2005-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -147,7 +147,7 @@ individus:
   - a_charge_fiscale: true
     age: 1
     age_en_mois: 18
-    birth: "2014-01-01"
+    date_naissance: "2014-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0

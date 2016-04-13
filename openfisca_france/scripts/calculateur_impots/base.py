@@ -225,8 +225,8 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
         for declarant_index, declarant_id in enumerate(foyer_fiscal.pop('declarants')):
             declarant = individu_by_id[declarant_id].copy()
 
-            birth = declarant.pop('birth')
-            impots_arguments['0D{}'.format(chr(ord('A') + declarant_index))] = birth.year
+            date_naissance = declarant.pop('date_naissance')
+            impots_arguments['0D{}'.format(chr(ord('A') + declarant_index))] = date_naissance.year
 
             statmarit = declarant.pop('statmarit', None)
             column = tax_benefit_system.column_by_name['statmarit']
@@ -261,8 +261,8 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
         for personne_a_charge_index, personne_a_charge_id in enumerate(foyer_fiscal.pop('personnes_a_charge')):
             personne_a_charge = individu_by_id[personne_a_charge_id].copy()
 
-            birth = personne_a_charge.pop('birth')
-            impots_arguments['0F{}'.format(personne_a_charge_index)] = birth.year
+            date_naissance = personne_a_charge.pop('date_naissance')
+            impots_arguments['0F{}'.format(personne_a_charge_index)] = date_naissance.year
 
             personne_a_charge.pop('statmarit', None)
 

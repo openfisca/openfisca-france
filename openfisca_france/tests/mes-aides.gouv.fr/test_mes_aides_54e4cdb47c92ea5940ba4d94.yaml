@@ -28,7 +28,7 @@ period: "month:2015-02"
 individus:
   age: 22
   age_en_mois: 273
-  birth: "1992-05-17"
+  date_naissance: "1992-05-17"
   chomage_imposable:
     2013: 0
   epargne_non_remuneree:

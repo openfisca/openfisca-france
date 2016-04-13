@@ -23,12 +23,12 @@ def process_tests_list(tests_list, monthly_amount = False, default_error_margin 
 
 def simulation_from_test(test, monthly_amount = False, default_error_margin = 1, forced_error_margin = None):
     year = test["year"]
-    parent1 = dict(birth = datetime.date(year - 40, 1, 1))
+    parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1))
     menage = dict()
     foyer_fiscal = dict()
     for variable, value in test['input_vars'].iteritems():
         if variable == "age":
-            parent1['birth'] = datetime.date(year - value, 1, 1)
+            parent1['date_naissance'] = datetime.date(year - value, 1, 1)
         elif base.tax_benefit_system.column_by_name[variable].entity == 'men':
             menage[variable] = value
         elif base.tax_benefit_system.column_by_name[variable].entity == 'ind':

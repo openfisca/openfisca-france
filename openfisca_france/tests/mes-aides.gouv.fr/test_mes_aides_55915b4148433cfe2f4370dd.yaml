@@ -12,7 +12,7 @@ period: "month:2015-06"
 individus:
   - age: 36
     age_en_mois: 440
-    birth: "1978-10-04"
+    date_naissance: "1978-10-04"
     chomage_brut:
       2013: 9960.57593890788
       2014-06: 779.5633710898188
@@ -110,7 +110,7 @@ individus:
   - age: 13
     age_en_mois: 162
     garde_alternee: true
-    birth: "2001-12-17"
+    date_naissance: "2001-12-17"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -127,7 +127,7 @@ individus:
   - age: 10
     age_en_mois: 131
     garde_alternee: true
-    birth: "2004-07-24"
+    date_naissance: "2004-07-24"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0

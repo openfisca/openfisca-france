@@ -9,7 +9,7 @@ individus:
   age: 51
   age_en_mois: 621
   ass_precondition_remplie: false
-  birth: '1964-01-01'
+  date_naissance: '1964-01-01'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0

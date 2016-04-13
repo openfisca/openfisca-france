@@ -12,7 +12,7 @@ individus:
   - activite: 2
     age: 22
     age_en_mois: 269
-    birth: "1992-08-12"
+    date_naissance: "1992-08-12"
     boursier: false
     epargne_non_remuneree:
       2012-01: 0
@@ -30,7 +30,7 @@ individus:
   - activite: 2
     age: 22
     age_en_mois: 269
-    birth: "1992-08-12"
+    date_naissance: "1992-08-12"
     boursier: true
     epargne_non_remuneree:
       2012-01: 0

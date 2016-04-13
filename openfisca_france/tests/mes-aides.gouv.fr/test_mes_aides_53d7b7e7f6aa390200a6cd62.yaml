@@ -5,7 +5,7 @@ period: "month:2014-07"
 individus:
   - age: 24
     age_en_mois: 298
-    birth: "1989-09-14"
+    date_naissance: "1989-09-14"
     enceinte: false
     epargne_non_remuneree:
       2012-01: 0
@@ -21,7 +21,7 @@ individus:
       2012-01: 0
   - age: 6
     age_en_mois: 82
-    birth: "2007-09-14"
+    date_naissance: "2007-09-14"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -36,7 +36,7 @@ individus:
       2012-01: 0
   - age: 6
     age_en_mois: 82
-    birth: "2007-09-14"
+    date_naissance: "2007-09-14"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -51,7 +51,7 @@ individus:
       2012-01: 0
   - age: 1
     age_en_mois: 23
-    birth: "2012-08-15"
+    date_naissance: "2012-08-15"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0

@@ -26,7 +26,7 @@ relative_error_margin: 0.02
 individus:
   - age: 35
     age_en_mois: 426
-    birth: "1980-01-01"
+    date_naissance: "1980-01-01"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:
@@ -50,7 +50,7 @@ individus:
       2012-01: 0
   - age: 35
     age_en_mois: 426
-    birth: "1980-01-01"
+    date_naissance: "1980-01-01"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:
@@ -74,7 +74,7 @@ individus:
       2012-01: 0
   - age: 11
     age_en_mois: 138
-    birth: "2004-01-01"
+    date_naissance: "2004-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -90,7 +90,7 @@ individus:
       2012-01: 0
   - age: 12
     age_en_mois: 150
-    birth: "2003-01-01"
+    date_naissance: "2003-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -106,7 +106,7 @@ individus:
       2012-01: 0
   - age: 20
     age_en_mois: 246
-    birth: "1995-01-01"
+    date_naissance: "1995-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0

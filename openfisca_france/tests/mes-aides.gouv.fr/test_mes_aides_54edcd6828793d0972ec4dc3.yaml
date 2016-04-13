@@ -29,7 +29,7 @@ relative_error_margin: 0.02
 individus:
   - age: 46
     age_en_mois: 555
-    birth: "1968-11-25"
+    date_naissance: "1968-11-25"
     chomage_imposable:
       2013: 2738
     epargne_non_remuneree:
@@ -52,7 +52,7 @@ individus:
       2012-01: 0
   - age: 18
     age_en_mois: 225
-    birth: "1996-05-03"
+    date_naissance: "1996-05-03"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -68,7 +68,7 @@ individus:
       2012-01: 0
   - age: 15
     age_en_mois: 181
-    birth: "2000-01-09"
+    date_naissance: "2000-01-09"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0

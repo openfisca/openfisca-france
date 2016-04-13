@@ -16,7 +16,7 @@ individus:
     age: 42
     age_en_mois: 515
     ass_precondition_remplie: true
-    birth: "1972-01-09"
+    date_naissance: "1972-01-09"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -34,7 +34,7 @@ individus:
     age: 43
     age_en_mois: 524
     ass_precondition_remplie: true
-    birth: "1971-04-02"
+    date_naissance: "1971-04-02"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0

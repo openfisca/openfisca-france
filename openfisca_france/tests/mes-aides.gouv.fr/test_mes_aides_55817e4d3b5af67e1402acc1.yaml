@@ -9,7 +9,7 @@ individus:
     age: 44
     age_en_mois: 533
     ass_precondition_remplie: true
-    birth: "1971-01-06"
+    date_naissance: "1971-01-06"
     chomage_brut:
       2013: 19863.767660130936
       2014-06: 1655.313971677578
@@ -74,7 +74,7 @@ individus:
       2012-01: 0
   - age: 55
     age_en_mois: 665
-    birth: "1960-01-01"
+    date_naissance: "1960-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0

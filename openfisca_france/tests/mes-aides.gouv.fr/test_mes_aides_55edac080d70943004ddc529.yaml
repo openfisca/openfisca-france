@@ -9,7 +9,7 @@ individus:
   - a_charge_fiscale: true
     age: 55
     age_en_mois: 666
-    birth: "1960-03-02"
+    date_naissance: "1960-03-02"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -72,7 +72,7 @@ individus:
   - a_charge_fiscale: true
     age: 1
     age_en_mois: 23
-    birth: "2013-09-08"
+    date_naissance: "2013-09-08"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0

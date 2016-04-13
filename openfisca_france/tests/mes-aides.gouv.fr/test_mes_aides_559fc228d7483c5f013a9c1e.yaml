@@ -10,7 +10,7 @@ individus:
   age: 59
   age_en_mois: 708
   ass_precondition_remplie: false
-  birth: "1956-06-26"
+  date_naissance: "1956-06-26"
   chomage_brut:
     2013: 3716.731637740055
     2014-07: 309.7276364783379

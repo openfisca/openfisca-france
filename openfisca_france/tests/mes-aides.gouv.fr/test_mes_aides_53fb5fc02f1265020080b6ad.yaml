@@ -7,7 +7,7 @@ period: "month:2014-08"
 individus:
   - age: 33
     age_en_mois: 407
-    birth: "1980-09-14"
+    date_naissance: "1980-09-14"
     enceinte: true
     epargne_non_remuneree:
       2012-01: 0
@@ -32,7 +32,7 @@ individus:
       year:2013-08: 2370
     age: 33
     age_en_mois: 407
-    birth: "1980-09-14"
+    date_naissance: "1980-09-14"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0

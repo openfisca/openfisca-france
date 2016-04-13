@@ -39,7 +39,7 @@ def test_parametric_reform():
                 ),
             ],
         period = simulation_period,
-        parent1 = dict(birth = datetime.date(simulation_year - 40, 1, 1)),
+        parent1 = dict(date_naissance = datetime.date(simulation_year - 40, 1, 1)),
         )
 
     reference_simulation = scenario.new_simulation(reference = True)

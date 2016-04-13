@@ -10,7 +10,7 @@ period: month:2015-06
 individus:
 - age: 30
   age_en_mois: 370
-  birth: '1984-08-20'
+  date_naissance: '1984-08-20'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -90,7 +90,7 @@ individus:
     2012-01: 0
 - age: 12
   age_en_mois: 149
-  birth: '2003-01-27'
+  date_naissance: '2003-01-27'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -106,7 +106,7 @@ individus:
     2012-01: 0
 - age: 8
   age_en_mois: 98
-  birth: '2007-04-17'
+  date_naissance: '2007-04-17'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -121,7 +121,7 @@ individus:
     2012-01: 0
 - age: 6
   age_en_mois: 72
-  birth: '2009-06-29'
+  date_naissance: '2009-06-29'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0

@@ -6,7 +6,7 @@
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
-    birth: '1998-01-01' # age < 18 sur le trimestre de référence
+    date_naissance: '1998-01-01' # age < 18 sur le trimestre de référence
     ppa_revenu_activite:
       2015-12: 500
       2015-11: 500
@@ -22,7 +22,7 @@
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
-    birth: '1997-01-01' # age > 18 sur le trimestre de référence
+    date_naissance: '1997-01-01' # age > 18 sur le trimestre de référence
     ppa_revenu_activite_i:
       2015-12: 918
       2015-11: 918
@@ -37,7 +37,7 @@
 - name: "PPA - Eligibilité sur certains mois seulement"
   period: 2016-01
   input_variables:
-    birth: '1997-11-15' # age > 18 seulemet sur 1 mois du TR
+    date_naissance: '1997-11-15' # age > 18 seulemet sur 1 mois du TR
     ppa_revenu_activite_i:
       2015-12: 918
       2015-11: 918

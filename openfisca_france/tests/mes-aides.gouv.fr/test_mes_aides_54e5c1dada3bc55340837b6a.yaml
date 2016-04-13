@@ -26,7 +26,7 @@ period: "month:2015-02"
 individus:
   - age: 34
     age_en_mois: 414
-    birth: "1980-08-12"
+    date_naissance: "1980-08-12"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:
@@ -97,7 +97,7 @@ individus:
       2012-01: 0
   - age: 22
     age_en_mois: 270
-    birth: "1992-08-12"
+    date_naissance: "1992-08-12"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:

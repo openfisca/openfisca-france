@@ -1,7 +1,7 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 0"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     # salaire_net: 0
     statut_occupation:
       "2014-01": 2  # Propriétaire (non accédant) du logement
@@ -30,7 +30,7 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 5000"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     salaire_net:
       2012: 5000
       2013: 5000
@@ -62,7 +62,7 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 10000"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     salaire_net:
       2012: 10000
       2013: 10000
@@ -94,7 +94,7 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 12000"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     salaire_net:
       2012: 12000
       2013: 12000
@@ -126,7 +126,7 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 13000"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     salaire_net:
       2012: 13000
       2013: 13000
@@ -158,7 +158,7 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 14000"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     salaire_net:
       2012: 14000
       2013: 14000
@@ -190,7 +190,7 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 15000"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     salaire_net:
       2012: 15000
       2013: 15000
@@ -222,7 +222,7 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 20000"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     salaire_net:
       2012: 20000
       2013: 20000

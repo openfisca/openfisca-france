@@ -9,7 +9,7 @@ period: "month:2015-01"
 individus:
   age: 35
   age_en_mois: 420
-  birth: "1980-01-01"
+  date_naissance: "1980-01-01"
   bourse_enseignement_sup:
     2013: 24000
     2014-01: 2000

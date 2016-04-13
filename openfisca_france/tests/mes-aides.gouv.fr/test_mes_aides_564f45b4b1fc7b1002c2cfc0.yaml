@@ -8,7 +8,7 @@ individus:
 - a_charge_fiscale: true
   age: 33
   age_en_mois: 399
-  birth: '1982-08-12'
+  date_naissance: '1982-08-12'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0

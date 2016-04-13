@@ -11,7 +11,7 @@ period: "month:2015-05"
 individus:
   - age: 35
     age_en_mois: 422
-    birth: "1980-03-02"
+    date_naissance: "1980-03-02"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -27,7 +27,7 @@ individus:
       2012-01: 0
   - age: 34
     age_en_mois: 417
-    birth: "1980-08-09"
+    date_naissance: "1980-08-09"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -44,7 +44,7 @@ individus:
   - a_charge_fiscale: true
     age: 3
     age_en_mois: 45
-    birth: "2011-08-09"
+    date_naissance: "2011-08-09"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0

@@ -41,7 +41,7 @@ individus:
     year:2014-01: 2400
   age: 35
   age_en_mois: 426
-  birth: "1979-07-12"
+  date_naissance: "1979-07-12"
   chomage_imposable:
     2013: 0
   epargne_non_remuneree:

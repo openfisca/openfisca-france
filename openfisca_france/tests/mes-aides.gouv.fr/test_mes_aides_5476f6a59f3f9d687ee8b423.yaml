@@ -7,7 +7,7 @@ period: "month:2014-11"
 individus:
   age: 46
   age_en_mois: 559
-  birth: "1968-03-30"
+  date_naissance: "1968-03-30"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0

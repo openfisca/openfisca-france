@@ -7,7 +7,7 @@ period: "month:2015-02"
 individus:
   age: 27
   age_en_mois: 326
-  birth: "1987-12-12"
+  date_naissance: "1987-12-12"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0

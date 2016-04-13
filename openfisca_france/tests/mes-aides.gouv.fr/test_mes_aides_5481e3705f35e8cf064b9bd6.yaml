@@ -8,7 +8,7 @@ individus:
   activite: 3
   age: 59
   age_en_mois: 719
-  birth: "1955-01-01"
+  date_naissance: "1955-01-01"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0

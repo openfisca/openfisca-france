@@ -11,7 +11,7 @@ individus:
   activite: 3
   age: 74
   age_en_mois: 894
-  birth: "1940-10-10"
+  date_naissance: "1940-10-10"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0

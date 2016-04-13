@@ -34,7 +34,7 @@ individus:
   - activite: 3
     age: 88
     age_en_mois: 1061
-    birth: "1926-09-05"
+    date_naissance: "1926-09-05"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:
@@ -90,7 +90,7 @@ individus:
       2012-01: 0
   - age: 14
     age_en_mois: 173
-    birth: "2000-08-12"
+    date_naissance: "2000-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0

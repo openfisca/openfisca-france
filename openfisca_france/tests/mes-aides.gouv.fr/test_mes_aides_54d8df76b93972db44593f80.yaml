@@ -27,7 +27,7 @@ period: "month:2015-02"
 individus:
   age: 34
   age_en_mois: 412
-  birth: "1980-09-12"
+  date_naissance: "1980-09-12"
   chomage_imposable:
     2013: 0
   coloc: 1

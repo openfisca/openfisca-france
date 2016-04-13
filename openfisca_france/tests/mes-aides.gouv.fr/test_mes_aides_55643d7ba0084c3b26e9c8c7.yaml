@@ -9,7 +9,7 @@ period: "month:2015-05"
 individus:
   - age: 45
     age_en_mois: 543
-    birth: "1970-02-01"
+    date_naissance: "1970-02-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -76,7 +76,7 @@ individus:
       2012-01: 0
   - age: 45
     age_en_mois: 548
-    birth: "1969-09-08"
+    date_naissance: "1969-09-08"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -92,7 +92,7 @@ individus:
       2012-01: 0
   - age: 1
     age_en_mois: 20
-    birth: "2013-09-08"
+    date_naissance: "2013-09-08"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0

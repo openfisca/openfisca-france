@@ -8,7 +8,7 @@ period: "month:2014-07"
 individus:
   age: 24
   age_en_mois: 298
-  birth: "1989-09-14"
+  date_naissance: "1989-09-14"
   enceinte: false
   epargne_non_remuneree:
     2012-01: 0

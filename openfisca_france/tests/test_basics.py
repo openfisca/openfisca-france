@@ -12,7 +12,7 @@ scenarios_arguments = [
     dict(
         period = year,
         parent1 = dict(
-            birth = datetime.date(1972, 1, 1),
+            date_naissance = datetime.date(1972, 1, 1),
             salaire_de_base = 2000,
             effectif_entreprise = 25,
             type_sal = CAT['prive_non_cadre'],

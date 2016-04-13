@@ -9,7 +9,7 @@ individus:
   activite: 3
   age: 62
   age_en_mois: 746
-  birth: "1952-08-25"
+  date_naissance: "1952-08-25"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0

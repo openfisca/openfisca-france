@@ -6,7 +6,7 @@ individus:
   activite: 2
   age: 34
   age_en_mois: 419
-  birth: "1980-01-01"
+  date_naissance: "1980-01-01"
   boursier: false
   epargne_non_remuneree:
     2012-01: 0

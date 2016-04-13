@@ -66,7 +66,7 @@ class age(Variable):
     label = u"Âge (en années)"
 
     def function(self, simulation, period):
-        has_birth = simulation.get_or_new_holder('birth')._array is not None
+        has_birth = simulation.get_or_new_holder('date_naissance')._array is not None
         if not has_birth:
             has_age_en_mois = bool(simulation.get_or_new_holder('age_en_mois')._array_by_period)
             if has_age_en_mois:
@@ -82,8 +82,8 @@ class age(Variable):
                         return period, last_array + int((start.year - last_start.year) +
                             (start.month - last_start.month) / 12)
 
-        birth = simulation.calculate('birth', period)
-        return period, (datetime64(period.start) - birth).astype('timedelta64[Y]')
+        date_naissance = simulation.calculate('date_naissance', period)
+        return period, (datetime64(period.start) - date_naissance).astype('timedelta64[Y]')
 
 
 class age_en_mois(Variable):
@@ -102,13 +102,13 @@ class age_en_mois(Variable):
                 if last_start.day == start.day:
                     return period, last_array + ((start.year - last_start.year) * 12 + (start.month - last_start.month))
 
-        has_birth = simulation.get_or_new_holder('birth')._array is not None
+        has_birth = simulation.get_or_new_holder('date_naissance')._array is not None
         if not has_birth:
             has_age = bool(simulation.get_or_new_holder('age')._array_by_period)
             if has_age:
                 return period, simulation.calculate('age', period) * 12
-        birth = simulation.calculate('birth', period)
-        return period, (datetime64(period.start) - birth).astype('timedelta64[M]')
+        date_naissance = simulation.calculate('date_naissance', period)
+        return period, (datetime64(period.start) - date_naissance).astype('timedelta64[M]')
 
 
 class nb_adult(Variable):

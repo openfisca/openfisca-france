@@ -13,7 +13,7 @@ period: month:2015-04
 individus:
 - age: 34
   age_en_mois: 418
-  birth: '1980-05-03'
+  date_naissance: '1980-05-03'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -77,7 +77,7 @@ individus:
 - age: 7
   age_en_mois: 92
   garde_alternee: true
-  birth: '2007-07-09'
+  date_naissance: '2007-07-09'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -93,7 +93,7 @@ individus:
 - age: 9
   age_en_mois: 114
   garde_alternee: true
-  birth: '2005-09-08'
+  date_naissance: '2005-09-08'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0

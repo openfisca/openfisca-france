@@ -11,7 +11,7 @@ period: "month:2014-10"
 individus:
   age: 34
   age_en_mois: 417
-  birth: "1980-01-01"
+  date_naissance: "1980-01-01"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
