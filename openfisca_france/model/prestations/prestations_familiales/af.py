@@ -9,28 +9,6 @@ from ...base import *  # noqa analysis:ignore
 from .base_ressource import nb_enf
 
 
-class af_enfant_a_charge(Variable):
-    column = BoolCol
-    entity_class = Individus
-    label = u"Enfant à charge au sens des allocations familiales"
-
-    def function(self, simulation, period):
-        period = period.this_month
-
-        est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
-        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
-        age = simulation.calculate('age', period)
-        rempli_obligation_scolaire = simulation.calculate('rempli_obligation_scolaire', period)
-
-        pfam = simulation.legislation_at(period.start).fam
-
-        condition_enfant = ((age >= pfam.enfants.age_minimal) * (age < pfam.enfants.age_intermediaire) *
-            rempli_obligation_scolaire)
-        condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.af.age3) * not_(autonomie_financiere)
-
-        return period, or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
-
-
 class af_nbenf(Variable):
     column = IntCol
     entity_class = Familles
@@ -39,8 +17,8 @@ class af_nbenf(Variable):
     def function(self, simulation, period):
         period_mois = period.this_month
 
-        af_enfant_a_charge_holder = simulation.compute('af_enfant_a_charge', period_mois)
-        af_nbenf = self.sum_by_entity(af_enfant_a_charge_holder)
+        pfam_enfant_a_charge_holder = simulation.compute('pfam_enfant_a_charge', period_mois)
+        af_nbenf = self.sum_by_entity(pfam_enfant_a_charge_holder)
 
         return period, af_nbenf
 
@@ -54,10 +32,10 @@ class af_coeff_garde_alternee(DatedVariable):
         period = period.this_month
         nb_enf = simulation.calculate('af_nbenf', period)
         garde_alternee = simulation.compute('garde_alternee', period)
-        af_enfant_a_charge = simulation.compute('af_enfant_a_charge', period)
+        pfam_enfant_a_charge = simulation.compute('pfam_enfant_a_charge', period)
 
-        # Le nombre d'enfants à charge en garde alternée, qui vérifient donc af_enfant_a_charge = true et garde_alternee = true
-        nb_enf_garde_alternee = self.sum_by_entity(garde_alternee.array * af_enfant_a_charge.array)
+        # Le nombre d'enfants à charge en garde alternée, qui vérifient donc pfam_enfant_a_charge = true et garde_alternee = true
+        nb_enf_garde_alternee = self.sum_by_entity(garde_alternee.array * pfam_enfant_a_charge.array)
 
         # Avoid division by zero. If nb_enf == 0, necessarily nb_enf_garde_alternee = 0 so coeff = 1
         coeff = 1 - (nb_enf_garde_alternee / (nb_enf + (nb_enf == 0))) * 0.5
@@ -202,8 +180,8 @@ class af_age_aine(Variable):
         age_holder = simulation.compute('age', period)
         age_enfants = self.split_by_roles(age_holder, roles = ENFS)
 
-        af_enfant_a_charge_holder = simulation.compute('af_enfant_a_charge', period)
-        af_enfants_a_charge = self.split_by_roles(af_enfant_a_charge_holder, roles = ENFS)
+        pfam_enfant_a_charge_holder = simulation.compute('pfam_enfant_a_charge', period)
+        af_enfants_a_charge = self.split_by_roles(pfam_enfant_a_charge_holder, roles = ENFS)
 
         pfam = simulation.legislation_at(period.start).fam
 
@@ -225,7 +203,7 @@ class af_majoration_enfant(Variable):
     def function(self, simulation, period):
         period = period.this_month
 
-        af_enfant_a_charge = simulation.calculate('af_enfant_a_charge', period)
+        pfam_enfant_a_charge = simulation.calculate('pfam_enfant_a_charge', period)
         age = simulation.calculate('age', period)
         garde_alternee = simulation.calculate('garde_alternee', period)
         age_aine_holder = simulation.compute('af_age_aine', period)
@@ -254,7 +232,7 @@ class af_majoration_enfant(Variable):
 
         coeff_garde_alternee = where(garde_alternee, pfam.af.facteur_garde_alternee, 1)
 
-        return period, af_enfant_a_charge * (af_base > 0) * pas_aine * montant * coeff_garde_alternee
+        return period, pfam_enfant_a_charge * (af_base > 0) * pas_aine * montant * coeff_garde_alternee
 
 
 class af_majo(Variable):

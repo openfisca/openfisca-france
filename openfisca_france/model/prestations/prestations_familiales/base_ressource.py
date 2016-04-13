@@ -24,7 +24,7 @@ class autonomie_financiere(Variable):
 
 
 class pfam_enfant_a_charge(Variable):
-    column = BoolCol(default = False)
+    column = BoolCol
     entity_class = Individus
     label = u"Enfant considéré à charge au sens des prestations familiales"
 
