@@ -42,10 +42,10 @@ class af_coeff_garde_alternee(DatedVariable):
 
         return period, coeff
 
-class af_forf_nbenf(Variable):
+class af_allocation_forfaitaire_nb_enfants(Variable):
     column = IntCol
     entity_class = Familles
-    label = u"Nombre d'enfants dans la famille éligibles à l'allocation forfaitaire des AF"
+    label = u"Nombre d'enfants ouvrant droit à l'allocation forfaitaire des AF"
 
     def function(self, simulation, period):
         period = period.this_month
@@ -54,9 +54,9 @@ class af_forf_nbenf(Variable):
         autonomie_financiere_holder = simulation.compute('autonomie_financiere', period)
         autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
         pfam = simulation.legislation_at(period.start).fam.af
-        af_forf_nbenf = nb_enf(age, autonomie_financiere, pfam.age3, pfam.age3)
+        af_forfaitaire_nbenf = nb_enf(age, autonomie_financiere, pfam.age3, pfam.age3)
 
-        return period, af_forf_nbenf
+        return period, af_forfaitaire_nbenf
 
 
 class af_eligibilite_base(Variable):
@@ -143,7 +143,7 @@ class af_taux_modulation(DatedVariable):
         return period, taux
 
 
-class af_forf_taux_modulation(DatedVariable):
+class af_allocation_forfaitaire_taux_modulation(DatedVariable):
     column = FloatCol(default = 1)
     entity_class = Familles
     label = u"Taux de modulation à appliquer à l'allocation forfaitaire des AF depuis 2015"
@@ -153,8 +153,8 @@ class af_forf_taux_modulation(DatedVariable):
         period = period.this_month
         pfam = simulation.legislation_at(period.start).fam.af
         af_nbenf = simulation.calculate('af_nbenf', period)
-        af_forf_nbenf = simulation.calculate('af_forf_nbenf', period)
-        nb_enf_tot = af_nbenf + af_forf_nbenf
+        af_forfaitaire_nbenf = simulation.calculate('af_allocation_forfaitaire_nb_enfants', period)
+        nb_enf_tot = af_nbenf + af_forfaitaire_nbenf
         base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
         modulation = pfam.modulation
         plafond1 = modulation.plafond1 + nb_enf_tot * modulation.enfant_supp
@@ -280,7 +280,7 @@ class af_complement_degressif(DatedVariable):
         return period, max_(0, af - depassement_mensuel) * (depassement_mensuel > 0)
 
 
-class af_forf_complement_degressif(DatedVariable):
+class af_allocation_forfaitaire_complement_degressif(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"AF - Complément dégressif pour l'allocation forfaitaire en cas de dépassement du plafond"
@@ -289,9 +289,9 @@ class af_forf_complement_degressif(DatedVariable):
     def function_2015(self, simulation, period):
         period = period.this_month
         af_nbenf = simulation.calculate('af_nbenf', period)
-        af_forf_nbenf = simulation.calculate('af_forf_nbenf', period)
+        af_forfaitaire_nbenf = simulation.calculate('af_allocation_forfaitaire_nb_enfants', period)
         pfam = simulation.legislation_at(period.start).fam.af
-        nb_enf_tot = af_nbenf + af_forf_nbenf
+        nb_enf_tot = af_nbenf + af_forfaitaire_nbenf
         base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
         af_allocation_forfaitaire = simulation.calculate('af_allocation_forfaitaire', period)
         modulation = pfam.modulation
@@ -317,17 +317,17 @@ class af_allocation_forfaitaire(Variable):
     def function(self, simulation, period):
         period = period.this_month
         af_nbenf = simulation.calculate('af_nbenf', period)
-        af_forf_nbenf = simulation.calculate('af_forf_nbenf', period)
+        af_forfaitaire_nbenf = simulation.calculate('af_allocation_forfaitaire_nb_enfants', period)
         P = simulation.legislation_at(period.start).fam.af
 
         bmaf = P.bmaf
         af_forfait = round(bmaf * P.taux.forfait, 2)
-        af_allocation_forfaitaire = ((af_nbenf >= 2) * af_forf_nbenf) * af_forfait
+        af_allocation_forfaitaire = ((af_nbenf >= 2) * af_forfaitaire_nbenf) * af_forfait
 
-        af_forf_taux_modulation = simulation.calculate('af_forf_taux_modulation', period)
-        af_forf_module = af_allocation_forfaitaire * af_forf_taux_modulation
+        af_forfaitaire_taux_modulation = simulation.calculate('af_allocation_forfaitaire_taux_modulation', period)
+        af_forfaitaire_module = af_allocation_forfaitaire * af_forfaitaire_taux_modulation
 
-        return period, af_forf_module
+        return period, af_forfaitaire_module
 
 
 class af(Variable):
@@ -342,6 +342,6 @@ class af(Variable):
         af_majoration = simulation.calculate('af_majoration', period)
         af_allocation_forfaitaire = simulation.calculate('af_allocation_forfaitaire', period)
         af_complement_degressif = simulation.calculate('af_complement_degressif', period)
-        af_forf_complement_degressif = simulation.calculate('af_forf_complement_degressif', period)
+        af_forfaitaire_complement_degressif = simulation.calculate('af_allocation_forfaitaire_complement_degressif', period)
 
-        return period, af_base + af_majoration + af_allocation_forfaitaire + af_complement_degressif + af_forf_complement_degressif
+        return period, af_base + af_majoration + af_allocation_forfaitaire + af_complement_degressif + af_forfaitaire_complement_degressif
