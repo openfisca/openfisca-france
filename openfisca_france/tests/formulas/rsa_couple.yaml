@@ -8,7 +8,7 @@
     quifam: [CHEF, PART]
     quifoy: [VOUS, CONJ]
     quimen: [PREF, CREF]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     aide_logement:
@@ -44,7 +44,7 @@
       2012: [5000, 0]
       2013: [5000, 0]
       2014: [5000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -64,7 +64,7 @@
       2012: [10000, 0]
       2013: [10000, 0]
       2014: [10000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -84,7 +84,7 @@
       2012: [12000, 0]
       2013: [12000, 0]
       2014: [12000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -104,7 +104,7 @@
       2012: [13000, 0]
       2013: [13000, 0]
       2014: [13000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -124,7 +124,7 @@
       2012: [14000, 0]
       2013: [14000, 0]
       2014: [14000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -144,7 +144,7 @@
       2012: [15000, 0]
       2013: [15000, 0]
       2014: [15000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -164,7 +164,7 @@
       2012: [16000, 0]
       2013: [16000, 0]
       2014: [16000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -184,7 +184,7 @@
       2012: [17000, 0]
       2013: [17000, 0]
       2014: [17000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -204,7 +204,7 @@
       2012: [18000, 0]
       2013: [18000, 0]
       2014: [18000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -224,7 +224,7 @@
       2012: [19000, 0]
       2013: [19000, 0]
       2014: [19000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -244,7 +244,7 @@
       2012: [20000, 0]
       2013: [20000, 0]
       2014: [20000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -264,7 +264,7 @@
 #       2012: [9000, 11000]
 #       2013: [9000, 11000]
 #       2014: [9000, 11000]
-#     statut_occupation:
+#     statut_occupation_logement:
 #       "2014-01": 2  # Propriétaire (non accédant) du logement
 #   output_variables:
 #     rsa:
@@ -284,7 +284,7 @@
       2012: [400 * 12, 3000 * 12]
       2013: [400 * 12, 3000 * 12]
       2014: [400 * 12, 3000 * 12]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -300,7 +300,7 @@
     quifam: [CHEF, PART, ENF1]
     quifoy: [VOUS, CONJ, PAC1]
     quimen: [PREF, CREF, ENF1]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -316,7 +316,7 @@
     quifam: [CHEF, PART, ENF1]
     quifoy: [VOUS, CONJ, PAC1]
     quimen: [PREF, CREF, ENF1]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:

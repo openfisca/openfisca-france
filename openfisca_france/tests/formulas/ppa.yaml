@@ -294,7 +294,7 @@
 - name: "PPA/RSA forfait logement 1 personne"
   period: 2016-01
   input_variables:
-    statut_occupation_famille: 2 # propriétaire
+    statut_occupation_logement_famille: 2 # propriétaire
     age: 40
   output_variables:
     rsa_forfait_logement:
@@ -304,7 +304,7 @@
   period: 2016-01
   familles:
     parents: ["parent1", "parent2"]
-    statut_occupation_famille: 2 # propriétaire
+    statut_occupation_logement_famille: 2 # propriétaire
   individus:
     - id: "parent1"
       age: 40
@@ -319,7 +319,7 @@
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1"]
-    statut_occupation_famille: 2 # propriétaire
+    statut_occupation_logement_famille: 2 # propriétaire
   individus:
     - id: "parent1"
       age: 40
@@ -336,7 +336,7 @@
   relative_error_margin: 0.05
   input_variables:
     age: 40
-    statut_occupation_famille: 2 # propriétaire
+    statut_occupation_logement_famille: 2 # propriétaire
     salaire_net:
       2016-01: 918 # > 95 smic horaire brut
       2015-12: 918
@@ -351,7 +351,7 @@
   relative_error_margin: 0.05
   input_variables:
     age: 40
-    statut_occupation: 4
+    statut_occupation_logement: 4
     salaire_net:
       2015-12: 1520
       2015-11: 1520

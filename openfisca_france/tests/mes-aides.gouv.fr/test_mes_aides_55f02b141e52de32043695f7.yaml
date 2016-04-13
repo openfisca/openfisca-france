@@ -370,6 +370,6 @@ menages:
   loyer: 456
   parisien: false
   personne_de_reference: 55f02af4bb8d0c3804776986
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 256.24

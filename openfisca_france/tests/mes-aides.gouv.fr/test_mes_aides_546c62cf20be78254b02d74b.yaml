@@ -300,6 +300,6 @@ menages:
   depcom: 75120
   enfants:
   personne_de_reference: 546c61f120be78254b02d73d
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 372

@@ -370,6 +370,6 @@ menages:
     - 54734de71e6217443d918ae0
     - 54734de71e6217443d918adf
   personne_de_reference: 54734de71e6217443d918aed
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   af: 0

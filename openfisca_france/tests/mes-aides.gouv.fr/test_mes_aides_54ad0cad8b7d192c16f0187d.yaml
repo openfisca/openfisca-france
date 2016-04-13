@@ -371,6 +371,6 @@ menages:
     - 54ad0c4f638f222b16b10a9b
     - 54ad0c4f638f222b16b10a8e
   personne_de_reference: 54ad0c4f638f222b16b10a9c
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   af: 129.99

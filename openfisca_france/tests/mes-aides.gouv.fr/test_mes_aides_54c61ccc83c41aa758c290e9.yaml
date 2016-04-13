@@ -343,6 +343,6 @@ menages:
   enfants:
   loyer: 1000
   personne_de_reference: 54c61ba694cccbb0584256c1
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 248.82

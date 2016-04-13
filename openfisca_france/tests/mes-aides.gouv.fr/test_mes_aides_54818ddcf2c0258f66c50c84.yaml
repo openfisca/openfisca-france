@@ -310,7 +310,7 @@ menages:
   - 54818d591c33cd86661874e1
   participation_frais: false
   personne_de_reference: 54818d591c33cd86661874e2
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   asf: 95.99
   rsa: 653.78

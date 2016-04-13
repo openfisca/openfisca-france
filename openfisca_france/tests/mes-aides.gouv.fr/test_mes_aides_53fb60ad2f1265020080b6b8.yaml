@@ -343,7 +343,7 @@ menages:
     - 53fb60822f1265020080b6b4
   loyer: 124
   personne_de_reference: 53fb60822f1265020080b6b7
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   af: 129.99
   rsa: 770.26

@@ -371,7 +371,7 @@ menages:
   depcom: 75118
   enfants: 54b54eae397579703e58d059
   personne_de_reference: 54b54eae397579703e58d05b
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   acs: 500
   cmu_c: false

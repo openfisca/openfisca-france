@@ -300,6 +300,6 @@ menages:
   depcom: 97411
   enfants: 54734acabbaefa3e3dc48f24
   personne_de_reference: 54734acabbaefa3e3dc48f25
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   af: 23.78

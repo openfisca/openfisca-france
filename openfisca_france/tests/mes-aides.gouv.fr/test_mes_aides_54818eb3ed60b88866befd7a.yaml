@@ -322,5 +322,5 @@ menages:
   depcom: 41230
   enfants: 54818e8de061e493666d52ae
   personne_de_reference: 54818e8de061e493666d52b1
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:

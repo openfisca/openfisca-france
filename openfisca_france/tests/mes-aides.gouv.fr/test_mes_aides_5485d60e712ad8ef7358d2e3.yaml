@@ -414,6 +414,6 @@ menages:
     - 5485d5e42d85b4e6733b52bc
     - 5485d5e42d85b4e6733b52bb
   personne_de_reference: 5485d5e42d85b4e6733b52bf
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   bourse_college: 0

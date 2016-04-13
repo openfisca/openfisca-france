@@ -1005,7 +1005,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
                     'loyer',  # Loyer
-                    'statut_occupation',  # Statut d'occupation
+                    'statut_occupation_logement',  # Statut d'occupation
                     'depcom',  # Code INSEE (depcom) du lieu de résidence
                     ]),
                 ]),

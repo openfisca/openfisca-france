@@ -336,7 +336,7 @@ menages:
   enfants:
   loyer: 50
   personne_de_reference: 54c8ee7be45751d544f05fb4
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   cmu_c: true
   rsa: 513.88

@@ -324,7 +324,7 @@ menages:
   - 546b1ae4de0b44f86312e870
   participation_frais: false
   personne_de_reference: 546b1ae4de0b44f86312e87d
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   asf: 0
   cmu_c: true

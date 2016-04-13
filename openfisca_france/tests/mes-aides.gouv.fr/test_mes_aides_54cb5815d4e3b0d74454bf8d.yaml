@@ -384,6 +384,6 @@ menages:
     - 54cb54a9f675ddd34432e23f
   loyer: 600
   personne_de_reference: 54cb54a9f675ddd34432e241
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   af: 194.02

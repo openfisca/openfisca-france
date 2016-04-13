@@ -335,6 +335,6 @@ menages:
     - 54113b47db10e7020066c727
   loyer: 795
   personne_de_reference: 54113b47db10e7020066c729
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   alf: 436.75

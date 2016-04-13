@@ -379,6 +379,6 @@ menages:
     - 54eca6747537bc0e72b05720
   loyer: 300
   personne_de_reference: 54eca6747537bc0e72b05722
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   cf: 0

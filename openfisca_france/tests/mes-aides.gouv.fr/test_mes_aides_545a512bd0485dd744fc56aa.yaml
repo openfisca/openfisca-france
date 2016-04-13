@@ -344,6 +344,6 @@ menages:
     - 545a50a5ffe6a1e044e6c2a6
     - 545a50a5ffe6a1e044e6c2a5
   personne_de_reference: 545a50a5ffe6a1e044e6c2a8
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 602.74

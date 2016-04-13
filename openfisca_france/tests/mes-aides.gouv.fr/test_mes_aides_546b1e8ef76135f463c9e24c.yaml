@@ -361,7 +361,7 @@ menages:
     - 546b190bfc9936ff63f8566a
   loyer: 1000
   personne_de_reference: 546b190bfc9936ff63f8566c
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   af: 129.99
   aspa: 200

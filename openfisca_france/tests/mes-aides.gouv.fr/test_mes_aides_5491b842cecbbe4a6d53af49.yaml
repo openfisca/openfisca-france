@@ -320,6 +320,6 @@ menages:
     - 5491b824871dd4466d370b39
     - 5491b824871dd4466d370b38
   personne_de_reference: 5491b824871dd4466d370b3a
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   af: 0

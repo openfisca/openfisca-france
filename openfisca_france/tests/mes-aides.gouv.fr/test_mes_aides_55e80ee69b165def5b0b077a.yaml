@@ -377,6 +377,6 @@ menages:
   loyer: 660
   parisien: false
   personne_de_reference: 55e80e2727b85cf35b443d60
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   asf: 0

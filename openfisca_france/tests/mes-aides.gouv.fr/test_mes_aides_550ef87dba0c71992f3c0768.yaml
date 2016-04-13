@@ -305,6 +305,6 @@ menages:
   depcom: 92071
   enfants: 550ef8772f7d278e2ff97b9c
   personne_de_reference: 550ef8772f7d278e2ff97b9d
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   asf: 100.08

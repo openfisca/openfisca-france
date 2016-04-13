@@ -370,6 +370,6 @@ menages:
   depcom: 76540
   enfants: 55688f3d2617041246ef4bc6
   personne_de_reference: 55688f3d2617041246ef4bc8
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   paje_base: 0

@@ -319,7 +319,7 @@ menages:
   enfants:
   loyer: 500
   personne_de_reference: 5530ffb7395a3e6e168f4726
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aspa: 152.05
   cmu_c: true

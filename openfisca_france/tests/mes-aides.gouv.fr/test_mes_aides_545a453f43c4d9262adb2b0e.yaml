@@ -280,6 +280,6 @@ menages:
   depcom: 55207
   enfants:
   personne_de_reference: 545a453491e1b6222a3ab3cd
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 0

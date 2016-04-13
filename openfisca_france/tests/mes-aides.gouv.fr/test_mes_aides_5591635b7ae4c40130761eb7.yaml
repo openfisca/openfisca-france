@@ -360,7 +360,7 @@ menages:
   enfants: 5591634afdd7360730df878a
   loyer: 500
   personne_de_reference: 5591634afdd7360730df878c
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   acs: 0
   aide_logement: 282.18

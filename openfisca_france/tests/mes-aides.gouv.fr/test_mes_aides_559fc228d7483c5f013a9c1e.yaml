@@ -375,7 +375,7 @@ menages:
   enfants:
   loyer: 225
   personne_de_reference: 559fc21bf394e1a7011b57a5
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 242.41
   rsa: 46.05

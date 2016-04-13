@@ -362,6 +362,6 @@ menages:
   depcom: 93070
   enfants:
   personne_de_reference: 553647ce88bcee752ddf9414
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   ass: 450.38

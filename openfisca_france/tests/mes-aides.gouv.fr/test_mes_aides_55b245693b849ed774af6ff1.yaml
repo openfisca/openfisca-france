@@ -378,5 +378,5 @@ menages:
   enfants: 55b2455e3b849ed774af6fe1
   parisien: true
   personne_de_reference: 55b2455e3b849ed774af6fe4
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:

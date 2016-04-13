@@ -493,6 +493,6 @@ menages:
     - 559bb07a8aba0709309a68ac
   loyer: 2000
   personne_de_reference: 559bb07a8aba0709309a68b6
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   af: 689

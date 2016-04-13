@@ -375,7 +375,7 @@ menages:
   enfants: 549069356e7c895302132f28
   loyer: 100
   personne_de_reference: 549069356e7c895302132f2a
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   acs: 0
   cmu_c: false

@@ -393,6 +393,6 @@ menages:
     - 54bd2854740a09082374d730
     - 54bd2854740a09082374d72f
   personne_de_reference: 54bd2854740a09082374d73e
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   cf: 185.19

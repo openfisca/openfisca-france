@@ -379,6 +379,6 @@ menages:
   - 551d4c72d8e0018545eb06fd
   loyer: 600
   personne_de_reference: 551d4c72d8e0018545eb06ff
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   acs: 400

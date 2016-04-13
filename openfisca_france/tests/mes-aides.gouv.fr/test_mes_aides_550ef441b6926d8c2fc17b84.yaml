@@ -358,6 +358,6 @@ menages:
     - 550ef43331b367952f710338
     - 550ef43331b367952f710337
   personne_de_reference: 550ef43331b367952f71033a
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   cf: 202.04

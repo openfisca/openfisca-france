@@ -326,7 +326,7 @@ menages:
   - 546b4a76ba32fff66335d366
   participation_frais: false
   personne_de_reference: 546b4a76ba32fff66335d367
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   asf: 0
   rsa: 649.77

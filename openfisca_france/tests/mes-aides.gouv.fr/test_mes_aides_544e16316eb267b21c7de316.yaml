@@ -315,6 +315,6 @@ menages:
   depcom: 92071
   enfants:
   personne_de_reference: 544e15fd1dddcaa51c2c8ef0
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 0

@@ -380,6 +380,6 @@ menages:
   loyer: 800
   parisien: true
   personne_de_reference: 55af56a284c8730b6e743094
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   paris_logement_familles: 128

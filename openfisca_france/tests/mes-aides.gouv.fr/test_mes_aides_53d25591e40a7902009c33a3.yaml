@@ -321,6 +321,6 @@ menages:
   enfants:
   loyer: 123
   personne_de_reference: 53d2555ee40a7902009c339f
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aspa: 229.61

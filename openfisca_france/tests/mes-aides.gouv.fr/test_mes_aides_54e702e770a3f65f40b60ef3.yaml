@@ -401,6 +401,6 @@ menages:
     - 54e702427c92ea5940ba4fed
     - 54e702427c92ea5940ba4fec
   personne_de_reference: 54e702427c92ea5940ba4fef
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   cf: 185.2

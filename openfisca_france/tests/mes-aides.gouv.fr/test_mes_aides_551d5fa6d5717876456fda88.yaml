@@ -380,6 +380,6 @@ menages:
   - 551d4ea46ec406794543810f
   loyer: 700
   personne_de_reference: 551d4ea46ec4067945438111
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   cmu_c: true

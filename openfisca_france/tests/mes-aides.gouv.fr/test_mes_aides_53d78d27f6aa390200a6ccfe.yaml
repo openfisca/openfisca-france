@@ -337,6 +337,6 @@ menages:
     - 53d78cf4f6aa390200a6ccfa
   loyer: 123
   personne_de_reference: 53d78cf4f6aa390200a6ccfd
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   asf: 287.96

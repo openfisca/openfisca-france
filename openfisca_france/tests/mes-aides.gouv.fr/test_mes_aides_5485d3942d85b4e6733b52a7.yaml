@@ -355,6 +355,6 @@ menages:
   depcom: 75111
   enfants: 5485d343f8356af173ccbefc
   personne_de_reference: 5485d343f8356af173ccbefd
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   bourse_college: 84

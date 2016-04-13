@@ -342,6 +342,6 @@ menages:
   loyer: 292
   parisien: false
   personne_de_reference: 55f01daa8c9ccb340464e89e
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 142.53

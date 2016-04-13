@@ -322,6 +322,6 @@ menages:
     - 54734346e6f62c383d55a58c
     - 54734346e6f62c383d55a58b
   personne_de_reference: 54734346e6f62c383d55a58d
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   af: 129.35

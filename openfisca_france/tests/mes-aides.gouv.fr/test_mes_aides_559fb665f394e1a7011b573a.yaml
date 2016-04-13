@@ -321,7 +321,7 @@ menages:
   loyer: 758
   parisien: false
   personne_de_reference: 559fb566ecfc1e52013e3e1d
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 422.59
   rsa_non_majore: 0

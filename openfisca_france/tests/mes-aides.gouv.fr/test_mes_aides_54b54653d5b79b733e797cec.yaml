@@ -334,6 +334,6 @@ menages:
   depcom: 77389
   enfants:
   personne_de_reference: 54b544f65d6c356f3ea1cb25
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   cmu_c: true

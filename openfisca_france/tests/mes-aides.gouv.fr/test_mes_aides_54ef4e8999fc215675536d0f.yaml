@@ -387,6 +387,6 @@ menages:
     - 54ef4df1d36576597541953e
   loyer: 1000
   personne_de_reference: 54ef4df1d365765975419541
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 103.52

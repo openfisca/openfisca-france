@@ -418,7 +418,7 @@ menages:
   - 55915f1f2f56a0fd2f633194
   loyer: 500
   personne_de_reference: 55915f1f2f56a0fd2f633197
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   acs: 500
   af: 295.05

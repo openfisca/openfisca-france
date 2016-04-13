@@ -361,6 +361,6 @@ menages:
   enfants: 54ecab94f3d8e3127294921c
   loyer: 300
   personne_de_reference: 54ecab94f3d8e3127294921d
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   cf: 96.16

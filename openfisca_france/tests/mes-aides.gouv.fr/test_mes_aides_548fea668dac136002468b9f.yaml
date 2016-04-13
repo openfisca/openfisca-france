@@ -324,6 +324,6 @@ menages:
   enfants:
   loyer: 500
   personne_de_reference: 548fe97840562f54026ef32e
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   ass: 0

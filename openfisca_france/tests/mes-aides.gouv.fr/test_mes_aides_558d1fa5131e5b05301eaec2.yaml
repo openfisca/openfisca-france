@@ -380,6 +380,6 @@ menages:
     - 558d1f9048433cfe2f43650f
     - 558d1f9048433cfe2f43650e
   personne_de_reference: 558d1f9048433cfe2f436510
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   af: 64.67

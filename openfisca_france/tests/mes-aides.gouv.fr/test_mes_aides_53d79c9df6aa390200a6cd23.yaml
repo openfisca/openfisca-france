@@ -348,6 +348,6 @@ menages:
     - 53d79c63f6aa390200a6cd1d
     - 53d79c63f6aa390200a6cd1c
   personne_de_reference: 53d79c63f6aa390200a6cd1f
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 694.26

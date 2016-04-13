@@ -462,7 +462,7 @@ menages:
     - 54f73c3fb5e73ade7b193151
     - 54f73c3fb5e73ade7b193150
   personne_de_reference: 54f73c3fb5e73ade7b193160
-  statut_occupation: 2
+  statut_occupation_logement: 2
 output_variables:
   af: 296.54
   aide_logement: 0

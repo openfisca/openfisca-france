@@ -330,6 +330,6 @@ menages:
   - 553fb80c1d3fb75a399b8065
   participation_frais: false
   personne_de_reference: 553fb80c1d3fb75a399b8067
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 0

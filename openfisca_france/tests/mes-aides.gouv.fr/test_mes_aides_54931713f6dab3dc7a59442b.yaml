@@ -561,6 +561,6 @@ menages:
     - 549315e1f170fae47a4bfab7
   loyer: 700
   personne_de_reference: 549315e1f170fae47a4bfacb
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 424.87

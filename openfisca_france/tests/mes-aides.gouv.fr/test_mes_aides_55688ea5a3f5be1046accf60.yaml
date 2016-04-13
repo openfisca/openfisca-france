@@ -372,6 +372,6 @@ menages:
   - 55688ea0a38f5d14462ec460
   participation_frais: false
   personne_de_reference: 55688ea0a38f5d14462ec462
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   paje_base: 186.65

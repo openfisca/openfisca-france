@@ -399,6 +399,6 @@ menages:
     - 558d21e98aba0709309a49a3
     - 558d21e98aba0709309a49a2
   personne_de_reference: 558d21e98aba0709309a49a5
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   af: 272.98

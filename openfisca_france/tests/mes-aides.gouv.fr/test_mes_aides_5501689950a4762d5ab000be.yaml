@@ -365,6 +365,6 @@ menages:
     - 55016893110d64385a0318eb
     - 55016893110d64385a0318ea
   personne_de_reference: 55016893110d64385a0318ed
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   bourse_lycee: 135.9

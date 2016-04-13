@@ -862,7 +862,7 @@ class rsa_forfait_logement(Variable):
         nb_pac = simulation.calculate('nb_parents', period) + simulation.calculate('rsa_nb_enfants', period)
         aide_logement = simulation.calculate('aide_logement', period)
 
-        statut_occupation = simulation.calculate('statut_occupation_famille', period)
+        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
 
         participation_frais_holder = simulation.compute('participation_frais', period)
         participation_frais = self.cast_from_entity_to_roles(participation_frais_holder)
@@ -873,8 +873,8 @@ class rsa_forfait_logement(Variable):
         loyer = self.filter_role(loyer, role = CHEF)
 
         avantage_nature = or_(
-            (statut_occupation == 2) * not_(loyer),
-            (statut_occupation == 6) * (1 - participation_frais)
+            (statut_occupation_logement == 2) * not_(loyer),
+            (statut_occupation_logement == 6) * (1 - participation_frais)
         )
 
         avantage_al = aide_logement > 0

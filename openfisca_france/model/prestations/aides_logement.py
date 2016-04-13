@@ -279,7 +279,7 @@ class aide_logement_montant_brut(Variable):
         al_nb_pac = simulation.calculate('al_nb_personnes_a_charge', period)
 
         # Logement
-        statut_occupation = simulation.calculate('statut_occupation_famille', period)
+        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
         loyer_holder = simulation.compute('loyer', period)
         loyer = self.cast_from_entity_to_roles(loyer_holder)
         loyer = self.filter_role(loyer, role = CHEF)
@@ -287,8 +287,8 @@ class aide_logement_montant_brut(Variable):
         coloc = self.any_by_roles(coloc_holder)
         logement_chambre_holder = simulation.compute('logement_chambre', period)
         chambre = self.any_by_roles(logement_chambre_holder)
-        locataire = ((3 <= statut_occupation) & (5 >= statut_occupation)) | (statut_occupation == 7)
-        accedant = (statut_occupation == 1)
+        locataire = ((3 <= statut_occupation_logement) & (5 >= statut_occupation_logement)) | (statut_occupation_logement == 7)
+        accedant = (statut_occupation_logement == 1)
 
         # Ressources
         aide_logement_base_ressources = simulation.calculate('aide_logement_base_ressources', period)
@@ -300,7 +300,7 @@ class aide_logement_montant_brut(Variable):
         def loyer_retenu():
 
             # loyer mensuel réel, multiplié par 2/3 pour les meublés
-            L1 = round_(loyer * where(statut_occupation == 5, 2 / 3, 1))
+            L1 = round_(loyer * where(statut_occupation_logement == 5, 2 / 3, 1))
 
             zone_apl = simulation.calculate('zone_apl_famille', period)
 
@@ -467,10 +467,10 @@ class alf(Variable):
         period = period.this_month
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         al_nb_pac = simulation.calculate('al_nb_personnes_a_charge', period)
-        statut_occupation = simulation.calculate('statut_occupation_famille', period)
+        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
         proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
 
-        result = (al_nb_pac >= 1) * (statut_occupation != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
+        result = (al_nb_pac >= 1) * (statut_occupation_logement != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
         return period, result
 
 
@@ -484,12 +484,12 @@ class als_non_etudiant(Variable):
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         al_nb_pac = simulation.calculate('al_nb_personnes_a_charge', period)
         etudiant_holder = simulation.compute('etudiant', period)
-        statut_occupation = simulation.calculate('statut_occupation_famille', period)
+        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
         proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
 
         etudiant = self.split_by_roles(etudiant_holder, roles = [CHEF, PART])
         return period, (
-            (al_nb_pac == 0) * (statut_occupation != 3) * not_(proprietaire_proche_famille) *
+            (al_nb_pac == 0) * (statut_occupation_logement != 3) * not_(proprietaire_proche_famille) *
             not_(etudiant[CHEF] | etudiant[PART]) * aide_logement_montant
         )
 
@@ -506,12 +506,12 @@ class als_etudiant(Variable):
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
         al_nb_pac = simulation.calculate('al_nb_personnes_a_charge', period)
         etudiant_holder = simulation.compute('etudiant', period)
-        statut_occupation = simulation.calculate('statut_occupation_famille', period)
+        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
         proprietaire_proche_famille = simulation.calculate('proprietaire_proche_famille', period)
 
         etudiant = self.split_by_roles(etudiant_holder, roles = [CHEF, PART])
         return period, (
-            (al_nb_pac == 0) * (statut_occupation != 3) * not_(proprietaire_proche_famille) *
+            (al_nb_pac == 0) * (statut_occupation_logement != 3) * not_(proprietaire_proche_famille) *
             (etudiant[CHEF] | etudiant[PART]) * aide_logement_montant
         )
 
@@ -543,9 +543,9 @@ class apl(Variable):
     def function(self, simulation, period):
         period = period.this_month
         aide_logement_montant = simulation.calculate('aide_logement_montant', period)
-        statut_occupation = simulation.calculate('statut_occupation_famille', period)
+        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
 
-        return period, aide_logement_montant * (statut_occupation == 3)
+        return period, aide_logement_montant * (statut_occupation_logement == 3)
 
 
 class aide_logement_non_calculable(Variable):
@@ -562,9 +562,9 @@ class aide_logement_non_calculable(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        statut_occupation = simulation.calculate('statut_occupation_famille', period)
+        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
 
-        return period, (statut_occupation == 1) * 1 + (statut_occupation == 7) * 2
+        return period, (statut_occupation_logement == 1) * 1 + (statut_occupation_logement == 7) * 2
 
 
 class aide_logement(Variable):
@@ -595,17 +595,17 @@ class crds_logement(Variable):
         return period, -aide_logement_montant_brut * crds
 
 
-class statut_occupation_individu(EntityToPersonColumn):
+class statut_occupation_logement_i(EntityToPersonColumn):
     entity_class = Individus
     label = u"Statut d'occupation de l'individu"
-    variable = Menages.column_by_name['statut_occupation']
+    variable = Menages.column_by_name['statut_occupation_logement']
 
 
-class statut_occupation_famille(PersonToEntityColumn):
+class statut_occupation_logement_famille(PersonToEntityColumn):
     entity_class = Familles
     label = u"Statut d'occupation de la famille"
     role = CHEF
-    variable = Individus.column_by_name['statut_occupation_individu']
+    variable = Individus.column_by_name['statut_occupation_logement_i']
 
 
 class zone_apl(Variable):

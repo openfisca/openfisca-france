@@ -304,6 +304,6 @@ menages:
   depcom: 97133
   enfants:
   personne_de_reference: 553fbb38af42215939d56100
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 376.9

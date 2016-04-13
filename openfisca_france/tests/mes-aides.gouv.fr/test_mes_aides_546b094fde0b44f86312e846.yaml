@@ -302,7 +302,7 @@ menages:
   depcom: 75114
   enfants: 546b080afc9936ff63f8565e
   personne_de_reference: 546b080afc9936ff63f8565f
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   asf: 95.99
   cmu_c: true

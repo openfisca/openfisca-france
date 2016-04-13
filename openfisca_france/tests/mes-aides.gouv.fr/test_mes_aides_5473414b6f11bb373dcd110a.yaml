@@ -320,6 +320,6 @@ menages:
     - 54734125bbaefa3e3dc48f19
     - 54734125bbaefa3e3dc48f18
   personne_de_reference: 54734125bbaefa3e3dc48f1a
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   af: 129.35

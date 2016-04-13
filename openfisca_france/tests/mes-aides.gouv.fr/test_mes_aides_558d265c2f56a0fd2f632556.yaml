@@ -417,6 +417,6 @@ menages:
     - 558d264e7ae4c4013076170d
     - 558d264e7ae4c4013076170c
   personne_de_reference: 558d264e7ae4c40130761710
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   af: 230.39

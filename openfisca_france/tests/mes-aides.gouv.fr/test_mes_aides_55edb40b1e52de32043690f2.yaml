@@ -401,6 +401,6 @@ menages:
   loyer: 600
   parisien: false
   personne_de_reference: 55edb3ffbd7b102a0438a5c6
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   paje_base: 92.31

@@ -338,6 +338,6 @@ menages:
     - 54bd315f2f0101c535c554ca
     - 54bd315f2f0101c535c554c9
   personne_de_reference: 53d7b719f6aa390200a6cd5b
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   cf: 186.13

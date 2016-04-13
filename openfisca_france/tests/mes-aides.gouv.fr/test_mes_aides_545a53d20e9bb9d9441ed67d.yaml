@@ -363,6 +363,6 @@ menages:
     - 545a52d90e9bb9d9441ed679
     - 545a52d90e9bb9d9441ed678
   personne_de_reference: 545a52d90e9bb9d9441ed67c
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 656.27

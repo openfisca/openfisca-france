@@ -495,6 +495,6 @@ menages:
     - 54931cd7145ac2e27afc00f0
   loyer: 500
   personne_de_reference: 54931cd7145ac2e27afc0100
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 370.64

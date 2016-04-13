@@ -318,7 +318,7 @@ menages:
   parisien: false
   participation_frais: false
   personne_de_reference: 559e560decfc1e52013e3b51
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 556.09
   rsa_non_majore: 556.09

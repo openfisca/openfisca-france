@@ -532,7 +532,7 @@ menages:
   loyer: 374
   parisien: false
   personne_de_reference: 55b9b7b4f0f7e3ac6b8f4f45
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 414.81
   rsa: 18.44

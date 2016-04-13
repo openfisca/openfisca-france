@@ -402,6 +402,6 @@ menages:
     - 559b96899e2a9d0330e7b2e3
   loyer: 1000
   personne_de_reference: 559b96899e2a9d0330e7b2e7
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   af: 147

@@ -399,6 +399,6 @@ menages:
   enfants: 54787d2bf54659627efad22e
   loyer: 50
   personne_de_reference: 54787d2bf54659627efad23b
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   acs: 0

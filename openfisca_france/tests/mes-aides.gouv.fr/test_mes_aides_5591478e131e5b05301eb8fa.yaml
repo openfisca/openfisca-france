@@ -406,6 +406,6 @@ menages:
   - 5591477d2f56a0fd2f633103
   participation_frais: false
   personne_de_reference: 5591477d2f56a0fd2f633106
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   af: 359.72

@@ -291,6 +291,6 @@ menages:
   enfants: []
   participation_frais: false
   personne_de_reference: 5540d71317d9db60391c36af
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 0

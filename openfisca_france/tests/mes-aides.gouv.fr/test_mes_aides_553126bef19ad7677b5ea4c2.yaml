@@ -430,6 +430,6 @@ menages:
     - 553126b19f971f707bd7e923
   loyer: 500
   personne_de_reference: 553126b19f971f707bd7e928
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   cf: 0

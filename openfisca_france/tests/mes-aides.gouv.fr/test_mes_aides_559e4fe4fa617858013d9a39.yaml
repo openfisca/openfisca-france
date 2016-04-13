@@ -386,6 +386,6 @@ menages:
     - 559e4fa7ecfc1e52013e3b3f
   loyer: 434
   personne_de_reference: 559e4fa7ecfc1e52013e3b44
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 476.07

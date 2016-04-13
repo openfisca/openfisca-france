@@ -391,6 +391,6 @@ menages:
     - 556892c94c5f431946b07b48
     - 556892c94c5f431946b07b47
   personne_de_reference: 556892c94c5f431946b07b4a
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   paje_base: 0

@@ -318,6 +318,6 @@ menages:
   conjoint: 53d79dd4f6aa390200a6cd2f
   enfants: 53d79dd4f6aa390200a6cd2e
   personne_de_reference: 53d79dd4f6aa390200a6cd30
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 750.46

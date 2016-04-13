@@ -327,7 +327,7 @@ menages:
   depcom: 77005
   enfants: 559fb03cf92fd455017e6e0f
   personne_de_reference: 559fb03cf92fd455017e6e11
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   paje_base: 184.62
   rsa_non_majore: 586.82

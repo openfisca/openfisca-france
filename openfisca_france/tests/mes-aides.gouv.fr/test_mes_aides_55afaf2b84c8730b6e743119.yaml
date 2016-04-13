@@ -444,6 +444,6 @@ menages:
   loyer: 600
   parisien: true
   personne_de_reference: 55afaf1d84c8730b6e74310c
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   paris_logement_familles: 169

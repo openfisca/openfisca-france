@@ -403,6 +403,6 @@ menages:
   - 54f7280cb5e73ade7b192ff1
   - 54f7280cb5e73ade7b192ff0
   personne_de_reference: 54f7280cb5e73ade7b192ff3
-  statut_occupation: 2
+  statut_occupation_logement: 2
 output_variables:
   acs: 600

@@ -338,6 +338,6 @@ menages:
   depcom: 94046
   enfants:
   personne_de_reference: 54648fa93005e57370c2f36e
-  statut_occupation: 2
+  statut_occupation_logement: 2
 output_variables:
   aspa: 0

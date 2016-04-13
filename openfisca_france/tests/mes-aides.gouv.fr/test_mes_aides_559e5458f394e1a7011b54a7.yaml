@@ -282,7 +282,7 @@ menages:
   depcom: 77107
   enfants:
   personne_de_reference: 559e5451f92fd455017e6a83
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   cmu_c: true
   rsa: 452.21

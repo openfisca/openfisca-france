@@ -422,6 +422,6 @@ menages:
     - 55252bc877c7b0c6117a2933
   loyer: 600
   personne_de_reference: 55252bc877c7b0c6117a2937
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   cmu_c: false

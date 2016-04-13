@@ -296,6 +296,6 @@ foyers_fiscaux:
 menages:
   enfants: 53d78aebf6aa390200a6ccf6
   personne_de_reference: 53d78aebf6aa390200a6ccf7
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   asf: 95.99

@@ -400,6 +400,6 @@ menages:
     - 558d294ba7a520fc2f41d203
     - 558d2ddc131e5b05301eaf7b
   personne_de_reference: 558d294ba7a520fc2f41d205
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   af: 359.72

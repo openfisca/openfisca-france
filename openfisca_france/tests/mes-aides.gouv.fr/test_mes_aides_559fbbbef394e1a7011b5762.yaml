@@ -353,7 +353,7 @@ menages:
     - 559fbbadaf0afd4601df5e35
   loyer: 429
   personne_de_reference: 559fbbadaf0afd4601df5e38
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 472.13
   rsa: 410.87

@@ -343,6 +343,6 @@ menages:
   depcom: 67482
   enfants: 55016698cc1bb4365a5d7233
   personne_de_reference: 55016698cc1bb4365a5d7235
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   bourse_lycee: 271.8

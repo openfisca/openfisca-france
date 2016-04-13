@@ -357,6 +357,6 @@ menages:
     - 54edcd5028793d0972ec4dc0
   loyer: 585
   personne_de_reference: 54edcd5028793d0972ec4dc2
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 359.63

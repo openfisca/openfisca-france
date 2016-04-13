@@ -235,7 +235,7 @@ class cmu_base_ressources(Variable):
         paje_clca = simulation.calculate_add('paje_clca', previous_year)
         paje_prepare = simulation.calculate_add('paje_prepare', previous_year)
         aide_logement = simulation.calculate_add('aide_logement', previous_year)
-        statut_occupation = simulation.calculate('statut_occupation_famille', period)
+        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
         cmu_forfait_logement_al = simulation.calculate('cmu_forfait_logement_al', period)
         age_holder = simulation.compute('age', period)
@@ -247,7 +247,7 @@ class cmu_base_ressources(Variable):
 
         age_pac = self.split_by_roles(age_holder, roles = ENFS)
 
-        forfait_logement = (((statut_occupation == 2) + (statut_occupation == 6)) * cmu_forfait_logement_base +
+        forfait_logement = (((statut_occupation_logement == 2) + (statut_occupation_logement == 6)) * cmu_forfait_logement_base +
             (aide_logement > 0) * min_(cmu_forfait_logement_al, aide_logement))
 
         res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement

@@ -372,6 +372,6 @@ menages:
     - 5485d6a83bc432e473c703d5
     - 5485d6a83bc432e473c703d4
   personne_de_reference: 5485d6a83bc432e473c703d8
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   bourse_college: 714

@@ -498,6 +498,6 @@ menages:
     - 54931f9b297947e07a4c898b
   loyer: 400
   personne_de_reference: 54931f9b297947e07a4c89a6
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 0

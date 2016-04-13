@@ -371,6 +371,6 @@ menages:
   loyer: 0
   parisien: false
   personne_de_reference: 55f02d0d7869142d04874fa3
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 461.26
