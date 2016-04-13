@@ -160,7 +160,7 @@ class api(DatedVariable):
         isole = not_(simulation.calculate('en_couple', period))
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
         rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
-        af_majo = simulation.calculate('af_majo', period)
+        af_majoration = simulation.calculate('af_majoration', period)
         rsa = simulation.calculate('rsa', period)
         af = simulation.legislation_at(period.start).fam.af
         api = simulation.legislation_at(period.start).minim.api
@@ -204,7 +204,7 @@ class api(DatedVariable):
         # moins de 25 ans après inclusion dans rsa
         api1 = eligib * af.bmaf * (api.base + api.enf_sup * nb_enf(age, autonomie_financiere, af.age1, api.age_pac - 1))
         rsa = (api.age_pac >= 25)  # dummy passage au rsa majoré
-        br_api = rsa_base_ressources + af_majo * not_(rsa)
+        br_api = rsa_base_ressources + af_majoration * not_(rsa)
         # On pourrait mensualiser RMI, BRrmi et forfait logement
         api = max_(0, api1 - rsa_forfait_logement / 12 - br_api / 12 - rsa / 12)
         # L'API est exonérée de CRDS

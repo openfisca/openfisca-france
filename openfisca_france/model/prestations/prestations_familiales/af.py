@@ -235,7 +235,7 @@ class af_majoration_enfant(Variable):
         return period, pfam_enfant_a_charge * (af_base > 0) * pas_aine * montant * coeff_garde_alternee
 
 
-class af_majo(Variable):
+class af_majoration(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Allocations familiales - majoration pour âge"
@@ -262,7 +262,7 @@ class af_complement_degressif(DatedVariable):
         af_nbenf = simulation.calculate('af_nbenf', period)
         base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
         af_base = simulation.calculate('af_base', period)
-        af_majo = simulation.calculate('af_majo', period)
+        af_majoration = simulation.calculate('af_majoration', period)
         pfam = simulation.legislation_at(period.start).fam.af
         modulation = pfam.modulation
         plafond1 = modulation.plafond1 + af_nbenf * modulation.enfant_supp
@@ -276,7 +276,7 @@ class af_complement_degressif(DatedVariable):
             (depassement_plafond2 > 0) * depassement_plafond2
         ) / 12
 
-        af = af_base + af_majo
+        af = af_base + af_majoration
         return period, max_(0, af - depassement_mensuel) * (depassement_mensuel > 0)
 
 
@@ -339,9 +339,9 @@ class af(Variable):
     def function(self, simulation, period):
         period = period.this_month
         af_base = simulation.calculate('af_base', period)
-        af_majo = simulation.calculate('af_majo', period)
+        af_majoration = simulation.calculate('af_majoration', period)
         af_forf = simulation.calculate('af_forf', period)
         af_complement_degressif = simulation.calculate('af_complement_degressif', period)
         af_forf_complement_degressif = simulation.calculate('af_forf_complement_degressif', period)
 
-        return period, af_base + af_majo + af_forf + af_complement_degressif + af_forf_complement_degressif
+        return period, af_base + af_majoration + af_forf + af_complement_degressif + af_forf_complement_degressif

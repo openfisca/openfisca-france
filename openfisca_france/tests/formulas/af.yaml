@@ -1674,7 +1674,7 @@
     - id: "enfant3"
       birth: "2011-01-01"
   output_variables:
-    af_majo: 65 / 2
+    af_majoration: 65 / 2
 
 - name: "Majoration âge - Garde alternée avant mai 2007"
   period: 2007-04
@@ -1702,5 +1702,5 @@
     - id: "enfant3"
       birth: "2001-01-01"
   output_variables:
-    af_majo: 60
+    af_majoration: 60
 
