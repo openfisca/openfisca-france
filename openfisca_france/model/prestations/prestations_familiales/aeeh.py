@@ -6,6 +6,10 @@ from ...base import *  # noqa
 
 from numpy import logical_not as not_
 
+class aeeh_niveau_handicap(Variable):
+    column = IntCol
+    entity_class = Individus
+    label = u"Catégorie de handicap prise en compte pour l'AEEH"
 
 class aeeh(DatedVariable):
     column = FloatCol(default = 0)
@@ -29,17 +33,17 @@ class aeeh(DatedVariable):
         period = period.start.offset('first-of', 'month').period('year')
         age_holder = simulation.compute('age', period)
         handicap_holder = simulation.compute('handicap', period)
-        categ_invalide_holder = simulation.compute('categ_inv', period)
+        niveau_handicap_holder = simulation.compute('aeeh_niveau_handicap', period)
         P = simulation.legislation_at(period.start).fam
 
         age = self.split_by_roles(age_holder, roles = ENFS)
-        categ_inv = self.split_by_roles(categ_invalide_holder, roles = ENFS)
+        niveau_handicap = self.split_by_roles(niveau_handicap_holder, roles = ENFS)
         handicap = self.split_by_roles(handicap_holder, roles = ENFS)
 
         aeeh = 0
         for enfant in age.iterkeys():
             enfhand = handicap[enfant] * (age[enfant] < P.aeeh.age) / 12
-            categ = categ_inv[enfant]
+            categ = niveau_handicap[enfant]
             aeeh += 0 * enfhand  # TODO:
 
     # L'attribution de l'AEEH de base et de ses compléments éventuels ne fait pas obstacle au
@@ -71,17 +75,17 @@ class aeeh(DatedVariable):
         age_holder = simulation.compute('age', period)
         handicap_holder = simulation.compute('handicap', period)
         isole = not_(simulation.calculate('en_couple', period))
-        categ_invalide_holder = simulation.compute('categ_inv', period)
+        niveau_handicap_holder = simulation.compute('aeeh_niveau_handicap', period)
         P = simulation.legislation_at(period.start).fam
 
         age = self.split_by_roles(age_holder, roles = ENFS)
-        categ_inv = self.split_by_roles(categ_invalide_holder, roles = ENFS)
+        niveau_handicap = self.split_by_roles(niveau_handicap_holder, roles = ENFS)
         handicap = self.split_by_roles(handicap_holder, roles = ENFS)
 
         aeeh = 0
         for enfant in age.iterkeys():
             enfhand = handicap[enfant] * (age[enfant] < P.aeeh.age) / 12
-            categ = categ_inv[enfant]
+            categ = niveau_handicap[enfant]
             aeeh += enfhand * (P.af.bmaf * (P.aeeh.base +
                                   P.aeeh.cpl1 * (categ == 1) +
                                   (categ == 2) * (P.aeeh.cpl2 + P.aeeh.maj2 * isole) +

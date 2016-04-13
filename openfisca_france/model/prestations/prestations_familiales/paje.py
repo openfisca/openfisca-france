@@ -19,8 +19,6 @@ build_column('partiel1', BoolCol(entity = 'fam',
 build_column('partiel2', BoolCol(entity = 'fam',
                      label = u"Parent actif entre 50% et 80% (PAJE-CLCA)"))
 
-build_column('categ_inv', PeriodSizeIndependentIntCol(label = u"Catégorie de handicap (AEEH)"))
-
 build_column('opt_colca', BoolCol(entity = 'fam',
                       label = u"Opte pour le COLCA"))
 
