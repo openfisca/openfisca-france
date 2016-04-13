@@ -561,10 +561,10 @@ class paje_colca(Variable):
 #     return 12 * (aged3 + aged6)  # annualisé
 
 
-class ape_temp(Variable):
+class ape_avant_cumul(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
-    label = u"Allocation parentale d'éducation"
+    label = u"Allocation parentale d'éducation, avant prise en compte de la non-cumulabilité avec le CF et l'APJE"
     stop_date = date(2004, 1, 1)
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
 
@@ -629,10 +629,10 @@ class ape_temp(Variable):
         return period, ape  # annualisé
 
 
-class apje_temp(Variable):
+class apje_avant_cumul(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
-    label = u"Allocation pour le jeune enfant"
+    label = u"Allocation pour le jeune enfant, avant prise en compte de la non-cumulabilité avec le CF et l'APE"
     stop_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
 
@@ -641,7 +641,7 @@ class apje_temp(Variable):
         Allocation pour jeune enfant
         '''
         period = period.this_month
-        base_ressources = simulation.calculate('prestations_familiales_base_ressources', period.this_month)
+        base_ressources = simulation.calculate('prestations_familFiales_base_ressources', period.this_month)
         age_holder = simulation.compute('age', period)
         autonomie_financiere_holder = simulation.compute('autonomie_financiere', period.this_month)
         biactivite = simulation.calculate_add('biactivite', period)
@@ -690,11 +690,11 @@ class ape(Variable):
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
         period = period.this_month
-        apje_temp = simulation.calculate('apje_temp', period)
-        ape_temp = simulation.calculate('ape_temp', period)
+        apje_avant_cumul = simulation.calculate('apje_avant_cumul', period)
+        ape_avant_cumul = simulation.calculate('ape_avant_cumul', period)
         cf_montant = simulation.calculate('cf_montant', period)
 
-        ape = (apje_temp < ape_temp) * (cf_montant < ape_temp) * ape_temp
+        ape = (apje_avant_cumul < ape_avant_cumul) * (cf_montant < ape_avant_cumul) * ape_avant_cumul
         return period, round(ape, 2)
 
 
@@ -708,9 +708,9 @@ class apje(Variable):
     def function(self, simulation, period):
         # L'APJE n'est pas cumulable avec le complément familial et l'APE
         period = period.this_month
-        apje_temp = simulation.calculate('apje_temp', period)
-        ape_temp = simulation.calculate('ape_temp', period)
+        apje_avant_cumul = simulation.calculate('apje_avant_cumul', period)
+        ape_avant_cumul = simulation.calculate('ape_avant_cumul', period)
         cf_montant = simulation.calculate('cf_montant', period)
 
-        apje = (cf_montant < apje_temp) * (ape_temp < apje_temp) * apje_temp
+        apje = (cf_montant < apje_avant_cumul) * (ape_avant_cumul < apje_avant_cumul) * apje_avant_cumul
         return period, round(apje, 2)

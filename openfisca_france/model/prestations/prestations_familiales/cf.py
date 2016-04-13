@@ -289,10 +289,10 @@ class cf(Variable):
         '''
         period = period.this_month
         paje_base = simulation.calculate('paje_base', period)
-        apje_temp = simulation.calculate('apje_temp', period)
-        ape_temp = simulation.calculate('ape_temp', period)
+        apje_avant_cumul = simulation.calculate('apje_avant_cumul', period)
+        ape_avant_cumul = simulation.calculate('ape_avant_cumul', period)
         cf_montant = simulation.calculate('cf_montant', period)
         residence_mayotte = simulation.calculate('residence_mayotte', period)
 
-        cf_brut = not_(paje_base) * (apje_temp <= cf_montant) * (ape_temp <= cf_montant) * cf_montant
+        cf_brut = not_(paje_base) * (apje_avant_cumul <= cf_montant) * (ape_avant_cumul <= cf_montant) * cf_montant
         return period, not_(residence_mayotte) * round(cf_brut, 2)
