@@ -45,21 +45,6 @@ class pfam_enfant_a_charge(Variable):
         return period, or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
 
 
-class pfam_ressources_i(Variable):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Ressources de l'individu prises en compte dans le cadre des prestations familiales"
-
-    def function(self, simulation, period):
-        period = period.this_month
-
-        br_pf_i = simulation.calculate('br_pf_i', period)
-        est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
-        pfam_enfant_a_charge = simulation.calculate('pfam_enfant_a_charge', period)
-
-        return period, or_(not_(est_enfant_dans_famille), pfam_enfant_a_charge) * br_pf_i
-
-
 class br_pf_i(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
@@ -175,10 +160,14 @@ class br_pf(Variable):
         # period_legacy = period.start.offset('first-of', 'month').period('year')
         annee_fiscale_n_2 = period.n_2
 
-        pfam_ressources_i_holder = simulation.compute('pfam_ressources_i', period)
+        br_pf_i = simulation.calculate('br_pf_i', period)
+        enfant_i = simulation.calculate('est_enfant_dans_famille', period)
+        enfant_a_charge_i = simulation.calculate('pfam_enfant_a_charge', period)
+        ressources_i = (not_(enfant_i) + enfant_a_charge_i) * br_pf_i
+        br_pf_i_total = self.sum_by_entity(ressources_i)
+
         rev_coll_holder = simulation.compute('rev_coll', annee_fiscale_n_2)
 
-        br_pf_i_total = self.sum_by_entity(pfam_ressources_i_holder)
         rev_coll = self.split_by_roles(rev_coll_holder, roles = [CHEF, PART])
 
         br_pf = br_pf_i_total + rev_coll[CHEF] + rev_coll[PART]
