@@ -189,7 +189,7 @@ def nb_enf(ages, autonomie_financiere, ag1, ag2):
 #        jusqu'au mois précédant son age limite supérieur (ag2 + 1) mais
 #        le versement à lieu en début de mois suivant
     return sum(
-        (ag1 <= age) & (age <= ag2) & not_(autonomie_financiere[key]) for key, age in ages.iteritems()
+        (age >= ag1) & (age <= ag2) & not_(autonomie_financiere[key]) for key, age in ages.iteritems()
     )
 
 
