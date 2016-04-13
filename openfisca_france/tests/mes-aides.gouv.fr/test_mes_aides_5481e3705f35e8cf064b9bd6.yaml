@@ -1,4 +1,4 @@
-name: Droit à l'ASI si invalide retraité
+name: Droit à l'ASI si handicap retraité
 keywords:
   - asi
   - eligibilité
@@ -16,7 +16,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 1
+  handicap: 1
   pensions_invalidite:
     2012: 1200
     2013-12: 100

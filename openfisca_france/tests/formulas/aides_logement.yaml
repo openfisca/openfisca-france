@@ -43,7 +43,7 @@
       age: 40
     - id: "enfant1"
       age: 30
-      invalide: true
+      handicap: true
       taux_incapacite: 0.9
   output_variables:
     al_nb_personnes_a_charge: 1
@@ -59,7 +59,7 @@
       age: 40
     - id: "enfant1"
       age: 30
-      invalide: true
+      handicap: true
       inapte_travail: true
   output_variables:
     al_nb_personnes_a_charge: 1
@@ -75,7 +75,7 @@
       age: 40
     - id: "enfant1"
       age: 30
-      invalide: true
+      handicap: true
       taux_incapacite: 0.7
   output_variables:
     al_nb_personnes_a_charge: 0
@@ -91,7 +91,7 @@
       age: 40
     - id: "enfant1"
       age: 30
-      invalide: true
+      handicap: true
       inapte_travail: true
       prestations_familiales_base_ressources_i: 11900
   output_variables:
@@ -108,7 +108,7 @@
       age: 40
     - id: "enfant1"
       age: 30
-      invalide: true
+      handicap: true
       inapte_travail: true
       prestations_familiales_base_ressources_i: 12100
   output_variables:

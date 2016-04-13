@@ -149,10 +149,10 @@ class enfant_a_charge(Variable):
         period = period.this_year
         age = simulation.calculate('age', period)
         garde_alternee = simulation.calculate('garde_alternee', period)
-        invalide = simulation.calculate('invalide', period)
+        handicap = simulation.calculate('handicap', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, and_(and_(quifoy >= 2, or_(age < 18, invalide)), not_(garde_alternee))
+        return period, (quifoy >= 2) * ((age < 18) + handicap) * not_(garde_alternee)
 
 
 class nbF(PersonToEntityColumn):
@@ -180,10 +180,10 @@ class enfant_a_charge_invalide(Variable):
     def function(self, simulation, period):
         period = period.this_year
         garde_alternee = simulation.calculate('garde_alternee', period)
-        invalide = simulation.calculate('invalide', period)
+        invalidite = simulation.calculate('invalidite', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, and_(and_(quifoy >= 2, invalide), not_(garde_alternee))
+        return period, (quifoy >= 2) * invalidite * not_(garde_alternee)
 
 
 class nbG(PersonToEntityColumn):
@@ -204,10 +204,10 @@ class enfant_a_charge_garde_alternee(Variable):
         period = period.this_year
         age = simulation.calculate('age', period)
         garde_alternee = simulation.calculate('garde_alternee', period)
-        invalide = simulation.calculate('invalide', period)
+        handicap = simulation.calculate('handicap', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, and_(and_(quifoy >= 2, or_(age < 18, invalide)), garde_alternee)
+        return period, (quifoy >= 2) * ((age < 18) + handicap) * garde_alternee
 
 
 class nbH(PersonToEntityColumn):
@@ -227,10 +227,10 @@ class enfant_a_charge_garde_alternee_invalide(Variable):
     def function(self, simulation, period):
         period = period.this_year
         garde_alternee = simulation.calculate('garde_alternee', period)
-        invalide = simulation.calculate('invalide', period)
+        invalidite = simulation.calculate('invalidite', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, and_(and_(quifoy >= 2, invalide), garde_alternee)
+        return period, (quifoy >= 2) * invalidite * garde_alternee
 
 
 class nbI(PersonToEntityColumn):
@@ -249,10 +249,10 @@ class enfant_majeur_celibataire_sans_enfant(Variable):
     def function(self, simulation, period):
         period = period.this_year
         age = simulation.calculate('age', period)
-        invalide = simulation.calculate('invalide', period)
+        handicap = simulation.calculate('handicap', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, and_(and_(quifoy >= 2, age >= 18), not_(invalide))
+        return period, (quifoy >= 2) * (age >= 18) * not_(handicap)
 
 
 class nbJ(PersonToEntityColumn):

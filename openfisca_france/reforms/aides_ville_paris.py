@@ -119,10 +119,10 @@ def build_reform(tax_benefit_system):
         def function(self, simulation, period):
             period = period.this_month
 
-            invalide = simulation.calculate('invalide', period)
+            handicap = simulation.calculate('handicap', period)
             plf_enfant = simulation.calculate('plf_enfant', period)
 
-            return period, plf_enfant * invalide
+            return period, plf_enfant * handicap
 
     class plf_enfant(Reform.Variable):
         column = columns.BoolCol

@@ -35,7 +35,7 @@ individus:
     year:2014-10: 4000.0000000000005
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     '2013': 11538.461538461537
     2014-10: 1282.051282051282

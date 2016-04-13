@@ -18,7 +18,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2014-11: 1709.4017094017092
     2014-12: 1709.4017094017092
@@ -85,7 +85,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   scolarite: 1
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
@@ -106,7 +106,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   scolarite: 1
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
@@ -127,7 +127,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2014-11: 1709.4017094017092
     2014-12: 1709.4017094017092

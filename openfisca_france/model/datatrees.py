@@ -140,7 +140,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""adoption""",  # Enfant adopté
                     u"""garde_alternee""",  # Enfant en garde alternée
                     u"""enceinte""",  # Est enceinte
-                    u"""invalide""",  # Invalide
+                    u"""handicap""",  # handicap
                     u"""rempli_obligation_scolaire""",  # Rempli l'obligation scolaire
                     u"""coloc""",  # Vie en colocation
                     u"""logement_chambre""",  # Le logement est considéré comme une chambre

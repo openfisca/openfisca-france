@@ -90,11 +90,15 @@ build_column('caseW', BoolCol(label = u"Vous ou votre conjoint (même s'il est d
                   entity = 'foy',
                   cerfa_field = u'W'))
 
-# pour inv, il faut que tu regardes si tu es d'accord et si c'est bien la bonne case,
-# la case P exsite déjà plus bas ligne 339 sous le nom caseP
-build_column('invalide', BoolCol(label = u'Invalide'))  # TODO: cerfa_field
+class handicap(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label= u"Individu en situation de handicap"
 
-
+class invalidite(Variable):
+  column = BoolCol
+  entity_class = Individus
+  label=u"Individu titulaire d'une carte d'invalidité"
 
 class nb_parents(Variable):
     column = PeriodSizeIndependentIntCol(default = 0)

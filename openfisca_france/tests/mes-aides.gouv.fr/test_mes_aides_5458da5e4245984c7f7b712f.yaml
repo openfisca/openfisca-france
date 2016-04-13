@@ -17,7 +17,7 @@ individus:
   inapte_travail: 1
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   retraite_brute:
     2012: 1199.9999999999998
     2013-11: 99.99999999999999
