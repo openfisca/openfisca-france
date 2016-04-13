@@ -163,12 +163,12 @@ class aah_eligible(Variable):
 
         taux_incapacite = simulation.calculate('taux_incapacite', period)
         age = simulation.calculate('age', period)
-        smic55 = simulation.calculate('smic55', period)
+        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
 
         eligible_aah = (
             (taux_incapacite >= 0.5) *
             (age <= law.minim.aah.age_legal_retraite) *
-            ((age >= law.fam.aeeh.age) + ((age >= 16) * (smic55)))
+            ((age >= law.fam.aeeh.age) + ((age >= 16) * (autonomie_financiere)))
         )
 
         return period, eligible_aah

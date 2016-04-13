@@ -18,7 +18,7 @@ class af_enfant_a_charge(Variable):
         period = period.this_month
 
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
-        smic55 = simulation.calculate('smic55', period)
+        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         age = simulation.calculate('age', period)
         rempli_obligation_scolaire = simulation.calculate('rempli_obligation_scolaire', period)
 
@@ -26,7 +26,7 @@ class af_enfant_a_charge(Variable):
 
         condition_enfant = ((age >= pfam.enfants.age_minimal) * (age < pfam.enfants.age_intermediaire) *
             rempli_obligation_scolaire)
-        condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.af.age3) * not_(smic55)
+        condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.af.age3) * not_(autonomie_financiere)
 
         return period, or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
 
@@ -73,10 +73,10 @@ class af_forf_nbenf(Variable):
         period = period.this_month
         age_holder = simulation.compute('age', period)
         age = self.split_by_roles(age_holder, roles = ENFS)
-        smic55_holder = simulation.compute('smic55', period)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        autonomie_financiere_holder = simulation.compute('autonomie_financiere', period)
+        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
         pfam = simulation.legislation_at(period.start).fam.af
-        af_forf_nbenf = nb_enf(age, smic55, pfam.age3, pfam.age3)
+        af_forf_nbenf = nb_enf(age, autonomie_financiere, pfam.age3, pfam.age3)
 
         return period, af_forf_nbenf
 

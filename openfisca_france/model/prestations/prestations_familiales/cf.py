@@ -16,13 +16,13 @@ class cf_enfant_a_charge(Variable):
         period = period.this_month
 
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
-        smic55 = simulation.calculate('smic55', period)
+        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         age = simulation.calculate('age', period)
 
         pfam = simulation.legislation_at(period.start).fam
 
         condition_age = (age >= 0) * (age < pfam.cf.age2)
-        condition_situation = est_enfant_dans_famille * not_(smic55)
+        condition_situation = est_enfant_dans_famille * not_(autonomie_financiere)
 
         return period, condition_age * condition_situation
 

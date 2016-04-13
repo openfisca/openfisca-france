@@ -6,7 +6,7 @@ from numpy import int32, logical_not as not_, logical_or as or_
 
 from ...base import *  # noqa analysis:ignore
 
-class smic55(Variable):
+class autonomie_financiere(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
@@ -32,7 +32,7 @@ class pfam_enfant_a_charge(Variable):
         period = period.this_month
 
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
-        smic55 = simulation.calculate('smic55', period)
+        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         age = simulation.calculate('age', period)
         rempli_obligation_scolaire = simulation.calculate('rempli_obligation_scolaire', period)
 
@@ -40,7 +40,7 @@ class pfam_enfant_a_charge(Variable):
 
         condition_enfant = ((age >= pfam.enfants.age_minimal) * (age < pfam.enfants.age_intermediaire) *
             rempli_obligation_scolaire)
-        condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.enfants.age_limite) * not_(smic55)
+        condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.enfants.age_limite) * not_(autonomie_financiere)
 
         return period, or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
 
@@ -179,7 +179,7 @@ class br_pf(Variable):
 ############################################################################
 
 
-def nb_enf(ages, smic55, ag1, ag2):
+def nb_enf(ages, autonomie_financiere, ag1, ag2):
     """
     Renvoie le nombre d'enfant au sens des allocations familiales dont l'âge est compris entre ag1 et ag2
     """
@@ -189,7 +189,7 @@ def nb_enf(ages, smic55, ag1, ag2):
 #        jusqu'au mois précédant son age limite supérieur (ag2 + 1) mais
 #        le versement à lieu en début de mois suivant
     return sum(
-        (ag1 <= age) & (age <= ag2) & not_(smic55[key]) for key, age in ages.iteritems()
+        (ag1 <= age) & (age <= ag2) & not_(autonomie_financiere[key]) for key, age in ages.iteritems()
     )
 
 

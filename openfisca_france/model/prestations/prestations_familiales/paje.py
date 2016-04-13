@@ -151,14 +151,14 @@ class paje_base_enfant_eligible_avant_reforme_2014(Variable):
     def function(self, simulation, period):
         period = period.this_month
         age = simulation.calculate('age', period)
-        smic55 = simulation.calculate('smic55', period)
+        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         birth = simulation.calculate('birth', period)
         ne_avant_2014 = datetime64('2014-04-01') > birth
         age_limite = simulation.legislation_at(period.start).fam.paje.base.age
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
-        return period, (age < age_limite) * not_(smic55) * ne_avant_2014
+        return period, (age < age_limite) * not_(autonomie_financiere) * ne_avant_2014
 
 
 class paje_base_enfant_eligible_apres_reforme_2014(Variable):
@@ -169,14 +169,14 @@ class paje_base_enfant_eligible_apres_reforme_2014(Variable):
     def function(self, simulation, period):
         period = period.this_month
         age = simulation.calculate('age', period)
-        smic55 = simulation.calculate('smic55', period)
+        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         birth = simulation.calculate('birth', period)
         ne_avant_2014 = datetime64('2014-04-01') > birth
         age_limite = simulation.legislation_at(period.start).fam.paje.base.age
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
-        return period, (age < age_limite) * not_(smic55) * not_(ne_avant_2014)
+        return period, (age < age_limite) * not_(autonomie_financiere) * not_(ne_avant_2014)
 
 
 class paje_naissance(Variable):
@@ -368,7 +368,7 @@ class paje_clmg(Variable):
         period = period.this_month
         aah_holder = simulation.compute('aah', period)
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
+        autonomie_financiere_holder = simulation.compute('autonomie_financiere', period, accept_other_period = True)
         etu_holder = simulation.compute('etudiant', period)
         salaire_imposable_holder = simulation.compute('salaire_imposable', period)
         hsup_holder = simulation.compute('hsup', period)
@@ -387,13 +387,13 @@ class paje_clmg(Variable):
         etudiant = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         hsup = self.split_by_roles(hsup_holder, roles = [CHEF, PART])
         salaire_imposable = self.split_by_roles(salaire_imposable_holder, roles = [CHEF, PART])
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
         aah = self.sum_by_entity(aah_holder)
 
         # condition de revenu minimal
 
         bmaf_n_2 = P_n_2.af.bmaf
-        cond_age_enf = (nb_enf(age, smic55, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
+        cond_age_enf = (nb_enf(age, autonomie_financiere, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
         cond_sal = (
             salaire_imposable[CHEF] + salaire_imposable[PART] + hsup[CHEF] + hsup[PART] >
             12 * bmaf_n_2 * (1 + en_couple)
@@ -417,8 +417,8 @@ class paje_clmg(Variable):
         seuil1 = seuil1 * (1 - .5 * paje_clca_taux_partiel)
         seuil2 = seuil2 * (1 - .5 * paje_clca_taux_partiel)
 
-        clmg = P.af.bmaf * ((nb_enf(age, smic55, 0, P.paje.clmg.age1 - 1) > 0) +
-                            0.5 * (nb_enf(age, smic55, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
+        clmg = P.af.bmaf * ((nb_enf(age, autonomie_financiere, 0, P.paje.clmg.age1 - 1) > 0) +
+                            0.5 * (nb_enf(age, autonomie_financiere, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
                             ) * (
             empl_dir * (
                 (br_pf < seuil1) * P.paje.clmg.empl_dir1 +
@@ -475,12 +475,12 @@ class paje_colca(Variable):
 # TODO: cumul avec clca self.colca_tot_m
 
 
-# def _afeama(self, age_holder, smic55_holder, ape, af_nbenf, br_pf, P = law.fam):
+# def _afeama(self, age_holder, autonomie_financiere_holder, ape, af_nbenf, br_pf, P = law.fam):
 #     '''
 #     Aide à la famille pour l'emploi d'une assistante maternelle agréée
 #     '''
 #     age = self.split_by_roles(age_holder, roles = ENFS)
-#     smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+#     autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
 #
 #     # TODO http://web.archive.org/web/20080205163300/http://www.caf.fr/wps/portal/particuliers/catalogue/metropole/afeama
 #     # Les seuils sont de 80 et 110 % de l'ARS
@@ -498,7 +498,7 @@ class paje_colca(Variable):
 #
 #     # TODO calcul des cotisations urssaf
 #     #
-#     nbenf_afeama = nb_enf(age, smic55, P.af.age1, P.afeama.age - 1)
+#     nbenf_afeama = nb_enf(age, autonomie_financiere, P.af.age1, P.afeama.age - 1)
 #     nbenf = elig * af_nbenf * (nbenf_afeama > 0)
 #
 #     nb_par_ars = (nbenf == 1 + max_(nbenf - 1, 0) * (1 + P.ars.plaf_enf_supp))
@@ -532,7 +532,7 @@ class paje_colca(Variable):
 #     # Montant base ressources 2006, au 1er juillet 2007
 #
 #
-# def _aged(self, age_holder, smic55_holder, br_pf, ape_taux_partiel, dep_trim, P = law.fam):
+# def _aged(self, age_holder, autonomie_financiere_holder, br_pf, ape_taux_partiel, dep_trim, P = law.fam):
 #     '''
 #     Allocation garde d'enfant à domicile
 #
@@ -548,10 +548,10 @@ class paje_colca(Variable):
 #     '''
 #     # TODO: trimestrialiser
 #     age = self.split_by_roles(age_holder, roles = ENFS)
-#     smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+#     autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
 #
-#     nbenf = nb_enf(age, smic55, 0, P.aged.age1 - 1)
-#     nbenf2 = nb_enf(age, smic55, 0, P.aged.age2 - 1)
+#     nbenf = nb_enf(age, autonomie_financiere, 0, P.aged.age1 - 1)
+#     nbenf2 = nb_enf(age, autonomie_financiere, 0, P.aged.age2 - 1)
 #     elig1 = (nbenf > 0)
 #     elig2 = not_(elig1) * (nbenf2 > 0) * ape_taux_partiel
 #     depenses = 4 * dep_trim  # gérer les dépenses trimestrielles
@@ -600,16 +600,16 @@ class ape_temp(Variable):
         '''
         period = period.this_month
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', accept_other_period = True)
+        autonomie_financiere_holder = simulation.compute('autonomie_financiere', accept_other_period = True)
         inactif = simulation.calculate('inactif', period)
         partiel1 = simulation.calculate('partiel1', period)
         partiel2 = simulation.calculate('partiel2', period)
         P = simulation.legislation_at(period.start).fam
 
         age = self.split_by_roles(age_holder, roles = ENFS)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
 
-        elig = (nb_enf(age, smic55, 0, P.ape.age - 1) >= 1) & (nb_enf(age, smic55, 0, P.af.age2) >= 2)
+        elig = (nb_enf(age, autonomie_financiere, 0, P.ape.age - 1) >= 1) & (nb_enf(age, autonomie_financiere, 0, P.af.age2) >= 2)
         # Inactif
         # Temps partiel 1
         # Salarié:
@@ -643,17 +643,17 @@ class apje_temp(Variable):
         period = period.this_month
         br_pf = simulation.calculate('br_pf', period.this_month)
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period.this_month)
+        autonomie_financiere_holder = simulation.compute('autonomie_financiere', period.this_month)
         biactivite = simulation.calculate_add('biactivite', period)
         isole = not_(simulation.calculate('en_couple', period))
         P = simulation.legislation_at(period.start).fam
         P_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
 
         age = self.split_by_roles(age_holder, roles = ENFS)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
 
         # TODO: APJE courte voir doc ERF 2006
-        nbenf = nb_enf(age, smic55, 0, P.apje.age - 1)
+        nbenf = nb_enf(age, autonomie_financiere, 0, P.apje.age - 1)
         bmaf = P.af.bmaf
         bmaf_n_2 = P_n_2.af.bmaf
         base = round(P.apje.taux * bmaf, 2)

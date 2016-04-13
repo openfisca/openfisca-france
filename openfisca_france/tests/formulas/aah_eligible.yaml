@@ -26,7 +26,7 @@
     age: 19
     invalide: True
     taux_incapacite: 0.9
-    smic55: False
+    autonomie_financiere: False
   output_variables:
     aah_eligible: False
 
@@ -38,7 +38,7 @@
     age: 18
     invalide: True
     taux_incapacite: 0.9
-    smic55: True
+    autonomie_financiere: True
   output_variables:
     aah_eligible: True
 

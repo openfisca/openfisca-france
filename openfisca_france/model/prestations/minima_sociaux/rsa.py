@@ -33,7 +33,7 @@ class aefa(DatedVariable):
     def function_2009__(self, simulation, period):
         period = period.this_year
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
+        autonomie_financiere_holder = simulation.compute('autonomie_financiere', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
         nb_parents = simulation.calculate('nb_parents', period)
         ass = simulation.calculate_add('ass', period)
@@ -45,7 +45,7 @@ class aefa(DatedVariable):
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         aer = self.sum_by_entity(aer_holder)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
         dummy_ass = ass > 0
         dummy_aer = aer > 0
         dummy_api = api > 0
@@ -53,7 +53,7 @@ class aefa(DatedVariable):
         maj = 0  # TODO
         condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
         if hasattr(af, "age3"):
-            nbPAC = nb_enf(age, smic55, af.age1, af.age3)
+            nbPAC = nb_enf(age, autonomie_financiere, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
@@ -70,7 +70,7 @@ class aefa(DatedVariable):
     def function_2008(self, simulation, period):
         period = period.this_year
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
+        autonomie_financiere_holder = simulation.compute('autonomie_financiere', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
         nb_parents = simulation.calculate('nb_parents', period)
         ass = simulation.calculate_add('ass', period)
@@ -82,7 +82,7 @@ class aefa(DatedVariable):
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         aer = self.sum_by_entity(aer_holder)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
         dummy_ass = ass > 0
         dummy_aer = aer > 0
         dummy_api = api > 0
@@ -90,7 +90,7 @@ class aefa(DatedVariable):
         maj = 0  # TODO
         condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
         if hasattr(af, "age3"):
-            nbPAC = nb_enf(age, smic55, af.age1, af.age3)
+            nbPAC = nb_enf(age, autonomie_financiere, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
@@ -108,7 +108,7 @@ class aefa(DatedVariable):
     def function__2008_(self, simulation, period):
         period = period.this_year
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period, accept_other_period = True)
+        autonomie_financiere_holder = simulation.compute('autonomie_financiere', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
         nb_parents = simulation.calculate('nb_parents', period)
         ass = simulation.calculate_add('ass', period)
@@ -120,7 +120,7 @@ class aefa(DatedVariable):
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         aer = self.sum_by_entity(aer_holder)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
         dummy_ass = ass > 0
         dummy_aer = aer > 0
         dummy_api = api > 0
@@ -128,7 +128,7 @@ class aefa(DatedVariable):
         maj = 0  # TODO
         condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
         if hasattr(af, "age3"):
-            nbPAC = nb_enf(age, smic55, af.age1, af.age3)
+            nbPAC = nb_enf(age, autonomie_financiere, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
@@ -156,7 +156,7 @@ class api(DatedVariable):
         period = period.this_month
         age_en_mois_holder = simulation.compute('age_en_mois', period)
         age_holder = simulation.compute('age', period)
-        smic55_holder = simulation.compute('smic55', period)
+        autonomie_financiere_holder = simulation.compute('autonomie_financiere', period)
         isole = not_(simulation.calculate('en_couple', period))
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
         rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
@@ -167,7 +167,7 @@ class api(DatedVariable):
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
+        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
         # TODO:
         #    Majoration pour isolement
         #    Si vous êtes parent isolé, c’est-à-dire célibataire, divorcé(e), séparé(e) ou veuf(ve) avec des enfants
@@ -198,11 +198,11 @@ class api(DatedVariable):
         # # Calcul de l'année et mois de naissance du benjamin
 
         condition = (floor(benjamin / 12) <= api.age - 1)
-        eligib = isole * ((enceinte != 0) | (nb_enf(age, smic55, 0, api.age - 1) > 0)) * condition
+        eligib = isole * ((enceinte != 0) | (nb_enf(age, autonomie_financiere, 0, api.age - 1) > 0)) * condition
 
         # moins de 20 ans avant inclusion dans rsa
         # moins de 25 ans après inclusion dans rsa
-        api1 = eligib * af.bmaf * (api.base + api.enf_sup * nb_enf(age, smic55, af.age1, api.age_pac - 1))
+        api1 = eligib * af.bmaf * (api.base + api.enf_sup * nb_enf(age, autonomie_financiere, af.age1, api.age_pac - 1))
         rsa = (api.age_pac >= 25)  # dummy passage au rsa majoré
         br_api = rsa_base_ressources + af_majo * not_(rsa)
         # On pourrait mensualiser RMI, BRrmi et forfait logement
@@ -458,7 +458,7 @@ class rsa_enfant_a_charge(Variable):
 
         enfant = simulation.calculate('est_enfant_dans_famille', period)
         age = simulation.calculate('age', period)
-        smic55 = simulation.calculate('smic55', period)
+        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         ressources = simulation.calculate('rsa_base_ressources_i', period) + (1 - P_rsa.pente) * simulation.calculate('rsa_revenu_activite_i', period)
 
 
@@ -471,12 +471,12 @@ class rsa_enfant_a_charge(Variable):
             enceinte_fam = simulation.calculate('enceinte_fam', period)
             isole = not_(simulation.calculate('en_couple', period))
             isolement_recent = simulation.calculate('rsa_isolement_recent', period)
-            presence_autres_enfants = self.sum_by_entity(enfant * not_(smic55) * (age <= P_rsa.age_pac), entity = "famille") > 1
+            presence_autres_enfants = self.sum_by_entity(enfant * not_(autonomie_financiere) * (age <= P_rsa.age_pac), entity = "famille") > 1
 
             return self.cast_from_entity_to_roles(not_(enceinte_fam) * isole * isolement_recent * not_(presence_autres_enfants), entity = 'famille')
 
         return period, (
-            enfant * not_(smic55) *
+            enfant * not_(autonomie_financiere) *
             (age <= P_rsa.age_pac) *
             where(ouvre_droit_majoration(),
                 ressources < (P_rsa.majo_rsa.pac0 - 1 + P_rsa.majo_rsa.pac_enf_sup) * P_rsa.rmi,
@@ -922,10 +922,10 @@ class rsa_majore_eligibilite(Variable):
 
         def has_enfant_moins_3_ans():
             age_holder = simulation.compute('age', period)
-            smic55_holder = simulation.compute('smic55', period)
+            autonomie_financiere_holder = simulation.compute('autonomie_financiere', period)
             age_enf = self.split_by_roles(age_holder, roles = ENFS)
-            smic55_enf = self.split_by_roles(smic55_holder, roles = ENFS)
-            nbenf = nb_enf(age_enf, smic55_enf, 0, 2)
+            autonomie_financiere_enf = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
+            nbenf = nb_enf(age_enf, autonomie_financiere_enf, 0, 2)
 
             return nbenf > 0
 
