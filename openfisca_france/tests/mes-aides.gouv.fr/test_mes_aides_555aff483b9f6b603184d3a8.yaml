@@ -17,7 +17,7 @@ individus:
     2012-01: 0
   handicap: 0
   tns_autres_revenus_type_activite: bnc
-  tns_employe: true
+  tns_avec_employe: true
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:

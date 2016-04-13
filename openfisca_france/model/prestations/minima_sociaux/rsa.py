@@ -770,8 +770,8 @@ class rsa_eligibilite_tns(Variable):
 
         tns_benefice_exploitant_agricole_holder = simulation.compute('tns_benefice_exploitant_agricole', last_year)
         tns_benefice_exploitant_agricole = self.sum_by_entity(tns_benefice_exploitant_agricole_holder)
-        tns_employe_holder = simulation.compute('tns_employe', period)
-        tns_employe = self.any_by_roles(tns_employe_holder)
+        tns_employe_holder = simulation.compute('tns_avec_employe', period)
+        tns_avec_employe = self.any_by_roles(tns_employe_holder)
         tns_autres_revenus_chiffre_affaires_holder = simulation.compute('tns_autres_revenus_chiffre_affaires', last_year)
         tns_autres_revenus_chiffre_affaires = self.split_by_roles(tns_autres_revenus_chiffre_affaires_holder)
         tns_autres_revenus_type_activite_holder = simulation.compute('tns_autres_revenus_type_activite', period)
@@ -813,7 +813,7 @@ class rsa_eligibilite_tns(Variable):
             )
         )
 
-        return period, eligibilite_agricole * (1 - tns_employe) * eligibilite_chiffre_affaire
+        return period, eligibilite_agricole * (1 - tns_avec_employe) * eligibilite_chiffre_affaire
 
 
 class rsa_forfait_asf(Variable):

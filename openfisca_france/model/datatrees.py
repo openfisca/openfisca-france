@@ -202,7 +202,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""tns_autres_revenus""",  # Autres revenus non salariés
                     u"""tns_autres_revenus_chiffre_affaires""",  # Chiffre d'affaire pour les TNS non agricoles autres que les AE et ME
                     u"""tns_autres_revenus_type_activite""",  # Type d'activité de l'entreprise non AE ni ME
-                    u"""tns_employe""",  # Le TNS a au moins un employé. Ne s'applique pas pour les agricoles ni auto-entrepreneurs ni micro entreprise
+                    u"""tns_avec_employe""",  # Le TNS a au moins un employé. Ne s'applique pas pour les agricoles ni auto-entrepreneurs ni micro entreprise
                     u"""tns_benefice_exploitant_agricole""",  # Dernier bénéfice agricole
                     u"""indemnites_stage""",  # Indemnités de stage
                     u"""revenus_stage_formation_pro""",  # Revenus de stage de formation professionnelle
