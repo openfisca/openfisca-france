@@ -94,11 +94,11 @@ class cf_ressources_i(Variable):
     def function(self, simulation, period):
         period = period.this_month
 
-        br_pf_i = simulation.calculate('br_pf_i', period)
+        base_ressources = simulation.calculate('prestations_familiales_base_ressources_i', period)
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
         cf_enfant_a_charge = simulation.calculate('cf_enfant_a_charge', period)
 
-        return period, or_(not_(est_enfant_dans_famille), cf_enfant_a_charge) * br_pf_i
+        return period, or_(not_(est_enfant_dans_famille), cf_enfant_a_charge) * base_ressources
 
 
 class cf_plafond(Variable):

@@ -122,11 +122,11 @@ class paje_base(Variable):
             return self.any_by_roles(paje_base_enfant_eligible_apres_reforme_2014)
 
         def montant_enfant_ne_avant_avril_2014():
-            ressources = simulation.calculate('br_pf', period)
+            ressources = simulation.calculate('prestations_familiales_base_ressources', period)
             return (ressources <= plafond_avant_avril_2014()) * montant_taux_plein
 
         def montant_enfant_ne_apres_avril_2014():
-            ressources = simulation.calculate('br_pf', period)
+            ressources = simulation.calculate('prestations_familiales_base_ressources', period)
             montant_taux_partiel = montant_taux_plein / 2
 
             montant = (
@@ -195,7 +195,7 @@ class paje_naissance(Variable):
         age_en_mois_holder = simulation.compute('age_en_mois', period)
         # age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
-        br_pf = simulation.calculate('br_pf', period)
+        base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
         isole = not_(simulation.calculate('en_couple', period))
         biactivite = simulation.calculate('biactivite', period)
         P = simulation.legislation_at(period.start).fam
@@ -219,7 +219,7 @@ class paje_naissance(Variable):
         plaf_tx = (nbenf > 0) + P.paje.base.avant_2014.plaf_tx1 * min_(nbenf, 2) + P.paje.base.avant_2014.plaf_tx2 * max_(nbenf - 2, 0)
         majo = isole | biactivite
         plaf = P.paje.base.avant_2014.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.avant_2014.plaf_maj * majo
-        elig = (br_pf <= plaf) * (nbnais != 0)
+        elig = (base_ressources <= plaf) * (nbnais != 0)
         nais_brut = nais_prime * elig * (nbnais)
         return period, nais_brut
 
@@ -374,7 +374,7 @@ class paje_clmg(Variable):
         hsup_holder = simulation.compute('hsup', period)
         en_couple = simulation.calculate('en_couple', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
-        br_pf = simulation.calculate('br_pf', period.this_month)
+        base_ressources = simulation.calculate('prestations_familiales_base_ressources', period.this_month)
         empl_dir = simulation.calculate('empl_dir', period)
         ass_mat = simulation.calculate('ass_mat', period)
         gar_dom = simulation.calculate('gar_dom', period)
@@ -421,17 +421,17 @@ class paje_clmg(Variable):
                             0.5 * (nb_enf(age, autonomie_financiere, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
                             ) * (
             empl_dir * (
-                (br_pf < seuil1) * P.paje.clmg.empl_dir1 +
-                ((br_pf >= seuil1) & (br_pf < seuil2)) * P.paje.clmg.empl_dir2 +
-                (br_pf >= seuil2) * P.paje.clmg.empl_dir3) +
+                (base_ressources < seuil1) * P.paje.clmg.empl_dir1 +
+                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.empl_dir2 +
+                (base_ressources >= seuil2) * P.paje.clmg.empl_dir3) +
             ass_mat * (
-                (br_pf < seuil1) * P.paje.clmg.ass_mat1 +
-                ((br_pf >= seuil1) & (br_pf < seuil2)) * P.paje.clmg.ass_mat2 +
-                (br_pf >= seuil2) * P.paje.clmg.ass_mat3) +
+                (base_ressources < seuil1) * P.paje.clmg.ass_mat1 +
+                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.ass_mat2 +
+                (base_ressources >= seuil2) * P.paje.clmg.ass_mat3) +
             gar_dom * (
-                (br_pf < seuil1) * P.paje.clmg.domi1 +
-                ((br_pf >= seuil1) & (br_pf < seuil2)) * P.paje.clmg.domi2 +
-                (br_pf >= seuil2) * P.paje.clmg.domi3))
+                (base_ressources < seuil1) * P.paje.clmg.domi1 +
+                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.domi2 +
+                (base_ressources >= seuil2) * P.paje.clmg.domi3))
         # TODO: connecter avec le crédit d'impôt
         # Si vous bénéficiez du Clca taux plein
         # (= vous ne travaillez plus ou interrompez votre activité professionnelle),
@@ -475,7 +475,7 @@ class paje_colca(Variable):
 # TODO: cumul avec clca self.colca_tot_m
 
 
-# def _afeama(self, age_holder, autonomie_financiere_holder, ape, af_nbenf, br_pf, P = law.fam):
+# def _afeama(self, age_holder, autonomie_financiere_holder, ape, af_nbenf, base_ressources, P = law.fam):
 #     '''
 #     Aide à la famille pour l'emploi d'une assistante maternelle agréée
 #     '''
@@ -506,9 +506,9 @@ class paje_colca(Variable):
 #     seuil2 = (P.afeama.mult_seuil2 * P.ars.plaf) * nb_par_ars
 #
 #     afeama = nbenf_afeama * P.af.bmaf * (
-#             (br_pf < seuil1) * P.afeama.taux_mini +
-#             ((br_pf >= seuil1) & (br_pf < seuil2)) * P.afeama.taux_median +
-#             (br_pf >= seuil2) * P.afeama.taux_maxi)
+#             (base_ressources < seuil1) * P.afeama.taux_mini +
+#             ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.afeama.taux_median +
+#             (base_ressources >= seuil2) * P.afeama.taux_maxi)
 #     return 12 * afeama  # annualisé
 #
 #     # L'AFEAMA comporte 2 volets complémentaires: l'AFEAMA proprement dit qui consiste à prendre en charge les
@@ -532,7 +532,7 @@ class paje_colca(Variable):
 #     # Montant base ressources 2006, au 1er juillet 2007
 #
 #
-# def _aged(self, age_holder, autonomie_financiere_holder, br_pf, ape_taux_partiel, dep_trim, P = law.fam):
+# def _aged(self, age_holder, autonomie_financiere_holder, base_ressources, ape_taux_partiel, dep_trim, P = law.fam):
 #     '''
 #     Allocation garde d'enfant à domicile
 #
@@ -555,8 +555,8 @@ class paje_colca(Variable):
 #     elig1 = (nbenf > 0)
 #     elig2 = not_(elig1) * (nbenf2 > 0) * ape_taux_partiel
 #     depenses = 4 * dep_trim  # gérer les dépenses trimestrielles
-#     aged3 = elig1 * (max_(P.aged.remb_plaf1 - P.aged.remb_taux1 * depenses, 0) * (br_pf > P.aged.revenus_plaf) +
-#        (br_pf <= P.aged.revenus_plaf) * max_(P.aged.remb_taux2 * depenses - P.aged.remb_plaf1, 0))
+#     aged3 = elig1 * (max_(P.aged.remb_plaf1 - P.aged.remb_taux1 * depenses, 0) * (base_ressources > P.aged.revenus_plaf) +
+#        (base_ressources <= P.aged.revenus_plaf) * max_(P.aged.remb_taux2 * depenses - P.aged.remb_plaf1, 0))
 #     aged6 = elig2 * max_(P.aged.remb_taux2 * depenses - P.aged.remb_plaf2, 0)
 #     return 12 * (aged3 + aged6)  # annualisé
 
@@ -641,7 +641,7 @@ class apje_temp(Variable):
         Allocation pour jeune enfant
         '''
         period = period.this_month
-        br_pf = simulation.calculate('br_pf', period.this_month)
+        base_ressources = simulation.calculate('prestations_familiales_base_ressources', period.this_month)
         age_holder = simulation.compute('age', period)
         autonomie_financiere_holder = simulation.compute('autonomie_financiere', period.this_month)
         biactivite = simulation.calculate_add('biactivite', period)
@@ -664,7 +664,7 @@ class apje_temp(Variable):
         plaf = P.apje.plaf * plaf_tx + P.apje.plaf_maj * majo
         plaf2 = plaf + 12 * base2
 
-        apje = (nbenf >= 1) * ((br_pf <= plaf) * base + (br_pf > plaf) * max_(plaf2 - br_pf, 0) / 12.0)
+        apje = (nbenf >= 1) * ((base_ressources <= plaf) * base + (base_ressources > plaf) * max_(plaf2 - base_ressources, 0) / 12.0)
 
         # Pour bénéficier de cette allocation, il faut que tous les enfants du foyer soient nés, adoptés, ou recueillis
         # en vue d’une adoption avant le 1er janvier 2004, et qu’au moins l’un d’entre eux ait moins de 3 ans.

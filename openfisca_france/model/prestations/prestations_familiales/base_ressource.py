@@ -45,7 +45,7 @@ class prestations_familiales_enfant_a_charge(Variable):
         return period, or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
 
 
-class br_pf_i(Variable):
+class prestations_familiales_base_ressources_i(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Base ressource individuelle des prestations familiales"
@@ -70,13 +70,13 @@ class biactivite(Variable):
         period = period.this_month
         annee_fiscale_n_2 = period.n_2
 
-        br_pf_i_holder = simulation.compute('br_pf_i', period)
-        br_pf_i = self.split_by_roles(br_pf_i_holder, roles = [CHEF, PART])
+        base_ressources_i_holder = simulation.compute('prestations_familiales_base_ressources_i', period)
+        base_ressources_i = self.split_by_roles(base_ressources_i_holder, roles = [CHEF, PART])
 
         pfam = simulation.legislation_at(annee_fiscale_n_2.start).fam
         seuil_rev = 12 * pfam.af.bmaf
 
-        return period, (br_pf_i[CHEF] >= seuil_rev) & (br_pf_i[PART] >= seuil_rev)
+        return period, (base_ressources_i[CHEF] >= seuil_rev) & (base_ressources_i[PART] >= seuil_rev)
 
 
 class div(Variable):
@@ -146,7 +146,7 @@ class rev_coll(Variable):
             - f7gc - abat_spe + rev_cat_pv)
 
 
-class br_pf(Variable):
+class prestations_familiales_base_ressources(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Base ressource des prestations familiales"
@@ -160,18 +160,18 @@ class br_pf(Variable):
         # period_legacy = period.start.offset('first-of', 'month').period('year')
         annee_fiscale_n_2 = period.n_2
 
-        br_pf_i = simulation.calculate('br_pf_i', period)
+        base_ressources_i = simulation.calculate('prestations_familiales_base_ressources_i', period)
         enfant_i = simulation.calculate('est_enfant_dans_famille', period)
         enfant_a_charge_i = simulation.calculate('prestations_familiales_enfant_a_charge', period)
-        ressources_i = (not_(enfant_i) + enfant_a_charge_i) * br_pf_i
-        br_pf_i_total = self.sum_by_entity(ressources_i)
+        ressources_i = (not_(enfant_i) + enfant_a_charge_i) * base_ressources_i
+        base_ressources_i_total = self.sum_by_entity(ressources_i)
 
         rev_coll_holder = simulation.compute('rev_coll', annee_fiscale_n_2)
 
         rev_coll = self.split_by_roles(rev_coll_holder, roles = [CHEF, PART])
 
-        br_pf = br_pf_i_total + rev_coll[CHEF] + rev_coll[PART]
-        return period, br_pf
+        base_ressources = base_ressources_i_total + rev_coll[CHEF] + rev_coll[PART]
+        return period, base_ressources
 
 
 ############################################################################

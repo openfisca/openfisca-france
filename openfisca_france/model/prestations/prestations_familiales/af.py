@@ -129,15 +129,15 @@ class af_taux_modulation(DatedVariable):
         period = period.this_month
         af_nbenf = simulation.calculate('af_nbenf', period)
         pfam = simulation.legislation_at(period.start).fam.af
-        br_pf = simulation.calculate('br_pf', period)
+        base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
         modulation = pfam.modulation
         plafond1 = modulation.plafond1 + af_nbenf * modulation.enfant_supp
         plafond2 = modulation.plafond2 + af_nbenf * modulation.enfant_supp
 
         taux = (
-            (br_pf <= plafond1) * 1 +
-            (br_pf > plafond1) * (br_pf <= plafond2) * modulation.taux1 +
-            (br_pf > plafond2) * modulation.taux2
+            (base_ressources <= plafond1) * 1 +
+            (base_ressources > plafond1) * (base_ressources <= plafond2) * modulation.taux1 +
+            (base_ressources > plafond2) * modulation.taux2
         )
 
         return period, taux
@@ -155,15 +155,15 @@ class af_forf_taux_modulation(DatedVariable):
         af_nbenf = simulation.calculate('af_nbenf', period)
         af_forf_nbenf = simulation.calculate('af_forf_nbenf', period)
         nb_enf_tot = af_nbenf + af_forf_nbenf
-        br_pf = simulation.calculate('br_pf', period)
+        base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
         modulation = pfam.modulation
         plafond1 = modulation.plafond1 + nb_enf_tot * modulation.enfant_supp
         plafond2 = modulation.plafond2 + nb_enf_tot * modulation.enfant_supp
 
         taux = (
-            (br_pf <= plafond1) * 1 +
-            (br_pf > plafond1) * (br_pf <= plafond2) * modulation.taux1 +
-            (br_pf > plafond2) * modulation.taux2
+            (base_ressources <= plafond1) * 1 +
+            (base_ressources > plafond1) * (base_ressources <= plafond2) * modulation.taux1 +
+            (base_ressources > plafond2) * modulation.taux2
         )
 
         return period, taux
@@ -260,7 +260,7 @@ class af_complement_degressif(DatedVariable):
     def function_2015(self, simulation, period):
         period = period.this_month
         af_nbenf = simulation.calculate('af_nbenf', period)
-        br_pf = simulation.calculate('br_pf', period)
+        base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
         af_base = simulation.calculate('af_base', period)
         af_majo = simulation.calculate('af_majo', period)
         pfam = simulation.legislation_at(period.start).fam.af
@@ -268,8 +268,8 @@ class af_complement_degressif(DatedVariable):
         plafond1 = modulation.plafond1 + af_nbenf * modulation.enfant_supp
         plafond2 = modulation.plafond2 + af_nbenf * modulation.enfant_supp
 
-        depassement_plafond1 = max_(0, br_pf - plafond1)
-        depassement_plafond2 = max_(0, br_pf - plafond2)
+        depassement_plafond1 = max_(0, base_ressources - plafond1)
+        depassement_plafond2 = max_(0, base_ressources - plafond2)
 
         depassement_mensuel = (
             (depassement_plafond2 == 0) * depassement_plafond1 +
@@ -292,14 +292,14 @@ class af_forf_complement_degressif(DatedVariable):
         af_forf_nbenf = simulation.calculate('af_forf_nbenf', period)
         pfam = simulation.legislation_at(period.start).fam.af
         nb_enf_tot = af_nbenf + af_forf_nbenf
-        br_pf = simulation.calculate('br_pf', period)
+        base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
         af_forf = simulation.calculate('af_forf', period)
         modulation = pfam.modulation
         plafond1 = modulation.plafond1 + nb_enf_tot * modulation.enfant_supp
         plafond2 = modulation.plafond2 + nb_enf_tot * modulation.enfant_supp
 
-        depassement_plafond1 = max_(0, br_pf - plafond1)
-        depassement_plafond2 = max_(0, br_pf - plafond2)
+        depassement_plafond1 = max_(0, base_ressources - plafond1)
+        depassement_plafond2 = max_(0, base_ressources - plafond2)
 
         depassement_mensuel = (
             (depassement_plafond2 == 0) * depassement_plafond1 +

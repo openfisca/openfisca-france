@@ -23,7 +23,7 @@ class ars(Variable):
         age_holder = simulation.compute('age', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
         autonomie_financiere_holder = simulation.compute('autonomie_financiere', period)
-        br_pf = simulation.calculate('br_pf', period_br.start.offset('first-of', 'month').period('month'))
+        base_ressources = simulation.calculate('prestations_familiales_base_ressources', period_br.this_month)
         P = simulation.legislation_at(period.start).fam
         # TODO: convention sur la mensualisation
         # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
@@ -51,8 +51,8 @@ class ars(Variable):
                          P.ars.tx1114 * enf_college +
                          P.ars.tx1518 * enf_lycee)
         # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
-        # ars_diff = (ars_plaf_res + arsbase - br_pf) / arsnbenf
-        ars = (arsnbenf > 0) * max_(0, arsbase - max_(0, (br_pf - ars_plaf_res) / max_(1, arsnbenf)))
+        # ars_diff = (ars_plaf_res + arsbase - base_ressources) / arsnbenf
+        ars = (arsnbenf > 0) * max_(0, arsbase - max_(0, (base_ressources - ars_plaf_res) / max_(1, arsnbenf)))
         # Calcul net de crds : ars_net = (P.ars.enf0610 * enf_primaire + P.ars.enf1114 * enf_college + P.ars.enf1518 * enf_lycee)
 
         return period_br, ars * (ars >= P.ars.seuil_nv)

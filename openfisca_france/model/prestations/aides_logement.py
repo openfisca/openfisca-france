@@ -62,7 +62,7 @@ class al_nb_personnes_a_charge(Variable):
         def al_nb_adultes_handicapes():
 
             # Variables à valeur pour un individu
-            br_pf_i = simulation.compute('br_pf_i', period).array
+            base_ressources_i = simulation.compute('prestations_familiales_base_ressources_i', period).array
             inapte_travail = simulation.compute('inapte_travail', period).array
             taux_incapacite = simulation.compute('taux_incapacite', period).array
             age = age_holder.array
@@ -74,7 +74,7 @@ class al_nb_personnes_a_charge(Variable):
             adulte_handicape = (
                 ((taux_incapacite > taux_incapacite_minimum) + inapte_travail) *
                 (age >= age_max_enfant) *
-                (br_pf_i <= plafond_ressource)
+                (base_ressources_i <= plafond_ressource)
             )
 
             return self.sum_by_entity(adulte_handicape)
@@ -186,8 +186,8 @@ class aide_logement_base_ressources_defaut(Variable):
         rev_coll = self.sum_by_entity(rev_coll_holder)
         biactivite = simulation.calculate('biactivite', period)
         Pr = simulation.legislation_at(period.start).al.ressources
-        br_pf_i_holder = simulation.compute('br_pf_i', period)
-        br_pf_parents = self.sum_by_entity(br_pf_i_holder, roles = [CHEF, PART])
+        base_ressources_holder = simulation.compute('prestations_familiales_base_ressources_i', period)
+        base_ressources_parents = self.sum_by_entity(base_ressources_holder, roles = [CHEF, PART])
         abattement_chomage_indemnise_holder = simulation.compute('aide_logement_abattement_chomage_indemnise', period)
         abattement_chomage_indemnise = self.sum_by_entity(abattement_chomage_indemnise_holder, roles = [CHEF, PART])
         abattement_depart_retraite_holder = simulation.compute('aide_logement_abattement_depart_retraite', period)
@@ -195,9 +195,9 @@ class aide_logement_base_ressources_defaut(Variable):
         neutralisation_rsa = simulation.calculate('aide_logement_neutralisation_rsa', period)
         abattement_ressources_enfant = simulation.legislation_at(period.n_2.stop).minim.aspa.plaf_seul * 1.25
         br_enfants = self.sum_by_entity(
-            max_(0, br_pf_i_holder.array - abattement_ressources_enfant), roles = ENFS)
+            max_(0, base_ressources_holder.array - abattement_ressources_enfant), roles = ENFS)
         ressources = (
-            br_pf_parents + br_enfants + rev_coll -
+            base_ressources_parents + br_enfants + rev_coll -
             (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
         )
 
