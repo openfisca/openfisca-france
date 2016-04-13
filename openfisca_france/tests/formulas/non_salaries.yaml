@@ -72,7 +72,7 @@
       2014: 12000
 
   output_variables:
-    br_mv:
+    asi_aspa_base_ressources:
       2015-01: 1000 # Mensuel
     cmu_base_ressources:
       2015-01: 12000 # Annuel
@@ -89,7 +89,7 @@
       2014: 1 # BIC
 
   output_variables:
-    br_mv:
+    asi_aspa_base_ressources:
       2015-01: 1000 * (1 - 0.5) # Mensuel
     cmu_base_ressources:
       2015-01: 12000 * (1 - 0.5) # Annuel
@@ -117,7 +117,7 @@
       2014: 2 # BNC
 
   output_variables:
-    br_mv:
+    asi_aspa_base_ressources:
       2015-02: 1000 * (1 - 0.34) # Mensuel
     cmu_base_ressources:
       2015-02: 12000 * (1 - 0.34) # Annuel
@@ -132,7 +132,7 @@
       2014: 12000
 
   output_variables:
-    br_mv:
+    asi_aspa_base_ressources:
       2015-01: 1000 # Mensuel
     cmu_base_ressources:
       2015-01: 12000 # Annuel

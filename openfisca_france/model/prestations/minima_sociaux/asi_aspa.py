@@ -18,7 +18,7 @@ class taux_incapacite(Variable):
     label = u"Taux d'incapacité"
 
 
-class br_mv_i(Variable):
+class asi_aspa_base_ressources_i(Variable):
     column = FloatCol
     label = u"Base ressources individuelle du minimum vieillesse/ASPA"
     entity_class = Individus
@@ -103,18 +103,18 @@ class br_mv_i(Variable):
                ) / 3
 
 
-class br_mv(Variable):
+class asi_aspa_base_ressources(Variable):
     column = FloatCol
     label = u"Base ressource du minimum vieillesse et assimilés (ASPA)"
     entity_class = Familles
 
     def function(self, simulation, period):
         period = period.this_month
-        br_mv_i_holder = simulation.compute('br_mv_i', period)
+        asi_aspa_base_ressources_i_holder = simulation.compute('asi_aspa_base_ressources_i', period)
         ass = simulation.calculate('ass', period)
 
-        br_mv_i = self.split_by_roles(br_mv_i_holder, roles = [CHEF, PART])
-        return period, ass + br_mv_i[CHEF] + br_mv_i[PART]
+        asi_aspa_base_ressources_i = self.split_by_roles(asi_aspa_base_ressources_i_holder, roles = [CHEF, PART])
+        return period, ass + asi_aspa_base_ressources_i[CHEF] + asi_aspa_base_ressources_i[PART]
 
 
 class aspa_elig(Variable):
@@ -203,7 +203,7 @@ class asi(Variable):
         maries = simulation.calculate('maries', period)
         en_couple = simulation.calculate('en_couple', period)
         asi_aspa_nb_alloc = simulation.calculate('asi_aspa_nb_alloc', period)
-        br_mv = simulation.calculate('br_mv', period)
+        base_ressources = simulation.calculate('asi_aspa_base_ressources', period)
         P = simulation.legislation_at(period.start).minim
 
         asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
@@ -228,7 +228,7 @@ class asi(Variable):
             elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2) +
             elig5 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 12
 
-        ressources = br_mv + montant_max
+        ressources = base_ressources + montant_max
 
         plafond_ressources = (elig1 * (P.asi.plaf_seul * not_(en_couple) + P.asi.plaf_couple * en_couple) +
             elig2 * P.asi.plaf_couple +
@@ -285,7 +285,7 @@ class aspa(Variable):
         maries = simulation.calculate('maries', period)
         en_couple = simulation.calculate('en_couple', period)
         asi_aspa_nb_alloc = simulation.calculate('asi_aspa_nb_alloc', period)
-        br_mv = simulation.calculate('br_mv', period)
+        base_ressources = simulation.calculate('asi_aspa_base_ressources', period)
         P = simulation.legislation_at(period.start).minim
 
         asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
@@ -309,7 +309,7 @@ class aspa(Variable):
             elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2)
             ) / 12
 
-        ressources = br_mv + montant_max
+        ressources = base_ressources + montant_max
 
         plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(en_couple) + P.aspa.plaf_couple * en_couple) +
             (elig2 | elig3 | elig4) * P.aspa.plaf_couple) / 12
