@@ -17,7 +17,7 @@ class af_nbenf(Variable):
     def function(self, simulation, period):
         period_mois = period.this_month
 
-        pfam_enfant_a_charge_holder = simulation.compute('pfam_enfant_a_charge', period_mois)
+        pfam_enfant_a_charge_holder = simulation.compute('prestations_familiales_enfant_a_charge', period_mois)
         af_nbenf = self.sum_by_entity(pfam_enfant_a_charge_holder)
 
         return period, af_nbenf
@@ -32,7 +32,7 @@ class af_coeff_garde_alternee(DatedVariable):
         period = period.this_month
         nb_enf = simulation.calculate('af_nbenf', period)
         garde_alternee = simulation.compute('garde_alternee', period)
-        pfam_enfant_a_charge = simulation.compute('pfam_enfant_a_charge', period)
+        pfam_enfant_a_charge = simulation.compute('prestations_familiales_enfant_a_charge', period)
 
         # Le nombre d'enfants à charge en garde alternée, qui vérifient donc pfam_enfant_a_charge = true et garde_alternee = true
         nb_enf_garde_alternee = self.sum_by_entity(garde_alternee.array * pfam_enfant_a_charge.array)
@@ -180,7 +180,7 @@ class af_age_aine(Variable):
         age_holder = simulation.compute('age', period)
         age_enfants = self.split_by_roles(age_holder, roles = ENFS)
 
-        pfam_enfant_a_charge_holder = simulation.compute('pfam_enfant_a_charge', period)
+        pfam_enfant_a_charge_holder = simulation.compute('prestations_familiales_enfant_a_charge', period)
         af_enfants_a_charge = self.split_by_roles(pfam_enfant_a_charge_holder, roles = ENFS)
 
         pfam = simulation.legislation_at(period.start).fam
@@ -203,7 +203,7 @@ class af_majoration_enfant(Variable):
     def function(self, simulation, period):
         period = period.this_month
 
-        pfam_enfant_a_charge = simulation.calculate('pfam_enfant_a_charge', period)
+        pfam_enfant_a_charge = simulation.calculate('prestations_familiales_enfant_a_charge', period)
         age = simulation.calculate('age', period)
         garde_alternee = simulation.calculate('garde_alternee', period)
         age_aine_holder = simulation.compute('af_age_aine', period)

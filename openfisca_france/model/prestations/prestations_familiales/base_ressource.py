@@ -23,7 +23,7 @@ class autonomie_financiere(Variable):
         return period, salaire_net / 6 >= (_P.fam.af.seuil_rev_taux * smic_mensuel_brut)
 
 
-class pfam_enfant_a_charge(Variable):
+class prestations_familiales_enfant_a_charge(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Enfant considéré à charge au sens des prestations familiales"
@@ -162,7 +162,7 @@ class br_pf(Variable):
 
         br_pf_i = simulation.calculate('br_pf_i', period)
         enfant_i = simulation.calculate('est_enfant_dans_famille', period)
-        enfant_a_charge_i = simulation.calculate('pfam_enfant_a_charge', period)
+        enfant_a_charge_i = simulation.calculate('prestations_familiales_enfant_a_charge', period)
         ressources_i = (not_(enfant_i) + enfant_a_charge_i) * br_pf_i
         br_pf_i_total = self.sum_by_entity(ressources_i)
 
