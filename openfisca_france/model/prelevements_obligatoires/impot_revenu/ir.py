@@ -347,7 +347,7 @@ class jveuf(Variable):
 ###############################################################################
 
 
-class rev_sal(Variable):
+class revenu_assimile_salaire(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Revenu imposé comme des salaires (salaires, mais aussi 3vj, 3vk)"
@@ -367,15 +367,15 @@ class salcho_imp(Variable):
 
     def function(self, simulation, period):
         period = period.this_year
-        rev_sal = simulation.calculate('rev_sal', period)
+        revenu_assimile_salaire = simulation.calculate('revenu_assimile_salaire', period)
         chomeur_longue_duree = simulation.calculate('chomeur_longue_duree', period)
         frais_reels = simulation.calculate('frais_reels', period)
         abatpro = simulation.legislation_at(period.start).ir.tspr.abatpro
 
         abattement_minimum = abatpro.min * not_(chomeur_longue_duree) + abatpro.min2 * chomeur_longue_duree
-        abatfor = round(min_(max_(abatpro.taux * rev_sal, abattement_minimum), abatpro.max))
+        abatfor = round(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
         return period, (
-            (frais_reels > abatfor) * (rev_sal - frais_reels) + (frais_reels <= abatfor) * max_(0, rev_sal - abatfor)
+            (frais_reels > abatfor) * (revenu_assimile_salaire - frais_reels) + (frais_reels <= abatfor) * max_(0, revenu_assimile_salaire - abatfor)
             )
 
 

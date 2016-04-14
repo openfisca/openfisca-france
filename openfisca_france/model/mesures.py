@@ -216,12 +216,12 @@ class rev_trav(Variable):
         Revenu du travail
         '''
         period = period.this_year
-        rev_sal = simulation.calculate('rev_sal', period)
+        revenu_assimile_salaire = simulation.calculate('revenu_assimile_salaire', period)
         rag = simulation.calculate('rag', period)
         ric = simulation.calculate('ric', period)
         rnc = simulation.calculate('rnc', period)
 
-        return period, rev_sal + rag + ric + rnc
+        return period, revenu_assimile_salaire + rag + ric + rnc
 
 
 class pen(Variable):
