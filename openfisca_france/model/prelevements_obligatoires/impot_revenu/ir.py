@@ -355,7 +355,7 @@ class rev_sal(Variable):
     def function(self, simulation, period):
         period = period.this_year
         salaire_imposable =  simulation.calculate_add('salaire_imposable', period)
-        chomage_imposable = simulation.calculate('chomage_imposable', period)
+        chomage_imposable = simulation.calculate_add('chomage_imposable', period)
 
         return period, salaire_imposable + chomage_imposable
 
@@ -379,44 +379,42 @@ class salcho_imp(Variable):
             )
 
 
-class rev_act_sal(Variable):
-    column = FloatCol(default = 0)
+class revenu_activite_salariee(Variable):
+    column = FloatCol
     entity_class = Individus
-    label = u"rev_act_sal"
+    label = u"Revenu d'activité salariée"
 
     def function(self, simulation, period):
-        ''' Revenus d'activités salariées'''
         period = period.this_year
         salaire_imposable =  simulation.calculate_add('salaire_imposable', period)
 
         return period, salaire_imposable
 
 
-class rev_act_nonsal(Variable):
-    column = FloatCol(default = 0)
+class revenu_activite_non_salariee(Variable):
+    column = FloatCol
     entity_class = Individus
-    label = u"rev_act_nonsal"
+    label = u"Revenu d'activité non salariée"
 
     def function(self, simulation, period):
-        ''' Revenus d'activités non salariées '''
         period = period.this_year
         rpns_i = simulation.calculate('rpns_i', period)
 
         return period, rpns_i # TODO: vérifier cette définition
 
 
-class rev_act(Variable):
-    column = FloatCol(default = 0)
+class revenu_activite(Variable):
+    column = FloatCol
     entity_class = Individus
     label = u"rev_act"
 
     def function(self, simulation, period):
         ''' Revenus d'activités '''
         period = period.this_year
-        rev_act_nonsal = simulation.calculate('rev_act_nonsal', period)
-        rev_act_sal = simulation.calculate('rev_act_sal', period)
+        revenu_activite_non_salariee = simulation.calculate('revenu_activite_non_salariee', period)
+        revenu_activite_salariee = simulation.calculate('revenu_activite_salariee', period)
 
-        return period, rev_act_nonsal + rev_act_sal
+        return period, revenu_activite_non_salariee + revenu_activite_salariee
 
 
 class rev_pen(Variable):
