@@ -454,13 +454,9 @@ class revenu_assimile_pension_apres_abattements(Variable):
 class indu_plaf_abat_pen(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"indu_plaf_abat_pen"
+    label = u"Plafonnement de l'abattement de 10% sur les pensions du foyer"
 
     def function(self, simulation, period):
-        """
-        Plafonnement de l'abattement de 10% sur les pensions du foyer
-        'foy'
-        """
         period = period.this_year
         rev_pen_holder = simulation.compute('revenu_assimile_pension', period)
         pen_net_holder = simulation.compute('revenu_assimile_pension_apres_abattements', period)
