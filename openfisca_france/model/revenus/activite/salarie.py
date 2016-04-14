@@ -404,7 +404,7 @@ class traitement_indiciaire_brut(Variable):
     label = u"Traitement indiciaire brut (TIB)"
 
 
-class type_sal(Variable):
+class categorie_salarie(Variable):
     column = EnumCol(
         enum = Enum(
             [
@@ -575,7 +575,7 @@ class indemnite_residence(Variable):
         period = period.start.period(u'month').offset('first-of')
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         zone_apl_individu = simulation.calculate('zone_apl_individu', period)
         _P = simulation.legislation_at(period.start)
 
@@ -588,7 +588,7 @@ class indemnite_residence(Variable):
         return period, max_(
             plancher,
             taux * (traitement_indiciaire_brut + salaire_de_base)
-            ) * (type_sal >= 2)
+            ) * (categorie_salarie >= 2)
 
 
 class indice_majore(Variable):
@@ -598,12 +598,12 @@ class indice_majore(Variable):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         _P = simulation.legislation_at(period.start)
 
         traitement_annuel_brut = _P.fonc.IM_100
-        return period, (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * (type_sal >= 2)
+        return period, (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * (categorie_salarie >= 2)
 
 
 class primes_fonction_publique(Variable):
@@ -614,13 +614,13 @@ class primes_fonction_publique(Variable):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
 
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         public = (
-            (type_sal == CAT['public_titulaire_etat']) +
-            (type_sal == CAT['public_titulaire_territoriale']) +
-            (type_sal == CAT['public_titulaire_hospitaliere'])
+            (categorie_salarie == CAT['public_titulaire_etat']) +
+            (categorie_salarie == CAT['public_titulaire_territoriale']) +
+            (categorie_salarie == CAT['public_titulaire_hospitaliere'])
             )
         return period, TAUX_DE_PRIME * traitement_indiciaire_brut * public
 
@@ -656,7 +656,7 @@ class supp_familial_traitement(Variable):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         af_nbenf_fonc_holder = simulation.compute('af_nbenf_fonc', period)
         _P = simulation.legislation_at(period.start)
@@ -702,9 +702,9 @@ class supp_familial_traitement(Variable):
                    plafond_mensuel_3 * (fonc_nbenf == 3) +
                    plafond_mensuel_supp * max_(0, fonc_nbenf - 3))
 
-        sft = min_(max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher), plafond) * (type_sal >= 2)
+        sft = min_(max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher), plafond) * (categorie_salarie >= 2)
         # Nota Bene:
-        # type_sal is an EnumCol which enum is:
+        # categorie_salarie is an EnumCol which enum is:
         # CAT = Enum(['prive_non_cadre',
         #             'prive_cadre',
         #             'public_titulaire_etat',
@@ -729,9 +729,9 @@ class remuneration_principale(Variable):
     def function(self, simulation, period):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         nouvelle_bonification_indiciaire = simulation.calculate('nouvelle_bonification_indiciaire', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         return period, (
-            (type_sal >= 2) * (type_sal <= 5) * (
+            (categorie_salarie >= 2) * (categorie_salarie <= 5) * (
                 traitement_indiciaire_brut + nouvelle_bonification_indiciaire
                 )
             )

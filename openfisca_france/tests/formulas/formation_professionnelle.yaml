@@ -1,7 +1,7 @@
 - period: "month:2015-11"
   input_variables:
     effectif_entreprise: 1
-    type_sal: "prive_non_cadre"
+    categorie_salarie: "prive_non_cadre"
     salaire_de_base: "1457.52"
     allegement_fillon_mode_recouvrement: "progressif"
     jeune_entreprise_innovante: "false"
@@ -12,7 +12,7 @@
 - period: "month:2015-11"
   input_variables:
     effectif_entreprise: 10
-    type_sal: "prive_non_cadre"
+    categorie_salarie: "prive_non_cadre"
     salaire_de_base: "1457.52"
     allegement_fillon_mode_recouvrement: "progressif"
     jeune_entreprise_innovante: "false"
@@ -23,7 +23,7 @@
 - period: "month:2015-11"
   input_variables:
     effectif_entreprise: 300
-    type_sal: "prive_non_cadre"
+    categorie_salarie: "prive_non_cadre"
     salaire_de_base: "3000"
     allegement_fillon_mode_recouvrement: "progressif"
     jeune_entreprise_innovante: "false"

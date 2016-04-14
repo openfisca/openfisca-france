@@ -29,7 +29,7 @@ input_variables:
   taux_accident_travail: 0.011
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  type_sal: 1  # non cadre
+  categorie_salarie: 1  # non cadre
   volume_jours_ijss: 0
 output_variables:
   # salaire_super_brut: 0

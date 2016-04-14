@@ -7,7 +7,7 @@
     # nécessaire pour des requêtes sur un mois de salaire :
     allegement_fillon_mode_recouvrement: 1
     effectif_entreprise: 0
-    type_sal: 0 # non cadre
+    categorie_salarie: 0 # non cadre
     contrat_de_travail_duree: 0
   output_variables:
     credit_impot_competitivite_emploi: 87.5
@@ -21,7 +21,7 @@
     # nécessaire pour des requêtes sur un mois de salaire :
     allegement_fillon_mode_recouvrement: 1
     effectif_entreprise: 0
-    type_sal: 0 # non cadre
+    categorie_salarie: 0 # non cadre
     contrat_de_travail_duree: 0
   output_variables:
     credit_impot_competitivite_emploi: 218.6
@@ -35,7 +35,7 @@
     # nécessaire pour des requêtes sur un mois de salaire :
     allegement_fillon_mode_recouvrement: 1
     effectif_entreprise: 0
-    type_sal: 0 # non cadre
+    categorie_salarie: 0 # non cadre
     contrat_de_travail_duree: 0
   output_variables:
     credit_impot_competitivite_emploi: 0

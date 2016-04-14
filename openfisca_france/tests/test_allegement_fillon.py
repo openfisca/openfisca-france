@@ -30,7 +30,7 @@ test_case_by_employee_type = dict(
                 "2013-11": 35 * 52 / 12 * 9,
                 "2013-12": 35 * 52 / 12 * 9 * 2,
                 },
-            type_sal = 0,
+            categorie_salarie = 0,
             ),
         output_variables = dict(
             allegement_fillon = {
@@ -57,7 +57,7 @@ test_case_by_employee_type = dict(
                 "2013-11": 35 * 52 / 12 * 9,
                 "2013-12": 35 * 52 / 12 * 9 * 2,
                 },
-            type_sal = 0,
+            categorie_salarie = 0,
             ),
         output_variables = dict(
             allegement_fillon = {
@@ -96,7 +96,7 @@ test_case_by_employee_type = dict(
                 "2013-11": 35 * 52 / 12 * 9,
                 "2013-12": 35 * 52 / 12 * 9 * 2,
                 },
-            type_sal = 0,
+            categorie_salarie = 0,
             ),
         output_variables = dict(
             allegement_fillon = {
@@ -136,7 +136,7 @@ test_case_by_employee_type = dict(
                 "2015-11": 5000,
                 "2015-12": 5000,
                 },
-            type_sal = 0,
+            categorie_salarie = 0,
             ),
         output_variables = dict(
             allegement_fillon = {

@@ -25,7 +25,7 @@ input_variables:
   taux_versement_transport: .026
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  type_sal: 6  # contractuel FP
+  categorie_salarie: 6  # contractuel FP
   volume_jours_ijss: 0
 output_variables:
 

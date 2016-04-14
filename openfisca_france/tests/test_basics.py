@@ -15,7 +15,7 @@ scenarios_arguments = [
             date_naissance = datetime.date(1972, 1, 1),
             salaire_de_base = 2000,
             effectif_entreprise = 25,
-            type_sal = CAT['prive_non_cadre'],
+            categorie_salarie = CAT['prive_non_cadre'],
             ),
         menage = dict(
             zone_apl = 1,

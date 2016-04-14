@@ -58,7 +58,7 @@ class assiette_cotisations_sociales_prive(Variable):
             )
         remuneration_apprenti = simulation.calculate('remuneration_apprenti', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         smic_proratise = simulation.calculate('smic_proratise', period)
 
         assiette = (
@@ -68,9 +68,8 @@ class assiette_cotisations_sociales_prive(Variable):
             hsup +
             indemnites_compensatrices_conges_payes +
             remuneration_apprenti +
-            (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
-            reintegration_titre_restaurant_employeur +
-            indemnite_fin_contrat
+            (categorie_salarie == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
+            reintegration_titre_restaurant_employeur + indemnite_fin_contrat
             )
         return period, max_(assiette, smic_proratise * not_(apprenti)) * (assiette > 0)
 
@@ -84,7 +83,7 @@ class indemnite_fin_contrat(Variable):
         month = period.start.offset('first-of', 'month').period(u'month')
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         apprenti = simulation.calculate('apprenti', month)
 
         # Un grand nombre de conditions peuvent invalider cette indemnité, voir le lien ci-dessus.
@@ -100,8 +99,8 @@ class indemnite_fin_contrat(Variable):
             (contrat_de_travail_duree == 1) *
             # non fonction publique
             (
-                (type_sal == 0) +
-                (type_sal == 1)
+                (categorie_salarie == 0) +
+                (categorie_salarie == 1)
             ) *
             not_(apprenti) *
             indemnite_fin_contrat_due *
@@ -150,8 +149,8 @@ class accident_du_travail(Variable):
         assiette_cotisations_sociales = simulation.calculate(
             'assiette_cotisations_sociales', period)
         taux_accident_travail = simulation.calculate('taux_accident_travail', period)
-        type_sal = simulation.calculate('type_sal', period)
-        assujetti = type_sal <= 1  # TODO: ajouter contractuel du public salarié de moins d'un an ou à temps partiel
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
+        assujetti = categorie_salarie <= 1  # TODO: ajouter contractuel du public salarié de moins d'un an ou à temps partiel
         return period, - assiette_cotisations_sociales * taux_accident_travail * assujetti
 
 
@@ -183,7 +182,7 @@ class agff_employeur(Variable):
         period = period.start.period(u'month').offset('first-of')
         assiette_cotisations_sociales = simulation.calculate(
             'assiette_cotisations_sociales', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
 
         law = simulation.legislation_at(period.start)
@@ -193,7 +192,7 @@ class agff_employeur(Variable):
             bareme_name = "agffnc",
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
+            categorie_salarie = categorie_salarie,
             )
 
         cotisation_cadre = apply_bareme_for_relevant_type_sal(
@@ -201,7 +200,7 @@ class agff_employeur(Variable):
             bareme_name = "agffc",
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
+            categorie_salarie = categorie_salarie,
             )
         return period, cotisation_cadre + cotisation_non_cadre
 
@@ -234,7 +233,7 @@ class agirc_gmp_salarie(Variable):
         agirc_gmp_assiette = simulation.calculate('agirc_gmp_assiette', period)
         agirc_salarie = simulation.calculate('agirc_salarie', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
 
         law = simulation.legislation_at(period.start).cotsoc.agirc_gmp
         cotisation_forfaitaire = law.cotisation_salarie
@@ -247,7 +246,7 @@ class agirc_gmp_salarie(Variable):
             sous_plafond_securite_sociale * cotisation_forfaitaire +
             not_(sous_plafond_securite_sociale) * agirc_gmp_assiette * taux
             )
-        return period, min_((cotisation - agirc_salarie) * (type_sal == 1), 0)  # cotisation are negative
+        return period, min_((cotisation - agirc_salarie) * (categorie_salarie == 1), 0)  # cotisation are negative
 
 
 class agirc_gmp_employeur(Variable):
@@ -262,7 +261,7 @@ class agirc_gmp_employeur(Variable):
         agirc_employeur = simulation.calculate('agirc_employeur', period)
         agirc_gmp_assiette = simulation.calculate('agirc_gmp_assiette', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
 
         law = simulation.legislation_at(period.start).cotsoc.agirc_gmp
         cotisation_forfaitaire = law.cotisation_employeur
@@ -275,7 +274,7 @@ class agirc_gmp_employeur(Variable):
             sous_plafond_securite_sociale * cotisation_forfaitaire +
             not_(sous_plafond_securite_sociale) * agirc_gmp_assiette * taux
             )
-        return period, min_((cotisation - agirc_employeur) * (type_sal == 1), 0)  # cotisation are negative
+        return period, min_((cotisation - agirc_employeur) * (categorie_salarie == 1), 0)  # cotisation are negative
 
 
 class agirc_salarie(Variable):
@@ -292,8 +291,8 @@ class agirc_salarie(Variable):
             bareme_name = "agirc",
             variable_name = self.__class__.__name__
             )
-        type_sal = simulation.calculate('type_sal', period)
-        return period, cotisation * (type_sal == 1)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
+        return period, cotisation * (categorie_salarie == 1)
 
 
 class agirc_employeur(Variable):
@@ -308,8 +307,8 @@ class agirc_employeur(Variable):
             bareme_name = "agirc",
             variable_name = self.__class__.__name__
             )
-        type_sal = simulation.calculate('type_sal', period)
-        return period, cotisation * (type_sal == 1)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
+        return period, cotisation * (categorie_salarie == 1)
 
 
 class ags(Variable):
@@ -334,14 +333,14 @@ class apec_salarie(Variable):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         cotisation = apply_bareme(
             simulation, period,
             cotisation_type = "salarie",
             bareme_name = "apec",
             variable_name = self.__class__.__name__,
             )
-        return period, cotisation * (type_sal == 1)  # TODO: check public notamment contractuel
+        return period, cotisation * (categorie_salarie == 1)  # TODO: check public notamment contractuel
 
 
 class apec_employeur(Variable):
@@ -378,7 +377,7 @@ class arrco_salarie(Variable):
         arrco_tranche_a_taux_salarie = simulation.calculate('arrco_tranche_a_taux_salarie', period)
         assiette_cotisations_sociales = simulation.calculate_add('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate_add('plafond_securite_sociale', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
 
         # cas où l'entreprise applique un taux spécifique
         cotisation_entreprise = - (
@@ -387,7 +386,7 @@ class arrco_salarie(Variable):
             )
         return period, (
             cotisation_minimale * (arrco_tranche_a_taux_salarie == 0) + cotisation_entreprise
-            ) * (type_sal <= 1)
+            ) * (categorie_salarie <= 1)
 
 
 class arrco_employeur(Variable):
@@ -407,7 +406,7 @@ class arrco_employeur(Variable):
         arrco_tranche_a_taux_employeur = simulation.calculate('arrco_tranche_a_taux_employeur', period)
         assiette_cotisations_sociales = simulation.calculate_add('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate_add('plafond_securite_sociale', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
 
         # cas où l'entreprise applique un taux spécifique
         cotisation_entreprise = - (
@@ -416,7 +415,7 @@ class arrco_employeur(Variable):
             )
         return period, (
             cotisation_minimale * (arrco_tranche_a_taux_employeur == 0) + cotisation_entreprise
-            ) * (type_sal <= 1)
+            ) * (categorie_salarie <= 1)
 
 
 class chomage_salarie(Variable):
@@ -612,14 +611,14 @@ class prevoyance_obligatoire_cadre(Variable):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         prevoyance_obligatoire_cadre_taux_employeur = simulation.calculate(
             'prevoyance_obligatoire_cadre_taux_employeur', period)
 
         cotisation = - (
-            (type_sal == CAT['prive_cadre']) *
+            (categorie_salarie == CAT['prive_cadre']) *
             min_(assiette_cotisations_sociales, plafond_securite_sociale) *
             prevoyance_obligatoire_cadre_taux_employeur
             )

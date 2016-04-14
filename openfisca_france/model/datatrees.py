@@ -250,7 +250,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""titre_restaurant_valeur_unitaire""",  # Valeur faciale unitaire du titre restaurant
                     u"""titre_restaurant_volume""",  # Volume des titres restaurant
                     u"""traitement_indiciaire_brut""",  # Traitement indiciaire brut (TIB)
-                    u"""type_sal""",  # Catégorie de salarié
+                    u"""categorie_salarie""",  # Catégorie de salarié
                     u"""heures_duree_collective_entreprise""",  # Durée mensuelle collective dans l'entreprise (heures, temps plein)
                     u"""heures_non_remunerees_volume""",  # Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)
                     u"""heures_remunerees_volume""",  # Volume des heures rémunérées contractuellement (heures/mois, temps partiel)
