@@ -469,10 +469,10 @@ class indu_plaf_abat_pen(Variable):
         return period, abat - min_(abat, abatpen.max)
 
 
-class abat_sal_pen(Variable):
+class abattement_salaires_pensions(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"Abattement de 20% sur les salaires"
+    label = u"Abattement de 20% sur les salaires et pensions, en vigueur jusqu'à 2006"
     stop_date = date(2005, 12, 31)
 
     def function(self, simulation, period):
@@ -482,20 +482,6 @@ class abat_sal_pen(Variable):
         abatsalpen = simulation.legislation_at(period.start).ir.tspr.abatsalpen
 
         return period, min_(abatsalpen.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), abatsalpen.max)
-
-
-class sal_pen_net(Variable):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Salaires et pensions après abattement de 20% sur les salaires"
-
-    def function(self, simulation, period):
-        period = period.this_year
-        revenu_assimile_salaire_apres_abattements = simulation.calculate('revenu_assimile_salaire_apres_abattements', period)
-        revenu_assimile_pension_apres_abattements = simulation.calculate('revenu_assimile_pension_apres_abattements', period)
-        abat_sal_pen = simulation.calculate('abat_sal_pen', period)
-
-        return period, revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements - abat_sal_pen
 
 
 class retraite_titre_onereux(Variable):
@@ -559,12 +545,16 @@ class tspr(Variable):
 
     def function(self, simulation, period):
         period = period.this_year
-        sal_pen_net = simulation.calculate('sal_pen_net', period)
+
+        revenu_assimile_salaire_apres_abattements = simulation.calculate('revenu_assimile_salaire_apres_abattements', period)
+        revenu_assimile_pension_apres_abattements = simulation.calculate('revenu_assimile_pension_apres_abattements', period)
+        abattement_salaires_pensions = simulation.calculate('abattement_salaires_pensions', period)
+
         # Quand tspr est calculé sur une année glissante, rto_net_declarant1 est calculé sur l'année légale
         # correspondante.
         rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period.offset('first-of'))
 
-        return period, sal_pen_net + rto_net_declarant1
+        return period, revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements - abattement_salaires_pensions + rto_net_declarant1
 
 
 class rev_cat_pv(Variable):
