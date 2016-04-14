@@ -28,7 +28,7 @@ class asi_aspa_base_ressources_i(Variable):
         last_year = period.last_year
         three_previous_months = period.last_3_months
 
-        aspa_elig = simulation.calculate('aspa_elig', period)
+        aspa_eligibilite = simulation.calculate('aspa_eligibilite', period)
         aspa_couple_holder = simulation.compute('aspa_couple', period)
         salaire_de_base = simulation.calculate_add('salaire_de_base', three_previous_months)
         chomage_net = simulation.calculate_add('chomage_net', three_previous_months)
@@ -81,7 +81,7 @@ class asi_aspa_base_ressources_i(Variable):
 
         # Inclus l'AAH si conjoint non pensionné ASPA, retraite et pension invalidité
         # FIXME Il faudrait vérifier que le conjoint est pensionné ASPA, pas qu'il est juste éligible !
-        aah = aah * not_(aspa_elig)
+        aah = aah * not_(aspa_eligibilite)
 
         # Abattement sur les salaires (appliqué sur une base trimestrielle)
         abattement_forfaitaire_base = (
@@ -117,7 +117,7 @@ class asi_aspa_base_ressources(Variable):
         return period, ass + asi_aspa_base_ressources_i[CHEF] + asi_aspa_base_ressources_i[PART]
 
 
-class aspa_elig(Variable):
+class aspa_eligibilite(Variable):
     column = BoolCol
     label = u"Indicatrice individuelle d'éligibilité à l'allocation de solidarité aux personnes agées"
     entity_class = Individus
@@ -138,7 +138,7 @@ class aspa_elig(Variable):
         return period, condition_age * condition_nationalite
 
 
-class asi_elig(Variable):
+class asi_eligibilite(Variable):
     column = BoolCol
     label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
     entity_class = Individus
@@ -147,12 +147,12 @@ class asi_elig(Variable):
         period = period.this_month
         last_month = period.start.period('month').offset(-1)
 
-        aspa_elig = simulation.calculate('aspa_elig', period)
+        aspa_eligibilite = simulation.calculate('aspa_eligibilite', period)
         handicap = simulation.calculate('handicap', period)
         retraite_nette = simulation.calculate('retraite_nette', last_month)
         pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
 
-        condition_situation = handicap & not_(aspa_elig)
+        condition_situation = handicap & not_(aspa_eligibilite)
         condition_pensionnement = (retraite_nette + pensions_invalidite) > 0
         condition_nationalite = simulation.calculate('asi_aspa_condition_nationalite', period)
 
@@ -179,13 +179,13 @@ class asi_aspa_nb_alloc(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        aspa_elig_holder = simulation.compute('aspa_elig', period)
-        asi_elig_holder = simulation.compute('asi_elig', period)
+        aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
+        asi_elig_holder = simulation.compute('asi_eligibilite', period)
 
-        asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-        aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
+        asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
+        aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
-        return period, (1 * aspa_elig[CHEF] + 1 * aspa_elig[PART] + 1 * asi_elig[CHEF] + 1 * asi_elig[PART])
+        return period, (1 * aspa_eligibilite[CHEF] + 1 * aspa_eligibilite[PART] + 1 * asi_eligibilite[CHEF] + 1 * asi_eligibilite[PART])
 
 
 class asi(Variable):
@@ -198,27 +198,27 @@ class asi(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        asi_elig_holder = simulation.compute('asi_elig', period)
-        aspa_elig_holder = simulation.compute('aspa_elig', period)
+        asi_elig_holder = simulation.compute('asi_eligibilite', period)
+        aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
         maries = simulation.calculate('maries', period)
         en_couple = simulation.calculate('en_couple', period)
         asi_aspa_nb_alloc = simulation.calculate('asi_aspa_nb_alloc', period)
         base_ressources = simulation.calculate('asi_aspa_base_ressources', period)
         P = simulation.legislation_at(period.start).minim
 
-        asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-        aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
+        asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
+        aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
         # Un seul éligible
-        elig1 = ((asi_aspa_nb_alloc == 1) & (asi_elig[CHEF] | asi_elig[PART]))
+        elig1 = ((asi_aspa_nb_alloc == 1) & (asi_eligibilite[CHEF] | asi_eligibilite[PART]))
         # Couple d'éligibles mariés
-        elig2 = asi_elig[CHEF] & asi_elig[PART] & maries
+        elig2 = asi_eligibilite[CHEF] & asi_eligibilite[PART] & maries
         # Couple d'éligibles non mariés
-        elig3 = asi_elig[CHEF] & asi_elig[PART] & not_(maries)
+        elig3 = asi_eligibilite[CHEF] & asi_eligibilite[PART] & not_(maries)
         # Un seul éligible et époux éligible ASPA
-        elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) & maries
+        elig4 = ((asi_eligibilite[CHEF] & aspa_eligibilite[PART]) | (asi_eligibilite[PART] & aspa_eligibilite[CHEF])) & maries
         # Un seul éligible et conjoint non marié éligible ASPA
-        elig5 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) & not_(maries)
+        elig5 = ((asi_eligibilite[CHEF] & aspa_eligibilite[PART]) | (asi_eligibilite[PART] & aspa_eligibilite[CHEF])) & not_(maries)
 
         elig = elig1 | elig2 | elig3 | elig4 | elig5
 
@@ -246,8 +246,8 @@ class asi(Variable):
         montant_servi_asi = max_(diff, 0)
 
         # TODO: Faute de mieux, on verse l'asi à la famille plutôt qu'aux individus
-        # asi[CHEF] = asi_elig[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
-        # asi[PART] = asi_elig[PART]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
+        # asi[CHEF] = asi_eligibilite[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
+        # asi[PART] = asi_eligibilite[PART]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
         return period, elig * montant_servi_asi
 
 
@@ -280,25 +280,25 @@ class aspa(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        asi_elig_holder = simulation.compute('asi_elig', period)
-        aspa_elig_holder = simulation.compute('aspa_elig', period)
+        asi_elig_holder = simulation.compute('asi_eligibilite', period)
+        aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
         maries = simulation.calculate('maries', period)
         en_couple = simulation.calculate('en_couple', period)
         asi_aspa_nb_alloc = simulation.calculate('asi_aspa_nb_alloc', period)
         base_ressources = simulation.calculate('asi_aspa_base_ressources', period)
         P = simulation.legislation_at(period.start).minim
 
-        asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-        aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
+        asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
+        aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
         # Un seul éligible
-        elig1 = ((asi_aspa_nb_alloc == 1) & (aspa_elig[CHEF] | aspa_elig[PART]))
+        elig1 = ((asi_aspa_nb_alloc == 1) & (aspa_eligibilite[CHEF] | aspa_eligibilite[PART]))
         # Couple d'éligibles
-        elig2 = (aspa_elig[CHEF] & aspa_elig[PART])
+        elig2 = (aspa_eligibilite[CHEF] & aspa_eligibilite[PART])
         # Un seul éligible et époux éligible ASI
-        elig3 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) & maries
+        elig3 = ((asi_eligibilite[CHEF] & aspa_eligibilite[PART]) | (asi_eligibilite[PART] & aspa_eligibilite[CHEF])) & maries
         # Un seul éligible et conjoint non marié éligible ASI
-        elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) & not_(maries)
+        elig4 = ((asi_eligibilite[CHEF] & aspa_eligibilite[PART]) | (asi_eligibilite[PART] & aspa_eligibilite[CHEF])) & not_(maries)
 
         elig = elig1 | elig2 | elig3 | elig4
 
@@ -323,6 +323,6 @@ class aspa(Variable):
         montant_servi_aspa = max_(diff, 0)
 
         # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
-        # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
-        # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
+        # aspa[CHEF] = aspa_eligibilite[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
+        # aspa[PART] = aspa_eligibilite[PART]*montant_servi_aspa*(elig1 + elig2/2)
         return period, elig * montant_servi_aspa

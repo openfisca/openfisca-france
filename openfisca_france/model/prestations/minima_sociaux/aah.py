@@ -299,10 +299,10 @@ class caah(DatedVariable):
         aah_montant = law.minim.aah.montant
 
         aah = simulation.calculate('aah', period)
-        asi_elig = simulation.calculate('asi_elig', period)
+        asi_eligibilite = simulation.calculate('asi_eligibilite', period)
         asi_holder = simulation.compute('asi', period)  # montant asi de la famille
         asi = self.cast_from_entity_to_roles(asi_holder)  # attribué à tous les membres de la famille
-        benef_asi = (asi_elig * (asi > 0))
+        benef_asi = (asi_eligibilite * (asi > 0))
         al_holder = simulation.compute('aide_logement_montant', period)  # montant allocs logement de la famille
         al = self.cast_from_entity_to_roles(al_holder)  # attribué à tout individu membre de la famille
 
@@ -327,10 +327,10 @@ class caah(DatedVariable):
         aah_montant = law.minim.aah.montant
 
         aah = simulation.calculate('aah', period)
-        asi_elig = simulation.calculate('asi_elig', period)
+        asi_eligibilite = simulation.calculate('asi_eligibilite', period)
         asi_holder = simulation.compute('asi', period)  # montant asi de la famille
         asi = self.cast_from_entity_to_roles(asi_holder)  # attribué à tous les membres de la famille
-        benef_asi = (asi_elig * (asi > 0))
+        benef_asi = (asi_eligibilite * (asi > 0))
         al_holder = simulation.compute('aide_logement_montant', period)  # montant allocs logement de la famille
         al = self.cast_from_entity_to_roles(al_holder)  # attribué à tout individu membre de la famille
 
