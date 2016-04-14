@@ -418,7 +418,7 @@ class arrco_employeur(Variable):
             ) * (categorie_salarie <= 1)
 
 
-class chomage_salarie(Variable):
+class cotisation_chomage_salarie(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Cotisation chômage tranche A (salarié)"

@@ -16,7 +16,7 @@
     stagiaire: 1
     stage_gratification_reintegration: 300
     stage_gratification: 22 * 7 * 3.30 + 300
-    chomage_salarie: -7.2
+    cotisation_chomage_salarie: -7.2
     agff_salarie: -2.4
     agirc_salarie: 0
     arrco_salarie: -9.3

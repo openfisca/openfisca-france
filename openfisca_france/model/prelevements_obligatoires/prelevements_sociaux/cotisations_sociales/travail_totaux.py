@@ -120,7 +120,7 @@ class cotisations_salariales_contributives(Variable):
         agirc_gmp_salarie = simulation.calculate_add('agirc_gmp_salarie', period)
         apec_salarie = simulation.calculate_add('apec_salarie', period)
         arrco_salarie = simulation.calculate_add('arrco_salarie', period)
-        chomage_salarie = simulation.calculate_add('chomage_salarie', period)
+        cotisation_chomage_salarie = simulation.calculate_add('cotisation_chomage_salarie', period)
         cotisation_exceptionnelle_temporaire_salarie = simulation.calculate_add(
             'cotisation_exceptionnelle_temporaire_salarie', period)
         ircantec_salarie = simulation.calculate_add('ircantec_salarie', period)
@@ -136,7 +136,7 @@ class cotisations_salariales_contributives(Variable):
             agirc_gmp_salarie +
             apec_salarie +
             arrco_salarie +
-            chomage_salarie +
+            cotisation_chomage_salarie +
             cotisation_exceptionnelle_temporaire_salarie +
             vieillesse_deplafonnee_salarie +
             vieillesse_plafonnee_salarie +

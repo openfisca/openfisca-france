@@ -80,7 +80,7 @@ output_variables:
   agirc_salarie: 0
   apec_salarie: 0
   arrco_salarie: 0
-  chomage_salarie: 0
+  cotisation_chomage_salarie: 0
   cotisation_exceptionnelle_temporaire_salarie: 0
   vieillesse_deplafonnee_salarie: 0
   vieillesse_plafonnee_salarie: 0
