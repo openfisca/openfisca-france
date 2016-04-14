@@ -112,7 +112,7 @@ class age_en_mois(Variable):
 
 
 class nb_adult(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Nombre d'adulte(s) déclarants dans le foyer fiscal"
 
@@ -126,7 +126,7 @@ class nb_adult(Variable):
 
 
 class nb_pac(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Nombre de personnes à charge dans le foyer fiscal"
 
@@ -418,7 +418,7 @@ class revenu_activite(Variable):
 
 
 class revenu_assimile_pension(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)"
 
@@ -432,7 +432,7 @@ class revenu_assimile_pension(Variable):
 
 
 class revenu_assimile_pension_apres_abattements(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"Pensions après abattements"
 
@@ -452,7 +452,7 @@ class revenu_assimile_pension_apres_abattements(Variable):
 #    return max_(0, revenu_assimile_pension - min_(round(max_(abatpen.taux*revenu_assimile_pension , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
 
 class indu_plaf_abat_pen(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Plafonnement de l'abattement de 10% sur les pensions du foyer"
 
@@ -470,10 +470,9 @@ class indu_plaf_abat_pen(Variable):
 
 
 class abat_sal_pen(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"Abattement de 20% sur les salaires"
-    start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
 
     def function(self, simulation, period):
@@ -486,7 +485,7 @@ class abat_sal_pen(Variable):
 
 
 class sal_pen_net(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"Salaires et pensions après abattement de 20% sur les salaires"
 
@@ -554,7 +553,7 @@ class rto_net_declarant1(EntityToPersonColumn):
 
 
 class tspr(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"Traitements salaires pensions et rentes individuelles"
 
@@ -569,7 +568,7 @@ class tspr(Variable):
 
 
 class rev_cat_pv(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Revenu catégoriel - Plus-values"
     start_date = date(2013, 1, 1)
@@ -584,7 +583,7 @@ class rev_cat_pv(Variable):
 
 
 class rev_cat_tspr(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Revenu catégoriel - Traitements, salaires, pensions et rentes"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
@@ -600,7 +599,7 @@ class rev_cat_tspr(Variable):
 
 
 class deficit_rcm(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Deficit capitaux mobiliers"
     start_date = date(2009, 1, 1)
@@ -620,7 +619,7 @@ class deficit_rcm(Variable):
 
 
 class rev_cat_rvcm(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Revenu catégoriel - Capitaux"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
@@ -773,7 +772,7 @@ class rev_cat_rvcm(DatedVariable):
 
 
 class rfr_rvcm(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"rfr_rvcm"
 
@@ -813,7 +812,7 @@ class rfr_rvcm(Variable):
 
 
 class rev_cat_rfon(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Revenu catégoriel - Foncier"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
@@ -847,7 +846,7 @@ class rev_cat_rfon(Variable):
 
 
 class rev_cat_rpns(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Revenu catégoriel - Rpns"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
@@ -873,7 +872,7 @@ class rev_cat_rpns(Variable):
 
 
 class rev_cat(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Revenus catégoriels"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
@@ -898,7 +897,7 @@ class rev_cat(Variable):
 
 
 class deficit_ante(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Déficit global antérieur"
     url = "http://impotsurlerevenu.org/declaration-de-revenus-fonciers-2044/796-deficits-anterieurs-restant-a-imputer-cadre-450.php"
@@ -919,7 +918,7 @@ class deficit_ante(Variable):
 
 
 class rbg(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Revenu brut global"
     url = "http://www.documentissime.fr/dossiers-droit-pratique/dossier-19-l-impot-sur-le-revenu-les-modalites-generales-d-imposition/la-determination-du-revenu-imposable/le-revenu-brut-global.html"
@@ -943,7 +942,7 @@ class rbg(Variable):
 
 
 class csg_deduc_patrimoine(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Csg déductible sur le patrimoine"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
@@ -960,7 +959,7 @@ class csg_deduc_patrimoine(Variable):
 
 
 class csg_deduc_patrimoine_simulated(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Csg déductible sur le patrimoine simulée"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
@@ -981,7 +980,7 @@ class csg_deduc_patrimoine_simulated(Variable):
 
 
 class csg_deduc(Variable):  # f6de
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Csg déductible sur le patrimoine"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
@@ -997,7 +996,7 @@ class csg_deduc(Variable):  # f6de
 
 
 class rng(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Revenu net global"
     url = "http://impotsurlerevenu.org/definitions/114-revenu-net-global.php"
@@ -1013,7 +1012,7 @@ class rng(Variable):
 
 
 class rni(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Revenu net imposable"
     url = "http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php"
@@ -1028,7 +1027,7 @@ class rni(Variable):
 
 
 class ir_brut(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Impot sur le revenu brut avant non imposabilité et plafonnement du quotient"
 
@@ -1043,7 +1042,7 @@ class ir_brut(Variable):
 
 
 class ir_ss_qf(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"ir_ss_qf"
 
@@ -1061,7 +1060,7 @@ class ir_ss_qf(Variable):
 
 
 class ir_plaf_qf(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"ir_plaf_qf"
 
@@ -1159,7 +1158,7 @@ class ir_plaf_qf(Variable):
 
 
 class avantage_qf(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"avantage_qf"
 
@@ -1172,7 +1171,7 @@ class avantage_qf(Variable):
 
 
 class decote(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"décote"
 
@@ -1210,7 +1209,7 @@ class decote(DatedVariable):
 
 
 class decote_gain_fiscal(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Gain fiscal de la décote/Décote au sens Dgfip tel que sur la feuille d'impôt"
     start_date = date(1982, 1, 1)
@@ -1246,7 +1245,7 @@ class nat_imp(Variable):
 
 
 class ip_net(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"ip_net"
 
@@ -1264,7 +1263,7 @@ class ip_net(Variable):
 
 
 class iaidrdi(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"iaidrdi"
 
@@ -1280,7 +1279,7 @@ class iaidrdi(Variable):
 
 
 class cont_rev_loc(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"cont_rev_loc"
     start_date = date(2001, 1, 1)
@@ -1297,7 +1296,7 @@ class cont_rev_loc(Variable):
 
 
 class teicaa(Variable):  # f5rm
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"teicaa"
 
@@ -1316,7 +1315,7 @@ class teicaa(Variable):  # f5rm
 
 
 class assiette_vente(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"assiette_vente"
     start_date = date(2009, 1, 1)
@@ -1332,7 +1331,7 @@ class assiette_vente(Variable):
 
 
 class assiette_service(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"assiette_service"
     start_date = date(2009, 1, 1)
@@ -1351,7 +1350,7 @@ class assiette_service(Variable):
 
 
 class assiette_proflib(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"assiette_proflib"
     start_date = date(2009, 1, 1)
@@ -1372,7 +1371,7 @@ class assiette_proflib(Variable):
 
 
 class microsocial(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"microsocial"
     start_date = date(2009, 1, 1)
@@ -1392,7 +1391,7 @@ class microsocial(Variable):
 
 
 class microentreprise(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"microentreprise"
     start_date = date(2009, 1, 1)
@@ -1413,7 +1412,7 @@ class microentreprise(Variable):
 
 
 class plus_values(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"plus_values"
 
@@ -1584,7 +1583,7 @@ class plus_values(DatedVariable):
 
 
 class iai(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Impôt avant imputations"
     url = "http://forum-juridique.net-iris.fr/finances-fiscalite-assurance/43963-declaration-impots.html"
@@ -1603,7 +1602,7 @@ class iai(Variable):
 
 
 class cehr(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Contribution exceptionnelle sur les hauts revenus"
     url = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
@@ -1624,7 +1623,7 @@ class cehr(DatedVariable):
 
 
 class irpp(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Impôt sur le revenu des personnes physiques"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
@@ -1691,7 +1690,7 @@ class pensions_alimentaires_versees_declarant1(EntityToPersonColumn):
 
 
 class rfr(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Revenu fiscal de référence"
 
@@ -1721,7 +1720,7 @@ class rfr(Variable):
 
 
 class glo(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"Gain de levée d'options"
     url = "http://www.officeo.fr/imposition-au-bareme-progressif-de-l-impot-sur-le-revenu-des-gains-de-levee-d-options-sur-actions-et-attributions-d-actions-gratuites"
@@ -1747,7 +1746,7 @@ class rev_cap_bar(Variable):
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
     """
     calculate_output = calculate_output_add
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"rev_cap_bar"
     set_input = set_input_divide_by_period
@@ -1786,7 +1785,7 @@ class rev_cap_lib(DatedVariable):
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
     '''
     calculate_output = calculate_output_add
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"rev_cap_lib"
     set_input = set_input_divide_by_period
@@ -1819,7 +1818,7 @@ class rev_cap_lib(DatedVariable):
 
 
 class avf(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"avf"
 
@@ -1834,7 +1833,7 @@ class avf(Variable):
 
 
 class imp_lib(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"imp_lib"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
@@ -1872,7 +1871,7 @@ class imp_lib(DatedVariable):
 
 
 class fon(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"fon"
     url = "http://impotsurlerevenu.org/definitions/220-revenu-foncier.php"
@@ -1893,7 +1892,7 @@ class fon(Variable):
 
 
 class rpns_pvce(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"rpns_pvce"
 
@@ -1929,7 +1928,7 @@ class rpns_pvce(Variable):
 
 
 class rpns_exon(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"rpns_exon"
 
@@ -1980,7 +1979,7 @@ class rpns_exon(Variable):
 
 
 class defrag(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Déficit agricole des années antérieures"
 
@@ -2009,7 +2008,7 @@ class defrag(Variable):
 
 
 class defacc(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Déficit industriels et commerciaux non professionnels des années antérieures"
 
@@ -2044,7 +2043,7 @@ class defacc(Variable):
 
 
 class defncn(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Déficit non commerciaux non professionnels des années antérieures"
 
@@ -2074,7 +2073,7 @@ class defncn(Variable):
 
 
 class defmeu(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Déficit des locations meublées non professionnelles des années antérieures"
 
@@ -2099,7 +2098,7 @@ class defmeu(Variable):
 
 
 class rag(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"rag"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=BA&pageId=prof_ba&sfid=50"
@@ -2136,7 +2135,7 @@ class rag(Variable):
 
 
 class ric(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"Bénéfices industriels et commerciaux"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?pageId=prof_bic&espId=2&impot=BIC&sfid=50"
@@ -2201,7 +2200,7 @@ class ric(Variable):
 
 
 class rac(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"rac"
     url = "http://vosdroits.service-public.fr/particuliers/F1225.xhtml"
@@ -2262,7 +2261,7 @@ class rac(Variable):
 
 
 class rnc(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"rnc"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
@@ -2303,7 +2302,7 @@ class rnc(Variable):
 
 
 class rpns(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"Revenus individuels des professions non salariées"
 
@@ -2318,7 +2317,7 @@ class rpns(Variable):
 
 
 class rpns_pvct(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"rpns_pvct"
 
@@ -2343,7 +2342,7 @@ class rpns_pvct(Variable):
 
 
 class rpns_mvct(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"rpns_mvct"
 
@@ -2366,7 +2365,7 @@ class rpns_mvct(Variable):
 
 
 class rpns_mvlt(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"rpns_mvlt"
 
@@ -2389,7 +2388,7 @@ class rpns_mvlt(Variable):
 
 
 class rpns_i(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"rpns_i"
 
@@ -2534,7 +2533,7 @@ class rpns_i(Variable):
 
 
 class abat_spe(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Abattements spéciaux"
     url = "http://bofip.impots.gouv.fr/bofip/2036-PGP"
@@ -2582,7 +2581,7 @@ class abat_spe(Variable):
 
 
 class taux_effectif(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"taux_effectif"
     start_date = date(2009, 1, 1)
@@ -2605,7 +2604,7 @@ class taux_effectif(Variable):
 
 
 class taux_moyen_imposition(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Taux moyen d'imposition"
 
@@ -2624,7 +2623,7 @@ class taux_moyen_imposition(Variable):
 
 
 class nbptr(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Nombre de parts"
     url = "http://vosdroits.service-public.fr/particuliers/F2705.xhtml"
@@ -2736,7 +2735,7 @@ class nbptr(Variable):
 
 
 class ppe_coef(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"ppe_coef"
 
@@ -2777,7 +2776,7 @@ class ppe_elig(Variable):
 
 
 class ppe_rev(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"ppe_rev"
 
@@ -2801,7 +2800,7 @@ class ppe_rev(Variable):
 
 
 class ppe_coef_tp(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"ppe_coef_tp"
 
@@ -2824,7 +2823,7 @@ class ppe_coef_tp(Variable):
 
 
 class ppe_base(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"ppe_base"
 
@@ -2859,7 +2858,7 @@ class ppe_elig_i(Variable):
 
 
 class ppe_brute(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Prime pour l'emploi brute"
 
@@ -2967,7 +2966,7 @@ class ppe_brute(Variable):
 
 
 class ppe(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Prime pour l'emploi"
     url = "http://vosdroits.service-public.fr/particuliers/F2882.xhtml"
