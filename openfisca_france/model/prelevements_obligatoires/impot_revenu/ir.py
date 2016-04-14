@@ -538,7 +538,7 @@ class retraite_titre_onereux_net_declarant1(EntityToPersonColumn):
     variable = retraite_titre_onereux_net
 
 
-class tspr(Variable):
+class traitements_salaires_pensions_rentes(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Traitements salaires pensions et rentes individuelles"
@@ -580,12 +580,12 @@ class rev_cat_tspr(Variable):
 
     def function(self, simulation, period):
         period = period.this_year
-        tspr_holder = simulation.compute('tspr', period)
+        tspr_holder = simulation.compute('traitements_salaires_pensions_rentes', period)
         indu_plaf_abat_pen = simulation.calculate('indu_plaf_abat_pen', period)
 
-        tspr = self.sum_by_entity(tspr_holder)
+        traitements_salaires_pensions_rentes = self.sum_by_entity(tspr_holder)
 
-        return period, tspr + indu_plaf_abat_pen
+        return period, traitements_salaires_pensions_rentes + indu_plaf_abat_pen
 
 
 class deficit_rcm(Variable):

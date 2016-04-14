@@ -54,11 +54,11 @@ class prestations_familiales_base_ressources_i(Variable):
         period = period.this_month
         annee_fiscale_n_2 = period.n_2
 
-        tspr = simulation.calculate('tspr', annee_fiscale_n_2)
+        traitements_salaires_pensions_rentes = simulation.calculate('traitements_salaires_pensions_rentes', annee_fiscale_n_2)
         hsup = simulation.calculate('hsup', annee_fiscale_n_2)
         rpns = simulation.calculate('rpns', annee_fiscale_n_2)
 
-        return period, tspr + hsup + rpns
+        return period, traitements_salaires_pensions_rentes + hsup + rpns
 
 
 class biactivite(Variable):
