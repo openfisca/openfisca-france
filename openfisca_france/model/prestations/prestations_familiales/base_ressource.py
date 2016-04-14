@@ -114,9 +114,9 @@ class rev_coll(Variable):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
-        # Quand rev_coll est calculé sur une année glissante, rto_net_declarant1 est calculé sur l'année légale
+        # Quand rev_coll est calculé sur une année glissante, retraite_titre_onereux_net_declarant1 est calculé sur l'année légale
         # correspondante.
-        rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period.offset('first-of'))
+        retraite_titre_onereux_net_declarant1 = simulation.calculate('retraite_titre_onereux_net_declarant1', period.offset('first-of'))
         rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', period)
         rev_cat_rvcm_holder = simulation.compute('rev_cat_rvcm', period)
         # div = simulation.calculate('div', period)  # TODO why is this variable not used ?
@@ -142,7 +142,7 @@ class rev_coll(Variable):
         f7gc = self.cast_from_entity_to_role(f7gc_holder, role = VOUS)
         rev_cat_pv = self.cast_from_entity_to_role(rev_cat_pv_holder, role = VOUS)
 
-        return period, (rto_net_declarant1 + rev_cap_lib + rev_cat_rvcm + fon + glo + pensions_alimentaires_versees_declarant1 - f7ga - f7gb
+        return period, (retraite_titre_onereux_net_declarant1 + rev_cap_lib + rev_cat_rvcm + fon + glo + pensions_alimentaires_versees_declarant1 - f7ga - f7gb
             - f7gc - abat_spe + rev_cat_pv)
 
 

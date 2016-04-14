@@ -507,21 +507,21 @@ class retraite_titre_onereux(Variable):
         return period, (f1aw + f1bw + f1cw + f1dw) / 12
 
 
-class rto_declarant1(EntityToPersonColumn):
+class retraite_titre_onereux_declarant1(EntityToPersonColumn):
     entity_class = Individus
     label = u"Rentes viagères (rentes à titre onéreux) (pour le premier déclarant du foyer fiscal)"
     role = VOUS
     variable = retraite_titre_onereux
 
 
-class rto_net(Variable):
+class retraite_titre_onereux_net(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Rentes viagères après abattements"
     url = u"http://www.lafinancepourtous.fr/Vie-professionnelle-et-retraite/Retraite/Epargne-retraite/La-rente-viagere/La-fiscalite-de-la-rente-viagere"  # noqa
 
     def function(self, simulation, period):
-        period = period.start.period(u'year').offset('first-of')
+        period = period.this_year
         f1aw = simulation.calculate('f1aw', period)
         f1bw = simulation.calculate('f1bw', period)
         f1cw = simulation.calculate('f1cw', period)
@@ -531,11 +531,11 @@ class rto_net(Variable):
         return period, round(abatviag.taux1 * f1aw + abatviag.taux2 * f1bw + abatviag.taux3 * f1cw + abatviag.taux4 * f1dw)
 
 
-class rto_net_declarant1(EntityToPersonColumn):
+class retraite_titre_onereux_net_declarant1(EntityToPersonColumn):
     entity_class = Individus
     label = u"Rentes viagères après abattements (pour le premier déclarant du foyer fiscal)"
     role = VOUS
-    variable = rto_net
+    variable = retraite_titre_onereux_net
 
 
 class tspr(Variable):
@@ -550,11 +550,11 @@ class tspr(Variable):
         revenu_assimile_pension_apres_abattements = simulation.calculate('revenu_assimile_pension_apres_abattements', period)
         abattement_salaires_pensions = simulation.calculate('abattement_salaires_pensions', period)
 
-        # Quand tspr est calculé sur une année glissante, rto_net_declarant1 est calculé sur l'année légale
+        # Quand tspr est calculé sur une année glissante, retraite_titre_onereux_net_declarant1 est calculé sur l'année légale
         # correspondante.
-        rto_net_declarant1 = simulation.calculate('rto_net_declarant1', period.offset('first-of'))
+        retraite_titre_onereux_net_declarant1 = simulation.calculate('retraite_titre_onereux_net_declarant1', period.offset('first-of'))
 
-        return period, revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements - abattement_salaires_pensions + rto_net_declarant1
+        return period, revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements - abattement_salaires_pensions + retraite_titre_onereux_net_declarant1
 
 
 class rev_cat_pv(Variable):

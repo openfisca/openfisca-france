@@ -37,7 +37,7 @@ class asi_aspa_base_ressources_i(Variable):
         pensions_alimentaires_versees_individu = simulation.calculate(
             'pensions_alimentaires_versees_individu', three_previous_months
             )
-        rto_declarant1 = simulation.calculate_add('rto_declarant1', three_previous_months)
+        retraite_titre_onereux_declarant1 = simulation.calculate_add('retraite_titre_onereux_declarant1', three_previous_months)
         rpns = simulation.calculate_add_divide('rpns', three_previous_months)
         rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
         rev_cap_lib_holder = simulation.compute_add_divide('rev_cap_lib', three_previous_months)
@@ -94,7 +94,7 @@ class asi_aspa_base_ressources_i(Variable):
         salaire_de_base = max_(0, salaire_de_base - abattement_forfaitaire)
 
         return period, (salaire_de_base + chomage_net + retraite_brute + pensions_alimentaires_percues -
-               abs_(pensions_alimentaires_versees_individu) + rto_declarant1 + rpns +
+               abs_(pensions_alimentaires_versees_individu) + retraite_titre_onereux_declarant1 + rpns +
                max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, revenus_fonciers_minima_sociaux) + max_(0, div_ms) +  # max_(0,etr) +
                revenus_stage_formation_pro + allocation_securisation_professionnelle +
                prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
