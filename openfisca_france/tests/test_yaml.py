@@ -61,11 +61,12 @@ options_by_dir = collections.OrderedDict((
             ),
         ),
     (
-        os.path.abspath(os.path.join(os.path.dirname(__file__), 'reforms')),
+        os.path.abspath(os.path.join(os.path.dirname(__file__), 'scipy')),
         dict(
             calculate_output = False,
             default_absolute_error_margin = 0.005,
             reforms = ['de_net_a_brut'],
+            requires = 'scipy',
             ),
         ),
     ))
@@ -226,6 +227,11 @@ def test(force = False, name_filter = None, options_by_path = None):
                 ]
         else:
             yaml_paths = [path]
+
+        if options.get('requires'):
+            # Check if the required package was successfully imported in tests/base.py
+            if getattr(base, options.get('requires')) is None:
+                continue
 
         reform_keys = options.get('reforms')
         tax_benefit_system_for_path = base.get_cached_composed_reform(

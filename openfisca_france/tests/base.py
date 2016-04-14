@@ -13,7 +13,6 @@ from ..reforms import (
     plf2015,
     plfr2014,
     trannoy_wasmer,
-    de_net_a_brut,
     )
 
 
@@ -45,8 +44,18 @@ build_reform_function_by_key = {
     'plf2015': plf2015.build_reform,
     'plfr2014': plfr2014.build_reform,
     'trannoy_wasmer': trannoy_wasmer.build_reform,
-    'de_net_a_brut': de_net_a_brut.build_reform,
     }
+
+# Only use the following reform if scipy can be imported
+try:
+    import scipy
+except ImportError:
+    scipy = None
+
+if scipy is not None:
+    from ..reforms import de_net_a_brut
+    build_reform_function_by_key['de_net_a_brut'] = de_net_a_brut.build_reform
+
 reform_by_full_key = {}
 
 
