@@ -417,28 +417,28 @@ class revenu_activite(Variable):
         return period, revenu_activite_non_salariee + revenu_activite_salariee
 
 
-class rev_pen(Variable):
+class revenu_assimile_pension(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)"
 
     def function(self, simulation, period):
         period = period.this_year
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
-        pensions_alimentaires_percues_decl = simulation.calculate('pensions_alimentaires_percues_decl', period)
-        retraite_imposable = simulation.calculate('retraite_imposable', period)
+        pensions_alimentaires_percues = simulation.calculate_add('pensions_alimentaires_percues', period)
+        pensions_alimentaires_percues_decl = simulation.calculate_add('pensions_alimentaires_percues_decl', period)
+        retraite_imposable = simulation.calculate_add('retraite_imposable', period)
 
         return period, pensions_alimentaires_percues * pensions_alimentaires_percues_decl + retraite_imposable
 
 
-class pen_net(Variable):
+class revenu_assimile_pension_apres_abattements(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Pensions après abattements"
 
     def function(self, simulation, period):
         period = period.this_year
-        rev_pen = simulation.calculate('rev_pen', period)
+        revenu_assimile_pension = simulation.calculate('revenu_assimile_pension', period)
         abatpen = simulation.legislation_at(period.start).ir.tspr.abatpen
 
         #    TODO: problème car les pensions sont majorées au niveau du foyer
@@ -446,10 +446,10 @@ class pen_net(Variable):
     #            AO + BO + CO + DO + EO )
     #    penv2 = (d11-f11> abatpen.max)*(penv + (d11-f11-abatpen.max)) + (d11-f11<= abatpen.max)*penv
     #    Plus d'abatement de 20% en 2006
-        return period, max_(0, rev_pen - round(max_(abatpen.taux * rev_pen , abatpen.min)))
+        return period, max_(0, revenu_assimile_pension - round(max_(abatpen.taux * revenu_assimile_pension , abatpen.min)))
 
 
-#    return max_(0, rev_pen - min_(round(max_(abatpen.taux*rev_pen , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
+#    return max_(0, revenu_assimile_pension - min_(round(max_(abatpen.taux*revenu_assimile_pension , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
 
 class indu_plaf_abat_pen(Variable):
     column = FloatCol(default = 0)
@@ -462,14 +462,14 @@ class indu_plaf_abat_pen(Variable):
         'foy'
         """
         period = period.this_year
-        rev_pen_holder = simulation.compute('rev_pen', period)
-        pen_net_holder = simulation.compute('pen_net', period)
+        rev_pen_holder = simulation.compute('revenu_assimile_pension', period)
+        pen_net_holder = simulation.compute('revenu_assimile_pension_apres_abattements', period)
         abatpen = simulation.legislation_at(period.start).ir.tspr.abatpen
 
-        pen_net = self.sum_by_entity(pen_net_holder)
-        rev_pen = self.sum_by_entity(rev_pen_holder)
+        revenu_assimile_pension_apres_abattements = self.sum_by_entity(pen_net_holder)
+        revenu_assimile_pension = self.sum_by_entity(rev_pen_holder)
 
-        abat = rev_pen - pen_net
+        abat = revenu_assimile_pension - revenu_assimile_pension_apres_abattements
         return period, abat - min_(abat, abatpen.max)
 
 
@@ -483,10 +483,10 @@ class abat_sal_pen(Variable):
     def function(self, simulation, period):
         period = period.this_year
         revenu_assimile_salaire_apres_abattements = simulation.calculate('revenu_assimile_salaire_apres_abattements', period)
-        pen_net = simulation.calculate('pen_net', period)
+        revenu_assimile_pension_apres_abattements = simulation.calculate('revenu_assimile_pension_apres_abattements', period)
         abatsalpen = simulation.legislation_at(period.start).ir.tspr.abatsalpen
 
-        return period, min_(abatsalpen.taux * max_(revenu_assimile_salaire_apres_abattements + pen_net, 0), abatsalpen.max)
+        return period, min_(abatsalpen.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), abatsalpen.max)
 
 
 class sal_pen_net(Variable):
@@ -497,10 +497,10 @@ class sal_pen_net(Variable):
     def function(self, simulation, period):
         period = period.this_year
         revenu_assimile_salaire_apres_abattements = simulation.calculate('revenu_assimile_salaire_apres_abattements', period)
-        pen_net = simulation.calculate('pen_net', period)
+        revenu_assimile_pension_apres_abattements = simulation.calculate('revenu_assimile_pension_apres_abattements', period)
         abat_sal_pen = simulation.calculate('abat_sal_pen', period)
 
-        return period, revenu_assimile_salaire_apres_abattements + pen_net - abat_sal_pen
+        return period, revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements - abat_sal_pen
 
 
 class retraite_titre_onereux(Variable):

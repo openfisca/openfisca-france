@@ -120,7 +120,7 @@ class aah_base_ressources_eval_annuelle(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        return period, simulation.calculate('rev_act', period.n_2) + simulation.calculate('rev_pen', period.n_2)
+        return period, simulation.calculate('revenu_activite', period.n_2) + simulation.calculate('revenu_assimile_pension', period.n_2)
 
 
 class aah_eligible(Variable):

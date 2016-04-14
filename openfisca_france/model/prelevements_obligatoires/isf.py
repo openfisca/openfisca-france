@@ -323,7 +323,7 @@ class revetproduits(Variable):
         '''
         period = period.this_year
         salcho_imp_holder = simulation.compute('revenu_assimile_salaire_apres_abattements', period)
-        pen_net_holder = simulation.compute('pen_net', period)
+        pen_net_holder = simulation.compute('revenu_assimile_pension_apres_abattements', period)
         rto_net = simulation.calculate('rto_net', period)
         rev_cap_bar = simulation.calculate('rev_cap_bar', period)
         fon = simulation.calculate('fon', period)
@@ -335,7 +335,7 @@ class revetproduits(Variable):
         imp_lib = simulation.calculate('imp_lib', period)
         P = simulation.legislation_at(period.start).isf.plafonnement
 
-        pen_net = self.sum_by_entity(pen_net_holder)
+        revenu_assimile_pension_apres_abattements = self.sum_by_entity(pen_net_holder)
         rag = self.sum_by_entity(rag_holder)
         ric = self.sum_by_entity(ric_holder)
         rpns_exon = self.sum_by_entity(rpns_exon_holder)
@@ -346,7 +346,7 @@ class revetproduits(Variable):
         # # def rev_exon et rev_etranger dans data? ##
         pt = max_(
             0,
-            revenu_assimile_salaire_apres_abattements + pen_net + rto_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon +
+            revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + rto_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon +
             rpns_pvct + imp_lib + fon
             )
         return period, pt * P.taux
