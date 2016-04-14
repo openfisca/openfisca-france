@@ -52,6 +52,7 @@ class assiette_cotisations_sociales_prive(Variable):
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         primes_salaires = simulation.calculate('primes_salaires', period)
+        indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
         reintegration_titre_restaurant_employeur = simulation.calculate(
             "reintegration_titre_restaurant_employeur", period
             )
@@ -68,10 +69,46 @@ class assiette_cotisations_sociales_prive(Variable):
             indemnites_compensatrices_conges_payes +
             remuneration_apprenti +
             (type_sal == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
-            reintegration_titre_restaurant_employeur
+            reintegration_titre_restaurant_employeur +
+            indemnite_fin_contrat
             )
         return period, max_(assiette, smic_proratise * not_(apprenti)) * (assiette > 0)
 
+class indemnite_fin_contrat(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Indemnité de fin de contrat"
+    url = u"https://www.service-public.fr/particuliers/vosdroits/F40"
+
+    def function(self, simulation, period):
+        month = period.start.offset('first-of', 'month').period(u'month')
+        contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
+        type_sal = simulation.calculate('type_sal', period)
+        apprenti = simulation.calculate('apprenti', month)
+
+        # Un grand nombre de conditions peuvent invalider cette indemnité, voir le lien ci-dessus.
+        # A ajouter au fur et à mesure
+        # Pour l'instant, cette variable d'entrée peut les remplacer
+        # Elle est cependant fixée à False par défaut
+        indemnite_fin_contrat_due = simulation.calculate('indemnite_fin_contrat_due', period)
+
+        taux = simulation.legislation_at(period.start).cotsoc.indemnite_fin_contrat.taux
+
+        result = (
+            # CDD
+            (contrat_de_travail_duree == 1) *
+            # non fonction publique
+            (
+                (type_sal == 0) +
+                (type_sal == 1)
+            ) *
+            not_(apprenti) *
+            indemnite_fin_contrat_due *
+            # 10% du brut
+            taux * salaire_de_base
+            )
+        return period, result
 
 class reintegration_titre_restaurant_employeur(Variable):
     column = FloatCol

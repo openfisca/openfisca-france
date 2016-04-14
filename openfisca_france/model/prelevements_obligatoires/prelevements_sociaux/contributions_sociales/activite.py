@@ -32,10 +32,12 @@ class assiette_csg_abattue(Variable):
         hsup = simulation.calculate('hsup', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
         stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
+        indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
 
         return period, (
             remuneration_principale + salaire_de_base + primes_salaires + primes_fonction_publique +
-            indemnite_residence + stage_gratification_reintegration + supp_familial_traitement - hsup
+            indemnite_residence + stage_gratification_reintegration + supp_familial_traitement - hsup +
+            indemnite_fin_contrat
             )
 
 
@@ -176,11 +178,12 @@ class salaire_imposable(Variable):
         remuneration_principale = simulation.calculate('remuneration_principale', period)
         hsup = simulation.calculate('hsup', period)
         rev_microsocial_declarant1 = simulation.calculate_divide('rev_microsocial_declarant1', period)
+        indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
 
         return period, (
             salaire_de_base + primes_salaires + remuneration_principale +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement + csg_deductible_salaire +
-            cotisations_salariales - hsup + rev_microsocial_declarant1
+            cotisations_salariales - hsup + rev_microsocial_declarant1 + indemnite_fin_contrat
             )
 
 

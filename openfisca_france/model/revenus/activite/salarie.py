@@ -177,6 +177,12 @@ class indemnites_compensatrices_conges_payes(Variable):
     label = u"indemnites_compensatrices_conges_payes"
 
 
+class indemnite_fin_contrat_due(Variable):
+    column = BoolCol()
+    entity_class = Individus
+    label = u"indemnite_fin_contrat_due"
+
+
 class contrat_de_travail(Variable):
     column = EnumCol(
         enum = Enum(
@@ -781,10 +787,13 @@ class salaire_super_brut_hors_allegements(Variable):
             'depense_cantine_titre_restaurant_employeur', period)
         reintegration_titre_restaurant_employeur = simulation.calculate(
             'reintegration_titre_restaurant_employeur', period)
+        indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
+
+
 
         salaire_super_brut_hors_allegements = (
             salaire_de_base + remuneration_principale + remuneration_apprenti +
-            primes_fonction_publique + indemnite_residence + supp_familial_traitement +
+            primes_fonction_publique + indemnite_residence + supp_familial_traitement + indemnite_fin_contrat +
             depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur
             - cotisations_employeur
             )
