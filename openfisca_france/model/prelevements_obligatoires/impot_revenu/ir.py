@@ -348,7 +348,7 @@ class jveuf(Variable):
 
 
 class revenu_assimile_salaire(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"Revenu imposé comme des salaires (salaires, mais aussi 3vj, 3vk)"
 
@@ -360,8 +360,8 @@ class revenu_assimile_salaire(Variable):
         return period, salaire_imposable + chomage_imposable
 
 
-class salcho_imp(Variable):
-    column = FloatCol(default = 0)
+class revenu_assimile_salaire_apres_abattements(Variable):
+    column = FloatCol
     entity_class = Individus
     label = u"Salaires et chômage imposables après abattements"
 
@@ -482,11 +482,11 @@ class abat_sal_pen(Variable):
 
     def function(self, simulation, period):
         period = period.this_year
-        salcho_imp = simulation.calculate('salcho_imp', period)
+        revenu_assimile_salaire_apres_abattements = simulation.calculate('revenu_assimile_salaire_apres_abattements', period)
         pen_net = simulation.calculate('pen_net', period)
         abatsalpen = simulation.legislation_at(period.start).ir.tspr.abatsalpen
 
-        return period, min_(abatsalpen.taux * max_(salcho_imp + pen_net, 0), abatsalpen.max)
+        return period, min_(abatsalpen.taux * max_(revenu_assimile_salaire_apres_abattements + pen_net, 0), abatsalpen.max)
 
 
 class sal_pen_net(Variable):
@@ -496,11 +496,11 @@ class sal_pen_net(Variable):
 
     def function(self, simulation, period):
         period = period.this_year
-        salcho_imp = simulation.calculate('salcho_imp', period)
+        revenu_assimile_salaire_apres_abattements = simulation.calculate('revenu_assimile_salaire_apres_abattements', period)
         pen_net = simulation.calculate('pen_net', period)
         abat_sal_pen = simulation.calculate('abat_sal_pen', period)
 
-        return period, salcho_imp + pen_net - abat_sal_pen
+        return period, revenu_assimile_salaire_apres_abattements + pen_net - abat_sal_pen
 
 
 class retraite_titre_onereux(Variable):

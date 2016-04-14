@@ -322,7 +322,7 @@ class revetproduits(Variable):
         http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8342/fichedescriptiveformulaire_8342.pdf
         '''
         period = period.this_year
-        salcho_imp_holder = simulation.compute('salcho_imp', period)
+        salcho_imp_holder = simulation.compute('revenu_assimile_salaire_apres_abattements', period)
         pen_net_holder = simulation.compute('pen_net', period)
         rto_net = simulation.calculate('rto_net', period)
         rev_cap_bar = simulation.calculate('rev_cap_bar', period)
@@ -340,13 +340,13 @@ class revetproduits(Variable):
         ric = self.sum_by_entity(ric_holder)
         rpns_exon = self.sum_by_entity(rpns_exon_holder)
         rpns_pvct = self.sum_by_entity(rpns_pvct_holder)
-        salcho_imp = self.sum_by_entity(salcho_imp_holder)
+        revenu_assimile_salaire_apres_abattements = self.sum_by_entity(salcho_imp_holder)
 
         # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO:
         # # def rev_exon et rev_etranger dans data? ##
         pt = max_(
             0,
-            salcho_imp + pen_net + rto_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon +
+            revenu_assimile_salaire_apres_abattements + pen_net + rto_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon +
             rpns_pvct + imp_lib + fon
             )
         return period, pt * P.taux
