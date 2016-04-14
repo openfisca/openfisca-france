@@ -28,19 +28,6 @@ class asf_elig_enfant(Variable):
 
         return period, eligibilite
 
-class asf_enfant(Variable):
-    column = FloatCol(default = 0)
-    entity_class = Individus
-    label = u"Montant du droit à l'ASF ouvert par l'enfant"
-
-    def function(self, simulation, period):
-        period = period.this_month
-
-        asf_elig_enfant = simulation.calculate('asf_elig_enfant', period)
-        pfam = simulation.legislation_at(period.start).fam
-
-        return period, asf_elig_enfant * pfam.af.bmaf * pfam.asf.taux1
-
 
 class asf_elig(Variable):
     column = BoolCol(default = False)
@@ -67,8 +54,9 @@ class asf(Variable):
     def function(self, simulation, period):
         period = period.this_month
 
+        pfam = simulation.legislation_at(period.start).fam
         asf_elig = simulation.calculate('asf_elig', period)
-        asf_enfant_holder = simulation.compute('asf_enfant', period)
-        montant = self.sum_by_entity(asf_enfant_holder, roles = ENFS)
+        asf_par_enfant = simulation.calculate('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux1
+        montant = self.sum_by_entity(asf_par_enfant, roles = ENFS)
 
         return period, asf_elig * montant
