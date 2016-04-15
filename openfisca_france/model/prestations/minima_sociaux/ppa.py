@@ -152,6 +152,7 @@ class ppa_ressources_hors_activite_i(Variable):
             'chomage_net',
             'retraite_nette',
             'retraite_combattant',
+            'pensions_invalidite',
             'pensions_alimentaires_percues',
             'prestation_compensatoire',
             'revenus_locatifs',

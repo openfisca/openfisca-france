@@ -402,15 +402,17 @@
       2016-01: 100
     prestation_compensatoire:
       2016-01: 100
+    pensions_invalidite:
+      2016-01: 100
     revenus_locatifs:
       2016-01: 100
   output_variables:
     ppa:
       2016-02: 0
     ppa_ressources_hors_activite_i:
-      2016-01: 600
+      2016-01: 700
     ppa_ressources_hors_activite:
-      2016-01: 1291.40
+      2016-01: 1391.40
 
 - name: "PPA: étudiant éligible (ressources > plancher)"
   period: 2016-01
