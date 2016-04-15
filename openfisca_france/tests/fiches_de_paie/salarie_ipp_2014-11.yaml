@@ -58,7 +58,7 @@ output_variables:
   agirc_gmp_salarie: 0
   # chomage_tranche_a_employe: -72.59  # Inclus dans assedic
   # chomage_tranche_b_employe: 37.81  # Inclus dans assedic
-  cotisation_chomage_salarie: -72.59 - 37.81
+  chomage_salarie: -72.59 - 37.81
 
   vieillesse_deplafonnee_salarie: -11.5
   vieillesse_plafonnee_salarie: -205.68
