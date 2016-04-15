@@ -140,10 +140,10 @@ def assert_near_calculate_output(value, target_value, absolute_error_margin = 0,
                     abs(target_value - value), abs(relative_error_margin * target_value))
 
 
-def check(yaml_path, name, period_str, test, force):
+def check(yaml_path, name, period_str, test, force, verbose = False):
     scenario = test['scenario']
     scenario.suggest()
-    simulation = scenario.new_simulation()
+    simulation = scenario.new_simulation(debug = verbose)
     output_variables = test.get(u'output_variables')
     if output_variables is not None:
         output_variables_name_to_ignore = test.get(u'output_variables_name_to_ignore') or set()
@@ -169,10 +169,10 @@ def check(yaml_path, name, period_str, test, force):
                     )
 
 
-def check_calculate_output(yaml_path, name, period_str, test, force):
+def check_calculate_output(yaml_path, name, period_str, test, force, verbose = False):
     scenario = test['scenario']
     scenario.suggest()
-    simulation = scenario.new_simulation()
+    simulation = scenario.new_simulation(debug = verbose)
     output_variables = test.get(u'output_variables')
     if output_variables is not None:
         output_variables_name_to_ignore = test.get(u'output_variables_name_to_ignore') or set()
@@ -295,7 +295,7 @@ if __name__ == "__main__":
         options_by_path = None
 
     tests_found = False
-    for test_index, (function, yaml_path, name, period_str, test, force) in enumerate(
+    for test_index, (checker, yaml_path, name, period_str, test, force) in enumerate(
             test(
                 force = args.force,
                 name_filter = args.name,
@@ -313,7 +313,7 @@ if __name__ == "__main__":
         print("=" * len(title))
         print(title)
         print("=" * len(title))
-        function(yaml_path, name, period_str, test, force)
+        checker(yaml_path, name, period_str, test, force, args.verbose)
         tests_found = True
     if not tests_found:
         print("No test found!")
