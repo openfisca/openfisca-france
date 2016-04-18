@@ -59,7 +59,7 @@ Not specifying the scope of a specific variable should be avoided, as it is conf
 ### Entity suffixes
 
 It happens that several variables have the same meaning, but for different entitities (individus, familles, etc.). Standard suffixes should be used to distinguish them.
->**OK**: ass_base_ressources_i, statut_occupation_logement_famille
+>**OK**: ass_base_ressources_individu, statut_occupation_logement_famille
 
 
 Legacy
