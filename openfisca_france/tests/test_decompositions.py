@@ -64,6 +64,6 @@ def test_decomposition_calculate():
     simulation = base.tax_benefit_system.new_scenario().init_single_entity(
         period = year,
         parent1 = {},
-        ).new_simulation(debug = True)
+        ).new_simulation()
     decomposition = decompositions.calculate([simulation], decomposition_json)
     assert isinstance(decomposition, dict)

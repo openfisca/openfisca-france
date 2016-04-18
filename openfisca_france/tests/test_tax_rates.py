@@ -17,7 +17,7 @@ def test_average_tax_rate():
             ],
         period = year,
         parent1 = dict(age_en_mois = 40 * 12 + 6),
-        ).new_simulation()  # Remove debug = True, because logging is too slow.
+        ).new_simulation()
     assert (average_rate(
         target = simulation.calculate('revdisp'),
         varying = simulation.calculate('revdisp'),
@@ -37,7 +37,7 @@ def test_marginal_tax_rate():
             ],
         period = year,
         parent1 = dict(age_en_mois = 40 * 12 + 6),
-        ).new_simulation()  # Remove debug = True, because logging is too slow.
+        ).new_simulation()
     assert (marginal_rate(
         target = simulation.calculate('revdisp'),
         varying = simulation.calculate('revdisp'),

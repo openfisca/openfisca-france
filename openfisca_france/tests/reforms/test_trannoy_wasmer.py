@@ -34,7 +34,7 @@ def test_charge_loyer():
             loyer = 1000,
             ),
         )
-    reform_simulation = scenario.new_simulation(debug = True)
+    reform_simulation = scenario.new_simulation()
     absolute_error_margin = 0.01
 
     reform_charge_loyer = reform_simulation.calculate('charge_loyer')

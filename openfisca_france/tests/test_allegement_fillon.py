@@ -177,7 +177,7 @@ def test_check():
         simulation = reform.new_scenario().init_single_entity(
             period = simulation_period,
             parent1 = parent1,
-            ).new_simulation(debug = True)
+            ).new_simulation()
 
         for variable, amounts in test_parameters['output_variables'].iteritems():
             if isinstance(amounts, dict):

@@ -34,8 +34,8 @@ def test(year = 2013):
             ] if people >= 3 else None,
         )
 
-    reference_simulation = scenario.new_simulation(debug = True, reference = True)
-    reform_simulation = scenario.new_simulation(debug = True)
+    reference_simulation = scenario.new_simulation(reference = True)
+    reform_simulation = scenario.new_simulation()
     error_margin = 1
 
     impo = reference_simulation.calculate('impo')

@@ -21,7 +21,7 @@ def test_birth():
         )
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
-    simulation = scenario.new_simulation(debug = True)
+    simulation = scenario.new_simulation()
     assert_equal(
         simulation.calculate('birth').tolist(),
         [
