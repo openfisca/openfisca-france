@@ -33,6 +33,9 @@ setup(
         'inversion_revenus': [
             'scipy >= 0.12',
             ],
+        'de_net_a_brut': [
+            'scipy >= 0.12',
+            ],
         'taxipp': [
             'pandas >= 0.13',
             ],
