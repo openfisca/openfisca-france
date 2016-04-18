@@ -24,7 +24,7 @@ def test_decomposition(print_decomposition = False):
         menage = dict(
             zone_apl = 1,
             ),
-        ).new_simulation(debug = True)
+        ).new_simulation()
 
     xml_file_path = os.path.join(
         tax_benefit_system.DECOMP_DIR,

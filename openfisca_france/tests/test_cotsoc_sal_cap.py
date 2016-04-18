@@ -486,7 +486,7 @@ def test_check():
             period = period,
             parent1 = parent1,
             foyer_fiscal = foyer_fiscal,
-            ).new_simulation(debug = True)
+            ).new_simulation()
 
         for variable, monthly_amount in test_parameters['output_variables'].iteritems():
             output = simulation.calculate_add(variable)

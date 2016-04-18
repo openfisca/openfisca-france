@@ -31,10 +31,10 @@ def test():
         #     ],
         )
 
-#    reference_simulation = scenario.new_simulation(debug = True, reference = True)
+#    reference_simulation = scenario.new_simulation(reference = True)
 #
 
-    reform_simulation = scenario.new_simulation(debug = True)
+    reform_simulation = scenario.new_simulation()
     reform_assiette_csg = reform_simulation.calculate('assiette_csg')
     reform_impot_revenu_lps = reform_simulation.calculate('impot_revenu_lps')
     assert_near(

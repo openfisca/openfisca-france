@@ -372,8 +372,7 @@ def test():
         description = scenario_arguments.pop('description')
         error_margin = scenario_arguments.pop('error_margin')
         expected_values = scenario_arguments.pop('expected_values')
-        simulation = base.tax_benefit_system.new_scenario().init_single_entity(**scenario_arguments).new_simulation(
-            debug = True)
+        simulation = base.tax_benefit_system.new_scenario().init_single_entity(**scenario_arguments).new_simulation()
         for variable, expected_value in expected_values.iteritems():
             yield check_simulation_monthly_variable, description, simulation, variable, expected_value, error_margin
 

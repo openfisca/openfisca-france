@@ -32,7 +32,7 @@ def test_allocations_familiales_imposables():
             ],
         )
 
-    reference_simulation = scenario.new_simulation(debug = True, reference = True)
+    reference_simulation = scenario.new_simulation(reference = True)
 
     absolute_error_margin = 0.01
     af = reference_simulation.calculate_add('af')
@@ -40,7 +40,7 @@ def test_allocations_familiales_imposables():
     assert_near(expected_af, af, absolute_error_margin = absolute_error_margin)
     rbg = reference_simulation.calculate('rbg')
 
-    reform_simulation = scenario.new_simulation(debug = True)
+    reform_simulation = scenario.new_simulation()
     reform_af = reform_simulation.calculate_add('af')
 
     assert_near(expected_af, reform_af, absolute_error_margin = absolute_error_margin)

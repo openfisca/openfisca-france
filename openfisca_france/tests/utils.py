@@ -42,7 +42,7 @@ def simulation_from_test(test, monthly_amount = False, default_error_margin = 1,
         parent1 = parent1,
         menage = menage,
         foyer_fiscal = foyer_fiscal,
-        ).new_simulation(debug = True)
+        ).new_simulation()
 
     return simulation
 
