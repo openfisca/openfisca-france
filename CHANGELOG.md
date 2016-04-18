@@ -1,8 +1,13 @@
 # Changelog
 
-## 0.5.5.dev0 - next release
+## 0.5.5
 
-* TODO Fill this changes list while developing
+* Prime d'activité fiabilization
+* Implementation of Indemnite de fin de contrat
+* Prolongation of aidper, credit_impots, reductions
+* Remove detailes logs in CI
+* Update prestations parameters (2016/04/01 revalorisation)
+* Add net -> brut reform
 
 ## 0.5.4.2, 0.5.4.3
 
