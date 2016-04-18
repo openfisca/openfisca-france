@@ -86,7 +86,7 @@ class cf_dom_enfant_trop_jeune(Variable):
         return period, condition_age * est_enfant_dans_famille
 
 
-class cf_ressources_i(Variable):
+class cf_ressources_individu(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Complément familial - Ressources de l'individu prises en compte"
@@ -94,7 +94,7 @@ class cf_ressources_i(Variable):
     def function(self, simulation, period):
         period = period.this_month
 
-        base_ressources = simulation.calculate('prestations_familiales_base_ressources_i', period)
+        base_ressources = simulation.calculate('prestations_familiales_base_ressources_individu', period)
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
         cf_enfant_a_charge = simulation.calculate('cf_enfant_a_charge', period)
 
@@ -160,7 +160,7 @@ class cf_ressources(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        cf_ressources_i_holder = simulation.compute('cf_ressources_i', period)
+        cf_ressources_i_holder = simulation.compute('cf_ressources_individu', period)
         ressources = self.sum_by_entity(cf_ressources_i_holder)
         return period, ressources
 

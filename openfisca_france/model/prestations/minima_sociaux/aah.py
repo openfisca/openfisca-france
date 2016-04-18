@@ -79,7 +79,7 @@ class aah_base_ressources_eval_trimestrielle(Variable):
         pensions_alimentaires_percues = simulation.calculate_add('pensions_alimentaires_percues', three_previous_months)
         pensions_alimentaires_versees_individu = simulation.calculate_add(
             'pensions_alimentaires_versees_individu', three_previous_months)
-        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', three_previous_months)
+        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_individu', three_previous_months)
         indemnites_journalieres_imposables = simulation.calculate_add('indemnites_journalieres_imposables', three_previous_months)
         indemnites_stage = simulation.calculate_add('indemnites_stage', three_previous_months)
         revenus_stage_formation_pro = simulation.calculate_add('revenus_stage_formation_pro', three_previous_months)

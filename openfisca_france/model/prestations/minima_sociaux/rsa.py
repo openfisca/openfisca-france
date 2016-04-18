@@ -243,7 +243,7 @@ class rsa_base_ressources(DatedVariable):
         period = period.this_month
         rsa_base_ressources_prestations_familiales = simulation.calculate('rsa_base_ressources_prestations_familiales', period)
         rsa_base_ressources_minima_sociaux = simulation.calculate('rsa_base_ressources_minima_sociaux', period)
-        rsa_base_ressources_i_holder = simulation.compute('rsa_base_ressources_i', period)
+        rsa_base_ressources_i_holder = simulation.compute('rsa_base_ressources_individu', period)
 
         rsa_base_ressources_i_total = self.sum_by_entity(rsa_base_ressources_i_holder)
         return period, rsa_base_ressources_prestations_familiales + rsa_base_ressources_minima_sociaux + rsa_base_ressources_i_total
@@ -256,7 +256,7 @@ class rsa_base_ressources(DatedVariable):
 
         enfant_i = simulation.calculate('est_enfant_dans_famille', period)
         rsa_enfant_a_charge_i = simulation.calculate('rsa_enfant_a_charge', period)
-        ressources_individuelles_i = simulation.calculate('rsa_base_ressources_i', period) + simulation.calculate('rsa_revenu_activite_i', period)
+        ressources_individuelles_i = simulation.calculate('rsa_base_ressources_individu', period) + simulation.calculate('rsa_revenu_activite_individu', period)
 
         ressources_individuelles = self.sum_by_entity(
             (not_(enfant_i) + rsa_enfant_a_charge_i)  * ressources_individuelles_i
@@ -265,7 +265,7 @@ class rsa_base_ressources(DatedVariable):
         return period, rsa_base_ressources_prestations_familiales + rsa_base_ressources_minima_sociaux + ressources_individuelles
 
 
-class rsa_base_ressources_i(Variable):
+class rsa_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base ressource individuelle du RSA/RMI (hors revenus d'actvité)"
     entity_class = Individus
@@ -290,7 +290,7 @@ class rsa_base_ressources_i(Variable):
         gains_exceptionnels = r.calcule_ressource('gains_exceptionnels')
         dedommagement_victime_amiante = r.calcule_ressource('dedommagement_victime_amiante')
         pensions_invalidite = r.calcule_ressource('pensions_invalidite')
-        rsa_base_ressources_patrimoine_i = r.calcule_ressource('rsa_base_ressources_patrimoine_i')
+        rsa_base_ressources_patrimoine_i = r.calcule_ressource('rsa_base_ressources_patrimoine_individu')
 
         rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', three_previous_months)
         rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', three_previous_months)
@@ -402,10 +402,10 @@ class crds_mini(DatedVariable):
         CRDS sur les minima sociaux
         """
         period = period.this_month
-        rsa_act = simulation.calculate('rsa_act', period)
+        rsa_activite = simulation.calculate('rsa_activite', period)
         taux_crds = simulation.legislation_at(period.start).fam.af.crds
 
-        return period, - taux_crds * rsa_act
+        return period, - taux_crds * rsa_activite
 
 
 class div_ms(Variable):
@@ -459,7 +459,7 @@ class rsa_enfant_a_charge(Variable):
         enfant = simulation.calculate('est_enfant_dans_famille', period)
         age = simulation.calculate('age', period)
         autonomie_financiere = simulation.calculate('autonomie_financiere', period)
-        ressources = simulation.calculate('rsa_base_ressources_i', period) + (1 - P_rsa.pente) * simulation.calculate('rsa_revenu_activite_i', period)
+        ressources = simulation.calculate('rsa_base_ressources_individu', period) + (1 - P_rsa.pente) * simulation.calculate('rsa_revenu_activite_individu', period)
 
 
         # Règle CAF: Si un enfant touche des ressources, et que son impact global (augmentation du montant forfaitaire - ressources prises en compte) fait baisser le montant du RSA, alors il doit être exclu du calcul du RSA.
@@ -541,7 +541,7 @@ class rsa_revenu_activite(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        rsa_revenu_activite_i = simulation.calculate('rsa_revenu_activite_i', period)
+        rsa_revenu_activite_i = simulation.calculate('rsa_revenu_activite_individu', period)
         rsa_enfant_a_charge_i = simulation.calculate('rsa_enfant_a_charge', period)
         enfant_i = simulation.calculate('est_enfant_dans_famille', period)
 
@@ -549,7 +549,7 @@ class rsa_revenu_activite(Variable):
             (not_(enfant_i) + rsa_enfant_a_charge_i)  * rsa_revenu_activite_i
             )
 
-class rsa_revenu_activite_i(Variable):
+class rsa_revenu_activite_individu(Variable):
     column = FloatCol
     label = u"Revenus d'activité du Rsa - Individuel"
     entity_class = Individus
@@ -640,7 +640,7 @@ class rsa(DatedVariable):
         return period, rsa
 
 
-class rsa_act(DatedVariable):
+class rsa_activite(DatedVariable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Familles
@@ -660,7 +660,7 @@ class rsa_act(DatedVariable):
         return period, max_(rsa - rmi, 0)
 
 
-class rsa_act_i(DatedVariable):
+class rsa_activite_individu(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"Revenu de solidarité active - activité au niveau de l'individu"
@@ -669,27 +669,27 @@ class rsa_act_i(DatedVariable):
     @dated_function(start = date(2009, 6, 1))
     def function_2009_(self, simulation, period):
         period = period   # TODO: rentre dans le calcul de la PPE check period !!!
-        rsa_act_holder = simulation.compute('rsa_act', period)
+        rsa_activite_holder = simulation.compute('rsa_activite', period)
         en_couple_holder = simulation.compute('en_couple', period)
         maries_holder = simulation.compute('maries', period)
         quifam = simulation.calculate('quifam', period)
 
         en_couple = self.cast_from_entity_to_roles(en_couple_holder)
         maries = self.cast_from_entity_to_roles(maries_holder)
-        rsa_act = self.cast_from_entity_to_roles(rsa_act_holder)
+        rsa_activite = self.cast_from_entity_to_roles(rsa_activite_holder)
 
         conj = or_(en_couple, maries)
 
-        rsa_act_i = self.zeros()
+        rsa_activite_i = self.zeros()
 
         chef_filter = quifam == 0
-        rsa_act_i[chef_filter] = rsa_act[chef_filter] / (1 + conj[chef_filter])
+        rsa_activite_i[chef_filter] = rsa_activite[chef_filter] / (1 + conj[chef_filter])
         partenaire_filter = quifam == 1
-        rsa_act_i[partenaire_filter] = rsa_act[partenaire_filter] * conj[partenaire_filter] / 2
-        return period, rsa_act_i
+        rsa_activite_i[partenaire_filter] = rsa_activite[partenaire_filter] * conj[partenaire_filter] / 2
+        return period, rsa_activite_i
 
 
-class rsa_base_ressources_patrimoine_i(DatedVariable):
+class rsa_base_ressources_patrimoine_individu(DatedVariable):
     column = FloatCol
     label = u"Base de ressources des revenus du patrimoine du RSA"
     entity_class = Individus
@@ -826,13 +826,13 @@ class rsa_forfait_asf(Variable):
         period = period.this_month
         # Si un ASF est versé, on ne prend pas en compte le montant réel mais un forfait.
         asf_verse = simulation.calculate('asf', period) > 0
-        rsa_forfait_asf_i_holder = simulation.compute('rsa_forfait_asf_i', period)
+        rsa_forfait_asf_i_holder = simulation.compute('rsa_forfait_asf_individu', period)
         montant = self.sum_by_entity(rsa_forfait_asf_i_holder, roles = ENFS)
 
         return period, asf_verse * montant
 
 
-class rsa_forfait_asf_i(Variable):
+class rsa_forfait_asf_individu(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"RSA - Montant individuel de forfait ASF"
@@ -970,7 +970,7 @@ class rsa_non_calculable(Variable):
             simulation.calculate('rsa_majore', period) +
             simulation.calculate('rsa_non_majore', period)
             ) > 0
-        non_calculable_tns_holder = simulation.compute('rsa_non_calculable_tns_i', period)
+        non_calculable_tns_holder = simulation.compute('rsa_non_calculable_tns_individu', period)
         non_calculable_tns_parents = self.split_by_roles(non_calculable_tns_holder, roles = [CHEF, PART])
         non_calculable = select(
             [non_calculable_tns_parents[CHEF] > 0, non_calculable_tns_parents[PART] > 0],
@@ -981,7 +981,7 @@ class rsa_non_calculable(Variable):
         return period, non_calculable
 
 
-class rsa_non_calculable_tns_i(Variable):
+class rsa_non_calculable_tns_individu(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"RSA non calculable du fait de la situation de l'individu. Dans le cas des TNS, l'utilisateur est renvoyé vers son PCG"

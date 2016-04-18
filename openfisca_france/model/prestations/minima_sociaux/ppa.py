@@ -35,13 +35,13 @@ class ppa_eligibilite_etudiants(Variable):
         etudiant = simulation.calculate('etudiant', period) # individu
         plancher_ressource = 169 * P.cotsoc.gen.smic_h_b * P.fam.af.seuil_rev_taux
         def condition_ressource(period):
-            revenu_activite = simulation.calculate('ppa_revenu_activite_i', period)
+            revenu_activite = simulation.calculate('ppa_revenu_activite_individu', period)
             return revenu_activite > plancher_ressource
         m_1 = period.offset(-1, 'month')
         m_2 = period.offset(-2, 'month')
         m_3 = period.offset(-3, 'month')
         condition_etudiant_i = condition_ressource(m_1) * condition_ressource(m_2) * condition_ressource(m_3)
-        condition_non_etudiant_i = simulation.calculate_add('ppa_revenu_activite_i', period.last_3_months) > 0
+        condition_non_etudiant_i = simulation.calculate_add('ppa_revenu_activite_individu', period.last_3_months) > 0
         condition_i = where(etudiant, condition_etudiant_i, condition_non_etudiant_i)
 
         # Au moins une personne de la famille doit être non étudiant ou avoir des ressources > plancher
@@ -90,12 +90,12 @@ class ppa_revenu_activite(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        ppa_revenu_activite_individus = simulation.compute('ppa_revenu_activite_i', period)
+        ppa_revenu_activite_individus = simulation.compute('ppa_revenu_activite_individu', period)
         ppa_revenu_activite = self.sum_by_entity(ppa_revenu_activite_individus)
 
         return period, ppa_revenu_activite
 
-class ppa_revenu_activite_i(Variable):
+class ppa_revenu_activite_individu(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Revenu d'activité pris en compte pour la PPA (Individus) pour un mois"
@@ -133,13 +133,13 @@ class ppa_ressources_hors_activite(Variable):
 
     def function(self, simulation, period, reference_period):
         pf = simulation.calculate('ppa_base_ressources_prestations_familiales', period, extra_params = [reference_period])
-        ressources_hors_activite_individus = simulation.compute('ppa_ressources_hors_activite_i', period)
+        ressources_hors_activite_individus = simulation.compute('ppa_ressources_hors_activite_individu', period)
         ass = simulation.calculate('ass', reference_period)
         ressources_hors_activite = self.sum_by_entity(ressources_hors_activite_individus) + pf + ass
 
         return period, ressources_hors_activite
 
-class ppa_ressources_hors_activite_i(Variable):
+class ppa_ressources_hors_activite_individu(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Revenu hors activité pris en compte pour la PPA (Individus) pour un mois"
@@ -213,7 +213,7 @@ class ppa_bonification(Variable):
         P = simulation.legislation_at(period.start)
         smic_horaire = P.cotsoc.gen.smic_h_b
         rsa_base = P.minim.rmi.rmi
-        revenu_activite = simulation.calculate('ppa_revenu_activite_i', period)
+        revenu_activite = simulation.calculate('ppa_revenu_activite_individu', period)
         seuil_1 = P.minim.ppa.bonification.seuil_1 * smic_horaire
         seuil_2 = P.minim.ppa.bonification.seuil_2 * smic_horaire
         bonification_max = round_(P.minim.ppa.bonification.montant_max * rsa_base)

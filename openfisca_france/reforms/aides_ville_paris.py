@@ -65,7 +65,7 @@ def build_reform(tax_benefit_system):
             pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
             pensions_alimentaires_versees_individu = simulation.calculate(
                 'pensions_alimentaires_versees_individu', period)
-            rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', period)
+            rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_individu', period)
             indemnites_journalieres_imposables = simulation.calculate('indemnites_journalieres_imposables', period)
             indemnites_stage = simulation.calculate('indemnites_stage', period)
             revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', period)

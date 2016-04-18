@@ -18,7 +18,7 @@ class taux_incapacite(Variable):
     label = u"Taux d'incapacité"
 
 
-class asi_aspa_base_ressources_i(Variable):
+class asi_aspa_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base ressources individuelle du minimum vieillesse/ASPA"
     entity_class = Individus
@@ -69,7 +69,7 @@ class asi_aspa_base_ressources_i(Variable):
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
         rsa_base_ressources_patrimoine_i = simulation.calculate_add(
-            'rsa_base_ressources_patrimoine_i', three_previous_months
+            'rsa_base_ressources_patrimoine_individu', three_previous_months
             )
         aah = simulation.calculate_add('aah', three_previous_months)
         legislation = simulation.legislation_at(period.start)
@@ -110,7 +110,7 @@ class asi_aspa_base_ressources(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        asi_aspa_base_ressources_i_holder = simulation.compute('asi_aspa_base_ressources_i', period)
+        asi_aspa_base_ressources_i_holder = simulation.compute('asi_aspa_base_ressources_individu', period)
         ass = simulation.calculate('ass', period)
 
         asi_aspa_base_ressources_i = self.split_by_roles(asi_aspa_base_ressources_i_holder, roles = [CHEF, PART])

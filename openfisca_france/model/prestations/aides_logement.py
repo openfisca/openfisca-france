@@ -62,7 +62,7 @@ class al_nb_personnes_a_charge(Variable):
         def al_nb_adultes_handicapes():
 
             # Variables à valeur pour un individu
-            base_ressources_i = simulation.compute('prestations_familiales_base_ressources_i', period).array
+            base_ressources_i = simulation.compute('prestations_familiales_base_ressources_individu', period).array
             inapte_travail = simulation.compute('inapte_travail', period).array
             taux_incapacite = simulation.compute('taux_incapacite', period).array
             age = age_holder.array
@@ -186,7 +186,7 @@ class aide_logement_base_ressources_defaut(Variable):
         rev_coll = self.sum_by_entity(rev_coll_holder)
         biactivite = simulation.calculate('biactivite', period)
         Pr = simulation.legislation_at(period.start).al.ressources
-        base_ressources_holder = simulation.compute('prestations_familiales_base_ressources_i', period)
+        base_ressources_holder = simulation.compute('prestations_familiales_base_ressources_individu', period)
         base_ressources_parents = self.sum_by_entity(base_ressources_holder, roles = [CHEF, PART])
         abattement_chomage_indemnise_holder = simulation.compute('aide_logement_abattement_chomage_indemnise', period)
         abattement_chomage_indemnise = self.sum_by_entity(abattement_chomage_indemnise_holder, roles = [CHEF, PART])
@@ -595,7 +595,7 @@ class crds_logement(Variable):
         return period, -aide_logement_montant_brut * crds
 
 
-class statut_occupation_logement_i(EntityToPersonColumn):
+class statut_occupation_logement_individu(EntityToPersonColumn):
     entity_class = Individus
     label = u"Statut d'occupation de l'individu"
     variable = Menages.column_by_name['statut_occupation_logement']
@@ -605,7 +605,7 @@ class statut_occupation_logement_famille(PersonToEntityColumn):
     entity_class = Familles
     label = u"Statut d'occupation de la famille"
     role = CHEF
-    variable = Individus.column_by_name['statut_occupation_logement_i']
+    variable = Individus.column_by_name['statut_occupation_logement_individu']
 
 
 class zone_apl(Variable):

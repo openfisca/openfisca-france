@@ -45,7 +45,7 @@ class prestations_familiales_enfant_a_charge(Variable):
         return period, or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
 
 
-class prestations_familiales_base_ressources_i(Variable):
+class prestations_familiales_base_ressources_individu(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Base ressource individuelle des prestations familiales"
@@ -70,7 +70,7 @@ class biactivite(Variable):
         period = period.this_month
         annee_fiscale_n_2 = period.n_2
 
-        base_ressources_i_holder = simulation.compute('prestations_familiales_base_ressources_i', period)
+        base_ressources_i_holder = simulation.compute('prestations_familiales_base_ressources_individu', period)
         base_ressources_i = self.split_by_roles(base_ressources_i_holder, roles = [CHEF, PART])
 
         pfam = simulation.legislation_at(annee_fiscale_n_2.start).fam
@@ -160,7 +160,7 @@ class prestations_familiales_base_ressources(Variable):
         # period_legacy = period.start.offset('first-of', 'month').period('year')
         annee_fiscale_n_2 = period.n_2
 
-        base_ressources_i = simulation.calculate('prestations_familiales_base_ressources_i', period)
+        base_ressources_i = simulation.calculate('prestations_familiales_base_ressources_individu', period)
         enfant_i = simulation.calculate('est_enfant_dans_famille', period)
         enfant_a_charge_i = simulation.calculate('prestations_familiales_enfant_a_charge', period)
         ressources_i = (not_(enfant_i) + enfant_a_charge_i) * base_ressources_i

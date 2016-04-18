@@ -457,7 +457,7 @@ class rvcm_plus_abat(Variable):
         return period, rev_cat_rvcm + rfr_rvcm
 
 
-class maj_cga_i(Variable):
+class maj_cga_individu(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Majoration pour non adhésion à un centre de gestion agréé (pour chaque individu du foyer)"
@@ -498,7 +498,7 @@ class maj_cga(PersonToEntityColumn):
     entity_class = FoyersFiscaux
     label = u"Majoration pour non adhésion à un centre de gestion agréé"
     operation = 'add'
-    variable = maj_cga_i
+    variable = maj_cga_individu
 
 
 class bouclier_rev(Variable):

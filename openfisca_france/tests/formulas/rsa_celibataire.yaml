@@ -10,7 +10,7 @@
       "2014-01": 0
     statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 0
     rsa_base_ressources:
       "2014-01": 0
@@ -42,7 +42,7 @@
       "2014-01": 0
     statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 416.67
     rsa_base_ressources:
       "2014-01": 416.67
@@ -74,7 +74,7 @@
       "2014-01": 0
     statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 833.33
     rsa_base_ressources:
       "2014-01": 833.33
@@ -106,7 +106,7 @@
       "2014-01": 0
     statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 1000
     rsa_base_ressources:
       "2014-01": 1000
@@ -138,7 +138,7 @@
       "2014-01": 0
     statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 1083.33
     rsa_base_ressources:
       "2014-01": 1083.33
@@ -170,7 +170,7 @@
       "2014-01": 0
     statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 1166.67
     rsa_base_ressources:
       "2014-01": 1166.67
@@ -202,7 +202,7 @@
       "2014-01": 0
     statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 1250
     rsa_base_ressources:
       "2014-01": 1250
@@ -234,7 +234,7 @@
       "2014-01": 0
     statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 1666.67
     rsa_base_ressources:
       "2014-01": 1666.67

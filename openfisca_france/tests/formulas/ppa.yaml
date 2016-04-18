@@ -23,7 +23,7 @@
   relative_error_margin: 0.05
   input_variables:
     date_naissance: '1997-01-01' # age > 18 sur le trimestre de référence
-    ppa_revenu_activite_i:
+    ppa_revenu_activite_individu:
       2015-12: 918
       2015-11: 918
       2015-10: 918
@@ -38,7 +38,7 @@
   period: 2016-01
   input_variables:
     date_naissance: '1997-11-15' # age > 18 seulemet sur 1 mois du TR
-    ppa_revenu_activite_i:
+    ppa_revenu_activite_individu:
       2015-12: 918
       2015-11: 918
       2015-10: 918
@@ -409,7 +409,7 @@
   output_variables:
     ppa:
       2016-02: 0
-    ppa_ressources_hors_activite_i:
+    ppa_ressources_hors_activite_individu:
       2016-01: 700
     ppa_ressources_hors_activite:
       2016-01: 1391.40

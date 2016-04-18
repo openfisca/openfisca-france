@@ -93,7 +93,7 @@
       age: 30
       handicap: true
       inapte_travail: true
-      prestations_familiales_base_ressources_i: 11900
+      prestations_familiales_base_ressources_individu: 11900
   output_variables:
     al_nb_personnes_a_charge: 1
 
@@ -110,7 +110,7 @@
       age: 30
       handicap: true
       inapte_travail: true
-      prestations_familiales_base_ressources_i: 12100
+      prestations_familiales_base_ressources_individu: 12100
   output_variables:
     al_nb_personnes_a_charge: 0
 
@@ -124,7 +124,7 @@
       age: 40
     - id: "enfant1"
       age: 19
-      prestations_familiales_base_ressources_i: 12500
+      prestations_familiales_base_ressources_individu: 12500
   output_variables:
     aide_logement_base_ressources: 500
 
@@ -139,6 +139,6 @@
       age: 40
     - id: "enfant1"
       age: 19
-      prestations_familiales_base_ressources_i: 12500
+      prestations_familiales_base_ressources_individu: 12500
   output_variables:
     aide_logement_base_ressources_defaut: 12500 - 10634.36

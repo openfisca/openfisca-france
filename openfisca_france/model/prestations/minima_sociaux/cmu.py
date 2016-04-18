@@ -149,7 +149,7 @@ class acs_plafond(Variable):
         return period, cmu_c_plafond * (1 + P.majoration_plafond_acs)
 
 
-class cmu_base_ressources_i(Variable):
+class cmu_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Individus
@@ -169,7 +169,7 @@ class cmu_base_ressources_i(Variable):
         pensions_alimentaires_versees_individu = simulation.calculate(
             'pensions_alimentaires_versees_individu', previous_year
             )
-        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', previous_year)
+        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_individu', previous_year)
         aah = simulation.calculate_add('aah', previous_year)
         indemnites_journalieres = simulation.calculate('indemnites_journalieres', previous_year)
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
@@ -239,7 +239,7 @@ class cmu_base_ressources(Variable):
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
         cmu_forfait_logement_al = simulation.calculate('cmu_forfait_logement_al', period)
         age_holder = simulation.compute('age', period)
-        cmu_base_ressources_i_holder = simulation.compute('cmu_base_ressources_i', period)
+        cmu_base_ressources_i_holder = simulation.compute('cmu_base_ressources_individu', period)
         P = simulation.legislation_at(period.start).cmu
 
         cmu_br_i_par = self.split_by_roles(cmu_base_ressources_i_holder, roles = [CHEF, PART])

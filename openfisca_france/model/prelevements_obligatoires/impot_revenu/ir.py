@@ -398,7 +398,7 @@ class revenu_activite_non_salariee(Variable):
 
     def function(self, simulation, period):
         period = period.this_year
-        rpns_i = simulation.calculate('rpns_i', period)
+        rpns_i = simulation.calculate('rpns_individu', period)
 
         return period, rpns_i # TODO: vérifier cette définition
 
@@ -849,7 +849,7 @@ class rev_cat_rpns(Variable):
         period = period.this_year
         nbnc_pvce_holder = simulation.compute('nbnc_pvce', period)
         mbic_mvct = simulation.calculate('mbic_mvct', period)
-        rpns_i_holder = simulation.compute('rpns_i', period)
+        rpns_i_holder = simulation.compute('rpns_individu', period)
         defrag = simulation.calculate('defrag', period)
         defacc = simulation.calculate('defacc', period)
         defncn = simulation.calculate('defncn', period)
@@ -2377,7 +2377,7 @@ class rpns_mvlt(Variable):
         return period, mbic_mvlt + macc_mvlt + mbnc_mvlt + mncn_mvlt
 
 
-class rpns_i(Variable):
+class rpns_individu(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"rpns_i"
@@ -2828,7 +2828,7 @@ class ppe_base(Variable):
         return period, ppe_rev / (ppe_coef_tp + (ppe_coef_tp == 0)) * ppe_coef
 
 
-class ppe_elig_i(Variable):
+class ppe_elig_individu(Variable):
     column = BoolCol(default = False)
     entity_class = Individus
     label = u"ppe_elig_i"
@@ -2860,7 +2860,7 @@ class ppe_brute(Variable):
         '''
         period = period.this_year
         ppe_elig = simulation.calculate('ppe_elig', period)
-        ppe_elig_i_holder = simulation.compute('ppe_elig_i', period)
+        ppe_elig_i_holder = simulation.compute('ppe_elig_individu', period)
         ppe_rev_holder = simulation.compute('ppe_rev', period)
         ppe_base_holder = simulation.compute('ppe_base', period)
         ppe_coef = simulation.calculate('ppe_coef', period)
@@ -2969,7 +2969,7 @@ class ppe(DatedVariable):
         """
         period = period.this_year
         ppe_brute = simulation.calculate('ppe_brute', period)
-        rsa_act_i_holder = simulation.compute('rsa_act_i', period)
+        rsa_act_i_holder = simulation.compute('rsa_activite_individu', period)
 
         # TODO: les foyers qui paient l'ISF n'ont pas le droit à la PPE
         rsa_act_i = self.split_by_roles(rsa_act_i_holder, roles = [VOUS, CONJ])
