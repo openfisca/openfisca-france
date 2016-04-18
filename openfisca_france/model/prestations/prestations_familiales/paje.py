@@ -6,6 +6,7 @@ from numpy import (round, floor, maximum as max_, minimum as min_, logical_not a
 
 from ...base import *  # noqa analysis:ignore
 from .base_ressource import nb_enf, age_en_mois_benjamin
+from openfisca_core.periods import Instant
 
 
 # Prestations familiales
@@ -69,7 +70,10 @@ class paje_base(Variable):
         parent_isole = simulation.calculate('isol', period)
         nombre_enfants = simulation.calculate('af_nbenf', period)
         pfam = simulation.legislation_at(period.start).fam
-        montant_taux_plein = pfam.af.bmaf * pfam.paje.base.taux
+
+        date_gel_paje = Instant((2013, 04, 01)) # Le montant de la PAJE est gelé depuis avril 2013.
+        bmaf = pfam.af.bmaf if period.start < date_gel_paje else simulation.legislation_at(date_gel_paje).fam.af.bmaf
+        montant_taux_plein = bmaf * pfam.paje.base.taux
 
         def plafond_avant_avril_2014():
             plafond_de_base = pfam.paje.base.avant_2014.plaf
@@ -199,7 +203,8 @@ class paje_naissance(Variable):
         # age = self.split_by_roles(age_holder, roles = ENFS)
         age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
 
-        bmaf = P.af.bmaf
+        date_gel_paje = Instant((2013, 04, 01)) # Le montant de la PAJE est gelé depuis avril 2013.
+        bmaf = P.af.bmaf if period.start < date_gel_paje else simulation.legislation_at(date_gel_paje).fam.af.bmaf
         nais_prime = round(100 * P.paje.nais.prime_tx * bmaf) / 100
         # Versée au 7e mois de grossesse dans l'année
         # donc les enfants concernés sont les enfants qui ont -2 mois

@@ -49,7 +49,7 @@ options_by_dir = collections.OrderedDict((
         os.path.abspath(os.path.join(os.path.dirname(__file__), 'mes-aides.gouv.fr')),
         dict(
             calculate_output = True,
-            default_absolute_error_margin = 0.007,
+            default_relative_error_margin = 0.02,
             reforms = ['aides_ville_paris'],
             ),
         ),
@@ -245,7 +245,8 @@ def test(force = False, name_filter = None, options_by_path = None):
             for test in tests:
                 test, error = scenarios.make_json_or_python_to_test(
                     tax_benefit_system = tax_benefit_system_for_path,
-                    default_absolute_error_margin = options['default_absolute_error_margin'],
+                    default_absolute_error_margin = options.get('default_absolute_error_margin'),
+                    default_relative_error_margin = options.get('default_relative_error_margin'),
                     )(test)
                 if error is not None:
                     embedding_error = conv.embed_error(test, u'errors', error)

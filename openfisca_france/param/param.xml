@@ -3155,7 +3155,8 @@
         <VALUE deb="1991-09-24" fin="2002-03-31" valeur="0" />
       </CODE>
       <CODE code="cpl6" description="Complément de catégorie 6 (majoration pour assistance d’une tierce personne invalide de 3e catégorie) " format="float" type="monetary">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur="1096.50" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="1104.18" />
+        <VALUE deb="2014-04-01" fin="2016-03-31" valeur="1103.08" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="1096.50" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="1082.43" />
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="1060.17" />
@@ -3210,7 +3211,7 @@
         <VALUE deb="2003-07-01" fin="2014-03-31" valeur="20" />
       </CODE>
       <CODE code="bmaf" description="Base mensuelle des allocations familiales" format="float" type="monetary">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="406.21" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="406.62" />
         <VALUE deb="2014-04-01" fin="2016-03-31" valeur="406.21" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="403.79" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="399" />
@@ -3489,14 +3490,14 @@
       </CODE>
     </NODE>
     <NODE code="asf" description="Allocation de soutien familial">
-      <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.2476" />
+      <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée, en pourcentage de la BMAF" format="percent">
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.2589" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.2476" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2363" />
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.225" />
       </CODE>
       <CODE code="taux2" description="Orphelin (de père et de mère), ou situation assimilée" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.33" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.3450" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.33" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.315" />
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.3" />
@@ -3574,13 +3575,13 @@
         <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.2379" />
       </CODE>
       <CODE code="tx_majore" description="Taux du complément familial majoré" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.4999" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.5416" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.4999" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.4582" />
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.4165" />
       </CODE>
       <CODE code="tx_majore_dom" description="Taux du complément familial majoré dans les DOM" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.2855" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.3093" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.2855" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2617" />
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.2379" />
@@ -3858,11 +3859,11 @@
         </CODE>
       </NODE>
       <NODE code="nais" description="Prime à la naissance">
-        <CODE code="adopt" description="facteur multitplicatif de la prime à l'adoption" format="percent">
+        <CODE code="adopt" description="facteur multitplicatif de la prime à l'adoption, en pourcentage de la BMAF" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="2" />
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="2" />
         </CODE>
-        <CODE code="prime_tx" description="Prime à la naissance et à l'adoption" format="percent">
+        <CODE code="prime_tx" description="Prime à la naissance et à l'adoption, en pourcentage de la BMAF" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="2.2975" />
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="2.2975" />
         </CODE>
@@ -6777,7 +6778,8 @@
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="200" />
       </CODE>
       <CODE code="rmi" description="Rsa socle" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="524.16" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="524.68" />
+        <VALUE deb="2016-01-01" fin="2016-03-31" valeur="524.16" />
         <VALUE deb="2015-09-01" fin="2015-12-31" valeur="524.16" />
         <VALUE deb="2015-01-01" fin="2015-08-31" valeur="513.88" />
         <VALUE deb="2014-09-01" fin="2014-12-31" valeur="509.30" />
