@@ -13,7 +13,7 @@ period: "month:2015-04"
 individus:
   age: 24
   age_en_mois: 294
-  birth: "1990-10-10"
+  date_naissance: "1990-10-10"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -21,7 +21,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   pensions_alimentaires_versees_individu:
     2013: 4800
     2014-04: 400
@@ -358,7 +358,7 @@ menages:
   enfants:
   loyer: 700
   personne_de_reference: 55364a9b01d81a812d2dfa62
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   acs: 0
   cmu_c: true

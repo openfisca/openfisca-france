@@ -1,18 +1,16 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 0"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     # salaire_net: 0
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     aide_logement:
       "2014-01": 0
-    rmi_nbp:
-      "2014-01": 1
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 0
     rsa_base_ressources:
       "2014-01": 0
@@ -32,21 +30,19 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 5000"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     salaire_net:
       2012: 5000
       2013: 5000
       2014: 5000
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     aide_logement:
       "2014-01": 0
-    rmi_nbp:
-      "2014-01": 1
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 416.67
     rsa_base_ressources:
       "2014-01": 416.67
@@ -66,21 +62,19 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 10000"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     salaire_net:
       2012: 10000
       2013: 10000
       2014: 10000
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     aide_logement:
       "2014-01": 0
-    rmi_nbp:
-      "2014-01": 1
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 833.33
     rsa_base_ressources:
       "2014-01": 833.33
@@ -100,21 +94,19 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 12000"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     salaire_net:
       2012: 12000
       2013: 12000
       2014: 12000
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     aide_logement:
       "2014-01": 0
-    rmi_nbp:
-      "2014-01": 1
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 1000
     rsa_base_ressources:
       "2014-01": 1000
@@ -134,21 +126,19 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 13000"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     salaire_net:
       2012: 13000
       2013: 13000
       2014: 13000
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     aide_logement:
       "2014-01": 0
-    rmi_nbp:
-      "2014-01": 1
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 1083.33
     rsa_base_ressources:
       "2014-01": 1083.33
@@ -168,21 +158,19 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 14000"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     salaire_net:
       2012: 14000
       2013: 14000
       2014: 14000
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     aide_logement:
       "2014-01": 0
-    rmi_nbp:
-      "2014-01": 1
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 1166.67
     rsa_base_ressources:
       "2014-01": 1166.67
@@ -202,21 +190,19 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 15000"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     salaire_net:
       2012: 15000
       2013: 15000
       2014: 15000
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     aide_logement:
       "2014-01": 0
-    rmi_nbp:
-      "2014-01": 1
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 1250
     rsa_base_ressources:
       "2014-01": 1250
@@ -236,21 +222,19 @@
 - period: "2014"
   name: "RSA célibataire, salaire_net = 20000"
   input_variables:
-    birth: "1985-01-01"  # 29 ans
+    date_naissance: "1985-01-01"  # 29 ans
     salaire_net:
       2012: 20000
       2013: 20000
       2014: 20000
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     aide_logement:
       "2014-01": 0
-    rmi_nbp:
-      "2014-01": 1
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": 1666.67
     rsa_base_ressources:
       "2014-01": 1666.67

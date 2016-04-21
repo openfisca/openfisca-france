@@ -19,7 +19,7 @@ def test_decomposition(print_decomposition = False):
             ratio_alternants = .025,
             salaire_de_base = {"2013": 12 * 3000},
             taille_entreprise = 3,
-            type_sal = 0,
+            categorie_salarie = 0,
             ),
         menage = dict(
             zone_apl = 1,

@@ -20,8 +20,8 @@ class ass(Variable):
         period = period.this_month
 
         ass_base_ressources = simulation.calculate('ass_base_ressources', period)
-        ass_eligibilite_i_holder = simulation.compute('ass_eligibilite_i', period)
-        concub = simulation.calculate('concub', period)
+        ass_eligibilite_i_holder = simulation.compute('ass_eligibilite_individu', period)
+        en_couple = simulation.calculate('en_couple', period)
         ass_params = simulation.legislation_at(period.start).minim.ass
 
         ass_eligibilite_i = self.split_by_roles(ass_eligibilite_i_holder, roles = [CHEF, PART])
@@ -29,7 +29,7 @@ class ass(Variable):
         elig = or_(ass_eligibilite_i[CHEF], ass_eligibilite_i[PART])
         montant_journalier = ass_params.montant_plein
         montant_mensuel = 30 * montant_journalier
-        plafond_mensuel = montant_journalier * (ass_params.plaf_seul * not_(concub) + ass_params.plaf_coup * concub)
+        plafond_mensuel = montant_journalier * (ass_params.plaf_seul * not_(en_couple) + ass_params.plaf_coup * en_couple)
         revenus = ass_base_ressources / 12
 
         ass = min_(montant_mensuel, plafond_mensuel - revenus)
@@ -47,7 +47,7 @@ class ass_base_ressources(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        ass_base_ressources_i_holder = simulation.compute('ass_base_ressources_i', period)
+        ass_base_ressources_i_holder = simulation.compute('ass_base_ressources_individu', period)
         ass_base_ressources_demandeur = self.filter_role(ass_base_ressources_i_holder, role = CHEF)
         ass_base_ressources_conjoint_holder = simulation.compute('ass_base_ressources_conjoint', period)
         ass_base_ressources_conjoint = self.filter_role(ass_base_ressources_conjoint_holder, role = PART)
@@ -56,7 +56,7 @@ class ass_base_ressources(Variable):
         return period, result
 
 
-class ass_base_ressources_i(Variable):
+class ass_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle de l'ASS"
     entity_class = Individus
@@ -168,7 +168,7 @@ class ass_base_ressources_conjoint(Variable):
         return period, result
 
 
-class ass_eligibilite_i(Variable):
+class ass_eligibilite_individu(Variable):
     column = BoolCol
     label = u"Éligibilité individuelle à l'ASS"
     entity_class = Individus

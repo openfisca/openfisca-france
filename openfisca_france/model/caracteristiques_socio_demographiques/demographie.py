@@ -11,7 +11,7 @@ build_column('quimen', EnumCol(QUIMEN, is_permanent = True))
 build_column('quifoy', EnumCol(QUIFOY, is_permanent = True))
 build_column('quifam', EnumCol(QUIFAM, is_permanent = True))
 
-build_column('birth', DateCol(default = date(1970, 1, 1), is_permanent = True, label = u"Date de naissance"))
+build_column('date_naissance', DateCol(default = date(1970, 1, 1), is_permanent = True, label = u"Date de naissance"))
 
 
 build_column('adoption', BoolCol(entity = "ind", label = u"Enfant adopté"))
@@ -90,13 +90,17 @@ build_column('caseW', BoolCol(label = u"Vous ou votre conjoint (même s'il est d
                   entity = 'foy',
                   cerfa_field = u'W'))
 
-# pour inv, il faut que tu regardes si tu es d'accord et si c'est bien la bonne case,
-# la case P exsite déjà plus bas ligne 339 sous le nom caseP
-build_column('invalide', BoolCol(label = u'Invalide'))  # TODO: cerfa_field
+class handicap(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label= u"Individu en situation de handicap"
 
+class invalidite(Variable):
+  column = BoolCol
+  entity_class = Individus
+  label=u"Individu titulaire d'une carte d'invalidité"
 
-
-class nb_par(Variable):
+class nb_parents(Variable):
     column = PeriodSizeIndependentIntCol(default = 0)
     entity_class = Familles
     label = u"Nombre d'adultes (parents) dans la famille"
@@ -127,34 +131,20 @@ class maries(Variable):
         return period, statmarit == 1
 
 
-class concub(Variable):
-    column = BoolCol(default = False)
+class en_couple(Variable):
+    column = BoolCol
     entity_class = Familles
     label = u"Indicatrice de vie en couple"
 
     def function(self, simulation, period):
         '''
-        concub = 1 si vie en couple TODO: pas très heureux
+        en_couple = 1 si vie en couple TODO: pas très heureux
         '''
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        nb_par = simulation.calculate('nb_par', period)
+        nb_parents = simulation.calculate('nb_parents', period)
 
-        # TODO: concub n'est pas égal à 1 pour les conjoints
-        return period, nb_par == 2
-
-
-class isol(Variable):
-    column = BoolCol(default = False)
-    entity_class = Familles
-    label = u"Parent (s'il y a lieu) isolé"
-
-    def function(self, simulation, period):
-        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
-        # jour, sans changer la période.
-        nb_par = simulation.calculate('nb_par', period)
-
-        return period, nb_par == 1
+        return period, nb_parents == 2
 
 
 class est_enfant_dans_famille(Variable):

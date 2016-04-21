@@ -25,7 +25,7 @@ period: "month:2015-01"
 individus:
   age: 34
   age_en_mois: 412
-  birth: "1980-08-12"
+  date_naissance: "1980-08-12"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -33,7 +33,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -302,6 +302,6 @@ menages:
   enfants:
   loyer: 500
   personne_de_reference: 54abaf5ed20bc238169b42a1
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   als: 272.16

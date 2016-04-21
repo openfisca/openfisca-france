@@ -24,11 +24,11 @@ def test_cesthra_invalidee():
                 ),
             ],
         period = period,
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
+        parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
+        parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
         enfants = [
-            dict(birth = datetime.date(year - 9, 1, 1)),
-            dict(birth = datetime.date(year - 9, 1, 1)),
+            dict(date_naissance = datetime.date(year - 9, 1, 1)),
+            dict(date_naissance = datetime.date(year - 9, 1, 1)),
             ],
         )
 

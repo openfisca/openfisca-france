@@ -322,9 +322,9 @@ class revetproduits(Variable):
         http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8342/fichedescriptiveformulaire_8342.pdf
         '''
         period = period.this_year
-        salcho_imp_holder = simulation.compute('salcho_imp', period)
-        pen_net_holder = simulation.compute('pen_net', period)
-        rto_net = simulation.calculate('rto_net', period)
+        salcho_imp_holder = simulation.compute('revenu_assimile_salaire_apres_abattements', period)
+        pen_net_holder = simulation.compute('revenu_assimile_pension_apres_abattements', period)
+        retraite_titre_onereux_net = simulation.calculate('retraite_titre_onereux_net', period)
         rev_cap_bar = simulation.calculate('rev_cap_bar', period)
         fon = simulation.calculate('fon', period)
         ric_holder = simulation.compute('ric', period)
@@ -335,18 +335,18 @@ class revetproduits(Variable):
         imp_lib = simulation.calculate('imp_lib', period)
         P = simulation.legislation_at(period.start).isf.plafonnement
 
-        pen_net = self.sum_by_entity(pen_net_holder)
+        revenu_assimile_pension_apres_abattements = self.sum_by_entity(pen_net_holder)
         rag = self.sum_by_entity(rag_holder)
         ric = self.sum_by_entity(ric_holder)
         rpns_exon = self.sum_by_entity(rpns_exon_holder)
         rpns_pvct = self.sum_by_entity(rpns_pvct_holder)
-        salcho_imp = self.sum_by_entity(salcho_imp_holder)
+        revenu_assimile_salaire_apres_abattements = self.sum_by_entity(salcho_imp_holder)
 
         # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO:
         # # def rev_exon et rev_etranger dans data? ##
         pt = max_(
             0,
-            salcho_imp + pen_net + rto_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon +
+            revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + retraite_titre_onereux_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon +
             rpns_pvct + imp_lib + fon
             )
         return period, pt * P.taux
@@ -457,7 +457,7 @@ class rvcm_plus_abat(Variable):
         return period, rev_cat_rvcm + rfr_rvcm
 
 
-class maj_cga_i(Variable):
+class maj_cga_individu(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Majoration pour non adhésion à un centre de gestion agréé (pour chaque individu du foyer)"
@@ -498,7 +498,7 @@ class maj_cga(PersonToEntityColumn):
     entity_class = FoyersFiscaux
     label = u"Majoration pour non adhésion à un centre de gestion agréé"
     operation = 'add'
-    variable = maj_cga_i
+    variable = maj_cga_individu
 
 
 class bouclier_rev(Variable):

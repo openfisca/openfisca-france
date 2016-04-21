@@ -34,7 +34,7 @@ build_column(
     ),
 )
 
-class statut_occupation(Variable):
+class statut_occupation_logement(Variable):
     column = EnumCol(
         enum = Enum([
             u"Non renseigné",
@@ -48,7 +48,7 @@ class statut_occupation(Variable):
             u"Sans domicile stable"])
     )
     entity_class = Menages
-    label = u"Statut d'occupation"
+    label = u"Statut d'occupation du logement"
     set_input = set_input_dispatch_by_period
 
 

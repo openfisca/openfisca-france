@@ -4,7 +4,7 @@
   absolute_error_margin: 10
   input_variables:
     asi: 600
-    asi_elig: 'True'
+    asi_eligibilite: 'True'
     aide_logement_montant: 230
   output_variables:
     caah: 179.3  # 1 * max(922.93 - 743.62, 0)

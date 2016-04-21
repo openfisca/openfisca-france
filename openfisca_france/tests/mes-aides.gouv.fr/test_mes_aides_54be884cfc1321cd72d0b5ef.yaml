@@ -41,7 +41,7 @@ individus:
     year:2014-01: 2400
   age: 35
   age_en_mois: 426
-  birth: "1979-07-12"
+  date_naissance: "1979-07-12"
   chomage_imposable:
     2013: 0
   epargne_non_remuneree:
@@ -51,7 +51,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 1
+  handicap: 1
   pensions_alimentaires_percues:
     2013: 0
   retraite_imposable:
@@ -377,6 +377,6 @@ menages:
   enfants:
   loyer: 750
   personne_de_reference: 54be86a5d337b5d372377c27
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 309.56

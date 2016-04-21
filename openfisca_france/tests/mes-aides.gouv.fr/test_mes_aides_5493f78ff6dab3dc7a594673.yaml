@@ -15,7 +15,7 @@ individus:
     age: 42
     age_en_mois: 515
     ass_precondition_remplie: true
-    birth: "1972-01-09"
+    date_naissance: "1972-01-09"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -23,7 +23,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -33,7 +33,7 @@ individus:
     age: 43
     age_en_mois: 524
     ass_precondition_remplie: true
-    birth: "1971-04-02"
+    date_naissance: "1971-04-02"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -41,7 +41,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -315,6 +315,6 @@ menages:
   enfants:
   loyer: 400
   personne_de_reference: 5493f63b297947e07a4c8ace
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 329

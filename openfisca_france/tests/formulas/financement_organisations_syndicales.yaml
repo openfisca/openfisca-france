@@ -3,16 +3,16 @@
   individus:
     - id: "non cadre"
       salaire_de_base: 2000
-      type_sal: 0
+      categorie_salarie: 0
     - id: "cadre"
       salaire_de_base: 3000
-      type_sal: 1
+      categorie_salarie: 1
     - id: "contractuel fonction publique"
       salaire_de_base: 2000
-      type_sal: 6
+      categorie_salarie: 6
     - id: "titualaire fonction publique"
       salaire_de_base: 2000
-      type_sal: 3
+      categorie_salarie: 3
   output_variables:
 
   output_variables:

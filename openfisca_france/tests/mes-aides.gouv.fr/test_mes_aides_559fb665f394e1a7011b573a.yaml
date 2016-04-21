@@ -12,7 +12,7 @@ individus:
 - a_charge_fiscale: true
   age: 65
   age_en_mois: 780
-  birth: '1950-06-27'
+  date_naissance: '1950-06-27'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
@@ -21,7 +21,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
   tns_micro_entreprise_type_activite: bic
@@ -32,7 +32,7 @@ individus:
 - a_charge_fiscale: true
   age: 33
   age_en_mois: 404
-  birth: '1981-10-11'
+  date_naissance: '1981-10-11'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
@@ -41,7 +41,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 1
+  handicap: 1
   taux_incapacite: 0.9
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
@@ -321,7 +321,7 @@ menages:
   loyer: 758
   parisien: false
   personne_de_reference: 559fb566ecfc1e52013e3e1d
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 422.59
   rsa_non_majore: 0

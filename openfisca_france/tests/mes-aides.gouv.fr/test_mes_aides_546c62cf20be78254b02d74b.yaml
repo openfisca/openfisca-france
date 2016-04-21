@@ -8,7 +8,7 @@ individus:
   age: 28
   age_en_mois: 346
   ass_precondition_remplie: false
-  birth: "1986-01-01"
+  date_naissance: "1986-01-01"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -33,7 +33,7 @@ individus:
     year:2013-11: 2400
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -300,6 +300,6 @@ menages:
   depcom: 75120
   enfants:
   personne_de_reference: 546c61f120be78254b02d73d
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 372

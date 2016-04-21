@@ -9,7 +9,7 @@ individus:
   age: 55
   age_en_mois: 665
   ass_precondition_remplie: false
-  birth: '1960-01-01'
+  date_naissance: '1960-01-01'
   chomage_imposable:
     '2013': 100000
   epargne_non_remuneree:
@@ -19,7 +19,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   pensions_alimentaires_percues:
     '2013': 0
   retraite_imposable:
@@ -35,7 +35,7 @@ individus:
   age: 55
   age_en_mois: 665
   ass_precondition_remplie: false
-  birth: '1960-01-01'
+  date_naissance: '1960-01-01'
   chomage_imposable:
     '2013': 0
   epargne_non_remuneree:
@@ -45,7 +45,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   pensions_alimentaires_percues:
     '2013': 0
   retraite_imposable:
@@ -331,7 +331,7 @@ menages:
   enfants: []
   loyer: 400
   personne_de_reference: 5592b4049e2a9d0330e7a5b5
-  statut_occupation: 5
+  statut_occupation_logement: 5
 output_variables:
   aide_logement: 284
   cmu_c: true

@@ -11,7 +11,7 @@ individus:
 - a_charge_fiscale: true
   age: 23
   age_en_mois: 287
-  birth: '1991-09-13'
+  date_naissance: '1991-09-13'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
@@ -20,7 +20,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     '2013': 2.8421709430404007e-13
     2014-09: -202.7065527065527
@@ -79,7 +79,7 @@ individus:
 - a_charge_fiscale: true
   age: 23
   age_en_mois: 287
-  birth: '1991-09-13'
+  date_naissance: '1991-09-13'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
@@ -88,7 +88,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   scolarite: 1
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -365,6 +365,6 @@ menages:
   parisien: false
   participation_frais: false
   personne_de_reference: 55e6c292dc46199d042bb6e8
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 590

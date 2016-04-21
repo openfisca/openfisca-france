@@ -10,7 +10,7 @@ period: "month:2014-12"
 individus:
   - age: 40
     age_en_mois: 491
-    birth: "1974-01-01"
+    date_naissance: "1974-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -18,7 +18,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2012: 26987.179487179492
       2013-12: 2143.874643874644
@@ -77,7 +77,7 @@ individus:
       2012-01: 0
   - age: 40
     age_en_mois: 491
-    birth: "1974-01-01"
+    date_naissance: "1974-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -85,14 +85,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 14
     age_en_mois: 179
-    birth: "2000-01-01"
+    date_naissance: "2000-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -100,7 +100,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -375,7 +375,7 @@ menages:
   enfants: 549069356e7c895302132f28
   loyer: 100
   personne_de_reference: 549069356e7c895302132f2a
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   acs: 0
   cmu_c: false

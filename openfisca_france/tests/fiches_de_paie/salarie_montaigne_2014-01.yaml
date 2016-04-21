@@ -31,7 +31,7 @@ input_variables:
   taux_accident_travail: 0
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  type_sal: 1  # cadre
+  categorie_salarie: 1  # cadre
   volume_jours_ijss: 0
 output_variables:
 

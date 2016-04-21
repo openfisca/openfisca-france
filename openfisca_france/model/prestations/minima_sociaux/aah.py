@@ -79,7 +79,7 @@ class aah_base_ressources_eval_trimestrielle(Variable):
         pensions_alimentaires_percues = simulation.calculate_add('pensions_alimentaires_percues', three_previous_months)
         pensions_alimentaires_versees_individu = simulation.calculate_add(
             'pensions_alimentaires_versees_individu', three_previous_months)
-        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', three_previous_months)
+        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_individu', three_previous_months)
         indemnites_journalieres_imposables = simulation.calculate_add('indemnites_journalieres_imposables', three_previous_months)
         indemnites_stage = simulation.calculate_add('indemnites_stage', three_previous_months)
         revenus_stage_formation_pro = simulation.calculate_add('revenus_stage_formation_pro', three_previous_months)
@@ -120,7 +120,7 @@ class aah_base_ressources_eval_annuelle(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        return period, simulation.calculate('rev_act', period.n_2) + simulation.calculate('rev_pen', period.n_2)
+        return period, simulation.calculate('revenu_activite', period.n_2) + simulation.calculate('revenu_assimile_pension', period.n_2)
 
 
 class aah_eligible(Variable):
@@ -163,12 +163,12 @@ class aah_eligible(Variable):
 
         taux_incapacite = simulation.calculate('taux_incapacite', period)
         age = simulation.calculate('age', period)
-        smic55 = simulation.calculate('smic55', period)
+        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
 
         eligible_aah = (
             (taux_incapacite >= 0.5) *
             (age <= law.minim.aah.age_legal_retraite) *
-            ((age >= law.fam.aeeh.age) + ((age >= 16) * (smic55)))
+            ((age >= law.fam.aeeh.age) + ((age >= 16) * (autonomie_financiere)))
         )
 
         return period, eligible_aah
@@ -210,9 +210,9 @@ class aah_base(Variable):
 
         def montant_aah():
             aah_base_ressources = simulation.calculate('aah_base_ressources', period)
-            concub = simulation.calculate('concub', period)
+            en_couple = simulation.calculate('en_couple', period)
             af_nbenf = simulation.calculate('af_nbenf', period)
-            plaf_ress_aah = 12 * law.minim.aah.montant * (1 + concub + law.minim.aah.tx_plaf_supp * af_nbenf)
+            plaf_ress_aah = 12 * law.minim.aah.montant * (1 + en_couple + law.minim.aah.tx_plaf_supp * af_nbenf)
             return max_(plaf_ress_aah - aah_base_ressources, 0) / 12
 
         # Le montant est à valeur pour une famille, il faut le caster pour l'individu
@@ -299,10 +299,10 @@ class caah(DatedVariable):
         aah_montant = law.minim.aah.montant
 
         aah = simulation.calculate('aah', period)
-        asi_elig = simulation.calculate('asi_elig', period)
+        asi_eligibilite = simulation.calculate('asi_eligibilite', period)
         asi_holder = simulation.compute('asi', period)  # montant asi de la famille
         asi = self.cast_from_entity_to_roles(asi_holder)  # attribué à tous les membres de la famille
-        benef_asi = (asi_elig * (asi > 0))
+        benef_asi = (asi_eligibilite * (asi > 0))
         al_holder = simulation.compute('aide_logement_montant', period)  # montant allocs logement de la famille
         al = self.cast_from_entity_to_roles(al_holder)  # attribué à tout individu membre de la famille
 
@@ -327,10 +327,10 @@ class caah(DatedVariable):
         aah_montant = law.minim.aah.montant
 
         aah = simulation.calculate('aah', period)
-        asi_elig = simulation.calculate('asi_elig', period)
+        asi_eligibilite = simulation.calculate('asi_eligibilite', period)
         asi_holder = simulation.compute('asi', period)  # montant asi de la famille
         asi = self.cast_from_entity_to_roles(asi_holder)  # attribué à tous les membres de la famille
-        benef_asi = (asi_elig * (asi > 0))
+        benef_asi = (asi_eligibilite * (asi > 0))
         al_holder = simulation.compute('aide_logement_montant', period)  # montant allocs logement de la famille
         al = self.cast_from_entity_to_roles(al_holder)  # attribué à tout individu membre de la famille
 

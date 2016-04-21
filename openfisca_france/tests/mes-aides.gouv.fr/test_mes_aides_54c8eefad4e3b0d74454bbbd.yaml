@@ -11,7 +11,7 @@ period: "month:2015-01"
 individus:
   age: 34
   age_en_mois: 413
-  birth: "1980-08-12"
+  date_naissance: "1980-08-12"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -19,7 +19,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2013: 11025.641025641024
     2014-01: 1225.071225071225
@@ -336,7 +336,7 @@ menages:
   enfants:
   loyer: 50
   personne_de_reference: 54c8ee7be45751d544f05fb4
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   cmu_c: true
   rsa: 513.88

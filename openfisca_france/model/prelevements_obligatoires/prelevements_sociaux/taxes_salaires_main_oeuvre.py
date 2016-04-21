@@ -178,7 +178,7 @@ class financement_organisations_syndicales(DatedVariable):
 
     @dated_function(date(2015, 1, 1))
     def function(self, simulation, period):
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         cotisation = apply_bareme(
             simulation,
             period,
@@ -186,7 +186,7 @@ class financement_organisations_syndicales(DatedVariable):
             bareme_name = 'financement_organisations_syndicales',
             variable_name = self.__class__.__name__,
             )
-        return period, cotisation * or_(type_sal <= 1, type_sal == 6)
+        return period, cotisation * or_(categorie_salarie <= 1, categorie_salarie == 6)
 
 
 class formation_professionnelle(Variable):
@@ -304,12 +304,12 @@ class taux_versement_transport(Variable):
         period = period.start.period(u'month').offset('first-of')
         depcom_entreprise = simulation.calculate('depcom_entreprise', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
 
         seuil_effectif = simulation.legislation_at(period.start).cotsoc.versement_transport.seuil_effectif
 
         preload_taux_versement_transport()
-        public = (type_sal >= 2)
+        public = (categorie_salarie >= 2)
         default_value = 0.0
         taux_aot = fromiter(
             (

@@ -14,7 +14,7 @@ individus:
   age: 44
   age_en_mois: 535
   ass_precondition_remplie: false
-  birth: "1970-12-02"
+  date_naissance: "1970-12-02"
   chomage_imposable:
     2013: 0
   chomage_brut:
@@ -56,7 +56,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   pensions_alimentaires_percues:
     2013: 0
   retraite_imposable:
@@ -334,6 +334,6 @@ menages:
   enfants:
   loyer: 438
   personne_de_reference: 559d1dd94aea99cb4c5a3da0
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 77

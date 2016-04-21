@@ -1024,7 +1024,7 @@ class tns_autres_revenus_type_activite(Variable):
     is_permanent = True
     label = u"Type d'activité de l'entreprise non AE ni ME"
 
-class tns_employe(Variable):
+class tns_avec_employe(Variable):
     column = BoolCol
     entity_class = Individus
     set_input = set_input_dispatch_by_period

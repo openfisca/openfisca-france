@@ -28,7 +28,7 @@ period: "month:2015-02"
 individus:
   age: 22
   age_en_mois: 273
-  birth: "1992-05-17"
+  date_naissance: "1992-05-17"
   chomage_imposable:
     2013: 0
   epargne_non_remuneree:
@@ -38,7 +38,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   pensions_alimentaires_percues:
     2013: 0
   retraite_imposable:
@@ -363,6 +363,6 @@ menages:
   enfants:
   loyer: 540
   personne_de_reference: 54e4cd8f70a3f65f40b60d48
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 309.56

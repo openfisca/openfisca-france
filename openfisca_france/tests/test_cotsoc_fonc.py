@@ -22,12 +22,12 @@ def test():
             period = "2012-01",
             description = u"Célibataire public_titulaire_etat",
             parent1 = dict(
-                birth = datetime.date(1972, 1, 1),
+                date_naissance = datetime.date(1972, 1, 1),
                 depcom_entreprise = "69381",
                 primes_fonction_publique = 500,
                 traitement_indiciaire_brut = 2000,
                 taille_entreprise = 3,  # TODO fix this
-                type_sal = CAT['public_titulaire_etat'],
+                categorie_salarie = CAT['public_titulaire_etat'],
                 ),
             menage = dict(
                 zone_apl = 1,
@@ -79,12 +79,12 @@ def test():
             period = "2012-01",
             description = u"Célibataire public_titulaire_territoriale",
             parent1 = dict(
-                birth = datetime.date(1972, 1, 1),
+                date_naissance = datetime.date(1972, 1, 1),
                 depcom_entreprise = "69381",
                 primes_fonction_publique = 500,
                 traitement_indiciaire_brut = 2000,
                 taille_entreprise = 3,  # TODO fix this
-                type_sal = CAT['public_titulaire_territoriale'],
+                categorie_salarie = CAT['public_titulaire_territoriale'],
                 ),
             menage = dict(
                 zone_apl = 1,
@@ -131,12 +131,12 @@ def test():
             period = "2012-01",
             description = u"Célibataire public_titulaire_hospitaliere",
             parent1 = dict(
-                birth = datetime.date(1972, 1, 1),
+                date_naissance = datetime.date(1972, 1, 1),
                 depcom_entreprise = "69381",
                 primes_fonction_publique = 500,
                 traitement_indiciaire_brut = 2000,
                 taille_entreprise = 3,  # TODO fix this
-                type_sal = CAT['public_titulaire_hospitaliere'],
+                categorie_salarie = CAT['public_titulaire_hospitaliere'],
                 ),
             menage = dict(
                 zone_apl = 1,
@@ -186,12 +186,12 @@ def test():
             period = "2012-01",
             description = u"Célibataire public_non_titulaire",
             parent1 = dict(
-                birth = datetime.date(1972, 1, 1),
+                date_naissance = datetime.date(1972, 1, 1),
                 depcom_entreprise = "69381",
                 primes_fonction_publique = 500,
                 salaire_de_base = 2000,
                 taille_entreprise = 3,  # TODO fix this
-                type_sal = CAT['public_non_titulaire'],
+                categorie_salarie = CAT['public_non_titulaire'],
                 ),
             menage = dict(
                 zone_apl = 1,
@@ -247,19 +247,19 @@ def test():
             period = "2012-01",
             description = u"Couple 1 fonctionnaire public_titulaire_etat 2 enfants",
             parent1 = dict(
-                birth = datetime.date(1972, 1, 1),
+                date_naissance = datetime.date(1972, 1, 1),
                 depcom_entreprise = "69381",
                 primes_fonction_publique = 500,
                 traitement_indiciaire_brut = 2000,
                 taille_entreprise = 3,  # TODO fix this
-                type_sal = CAT['public_titulaire_etat'],
+                categorie_salarie = CAT['public_titulaire_etat'],
                 ),
             parent2 = dict(
-                birth = datetime.date(1972, 1, 1),
+                date_naissance = datetime.date(1972, 1, 1),
                 ),
             enfants = [
-                dict(birth = datetime.date(2000, 1, 1)),
-                dict(birth = datetime.date(2009, 1, 1)),
+                dict(date_naissance = datetime.date(2000, 1, 1)),
+                dict(date_naissance = datetime.date(2009, 1, 1)),
                 ],
             menage = dict(
                 zone_apl = 1,
@@ -305,24 +305,24 @@ def test():
             period = "2012-01",
             description = u"Couple 2 fonctionnaires public_titulaire_etat 2 enfants",
             parent1 = dict(
-                birth = datetime.date(1972, 1, 1),
+                date_naissance = datetime.date(1972, 1, 1),
                 depcom_entreprise = "69381",
                 primes_fonction_publique = 500,
                 traitement_indiciaire_brut = 2000,
                 taille_entreprise = 3,  # TODO fix this
-                type_sal = CAT['public_titulaire_etat'],
+                categorie_salarie = CAT['public_titulaire_etat'],
                 ),
             parent2 = dict(
-                birth = datetime.date(1972, 1, 1),
+                date_naissance = datetime.date(1972, 1, 1),
                 depcom_entreprise = "69381",
                 primes_fonction_publique = 500,
                 traitement_indiciaire_brut = 2000,
                 taille_entreprise = 3,  # TODO fix this
-                type_sal = CAT['public_titulaire_etat'],
+                categorie_salarie = CAT['public_titulaire_etat'],
                 ),
             enfants = [
-                dict(birth = datetime.date(2000, 1, 1)),
-                dict(birth = datetime.date(2009, 1, 1)),
+                dict(date_naissance = datetime.date(2000, 1, 1)),
+                dict(date_naissance = datetime.date(2009, 1, 1)),
                 ],
             menage = dict(
                 zone_apl = 2,

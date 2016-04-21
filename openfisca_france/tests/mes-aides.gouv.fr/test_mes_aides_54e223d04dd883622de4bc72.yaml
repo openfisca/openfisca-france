@@ -13,7 +13,7 @@ individus:
   - activite: 3
     age: 74
     age_en_mois: 897
-    birth: "1940-05-05"
+    date_naissance: "1940-05-05"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -21,7 +21,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     retraite_brute:
       2013: 6000
       2014-02: 500
@@ -115,7 +115,7 @@ individus:
   - activite: 3
     age: 74
     age_en_mois: 897
-    birth: "1940-05-05"
+    date_naissance: "1940-05-05"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -123,7 +123,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     retraite_brute:
       2013: 1800
       2014-02: 150
@@ -429,6 +429,6 @@ menages:
   depcom: 76540
   enfants:
   personne_de_reference: 54e223cbfe7cc56a2d0dc062
-  statut_occupation: 2
+  statut_occupation_logement: 2
 output_variables:
   aspa: 487.77

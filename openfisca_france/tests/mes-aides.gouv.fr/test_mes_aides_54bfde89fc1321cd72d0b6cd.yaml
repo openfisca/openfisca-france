@@ -5,7 +5,7 @@ period: "month:2015-01"
 individus:
   age: 35
   age_en_mois: 420
-  birth: "1980-01-01"
+  date_naissance: "1980-01-01"
   chomage_brut:
     2013: 39727.53532026187
     2014-01: 3310.627943355156
@@ -45,7 +45,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -312,6 +312,6 @@ menages:
   depcom: 70429
   enfants:
   personne_de_reference: 54bfde77d337b5d372377d35
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 452.21

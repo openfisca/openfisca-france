@@ -4,7 +4,7 @@ input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: False
   avantage_en_nature_valeur_reelle: 0
-  birth: "1974-01-01"
+  date_naissance: "1974-01-01"
   contrat_de_travail: 0  # temps plein
   contrat_de_travail_debut: "2014-01-01"
   contrat_de_travail_fin: "2014-12-31"
@@ -29,7 +29,7 @@ input_variables:
   taux_accident_travail: 0.011
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  type_sal: 1  # non cadre
+  categorie_salarie: 1  # non cadre
   volume_jours_ijss: 0
 output_variables:
   # salaire_super_brut: 0

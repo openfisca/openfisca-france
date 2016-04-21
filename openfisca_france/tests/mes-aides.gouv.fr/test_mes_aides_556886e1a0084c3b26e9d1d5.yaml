@@ -10,7 +10,7 @@ period: "month:2015-05"
 individus:
   age: 63
   age_en_mois: 767
-  birth: "1951-06-09"
+  date_naissance: "1951-06-09"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -18,7 +18,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 1
+  handicap: 1
   taux_incapacite: 0.3
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -286,7 +286,7 @@ menages:
   depcom: 76540
   enfants:
   personne_de_reference: 556886ddb6b1363e267b9699
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   cmu_c: true
   rsa: 452.21

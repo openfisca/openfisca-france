@@ -34,7 +34,7 @@ individus:
   - activite: 3
     age: 88
     age_en_mois: 1061
-    birth: "1926-09-05"
+    date_naissance: "1926-09-05"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:
@@ -44,7 +44,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2013: 0
     retraite_imposable:
@@ -90,7 +90,7 @@ individus:
       2012-01: 0
   - age: 14
     age_en_mois: 173
-    birth: "2000-08-12"
+    date_naissance: "2000-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -98,7 +98,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -373,6 +373,6 @@ menages:
   enfants: 54d496deaf6bfed9447f95bc
   loyer: 1000
   personne_de_reference: 54d4951fd4e3b0d74454c76f
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 88.06

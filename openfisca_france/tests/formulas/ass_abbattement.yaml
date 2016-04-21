@@ -13,7 +13,7 @@
         2015-03: 200
         year:2014-04: 2000
   output_variables:
-    ass_base_ressources_i: 0
+    ass_base_ressources_individu: 0
     ass_base_ressources: 0
 
 - name: "Non prise en compte d'une activité partielle interrompue du demandeur"
@@ -31,7 +31,7 @@
         2015-03: 0
         year:2014-04: 4000
   output_variables:
-    ass_base_ressources_i: 0
+    ass_base_ressources_individu: 0
 
 - name: "Prise en compte de l'ARE du conjoint et abattement du salaire interrompu"
   period: "month:2015-04"
@@ -53,7 +53,7 @@
         2015-03: 200
         year:2014-04: 2000
   output_variables:
-    ass_eligibilite_i: true
+    ass_eligibilite_individu: true
     ass_base_ressources_conjoint: 4800
 
 - name: "Abbatement des revenus quand revenu du conjoint interompu"
@@ -76,7 +76,7 @@
         2015-03: 1000
         year:2014-04: 1000
   output_variables:
-    ass_eligibilite_i: [true, false]
-    ass_base_ressources_i: [0, 1000]
+    ass_eligibilite_individu: [true, false]
+    ass_base_ressources_individu: [0, 1000]
     ass_base_ressources_conjoint: [0, 8000]
     ass_base_ressources: [8000]

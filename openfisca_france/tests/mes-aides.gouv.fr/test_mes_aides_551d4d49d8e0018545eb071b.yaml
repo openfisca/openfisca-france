@@ -10,7 +10,7 @@ period: month:2015-04
 individus:
 - age: 34
   age_en_mois: 416
-  birth: '1980-07-07'
+  date_naissance: '1980-07-07'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -18,7 +18,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     '2013': 15569.230769230773
     2014-04: 1297.4358974358975
@@ -77,7 +77,7 @@ individus:
 - age: 7
   age_en_mois: 92
   garde_alternee: true
-  birth: '2007-07-09'
+  date_naissance: '2007-07-09'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -85,7 +85,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -93,7 +93,7 @@ individus:
 - age: 4
   age_en_mois: 58
   garde_alternee: true
-  birth: '2010-05-04'
+  date_naissance: '2010-05-04'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -101,7 +101,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -379,6 +379,6 @@ menages:
   - 551d4c72d8e0018545eb06fd
   loyer: 600
   personne_de_reference: 551d4c72d8e0018545eb06ff
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   acs: 400

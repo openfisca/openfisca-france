@@ -9,7 +9,7 @@ individus:
   age: 34
   age_en_mois: 415
   ass_precondition_remplie: true
-  birth: "1980-08-12"
+  date_naissance: "1980-08-12"
   chomage_brut:
     2013: 26485.023546841254
     2014-03: 2207.085295570104
@@ -49,7 +49,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -316,6 +316,6 @@ menages:
   depcom: 67482
   enfants:
   personne_de_reference: 550317df8cf4202127bc0ec2
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   ass: 487.5

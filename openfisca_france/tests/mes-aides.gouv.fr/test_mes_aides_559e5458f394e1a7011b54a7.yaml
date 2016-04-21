@@ -7,7 +7,7 @@ period: "month:2015-07"
 individus:
   age: 58
   age_en_mois: 706
-  birth: "1956-09-02"
+  date_naissance: "1956-09-02"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -15,7 +15,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -282,7 +282,7 @@ menages:
   depcom: 77107
   enfants:
   personne_de_reference: 559e5451f92fd455017e6a83
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   cmu_c: true
   rsa: 452.21

@@ -37,14 +37,14 @@ def build_reform(tax_benefit_system):
 
         def function(self, simulation, period):
             parisien = simulation.calculate('parisien', period)
-            statut_occupation = simulation.calculate('statut_occupation', period)
+            statut_occupation_logement = simulation.calculate('statut_occupation_logement', period)
             charge_logement = (
-                (statut_occupation == 1) +
-                (statut_occupation == 2) +
-                (statut_occupation == 3) +
-                (statut_occupation == 4) +
-                (statut_occupation == 5) +
-                (statut_occupation == 7)
+                (statut_occupation_logement == 1) +
+                (statut_occupation_logement == 2) +
+                (statut_occupation_logement == 3) +
+                (statut_occupation_logement == 4) +
+                (statut_occupation_logement == 5) +
+                (statut_occupation_logement == 7)
                 )
 
             result = parisien * charge_logement
@@ -65,7 +65,7 @@ def build_reform(tax_benefit_system):
             pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
             pensions_alimentaires_versees_individu = simulation.calculate(
                 'pensions_alimentaires_versees_individu', period)
-            rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', period)
+            rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_individu', period)
             indemnites_journalieres_imposables = simulation.calculate('indemnites_journalieres_imposables', period)
             indemnites_stage = simulation.calculate('indemnites_stage', period)
             revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', period)
@@ -119,10 +119,10 @@ def build_reform(tax_benefit_system):
         def function(self, simulation, period):
             period = period.this_month
 
-            invalide = simulation.calculate('invalide', period)
+            handicap = simulation.calculate('handicap', period)
             plf_enfant = simulation.calculate('plf_enfant', period)
 
-            return period, plf_enfant * invalide
+            return period, plf_enfant * handicap
 
     class plf_enfant(Reform.Variable):
         column = columns.BoolCol

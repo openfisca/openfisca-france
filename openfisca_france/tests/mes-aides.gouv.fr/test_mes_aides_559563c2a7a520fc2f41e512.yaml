@@ -7,7 +7,7 @@ period: "month:2015-07"
 individus:
   age: 55
   age_en_mois: 664
-  birth: "1960-03-02"
+  date_naissance: "1960-03-02"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -15,7 +15,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2013: 10256.410256410258
     2014-07: 1139.6011396011395
@@ -334,6 +334,6 @@ menages:
   enfants:
   loyer: 500
   personne_de_reference: 559563bafdd7360730df8fe7
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   cmu_c: true

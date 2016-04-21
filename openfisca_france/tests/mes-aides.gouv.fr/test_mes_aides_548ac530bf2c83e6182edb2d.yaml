@@ -5,7 +5,7 @@ period: "month:2014-12"
 individus:
   - age: 50
     age_en_mois: 611
-    birth: "1964-01-01"
+    date_naissance: "1964-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -13,7 +13,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2012: 14102.564102564105
       2013-12: 1139.6011396011395
@@ -72,7 +72,7 @@ individus:
   - age: 16
     age_en_mois: 203
     garde_alternee: true
-    birth: "1998-01-01"
+    date_naissance: "1998-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -80,7 +80,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 2
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -351,7 +351,7 @@ menages:
   enfants: 54eb4a9010c49b0772c74580
   loyer: 500
   personne_de_reference: 548ac39ffc1609f0180de26a
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   acs: 550
   cmu_c: false

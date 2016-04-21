@@ -9,7 +9,7 @@ period: "month:2014-12"
 individus:
   age: 50
   age_en_mois: 611
-  birth: "1964-01-01"
+  date_naissance: "1964-01-01"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -17,7 +17,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2012: 16651.28205128205
     2013-12: 1422.7920227920229
@@ -337,7 +337,7 @@ menages:
   enfants:
   loyer: 50
   personne_de_reference: 549189c5df990f5b0286d009
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   acs: 350
   cmu_c: false
