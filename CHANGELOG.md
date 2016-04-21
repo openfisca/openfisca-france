@@ -66,6 +66,15 @@
 	* `tspr` -> `traitements_salaires_pensions_rentes`
 	* `type_sal` -> `categorie_salarie`
 
+## 0.5.5
+
+* Prime d'activité fiabilization
+* Implementation of Indemnite de fin de contrat
+* Prolongation of aidper, credit_impots, reductions
+* Remove detailes logs in CI
+* Update prestations parameters (2016/04/01 revalorisation)
+* Add net -> brut reform
+
 ## 0.5.4.2, 0.5.4.3
 
 * Update OpenFisca-Core requirement version
