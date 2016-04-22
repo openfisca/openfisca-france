@@ -21,3 +21,10 @@ deploy:
     script: ./release.sh
     on:
       branch: master
+  - provider: pypi
+    user: openfisca-bot
+    password:
+      secure: TysRV2ljC0p1LaWwHiBuFNBz7hjAFK7LDV0OL/7L31TZebxKi2a5MGg42ugqNxjeW30+6mL/g5FbeSDkskpFGC4W0vE+xvSORDPhas+NWbt/7Mb97vHjGguawguUuCCOgmX705BZxJyxGdv8MpaJmELZxV4stJ51Qw3Y1iLmz7M=
+    distributions: "bdist_wheel"
+    on:
+      tags: true
