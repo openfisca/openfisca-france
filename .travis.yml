@@ -13,3 +13,11 @@ script: bash run-travis-tests.sh
 sudo: false
 virtualenv:
   system_site_packages: true
+before_deploy:
+- openssl aes-256-cbc -K $encrypted_f6aff9134f80_key -iv $encrypted_f6aff9134f80_iv -in openfisca_bot.enc -out openfisca_bot -d
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: ./release.sh
+    on:
+      branch: master
