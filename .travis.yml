@@ -18,7 +18,7 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: ./release.sh
+    script: ./release-tag.sh
     on:
       branch: master
   - provider: pypi
