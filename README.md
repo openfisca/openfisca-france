@@ -3,16 +3,16 @@
 [![Join the chat at https://gitter.im/openfisca/openfisca-france](https://badges.gitter.im/openfisca/openfisca-france.svg)](https://gitter.im/openfisca/openfisca-france?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/openfisca/openfisca-france.svg?branch=master)](https://travis-ci.org/openfisca/openfisca-france)
 
-[More build status](http://www.openfisca.fr/build-status)
+[More build statuses](http://www.openfisca.fr/build-status)
 
 [OpenFisca](http://www.openfisca.fr/) is a versatile microsimulation free software.
 This is the source code of the France module.
 
-Please consult http://doc.openfisca.fr/
+The documentation of the project is hosted at http://doc.openfisca.fr/
 
 ## Contributors
 
-Initial developers: Clément Schaff and Mahdi Ben Jelloul (Centre d'analyse stratégique, then Commissariat général à la stratégie et à la prospective).
+Initial developers: Clément Schaff and Mahdi Ben Jelloul.
 
 OpenFisca Team:
   - Mahdi Ben Jelloul
@@ -26,7 +26,7 @@ OpenFisca Team:
   - Félix Defrance
   - Jérôme Desbœufs
   - Sarah Dijols
-  - Thomas Douenne <span class="label label-success">Nouveau</span>
+  - Thomas Douenne
   - Alexis Eidelman
   - Adrien Fabre
   - Emmanuel Gratuze
