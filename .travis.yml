@@ -1,20 +1,15 @@
-sudo: false # Use new Travis container-based infrastructure
-language: python
-python: 2.7
-cache: pip
+addons:
+  apt:
+    packages:
+    - python-numpy
+    - python-yaml
+    - python-scipy
 install:
-  - wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH="$HOME/miniconda/bin:$PATH"
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  # Useful for debugging any issues with conda
-  - conda info -a
-
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION pip pandas nose numexpr numpy scipy
-  - source activate test-environment
   - pip install flake8  # Not yet available in Ubuntu precise (https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise)
   - pip install -r requirements.txt
-  - pip install --editable .[test]
+language: python
+python: "2.7"
 script: bash run-travis-tests.sh
+sudo: false
+virtualenv:
+  system_site_packages: true
