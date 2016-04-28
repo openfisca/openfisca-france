@@ -20,6 +20,17 @@ class loyer(Variable):
     set_input = set_input_divide_by_period
     label = u"Loyer ou mensualité d'emprunt pour un primo-accédant"
 
+class loyer_individu(EntityToPersonColumn):
+    entity_class = Individus
+    label = u"Zone apl de la personne"
+    variable = loyer
+
+class loyer_famille(PersonToEntityColumn):
+    entity_class = Familles
+    label = u"Zone apl de la famille"
+    role = CHEF
+    variable = loyer_individu
+
 class charges_locatives(Variable):
     column = FloatCol()
     entity_class = Menages
