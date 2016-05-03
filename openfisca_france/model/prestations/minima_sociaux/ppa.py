@@ -102,6 +102,9 @@ class ppa_revenu_activite_i(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
+        P = simulation.legislation_at(period.start)
+        smic_horaire = P.cotsoc.gen.smic_h_b
+
         ressources = [
             'salaire_net',
             'revenus_stage_formation_pro',
@@ -124,7 +127,13 @@ class ppa_revenu_activite_i(Variable):
                 ) / 12
         revenus_annualises = get_last_known('tns_benefice_exploitant_agricole') + get_last_known('tns_autres_revenus') + get_last_known('tns_micro_entreprise_benefice')
 
-        return period, revenus_mensualises + revenus_annualises
+        revenus_activites = revenus_mensualises + revenus_annualises
+
+        # L'aah est pris en compte comme revenu d'activité si  revenu d'activité hors aah > 29 * smic horaire brut
+        seuil_aah_activite = P.minim.ppa.seuil_aah_activite * smic_horaire
+        aah_activite = (revenus_activites >= seuil_aah_activite) * simulation.calculate('aah', period)
+
+        return period, revenus_activites + aah_activite
 
 class ppa_ressources_hors_activite(Variable):
     column = FloatCol
@@ -152,9 +161,10 @@ class ppa_ressources_hors_activite_i(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
+        P = simulation.legislation_at(period.start)
+        smic_horaire = P.cotsoc.gen.smic_h_b
 
         ressources = [
-            'aah',
             'chomage_net',
             'retraite_nette',
             'retraite_combattant',
@@ -167,8 +177,13 @@ class ppa_ressources_hors_activite_i(Variable):
 
         ressources_hors_activite_i = sum(
             simulation.calculate(ressource, period) for ressource in ressources)
+        revenus_activites = simulation.calculate('ppa_revenu_activite_i', period)
 
-        return period, ressources_hors_activite_i
+        # L'aah est pris en compte comme revenu d'activité si  revenu d'activité hors aah > 29 * smic horaire brut
+        seuil_aah_activite = P.minim.ppa.seuil_aah_activite * smic_horaire
+        aah_hors_activite = (revenus_activites < seuil_aah_activite) * simulation.calculate('aah', period)
+
+        return period, ressources_hors_activite_i + aah_hors_activite
 
 class ppa_base_ressources_prestations_familiales(Variable):
     column = FloatCol
