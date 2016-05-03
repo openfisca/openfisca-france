@@ -291,6 +291,7 @@ class rsa_base_ressources_i(Variable):
         dedommagement_victime_amiante = r.calcule_ressource('dedommagement_victime_amiante')
         pensions_invalidite = r.calcule_ressource('pensions_invalidite')
         rsa_base_ressources_patrimoine_i = r.calcule_ressource('rsa_base_ressources_patrimoine_i')
+        prime_forfaitaire_mensuelle_reprise_activite = r.calcule_ressource('prime_forfaitaire_mensuelle_reprise_activite')
 
         rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', three_previous_months)
         rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', three_previous_months)
@@ -302,7 +303,7 @@ class rsa_base_ressources_i(Variable):
             rev_cap_lib + revenus_fonciers_minima_sociaux + div_ms +
             gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
             allocation_securisation_professionnelle + prestation_compensatoire +
-            rsa_base_ressources_patrimoine_i
+            rsa_base_ressources_patrimoine_i + prime_forfaitaire_mensuelle_reprise_activite
         ) / 3
 
         return period, result
