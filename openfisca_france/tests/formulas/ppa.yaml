@@ -385,6 +385,10 @@
       2016-02: 91.40
     ass:
       2016-02: 100
+    asi:
+      2016-02: 100
+    aspa:
+      2016-02: 100
     # Autres ressources, on utilise le mois M-1
     paje_clca:
       2016-01: 100
@@ -406,13 +410,15 @@
       2016-01: 100
     revenus_locatifs:
       2016-01: 100
+    prime_forfaitaire_mensuelle_reprise_activite:
+      2016-01: 100
   output_variables:
     ppa:
       2016-02: 0
     ppa_ressources_hors_activite_individu:
-      2016-01: 700
+      2016-01: 800
     ppa_ressources_hors_activite:
-      2016-01: 1391.40
+      2016-01: 1691.40
 
 - name: "PPA: étudiant éligible (ressources > plancher)"
   period: 2016-01
