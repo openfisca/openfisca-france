@@ -210,92 +210,92 @@
       date_naissance: 2000-01-01
     - id: "enfant2"
       date_naissance: 2009-01-01
-#    error_margin: 2 #try without
+  absolute_error_margin: 2
   output_variables:
     fnal: [-8 - 2, 0, 0, 0]
-#    versement_transport: -2000 * 0.0175  # = 35
-#    cotisations_employeur_main_d_oeuvre: -45
-#    allocations_temporaires_invalidite: -6.6
-#    mmid_employeur: -194
-#    famille: -108
-#    contribution_solidarite_autonomie: -6
-#    cotisations_employeur_non_contributives: -314.6
-#    pension_civile_employeur: -1371.80
-#    rafp_employeur: -20
-#    cotisations_employeur_contributives: -1371.80 - 20
-#    cotisations_employeur: -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6)
-#    pension_civile_salarie: -167.80
-#    rafp_salarie: -20
-#    cotisations_salariales_contributives: -187.8
-#    contribution_exceptionnelle_solidarite: -23.72
-#    cotisations_salariales_non_contributives: -23.72
-#    cotisations_salariales: -(167.80 + 20 + 23.72)
-#    crds_salaire: -12.93
-#    csg_deductible_salaire: -131.94
-#    csg_imposable_salaire: -62.09
-#    indemnite_residence: 60
-#                # salaire_net = 2213.83,
-#    salaire_super_brut: 4401.44 + 2000 * (.0175 - .026)
-#    supp_familial_traitement: 73.04
+    versement_transport: [-2000 * 0.0175, 0, 0, 0]  # = 35
+    cotisations_employeur_main_d_oeuvre: [-45, 0, 0, 0]
+    allocations_temporaires_invalidite: [-6.6, 0, 0, 0]
+    mmid_employeur: [-194, 0, 0, 0]
+    famille: [-108, 0, 0, 0]
+    contribution_solidarite_autonomie: [-6, 0, 0, 0]
+    cotisations_employeur_non_contributives: [-314.6, 0, 0, 0]
+    pension_civile_employeur: [-1371.80, 0, 0, 0]
+    rafp_employeur: [-20, 0, 0, 0]
+    cotisations_employeur_contributives: [-1371.80 - 20, 0, 0, 0]
+    cotisations_employeur: [-(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6), 0, 0, 0]
+    pension_civile_salarie: [-167.80, 0, 0, 0]
+    rafp_salarie: [-20, 0, 0, 0]
+    cotisations_salariales_contributives: [-187.8, 0, 0, 0]
+    contribution_exceptionnelle_solidarite: [-23.72, 0, 0, 0]
+    cotisations_salariales_non_contributives: [-23.72, 0, 0, 0]
+    cotisations_salariales: [-(167.80 + 20 + 23.72), 0, 0, 0]
+    crds_salaire: [-12.93, 0, 0, 0]
+    csg_deductible_salaire: [-131.94, 0, 0, 0]
+    csg_imposable_salaire: [-62.09, 0, 0, 0]
+    indemnite_residence: [60, 0, 0, 0]
+                # salaire_net = 2213.83,
+    salaire_super_brut: [4401.44 + 2000 * (.0175 - .026), 0, 0, 0]
+    supp_familial_traitement: [73.04, 0, 0, 0]
 
-#- name: "Cotisations sociales - Couple 2 public titulaire etat deux enfants"
-#  period: 2012-01
-#  description: Montant cotisations sociales couple deux public titulaire deux enfants
-##  input_variables:
-#  familles:
-#    parents: ["parent1", "parent2"]
-#    enfants: ["enfant1", "enfant2"]
-#  foyers_fiscaux:
-#    declarants: ["parent1", "parent2"]
-#    personnes_a_charge: ["enfant1", "enfant2"]
-#  menages:
-#    personne_de_reference: "parent1"
-#    conjoint: "parent2"
-#    enfants: ["enfant1", "enfant2"]
-#    zone_apl: 2
-#  individus:
-#    - id: "parent1"
-#      date_naissance: 1972-01-01
-#      depcom_entreprise: "69381"
-#      primes_fonction_publique: 500
-#      traitement_indiciaire_brut: 2000
-#      taille_entreprise: 3  # TODO fix this
-#      categorie_salarie: 'public_titulaire_etat'
-#    - id: "parent2"
-#      date_naissance: 1972-01-01
-#      depcom_entreprise: "69381"
-#      primes_fonction_publique: 500
-#      traitement_indiciaire_brut: 2000
-#      taille_entreprise: 3  # TODO fix this
-#      categorie_salarie: 'public_titulaire_etat'
-#    - id: "enfant1"
-#      date_naissance: 2000-01-01
-#    - id: "enfant2"
-#      date_naissance: 2009-01-01
-##    error_margin: 2
-#  output_variables:
-#    fnal: -8 * 2 - 2 * 2
-#    versement_transport: -2000 * 0.0175 * 2 # = 35
-#    cotisations_employeur_main_d_oeuvre: -45 * 2
-#    pension_civile_employeur: -1371.80 * 2
-#    rafp_employeur: -20 * 2
-#    cotisations_employeur_contributives: -2783.6
-#    allocations_temporaires_invalidite: -6.6 * 2
-#    mmid_employeur: -194 * 2
-#    famille: -108 * 2
-#    contribution_solidarite_autonomie: -6 * 2
-#    cotisations_employeur_non_contributives: -617.2 - 6 * 2
-#    cotisations_employeur: -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6) * 2
-#    pension_civile_salarie: -167.80 * 2
-#    rafp_salarie: -20 * 2
-#    cotisations_salariales_contributives: -375.6
-#    contribution_exceptionnelle_solidarite: -23.72 * 2
-#    cotisations_salariales_non_contributives: -23.72 * 2
-#    cotisations_salariales: -422.24
-#    crds_salaire: -12.93 * 2
-#                # csg_deductible_salaire = -131.94 * 2, # TODO: Gérer un seulf sft
-#                # csg_imposable_salaire = -62.09 * 2,  # # TODO: Gérer un seulf sft
-#    indemnite_residence: 240 * 2 / 12
-#    salaire_super_brut: (2000 + 500 + 20 + 1751.4) * 2 + 73.04
-#    supp_familial_traitement: 73.04
-#
+- name: "Cotisations sociales - Couple 2 public titulaire etat deux enfants"
+  period: 2012-01
+  description: Montant cotisations sociales couple deux public titulaire deux enfants
+  absolute_error_margin: 1
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2"]
+    zone_apl: 2
+  individus:
+    - id: "parent1"
+      date_naissance: 1972-01-01
+      depcom_entreprise: "69381"
+      primes_fonction_publique: 500
+      traitement_indiciaire_brut: 2000
+      taille_entreprise: 3  # TODO fix this
+      categorie_salarie: 'public_titulaire_etat'
+    - id: "parent2"
+      date_naissance: 1972-01-01
+      depcom_entreprise: "69381"
+      primes_fonction_publique: 500
+      traitement_indiciaire_brut: 2000
+      taille_entreprise: 3  # TODO fix this
+      categorie_salarie: 'public_titulaire_etat'
+    - id: "enfant1"
+      date_naissance: 2000-01-01
+    - id: "enfant2"
+      date_naissance: 2009-01-01
+#    error_margin: 2
+  output_variables:
+    fnal: [-8 * 2 - 2 * 2, 0, 0, 0]
+    versement_transport: [-2000 * 0.0175 * 2, 0, 0, 0] # = 35
+    cotisations_employeur_main_d_oeuvre: [-45 * 2, 0, 0, 0]
+    pension_civile_employeur: [-1371.80 * 2, 0, 0, 0]
+    rafp_employeur: [-20 * 2, 0, 0, 0]
+    cotisations_employeur_contributives: [-2783.6, 0, 0, 0]
+    allocations_temporaires_invalidite: [-6.6 * 2, 0, 0, 0]
+    mmid_employeur: [-194 * 2, 0, 0, 0]
+    famille: [-108 * 2, 0, 0, 0]
+    contribution_solidarite_autonomie: [-6 * 2, 0, 0, 0]
+    cotisations_employeur_non_contributives: [-617.2 - 6 * 2, 0, 0, 0]
+    cotisations_employeur: [-(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6) * 2, 0, 0, 0]
+    pension_civile_salarie: [-167.80 * 2, 0, 0, 0]
+    rafp_salarie: [-20 * 2, 0, 0, 0]
+    cotisations_salariales_contributives: [-375.6, 0, 0, 0]
+    contribution_exceptionnelle_solidarite: [-23.72 * 2, 0, 0, 0]
+    cotisations_salariales_non_contributives: [-23.72 * 2, 0, 0, 0]
+    cotisations_salariales: [-422.24, 0, 0, 0]
+    crds_salaire: [-12.93 * 2, 0, 0, 0]
+                # csg_deductible_salaire = -131.94 * 2, # TODO: Gérer un seulf sft
+                # csg_imposable_salaire = -62.09 * 2,  # # TODO: Gérer un seulf sft
+    indemnite_residence: [240 * 2 / 12, 0, 0, 0]
+    salaire_super_brut: [(2000 + 500 + 20 + 1751.4) * 2 + 73.04, 0, 0, 0]
+    supp_familial_traitement: [73.04, 0, 0, 0]
+
