@@ -398,10 +398,24 @@ class titre_restaurant_volume(Variable):
     label = u"Volume des titres restaurant"
 
 
+class indice(Variable):
+    column = IntCol()
+    entity_class = Individus
+    label = u"Indice échelon fonctionnaire"  # FIXME
+
+
 class traitement_indiciaire_brut(Variable):
     column = FloatCol()
     entity_class = Individus
-    label = u"Traitement indiciaire brut (TIB)"
+    label = u"Traitement indiciaire brut (TIB) mensuel"
+
+    def function(self, simulation, period):
+        period = period.this_month
+        indice = simulation.calculate('indice', period)
+        point_indice_100 = 56.2323 #simulation.legislation_at(period.start).cotsoc.sal.fonc.commun.pt_ind_100 ## TO ADD
+        traitement_indiciaire_brut = (indice * point_indice_100) / 1200
+
+        return period, traitement_indiciaire_brut
 
 
 class categorie_salarie(Variable):
@@ -553,18 +567,38 @@ class remboursement_transport(Variable):
         return period, - .5 * remboursement_transport_base
 
 
-# Fonction publique
 
+class IM_an_moyen(Variable):
+    column = FloatCol
+    entity_class = Individus    
+    label = u"Indice majoré annuel moyen"
+    
+    def function(self, simulation, period):
+       # to code
+       return period, self
+       
+class TBI_an_moyen(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Traitement indiciaire brut annuel moyen "    
+    
+    def function(self, simulation, period):     
+       law = simulation.legislation_at(period.start)
+       val_moy_point = law.fonc.val_moy_point ## TO ADD valeur moyenne point d'indice (Barèmes IPP MdT)
+       IM_moyen = simulation.calculate('IM_moyen', period) 
+       return period, IM_moyen * val_moy_point
+        
 class gipa(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Indemnité de garantie individuelle du pouvoir d'achat"
-    # TODO: à coder
-
+    
     def function(self, simulation, period):
-        period = period.start.period(u'year').offset('first-of')
-        return period, self.zeros()
-
+        law = simulation.legislation_at(period.start)
+        inflation = law.fonc.inflation_GIPA ## TO ADD valeur de l'inflation pour GIPA (Barèmes IPP MdT)
+        TBI_moyen_1 = simulation.calculate('TBI_moyen', period.start)
+        TBI_moyen_2 = simulation.calculate('TBI_moyen', period.end)
+        return period, TBI_moyen_1 * (1 + inflation) - TBI_moyen_2
 
 class indemnite_residence(Variable):
     column = FloatCol
