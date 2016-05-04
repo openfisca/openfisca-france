@@ -41,11 +41,9 @@ class ppa_eligibilite_etudiants(Variable):
         m_2 = period.offset(-2, 'month')
         m_3 = period.offset(-3, 'month')
         condition_etudiant_i = condition_ressource(m_1) * condition_ressource(m_2) * condition_ressource(m_3)
-        condition_non_etudiant_i = simulation.calculate_add('ppa_revenu_activite_individu', period.last_3_months) > 0
-        condition_i = where(etudiant, condition_etudiant_i, condition_non_etudiant_i)
 
         # Au moins une personne de la famille doit être non étudiant ou avoir des ressources > plancher
-        condition_famille = self.any_by_roles(condition_i)
+        condition_famille = self.any_by_roles(not_(etudiant) + condition_etudiant_i, roles = [CHEF, CONJ])
         return period, ppa_majoree_eligibilite + condition_famille
 
 class ppa_montant_forfaitaire_familial_non_majore(Variable):
