@@ -46,7 +46,7 @@ tests = [
             ),
         ),
     # Célibataire sans enfant
-    # test sur un revenu des actions et  parts (2DC)
+    # test sur un revenu des actions et parts (2DC)
     dict(
         name = "f2dc_2013",
         period = "2013",

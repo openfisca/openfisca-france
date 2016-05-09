@@ -583,9 +583,9 @@ class TBI_an_moyen(Variable):
     label = u"Traitement indiciaire brut annuel moyen "    
     
     def function(self, simulation, period):     
-       law = simulation.legislation_at(period.start)
-       val_moy_point = law.fonc.val_moy_point ## TO ADD valeur moyenne point d'indice (Barèmes IPP MdT)
-       IM_moyen = simulation.calculate('IM_moyen', period) 
+       #law = simulation.legislation_at(period.start)
+       val_moy_point = 2#law.fonc.val_moy_point ## TO ADD valeur moyenne point d'indice (Barèmes IPP MdT)
+       IM_moyen = 1000 #simulation.calculate('IM_moyen', period) 
        return period, IM_moyen * val_moy_point
         
 class gipa(Variable):

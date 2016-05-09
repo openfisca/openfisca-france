@@ -2496,7 +2496,7 @@
             <VALUE deb="2015-01-01" fuzzy="true" valeur="12516" />
             <VALUE deb="2002-01-01" fin="2014-12-31" valeur="12516" />  # TODO check. Pas dispo dans barème IPP
           </CODE>
-          <CODE code="pt_ind" description="Valeur annuelle point de FP" format="float" type="monetary">
+          <CODE code="pt_ind" description="Valeur annuelle du point d'indice de la fonction publique" format="float" type="monetary">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="55.5635" />
             <VALUE deb="2010-07-01" fin="2014-12-31" valeur="55.5635" />
             <VALUE deb="2009-10-01" fin="2010-06-30" valeur="55.2871" />
@@ -6692,7 +6692,7 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="800.58" />
         <VALUE deb="2006-07-01" fin="2006-12-31" valeur="789.59" />
         <VALUE deb="2006-01-01" fin="2006-06-30" valeur="776.79" />
-        <VALUE deb="2005-07-01" fin="2005-12-31" valeur="776.79" />  # TODO FIXME
+        <VALUE deb="2005-07-01" fin="2005-12-31" valeur="776.79" />  # TODO FIXME
       </CODE>
       <CODE code="mva" description="Majoration pour la vie autonome" format="float" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="104.77" />
