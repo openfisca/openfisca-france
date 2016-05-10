@@ -561,11 +561,9 @@ class remboursement_transport(Variable):
     label = u"Remboursement partiel des frais de transport par l'employeur"
 
     def function(self, simulation, period):
-
         remboursement_transport_base = simulation.calculate('remboursement_transport_base', period)
         # TODO: paramètres en dur dans le code
         return period, - .5 * remboursement_transport_base
-
 
 
 class IM_an_moyen(Variable):
@@ -576,17 +574,19 @@ class IM_an_moyen(Variable):
     def function(self, simulation, period):
        # to code
        return period, self
+
        
-class TBI_an_moyen(Variable):
+class tib_annuel_moyen(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Traitement indiciaire brut annuel moyen "    
     
     def function(self, simulation, period):     
        #law = simulation.legislation_at(period.start)
-       val_moy_point = 2#law.fonc.val_moy_point ## TO ADD valeur moyenne point d'indice (Barèmes IPP MdT)
-       IM_moyen = 1000 #simulation.calculate('IM_moyen', period) 
-       return period, IM_moyen * val_moy_point
+       valeur_moyenne_point = 2  # law.fonc.val_moy_point ## TO ADD valeur moyenne point d'indice (Barèmes IPP MdT)
+       indice_majore_moyen = 1000  # simulation.calculate('IM_moyen', period) 
+       return period, indice_majore_moyen * valeur_moyenne_point
+
         
 class gipa(Variable):
     column = FloatCol
@@ -594,11 +594,14 @@ class gipa(Variable):
     label = u"Indemnité de garantie individuelle du pouvoir d'achat"
     
     def function(self, simulation, period):
+        period = period.start.offset('last-of', 'year').period('month')
         law = simulation.legislation_at(period.start)
         inflation = law.fonc.inflation_GIPA ## TO ADD valeur de l'inflation pour GIPA (Barèmes IPP MdT)
-        TBI_moyen_1 = simulation.calculate('TBI_moyen', period.start)
-        TBI_moyen_2 = simulation.calculate('TBI_moyen', period.end)
-        return period, TBI_moyen_1 * (1 + inflation) - TBI_moyen_2
+        traitement_indiciaire_brut_moyen_debut = simulation.calculate(
+            'tib_annuel_moyen', period.offset('first-of', 'year').start.period('year').offset(-3))
+        traitement_indiciaire_brut_moyen_fin = simulation.calculate('tib_annuel_moyen', period)
+        return period, traitement_indiciaire_brut_moyen_debut * (1 + inflation) - traitement_indiciaire_brut_moyen_fin
+
 
 class indemnite_residence(Variable):
     column = FloatCol
