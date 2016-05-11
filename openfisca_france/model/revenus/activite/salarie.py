@@ -583,7 +583,7 @@ class tib_annuel_moyen(Variable):
     
     def function(self, simulation, period):     
        #law = simulation.legislation_at(period.start)
-       valeur_moyenne_point = 2  # law.fonc.val_moy_point ## TO ADD valeur moyenne point d'indice (Barèmes IPP MdT)
+       valeur_moyenne_point = 2  # law.fonc.pt_ind_annuel_moyen ## TO ADD valeur moyenne point d'indice (Barèmes IPP MdT)
        indice_majore_moyen = 1000  # simulation.calculate('IM_moyen', period) 
        return period, indice_majore_moyen * valeur_moyenne_point
 
@@ -596,7 +596,7 @@ class gipa(Variable):
     def function(self, simulation, period):
         period = period.start.offset('last-of', 'year').period('month')
         law = simulation.legislation_at(period.start)
-        inflation = law.fonc.inflation_GIPA ## TO ADD valeur de l'inflation pour GIPA (Barèmes IPP MdT)
+        inflation = law.fonc.inflation_moyenne_periode_gipa ## TO ADD valeur de l'inflation pour GIPA (Barèmes IPP MdT)
         traitement_indiciaire_brut_moyen_debut = simulation.calculate(
             'tib_annuel_moyen', period.offset('first-of', 'year').start.period('year').offset(-3))
         traitement_indiciaire_brut_moyen_fin = simulation.calculate('tib_annuel_moyen', period)
