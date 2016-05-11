@@ -1,0 +1,11 @@
+- name: u"Indice majoré rédacteur FPT"
+  period: 2014-02
+  absolute_error_margin: 0.5
+  input_variables:
+    categorie_salarie: 4
+    echelon: 13
+    corps: 'redacteur'
+    grade: 1
+  output_variables:
+    indice_majore: 463
+

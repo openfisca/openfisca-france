@@ -70,6 +70,7 @@ from . import extensions
 from revenus import autres
 
 from revenus.activite import (  # noqa analysis:ignore
+    agent_fonction_publique,
     non_salarie,
     salarie,
     )
