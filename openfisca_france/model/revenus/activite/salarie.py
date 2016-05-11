@@ -583,22 +583,6 @@ class gipa(Variable):
         return period, traitement_indiciaire_brut_moyen_debut * (1 + inflation) - traitement_indiciaire_brut_moyen_fin
 
 
-class remuneration_principale(Variable):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Rémunération principale des agents titulaires de la fonction publique"
-
-    def function(self, simulation, period):
-        traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        nouvelle_bonification_indiciaire = simulation.calculate('nouvelle_bonification_indiciaire', period)
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
-        return period, (
-            (categorie_salarie >= 2) * (categorie_salarie <= 5) * (
-                traitement_indiciaire_brut + nouvelle_bonification_indiciaire
-                )
-            )
-
-
 class salaire_net_a_payer(Variable):
     base_function = requested_period_added_value
     column = FloatCol
