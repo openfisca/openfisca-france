@@ -186,6 +186,21 @@ class supp_familial_traitement(Variable):
         #             'public_non_titulaire'])
         return period, sft
 
+class remuneration_principale(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Rémunération principale des agents titulaires de la fonction publique"
+
+    def function(self, simulation, period):
+        traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
+        nouvelle_bonification_indiciaire = simulation.calculate('nouvelle_bonification_indiciaire', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
+        return period, (
+            (categorie_salarie >= 2) * (categorie_salarie <= 5) * (
+                traitement_indiciaire_brut + nouvelle_bonification_indiciaire
+                )
+            )
+
 
 def _traitement_brut_mensuel(indice_maj, law):
     Indice_majore_100_annuel = law.fonc.IM_100
