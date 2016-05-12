@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 from numpy import (
     maximum as max_,
     minimum as min_,
@@ -192,6 +191,7 @@ class supp_familial_traitement(Variable):
         #             'public_non_titulaire'])
         return period, sft
 
+
 class remuneration_principale(Variable):
     column = FloatCol
     entity_class = Individus
@@ -222,11 +222,11 @@ class traitement_indiciaire_brut(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         indice_majore = simulation.calculate('indice_majore', period)
-        point_indice_100 = 56.2323 #simulation.legislation_at(period.start).cotsoc.sal.fonc.commun.pt_ind_100 ## TO ADD
-        traitement_indiciaire_brut = (indice_majore * point_indice_100) / 1200
-
-        return period, traitement_indiciaire_brut
+        traitement_indice_majore_100 = simulation.legislation_at(period.start).cotsoc.sal.fonc.commun.pt_ind * 100
+        return period, (categorie_salarie >= 2) * (categorie_salarie <= 5) * indice_majore * traitement_indice_majore_100 / 1200
+        
         
 class IM_an_moyen(Variable):
     column = FloatCol
