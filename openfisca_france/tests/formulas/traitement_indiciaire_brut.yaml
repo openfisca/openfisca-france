@@ -22,6 +22,18 @@
   output_variables:
     traitement_indiciaire_brut: [2143.83, 2143.83]
 
+- name: u"Traitement indiciaire brut rédacteur FPT"
+  period: 2013-02
+  absolute_error_margin: 0.5
+  input_variables:
+    categorie_salarie: 4
+    echelon: 1
+    corps: 'redacteur'
+    grade: 1
+    indice_majore: 312
+  output_variables:
+    traitement_indiciaire_brut: 1444.65
+
 - name: u"Traitement indiciaire brut impossible salarié du privé"
   period: 2014-02
   absolute_error_margin: 0.5
