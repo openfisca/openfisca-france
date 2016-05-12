@@ -308,7 +308,6 @@ class nouvelle_bonification_indiciaire(Variable):
     entity_class = Individus
     label = u"Nouvelle bonification indicaire"
 
-
 class prevoyance_obligatoire_cadre_taux_employe(Variable):
     column = FloatCol(default = 0.015)  # 1.5% est le minimum en 2014
     entity_class = Individus

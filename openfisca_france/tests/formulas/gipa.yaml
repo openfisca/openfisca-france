@@ -1,0 +1,30 @@
+- name: "GIPA - agent fpt"
+  absolute_error_margin: 0.5
+  period: "2014-01"
+  input_variables:
+    categorie_salarie:
+      "2009": 4
+      "2010": 4
+      "2011": 4
+      "2012": 4
+      "2013": 4
+      "2014": 4
+    corps:
+      "2009": 'redacteur'
+      "2010": 'redacteur'
+      "2011": 'redacteur'
+      "2012": 'redacteur'
+      "2013": 'redacteur'
+      "2014": 'redacteur'
+    echelon:
+      "2010-12": 1
+      "2013-12": 1
+      "2014-01": 1
+    grade:
+      "2010-12": 1
+      "2013-12": 1
+      "2014-01": 1
+
+  output_variables:
+    indice_majore: 312
+    gipa: 200
