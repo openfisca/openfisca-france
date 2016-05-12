@@ -7,9 +7,9 @@ build_column('idmen', IntCol(is_permanent = True, label = u"Identifiant du ména
 build_column('idfoy', IntCol(is_permanent = True, label = u"Identifiant du foyer"))
 build_column('idfam', IntCol(is_permanent = True, label = u"Identifiant de la famille"))
 
-build_column('quimen', EnumCol(QUIMEN, is_permanent = True))
-build_column('quifoy', EnumCol(QUIFOY, is_permanent = True))
-build_column('quifam', EnumCol(QUIFAM, is_permanent = True))
+build_column('quimen', EnumCol(enum = QUIMEN, is_permanent = True))
+build_column('quifoy', EnumCol(enum = QUIFOY, is_permanent = True))
+build_column('quifam', EnumCol(enum = QUIFAM, is_permanent = True))
 
 build_column('date_naissance', DateCol(default = date(1970, 1, 1), is_permanent = True, label = u"Date de naissance"))
 
