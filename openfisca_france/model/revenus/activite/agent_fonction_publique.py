@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 
+
+from numpy import (
+    maximum as max_,
+    minimum as min_,
+    )
+
+
 from ...base import *  # noqa analysis:ignore
-
-
+from ...prestations.prestations_familiales.base_ressource import nb_enf
 from .grille import get_indice
 
 
@@ -192,7 +198,7 @@ class remuneration_principale(Variable):
     label = u"Rémunération principale des agents titulaires de la fonction publique"
 
     def function(self, simulation, period):
-        traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
+        traitement_indiciaire_brut = simulation.calculate_add('traitement_indiciaire_brut', period)
         nouvelle_bonification_indiciaire = simulation.calculate('nouvelle_bonification_indiciaire', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         return period, (
@@ -221,3 +227,40 @@ class traitement_indiciaire_brut(Variable):
         traitement_indiciaire_brut = (indice_majore * point_indice_100) / 1200
 
         return period, traitement_indiciaire_brut
+        
+class IM_an_moyen(Variable):
+    column = FloatCol
+    entity_class = Individus    
+    label = u"Indice majoré annuel moyen"
+    
+    def function(self, simulation, period):
+       # to code
+       return period, self
+
+       
+class tib_annuel_moyen(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Traitement indiciaire brut annuel moyen "    
+    
+    def function(self, simulation, period):     
+       #law = simulation.legislation_at(period.start)
+       valeur_moyenne_point = 2  # law.fonc.pt_ind_annuel_moyen ## TO ADD valeur moyenne point d'indice (Barèmes IPP MdT)
+       indice_majore_moyen = 1000  # simulation.calculate('IM_moyen', period) 
+       return period, indice_majore_moyen * valeur_moyenne_point
+
+        
+#class gipa(Variable):
+#    column = FloatCol
+#    entity_class = Individus
+#    label = u"Indemnité de garantie individuelle du pouvoir d'achat"
+#    
+#    def function(self, simulation, period):
+#        period = period.start.offset('last-of', 'year').period('month')
+#        law = simulation.legislation_at(period.start)
+#        inflation = law.fonc.inflation_moyenne_periode_gipa ## TO ADD valeur de l'inflation pour GIPA (Barèmes IPP MdT)
+#        traitement_indiciaire_brut_moyen_debut = simulation.calculate(
+#            'tib_annuel_moyen', period.offset('first-of', 'year').start.period('year').offset(-3))
+#        traitement_indiciaire_brut_moyen_fin = simulation.calculate('tib_annuel_moyen', period)
+#        return period, traitement_indiciaire_brut_moyen_debut * (1 + inflation) - traitement_indiciaire_brut_moyen_fin
+#

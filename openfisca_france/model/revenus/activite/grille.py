@@ -43,10 +43,15 @@ def compute_tib(date, versant, corps, grade_num, echelon):
 
 def get_indice(variable, period, categorie_salarie, corps, grade, echelon):
     indice_majore = variable.zeros()
-    for categorie_salarie_grille in np.unique(categorie_salarie):
-        for corps_grille in np.unique(corps):
-            for grade_grille in np.unique(grade):
-                for echelon_grille in np.unique(echelon):
+    categories_salaries_grille = set(np.unique(categorie_salarie)).intersection(set([4, 5]))
+    corpses_grille = set(np.unique(corps)) - set([''])
+    grades_grille = set(np.unique(grade)) - set([''])
+    echelons_grille = set(np.unique(echelon)) - set([0])
+    for categorie_salarie_grille in categories_salaries_grille:
+       for corps_grille in corpses_grille:
+            for grade_grille in grades_grille:
+                for echelon_grille in echelons_grille:
+                    print categorie_salarie_grille, corps_grille, grade_grille, echelon_grille
                     indice_grille = get_indice_from_grille(
                         period,
                         categorie_salarie_grille,

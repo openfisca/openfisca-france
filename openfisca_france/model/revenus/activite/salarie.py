@@ -6,7 +6,6 @@ from numpy import (
     )
 
 from ...base import *  # noqa analysis:ignore
-from ...prestations.prestations_familiales.base_ressource import nb_enf
 
 build_column('indemnites_stage', FloatCol(entity = 'ind', label = u"Indemnités de stage"))
 build_column(
@@ -546,43 +545,6 @@ class remboursement_transport(Variable):
         return period, - .5 * remboursement_transport_base
 
 
-class IM_an_moyen(Variable):
-    column = FloatCol
-    entity_class = Individus    
-    label = u"Indice majoré annuel moyen"
-    
-    def function(self, simulation, period):
-       # to code
-       return period, self
-
-       
-class tib_annuel_moyen(Variable):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Traitement indiciaire brut annuel moyen "    
-    
-    def function(self, simulation, period):     
-       #law = simulation.legislation_at(period.start)
-       valeur_moyenne_point = 2  # law.fonc.pt_ind_annuel_moyen ## TO ADD valeur moyenne point d'indice (Barèmes IPP MdT)
-       indice_majore_moyen = 1000  # simulation.calculate('IM_moyen', period) 
-       return period, indice_majore_moyen * valeur_moyenne_point
-
-        
-class gipa(Variable):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Indemnité de garantie individuelle du pouvoir d'achat"
-    
-    def function(self, simulation, period):
-        period = period.start.offset('last-of', 'year').period('month')
-        law = simulation.legislation_at(period.start)
-        inflation = law.fonc.inflation_moyenne_periode_gipa ## TO ADD valeur de l'inflation pour GIPA (Barèmes IPP MdT)
-        traitement_indiciaire_brut_moyen_debut = simulation.calculate(
-            'tib_annuel_moyen', period.offset('first-of', 'year').start.period('year').offset(-3))
-        traitement_indiciaire_brut_moyen_fin = simulation.calculate('tib_annuel_moyen', period)
-        return period, traitement_indiciaire_brut_moyen_debut * (1 + inflation) - traitement_indiciaire_brut_moyen_fin
-
-
 class salaire_net_a_payer(Variable):
     base_function = requested_period_added_value
     column = FloatCol
@@ -622,7 +584,7 @@ class salaire_super_brut_hors_allegements(Variable):
     def function(self, simulation, period):
         period = period
         salaire_de_base = simulation.calculate('salaire_de_base', period)
-        remuneration_principale = simulation.calculate('remuneration_principale', period)
+        remuneration_principale = simulation.calculate_add('remuneration_principale', period)
         remuneration_apprenti = simulation.calculate_add('remuneration_apprenti', period)
 
         primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
