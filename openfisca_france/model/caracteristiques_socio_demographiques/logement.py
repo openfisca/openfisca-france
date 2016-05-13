@@ -7,12 +7,27 @@ from numpy.core.defchararray import startswith
 from ..base import *  # noqa analysis:ignore
 
 
-build_column('coloc', BoolCol(label = u"Vie en colocation"))
+class coloc(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Vie en colocation"
 
-build_column('depcom', FixedStrCol(label = u"Code INSEE (depcom) du lieu de résidence", entity = 'men', max_length = 5))
 
 
-build_column('logement_chambre', BoolCol(label = u"Le logement est considéré comme une chambre"))
+class depcom(Variable):
+    column = FixedStrCol(max_length = 5)
+    entity_class = Menages
+    label = u"Code INSEE (depcom) du lieu de résidence"
+
+
+
+
+class logement_chambre(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Le logement est considéré comme une chambre"
+
+
 
 class loyer(Variable):
     column = FloatCol()
@@ -26,13 +41,12 @@ class charges_locatives(Variable):
     set_input = set_input_divide_by_period
     label = u'Charges locatives'
 
-build_column(
-    'proprietaire_proche_famille',
-    BoolCol(
-        entity = "fam",
-        label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint",
-    ),
-)
+class proprietaire_proche_famille(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
+
+
 
 class statut_occupation_logement(Variable):
     column = EnumCol(

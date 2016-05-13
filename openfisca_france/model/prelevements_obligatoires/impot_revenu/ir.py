@@ -41,17 +41,32 @@ log = logging.getLogger(__name__)
 #    irpp   = -(mciria + ppetot - mcirra )
 
 
-build_column('jour_xyz', IntCol(default = 360,
-                    entity = "foy",
-                    label = u"Jours décomptés au titre de cette déclaration"))
+class jour_xyz(Variable):
+    column = IntCol(default = 360)
+    entity_class = FoyersFiscaux
+    label = u"Jours décomptés au titre de cette déclaration"
 
 
-build_column('rfr_n_1', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 1",
-    val_type = "monetary"))
-build_column('rfr_n_2', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 2",
-    val_type = "monetary"))
-build_column('nbptr_n_2', PeriodSizeIndependentIntCol(entity = 'foy', label = u"Nombre de parts année n - 2",
-    val_type = "monetary"))
+
+
+class rfr_n_1(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Revenu fiscal de référence année n - 1"
+
+
+class rfr_n_2(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Revenu fiscal de référence année n - 2"
+
+
+class nbptr_n_2(Variable):
+    column = PeriodSizeIndependentIntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Nombre de parts année n - 2"
+
+
 
 
 ###############################################################################

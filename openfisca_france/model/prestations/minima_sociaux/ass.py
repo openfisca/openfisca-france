@@ -8,7 +8,12 @@ from numpy import (absolute as abs_, logical_and as and_, logical_not as not_, l
 from ...base import *  # noqa analysis:ignore
 
 
-build_column('ass_precondition_remplie', BoolCol(entity = "ind", label = u"Éligible à l'ASS"))
+class ass_precondition_remplie(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Éligible à l'ASS"
+
+
 
 
 class ass(Variable):
