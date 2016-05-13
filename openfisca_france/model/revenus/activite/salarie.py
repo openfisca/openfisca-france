@@ -302,12 +302,6 @@ class nombre_tickets_restaurant(Variable):
     base_function = requested_period_last_value
     label = u"Nombre de tickets restaurant"
 
-
-class nouvelle_bonification_indiciaire(Variable):
-    column = FloatCol()
-    entity_class = Individus
-    label = u"Nouvelle bonification indicaire"
-
 class prevoyance_obligatoire_cadre_taux_employe(Variable):
     column = FloatCol(default = 0.015)  # 1.5% est le minimum en 2014
     entity_class = Individus

@@ -1,0 +1,35 @@
+- name: u"TIB temps partiel"
+  period: 2014-12
+  absolute_error_margin: 1
+  input_variables:
+    categorie_salarie: 4
+    echelon: 13
+    corps: 'redacteur'
+    grade: 1
+    quotite_travail: 0.5
+  output_variables:
+    traitement_indiciaire_brut_temps_partiel: 1071.95
+
+- name: u"TIB temps partiel"
+  period: 2014-12
+  absolute_error_margin: 1
+  input_variables:
+    categorie_salarie: 4
+    echelon: 13
+    corps: 'redacteur'
+    grade: 1
+    quotite_travail: 0.8
+  output_variables:
+    traitement_indiciaire_brut_temps_partiel: 1837.57
+
+- name: u"TIB temps partiel"
+  period: 2014-12
+  absolute_error_margin: 1
+  input_variables:
+    categorie_salarie: 4
+    echelon: 13
+    corps: 'redacteur'
+    grade: 1
+    quotite_travail: 0.9
+  output_variables:
+    traitement_indiciaire_brut_temps_partiel: 1960.073

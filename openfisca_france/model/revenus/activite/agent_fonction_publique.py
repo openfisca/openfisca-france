@@ -11,6 +11,28 @@ from ...prestations.prestations_familiales.base_ressource import nb_enf
 from .grille import get_indice
 
 
+class af_nbenf_fonc(Variable):
+    column = IntCol
+    entity_class = Familles
+    label = u"Nombre d'enfants dans la famille au sens des allocations familiales pour le fonctionnaires"
+    # Hack pour éviter une boucle infinie
+
+    def function(self, simulation, period):
+        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
+        # jour, sans changer la période.
+        age_holder = simulation.compute('age', period)
+        salaire_de_base = simulation.calculate_add('salaire_de_base', period.start.period('month', 6).offset(-6))
+        law = simulation.legislation_at(period.start)
+        nbh_travaillees = 169
+        smic_mensuel_brut = law.cotsoc.gen.smic_h_b * nbh_travaillees
+        autonomie_financiere_holder = (salaire_de_base / 6) >= (law.fam.af.seuil_rev_taux * smic_mensuel_brut)
+        age = self.split_by_roles(age_holder, roles = ENFS)
+        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
+        af_nbenf = nb_enf(age, autonomie_financiere, law.fam.af.age1, law.fam.af.age2)
+
+        return period, af_nbenf
+
+
 class corps(Variable):
     column = StrCol()
     entity_class = Individus
@@ -21,6 +43,32 @@ class echelon(Variable):
     column = IntCol()
     entity_class = Individus
     label = u"Echelon dans le grade de la fonction publique"
+
+        
+class gipa(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Indemnité de garantie individuelle du pouvoir d'achat"
+    
+    def function(self, simulation, period):
+        law_inflation = simulation.legislation_at(period.start).cotsoc.sal.fonc.commun.inflation_moyenne_periode_gipa
+        period_IM_periode_fin = period.offset(-1, 'year').offset('last-of', 'year').offset('first-of', 'month')    
+
+        IM_periode_fin = simulation.calculate('indice_majore', period_IM_periode_fin)
+        valeur_moyenne_pt_ind_periode_fin = simulation.legislation_at(period.start.offset(-1, 'year')).cotsoc.sal.fonc.commun.pt_ind_annuel_moyen    
+        tib_moyen_periode_fin = (IM_periode_fin * valeur_moyenne_pt_ind_periode_fin) 
+        
+        period_IM_periode_debut = period.offset(-5, 'year').offset('last-of', 'year').offset('first-of', 'month')
+        IM_periode_debut = simulation.calculate('indice_majore', period_IM_periode_debut)
+        valeur_moyenne_pt_ind_periode_debut = simulation.legislation_at(period.start.offset(-5, 'year')).cotsoc.sal.fonc.commun.pt_ind_annuel_moyen
+        tib_moyen_periode_debut = (IM_periode_debut * valeur_moyenne_pt_ind_periode_debut)
+
+#        print 'IM_periode_debut', IM_periode_debut 
+#        print 'valeur_moyenne_pt_ind_periode_debut', valeur_moyenne_pt_ind_periode_debut         
+#        print tib_moyen_periode_debut, law_inflation, tib_moyen_periode_fin
+              
+        gipa = tib_moyen_periode_debut * (1 + law_inflation) - tib_moyen_periode_fin         
+        return period, gipa
 
 
 class grade(Variable):
@@ -53,9 +101,20 @@ class indemnite_residence(Variable):
             taux * (traitement_indiciaire_brut + salaire_de_base)
             ) * (categorie_salarie >= 2)
 
+#
+#class indice_majore_annuel_moyen(Variable):
+#    column = FloatCol
+#    entity_class = Individus    
+#    label = u"Indice majoré annuel moyen"
+#    
+#    def function(self, simulation, period):
+#       # to code
+#       return period, self
+
 
 class indice_majore(Variable):
     column = IntCol()
+    
     entity_class = Individus
     label = u"Indice majoré échelon fonctionnaire"
 
@@ -83,6 +142,12 @@ class indice_majore(Variable):
 #        return period, (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * (categorie_salarie >= 2)
 
 
+class nouvelle_bonification_indiciaire(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Nouvelle bonification indicaire"
+    
+
 class primes_fonction_publique(Variable):
     column = FloatCol
     entity_class = Individus
@@ -102,27 +167,20 @@ class primes_fonction_publique(Variable):
         return period, TAUX_DE_PRIME * traitement_indiciaire_brut * public
 
 
-class af_nbenf_fonc(Variable):
-    column = IntCol
-    entity_class = Familles
-    label = u"Nombre d'enfants dans la famille au sens des allocations familiales pour le fonctionnaires"
-    # Hack pour éviter une boucle infinie
+class remuneration_principale(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Rémunération principale des agents titulaires de la fonction publique"
 
     def function(self, simulation, period):
-        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
-        # jour, sans changer la période.
-        age_holder = simulation.compute('age', period)
-        salaire_de_base = simulation.calculate_add('salaire_de_base', period.start.period('month', 6).offset(-6))
-        law = simulation.legislation_at(period.start)
-        nbh_travaillees = 169
-        smic_mensuel_brut = law.cotsoc.gen.smic_h_b * nbh_travaillees
-        autonomie_financiere_holder = (salaire_de_base / 6) >= (law.fam.af.seuil_rev_taux * smic_mensuel_brut)
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
-        af_nbenf = nb_enf(age, autonomie_financiere, law.fam.af.age1, law.fam.af.age2)
-
-        return period, af_nbenf
-
+        traitement_indiciaire_brut = simulation.calculate_add('traitement_indiciaire_brut', period)
+        nouvelle_bonification_indiciaire = simulation.calculate('nouvelle_bonification_indiciaire', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
+        return period, (
+            (categorie_salarie >= 2) * (categorie_salarie <= 5) * (
+                traitement_indiciaire_brut + nouvelle_bonification_indiciaire
+                )
+            )
 
 class supp_familial_traitement(Variable):
     column = FloatCol
@@ -191,28 +249,16 @@ class supp_familial_traitement(Variable):
         #             'public_non_titulaire'])
         return period, sft
 
-
-class remuneration_principale(Variable):
+class tib_annuel_gipa(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"Rémunération principale des agents titulaires de la fonction publique"
-
-    def function(self, simulation, period):
-        traitement_indiciaire_brut = simulation.calculate_add('traitement_indiciaire_brut', period)
-        nouvelle_bonification_indiciaire = simulation.calculate('nouvelle_bonification_indiciaire', period)
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
-        return period, (
-            (categorie_salarie >= 2) * (categorie_salarie <= 5) * (
-                traitement_indiciaire_brut + nouvelle_bonification_indiciaire
-                )
-            )
-
-
-#def _traitement_brut_mensuel(indice_maj, law):
-#    Indice_majore_100_annuel = law.fonc.IM_100
-#    traitement_brut = Indice_majore_100_annuel * indice_maj / 100 / 12
-#    return traitement_brut
-#
+    label = u"Traitement indiciaire brut annuel à considérer pour le calcul de la GIPA "    
+    
+    def function(self, simulation, period):     
+       #law = simulation.legislation_at(period.start)
+       valeur_moyenne_point = simulation.legislation_at(period.start).cotsoc.sal.fonc.commun.pt_ind_annuel_moyen
+       
+       return period, indice_majore_fin_annee * valeur_moyenne_point
 
 
 class traitement_indiciaire_brut(Variable):
@@ -229,47 +275,24 @@ class traitement_indiciaire_brut(Variable):
             period,
             (categorie_salarie >= 2) * (categorie_salarie <= 5) * indice_majore * traitement_indice_majore_100 / 1200
             )
-        
-class IM_an_moyen(Variable):
-    column = FloatCol
-    entity_class = Individus    
-    label = u"Indice majoré annuel moyen"
-    
-    def function(self, simulation, period):
-       # to code
-       return period, self
-
-       
-class tib_annuel_gipa(Variable):
-    column = FloatCol
+            
+            
+class quotite_travail(Variable):
+    column = FloatCol()
     entity_class = Individus
-    label = u"Traitement indiciaire brut annuel à considérer pour le calcul de la GIPA "    
-    
-    def function(self, simulation, period):     
-       #law = simulation.legislation_at(period.start)
-       valeur_moyenne_point = simulation.legislation_at(period.start).cotsoc.sal.fonc.commun.pt_ind_annuel_moyen
-       
-       return period, indice_majore_fin_annee * valeur_moyenne_point
+    label = u"Temps de travail des agents du service public"
 
-        
-class gipa(Variable):
-    column = FloatCol
-    entity_class = Individus
-    label = u"Indemnité de garantie individuelle du pouvoir d'achat"
-    
-    def function(self, simulation, period):
-        law_inflation = simulation.legislation_at(period.start).cotsoc.sal.fonc.commun.inflation_moyenne_periode_gipa
-        period_IM_periode_fin = period.offset(-1, 'year').offset('last-of', 'year').offset('first-of', 'month')        
-        IM_periode_fin = simulation.calculate('indice_majore', period_IM_periode_fin)
-        valeur_moyenne_pt_ind_periode_fin = simulation.legislation_at(period.start.offset(-1, 'year')).cotsoc.sal.fonc.commun.pt_ind_annuel_moyen    
-        tib_moyen_periode_fin = IM_periode_fin * valeur_moyenne_pt_ind_periode_fin        
-        period_IM_periode_debut = period.offset(-4, 'year').offset('last-of', 'year').offset('first-of', 'month')
-        IM_periode_debut = simulation.calculate('indice_majore', period_IM_periode_debut)
-        valeur_moyenne_pt_ind_periode_debut = simulation.legislation_at(period.start.offset(-4, 'year')).cotsoc.sal.fonc.commun.pt_ind_annuel_moyen
-        print 'IM_periode_debut', IM_periode_debut 
-        print 'valeur_moyenne_pt_ind_periode_debut', valeur_moyenne_pt_ind_periode_debut         
-        tib_moyen_periode_debut = IM_periode_debut * valeur_moyenne_pt_ind_periode_debut 
-        print tib_moyen_periode_debut, law_inflation, tib_moyen_periode_fin
-        gipa = tib_moyen_periode_debut * (1 + law_inflation) - tib_moyen_periode_fin         
-        return period, gipa
 
+class traitement_indiciaire_brut_temps_partiel(Variable):
+     column = FloatCol()
+     entity_class = Individus
+     label = u"Traitement indiciaire brut (TIB mensuel) des agents à temps partiel"
+     
+     def function(self, simulation, period):
+         period = period.this_month
+         categorie_salarie = simulation.calculate('categorie_salarie', period)
+         tib_tps_plein = simulation.calculate('traitement_indiciaire_brut', period)
+         quotite = simulation.calculate('quotite_travail', period)
+         quotite_agt = (quotite < 0.8) * quotite + (quotite == 0.8) * 0.857142 + (quotite == 0.9) * 0.91428
+         return (period, (categorie_salarie >= 2) * (categorie_salarie <= 5) * tib_tps_plein * quotite_agt)
+                 

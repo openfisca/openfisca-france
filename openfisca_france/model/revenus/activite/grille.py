@@ -91,7 +91,6 @@ def get_indice_from_grille(period, categorie_salarie, corps, grade_num, echelon)
       assert corps in corps in grid_cat_spe.corps.values, "Bad corps: {}".format(corps) 
         
       grid_corps_spe = grid_cat_spe.loc[grid_cat_spe['corps'] == corps]
-      #print grid_corps_spe.grade_num
       assert grade_num in grid_corps_spe.grade_num.values, "Bad grade: {}".format(grade_num)
         
       grid_grade_spe = grid_corps_spe.loc[grid_corps_spe['grade_num'] == grade_num]
@@ -104,7 +103,6 @@ if __name__ == "__main__":
     # date = 20140201 
     versant, corps, grade_num, echelon =  'FPT', 'redacteur', 1, 13
     categorie_salarie = 4
-    # print compute_tib(date, versant, corps, grade_num, echelon)
     from openfisca_core.periods import period    
     period = period("2014-02")
     print get_indice_from_grille(period, categorie_salarie, corps, grade_num, echelon)
