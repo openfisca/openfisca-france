@@ -248,6 +248,12 @@ class supp_familial_traitement(Variable):
         #             'public_titulaire_hospitaliere',
         #             'public_non_titulaire'])
         return period, sft
+      
+      
+def _traitement_brut_mensuel(indice_maj, law):
+    Indice_majore_100_annuel = law.fonc.IM_100
+    traitement_brut = Indice_majore_100_annuel * indice_maj / 100 / 12
+    return traitement_brut
 
 class tib_annuel_gipa(Variable):
     column = FloatCol
