@@ -62,10 +62,6 @@ class gipa(Variable):
         IM_periode_debut = simulation.calculate('indice_majore', period_IM_periode_debut)
         valeur_moyenne_pt_ind_periode_debut = simulation.legislation_at(period.start.offset(-5, 'year')).cotsoc.sal.fonc.commun.pt_ind_annuel_moyen
         tib_moyen_periode_debut = (IM_periode_debut * valeur_moyenne_pt_ind_periode_debut)
-
-#        print 'IM_periode_debut', IM_periode_debut 
-#        print 'valeur_moyenne_pt_ind_periode_debut', valeur_moyenne_pt_ind_periode_debut         
-#        print tib_moyen_periode_debut, law_inflation, tib_moyen_periode_fin
               
         gipa = tib_moyen_periode_debut * (1 + law_inflation) - tib_moyen_periode_fin         
         return period, gipa
@@ -263,7 +259,6 @@ class tib_annuel_gipa(Variable):
     def function(self, simulation, period):     
        #law = simulation.legislation_at(period.start)
        valeur_moyenne_point = simulation.legislation_at(period.start).cotsoc.sal.fonc.commun.pt_ind_annuel_moyen
-       
        return period, indice_majore_fin_annee * valeur_moyenne_point
 
 
