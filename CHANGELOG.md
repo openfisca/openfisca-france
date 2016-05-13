@@ -1,6 +1,10 @@
 # Changelog
 
-## 1.0
+## 1.1.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.0...1.1.0)
+
+* Replace `build_column` function calls by `Variable` classes (see [#384](https://github.com/openfisca/openfisca-core/pull/384))
+
+## 1.0 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.5...1.0)
 
 * Add tests yaml for cotisations sociales
 * Introduction of `invalidite`
@@ -67,7 +71,7 @@
 	* `tspr` -> `traitements_salaires_pensions_rentes`
 	* `type_sal` -> `categorie_salarie`
 
-## 0.5.5
+## 0.5.5 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4.3...0.5.5)
 
 * Prime d'activité fiabilization
 * Implementation of Indemnite de fin de contrat
@@ -76,19 +80,19 @@
 * Update prestations parameters (2016/04/01 revalorisation)
 * Add net -> brut reform
 
-## 0.5.4.2, 0.5.4.3
+## 0.5.4.2, 0.5.4.3 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4.1...0.5.4.3)
 
 * Update OpenFisca-Core requirement version
 
-## 0.5.4.1
+## 0.5.4.1 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4...0.5.4.1)
 
 * Add missing assets for versement_transport
 
-## 0.5.4
+## 0.5.4 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.3...0.5.4)
 
 * Many updates
 
-## 0.5.3
+## 0.5.3 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.2...0.5.3)
 
 * Fix vieillesse deplafonnee baremes
 * Fix some dates in arrco and formation prof. baremes
@@ -144,7 +148,7 @@
 * Remove nose section from setup.cfg
 * Add CONTRIBUTING.md file
 
-## 0.5.2
+## 0.5.2 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.1...0.5.2)
 
 * Merge pull request #304 from sgmap/taille_entreprise
 * Remove unmaintainable tests
@@ -174,7 +178,7 @@
 * Do not use relative import in script (__main__)
 * Add biryani extra require
 
-## 0.5.1
+## 0.5.1 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.0...0.5.1)
 
 * Remove scipy by default
 

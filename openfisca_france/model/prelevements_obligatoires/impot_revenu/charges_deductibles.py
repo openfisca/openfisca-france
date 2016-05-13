@@ -14,190 +14,277 @@ log = logging.getLogger(__name__)
 
 
 # Csg déductible
-build_column('f6de', IntCol(entity = 'foy',
-                label = u"CSG déductible calculée sur les revenus du patrimoine",
-                val_type = "monetary",
-                cerfa_field = u'6DE'))
+class f6de(Variable):
+    cerfa_field = u"6DE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"CSG déductible calculée sur les revenus du patrimoine"
+
+
 
 # Pensions alimentaires
-build_column('f6gi', IntCol(entity = 'foy',
-                label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 1er enfant",
-                val_type = "monetary",
-                cerfa_field = u'6GI'))
+class f6gi(Variable):
+    cerfa_field = u"6GI"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 1er enfant"
 
-build_column('f6gj', IntCol(entity = 'foy',
-                label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 2eme enfant",
-                val_type = "monetary",
-                cerfa_field = u'6GJ'))
 
-build_column('f6el', IntCol(entity = 'foy',
-                label = u"Autres pensions alimentaires versées à des enfants majeurs: 1er enfant",
-                val_type = "monetary",
-                start = date(2006, 1, 1),
-                cerfa_field = u'6EL'))
 
-build_column('f6em', IntCol(entity = 'foy',
-                label = u"Autres pensions alimentaires versées à des enfants majeurs: 2eme enfant",
-                val_type = "monetary",
-                start = date(2006, 1, 1),
-                cerfa_field = u'6EM'))
+class f6gj(Variable):
+    cerfa_field = u"6GJ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 2eme enfant"
 
-build_column('f6gp', IntCol(entity = 'foy',
-                label = u"Autres pensions alimentaires versées décision de justice définitive avant 2006 (mineurs, ascendants)",
-                val_type = "monetary",
-                cerfa_field = u'6GP'))
 
-build_column('f6gu', IntCol(entity = 'foy',
-                label = u"Autres pensions alimentaires versées (mineurs, ascendants)",
-                start = date(2006, 1, 1),
-                val_type = "monetary",
-                cerfa_field = u'6GU'))
+
+class f6el(Variable):
+    cerfa_field = u"6EL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Autres pensions alimentaires versées à des enfants majeurs: 1er enfant"
+    start_date = date(2006, 1, 1)
+
+
+
+class f6em(Variable):
+    cerfa_field = u"6EM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Autres pensions alimentaires versées à des enfants majeurs: 2eme enfant"
+    start_date = date(2006, 1, 1)
+
+
+
+class f6gp(Variable):
+    cerfa_field = u"6GP"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Autres pensions alimentaires versées décision de justice définitive avant 2006 (mineurs, ascendants)"
+
+
+
+class f6gu(Variable):
+    cerfa_field = u"6GU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Autres pensions alimentaires versées (mineurs, ascendants)"
+    start_date = date(2006, 1, 1)
+
+
 
 # Frais d'accueil d'une personne de plus de 75 ans dans le besoin
-build_column('f6eu', IntCol(entity = 'foy',
-                label = u"Frais d'accueil de personnes de plus de 75 ans dans le besoin",
-                val_type = "monetary",
-                cerfa_field = u'6EU'))
+class f6eu(Variable):
+    cerfa_field = u"6EU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Frais d'accueil de personnes de plus de 75 ans dans le besoin"
 
-build_column('f6ev', PeriodSizeIndependentIntCol(entity = 'foy',
-                label = u"Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit",
-                cerfa_field = u'6EV'))
+
+
+class f6ev(Variable):
+    cerfa_field = u"6EV"
+    column = PeriodSizeIndependentIntCol
+    entity_class = FoyersFiscaux
+    label = u"Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit"
+
+
 
 # Déductions diverses
-build_column('f6dd', IntCol(entity = 'foy',
-                label = u"Déductions diverses",
-                val_type = "monetary",
-                cerfa_field = u'6DD'))
+class f6dd(Variable):
+    cerfa_field = u"6DD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Déductions diverses"
+
+
 
 # Épargne retraite - PERP, PRÉFON, COREM et CGOS
-build_column('f6ps', IntCol(entity = 'ind',
-                label = u"Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)",
-                val_type = "monetary",
-                cerfa_field = {QUIFOY['vous']: u"6PS",
-                               QUIFOY['conj']: u"6PT",
-                               QUIFOY['pac1']: u"6PU",
-                               }))  # (f6ps, f6pt, f6pu)
+class f6ps(Variable):
+    cerfa_field = {QUIFOY['vous']: u"6PS",
+        QUIFOY['conj']: u"6PT",
+        QUIFOY['pac1']: u"6PU",
+        }
+    column = IntCol(val_type = "monetary")
+    entity_class = Individus
+    label = u"Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)"
 
-build_column('f6rs', IntCol(entity = 'ind',
-                label = u"Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S",
-                val_type = "monetary",
-                cerfa_field = {QUIFOY['vous']: u"6RS",
-                               QUIFOY['conj']: u"6RT",
-                               QUIFOY['pac1']: u"6RU",
-                               }))  # (f6rs, f6rt, f6ru)))
+  # (f6ps, f6pt, f6pu)
 
-build_column('f6ss', IntCol(entity = 'ind',
-                label = u"Rachat de cotisations PERP, PREFON, COREM et C.G.O.S",
-                val_type = "monetary",
-                cerfa_field = {QUIFOY['vous']: u"6SS",
-                               QUIFOY['conj']: u"6ST",
-                               QUIFOY['pac1']: u"6SU",
-                               }))  # (f6ss, f6st, f6su)))
+class f6rs(Variable):
+    cerfa_field = {QUIFOY['vous']: u"6RS",
+        QUIFOY['conj']: u"6RT",
+        QUIFOY['pac1']: u"6RU",
+        }
+    column = IntCol(val_type = "monetary")
+    entity_class = Individus
+    label = u"Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S"
+
+  # (f6rs, f6rt, f6ru)))
+
+class f6ss(Variable):
+    cerfa_field = {QUIFOY['vous']: u"6SS",
+        QUIFOY['conj']: u"6ST",
+        QUIFOY['pac1']: u"6SU",
+        }
+    column = IntCol(val_type = "monetary")
+    entity_class = Individus
+    label = u"Rachat de cotisations PERP, PREFON, COREM et C.G.O.S"
+
+  # (f6ss, f6st, f6su)))
 
 # Souscriptions en faveur du cinéma ou de l’audiovisuel
-build_column('f6aa', IntCol(entity = 'foy',
-                label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel",
-                val_type = "monetary",
-                start = date(2005, 1, 1),
-                end = date(2006, 12, 31),
-                cerfa_field = u'6AA'))  # TODO: ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
+class f6aa(Variable):
+    cerfa_field = u"6AA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel"
+    start_date = date(2005, 1, 1)
+    stop_date = date(2006, 12, 31)
+
+  # TODO: ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
 
 # Souscriptions au capital des SOFIPÊCHE
-build_column('f6cc', IntCol(entity = 'foy',
-                label = u"Souscriptions au capital des SOFIPÊCHE",
-                val_type = "monetary",
-                cerfa_field = u'CC',
-                start = date(2005, 1, 1),
-                end = date(2005, 12, 31)))  # ancien numéro de case, antérieur à 2008 ....au moins vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en  12 et13)
+class f6cc(Variable):
+    cerfa_field = u"CC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscriptions au capital des SOFIPÊCHE"
+    start_date = date(2005, 1, 1)
+    stop_date = date(2005, 12, 31)
+
+  # ancien numéro de case, antérieur à 2008 ....au moins vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en  12 et13)
 
 
 # Investissements DOM-TOM dans le cadre d’une entreprise < = 2005
 # ou Versements sur un compte épargne codéveloppement
-build_column('f6eh', IntCol(entity = 'foy',
-                label = u"",
-                val_type = "monetary",
-                start = date(2005, 1, 1),
-                end = date(2005, 12, 31),
-                cerfa_field = u'EH'))  # TODO: vérifier date de début et de fin de cette case (rien en 12 et 13)
+class f6eh(Variable):
+    cerfa_field = u"EH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    start_date = date(2005, 1, 1)
+    stop_date = date(2005, 12, 31)
+
+  # TODO: vérifier date de début et de fin de cette case (rien en 12 et 13)
 
 # Pertes en capital consécutives à la souscription au capital de sociétés
 # nouvelles ou de sociétés en difficulté
-build_column('f6da', IntCol(entity = 'foy',
-                label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté",
-                val_type = "monetary",
-                start = date(2005, 1, 1),
-                end = date(2005, 12, 31),
-                cerfa_field = u'DA'))
+class f6da(Variable):
+    cerfa_field = u"DA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté"
+    start_date = date(2005, 1, 1)
+    stop_date = date(2005, 12, 31)
+
+
 
 
 # Dépenses de grosses réparations effectuées par les nus propriétaires
-build_column('f6cb', IntCol(entity = 'foy',
-                label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)",
-                val_type = "monetary",
-                start = date(2009, 1, 1),
-                cerfa_field = u'6CB'))
+class f6cb(Variable):
+    cerfa_field = u"6CB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)"
+    start_date = date(2009, 1, 1)
+
+
                                        # TODO: before 2006 wasPertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration complémentaire)
 
-build_column('f6hj', IntCol(entity = 'foy',
-                label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'6HJ'))
+class f6hj(Variable):
+    cerfa_field = u"6HJ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
+    start_date = date(2010, 1, 1)
 
-build_column('f6hk', IntCol(entity = 'foy',
-                label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'6HK'))
 
-build_column('f6hl', IntCol(entity = 'foy',
-                label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'6HL'))
 
-build_column('f6hm', IntCol(entity = 'foy',
-                label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures",
-                val_type = "monetary",
-                start = date(2013, 1, 1),
-                cerfa_field = u'6HM'))
+class f6hk(Variable):
+    cerfa_field = u"6HK"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
+    start_date = date(2011, 1, 1)
+
+
+
+class f6hl(Variable):
+    cerfa_field = u"6HL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
+    start_date = date(2012, 1, 1)
+
+
+
+class f6hm(Variable):
+    cerfa_field = u"6HM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
+    start_date = date(2013, 1, 1)
+
+
 
 # Sommes à rajouter au revenu imposable
-build_column('f6gh', IntCol(entity = 'foy',
-                label = u"Sommes à ajouter au revenu imposable",
-                val_type = "monetary",
-                cerfa_field = u'6GH'))
+class f6gh(Variable):
+    cerfa_field = u"6GH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Sommes à ajouter au revenu imposable"
+
+
 
 # Deficits antérieurs
-build_column('f6fa', IntCol(entity = 'foy',
-                label = u"Deficits globaux des années antérieures non encore déduits les années précédentes: année de perception des revenus -6",
-                val_type = "monetary",
-                cerfa_field = u'6FA'))
+class f6fa(Variable):
+    cerfa_field = u"6FA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Deficits globaux des années antérieures non encore déduits les années précédentes: année de perception des revenus -6"
 
-build_column('f6fb', IntCol(entity = 'foy',
-                label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -5",
-                val_type = "monetary",
-                cerfa_field = u'6FB'))
 
-build_column('f6fc', IntCol(entity = 'foy',
-                label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -4",
-                val_type = "monetary",
-                cerfa_field = u'6FC'))
 
-build_column('f6fd', IntCol(entity = 'foy',
-                label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -3",
-                val_type = "monetary",
-                cerfa_field = u'6FD'))
+class f6fb(Variable):
+    cerfa_field = u"6FB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -5"
 
-build_column('f6fe', IntCol(entity = 'foy',
-                label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -2",
-                val_type = "monetary",
-                cerfa_field = u'6FE'))
 
-build_column('f6fl', IntCol(entity = 'foy',
-                label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -1",
-                val_type = "monetary",
-                cerfa_field = u'6FL'))
+
+class f6fc(Variable):
+    cerfa_field = u"6FC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -4"
+
+
+
+class f6fd(Variable):
+    cerfa_field = u"6FD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -3"
+
+
+
+class f6fe(Variable):
+    cerfa_field = u"6FE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -2"
+
+
+
+class f6fl(Variable):
+    cerfa_field = u"6FL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -1"
+
+
 
 
 class rfr_cd(Variable):
