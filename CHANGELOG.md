@@ -2,6 +2,7 @@
 
 ## 1.0
 
+* Add tests yaml for cotisations sociales
 * Introduction of `invalidite`
 * Depreciation of `af_enfant_a_charge`, `asf_enfant`, `isol`, `pfam_ressources_i`, `rmi_nbp`, `sal_pen_net`.
 * Massive renaming:
