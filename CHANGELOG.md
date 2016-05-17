@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0
+
+* Force version number incrementation through CI
+* Force changelog editing through CI
+* Publish tag after merging
+* Publish on pypi after tagging
+
 ## 1.1.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.0...1.1.0)
 
 * Replace `build_column` function calls by `Variable` classes (see [#384](https://github.com/openfisca/openfisca-core/pull/384))
