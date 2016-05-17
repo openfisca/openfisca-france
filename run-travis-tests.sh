@@ -26,7 +26,8 @@ then
 fi
 
 
-if [ "$TRAVIS_BRANCH" != "master" ]; then
+if [[ "$TRAVIS_BRANCH" != "master" && -z "$TRAVIS_TAG" ]]
+then
   OPENFISCA_CORE_DIR=`python -c "import pkg_resources; print pkg_resources.get_distribution('OpenFisca-Core').location"`
   pushd "$OPENFISCA_CORE_DIR"
   git checkout "$TRAVIS_BRANCH"
