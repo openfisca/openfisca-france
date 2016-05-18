@@ -151,7 +151,7 @@
     zone_apl_famille: 1
     loyer_famille: 800
     aide_logement_base_ressources: 12000
-    statut_occupation_famille: 4  # Locataire
+    statut_occupation_logement_famille: 4  # Locataire
   individus:
     - id: "parent1"
       age: 40
