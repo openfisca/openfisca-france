@@ -8,7 +8,7 @@ individus:
   activite: 1
   age: 25
   age_en_mois: 300
-  birth: "1989-09-14"
+  date_naissance: "1989-09-14"
   enceinte: false
   epargne_non_remuneree:
     2012-01: 0
@@ -17,7 +17,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2012: 19230.769230769227
     2013-09: 1602.5641025641025
@@ -337,6 +337,6 @@ menages:
   enfants:
   loyer: 67
   personne_de_reference: 5422c2915be58c0200a0757f
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   ass: 0

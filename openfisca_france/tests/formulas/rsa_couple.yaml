@@ -1,21 +1,19 @@
 - period: "2014"
   name: "RSA couple, salaire_net = [0, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01"]  # 29 ans
+    date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
     idfam: [0, 0]
     idfoy: [0, 0]
     idmen: [0, 0]
     quifam: [CHEF, PART]
     quifoy: [VOUS, CONJ]
     quimen: [PREF, CREF]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     aide_logement:
       "2014-01": 0
-    rmi_nbp:
-      "2014-01": 2
-    rsa_revenu_activite_i:
+    rsa_revenu_activite_individu:
       "2014-01": [0, 0]
     rsa_base_ressources:
       "2014-01": 0
@@ -35,7 +33,7 @@
 - period: "2014"
   name: "RSA couple, salaire_net = [5000, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01"]  # 29 ans
+    date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
     idfam: [0, 0]
     idfoy: [0, 0]
     idmen: [0, 0]
@@ -46,7 +44,7 @@
       2012: [5000, 0]
       2013: [5000, 0]
       2014: [5000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -55,7 +53,7 @@
 - period: "2014"
   name: "RSA couple, salaire_net = [10000, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01"]  # 29 ans
+    date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
     idfam: [0, 0]
     idfoy: [0, 0]
     idmen: [0, 0]
@@ -66,7 +64,7 @@
       2012: [10000, 0]
       2013: [10000, 0]
       2014: [10000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -75,7 +73,7 @@
 - period: "2014"
   name: "RSA couple, salaire_net = [12000, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01"]  # 29 ans
+    date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
     idfam: [0, 0]
     idfoy: [0, 0]
     idmen: [0, 0]
@@ -86,7 +84,7 @@
       2012: [12000, 0]
       2013: [12000, 0]
       2014: [12000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -95,7 +93,7 @@
 - period: "2014"
   name: "RSA couple, salaire_net = [13000, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01"]  # 29 ans
+    date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
     idfam: [0, 0]
     idfoy: [0, 0]
     idmen: [0, 0]
@@ -106,7 +104,7 @@
       2012: [13000, 0]
       2013: [13000, 0]
       2014: [13000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -115,7 +113,7 @@
 - period: "2014"
   name: "RSA couple, salaire_net = [14000, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01"]  # 29 ans
+    date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
     idfam: [0, 0]
     idfoy: [0, 0]
     idmen: [0, 0]
@@ -126,7 +124,7 @@
       2012: [14000, 0]
       2013: [14000, 0]
       2014: [14000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -135,7 +133,7 @@
 - period: "2014"
   name: "RSA couple, salaire_net = [15000, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01"]  # 29 ans
+    date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
     idfam: [0, 0]
     idfoy: [0, 0]
     idmen: [0, 0]
@@ -146,7 +144,7 @@
       2012: [15000, 0]
       2013: [15000, 0]
       2014: [15000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -155,7 +153,7 @@
 - period: "2014"
   name: "RSA couple, salaire_net = [16000, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01"]  # 29 ans
+    date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
     idfam: [0, 0]
     idfoy: [0, 0]
     idmen: [0, 0]
@@ -166,7 +164,7 @@
       2012: [16000, 0]
       2013: [16000, 0]
       2014: [16000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -175,7 +173,7 @@
 - period: "2014"
   name: "RSA couple, salaire_net = [17000, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01"]  # 29 ans
+    date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
     idfam: [0, 0]
     idfoy: [0, 0]
     idmen: [0, 0]
@@ -186,7 +184,7 @@
       2012: [17000, 0]
       2013: [17000, 0]
       2014: [17000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -195,7 +193,7 @@
 - period: "2014"
   name: "RSA couple, salaire_net = [18000, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01"]  # 29 ans
+    date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
     idfam: [0, 0]
     idfoy: [0, 0]
     idmen: [0, 0]
@@ -206,7 +204,7 @@
       2012: [18000, 0]
       2013: [18000, 0]
       2014: [18000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -215,7 +213,7 @@
 - period: "2014"
   name: "RSA couple, salaire_net = [19000, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01"]  # 29 ans
+    date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
     idfam: [0, 0]
     idfoy: [0, 0]
     idmen: [0, 0]
@@ -226,7 +224,7 @@
       2012: [19000, 0]
       2013: [19000, 0]
       2014: [19000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -235,7 +233,7 @@
 - period: "2014"
   name: "RSA couple, salaire_net = [20000, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01"]  # 29 ans
+    date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
     idfam: [0, 0]
     idfoy: [0, 0]
     idmen: [0, 0]
@@ -246,7 +244,7 @@
       2012: [20000, 0]
       2013: [20000, 0]
       2014: [20000, 0]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -255,7 +253,7 @@
 # - period: "2014"
 #   name: "RSA couple, salaire_net = [9000, 11000]"
 #   input_variables:
-#     birth: ["1985-01-01", "1985-01-01"]  # 29 ans
+#     date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
 #     idfam: [0, 0]
 #     idfoy: [0, 0]
 #     idmen: [0, 0]
@@ -266,7 +264,7 @@
 #       2012: [9000, 11000]
 #       2013: [9000, 11000]
 #       2014: [9000, 11000]
-#     statut_occupation:
+#     statut_occupation_logement:
 #       "2014-01": 2  # Propriétaire (non accédant) du logement
 #   output_variables:
 #     rsa:
@@ -275,7 +273,7 @@
 - period: "2014"
   name: "RSA couple, age = [< 25, < 25], salaire_net = [400 * 12, 3000 * 12]"
   input_variables:
-    birth: ["1993-01-01", "1993-01-01"]  # 21 ans
+    date_naissance: ["1993-01-01", "1993-01-01"]  # 21 ans
     idfam: [0, 0]
     idfoy: [0, 0]
     idmen: [0, 0]
@@ -286,7 +284,7 @@
       2012: [400 * 12, 3000 * 12]
       2013: [400 * 12, 3000 * 12]
       2014: [400 * 12, 3000 * 12]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -295,14 +293,14 @@
 - period: "2014"
   name: "RSA couple avec enfant < 3 ans, salaire_net = [0, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01", "2012-01-01"]  # [29, 29, 2] ans
+    date_naissance: ["1985-01-01", "1985-01-01", "2012-01-01"]  # [29, 29, 2] ans
     idfam: [0, 0, 0]
     idfoy: [0, 0, 0]
     idmen: [0, 0, 0]
     quifam: [CHEF, PART, ENF1]
     quifoy: [VOUS, CONJ, PAC1]
     quimen: [PREF, CREF, ENF1]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:
@@ -311,14 +309,14 @@
 - period: "2014"
   name: "RSA couple avec enfant entre 3 et 13 ans, salaire_net = [0, 0]"
   input_variables:
-    birth: ["1985-01-01", "1985-01-01", "2004-01-01"]  # [29, 29, 10] ans
+    date_naissance: ["1985-01-01", "1985-01-01", "2004-01-01"]  # [29, 29, 10] ans
     idfam: [0, 0, 0]
     idfoy: [0, 0, 0]
     idmen: [0, 0, 0]
     quifam: [CHEF, PART, ENF1]
     quifoy: [VOUS, CONJ, PAC1]
     quimen: [PREF, CREF, ENF1]
-    statut_occupation:
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   output_variables:
     rsa:

@@ -14,7 +14,7 @@ relative_error_margin: 0.02
 individus:
   - age: 28
     age_en_mois: 346
-    birth: "1986-01-01"
+    date_naissance: "1986-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -22,14 +22,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 2
     age_en_mois: 34
-    birth: "2012-01-01"
+    date_naissance: "2012-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -37,7 +37,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -305,6 +305,6 @@ menages:
   depcom: 75114
   enfants: 5458f6acaf63db2c33f15db5
   personne_de_reference: 5458f6acaf63db2c33f15db6
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 472.83

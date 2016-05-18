@@ -12,7 +12,7 @@ period: "month:2015-06"
 individus:
   age: 32
   age_en_mois: 393
-  birth: "1982-08-12"
+  date_naissance: "1982-08-12"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -20,7 +20,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2013: 3076.9230769230767
     2014-06: 256.4102564102564
@@ -335,6 +335,6 @@ menages:
   depcom: 14127
   enfants:
   personne_de_reference: 5579affb85a12b87142c5706
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 376.21

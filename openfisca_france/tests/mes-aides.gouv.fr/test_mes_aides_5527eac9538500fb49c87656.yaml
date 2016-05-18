@@ -9,7 +9,7 @@ individus:
   age: 34
   age_en_mois: 419
   ass_precondition_remplie: false
-  birth: "1980-05-03"
+  date_naissance: "1980-05-03"
   chomage_brut:
     2013: 8717.986917501908
     2014-04: 678.0656491390374
@@ -51,7 +51,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2013: 1282.0512820512822
     2014-04: 142.45014245014244
@@ -368,6 +368,6 @@ menages:
   enfants:
   loyer: 600
   personne_de_reference: 5527ea8694f21e044ad7e939
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   cmu_c: true

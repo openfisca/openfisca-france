@@ -9,7 +9,7 @@ period: "month:2015-02"
 individus:
   - age: 64
     age_en_mois: 773
-    birth: "1950-09-04"
+    date_naissance: "1950-09-04"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -17,7 +17,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2013: 0
       2014-02: 0
@@ -72,7 +72,7 @@ individus:
       2012-01: 0
   - age: 16
     age_en_mois: 192
-    birth: "1999-02-01"
+    date_naissance: "1999-02-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -80,7 +80,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -88,7 +88,7 @@ individus:
       2012-01: 0
   - age: 17
     age_en_mois: 204
-    birth: "1998-02-01"
+    date_naissance: "1998-02-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -96,7 +96,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -104,7 +104,7 @@ individus:
       2012-01: 0
   - age: 21
     age_en_mois: 252
-    birth: "1994-02-01"
+    date_naissance: "1994-02-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -112,7 +112,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 2
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -390,6 +390,6 @@ menages:
     - 54e6febe70a3f65f40b60eda
     - 54e86c740f7afafd54c4d4d4
   personne_de_reference: 54e6febe70a3f65f40b60edc
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   cf: 0

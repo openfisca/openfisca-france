@@ -26,7 +26,7 @@ input_variables:
   taux_versement_transport: 0
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  type_sal: 0  # non cadre
+  categorie_salarie: 0  # non cadre
   heures_remunerees_volume: 0
   volume_jours_ijss: 0
 output_variables:

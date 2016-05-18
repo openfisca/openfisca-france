@@ -16,7 +16,7 @@ individus:
     age: 45
     age_en_mois: 541
     ass_precondition_remplie: true
-    birth: "1969-10-26"
+    date_naissance: "1969-10-26"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -24,7 +24,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2012: 5657.692307692309
       2013-12: 298.86039886039885
@@ -85,7 +85,7 @@ individus:
     age: 45
     age_en_mois: 541
     ass_precondition_remplie: true
-    birth: "1969-10-26"
+    date_naissance: "1969-10-26"
     chomage_brut:
       2012: 10933.900554254295
       2013-12: 969.6461398537989
@@ -127,7 +127,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2012: 2321.7948717948716
       2013-12: 175.4985754985755
@@ -452,6 +452,6 @@ menages:
   enfants:
   loyer: 500
   personne_de_reference: 548efdbe40562f54026ef19a
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   ass: 408.3

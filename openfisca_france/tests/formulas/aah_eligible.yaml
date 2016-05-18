@@ -1,44 +1,44 @@
-- name: "Eligibilité AAH - Invalide, âge inférieur à retraite, pas de AEEH"
+- name: "Eligibilité AAH - Handicap, âge inférieur à retraite, pas de AEEH"
   description: "Eligible à AAH"
   period: 2015-01
   input_variables:
-    invalide: True
+    handicap: True
     taux_incapacite: 0.9
     age: 50
   output_variables:
     aah_eligible: True
     # aah_non_calculable: False
 
-- name: "Eligibilité AAH - Invalide, âge inférieur à retraite, pas de AEEH - 2"
+- name: "Eligibilité AAH - Handicap, âge inférieur à retraite, pas de AEEH - 2"
   description: "Eligible à AAH"
   period: 2013-12
   input_variables:
     age: 28
-    invalide: True
+    handicap: True
     taux_incapacite: 0.9
   output_variables:
     aah_eligible: True
 
-- name: "Eligibilité AAH - Invalide, âge inférieur à l'âge limite AEEH, pas d'autonomie financière vàv des prestations familiales"
+- name: "Eligibilité AAH - Handicap, âge inférieur à l'âge limite AEEH, pas d'autonomie financière vàv des prestations familiales"
   description: "Eligible à AEEH, mais pas à l'AAH"
   period: 2012-06
   input_variables:
     age: 19
-    invalide: True
+    handicap: True
     taux_incapacite: 0.9
-    smic55: False
+    autonomie_financiere: False
   output_variables:
     aah_eligible: False
 
 
-- name: "Eligibilité AAH -Invalide, âge inférieur à l'âge limite AEEH, autonomie financière vàv des prestations familiales"
+- name: "Eligibilité AAH -Handicap, âge inférieur à l'âge limite AEEH, autonomie financière vàv des prestations familiales"
   description: "Eligible à AAH"
   period: 2013-07
   input_variables:
     age: 18
-    invalide: True
+    handicap: True
     taux_incapacite: 0.9
-    smic55: True
+    autonomie_financiere: True
   output_variables:
     aah_eligible: True
 
@@ -48,7 +48,7 @@
   period: 2013-07
   input_variables:
     age: 50
-    invalide: True
+    handicap: True
     taux_incapacite: 0.4
   output_variables:
     aah_eligible: False
@@ -60,7 +60,7 @@
   period: 2013-07
   input_variables:
     age: 50
-    invalide: True
+    handicap: True
     taux_incapacite: 0.7
   output_variables:
     aah_non_calculable: True

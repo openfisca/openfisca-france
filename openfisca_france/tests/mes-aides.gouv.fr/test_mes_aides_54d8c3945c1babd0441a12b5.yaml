@@ -12,7 +12,7 @@ individus:
   - activite: 2
     age: 22
     age_en_mois: 269
-    birth: "1992-08-12"
+    date_naissance: "1992-08-12"
     boursier: false
     epargne_non_remuneree:
       2012-01: 0
@@ -21,7 +21,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -30,7 +30,7 @@ individus:
   - activite: 2
     age: 22
     age_en_mois: 269
-    birth: "1992-08-12"
+    date_naissance: "1992-08-12"
     boursier: true
     epargne_non_remuneree:
       2012-01: 0
@@ -39,7 +39,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -313,6 +313,6 @@ menages:
   enfants:
   loyer: 400
   personne_de_reference: 54d8c2b0e45751d544f06cc1
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 336.98

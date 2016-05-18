@@ -5,14 +5,14 @@ from ....base import CAT
 def apply_bareme_for_relevant_type_sal(
         bareme_by_type_sal_name,
         bareme_name,
-        type_sal,
+        categorie_salarie,
         base,
         plafond_securite_sociale,
         round_base_decimals = 2,
         ):
     assert bareme_by_type_sal_name is not None
     assert bareme_name is not None
-    assert type_sal is not None
+    assert categorie_salarie is not None
     assert base is not None
     assert plafond_securite_sociale is not None
     def iter_cotisations():
@@ -22,7 +22,7 @@ def apply_bareme_for_relevant_type_sal(
             bareme = bareme_by_type_sal_name[type_sal_name].get(bareme_name)  # TODO; should have better warnings
             if bareme is not None:
                 yield bareme.calc(
-                    base * (type_sal == type_sal_index),
+                    base * (categorie_salarie == type_sal_index),
                     factor = plafond_securite_sociale,
                     round_base_decimals = round_base_decimals,
                     )
@@ -67,14 +67,14 @@ def compute_cotisation(simulation, period, cotisation_type = None, bareme_name =
 
     assiette_cotisations_sociales = simulation.calculate_add('assiette_cotisations_sociales', period)
     plafond_securite_sociale = simulation.calculate_add('plafond_securite_sociale', period)
-    type_sal = simulation.calculate('type_sal', period)
+    categorie_salarie = simulation.calculate('categorie_salarie', period)
 
     cotisation = apply_bareme_for_relevant_type_sal(
         bareme_by_type_sal_name = bareme_by_type_sal_name,
         bareme_name = bareme_name,
         base = assiette_cotisations_sociales,
         plafond_securite_sociale = plafond_securite_sociale,
-        type_sal = type_sal,
+        categorie_salarie = categorie_salarie,
         )
     return cotisation
 

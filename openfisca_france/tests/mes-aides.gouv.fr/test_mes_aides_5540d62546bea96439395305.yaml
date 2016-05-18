@@ -10,7 +10,7 @@ period: "month:2015-04"
 individus:
   age: 35
   age_en_mois: 420
-  birth: "1980-04-13"
+  date_naissance: "1980-04-13"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -18,7 +18,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   tns_auto_entrepreneur_chiffre_affaires:
     2013: 29999.999999999996
     2014-04: 3105.5555555555557
@@ -303,6 +303,6 @@ menages:
   depcom: 58194
   enfants:
   personne_de_reference: 5540d62217d9db60391c369d
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 280.83

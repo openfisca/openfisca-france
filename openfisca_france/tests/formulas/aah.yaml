@@ -6,7 +6,7 @@
     taux_incapacite: 0.9
     age: 22  # eligible aah
     aah_base_ressources: 500
-    concub: 0
+    en_couple: 0
     af_nbenf: 0
   output_variables:
     aah: 9100 / 12  # (9605,40 - 500)  / 12
@@ -19,7 +19,7 @@
     taux_incapacite: 0.9
     age: 33  # eligible aah
     aah_base_ressources: 15000
-    concub: 1
+    en_couple: 1
     af_nbenf: 0
   output_variables:
     aah: 2846.88 / 12  # (743.62 * 24 (17846.88) - 12000)  / 12
@@ -39,7 +39,7 @@
   absolute_error_margin: 1
   input_variables:
     taux_incapacite: 0.9
-    concub: 1
+    en_couple: 1
     af_nbenf: 0
   # plafond aah = 24 x 807.65 (montant mensuel de l'AAH)
   output_variables:
@@ -51,7 +51,7 @@
   absolute_error_margin: 1
   input_variables:
     taux_incapacite: 0.9
-    concub: 1
+    en_couple: 1
     af_nbenf: 1
   # plafond aah = 807.65 * (24 + 1/2)
   output_variables:

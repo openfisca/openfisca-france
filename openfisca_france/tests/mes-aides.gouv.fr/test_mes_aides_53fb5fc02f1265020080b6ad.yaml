@@ -7,7 +7,7 @@ period: "month:2014-08"
 individus:
   - age: 33
     age_en_mois: 407
-    birth: "1980-09-14"
+    date_naissance: "1980-09-14"
     enceinte: true
     epargne_non_remuneree:
       2012-01: 0
@@ -16,7 +16,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -32,7 +32,7 @@ individus:
       year:2013-08: 2370
     age: 33
     age_en_mois: 407
-    birth: "1980-09-14"
+    date_naissance: "1980-09-14"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -40,7 +40,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -313,6 +313,6 @@ menages:
   enfants:
   loyer: 123
   personne_de_reference: 53fb5f942f1265020080b6ac
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   rsa: 0

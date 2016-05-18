@@ -9,7 +9,7 @@ individus:
   age: 28
   age_en_mois: 346
   ass_precondition_remplie: false
-  birth: "1986-01-01"
+  date_naissance: "1986-01-01"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -17,7 +17,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2012: 10128.205128205129
     2013-11: 897.4358974358975
@@ -332,6 +332,6 @@ menages:
   depcom: 21032
   enfants:
   personne_de_reference: 545a38fa462d93232aac08be
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 448.18

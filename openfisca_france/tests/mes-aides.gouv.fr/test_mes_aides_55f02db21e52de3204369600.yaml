@@ -14,7 +14,7 @@ individus:
   age: 25
   age_en_mois: 302
   ass_precondition_remplie: false
-  birth: "1990-07-09"
+  date_naissance: "1990-07-09"
   chomage_imposable:
     2013: 6983
   chomage_brut:
@@ -55,7 +55,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2014-09: 277.0655270655271
     2014-10: 277.0655270655271
@@ -371,6 +371,6 @@ menages:
   loyer: 0
   parisien: false
   personne_de_reference: 55f02d0d7869142d04874fa3
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 461.26

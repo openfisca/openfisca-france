@@ -28,7 +28,7 @@ individus:
   age: 34
   age_en_mois: 414
   ass_precondition_remplie: false
-  birth: "1980-08-12"
+  date_naissance: "1980-08-12"
   chomage_imposable:
     2013: 8580
   chomage_brut:
@@ -70,7 +70,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   pensions_alimentaires_percues:
     2013: 0
   retraite_imposable:
@@ -348,6 +348,6 @@ menages:
   enfants:
   loyer: 329
   personne_de_reference: 54ea473f0f7afafd54c4d64d
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 172.13

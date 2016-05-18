@@ -48,7 +48,7 @@ class exoneration_cotisations_employeur_jei(Variable):
         jeune_entreprise_innovante = simulation.calculate('jeune_entreprise_innovante', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         smic_proratise = simulation.calculate('smic_proratise', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
 
         bareme_by_type_sal_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur
         bareme_names = ['vieillesse_deplafonnee', 'vieillesse_plafonnee', 'maladie', 'famille']
@@ -58,7 +58,7 @@ class exoneration_cotisations_employeur_jei(Variable):
             exoneration += apply_bareme_for_relevant_type_sal(
                 bareme_by_type_sal_name = bareme_by_type_sal_name,
                 bareme_name = bareme_name,
-                type_sal = type_sal,
+                categorie_salarie = categorie_salarie,
                 base = min_(assiette_allegement, 4.5 * smic_proratise),
                 plafond_securite_sociale = plafond_securite_sociale,
                 round_base_decimals = 2,

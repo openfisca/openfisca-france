@@ -9,7 +9,7 @@ relative_error_margin: 0.02
 individus:
   - age: 43
     age_en_mois: 516
-    birth: "1972-01-09"
+    date_naissance: "1972-01-09"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:
@@ -19,7 +19,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2013: 0
     retraite_imposable:
@@ -79,7 +79,7 @@ individus:
       2012-01: 0
   - age: 4
     age_en_mois: 49
-    birth: "2010-12-01"
+    date_naissance: "2010-12-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -87,14 +87,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 15
     age_en_mois: 182
-    birth: "1999-11-15"
+    date_naissance: "1999-11-15"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -102,7 +102,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -383,6 +383,6 @@ menages:
     - 54cb53311fe4e8cf448e21e4
   loyer: 600
   personne_de_reference: 54cb53311fe4e8cf448e21e6
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   af: 129.35

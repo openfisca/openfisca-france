@@ -7,7 +7,7 @@ period: "month:2014-12"
 individus:
   age: 34
   age_en_mois: 419
-  birth: "1980-01-01"
+  date_naissance: "1980-01-01"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -15,7 +15,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   retraite_combattant:
     2012: 6000
     2013-12: 500
@@ -299,6 +299,6 @@ menages:
   depcom: 52193
   enfants:
   personne_de_reference: 548181f2aad65891668c6c32
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 448.18

@@ -12,7 +12,7 @@ individus:
   age: 30
   age_en_mois: 369
   ass_precondition_remplie: true
-  birth: "1984-11-19"
+  date_naissance: "1984-11-19"
   chomage_brut:
     2014-09: -218.37882841168638
     2014-10: -218.37882841168638
@@ -53,7 +53,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2014-09: 1006.4102564102564
     2014-10: 1006.4102564102564
@@ -370,6 +370,6 @@ menages:
   loyer: 456
   parisien: false
   personne_de_reference: 55f02af4bb8d0c3804776986
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 256.24

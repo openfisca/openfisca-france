@@ -25,7 +25,7 @@ individus:
   activite: 3
   age: 88
   age_en_mois: 1059
-  birth: "1926-08-14"
+  date_naissance: "1926-08-14"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -33,7 +33,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   retraite_brute:
     2012: 7200
     2013-11: 600

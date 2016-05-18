@@ -8,7 +8,7 @@ period: "month:2014-10"
 individus:
   age: 25
   age_en_mois: 302
-  birth: "1989-08-12"
+  date_naissance: "1989-08-12"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -16,7 +16,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2012: 13846.15384615385
     2013-10: 1153.8461538461538
@@ -336,6 +336,6 @@ menages:
   enfants:
   loyer: 100
   personne_de_reference: 5447980768bffeba26368beb
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   acs: 200

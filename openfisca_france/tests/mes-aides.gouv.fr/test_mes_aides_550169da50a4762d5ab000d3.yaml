@@ -11,7 +11,7 @@ period: "month:2015-03"
 individus:
   - age: 34
     age_en_mois: 415
-    birth: "1980-08-12"
+    date_naissance: "1980-08-12"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:
@@ -21,7 +21,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2013: 0
     retraite_imposable:
@@ -35,7 +35,7 @@ individus:
       2012-01: 0
   - age: 34
     age_en_mois: 415
-    birth: "1980-08-12"
+    date_naissance: "1980-08-12"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:
@@ -45,7 +45,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2013: 0
     retraite_imposable:
@@ -59,7 +59,7 @@ individus:
       2012-01: 0
   - age: 14
     age_en_mois: 175
-    birth: "2000-08-12"
+    date_naissance: "2000-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -67,7 +67,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 2
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -75,7 +75,7 @@ individus:
       2012-01: 0
   - age: 0
     age_en_mois: 7
-    birth: "2014-08-12"
+    date_naissance: "2014-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -83,14 +83,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 0
     age_en_mois: 7
-    birth: "2014-08-12"
+    date_naissance: "2014-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -98,7 +98,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -383,6 +383,6 @@ menages:
     - 550169b2cc1bb4365a5d7266
     - 550169b2cc1bb4365a5d7265
   personne_de_reference: 550169b2cc1bb4365a5d7269
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   bourse_lycee: 135.9

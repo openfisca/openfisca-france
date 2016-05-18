@@ -8,7 +8,7 @@ individus:
 - a_charge_fiscale: true
   age: 33
   age_en_mois: 399
-  birth: '1982-08-12'
+  date_naissance: '1982-08-12'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
@@ -17,7 +17,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
   tns_micro_entreprise_type_activite: bic
@@ -292,6 +292,6 @@ menages:
   parisien: false
   participation_frais: true
   personne_de_reference: 564f45919e135a1b0291679a
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 524.16

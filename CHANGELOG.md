@@ -1,6 +1,84 @@
 # Changelog
 
-## 0.5.5
+## 1.2.0
+
+* Force version number incrementation through CI
+* Force changelog editing through CI
+* Publish tag after merging
+* Publish on pypi after tagging
+
+## 1.1.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.0...1.1.0)
+
+* Replace `build_column` function calls by `Variable` classes (see [#384](https://github.com/openfisca/openfisca-core/pull/384))
+
+## 1.0 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.5...1.0)
+
+* Add tests yaml for cotisations sociales
+* Introduction of `invalidite`
+* Depreciation of `af_enfant_a_charge`, `asf_enfant`, `isol`, `pfam_ressources_i`, `rmi_nbp`, `sal_pen_net`.
+* Massive renaming:
+	* `abat_sal_pen` -> `abattement_salaires_pensions`
+	* `af_forf_complement_degressif` -> `af_allocation_forfaitaire_complement_degressif`
+	* `af_forf_nbenf` -> `af_allocation_forfaitaire_nb_enfants`
+	* `af_forf_taux_modulation` -> `af_allocation_forfaitaire_taux_modulation`
+	* `af_forf` -> `af_allocation_forfaitaire`
+	* `af_majo` -> `af_majoration`
+	* `al_pac` -> `al_nb_personnes_a_charge`
+	* `als_nonet` -> `als_non_etudiant`
+	* `alset` -> `als_etudiant`
+	* `ape_temp` -> `ape_avant_cumul`
+	* `apje_temp` -> `apje_avant_cumul`
+	* `asi_aspa_base_ressources_i` -> `asi_aspa_base_ressources_individu`
+	* `asi_elig` -> `asi_eligibilite`
+	* `aspa_elig` -> `aspa_eligibilite`
+	* `ass_base_ressources_i` -> `ass_base_ressources_individu`
+	* `ass_eligibilite_i` -> `ass_eligibilite_individu`
+	* `biact` -> `biactivite`
+	* `birth` -> `date_naissance`
+	* `br_mv_i` -> `asi_aspa_base_ressources_i`
+	* `br_mv` -> `asi_aspa_base_ressources`
+	* `br_pf_i` -> `prestations_familiales_base_ressources_i`
+	* `br_pf` -> `prestations_familiales_base_ressources`
+	* `categ_inv` -> `aeeh_niveau_handicap`
+	* `cf_ressources_i` -> `cf_ressources_individu`
+	* `cmu_base_ressources_i` -> `cmu_base_ressources_individu`
+	* `concub` -> `en_couple`
+	* `invalide` -> `handicap`
+	* `maj_cga_i` -> `maj_cga_individu`
+	* `nb_enfant_rsa` -> `rsa_nb_enfants`
+	* `nb_par` -> `nb_parents`
+	* `pen_net` -> `revenu_assimile_pension_apres_abattements`
+	* `pfam_enfant_a_charge` -> `prestations_familiales_enfant_a_charge`
+	* `ppa_ressources_hors_activite_i` -> `ppa_ressources_hors_activite_individu`
+	* `ppa_revenu_activite_i` -> `ppa_revenu_activite_individu`
+	* `ppe_elig_i` -> `ppe_elig_individu`
+	* `prestations_familiales_base_ressources_i` -> `prestations_familiales_base_ressources_individu`
+	* `rev_act_nonsal` -> `revenu_activite_non_salariee`
+	* `rev_act_sal` -> `revenu_activite_salariee`
+	* `rev_pen` -> `revenu_assimile_pension`
+	* `rev_sal` -> `revenu_assimile_salaire`
+	* `rpns_i` -> `rpns_individu`
+	* `rsa_act_i` -> `rsa_activite_individu`
+	* `rsa_act` -> `rsa_activite`
+	* `rsa_base_ressources_i` -> `rsa_base_ressources_individu`
+	* `rsa_base_ressources_patrimoine_i` -> `rsa_base_ressources_patrimoine_individu`
+	* `rsa_forfait_asf_i` -> `rsa_forfait_asf_individu`
+	* `rsa_non_calculable_tns_i` -> `rsa_non_calculable_tns_individu`
+	* `rsa_revenu_activite_i` -> `rsa_revenu_activite_individu`
+	* `rto_declarant1` -> `retraite_titre_onereux_declarant1`
+	* `rto_net_declarant1` -> `retraite_titre_onereux_net_declarant1`
+	* `rto_net` -> `retraite_titre_onereux_net`
+	* `salcho_imp` -> `revenu_assimile_salaire_apres_abattements`
+	* `smic55` -> `autonomie_financiere`
+	* `statut_occupation_famille` -> `statut_occupation_logement_famille`
+	* `statut_occupation_individu` -> `statut_occupation_logement_i`
+	* `statut_occupation_logement_i` -> `statut_occupation_logement_individu`
+	* `statut_occupation` -> `statut_occupation_logement`
+	* `tns_employe` -> `tns_avec_employe`
+	* `tspr` -> `traitements_salaires_pensions_rentes`
+	* `type_sal` -> `categorie_salarie`
+
+## 0.5.5 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4.3...0.5.5)
 
 * Prime d'activité fiabilization
 * Implementation of Indemnite de fin de contrat
@@ -9,19 +87,19 @@
 * Update prestations parameters (2016/04/01 revalorisation)
 * Add net -> brut reform
 
-## 0.5.4.2, 0.5.4.3
+## 0.5.4.2, 0.5.4.3 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4.1...0.5.4.3)
 
 * Update OpenFisca-Core requirement version
 
-## 0.5.4.1
+## 0.5.4.1 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4...0.5.4.1)
 
 * Add missing assets for versement_transport
 
-## 0.5.4
+## 0.5.4 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.3...0.5.4)
 
 * Many updates
 
-## 0.5.3
+## 0.5.3 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.2...0.5.3)
 
 * Fix vieillesse deplafonnee baremes
 * Fix some dates in arrco and formation prof. baremes
@@ -77,7 +155,7 @@
 * Remove nose section from setup.cfg
 * Add CONTRIBUTING.md file
 
-## 0.5.2
+## 0.5.2 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.1...0.5.2)
 
 * Merge pull request #304 from sgmap/taille_entreprise
 * Remove unmaintainable tests
@@ -107,7 +185,7 @@
 * Do not use relative import in script (__main__)
 * Add biryani extra require
 
-## 0.5.1
+## 0.5.1 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.0...0.5.1)
 
 * Remove scipy by default
 

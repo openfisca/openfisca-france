@@ -9,7 +9,7 @@ individus:
   - a_charge_fiscale: true
     age: 55
     age_en_mois: 666
-    birth: "1960-03-02"
+    date_naissance: "1960-03-02"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -18,7 +18,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2014-09: 7122.507122507122
       2014-10: 7122.507122507122
@@ -72,7 +72,7 @@ individus:
   - a_charge_fiscale: true
     age: 1
     age_en_mois: 23
-    birth: "2013-09-08"
+    date_naissance: "2013-09-08"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -81,7 +81,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -353,6 +353,6 @@ menages:
   loyer: 600
   parisien: false
   personne_de_reference: 55edabffbd7b102a0438a5a4
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   paje_base: 0

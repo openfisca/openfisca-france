@@ -10,7 +10,7 @@ input_variables:
   primes_salaires: 172.9
   salaire_de_base: 2000
   taux_accident_travail: .011
-  type_sal: 1
+  categorie_salarie: 1
 output_variables:
   coefficient_proratisation: 217/218
   ags: -6.52

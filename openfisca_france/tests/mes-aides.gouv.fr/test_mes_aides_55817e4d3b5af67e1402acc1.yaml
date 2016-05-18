@@ -9,7 +9,7 @@ individus:
     age: 44
     age_en_mois: 533
     ass_precondition_remplie: true
-    birth: "1971-01-06"
+    date_naissance: "1971-01-06"
     chomage_brut:
       2013: 19863.767660130936
       2014-06: 1655.313971677578
@@ -49,7 +49,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_versees_individu:
       2013: 7956
       2014-06: 663
@@ -74,7 +74,7 @@ individus:
       2012-01: 0
   - age: 55
     age_en_mois: 665
-    birth: "1960-01-01"
+    date_naissance: "1960-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -82,7 +82,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2013: 3060
       2014-06: 255
@@ -439,6 +439,6 @@ menages:
   depcom: 77004
   enfants:
   personne_de_reference: 55817e48433935771434cafe
-  statut_occupation: 2
+  statut_occupation_logement: 2
 output_variables:
   ass: 487.5

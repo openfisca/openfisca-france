@@ -9,7 +9,7 @@ individus:
     age: 20
     age_en_mois: 250
     ass_precondition_remplie: false
-    birth: "1994-01-01"
+    date_naissance: "1994-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -17,7 +17,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -25,7 +25,7 @@ individus:
       2012-01: 0
   - age: 20
     age_en_mois: 250
-    birth: "1994-01-01"
+    date_naissance: "1994-01-01"
     enceinte: true
     epargne_non_remuneree:
       2012-01: 0
@@ -34,7 +34,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -306,5 +306,5 @@ menages:
   depcom: 75114
   enfants:
   personne_de_reference: 546b31eb5d4a0b016431dbb6
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:

@@ -14,7 +14,7 @@ individus:
     age: 45
     age_en_mois: 541
     ass_precondition_remplie: true
-    birth: "1969-10-26"
+    date_naissance: "1969-10-26"
     chomage_brut:
       2012: 12779.023861350901
       2013-12: 1064.9186551125752
@@ -56,7 +56,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -66,7 +66,7 @@ individus:
     age: 45
     age_en_mois: 541
     ass_precondition_remplie: true
-    birth: "1969-10-26"
+    date_naissance: "1969-10-26"
     chomage_brut:
       2012: 9582.060810717607
       2013-12: 1064.6734234130674
@@ -106,7 +106,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     retraite_brute:
       2012: 19438.44492440604
       2013-12: 1619.8704103671705
@@ -414,6 +414,6 @@ menages:
   enfants:
   loyer: 500
   personne_de_reference: 548ed9e5df990f5b0286b9e2
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   ass: 272.1

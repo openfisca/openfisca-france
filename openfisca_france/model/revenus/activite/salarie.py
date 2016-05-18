@@ -8,75 +8,100 @@ from numpy import (
 from ...base import *  # noqa analysis:ignore
 from ...prestations.prestations_familiales.base_ressource import nb_enf
 
-build_column('indemnites_stage', FloatCol(entity = 'ind', label = u"Indemnités de stage"))
-build_column(
-    'revenus_stage_formation_pro', FloatCol(entity = 'ind', label = u"Revenus de stage de formation professionnelle"))
-build_column('bourse_recherche', FloatCol(entity = 'ind', label = u"Bourse de recherche"))
+class indemnites_stage(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Indemnités de stage"
 
 
-build_column('sal_pen_exo_etr', IntCol(
-    entity = 'ind',
-    label = u"Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif",
-    val_type = "monetary",
+class revenus_stage_formation_pro(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Revenus de stage de formation professionnelle"
+
+
+class bourse_recherche(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Bourse de recherche"
+
+
+
+
+class sal_pen_exo_etr(Variable):
     cerfa_field = {
         QUIFOY['vous']: u"1AC",
         QUIFOY['conj']: u"1BC",
         QUIFOY['pac1']: u"1CC",
         QUIFOY['pac2']: u"1DC",
-        },
-    start = date(2013, 1, 1),
-    ))
+        }
+    column = IntCol(val_type = "monetary")
+    entity_class = Individus
+    label = u"Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif"
+    start_date = date(2013, 1, 1)
 
 
-build_column('frais_reels', IntCol(label = u"Frais réels",
-               val_type = "monetary",
-               cerfa_field = {QUIFOY['vous']: u"1AK",
-                              QUIFOY['conj']: u"1BK",
-                              QUIFOY['pac1']: u"1CK",
-                              QUIFOY['pac2']: u"1DK",
-                              QUIFOY['pac3']: u"1EK",
-                              }))  # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
 
-build_column(
-    'hsup', IntCol(
-        label = u"Heures supplémentaires : revenus exonérés connus",
-        val_type = "monetary",
-        start = date(2007, 1, 1),
-        end = date(2013, 12, 13),  # Il y a des heures supplémentaires effectuées en 2013 payées en 2013
-        cerfa_field = {
-            QUIFOY['vous']: u"1AU",
-            QUIFOY['conj']: u"1BU",
-            QUIFOY['pac1']: u"1CU",
-            QUIFOY['pac2']: u"1DU",
-            }))  # (f1au, f1bu, f1cu, f1du)
+class frais_reels(Variable):
+    cerfa_field = {QUIFOY['vous']: u"1AK",
+        QUIFOY['conj']: u"1BK",
+        QUIFOY['pac1']: u"1CK",
+        QUIFOY['pac2']: u"1DK",
+        QUIFOY['pac3']: u"1EK",
+        }
+    column = IntCol(val_type = "monetary")
+    entity_class = Individus
+    label = u"Frais réels"
 
-build_column('ppe_du_sa', IntCol(label = u"Prime pour l'emploi des salariés: nombre d'heures payées dans l'année",
-                     cerfa_field = {QUIFOY['vous']: u"1AV",
-                                    QUIFOY['conj']: u"1BV",
-                                    QUIFOY['pac1']: u"1CV",
-                                    QUIFOY['pac2']: u"1DV",
-                                    QUIFOY['pac3']: u"1QV",
-                                    }))  # (f1av, f1bv, f1cv, f1dv, f1qv)
+  # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
-build_column(
-    'ppe_tp_sa',
-    BoolCol(
-        label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière",
-        cerfa_field = {
-            QUIFOY['vous']: u"1AX",
-            QUIFOY['conj']: u"1BX",
-            QUIFOY['pac1']: u"1CX",
-            QUIFOY['pac2']: u"1DX",
-            QUIFOY['pac3']: u"1QX",
-            }
-        )
-    )  # (f1ax, f1bx, f1cx, f1dx, f1qx)
 
-build_column(
-    'nbsala',
-    EnumCol(
-        label = u"Nombre de salariés dans l'établissement de l'emploi actuel",
+class hsup(Variable):
+    cerfa_field = {
+        QUIFOY['vous']: u"1AU",
+        QUIFOY['conj']: u"1BU",
+        QUIFOY['pac1']: u"1CU",
+        QUIFOY['pac2']: u"1DU",
+        }
+    column = IntCol(val_type = "monetary")
+    entity_class = Individus
+    label = u"Heures supplémentaires : revenus exonérés connus"
+    start_date = date(2007, 1, 1)
+    stop_date = date(2013, 12, 13)
+
+  # (f1au, f1bu, f1cu, f1du)
+
+class ppe_du_sa(Variable):
+    cerfa_field = {QUIFOY['vous']: u"1AV",
+        QUIFOY['conj']: u"1BV",
+        QUIFOY['pac1']: u"1CV",
+        QUIFOY['pac2']: u"1DV",
+        QUIFOY['pac3']: u"1QV",
+        }
+    column = IntCol
+    entity_class = Individus
+    label = u"Prime pour l'emploi des salariés: nombre d'heures payées dans l'année"
+
+  # (f1av, f1bv, f1cv, f1dv, f1qv)
+
+class ppe_tp_sa(Variable):
+    cerfa_field = {
+        QUIFOY['vous']: u"1AX",
+        QUIFOY['conj']: u"1BX",
+        QUIFOY['pac1']: u"1CX",
+        QUIFOY['pac2']: u"1DX",
+        QUIFOY['pac3']: u"1QX",
+        }
+        
+    column = BoolCol
+    entity_class = Individus
+    label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière"
+
+  # (f1ax, f1bx, f1cx, f1dx, f1qx)
+
+class nbsala(Variable):
+    column = EnumCol(
         enum = Enum([
             u"Sans objet",
             u"Aucun salarié",
@@ -90,27 +115,37 @@ build_column(
             u"1000 salariés ou plus",
             u"Ne sait pas",
             ])
+            ,
         )
-    )
+    entity_class = Individus
+    label = u"Nombre de salariés dans l'établissement de l'emploi actuel"
 
-build_column('tva_ent', BoolCol(label = u"L'entreprise employant le salarié paye de la TVA",
-                    default = True))
+
+
+class tva_ent(Variable):
+    column = BoolCol(default = True)
+    entity_class = Individus
+    label = u"L'entreprise employant le salarié paye de la TVA"
+
+
 
 # build_column('code_risque', EnumCol(label = u"Code risque pour les accidents du travail"))
 # TODO: Complete label, add enum and relevant default.
 
-build_column(
-    'exposition_accident',
-    EnumCol(
-        label = u"Exposition au risque pour les accidents du travail",
+class exposition_accident(Variable):
+    column = EnumCol(
         enum = Enum([
             u"Faible",
             u"Moyen",
             u"Élevé",
             u"Très élevé",
             ])
+            ,
         )
-    )
+    entity_class = Individus
+    label = u"Exposition au risque pour les accidents du travail"
+
+
 
 
 class allegement_fillon_mode_recouvrement(Variable):
@@ -404,7 +439,7 @@ class traitement_indiciaire_brut(Variable):
     label = u"Traitement indiciaire brut (TIB)"
 
 
-class type_sal(Variable):
+class categorie_salarie(Variable):
     column = EnumCol(
         enum = Enum(
             [
@@ -575,7 +610,7 @@ class indemnite_residence(Variable):
         period = period.start.period(u'month').offset('first-of')
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         zone_apl_individu = simulation.calculate('zone_apl_individu', period)
         _P = simulation.legislation_at(period.start)
 
@@ -588,7 +623,7 @@ class indemnite_residence(Variable):
         return period, max_(
             plancher,
             taux * (traitement_indiciaire_brut + salaire_de_base)
-            ) * (type_sal >= 2)
+            ) * (categorie_salarie >= 2)
 
 
 class indice_majore(Variable):
@@ -598,12 +633,12 @@ class indice_majore(Variable):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         _P = simulation.legislation_at(period.start)
 
         traitement_annuel_brut = _P.fonc.IM_100
-        return period, (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * (type_sal >= 2)
+        return period, (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * (categorie_salarie >= 2)
 
 
 class primes_fonction_publique(Variable):
@@ -614,13 +649,13 @@ class primes_fonction_publique(Variable):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
 
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         public = (
-            (type_sal == CAT['public_titulaire_etat']) +
-            (type_sal == CAT['public_titulaire_territoriale']) +
-            (type_sal == CAT['public_titulaire_hospitaliere'])
+            (categorie_salarie == CAT['public_titulaire_etat']) +
+            (categorie_salarie == CAT['public_titulaire_territoriale']) +
+            (categorie_salarie == CAT['public_titulaire_hospitaliere'])
             )
         return period, TAUX_DE_PRIME * traitement_indiciaire_brut * public
 
@@ -639,10 +674,10 @@ class af_nbenf_fonc(Variable):
         law = simulation.legislation_at(period.start)
         nbh_travaillees = 169
         smic_mensuel_brut = law.cotsoc.gen.smic_h_b * nbh_travaillees
-        smic55_holder = (salaire_de_base / 6) >= (law.fam.af.seuil_rev_taux * smic_mensuel_brut)
+        autonomie_financiere_holder = (salaire_de_base / 6) >= (law.fam.af.seuil_rev_taux * smic_mensuel_brut)
         age = self.split_by_roles(age_holder, roles = ENFS)
-        smic55 = self.split_by_roles(smic55_holder, roles = ENFS)
-        af_nbenf = nb_enf(age, smic55, law.fam.af.age1, law.fam.af.age2)
+        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
+        af_nbenf = nb_enf(age, autonomie_financiere, law.fam.af.age1, law.fam.af.age2)
 
         return period, af_nbenf
 
@@ -656,7 +691,7 @@ class supp_familial_traitement(Variable):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         af_nbenf_fonc_holder = simulation.compute('af_nbenf_fonc', period)
         _P = simulation.legislation_at(period.start)
@@ -702,9 +737,9 @@ class supp_familial_traitement(Variable):
                    plafond_mensuel_3 * (fonc_nbenf == 3) +
                    plafond_mensuel_supp * max_(0, fonc_nbenf - 3))
 
-        sft = min_(max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher), plafond) * (type_sal >= 2)
+        sft = min_(max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher), plafond) * (categorie_salarie >= 2)
         # Nota Bene:
-        # type_sal is an EnumCol which enum is:
+        # categorie_salarie is an EnumCol which enum is:
         # CAT = Enum(['prive_non_cadre',
         #             'prive_cadre',
         #             'public_titulaire_etat',
@@ -729,9 +764,9 @@ class remuneration_principale(Variable):
     def function(self, simulation, period):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         nouvelle_bonification_indiciaire = simulation.calculate('nouvelle_bonification_indiciaire', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         return period, (
-            (type_sal >= 2) * (type_sal <= 5) * (
+            (categorie_salarie >= 2) * (categorie_salarie <= 5) * (
                 traitement_indiciaire_brut + nouvelle_bonification_indiciaire
                 )
             )

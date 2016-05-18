@@ -6,7 +6,7 @@ individus:
   activite: 1
   age: 32
   age_en_mois: 393
-  birth: "1982-01-01"
+  date_naissance: "1982-01-01"
   chomage_brut:
     2012: 10594.009418736501
     2013-10: 882.8341182280416
@@ -48,7 +48,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -315,6 +315,6 @@ menages:
   depcom: 92071
   enfants:
   personne_de_reference: 544e15fd1dddcaa51c2c8ef0
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 0

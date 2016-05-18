@@ -8,7 +8,7 @@ individus:
   activite: 3
   age: 63
   age_en_mois: 756
-  birth: "1952-02-05"
+  date_naissance: "1952-02-05"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -16,7 +16,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 1
+  handicap: 1
   retraite_brute:
     2013: 1199.9999999999998
     2014-02: 99.99999999999999
@@ -318,6 +318,6 @@ menages:
   depcom: 67482
   enfants:
   personne_de_reference: 54e4c0af4598885640140950
-  statut_occupation: 2
+  statut_occupation_logement: 2
 output_variables:
   aspa: 700

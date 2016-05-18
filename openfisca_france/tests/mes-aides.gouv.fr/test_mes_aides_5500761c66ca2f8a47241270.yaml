@@ -10,7 +10,7 @@ period: "month:2015-03"
 individus:
   - age: 34
     age_en_mois: 414
-    birth: "1980-08-12"
+    date_naissance: "1980-08-12"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:
@@ -20,7 +20,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2013: 0
     retraite_imposable:
@@ -34,7 +34,7 @@ individus:
       2012-01: 0
   - age: 34
     age_en_mois: 414
-    birth: "1980-08-12"
+    date_naissance: "1980-08-12"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:
@@ -44,7 +44,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2013: 0
     retraite_imposable:
@@ -58,7 +58,7 @@ individus:
       2012-01: 0
   - age: 14
     age_en_mois: 174
-    birth: "2000-08-12"
+    date_naissance: "2000-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -66,7 +66,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 2
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -343,6 +343,6 @@ menages:
   depcom: 67482
   enfants: 5500761a3774028f471fb199
   personne_de_reference: 5500761a3774028f471fb19b
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   bourse_lycee: 453

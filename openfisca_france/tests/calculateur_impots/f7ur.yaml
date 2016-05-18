@@ -14,7 +14,7 @@
     salaire_imposable: 24000
     activite: 0
     statmarit: 2
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -42,7 +42,7 @@
     salaire_imposable: 24000
     activite: 0
     statmarit: 2
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -70,7 +70,7 @@
     salaire_imposable: 24000
     activite: 0
     statmarit: 2
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -99,7 +99,7 @@
     salaire_imposable: 24000
     activite: 0
     statmarit: 2
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -128,7 +128,7 @@
     salaire_imposable: 24000
     activite: 0
     statmarit: 2
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -156,7 +156,7 @@
     salaire_imposable: 24000
     activite: 0
     statmarit: 2
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -184,7 +184,7 @@
     salaire_imposable: 24000
     activite: 0
     statmarit: 2
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -212,7 +212,7 @@
     salaire_imposable: 24000
     activite: 0
     statmarit: 2
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -241,7 +241,7 @@
     salaire_imposable: 24000
     activite: 0
     statmarit: 2
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0

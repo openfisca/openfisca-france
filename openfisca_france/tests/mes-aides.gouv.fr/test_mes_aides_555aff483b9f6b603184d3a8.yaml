@@ -7,7 +7,7 @@ period: "month:2015-05"
 individus:
   age: 34
   age_en_mois: 415
-  birth: "1980-10-10"
+  date_naissance: "1980-10-10"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -15,9 +15,9 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   tns_autres_revenus_type_activite: bnc
-  tns_employe: true
+  tns_avec_employe: true
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -286,6 +286,6 @@ menages:
   enfants:
   loyer: 700
   personne_de_reference: 555aff415dcb456331928911
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   rsa: 0

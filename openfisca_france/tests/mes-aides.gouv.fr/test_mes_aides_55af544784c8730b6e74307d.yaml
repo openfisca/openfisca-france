@@ -8,7 +8,7 @@ individus:
   - a_charge_fiscale: true
     age: 35
     age_en_mois: 426
-    birth: "1980-01-01"
+    date_naissance: "1980-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -17,7 +17,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2013: 23076.923076923074
       2014-07: 1923.076923076923
@@ -77,7 +77,7 @@ individus:
   - a_charge_fiscale: true
     age: 36
     age_en_mois: 438
-    birth: "1979-01-01"
+    date_naissance: "1979-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -86,7 +86,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2013: 30769.230769230762
       2014-07: 2564.102564102564
@@ -146,7 +146,7 @@ individus:
   - a_charge_fiscale: true
     age: 5
     age_en_mois: 66
-    birth: "2010-01-01"
+    date_naissance: "2010-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -155,7 +155,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -163,7 +163,7 @@ individus:
   - a_charge_fiscale: true
     age: 12
     age_en_mois: 150
-    birth: "2003-01-01"
+    date_naissance: "2003-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -172,7 +172,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -181,7 +181,7 @@ individus:
   - a_charge_fiscale: true
     age: 6
     age_en_mois: 78
-    birth: "2009-01-01"
+    date_naissance: "2009-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -190,7 +190,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -198,7 +198,7 @@ individus:
   - a_charge_fiscale: true
     age: 6
     age_en_mois: 78
-    birth: "2009-01-01"
+    date_naissance: "2009-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -207,7 +207,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -495,6 +495,6 @@ menages:
   loyer: 1000
   parisien: true
   personne_de_reference: 55af535284c8730b6e743070
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   paris_logement_familles: 105

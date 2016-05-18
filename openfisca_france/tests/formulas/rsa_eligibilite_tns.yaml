@@ -81,7 +81,7 @@
   input_variables:
     tns_autres_revenus:
       2014: 4000
-    tns_employe: True
+    tns_avec_employe: True
   output_variables:
     rsa_eligibilite_tns: False
 

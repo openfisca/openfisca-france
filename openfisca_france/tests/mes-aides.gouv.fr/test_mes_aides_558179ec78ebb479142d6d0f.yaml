@@ -12,7 +12,7 @@ individus:
     age: 42
     age_en_mois: 507
     ass_precondition_remplie: true
-    birth: "1973-02-21"
+    date_naissance: "1973-02-21"
     chomage_brut:
       2013: 19863.767660130936
       2014-06: 1655.313971677578
@@ -52,7 +52,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -60,7 +60,7 @@ individus:
       2012-01: 0
   - age: 55
     age_en_mois: 665
-    birth: "1960-01-01"
+    date_naissance: "1960-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -68,7 +68,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2013: 25011.538461538457
       2014-06: 2084.2820512820513
@@ -392,6 +392,6 @@ menages:
   depcom: 77004
   enfants:
   personne_de_reference: 558179e285a12b87142c694e
-  statut_occupation: 2
+  statut_occupation_logement: 2
 output_variables:
   ass: 102.3

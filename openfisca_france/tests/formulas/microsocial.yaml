@@ -48,15 +48,15 @@
     zone_apl: Zone 1
   individus:
     - id: "parent1"
-      birth: "1972-01-01"
+      date_naissance: "1972-01-01"
       ebic_impv: 20000
     - id: "parent2"
-      birth: "1972-01-01"
+      date_naissance: "1972-01-01"
       ebic_impv: 10000
     - id: "enfant1"
-      birth: "2000-01-01"
+      date_naissance: "2000-01-01"
     - id: "enfant2"
-      birth: "2009-01-01"
+      date_naissance: "2009-01-01"
   output_variables:
     # rev_microsocial: (20000 + 10000) - (2820 + 1410) # TODO?
     microsocial: 200 + 100

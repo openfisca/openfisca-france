@@ -14,7 +14,7 @@ individus:
     age: 24
     age_en_mois: 294
     ass_precondition_remplie: true
-    birth: "1990-10-10"
+    date_naissance: "1990-10-10"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -22,7 +22,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2013: 19846.153846153844
       2014-04: 1653.8461538461538
@@ -81,7 +81,7 @@ individus:
       2012-01: 0
   - age: 24
     age_en_mois: 294
-    birth: "1990-10-10"
+    date_naissance: "1990-10-10"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -89,7 +89,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     statmarit: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -362,6 +362,6 @@ menages:
   depcom: 93070
   enfants:
   personne_de_reference: 553647ce88bcee752ddf9414
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   ass: 450.38

@@ -32,7 +32,7 @@ input_variables:
   taux_versement_transport: 0
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  type_sal: 0  # non cadre
+  categorie_salarie: 0  # non cadre
   volume_jours_ijss: 0
 output_variables:
   # TODO à inclure dans la décomposition et à finir de coder forfait_social: -3.8 # 47.49 de base

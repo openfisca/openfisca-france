@@ -9,7 +9,7 @@ individus:
     age: 51
     age_en_mois: 622
     ass_precondition_remplie: true
-    birth: "1963-08-01"
+    date_naissance: "1963-08-01"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:
@@ -19,7 +19,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2013: 0
     retraite_imposable:
@@ -80,7 +80,7 @@ individus:
       2012-01: 0
   - age: 55
     age_en_mois: 665
-    birth: "1960-01-01"
+    date_naissance: "1960-01-01"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:
@@ -90,7 +90,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2013: 0
     retraite_imposable:
@@ -419,6 +419,6 @@ menages:
   depcom: 77004
   enfants:
   personne_de_reference: 558178aa78ebb479142d6cfd
-  statut_occupation: 2
+  statut_occupation_logement: 2
 output_variables:
   ass: 0

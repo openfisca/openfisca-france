@@ -26,7 +26,7 @@ period: "month:2014-12"
 individus:
   age: 34
   age_en_mois: 412
-  birth: "1980-08-12"
+  date_naissance: "1980-08-12"
   boursier: true
   chomage_imposable:
     2012: 0
@@ -37,7 +37,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   pensions_alimentaires_percues:
     2012: 0
   retraite_imposable:
@@ -315,6 +315,6 @@ menages:
   enfants:
   loyer: 200
   personne_de_reference: 548ef9d98dac136002468a88
-  statut_occupation: 5
+  statut_occupation_logement: 5
 output_variables:
   aide_logement: 151.07

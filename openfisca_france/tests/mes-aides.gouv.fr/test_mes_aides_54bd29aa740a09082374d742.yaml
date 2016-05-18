@@ -10,7 +10,7 @@ period: "month:2015-01"
 individus:
   - age: 34
     age_en_mois: 413
-    birth: "1980-08-12"
+    date_naissance: "1980-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -18,14 +18,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 6
     age_en_mois: 77
-    birth: "2008-08-12"
+    date_naissance: "2008-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -33,14 +33,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 6
     age_en_mois: 77
-    birth: "2008-08-12"
+    date_naissance: "2008-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -48,14 +48,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 18
     age_en_mois: 221
-    birth: "1996-08-12"
+    date_naissance: "1996-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -63,7 +63,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2013: 15384.615384615381
       2014-01: 1282.051282051282
@@ -392,6 +392,6 @@ menages:
     - 54bd295198e206042366340f
     - 54bd295198e2060423663402
   personne_de_reference: 54bd295198e2060423663411
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   cf: 0

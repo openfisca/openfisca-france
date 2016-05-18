@@ -10,7 +10,7 @@ relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 411
-    birth: "1980-08-12"
+    date_naissance: "1980-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -18,14 +18,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 4
     age_en_mois: 51
-    birth: "2010-08-12"
+    date_naissance: "2010-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -33,14 +33,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 16
     age_en_mois: 195
-    birth: "1998-08-12"
+    date_naissance: "1998-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -48,7 +48,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -322,6 +322,6 @@ menages:
     - 54734346e6f62c383d55a58c
     - 54734346e6f62c383d55a58b
   personne_de_reference: 54734346e6f62c383d55a58d
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   af: 129.35

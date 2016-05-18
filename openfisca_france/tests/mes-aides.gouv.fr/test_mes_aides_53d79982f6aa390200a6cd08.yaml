@@ -7,7 +7,7 @@ period: month:2014-07
 individus:
 - age: 34
   age_en_mois: 414
-  birth: '1979-12-21'
+  date_naissance: '1979-12-21'
   enceinte: false
   epargne_non_remuneree:
     2012-01: 0
@@ -16,14 +16,14 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 - age: 4
   age_en_mois: 54
-  birth: '2009-12-31'
+  date_naissance: '2009-12-31'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -31,7 +31,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   pensions_alimentaires_percues:
     '2012': 600
     2013-07: 0
@@ -322,6 +322,6 @@ menages:
   - 53d79969f6aa390200a6cd00
   loyer: 499
   personne_de_reference: 53d79969f6aa390200a6cd01
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   rsa_majore: 535.06

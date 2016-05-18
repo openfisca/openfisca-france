@@ -6,7 +6,7 @@
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
-    birth: '1998-01-01' # age < 18 sur le trimestre de référence
+    date_naissance: '1998-01-01' # age < 18 sur le trimestre de référence
     ppa_revenu_activite:
       2015-12: 500
       2015-11: 500
@@ -22,8 +22,8 @@
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
-    birth: '1997-01-01' # age > 18 sur le trimestre de référence
-    ppa_revenu_activite_i:
+    date_naissance: '1997-01-01' # age > 18 sur le trimestre de référence
+    ppa_revenu_activite_individu:
       2015-12: 918
       2015-11: 918
       2015-10: 918
@@ -37,8 +37,8 @@
 - name: "PPA - Eligibilité sur certains mois seulement"
   period: 2016-01
   input_variables:
-    birth: '1997-11-15' # age > 18 seulemet sur 1 mois du TR
-    ppa_revenu_activite_i:
+    date_naissance: '1997-11-15' # age > 18 seulemet sur 1 mois du TR
+    ppa_revenu_activite_individu:
       2015-12: 918
       2015-11: 918
       2015-10: 918
@@ -294,7 +294,7 @@
 - name: "PPA/RSA forfait logement 1 personne"
   period: 2016-01
   input_variables:
-    statut_occupation_famille: 2 # propriétaire
+    statut_occupation_logement_famille: 2 # propriétaire
     age: 40
   output_variables:
     rsa_forfait_logement:
@@ -304,7 +304,7 @@
   period: 2016-01
   familles:
     parents: ["parent1", "parent2"]
-    statut_occupation_famille: 2 # propriétaire
+    statut_occupation_logement_famille: 2 # propriétaire
   individus:
     - id: "parent1"
       age: 40
@@ -319,7 +319,7 @@
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1"]
-    statut_occupation_famille: 2 # propriétaire
+    statut_occupation_logement_famille: 2 # propriétaire
   individus:
     - id: "parent1"
       age: 40
@@ -336,7 +336,7 @@
   relative_error_margin: 0.05
   input_variables:
     age: 40
-    statut_occupation_famille: 2 # propriétaire
+    statut_occupation_logement_famille: 2 # propriétaire
     salaire_net:
       2016-01: 918 # > 95 smic horaire brut
       2015-12: 918
@@ -351,7 +351,7 @@
   relative_error_margin: 0.05
   input_variables:
     age: 40
-    statut_occupation: 4
+    statut_occupation_logement: 4
     salaire_net:
       2015-12: 1520
       2015-11: 1520
@@ -409,7 +409,7 @@
   output_variables:
     ppa:
       2016-02: 0
-    ppa_ressources_hors_activite_i:
+    ppa_ressources_hors_activite_individu:
       2016-01: 700
     ppa_ressources_hors_activite:
       2016-01: 1391.40

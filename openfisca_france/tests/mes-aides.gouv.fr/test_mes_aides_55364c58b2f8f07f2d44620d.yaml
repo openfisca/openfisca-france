@@ -13,7 +13,7 @@ individus:
   age: 24
   age_en_mois: 294
   ass_precondition_remplie: true
-  birth: "1990-10-10"
+  date_naissance: "1990-10-10"
   chomage_imposable:
     2013: 0
   epargne_non_remuneree:
@@ -23,7 +23,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   pensions_alimentaires_percues:
     2013: 0
   pensions_alimentaires_versees_individu:
@@ -364,6 +364,6 @@ menages:
   enfants:
   loyer: 600
   personne_de_reference: 55364c4bc03d26772db577ac
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   ass: 487.5

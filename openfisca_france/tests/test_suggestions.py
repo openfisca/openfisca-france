@@ -15,15 +15,15 @@ def test_birth():
         parent1 = dict(),
         enfants = [
             dict(),
-            dict(birth = datetime.date(year - 12, 1, 1)),
-            dict(birth = datetime.date(year - 18, 1, 1)),
+            dict(date_naissance = datetime.date(year - 12, 1, 1)),
+            dict(date_naissance = datetime.date(year - 18, 1, 1)),
             ],
         )
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('birth').tolist(),
+        simulation.calculate('date_naissance').tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 10, 1, 1),

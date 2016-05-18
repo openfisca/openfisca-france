@@ -29,7 +29,7 @@ individus:
   activite: 2
   age: 24
   age_en_mois: 293
-  birth: "1990-08-12"
+  date_naissance: "1990-08-12"
   boursier: false
   epargne_non_remuneree:
     2012-01: 0
@@ -38,7 +38,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -307,6 +307,6 @@ menages:
   enfants:
   loyer: 405
   personne_de_reference: 54d344cf4ec19fce442271d0
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 215.99

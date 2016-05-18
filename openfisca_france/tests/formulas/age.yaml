@@ -15,7 +15,7 @@
 - name: "Âge d'après la date de naissance"
   period: "2013"
   input_variables:
-    birth: "1973-01-01"
+    date_naissance: "1973-01-01"
   output_variables:
     age: 40
     age_en_mois: 40 * 12

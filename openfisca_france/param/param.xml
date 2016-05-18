@@ -6786,11 +6786,13 @@
           <VALUE deb="2015-01-01" fuzzy="true" valeur="1.28412" />
           <VALUE deb="2009-06-20" fin="2014-12-31" valeur="1.28412" />
           <VALUE deb="2009-06-01" fin="2009-06-19" valeur="1.284" />
+          <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
         </CODE>
         <CODE code="pac_enf_sup" description="Majoration du RSA socle par enfant supplémentaire (en pourcentage du rsa de base)" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.42804" />
           <VALUE deb="2009-06-20" fin="2014-12-31" valeur="0.42804" />
           <VALUE deb="2009-06-01" fin="2009-06-19" valeur="0.428" />
+          <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
         </CODE>
       </NODE>
       <NODE code="patrimoine" description="Revenus liés au patrimoine">

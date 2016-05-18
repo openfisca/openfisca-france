@@ -9,7 +9,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
-                    'birth',  # Date de naissance
+                    'date_naissance',  # Date de naissance
                     'statmarit',  # Statut marital
                     'salaire_de_base',  # Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie
                     'chomage_imposable',  # Autres revenus imposables (chômage, préretraite)
@@ -140,7 +140,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""adoption""",  # Enfant adopté
                     u"""garde_alternee""",  # Enfant en garde alternée
                     u"""enceinte""",  # Est enceinte
-                    u"""invalide""",  # Invalide
+                    u"""handicap""",  # handicap
                     u"""rempli_obligation_scolaire""",  # Rempli l'obligation scolaire
                     u"""coloc""",  # Vie en colocation
                     u"""logement_chambre""",  # Le logement est considéré comme une chambre
@@ -202,7 +202,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""tns_autres_revenus""",  # Autres revenus non salariés
                     u"""tns_autres_revenus_chiffre_affaires""",  # Chiffre d'affaire pour les TNS non agricoles autres que les AE et ME
                     u"""tns_autres_revenus_type_activite""",  # Type d'activité de l'entreprise non AE ni ME
-                    u"""tns_employe""",  # Le TNS a au moins un employé. Ne s'applique pas pour les agricoles ni auto-entrepreneurs ni micro entreprise
+                    u"""tns_avec_employe""",  # Le TNS a au moins un employé. Ne s'applique pas pour les agricoles ni auto-entrepreneurs ni micro entreprise
                     u"""tns_benefice_exploitant_agricole""",  # Dernier bénéfice agricole
                     u"""indemnites_stage""",  # Indemnités de stage
                     u"""revenus_stage_formation_pro""",  # Revenus de stage de formation professionnelle
@@ -250,7 +250,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""titre_restaurant_valeur_unitaire""",  # Valeur faciale unitaire du titre restaurant
                     u"""titre_restaurant_volume""",  # Volume des titres restaurant
                     u"""traitement_indiciaire_brut""",  # Traitement indiciaire brut (TIB)
-                    u"""type_sal""",  # Catégorie de salarié
+                    u"""categorie_salarie""",  # Catégorie de salarié
                     u"""heures_duree_collective_entreprise""",  # Durée mensuelle collective dans l'entreprise (heures, temps plein)
                     u"""heures_non_remunerees_volume""",  # Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)
                     u"""heures_remunerees_volume""",  # Volume des heures rémunérées contractuellement (heures/mois, temps partiel)
@@ -1005,7 +1005,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
                     'loyer',  # Loyer
-                    'statut_occupation',  # Statut d'occupation
+                    'statut_occupation_logement',  # Statut d'occupation
                     'depcom',  # Code INSEE (depcom) du lieu de résidence
                     ]),
                 ]),
