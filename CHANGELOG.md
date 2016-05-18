@@ -1,6 +1,18 @@
 # Changelog
 
-## 1.2.0
+## 1.3.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.2.0...1.3.0)
+
+* Refactor AL computation, and implement special DOM rules
+* Introduce:
+	* `aide_logement_loyer_retenu`
+	* `al_couple`
+	* `aide_logement_charges`
+	* `aide_logement_R0`
+	* `aide_logement_taux_famille`
+	* `aide_logement_taux_loyer`
+	* `aide_logement_participation_personelle`
+
+## 1.2.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.1.0...1.2.0)
 
 * Force version number incrementation through CI
 * Force changelog editing through CI
