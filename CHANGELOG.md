@@ -2,6 +2,7 @@
 
 ## 1.3.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.2.0...1.3.0)
 
+* Introduce mechanism to blacklist variables so that they are not cached
 * Refactor AL computation, and implement special DOM rules
 * Introduce:
 	* `aide_logement_loyer_retenu`
