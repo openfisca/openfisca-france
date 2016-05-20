@@ -303,20 +303,6 @@ familles:
     2015-08: 0
     year:2014-09: 0
   parents: 55f02af4bb8d0c3804776986
-  paris_logement_familles:
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    2015-07: 0
-    2015-08: 0
-    year:2014-09: 0
   proprietaire_proche_famille: false
   rsa:
     2014-09: 0
@@ -368,7 +354,6 @@ menages:
   depcom: 44142
   enfants:
   loyer: 456
-  parisien: false
   personne_de_reference: 55f02af4bb8d0c3804776986
   statut_occupation_logement: 4
 output_variables:

@@ -353,20 +353,6 @@ familles:
   parents:
   - 55eda9080d70943004ddc4f7
   - 55eda9080d70943004ddc4ea
-  paris_logement_familles:
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    2015-07: 0
-    2015-08: 0
-    year:2014-09: 0
   proprietaire_proche_famille: true
   rsa:
     2014-09: 0
@@ -423,7 +409,6 @@ menages:
   enfants:
   - 55eda9080d70943004ddc4e9
   loyer: 600
-  parisien: false
   personne_de_reference: 55eda9080d70943004ddc4f7
   statut_occupation_logement: 4
 output_variables:

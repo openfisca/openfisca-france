@@ -323,20 +323,6 @@ familles:
   parents:
     - 55643ef8a0084c3b26e9c8d9
     - 55643ef8a0084c3b26e9c8d8
-  paris_logement_familles:
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    year:2014-05: 0
   proprietaire_proche_famille: true
   rsa:
     2014-05: 0

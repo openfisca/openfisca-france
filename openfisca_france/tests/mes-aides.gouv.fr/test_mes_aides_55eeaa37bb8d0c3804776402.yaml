@@ -376,20 +376,6 @@ familles:
   parents:
   - 55eeaa330df1c6360477f4be
   - 55eeaa330df1c6360477f4b1
-  paris_logement_familles:
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    2015-07: 0
-    2015-08: 0
-    year:2014-09: 0
   rsa:
     2014-09: 0
     2014-10: 0
@@ -446,7 +432,6 @@ menages:
   - 55eeaa330df1c6360477f4b0
   - 55eeaa330df1c6360477f4af
   loyer: 0
-  parisien: false
   personne_de_reference: 55eeaa330df1c6360477f4be
 output_variables:
   paje_base: 93.33

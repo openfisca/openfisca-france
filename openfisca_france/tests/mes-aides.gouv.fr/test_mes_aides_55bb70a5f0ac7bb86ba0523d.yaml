@@ -258,20 +258,6 @@ familles:
   parents:
     - 55bb70a1677e2db26b9b9cbc
     - 55bb70a1677e2db26b9b9cbb
-  paris_logement_familles:
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    year:2014-07: 0
   rsa:
     2014-07: 0
     2014-08: 0
@@ -323,7 +309,6 @@ menages:
   conjoint: 55bb70a1677e2db26b9b9cbb
   depcom: 15021
   enfants: 55bb70a1677e2db26b9b9cba
-  parisien: false
   personne_de_reference: 55bb70a1677e2db26b9b9cbc
 output_variables:
   rsa: 738
