@@ -142,3 +142,29 @@
       prestations_familiales_base_ressources_individu: 12500
   output_variables:
     aide_logement_base_ressources_defaut: 12500 - 10634.36
+
+- name: "Personne isolée"
+  period: 2015-01
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+    zone_apl_famille: 1
+    loyer_famille: 800
+    aide_logement_base_ressources: 12000
+    statut_occupation_logement_famille: 4  # Locataire
+  individus:
+    - id: "parent1"
+      age: 40
+  output_variables:
+    aide_logement_loyer_retenu: 292.62
+    aide_logement_charges: 53.23
+    aide_logement_R0: 4593
+    aide_logement_taux_famille: 0.0283
+    # LRef: 255.03
+    # RL: 1.147
+    aide_logement_taux_loyer: 0.00404
+    # Po: 34.73
+    # Rp: 7407
+    aide_logement_participation_personelle: 34.73 + (0.0283 + 0.00404) * 7407  # 274.27
+    aide_logement_montant_brut: 292.62 + 53.23 - 274.27 # 71.58
+
