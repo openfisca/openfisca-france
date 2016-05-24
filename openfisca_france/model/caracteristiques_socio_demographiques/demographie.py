@@ -302,3 +302,8 @@ class duree_possession_titre_sejour(Variable):
     column = IntCol
     entity_class = Individus
     label = u"Durée depuis laquelle l'individu possède un titre de séjour (en années)"
+
+class enfant_place(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Enfant placé en structure spécialisée ou famille d'accueil"
