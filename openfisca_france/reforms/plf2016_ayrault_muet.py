@@ -81,14 +81,14 @@ def build_reform(tax_benefit_system):
             period = period.start.offset('first-of', 'year').period('year')
             rfr = simulation.calculate('rfr', period)
             ppe_coef = simulation.calculate('ppe_coef', period)
-            marpac = simulation.calculate('marpac', period)
+            maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
             veuf = simulation.calculate('veuf', period)
             celdiv = simulation.calculate('celdiv', period)
             nbptr = simulation.calculate('nbptr', period)
             variator = simulation.calculate('variator', period)
             ppe = simulation.legislation_at(period.start).ir.credits_impot.ppe
             seuil = (veuf | celdiv) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
-                + marpac * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
+                + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
             return period, (rfr * ppe_coef) <= (seuil * variator)
 
     class ppe_elig_bis_individu(Reform.EntityToPersonColumn):

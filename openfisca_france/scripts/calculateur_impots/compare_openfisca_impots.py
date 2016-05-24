@@ -146,7 +146,7 @@ def compare(scenario, tested = False):
         'IPROP': u'Impôt proportionnel',
         'RFOR': u'?',#TODO (f7up)
         'PERPPLAFTP': u'?',
-        'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
+        'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, maries_ou_pacses)
         'RHEBE': u'?',#TODO (7ce)
         'RAA': u'?',#TODO (7ud)
         'RAH': u'?',#TODO (7ce)
