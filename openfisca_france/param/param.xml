@@ -6866,6 +6866,9 @@
       <CODE code="age_min" description="Âge minimal pour bénéficier de la PPA" format="integer" type="age">
         <VALUE deb="2015-09-01" fin="2016-12-31" valeur="18" />
       </CODE>
+      <CODE code="seuil_aah_activite" description="Revenu d'activité minimal perçu pour que l'AAH d'un individu soit considéré comme un revenu d'activité, en multiple du smic horaire brut" format="integer">
+        <VALUE deb="2015-09-01" fin="2016-12-31" valeur="29" />
+      </CODE>
       <NODE code="bonification">
         <CODE code="montant_max" description="Bonification maximale, en pourcentage du montant de base du RSA" format="percent">
           <VALUE deb="2015-09-01" fin="2016-12-31" valeur="0.12782" />

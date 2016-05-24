@@ -1,6 +1,10 @@
 # Changelog
 
-## 1.3.1-rc – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1-rc...1.3.0)
+## 1.3.1 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1...1.3.1rc0)
+
+* Adjust ppa computation
+
+## 1.3.1rc0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1rc0..1.3.0)
 
 * Fix versioning enforcement
 
