@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/2.0.0..1.3.1)
+
+* Deprecate Paris reform
+* Introduce enfant_place
+
 ## 1.3.1 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1...1.3.1rc0)
 
 * Adjust ppa computation

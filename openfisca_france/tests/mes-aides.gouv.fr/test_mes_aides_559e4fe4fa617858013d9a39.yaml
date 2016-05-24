@@ -308,20 +308,6 @@ familles:
   parents:
     - 559e4fa7ecfc1e52013e3b44
     - 559e4fa7ecfc1e52013e3b42
-  paris_logement_familles:
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    year:2014-07: 0
   proprietaire_proche_famille: false
   rsa:
     2014-07: 0

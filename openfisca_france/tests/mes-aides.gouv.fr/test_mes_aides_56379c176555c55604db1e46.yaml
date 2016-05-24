@@ -8,7 +8,7 @@ keywords:
 period: month:2015-11
 relative_error_margin: 0.02
 individus:
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 33
   age_en_mois: 398
   date_naissance: '1982-08-12'
@@ -75,7 +75,7 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 14
   age_en_mois: 175
   date_naissance: '2001-03-12'
@@ -96,7 +96,7 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 15
   age_en_mois: 180
   date_naissance: '2000-11-01'
@@ -117,7 +117,7 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 29
   age_en_mois: 350
   date_naissance: '1986-08-12'
@@ -386,20 +386,6 @@ familles:
   parents:
   - 5637989acee58058041a43a1
   - 5637a1d5eeab276a0422ab1e
-  paris_logement_familles:
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    2015-07: 0
-    2015-08: 0
-    2015-09: 0
-    2015-10: 0
-    year:2014-11: 0
   rsa:
     2014-11: 0
     2014-12: 0
@@ -459,7 +445,6 @@ menages:
   - 5637989acee58058041a43a0
   - 563798fd769e7a5504fd604e
   loyer: 0
-  parisien: false
   personne_de_reference: 5637989acee58058041a43a1
 output_variables:
   af: 194.02

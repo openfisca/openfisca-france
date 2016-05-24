@@ -50,7 +50,6 @@ options_by_dir = collections.OrderedDict((
         dict(
             calculate_output = True,
             default_relative_error_margin = 0.02,
-            reforms = ['aides_ville_paris'],
             ),
         ),
     (
