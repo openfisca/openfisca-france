@@ -1,0 +1,46 @@
+date_effet_debut,date_effet_fin,versant,echelle,categorie,niveau_nes,corps_label,grade,grade_label,echelon,mois_min,mois_max,mois_moy,IB,IM,TIB,categorie_salarie
+2014-01-31,,FPT,3,B,5,redacteur,1,redacteur,13,,,,544,463,2143.83,0
+2014-01-31,,FPT,3,B,5,redacteur,1,redacteur,12,36.0,48.0,48.0,510,439,2032.7,0
+2014-01-31,,FPT,3,B,5,redacteur,1,redacteur,11,30.0,36.0,36.0,483,418,1935.46,0
+2014-01-31,,FPT,3,B,5,redacteur,1,redacteur,10,30.0,36.0,36.0,450,395,1828.97,0
+2014-01-31,,FPT,3,B,5,redacteur,1,redacteur,9,30.0,36.0,36.0,436,384,1778.03,0
+2014-01-31,,FPT,3,B,5,redacteur,1,redacteur,8,30.0,36.0,36.0,416,370,1713.21,0
+2014-01-31,,FPT,3,B,5,redacteur,1,redacteur,7,30.0,36.0,36.0,398,362,1676.17,0
+2014-01-31,,FPT,3,B,5,redacteur,1,redacteur,6,18.0,24.0,24.0,382,352,1629.86,0
+2014-01-31,,FPT,3,B,5,redacteur,1,redacteur,5,18.0,18.0,18.0,366,339,1569.67,0
+2014-01-31,,FPT,3,B,5,redacteur,1,redacteur,4,18.0,18.0,18.0,347,325,1504.84,0
+2014-01-31,,FPT,3,B,5,redacteur,1,redacteur,3,18.0,18.0,18.0,337,319,1477.06,0
+2014-01-31,,FPT,3,B,5,redacteur,1,redacteur,2,18.0,18.0,18.0,315,313,1449.28,0
+2014-01-31,,FPT,3,B,5,redacteur,1,redacteur,1,12.0,12.0,12.0,306,312,1444.65,0
+2014-01-31,,FPT,4,B,5,redacteur,2,redacteur principal,8,,,,579,489,2264.21,0
+2014-01-31,,FPT,4,B,5,redacteur,2,redacteur principal,7,36.0,48.0,48.0,547,465,2153.09,0
+2014-01-31,,FPT,4,B,5,redacteur,2,redacteur principal,6,36.0,48.0,48.0,516,443,2051.22,0
+2014-01-31,,FPT,4,B,5,redacteur,2,redacteur principal,5,30.0,36.0,36.0,485,420,1944.72,0
+2014-01-31,,FPT,4,B,5,redacteur,2,redacteur principal,4,18.0,24.0,24.0,463,405,1875.27,0
+2014-01-31,,FPT,4,B,5,redacteur,2,redacteur principal,3,18.0,24.0,24.0,436,384,1778.03,0
+2014-01-31,,FPT,4,B,5,redacteur,2,redacteur principal,2,18.0,24.0,24.0,416,370,1713.21,0
+2014-01-31,,FPT,4,B,5,redacteur,2,redacteur principal,1,18.0,18.0,18.0,399,362,1676.17,0
+2014-01-31,,FPT,5,B,5,redacteur,3,redacteur chef,7,,,,612,514,2379.97,0
+2014-01-31,,FPT,5,B,5,redacteur,3,redacteur chef,6,40.0,54.0,54.0,580,490,2268.84,0
+2014-01-31,,FPT,5,B,5,redacteur,3,redacteur chef,5,30.0,40.0,40.0,549,467,2162.35,0
+2014-01-31,,FPT,5,B,5,redacteur,3,redacteur chef,4,30.0,40.0,40.0,518,445,2060.48,0
+2014-01-31,,FPT,5,B,5,redacteur,3,redacteur chef,3,21.0,27.0,27.0,487,421,1949.35,0
+2014-01-31,,FPT,5,B,5,redacteur,3,redacteur chef,2,21.0,27.0,27.0,453,397,1838.23,0
+2014-01-31,,FPT,5,B,5,redacteur,3,redacteur chef,1,21.0,27.0,27.0,425,377,1745.62,0
+2013-01-31,2014-01-31,FPT,3,B,5,redacteur,1,redacteur,1,12.0,12.0,12.0,306,312,1444.65,0
+2011-01-31,2013-01-31,FPT,3,B,5,redacteur,1,redacteur,1,12.0,12.0,12.0,306,312,1444.65,0
+2011-01-31,2011-01-31,FPT,3,B,5,redacteur,1,redacteur,1,12.0,12.0,12.0,306,312,1444.65,0
+2010-01-31,2011-01-31,FPT,3,B,5,redacteur,1,redacteur,1,12.0,12.0,12.0,306,312,1444.65,0
+2009-01-31,2010-01-31,FPT,3,B,5,redacteur,1,redacteur,1,12.0,12.0,12.0,306,312,1444.65,0
+2008-01-31,2009-01-31,FPT,3,B,5,redacteur,1,redacteur,1,12.0,12.0,12.0,306,312,1444.65,0
+2007-01-31,2008-01-31,FPT,3,B,5,redacteur,1,redacteur,1,12.0,12.0,12.0,306,312,1444.65,0
+2006-01-31,2007-01-31,FPT,4,B,5,redacteur,2,redacteur chef,1,12.0,12.0,12.0,306,312,1444.65,0
+2005-01-31,2006-01-31,FPT,4,B,5,redacteur,2,redacteur chef,1,12.0,12.0,12.0,306,312,1444.65,0
+2004-01-31,2005-01-31,FPT,4,B,5,redacteur,2,redacteur chef,1,12.0,12.0,12.0,306,312,1444.65,0
+2003-01-31,2004-01-31,FPT,4,B,5,redacteur,2,redacteur chef,1,12.0,12.0,12.0,306,312,1444.65,0
+2002-01-31,2003-01-31,FPT,4,B,5,redacteur,2,redacteur chef,1,12.0,12.0,12.0,306,312,1444.65,0
+2001-01-31,2002-01-31,FPT,5,B,5,redacteur,3,redacteur chef,1,12.0,12.0,12.0,306,312,1444.65,0
+2000-01-31,2001-01-31,FPT,5,B,5,redacteur,3,redacteur chef,1,12.0,12.0,12.0,306,312,1444.65,0
+1999-01-31,2000-01-31,FPT,5,B,5,redacteur,3,redacteur chef,1,12.0,12.0,12.0,306,312,1444.65,0
+1998-01-31,1999-01-31,FPT,5,B,5,redacteur,3,redacteur chef,1,12.0,12.0,12.0,306,312,1444.65,0
+1997-01-31,1998-01-31,FPT,5,B,5,redacteur,3,redacteur chef,1,12.0,12.0,12.0,306,312,1444.65,0
