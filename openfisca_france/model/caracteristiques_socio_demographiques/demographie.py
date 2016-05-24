@@ -89,7 +89,7 @@ class enceinte(Variable):
 
 
 
-class statmarit(Variable):
+class statut_marital(Variable):
     column = EnumCol(
         default = 2,
         enum = Enum([u"Marié",
@@ -243,11 +243,11 @@ class maries(Variable):
         """couple = 1 si couple marié sinon 0 TODO: faire un choix avec couple ?"""
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        statmarit_holder = simulation.compute('statmarit', period)
+        statut_marital_holder = simulation.compute('statut_marital', period)
 
-        statmarit = self.filter_role(statmarit_holder, role = CHEF)
+        statut_marital = self.filter_role(statut_marital_holder, role = CHEF)
 
-        return period, statmarit == 1
+        return period, statut_marital == 1
 
 
 class en_couple(Variable):

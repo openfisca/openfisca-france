@@ -65,7 +65,7 @@ individus:
     2015-09: 0
     2015-10: 0
     year:2014-11: 12000
-  statmarit: 1
+  statut_marital: 1
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
   tns_micro_entreprise_type_activite: bic
@@ -173,7 +173,7 @@ individus:
     2015-09: 0
     2015-10: 0
     year:2014-11: 12000
-  statmarit: 1
+  statut_marital: 1
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
   tns_micro_entreprise_type_activite: bic

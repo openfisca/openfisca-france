@@ -12,7 +12,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
     ebic_imps: 1500
   menages:
@@ -39,7 +39,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
     ebic_imps: 1500
   menages:
@@ -66,7 +66,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
     ebic_imps: 1500
   menages:
@@ -94,7 +94,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
     ebic_imps: 0
   menages:
@@ -122,7 +122,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
     ebic_imps: 0
   menages:
@@ -150,7 +150,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
     ebic_imps: 1500
   menages:
@@ -178,7 +178,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
     ebic_imps: 1500
   menages:
@@ -206,7 +206,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
     ebic_imps: 1500
   menages:
@@ -234,7 +234,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
     ebic_imps: 1500
   menages:
@@ -262,7 +262,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
     ebic_imps: 1500
   menages:
@@ -291,7 +291,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
     ebic_imps: 1500
   menages:

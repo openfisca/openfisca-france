@@ -40,12 +40,12 @@ def define_scenario(year):
             activite = u'Actif occupé',
             date_naissance = 1973,
             salaire_imposable = 48000,
-            statmarit = u'Marié',
+            statut_marital = u'Marié',
             ),
         parent2 = dict(
             activite = u'Actif occupé',
             date_naissance = 1973,
-            statmarit = u'Marié',
+            statut_marital = u'Marié',
             ),
         enfants = [
             dict(

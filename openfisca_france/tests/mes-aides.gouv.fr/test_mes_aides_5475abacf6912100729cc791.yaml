@@ -67,7 +67,7 @@ individus:
       2014-10: 555.6
       2014-11: 555.6
       year:2013-11: 6667.200000000002
-    statmarit: 2
+    statut_marital: 2
     valeur_locative_immo_non_loue:
       2012-01: 60000
     valeur_locative_terrains_non_loue:

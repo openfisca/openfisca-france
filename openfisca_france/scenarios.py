@@ -741,18 +741,18 @@ class Scenario(scenarios.AbstractScenario):
                         foyer_fiscal['id'], {})['caseT'] = foyer_fiscal['caseT'] = True
             elif len(foyer_fiscal['declarants']) == 2:
                 # Suggest "PACSé" or "Marié" instead of "Célibataire" when foyer_fiscal contains 2 "declarants" without
-                # "statmarit".
-                statmarit = 5  # PACSé
+                # "statut_marital".
+                statut_marital = 5  # PACSé
                 for individu_id in foyer_fiscal['declarants']:
                     individu = individu_by_id[individu_id]
-                    if individu.get('statmarit') == 1:  # Marié
-                        statmarit = 1
+                    if individu.get('statut_marital') == 1:  # Marié
+                        statut_marital = 1
                 for individu_id in foyer_fiscal['declarants']:
                     individu = individu_by_id[individu_id]
-                    if individu.get('statmarit') is None:
-                        individu['statmarit'] = statmarit
+                    if individu.get('statut_marital') is None:
+                        individu['statut_marital'] = statut_marital
                         suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
-                            'statmarit'] = unicode(statmarit)
+                            'statut_marital'] = unicode(statut_marital)
 
         return suggestions or None
 

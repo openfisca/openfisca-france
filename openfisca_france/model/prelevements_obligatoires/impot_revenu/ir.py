@@ -271,11 +271,11 @@ class marpac(Variable):
         'foy'
         '''
         period = period.this_year
-        statmarit_holder = simulation.compute('statmarit', period)
+        statut_marital_holder = simulation.compute('statut_marital', period)
 
-        statmarit = self.filter_role(statmarit_holder, role = VOUS)
+        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
 
-        return period, (statmarit == 1) | (statmarit == 5)
+        return period, (statut_marital == 1) | (statut_marital == 5)
 
 
 class celdiv(Variable):
@@ -289,11 +289,11 @@ class celdiv(Variable):
         'foy'
         '''
         period = period.this_year
-        statmarit_holder = simulation.compute('statmarit', period)
+        statut_marital_holder = simulation.compute('statut_marital', period)
 
-        statmarit = self.filter_role(statmarit_holder, role = VOUS)
+        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
 
-        return period, (statmarit == 2) | (statmarit == 3)
+        return period, (statut_marital == 2) | (statut_marital == 3)
 
 
 class veuf(Variable):
@@ -307,11 +307,11 @@ class veuf(Variable):
         'foy'
         '''
         period = period.this_year
-        statmarit_holder = simulation.compute('statmarit', period)
+        statut_marital_holder = simulation.compute('statut_marital', period)
 
-        statmarit = self.filter_role(statmarit_holder, role = VOUS)
+        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
 
-        return period, statmarit == 4
+        return period, statut_marital == 4
 
 
 class jveuf(Variable):
@@ -325,11 +325,11 @@ class jveuf(Variable):
         'foy'
         '''
         period = period.this_year
-        statmarit_holder = simulation.compute('statmarit', period)
+        statut_marital_holder = simulation.compute('statut_marital', period)
 
-        statmarit = self.filter_role(statmarit_holder, role = VOUS)
+        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
 
-        return period, statmarit == 6
+        return period, statut_marital == 6
 
 
 ###############################################################################
