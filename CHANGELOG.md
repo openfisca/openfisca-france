@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1-rc – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1-rc...1.3.0)
+
+* Fix versioning enforcement
+
 ## 1.3.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.2.0...1.3.0)
 
 * Introduce mechanism to blacklist variables so that they are not cached
