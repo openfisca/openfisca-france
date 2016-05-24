@@ -162,21 +162,24 @@ class enfant_a_charge(Variable):
 
     def function(self, simulation, period):
         age = simulation.calculate('age', period)
-        garde_alternee = simulation.calculate('garde_alternee', period)
         handicap = simulation.calculate('handicap', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, (quifoy >= 2) * ((age < 18) + handicap) * not_(garde_alternee)
+        return period, (quifoy >= 2) * ((age < 18) + handicap)
 
 
-class nbF(PersonToEntityColumn):
+class nbF(Variable):
     cerfa_field = u'F'
     entity_class = FoyersFiscaux
-    label = u"Nombre d'enfants à charge  non mariés, de moins de 18 ans au 1er janvier de l'année de perception des" \
+    column = FloatCol
+    label = u"Nombre d'enfants à charge non mariés, qui ne sont pas en résidence alternée, de moins de 18 ans au 1er janvier de l'année de perception des" \
         u" revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
-    operation = 'add'
-    variable = enfant_a_charge
 
+    def function(self, simulation, period):
+        period = period.this_year
+        enfant_a_charge = simulation.compute('enfant_a_charge', period)
+        garde_alternee = simulation.compute('garde_alternee', period)
+        return period, self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array))
 
 class nombre_enfants_a_charge_menage(PersonToEntityColumn):
     entity_class = Menages
@@ -186,73 +189,46 @@ class nombre_enfants_a_charge_menage(PersonToEntityColumn):
     variable = enfant_a_charge
 
 
-class enfant_a_charge_invalide(Variable):
-    column = BoolCol
-    entity_class = Individus
-    label = u"Enfant à charge titulaire de la carte d'invalidité"
-
-    def function(self, simulation, period):
-        period = period.this_year
-        garde_alternee = simulation.calculate('garde_alternee', period)
-        invalidite = simulation.calculate('invalidite', period)
-        quifoy = simulation.calculate('quifoy', period)
-
-        return period, (quifoy >= 2) * invalidite * not_(garde_alternee)
-
-
-class nbG(PersonToEntityColumn):
+class nbG(Variable):
     cerfa_field = u'G'
     entity_class = FoyersFiscaux
-    label = u"Nombre d'enfants à charge titulaires de la carte d'invalidité"
-    operation = 'add'
-    variable = enfant_a_charge_invalide
-
-
-class enfant_a_charge_garde_alternee(Variable):
-    column = BoolCol
-    entity_class = Individus
-    label = u"Enfant à charge en résidence alternée, non marié, de moins de 18 ans au 1er janvier de l'année de" \
-        u" perception des revenus, ou né durant la même année ou handicapés quel que soit son âge"
+    column = FloatCol
+    label = u"Nombre d'enfants qui ne sont pas en résidence alternée à charge titulaires de la carte d'invalidité."
 
     def function(self, simulation, period):
         period = period.this_year
-        age = simulation.calculate('age', period)
-        garde_alternee = simulation.calculate('garde_alternee', period)
-        handicap = simulation.calculate('handicap', period)
-        quifoy = simulation.calculate('quifoy', period)
-
-        return period, (quifoy >= 2) * ((age < 18) + handicap) * garde_alternee
+        enfant_a_charge = simulation.compute('enfant_a_charge', period)
+        garde_alternee = simulation.compute('garde_alternee', period)
+        invalidite = simulation.compute('invalidite', period)
+        return period, self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array) * invalidite.array)
 
 
-class nbH(PersonToEntityColumn):
+class nbH(Variable):
     cerfa_field = u'H'
     entity_class = FoyersFiscaux
+    column = FloatCol
     label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de" \
         u" l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
-    operation = 'add'
-    variable = enfant_a_charge_garde_alternee
-
-
-class enfant_a_charge_garde_alternee_invalide(Variable):
-    column = BoolCol
-    entity_class = Individus
-    label = u"Enfant à charge en résidence alternée titulaire de la carte d'invalidité"
 
     def function(self, simulation, period):
         period = period.this_year
-        garde_alternee = simulation.calculate('garde_alternee', period)
-        invalidite = simulation.calculate('invalidite', period)
-        quifoy = simulation.calculate('quifoy', period)
-
-        return period, (quifoy >= 2) * invalidite * garde_alternee
+        enfant_a_charge = simulation.compute('enfant_a_charge', period)
+        garde_alternee = simulation.compute('garde_alternee', period)
+        return period, self.sum_by_entity(enfant_a_charge.array * garde_alternee.array)
 
 
-class nbI(PersonToEntityColumn):
+class nbI(Variable):
     cerfa_field = u'I'
     entity_class = FoyersFiscaux
+    column = FloatCol
     label = u"Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité"
-    operation = 'add'
-    variable = enfant_a_charge_garde_alternee_invalide
+
+    def function(self, simulation, period):
+        period = period.this_year
+        enfant_a_charge = simulation.compute('enfant_a_charge', period)
+        garde_alternee = simulation.compute('garde_alternee', period)
+        invalidite = simulation.compute('invalidite', period)
+        return period, self.sum_by_entity(enfant_a_charge.array * garde_alternee.array * invalidite.array)
 
 
 class enfant_majeur_celibataire_sans_enfant(Variable):
