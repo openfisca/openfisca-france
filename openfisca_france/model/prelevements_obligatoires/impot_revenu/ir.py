@@ -161,7 +161,6 @@ class enfant_a_charge(Variable):
         u" revenus, ou né durant la même année, ou handicapés quel que soit son âge"
 
     def function(self, simulation, period):
-        period = period.this_year
         age = simulation.calculate('age', period)
         garde_alternee = simulation.calculate('garde_alternee', period)
         handicap = simulation.calculate('handicap', period)
