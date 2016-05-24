@@ -134,10 +134,10 @@ class nb_adult(Variable):
     def function(self, simulation, period):
         period = period.this_year
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        celdiv = simulation.calculate('celdiv', period)
+        celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         veuf = simulation.calculate('veuf', period)
 
-        return period, 2 * maries_ou_pacses + 1 * (celdiv | veuf)
+        return period, 2 * maries_ou_pacses + 1 * (celibataire_ou_divorce | veuf)
 
 
 class nb_pac(Variable):
@@ -267,16 +267,12 @@ class maries_ou_pacses(Variable):
         return period, (statut_marital == 1) | (statut_marital == 5)
 
 
-class celdiv(Variable):
+class celibataire_ou_divorce(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
-    label = u"celdiv"
+    label = u"Déclarant célibataire ou divorcé"
 
     def function(self, simulation, period):
-        '''
-        Célibataire (2) ou divorcé (3)
-        'foy'
-        '''
         period = period.this_year
         statut_marital_holder = simulation.compute('statut_marital', period)
 
@@ -1046,7 +1042,7 @@ class ir_plaf_qf(Variable):
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         veuf = simulation.calculate('veuf', period)
         jveuf = simulation.calculate('jveuf', period)
-        celdiv = simulation.calculate('celdiv', period)
+        celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         caseE = simulation.calculate('caseE', period)
         caseF = simulation.calculate('caseF', period)
         caseG = simulation.calculate('caseG', period)
@@ -1072,14 +1068,15 @@ class ir_plaf_qf(Variable):
         # diviser par 2)
         aa1 = min_((nbptr - 1) * 2, 2) / 2  # deux première demi part excédants une part
         aa2 = max_((nbptr - 2) * 2, 0)  # nombre de demi part restantes
-        # celdiv parents isolés
-        condition61 = celdiv & caseT
+        # celibataire_ou_divorce parents isolés
+        condition61 = celibataire_ou_divorce & caseT
         B1 = plafond_qf.celib_enf * aa1 + plafond_qf.maries_ou_pacses * aa2
         # tous les autres
         B2 = plafond_qf.maries_ou_pacses * aa0  # si autre
-        # celdiv, veufs (non jveuf) vivants seuls et autres conditions
+        # celibataire_ou_divorce, veufs (non jveuf) vivants seuls et autres conditions
+
         # TODO: année en dur... pour caseH
-        condition63 = (celdiv | (veuf & not_(jveuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (caseH < 1981)
+        condition63 = (celibataire_ou_divorce | (veuf & not_(jveuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (caseH < 1981)
         B3 = plafond_qf.celib
 
         B = B1 * condition61 + \
@@ -1094,8 +1091,8 @@ class ir_plaf_qf(Variable):
         condition62a = (I >= C)
         # réduction complémentaire
         condition62b = (I < C)
-        # celdiv veuf
-        condition62caa0 = (celdiv | (veuf & not_(jveuf)))
+        # celibataire_ou_divorce veuf
+        condition62caa0 = (celibataire_ou_divorce | (veuf & not_(jveuf)))
         condition62caa1 = (nb_pac == 0) & (caseP | caseG | caseF | caseW)
         condition62caa2 = caseP & ((nbF - nbG > 0) | (nbH - nbI > 0))
         condition62caa3 = not_(caseN) & (caseE | caseK) & (caseH >= 1981)
@@ -2619,7 +2616,7 @@ class nbptr(Variable):
         period = period.this_year
         nb_pac = simulation.calculate('nb_pac', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        celdiv = simulation.calculate('celdiv', period)
+        celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         veuf = simulation.calculate('veuf', period)
         jveuf = simulation.calculate('jveuf', period)
         nbF = simulation.calculate('nbF', period)
@@ -2695,7 +2692,7 @@ class nbptr(Variable):
         # # celib div
         c = 1 + enf + n2 + n3 + n6 + n7
 
-        return period, (maries_ou_pacses | jveuf) * m + (veuf & not_(jveuf)) * v + celdiv * c
+        return period, (maries_ou_pacses | jveuf) * m + (veuf & not_(jveuf)) * v + celibataire_ou_divorce * c
 
 
 ###############################################################################
@@ -2735,11 +2732,11 @@ class ppe_elig(Variable):
         ppe_coef = simulation.calculate('ppe_coef', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         veuf = simulation.calculate('veuf', period)
-        celdiv = simulation.calculate('celdiv', period)
+        celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         nbptr = simulation.calculate('nbptr', period)
         ppe = simulation.legislation_at(period.start).ir.credits_impot.ppe
 
-        seuil = (veuf | celdiv) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
+        seuil = (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
                 + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
         return period, (rfr * ppe_coef) <= seuil
 
@@ -2846,7 +2843,7 @@ class ppe_brute(Variable):
         ppe_coef_tp_holder = simulation.compute('ppe_coef_tp', period)
         nb_pac = simulation.calculate('nb_pac', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        celdiv = simulation.calculate('celdiv', period)
+        celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         veuf = simulation.calculate('veuf', period)
         caseT = simulation.calculate('caseT', period)
         caseL = simulation.calculate('caseL', period)
@@ -2868,7 +2865,7 @@ class ppe_brute(Variable):
         nb_pac_ppe = max_(0, nb_pac - eli1 - eli2 - eli3)
 
         ligne2 = maries_ou_pacses & xor_(basevi >= ppe.seuil1, baseci >= ppe.seuil1)
-        ligne3 = (celdiv | veuf) & caseT & not_(veuf & caseT & caseL)
+        ligne3 = (celibataire_ou_divorce | veuf) & caseT & not_(veuf & caseT & caseL)
         ligne1 = not_(ligne2) & not_(ligne3)
 
         base_monact = ligne2 * (eliv * basev + elic * basec)
@@ -2908,7 +2905,7 @@ class ppe_brute(Variable):
         maj_pac = ppe_elig * (eliv | elic) * (
             (ligne1 & maries_ou_pacses & ((ppev + ppec) != 0) & (min_(basev, basec) <= ppe.seuil3)) * ppe.pac
             * (nb_pac_ppe + nbH * 0.5)
-            + (ligne1 & (celdiv | veuf) & eliv & (basev <= ppe.seuil3)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
+            + (ligne1 & (celibataire_ou_divorce | veuf) & eliv & (basev <= ppe.seuil3)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
             + (ligne2 & (base_monacti >= ppe.seuil1) & (base_monact <= ppe.seuil3)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
             + (ligne2 & (base_monact > ppe.seuil3) & (base_monact <= ppe.seuil5)) * ppe.pac
             * ((nb_pac_ppe != 0) + 0.5 * ((nb_pac_ppe == 0) & (nbH != 0)))

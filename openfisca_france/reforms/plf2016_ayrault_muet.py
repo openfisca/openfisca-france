@@ -83,11 +83,11 @@ def build_reform(tax_benefit_system):
             ppe_coef = simulation.calculate('ppe_coef', period)
             maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
             veuf = simulation.calculate('veuf', period)
-            celdiv = simulation.calculate('celdiv', period)
+            celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
             nbptr = simulation.calculate('nbptr', period)
             variator = simulation.calculate('variator', period)
             ppe = simulation.legislation_at(period.start).ir.credits_impot.ppe
-            seuil = (veuf | celdiv) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
+            seuil = (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
                 + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
             return period, (rfr * ppe_coef) <= (seuil * variator)
 
