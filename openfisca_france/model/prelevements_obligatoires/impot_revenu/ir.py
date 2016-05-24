@@ -19,7 +19,7 @@ log = logging.getLogger(__name__)
 # d'autres - car des cases sont réutilisées pour des variables différentes suivant les années)
 
 # zetrf = zeros(taille)
-# jveuf = zeros(taille, dtype = bool)
+# jeune_veuf = zeros(taille, dtype = bool)
 # Reprise du crédit d'impôt en faveur des jeunes, des accomptes et des versements mensues de prime pour l'emploi
 # reprise = zeros(taille) # TODO : reprise=J80
 # Pcredit = P.credits_impots
@@ -284,13 +284,9 @@ class celibataire_ou_divorce(Variable):
 class veuf(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
-    label = u"veuf"
+    label = u"Déclarant veuf"
 
     def function(self, simulation, period):
-        '''
-        Veuf (4)
-        'foy'
-        '''
         period = period.this_year
         statut_marital_holder = simulation.compute('statut_marital', period)
 
@@ -299,16 +295,12 @@ class veuf(Variable):
         return period, statut_marital == 4
 
 
-class jveuf(Variable):
+class jeune_veuf(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
-    label = u"jveuf"
+    label = u"Déclarant jeune veuf"
 
     def function(self, simulation, period):
-        '''
-        Jeune Veuf
-        'foy'
-        '''
         period = period.this_year
         statut_marital_holder = simulation.compute('statut_marital', period)
 
@@ -1041,7 +1033,7 @@ class ir_plaf_qf(Variable):
         nbptr = simulation.calculate('nbptr', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         veuf = simulation.calculate('veuf', period)
-        jveuf = simulation.calculate('jveuf', period)
+        jeune_veuf = simulation.calculate('jeune_veuf', period)
         celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         caseE = simulation.calculate('caseE', period)
         caseF = simulation.calculate('caseF', period)
@@ -1073,10 +1065,10 @@ class ir_plaf_qf(Variable):
         B1 = plafond_qf.celib_enf * aa1 + plafond_qf.maries_ou_pacses * aa2
         # tous les autres
         B2 = plafond_qf.maries_ou_pacses * aa0  # si autre
-        # celibataire_ou_divorce, veufs (non jveuf) vivants seuls et autres conditions
+        # celibataire_ou_divorce, veufs (non jeune_veuf) vivants seuls et autres conditions
 
         # TODO: année en dur... pour caseH
-        condition63 = (celibataire_ou_divorce | (veuf & not_(jveuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (caseH < 1981)
+        condition63 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (caseH < 1981)
         B3 = plafond_qf.celib
 
         B = B1 * condition61 + \
@@ -1092,13 +1084,14 @@ class ir_plaf_qf(Variable):
         # réduction complémentaire
         condition62b = (I < C)
         # celibataire_ou_divorce veuf
-        condition62caa0 = (celibataire_ou_divorce | (veuf & not_(jveuf)))
+        condition62caa0 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf)))
         condition62caa1 = (nb_pac == 0) & (caseP | caseG | caseF | caseW)
         condition62caa2 = caseP & ((nbF - nbG > 0) | (nbH - nbI > 0))
         condition62caa3 = not_(caseN) & (caseE | caseK) & (caseH >= 1981)
         condition62caa = condition62caa0 & (condition62caa1 | condition62caa2 | condition62caa3)
         # marié pacs
-        condition62cab = (maries_ou_pacses | jveuf) & caseS & not_(caseP | caseF)
+        condition62cab = (maries_ou_pacses | jeune_veuf) & caseS & not_(caseP | caseF)
+
         condition62ca = (condition62caa | condition62cab)
 
         # plus de 590 euros si on a des plus de
@@ -2618,7 +2611,7 @@ class nbptr(Variable):
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         veuf = simulation.calculate('veuf', period)
-        jveuf = simulation.calculate('jveuf', period)
+        jeune_veuf = simulation.calculate('jeune_veuf', period)
         nbF = simulation.calculate('nbF', period)
         nbG = simulation.calculate('nbG', period)
         nbH = simulation.calculate('nbH', period)
@@ -2686,13 +2679,13 @@ class nbptr(Variable):
         # # Régime des mariés ou pacsés
         m = 1 + quotient_familial.conj + enf + n2 + n4
 
-        # # veufs  hors jveuf
+        # # veufs  hors jeune_veuf
         v = 1 + enf + n2 + n3 + n5 + n6
 
         # # celib div
         c = 1 + enf + n2 + n3 + n6 + n7
 
-        return period, (maries_ou_pacses | jveuf) * m + (veuf & not_(jveuf)) * v + celibataire_ou_divorce * c
+        return period, (maries_ou_pacses | jeune_veuf) * m + (veuf & not_(jeune_veuf)) * v + celibataire_ou_divorce * c
 
 
 ###############################################################################
