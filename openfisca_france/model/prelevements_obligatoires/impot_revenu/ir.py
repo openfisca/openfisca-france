@@ -181,13 +181,6 @@ class nbF(Variable):
         garde_alternee = simulation.compute('garde_alternee', period)
         return period, self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array))
 
-class nombre_enfants_a_charge_menage(PersonToEntityColumn):
-    entity_class = Menages
-    label = u"Nombre d'enfants à charge  non mariés, de moins de 18 ans au 1er janvier de l'année de perception des" \
-        u" revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
-    operation = 'add'
-    variable = enfant_a_charge
-
 
 class nbG(Variable):
     cerfa_field = u'G'
