@@ -4,7 +4,7 @@ description: La personne est demandeur d'emploi mais n'est pas indemnisée. L'ab
   Le montant de ses ressources ne lui ouvre aucun droit CMUC/ACS
 period: month:2015-10
 individus:
-- a_charge_fiscale: true
+- enfant_a_charge: true
   activite: 1
   age: 51
   age_en_mois: 621

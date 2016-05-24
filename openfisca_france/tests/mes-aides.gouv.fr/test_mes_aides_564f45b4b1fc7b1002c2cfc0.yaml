@@ -5,7 +5,7 @@ keywords:
 description: Résultat attendu, règle de gestion testée et éventuellement origine de l'écart avec le résultat de la simulation.
 period: month:2015-11
 individus:
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 33
   age_en_mois: 399
   date_naissance: '1982-08-12'

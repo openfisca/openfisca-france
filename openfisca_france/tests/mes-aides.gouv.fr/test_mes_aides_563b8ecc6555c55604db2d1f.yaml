@@ -6,7 +6,7 @@ description: 2 enfants dont un de plus de 14 ans - on n'applique pas de majorati
 period: month:2015-11
 relative_error_margin: 0.02
 individus:
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 33
   age_en_mois: 398
   date_naissance: '1982-08-12'
@@ -73,7 +73,7 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 13
   age_en_mois: 163
   date_naissance: '2002-03-12'
@@ -94,7 +94,7 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 15
   age_en_mois: 180
   date_naissance: '2000-11-01'
@@ -115,7 +115,7 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 29
   age_en_mois: 350
   date_naissance: '1986-08-12'

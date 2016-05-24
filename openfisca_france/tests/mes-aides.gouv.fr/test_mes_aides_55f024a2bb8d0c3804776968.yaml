@@ -10,7 +10,7 @@ description: |
 period: "month:2015-09"
 relative_error_margin: 0.02
 individus:
-  a_charge_fiscale: true
+  enfant_a_charge: true
   age: 22
   age_en_mois: 269
   date_naissance: "1993-03-28"

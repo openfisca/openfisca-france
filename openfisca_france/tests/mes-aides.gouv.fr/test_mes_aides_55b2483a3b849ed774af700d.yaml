@@ -6,7 +6,7 @@ keywords:
 description: Sans enfant à charge, PLF ne doit pas être proposé.
 period: "month:2015-07"
 individus:
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 35
     age_en_mois: 426
     date_naissance: "1980-01-01"
@@ -75,7 +75,7 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 35
     age_en_mois: 426
     date_naissance: "1980-01-01"
