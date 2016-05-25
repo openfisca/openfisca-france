@@ -35,4 +35,4 @@ then
 fi
 
 
-# make test
+make test
