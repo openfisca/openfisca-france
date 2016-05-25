@@ -293,6 +293,7 @@ class rsa_base_ressources_individu(Variable):
             'pensions_invalidite',
             'rsa_base_ressources_patrimoine_individu',
             'prime_forfaitaire_mensuelle_reprise_activite',
+            'indemnites_stage',
         ]
 
         revenus_non_pros = sum(r.calcule_ressource(type_revenu) for type_revenu in types_revenus_non_pros)
@@ -564,7 +565,6 @@ class rsa_revenu_activite_individu(Variable):
             'indemnites_chomage_partiel',
             'indemnites_volontariat',
             'revenus_stage_formation_pro',
-            'indemnites_stage',
             'bourse_recherche',
             'hsup',
             'etr',
