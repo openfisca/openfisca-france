@@ -280,32 +280,30 @@ class rsa_base_ressources_individu(Variable):
         chomage_net = r.calcule_ressource('chomage_net', revenu_pro = True)
         retraite_nette = r.calcule_ressource('retraite_nette', revenu_pro = True)
 
-        pensions_alimentaires_percues = r.calcule_ressource('pensions_alimentaires_percues')
-        allocation_aide_retour_emploi = r.calcule_ressource('allocation_aide_retour_emploi')
-        allocation_securisation_professionnelle = r.calcule_ressource('allocation_securisation_professionnelle')
-        prestation_compensatoire = r.calcule_ressource('prestation_compensatoire')
-        retraite_titre_onereux_declarant1 = r.calcule_ressource('retraite_titre_onereux_declarant1')
-        revenus_fonciers_minima_sociaux = r.calcule_ressource('revenus_fonciers_minima_sociaux')
-        div_ms = r.calcule_ressource('div_ms')
-        gains_exceptionnels = r.calcule_ressource('gains_exceptionnels')
-        dedommagement_victime_amiante = r.calcule_ressource('dedommagement_victime_amiante')
-        pensions_invalidite = r.calcule_ressource('pensions_invalidite')
-        rsa_base_ressources_patrimoine_i = r.calcule_ressource('rsa_base_ressources_patrimoine_individu')
-        prime_forfaitaire_mensuelle_reprise_activite = r.calcule_ressource('prime_forfaitaire_mensuelle_reprise_activite')
+        types_revenus_non_pros = [
+            'pensions_alimentaires_percues',
+            'allocation_aide_retour_emploi',
+            'allocation_securisation_professionnelle',
+            'prestation_compensatoire',
+            'retraite_titre_onereux_declarant1',
+            'revenus_fonciers_minima_sociaux',
+            'div_ms',
+            'gains_exceptionnels',
+            'dedommagement_victime_amiante',
+            'pensions_invalidite',
+            'rsa_base_ressources_patrimoine_individu',
+            'prime_forfaitaire_mensuelle_reprise_activite',
+        ]
+
+        revenus_non_pros = sum(r.calcule_ressource(type_revenu) for type_revenu in types_revenus_non_pros)
+
+
         rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', three_previous_months)
         rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', three_previous_months)
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
-        result = (
-            chomage_net + retraite_nette + pensions_alimentaires_percues + retraite_titre_onereux_declarant1 + rev_cap_bar +
-            rev_cap_lib + revenus_fonciers_minima_sociaux + div_ms +
-            gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
-            allocation_securisation_professionnelle + prestation_compensatoire +
-            rsa_base_ressources_patrimoine_i + prime_forfaitaire_mensuelle_reprise_activite
-        ) / 3
-
-        return period, result
+        return period, (chomage_net + retraite_nette + revenus_non_pros + rev_cap_bar + rev_cap_lib) / 3
 
 
 class rsa_base_ressources_minima_sociaux(Variable):
@@ -326,7 +324,6 @@ class rsa_base_ressources_minima_sociaux(Variable):
         caah = self.sum_by_entity(caah_holder) / 3
 
         return period, aspa + asi + ass + aah + caah
-
 
 class rsa_base_ressources_prestations_familiales(DatedVariable):
     column = FloatCol
@@ -390,7 +387,6 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
 
         return period, result
 
-
 class crds_mini(DatedVariable):
     column = FloatCol
     entity_class = Familles
@@ -406,7 +402,6 @@ class crds_mini(DatedVariable):
         taux_crds = simulation.legislation_at(period.start).fam.af.crds
 
         return period, - taux_crds * rsa_activite
-
 
 class div_ms(Variable):
     column = FloatCol
@@ -429,7 +424,6 @@ class div_ms(Variable):
         f3vm = self.cast_from_entity_to_role(f3vm_holder, role = VOUS)
 
         return period, (f3vc + f3ve + f3vg + f3vl + f3vm) / 12
-
 
 class enceinte_fam(Variable):
     column = BoolCol
@@ -533,7 +527,6 @@ class psa(DatedVariable):
         psa = condition * P.psa
         return period, psa
 
-
 class rsa_revenu_activite(Variable):
     column = FloatCol
     label = u"Revenus d'activité du RSA"
@@ -561,32 +554,24 @@ class rsa_revenu_activite_individu(Variable):
 
         r = rsa_ressource_calculator(simulation, period)
 
-        salaire_net = r.calcule_ressource('salaire_net', revenu_pro = True)
-        indemnites_journalieres = r.calcule_ressource('indemnites_journalieres', revenu_pro = True)
-        indemnites_chomage_partiel = r.calcule_ressource('indemnites_chomage_partiel', revenu_pro = True)
-        indemnites_volontariat = r.calcule_ressource('indemnites_volontariat', revenu_pro = True)
-        revenus_stage_formation_pro = r.calcule_ressource('revenus_stage_formation_pro', revenu_pro = True)
-        indemnites_stage = r.calcule_ressource('indemnites_stage', revenu_pro = True)
-        bourse_recherche = r.calcule_ressource('bourse_recherche', revenu_pro = True)
-        hsup = r.calcule_ressource('hsup', revenu_pro = True)
-        etr = r.calcule_ressource('etr', revenu_pro = True)
+        # Note Auto-entrepreneurs:
+        # D'après les caisses, le revenu pris en compte pour les AE pour le RSA ne prend en compte que
+        # l'abattement standard sur le CA, mais pas les cotisations pour charges sociales.
 
-        # Ressources TNS
+        types_revenus_activite = [
+            'salaire_net',
+            'indemnites_journalieres',
+            'indemnites_chomage_partiel',
+            'indemnites_volontariat',
+            'revenus_stage_formation_pro',
+            'indemnites_stage',
+            'bourse_recherche',
+            'hsup',
+            'etr',
+            'tns_auto_entrepreneur_benefice',
+        ]
 
-        # WARNING : D'après les caisses, le revenu pris en compte pour les AE pour le RSA ne prend en compte que
-        # l'abattement standard sur le CA, mais pas les cotisations pour charges sociales. Dans l'attente d'une
-        # éventuelle correction, nous implémentons selon leurs instructions. Si changement, il suffira de remplacer le
-        # tns_auto_entrepreneur_benefice par tns_auto_entrepreneur_revenus_net
-        tns_auto_entrepreneur_revenus_rsa = r.calcule_ressource('tns_auto_entrepreneur_benefice', revenu_pro = True)
-
-        result = (
-            salaire_net + indemnites_journalieres + indemnites_chomage_partiel + indemnites_volontariat +
-            revenus_stage_formation_pro + indemnites_stage + bourse_recherche + hsup + etr +
-            tns_auto_entrepreneur_revenus_rsa
-        ) / 3
-
-        return period, result
-
+        return period, sum(r.calcule_ressource(type_revenu, revenu_pro = True) for type_revenu in types_revenus_activite)) / 3
 
 class revenus_fonciers_minima_sociaux(Variable):
     column = FloatCol
