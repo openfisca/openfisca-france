@@ -33,7 +33,7 @@ class exonere_taxe_habitation(Variable):
         isf_tot_holder = simulation.compute('isf_tot', period)
         nbptr_holder = simulation.compute('nbptr', period)
         rfr_holder = simulation.compute('rfr', period)
-        statmarit_holder = simulation.compute('statmarit', period)
+        statut_marital_holder = simulation.compute('statut_marital', period)
         _P = simulation.legislation_at(period.start)
 
         aah = self.sum_by_entity(aah_holder)
@@ -48,12 +48,12 @@ class exonere_taxe_habitation(Variable):
         nbptr = self.sum_by_entity(nbptr)  # TODO: Beurk
         rfr = self.cast_from_entity_to_role(rfr_holder, role = VOUS)
         rfr = self.sum_by_entity(rfr)
-        statmarit = self.filter_role(statmarit_holder, role = PREF)
+        statut_marital = self.filter_role(statut_marital_holder, role = PREF)
 
         P = _P.cotsoc.gen
 
         seuil_th = P.plaf_th_1 + P.plaf_th_supp * (max_(0, (nbptr - 1) / 2))
-        elig = ((age >= 60) + (statmarit == 4)) * (isf_tot <= 0) * (rfr < seuil_th) + (asi > 0) + (aspa > 0) + (aah > 0)
+        elig = ((age >= 60) + (statut_marital == 4)) * (isf_tot <= 0) * (rfr < seuil_th) + (asi > 0) + (aspa > 0) + (aah > 0)
         return period, not_(elig)
 
 
@@ -66,7 +66,7 @@ class taxe_habitation(Variable):
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
         exonere_taxe_habitation = simulation.calculate('exonere_taxe_habitation', period)
-        nombre_enfants_a_charge_menage = simulation.calculate('nombre_enfants_a_charge_menage', period)
+        nombre_enfants_a_charge_menage = self.sum_by_entity(simulation.calculate('enfant_a_charge', period))
         nombre_enfants_majeurs_celibataires_sans_enfant = simulation.calculate('nombre_enfants_majeurs_celibataires_sans_enfant', period)
         rfr_n_1_holder = simulation.compute('rfr_n_1', period)
 

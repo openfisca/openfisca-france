@@ -83,7 +83,7 @@ individus:
       year:2014-02: 21999.999999999996
     salaire_imposable:
       2013: 0
-    statmarit: 1
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:

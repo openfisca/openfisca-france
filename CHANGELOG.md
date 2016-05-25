@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.0.0..2.0.0)
+
+* Make `enfant_a_charge` usable in monthly mode so that we can re-use it in mes-aides, and broaden its definition so that in includes children in `garde_alternee`.
+* Refactor and test nbF, nbG, nbH, nbI.
+* Deprecate:
+	* `nombre_enfants_a_charge_menage`
+	* `enfant_a_charge_invalide`
+	* `enfant_a_charge_garde_alternee`
+	* `enfant_a_charge_garde_alternee_invalide`
+* Rename:
+    * `statmarit` -> `statut_marital`
+    * `marpac` -> `maries_ou_pacses`
+    * `celdiv` -> `celibataire_ou_divorce`
+    * `jveuf` -> `jeune_veuf`
+
 ## 2.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/2.0.0..1.3.1)
 
 * Deprecate Paris reform

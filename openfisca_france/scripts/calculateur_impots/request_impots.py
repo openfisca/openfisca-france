@@ -92,7 +92,7 @@ def main():
                 'IAVF2': u'?',#TODO (f8th)
                 'IPROP': u'Impôt proportionnel',
                 'RFOR': u'?',#TODO (f7up)
-                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
+                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, maries_ou_pacses)
                 'RHEBE': u'?',#TODO (7ce)
                 'RAA': u'?',#TODO (7ud)
                 'RAH': u'?',#TODO (7ce)

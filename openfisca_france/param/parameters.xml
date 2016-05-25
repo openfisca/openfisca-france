@@ -7063,7 +7063,7 @@
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="3549" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="3490" />
       </CODE>
-      <CODE code="marpac" description="Mariés ou PACS" format="integer" type="monetary">
+      <CODE code="maries_ou_pacses" description="Mariés ou PACS" format="integer" type="monetary">
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1508" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1500" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="2000" />

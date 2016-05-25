@@ -54,8 +54,8 @@ def build_reform(base_tax_benefit_system):
             ae = nbEnf * lps.abatt_enfant
             re = nbEnf * lps.reduc_enfant
             ce = nbEnf * lps.credit_enfant
-            statmarit = simulation.calculate('statmarit')
-            couple = (statmarit == 1) | (statmarit == 5)
+            statut_marital = simulation.calculate('statut_marital')
+            couple = (statut_marital == 1) | (statut_marital == 5)
             ac = couple * lps.abatt_conj
             rc = couple * lps.reduc_conj
             assiette_csg = simulation.calculate('assiette_csg')

@@ -47,7 +47,7 @@ def check_1_parent_2_enfants(year):
         parent1 = dict(
             activite = u'Actif occupé',
             date_naissance = 1970,
-            statmarit = u'Célibataire',
+            statut_marital = u'Célibataire',
             ),
         enfants = [
             dict(
@@ -84,7 +84,7 @@ def check_1_parent_2_enfants_1_column(column_name, year):
         parent1 = dict(
             activite = u'Actif occupé',
             date_naissance = 1970,
-            statmarit = u'Célibataire',
+            statut_marital = u'Célibataire',
             ),
         enfants = [
             dict(
