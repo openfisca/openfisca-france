@@ -114,7 +114,7 @@ def main():
 
         assert test_json['currentStatus'] in ('accepted-exact', 'accepted-2pct', 'accepted-10pct', 'rejected')
         if test_json['currentStatus'] == 'rejected':
-            return
+            continue
         last_execution = test_json['lastExecution']
         assert test_json['currentStatus'] == last_execution['status']
         if any('expectedValue' in result and 'status' in result and
