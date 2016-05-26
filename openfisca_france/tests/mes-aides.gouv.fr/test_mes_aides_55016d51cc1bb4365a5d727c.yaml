@@ -1,55 +1,97 @@
-name: "Parent élevant seul ses enfants : 3 points"
+name: 'Parent élevant seul ses enfants : 3 points'
 keywords:
-  - bourse lycée
-  - points de charge
-description: |
+- bourse lycée
+- points de charge
+"description": |-
   3 points de charge supplémentaires pour un parent élevant seul un enfant.
   Points de charge = 9 (points de base) + 2 (enfant scolarisé au lycée) + 3 = 14
   Plafond pour 3 parts correspondant : 18819 euros
   RFR = 18800, donc montant = 135,9
-period: "month:2015-03"
+period: month:2015-03
 individus:
-  - age: 34
-    age_en_mois: 415
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 55016d38c1724a2b5a08c153
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 175
-    date_naissance: "2000-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 55016d38c1724a2b5a08c152
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    scolarite: 2
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- aah:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  age: 34
+  age_en_mois: 415
+  chomage_imposable:
+    '2013': 0
+  date_naissance: '1980-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 55016d38c1724a2b5a08c153
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  pensions_alimentaires_percues:
+    '2013': 0
+  retraite_imposable:
+    '2013': 0
+  salaire_imposable:
+    '2013': 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  age: 14
+  age_en_mois: 175
+  date_naissance: '2000-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 55016d38c1724a2b5a08c152
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  scolarite: 2
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  adpa:
     2014-03: 0
     2014-04: 0
     2014-05: 0
@@ -231,7 +273,8 @@ familles:
     2015-01: 0
     2015-02: 0
     year:2014-03: 0
-  enfants: 55016d38c1724a2b5a08c152
+  enfants:
+  - 55016d38c1724a2b5a08c152
   paje_base:
     2014-03: 0
     2014-04: 0
@@ -246,7 +289,134 @@ familles:
     2015-01: 0
     2015-02: 0
     year:2014-03: 0
-  parents: 55016d38c1724a2b5a08c153
+  parents:
+  - 55016d38c1724a2b5a08c153
+  paris_complement_sante:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_energie_famille:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_forfait_famille:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement_aspeh:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement_familles:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement_plfm:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement_psol:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  ppa:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
   rsa:
     2014-03: 0
     2014-04: 0
@@ -291,15 +461,19 @@ familles:
     2015-02: 0
     year:2014-03: 0
 foyers_fiscaux:
-  declarants: 55016d38c1724a2b5a08c153
+- declarants:
+  - 55016d38c1724a2b5a08c153
   pensions_alimentaires_versees:
-    2013: 0
-  personnes_a_charge: 55016d38c1724a2b5a08c152
+    '2013': 0
+  personnes_a_charge:
+  - 55016d38c1724a2b5a08c152
   rfr:
-    2013: 18800
+    '2013': 18800
 menages:
-  depcom: 67482
-  enfants: 55016d38c1724a2b5a08c152
+- depcom: '67482'
+  enfants:
+  - 55016d38c1724a2b5a08c152
+  participation_frais: false
   personne_de_reference: 55016d38c1724a2b5a08c153
   statut_occupation_logement: 6
 output_variables:

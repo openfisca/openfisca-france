@@ -1,111 +1,134 @@
 name: Abattement pour personnes de plus de 65 ans, cas revenu < 23580 €
 keywords:
-  - abattements
-  - al
-  - base ressources
-description: |
-  Article 157 bis du code général des impôts
-  http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042269&cidTexte=LEGITEXT000006069577&dateTexte=20150112
-
-  Le contribuable âgé de plus de soixante-cinq ans au 31 décembre de l'année d'imposition, ou remplissant l'une des conditions d'invalidité mentionnées à l'article 195, peut déduire de son revenu global net une somme de :
-  -2 332 € si ce revenu n'excède pas 14 630 €
-  -1 166 € si ce revenu est compris entre 14 630 € et 23 580 €
-
-  On est ici dans le cas où le revenu est < à 23580 (22000 euros de retraites)
-
-  L	398,87
-  C	65,29
-  E	464,16
-  R	18700 = (22000 * 0,9) - 1166
-  R0	7844
-  Rp	10856
-  Tf	2,7
-  LR	351,25
-  RL	113,56
-  Tl	0,397
-  Tp	3,097
-  P0	39,45
-  P1	336,21
-  Pp	375,66
-  AL	88,06
-period: "month:2015-02"
+- abattements
+- al
+- base ressources
+"description": "Article 157 bis du code général des impôts\nhttp://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042269&cidTexte=LEGITEXT000006069577&dateTexte=20150112\n\
+  \nLe contribuable âgé de plus de soixante-cinq ans au 31 décembre de l'année d'imposition, ou remplissant l'une des conditions\
+  \ d'invalidité mentionnées à l'article 195, peut déduire de son revenu global net une somme de :\n-2 332 € si ce revenu\
+  \ n'excède pas 14 630 €\n-1 166 € si ce revenu est compris entre 14 630 € et 23 580 €\n\nOn est ici dans le cas où le revenu\
+  \ est < à 23580 (22000 euros de retraites)\n\nL\t398,87\nC\t65,29\nE\t464,16\nR\t18700 = (22000 * 0,9) - 1166\nR0\t7844\n\
+  Rp\t10856\nTf\t2,7\nLR\t351,25\nRL\t113,56\nTl\t0,397\nTp\t3,097\nP0\t39,45\nP1\t336,21\nPp\t375,66\nAL\t88,06"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
-  - activite: 3
-    age: 88
-    age_en_mois: 1061
-    date_naissance: "1926-09-05"
-    chomage_imposable:
-      2013: 0
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 54d4951fd4e3b0d74454c76f
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 22000
-    retraite_brute:
-      2014-02: 1955.8435325173984
-      2014-03: 1955.8435325173984
-      2014-04: 1955.8435325173984
-      2014-05: 1955.8435325173984
-      2014-06: 1955.8435325173984
-      2014-07: 1955.8435325173984
-      2014-08: 1955.8435325173984
-      2014-09: 1955.8435325173984
-      2014-10: 1955.8435325173984
-      2014-11: 2051.8358531317494
-      2014-11:3: 6155.507559395248
-      2014-12: 2051.8358531317494
-      2015-01: 2051.8358531317494
-      2015-02: 2051.8358531317494
-      year:2014-02: 23758.099352051835
-    retraite_nette:
-      2014-02: 1811.111111111111
-      2014-03: 1811.111111111111
-      2014-04: 1811.111111111111
-      2014-05: 1811.111111111111
-      2014-06: 1811.111111111111
-      2014-07: 1811.111111111111
-      2014-08: 1811.111111111111
-      2014-09: 1811.111111111111
-      2014-10: 1811.111111111111
-      2014-11: 1900
-      2014-11:3: 5700
-      2014-12: 1900
-      2015-01: 1900
-      2015-02: 1900
-      year:2014-02: 21999.999999999996
-    salaire_imposable:
-      2013: 0
-    statut_marital: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 173
-    date_naissance: "2000-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 54d496deaf6bfed9447f95bc
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    scolarite: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- aah:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  activite: 3
+  age: 88
+  age_en_mois: 1061
+  chomage_imposable:
+    '2013': 0
+  date_naissance: '1926-09-05'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 54d4951fd4e3b0d74454c76f
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  pensions_alimentaires_percues:
+    '2013': 0
+  retraite_brute:
+    2014-02: 1955.8435325173984
+    2014-03: 1955.8435325173984
+    2014-04: 1955.8435325173984
+    2014-05: 1955.8435325173984
+    2014-06: 1955.8435325173984
+    2014-07: 1955.8435325173984
+    2014-08: 1955.8435325173984
+    2014-09: 1955.8435325173984
+    2014-10: 1955.8435325173984
+    2014-11: 2051.8358531317494
+    2014-11:3: 6155.507559395248
+    2014-12: 2051.8358531317494
+    2015-01: 2051.8358531317494
+    2015-02: 2051.8358531317494
+    year:2014-02: 23758.099352051835
+  retraite_imposable:
+    '2013': 22000
+  retraite_nette:
+    2014-02: 1811.111111111111
+    2014-03: 1811.111111111111
+    2014-04: 1811.111111111111
+    2014-05: 1811.111111111111
+    2014-06: 1811.111111111111
+    2014-07: 1811.111111111111
+    2014-08: 1811.111111111111
+    2014-09: 1811.111111111111
+    2014-10: 1811.111111111111
+    2014-11: 1900
+    2014-11:3: 5700
+    2014-12: 1900
+    2015-01: 1900
+    2015-02: 1900
+    year:2014-02: 21999.999999999996
+  salaire_imposable:
+    '2013': 0
+  statut_marital: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  age: 14
+  age_en_mois: 173
+  date_naissance: '2000-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 54d496deaf6bfed9447f95bc
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  scolarite: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  adpa:
     2014-02: 0
     2014-03: 0
     2014-04: 0
@@ -287,7 +310,8 @@ familles:
     2014-12: 0
     2015-01: 0
     year:2014-02: 0
-  enfants: 54d496deaf6bfed9447f95bc
+  enfants:
+  - 54d496deaf6bfed9447f95bc
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -302,7 +326,134 @@ familles:
     2014-12: 0
     2015-01: 0
     year:2014-02: 0
-  parents: 54d4951fd4e3b0d74454c76f
+  parents:
+  - 54d4951fd4e3b0d74454c76f
+  paris_complement_sante:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_energie_famille:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_forfait_famille:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_aspeh:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_familles:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_plfm:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_psol:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  ppa:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   proprietaire_proche_famille: false
   rsa:
     2014-02: 0
@@ -348,15 +499,18 @@ familles:
     2015-01: 0
     year:2014-02: 0
 foyers_fiscaux:
-  declarants: 54d4951fd4e3b0d74454c76f
+- declarants:
+  - 54d4951fd4e3b0d74454c76f
   pensions_alimentaires_versees:
-    2013: 0
-  personnes_a_charge: 54d496deaf6bfed9447f95bc
+    '2013': 0
+  personnes_a_charge:
+  - 54d496deaf6bfed9447f95bc
   rfr:
-    2013: 0
+    '2013': 0
 menages:
-  depcom: 75111
-  enfants: 54d496deaf6bfed9447f95bc
+- depcom: '75111'
+  enfants:
+  - 54d496deaf6bfed9447f95bc
   loyer: 1000
   personne_de_reference: 54d4951fd4e3b0d74454c76f
   statut_occupation_logement: 4

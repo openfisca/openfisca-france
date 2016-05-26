@@ -10,14 +10,24 @@ keywords:
   Le montant de RSA calculé est le bon (cf. RSA non majoré) mais le simulateur affiche en résultat le montant de RSA majoré pour situation d'isolement sans critère de conditions https://wiki.openfisca.fr/index.php/RSA#R.C3.A8gles_de_calcul)
 period: month:2015-07
 individus:
-- enfant_a_charge: true
+- aah:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
   activite: 1
   age: 53
   age_en_mois: 645
   ass_precondition_remplie: false
-  date_naissance: '1961-09-13'
-  chomage_imposable:
-    '2013': 5795
   chomage_brut:
     2014-07: 549.9320861462176
     2014-08: 549.9320861462176
@@ -34,6 +44,8 @@ individus:
     2015-06: 556.1854944836662
     2015-07: 556.1854944836662
     year:2014-07: 6599.18503375461
+  chomage_imposable:
+    '2013': 5795
   chomage_net:
     2014-07: 498.3333333333333
     2014-08: 498.3333333333333
@@ -50,15 +62,17 @@ individus:
     2015-06: 504
     2015-07: 504
     year:2014-07: 5979.999999999999
+  date_naissance: '1961-09-13'
+  enfant_a_charge: true
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 559fbd84f394e1a7011b5779
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   pensions_alimentaires_percues:
     '2013': 0
   retraite_imposable:
@@ -72,17 +86,31 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- age: 18
+- aah:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  age: 18
   age_en_mois: 217
   date_naissance: '1997-05-19'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 559fbd84f394e1a7011b5778
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   scolarite: 1
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -90,6 +118,20 @@ individus:
     2012-01: 0
 familles:
 - acs:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  adpa:
     2014-07: 0
     2014-08: 0
     2014-09: 0
@@ -293,6 +335,133 @@ familles:
     year:2014-07: 0
   parents:
   - 559fbd84f394e1a7011b5779
+  paris_complement_sante:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_energie_famille:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_forfait_famille:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement_aspeh:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement_familles:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement_plfm:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement_psol:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  parisien: false
+  ppa:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
   proprietaire_proche_famille: false
   rsa:
     2014-07: 0

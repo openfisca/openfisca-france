@@ -1,42 +1,33 @@
 name: Abattement de 30% pour chômeur indemnisé
 keywords:
-  - abattements
-  - al
-  - base ressources
-description: |
-  cf. R351-13 du CCH : http://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006898889
-  Abattement de 30% sur les revenus d'activité professionnelle dans le cas d'un chômage indemnisé.
-  Ici, revenus d'activité connus = 13764 €
-  13764 * 0.7 = 9635 €
-  R = 9635 * 0.9 ~= 8700
-
-  L	292,62
-  C	53,23
-  E	345,85
-  R	8700
-  R0	4593
-  Rp	4107
-  Tf	2,83
-  LR	255,03
-  RL	114,74
-  Tl	0,405
-  Tp	3,235
-  P0	34,73
-  P1	132,86
-  Pp	167,59
-  AL	177,37
-
-  caf.fr : 175,79 €
-period: "month:2015-02"
-relative_error_margin: 0.02
+- abattements
+- al
+- base ressources
+"description": "cf. R351-13 du CCH : http://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006898889\n\
+  Abattement de 30% sur les revenus d'activité professionnelle dans le cas d'un chômage indemnisé.\nIci, revenus d'activité\
+  \ connus = 13764 €\n13764 * 0.7 = 9635 €\nR = 9635 * 0.9 ~= 8700\n\nL\t292,62\nC\t53,23\nE\t345,85\nR\t8700\nR0\t4593\n\
+  Rp\t4107\nTf\t2,83\nLR\t255,03\nRL\t114,74\nTl\t0,405\nTp\t3,235\nP0\t34,73\nP1\t132,86\nPp\t167,59\nAL\t177,37\n\ncaf.fr\
+  \ : 175,79 €"
+period: month:2015-02
 individus:
+- aah:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   activite: 1
   age: 34
   age_en_mois: 413
   ass_precondition_remplie: false
-  date_naissance: "1980-08-12"
-  chomage_imposable:
-    2013: 0
   chomage_brut:
     2014-02: 1265.7634170094545
     2014-03: 1265.7634170094545
@@ -53,6 +44,8 @@ individus:
     2015-01: 1265.7634170094545
     2015-02: 1265.7634170094545
     year:2014-02: 15189.161004113457
+  chomage_imposable:
+    '2013': 0
   chomage_net:
     2014-02: 1147
     2014-03: 1147
@@ -69,26 +62,41 @@ individus:
     2015-01: 1147
     2015-02: 1147
     year:2014-02: 13764
+  date_naissance: '1980-08-12'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 54d38d8ad4e3b0d74454c68e
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   pensions_alimentaires_percues:
-    2013: 0
+    '2013': 0
   retraite_imposable:
-    2013: 0
+    '2013': 0
   salaire_imposable:
-    2013: 13764
+    '2013': 13764
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  adpa:
     2014-02: 0
     2014-03: 0
     2014-04: 0
@@ -270,7 +278,7 @@ familles:
     2014-12: 0
     2015-01: 0
     year:2014-02: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -285,7 +293,134 @@ familles:
     2014-12: 0
     2015-01: 0
     year:2014-02: 0
-  parents: 54d38d8ad4e3b0d74454c68e
+  parents:
+  - 54d38d8ad4e3b0d74454c68e
+  paris_complement_sante:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_energie_famille:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_forfait_famille:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_aspeh:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_familles:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_plfm:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_psol:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  ppa:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   proprietaire_proche_famille: false
   rsa:
     2014-02: 0
@@ -330,14 +465,15 @@ familles:
     2015-01: 0
     year:2014-02: 0
 foyers_fiscaux:
-  declarants: 54d38d8ad4e3b0d74454c68e
+- declarants:
+  - 54d38d8ad4e3b0d74454c68e
   pensions_alimentaires_versees:
-    2013: 0
-  personnes_a_charge:
-  rfr:
+    '2013': 0
+  personnes_a_charge: []
+  rfr: {}
 menages:
-  depcom: 75111
-  enfants:
+- depcom: '75111'
+  enfants: []
   loyer: 1000
   personne_de_reference: 54d38d8ad4e3b0d74454c68e
   statut_occupation_logement: 4

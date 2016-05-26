@@ -1,17 +1,28 @@
 name: Ressources exclues
 keywords:
-  - ass
-  - base ressources
-description:
-period: "month:2014-11"
+- ass
+- base ressources
+description: null
+period: month:2014-11
 individus:
+- aah:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
   activite: 1
   age: 34
   age_en_mois: 411
   ass_precondition_remplie: true
-  date_naissance: "1980-08-12"
-  chomage_imposable:
-    2012: 0
   chomage_brut:
     2013-11: 11035.426477850518
     2013-12: 11035.426477850518
@@ -27,6 +38,8 @@ individus:
     2014-09: 11035.426477850518
     2014-10: 11035.426477850518
     year:2013-11: 132425.11773420623
+  chomage_imposable:
+    '2012': 0
   chomage_net:
     2013-11: 10000
     2013-12: 10000
@@ -42,16 +55,17 @@ individus:
     2014-09: 10000
     2014-10: 10000
     year:2013-11: 120000
+  date_naissance: '1980-08-12'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 546f4850bbaefa3e3dc48b3f
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   pensions_alimentaires_percues:
-    2012: 0
+    '2012': 0
   prime_forfaitaire_mensuelle_reprise_activite:
     2013-11: 10000
     2013-12: 10000
@@ -69,15 +83,29 @@ individus:
     2014-11: 10000
     year:2013-11: 120000
   retraite_imposable:
-    2012: 0
+    '2012': 0
   salaire_imposable:
-    2012: 0
+    '2012': 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  adpa:
     2013-11: 0
     2013-12: 0
     2014-01: 0
@@ -259,7 +287,7 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  enfants:
+  enfants: []
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -274,7 +302,134 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  parents: 546f4850bbaefa3e3dc48b3f
+  parents:
+  - 546f4850bbaefa3e3dc48b3f
+  paris_complement_sante:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_energie_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_forfait_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_aspeh:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_familles:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_plfm:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_psol:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  ppa:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
   proprietaire_proche_famille: false
   rsa:
     2013-11: 0
@@ -319,14 +474,15 @@ familles:
     2014-10: 0
     year:2013-11: 0
 foyers_fiscaux:
-  declarants: 546f4850bbaefa3e3dc48b3f
+- declarants:
+  - 546f4850bbaefa3e3dc48b3f
   pensions_alimentaires_versees:
-    2012: 0
-  personnes_a_charge:
-  rfr:
+    '2012': 0
+  personnes_a_charge: []
+  rfr: {}
 menages:
-  depcom: 76540
-  enfants:
+- depcom: '76540'
+  enfants: []
   loyer: 900
   personne_de_reference: 546f4850bbaefa3e3dc48b3f
   statut_occupation_logement: 4

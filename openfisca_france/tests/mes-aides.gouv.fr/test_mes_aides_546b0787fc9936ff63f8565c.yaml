@@ -1,51 +1,90 @@
 name: Déduction ASF
 keywords:
-  - base ressources
-  - majoration
-  - rsa
-description: |
-  situation femme seul avec enfant né en 2005, hébergement à titre gratuit, aucune ressource :
-  droit rsa calculé 650€ et droit Asf 90 et droit Cmu
-  Le parti pris est je suppose de calculer un droit au rsa sans majoration.
-  si oui droit Rsa attendu : 551 (763 - 122-90)
-
-  dans l'hypothèse où l'usager n'a fait aucune démarche en caf et qu'il n'a pas encore de droit à l'Asf, il ne cochera pas, dans la page "ressources", l'Asf.
-  Anomalie : l'Asf est bien calculée en page résultat mais pas déduite dans le montant Rsa estimé
-period: "month:2014-11"
+- base ressources
+- majoration
+- rsa
+"description": "situation femme seul avec enfant né en 2005, hébergement à titre gratuit, aucune ressource :\ndroit rsa calculé\
+  \ 650€ et droit Asf 90 et droit Cmu\nLe parti pris est je suppose de calculer un droit au rsa sans majoration.\nsi oui droit\
+  \ Rsa attendu : 551 (763 - 122-90)\n\ndans l'hypothèse où l'usager n'a fait aucune démarche en caf et qu'il n'a pas encore\
+  \ de droit à l'Asf, il ne cochera pas, dans la page \"ressources\", l'Asf. \nAnomalie : l'Asf est bien calculée en page\
+  \ résultat mais pas déduite dans le montant Rsa estimé"
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 418
-    date_naissance: "1980-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 546b06c0de0b44f86312e845
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 9
-    age_en_mois: 118
-    date_naissance: "2005-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 546b06c0de0b44f86312e844
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- aah:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  age: 34
+  age_en_mois: 418
+  date_naissance: '1980-01-01'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 546b06c0de0b44f86312e845
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  age: 9
+  age_en_mois: 118
+  date_naissance: '2005-01-01'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 546b06c0de0b44f86312e844
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  adpa:
     2013-11: 0
     2013-12: 0
     2014-01: 0
@@ -227,7 +266,8 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  enfants: 546b06c0de0b44f86312e844
+  enfants:
+  - 546b06c0de0b44f86312e844
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -242,7 +282,134 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  parents: 546b06c0de0b44f86312e845
+  parents:
+  - 546b06c0de0b44f86312e845
+  paris_complement_sante:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_energie_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_forfait_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_aspeh:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_familles:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_plfm:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_psol:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  ppa:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
   rsa:
     2013-11: 0
     2013-12: 0
@@ -287,11 +454,15 @@ familles:
     2014-10: 0
     year:2013-11: 0
 foyers_fiscaux:
-  declarants: 546b06c0de0b44f86312e845
-  personnes_a_charge: 546b06c0de0b44f86312e844
+- declarants:
+  - 546b06c0de0b44f86312e845
+  personnes_a_charge:
+  - 546b06c0de0b44f86312e844
 menages:
-  depcom: 75120
-  enfants: 546b06c0de0b44f86312e844
+- depcom: '75120'
+  enfants:
+  - 546b06c0de0b44f86312e844
+  participation_frais: false
   personne_de_reference: 546b06c0de0b44f86312e845
   statut_occupation_logement: 6
 output_variables:

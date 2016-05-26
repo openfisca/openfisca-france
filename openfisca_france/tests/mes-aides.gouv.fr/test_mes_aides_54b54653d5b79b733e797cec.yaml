@@ -1,24 +1,39 @@
 name: Personne hébergée à titre gratuit ressources < plafond
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-  - forfait logement
-description: Une personne hébergée à titre gratuit si c'est ressources <720 euros = 650eur + 60 eur (forfait logement) a droit à la CMUC
-period: "month:2015-01"
+- base ressources
+- cmu-c/acs
+- forfait logement
+description: Une personne hébergée à titre gratuit si c'est ressources <720 euros = 650eur + 60 eur (forfait logement) a droit
+  à la CMUC
+period: month:2015-01
 individus:
+- aah:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
   age: 34
   age_en_mois: 418
-  date_naissance: "1980-03-02"
+  date_naissance: '1980-03-02'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 54b544f65d6c356f3ea1cb25
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   salaire_de_base:
-    2013: 10000
+    '2013': 10000
     2014-01: 833.3333333333333
     2014-02: 833.3333333333333
     2014-03: 833.3333333333333
@@ -35,7 +50,7 @@ individus:
     2015-01: 833.3333333333333
     year:2014-01: 10000
   salaire_imposable:
-    2013: 8084.924999999998
+    '2013': 8084.924999999998
     2014-01: 673.74375
     2014-02: 673.74375
     2014-03: 673.74375
@@ -52,7 +67,7 @@ individus:
     2015-01: 673.74375
     year:2014-01: 8084.924999999998
   salaire_net:
-    2013: 7800
+    '2013': 7800
     2014-01: 650
     2014-02: 650
     2014-03: 650
@@ -73,7 +88,21 @@ individus:
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  adpa:
     2014-01: 0
     2014-02: 0
     2014-03: 0
@@ -255,7 +284,7 @@ familles:
     2014-11: 0
     2014-12: 0
     year:2014-01: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -270,7 +299,134 @@ familles:
     2014-11: 0
     2014-12: 0
     year:2014-01: 0
-  parents: 54b544f65d6c356f3ea1cb25
+  parents:
+  - 54b544f65d6c356f3ea1cb25
+  paris_complement_sante:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_energie_famille:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_forfait_famille:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement_aspeh:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement_familles:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement_plfm:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement_psol:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  ppa:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
   rsa:
     2014-01: 0
     2014-02: 0
@@ -314,11 +470,13 @@ familles:
     2014-12: 0
     year:2014-01: 0
 foyers_fiscaux:
-  declarants: 54b544f65d6c356f3ea1cb25
-  personnes_a_charge:
+- declarants:
+  - 54b544f65d6c356f3ea1cb25
+  personnes_a_charge: []
 menages:
-  depcom: 77389
-  enfants:
+- depcom: '77389'
+  enfants: []
+  participation_frais: false
   personne_de_reference: 54b544f65d6c356f3ea1cb25
   statut_occupation_logement: 6
 output_variables:

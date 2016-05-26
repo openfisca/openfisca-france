@@ -1,60 +1,102 @@
 name: Couple, 1 des 2 éligible, ressources < plafond bas
 keywords:
-  - aspa
-  - plafonds
+- aspa
+- plafonds
 description: Plafond bas = 5251 € / an
-period: "month:2014-07"
+period: month:2014-07
 individus:
-  - age: 68
-    age_en_mois: 826
-    date_naissance: "1945-09-14"
-    enceinte: false
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 53d2510ee40a7902009c3380
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    retraite_brute:
-      2012: 599.9999999999999
-      2014-04: 199.99999999999997
-      2014-04:3: 599.9999999999999
-      2014-05: 199.99999999999997
-      2014-06: 199.99999999999997
-      2014-07: 199.99999999999997
-      year:2013-07: 599.9999999999999
-    retraite_nette:
-      2012: 555.5999999999999
-      2014-04: 185.2
-      2014-04:3: 555.5999999999999
-      2014-05: 185.2
-      2014-06: 185.2
-      2014-07: 185.2
-      year:2013-07: 555.5999999999999
-    statut_marital: 2
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 33
-    age_en_mois: 406
-    date_naissance: "1980-09-14"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 53d2510ee40a7902009c337f
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- aah:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  age: 68
+  age_en_mois: 826
+  date_naissance: '1945-09-14'
+  enceinte: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 53d2510ee40a7902009c3380
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  retraite_brute:
+    '2012': 599.9999999999999
+    2014-04: 199.99999999999997
+    2014-04:3: 599.9999999999999
+    2014-05: 199.99999999999997
+    2014-06: 199.99999999999997
+    2014-07: 199.99999999999997
+    year:2013-07: 599.9999999999999
+  retraite_nette:
+    '2012': 555.5999999999999
+    2014-04: 185.2
+    2014-04:3: 555.5999999999999
+    2014-05: 185.2
+    2014-06: 185.2
+    2014-07: 185.2
+    year:2013-07: 555.5999999999999
+  statut_marital: 2
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  age: 33
+  age_en_mois: 406
+  date_naissance: '1980-09-14'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 53d2510ee40a7902009c337f
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  adpa:
     2013-07: 0
     2013-08: 0
     2013-09: 0
@@ -236,7 +278,7 @@ familles:
     2014-05: 0
     2014-06: 0
     year:2013-07: 0
-  enfants:
+  enfants: []
   paje_base:
     2013-07: 0
     2013-08: 0
@@ -252,8 +294,134 @@ familles:
     2014-06: 0
     year:2013-07: 0
   parents:
-    - 53d2510ee40a7902009c3380
-    - 53d2510ee40a7902009c337f
+  - 53d2510ee40a7902009c3380
+  - 53d2510ee40a7902009c337f
+  paris_complement_sante:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  paris_energie_famille:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  paris_forfait_famille:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  paris_logement:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  paris_logement_aspeh:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  paris_logement_familles:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  paris_logement_plfm:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  paris_logement_psol:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  ppa:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
   proprietaire_proche_famille: true
   rsa:
     2013-07: 0
@@ -298,13 +466,13 @@ familles:
     2014-06: 0
     year:2013-07: 0
 foyers_fiscaux:
-  declarants:
-    - 53d2510ee40a7902009c3380
-    - 53d2510ee40a7902009c337f
-  personnes_a_charge:
+- declarants:
+  - 53d2510ee40a7902009c3380
+  - 53d2510ee40a7902009c337f
+  personnes_a_charge: []
 menages:
-  conjoint: 53d2510ee40a7902009c337f
-  enfants:
+- conjoint: 53d2510ee40a7902009c337f
+  enfants: []
   loyer: 123
   personne_de_reference: 53d2510ee40a7902009c3380
   statut_occupation_logement: 4

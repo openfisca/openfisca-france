@@ -1,0 +1,606 @@
+name: Couple 3 enfants ( 2 enfants àc 012016 ) 1enfant en résidence alternée
+keywords:
+- af
+- garde alternée
+- recette
+description: Résultat attendu, règle de gestion testée et éventuellement origine de l'écart avec le résultat de la simulation.
+period: month:2016-01
+relative_error_margin: 0.02
+individus:
+- aah:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  age: 48
+  age_en_mois: 577
+  date_naissance: '1967-12-08'
+  enfant_a_charge: true
+  enfant_place: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 5693a0b89652824151d7ead5
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  perte_autonomie: false
+  salaire_imposable:
+    '2014': 47141
+  statut_marital: 1
+  tns_auto_entrepreneur_type_activite: bic
+  tns_autres_revenus_type_activite: bic
+  tns_micro_entreprise_type_activite: bic
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  age: 11
+  age_en_mois: 138
+  date_naissance: '2004-06-26'
+  enfant_a_charge: true
+  enfant_place: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  garde_alternee: true
+  handicap: 0
+  id: 5693a0b89652824151d7ead4
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  perte_autonomie: false
+  scolarite: 1
+  tns_auto_entrepreneur_type_activite: bic
+  tns_autres_revenus_type_activite: bic
+  tns_micro_entreprise_type_activite: bic
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  age: 17
+  age_en_mois: 207
+  date_naissance: '1998-09-26'
+  enfant_a_charge: true
+  enfant_place: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 5693a0b89652824151d7ead3
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  perte_autonomie: false
+  scolarite: 1
+  tns_auto_entrepreneur_type_activite: bic
+  tns_autres_revenus_type_activite: bic
+  tns_micro_entreprise_type_activite: bic
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  age: 20
+  age_en_mois: 251
+  date_naissance: '1995-01-19'
+  enfant_a_charge: true
+  enfant_place: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 5693a0b89652824151d7ead2
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  perte_autonomie: false
+  scolarite: 1
+  tns_auto_entrepreneur_type_activite: bic
+  tns_autres_revenus_type_activite: bic
+  tns_micro_entreprise_type_activite: bic
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  age: 49
+  age_en_mois: 594
+  date_naissance: '1966-06-29'
+  enfant_a_charge: true
+  enfant_place: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 5693a0b89652824151d7ead1
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  perte_autonomie: false
+  salaire_imposable:
+    '2014': 47640
+  statut_marital: 1
+  tns_auto_entrepreneur_type_activite: bic
+  tns_autres_revenus_type_activite: bic
+  tns_micro_entreprise_type_activite: bic
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+- acs:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  adpa:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  af:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  aide_logement:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  alf:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  als:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  apl:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  asf:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  asi:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  aspa:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  ass:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  bourse_college:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  bourse_lycee:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  cf:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  enfants:
+  - 5693a0b89652824151d7ead4
+  - 5693a0b89652824151d7ead3
+  - 5693a0b89652824151d7ead2
+  paje_base:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  parents:
+  - 5693a0b89652824151d7ead5
+  - 5693a0b89652824151d7ead1
+  paris_complement_sante:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  paris_energie_famille:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  paris_forfait_famille:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  paris_logement:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  paris_logement_aspeh:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  paris_logement_familles:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  paris_logement_plfm:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  paris_logement_psol:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  parisien: false
+  ppa:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  rsa:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  rsa_majore:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+  rsa_non_majore:
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+    2015-09: 0
+    2015-10: 0
+    2015-11: 0
+    2015-12: 0
+    year:2015-01: 0
+foyers_fiscaux:
+- declarants:
+  - 5693a0b89652824151d7ead5
+  - 5693a0b89652824151d7ead1
+  pensions_alimentaires_versees:
+    '2014': -912
+  personnes_a_charge:
+  - 5693a0b89652824151d7ead4
+  - 5693a0b89652824151d7ead3
+  - 5693a0b89652824151d7ead2
+  rfr:
+    '2014': 0
+menages:
+- conjoint: 5693a0b89652824151d7ead1
+  depcom: '77468'
+  enfants:
+  - 5693a0b89652824151d7ead4
+  - 5693a0b89652824151d7ead3
+  - 5693a0b89652824151d7ead2
+  loyer: 0
+  participation_frais: false
+  personne_de_reference: 5693a0b89652824151d7ead5
+  statut_occupation_logement: 6
+output_variables:
+  af: 89.4

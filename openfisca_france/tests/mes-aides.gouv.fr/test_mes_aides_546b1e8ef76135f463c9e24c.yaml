@@ -1,97 +1,153 @@
 name: Les allocations familiales sont exclues de la base ressources
 keywords:
-  - aspa
-  - base ressources
-description: |
+- aspa
+- base ressources
+"description": |-
   J'ai indiqué avoir 2 enfants mineurs à charge et le simulateur ne me demande pas le montant de mes allocations familiales.
 
   Pour autant le résultat du montant ASPA est juste car les prestations familiales sont exclues des ressources à retenir pour le calcul de l'ASPA (article R 815-22 du code de la sécurité sociale).
 
   Edit Arnaud Kleinpeter : c'est normal, le montant simulé des allocations familiales est suffisamment précis pour qu'on n'ait pas besoin de le demander
-period: "month:2014-11"
+period: month:2014-11
 individus:
-  - activite: 3
-    age: 67
-    age_en_mois: 812
-    date_naissance: "1947-02-27"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 546b190bfc9936ff63f8566c
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    retraite_brute:
-      2012: 7200
-      2013-11: 600
-      2013-12: 600
-      2014-01: 600
-      2014-02: 600
-      2014-03: 600
-      2014-04: 600
-      2014-05: 600
-      2014-06: 600
-      2014-07: 600
-      2014-08: 600
-      2014-08:3: 1800
-      2014-09: 600
-      2014-10: 600
-      2014-11: 600
-      year:2013-11: 7200
-    retraite_nette:
-      2012: 6667.200000000002
-      2013-11: 555.6
-      2013-12: 555.6
-      2014-01: 555.6
-      2014-02: 555.6
-      2014-03: 555.6
-      2014-04: 555.6
-      2014-05: 555.6
-      2014-06: 555.6
-      2014-07: 555.6
-      2014-08: 555.6
-      2014-08:3: 1666.8000000000002
-      2014-09: 555.6
-      2014-10: 555.6
-      2014-11: 555.6
-      year:2013-11: 6667.200000000002
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 9
-    age_en_mois: 118
-    date_naissance: "2004-12-21"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 546b190bfc9936ff63f8566b
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 2
-    age_en_mois: 25
-    date_naissance: "2012-10-09"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 546b190bfc9936ff63f8566a
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- aah:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  activite: 3
+  age: 67
+  age_en_mois: 812
+  date_naissance: '1947-02-27'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 546b190bfc9936ff63f8566c
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  retraite_brute:
+    '2012': 7200
+    2013-11: 600
+    2013-12: 600
+    2014-01: 600
+    2014-02: 600
+    2014-03: 600
+    2014-04: 600
+    2014-05: 600
+    2014-06: 600
+    2014-07: 600
+    2014-08: 600
+    2014-08:3: 1800
+    2014-09: 600
+    2014-10: 600
+    2014-11: 600
+    year:2013-11: 7200
+  retraite_nette:
+    '2012': 6667.200000000002
+    2013-11: 555.6
+    2013-12: 555.6
+    2014-01: 555.6
+    2014-02: 555.6
+    2014-03: 555.6
+    2014-04: 555.6
+    2014-05: 555.6
+    2014-06: 555.6
+    2014-07: 555.6
+    2014-08: 555.6
+    2014-08:3: 1666.8000000000002
+    2014-09: 555.6
+    2014-10: 555.6
+    2014-11: 555.6
+    year:2013-11: 6667.200000000002
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  age: 9
+  age_en_mois: 118
+  date_naissance: '2004-12-21'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 546b190bfc9936ff63f8566b
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  age: 2
+  age_en_mois: 25
+  date_naissance: '2012-10-09'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 546b190bfc9936ff63f8566a
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  adpa:
     2013-11: 0
     2013-12: 0
     2014-01: 0
@@ -274,8 +330,8 @@ familles:
     2014-10: 0
     year:2013-11: 0
   enfants:
-    - 546b190bfc9936ff63f8566b
-    - 546b190bfc9936ff63f8566a
+  - 546b190bfc9936ff63f8566b
+  - 546b190bfc9936ff63f8566a
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -290,7 +346,134 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  parents: 546b190bfc9936ff63f8566c
+  parents:
+  - 546b190bfc9936ff63f8566c
+  paris_complement_sante:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_energie_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_forfait_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_aspeh:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_familles:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_plfm:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_psol:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  ppa:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
   proprietaire_proche_famille: false
   rsa:
     2013-11: 0
@@ -336,15 +519,16 @@ familles:
     2014-10: 0
     year:2013-11: 0
 foyers_fiscaux:
-  declarants: 546b190bfc9936ff63f8566c
+- declarants:
+  - 546b190bfc9936ff63f8566c
   personnes_a_charge:
-    - 546b190bfc9936ff63f8566b
-    - 546b190bfc9936ff63f8566a
+  - 546b190bfc9936ff63f8566b
+  - 546b190bfc9936ff63f8566a
 menages:
-  depcom: 94068
+- depcom: '94068'
   enfants:
-    - 546b190bfc9936ff63f8566b
-    - 546b190bfc9936ff63f8566a
+  - 546b190bfc9936ff63f8566b
+  - 546b190bfc9936ff63f8566a
   loyer: 1000
   personne_de_reference: 546b190bfc9936ff63f8566c
   statut_occupation_logement: 4

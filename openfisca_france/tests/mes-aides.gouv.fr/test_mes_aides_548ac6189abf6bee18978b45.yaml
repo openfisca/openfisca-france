@@ -1,24 +1,39 @@
-name: "Ressource incluse : prestation compensatoire versée par l'ex-conjoint"
+name: 'Ressource incluse : prestation compensatoire versée par l''ex-conjoint'
 keywords:
-  - aspa
-  - base ressources
-description: "La prestation compensatoire en cas de divorce, versée sous forme de capital ou mensuellement, doit être prise en compte dans les ressources (non visée aux articles R 815-22 et R 815-30 CSS)."
-period: "month:2014-12"
+- aspa
+- base ressources
+description: La prestation compensatoire en cas de divorce, versée sous forme de capital ou mensuellement, doit être prise
+  en compte dans les ressources (non visée aux articles R 815-22 et R 815-30 CSS).
+period: month:2014-12
 individus:
+- aah:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
   activite: 3
   age: 74
   age_en_mois: 890
-  date_naissance: "1940-10-01"
+  date_naissance: '1940-10-01'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 548ac1ccc498cde71866d641
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   prestation_compensatoire:
-    2012: 1200
+    '2012': 1200
     2013-12: 100
     2014-01: 100
     2014-02: 100
@@ -35,7 +50,7 @@ individus:
     2014-12: 100
     year:2013-12: 1200
   retraite_brute:
-    2012: 7200
+    '2012': 7200
     2013-12: 600
     2014-01: 600
     2014-02: 600
@@ -52,7 +67,7 @@ individus:
     2014-12: 600
     year:2013-12: 7200
   retraite_nette:
-    2012: 6667.200000000002
+    '2012': 6667.200000000002
     2013-12: 555.6
     2014-01: 555.6
     2014-02: 555.6
@@ -73,7 +88,21 @@ individus:
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  adpa:
     2013-12: 0
     2014-01: 0
     2014-02: 0
@@ -255,7 +284,7 @@ familles:
     2014-10: 0
     2014-11: 0
     year:2013-12: 0
-  enfants:
+  enfants: []
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -270,7 +299,134 @@ familles:
     2014-10: 0
     2014-11: 0
     year:2013-12: 0
-  parents: 548ac1ccc498cde71866d641
+  parents:
+  - 548ac1ccc498cde71866d641
+  paris_complement_sante:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_energie_famille:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_forfait_famille:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_aspeh:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_familles:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_plfm:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_psol:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  ppa:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
   proprietaire_proche_famille: false
   rsa:
     2013-12: 0
@@ -315,11 +471,12 @@ familles:
     2014-11: 0
     year:2013-12: 0
 foyers_fiscaux:
-  declarants: 548ac1ccc498cde71866d641
-  personnes_a_charge:
+- declarants:
+  - 548ac1ccc498cde71866d641
+  personnes_a_charge: []
 menages:
-  depcom: 75119
-  enfants:
+- depcom: '75119'
+  enfants: []
   loyer: 600
   personne_de_reference: 548ac1ccc498cde71866d641
 output_variables:

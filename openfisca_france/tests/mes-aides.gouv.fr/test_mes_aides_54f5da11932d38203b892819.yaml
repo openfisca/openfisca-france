@@ -1,60 +1,67 @@
 name: Déduction des pensions alimentaires versées
 keywords:
-  - al
-  - base ressources
-description: |
-  Ce test vérifie que les pensions alimentaires versées sont bien prises en compte dans le calcul de la base ressources.
-  cf. article 156 du CGI
-  http://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307893
-
-  Ici la personne déclare 15000 euros de revenus d'activité et 5000 de pensions
-  R = (15000 * 0.9) - 5000 = 8500 euros
-
-  L	292,62
-  C	53,23
-  E	345,85
-  R	8500
-  R0	4593
-  Rp	3907
-  Tf	2,83
-  LR	255,03
-  RL	114,74
-  Tl	0,405
-  Tp	3,235
-  P0	34,73
-  P1	126,39
-  Pp	161,12
-  AL	183,81
-
-  caf.fr : 182,23 euros
-period: "month:2015-03"
-relative_error_margin: 0.02
+- al
+- base ressources
+"description": "Ce test vérifie que les pensions alimentaires versées sont bien prises en compte dans le calcul de la base\
+  \ ressources.\ncf. article 156 du CGI\nhttp://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307893\n\
+  \nIci la personne déclare 15000 euros de revenus d'activité et 5000 de pensions\nR = (15000 * 0.9) - 5000 = 8500 euros\n\
+  \nL\t292,62\nC\t53,23\nE\t345,85\nR\t8500\nR0\t4593\nRp\t3907\nTf\t2,83\nLR\t255,03\nRL\t114,74\nTl\t0,405\nTp\t3,235\n\
+  P0\t34,73\nP1\t126,39\nPp\t161,12\nAL\t183,81\n\ncaf.fr : 182,23 euros"
+period: month:2015-03
 individus:
+- aah:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
   age: 43
   age_en_mois: 516
-  date_naissance: "1972-02-17"
   chomage_imposable:
-    2013: 0
+    '2013': 0
+  date_naissance: '1972-02-17'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 54f5d9fc932d38203b89280c
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   pensions_alimentaires_percues:
-    2013: 0
+    '2013': 0
   retraite_imposable:
-    2013: 0
+    '2013': 0
   salaire_imposable:
-    2013: 15000
+    '2013': 15000
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  adpa:
     2014-03: 0
     2014-04: 0
     2014-05: 0
@@ -236,7 +243,7 @@ familles:
     2015-01: 0
     2015-02: 0
     year:2014-03: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-03: 0
     2014-04: 0
@@ -251,7 +258,134 @@ familles:
     2015-01: 0
     2015-02: 0
     year:2014-03: 0
-  parents: 54f5d9fc932d38203b89280c
+  parents:
+  - 54f5d9fc932d38203b89280c
+  paris_complement_sante:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_energie_famille:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_forfait_famille:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement_aspeh:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement_familles:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement_plfm:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement_psol:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  ppa:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
   proprietaire_proche_famille: false
   rsa:
     2014-03: 0
@@ -296,14 +430,15 @@ familles:
     2015-02: 0
     year:2014-03: 0
 foyers_fiscaux:
-  declarants: 54f5d9fc932d38203b89280c
+- declarants:
+  - 54f5d9fc932d38203b89280c
   pensions_alimentaires_versees:
-    2013: -5000
-  personnes_a_charge:
-  rfr:
+    '2013': -5000
+  personnes_a_charge: []
+  rfr: {}
 menages:
-  depcom: 75120
-  enfants:
+- depcom: '75120'
+  enfants: []
   loyer: 1000
   personne_de_reference: 54f5d9fc932d38203b89280c
   statut_occupation_logement: 4

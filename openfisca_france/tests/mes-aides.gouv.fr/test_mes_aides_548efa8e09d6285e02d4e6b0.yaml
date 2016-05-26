@@ -1,55 +1,67 @@
-name: "Meublé : 2/3 du loyer charges comprises"
+name: 'Meublé : 2/3 du loyer charges comprises'
 keywords:
-  - al
-  - location
+- al
+- location
+"description": "Le loyer pris en compte est égal à 2/3 du loyer CC pour un meublé ou un hôtel\nhttp://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737243&cidTexte=LEGITEXT000006073189\n\
+  \nL\t133,33\nC\t53,23\nE\t186,56\nR\t0\nR0\t4593\nRp\t0\nTf\t2,83\nLR\t255,03\nRL\t52,28\nTl\t0,033\nTp\t2,863\nP0\t34,73\n\
+  P1\t0\nPp\t34,73\nAL\t151,07"
+period: month:2014-12
 relative_error_margin: 0.02
-description: |
-  Le loyer pris en compte est égal à 2/3 du loyer CC pour un meublé ou un hôtel
-  http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737243&cidTexte=LEGITEXT000006073189
-
-  L	133,33
-  C	53,23
-  E	186,56
-  R	0
-  R0	4593
-  Rp	0
-  Tf	2,83
-  LR	255,03
-  RL	52,28
-  Tl	0,033
-  Tp	2,863
-  P0	34,73
-  P1	0
-  Pp	34,73
-  AL	151,07
-period: "month:2014-12"
 individus:
+- aah:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
   age: 34
   age_en_mois: 412
-  date_naissance: "1980-08-12"
   boursier: true
   chomage_imposable:
-    2012: 0
+    '2012': 0
+  date_naissance: '1980-08-12'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 548ef9d98dac136002468a88
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   pensions_alimentaires_percues:
-    2012: 0
+    '2012': 0
   retraite_imposable:
-    2012: 0
+    '2012': 0
   salaire_imposable:
-    2012: 0
+    '2012': 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  adpa:
     2013-12: 0
     2014-01: 0
     2014-02: 0
@@ -231,7 +243,7 @@ familles:
     2014-10: 0
     2014-11: 0
     year:2013-12: 0
-  enfants:
+  enfants: []
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -246,7 +258,134 @@ familles:
     2014-10: 0
     2014-11: 0
     year:2013-12: 0
-  parents: 548ef9d98dac136002468a88
+  parents:
+  - 548ef9d98dac136002468a88
+  paris_complement_sante:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_energie_famille:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_forfait_famille:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_aspeh:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_familles:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_plfm:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_psol:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  ppa:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
   proprietaire_proche_famille: false
   rsa:
     2013-12: 0
@@ -291,14 +430,15 @@ familles:
     2014-11: 0
     year:2013-12: 0
 foyers_fiscaux:
-  declarants: 548ef9d98dac136002468a88
+- declarants:
+  - 548ef9d98dac136002468a88
   pensions_alimentaires_versees:
-    2012: 0
-  personnes_a_charge:
-  rfr:
+    '2012': 0
+  personnes_a_charge: []
+  rfr: {}
 menages:
-  depcom: 75101
-  enfants:
+- depcom: '75101'
+  enfants: []
   loyer: 200
   personne_de_reference: 548ef9d98dac136002468a88
   statut_occupation_logement: 5

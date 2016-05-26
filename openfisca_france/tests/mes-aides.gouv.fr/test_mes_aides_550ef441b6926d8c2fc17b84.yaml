@@ -1,6 +1,7 @@
 name: Montant CF majoré revalorisé au 1er avril 2015
-keywords: cf
-description: |
+keywords:
+- cf
+"description": |-
   BMAF (montant en vigueur au 1er avril 2014) : 406,21 €
   Taux pour le calcul du CF majoré (montant en vigueur au 1er avril 2015) : 49,99 %
   Montant brut : BMAF * Tx = 203,06 €
@@ -8,83 +9,138 @@ description: |
   Montant net : 203,06 - 1,02 = 202,04 €
 
   Remarque : test à mettre à jour quand le montant de la BMAF au 1er avril 2015 sera connue.
-period: "month:2015-04"
+period: month:2015-05
 relative_error_margin: 0.02
 individus:
-  - age: 35
-    age_en_mois: 423
-    date_naissance: "1980-01-01"
-    chomage_imposable:
-      2013: 0
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 550ef43331b367952f71033a
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 15
-    age_en_mois: 183
-    date_naissance: "2000-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 550ef43331b367952f710339
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    scolarite: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 13
-    age_en_mois: 159
-    date_naissance: "2002-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 550ef43331b367952f710338
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    scolarite: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 11
-    age_en_mois: 135
-    date_naissance: "2004-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 550ef43331b367952f710337
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    scolarite: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- aah:
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 0
+  age: 35
+  age_en_mois: 424
+  chomage_imposable:
+    '2013': 0
+  date_naissance: '1980-01-01'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 550ef43331b367952f71033a
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  pensions_alimentaires_percues:
+    '2013': 0
+  retraite_imposable:
+    '2013': 0
+  salaire_imposable:
+    '2013': 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 0
+  age: 15
+  age_en_mois: 184
+  date_naissance: '2000-01-01'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 550ef43331b367952f710339
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  scolarite: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 0
+  age: 13
+  age_en_mois: 160
+  date_naissance: '2002-01-01'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 550ef43331b367952f710338
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  scolarite: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 0
+  age: 11
+  age_en_mois: 136
+  date_naissance: '2004-01-01'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 550ef43331b367952f710337
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  scolarite: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
-    2014-04: 0
+- acs:
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -96,9 +152,23 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
+  adpa:
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 0
   af:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -110,9 +180,9 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
   aide_logement:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -124,9 +194,9 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
   alf:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -138,9 +208,9 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
   als:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -152,9 +222,9 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
   apl:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -166,9 +236,9 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
   asf:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -180,9 +250,9 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
   asi:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -194,9 +264,9 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
   aspa:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -208,9 +278,9 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
   ass:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -222,9 +292,9 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
   bourse_college:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -236,9 +306,9 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
   bourse_lycee:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -250,9 +320,9 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
   cf:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -264,13 +334,13 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
   enfants:
-    - 550ef43331b367952f710339
-    - 550ef43331b367952f710338
-    - 550ef43331b367952f710337
+  - 550ef43331b367952f710339
+  - 550ef43331b367952f710338
+  - 550ef43331b367952f710337
   paje_base:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -282,10 +352,137 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
-  parents: 550ef43331b367952f71033a
+    2015-04: 0
+    year:2014-05: 0
+  parents:
+  - 550ef43331b367952f71033a
+  paris_complement_sante:
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 0
+  paris_energie_famille:
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 0
+  paris_forfait_famille:
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 0
+  paris_logement:
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 0
+  paris_logement_aspeh:
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 0
+  paris_logement_familles:
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 0
+  paris_logement_plfm:
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 0
+  paris_logement_psol:
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 0
+  ppa:
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    year:2014-05: 0
   rsa:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -297,10 +494,10 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
   rsa_isolement_recent: true
   rsa_majore:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -312,9 +509,9 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
   rsa_non_majore:
-    2014-04: 0
     2014-05: 0
     2014-06: 0
     2014-07: 0
@@ -326,23 +523,26 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-    year:2014-04: 0
+    2015-04: 0
+    year:2014-05: 0
 foyers_fiscaux:
-  declarants: 550ef43331b367952f71033a
+- declarants:
+  - 550ef43331b367952f71033a
   pensions_alimentaires_versees:
-    2013: 0
+    '2013': 0
   personnes_a_charge:
-    - 550ef43331b367952f710339
-    - 550ef43331b367952f710338
-    - 550ef43331b367952f710337
+  - 550ef43331b367952f710339
+  - 550ef43331b367952f710338
+  - 550ef43331b367952f710337
   rfr:
-    2013: 0
+    '2013': 0
 menages:
-  depcom: 92071
+- depcom: '92071'
   enfants:
-    - 550ef43331b367952f710339
-    - 550ef43331b367952f710338
-    - 550ef43331b367952f710337
+  - 550ef43331b367952f710339
+  - 550ef43331b367952f710338
+  - 550ef43331b367952f710337
+  participation_frais: false
   personne_de_reference: 550ef43331b367952f71033a
   statut_occupation_logement: 6
 output_variables:

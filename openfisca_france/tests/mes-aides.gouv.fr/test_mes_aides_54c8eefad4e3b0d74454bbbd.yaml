@@ -1,27 +1,41 @@
-name: "Ressources exclues - RSA"
+name: Ressources exclues - RSA
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-description: |
+- base ressources
+- cmu-c/acs
+"description": |-
   Le RSA n'est pas inclus dans la base ressource de la CMU-C/ACS.
   Les montants simulés des prestations familiales étant inclus dans la base ressource, on vérifie ici que ce mécanisme de montant simulé de RSA n'est pas effectué pour la CMU-C/ACS.
   Plafond 1 personne CMU-C : 8645 euros.
   Salaires déclarés 8600 euros < plafiond, malgré le RSA de 514 euros.
-period: "month:2015-01"
+period: month:2015-01
 individus:
+- aah:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
   age: 34
   age_en_mois: 413
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 54c8ee7be45751d544f05fb4
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   salaire_de_base:
-    2013: 11025.641025641024
+    '2013': 11025.641025641024
     2014-01: 1225.071225071225
     2014-02: 1225.071225071225
     2014-03: 1225.071225071225
@@ -37,7 +51,7 @@ individus:
     2014-12: 0
     year:2014-01: 11025.641025641024
   salaire_imposable:
-    2013: 8914.148076923077
+    '2013': 8914.148076923077
     2014-01: 990.4608974358974
     2014-02: 990.4608974358974
     2014-03: 990.4608974358974
@@ -53,7 +67,7 @@ individus:
     2014-12: 0
     year:2014-01: 8914.148076923077
   salaire_net:
-    2013: 8600
+    '2013': 8600
     2014-01: 955.5555555555555
     2014-02: 955.5555555555555
     2014-03: 955.5555555555555
@@ -73,7 +87,21 @@ individus:
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  adpa:
     2014-01: 0
     2014-02: 0
     2014-03: 0
@@ -255,7 +283,7 @@ familles:
     2014-11: 0
     2014-12: 0
     year:2014-01: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -270,7 +298,134 @@ familles:
     2014-11: 0
     2014-12: 0
     year:2014-01: 0
-  parents: 54c8ee7be45751d544f05fb4
+  parents:
+  - 54c8ee7be45751d544f05fb4
+  paris_complement_sante:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_energie_famille:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_forfait_famille:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement_aspeh:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement_familles:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement_plfm:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement_psol:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  ppa:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
   proprietaire_proche_famille: false
   rsa:
     2014-01: 0
@@ -315,11 +470,12 @@ familles:
     2014-12: 0
     year:2014-01: 0
 foyers_fiscaux:
-  declarants: 54c8ee7be45751d544f05fb4
-  personnes_a_charge:
+- declarants:
+  - 54c8ee7be45751d544f05fb4
+  personnes_a_charge: []
 menages:
-  depcom: 75111
-  enfants:
+- depcom: '75111'
+  enfants: []
   loyer: 50
   personne_de_reference: 54c8ee7be45751d544f05fb4
   statut_occupation_logement: 4

@@ -1,79 +1,135 @@
 name: RFR < plafond 10 parts
 keywords:
-  - bourse lycée
-  - parts
-description: |
+- bourse lycée
+- parts
+"description": |-
   Cas nominal : 2 parents et un seul enfant scolarisé au lycée.
   Nombre de parts = 10 car rfr = 7100, points de charge = 11 et plafond = 7198
   Montant = 10 * 45,3 = 453 euros
-period: "month:2015-03"
+period: month:2015-03
 individus:
-  - age: 34
-    age_en_mois: 414
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 5500761a3774028f471fb19b
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 414
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 5500761a3774028f471fb19a
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 174
-    date_naissance: "2000-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 5500761a3774028f471fb199
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    scolarite: 2
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- aah:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  age: 34
+  age_en_mois: 414
+  chomage_imposable:
+    '2013': 0
+  date_naissance: '1980-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 5500761a3774028f471fb19b
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  pensions_alimentaires_percues:
+    '2013': 0
+  retraite_imposable:
+    '2013': 0
+  salaire_imposable:
+    '2013': 0
+  statut_marital: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  age: 34
+  age_en_mois: 414
+  chomage_imposable:
+    '2013': 0
+  date_naissance: '1980-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 5500761a3774028f471fb19a
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  pensions_alimentaires_percues:
+    '2013': 0
+  retraite_imposable:
+    '2013': 0
+  salaire_imposable:
+    '2013': 0
+  statut_marital: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  age: 14
+  age_en_mois: 174
+  date_naissance: '2000-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 5500761a3774028f471fb199
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  scolarite: 2
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  adpa:
     2014-03: 0
     2014-04: 0
     2014-05: 0
@@ -255,7 +311,8 @@ familles:
     2015-01: 0
     2015-02: 0
     year:2014-03: 0
-  enfants: 5500761a3774028f471fb199
+  enfants:
+  - 5500761a3774028f471fb199
   paje_base:
     2014-03: 0
     2014-04: 0
@@ -271,8 +328,134 @@ familles:
     2015-02: 0
     year:2014-03: 0
   parents:
-    - 5500761a3774028f471fb19b
-    - 5500761a3774028f471fb19a
+  - 5500761a3774028f471fb19b
+  - 5500761a3774028f471fb19a
+  paris_complement_sante:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_energie_famille:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_forfait_famille:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement_aspeh:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement_familles:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement_plfm:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  paris_logement_psol:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
+  ppa:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    year:2014-03: 0
   rsa:
     2014-03: 0
     2014-04: 0
@@ -316,18 +499,21 @@ familles:
     2015-02: 0
     year:2014-03: 0
 foyers_fiscaux:
-  declarants:
-    - 5500761a3774028f471fb19b
-    - 5500761a3774028f471fb19a
+- declarants:
+  - 5500761a3774028f471fb19b
+  - 5500761a3774028f471fb19a
   pensions_alimentaires_versees:
-    2013: 0
-  personnes_a_charge: 5500761a3774028f471fb199
+    '2013': 0
+  personnes_a_charge:
+  - 5500761a3774028f471fb199
   rfr:
-    2013: 5800
+    '2013': 5800
 menages:
-  conjoint: 5500761a3774028f471fb19a
-  depcom: 67482
-  enfants: 5500761a3774028f471fb199
+- conjoint: 5500761a3774028f471fb19a
+  depcom: '67482'
+  enfants:
+  - 5500761a3774028f471fb199
+  participation_frais: false
   personne_de_reference: 5500761a3774028f471fb19b
   statut_occupation_logement: 6
 output_variables:

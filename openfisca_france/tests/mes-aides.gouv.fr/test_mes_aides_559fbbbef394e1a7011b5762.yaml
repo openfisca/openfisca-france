@@ -1,74 +1,144 @@
 name: personne seule sans activité 3 enfants
 keywords:
-  - recette
-  - rsa
+- recette
+- rsa
 description: Test créé à partir d'un dossier de demande de RSA, APL
-period: "month:2015-07"
+period: month:2015-07
 relative_error_margin: 0.02
 individus:
-  - age: 31
-    age_en_mois: 372
-    date_naissance: "1984-06-27"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 559fbbadaf0afd4601df5e38
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 13
-    age_en_mois: 161
-    date_naissance: "2002-01-15"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 559fbbadaf0afd4601df5e37
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    scolarite: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 50
-    date_naissance: "2011-04-25"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 559fbbadaf0afd4601df5e36
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 1
-    age_en_mois: 17
-    date_naissance: "2014-01-16"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 559fbbadaf0afd4601df5e35
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- aah:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  age: 31
+  age_en_mois: 372
+  date_naissance: '1984-06-27'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 559fbbadaf0afd4601df5e38
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  age: 13
+  age_en_mois: 161
+  date_naissance: '2002-01-15'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 559fbbadaf0afd4601df5e37
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  scolarite: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  age: 4
+  age_en_mois: 50
+  date_naissance: '2011-04-25'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 559fbbadaf0afd4601df5e36
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  age: 1
+  age_en_mois: 17
+  date_naissance: '2014-01-16'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 559fbbadaf0afd4601df5e35
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  adpa:
     2014-07: 0
     2014-08: 0
     2014-09: 0
@@ -83,7 +153,7 @@ familles:
     2015-06: 0
     year:2014-07: 0
   af:
-    2013: 3541
+    '2013': 3541
     2014-07: 295.09444444444443
     2014-08: 295.09444444444443
     2014-09: 295.09444444444443
@@ -100,7 +170,7 @@ familles:
     2015-07: 295.05
     year:2014-07: 3541
   aide_logement:
-    2013: 5666
+    '2013': 5666
     2014-07: 472.17888888888893
     2014-08: 472.17888888888893
     2014-09: 472.17888888888893
@@ -159,7 +229,7 @@ familles:
     2015-06: 0
     year:2014-07: 0
   asf:
-    2013: 2402
+    '2013': 2402
     2014-07: 200.1688888888889
     2014-08: 200.1688888888889
     2014-09: 200.1688888888889
@@ -260,11 +330,11 @@ familles:
     2015-06: 0
     year:2014-07: 0
   enfants:
-    - 559fbbadaf0afd4601df5e37
-    - 559fbbadaf0afd4601df5e36
-    - 559fbbadaf0afd4601df5e35
+  - 559fbbadaf0afd4601df5e37
+  - 559fbbadaf0afd4601df5e36
+  - 559fbbadaf0afd4601df5e35
   paje_base:
-    2013: 2215
+    '2013': 2215
     2014-07: 184.5711111111111
     2014-08: 184.5711111111111
     2014-09: 184.5711111111111
@@ -280,7 +350,134 @@ familles:
     2015-06: 184.62
     2015-07: 184.62
     year:2014-07: 2215
-  parents: 559fbbadaf0afd4601df5e38
+  parents:
+  - 559fbbadaf0afd4601df5e38
+  paris_complement_sante:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_energie_famille:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_forfait_famille:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement_aspeh:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement_familles:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement_plfm:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement_psol:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  ppa:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
   proprietaire_proche_famille: false
   rsa:
     2014-07: 0
@@ -326,20 +523,20 @@ familles:
     2015-06: 0
     year:2014-07: 0
 foyers_fiscaux:
-  declarants: 559fbbadaf0afd4601df5e38
+- declarants:
+  - 559fbbadaf0afd4601df5e38
   personnes_a_charge:
-    - 559fbbadaf0afd4601df5e37
-    - 559fbbadaf0afd4601df5e36
-    - 559fbbadaf0afd4601df5e35
+  - 559fbbadaf0afd4601df5e37
+  - 559fbbadaf0afd4601df5e36
+  - 559fbbadaf0afd4601df5e35
 menages:
-  depcom: 77379
+- depcom: '77379'
   enfants:
-    - 559fbbadaf0afd4601df5e37
-    - 559fbbadaf0afd4601df5e36
-    - 559fbbadaf0afd4601df5e35
+  - 559fbbadaf0afd4601df5e37
+  - 559fbbadaf0afd4601df5e36
+  - 559fbbadaf0afd4601df5e35
   loyer: 429
   personne_de_reference: 559fbbadaf0afd4601df5e38
   statut_occupation_logement: 4
 output_variables:
-  aide_logement: 472.13
   rsa: 410.87
