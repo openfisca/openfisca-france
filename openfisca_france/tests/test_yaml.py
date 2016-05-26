@@ -17,7 +17,9 @@ import numpy as np
 import yaml
 
 from openfisca_france.tests import base
+from openfisca_france.model.extensions import import_extension, unload_all_extensions
 
+extensions_loaded = set()
 
 log = logging.getLogger(__name__)
 
@@ -50,6 +52,8 @@ options_by_dir = collections.OrderedDict((
         dict(
             calculate_output = True,
             default_relative_error_margin = 0.02,
+            extensions = ['https://github.com/sgmap/openfisca-paris.git'],
+            reforms = ['aides_cd93'],
             ),
         ),
     (
@@ -205,7 +209,6 @@ def check_calculate_output(yaml_path, name, period_str, test, force, verbose = F
                     relative_error_margin = test.get('relative_error_margin'),
                     )
 
-
 def test(force = False, name_filter = None, options_by_path = None):
     if isinstance(name_filter, str):
         name_filter = name_filter.decode('utf-8')
@@ -232,12 +235,18 @@ def test(force = False, name_filter = None, options_by_path = None):
             if getattr(base, options.get('requires')) is None:
                 continue
 
+        extensions = options.get('extensions', [])
+        if set(extensions) != extensions_loaded:
+            unload_all_extensions()
+            for extension in extensions:
+                import_extension(extension)
+                extensions_loaded.add(extension)
+
         reform_keys = options.get('reforms')
         tax_benefit_system_for_path = base.get_cached_composed_reform(
             reform_keys = reform_keys,
             tax_benefit_system = base.tax_benefit_system,
             ) if reform_keys is not None else base.tax_benefit_system
-
         for yaml_path in yaml_paths:
             filename_core = os.path.splitext(os.path.basename(yaml_path))[0]
             with open(yaml_path) as yaml_file:
