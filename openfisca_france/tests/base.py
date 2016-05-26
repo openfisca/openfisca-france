@@ -12,6 +12,7 @@ from ..reforms import (
     plf2015,
     plfr2014,
     trannoy_wasmer,
+    aides_cd93,
     )
 
 
@@ -42,6 +43,7 @@ build_reform_function_by_key = {
     'plf2015': plf2015.build_reform,
     'plfr2014': plfr2014.build_reform,
     'trannoy_wasmer': trannoy_wasmer.build_reform,
+    'aides_cd93': aides_cd93.build_reform,
     }
 
 # Only use the following reform if scipy can be imported
