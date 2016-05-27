@@ -6,7 +6,17 @@ EXTENSIONS_DIRECTORIES = glob.glob(os.path.join(EXTENSIONS_PATH, '*/'))
 
 extensions_parameters = []
 
-def import_extension(extension_directory):
+def import_extension(path):
+	if path.endswith('.git'):
+		import tempfile, subprocess
+		temp_dir = tempfile.mkdtemp()
+		os.chdir(temp_dir)
+		subprocess.call('git clone ' + path + ' extension &> /dev/null', shell = True)
+		import_extension_from_dir('extension')
+	else:
+		import_extension_from_dir(path)
+
+def import_extension_from_dir(extension_directory):
 	extension_name = os.path.basename(os.path.normpath(extension_directory))
 	py_files = glob.glob(os.path.join(extension_directory, "*.py"))
 	module_names = [
