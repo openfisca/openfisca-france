@@ -21,5 +21,11 @@ def import_extension(extension_directory):
 	if os.path.isfile(param_file):
 		extensions_parameters.append(param_file)
 
+def unload_all_extensions():
+	import openfisca_france
+	reload(openfisca_france.entities)
+	extensions_parameters = []
+	openfisca_france.init_tax_benefit_system()
+
 for extension_dir in EXTENSIONS_DIRECTORIES:
 	import_extension(extension_dir)
