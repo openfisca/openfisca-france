@@ -35,4 +35,5 @@ then
 fi
 
 
-make test
+# make test
+nosetests openfisca_france/tests/test_yaml.py
