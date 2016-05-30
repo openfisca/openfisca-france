@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.1.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.1.0..3.0.0)
+
+* Use extensions in yaml tests
+* Import an extension directly from git path
+* Unloading extensions
+* Throw error when importing an extension fails
+* Fix bug in mes-aides test downloading script
+* Update mes-aides tests
+
+
 ## 3.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.0.0..2.0.0)
 
 * Make `enfant_a_charge` usable in monthly mode so that we can re-use it in mes-aides, and broaden its definition so that in includes children in `garde_alternee`.
