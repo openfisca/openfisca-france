@@ -3,8 +3,8 @@
 from openfisca_core import reforms
 from openfisca_core.tools import assert_near
 
-from .. import init_country
-from ..reforms import (
+from openfisca_france import init_country
+from openfisca_france.reforms import (
     allocations_familiales_imposables,
     cesthra_invalidee,
     plf2016,
