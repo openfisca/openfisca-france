@@ -237,6 +237,12 @@ def test(force = False, name_filter = None, options_by_path = None):
 
         extensions = options.get('extensions', [])
         if set(extensions) != extensions_loaded:
+            print("Testing:")
+            print(path)
+            print("Extensions already loaded:")
+            print(extensions_loaded)
+            print("Extensions required:")
+            print(set(extensions))
             unload_all_extensions()
             for extension in extensions:
                 import_extension(extension)
