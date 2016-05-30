@@ -10,10 +10,10 @@ def import_extension(path):
 	if path.endswith('.git'):
 		import tempfile, subprocess
 		temp_dir = tempfile.mkdtemp()
-		os.chdir(temp_dir)
-		return_code = subprocess.call('git clone ' + path + ' extension &> /dev/null', shell = True)
+		clone_command = ' '.join(['git clone', path, temp_dir, '--quiet'])
+		return_code = subprocess.call(clone_command, shell = True)
 		if return_code > 0: raise IOError("Error loading extension from git repository " + path)
-		import_extension_from_dir('extension')
+		import_extension_from_dir(temp_dir)
 	else:
 		import_extension_from_dir(path)
 
