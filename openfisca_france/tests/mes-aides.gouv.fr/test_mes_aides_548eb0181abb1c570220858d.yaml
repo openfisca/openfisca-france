@@ -1,23 +1,38 @@
 name: Valeur locative d'un bien immobilier non loué (Test 21)
-keywords: "cmu-c/acs"
-description: |
+keywords:
+- cmu-c/acs
+"description": |-
   Aucune ressource. Détient un immeuble dont la valeur locative de 15000 €, prise en compte à hauteur de 50%, donne droit à la CMUC.
   L'article R861-6 dispose :... les biens non productifs de revenus sont considérés comme procurant un revenu annuel égal à 50% de leur valeur locative...
-period: "month:2014-12"
+period: month:2014-12
 individus:
+- aah:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
   age: 50
   age_en_mois: 611
-  date_naissance: "1964-01-01"
+  date_naissance: '1964-01-01'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 548eaf29ccf3745202129282
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   revenus_locatifs:
-    2012: 0
+    '2012': 0
     2013-12: 0
     2014-01: 0
     2014-02: 0
@@ -37,7 +52,21 @@ individus:
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  adpa:
     2013-12: 0
     2014-01: 0
     2014-02: 0
@@ -219,7 +248,7 @@ familles:
     2014-10: 0
     2014-11: 0
     year:2013-12: 0
-  enfants:
+  enfants: []
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -234,7 +263,134 @@ familles:
     2014-10: 0
     2014-11: 0
     year:2013-12: 0
-  parents: 548eaf29ccf3745202129282
+  parents:
+  - 548eaf29ccf3745202129282
+  paris_complement_sante:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_energie_famille:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_forfait_famille:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_aspeh:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_familles:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_plfm:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_psol:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  ppa:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
   proprietaire_proche_famille: true
   rsa:
     2013-12: 0
@@ -279,11 +435,12 @@ familles:
     2014-11: 0
     year:2013-12: 0
 foyers_fiscaux:
-  declarants: 548eaf29ccf3745202129282
-  personnes_a_charge:
+- declarants:
+  - 548eaf29ccf3745202129282
+  personnes_a_charge: []
 menages:
-  depcom: 75112
-  enfants:
+- depcom: '75112'
+  enfants: []
   loyer: 500
   personne_de_reference: 548eaf29ccf3745202129282
   statut_occupation_logement: 4

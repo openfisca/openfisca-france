@@ -7,21 +7,34 @@ keywords:
   \ valoir droit à retraite\nLa personne est bénéficiaire du RSA socle en attendant qu'elle ait fait valoir ses droits à la\
   \ retraite et à l'ASPA. \n\ndifférence APL= pas de neutralisation ressources annuelles en tant que bénéfciaire du RSA"
 period: month:2015-07
-relative_error_margin: 0.02
 individus:
-- enfant_a_charge: true
+- aah:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
   age: 65
   age_en_mois: 780
   date_naissance: '1950-06-27'
+  enfant_a_charge: true
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 559fb566ecfc1e52013e3e1d
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
   tns_micro_entreprise_type_activite: bic
@@ -29,19 +42,34 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- enfant_a_charge: true
+- aah:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
   age: 33
   age_en_mois: 404
   date_naissance: '1981-10-11'
+  enfant_a_charge: true
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
-  id: 5633aeabeeab276a0422a3c2
+  handicap: 1
+  id: 5658d60070994ab22c0fd592
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 1
+  perte_autonomie: false
   taux_incapacite: 0.9
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
@@ -52,6 +80,20 @@ individus:
     2012-01: 0
 familles:
 - acs:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  adpa:
     2014-07: 0
     2014-08: 0
     2014-09: 0
@@ -234,7 +276,7 @@ familles:
     2015-06: 0
     year:2014-07: 0
   enfants:
-  - 5633aeabeeab276a0422a3c2
+  - 5658d60070994ab22c0fd592
   paje_base:
     2014-07: 0
     2014-08: 0
@@ -251,6 +293,133 @@ familles:
     year:2014-07: 0
   parents:
   - 559fb566ecfc1e52013e3e1d
+  paris_complement_sante:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_energie_famille:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_forfait_famille:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement_aspeh:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement_familles:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement_plfm:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  paris_logement_psol:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
+  parisien: false
+  ppa:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    year:2014-07: 0
   proprietaire_proche_famille: false
   rsa:
     2014-07: 0
@@ -299,11 +468,11 @@ foyers_fiscaux:
 - declarants:
   - 559fb566ecfc1e52013e3e1d
   personnes_a_charge:
-  - 5633aeabeeab276a0422a3c2
+  - 5658d60070994ab22c0fd592
 menages:
 - depcom: '77062'
   enfants:
-  - 5633aeabeeab276a0422a3c2
+  - 5658d60070994ab22c0fd592
   loyer: 758
   personne_de_reference: 559fb566ecfc1e52013e3e1d
   statut_occupation_logement: 4

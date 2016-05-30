@@ -1,80 +1,106 @@
 name: Le forfait de charges est inchangé pour un couple en colocation
 keywords:
-  - al
-  - colocation
-  - location
-description: |
-  On teste ici simplement que le forfait de charges spécial pour les personnes seules en colocation n'est pas appliqué aux couples, qui gardent le même forfait de charges qu'un couple qui n'est pas en colocation.
-
-  L	264,69
-  C	53,23
-  E	317,92
-  R	0
-  R0	4593
-  Rp	0
-  Tf	3,15
-  LR	312,15
-  RL	84,8
-  Tl	0,202
-  Tp	3,352
-  P0	34,73
-  P1	0
-  Pp	34,73
-  AL	281,77
-
-  caf.fr : 281,78
-period: "month:2015-02"
+- al
+- colocation
+- location
+"description": "On teste ici simplement que le forfait de charges spécial pour les personnes seules en colocation n'est pas\
+  \ appliqué aux couples, qui gardent le même forfait de charges qu'un couple qui n'est pas en colocation.\n\nL\t264,69\n\
+  C\t53,23\nE\t317,92\nR\t0\nR0\t4593\nRp\t0\nTf\t3,15\nLR\t312,15\nRL\t84,8\nTl\t0,202\nTp\t3,352\nP0\t34,73\nP1\t0\nPp\t\
+  34,73\nAL\t281,77\n\ncaf.fr : 281,78"
+period: month:2015-02
 individus:
-  - age: 34
-    age_en_mois: 413
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    coloc: 1
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 54d8e0041fe4e8cf448e2bf2
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 413
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 54d8e0041fe4e8cf448e2bf1
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- aah:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  age: 34
+  age_en_mois: 413
+  chomage_imposable:
+    '2013': 0
+  coloc: 1
+  date_naissance: '1980-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 54d8e0041fe4e8cf448e2bf2
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  pensions_alimentaires_percues:
+    '2013': 0
+  retraite_imposable:
+    '2013': 0
+  salaire_imposable:
+    '2013': 0
+  statut_marital: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  age: 34
+  age_en_mois: 413
+  chomage_imposable:
+    '2013': 0
+  date_naissance: '1980-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 54d8e0041fe4e8cf448e2bf1
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  pensions_alimentaires_percues:
+    '2013': 0
+  retraite_imposable:
+    '2013': 0
+  salaire_imposable:
+    '2013': 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  adpa:
     2014-02: 0
     2014-03: 0
     2014-04: 0
@@ -256,7 +282,7 @@ familles:
     2014-12: 0
     2015-01: 0
     year:2014-02: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -272,8 +298,134 @@ familles:
     2015-01: 0
     year:2014-02: 0
   parents:
-    - 54d8e0041fe4e8cf448e2bf2
-    - 54d8e0041fe4e8cf448e2bf1
+  - 54d8e0041fe4e8cf448e2bf2
+  - 54d8e0041fe4e8cf448e2bf1
+  paris_complement_sante:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_energie_famille:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_forfait_famille:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_aspeh:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_familles:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_plfm:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_psol:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  ppa:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   proprietaire_proche_famille: false
   rsa:
     2014-02: 0
@@ -318,17 +470,17 @@ familles:
     2015-01: 0
     year:2014-02: 0
 foyers_fiscaux:
-  declarants:
-    - 54d8e0041fe4e8cf448e2bf2
-    - 54d8e0041fe4e8cf448e2bf1
+- declarants:
+  - 54d8e0041fe4e8cf448e2bf2
+  - 54d8e0041fe4e8cf448e2bf1
   pensions_alimentaires_versees:
-    2013: 0
-  personnes_a_charge:
-  rfr:
+    '2013': 0
+  personnes_a_charge: []
+  rfr: {}
 menages:
-  conjoint: 54d8e0041fe4e8cf448e2bf1
-  depcom: 75111
-  enfants:
+- conjoint: 54d8e0041fe4e8cf448e2bf1
+  depcom: '75111'
+  enfants: []
   loyer: 1000
   personne_de_reference: 54d8e0041fe4e8cf448e2bf2
   statut_occupation_logement: 4

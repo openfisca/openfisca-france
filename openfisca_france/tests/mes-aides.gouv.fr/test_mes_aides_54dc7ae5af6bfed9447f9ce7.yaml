@@ -1,28 +1,56 @@
 name: Pas d'éligibilité si inapte au travail < 62 ans
 keywords:
-  - age
-  - aspa
-  - eligibilité
+- age
+- aspa
+- eligibilité
 description: Ici la personne est inapte au travail mais a 61 ans, donc inéligible.
-period: "month:2015-02"
+period: month:2015-02
 individus:
+- aah:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   age: 61
   age_en_mois: 738
-  date_naissance: "1953-08-12"
+  date_naissance: '1953-08-12'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 54dc7aa54ec19fce44227a7f
   inapte_travail: 1
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  adpa:
     2014-02: 0
     2014-03: 0
     2014-04: 0
@@ -204,7 +232,7 @@ familles:
     2014-12: 0
     2015-01: 0
     year:2014-02: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -219,7 +247,134 @@ familles:
     2014-12: 0
     2015-01: 0
     year:2014-02: 0
-  parents: 54dc7aa54ec19fce44227a7f
+  parents:
+  - 54dc7aa54ec19fce44227a7f
+  paris_complement_sante:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_energie_famille:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_forfait_famille:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_aspeh:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_familles:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_plfm:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_psol:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  ppa:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   proprietaire_proche_famille: true
   rsa:
     2014-02: 0
@@ -264,11 +419,12 @@ familles:
     2015-01: 0
     year:2014-02: 0
 foyers_fiscaux:
-  declarants: 54dc7aa54ec19fce44227a7f
-  personnes_a_charge:
+- declarants:
+  - 54dc7aa54ec19fce44227a7f
+  personnes_a_charge: []
 menages:
-  depcom: 75111
-  enfants:
+- depcom: '75111'
+  enfants: []
   loyer: 100
   personne_de_reference: 54dc7aa54ec19fce44227a7f
   statut_occupation_logement: 4

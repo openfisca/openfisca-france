@@ -1,44 +1,86 @@
 name: 1 enfant de moins de 11 ans
 keywords:
-  - af
-  - dom
-  - montant
-description:
-period: "month:2014-11"
+- af
+- dom
+- montant
+description: null
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 411
-    date_naissance: "1980-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 54734acabbaefa3e3dc48f25
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 51
-    date_naissance: "2010-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 54734acabbaefa3e3dc48f24
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- aah:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  age: 34
+  age_en_mois: 411
+  date_naissance: '1980-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 54734acabbaefa3e3dc48f25
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  age: 4
+  age_en_mois: 51
+  date_naissance: '2010-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 54734acabbaefa3e3dc48f24
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  adpa:
     2013-11: 0
     2013-12: 0
     2014-01: 0
@@ -220,7 +262,8 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  enfants: 54734acabbaefa3e3dc48f24
+  enfants:
+  - 54734acabbaefa3e3dc48f24
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -235,7 +278,134 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  parents: 54734acabbaefa3e3dc48f25
+  parents:
+  - 54734acabbaefa3e3dc48f25
+  paris_complement_sante:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_energie_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_forfait_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_aspeh:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_familles:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_plfm:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_psol:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  ppa:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
   rsa:
     2013-11: 0
     2013-12: 0
@@ -280,11 +450,15 @@ familles:
     2014-10: 0
     year:2013-11: 0
 foyers_fiscaux:
-  declarants: 54734acabbaefa3e3dc48f25
-  personnes_a_charge: 54734acabbaefa3e3dc48f24
+- declarants:
+  - 54734acabbaefa3e3dc48f25
+  personnes_a_charge:
+  - 54734acabbaefa3e3dc48f24
 menages:
-  depcom: 97411
-  enfants: 54734acabbaefa3e3dc48f24
+- depcom: '97411'
+  enfants:
+  - 54734acabbaefa3e3dc48f24
+  participation_frais: false
   personne_de_reference: 54734acabbaefa3e3dc48f25
   statut_occupation_logement: 6
 output_variables:

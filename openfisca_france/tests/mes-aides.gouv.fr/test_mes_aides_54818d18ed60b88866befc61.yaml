@@ -1,27 +1,57 @@
 name: 34_Elève, étudiant, stagiaire
-keywords: rsa
-description: "L. 262-4 3° : les étudiants n'ont pas accès au RSA, de même que les élèves ou stagiaires au sens de l'article L. 612-8 du code de l'éducation. Il faut donc compléter le bouton \"étudiant\"."
-period: "month:2014-12"
+keywords:
+- rsa
+description: 'L. 262-4 3° : les étudiants n''ont pas accès au RSA, de même que les élèves ou stagiaires au sens de l''article
+  L. 612-8 du code de l''éducation. Il faut donc compléter le bouton "étudiant".'
+period: month:2014-12
 individus:
+- aah:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
   activite: 2
   age: 34
   age_en_mois: 419
-  date_naissance: "1980-01-01"
   boursier: false
+  date_naissance: '1980-01-01'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 1
+  handicap: 0
   id: 54818cbfaad65891668c6c80
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  adpa:
     2013-12: 0
     2014-01: 0
     2014-02: 0
@@ -203,7 +233,7 @@ familles:
     2014-10: 0
     2014-11: 0
     year:2013-12: 0
-  enfants:
+  enfants: []
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -218,7 +248,134 @@ familles:
     2014-10: 0
     2014-11: 0
     year:2013-12: 0
-  parents: 54818cbfaad65891668c6c80
+  parents:
+  - 54818cbfaad65891668c6c80
+  paris_complement_sante:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_energie_famille:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_forfait_famille:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_aspeh:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_familles:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_plfm:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_psol:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  ppa:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
   rsa:
     2013-12: 0
     2014-01: 0
@@ -262,11 +419,13 @@ familles:
     2014-11: 0
     year:2013-12: 0
 foyers_fiscaux:
-  declarants: 54818cbfaad65891668c6c80
-  personnes_a_charge:
+- declarants:
+  - 54818cbfaad65891668c6c80
+  personnes_a_charge: []
 menages:
-  depcom: 85191
-  enfants:
+- depcom: '85191'
+  enfants: []
+  participation_frais: false
   personne_de_reference: 54818cbfaad65891668c6c80
   statut_occupation_logement: 6
 output_variables:

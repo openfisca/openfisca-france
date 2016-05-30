@@ -1,53 +1,46 @@
 name: Abattement pour personnes de plus de 65 ans, cas revenu < 14630 €
 keywords:
-  - abattements
-  - al
-  - base ressources
-description: |
-  Article 157 bis du code général des impôts
-  http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042269&cidTexte=LEGITEXT000006069577&dateTexte=20150112
-
-  Le contribuable âgé de plus de soixante-cinq ans au 31 décembre de l'année d'imposition, ou remplissant l'une des conditions d'invalidité mentionnées à l'article 195, peut déduire de son revenu global net une somme de :
-  -2 332 € si ce revenu n'excède pas 14 630 €
-  -1 166 € si ce revenu est compris entre 14 630 € et 23 580 €
-
-  On est ici dans le cas où le revenu est < à 14630 (12000 euros de retraites)
-  L	292,62
-  C	53,23
-  E	345,85
-  R	8500 = (12000 * 0,9) - 2332
-  R0	4593
-  Rp	3907
-  Tf	2,83
-  LR	255,03
-  RL	114,74
-  Tl	0,405
-  Tp	3,235
-  P0	34,73
-  P1	126,39
-  Pp	161,12
-  AL	183,81
-period: "month:2015-02"
-relative_error_margin: 0.02
+- abattements
+- al
+- base ressources
+"description": "Article 157 bis du code général des impôts\nhttp://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042269&cidTexte=LEGITEXT000006069577&dateTexte=20150112\n\
+  \nLe contribuable âgé de plus de soixante-cinq ans au 31 décembre de l'année d'imposition, ou remplissant l'une des conditions\
+  \ d'invalidité mentionnées à l'article 195, peut déduire de son revenu global net une somme de :\n-2 332 € si ce revenu\
+  \ n'excède pas 14 630 €\n-1 166 € si ce revenu est compris entre 14 630 € et 23 580 €\n\nOn est ici dans le cas où le revenu\
+  \ est < à 14630 (12000 euros de retraites)\nL\t292,62\nC\t53,23\nE\t345,85\nR\t8500 = (12000 * 0,9) - 2332\nR0\t4593\nRp\t\
+  3907\nTf\t2,83\nLR\t255,03\nRL\t114,74\nTl\t0,405\nTp\t3,235\nP0\t34,73\nP1\t126,39\nPp\t161,12\nAL\t183,81"
+period: month:2015-02
 individus:
+- aah:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   activite: 3
   age: 88
   age_en_mois: 1061
-  date_naissance: "1926-09-05"
   chomage_imposable:
-    2013: 0
+    '2013': 0
+  date_naissance: '1926-09-05'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 54d49218f675ddd34432ea79
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   pensions_alimentaires_percues:
-    2013: 0
-  retraite_imposable:
-    2013: 12000
+    '2013': 0
   retraite_brute:
     2014-02: 1079.913606911447
     2014-03: 1079.913606911447
@@ -64,6 +57,8 @@ individus:
     2015-01: 1079.913606911447
     2015-02: 1079.913606911447
     year:2014-02: 12958.96328293736
+  retraite_imposable:
+    '2013': 12000
   retraite_nette:
     2014-02: 1000
     2014-03: 1000
@@ -81,13 +76,27 @@ individus:
     2015-02: 1000
     year:2014-02: 12000
   salaire_imposable:
-    2013: 0
+    '2013': 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  adpa:
     2014-02: 0
     2014-03: 0
     2014-04: 0
@@ -269,7 +278,7 @@ familles:
     2014-12: 0
     2015-01: 0
     year:2014-02: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -284,7 +293,134 @@ familles:
     2014-12: 0
     2015-01: 0
     year:2014-02: 0
-  parents: 54d49218f675ddd34432ea79
+  parents:
+  - 54d49218f675ddd34432ea79
+  paris_complement_sante:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_energie_famille:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_forfait_famille:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_aspeh:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_familles:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_plfm:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_psol:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  ppa:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   proprietaire_proche_famille: false
   rsa:
     2014-02: 0
@@ -329,14 +465,15 @@ familles:
     2015-01: 0
     year:2014-02: 0
 foyers_fiscaux:
-  declarants: 54d49218f675ddd34432ea79
+- declarants:
+  - 54d49218f675ddd34432ea79
   pensions_alimentaires_versees:
-    2013: 0
-  personnes_a_charge:
-  rfr:
+    '2013': 0
+  personnes_a_charge: []
+  rfr: {}
 menages:
-  depcom: 75111
-  enfants:
+- depcom: '75111'
+  enfants: []
   loyer: 1000
   personne_de_reference: 54d49218f675ddd34432ea79
   statut_occupation_logement: 4

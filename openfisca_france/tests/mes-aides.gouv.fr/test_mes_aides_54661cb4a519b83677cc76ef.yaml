@@ -1,22 +1,37 @@
-name: "Ressources exclues - indemnités de volontariat"
+name: Ressources exclues - indemnités de volontariat
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-description: |
+- base ressources
+- cmu-c/acs
+"description": |-
   Les indemnités de volontariat ne comptent pas dans la base ressources
   Dans ce test le demandeur touche énormément d'indemnités de volontariat, mais il doit avoir quand même droit à la CMU-C.
-period: "month:2014-11"
+period: month:2014-11
 individus:
+- aah:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
   age: 34
   age_en_mois: 411
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 54661c45f36fa43e7789896c
   inapte_travail: 0
   indemnites_volontariat:
-    2012: 1199988
+    '2012': 1199988
     2013-11: 99999
     2013-12: 99999
     2014-01: 99999
@@ -34,13 +49,26 @@ individus:
     year:2013-11: 1199988
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  adpa:
     2013-11: 0
     2013-12: 0
     2014-01: 0
@@ -222,7 +250,7 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  enfants:
+  enfants: []
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -237,7 +265,134 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  parents: 54661c45f36fa43e7789896c
+  parents:
+  - 54661c45f36fa43e7789896c
+  paris_complement_sante:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_energie_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_forfait_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_aspeh:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_familles:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_plfm:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_psol:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  ppa:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
   proprietaire_proche_famille: true
   rsa:
     2013-11: 0
@@ -282,11 +437,12 @@ familles:
     2014-10: 0
     year:2013-11: 0
 foyers_fiscaux:
-  declarants: 54661c45f36fa43e7789896c
-  personnes_a_charge:
+- declarants:
+  - 54661c45f36fa43e7789896c
+  personnes_a_charge: []
 menages:
-  depcom: 67482
-  enfants:
+- depcom: '67482'
+  enfants: []
   loyer: 100
   personne_de_reference: 54661c45f36fa43e7789896c
   statut_occupation_logement: 4

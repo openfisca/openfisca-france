@@ -1,25 +1,40 @@
 name: 11_Revenus de stage de la formation professionnelle
-keywords: rsa
-description: |
+keywords:
+- rsa
+"description": |-
   La rémunération d'un stage de la formation professionnelle doit être assimilée à un revenu d'activité : dont prise en compte après abattement de 62 % (R. 262-8 2°).
   RSA attendu : 448,18 - 500 x 0.38 = 258,18€
 
   Réponse : ajout de la rémunération de stage FP dans la base revenu d'activité du RSA
-period: "month:2014-11"
+period: month:2014-11
 individus:
+- aah:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
   age: 28
   age_en_mois: 346
-  date_naissance: "1986-01-01"
+  date_naissance: '1986-01-01'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 545a4bebd0485dd744fc568d
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   revenus_stage_formation_pro:
-    2012: -0.029999999999915872
+    '2012': -0.029999999999915872
     2013-11: -166.67
     2013-12: -166.67
     2014-01: -166.67
@@ -40,7 +55,21 @@ individus:
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  adpa:
     2013-11: 0
     2013-12: 0
     2014-01: 0
@@ -222,7 +251,7 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  enfants:
+  enfants: []
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -237,7 +266,134 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  parents: 545a4bebd0485dd744fc568d
+  parents:
+  - 545a4bebd0485dd744fc568d
+  paris_complement_sante:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_energie_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_forfait_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_aspeh:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_familles:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_plfm:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_psol:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  ppa:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
   rsa:
     2013-11: 0
     2013-12: 0
@@ -281,11 +437,13 @@ familles:
     2014-10: 0
     year:2013-11: 0
 foyers_fiscaux:
-  declarants: 545a4bebd0485dd744fc568d
-  personnes_a_charge:
+- declarants:
+  - 545a4bebd0485dd744fc568d
+  personnes_a_charge: []
 menages:
-  depcom: 87085
-  enfants:
+- depcom: '87085'
+  enfants: []
+  participation_frais: false
   personne_de_reference: 545a4bebd0485dd744fc568d
   statut_occupation_logement: 6
 output_variables:

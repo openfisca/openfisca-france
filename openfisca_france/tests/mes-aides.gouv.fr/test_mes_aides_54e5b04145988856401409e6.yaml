@@ -1,24 +1,39 @@
-name: "Application eval forfaitaire pour moins de 25 ans si salaire m-1 > plafond"
+name: Application eval forfaitaire pour moins de 25 ans si salaire m-1 > plafond
 keywords:
-  - al
-  - base ressources
-  - eval forfaitaire
-description: La personne déclare un salaire > 1273 euros, on applique donc bien l'eval forfaitaire même si elle a moins de 25 ans.
-period: "month:2015-02"
+- al
+- base ressources
+- eval forfaitaire
+description: La personne déclare un salaire > 1273 euros, on applique donc bien l'eval forfaitaire même si elle a moins de
+  25 ans.
+period: month:2015-02
 individus:
+- aah:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   age: 22
   age_en_mois: 270
-  date_naissance: "1992-08-12"
+  date_naissance: '1992-08-12'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 54e5b03b1b7dba5b403a097c
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   salaire_de_base:
-    2013: 23076.923076923074
+    '2013': 23076.923076923074
     2014-02: 1923.076923076923
     2014-03: 1923.076923076923
     2014-04: 1923.076923076923
@@ -35,7 +50,7 @@ individus:
     2015-02: 1923.076923076923
     year:2014-02: 23076.923076923074
   salaire_imposable:
-    2013: 18657.51923076923
+    '2013': 18657.51923076923
     2014-02: 1554.7932692307693
     2014-03: 1554.7932692307693
     2014-04: 1554.7932692307693
@@ -52,7 +67,7 @@ individus:
     2015-02: 1554.7932692307693
     year:2014-02: 18657.51923076923
   salaire_net:
-    2013: 18000
+    '2013': 18000
     2014-02: 1500
     2014-03: 1500
     2014-04: 1500
@@ -73,7 +88,21 @@ individus:
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  adpa:
     2014-02: 0
     2014-03: 0
     2014-04: 0
@@ -255,7 +284,7 @@ familles:
     2014-12: 0
     2015-01: 0
     year:2014-02: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -270,7 +299,134 @@ familles:
     2014-12: 0
     2015-01: 0
     year:2014-02: 0
-  parents: 54e5b03b1b7dba5b403a097c
+  parents:
+  - 54e5b03b1b7dba5b403a097c
+  paris_complement_sante:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_energie_famille:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_forfait_famille:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_aspeh:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_familles:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_plfm:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_psol:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  ppa:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   proprietaire_proche_famille: false
   rsa:
     2014-02: 0
@@ -315,11 +471,12 @@ familles:
     2015-01: 0
     year:2014-02: 0
 foyers_fiscaux:
-  declarants: 54e5b03b1b7dba5b403a097c
-  personnes_a_charge:
+- declarants:
+  - 54e5b03b1b7dba5b403a097c
+  personnes_a_charge: []
 menages:
-  depcom: 75111
-  enfants:
+- depcom: '75111'
+  enfants: []
   loyer: 1000
   personne_de_reference: 54e5b03b1b7dba5b403a097c
   statut_occupation_logement: 4

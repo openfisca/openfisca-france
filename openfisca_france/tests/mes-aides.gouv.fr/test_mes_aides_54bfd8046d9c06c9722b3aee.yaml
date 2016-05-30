@@ -1,17 +1,30 @@
 name: 118_Bourses
 keywords:
-  - base ressources
-  - rsa
-description: |
+- base ressources
+- rsa
+"description": |-
   Bourses de l'enseignement supérieur => Non prises en compte
   Bourses d'étude => Prises en compte comme un revenu d'activité (abattement 62%)
-period: "month:2015-01"
+period: month:2015-01
 individus:
+- aah:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
   age: 35
   age_en_mois: 420
-  date_naissance: "1980-01-01"
   bourse_enseignement_sup:
-    2013: 24000
+    '2013': 24000
     2014-01: 2000
     2014-02: 2000
     2014-03: 2000
@@ -28,7 +41,7 @@ individus:
     2015-01: 2000
     year:2014-01: 24000
   bourse_recherche:
-    2013: 1200
+    '2013': 1200
     2014-01: 100
     2014-02: 100
     2014-03: 100
@@ -44,20 +57,35 @@ individus:
     2014-12: 100
     2015-01: 100
     year:2014-01: 1200
+  date_naissance: '1980-01-01'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 54bfd7856d9c06c9722b3ad5
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  adpa:
     2014-01: 0
     2014-02: 0
     2014-03: 0
@@ -239,7 +267,7 @@ familles:
     2014-11: 0
     2014-12: 0
     year:2014-01: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -254,7 +282,134 @@ familles:
     2014-11: 0
     2014-12: 0
     year:2014-01: 0
-  parents: 54bfd7856d9c06c9722b3ad5
+  parents:
+  - 54bfd7856d9c06c9722b3ad5
+  paris_complement_sante:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_energie_famille:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_forfait_famille:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement_aspeh:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement_familles:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement_plfm:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  paris_logement_psol:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
+  ppa:
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    year:2014-01: 0
   rsa:
     2014-01: 0
     2014-02: 0
@@ -298,11 +453,13 @@ familles:
     2014-12: 0
     year:2014-01: 0
 foyers_fiscaux:
-  declarants: 54bfd7856d9c06c9722b3ad5
-  personnes_a_charge:
+- declarants:
+  - 54bfd7856d9c06c9722b3ad5
+  personnes_a_charge: []
 menages:
-  depcom: 30092
-  enfants:
+- depcom: '30092'
+  enfants: []
+  participation_frais: false
   personne_de_reference: 54bfd7856d9c06c9722b3ad5
   statut_occupation_logement: 6
 output_variables:

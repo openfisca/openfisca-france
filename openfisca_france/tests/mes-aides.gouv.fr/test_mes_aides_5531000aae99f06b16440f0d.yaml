@@ -1,24 +1,39 @@
 name: CMUC/ACS base ressources intégration à tort de l'ASPA non perçue
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-description: Personne qui vient d'avoir 65 ans. Jusque là non éligible à l'ASPA compte tenu de son âge. Retraite de 600€ par mois, soit 7200€ pour l'année de référence. A droit à la CMUC (au moins pour une année)
-period: "month:2015-04"
+- base ressources
+- cmu-c/acs
+description: Personne qui vient d'avoir 65 ans. Jusque là non éligible à l'ASPA compte tenu de son âge. Retraite de 600€ par
+  mois, soit 7200€ pour l'année de référence. A droit à la CMUC (au moins pour une année)
+period: month:2015-04
 individus:
+- aah:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   activite: 3
   age: 65
   age_en_mois: 780
-  date_naissance: "1950-04-01"
+  date_naissance: '1950-04-01'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 5530ffb7395a3e6e168f4726
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   retraite_brute:
-    2013: 7775.377969762419
+    '2013': 7775.377969762419
     2014-04: 647.9481641468682
     2014-05: 647.9481641468682
     2014-06: 647.9481641468682
@@ -35,7 +50,7 @@ individus:
     2015-04: 647.9481641468682
     year:2014-04: 7775.377969762419
   retraite_nette:
-    2013: 7200
+    '2013': 7200
     2014-04: 600
     2014-05: 600
     2014-06: 600
@@ -56,7 +71,21 @@ individus:
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  adpa:
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -238,7 +267,7 @@ familles:
     2015-02: 0
     2015-03: 0
     year:2014-04: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -253,7 +282,134 @@ familles:
     2015-02: 0
     2015-03: 0
     year:2014-04: 0
-  parents: 5530ffb7395a3e6e168f4726
+  parents:
+  - 5530ffb7395a3e6e168f4726
+  paris_complement_sante:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_energie_famille:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_forfait_famille:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement_aspeh:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement_familles:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement_plfm:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement_psol:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  ppa:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   proprietaire_proche_famille: true
   rsa:
     2014-04: 0
@@ -298,11 +454,12 @@ familles:
     2015-03: 0
     year:2014-04: 0
 foyers_fiscaux:
-  declarants: 5530ffb7395a3e6e168f4726
-  personnes_a_charge:
+- declarants:
+  - 5530ffb7395a3e6e168f4726
+  personnes_a_charge: []
 menages:
-  depcom: 75112
-  enfants:
+- depcom: '75112'
+  enfants: []
   loyer: 500
   personne_de_reference: 5530ffb7395a3e6e168f4726
   statut_occupation_logement: 4

@@ -1,27 +1,39 @@
 name: Personne seule versant une pension alimentaire
 keywords:
-  - aspa
-  - pension alimentaire
-description: |
-  Pension de retraite : 787.1/mois net donc 850€/mois brut selon estimation.
-  Retraite brut > 800€
-  mais pension alimentaire = 200 €/mois donc ressources : 850 - 200 = 650 euros donc droit à 150 euros d'ASPA
-period: "month:2015-04"
+- aspa
+- pension alimentaire
+"description": "Pension de retraite : 787.1/mois net donc 850€/mois brut selon estimation.\nRetraite brut > 800€ \nmais pension\
+  \ alimentaire = 200 €/mois donc ressources : 850 - 200 = 650 euros donc droit à 150 euros d'ASPA"
+period: month:2015-04
 individus:
+- aah:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   activite: 3
   age: 74
   age_en_mois: 894
-  date_naissance: "1940-10-10"
+  date_naissance: '1940-10-10'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 55364e375808ef7e2d505449
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   pensions_alimentaires_versees_individu:
-    2013: 2400
+    '2013': 2400
     2014-04: 200
     2014-05: 200
     2014-06: 200
@@ -38,7 +50,7 @@ individus:
     2015-04: 200
     year:2014-04: 2400
   retraite_brute:
-    2013: 10199.784017278616
+    '2013': 10199.784017278616
     2014-04: 849.9760019198463
     2014-05: 849.9760019198463
     2014-06: 849.9760019198463
@@ -55,7 +67,7 @@ individus:
     2015-04: 850
     year:2014-04: 10199.784017278616
   retraite_nette:
-    2013: 9445
+    '2013': 9445
     2014-04: 787.0777777777778
     2014-05: 787.0777777777778
     2014-06: 787.0777777777778
@@ -76,7 +88,21 @@ individus:
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  adpa:
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -258,7 +284,7 @@ familles:
     2015-02: 0
     2015-03: 0
     year:2014-04: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -273,7 +299,134 @@ familles:
     2015-02: 0
     2015-03: 0
     year:2014-04: 0
-  parents: 55364e375808ef7e2d505449
+  parents:
+  - 55364e375808ef7e2d505449
+  paris_complement_sante:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_energie_famille:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_forfait_famille:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement_aspeh:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement_familles:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement_plfm:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement_psol:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  ppa:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
   proprietaire_proche_famille: true
   rsa:
     2014-04: 0
@@ -318,11 +471,12 @@ familles:
     2015-03: 0
     year:2014-04: 0
 foyers_fiscaux:
-  declarants: 55364e375808ef7e2d505449
-  personnes_a_charge:
+- declarants:
+  - 55364e375808ef7e2d505449
+  personnes_a_charge: []
 menages:
-  depcom: 93070
-  enfants:
+- depcom: '93070'
+  enfants: []
   loyer: 600
   personne_de_reference: 55364e375808ef7e2d505449
   statut_occupation_logement: 4

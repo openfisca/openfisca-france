@@ -1,46 +1,88 @@
 name: Déduction ASF et PAJE
 keywords:
-  - base ressources
-  - majoration
-  - rsa
-description: |
+- base ressources
+- majoration
+- rsa
+"description": |-
   femme seule, française, sans ressources, 1 enfant né en 07/2012 : le droit Rsa affiché  = 470 soit 763 - 122(FL)  - 180 (PAJE)
   anomalie: le droit Asf est affiché en résultat mais pas déduit du Rsa alors que la PAje est déduite du montant Rsa affiché
-period: "month:2014-11"
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 418
-    date_naissance: "1980-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 546b080afc9936ff63f8565f
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 2
-    age_en_mois: 34
-    date_naissance: "2012-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 546b080afc9936ff63f8565e
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- aah:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  age: 34
+  age_en_mois: 418
+  date_naissance: '1980-01-01'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 546b080afc9936ff63f8565f
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  age: 2
+  age_en_mois: 34
+  date_naissance: '2012-01-01'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 546b080afc9936ff63f8565e
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  adpa:
     2013-11: 0
     2013-12: 0
     2014-01: 0
@@ -222,7 +264,8 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  enfants: 546b080afc9936ff63f8565e
+  enfants:
+  - 546b080afc9936ff63f8565e
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -237,7 +280,134 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  parents: 546b080afc9936ff63f8565f
+  parents:
+  - 546b080afc9936ff63f8565f
+  paris_complement_sante:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_energie_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_forfait_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_aspeh:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_familles:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_plfm:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_psol:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  ppa:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
   rsa:
     2013-11: 0
     2013-12: 0
@@ -282,11 +452,15 @@ familles:
     2014-10: 0
     year:2013-11: 0
 foyers_fiscaux:
-  declarants: 546b080afc9936ff63f8565f
-  personnes_a_charge: 546b080afc9936ff63f8565e
+- declarants:
+  - 546b080afc9936ff63f8565f
+  personnes_a_charge:
+  - 546b080afc9936ff63f8565e
 menages:
-  depcom: 75114
-  enfants: 546b080afc9936ff63f8565e
+- depcom: '75114'
+  enfants:
+  - 546b080afc9936ff63f8565e
+  participation_frais: false
   personne_de_reference: 546b080afc9936ff63f8565f
   statut_occupation_logement: 6
 output_variables:

@@ -1,14 +1,14 @@
 name: Ressources exclues
 keywords:
-  - al
-  - base ressources
-  - projection année glissante
+- al
+- base ressources
+- projection année glissante
 description: L'AAH est exclue de la base ressource des allocations logement
-period: "month:2014-10"
+period: month:2014-10
 relative_error_margin: 0.02
 individus:
-  aah:
-    2012: 1199988
+- aah:
+    '2012': 1199988
     2013-10: 99999
     2013-11: 99999
     2013-12: 99999
@@ -26,21 +26,35 @@ individus:
     year:2013-10: 1199988
   age: 36
   age_en_mois: 434
-  date_naissance: "1978-08-12"
+  date_naissance: '1978-08-12'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 5441297683b38a957e4d856c
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    year:2013-10: 0
+  adpa:
     2013-10: 0
     2013-11: 0
     2013-12: 0
@@ -222,7 +236,7 @@ familles:
     2014-08: 0
     2014-09: 0
     year:2013-10: 0
-  enfants:
+  enfants: []
   paje_base:
     2013-10: 0
     2013-11: 0
@@ -237,7 +251,134 @@ familles:
     2014-08: 0
     2014-09: 0
     year:2013-10: 0
-  parents: 5441297683b38a957e4d856c
+  parents:
+  - 5441297683b38a957e4d856c
+  paris_complement_sante:
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    year:2013-10: 0
+  paris_energie_famille:
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    year:2013-10: 0
+  paris_forfait_famille:
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    year:2013-10: 0
+  paris_logement:
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    year:2013-10: 0
+  paris_logement_aspeh:
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    year:2013-10: 0
+  paris_logement_familles:
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    year:2013-10: 0
+  paris_logement_plfm:
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    year:2013-10: 0
+  paris_logement_psol:
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    year:2013-10: 0
+  ppa:
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    year:2013-10: 0
   proprietaire_proche_famille: false
   rsa:
     2013-10: 0
@@ -282,11 +423,12 @@ familles:
     2014-09: 0
     year:2013-10: 0
 foyers_fiscaux:
-  declarants: 5441297683b38a957e4d856c
-  personnes_a_charge:
+- declarants:
+  - 5441297683b38a957e4d856c
+  personnes_a_charge: []
 menages:
-  depcom: 75111
-  enfants:
+- depcom: '75111'
+  enfants: []
   loyer: 1000
   personne_de_reference: 5441297683b38a957e4d856c
   statut_occupation_logement: 4

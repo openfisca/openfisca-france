@@ -1,50 +1,115 @@
-name: TNS agricole en métopole - 2 personnes au foyer
+name: Avoir au moins 3 enfants
 keywords:
-- rsa
-- tns
-"description": |-
-  Éligibilité au RSA d'un TNS agricole en couple
-  Bénéfice agricole = 11500€ < (800*SMIC horaire)*1,5 = 11532€
-
-  Ne pas afficher de montant
+- cf
+- enfants à charge
+description: 'Condition d''éligibilité au CF: avoir au moins 3 enfants'
 period: month:2015-04
 individus:
-- age: 35
-  age_en_mois: 420
-  date_naissance: '1980-04-13'
+- aah:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  age: 44
+  age_en_mois: 535
+  date_naissance: '1970-09-08'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
-  id: 553fb68c783a3066397ecc80
+  handicap: 0
+  id: 553a1adc001d03792d48261b
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
-  statut_marital: 1
-  tns_benefice_exploitant_agricole:
-    '2014': 11500
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- age: 32
-  age_en_mois: 394
-  date_naissance: '1982-06-14'
+- aah:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  age: 9
+  age_en_mois: 112
+  date_naissance: '2005-12-10'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
-  id: 553fb68c783a3066397ecc7f
+  handicap: 0
+  id: 553a1adc001d03792d48261a
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
+  scolarite: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  age: 11
+  age_en_mois: 132
+  date_naissance: '2004-04-02'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
   handicap: 0
-  statut_marital: 1
+  id: 553a1adc001d03792d482619
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  scolarite: 1
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
 - acs:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  adpa:
     2014-04: 0
     2014-05: 0
     2014-06: 0
@@ -226,7 +291,9 @@ familles:
     2015-02: 0
     2015-03: 0
     year:2014-04: 0
-  enfants: []
+  enfants:
+  - 553a1adc001d03792d48261a
+  - 553a1adc001d03792d482619
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -242,8 +309,134 @@ familles:
     2015-03: 0
     year:2014-04: 0
   parents:
-  - 553fb68c783a3066397ecc80
-  - 553fb68c783a3066397ecc7f
+  - 553a1adc001d03792d48261b
+  paris_complement_sante:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_energie_famille:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_forfait_famille:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement_aspeh:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement_familles:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement_plfm:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  paris_logement_psol:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  ppa:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    year:2014-04: 0
+  proprietaire_proche_famille: true
   rsa:
     2014-04: 0
     2014-05: 0
@@ -258,6 +451,7 @@ familles:
     2015-02: 0
     2015-03: 0
     year:2014-04: 0
+  rsa_isolement_recent: true
   rsa_majore:
     2014-04: 0
     2014-05: 0
@@ -288,15 +482,17 @@ familles:
     year:2014-04: 0
 foyers_fiscaux:
 - declarants:
-  - 553fb68c783a3066397ecc80
-  - 553fb68c783a3066397ecc7f
-  personnes_a_charge: []
+  - 553a1adc001d03792d48261b
+  personnes_a_charge:
+  - 553a1adc001d03792d48261a
+  - 553a1adc001d03792d482619
 menages:
-- conjoint: 553fb68c783a3066397ecc7f
-  depcom: '14500'
-  enfants: []
-  participation_frais: false
-  personne_de_reference: 553fb68c783a3066397ecc80
-  statut_occupation_logement: 6
+- depcom: '78646'
+  enfants:
+  - 553a1adc001d03792d48261a
+  - 553a1adc001d03792d482619
+  loyer: 600
+  personne_de_reference: 553a1adc001d03792d48261b
+  statut_occupation_logement: 4
 output_variables:
-  rsa: 0
+  cf: 0

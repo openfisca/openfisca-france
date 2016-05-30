@@ -1,29 +1,16 @@
-name: Prise en compte à 3% de la valeur vénale des résidences secondaires #OpenLab
+name: 'Prise en compte à 3% de la valeur vénale des résidences secondaires #OpenLab'
 keywords:
-  - aspa
-  - base ressources
-  - patrimoine
-description: |
+- aspa
+- base ressources
+- patrimoine
+"description": |-
   les biens immobiliers autre que la résidence principale (loués ou non) sont valorisés à 3% du montant de la valeur vénale (prix du marché)
   cas testé : propriétaire de la résidence principale et d'un autre bien
   le moteur ne tient pas compte de cet autre bien
   le résultat devrait être 0, le moteur renvoie 400 euros
-period: "month:2014-11"
+period: month:2014-11
 individus:
-  activite: 3
-  age: 73
-  age_en_mois: 887
-  date_naissance: "1940-12-05"
-  epargne_non_remuneree:
-    2012-01: 0
-  etudiant: 0
-  id: 54648fa93005e57370c2f36e
-  inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
-  handicap: 0
-  revenus_locatifs:
-    2012: 0
+- aah:
     2013-11: 0
     2013-12: 0
     2014-01: 0
@@ -34,12 +21,23 @@ individus:
     2014-06: 0
     2014-07: 0
     2014-08: 0
-    2014-08:3: 0
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
+  activite: 3
+  age: 73
+  age_en_mois: 887
+  date_naissance: '1940-12-05'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 54648fa93005e57370c2f36e
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
   retraite_brute:
-    2012: 4799.999999999999
+    '2012': 4799.999999999999
     2013-11: 399.99999999999994
     2013-12: 399.99999999999994
     2014-01: 399.99999999999994
@@ -56,7 +54,7 @@ individus:
     2014-11: 399.99999999999994
     year:2013-11: 4799.999999999999
   retraite_nette:
-    2012: 4444.8
+    '2012': 4444.8
     2013-11: 370.4
     2013-12: 370.4
     2014-01: 370.4
@@ -72,12 +70,42 @@ individus:
     2014-10: 370.4
     2014-11: 370.4
     year:2013-11: 4444.8
+  revenus_locatifs:
+    '2012': 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-08:3: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
   valeur_locative_immo_non_loue:
     2012-01: 1000000
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  adpa:
     2013-11: 0
     2013-12: 0
     2014-01: 0
@@ -259,7 +287,7 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  enfants:
+  enfants: []
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -274,7 +302,134 @@ familles:
     2014-09: 0
     2014-10: 0
     year:2013-11: 0
-  parents: 54648fa93005e57370c2f36e
+  parents:
+  - 54648fa93005e57370c2f36e
+  paris_complement_sante:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_energie_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_forfait_famille:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_aspeh:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_familles:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_plfm:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  paris_logement_psol:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
+  ppa:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    year:2013-11: 0
   rsa:
     2013-11: 0
     2013-12: 0
@@ -318,11 +473,12 @@ familles:
     2014-10: 0
     year:2013-11: 0
 foyers_fiscaux:
-  declarants: 54648fa93005e57370c2f36e
-  personnes_a_charge:
+- declarants:
+  - 54648fa93005e57370c2f36e
+  personnes_a_charge: []
 menages:
-  depcom: 94046
-  enfants:
+- depcom: '94046'
+  enfants: []
   personne_de_reference: 54648fa93005e57370c2f36e
   statut_occupation_logement: 2
 output_variables:

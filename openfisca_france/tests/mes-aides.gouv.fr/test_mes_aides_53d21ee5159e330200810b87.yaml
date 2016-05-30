@@ -1,25 +1,40 @@
 name: Personne seule propriétaire, ressources < plafond
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-  - forfait logement
-description: "Le demandeur a droit à la CMU s'il est propriétaire de son logement et que ses ressources ne dépassent pas 720 (salaires) - 60 (forfait logement) = 660 €."
-period: "month:2014-07"
+- base ressources
+- cmu-c/acs
+- forfait logement
+description: Le demandeur a droit à la CMU s'il est propriétaire de son logement et que ses ressources ne dépassent pas 720
+  (salaires) - 60 (forfait logement) = 660 €.
+period: month:2014-07
 individus:
+- aah:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
   age: 24
   age_en_mois: 298
-  date_naissance: "1989-09-14"
+  date_naissance: '1989-09-14'
   enceinte: false
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 53d21e21159e330200810b83
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   salaire_de_base:
-    2012: 2500
+    '2012': 2500
     2014-04: 833.3333333333333
     2014-04:3: 2500
     2014-05: 833.3333333333333
@@ -27,7 +42,7 @@ individus:
     2014-07: 833.3333333333333
     year:2013-07: 2500
   salaire_imposable:
-    2012: 2021.2312499999998
+    '2012': 2021.2312499999998
     2014-04: 673.74375
     2014-04:3: 2021.2312499999998
     2014-05: 673.74375
@@ -35,7 +50,7 @@ individus:
     2014-07: 673.74375
     year:2013-07: 2021.2312499999998
   salaire_net:
-    2012: 1950
+    '2012': 1950
     2014-04: 650
     2014-04:3: 1950
     2014-05: 650
@@ -47,7 +62,21 @@ individus:
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  adpa:
     2013-07: 0
     2013-08: 0
     2013-09: 0
@@ -229,7 +258,7 @@ familles:
     2014-05: 0
     2014-06: 0
     year:2013-07: 0
-  enfants:
+  enfants: []
   paje_base:
     2013-07: 0
     2013-08: 0
@@ -244,7 +273,134 @@ familles:
     2014-05: 0
     2014-06: 0
     year:2013-07: 0
-  parents: 53d21e21159e330200810b83
+  parents:
+  - 53d21e21159e330200810b83
+  paris_complement_sante:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  paris_energie_famille:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  paris_forfait_famille:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  paris_logement:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  paris_logement_aspeh:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  paris_logement_familles:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  paris_logement_plfm:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  paris_logement_psol:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
+  ppa:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    year:2013-07: 0
   rsa:
     2013-07: 0
     2013-08: 0
@@ -288,10 +444,11 @@ familles:
     2014-06: 0
     year:2013-07: 0
 foyers_fiscaux:
-  declarants: 53d21e21159e330200810b83
-  personnes_a_charge:
+- declarants:
+  - 53d21e21159e330200810b83
+  personnes_a_charge: []
 menages:
-  enfants:
+- enfants: []
   loyer: 1224
   personne_de_reference: 53d21e21159e330200810b83
   statut_occupation_logement: 2

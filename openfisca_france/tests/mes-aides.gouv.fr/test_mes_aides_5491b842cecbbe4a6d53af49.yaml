@@ -1,58 +1,114 @@
 name: Les enfants de plus de 20 ans ne sont pas considérés à charge
 keywords:
-  - af
-  - enfants à charge
+- af
+- enfants à charge
 description: Dans l'exemple, un enfant a moins de 14 ans et l'autre a plus de 20 ans
-period: "month:2014-12"
+period: month:2014-12
 individus:
-  - age: 34
-    age_en_mois: 412
-    date_naissance: "1980-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 5491b824871dd4466d370b3a
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 52
-    date_naissance: "2010-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 5491b824871dd4466d370b39
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
-  - age: 20
-    age_en_mois: 246
-    date_naissance: "1994-06-01"
-    epargne_non_remuneree:
-      2012-01: 0
-    etudiant: 0
-    id: 5491b824871dd4466d370b38
-    inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
-    handicap: 0
-    scolarite: 1
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loue:
-      2012-01: 0
+- aah:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  age: 34
+  age_en_mois: 412
+  date_naissance: '1980-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 5491b824871dd4466d370b3a
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  age: 4
+  age_en_mois: 52
+  date_naissance: '2010-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 5491b824871dd4466d370b39
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- aah:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  age: 20
+  age_en_mois: 246
+  date_naissance: '1994-06-01'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  handicap: 0
+  id: 5491b824871dd4466d370b38
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  scolarite: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
 familles:
-  acs:
+- acs:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  adpa:
     2013-12: 0
     2014-01: 0
     2014-02: 0
@@ -235,8 +291,8 @@ familles:
     2014-11: 0
     year:2013-12: 0
   enfants:
-    - 5491b824871dd4466d370b39
-    - 5491b824871dd4466d370b38
+  - 5491b824871dd4466d370b39
+  - 5491b824871dd4466d370b38
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -251,7 +307,134 @@ familles:
     2014-10: 0
     2014-11: 0
     year:2013-12: 0
-  parents: 5491b824871dd4466d370b3a
+  parents:
+  - 5491b824871dd4466d370b3a
+  paris_complement_sante:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_energie_famille:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_forfait_famille:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_aspeh:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_familles:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_plfm:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  paris_logement_psol:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
+  ppa:
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    year:2013-12: 0
   rsa:
     2013-12: 0
     2014-01: 0
@@ -296,15 +479,17 @@ familles:
     2014-11: 0
     year:2013-12: 0
 foyers_fiscaux:
-  declarants: 5491b824871dd4466d370b3a
+- declarants:
+  - 5491b824871dd4466d370b3a
   personnes_a_charge:
-    - 5491b824871dd4466d370b39
-    - 5491b824871dd4466d370b38
+  - 5491b824871dd4466d370b39
+  - 5491b824871dd4466d370b38
 menages:
-  depcom: 67482
+- depcom: '67482'
   enfants:
-    - 5491b824871dd4466d370b39
-    - 5491b824871dd4466d370b38
+  - 5491b824871dd4466d370b39
+  - 5491b824871dd4466d370b38
+  participation_frais: false
   personne_de_reference: 5491b824871dd4466d370b3a
   statut_occupation_logement: 6
 output_variables:

@@ -1,36 +1,29 @@
 name: Chômeur seul locataire
 keywords:
-  - al
-  - caf.fr
-description: |
-  Zone 2
-
-  L	255,03
-  C	53,23
-  E	308,26
-  R	7800
-  R0	4593
-  Rp	3207
-  Tf	2,83
-  LR	255,03
-  RL	100
-  Tl	0,305
-  Tp	3,135
-  P0	34,73
-  P1	100,54
-  Pp	135,27
-  AL	172,13
-
-  caf.fr : 173,72
-period: "month:2015-02"
+- al
+- caf.fr
+"description": "Zone 2\n\nL\t255,03\nC\t53,23\nE\t308,26\nR\t7800\nR0\t4593\nRp\t3207\nTf\t2,83\nLR\t255,03\nRL\t100\nTl\t\
+  0,305\nTp\t3,135\nP0\t34,73\nP1\t100,54\nPp\t135,27\nAL\t172,13\n\ncaf.fr : 173,72"
+period: month:2015-02
 individus:
+- aah:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   activite: 1
   age: 34
   age_en_mois: 414
   ass_precondition_remplie: false
-  date_naissance: "1980-08-12"
-  chomage_imposable:
-    2013: 8580
   chomage_brut:
     2014-02: 749.3054578460502
     2014-03: 749.3054578460502
@@ -47,6 +40,8 @@ individus:
     2015-01: 749.3054578460502
     2015-02: 749.3054578460502
     year:2014-02: 8991.665494152605
+  chomage_imposable:
+    '2013': 8580
   chomage_net:
     2014-02: 679
     2014-03: 679
@@ -63,26 +58,41 @@ individus:
     2015-01: 679
     2015-02: 679
     year:2014-02: 8148
+  date_naissance: '1980-08-12'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
+  handicap: 0
   id: 54ea473f0f7afafd54c4d64d
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  handicap: 0
   pensions_alimentaires_percues:
-    2013: 0
+    '2013': 0
   retraite_imposable:
-    2013: 0
+    '2013': 0
   salaire_imposable:
-    2013: 0
+    '2013': 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 familles:
-  acs:
+- acs:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  adpa:
     2014-02: 0
     2014-03: 0
     2014-04: 0
@@ -264,7 +274,7 @@ familles:
     2014-12: 0
     2015-01: 0
     year:2014-02: 0
-  enfants:
+  enfants: []
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -279,7 +289,134 @@ familles:
     2014-12: 0
     2015-01: 0
     year:2014-02: 0
-  parents: 54ea473f0f7afafd54c4d64d
+  parents:
+  - 54ea473f0f7afafd54c4d64d
+  paris_complement_sante:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_energie_famille:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_forfait_famille:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_aspeh:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_familles:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_plfm:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  paris_logement_psol:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  ppa:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   proprietaire_proche_famille: false
   rsa:
     2014-02: 0
@@ -324,14 +461,15 @@ familles:
     2015-01: 0
     year:2014-02: 0
 foyers_fiscaux:
-  declarants: 54ea473f0f7afafd54c4d64d
+- declarants:
+  - 54ea473f0f7afafd54c4d64d
   pensions_alimentaires_versees:
-    2013: 0
-  personnes_a_charge:
-  rfr:
+    '2013': 0
+  personnes_a_charge: []
+  rfr: {}
 menages:
-  depcom: 44069
-  enfants:
+- depcom: '44069'
+  enfants: []
   loyer: 329
   personne_de_reference: 54ea473f0f7afafd54c4d64d
   statut_occupation_logement: 4
