@@ -11,12 +11,14 @@ def import_extension(path):
 		import tempfile, subprocess
 		temp_dir = tempfile.mkdtemp()
 		os.chdir(temp_dir)
-		subprocess.call('git clone ' + path + ' extension &> /dev/null', shell = True)
+		return_code = subprocess.call('git clone ' + path + ' extension &> /dev/null', shell = True)
+		if return_code > 0: raise IOError("Error loading extension from git repository " + path)
 		import_extension_from_dir('extension')
 	else:
 		import_extension_from_dir(path)
 
 def import_extension_from_dir(extension_directory):
+	if not os.path.isdir(extension_directory): raise IOError("Error loading extension: the extension directory " + extension_directory + " doesn't exist.")
 	extension_name = os.path.basename(os.path.normpath(extension_directory))
 	py_files = glob.glob(os.path.join(extension_directory, "*.py"))
 	module_names = [
