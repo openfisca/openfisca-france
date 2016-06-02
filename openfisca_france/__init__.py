@@ -66,7 +66,7 @@ def init_country():  # drop_survey_only_variables = False, simulate_f6de = False
             #     os.path.join(COUNTRY_DIR, 'assets', 'xxx', 'yyy.xml'),
             #     ('insert', 'into', 'existing', 'element'),
             #     ),
-            ] + zip(model.extensions.extensions_parameters, itertools.repeat(None))
+            ] # + zip(model.extensions.extensions_parameters, itertools.repeat(None))
 
         preprocess_legislation = staticmethod(preprocessing.preprocess_legislation)
 
@@ -94,4 +94,6 @@ def init_tax_benefit_system():
     """
     TaxBenefitSystem = init_country()
     tax_benefit_system = TaxBenefitSystem()
+
+    tax_benefit_system.add_variables_from_directory(COUNTRY_DIR + '/model')
     return tax_benefit_system
