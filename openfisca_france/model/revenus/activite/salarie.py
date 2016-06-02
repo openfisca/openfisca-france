@@ -5,8 +5,8 @@ from numpy import (
     busday_count as original_busday_count, datetime64, maximum as max_, minimum as min_, timedelta64,
     )
 
-from ...base import *  # noqa analysis:ignore
-from ...prestations.prestations_familiales.base_ressource import nb_enf
+from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
 class indemnites_stage(Variable):
     column = FloatCol
@@ -93,7 +93,7 @@ class ppe_tp_sa(Variable):
         QUIFOY['pac2']: u"1DX",
         QUIFOY['pac3']: u"1QX",
         }
-        
+
     column = BoolCol
     entity_class = Individus
     label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière"

@@ -4,7 +4,7 @@ from __future__ import division
 
 from numpy import floor, logical_not as not_
 
-from .base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class uc(Variable):

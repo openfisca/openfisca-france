@@ -14,8 +14,8 @@ from datetime import datetime
 
 from openfisca_core import periods
 
-from ....base import *  # noqa analysis:ignore
-from .....assets.holidays import holidays
+from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.assets.holidays import holidays
 
 
 log = logging.getLogger(__name__)

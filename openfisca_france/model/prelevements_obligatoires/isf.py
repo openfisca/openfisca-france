@@ -4,7 +4,7 @@ from __future__ import division
 
 from numpy import maximum as max_, minimum as min_
 
-from ..base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 # Variables apparaissant dans la feuille de déclaration de patrimoine soumis à l'ISF
 

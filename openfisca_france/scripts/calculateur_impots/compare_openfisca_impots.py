@@ -23,7 +23,7 @@ from lxml import etree
 import numpy as np
 
 import openfisca_france
-from .base import transform_scenario_to_tax_calculator_inputs
+from openfisca_france.model.base import transform_scenario_to_tax_calculator_inputs
 
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]

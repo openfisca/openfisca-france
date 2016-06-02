@@ -7,7 +7,7 @@ import copy
 import logging
 
 
-from ....base import *  # noqa
+from openfisca_france.model.base import *  # noqa
 
 
 DEBUG_SAL_TYPE = 'public_titulaire_etat'

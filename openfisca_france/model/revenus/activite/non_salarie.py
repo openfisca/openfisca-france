@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from ...base import *  # noqa
+from openfisca_france.model.base import *  # noqa
 
 
 # TODO: 5QL
@@ -269,7 +269,7 @@ class nbic_impn(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KI",
         QUIFOY['conj']: u"5LI",
         QUIFOY['pac1']: u"5MI", }
-        
+
     column = IntCol(val_type = "monetary")
     entity_class = Individus
     label = u"Revenus industriels et commerciaux professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)"
