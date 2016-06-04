@@ -8,7 +8,7 @@ period: "month:2015-02"
 individus:
   age: 64
   age_en_mois: 774
-  birth: "1950-08-12"
+  date_naissance: "1950-08-12"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -16,7 +16,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -220,20 +220,6 @@ familles:
     2015-01: 0
     year:2014-02: 0
   parents: 54dc75f5e45751d544f07233
-  paris_logement_familles:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    year:2014-02: 0
   proprietaire_proche_famille: true
   rsa:
     2014-02: 0
@@ -285,6 +271,6 @@ menages:
   enfants:
   loyer: 100
   personne_de_reference: 54dc75f5e45751d544f07233
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aspa: 0

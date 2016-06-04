@@ -10,7 +10,7 @@ individus:
   age: 55
   age_en_mois: 665
   ass_precondition_remplie: true
-  birth: "1960-01-01"
+  date_naissance: "1960-01-01"
   chomage_brut:
     2013: 19863.767660130936
     2014-06: 1655.313971677578
@@ -50,7 +50,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2013: 20512.820512820515
     2014-06: 2279.202279202279
@@ -302,20 +302,6 @@ familles:
     2015-05: 0
     year:2014-06: 0
   parents: 556ecc8cb601174568edcad1
-  paris_logement_familles:
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    year:2014-06: 0
   rsa:
     2014-06: 0
     2014-07: 0
@@ -365,6 +351,6 @@ menages:
   depcom: 77004
   enfants:
   personne_de_reference: 556ecc8cb601174568edcad1
-  statut_occupation: 2
+  statut_occupation_logement: 2
 output_variables:
   ass: 490

@@ -7,7 +7,7 @@ period: "month:2014-07"
 individus:
   - age: 29
     age_en_mois: 354
-    birth: "1985-01-01"
+    date_naissance: "1985-01-01"
     enceinte: false
     epargne_non_remuneree:
       2012-01: 0
@@ -16,15 +16,15 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
-    statmarit: 2
+    handicap: 0
+    statut_marital: 2
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 24
     age_en_mois: 294
-    birth: "1990-01-01"
+    date_naissance: "1990-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -32,7 +32,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -238,20 +238,6 @@ familles:
   parents:
     - 53d79ed1f6aa390200a6cd3a
     - 53d79ed1f6aa390200a6cd39
-  paris_logement_familles:
-    2013-07: 0
-    2013-08: 0
-    2013-09: 0
-    2013-10: 0
-    2013-11: 0
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    year:2013-07: 0
   rsa:
     2013-07: 0
     2013-08: 0
@@ -303,6 +289,6 @@ menages:
   conjoint: 53d79ed1f6aa390200a6cd39
   enfants:
   personne_de_reference: 53d79ed1f6aa390200a6cd3a
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 629.13

@@ -34,7 +34,7 @@ individus:
   - activite: 3
     age: 88
     age_en_mois: 1061
-    birth: "1926-09-05"
+    date_naissance: "1926-09-05"
     chomage_imposable:
       2013: 0
     epargne_non_remuneree:
@@ -44,7 +44,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2013: 0
     retraite_imposable:
@@ -83,14 +83,14 @@ individus:
       year:2014-02: 21999.999999999996
     salaire_imposable:
       2013: 0
-    statmarit: 1
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 14
     age_en_mois: 173
-    birth: "2000-08-12"
+    date_naissance: "2000-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -98,7 +98,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -303,20 +303,6 @@ familles:
     2015-01: 0
     year:2014-02: 0
   parents: 54d4951fd4e3b0d74454c76f
-  paris_logement_familles:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    year:2014-02: 0
   proprietaire_proche_famille: false
   rsa:
     2014-02: 0
@@ -373,6 +359,6 @@ menages:
   enfants: 54d496deaf6bfed9447f95bc
   loyer: 1000
   personne_de_reference: 54d4951fd4e3b0d74454c76f
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 88.06

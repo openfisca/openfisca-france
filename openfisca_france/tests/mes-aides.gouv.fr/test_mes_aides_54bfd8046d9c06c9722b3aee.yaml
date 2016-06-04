@@ -9,7 +9,7 @@ period: "month:2015-01"
 individus:
   age: 35
   age_en_mois: 420
-  birth: "1980-01-01"
+  date_naissance: "1980-01-01"
   bourse_enseignement_sup:
     2013: 24000
     2014-01: 2000
@@ -51,7 +51,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -255,20 +255,6 @@ familles:
     2014-12: 0
     year:2014-01: 0
   parents: 54bfd7856d9c06c9722b3ad5
-  paris_logement_familles:
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    year:2014-01: 0
   rsa:
     2014-01: 0
     2014-02: 0
@@ -318,6 +304,6 @@ menages:
   depcom: 30092
   enfants:
   personne_de_reference: 54bfd7856d9c06c9722b3ad5
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 414.21

@@ -53,7 +53,7 @@ def build_reform(tax_benefit_system):
             # Note : le supplément familial de traitement est imposable.
 
             hsup = simulation.calculate('hsup', period)
-            type_sal = simulation.calculate('type_sal', period)
+            categorie_salarie = simulation.calculate('categorie_salarie', period)
             P = simulation.legislation_at(period.start)
 
             salarie = P.cotsoc.cotisations_salarie
@@ -63,11 +63,11 @@ def build_reform(tax_benefit_system):
             csg.add_bracket(0, taux_csg)
 
 #            cat = None
-#            if (type_sal == 0).all():
+#            if (categorie_salarie == 0).all():
 #                cat = 'prive_non_cadre'
-#            elif (type_sal == 1).all():
+#            elif (categorie_salarie == 1).all():
 #                cat = 'prive_cadre'
-#            elif (type_sal == 2).all():
+#            elif (categorie_salarie == 2).all():
 #                cat = 'public_titulaire_etat'
 #            if cat is not None:
 #                for name, bareme in salarie[cat].iteritems():
@@ -80,9 +80,9 @@ def build_reform(tax_benefit_system):
             prive_non_cadre.add_tax_scale(csg)
             prive_cadre.add_tax_scale(csg)
             salaire_de_base = (
-                (type_sal == CAT['prive_non_cadre']) *
+                (categorie_salarie == CAT['prive_non_cadre']) *
                 prive_non_cadre.inverse().calc(salaire_imposable_pour_inversion) +
-                (type_sal == CAT['prive_cadre']) * prive_cadre.inverse().calc(salaire_imposable_pour_inversion)
+                (categorie_salarie == CAT['prive_cadre']) * prive_cadre.inverse().calc(salaire_imposable_pour_inversion)
                 )
             return period, salaire_de_base + hsup
 
@@ -107,7 +107,7 @@ def build_reform(tax_benefit_system):
             # Calcule le salaire brut à partir du salaire imposable.
             # Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
             # Note : le supplément familial de traitement est imposable.
-            type_sal = simulation.calculate('type_sal', period)
+            categorie_salarie = simulation.calculate('categorie_salarie', period)
             P = simulation.legislation_at(period.start)
             taux_csg = P.csg.activite.deductible.taux * (1 - .0175)
             csg = MarginalRateTaxScale(name = 'csg')
@@ -115,7 +115,7 @@ def build_reform(tax_benefit_system):
 
             salarie = P.cotsoc.cotisations_salarie
 #            cat = None
-#            if (type_sal == 2).all():
+#            if (categorie_salarie == 2).all():
 #                cat = 'public_titulaire_etat'
 #            if cat is not None:
 #                for name, bareme in salarie[cat].iteritems():
@@ -144,7 +144,7 @@ def build_reform(tax_benefit_system):
             bareme_prime.add_bracket(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
             public_titulaire_etat.add_tax_scale(bareme_prime)
             traitement_indiciaire_brut = (
-                (type_sal == CAT['public_titulaire_etat']) *
+                (categorie_salarie == CAT['public_titulaire_etat']) *
                 public_titulaire_etat.inverse().calc(salaire_imposable_pour_inversion)
                 )
             # TODO: complete this to deal with the fonctionnaire

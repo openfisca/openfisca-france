@@ -21,7 +21,7 @@ def check_1_parent(year = 2013):
                 ),
             ],
         period = year,
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
+        parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
         ).new_simulation(debug = True)
     simulation.calculate('revdisp')
     salaire_imposable = simulation.get_holder('salaire_imposable').new_test_case_array(simulation.period)
@@ -46,17 +46,17 @@ def check_1_parent_2_enfants(year):
         period = year,
         parent1 = dict(
             activite = u'Actif occupé',
-            birth = 1970,
-            statmarit = u'Célibataire',
+            date_naissance = 1970,
+            statut_marital = u'Célibataire',
             ),
         enfants = [
             dict(
                 activite = u'Étudiant, élève',
-                birth = '1992-02-01',
+                date_naissance = '1992-02-01',
                 ),
             dict(
                 activite = u'Étudiant, élève',
-                birth = '1990-04-17',
+                date_naissance = '1990-04-17',
                 ),
             ],
         ).new_simulation(debug = True)
@@ -83,17 +83,17 @@ def check_1_parent_2_enfants_1_column(column_name, year):
         period = year,
         parent1 = dict(
             activite = u'Actif occupé',
-            birth = 1970,
-            statmarit = u'Célibataire',
+            date_naissance = 1970,
+            statut_marital = u'Célibataire',
             ),
         enfants = [
             dict(
                 activite = u'Étudiant, élève',
-                birth = '1992-02-01',
+                date_naissance = '1992-02-01',
                 ),
             dict(
                 activite = u'Étudiant, élève',
-                birth = '1990-04-17',
+                date_naissance = '1990-04-17',
                 ),
             ],
         ).new_simulation(debug = True)

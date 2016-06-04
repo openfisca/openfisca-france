@@ -42,7 +42,7 @@ def split(scenario):
 
     for pac_index, pac_id in enumerate(foyer_fiscal.pop('personnes_a_charge')):
         pac = individus[pac_id].copy()
-        age = year - pac.pop('birth').year - 1
+        age = year - pac.pop('date_naissance').year - 1
         if 18 <= age < (21 + 4 * (pac['activite'] == 2)): # Exprime la condition de rattachement au foyer pour les majeurs
             rattachements_possibles.append(pac_id)
         else:
@@ -96,19 +96,19 @@ def define_scenario(year):
     scenario.init_single_entity(
         parent1 = dict(
             activite = u'Actif occupé',
-            birth = 1973,
+            date_naissance = 1973,
 #            cadre = True,
             salaire_imposable = 90000,
-            statmarit = u'Célibataire',
+            statut_marital = u'Célibataire',
             ),
         enfants = [
             dict(
                 activite = u'Étudiant, élève',
-                birth = '1992-02-01',
+                date_naissance = '1992-02-01',
                 ),
             dict(
                 activite = u'Étudiant, élève',
-                birth = '2000-04-17',
+                date_naissance = '2000-04-17',
                 ),
             ],
         foyer_fiscal = dict(  #TODO: pb avec f2ck

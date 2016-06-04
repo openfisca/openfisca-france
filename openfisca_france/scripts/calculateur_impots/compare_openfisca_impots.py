@@ -38,23 +38,23 @@ def define_scenario(year):
         period = year,
         parent1 = dict(
             activite = u'Actif occupé',
-            birth = 1973,
+            date_naissance = 1973,
             salaire_imposable = 48000,
-            statmarit = u'Marié',
+            statut_marital = u'Marié',
             ),
         parent2 = dict(
             activite = u'Actif occupé',
-            birth = 1973,
-            statmarit = u'Marié',
+            date_naissance = 1973,
+            statut_marital = u'Marié',
             ),
         enfants = [
             dict(
                 activite = u'Étudiant, élève',
-                birth = '1993-02-01',
+                date_naissance = '1993-02-01',
                 ),
 #            dict(
 #                activite = u'Étudiant, élève',
-#                birth = '2000-04-17',
+#                date_naissance = '2000-04-17',
 #                ),
             ],
         foyer_fiscal = dict(  #TODO: pb avec f2ck
@@ -146,7 +146,7 @@ def compare(scenario, tested = False):
         'IPROP': u'Impôt proportionnel',
         'RFOR': u'?',#TODO (f7up)
         'PERPPLAFTP': u'?',
-        'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
+        'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, maries_ou_pacses)
         'RHEBE': u'?',#TODO (7ce)
         'RAA': u'?',#TODO (7ud)
         'RAH': u'?',#TODO (7ce)

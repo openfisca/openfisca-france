@@ -6,10 +6,10 @@ description: 2 enfants dont un de plus de 14 ans - on n'applique pas de majorati
 period: month:2015-11
 relative_error_margin: 0.02
 individus:
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 33
   age_en_mois: 398
-  birth: '1982-08-12'
+  date_naissance: '1982-08-12'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
@@ -18,7 +18,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2014-11: 1709.4017094017092
     2014-12: 1709.4017094017092
@@ -65,7 +65,7 @@ individus:
     2015-09: 0
     2015-10: 0
     year:2014-11: 12000
-  statmarit: 1
+  statut_marital: 1
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
   tns_micro_entreprise_type_activite: bic
@@ -73,10 +73,10 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 13
   age_en_mois: 163
-  birth: '2002-03-12'
+  date_naissance: '2002-03-12'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
@@ -85,7 +85,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   scolarite: 1
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
@@ -94,10 +94,10 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 15
   age_en_mois: 180
-  birth: '2000-11-01'
+  date_naissance: '2000-11-01'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
@@ -106,7 +106,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   scolarite: 1
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
@@ -115,10 +115,10 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 29
   age_en_mois: 350
-  birth: '1986-08-12'
+  date_naissance: '1986-08-12'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
@@ -127,7 +127,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2014-11: 1709.4017094017092
     2014-12: 1709.4017094017092
@@ -173,7 +173,7 @@ individus:
     2015-09: 0
     2015-10: 0
     year:2014-11: 12000
-  statmarit: 1
+  statut_marital: 1
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
   tns_micro_entreprise_type_activite: bic
@@ -384,20 +384,6 @@ familles:
   parents:
   - 563b8e9152c2836804f25b28
   - 563b8e9152c2836804f25b19
-  paris_logement_familles:
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    2015-07: 0
-    2015-08: 0
-    2015-09: 0
-    2015-10: 0
-    year:2014-11: 0
   rsa:
     2014-11: 0
     2014-12: 0
@@ -456,7 +442,6 @@ menages:
   - 563b8e9152c2836804f25b27
   - 563b8e9152c2836804f25b26
   loyer: 0
-  parisien: false
   personne_de_reference: 563b8e9152c2836804f25b28
 output_variables:
   af: 129.35

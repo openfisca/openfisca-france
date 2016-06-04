@@ -4,7 +4,7 @@
     salaire_de_base: 1445.38
     allegement_fillon_mode_recouvrement: 1
     effectif_entreprise: 1
-    type_sal: 0
+    categorie_salarie: 0
   output_variables:
     cotisations_employeur: -607
     allegement_fillon: 409.56
@@ -17,7 +17,7 @@
     salaire_de_base: 1445.38
     allegement_fillon_mode_recouvrement: 1
     effectif_entreprise: 1
-    type_sal: 0
+    categorie_salarie: 0
     jeune_entreprise_innovante: 1
   output_variables:
     cotisations_employeur: -607

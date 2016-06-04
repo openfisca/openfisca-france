@@ -1,0 +1,16 @@
+- name: "Infer from future values"
+  period: "month:2015-04"
+  input_variables:
+    garde_alternee:
+      2016-01: True
+  output_variables:
+    garde_alternee: True
+
+- name: "Prefer past values"
+  period: "month:2015-04"
+  input_variables:
+    garde_alternee:
+      2016-01: True
+      2015-02: False
+  output_variables:
+    garde_alternee: False

@@ -10,7 +10,7 @@ period: month:2015-05
 individus:
 - age: 44
   age_en_mois: 537
-  birth: '1970-08-09'
+  date_naissance: '1970-08-09'
   chomage_imposable:
     '2013': 0
   epargne_non_remuneree:
@@ -20,7 +20,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   pensions_alimentaires_percues:
     '2013': 0
   retraite_imposable:
@@ -74,14 +74,14 @@ individus:
     2015-04: 2000
     2015-05: 2000
     year:2014-05: 40000
-  statmarit: 1
+  statut_marital: 1
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 - age: 74
   age_en_mois: 897
-  birth: '1940-08-09'
+  date_naissance: '1940-08-09'
   chomage_imposable:
     '2013': 0
   epargne_non_remuneree:
@@ -91,21 +91,21 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   pensions_alimentaires_percues:
     '2013': 0
   retraite_imposable:
     '2013': 0
   salaire_imposable:
     '2013': 0
-  statmarit: 1
+  statut_marital: 1
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 - age: 1
   age_en_mois: 20
-  birth: '2013-09-08'
+  date_naissance: '2013-09-08'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -113,14 +113,14 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 - age: 1
   age_en_mois: 21
-  birth: '2013-08-09'
+  date_naissance: '2013-08-09'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -128,7 +128,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -336,20 +336,6 @@ familles:
   parents:
   - 5568905da38f5d14462ec473
   - 5568905da38f5d14462ec472
-  paris_logement_familles:
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    year:2014-05: 0
   rsa:
     2014-05: 0
     2014-06: 0
@@ -410,6 +396,6 @@ menages:
   - 5568905da38f5d14462ec470
   participation_frais: false
   personne_de_reference: 5568905da38f5d14462ec473
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   paje_base: 186.65

@@ -9,10 +9,10 @@ description: |
   La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) :
 period: "month:2015-09"
 individus:
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 26
     age_en_mois: 319
-    birth: "1989-02-08"
+    date_naissance: "1989-02-08"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -21,7 +21,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2013: 0
       2014-09: 0
@@ -70,15 +70,15 @@ individus:
       2015-07: 0
       2015-08: 0
       year:2014-09: 0
-    statmarit: 2
+    statut_marital: 2
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 23
     age_en_mois: 276
-    birth: "1992-08-22"
+    date_naissance: "1992-08-22"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -87,7 +87,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2013: 0
       2014-09: 0
@@ -136,7 +136,7 @@ individus:
       2015-07: 0
       2015-08: 0
       year:2014-09: 0
-    statmarit: 2
+    statut_marital: 2
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -342,20 +342,6 @@ familles:
   parents:
     - 55f02eae0df1c6360477f8bc
     - 55f02eae0df1c6360477f8ae
-  paris_logement_familles:
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    2015-07: 0
-    2015-08: 0
-    year:2014-09: 0
   rsa:
     2014-09: 0
     2014-10: 0
@@ -408,7 +394,6 @@ menages:
   depcom: 44109
   enfants:
   loyer: 0
-  parisien: false
   personne_de_reference: 55f02eae0df1c6360477f8bc
 output_variables:
   rsa: 786.24

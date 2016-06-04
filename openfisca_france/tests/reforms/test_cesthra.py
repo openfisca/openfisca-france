@@ -24,21 +24,21 @@ def test_cesthra_invalidee():
                 ),
             ],
         period = period,
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
+        parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
+        parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
         enfants = [
-            dict(birth = datetime.date(year - 9, 1, 1)),
-            dict(birth = datetime.date(year - 9, 1, 1)),
+            dict(date_naissance = datetime.date(year - 9, 1, 1)),
+            dict(date_naissance = datetime.date(year - 9, 1, 1)),
             ],
         )
 
-    reference_simulation = scenario.new_simulation(debug = True, reference = True)
+    reference_simulation = scenario.new_simulation(reference = True)
     reference_impo = reference_simulation.calculate('impo')
     assert reference_impo is not None
     reference_revdisp = reference_simulation.calculate('revdisp', period = period)
     assert reference_revdisp is not None
 
-    reform_simulation = scenario.new_simulation(debug = True)
+    reform_simulation = scenario.new_simulation()
     reform_impo = reform_simulation.calculate('impo')
     assert reform_impo is not None
     reform_revdisp = reform_simulation.calculate('revdisp', period = period)

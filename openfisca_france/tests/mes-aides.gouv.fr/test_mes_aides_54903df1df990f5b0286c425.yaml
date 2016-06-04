@@ -10,7 +10,7 @@ period: "month:2014-12"
 individus:
   - age: 50
     age_en_mois: 611
-    birth: "1964-01-01"
+    date_naissance: "1964-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -18,7 +18,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2012: 22435.897435897434
       2013-12: 1851.8518518518517
@@ -70,14 +70,14 @@ individus:
       2014-11: 1500
       2014-12: 1500
       year:2013-12: 17500.000000000004
-    statmarit: 1
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 50
     age_en_mois: 611
-    birth: "1964-01-01"
+    date_naissance: "1964-01-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -85,7 +85,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -291,20 +291,6 @@ familles:
   parents:
     - 54903dc31abb1c57022095be
     - 54903dc31abb1c57022095b1
-  paris_logement_familles:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    year:2013-12: 0
   proprietaire_proche_famille: false
   rsa:
     2013-12: 0
@@ -359,7 +345,7 @@ menages:
   enfants:
   loyer: 100
   personne_de_reference: 54903dc31abb1c57022095be
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   acs: 700
   cmu_c: false

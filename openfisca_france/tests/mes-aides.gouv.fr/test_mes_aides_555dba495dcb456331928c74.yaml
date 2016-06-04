@@ -11,7 +11,7 @@ period: "month:2015-05"
 individus:
   - age: 35
     age_en_mois: 422
-    birth: "1980-03-02"
+    date_naissance: "1980-03-02"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -19,15 +19,15 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
-    statmarit: 1
+    handicap: 0
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 34
     age_en_mois: 417
-    birth: "1980-08-09"
+    date_naissance: "1980-08-09"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -35,16 +35,16 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
-    statmarit: 1
+    handicap: 0
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 3
     age_en_mois: 45
-    birth: "2011-08-09"
+    date_naissance: "2011-08-09"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -53,7 +53,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -259,20 +259,6 @@ familles:
   parents:
     - 555dba3b8a38a15931bef798
     - 555dba3b8a38a15931bef797
-  paris_logement_familles:
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    year:2014-05: 0
   proprietaire_proche_famille: true
   rsa:
     2014-05: 0
@@ -326,7 +312,6 @@ menages:
   depcom: 76540
   enfants: 55eef7e50df1c6360477f602
   loyer: 600
-  parisien: false
   personne_de_reference: 555dba3b8a38a15931bef798
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:

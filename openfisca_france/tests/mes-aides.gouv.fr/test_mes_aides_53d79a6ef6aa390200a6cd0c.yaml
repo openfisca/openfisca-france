@@ -6,7 +6,7 @@ period: month:2014-07
 individus:
 - age: 34
   age_en_mois: 414
-  birth: '1979-12-31'
+  date_naissance: '1979-12-31'
   enceinte: false
   epargne_non_remuneree:
     2012-01: 0
@@ -15,14 +15,14 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
 - age: 4
   age_en_mois: 54
-  birth: '2009-12-31'
+  date_naissance: '2009-12-31'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -30,7 +30,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -236,20 +236,6 @@ familles:
     year:2013-07: 0
   parents:
   - 53d79a06f6aa390200a6cd0b
-  paris_logement_familles:
-    2013-07: 0
-    2013-08: 0
-    2013-09: 0
-    2013-10: 0
-    2013-11: 0
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    year:2013-07: 0
   rsa:
     2013-07: 0
     2013-08: 0
@@ -303,6 +289,6 @@ menages:
   - 53d79a06f6aa390200a6cd0a
   participation_frais: false
   personne_de_reference: 53d79a06f6aa390200a6cd0b
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 643.67

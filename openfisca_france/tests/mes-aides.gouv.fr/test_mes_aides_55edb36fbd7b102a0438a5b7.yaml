@@ -7,10 +7,10 @@ keywords:
 description: "Plafond Couple 1 revenu 1 enfant à charge né après le 1/4/14 : 35 729"
 period: "month:2015-09"
 individus:
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 55
     age_en_mois: 666
-    birth: "1960-03-02"
+    date_naissance: "1960-03-02"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -19,7 +19,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2014-09: 5270.655270655271
       2014-10: 5270.655270655271
@@ -66,15 +66,15 @@ individus:
       2015-07: 0
       2015-08: 0
       year:2014-09: 36999.99999999999
-    statmarit: 1
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 54
     age_en_mois: 659
-    birth: "1960-09-08"
+    date_naissance: "1960-09-08"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -83,16 +83,16 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
-    statmarit: 1
+    handicap: 0
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 0
     age_en_mois: 4
-    birth: "2015-04-08"
+    date_naissance: "2015-04-08"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -101,7 +101,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -307,20 +307,6 @@ familles:
   parents:
     - 55edb366dbd69f2b04f5639d
     - 55edb366dbd69f2b04f5639c
-  paris_logement_familles:
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    2015-07: 0
-    2015-08: 0
-    year:2014-09: 0
   proprietaire_proche_famille: true
   rsa:
     2014-09: 0
@@ -375,8 +361,7 @@ menages:
   depcom: 78646
   enfants: 55edb366dbd69f2b04f5639b
   loyer: 600
-  parisien: false
   personne_de_reference: 55edb366dbd69f2b04f5639d
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   paje_base: 0

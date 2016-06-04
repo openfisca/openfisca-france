@@ -8,12 +8,12 @@ description: |
   La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) : aucune
 period: "month:2015-09"
 individus:
-  a_charge_fiscale: true
+  enfant_a_charge: true
   activite: 1
   age: 56
   age_en_mois: 681
   ass_precondition_remplie: false
-  birth: "1958-11-25"
+  date_naissance: "1958-11-25"
   chomage_imposable:
     2013: 5219
   chomage_brut:
@@ -54,7 +54,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2014-09: 673.7891737891738
     2014-10: 673.7891737891738
@@ -304,20 +304,6 @@ familles:
     2015-08: 0
     year:2014-09: 0
   parents: 55f02bd87869142d04874f84
-  paris_logement_familles:
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    2015-07: 0
-    2015-08: 0
-    year:2014-09: 0
   rsa:
     2014-09: 0
     2014-10: 0
@@ -368,8 +354,7 @@ menages:
   depcom: 44041
   enfants:
   loyer: 0
-  parisien: false
   personne_de_reference: 55f02bd87869142d04874f84
-  statut_occupation: 2
+  statut_occupation_logement: 2
 output_variables:
   rsa: 461.26

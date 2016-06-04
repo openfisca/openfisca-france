@@ -84,14 +84,14 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
         stagiaire = simulation.calculate('stagiaire', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
 
         bareme_by_type_sal_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur
         exoneration = sum(
             apply_bareme_for_relevant_type_sal(
                 bareme_by_type_sal_name = bareme_by_type_sal_name,
                 bareme_name = bareme_name,
-                type_sal = type_sal,
+                categorie_salarie = categorie_salarie,
                 base = stage_gratification_reintegration,
                 plafond_securite_sociale = plafond_securite_sociale,
                 round_base_decimals = 2,
@@ -116,7 +116,7 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
         stagiaire = simulation.calculate('stagiaire', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
 
         bareme_by_type_sal_name = simulation.legislation_at(period.start).cotsoc.cotisations_salarie
         bareme_names = ['agff', 'assedic']
@@ -126,7 +126,7 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
             exoneration += apply_bareme_for_relevant_type_sal(
                 bareme_by_type_sal_name = bareme_by_type_sal_name,
                 bareme_name = bareme_name,
-                type_sal = type_sal,
+                categorie_salarie = categorie_salarie,
                 base = stage_gratification_reintegration,
                 plafond_securite_sociale = plafond_securite_sociale,
                 round_base_decimals = 2,

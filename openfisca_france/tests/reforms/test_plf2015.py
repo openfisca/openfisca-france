@@ -26,16 +26,16 @@ def test(year = 2013):
                 ),
             ],
         period = periods.period('year', year),
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        parent2 = dict(birth = datetime.date(year - 40, 1, 1)) if people >= 2 else None,
+        parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
+        parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)) if people >= 2 else None,
         enfants = [
-            dict(birth = datetime.date(year - 9, 1, 1)) if people >= 3 else None,
-            dict(birth = datetime.date(year - 9, 1, 1)) if people >= 4 else None,
+            dict(date_naissance = datetime.date(year - 9, 1, 1)) if people >= 3 else None,
+            dict(date_naissance = datetime.date(year - 9, 1, 1)) if people >= 4 else None,
             ] if people >= 3 else None,
         )
 
-    reference_simulation = scenario.new_simulation(debug = True, reference = True)
-    reform_simulation = scenario.new_simulation(debug = True)
+    reference_simulation = scenario.new_simulation(reference = True)
+    reform_simulation = scenario.new_simulation()
     error_margin = 1
 
     impo = reference_simulation.calculate('impo')

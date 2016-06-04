@@ -4,19 +4,13 @@
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
-  foyers_fiscaux:
-    declarants: ["parent1"]
-    personnes_a_charge: ["enfant1"]
-  menages:
-    personne_de_reference: "parent1"
-    enfants: ["enfant1"]
   individus:
     - id: "parent1"
       age: 40
     - id: "enfant1"
       age: 20
   output_variables:
-    al_pac: 1
+    al_nb_personnes_a_charge: 1
 
 - name: "Aides logements - les enfants de plus de 21 ans ne sont pas considérés à charge"
   description: Nombre de personnes à charge pour les AL
@@ -24,19 +18,13 @@
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
-  foyers_fiscaux:
-    declarants: ["parent1"]
-    personnes_a_charge: ["enfant1"]
-  menages:
-    personne_de_reference: "parent1"
-    enfants: ["enfant1"]
   individus:
     - id: "parent1"
       age: 40
     - id: "enfant1"
       age: 21
   output_variables:
-    al_pac: 0
+    al_nb_personnes_a_charge: 0
 
 - name: "Aides logements - les enfants de plus de 21 ans handicapés (>80%) sont considérés à charge"
   description: Nombre de personnes à charge pour les AL
@@ -55,10 +43,26 @@
       age: 40
     - id: "enfant1"
       age: 30
-      invalide: true
+      handicap: true
       taux_incapacite: 0.9
   output_variables:
-    al_pac: 1
+    al_nb_personnes_a_charge: 1
+
+- name: "Aides logements - les enfants de plus de 21 ans inaptes au travail sont considérés à charge"
+  description: Nombre de personnes à charge pour les AL
+  period: 2015-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 30
+      handicap: true
+      inapte_travail: true
+  output_variables:
+    al_nb_personnes_a_charge: 1
 
 - name: "Aides logements - les enfants de plus de 21 ans handicapés (<80%) ne sont pas considérés à charge"
   description: Nombre de personnes à charge pour les AL
@@ -66,18 +70,101 @@
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
-  foyers_fiscaux:
-    declarants: ["parent1"]
-    personnes_a_charge: ["enfant1"]
-  menages:
-    personne_de_reference: "parent1"
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 30
+      handicap: true
+      taux_incapacite: 0.7
+  output_variables:
+    al_nb_personnes_a_charge: 0
+
+- name: "Aides logements - les enfants de plus de 21 ans indaptes au travail ou handicapés sont considérés à charge si ressources <= 12000 en 2016"
+  description: Nombre de personnes à charge pour les AL
+  period: 2016-01
+  familles:
+    parents: ["parent1"]
     enfants: ["enfant1"]
   individus:
     - id: "parent1"
       age: 40
     - id: "enfant1"
       age: 30
-      invalide: true
-      taux_incapacite: 0.7
+      handicap: true
+      inapte_travail: true
+      prestations_familiales_base_ressources_individu: 11900
   output_variables:
-    al_pac: 0
+    al_nb_personnes_a_charge: 1
+
+- name: "Aides logements - les enfants de plus de 21 ans indaptes au travail ou handicapés ne sont pas considérés à charge si ressources > 12000 en 2016"
+  description: Nombre de personnes à charge pour les AL
+  period: 2015-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 30
+      handicap: true
+      inapte_travail: true
+      prestations_familiales_base_ressources_individu: 12100
+  output_variables:
+    al_nb_personnes_a_charge: 0
+
+- name: "Abattement sur les ressources des enfants à hauteur de 125% du plafond ASPA personne seule"
+  period: 2016-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 19
+      prestations_familiales_base_ressources_individu: 12500
+  output_variables:
+    aide_logement_base_ressources: 500
+
+# Pour vérifier qu'on prend le plafond ASPA pour la bonne période
+- name: "Abattement sur les ressources des enfants à hauteur de 125% du plafond ASPA personne seule (autre période)"
+  period: 2012-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 19
+      prestations_familiales_base_ressources_individu: 12500
+  output_variables:
+    aide_logement_base_ressources_defaut: 12500 - 10634.36
+
+- name: "Personne isolée"
+  period: 2015-01
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+    zone_apl_famille: 1
+    loyer_famille: 800
+    aide_logement_base_ressources: 12000
+    statut_occupation_logement_famille: 4  # Locataire
+  individus:
+    - id: "parent1"
+      age: 40
+  output_variables:
+    aide_logement_loyer_retenu: 292.62
+    aide_logement_charges: 53.23
+    aide_logement_R0: 4593
+    aide_logement_taux_famille: 0.0283
+    # LRef: 255.03
+    # RL: 1.147
+    aide_logement_taux_loyer: 0.00404
+    # Po: 34.73
+    # Rp: 7407
+    aide_logement_participation_personelle: 34.73 + (0.0283 + 0.00404) * 7407  # 274.27
+    aide_logement_montant_brut: 292.62 + 53.23 - 274.27 # 71.58
+

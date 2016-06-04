@@ -5,7 +5,7 @@ description: |
   SMIC mensuel = 1457,52€
   SMIC annuel = 17490,20€
   Coeff max ent > 20 salariés = 0,2835
-  
+
   (0,2835/0,6)*[1,6*(17490,20/17490,20)] = 0,2835
   Coeff max est égal au plafond donc montant annuel Fillon =
   17490,20* 0,2835 = 4958,415
@@ -18,6 +18,6 @@ input_variables:
   effectif_entreprise: 21
   jeune_entreprise_innovante: false
   salaire_de_base: 1457.52
-  type_sal: 0
+  categorie_salarie: 0
 output_variables:
   allegement_fillon: 413.20125

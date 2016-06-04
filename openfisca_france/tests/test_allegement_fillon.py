@@ -30,7 +30,7 @@ test_case_by_employee_type = dict(
                 "2013-11": 35 * 52 / 12 * 9,
                 "2013-12": 35 * 52 / 12 * 9 * 2,
                 },
-            type_sal = 0,
+            categorie_salarie = 0,
             ),
         output_variables = dict(
             allegement_fillon = {
@@ -57,7 +57,7 @@ test_case_by_employee_type = dict(
                 "2013-11": 35 * 52 / 12 * 9,
                 "2013-12": 35 * 52 / 12 * 9 * 2,
                 },
-            type_sal = 0,
+            categorie_salarie = 0,
             ),
         output_variables = dict(
             allegement_fillon = {
@@ -96,7 +96,7 @@ test_case_by_employee_type = dict(
                 "2013-11": 35 * 52 / 12 * 9,
                 "2013-12": 35 * 52 / 12 * 9 * 2,
                 },
-            type_sal = 0,
+            categorie_salarie = 0,
             ),
         output_variables = dict(
             allegement_fillon = {
@@ -136,7 +136,7 @@ test_case_by_employee_type = dict(
                 "2015-11": 5000,
                 "2015-12": 5000,
                 },
-            type_sal = 0,
+            categorie_salarie = 0,
             ),
         output_variables = dict(
             allegement_fillon = {
@@ -170,14 +170,14 @@ def test_check():
     for employee_type, test_parameters in test_case_by_employee_type.iteritems():
         simulation_period = 2013
         parent1 = dict(
-            birth = datetime.date(periods.period(simulation_period).start.year - 40, 1, 1),
+            date_naissance = datetime.date(periods.period(simulation_period).start.year - 40, 1, 1),
             )
         parent1.update(test_parameters['input_variables'])
 
         simulation = reform.new_scenario().init_single_entity(
             period = simulation_period,
             parent1 = parent1,
-            ).new_simulation(debug = True)
+            ).new_simulation()
 
         for variable, amounts in test_parameters['output_variables'].iteritems():
             if isinstance(amounts, dict):

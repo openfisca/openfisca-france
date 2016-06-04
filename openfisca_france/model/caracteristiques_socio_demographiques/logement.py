@@ -7,12 +7,27 @@ from numpy.core.defchararray import startswith
 from ..base import *  # noqa analysis:ignore
 
 
-build_column('coloc', BoolCol(label = u"Vie en colocation"))
+class coloc(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Vie en colocation"
 
-build_column('depcom', FixedStrCol(label = u"Code INSEE (depcom) du lieu de résidence", entity = 'men', max_length = 5))
 
 
-build_column('logement_chambre', BoolCol(label = u"Le logement est considéré comme une chambre"))
+class depcom(Variable):
+    column = FixedStrCol(max_length = 5)
+    entity_class = Menages
+    label = u"Code INSEE (depcom) du lieu de résidence"
+
+
+
+
+class logement_chambre(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Le logement est considéré comme une chambre"
+
+
 
 class loyer(Variable):
     column = FloatCol()
@@ -20,21 +35,31 @@ class loyer(Variable):
     set_input = set_input_divide_by_period
     label = u"Loyer ou mensualité d'emprunt pour un primo-accédant"
 
+class loyer_individu(EntityToPersonColumn):
+    entity_class = Individus
+    label = u"Zone apl de la personne"
+    variable = loyer
+
+class loyer_famille(PersonToEntityColumn):
+    entity_class = Familles
+    label = u"Zone apl de la famille"
+    role = CHEF
+    variable = loyer_individu
+
 class charges_locatives(Variable):
     column = FloatCol()
     entity_class = Menages
     set_input = set_input_divide_by_period
     label = u'Charges locatives'
 
-build_column(
-    'proprietaire_proche_famille',
-    BoolCol(
-        entity = "fam",
-        label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint",
-    ),
-)
+class proprietaire_proche_famille(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
 
-class statut_occupation(Variable):
+
+
+class statut_occupation_logement(Variable):
     column = EnumCol(
         enum = Enum([
             u"Non renseigné",
@@ -48,7 +73,7 @@ class statut_occupation(Variable):
             u"Sans domicile stable"])
     )
     entity_class = Menages
-    label = u"Statut d'occupation"
+    label = u"Statut d'occupation du logement"
     set_input = set_input_dispatch_by_period
 
 

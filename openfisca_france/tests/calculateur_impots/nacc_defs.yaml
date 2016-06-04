@@ -12,9 +12,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -39,9 +39,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 1500
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -66,9 +66,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 1500
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -93,9 +93,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -120,9 +120,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -147,9 +147,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -175,9 +175,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -203,9 +203,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -231,9 +231,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -259,9 +259,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -287,9 +287,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -315,9 +315,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -343,9 +343,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -371,9 +371,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -399,9 +399,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -427,9 +427,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -455,9 +455,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -483,9 +483,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 0
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -511,9 +511,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 1500
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -540,9 +540,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 1500
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -569,9 +569,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 1500
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -598,9 +598,9 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     nacc_defs: 1500
-    birth: '1970-01-01'
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0

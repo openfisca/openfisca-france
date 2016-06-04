@@ -16,7 +16,7 @@ individus:
     age: 45
     age_en_mois: 541
     ass_precondition_remplie: true
-    birth: "1969-10-26"
+    date_naissance: "1969-10-26"
     chomage_brut:
       2012: 10541.039371642815
       2013-12: 878.4199476369013
@@ -56,8 +56,8 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
-    statmarit: 1
+    handicap: 0
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -66,7 +66,7 @@ individus:
     age: 45
     age_en_mois: 541
     ass_precondition_remplie: false
-    birth: "1969-10-26"
+    date_naissance: "1969-10-26"
     chomage_brut:
       2012: 2869.210884241135
       2013-12: 0
@@ -108,7 +108,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2012: 24737.17948717948
       2013-12: 2483.333333333333
@@ -362,20 +362,6 @@ familles:
   parents:
     - 548ebb9509d6285e02d4dfb3
     - 548ebb9509d6285e02d4df99
-  paris_logement_familles:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    year:2013-12: 0
   proprietaire_proche_famille: false
   rsa:
     2013-12: 0
@@ -430,6 +416,6 @@ menages:
   enfants:
   loyer: 500
   personne_de_reference: 548ebb9509d6285e02d4dfb3
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   ass: 388.76

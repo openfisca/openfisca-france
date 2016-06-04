@@ -26,7 +26,7 @@ individus:
     year:2013-10: 1199988
   age: 36
   age_en_mois: 434
-  birth: "1978-08-12"
+  date_naissance: "1978-08-12"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -34,7 +34,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -238,20 +238,6 @@ familles:
     2014-09: 0
     year:2013-10: 0
   parents: 5441297683b38a957e4d856c
-  paris_logement_familles:
-    2013-10: 0
-    2013-11: 0
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    year:2013-10: 0
   proprietaire_proche_famille: false
   rsa:
     2013-10: 0
@@ -303,6 +289,6 @@ menages:
   enfants:
   loyer: 1000
   personne_de_reference: 5441297683b38a957e4d856c
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 309.36

@@ -1,7 +1,7 @@
 *~
+.idea*
 .tags*
 *.egg-info
-*.mo
 *.pyc
 *.pyo
 .pydevproject

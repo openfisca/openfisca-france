@@ -23,6 +23,10 @@
       </CODE>
     </NODE>
     <NODE code="R2" description="R2 (% de la BMAF)">
+      <CODE code="taux3_dom" description="Taux pour 1 enfant (seulement pour les DOM)" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0588" />
+        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.0588" />
+      </CODE>
       <CODE code="taux4" description="Taux pour 2 enfants" format="percent">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0.32" />
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.32" />
@@ -68,6 +72,40 @@
         <VALUE deb="2007-07-01" fin="2014-12-31" valeur="-0.0006" />
         <VALUE deb="2002-01-01" fin="2007-06-30" valeur="-0.0007" />
       </CODE>
+      <NODE code="dom" description="TF pour les DOM">
+        <CODE code="taux1" description="Taux pour 1 adulte" format="percent">
+          <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0281" />
+          <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0281" />
+        </CODE>
+        <CODE code="taux2" description="Taux pour 2 adultes" format="percent">
+          <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0299" />
+          <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0299" />
+        </CODE>
+        <CODE code="taux3" description="Taux pour 1 enfant" format="percent">
+          <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0238" />
+          <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0238" />
+        </CODE>
+        <CODE code="taux4" description="Taux pour 2 enfants" format="percent">
+          <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0217" />
+          <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0217" />
+        </CODE>
+        <CODE code="taux5" description="Taux pour 3 enfants" format="percent">
+          <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0194" />
+          <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0194" />
+        </CODE>
+        <CODE code="taux6" description="Taux pour 4 enfants" format="percent">
+          <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0180" />
+          <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0180" />
+        </CODE>
+        <CODE code="taux7" description="Taux pour 5 enfants" format="percent">
+          <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0169" />
+          <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0169" />
+        </CODE>
+        <CODE code="taux8" description="Taux pour 6 enfants" format="percent">
+          <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0162" />
+          <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0162" />
+        </CODE>
+      </NODE>
     </NODE>
     <NODE code="TL" description="Taux complémentaire">
       <CODE code="taux1" description="Tranche 00-45%" format="percent">
@@ -1050,6 +1088,12 @@
       <CODE code="seuil_effectif" description="Effectif de l'entreprise à partir duquel le versement transport est dû" >
         <VALUE deb="2016-01-01" fuzzy="true" valeur="11" />
         <VALUE deb="1996-02-21" fin="2015-12-31" valeur="10" />
+      </CODE>
+    </NODE>
+    <NODE code="indemnite_fin_contrat" description="Indémnité de fin de contrat (CDD)">
+      <CODE code="taux" description="Pourcentage du salaire de base">
+        <VALUE deb="2016-04-01" fuzzy="true" valeur=".1" />
+        <VALUE deb="2002-01-18" fin="2016-03-31" valeur=".1" /> <!--  Code du travail - Article L122-3-4  -->
       </CODE>
     </NODE>
     <NODE code="pat" description="employeur">
@@ -3149,7 +3193,8 @@
         <VALUE deb="1991-09-24" fin="2002-03-31" valeur="0" />
       </CODE>
       <CODE code="cpl6" description="Complément de catégorie 6 (majoration pour assistance d’une tierce personne invalide de 3e catégorie) " format="float" type="monetary">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur="1096.50" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="1104.18" />
+        <VALUE deb="2014-04-01" fin="2016-03-31" valeur="1103.08" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="1096.50" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="1082.43" />
         <VALUE deb="2011-04-01" fin="2012-03-31" valeur="1060.17" />
@@ -3204,7 +3249,7 @@
         <VALUE deb="2003-07-01" fin="2014-03-31" valeur="20" />
       </CODE>
       <CODE code="bmaf" description="Base mensuelle des allocations familiales" format="float" type="monetary">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="406.21" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="406.62" />
         <VALUE deb="2014-04-01" fin="2016-03-31" valeur="406.21" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="403.79" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="399" />
@@ -3483,14 +3528,14 @@
       </CODE>
     </NODE>
     <NODE code="asf" description="Allocation de soutien familial">
-      <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.2476" />
+      <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée, en pourcentage de la BMAF" format="percent">
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.2589" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.2476" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2363" />
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.225" />
       </CODE>
       <CODE code="taux2" description="Orphelin (de père et de mère), ou situation assimilée" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.33" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.3450" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.33" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.315" />
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.3" />
@@ -3568,13 +3613,13 @@
         <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.2379" />
       </CODE>
       <CODE code="tx_majore" description="Taux du complément familial majoré" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.4999" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.5416" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.4999" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.4582" />
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.4165" />
       </CODE>
       <CODE code="tx_majore_dom" description="Taux du complément familial majoré dans les DOM" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.2855" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.3093" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.2855" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2617" />
         <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.2379" />
@@ -3852,11 +3897,11 @@
         </CODE>
       </NODE>
       <NODE code="nais" description="Prime à la naissance">
-        <CODE code="adopt" description="facteur multitplicatif de la prime à l'adoption" format="percent">
+        <CODE code="adopt" description="facteur multitplicatif de la prime à l'adoption, en pourcentage de la BMAF" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="2" />
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="2" />
         </CODE>
-        <CODE code="prime_tx" description="Prime à la naissance et à l'adoption" format="percent">
+        <CODE code="prime_tx" description="Prime à la naissance et à l'adoption, en pourcentage de la BMAF" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="2.2975" />
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="2.2975" />
         </CODE>
@@ -4933,7 +4978,7 @@
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="3549" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="3490" />
       </CODE>
-      <CODE code="marpac" description="Mariés ou PACS" format="integer" type="monetary">
+      <CODE code="maries_ou_pacses" description="Mariés ou PACS" format="integer" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="1508" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1508" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1500" />
@@ -6741,11 +6786,13 @@
           <VALUE deb="2015-01-01" fuzzy="true" valeur="1.28412" />
           <VALUE deb="2009-06-20" fin="2014-12-31" valeur="1.28412" />
           <VALUE deb="2009-06-01" fin="2009-06-19" valeur="1.284" />
+          <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
         </CODE>
         <CODE code="pac_enf_sup" description="Majoration du RSA socle par enfant supplémentaire (en pourcentage du rsa de base)" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.42804" />
           <VALUE deb="2009-06-20" fin="2014-12-31" valeur="0.42804" />
           <VALUE deb="2009-06-01" fin="2009-06-19" valeur="0.428" />
+          <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
         </CODE>
       </NODE>
       <NODE code="patrimoine" description="Revenus liés au patrimoine">
@@ -6763,19 +6810,16 @@
         </CODE>
       </NODE>
       <CODE code="pente" description="Pente du RSA" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.62" />
-        <VALUE deb="2009-07-01" fin="2014-12-31" valeur="0.62" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
+        <VALUE deb="2009-07-01" fin="2015-12-31" valeur="0.62" />
         <VALUE deb="2002-01-01" fin="2009-06-30" valeur="0.00" />
-      </CODE>
-      <CODE code="pfInBRrmi" description="Prise en compte des PF dans la BR du RMI" format="bool">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="1" />
-        <VALUE deb="2001-01-01" fin="2013-12-31" valeur="1" />
       </CODE>
       <CODE code="psa" description="Prime de solidarité active" format="integer" type="monetary">
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="200" />
       </CODE>
       <CODE code="rmi" description="Rsa socle" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="524.16" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="524.68" />
+        <VALUE deb="2016-01-01" fin="2016-03-31" valeur="524.16" />
         <VALUE deb="2015-09-01" fin="2015-12-31" valeur="524.16" />
         <VALUE deb="2015-01-01" fin="2015-08-31" valeur="513.88" />
         <VALUE deb="2014-09-01" fin="2014-12-31" valeur="509.30" />
@@ -6811,6 +6855,31 @@
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0.4" />
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.4" />
       </CODE>
+    </NODE>
+    <NODE code="ppa" description="Prime Pour l'Activité">
+      <CODE code="pente" description="Pente appliquée aux revenus d'activité pour la prime d'activité" format="percent">
+        <VALUE deb="2015-10-01" fuzzy="true" valeur="0.62" />
+      </CODE>
+      <CODE code="seuil_non_versement" description="Seuil de non versement de la PPA" format="percent" type="monetary">
+        <VALUE deb="2015-09-01" fin="2016-12-31" valeur="15" />
+      </CODE>
+      <CODE code="age_min" description="Âge minimal pour bénéficier de la PPA" format="integer" type="age">
+        <VALUE deb="2015-09-01" fin="2016-12-31" valeur="18" />
+      </CODE>
+      <CODE code="seuil_aah_activite" description="Revenu d'activité minimal perçu pour que l'AAH d'un individu soit considéré comme un revenu d'activité, en multiple du smic horaire brut" format="integer">
+        <VALUE deb="2015-09-01" fin="2016-12-31" valeur="29" />
+      </CODE>
+      <NODE code="bonification">
+        <CODE code="montant_max" description="Bonification maximale, en pourcentage du montant de base du RSA" format="percent">
+          <VALUE deb="2015-09-01" fin="2016-12-31" valeur="0.12782" />
+        </CODE>
+        <CODE code="seuil_1" description="Seuil de salaire minimum pour bénéficier de la bonification, en multiple du smic horaire brut."           format="integer">
+          <VALUE deb="2015-09-01" fin="2016-12-31" valeur="59" />
+        </CODE>
+        <CODE code="seuil_2" description="Seuil de salaire pour bénéficier de la bonification maximale, en multiple du smic horaire brut."           format="integer">
+          <VALUE deb="2015-09-01" fin="2016-12-31" valeur="95" />
+        </CODE>
+      </NODE>
     </NODE>
   </NODE>
   <NODE code="prelsoc" description="Prélèvement social et contributions additionnelles">

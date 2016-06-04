@@ -14,9 +14,9 @@ def test_2_parents_2_enfants():
         test_case = dict(
             individus = [
                 dict(),
-                dict(birth = datetime.date(year - 30, 1, 1)),
+                dict(date_naissance = datetime.date(year - 30, 1, 1)),
                 dict(),
-                dict(birth = datetime.date(year - 18, 1, 1)),
+                dict(date_naissance = datetime.date(year - 18, 1, 1)),
                 ],
             ),
         repair = True,
@@ -24,9 +24,9 @@ def test_2_parents_2_enfants():
         )
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
-    simulation = scenario.new_simulation(debug = True)
+    simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('birth').tolist(),
+        simulation.calculate('date_naissance').tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 30, 1, 1),
@@ -76,8 +76,8 @@ def test_famille_1_parent_3_enfants():
             individus = [
                 dict(),
                 dict(),
-                dict(birth = datetime.date(year - 12, 1, 1)),
-                dict(birth = datetime.date(year - 18, 1, 1)),
+                dict(date_naissance = datetime.date(year - 12, 1, 1)),
+                dict(date_naissance = datetime.date(year - 18, 1, 1)),
                 ],
             ),
         repair = True,
@@ -85,9 +85,9 @@ def test_famille_1_parent_3_enfants():
         )
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
-    simulation = scenario.new_simulation(debug = True)
+    simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('birth').tolist(),
+        simulation.calculate('date_naissance').tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 10, 1, 1),
@@ -136,9 +136,9 @@ def test_famille_2_parents_2_enfants():
                 ],
             individus = [
                 dict(),
-                dict(birth = datetime.date(year - 30, 1, 1)),
+                dict(date_naissance = datetime.date(year - 30, 1, 1)),
                 dict(),
-                dict(birth = datetime.date(year - 18, 1, 1)),
+                dict(date_naissance = datetime.date(year - 18, 1, 1)),
                 ],
             ),
         repair = True,
@@ -146,9 +146,9 @@ def test_famille_2_parents_2_enfants():
         )
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
-    simulation = scenario.new_simulation(debug = True)
+    simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('birth').tolist(),
+        simulation.calculate('date_naissance').tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 30, 1, 1),
@@ -198,8 +198,8 @@ def test_foyer_fiscal_1_declarant_3_personnes_a_charge():
             individus = [
                 dict(),
                 dict(),
-                dict(birth = datetime.date(year - 12, 1, 1)),
-                dict(birth = datetime.date(year - 18, 1, 1)),
+                dict(date_naissance = datetime.date(year - 12, 1, 1)),
+                dict(date_naissance = datetime.date(year - 18, 1, 1)),
                 ],
             ),
         repair = True,
@@ -207,9 +207,9 @@ def test_foyer_fiscal_1_declarant_3_personnes_a_charge():
         )
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
-    simulation = scenario.new_simulation(debug = True)
+    simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('birth').tolist(),
+        simulation.calculate('date_naissance').tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 10, 1, 1),
@@ -258,9 +258,9 @@ def test_foyer_fiscal_2_declarants_2_personnes_a_charge():
                 ],
             individus = [
                 dict(),
-                dict(birth = datetime.date(year - 30, 1, 1)),
+                dict(date_naissance = datetime.date(year - 30, 1, 1)),
                 dict(),
-                dict(birth = datetime.date(year - 18, 1, 1)),
+                dict(date_naissance = datetime.date(year - 18, 1, 1)),
                 ],
             ),
         repair = True,
@@ -268,9 +268,9 @@ def test_foyer_fiscal_2_declarants_2_personnes_a_charge():
         )
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
-    simulation = scenario.new_simulation(debug = True)
+    simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('birth').tolist(),
+        simulation.calculate('date_naissance').tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 30, 1, 1),
@@ -314,8 +314,8 @@ def test_menage_1_personne_de_reference_3_enfants():
             individus = [
                 dict(),
                 dict(),
-                dict(birth = datetime.date(year - 12, 1, 1)),
-                dict(birth = datetime.date(year - 18, 1, 1)),
+                dict(date_naissance = datetime.date(year - 12, 1, 1)),
+                dict(date_naissance = datetime.date(year - 18, 1, 1)),
                 ],
             menages = [
                 dict(
@@ -329,9 +329,9 @@ def test_menage_1_personne_de_reference_3_enfants():
         )
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
-    simulation = scenario.new_simulation(debug = True)
+    simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('birth').tolist(),
+        simulation.calculate('date_naissance').tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 10, 1, 1),
@@ -374,9 +374,9 @@ def test_menage_1_personne_de_reference_1_conjoint_2_enfants():
         test_case = dict(
             individus = [
                 dict(),
-                dict(birth = datetime.date(year - 30, 1, 1)),
+                dict(date_naissance = datetime.date(year - 30, 1, 1)),
                 dict(),
-                dict(birth = datetime.date(year - 18, 1, 1)),
+                dict(date_naissance = datetime.date(year - 18, 1, 1)),
                 ],
             menages = [
                 dict(
@@ -391,9 +391,9 @@ def test_menage_1_personne_de_reference_1_conjoint_2_enfants():
         )
     scenario.suggest()
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
-    simulation = scenario.new_simulation(debug = True)
+    simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('birth').tolist(),
+        simulation.calculate('date_naissance').tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 30, 1, 1),

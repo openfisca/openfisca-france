@@ -8,10 +8,10 @@ keywords:
 period: month:2015-09
 relative_error_margin: 0.02
 individus:
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 23
   age_en_mois: 287
-  birth: '1991-09-13'
+  date_naissance: '1991-09-13'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
@@ -20,7 +20,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     '2013': 2.8421709430404007e-13
     2014-09: -202.7065527065527
@@ -76,10 +76,10 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 23
   age_en_mois: 287
-  birth: '1991-09-13'
+  date_naissance: '1991-09-13'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
@@ -88,7 +88,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   scolarite: 1
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -295,20 +295,6 @@ familles:
     year:2014-09: 0
   parents:
   - 55e6c292dc46199d042bb6e8
-  paris_logement_familles:
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    2015-07: 0
-    2015-08: 0
-    year:2014-09: 0
   rsa:
     2014-09: 0
     2014-10: 0
@@ -362,9 +348,8 @@ menages:
   enfants:
   - 55e6c292dc46199d042bb6e7
   loyer: 0
-  parisien: false
   participation_frais: false
   personne_de_reference: 55e6c292dc46199d042bb6e8
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 590

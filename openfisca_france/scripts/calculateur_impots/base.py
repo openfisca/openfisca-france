@@ -225,13 +225,13 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
         for declarant_index, declarant_id in enumerate(foyer_fiscal.pop('declarants')):
             declarant = individu_by_id[declarant_id].copy()
 
-            birth = declarant.pop('birth')
-            impots_arguments['0D{}'.format(chr(ord('A') + declarant_index))] = birth.year
+            date_naissance = declarant.pop('date_naissance')
+            impots_arguments['0D{}'.format(chr(ord('A') + declarant_index))] = date_naissance.year
 
-            statmarit = declarant.pop('statmarit', None)
-            column = tax_benefit_system.column_by_name['statmarit']
-            if statmarit is None:
-                statmarit = column.enum._vars[column.default]
+            statut_marital = declarant.pop('statut_marital', None)
+            column = tax_benefit_system.column_by_name['statut_marital']
+            if statut_marital is None:
+                statut_marital = column.enum._vars[column.default]
             pre_situation_famille = {
                 u"Marié": 'M',
                 u"Célibataire": 'C',
@@ -239,7 +239,7 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
                 u"Veuf": 'V',
                 u"Pacsé": 'O',
                 # u"Jeune veuf": TODO
-                }[statmarit if isinstance(statmarit, basestring) else column.enum._vars[statmarit]]
+                }[statut_marital if isinstance(statut_marital, basestring) else column.enum._vars[statut_marital]]
             assert 'pre_situation_famille' not in impots_arguments \
                 or impots_arguments['pre_situation_famille'] == pre_situation_famille, str((impots_arguments,
                     pre_situation_famille))
@@ -261,10 +261,10 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
         for personne_a_charge_index, personne_a_charge_id in enumerate(foyer_fiscal.pop('personnes_a_charge')):
             personne_a_charge = individu_by_id[personne_a_charge_id].copy()
 
-            birth = personne_a_charge.pop('birth')
-            impots_arguments['0F{}'.format(personne_a_charge_index)] = birth.year
+            date_naissance = personne_a_charge.pop('date_naissance')
+            impots_arguments['0F{}'.format(personne_a_charge_index)] = date_naissance.year
 
-            personne_a_charge.pop('statmarit', None)
+            personne_a_charge.pop('statut_marital', None)
 
             for column_code, value in personne_a_charge.iteritems():
                 if column_code in (

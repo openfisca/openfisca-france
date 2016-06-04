@@ -29,7 +29,7 @@ relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 413
-  birth: "1980-08-12"
+  date_naissance: "1980-08-12"
   chomage_imposable:
     2013: 0
   epargne_non_remuneree:
@@ -39,7 +39,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   pensions_alimentaires_percues:
     2013: 0
   retraite_imposable:
@@ -249,20 +249,6 @@ familles:
     2014-12: 0
     year:2014-01: 0
   parents: 54c1339aa488cca035fe15e1
-  paris_logement_familles:
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    year:2014-01: 0
   proprietaire_proche_famille: false
   rsa:
     2014-01: 0
@@ -318,6 +304,6 @@ menages:
   enfants:
   loyer: 1000
   personne_de_reference: 54c1339aa488cca035fe15e1
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 196.68

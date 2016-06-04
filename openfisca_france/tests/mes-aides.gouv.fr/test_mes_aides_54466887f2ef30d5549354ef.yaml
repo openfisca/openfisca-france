@@ -8,7 +8,7 @@ period: "month:2014-10"
 individus:
   age: 34
   age_en_mois: 410
-  birth: "1980-08-12"
+  date_naissance: "1980-08-12"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -16,7 +16,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2012: 10307.69230769231
     2013-10: 858.9743589743589
@@ -271,20 +271,6 @@ familles:
     2014-09: 0
     year:2013-10: 0
   parents: 5446686d7b2551d654d31779
-  paris_logement_familles:
-    2013-10: 0
-    2013-11: 0
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    year:2013-10: 0
   rsa:
     2013-10: 0
     2013-11: 0
@@ -334,6 +320,6 @@ menages:
   depcom: 75111
   enfants:
   personne_de_reference: 5446686d7b2551d654d31779
-  statut_occupation: 2
+  statut_occupation_logement: 2
 output_variables:
   cmu_c: false

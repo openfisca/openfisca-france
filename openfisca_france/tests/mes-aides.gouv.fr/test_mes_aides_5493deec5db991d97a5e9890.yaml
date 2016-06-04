@@ -29,7 +29,7 @@ relative_error_margin: 0.02
 individus:
   - age: 42
     age_en_mois: 515
-    birth: "1972-01-09"
+    date_naissance: "1972-01-09"
     chomage_imposable:
       2012: 0
     epargne_non_remuneree:
@@ -39,7 +39,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2012: 0
     retraite_imposable:
@@ -96,7 +96,7 @@ individus:
       2012-01: 0
   - age: 13
     age_en_mois: 165
-    birth: "2001-03-08"
+    date_naissance: "2001-03-08"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -104,7 +104,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -112,7 +112,7 @@ individus:
       2012-01: 0
   - age: 11
     age_en_mois: 132
-    birth: "2003-11-23"
+    date_naissance: "2003-11-23"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -120,7 +120,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -128,7 +128,7 @@ individus:
       2012-01: 0
   - age: 9
     age_en_mois: 119
-    birth: "2005-01-02"
+    date_naissance: "2005-01-02"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -136,7 +136,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -144,7 +144,7 @@ individus:
       2012-01: 0
   - age: 7
     age_en_mois: 89
-    birth: "2007-07-17"
+    date_naissance: "2007-07-17"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -152,14 +152,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 6
     age_en_mois: 72
-    birth: "2008-12-08"
+    date_naissance: "2008-12-08"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -167,14 +167,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 4
     age_en_mois: 57
-    birth: "2010-03-02"
+    date_naissance: "2010-03-02"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -182,14 +182,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 1
     age_en_mois: 15
-    birth: "2013-09-15"
+    date_naissance: "2013-09-15"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -197,7 +197,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -408,20 +408,6 @@ familles:
     2014-11: 0
     year:2013-12: 0
   parents: 5493dde7c54524d87a61aaca
-  paris_logement_familles:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    year:2013-12: 0
   proprietaire_proche_famille: false
   rsa:
     2013-12: 0
@@ -492,6 +478,6 @@ menages:
     - 5493dde7c54524d87a61aac3
   loyer: 700
   personne_de_reference: 5493dde7c54524d87a61aaca
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 421

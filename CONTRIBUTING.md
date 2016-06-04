@@ -1,2 +1,1 @@
-Cf [Contribute page](http://doc.openfisca.fr/contribute/)
-in the [documentation of OpenFisca](http://doc.openfisca.fr/).
+Please read the [contributor guidelines](http://doc.openfisca.fr/en/contribute/guidelines.html).

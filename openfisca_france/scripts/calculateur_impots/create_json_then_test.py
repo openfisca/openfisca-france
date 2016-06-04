@@ -28,18 +28,18 @@ def define_scenario(year, column_code):
     value = 1500 if conv.test_between(start, end)(year)[1] is None else 0
     parent1 = {
         "activite": u'Actif occupé',
-        "birth": 1970,
+        "date_naissance": 1970,
         "salaire_imposable": 24000,
-        "statmarit": u'Célibataire',
+        "statut_marital": u'Célibataire',
         }
     enfants = [
         # dict(
         #     activite = u'Étudiant, élève',
-        #     birth = '2002-02-01',
+        #     date_naissance = '2002-02-01',
         #     ),
         # dict(
         #     activite = u'Étudiant, élève',
-        #     birth = '2000-04-17',
+        #     date_naissance = '2000-04-17',
         #     ),
         ]
     famille = dict()

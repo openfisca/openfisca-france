@@ -8,7 +8,7 @@ period: "month:2015-01"
 individus:
   - age: 34
     age_en_mois: 418
-    birth: "1980-03-02"
+    date_naissance: "1980-03-02"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -16,7 +16,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2013: 14830.769230769229
       2014-01: 1235.8974358974358
@@ -68,14 +68,14 @@ individus:
       2014-12: 964
       2015-01: 964
       year:2014-01: 11568
-    statmarit: 1
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 34
     age_en_mois: 418
-    birth: "1980-03-02"
+    date_naissance: "1980-03-02"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -83,7 +83,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -289,20 +289,6 @@ familles:
   parents:
     - 54b54a89d5b79b733e797cf1
     - 54b54a89d5b79b733e797cf0
-  paris_logement_familles:
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    year:2014-01: 0
   rsa:
     2014-01: 0
     2014-02: 0
@@ -355,7 +341,7 @@ menages:
   depcom: 75118
   enfants:
   personne_de_reference: 54b54a89d5b79b733e797cf1
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   acs: 0
   cmu_c: true

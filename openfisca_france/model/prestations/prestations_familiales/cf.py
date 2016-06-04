@@ -16,13 +16,13 @@ class cf_enfant_a_charge(Variable):
         period = period.this_month
 
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
-        smic55 = simulation.calculate('smic55', period)
+        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         age = simulation.calculate('age', period)
 
         pfam = simulation.legislation_at(period.start).fam
 
         condition_age = (age >= 0) * (age < pfam.cf.age2)
-        condition_situation = est_enfant_dans_famille * not_(smic55)
+        condition_situation = est_enfant_dans_famille * not_(autonomie_financiere)
 
         return period, condition_age * condition_situation
 
@@ -86,7 +86,7 @@ class cf_dom_enfant_trop_jeune(Variable):
         return period, condition_age * est_enfant_dans_famille
 
 
-class cf_ressources_i(Variable):
+class cf_ressources_individu(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Complément familial - Ressources de l'individu prises en compte"
@@ -94,11 +94,11 @@ class cf_ressources_i(Variable):
     def function(self, simulation, period):
         period = period.this_month
 
-        br_pf_i = simulation.calculate('br_pf_i', period)
+        base_ressources = simulation.calculate('prestations_familiales_base_ressources_individu', period)
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
         cf_enfant_a_charge = simulation.calculate('cf_enfant_a_charge', period)
 
-        return period, or_(not_(est_enfant_dans_famille), cf_enfant_a_charge) * br_pf_i
+        return period, or_(not_(est_enfant_dans_famille), cf_enfant_a_charge) * base_ressources
 
 
 class cf_plafond(Variable):
@@ -113,8 +113,8 @@ class cf_plafond(Variable):
 
         eligibilite_base = simulation.calculate('cf_eligibilite_base', period)
         eligibilite_dom = simulation.calculate('cf_eligibilite_dom', period)
-        isol = simulation.calculate('isol', period)
-        biact = simulation.calculate('biact', period)
+        isole = not_(simulation.calculate('en_couple', period))
+        biactivite = simulation.calculate('biactivite', period)
         cf_enfant_a_charge_holder = simulation.compute('cf_enfant_a_charge', period)
 
         # Calcul du nombre d'enfants à charge au sens du CF
@@ -124,7 +124,7 @@ class cf_plafond(Variable):
         taux_plafond_metropole = 1 + pfam.cf.majoration_plafond_tx1 * min_(cf_nbenf, 2) + pfam.cf.majoration_plafond_tx2 * max_(cf_nbenf - 2, 0)
 
         # Majoration du plafond pour biactivité ou isolement (France métropolitaine)
-        majoration_plafond = (isol | biact)
+        majoration_plafond = (isole | biactivite)
 
         # Calcul du plafond pour la France métropolitaine
         plafond_metropole = pfam.cf.plafond * taux_plafond_metropole + pfam.cf.majoration_plafond_biact_isole * majoration_plafond
@@ -160,7 +160,7 @@ class cf_ressources(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        cf_ressources_i_holder = simulation.compute('cf_ressources_i', period)
+        cf_ressources_i_holder = simulation.compute('cf_ressources_individu', period)
         ressources = self.sum_by_entity(cf_ressources_i_holder)
         return period, ressources
 
@@ -288,11 +288,11 @@ class cf(Variable):
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
         period = period.this_month
-        paje_base_montant = simulation.calculate('paje_base_montant', period)
-        apje_temp = simulation.calculate('apje_temp', period)
-        ape_temp = simulation.calculate('ape_temp', period)
+        paje_base = simulation.calculate('paje_base', period)
+        apje_avant_cumul = simulation.calculate('apje_avant_cumul', period)
+        ape_avant_cumul = simulation.calculate('ape_avant_cumul', period)
         cf_montant = simulation.calculate('cf_montant', period)
         residence_mayotte = simulation.calculate('residence_mayotte', period)
 
-        cf_brut = (paje_base_montant < cf_montant) * (apje_temp <= cf_montant) * (ape_temp <= cf_montant) * cf_montant
+        cf_brut = not_(paje_base) * (apje_avant_cumul <= cf_montant) * (ape_avant_cumul <= cf_montant) * cf_montant
         return period, not_(residence_mayotte) * round(cf_brut, 2)

@@ -8,10 +8,10 @@ description: |
   Qu'elle soit déclarées par le chef de famille ou l'enfant, les pensions alimentaires perçues doivent être prises en compte dans l'éligibilité à l'ASF.
 period: "month:2015-09"
 individus:
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 45
     age_en_mois: 544
-    birth: "1970-04-13"
+    date_naissance: "1970-04-13"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -20,7 +20,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2013: 3600.0000000000005
       2014-09: 283.3333333333333
@@ -93,10 +93,10 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 15
     age_en_mois: 186
-    birth: "2000-02-14"
+    date_naissance: "2000-02-14"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -105,7 +105,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 2
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -310,20 +310,6 @@ familles:
     2015-08: 0
     year:2014-09: 0
   parents: 55e80e2727b85cf35b443d60
-  paris_logement_familles:
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    2015-07: 0
-    2015-08: 0
-    year:2014-09: 0
   proprietaire_proche_famille: false
   rsa:
     2014-09: 0
@@ -375,8 +361,7 @@ menages:
   depcom: 93066
   enfants: 55e80e2727b85cf35b443d5f
   loyer: 660
-  parisien: false
   personne_de_reference: 55e80e2727b85cf35b443d60
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   asf: 0

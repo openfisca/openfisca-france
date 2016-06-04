@@ -11,7 +11,7 @@ relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 413
-    birth: "1980-08-12"
+    date_naissance: "1980-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -19,14 +19,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 20
     age_en_mois: 245
-    birth: "1994-08-12"
+    date_naissance: "1994-08-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -34,7 +34,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2013: 12307.692307692307
       2014-01: 1025.6410256410256
@@ -93,7 +93,7 @@ individus:
       2012-01: 0
   - age: 7
     age_en_mois: 90
-    birth: "2007-07-12"
+    date_naissance: "2007-07-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -101,14 +101,14 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 7
     age_en_mois: 90
-    birth: "2007-07-12"
+    date_naissance: "2007-07-12"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -116,7 +116,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -323,20 +323,6 @@ familles:
     2014-12: 0
     year:2014-01: 0
   parents: 54bd2854740a09082374d73e
-  paris_logement_familles:
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    year:2014-01: 0
   rsa:
     2014-01: 0
     2014-02: 0
@@ -393,6 +379,6 @@ menages:
     - 54bd2854740a09082374d730
     - 54bd2854740a09082374d72f
   personne_de_reference: 54bd2854740a09082374d73e
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   cf: 185.19

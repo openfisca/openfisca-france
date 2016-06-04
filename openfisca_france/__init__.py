@@ -17,19 +17,15 @@ REVENUES_CATEGORIES = {
     }
 
 
-def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6de = False, start_from = 'imposable'
+def init_country():  # drop_survey_only_variables = False, simulate_f6de = False, start_from = 'imposable'
     """Create a country-specific TaxBenefitSystem."""
     # from openfisca_core.columns import FloatCol
     from openfisca_core.taxbenefitsystems import MultipleXmlBasedTaxBenefitSystem
-    if qt:
-        from openfisca_qt import widgets as qt_widgets
-
     from . import decompositions, entities, scenarios
     from .model import datatrees
     from .model import model  # Load output variables into entities. # noqa analysis:ignore
     from .model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import preprocessing
-    if qt:
-        from .widgets.Composition import CompositionWidget
+    from .conf.cache_blacklist import cache_blacklist as conf_cache_blacklist
 
     # if simulate_f6de:
     #     del column_by_name['f6de']
@@ -46,9 +42,6 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
     #         )
     # else:
     #     prestation_by_name.pop('csg_deduc_patrimoine_simulated', None)
-
-    if qt:
-        qt_widgets.CompositionWidget = CompositionWidget
 
     class TaxBenefitSystem(MultipleXmlBasedTaxBenefitSystem):
         """French tax benefit system"""
@@ -145,6 +138,7 @@ def init_country(qt = False):  # drop_survey_only_variables = False, simulate_f6
         REV_TYP = None  # utils.REV_TYP  # Not defined for France
         REVENUES_CATEGORIES = REVENUES_CATEGORIES
         Scenario = scenarios.Scenario
+        cache_blacklist = conf_cache_blacklist
 
         def prefill_cache(self):
             # Compute one "zone APL" variable, to pre-load CSV of "code INSEE commune" to "Zone APL".

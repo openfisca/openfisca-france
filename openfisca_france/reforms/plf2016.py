@@ -169,14 +169,14 @@ def build_counterfactual_2014_reform(tax_benefit_system):
         def function_2015(self, simulation, period):
             period = period.start.offset('first-of', 'year').period('year')
             nb_adult = simulation.calculate('nb_adult')
-            nb_par = simulation.calculate('nb_par')
+            nb_parents = simulation.calculate('nb_parents')
             rfr = simulation.calculate('rfr')
             inflator = 1 + .001 + .005
             # params = simulation.legislation_at(period.start).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
             seuil = 13795 * inflator
             majoration_seuil = 3536 * inflator
             montant_plafond = 350 * inflator
-            plafond = seuil * nb_adult + (nb_par - nb_adult) * 2 * majoration_seuil
+            plafond = seuil * nb_adult + (nb_parents - nb_adult) * 2 * majoration_seuil
             montant = montant_plafond * nb_adult
             return period, min_(max_(plafond + montant - rfr, 0), montant)
 

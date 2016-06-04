@@ -23,18 +23,18 @@ def define_scenario(year = 2013):
         period = year,
         parent1 = dict(
             activite = u'Actif occupé',
-            birth = 1970,
+            date_naissance = 1970,
             salaire_imposable = 24000,
-            statmarit = u'Célibataire',
+            statut_marital = u'Célibataire',
             ),
         enfants = [
             dict(
                 activite = u'Étudiant, élève',
-                birth = '2002-02-01',
+                date_naissance = '2002-02-01',
                 ),
             dict(
                 activite = u'Étudiant, élève',
-                birth = '2000-04-17',
+                date_naissance = '2000-04-17',
                 ),
             ],
         foyer_fiscal = dict(

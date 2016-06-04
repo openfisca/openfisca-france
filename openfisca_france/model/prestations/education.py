@@ -59,7 +59,7 @@ class bourse_lycee_points_de_charge(Variable):
     def function(self, simulation, period):
         period = period.this_month
         age_holder = simulation.compute('age', period)
-        isol = simulation.calculate('isol', period)
+        isole = not_(simulation.calculate('en_couple', period))
 
         # compte le nombre d'enfants
         ages = self.split_by_roles(age_holder, roles = ENFS)
@@ -71,7 +71,7 @@ class bourse_lycee_points_de_charge(Variable):
         points_de_charge += 1 * (nb_enfants >= 2) # 1 point de charge pour le 2ème enfant
         points_de_charge += 2 * (nb_enfants >= 3) + 2 * (nb_enfants >= 4) # 2 points de charge pour les 3ème et 4ème enfants
         points_de_charge += 3 * (nb_enfants >= 5) * (nb_enfants - 4) # 3 points de charge pour chaque enfant au-dessus de 4 enfants
-        points_de_charge += 3 * isol # 3 points de charge en plus si parent isolé
+        points_de_charge += 3 * isole # 3 points de charge en plus si parent isolé
 
         return period, points_de_charge
 

@@ -261,7 +261,7 @@ class accult(Variable):
         f7uo = simulation.calculate('f7uo', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.accult
+        P = _P.ir.credits_impot.accult
         return period, P.taux * f7uo
 
 
@@ -280,7 +280,7 @@ class acqgpl(Variable):
         period = period.this_year
         f7up = simulation.calculate('f7up', period)
         f7uq = simulation.calculate('f7uq', period)
-        acqgpl = simulation.legislation_at(period.start).impot_revenu.credits_impot.acqgpl
+        acqgpl = simulation.legislation_at(period.start).ir.credits_impot.acqgpl
 
         return period, f7up * acqgpl.mont_up + f7uq * acqgpl.mont_uq
 
@@ -305,7 +305,7 @@ class aidmob(Variable):
         f1er = simulation.calculate('f1er', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, (f1ar + f1br + f1cr + f1dr + f1er) * _P.impot_revenu.credits_impot.aidmob.montant
+        return period, (f1ar + f1br + f1cr + f1dr + f1er) * _P.ir.credits_impot.aidmob.montant
 
 
 class aidper(DatedVariable):
@@ -327,7 +327,7 @@ class aidper(DatedVariable):
         f7wi = simulation.calculate('f7wi', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.aidper
+        P = _P.ir.credits_impot.aidper
 
         n = nb_pac2 - nbH / 2
         max0 = (P.max * (1 + marpac) +
@@ -353,7 +353,7 @@ class aidper(DatedVariable):
         f7wj = simulation.calculate('f7wj', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.aidper
+        P = _P.ir.credits_impot.aidper
 
         n = nb_pac2 - nbH/2
         max0 = (P.max * (1 + marpac) +
@@ -381,7 +381,7 @@ class aidper(DatedVariable):
         f7wj = simulation.calculate('f7wj', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.aidper
+        P = _P.ir.credits_impot.aidper
 
         max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
 
@@ -405,7 +405,7 @@ class aidper(DatedVariable):
         f7wl = simulation.calculate('f7wl', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.aidper
+        P = _P.ir.credits_impot.aidper
         max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
 
         max1 = max_(0, max0 - f7wl - f7sf)
@@ -428,7 +428,7 @@ class aidper(DatedVariable):
         f7wr = simulation.calculate('f7wr', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.aidper
+        P = _P.ir.credits_impot.aidper
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements (7sa) et de la nature des
         #travaux, c'est un peu le bordel)
         max00 = P.max * (1 + marpac)
@@ -453,7 +453,7 @@ class aidper(DatedVariable):
         f7wr = simulation.calculate('f7wr', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.aidper
+        P = _P.ir.credits_impot.aidper
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements et de la nature des
         #travaux, c'est un peu le bordel)
         max00 = P.max * (1 + marpac)
@@ -479,7 +479,7 @@ class assloy(Variable):
         f4bf = simulation.calculate('f4bf', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, _P.impot_revenu.credits_impot.assloy.taux * f4bf
+        return period, _P.ir.credits_impot.assloy.taux * f4bf
 
 
 class autent(Variable):
@@ -519,7 +519,7 @@ class ci_garext(Variable):
         f7gg = simulation.calculate('f7gg', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.garext
+        P = _P.ir.credits_impot.garext
         max1 = P.max
         return period, P.taux * (min_(f7ga, max1) +
                               min_(f7gb, max1) +
@@ -879,7 +879,7 @@ class divide(Variable):
         f2gr = simulation.calculate('f2gr', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.divide
+        P = _P.ir.credits_impot.divide
 
         max1 = P.max * (marpac + 1)
         return period, min_(P.taux * (f2dc + f2gr), max1)
@@ -899,7 +899,7 @@ class drbail(Variable):
         f4tq = simulation.calculate('f4tq', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.drbail
+        P = _P.ir.credits_impot.drbail
         return period, P.taux * f4tq
 
 
@@ -922,7 +922,7 @@ class inthab(DatedVariable):
         nbG = simulation.calculate('nbG', period)
         nbR = simulation.calculate('nbR', period)
         f7uh = simulation.calculate('f7uh', period)
-        P = simulation.legislation_at(period.start).impot_revenu.credits_impot.inthab
+        P = simulation.legislation_at(period.start).ir.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
         max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
@@ -945,7 +945,7 @@ class inthab(DatedVariable):
         f7vz = simulation.calculate('f7vz', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.inthab
+        P = _P.ir.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
         max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
@@ -972,7 +972,7 @@ class inthab(DatedVariable):
         f7vz = simulation.calculate('f7vz', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.inthab
+        P = _P.ir.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
         max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
@@ -1002,7 +1002,7 @@ class inthab(DatedVariable):
         f7vz = simulation.calculate('f7vz', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.inthab
+        P = _P.ir.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
         max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
@@ -1036,7 +1036,7 @@ class inthab(DatedVariable):
         f7vz = simulation.calculate('f7vz', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.inthab
+        P = _P.ir.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
         max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
@@ -1075,7 +1075,7 @@ class inthab(DatedVariable):
         f7vz = simulation.calculate('f7vz', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.inthab
+        P = _P.ir.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
         max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
@@ -1136,7 +1136,7 @@ class jeunes_ind(Variable):
 
         #TODO: vérifier si les jeunes sous le foyer fiscal de leurs parents sont éligibles
 
-        P = _P.impot_revenu.credits_impot.jeunes
+        P = _P.ir.credits_impot.jeunes
         rfr = self.cast_from_entity_to_roles(rfr_holder)
         nbptr = self.cast_from_entity_to_roles(nbptr_holder)
         marpac = self.cast_from_entity_to_roles(marpac_holder)
@@ -1186,7 +1186,7 @@ class percvm(Variable):
         f3vv_end_2010 = simulation.calculate('f3vv_end_2010', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, _P.impot_revenu.credits_impot.percvm.taux * f3vv_end_2010
+        return period, _P.ir.credits_impot.percvm.taux * f3vv_end_2010
 
 
 class preetu(DatedVariable):
@@ -1204,7 +1204,7 @@ class preetu(DatedVariable):
         f7uk = simulation.calculate('f7uk', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.preetu
+        P = _P.ir.credits_impot.preetu
 
         return period, P.taux * min_(f7uk, P.max)
 
@@ -1219,7 +1219,7 @@ class preetu(DatedVariable):
         f7vo = simulation.calculate('f7vo', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.preetu
+        P = _P.ir.credits_impot.preetu
 
         max1 = P.max * (1 + f7vo)
         return period, P.taux * min_(f7uk, max1)
@@ -1236,7 +1236,7 @@ class preetu(DatedVariable):
         f7td = simulation.calculate('f7td', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.preetu
+        P = _P.ir.credits_impot.preetu
 
         max1 = P.max * f7vo
         return period, P.taux * min_(f7uk, P.max) + P.taux * min_(f7td, max1)
@@ -1257,10 +1257,10 @@ class prlire(Variable):
         period = period.this_year
         f2dh = simulation.calculate('f2dh', period)
         f2ch = simulation.calculate('f2ch', period)
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         _P = simulation.legislation_at(period.start)
 
-        plaf_resid = max_(_P.impot_revenu.rvcm.abat_assvie * (1 + marpac) - f2ch, 0)
+        plaf_resid = max_(_P.impot_revenu.rvcm.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
         return period, _P.impot_revenu.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
 
 
@@ -1284,7 +1284,7 @@ class quaenv(DatedVariable):
         f7wh = simulation.calculate('f7wh', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.quaenv
+        P = _P.ir.credits_impot.quaenv
 
         n = nb_pac2
         max0 = P.max * (1 + marpac) + P.pac1 * (n >= 1) + P.pac2 * (n >= 2) + P.pac2 * (max_(n - 2, 0))
@@ -1311,7 +1311,7 @@ class quaenv(DatedVariable):
         f7wq = simulation.calculate('f7wq', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.quaenv
+        P = _P.ir.credits_impot.quaenv
 
         max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
 
@@ -1346,7 +1346,7 @@ class quaenv(DatedVariable):
         rfr = simulation.calculate('rfr', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.quaenv
+        P = _P.ir.credits_impot.quaenv
         max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
 
         max1 = max_(0, max0 - f7wf)
@@ -1391,7 +1391,7 @@ class quaenv(DatedVariable):
         rfr = simulation.calculate('rfr', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.credits_impot.quaenv
+        P = _P.ir.credits_impot.quaenv
         max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
 
         max1 = max_(0, max0 - f7wf)
@@ -1454,7 +1454,7 @@ class quaenv(DatedVariable):
         nb_pac2 = simulation.calculate('nb_pac2', period)
         quaenv_bouquet = simulation.calculate('quaenv_bouquet', period)
         rfr = simulation.calculate('rfr', period)
-        P = simulation.legislation_at(period.start).impot_revenu.credits_impot.quaenv
+        P = simulation.legislation_at(period.start).ir.credits_impot.quaenv
 
         max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
         maxi1 = max_(0, max0 - f7ty)
@@ -1531,7 +1531,7 @@ class quaenv(DatedVariable):
         nb_pac2 = simulation.calculate('nb_pac2', period)
         quaenv_bouquet = simulation.calculate('quaenv_bouquet', period)
         rfr = simulation.calculate('rfr', period)
-        P = simulation.legislation_at(period.start).impot_revenu.credits_impot.quaenv
+        P = simulation.legislation_at(period.start).ir.credits_impot.quaenv
 
         max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
         max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - not_(quaenv_bouquet) * (f7ss + f7st + f7sv))
@@ -1626,7 +1626,7 @@ class saldom2(DatedVariable):
         f7dl = simulation.calculate('f7dl', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.reductions_impots.saldom
+        P = _P.ir.reductions_impots.saldom
 
         isinvalid = f7dg
 
@@ -1652,7 +1652,7 @@ class saldom2(DatedVariable):
         f7dq = simulation.calculate('f7dq', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.reductions_impots.saldom
+        P = _P.ir.reductions_impots.saldom
 
         isinvalid = f7dg
 

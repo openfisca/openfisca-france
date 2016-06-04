@@ -13,8 +13,8 @@
     salaire_imposable: 24000
     abic_imps: 1500
     activite: 0
-    statmarit: 2
-    birth: '1970-01-01'
+    statut_marital: 2
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -40,8 +40,8 @@
     salaire_imposable: 24000
     abic_imps: 1500
     activite: 0
-    statmarit: 2
-    birth: '1970-01-01'
+    statut_marital: 2
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -68,8 +68,8 @@
     salaire_imposable: 24000
     abic_imps: 1500
     activite: 0
-    statmarit: 2
-    birth: '1970-01-01'
+    statut_marital: 2
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -96,8 +96,8 @@
     salaire_imposable: 24000
     abic_imps: 1500
     activite: 0
-    statmarit: 2
-    birth: '1970-01-01'
+    statut_marital: 2
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -124,8 +124,8 @@
     salaire_imposable: 24000
     abic_imps: 0
     activite: 0
-    statmarit: 2
-    birth: '1970-01-01'
+    statut_marital: 2
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -152,8 +152,8 @@
     salaire_imposable: 24000
     abic_imps: 0
     activite: 0
-    statmarit: 2
-    birth: '1970-01-01'
+    statut_marital: 2
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -180,8 +180,8 @@
     salaire_imposable: 24000
     abic_imps: 0
     activite: 0
-    statmarit: 2
-    birth: '1970-01-01'
+    statut_marital: 2
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -208,8 +208,8 @@
     salaire_imposable: 24000
     abic_imps: 0
     activite: 0
-    statmarit: 2
-    birth: '1970-01-01'
+    statut_marital: 2
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -236,8 +236,8 @@
     salaire_imposable: 24000
     abic_imps: 0
     activite: 0
-    statmarit: 2
-    birth: '1970-01-01'
+    statut_marital: 2
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0
@@ -265,8 +265,8 @@
     salaire_imposable: 24000
     abic_imps: 0
     activite: 0
-    statmarit: 2
-    birth: '1970-01-01'
+    statut_marital: 2
+    date_naissance: '1970-01-01'
   menages:
   - id: '0'
     personne_de_reference: ind0

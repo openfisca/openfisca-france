@@ -21,7 +21,7 @@ class allocations_temporaires_invalidite(Variable):
 
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         _P = simulation.legislation_at(period.start)
 
         base = assiette_cotisations_sociales_public
@@ -30,14 +30,14 @@ class allocations_temporaires_invalidite(Variable):
             bareme_name = "ati",
             base = base,
             plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
+            categorie_salarie = categorie_salarie,
             )
         cotisation_collectivites_locales = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "atiacl",
             base = base,
             plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
+            categorie_salarie = categorie_salarie,
             )
         return period, cotisation_etat + cotisation_collectivites_locales
 
@@ -52,9 +52,9 @@ class assiette_cotisations_sociales_public(Variable):
         remuneration_principale = simulation.calculate('remuneration_principale', period)
         # primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         # indemnite_residence = simulation.calculate('indemnite_residence', period)
-        type_sal = simulation.calculate('type_sal', period)
-        public = (type_sal >= 2)
-        # titulaire = (type_sal >= 2) * (type_sal <= 5)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
+        public = (categorie_salarie >= 2)
+        # titulaire = (categorie_salarie >= 2) * (categorie_salarie <= 5)
         assiette = public * (
             remuneration_principale
             # + not_(titulaire) * (indemnite_residence + primes_fonction_publique)
@@ -76,7 +76,7 @@ class contribution_exceptionnelle_solidarite(Variable):
         period = period.this_month
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         hsup = simulation.calculate('hsup', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         rafp_salarie = simulation.calculate('rafp_salarie', period)
@@ -90,10 +90,10 @@ class contribution_exceptionnelle_solidarite(Variable):
         seuil_assuj_fds = seuil_fds(_P)
 
         assujettis = (
-            (type_sal == CAT['public_titulaire_etat']) +
-            (type_sal == CAT['public_titulaire_territoriale']) +
-            (type_sal == CAT['public_titulaire_hospitaliere']) +
-            (type_sal == CAT['public_non_titulaire'])
+            (categorie_salarie == CAT['public_titulaire_etat']) +
+            (categorie_salarie == CAT['public_titulaire_territoriale']) +
+            (categorie_salarie == CAT['public_titulaire_hospitaliere']) +
+            (categorie_salarie == CAT['public_non_titulaire'])
             ) * (
             (traitement_indiciaire_brut + salaire_de_base - hsup) > seuil_assuj_fds
             )
@@ -107,12 +107,12 @@ class contribution_exceptionnelle_solidarite(Variable):
                     traitement_indiciaire_brut + salaire_de_base - hsup + indemnite_residence + rafp_salarie +
                     pension_civile_salarie +
                     primes_fonction_publique +
-                    (type_sal == CAT['public_non_titulaire']) * cotisations_salariales_contributives
+                    (categorie_salarie == CAT['public_non_titulaire']) * cotisations_salariales_contributives
                     ),
                 _P.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
                 ),
             plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
+            categorie_salarie = categorie_salarie,
             )
         return period, cotisation
 
@@ -127,14 +127,14 @@ class fonds_emploi_hospitalier(Variable):
 
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         _P = simulation.legislation_at(period.start)
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "feh",
             base = assiette_cotisations_sociales_public,  # TODO: check base
             plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
+            categorie_salarie = categorie_salarie,
             )
         return period, cotisation
 
@@ -148,7 +148,7 @@ class ircantec_salarie(Variable):
         period = period.this_month
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         _P = simulation.legislation_at(period.start)
 
         ircantec = apply_bareme_for_relevant_type_sal(
@@ -156,7 +156,7 @@ class ircantec_salarie(Variable):
             bareme_name = "ircantec",
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
+            categorie_salarie = categorie_salarie,
             )
         return period, ircantec
 
@@ -170,7 +170,7 @@ class ircantec_employeur(Variable):
         period = period.this_month
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         _P = simulation.legislation_at(period.start)
 
         ircantec = apply_bareme_for_relevant_type_sal(
@@ -178,7 +178,7 @@ class ircantec_employeur(Variable):
             bareme_name = "ircantec",
             base = assiette_cotisations_sociales,
             plafond_securite_sociale = plafond_securite_sociale,
-            type_sal = type_sal,
+            categorie_salarie = categorie_salarie,
             )
         return period, ircantec
 
@@ -192,14 +192,14 @@ class pension_civile_salarie(Variable):
     def function(self, simulation, period):
         period = period.this_month
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)  # TODO: check nbi
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         _P = simulation.legislation_at(period.start)
 
         sal = _P.cotsoc.cotisations_salarie
         terr_or_hosp = (
-            type_sal == CAT['public_titulaire_territoriale']) | (type_sal == CAT['public_titulaire_hospitaliere'])
+            categorie_salarie == CAT['public_titulaire_territoriale']) | (categorie_salarie == CAT['public_titulaire_hospitaliere'])
         pension_civile_salarie = (
-            (type_sal == CAT['public_titulaire_etat']) *
+            (categorie_salarie == CAT['public_titulaire_etat']) *
             sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut) +
             terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
             )
@@ -216,15 +216,15 @@ class pension_civile_employeur(Variable):
         period = period.this_month
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         # plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         _P = simulation.legislation_at(period.start)
 
         pat = _P.cotsoc.cotisations_employeur
         terr_or_hosp = (
-            (type_sal == CAT['public_titulaire_territoriale']) | (type_sal == CAT['public_titulaire_hospitaliere'])
+            (categorie_salarie == CAT['public_titulaire_territoriale']) | (categorie_salarie == CAT['public_titulaire_hospitaliere'])
             )
         cot_pat_pension_civile = (
-            (type_sal == CAT['public_titulaire_etat']) * pat['public_titulaire_etat']['pension'].calc(
+            (categorie_salarie == CAT['public_titulaire_etat']) * pat['public_titulaire_etat']['pension'].calc(
                 assiette_cotisations_sociales_public) +
             terr_or_hosp * pat['public_titulaire_territoriale']['cnracl'].calc(assiette_cotisations_sociales_public)
             )
@@ -242,15 +242,15 @@ class rafp_salarie(DatedVariable):
     def function(self, simulation, period):
         period = period.this_month
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         _P = simulation.legislation_at(period.start)
 
-        eligible = ((type_sal == CAT['public_titulaire_etat'])
-                     + (type_sal == CAT['public_titulaire_territoriale'])
-                     + (type_sal == CAT['public_titulaire_hospitaliere']))
+        eligible = ((categorie_salarie == CAT['public_titulaire_etat'])
+                     + (categorie_salarie == CAT['public_titulaire_territoriale'])
+                     + (categorie_salarie == CAT['public_titulaire_hospitaliere']))
 
         plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
         base_imposable = primes_fonction_publique + supp_familial_traitement + indemnite_residence
@@ -270,16 +270,16 @@ class rafp_employeur(DatedVariable):
     def function(self, simulation, period):
         period = period.this_month
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        type_sal = simulation.calculate('type_sal', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         _P = simulation.legislation_at(period.start)
 
         eligible = (
-            (type_sal == CAT['public_titulaire_etat']) +
-            (type_sal == CAT['public_titulaire_territoriale']) +
-            (type_sal == CAT['public_titulaire_hospitaliere'])
+            (categorie_salarie == CAT['public_titulaire_etat']) +
+            (categorie_salarie == CAT['public_titulaire_territoriale']) +
+            (categorie_salarie == CAT['public_titulaire_hospitaliere'])
             )
         plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
         base_imposable = primes_fonction_publique + supp_familial_traitement + indemnite_residence

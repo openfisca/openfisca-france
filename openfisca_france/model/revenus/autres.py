@@ -3,70 +3,152 @@
 from ..base import *  # noqa analysis:ignore
 
 
-build_column('pensions_alimentaires_percues', FloatCol(entity = 'ind', label = u"Pensions alimentaires perçues",
-               val_type = "monetary",
-               cerfa_field = {QUIFOY['vous']: u"1AO",
-                              QUIFOY['conj']: u"1BO",
-                              QUIFOY['pac1']: u"1CO",
-                              QUIFOY['pac2']: u"1DO",
-                              QUIFOY['pac3']: u"1EO",
-                              }))  # (f1ao, f1bo, f1co, f1do, f1eo)
-build_column('pensions_alimentaires_percues_decl', BoolCol(label = u"Pension déclarée", default = True))
+class pensions_alimentaires_percues(Variable):
+    cerfa_field = {QUIFOY['vous']: u"1AO",
+        QUIFOY['conj']: u"1BO",
+        QUIFOY['pac1']: u"1CO",
+        QUIFOY['pac2']: u"1DO",
+        QUIFOY['pac3']: u"1EO",
+        }
+    column = FloatCol(val_type = "monetary")
+    entity_class = Individus
+    label = u"Pensions alimentaires perçues"
 
-build_column('pensions_alimentaires_versees_individu', FloatCol(entity = 'ind', label = u"Pensions alimentaires versées pour un individu"))
+  # (f1ao, f1bo, f1co, f1do, f1eo)
+class pensions_alimentaires_percues_decl(Variable):
+    column = BoolCol(default = True)
+    entity_class = Individus
+    label = u"Pension déclarée"
 
-build_column('gains_exceptionnels', FloatCol(entity = 'ind', label = u"Gains exceptionnels"))
 
-build_column('allocation_aide_retour_emploi', FloatCol(entity = 'ind', label = u"Allocation d'aide au retour à l'emploi"))
-build_column('allocation_securisation_professionnelle', FloatCol(entity = 'ind', label = u"Allocation de sécurisation professionnelle"))
-build_column('prime_forfaitaire_mensuelle_reprise_activite', FloatCol(entity = 'ind', label = u"Prime forfaitaire mensuelle pour la reprise d'activité"))
-build_column('indemnites_volontariat', FloatCol(entity = 'ind', label = u"Indemnités de volontariat"))
-build_column('dedommagement_victime_amiante', FloatCol(entity = 'ind', label = u"Dédommagement versé aux victimes de l'amiante"))
-build_column('prestation_compensatoire', FloatCol(entity = 'ind', label = u"Dédommagement versé aux victimes de l'amiante"))
-build_column('pensions_invalidite', FloatCol(entity = 'ind', label = u"Pensions d'invalidité"))
-build_column('bourse_enseignement_sup', FloatCol(entity = 'ind', label = u"Bourse de l'enseignement supérieur"))
+
+class pensions_alimentaires_versees_individu(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Pensions alimentaires versées pour un individu"
+
+
+
+class gains_exceptionnels(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Gains exceptionnels"
+
+
+
+class allocation_aide_retour_emploi(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Allocation d'aide au retour à l'emploi"
+
+
+class allocation_securisation_professionnelle(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Allocation de sécurisation professionnelle"
+
+
+class prime_forfaitaire_mensuelle_reprise_activite(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Prime forfaitaire mensuelle pour la reprise d'activité"
+
+
+class indemnites_volontariat(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Indemnités de volontariat"
+
+
+class dedommagement_victime_amiante(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Dédommagement versé aux victimes de l'amiante"
+
+
+class prestation_compensatoire(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Prestation compensatoire"
+
+
+class pensions_invalidite(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Pensions d'invalidité"
+
+
+class bourse_enseignement_sup(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Bourse de l'enseignement supérieur"
+
+
 
 
 # Avoir fiscaux et crédits d'impôt
 # f2ab déjà disponible
-build_column('f8ta', IntCol(entity = 'foy',
-                label = u"Retenue à la source en France ou impôt payé à l'étranger",
-                val_type = "monetary",
-                cerfa_field = u'8TA'))
+class f8ta(Variable):
+    cerfa_field = u"8TA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Retenue à la source en France ou impôt payé à l'étranger"
 
 
-build_column('f8th', IntCol(entity = 'foy',
-                label = u"Retenue à la source élus locaux",
-                val_type = "monetary",
-                cerfa_field = u'8TH'))
 
 
-build_column('f8td_2002_2005', IntCol(entity = 'foy',
-                start = date(2002, 1, 1),
-                end = date(2005, 12, 31),
-                label = u"Contribution exceptionnelle sur les hauts revenus",
-                cerfa_field = u'8TD'))
-
-build_column('f8td', BoolCol(entity = 'foy',
-                start = date(2011, 1, 1),  # 2011 ou 2013 ?
-                end = date(2014, 12, 31),
-                label = u"Revenus non imposables dépassent la moitié du RFR",
-                cerfa_field = u'8TD'))
+class f8th(Variable):
+    cerfa_field = u"8TH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Retenue à la source élus locaux"
 
 
-build_column('f8ti', IntCol(entity = 'foy',
-                label = u"Revenus de l'étranger exonérés d'impôt",
-                val_type = "monetary",
-                cerfa_field = u'8TK'))
 
-build_column('f8tk', IntCol(entity = 'foy',
-                label = u"Revenus de l'étranger imposables",
-                val_type = "monetary",
-                cerfa_field = u'8TK'))
+
+class f8td_2002_2005(Variable):
+    cerfa_field = u"8TD"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Contribution exceptionnelle sur les hauts revenus"
+    start_date = date(2002, 1, 1)
+    stop_date = date(2005, 12, 31)
+
+
+
+class f8td(Variable):
+    cerfa_field = u"8TD"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Revenus non imposables dépassent la moitié du RFR"
+    start_date = date(2011, 1, 1)
+    stop_date = date(2014, 12, 31)
+
+
+
+
+class f8ti(Variable):
+    cerfa_field = u"8TK"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Revenus de l'étranger exonérés d'impôt"
+
+
+
+class f8tk(Variable):
+    cerfa_field = u"8TK"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Revenus de l'étranger imposables"
+
+
 
 # Auto-entrepreneur : versements libératoires d’impôt sur le revenu
-build_column('f8uy', IntCol(entity = 'foy',
-                label = u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu dont le remboursement est demandé",
-                val_type = "monetary",
-                start = date(2009, 1, 1),
-                cerfa_field = u'8UY'))
+class f8uy(Variable):
+    cerfa_field = u"8UY"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu dont le remboursement est demandé"
+    start_date = date(2009, 1, 1)
+
+

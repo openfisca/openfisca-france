@@ -24,17 +24,17 @@ def test_charge_loyer():
                 ),
             ],
         period = periods.period('year', year),
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
+        parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
+        parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
         enfants = [
-            dict(birth = datetime.date(year - 9, 1, 1)),
-            dict(birth = datetime.date(year - 9, 1, 1)),
+            dict(date_naissance = datetime.date(year - 9, 1, 1)),
+            dict(date_naissance = datetime.date(year - 9, 1, 1)),
             ],
         menage = dict(
             loyer = 1000,
             ),
         )
-    reform_simulation = scenario.new_simulation(debug = True)
+    reform_simulation = scenario.new_simulation()
     absolute_error_margin = 0.01
 
     reform_charge_loyer = reform_simulation.calculate('charge_loyer')

@@ -9,24 +9,89 @@ from ..base import *  # noqa analysis:ignore
 # Variables apparaissant dans la feuille de déclaration de patrimoine soumis à l'ISF
 
 ## Immeubles bâtis
-build_column('b1ab', IntCol(entity = 'foy', label = u"Valeur de la résidence principale avant abattement", val_type = "monetary"))
-build_column('b1ac', IntCol(entity = 'foy', label = u"Valeur des autres immeubles avant abattement", val_type = "monetary"))
+class b1ab(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Valeur de la résidence principale avant abattement"
+
+
+class b1ac(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Valeur des autres immeubles avant abattement"
+
+
 
 ## non bâtis
-build_column('b1bc', IntCol(entity = 'foy', label = u"Immeubles non bâtis : bois, fôrets et parts de groupements forestiers", val_type = "monetary"))
-build_column('b1be', IntCol(entity = 'foy', label = u"Immeubles non bâtis : biens ruraux loués à long termes", val_type = "monetary"))
-build_column('b1bh', IntCol(entity = 'foy', label = u"Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers", val_type = "monetary"))
-build_column('b1bk', IntCol(entity = 'foy', label = u"Immeubles non bâtis : autres biens", val_type = "monetary"))
+class b1bc(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Immeubles non bâtis : bois, fôrets et parts de groupements forestiers"
+
+
+class b1be(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Immeubles non bâtis : biens ruraux loués à long termes"
+
+
+class b1bh(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers"
+
+
+class b1bk(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Immeubles non bâtis : autres biens"
+
+
 
 ## droits sociaux- valeurs mobilières-liquidités- autres meubles
-build_column('b1cl', IntCol(entity = 'foy', label = u"Parts et actions détenues par les salariés et mandataires sociaux", val_type = "monetary"))
-build_column('b1cb', IntCol(entity = 'foy', label = u"Parts et actions de sociétés avec engagement de conservation de 6 ans minimum", val_type = "monetary"))
-build_column('b1cd', IntCol(entity = 'foy', label = u"Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité", val_type = "monetary"))
-build_column('b1ce', IntCol(entity = 'foy', label = u"Autres valeurs mobilières", val_type = "monetary"))
-build_column('b1cf', IntCol(entity = 'foy', label = u"Liquidités", val_type = "monetary"))
-build_column('b1cg', IntCol(entity = 'foy', label = u"Autres biens meubles", val_type = "monetary"))
+class b1cl(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Parts et actions détenues par les salariés et mandataires sociaux"
 
-build_column('b1co', IntCol(entity = 'foy', label = u"Autres biens meubles : contrats d'assurance-vie", val_type = "monetary"))
+
+class b1cb(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Parts et actions de sociétés avec engagement de conservation de 6 ans minimum"
+
+
+class b1cd(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité"
+
+
+class b1ce(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Autres valeurs mobilières"
+
+
+class b1cf(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Liquidités"
+
+
+class b1cg(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Autres biens meubles"
+
+
+
+class b1co(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Autres biens meubles : contrats d'assurance-vie"
+
+
 
 #    b1ch
 #    b1ci
@@ -35,28 +100,94 @@ build_column('b1co', IntCol(entity = 'foy', label = u"Autres biens meubles : con
 
 
 ## passifs et autres réductions
-build_column('b2gh', IntCol(entity = 'foy', label = u"Total du passif et autres déductions", val_type = "monetary"))
+class b2gh(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Total du passif et autres déductions"
+
+
 
 ## réductions
-build_column('b2mt', IntCol(entity = 'foy', label = u"Réductions pour investissements directs dans une société", val_type = "monetary"))
-build_column('b2ne', IntCol(entity = 'foy', label = u"Réductions pour investissements directs dans une société", val_type = "monetary"))
-build_column('b2mv', IntCol(entity = 'foy', label = u"Réductions pour investissements par sociétés interposées, holdings" , val_type = "monetary"))
-build_column('b2nf', IntCol(entity = 'foy', label = u"Réductions pour investissements par sociétés interposées, holdings", val_type = "monetary"))
-build_column('b2mx', IntCol(entity = 'foy', label = u"Réductions pour investissements par le biais de FIP", val_type = "monetary"))
-build_column('b2na', IntCol(entity = 'foy', label = u"Réductions pour investissements par le biais de FCPI ou FCPR", val_type = "monetary"))
-build_column('b2nc', IntCol(entity = 'foy', label = u"Réductions pour dons à certains organismes d'intérêt général", val_type = "monetary"))
+class b2mt(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Réductions pour investissements directs dans une société"
+
+
+class b2ne(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Réductions pour investissements directs dans une société"
+
+
+class b2mv(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Réductions pour investissements par sociétés interposées, holdings"
+
+
+class b2nf(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Réductions pour investissements par sociétés interposées, holdings"
+
+
+class b2mx(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Réductions pour investissements par le biais de FIP"
+
+
+class b2na(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Réductions pour investissements par le biais de FCPI ou FCPR"
+
+
+class b2nc(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Réductions pour dons à certains organismes d'intérêt général"
+
+
 
 ##  montant impôt acquitté hors de France
-build_column('b4rs', IntCol(entity = 'foy', label = u"Montant de l'impôt acquitté hors de France", val_type = "monetary"))
+class b4rs(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Montant de l'impôt acquitté hors de France"
+
+
 
 ## BOUCLIER FISCAL
 
-build_column('rev_or', IntCol(entity = 'foy', label = u"", val_type = "monetary"))
-build_column('rev_exo', IntCol(entity = 'foy', label = u"", val_type = "monetary"))
+class rev_or(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
 
-build_column('tax_fonc', IntCol(entity = 'foy', label = u"Taxe foncière", val_type = "monetary"))
-build_column('restit_imp', IntCol(entity = 'foy', label = u"", val_type = "monetary"))
-build_column('etr', IntCol())
+
+class rev_exo(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+
+class tax_fonc(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Taxe foncière"
+
+
+class restit_imp(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+class etr(Variable):
+    column = IntCol
+    entity_class = Individus
+
+
 
 
 # Calcul de l'impôt de solidarité sur la fortune
@@ -322,9 +453,9 @@ class revetproduits(Variable):
         http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8342/fichedescriptiveformulaire_8342.pdf
         '''
         period = period.this_year
-        salcho_imp_holder = simulation.compute('salcho_imp', period)
-        pen_net_holder = simulation.compute('pen_net', period)
-        rto_net = simulation.calculate('rto_net', period)
+        salcho_imp_holder = simulation.compute('revenu_assimile_salaire_apres_abattements', period)
+        pen_net_holder = simulation.compute('revenu_assimile_pension_apres_abattements', period)
+        retraite_titre_onereux_net = simulation.calculate('retraite_titre_onereux_net', period)
         rev_cap_bar = simulation.calculate('rev_cap_bar', period)
         fon = simulation.calculate('fon', period)
         ric_holder = simulation.compute('ric', period)
@@ -335,18 +466,18 @@ class revetproduits(Variable):
         imp_lib = simulation.calculate('imp_lib', period)
         P = simulation.legislation_at(period.start).isf.plafonnement
 
-        pen_net = self.sum_by_entity(pen_net_holder)
+        revenu_assimile_pension_apres_abattements = self.sum_by_entity(pen_net_holder)
         rag = self.sum_by_entity(rag_holder)
         ric = self.sum_by_entity(ric_holder)
         rpns_exon = self.sum_by_entity(rpns_exon_holder)
         rpns_pvct = self.sum_by_entity(rpns_pvct_holder)
-        salcho_imp = self.sum_by_entity(salcho_imp_holder)
+        revenu_assimile_salaire_apres_abattements = self.sum_by_entity(salcho_imp_holder)
 
         # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO:
         # # def rev_exon et rev_etranger dans data? ##
         pt = max_(
             0,
-            salcho_imp + pen_net + rto_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon +
+            revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + retraite_titre_onereux_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon +
             rpns_pvct + imp_lib + fon
             )
         return period, pt * P.taux
@@ -457,7 +588,7 @@ class rvcm_plus_abat(Variable):
         return period, rev_cat_rvcm + rfr_rvcm
 
 
-class maj_cga_i(Variable):
+class maj_cga_individu(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Majoration pour non adhésion à un centre de gestion agréé (pour chaque individu du foyer)"
@@ -498,7 +629,7 @@ class maj_cga(PersonToEntityColumn):
     entity_class = FoyersFiscaux
     label = u"Majoration pour non adhésion à un centre de gestion agréé"
     operation = 'add'
-    variable = maj_cga_i
+    variable = maj_cga_individu
 
 
 class bouclier_rev(Variable):

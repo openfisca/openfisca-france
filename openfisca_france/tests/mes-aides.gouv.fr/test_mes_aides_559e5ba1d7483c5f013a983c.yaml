@@ -9,10 +9,10 @@ keywords:
   Le montant de RSA calculé est le bon (cf. RSA non majoré) mais le simulateur affiche en résultat le montant de RSA majoré pour situation d'isolement sans critère de conditions https://wiki.openfisca.fr/index.php/RSA#R.C3.A8gles_de_calcul)
 period: month:2015-07
 individus:
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 45
   age_en_mois: 544
-  birth: '1970-02-14'
+  date_naissance: '1970-02-14'
   enfant_place: false
   epargne_non_remuneree:
     2012-01: 0
@@ -21,7 +21,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
   tns_micro_entreprise_type_activite: bic
@@ -31,7 +31,7 @@ individus:
     2012-01: 0
 - age: 11
   age_en_mois: 143
-  birth: '2003-07-30'
+  date_naissance: '2003-07-30'
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -39,7 +39,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   scolarite: 1
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -249,20 +249,6 @@ familles:
     year:2014-07: 0
   parents:
   - 559e560decfc1e52013e3b51
-  paris_logement_familles:
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    year:2014-07: 0
   rsa:
     2014-07: 0
     2014-08: 0
@@ -315,10 +301,9 @@ menages:
 - depcom: '77108'
   enfants:
   - 559e560decfc1e52013e3b50
-  parisien: false
   participation_frais: false
   personne_de_reference: 559e560decfc1e52013e3b51
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   rsa: 556.09
   rsa_non_majore: 556.09

@@ -9,8 +9,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '0.5.4.dev0',
-
+    version = '3.0.0',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -33,6 +32,9 @@ setup(
         'inversion_revenus': [
             'scipy >= 0.12',
             ],
+        'de_net_a_brut': [
+            'scipy >= 0.12',
+            ],
         'taxipp': [
             'pandas >= 0.13',
             ],
@@ -45,7 +47,7 @@ setup(
         'Babel >= 0.9.4',
         'Biryani[datetimeconv] >= 0.10.4',
         'numpy >= 1.6',
-        'OpenFisca-Core >= 0.5.0',
+        'OpenFisca-Core ~= 1.1.0',
         'PyYAML >= 3.10',
         'requests >= 2.8',
         ],

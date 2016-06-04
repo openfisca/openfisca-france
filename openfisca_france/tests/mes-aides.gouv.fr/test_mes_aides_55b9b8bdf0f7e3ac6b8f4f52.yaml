@@ -9,10 +9,10 @@ description: |
 period: "month:2015-07"
 relative_error_margin: 0.02
 individus:
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 34
     age_en_mois: 408
-    birth: "1981-07-11"
+    date_naissance: "1981-07-11"
     chomage_imposable:
       2013: 0
     enfant_place: false
@@ -23,7 +23,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2013: 0
       2014-07: 146
@@ -45,17 +45,17 @@ individus:
       2013: 1967
     salaire_imposable:
       2013: 0
-    statmarit: 1
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     activite: 1
     age: 29
     age_en_mois: 356
     ass_precondition_remplie: false
-    birth: "1985-11-28"
+    date_naissance: "1985-11-28"
     chomage_imposable:
       2013: 0
     chomage_brut:
@@ -96,7 +96,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2013: 0
     retraite_imposable:
@@ -150,15 +150,15 @@ individus:
       2015-06: 1239
       2015-07: 1239
       year:2014-07: 14868
-    statmarit: 1
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 3
     age_en_mois: 43
-    birth: "2011-12-17"
+    date_naissance: "2011-12-17"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -167,15 +167,15 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 8
     age_en_mois: 97
-    birth: "2007-06-01"
+    date_naissance: "2007-06-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -184,15 +184,15 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 10
     age_en_mois: 120
-    birth: "2005-07-16"
+    date_naissance: "2005-07-16"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -201,16 +201,16 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 13
     age_en_mois: 156
-    birth: "2002-07-10"
+    date_naissance: "2002-07-10"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -219,16 +219,16 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 14
     age_en_mois: 179
-    birth: "2000-08-07"
+    date_naissance: "2000-08-07"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -237,7 +237,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -449,20 +449,6 @@ familles:
   parents:
     - 55b9b7b4f0f7e3ac6b8f4f45
     - 55b9b7b4f0f7e3ac6b8f4f2b
-  paris_logement_familles:
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    year:2014-07: 0
   proprietaire_proche_famille: false
   rsa:
     2014-07: 0
@@ -530,9 +516,8 @@ menages:
     - 55b9b7b4f0f7e3ac6b8f4f27
     - 55b9b7b4f0f7e3ac6b8f4f26
   loyer: 374
-  parisien: false
   personne_de_reference: 55b9b7b4f0f7e3ac6b8f4f45
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 414.81
   rsa: 18.44

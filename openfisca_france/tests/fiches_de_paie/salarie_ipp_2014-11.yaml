@@ -15,7 +15,7 @@ input_variables:
   taux_accident_travail: .015
   titre_restaurant_valeur_unitaire: 9
   titre_restaurant_volume: 19
-  type_sal: 1
+  categorie_salarie: 1
 output_variables:
   conge_individuel_formation_cdd: -46
   contribution_solidarite_autonomie: -13.8

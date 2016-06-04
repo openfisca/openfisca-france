@@ -49,8 +49,7 @@ options_by_dir = collections.OrderedDict((
         os.path.abspath(os.path.join(os.path.dirname(__file__), 'mes-aides.gouv.fr')),
         dict(
             calculate_output = True,
-            default_absolute_error_margin = 0.007,
-            reforms = ['aides_ville_paris'],
+            default_relative_error_margin = 0.02,
             ),
         ),
     (
@@ -58,6 +57,15 @@ options_by_dir = collections.OrderedDict((
         dict(
             calculate_output = False,
             default_absolute_error_margin = 0.005,
+            ),
+        ),
+    (
+        os.path.abspath(os.path.join(os.path.dirname(__file__), 'scipy')),
+        dict(
+            calculate_output = False,
+            default_absolute_error_margin = 0.005,
+            reforms = ['de_net_a_brut'],
+            requires = 'scipy',
             ),
         ),
     ))
@@ -140,10 +148,10 @@ def assert_near_calculate_output(value, target_value, absolute_error_margin = 0,
                     abs(target_value - value), abs(relative_error_margin * target_value))
 
 
-def check(yaml_path, name, period_str, test, force):
+def check(yaml_path, name, period_str, test, force, verbose = False):
     scenario = test['scenario']
     scenario.suggest()
-    simulation = scenario.new_simulation(debug = True)
+    simulation = scenario.new_simulation(debug = verbose)
     output_variables = test.get(u'output_variables')
     if output_variables is not None:
         output_variables_name_to_ignore = test.get(u'output_variables_name_to_ignore') or set()
@@ -169,10 +177,10 @@ def check(yaml_path, name, period_str, test, force):
                     )
 
 
-def check_calculate_output(yaml_path, name, period_str, test, force):
+def check_calculate_output(yaml_path, name, period_str, test, force, verbose = False):
     scenario = test['scenario']
     scenario.suggest()
-    simulation = scenario.new_simulation(debug = True)
+    simulation = scenario.new_simulation(debug = verbose)
     output_variables = test.get(u'output_variables')
     if output_variables is not None:
         output_variables_name_to_ignore = test.get(u'output_variables_name_to_ignore') or set()
@@ -219,6 +227,11 @@ def test(force = False, name_filter = None, options_by_path = None):
         else:
             yaml_paths = [path]
 
+        if options.get('requires'):
+            # Check if the required package was successfully imported in tests/base.py
+            if getattr(base, options.get('requires')) is None:
+                continue
+
         reform_keys = options.get('reforms')
         tax_benefit_system_for_path = base.get_cached_composed_reform(
             reform_keys = reform_keys,
@@ -245,7 +258,8 @@ def test(force = False, name_filter = None, options_by_path = None):
             for test in tests:
                 test, error = scenarios.make_json_or_python_to_test(
                     tax_benefit_system = tax_benefit_system_for_path,
-                    default_absolute_error_margin = options['default_absolute_error_margin'],
+                    default_absolute_error_margin = options.get('default_absolute_error_margin'),
+                    default_relative_error_margin = options.get('default_relative_error_margin'),
                     )(test)
                 if error is not None:
                     embedding_error = conv.embed_error(test, u'errors', error)
@@ -295,7 +309,7 @@ if __name__ == "__main__":
         options_by_path = None
 
     tests_found = False
-    for test_index, (function, yaml_path, name, period_str, test, force) in enumerate(
+    for test_index, (checker, yaml_path, name, period_str, test, force) in enumerate(
             test(
                 force = args.force,
                 name_filter = args.name,
@@ -313,7 +327,7 @@ if __name__ == "__main__":
         print("=" * len(title))
         print(title)
         print("=" * len(title))
-        function(yaml_path, name, period_str, test, force)
+        checker(yaml_path, name, period_str, test, force, args.verbose)
         tests_found = True
     if not tests_found:
         print("No test found!")

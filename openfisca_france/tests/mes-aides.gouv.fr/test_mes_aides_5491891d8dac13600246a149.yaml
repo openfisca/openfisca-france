@@ -9,7 +9,7 @@ period: "month:2014-12"
 individus:
   age: 40
   age_en_mois: 491
-  birth: "1974-01-01"
+  date_naissance: "1974-01-01"
   epargne_non_remuneree:
     2012-01: 0
   etudiant: 0
@@ -17,7 +17,7 @@ individus:
   inapte_travail: 0
   interets_epargne_sur_livrets:
     2012-01: 0
-  invalide: 0
+  handicap: 0
   salaire_de_base:
     2012: 12335.897435897436
     2013-12: 1071.5099715099716
@@ -272,20 +272,6 @@ familles:
     2014-11: 0
     year:2013-12: 0
   parents: 549185161abb1c570220a2be
-  paris_logement_familles:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    year:2013-12: 0
   proprietaire_proche_famille: false
   rsa:
     2013-12: 0
@@ -337,6 +323,6 @@ menages:
   enfants:
   loyer: 50
   personne_de_reference: 549185161abb1c570220a2be
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   acs: 200

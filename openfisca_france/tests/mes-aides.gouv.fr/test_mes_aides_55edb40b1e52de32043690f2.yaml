@@ -8,10 +8,10 @@ description: "Plafond Couple 1 revenu 2 enfants à charge dont 1 né après le 1
 period: "month:2015-09"
 relative_error_margin: 0.02
 individus:
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 55
     age_en_mois: 668
-    birth: "1960-01-01"
+    date_naissance: "1960-01-01"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -20,7 +20,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2014-09: 5698.005698005698
       2014-10: 5698.005698005698
@@ -67,15 +67,15 @@ individus:
       2015-07: 0
       2015-08: 0
       year:2014-09: 40000
-    statmarit: 1
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 54
     age_en_mois: 659
-    birth: "1960-09-08"
+    date_naissance: "1960-09-08"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -84,16 +84,16 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
-    statmarit: 1
+    handicap: 0
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 4
     age_en_mois: 59
-    birth: "2010-09-09"
+    date_naissance: "2010-09-09"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -102,15 +102,15 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 0
     age_en_mois: 3
-    birth: "2015-05-09"
+    date_naissance: "2015-05-09"
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -119,7 +119,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -327,20 +327,6 @@ familles:
   parents:
     - 55edb3ffbd7b102a0438a5c6
     - 55edb3ffbd7b102a0438a5c5
-  paris_logement_familles:
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    2015-07: 0
-    2015-08: 0
-    year:2014-09: 0
   proprietaire_proche_famille: true
   rsa:
     2014-09: 0
@@ -399,8 +385,7 @@ menages:
     - 55edb3ffbd7b102a0438a5c4
     - 55edb3ffbd7b102a0438a5c3
   loyer: 600
-  parisien: false
   personne_de_reference: 55edb3ffbd7b102a0438a5c6
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   paje_base: 92.31

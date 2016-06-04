@@ -23,18 +23,18 @@ def test():
                 ),
             ],
         period = periods.period('year', year),
-        parent1 = dict(birth = datetime.date(year - 40, 1, 1)),
-        # parent2 = dict(birth = datetime.date(year - 40, 1, 1)),
+        parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
+        # parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
         # enfants = [
-        #     dict(birth = datetime.date(year - 9, 1, 1)),
-        #     dict(birth = datetime.date(year - 9, 1, 1)),
+        #     dict(date_naissance = datetime.date(year - 9, 1, 1)),
+        #     dict(date_naissance = datetime.date(year - 9, 1, 1)),
         #     ],
         )
 
-#    reference_simulation = scenario.new_simulation(debug = True, reference = True)
+#    reference_simulation = scenario.new_simulation(reference = True)
 #
 
-    reform_simulation = scenario.new_simulation(debug = True)
+    reform_simulation = scenario.new_simulation()
     reform_assiette_csg = reform_simulation.calculate('assiette_csg')
     reform_impot_revenu_lps = reform_simulation.calculate('impot_revenu_lps')
     assert_near(

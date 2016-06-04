@@ -65,10 +65,10 @@ class cmu_nbp_foyer(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        nb_par = simulation.calculate('nb_par', period)
+        nb_parents = simulation.calculate('nb_parents', period)
         cmu_nb_pac = simulation.calculate('cmu_nb_pac', period)
 
-        return period, nb_par + cmu_nb_pac
+        return period, nb_parents + cmu_nb_pac
 
 
 class cmu_eligible_majoration_dom(Variable):
@@ -93,7 +93,7 @@ class cmu_c_plafond(Variable):
     def function(self, simulation, period):
         period = period.this_month
         age_holder = simulation.compute('age', period)
-        alt_holder = simulation.compute('alt', period)
+        alt_holder = simulation.compute('garde_alternee', period)
         cmu_eligible_majoration_dom = simulation.calculate('cmu_eligible_majoration_dom', period)
         # cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
         P = simulation.legislation_at(period.start).cmu
@@ -149,7 +149,7 @@ class acs_plafond(Variable):
         return period, cmu_c_plafond * (1 + P.majoration_plafond_acs)
 
 
-class cmu_base_ressources_i(Variable):
+class cmu_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Individus
@@ -169,7 +169,7 @@ class cmu_base_ressources_i(Variable):
         pensions_alimentaires_versees_individu = simulation.calculate(
             'pensions_alimentaires_versees_individu', previous_year
             )
-        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', previous_year)
+        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_individu', previous_year)
         aah = simulation.calculate_add('aah', previous_year)
         indemnites_journalieres = simulation.calculate('indemnites_journalieres', previous_year)
         indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
@@ -235,11 +235,11 @@ class cmu_base_ressources(Variable):
         paje_clca = simulation.calculate_add('paje_clca', previous_year)
         paje_prepare = simulation.calculate_add('paje_prepare', previous_year)
         aide_logement = simulation.calculate_add('aide_logement', previous_year)
-        statut_occupation = simulation.calculate('statut_occupation_famille', period)
+        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
         cmu_forfait_logement_al = simulation.calculate('cmu_forfait_logement_al', period)
         age_holder = simulation.compute('age', period)
-        cmu_base_ressources_i_holder = simulation.compute('cmu_base_ressources_i', period)
+        cmu_base_ressources_i_holder = simulation.compute('cmu_base_ressources_individu', period)
         P = simulation.legislation_at(period.start).cmu
 
         cmu_br_i_par = self.split_by_roles(cmu_base_ressources_i_holder, roles = [CHEF, PART])
@@ -247,7 +247,7 @@ class cmu_base_ressources(Variable):
 
         age_pac = self.split_by_roles(age_holder, roles = ENFS)
 
-        forfait_logement = (((statut_occupation == 2) + (statut_occupation == 6)) * cmu_forfait_logement_base +
+        forfait_logement = (((statut_occupation_logement == 2) + (statut_occupation_logement == 6)) * cmu_forfait_logement_base +
             (aide_logement > 0) * min_(cmu_forfait_logement_al, aide_logement))
 
         res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement
@@ -301,11 +301,12 @@ class cmu_c(Variable):
         rsa_socle = simulation.calculate('rsa_socle', this_month)
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', this_month)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', this_month)
-        br_rmi = simulation.calculate('br_rmi', this_month)
+        rsa_base_ressources = simulation.calculate('rsa_base_ressources', this_month)
         socle = max_(rsa_socle, rsa_socle_majore)
+        rsa = simulation.calculate('rsa', this_month)
 
         eligibilite_basique = cmu_base_ressources <= cmu_c_plafond
-        eligibilite_rsa = (socle > 0) * (br_rmi < socle - rsa_forfait_logement)
+        eligibilite_rsa = (rsa > 0) * (rsa_base_ressources < socle - rsa_forfait_logement)
 
         return period, not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
 

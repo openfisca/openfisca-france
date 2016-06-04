@@ -12,7 +12,7 @@ individus:
     age: 24
     age_en_mois: 294
     ass_precondition_remplie: true
-    birth: "1990-10-10"
+    date_naissance: "1990-10-10"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -20,7 +20,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2013: 15384.615384615381
       2014-04: 1282.051282051282
@@ -72,14 +72,14 @@ individus:
       2015-03: 1000
       2015-04: 1000
       year:2014-04: 12000
-    statmarit: 1
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - age: 24
     age_en_mois: 294
-    birth: "1990-10-10"
+    date_naissance: "1990-10-10"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -87,8 +87,8 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
-    statmarit: 1
+    handicap: 0
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -294,20 +294,6 @@ familles:
   parents:
     - 55364722c03d26772db57794
     - 55364722c03d26772db57793
-  paris_logement_familles:
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    year:2014-04: 0
   rsa:
     2014-04: 0
     2014-05: 0
@@ -360,6 +346,6 @@ menages:
   depcom: 93070
   enfants:
   personne_de_reference: 55364722c03d26772db57794
-  statut_occupation: 6
+  statut_occupation_logement: 6
 output_variables:
   ass: 487.5

@@ -8,7 +8,7 @@ individus:
   - activite: 3
     age: 65
     age_en_mois: 788
-    birth: "1949-04-01"
+    date_naissance: "1949-04-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -16,7 +16,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     retraite_brute:
       2012: 7200
       2013-12: 600
@@ -102,7 +102,7 @@ individus:
       2014-11: 117
       2014-12: 117
       year:2013-12: 1404
-    statmarit: 1
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -110,7 +110,7 @@ individus:
   - activite: 3
     age: 65
     age_en_mois: 780
-    birth: "1949-12-01"
+    date_naissance: "1949-12-01"
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -118,7 +118,7 @@ individus:
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     salaire_de_base:
       2012: 3600
       2013-12: 300
@@ -375,20 +375,6 @@ familles:
   parents:
     - 547d8536bd420d34260ba250
     - 547d8536bd420d34260ba242
-  paris_logement_familles:
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    year:2013-12: 0
   proprietaire_proche_famille: false
   rsa:
     2013-12: 0

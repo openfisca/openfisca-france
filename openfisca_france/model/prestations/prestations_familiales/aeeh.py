@@ -4,6 +4,12 @@ from __future__ import division
 
 from ...base import *  # noqa
 
+from numpy import logical_not as not_
+
+class aeeh_niveau_handicap(Variable):
+    column = IntCol
+    entity_class = Individus
+    label = u"Catégorie de handicap prise en compte pour l'AEEH"
 
 class aeeh(DatedVariable):
     column = FloatCol(default = 0)
@@ -26,18 +32,18 @@ class aeeh(DatedVariable):
         '''
         period = period.start.offset('first-of', 'month').period('year')
         age_holder = simulation.compute('age', period)
-        invalide_holder = simulation.compute('invalide', period)
-        categ_invalide_holder = simulation.compute('categ_inv', period)
+        handicap_holder = simulation.compute('handicap', period)
+        niveau_handicap_holder = simulation.compute('aeeh_niveau_handicap', period)
         P = simulation.legislation_at(period.start).fam
 
         age = self.split_by_roles(age_holder, roles = ENFS)
-        categ_inv = self.split_by_roles(categ_invalide_holder, roles = ENFS)
-        invalide = self.split_by_roles(invalide_holder, roles = ENFS)
+        niveau_handicap = self.split_by_roles(niveau_handicap_holder, roles = ENFS)
+        handicap = self.split_by_roles(handicap_holder, roles = ENFS)
 
         aeeh = 0
         for enfant in age.iterkeys():
-            enfhand = invalide[enfant] * (age[enfant] < P.aeeh.age) / 12
-            categ = categ_inv[enfant]
+            enfhand = handicap[enfant] * (age[enfant] < P.aeeh.age) / 12
+            categ = niveau_handicap[enfant]
             aeeh += 0 * enfhand  # TODO:
 
     # L'attribution de l'AEEH de base et de ses compléments éventuels ne fait pas obstacle au
@@ -67,26 +73,26 @@ class aeeh(DatedVariable):
         '''
         period = period.start.offset('first-of', 'month').period('year')
         age_holder = simulation.compute('age', period)
-        invalide_holder = simulation.compute('invalide', period)
-        isol = simulation.calculate('isol', period)
-        categ_invalide_holder = simulation.compute('categ_inv', period)
+        handicap_holder = simulation.compute('handicap', period)
+        isole = not_(simulation.calculate('en_couple', period))
+        niveau_handicap_holder = simulation.compute('aeeh_niveau_handicap', period)
         P = simulation.legislation_at(period.start).fam
 
         age = self.split_by_roles(age_holder, roles = ENFS)
-        categ_inv = self.split_by_roles(categ_invalide_holder, roles = ENFS)
-        invalide = self.split_by_roles(invalide_holder, roles = ENFS)
+        niveau_handicap = self.split_by_roles(niveau_handicap_holder, roles = ENFS)
+        handicap = self.split_by_roles(handicap_holder, roles = ENFS)
 
         aeeh = 0
         for enfant in age.iterkeys():
-            enfhand = invalide[enfant] * (age[enfant] < P.aeeh.age) / 12
-            categ = categ_inv[enfant]
+            enfhand = handicap[enfant] * (age[enfant] < P.aeeh.age) / 12
+            categ = niveau_handicap[enfant]
             aeeh += enfhand * (P.af.bmaf * (P.aeeh.base +
                                   P.aeeh.cpl1 * (categ == 1) +
-                                  (categ == 2) * (P.aeeh.cpl2 + P.aeeh.maj2 * isol) +
-                                  (categ == 3) * (P.aeeh.cpl3 + P.aeeh.maj3 * isol) +
-                                  (categ == 4) * (P.aeeh.cpl4 + P.aeeh.maj4 * isol) +
-                                  (categ == 5) * (P.aeeh.cpl5 + P.aeeh.maj5 * isol) +
-                                  (categ == 6) * (P.aeeh.maj6 * isol)) +
+                                  (categ == 2) * (P.aeeh.cpl2 + P.aeeh.maj2 * isole) +
+                                  (categ == 3) * (P.aeeh.cpl3 + P.aeeh.maj3 * isole) +
+                                  (categ == 4) * (P.aeeh.cpl4 + P.aeeh.maj4 * isole) +
+                                  (categ == 5) * (P.aeeh.cpl5 + P.aeeh.maj5 * isole) +
+                                  (categ == 6) * (P.aeeh.maj6 * isole)) +
                                   (categ == 6) * P.aeeh.cpl6)
 
     # L'attribution de l'AEEH de base et de ses compléments éventuels ne fait pas obstacle au
