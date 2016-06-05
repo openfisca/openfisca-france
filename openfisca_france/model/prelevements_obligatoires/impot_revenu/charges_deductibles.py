@@ -517,7 +517,7 @@ class cd_percap(DatedVariable):
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
         plafond_cb = percap.plafond_cb * (1 + maries_ou_pacses)
-        plafond_da = percap.max_da * (1 + maries_ou_pacses)
+        plafond_da = percap.plafond_da * (1 + maries_ou_pacses)
         return period, min_(min_(f6cb, plafond_cb) + min_(f6da, plafond_da), plafond_da)
 
 
