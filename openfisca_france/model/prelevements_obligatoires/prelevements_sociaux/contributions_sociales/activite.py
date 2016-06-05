@@ -140,7 +140,7 @@ class forfait_social(Variable):
             'prise_en_charge_employeur_retraite_complementaire', period)
 
         taux_plein = simulation.legislation_at(period.start).prelevements_sociaux.forfait_social.taux_plein
-        taux_reduit = simulation.legislation_at(period.start).prelevements_sociaux.forfait_social.taux_reduit
+        taux_reduit = simulation.legislation_at(period.start).prelevements_sociaux.forfait_social.taux_reduit_1
 
         # TODO: complete this
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
