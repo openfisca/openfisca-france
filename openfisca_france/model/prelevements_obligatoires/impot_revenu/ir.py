@@ -499,7 +499,7 @@ class retraite_titre_onereux(Variable):
         return period, (f1aw + f1bw + f1cw + f1dw) / 12
 
 
-class rto_declarant1(EntityToPersonColumn):
+class retraite_titre_onereux_declarant1(EntityToPersonColumn):
     entity_class = Individus
     label = u"Rentes viagères (rentes à titre onéreux) (pour le premier déclarant du foyer fiscal)"
     role = VOUS
@@ -691,7 +691,7 @@ class rev_cat_rvcm(DatedVariable):
         rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + marpac)
+        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -763,7 +763,7 @@ class rfr_rvcm(Variable):
         Abattements sur rvcm à réintégrer dans le revenu fiscal de référence
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f2dc = simulation.calculate('f2dc', period)
         f2ts = simulation.calculate('f2ts', period)
         f2ca = simulation.calculate('f2ca', period)
@@ -854,7 +854,7 @@ class rev_cat_rpns(Variable):
 
 
 class rev_cat(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Revenus catégoriels"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
@@ -914,7 +914,7 @@ class rbg(Variable):
         f6gh = simulation.calculate('f6gh', period)
         nbic_impm_holder = simulation.compute('nbic_impm', period)
         nacc_pvce_holder = simulation.compute('nacc_pvce', period)
-        cga = simulation.legislation_at(period.start).ir.rpns.cga_taux2
+        cga = simulation.legislation_at(period.start).impot_revenu.rpns.cga_taux2
 
         # (Total 17)
         # sans les revenus au quotient
@@ -941,7 +941,7 @@ class csg_deduc_patrimoine(Variable):
 
 
 class csg_deduc_patrimoine_simulated(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Csg déductible sur le patrimoine simulée"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
@@ -1075,7 +1075,7 @@ class ir_plaf_qf(Variable):
         nbH = simulation.calculate('nbH', period)
         nbI = simulation.calculate('nbI', period)
         nbR = simulation.calculate('nbR', period)
-        plafond_qf = simulation.legislation_at(period.start).ir.plafond_qf
+        plafond_qf = simulation.legislation_at(period.start).impot_revenu.plafond_qf
 
         A = ir_ss_qf
         I = ir_brut
@@ -1187,13 +1187,13 @@ class decote(DatedVariable):
     def function_2001_2013(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
-        decote = simulation.legislation_at(period.start).ir.decote
+        decote = simulation.legislation_at(period.start).impot_revenu.decote
 
         return period, (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
 
 
 class decote_gain_fiscal(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Gain fiscal de la décote/Décote au sens Dgfip tel que sur la feuille d'impôt"
     start_date = date(1982, 1, 1)
@@ -1223,7 +1223,7 @@ class nat_imp(Variable):
         credits_impot = simulation.calculate('credits_impot', period)
         cehr = simulation.calculate('cehr', period)
 
-        # def _nat_imp(rni, nbptr, non_imposable = law.ir.non_imposable):
+        # def _nat_imp(rni, nbptr, non_imposable = law.impot_revenu.non_imposable):
         # seuil = non_imposable.seuil + (nbptr - 1)*non_imposable.supp
         return period, (iai - credits_impot + cehr) > 0
 
@@ -1280,7 +1280,7 @@ class cont_rev_loc(Variable):
 
 
 class teicaa(Variable):  # f5rm
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"teicaa"
 
@@ -1537,7 +1537,7 @@ class plus_values(DatedVariable):
         f3sa = simulation.calculate('f3sa', period)
         rpns_pvce_holder = simulation.compute('rpns_pvce', period)
         _P = simulation.legislation_at(period.start)
-        plus_values = simulation.legislation_at(period.start).ir.plus_values
+        plus_values = simulation.legislation_at(period.start).impot_revenu.plus_values
 
         rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
         f3vd = self.filter_role(f3vd_holder, role = VOUS)
@@ -1568,7 +1568,7 @@ class plus_values(DatedVariable):
 
 
 class iai(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Impôt avant imputations"
     url = "http://forum-juridique.net-iris.fr/finances-fiscalite-assurance/43963-declaration-impots.html"
@@ -1587,7 +1587,7 @@ class iai(Variable):
 
 
 class cehr(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Contribution exceptionnelle sur les hauts revenus"
     url = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
@@ -1705,7 +1705,7 @@ class rfr(Variable):
 
 
 class glo(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = Individus
     label = u"Gain de levée d'options"
     url = "http://www.officeo.fr/imposition-au-bareme-progressif-de-l-impot-sur-le-revenu-des-gains-de-levee-d-options-sur-actions-et-attributions-d-actions-gratuites"
@@ -1731,7 +1731,7 @@ class rev_cap_bar(Variable):
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
     """
     calculate_output = calculate_output_add
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"rev_cap_bar"
     set_input = set_input_divide_by_period
@@ -1750,8 +1750,8 @@ class rev_cap_bar(Variable):
         avf = simulation.calculate('avf', year)
         f2da = simulation.calculate('f2da', year)
         f2ee = simulation.calculate('f2ee', year)
-        finpfl = simulation.legislation_at(period.start).ir.autre.finpfl  # TODO remove ad check case
-        majGO = simulation.legislation_at(period.start).ir.rvcm.majGO
+        finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl  # TODO remove ad check case
+        majGO = simulation.legislation_at(period.start).impot_revenu.rvcm.majGO
 
         # year = period.start.year
         # if year <= 2011:
@@ -1818,7 +1818,7 @@ class avf(Variable):
 
 
 class imp_lib(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"imp_lib"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
@@ -1832,7 +1832,7 @@ class imp_lib(DatedVariable):
         f2dh = simulation.calculate('f2dh', period)
         f2ee = simulation.calculate('f2ee', period)
         _P = simulation.legislation_at(period.start)
-        prelevement_liberatoire = simulation.legislation_at(period.start).ir.rvcm.prelevement_liberatoire
+        prelevement_liberatoire = simulation.legislation_at(period.start).impot_revenu.rvcm.prelevement_liberatoire
 
         out = -(prelevement_liberatoire.assvie * f2dh + prelevement_liberatoire.autre * f2ee)
         return period, out
@@ -1956,7 +1956,7 @@ class rpns_exon(Variable):
         cncn_jcre = simulation.calculate('cncn_jcre', period)
         cncn_info = simulation.calculate('cncn_info', period)
         nbic_pvce = simulation.calculate('nbic_pvce', period)
-        cga = simulation.legislation_at(period.start).ir.rpns.cga_taux2
+        cga = simulation.legislation_at(period.start).impot_revenu.rpns.cga_taux2
 
         return period, (frag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga) +
                 nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc +
@@ -1964,7 +1964,7 @@ class rpns_exon(Variable):
 
 
 class defrag(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Déficit agricole des années antérieures"
 
@@ -1981,7 +1981,7 @@ class defrag(Variable):
         frag_fore_holder = simulation.compute('frag_fore', period)
         frag_pvct_holder = simulation.compute('frag_pvct', period)
         arag_impg_holder = simulation.compute('arag_impg', period)
-        cga = simulation.legislation_at(period.start).ir.rpns.cga_taux2
+        cga = simulation.legislation_at(period.start).impot_revenu.rpns.cga_taux2
 
         frag_fore = self.sum_by_entity(frag_fore_holder)
         frag_impo = self.sum_by_entity(frag_impo_holder)
@@ -2028,7 +2028,7 @@ class defacc(Variable):
 
 
 class defncn(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Déficit non commerciaux non professionnels des années antérieures"
 
@@ -2589,7 +2589,7 @@ class abat_spe(Variable):
                 ) * 0.5
             )
 
-        as_enf = nbN * abattements_speciaux.enf_montant
+        as_enf = nbN * abattements_rni.enfant_marie.montant
 
         return period, min_(rng, as_inv + as_enf)
 
@@ -2682,7 +2682,7 @@ class nbptr(Variable):
         caseS = simulation.calculate('caseS', period)
         caseL = simulation.calculate('caseL', period)
         caseT = simulation.calculate('caseT', period)
-        quotient_familial = simulation.legislation_at(period.start).ir.quotient_familial
+        quotient_familial = simulation.legislation_at(period.start).impot_revenu.quotient_familial
 
         no_pac = nb_pac == 0  # Aucune personne à charge en garde exclusive
         has_pac = not_(no_pac)
@@ -2733,13 +2733,13 @@ class nbptr(Variable):
         # # Régime des mariés ou pacsés
         m = 1 + quotient_familial.conj + enf + n2 + n4
 
-        # # veufs  hors jveuf
+        # # veufs  hors jeune_veuf
         v = 1 + enf + n2 + n3 + n5 + n6
 
         # # celib div
         c = 1 + enf + n2 + n3 + n6 + n7
 
-        return period, (marpac | jveuf) * m + (veuf & not_(jveuf)) * v + celdiv * c
+        return period, (maries_ou_pacses | jeune_veuf) * m + (veuf & not_(jeune_veuf)) * v + celibataire_ou_divorce * c
 
 
 ###############################################################################
@@ -2781,7 +2781,7 @@ class ppe_elig(Variable):
         veuf = simulation.calculate('veuf', period)
         celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         nbptr = simulation.calculate('nbptr', period)
-        ppe = simulation.legislation_at(period.start).ir.credits_impot.ppe
+        ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe
 
         seuil = (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
                 + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
@@ -2802,7 +2802,7 @@ class ppe_rev(Variable):
         salaire_imposable =  simulation.calculate_add('salaire_imposable', period)
         hsup = simulation.calculate('hsup', period)
         rpns = simulation.calculate('rpns', period)
-        ppe = simulation.legislation_at(period.start).ir.credits_impot.ppe
+        ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe
 
         # Revenu d'activité salarié
         rev_sa = salaire_imposable + hsup  # TODO: + TV + TW + TX + AQ + LZ + VJ
@@ -2865,7 +2865,7 @@ class ppe_elig_individu(Variable):
         period = period.this_year
         ppe_rev = simulation.calculate('ppe_rev', period)
         ppe_coef_tp = simulation.calculate('ppe_coef_tp', period)
-        ppe = simulation.legislation_at(period.start).ir.credits_impot.ppe
+        ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe
 
         return period, (ppe_rev >= ppe.seuil1) & (ppe_coef_tp != 0)
 

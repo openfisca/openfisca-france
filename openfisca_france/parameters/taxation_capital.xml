@@ -370,7 +370,7 @@
         <VALUE deb="2003-01-01" fin="2004-06-30" valeur="0.0015" />
       </CODE>
       <CODE code="rsa" description="Contribution au financement du revenu de solidarité active" format="percent">
-        <VALUE deb="2009-01-01" fin="2012-12-31" valeur="0.011" />
+        <VALUE deb="2009-01-01" fin="2012-12-18" valeur="0.011" />
       </CODE>
     </NODE>
     <CODE code="contribution_sociale_cnav" format="percent">
@@ -389,17 +389,18 @@
     </NODE>
     <NODE code="prelevement_social">
       <CODE code="produits_de_placement" description="Prélèvement social (revenus des produits de placement)" format="percent">
-        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.045" />
-        <VALUE deb="2012-07-01" fin="2012-12-31" valeur="0.054" />
-        <VALUE deb="2011-10-01" fin="2012-06-30" valeur="0.034" />
-        <VALUE deb="2011-01-01" fin="2011-09-30" valeur="0.022" />
+        <VALUE deb="2012-12-19" fuzzy="true" valeur="0.045" />
+        <VALUE deb="2012-03-16" fin="2012-12-18" valeur="0.054" />
+        <VALUE deb="2011-09-21" fin="2012-03-15" valeur="0.034" />
+        <VALUE deb="2011-01-01" fin="2011-09-20" valeur="0.022" />
         <VALUE deb="1998-01-01" fin="2010-12-31" valeur="0.02" />
       </CODE>
       <CODE code="revenus_du_patrimoine" description="Prélèvement social (revenus du patrimoine)" format="percent">
-        <VALUE deb="2012-01-01" fuzzy="true" valeur="0.045" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.034" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.022" />
-        <VALUE deb="1997-01-01" fin="2009-12-31" valeur="0.02" />
+        <VALUE deb="2012-12-19" fuzzy="true" valeur="0.045" />
+        <VALUE deb="2012-03-16" fin="2012-12-18" valeur="0.054" />
+        <VALUE deb="2011-09-21" fin="2012-03-15" valeur="0.034" />
+        <VALUE deb="2011-01-01" fin="2011-09-20" valeur="0.022" />
+        <VALUE deb="1997-01-01" fin="2010-12-31" valeur="0.02" />
       </CODE>
     </NODE>
     <CODE code="prelevement_social_exceptionnel_cnav" format="percent">
@@ -407,10 +408,10 @@
     </CODE>
     <NODE code="prelevements_solidarite">
       <CODE code="produits_de_placement" format="percent">
-        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.02" />
+        <VALUE deb="2012-12-19" fuzzy="true" valeur="0.02" />
       </CODE>
       <CODE code="revenus_du_patrimoine" format="percent">
-        <VALUE deb="2012-01-01" fuzzy="true" valeur="0.02" />
+        <VALUE deb="2012-03-16" fuzzy="true" valeur="0.02" />
       </CODE>
     </NODE>
     <NODE code="taux_deductible_de_csg">

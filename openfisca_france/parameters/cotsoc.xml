@@ -220,6 +220,12 @@
     <VALUE deb="2007-01-01" fin="2011-12-31" valeur="1" />
     <VALUE deb="2002-01-01" fin="2006-12-31" valeur="0" />
   </CODE>
+  <NODE code="indemnite_fin_contrat" description="Indémnité de fin de contrat (CDD)">
+    <CODE code="taux" description="Pourcentage du salaire de base">
+      <VALUE deb="2016-04-01" fuzzy="true" valeur=".1" />
+      <VALUE deb="2002-01-18" fin="2016-03-31" valeur=".1" />
+    </CODE>
+  </NODE>
   <NODE code="microsocial" description="Cotisations sociales pour régime micro-social">
     <CODE code="cipav" description="Taux professions libérales relevant du  CIPAV" format="percent">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.233" />

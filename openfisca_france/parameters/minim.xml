@@ -342,6 +342,31 @@
       <VALUE deb="2006-01-01" fin="2006-12-31" valeur="101.80" />
     </CODE>
   </NODE>
+  <NODE code="ppa" description="Prime Pour l'Activité">
+    <CODE code="age_min" description="Âge minimal pour bénéficier de la PPA" format="integer" type="age">
+      <VALUE deb="2015-09-01" fin="2016-12-31" valeur="18" />
+    </CODE>
+    <NODE code="bonification">
+      <CODE code="montant_max" description="Bonification maximale, en pourcentage du montant de base du RSA" format="percent">
+        <VALUE deb="2015-09-01" fin="2016-12-31" valeur="0.12782" />
+      </CODE>
+      <CODE code="seuil_1" description="Seuil de salaire minimum pour bénéficier de la bonification, en multiple du smic horaire brut." format="integer">
+        <VALUE deb="2015-09-01" fin="2016-12-31" valeur="59" />
+      </CODE>
+      <CODE code="seuil_2" description="Seuil de salaire pour bénéficier de la bonification maximale, en multiple du smic horaire brut." format="integer">
+        <VALUE deb="2015-09-01" fin="2016-12-31" valeur="95" />
+      </CODE>
+    </NODE>
+    <CODE code="pente" description="Pente appliquée aux revenus d'activité pour la prime d'activité" format="percent">
+      <VALUE deb="2015-10-01" fuzzy="true" valeur="0.62" />
+    </CODE>
+    <CODE code="seuil_aah_activite" description="Revenu d'activité minimal perçu pour que l'AAH d'un individu soit considéré comme un revenu d'activité, en multiple du smic horaire brut" format="integer">
+      <VALUE deb="2015-09-01" fin="2016-12-31" valeur="29" />
+    </CODE>
+    <CODE code="seuil_non_versement" description="Seuil de non versement de la PPA" format="percent" type="monetary">
+      <VALUE deb="2015-09-01" fin="2016-12-31" valeur="15" />
+    </CODE>
+  </NODE>
   <NODE code="rmi" description="Revenu de solidarité active">
     <CODE code="RMI_fixe" description="Fixe le Rmi dans les simulations" format="bool">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
@@ -389,11 +414,13 @@
         <VALUE deb="2015-01-01" fuzzy="true" valeur="1.28412" />
         <VALUE deb="2009-06-20" fin="2014-12-31" valeur="1.28412" />
         <VALUE deb="2009-06-01" fin="2009-06-19" valeur="1.284" />
+        <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
       </CODE>
       <CODE code="pac_enf_sup" description="Majoration du RSA socle par enfant supplémentaire (en pourcentage du rsa de base)" format="percent">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0.42804" />
         <VALUE deb="2009-06-20" fin="2014-12-31" valeur="0.42804" />
         <VALUE deb="2009-06-01" fin="2009-06-19" valeur="0.428" />
+        <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
       </CODE>
     </NODE>
     <NODE code="patrimoine" description="Revenus liés au patrimoine">
@@ -411,19 +438,16 @@
       </CODE>
     </NODE>
     <CODE code="pente" description="Pente du RSA" format="percent">
-      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.62" />
-      <VALUE deb="2009-07-01" fin="2014-12-31" valeur="0.62" />
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
+      <VALUE deb="2009-07-01" fin="2015-12-31" valeur="0.62" />
       <VALUE deb="2002-01-01" fin="2009-06-30" valeur="0.00" />
-    </CODE>
-    <CODE code="pfInBRrmi" description="Prise en compte des PF dans la BR du RMI" format="bool">
-      <VALUE deb="2014-01-01" fuzzy="true" valeur="1" />
-      <VALUE deb="2001-01-01" fin="2013-12-31" valeur="1" />
     </CODE>
     <CODE code="psa" description="Prime de solidarité active" format="integer" type="monetary">
       <VALUE deb="2009-01-01" fin="2009-12-31" valeur="200" />
     </CODE>
     <CODE code="rmi" description="Rsa socle" format="float" type="monetary">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="524.16" />
+      <VALUE deb="2016-04-01" fuzzy="true" valeur="524.68" />
+      <VALUE deb="2016-01-01" fin="2016-03-31" valeur="524.16" />
       <VALUE deb="2015-09-01" fin="2015-12-31" valeur="524.16" />
       <VALUE deb="2015-01-01" fin="2015-08-31" valeur="513.88" />
       <VALUE deb="2014-09-01" fin="2014-12-31" valeur="509.30" />

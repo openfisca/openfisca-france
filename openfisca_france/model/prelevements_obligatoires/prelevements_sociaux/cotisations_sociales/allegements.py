@@ -359,7 +359,7 @@ def compute_allegement_cotisation_allocations_familiales(simulation, period):
     law = simulation.legislation_at(period.start).prelevements_sociaux.allegement_cotisation_allocations_familiales
     ratio_smic_salaire = assiette / smic_proratise
     # Montant de l'allegment
-    return (ratio_smic_salaire < law.seuil_smic) * law.reduction * assiette
+    return (ratio_smic_salaire < law.plafond_en_nombre_de_smic) * law.reduction * assiette
 
 
 ###############################

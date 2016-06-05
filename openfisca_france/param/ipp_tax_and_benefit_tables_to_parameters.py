@@ -411,26 +411,26 @@ def transform_ipp_tree(root):
         )
     #
     cotisations_sociales['cet'] = cet = prelevements_sociaux.pop('cet')
-    tranche_c_salaire_sous_8_pss = cet.pop('tranche_c_salaire_sous_8_pss')
+    salaire_sous_8_pss = cet.pop('salaire_sous_8_pss')
     cet['employeur'] = fixed_bases_tax_scale(
         base_by_slice_name = dict(
-            tranche_c = 0,
+            salaire_sous_8_pss = 0,
             ),
         null_rate_base = 8,
         rates_tree = dict(
-            tranche_c = tranche_c_salaire_sous_8_pss.pop('employeur'),
+            salaire_sous_8_pss = salaire_sous_8_pss.pop('employeur'),
             )
         )
     cet['salarie'] = fixed_bases_tax_scale(
         base_by_slice_name = dict(
-            tranche_c = 0,
+            salaire_sous_8_pss = 0,
             ),
         null_rate_base = 8,
         rates_tree = dict(
-            tranche_c = tranche_c_salaire_sous_8_pss.pop('salarie'),
+            salaire_sous_8_pss = salaire_sous_8_pss.pop('salarie'),
             )
         )
-    assert not tranche_c_salaire_sous_8_pss
+    assert not salaire_sous_8_pss
     #
     # TODO chômage
     cotisations_sociales['chomage'] = chomage = prelevements_sociaux.pop('chomage')
@@ -567,9 +567,9 @@ def transform_ipp_tree(root):
         )
     assert not construction_employeur_sur_tout_salaire
     #
-    prelevements_sociaux['csg'] = csg = prelevements_sociaux.pop('csg_1')
+    prelevements_sociaux['csg'] = csg = prelevements_sociaux.pop('csg_activite')
     csg['activite'] = csg.pop('revenus_d_activite')
-    csg['remplacement'] = prelevements_sociaux.pop('csg_2')
+    csg['remplacement'] = prelevements_sociaux.pop('csg_remplacement')
     #
     deces_ac = prelevements_sociaux['deces_ac']
     commercants_industriels = deces_ac['commercants_industriels']

@@ -1,0 +1,1100 @@
+<NODE code="baremes_ipp_tarification_energie_logement">
+  <NODE code="prix_fioul_domestique">
+    <CODE code="prix_annuel_moyen_du_fioul_domestique_ht_livraisons_de_2000_a_4999_litres_en_euro_par_litre" format="float" type="monetary">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.5118" />
+      <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.66" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.7187" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.7535" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.6858" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.542" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.4246" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="0.64" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="0.4877" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.4858" />
+      <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.4346" />
+      <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.3196" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0.2692" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.2572" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.2889" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.319" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.1923" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="0.1703" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.2128" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="0.2005" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="0.1797" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="0.1877" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="0.1993" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.1979" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="0.2307" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="0.2232" />
+    </CODE>
+    <CODE code="prix_annuel_moyen_du_fioul_domestique_ttc_livraisons_de_2000_a_4999_litres_en_euro_par_litre" format="float" type="monetary">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.7058" />
+      <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.8599" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.9272" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.9688" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.8879" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.716" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.5756" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="0.8332" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="0.651" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.6487" />
+      <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.5874" />
+      <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.45" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0.3896" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.3659" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.3934" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.4628" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.3285" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="0.3011" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.3513" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="0.3344" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="0.3047" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="0.3106" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="0.3189" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.3121" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="0.3499" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="0.3399" />
+    </CODE>
+  </NODE>
+  <NODE code="prix_unitaire_base_edf_ht">
+    <CODE code="prix_du_kwh_12_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="0.0909" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="0.0883" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="0.0848" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="0.0831" />
+      <VALUE deb="2009-08-15" fin="2011-06-30" valeur="0.0817" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="0.0803" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="0.0787" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="0.0778" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="0.0765" />
+      <VALUE deb="2003-07-04" fin="2003-12-31" valeur="0.0777" />
+      <VALUE deb="2003-01-01" fin="2003-07-03" valeur="0.0754" />
+      <VALUE deb="2001-11-12" fin="2002-12-31" valeur="0.0787" />
+      <VALUE deb="2001-05-01" fin="2001-11-11" valeur="0.0779" />
+    </CODE>
+    <CODE code="prix_du_kwh_15_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="0.0909" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="0.0883" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="0.0848" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="0.0831" />
+      <VALUE deb="2009-08-15" fin="2011-06-30" valeur="0.0817" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="0.0803" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="0.0787" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="0.0778" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="0.0765" />
+      <VALUE deb="2003-07-04" fin="2003-12-31" valeur="0.0777" />
+      <VALUE deb="2003-01-01" fin="2003-07-03" valeur="0.0754" />
+      <VALUE deb="2001-11-12" fin="2002-12-31" valeur="0.0787" />
+      <VALUE deb="2001-05-01" fin="2001-11-11" valeur="0.0779" />
+    </CODE>
+    <CODE code="prix_du_kwh_18_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="0.0909" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="0.0883" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="0.0848" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="0.0831" />
+      <VALUE deb="2009-08-15" fin="2011-06-30" valeur="0.0817" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="0.0803" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="0.0787" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="0.0778" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="0.0765" />
+      <VALUE deb="2003-07-04" fin="2003-12-31" valeur="0.0777" />
+      <VALUE deb="2003-01-01" fin="2003-07-03" valeur="0.0754" />
+      <VALUE deb="2001-11-12" fin="2002-12-31" valeur="0.0787" />
+      <VALUE deb="2001-05-01" fin="2001-11-11" valeur="0.0779" />
+    </CODE>
+    <CODE code="prix_du_kwh_24_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="0.0909" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="0.0883" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="0.0848" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="0.0831" />
+      <VALUE deb="2009-08-15" fin="2011-06-30" valeur="0.0817" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="0.0803" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="0.0787" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="0.0778" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="0.0765" />
+      <VALUE deb="2003-07-04" fin="2003-12-31" valeur="0.0777" />
+      <VALUE deb="2003-01-01" fin="2003-07-03" valeur="0.0754" />
+      <VALUE deb="2001-11-12" fin="2002-12-31" valeur="0.0787" />
+      <VALUE deb="2001-05-01" fin="2001-11-11" valeur="0.0779" />
+    </CODE>
+    <CODE code="prix_du_kwh_30_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="0.0909" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="0.0883" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="0.0848" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="0.0831" />
+      <VALUE deb="2009-08-15" fin="2011-06-30" valeur="0.0817" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="0.0803" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="0.0787" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="0.0778" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="0.0765" />
+      <VALUE deb="2003-07-04" fin="2003-12-31" valeur="0.0777" />
+      <VALUE deb="2003-01-01" fin="2003-07-03" valeur="0.0754" />
+      <VALUE deb="2001-11-12" fin="2002-12-31" valeur="0.0787" />
+      <VALUE deb="2001-05-01" fin="2001-11-11" valeur="0.0779" />
+    </CODE>
+    <CODE code="prix_du_kwh_36_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="0.0909" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="0.0883" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="0.0848" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="0.0831" />
+      <VALUE deb="2009-08-15" fin="2011-06-30" valeur="0.0817" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="0.0803" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="0.0787" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="0.0778" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="0.0765" />
+      <VALUE deb="2003-07-04" fin="2003-12-31" valeur="0.0777" />
+      <VALUE deb="2003-01-01" fin="2003-07-03" valeur="0.0754" />
+      <VALUE deb="2001-11-12" fin="2002-12-31" valeur="0.0787" />
+      <VALUE deb="2001-05-01" fin="2001-11-11" valeur="0.0779" />
+    </CODE>
+    <CODE code="prix_du_kwh_3_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="0.0909" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="0.0883" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="0.0822" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="0.0806" />
+      <VALUE deb="2010-08-15" fin="2011-06-30" valeur="0.0793" />
+      <VALUE deb="2009-08-15" fin="2010-08-14" valeur="0.0781" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="0.0989" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="0.097" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="0.0959" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="0.0943" />
+      <VALUE deb="2003-07-04" fin="2003-12-31" valeur="0.0955" />
+      <VALUE deb="2003-01-01" fin="2003-07-03" valeur="0.0927" />
+      <VALUE deb="2001-11-12" fin="2002-12-31" valeur="0.096" />
+      <VALUE deb="2001-05-01" fin="2001-11-11" valeur="0.095" />
+    </CODE>
+    <CODE code="prix_du_kwh_6_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="0.0909" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="0.0883" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="0.0828" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="0.0812" />
+      <VALUE deb="2010-08-15" fin="2011-06-30" valeur="0.0798" />
+      <VALUE deb="2009-08-15" fin="2010-08-14" valeur="0.0784" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="0.0803" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="0.0787" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="0.0778" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="0.0765" />
+      <VALUE deb="2003-07-04" fin="2003-12-31" valeur="0.0777" />
+      <VALUE deb="2003-01-01" fin="2003-07-03" valeur="0.0754" />
+      <VALUE deb="2001-11-12" fin="2002-12-31" valeur="0.0787" />
+      <VALUE deb="2001-05-01" fin="2001-11-11" valeur="0.0779" />
+    </CODE>
+    <CODE code="prix_du_kwh_9_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="0.0909" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="0.0883" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="0.0848" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="0.0831" />
+      <VALUE deb="2009-08-15" fin="2011-06-30" valeur="0.0817" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="0.0803" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="0.0787" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="0.0778" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="0.0765" />
+      <VALUE deb="2003-07-04" fin="2003-12-31" valeur="0.0777" />
+      <VALUE deb="2003-01-01" fin="2003-07-03" valeur="0.0754" />
+      <VALUE deb="2001-11-12" fin="2002-12-31" valeur="0.0787" />
+      <VALUE deb="2001-05-01" fin="2001-11-11" valeur="0.0779" />
+    </CODE>
+  </NODE>
+  <NODE code="prix_unitaire_base_edf_ttc">
+    <CODE code="prix_du_kwh_3_kva" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.1377" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.1315" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.1218" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.1161" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.1084" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.1159" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="0.1335" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="0.1317" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.1299" />
+      <VALUE deb="2004-01-01" fin="2005-12-31" valeur="0.129" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0.1273" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.1258" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.1247" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.1251" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.1276" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="0.1305" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.1332" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="0.1356" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="0.1343" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="0.1332" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="0.1328" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.1315" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="0.1288" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="0.1253" />
+      <VALUE deb="1989-01-01" fin="1989-12-31" valeur="0.1206" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.1181" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="0.1169" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="0.1177" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="0.1186" />
+      <VALUE deb="1984-01-01" fin="1984-12-31" valeur="0.1055" />
+      <VALUE deb="1983-01-01" fin="1983-12-31" valeur="0.0891" />
+    </CODE>
+    <CODE code="prix_du_kwh_6_kva" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.1377" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.1319" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.1225" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.1168" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.1089" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.1096" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="0.1094" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="0.1079" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.1064" />
+      <VALUE deb="2004-01-01" fin="2005-12-31" valeur="0.1057" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0.1043" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.1032" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.1023" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.1028" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.1053" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="0.108" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.1122" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="0.1164" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="0.1153" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="0.1144" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="0.114" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.1124" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="0.1096" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="0.106" />
+      <VALUE deb="1989-01-01" fin="1989-12-31" valeur="0.1005" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.0981" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="0.0969" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="0.0973" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="0.0985" />
+      <VALUE deb="1984-01-01" fin="1984-12-31" valeur="0.0934" />
+      <VALUE deb="1983-01-01" fin="1983-12-31" valeur="0.084" />
+    </CODE>
+  </NODE>
+  <NODE code="prix_unitaire_gdf_par_zone_ht">
+    <CODE code="prix_kwh_b0_zone_1_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="5.85" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="6.84" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="6.67" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="7.26" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="7.25" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="6.77" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="6.2" />
+    </CODE>
+    <CODE code="prix_kwh_b0_zone_2_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="5.85" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="6.84" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="6.67" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="7.26" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="7.25" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="6.77" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="6.2" />
+    </CODE>
+    <CODE code="prix_kwh_b0_zone_3_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="5.85" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="6.84" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="6.67" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="7.26" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="7.25" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="6.77" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="6.2" />
+    </CODE>
+    <CODE code="prix_kwh_b0_zone_4_ht_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="5.85" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="6.84" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="6.67" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="7.26" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="7.25" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="6.77" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="6.2" />
+    </CODE>
+    <CODE code="prix_kwh_b0_zone_5" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="5.85" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="6.84" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="6.67" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="7.26" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="7.25" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="6.77" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="6.2" />
+    </CODE>
+    <CODE code="prix_kwh_b0_zone_6_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="5.85" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="6.84" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="6.67" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="7.26" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="7.25" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="6.77" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="6.2" />
+    </CODE>
+    <CODE code="prix_kwh_b1_zone_1_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="3.87" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="4.57" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="4.4" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="4.76" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="4.9" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="4.58" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="4.17" />
+    </CODE>
+    <CODE code="prix_kwh_b1_zone_2_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="3.93" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="4.63" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="4.46" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="4.82" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="4.96" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="4.64" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="4.23" />
+    </CODE>
+    <CODE code="prix_kwh_b1_zone_3_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="3.99" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="4.69" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="4.52" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="4.88" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="5.02" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="4.7" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="4.29" />
+    </CODE>
+    <CODE code="prix_kwh_b1_zone_4_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="4.05" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="4.75" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="4.58" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="4.94" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="5.08" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="4.76" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="4.35" />
+    </CODE>
+    <CODE code="prix_kwh_b1_zone_5" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="4.11" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="4.81" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="4.64" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="5" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="5.14" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="4.82" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="4.41" />
+    </CODE>
+    <CODE code="prix_kwh_b1_zone_6_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="4.17" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="4.87" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="4.7" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="5.06" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="5.2" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="4.88" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="4.47" />
+    </CODE>
+    <CODE code="prix_kwh_b2i_zone_1_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="3.87" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="4.57" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="4.4" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="4.76" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="4.9" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="4.58" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="4.17" />
+    </CODE>
+    <CODE code="prix_kwh_b2i_zone_2_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="3.93" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="4.63" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="4.46" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="4.82" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="4.96" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="4.64" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="4.23" />
+    </CODE>
+    <CODE code="prix_kwh_b2i_zone_3_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="3.99" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="4.69" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="4.52" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="4.88" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="5.02" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="4.7" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="4.29" />
+    </CODE>
+    <CODE code="prix_kwh_b2i_zone_4_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="4.05" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="4.75" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="4.58" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="4.94" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="5.08" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="4.76" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="4.35" />
+    </CODE>
+    <CODE code="prix_kwh_b2i_zone_5" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="4.11" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="4.81" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="4.64" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="5" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="5.14" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="4.82" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="4.41" />
+    </CODE>
+    <CODE code="prix_kwh_b2i_zone_6_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="4.17" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="4.87" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="4.7" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="5.06" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="5.2" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="4.88" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="4.47" />
+    </CODE>
+    <CODE code="prix_kwh_base_zone_1_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="7.6" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8.36" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="8.19" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="8.58" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="8.59" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="7.95" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="7.24" />
+    </CODE>
+    <CODE code="prix_kwh_base_zone_2_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="7.6" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8.36" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="8.19" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="8.58" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="8.59" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="7.95" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="7.24" />
+    </CODE>
+    <CODE code="prix_kwh_base_zone_3_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="7.6" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8.36" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="8.19" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="8.58" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="8.59" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="7.95" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="7.24" />
+    </CODE>
+    <CODE code="prix_kwh_base_zone_4_ht_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="7.6" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8.36" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="8.19" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="8.58" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="8.59" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="7.95" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="7.24" />
+    </CODE>
+    <CODE code="prix_kwh_base_zone_5" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="7.6" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8.36" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="8.19" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="8.58" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="8.59" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="7.95" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="7.24" />
+    </CODE>
+    <CODE code="prix_kwh_base_zone_6_ht" format="float" type="monetary">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="7.6" />
+      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8.36" />
+      <VALUE deb="2014-07-01" fin="2014-12-31" valeur="8.19" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="8.58" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="8.59" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="7.95" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="7.24" />
+    </CODE>
+  </NODE>
+  <NODE code="prix_unitaire_gdf_ttc">
+    <CODE code="prix_kwh_b0_ttc" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.0851" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0878" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0852" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.0807" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.0727" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.0681" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="0.0686" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="0.0599" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.059" />
+      <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.0514" />
+      <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.0479" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0.0497" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.0487" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0484" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.041" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.0394" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="0.0415" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.041" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="0.0394" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="0.0393" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="0.0397" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="0.0404" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.0414" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="0.0421" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="0.04" />
+      <VALUE deb="1989-01-01" fin="1989-12-31" valeur="0.0389" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.0386" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="0.0384" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="0.0473" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="0.0509" />
+      <VALUE deb="1984-01-01" fin="1984-12-31" valeur="0.047" />
+      <VALUE deb="1983-01-01" fin="1983-12-31" valeur="0.0438" />
+    </CODE>
+    <CODE code="prix_kwh_b1_ttc" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.0564" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0589" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0586" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.0558" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.049" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.0461" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="0.0487" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="0.0431" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.0422" />
+      <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.0346" />
+      <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.0315" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0.0336" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.0329" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0328" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.0271" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.0259" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="0.0274" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.0271" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="0.026" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="0.0259" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="0.0261" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="0.0264" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.0269" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="0.0271" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="0.0252" />
+      <VALUE deb="1988-01-01" fin="1989-12-31" valeur="0.0244" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="0.0245" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="0.0312" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="0.0349" />
+      <VALUE deb="1984-01-01" fin="1984-12-31" valeur="0.0333" />
+      <VALUE deb="1983-01-01" fin="1983-12-31" valeur="0.0315" />
+    </CODE>
+    <CODE code="prix_kwh_b2i_ttc" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.0564" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0589" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0586" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.0558" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.049" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.0461" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="0.0479" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="0.0414" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.0406" />
+      <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.0331" />
+      <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.0294" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0.0315" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.031" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0308" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.0254" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.0244" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="0.0257" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.0254" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="0.0244" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="0.0243" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="0.0245" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="0.0248" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.0253" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="0.0254" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="0.0235" />
+      <VALUE deb="1989-01-01" fin="1989-12-31" valeur="0.0227" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.0225" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="0.0226" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="0.0292" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="0.0329" />
+    </CODE>
+    <CODE code="prix_kwh_base_ttc" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.1021" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.1036" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0997" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.094" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.0847" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.0797" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="0.0819" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="0.072" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.0711" />
+      <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.0636" />
+      <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.059" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0.0604" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.0593" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0595" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.0515" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.0496" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="0.0523" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.0518" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="0.0499" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="0.0497" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="0.0504" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="0.0514" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="0.0526" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="0.0538" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="0.0528" />
+      <VALUE deb="1989-01-01" fin="1989-12-31" valeur="0.0517" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="0.0513" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="0.0511" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="0.0601" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="0.0639" />
+      <VALUE deb="1984-01-01" fin="1984-12-31" valeur="0.0596" />
+      <VALUE deb="1983-01-01" fin="1983-12-31" valeur="0.0537" />
+    </CODE>
+  </NODE>
+  <NODE code="tarif_fixe_base_edf_ht">
+    <CODE code="tarif_fixe_12_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="138.96" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="135" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="118.08" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="115.8" />
+      <VALUE deb="2010-08-15" fin="2011-06-30" valeur="113.88" />
+      <VALUE deb="2009-08-15" fin="2010-08-14" valeur="127.68" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="153.84" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="151.08" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="149.64" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="147.12" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="142.56" />
+      <VALUE deb="2001-05-01" fin="2002-12-31" valeur="141.96" />
+    </CODE>
+    <CODE code="tarif_fixe_15_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="158.4" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="153.84" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="135.72" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="133.08" />
+      <VALUE deb="2010-08-15" fin="2011-06-30" valeur="130.8" />
+      <VALUE deb="2009-08-15" fin="2010-08-14" valeur="156.12" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="200.28" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="196.8" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="195" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="191.76" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="185.76" />
+      <VALUE deb="2001-05-01" fin="2002-12-31" valeur="185.04" />
+    </CODE>
+    <CODE code="tarif_fixe_18_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="182.04" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="176.76" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="184.92" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="181.2" />
+      <VALUE deb="2010-08-15" fin="2011-06-30" valeur="178.2" />
+      <VALUE deb="2009-08-15" fin="2010-08-14" valeur="184.56" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="246.72" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="242.52" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="240.36" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="236.4" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="228.96" />
+      <VALUE deb="2001-05-01" fin="2002-12-31" valeur="228.12" />
+    </CODE>
+    <CODE code="tarif_fixe_24_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="377.52" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="366.72" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="299.52" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="293.64" />
+      <VALUE deb="2010-08-15" fin="2011-06-30" valeur="288.72" />
+      <VALUE deb="2009-08-15" fin="2010-08-14" valeur="299.04" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="412.32" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="405.24" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="401.64" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="394.8" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="382.32" />
+      <VALUE deb="2001-05-01" fin="2002-12-31" valeur="380.52" />
+    </CODE>
+    <CODE code="tarif_fixe_30_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="467.4" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="453.96" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="414.24" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="406.08" />
+      <VALUE deb="2010-08-15" fin="2011-06-30" valeur="399.24" />
+      <VALUE deb="2009-08-15" fin="2010-08-14" valeur="413.52" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="577.92" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="567.96" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="562.92" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="553.2" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="535.68" />
+      <VALUE deb="2001-05-01" fin="2002-12-31" valeur="532.92" />
+    </CODE>
+    <CODE code="tarif_fixe_36_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="538.32" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="522.84" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="528.84" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="518.4" />
+      <VALUE deb="2010-08-15" fin="2011-06-30" valeur="509.76" />
+      <VALUE deb="2009-08-15" fin="2010-08-14" valeur="528" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="743.52" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="730.68" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="724.2" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="711.6" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="689.04" />
+      <VALUE deb="2001-05-01" fin="2002-12-31" valeur="685.32" />
+    </CODE>
+    <CODE code="tarif_fixe_3_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="40.08" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="38.88" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="55.56" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="54.48" />
+      <VALUE deb="2010-08-15" fin="2011-06-30" valeur="53.52" />
+      <VALUE deb="2009-08-15" fin="2010-08-14" valeur="51.24" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="21.48" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="21" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="20.76" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="20.4" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="19.8" />
+      <VALUE deb="2001-05-01" fin="2002-12-31" valeur="19.68" />
+    </CODE>
+    <CODE code="tarif_fixe_6_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="68.64" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="66.72" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="65.64" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="64.32" />
+      <VALUE deb="2010-08-15" fin="2011-06-30" valeur="63.24" />
+      <VALUE deb="2009-08-15" fin="2010-08-14" valeur="58.32" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="54.48" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="53.4" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="52.8" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="51.96" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="50.4" />
+      <VALUE deb="2001-05-01" fin="2002-12-31" valeur="49.92" />
+    </CODE>
+    <CODE code="tarif_fixe_9_kva" format="float" type="monetary">
+      <VALUE deb="2014-11-01" fuzzy="true" valeur="92.4" />
+      <VALUE deb="2013-08-01" fin="2014-10-31" valeur="89.76" />
+      <VALUE deb="2012-08-01" fin="2013-07-31" valeur="76.08" />
+      <VALUE deb="2011-07-01" fin="2012-07-31" valeur="74.52" />
+      <VALUE deb="2010-08-15" fin="2011-06-30" valeur="73.32" />
+      <VALUE deb="2009-08-15" fin="2010-08-14" valeur="73.56" />
+      <VALUE deb="2008-08-15" fin="2009-08-14" valeur="107.4" />
+      <VALUE deb="2007-08-16" fin="2008-08-14" valeur="105.36" />
+      <VALUE deb="2006-08-15" fin="2007-08-15" valeur="104.28" />
+      <VALUE deb="2004-01-01" fin="2006-08-14" valeur="102.48" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="99.36" />
+      <VALUE deb="2001-05-01" fin="2002-12-31" valeur="98.88" />
+    </CODE>
+  </NODE>
+  <NODE code="tarif_fixe_base_edf_ttc">
+    <CODE code="tarif_fixe_12_kva" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="173.1" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="162.46" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="148.13" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="142.85" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="161.82" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="173.82" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="176.02" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="173.72" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="172.32" />
+      <VALUE deb="2004-01-01" fin="2005-12-31" valeur="172.1" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="169.44" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="166.77" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="164.46" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="164.88" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="167.33" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="193.72" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="197.02" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="200.21" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="198.28" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="198.29" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="193.51" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="188.48" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="186.8" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="186.74" />
+      <VALUE deb="1989-01-01" fin="1989-12-31" valeur="202.26" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="215.01" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="218.65" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="220.54" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="223.75" />
+      <VALUE deb="1984-01-01" fin="1984-12-31" valeur="217.77" />
+      <VALUE deb="1983-01-01" fin="1983-12-31" valeur="205" />
+    </CODE>
+    <CODE code="tarif_fixe_15_kva" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="198.59" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="187.12" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="171.05" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="164.86" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="192.97" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="220.4" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="229.24" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="226.34" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="224.59" />
+      <VALUE deb="2004-01-01" fin="2005-12-31" valeur="224.32" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="220.81" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="217.31" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="214.34" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="214.91" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="218.25" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="253.61" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="260.35" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="266.73" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="264.15" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="264.09" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="257.04" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="249.25" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="247.19" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="247.63" />
+      <VALUE deb="1989-01-01" fin="1989-12-31" valeur="268.75" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="284.84" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="288.95" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="290.36" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="294.5" />
+      <VALUE deb="1984-01-01" fin="1984-12-31" valeur="285.52" />
+      <VALUE deb="1983-01-01" fin="1983-12-31" valeur="268.41" />
+    </CODE>
+    <CODE code="tarif_fixe_18_kva" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="228.4" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="233.87" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="227.44" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="219.22" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="238.82" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="267" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="282.44" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="278.96" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="276.85" />
+      <VALUE deb="2004-01-01" fin="2005-12-31" valeur="276.54" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="272.19" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="267.84" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="264.22" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="264.93" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="269.16" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="313.51" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="323.68" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="333.26" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="330.03" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="329.88" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="320.56" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="310.02" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="309.86" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="317.67" />
+      <VALUE deb="1989-01-01" fin="1989-12-31" valeur="335.25" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="354.66" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="359.24" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="360.2" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="365.25" />
+      <VALUE deb="1984-01-01" fin="1984-12-31" valeur="353.28" />
+      <VALUE deb="1983-01-01" fin="1983-12-31" valeur="331.82" />
+    </CODE>
+    <CODE code="tarif_fixe_3_kva" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="52.28" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="62.85" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="67.4" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="64.95" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="68.03" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="42.33" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="24.51" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="24.12" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="23.9" />
+      <VALUE deb="2004-01-01" fin="2005-12-31" valeur="23.86" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="23.51" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="23.16" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="22.8" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="22.73" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="22.74" />
+      <VALUE deb="1996-01-01" fin="1998-12-31" valeur="25.99" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="25.74" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="25.82" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="25.68" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="25.52" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="24.89" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="23.98" />
+      <VALUE deb="1989-01-01" fin="1989-12-31" valeur="24.11" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="25.62" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="26.04" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="26.23" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="27.09" />
+      <VALUE deb="1984-01-01" fin="1984-12-31" valeur="32.36" />
+      <VALUE deb="1983-01-01" fin="1983-12-31" valeur="40.5" />
+    </CODE>
+    <CODE code="tarif_fixe_6_kva" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="84.86" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="84.33" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="80.37" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="77.45" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="79.6" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="68.86" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="62.27" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="61.34" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="60.84" />
+      <VALUE deb="2004-01-01" fin="2005-12-31" valeur="60.78" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="59.87" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="58.96" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="57.98" />
+      <VALUE deb="1999-01-01" fin="2000-12-31" valeur="57.79" />
+      <VALUE deb="1996-01-01" fin="1998-12-31" valeur="66.06" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="65.42" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="65.6" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="65.42" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="66.08" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="65.18" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="63.96" />
+      <VALUE deb="1989-01-01" fin="1989-12-31" valeur="67.89" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="73.62" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="76.03" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="78.34" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="79.81" />
+      <VALUE deb="1984-01-01" fin="1984-12-31" valeur="81.58" />
+      <VALUE deb="1983-01-01" fin="1983-12-31" valeur="80.36" />
+    </CODE>
+    <CODE code="tarif_fixe_9_kva" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="112.37" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="103.99" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="93.77" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="90.34" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="96.84" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="112.76" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="122.81" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="121.1" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="120.06" />
+      <VALUE deb="2004-01-01" fin="2005-12-31" valeur="119.88" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="118.06" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="116.23" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="114.57" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="114.85" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="116.42" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="133.82" />
+      <VALUE deb="1996-01-01" fin="1997-12-31" valeur="133.69" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="132.4" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="132.5" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="129.98" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="127.72" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="126.41" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="125.84" />
+      <VALUE deb="1989-01-01" fin="1989-12-31" valeur="135.76" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="145.19" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="148.36" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="150.7" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="152.99" />
+      <VALUE deb="1984-01-01" fin="1984-12-31" valeur="150.01" />
+      <VALUE deb="1983-01-01" fin="1983-12-31" valeur="141.59" />
+    </CODE>
+  </NODE>
+  <NODE code="tarif_fixe_gdf_ht">
+    <CODE code="b0_1000_6000_ht" format="float" type="monetary">
+      <VALUE deb="2014-09-01" fuzzy="true" valeur="76.44" />
+      <VALUE deb="2014-07-01" fin="2014-08-31" valeur="66.24" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="58.8" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="54.36" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="51.96" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="45.84" />
+    </CODE>
+    <CODE code="b1_6_30000_ht" format="float" type="monetary">
+      <VALUE deb="2014-09-01" fuzzy="true" valeur="189.84" />
+      <VALUE deb="2014-07-01" fin="2014-08-31" valeur="183.84" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="173.76" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="166.44" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="159.24" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="146.4" />
+    </CODE>
+    <CODE code="b2i_30000_ht" format="float" type="monetary">
+      <VALUE deb="2014-09-01" fuzzy="true" valeur="189.84" />
+      <VALUE deb="2014-07-01" fin="2014-08-31" valeur="183.84" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="173.76" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="166.44" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="159.24" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="146.4" />
+    </CODE>
+    <CODE code="base_0_1000_ht" format="float" type="monetary">
+      <VALUE deb="2014-09-01" fuzzy="true" valeur="62.52" />
+      <VALUE deb="2014-07-01" fin="2014-08-31" valeur="54.96" />
+      <VALUE deb="2013-07-01" fin="2014-06-30" valeur="47.52" />
+      <VALUE deb="2013-01-01" fin="2013-06-30" valeur="39.72" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="37.8" />
+      <VALUE deb="2010-07-01" fin="2011-12-31" valeur="33" />
+    </CODE>
+  </NODE>
+  <NODE code="tarif_fixe_gdf_ttc">
+    <CODE code="b0_1000_6000" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="74.27" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="66.63" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="61.97" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="58.01" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="53.36" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="47.89" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="41.9" />
+      <VALUE deb="2005-01-01" fin="2007-12-31" valeur="35.95" />
+      <VALUE deb="2004-01-01" fin="2004-12-31" valeur="35.11" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="34.39" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="32.92" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="32.96" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="28.79" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="27.71" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="33.38" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="33.1" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="31.91" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="31.7" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="31.67" />
+      <VALUE deb="1989-01-01" fin="1993-12-31" valeur="32.07" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="34.69" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="36.15" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="37.58" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="38.76" />
+      <VALUE deb="1984-01-01" fin="1984-12-31" valeur="36.8" />
+      <VALUE deb="1983-01-01" fin="1983-12-31" valeur="33.17" />
+    </CODE>
+    <CODE code="b1_6_30000" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="220.71" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="209.1" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="195.45" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="185.18" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="175.41" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="160.15" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="141.58" />
+      <VALUE deb="2005-01-01" fin="2007-12-31" valeur="125.21" />
+      <VALUE deb="2004-01-01" fin="2004-12-31" valeur="124.15" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="122.08" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="116.36" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="116.6" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="104.04" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="100.8" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="121.45" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="120.09" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="115.54" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="114.75" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="115.23" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="117.8" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="122.33" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="129.34" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="128.39" />
+      <VALUE deb="1989-01-01" fin="1989-12-31" valeur="126.35" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="134.93" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="137.14" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="155.66" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="155.01" />
+      <VALUE deb="1984-01-01" fin="1984-12-31" valeur="136.33" />
+      <VALUE deb="1983-01-01" fin="1983-12-31" valeur="223.77" />
+    </CODE>
+    <CODE code="b2i_30000" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="220.71" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="209.1" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="195.45" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="185.18" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="175.41" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="171.54" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="194.37" />
+      <VALUE deb="2005-01-01" fin="2007-12-31" valeur="187.62" />
+      <VALUE deb="2004-01-01" fin="2004-12-31" valeur="183.61" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="179.86" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="171.89" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="171.6" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="148.68" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="142.21" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="171.49" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="169.98" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="163.56" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="162.21" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="162.39" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="165.03" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="169.32" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="175.57" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="173.3" />
+      <VALUE deb="1989-01-01" fin="1989-12-31" valeur="170.94" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="188.17" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="194.09" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="211.83" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="201.39" />
+    </CODE>
+    <CODE code="base_0_1000" format="float" type="monetary">
+      <VALUE deb="2014-01-01" fuzzy="true" valeur="62.37" />
+      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="52.96" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="46.93" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="43.89" />
+      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="39.81" />
+      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="34.56" />
+      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="29.99" />
+      <VALUE deb="2005-01-01" fin="2007-12-31" valeur="25.32" />
+      <VALUE deb="2004-01-01" fin="2004-12-31" valeur="25" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="24.56" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="23.58" />
+      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="22.86" />
+      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="18.92" />
+      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="17.96" />
+      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="21.61" />
+      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="21.35" />
+      <VALUE deb="1996-01-01" fin="1996-12-31" valeur="20.51" />
+      <VALUE deb="1995-01-01" fin="1995-12-31" valeur="20.38" />
+      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="20.27" />
+      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="20.34" />
+      <VALUE deb="1992-01-01" fin="1992-12-31" valeur="20.5" />
+      <VALUE deb="1991-01-01" fin="1991-12-31" valeur="20.15" />
+      <VALUE deb="1990-01-01" fin="1990-12-31" valeur="18.96" />
+      <VALUE deb="1989-01-01" fin="1989-12-31" valeur="18.91" />
+      <VALUE deb="1988-01-01" fin="1988-12-31" valeur="20.67" />
+      <VALUE deb="1987-01-01" fin="1987-12-31" valeur="21.78" />
+      <VALUE deb="1986-01-01" fin="1986-12-31" valeur="23.18" />
+      <VALUE deb="1985-01-01" fin="1985-12-31" valeur="24.28" />
+      <VALUE deb="1984-01-01" fin="1984-12-31" valeur="22.39" />
+      <VALUE deb="1983-01-01" fin="1983-12-31" valeur="22.09" />
+    </CODE>
+  </NODE>
+</NODE>
