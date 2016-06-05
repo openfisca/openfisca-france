@@ -261,7 +261,7 @@ class f6fl(Variable):
 
 
 class rfr_cd(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Charges déductibles entrant dans le revenus fiscal de référence"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
@@ -277,7 +277,7 @@ class rfr_cd(Variable):
 
 
 class cd1(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Charges déductibles non plafonnées"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
@@ -375,7 +375,7 @@ class cd1(DatedVariable):
 
 
 class cd2(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Charges déductibles plafonnées"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
@@ -416,7 +416,7 @@ class cd2(DatedVariable):
 
 
 class rbg_int(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Revenu brut global intermédiaire"
 
@@ -429,7 +429,7 @@ class rbg_int(Variable):
 
 
 class charges_deduc(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Charges déductibles"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
@@ -443,7 +443,7 @@ class charges_deduc(Variable):
 
 
 class cd_penali(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Pensions alimentaires"
     url = "http://frederic.anne.free.fr/Cours/ITV.htm"
@@ -472,7 +472,7 @@ class cd_penali(Variable):
 
 
 class cd_acc75a(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Frais d’accueil sous votre toit d’une personne de plus de 75 ans"
 
@@ -501,8 +501,8 @@ class cd_percap(DatedVariable):
         f6cb = simulation.calculate('f6cb', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
-        max_cb = percap.max_cb * (1 + maries_ou_pacses)
-        return period, min_(f6cb, max_cb)
+        plafond_cb = percap.plafond_cb * (1 + maries_ou_pacses)
+        return period, min_(f6cb, plafond_cb)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
     def function_20030101_20061231(self, simulation, period):
@@ -516,7 +516,7 @@ class cd_percap(DatedVariable):
         f6da = simulation.calculate('f6da', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
-        plafond_cb = percap.max_cb * (1 + maries_ou_pacses)
+        plafond_cb = percap.plafond_cb * (1 + maries_ou_pacses)
         plafond_da = percap.max_da * (1 + maries_ou_pacses)
         return period, min_(min_(f6cb, plafond_cb) + min_(f6da, plafond_da), plafond_da)
 
