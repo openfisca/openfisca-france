@@ -600,7 +600,7 @@ class cappme(DatedVariable):
         2011
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
         f7cm = simulation.calculate('f7cm', period)
@@ -1804,7 +1804,7 @@ class invfor(DatedVariable):
         Investissements forestiers pour 2009
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7un = simulation.calculate('f7un', period)
         f7up = simulation.calculate('f7up', period)
         f7uq = simulation.calculate('f7uq', period)
