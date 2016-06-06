@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import os, itertools
+import os, itertools, glob
 
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 
@@ -12,6 +12,8 @@ from .conf.cache_blacklist import cache_blacklist as conf_cache_blacklist
 
 
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
+EXTENSIONS_PATH = os.path.join(COUNTRY_DIR, 'extensions')
+EXTENSIONS_DIRECTORIES = glob.glob(os.path.join(EXTENSIONS_PATH, '*/'))
 
 class FranceTaxBenefitSystem(TaxBenefitSystem):
     """French tax benefit system"""
@@ -48,5 +50,8 @@ def init_tax_benefit_system():
     tax_benefit_system.add_variables_from_directory(os.path.join(COUNTRY_DIR,'model'))
 
     tax_benefit_system.cache_blacklist = conf_cache_blacklist
+
+    for extension_dir in EXTENSIONS_DIRECTORIES:
+        tax_benefit_system.load_extension(extension_dir)
 
     return tax_benefit_system
