@@ -28,8 +28,7 @@ from openfisca_france.model.base import transform_scenario_to_tax_calculator_inp
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+tax_benefit_system = openfisca_france.init_init_tax_benefit_system()
 
 
 def define_scenario(year):
