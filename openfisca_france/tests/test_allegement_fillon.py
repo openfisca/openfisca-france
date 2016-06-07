@@ -5,10 +5,21 @@ from __future__ import division
 
 import datetime
 
-from openfisca_core import periods, reforms
+from openfisca_core import periods
+from openfisca_core.reforms import Reform, update_legislation
+from openfisca_core.variables import Variable
 
 from openfisca_france.tests.base import tax_benefit_system
 
+
+def modify_legislation_json(reference_legislation_json_copy):
+    reform_legislation_json = update_legislation(
+        legislation_json = reference_legislation_json_copy,
+        path = ('children', 'cotsoc', 'children', 'gen', 'children', 'smic_h_b', 'values'),
+        period = periods.period("year", "2013"),
+        value = 9,
+        )
+    return reform_legislation_json
 
 test_case_by_employee_type = dict(
     annuel = dict(
@@ -157,15 +168,15 @@ test_case_by_employee_type = dict(
         ),
     )
 
+class smic_h_b_9_euros(Reform):
+    name = u"Réforme pour simulation ACOSS SMIC horaire brut fixe à 9 euros"
+
+    def apply(self):
+        self.modify_legislation_json(modifier_function = modify_legislation_json)
 
 def test_check():
-    Reform = reforms.make_reform(
-        key = u'smic_h_b_9_euros',
-        name = u"Réforme pour simulation ACOSS SMIC horaire brut fixe à 9 euros",
-        reference = tax_benefit_system,
-        )
-    reform = Reform()
-    reform.modify_legislation_json(modifier_function = modify_legislation_json)
+
+    reform = smic_h_b_9_euros(tax_benefit_system)
 
     for employee_type, test_parameters in test_case_by_employee_type.iteritems():
         simulation_period = 2013
@@ -197,13 +208,3 @@ def assert_variable(variable_message, employee_type, amount, output):
     assert abs(output - amount) < 0.01, \
         "error for {} ({}) : should be {} instead of {} ".format(variable_message, employee_type, amount, output)
 
-
-def modify_legislation_json(reference_legislation_json_copy):
-    # FIXME update_legislation is deprecated.
-    reform_legislation_json = reforms.update_legislation(
-        legislation_json = reference_legislation_json_copy,
-        path = ('children', 'cotsoc', 'children', 'gen', 'children', 'smic_h_b', 'values'),
-        period = periods.period("year", "2013"),
-        value = 9,
-        )
-    return reform_legislation_json
