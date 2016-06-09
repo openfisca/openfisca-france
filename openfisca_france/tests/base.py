@@ -3,7 +3,7 @@
 from openfisca_core.reforms import Reform, compose_reforms
 from openfisca_core.tools import assert_near
 
-from .. import init_tax_benefit_system
+from .. import FranceTaxBenefitSystem
 from ..reforms import (
     allocations_familiales_imposables,
     cesthra_invalidee,
@@ -23,7 +23,7 @@ __all__ = [
     'TaxBenefitSystem',
     ]
 
-tax_benefit_system = init_tax_benefit_system()
+tax_benefit_system = FranceTaxBenefitSystem()
 
 # Reforms cache, used by long scripts like test_yaml.py
 # The reforms commented haven't been adapted to the new core API yet.

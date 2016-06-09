@@ -24,7 +24,7 @@ import openfisca_france
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
-tax_benefit_system = openfisca_france.init_init_tax_benefit_system()
+tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
 
 
 def split(scenario):

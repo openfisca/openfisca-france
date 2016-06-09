@@ -14,7 +14,7 @@ from lxml import etree
 from openfisca_core import conv
 import yaml
 
-from openfisca_france import init_tax_benefit_system
+from openfisca_france import FranceTaxBenefitSystem
 from openfisca_france.scripts.calculateur_impots.base import (
     call_tax_calculator,
     openfisca_variable_name_by_tax_calculator_code,
@@ -28,7 +28,7 @@ income_taxes_test_cases_dir = os.path.normpath(os.path.join(os.path.dirname(__fi
     'french-income-taxes-test-cases', 'test_cases'))
 json_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..', 'tests', 'json'))
 log = logging.getLogger(app_name)
-tax_benefit_system = init_tax_benefit_system()
+tax_benefit_system = FranceTaxBenefitSystem()
 tests_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..', 'tests', 'calculateur_impots'))
 variables_name_file_path = os.path.normpath(os.path.join(income_taxes_test_cases_dir, '..',
     'output_variables_names.yaml'))

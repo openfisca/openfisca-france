@@ -6,7 +6,7 @@ import numpy as np
 import openfisca_france
 
 
-tax_benefit_system = openfisca_france.init_init_tax_benefit_system()
+tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
 
 
 def check_1_parent(year = 2013):

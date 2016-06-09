@@ -20,7 +20,7 @@ import urllib2
 from lxml import etree
 
 import openfisca_france
-tax_benefit_system = openfisca_france.init_tax_benefit_system()
+tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
 
 
 def main():

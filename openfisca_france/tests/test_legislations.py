@@ -5,11 +5,11 @@ import json
 
 from openfisca_core import conv, legislations, legislationsxml
 
-from openfisca_france import init_tax_benefit_system
+from openfisca_france import FranceTaxBenefitSystem
 
 
 # Exceptionally for this test do not import TaxBenefitSystem from tests.base.
-tax_benefit_system = init_tax_benefit_system()
+tax_benefit_system = FranceTaxBenefitSystem()
 
 
 def check_legislation_xml_file(year):
