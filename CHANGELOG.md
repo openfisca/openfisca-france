@@ -1,6 +1,14 @@
 # Changelog
 
-## 3.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.0.0..2.0.0)
+## 4.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.0.0..4.0.0)
+
+* Apply core API changes introduced by [openfisca-core 2.0](https://github.com/openfisca/openfisca-core/pull/388)
+* Change the way the France tax benefit system is built
+* Change the way reforms are built
+* Move extensions from `./model/extensions` to `./extensions`
+* Warning : relatives imports are now impossible in model files.
+
+## 3.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/2.0.0..3.0.0)
 
 * Make `enfant_a_charge` usable in monthly mode so that we can re-use it in mes-aides, and broaden its definition so that in includes children in `garde_alternee`.
 * Refactor and test nbF, nbG, nbH, nbI.
@@ -15,16 +23,16 @@
     * `celdiv` -> `celibataire_ou_divorce`
     * `jveuf` -> `jeune_veuf`
 
-## 2.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/2.0.0..1.3.1)
+## 2.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1..2.0.0)
 
 * Deprecate Paris reform
 * Introduce enfant_place
 
-## 1.3.1 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1...1.3.1rc0)
+## 1.3.1 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1rc0...1.3.1)
 
 * Adjust ppa computation
 
-## 1.3.1rc0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1rc0..1.3.0)
+## 1.3.1rc0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.0..1.3.1rc0)
 
 * Fix versioning enforcement
 
