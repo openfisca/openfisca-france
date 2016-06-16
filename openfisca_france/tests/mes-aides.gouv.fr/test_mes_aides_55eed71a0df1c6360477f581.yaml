@@ -6,7 +6,7 @@ keywords:
 description: 'Plafond Couple 2 revenus 1 enfant né après le 1/4/14: 37996'
 period: month:2015-09
 individus:
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 55
   age_en_mois: 668
   date_naissance: '1960-01-01'
@@ -65,12 +65,12 @@ individus:
     2015-07: 0
     2015-08: 0
     year:2014-09: 20000
-  statmarit: 1
+  statut_marital: 1
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 55
   age_en_mois: 660
   date_naissance: '1960-08-09'
@@ -129,12 +129,12 @@ individus:
     2015-07: 0
     2015-08: 0
     year:2014-09: 17000
-  statmarit: 1
+  statut_marital: 1
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- a_charge_fiscale: true
+- enfant_a_charge: true
   age: 0
   age_en_mois: 8
   date_naissance: '2015-01-01'
@@ -353,20 +353,6 @@ familles:
   parents:
   - 55eed6f9bb8d0c380477657f
   - 55eed6f9bb8d0c3804776572
-  paris_logement_familles:
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    2015-07: 0
-    2015-08: 0
-    year:2014-09: 0
   rsa:
     2014-09: 0
     2014-10: 0
@@ -422,7 +408,6 @@ menages:
   enfants:
   - 55eed6f9bb8d0c3804776571
   loyer: 0
-  parisien: false
   personne_de_reference: 55eed6f9bb8d0c380477657f
 output_variables:
   paje_base: 186.65

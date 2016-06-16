@@ -40,12 +40,12 @@ def define_scenario(year):
             activite = u'Actif occupé',
             date_naissance = 1973,
             salaire_imposable = 48000,
-            statmarit = u'Marié',
+            statut_marital = u'Marié',
             ),
         parent2 = dict(
             activite = u'Actif occupé',
             date_naissance = 1973,
-            statmarit = u'Marié',
+            statut_marital = u'Marié',
             ),
         enfants = [
             dict(
@@ -146,7 +146,7 @@ def compare(scenario, tested = False):
         'IPROP': u'Impôt proportionnel',
         'RFOR': u'?',#TODO (f7up)
         'PERPPLAFTP': u'?',
-        'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
+        'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, maries_ou_pacses)
         'RHEBE': u'?',#TODO (7ce)
         'RAA': u'?',#TODO (7ud)
         'RAH': u'?',#TODO (7ce)

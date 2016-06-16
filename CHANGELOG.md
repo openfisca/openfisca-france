@@ -1,7 +1,60 @@
 # Changelog
 
-## 1.0
+## 3.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.0.0..2.0.0)
 
+* Make `enfant_a_charge` usable in monthly mode so that we can re-use it in mes-aides, and broaden its definition so that in includes children in `garde_alternee`.
+* Refactor and test nbF, nbG, nbH, nbI.
+* Deprecate:
+	* `nombre_enfants_a_charge_menage`
+	* `enfant_a_charge_invalide`
+	* `enfant_a_charge_garde_alternee`
+	* `enfant_a_charge_garde_alternee_invalide`
+* Rename:
+    * `statmarit` -> `statut_marital`
+    * `marpac` -> `maries_ou_pacses`
+    * `celdiv` -> `celibataire_ou_divorce`
+    * `jveuf` -> `jeune_veuf`
+
+## 2.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/2.0.0..1.3.1)
+
+* Deprecate Paris reform
+* Introduce enfant_place
+
+## 1.3.1 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1...1.3.1rc0)
+
+* Adjust ppa computation
+
+## 1.3.1rc0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1rc0..1.3.0)
+
+* Fix versioning enforcement
+
+## 1.3.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.2.0...1.3.0)
+
+* Introduce mechanism to blacklist variables so that they are not cached
+* Refactor AL computation, and implement special DOM rules
+* Introduce:
+	* `aide_logement_loyer_retenu`
+	* `al_couple`
+	* `aide_logement_charges`
+	* `aide_logement_R0`
+	* `aide_logement_taux_famille`
+	* `aide_logement_taux_loyer`
+	* `aide_logement_participation_personelle`
+
+## 1.2.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.1.0...1.2.0)
+
+* Force version number incrementation through CI
+* Force changelog editing through CI
+* Publish tag after merging
+* Publish on pypi after tagging
+
+## 1.1.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.0...1.1.0)
+
+* Replace `build_column` function calls by `Variable` classes (see [#384](https://github.com/openfisca/openfisca-core/pull/384))
+
+## 1.0 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.5...1.0)
+
+* Add tests yaml for cotisations sociales
 * Introduction of `invalidite`
 * Depreciation of `af_enfant_a_charge`, `asf_enfant`, `isol`, `pfam_ressources_i`, `rmi_nbp`, `sal_pen_net`.
 * Massive renaming:
@@ -66,7 +119,7 @@
 	* `tspr` -> `traitements_salaires_pensions_rentes`
 	* `type_sal` -> `categorie_salarie`
 
-## 0.5.5
+## 0.5.5 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4.3...0.5.5)
 
 * Prime d'activité fiabilization
 * Implementation of Indemnite de fin de contrat
@@ -75,19 +128,19 @@
 * Update prestations parameters (2016/04/01 revalorisation)
 * Add net -> brut reform
 
-## 0.5.4.2, 0.5.4.3
+## 0.5.4.2, 0.5.4.3 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4.1...0.5.4.3)
 
 * Update OpenFisca-Core requirement version
 
-## 0.5.4.1
+## 0.5.4.1 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4...0.5.4.1)
 
 * Add missing assets for versement_transport
 
-## 0.5.4
+## 0.5.4 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.3...0.5.4)
 
 * Many updates
 
-## 0.5.3
+## 0.5.3 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.2...0.5.3)
 
 * Fix vieillesse deplafonnee baremes
 * Fix some dates in arrco and formation prof. baremes
@@ -143,7 +196,7 @@
 * Remove nose section from setup.cfg
 * Add CONTRIBUTING.md file
 
-## 0.5.2
+## 0.5.2 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.1...0.5.2)
 
 * Merge pull request #304 from sgmap/taille_entreprise
 * Remove unmaintainable tests
@@ -173,7 +226,7 @@
 * Do not use relative import in script (__main__)
 * Add biryani extra require
 
-## 0.5.1
+## 0.5.1 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.0...0.5.1)
 
 * Remove scipy by default
 

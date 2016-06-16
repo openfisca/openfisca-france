@@ -13,7 +13,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -40,7 +40,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -67,7 +67,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -95,7 +95,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -123,7 +123,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -151,7 +151,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -179,7 +179,7 @@
   - id: ind0
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'

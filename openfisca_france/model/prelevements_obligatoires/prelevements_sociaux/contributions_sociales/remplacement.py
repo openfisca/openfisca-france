@@ -14,20 +14,20 @@ from .base import montant_csg_crds
 log = logging.getLogger(__name__)
 
 
-build_column(
-    'taux_csg_remplacement',
-    EnumCol(
-        label = u"Taux retenu sur la CSG des revenus de remplacment",
-        entity = 'ind',
+class taux_csg_remplacement(Variable):
+    column = EnumCol(
+        default = 3,
         enum = Enum([
             u"Non renseigné/non pertinent",
             u"Exonéré",
             u"Taux réduit",
             u"Taux plein",
             ]),
-        default = 3,
-        ),
-    )
+        )
+    entity_class = Individus
+    label = u"Taux retenu sur la CSG des revenus de remplacment"
+
+
 
 
 ############################################################################

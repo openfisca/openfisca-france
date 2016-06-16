@@ -1001,7 +1001,7 @@
     quifoy: [VOUS, CONJ]
     salaire_imposable:
       2014: [30000, 0]
-    statmarit: [5,5] #pacsés
+    statut_marital: [5,5] #pacsés
   output_variables:
     decote_gain_fiscal: 803
     irpp: -264

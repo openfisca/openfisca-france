@@ -4,7 +4,7 @@ description: La personne est demandeur d'emploi mais n'est pas indemnisée. L'ab
   Le montant de ses ressources ne lui ouvre aucun droit CMUC/ACS
 period: month:2015-10
 individus:
-- a_charge_fiscale: true
+- enfant_a_charge: true
   activite: 1
   age: 51
   age_en_mois: 621
@@ -288,20 +288,6 @@ familles:
     year:2014-10: 0
   parents:
   - 5613ea8a9c6bb8f86e34da3a
-  paris_logement_familles:
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    2015-07: 0
-    2015-08: 0
-    2015-09: 0
-    year:2014-10: 0
   proprietaire_proche_famille: true
   rsa:
     2014-10: 0
@@ -353,7 +339,6 @@ menages:
 - depcom: '77255'
   enfants: []
   loyer: 500
-  parisien: false
   personne_de_reference: 5613ea8a9c6bb8f86e34da3a
   statut_occupation_logement: 4
 output_variables:

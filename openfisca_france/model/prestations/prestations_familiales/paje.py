@@ -10,26 +10,54 @@ from openfisca_core.periods import Instant
 
 
 # Prestations familiales
-build_column('inactif', BoolCol(entity = 'fam',
-                    label = u"Parent inactif (PAJE-CLCA)"))
+class inactif(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Parent inactif (PAJE-CLCA)"
 
-build_column('partiel1', BoolCol(entity = 'fam',
-                     label = u"Parent actif à moins de 50% (PAJE-CLCA)"))
 
-build_column('partiel2', BoolCol(entity = 'fam',
-                     label = u"Parent actif entre 50% et 80% (PAJE-CLCA)"))
 
-build_column('opt_colca', BoolCol(entity = 'fam',
-                      label = u"Opte pour le COLCA"))
+class partiel1(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Parent actif à moins de 50% (PAJE-CLCA)"
 
-build_column('empl_dir', BoolCol(entity = 'fam',
-                     label = u"Emploi direct (CLCMG)"))
 
-build_column('ass_mat', BoolCol(entity = 'fam',
-                    label = u"Assistante maternelle (CLCMG)"))
 
-build_column('gar_dom', BoolCol(entity = 'fam',
-                    label = u"Garde à domicile (CLCMG)"))
+class partiel2(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Parent actif entre 50% et 80% (PAJE-CLCA)"
+
+
+
+class opt_colca(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Opte pour le COLCA"
+
+
+
+class empl_dir(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Emploi direct (CLCMG)"
+
+
+
+class ass_mat(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Assistante maternelle (CLCMG)"
+
+
+
+class gar_dom(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Garde à domicile (CLCMG)"
+
+
 
 
 class paje(Variable):

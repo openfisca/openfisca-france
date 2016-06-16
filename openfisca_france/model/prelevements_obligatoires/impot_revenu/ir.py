@@ -19,7 +19,7 @@ log = logging.getLogger(__name__)
 # d'autres - car des cases sont réutilisées pour des variables différentes suivant les années)
 
 # zetrf = zeros(taille)
-# jveuf = zeros(taille, dtype = bool)
+# jeune_veuf = zeros(taille, dtype = bool)
 # Reprise du crédit d'impôt en faveur des jeunes, des accomptes et des versements mensues de prime pour l'emploi
 # reprise = zeros(taille) # TODO : reprise=J80
 # Pcredit = P.credits_impots
@@ -41,17 +41,32 @@ log = logging.getLogger(__name__)
 #    irpp   = -(mciria + ppetot - mcirra )
 
 
-build_column('jour_xyz', IntCol(default = 360,
-                    entity = "foy",
-                    label = u"Jours décomptés au titre de cette déclaration"))
+class jour_xyz(Variable):
+    column = IntCol(default = 360)
+    entity_class = FoyersFiscaux
+    label = u"Jours décomptés au titre de cette déclaration"
 
 
-build_column('rfr_n_1', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 1",
-    val_type = "monetary"))
-build_column('rfr_n_2', IntCol(entity = 'foy', label = u"Revenu fiscal de référence année n - 2",
-    val_type = "monetary"))
-build_column('nbptr_n_2', PeriodSizeIndependentIntCol(entity = 'foy', label = u"Nombre de parts année n - 2",
-    val_type = "monetary"))
+
+
+class rfr_n_1(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Revenu fiscal de référence année n - 1"
+
+
+class rfr_n_2(Variable):
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Revenu fiscal de référence année n - 2"
+
+
+class nbptr_n_2(Variable):
+    column = PeriodSizeIndependentIntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Nombre de parts année n - 2"
+
+
 
 
 ###############################################################################
@@ -118,11 +133,11 @@ class nb_adult(Variable):
 
     def function(self, simulation, period):
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
-        celdiv = simulation.calculate('celdiv', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
+        celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         veuf = simulation.calculate('veuf', period)
 
-        return period, 2 * marpac + 1 * (celdiv | veuf)
+        return period, 2 * maries_ou_pacses + 1 * (celibataire_ou_divorce | veuf)
 
 
 class nb_pac(Variable):
@@ -146,99 +161,67 @@ class enfant_a_charge(Variable):
         u" revenus, ou né durant la même année, ou handicapés quel que soit son âge"
 
     def function(self, simulation, period):
-        period = period.this_year
         age = simulation.calculate('age', period)
-        garde_alternee = simulation.calculate('garde_alternee', period)
         handicap = simulation.calculate('handicap', period)
         quifoy = simulation.calculate('quifoy', period)
 
-        return period, (quifoy >= 2) * ((age < 18) + handicap) * not_(garde_alternee)
+        return period, (quifoy >= 2) * ((age < 18) + handicap)
 
 
-class nbF(PersonToEntityColumn):
+class nbF(Variable):
     cerfa_field = u'F'
     entity_class = FoyersFiscaux
-    label = u"Nombre d'enfants à charge  non mariés, de moins de 18 ans au 1er janvier de l'année de perception des" \
+    column = FloatCol
+    label = u"Nombre d'enfants à charge non mariés, qui ne sont pas en résidence alternée, de moins de 18 ans au 1er janvier de l'année de perception des" \
         u" revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
-    operation = 'add'
-    variable = enfant_a_charge
-
-
-class nombre_enfants_a_charge_menage(PersonToEntityColumn):
-    entity_class = Menages
-    label = u"Nombre d'enfants à charge  non mariés, de moins de 18 ans au 1er janvier de l'année de perception des" \
-        u" revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
-    operation = 'add'
-    variable = enfant_a_charge
-
-
-class enfant_a_charge_invalide(Variable):
-    column = BoolCol
-    entity_class = Individus
-    label = u"Enfant à charge titulaire de la carte d'invalidité"
 
     def function(self, simulation, period):
         period = period.this_year
-        garde_alternee = simulation.calculate('garde_alternee', period)
-        invalidite = simulation.calculate('invalidite', period)
-        quifoy = simulation.calculate('quifoy', period)
-
-        return period, (quifoy >= 2) * invalidite * not_(garde_alternee)
+        enfant_a_charge = simulation.compute('enfant_a_charge', period)
+        garde_alternee = simulation.compute('garde_alternee', period)
+        return period, self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array))
 
 
-class nbG(PersonToEntityColumn):
+class nbG(Variable):
     cerfa_field = u'G'
     entity_class = FoyersFiscaux
-    label = u"Nombre d'enfants à charge titulaires de la carte d'invalidité"
-    operation = 'add'
-    variable = enfant_a_charge_invalide
-
-
-class enfant_a_charge_garde_alternee(Variable):
-    column = BoolCol
-    entity_class = Individus
-    label = u"Enfant à charge en résidence alternée, non marié, de moins de 18 ans au 1er janvier de l'année de" \
-        u" perception des revenus, ou né durant la même année ou handicapés quel que soit son âge"
+    column = FloatCol
+    label = u"Nombre d'enfants qui ne sont pas en résidence alternée à charge titulaires de la carte d'invalidité."
 
     def function(self, simulation, period):
         period = period.this_year
-        age = simulation.calculate('age', period)
-        garde_alternee = simulation.calculate('garde_alternee', period)
-        handicap = simulation.calculate('handicap', period)
-        quifoy = simulation.calculate('quifoy', period)
-
-        return period, (quifoy >= 2) * ((age < 18) + handicap) * garde_alternee
+        enfant_a_charge = simulation.compute('enfant_a_charge', period)
+        garde_alternee = simulation.compute('garde_alternee', period)
+        invalidite = simulation.compute('invalidite', period)
+        return period, self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array) * invalidite.array)
 
 
-class nbH(PersonToEntityColumn):
+class nbH(Variable):
     cerfa_field = u'H'
     entity_class = FoyersFiscaux
+    column = FloatCol
     label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de" \
         u" l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
-    operation = 'add'
-    variable = enfant_a_charge_garde_alternee
-
-
-class enfant_a_charge_garde_alternee_invalide(Variable):
-    column = BoolCol
-    entity_class = Individus
-    label = u"Enfant à charge en résidence alternée titulaire de la carte d'invalidité"
 
     def function(self, simulation, period):
         period = period.this_year
-        garde_alternee = simulation.calculate('garde_alternee', period)
-        invalidite = simulation.calculate('invalidite', period)
-        quifoy = simulation.calculate('quifoy', period)
-
-        return period, (quifoy >= 2) * invalidite * garde_alternee
+        enfant_a_charge = simulation.compute('enfant_a_charge', period)
+        garde_alternee = simulation.compute('garde_alternee', period)
+        return period, self.sum_by_entity(enfant_a_charge.array * garde_alternee.array)
 
 
-class nbI(PersonToEntityColumn):
+class nbI(Variable):
     cerfa_field = u'I'
     entity_class = FoyersFiscaux
+    column = FloatCol
     label = u"Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité"
-    operation = 'add'
-    variable = enfant_a_charge_garde_alternee_invalide
+
+    def function(self, simulation, period):
+        period = period.this_year
+        enfant_a_charge = simulation.compute('enfant_a_charge', period)
+        garde_alternee = simulation.compute('garde_alternee', period)
+        invalidite = simulation.compute('invalidite', period)
+        return period, self.sum_by_entity(enfant_a_charge.array * garde_alternee.array * invalidite.array)
 
 
 class enfant_majeur_celibataire_sans_enfant(Variable):
@@ -270,76 +253,60 @@ class nombre_enfants_majeurs_celibataires_sans_enfant(PersonToEntityColumn):
     variable = enfant_majeur_celibataire_sans_enfant
 
 
-class marpac(Variable):
-    column = BoolCol(default = False)
+class maries_ou_pacses(Variable):
+    column = BoolCol
     entity_class = FoyersFiscaux
-    label = u"marpac"
+    label = u"Déclarants mariés ou pacsés"
 
     def function(self, simulation, period):
-        '''
-        Marié (1) ou Pacsé (5)
-        'foy'
-        '''
         period = period.this_year
-        statmarit_holder = simulation.compute('statmarit', period)
+        statut_marital_holder = simulation.compute('statut_marital', period)
 
-        statmarit = self.filter_role(statmarit_holder, role = VOUS)
+        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
 
-        return period, (statmarit == 1) | (statmarit == 5)
+        return period, (statut_marital == 1) | (statut_marital == 5)
 
 
-class celdiv(Variable):
+class celibataire_ou_divorce(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
-    label = u"celdiv"
+    label = u"Déclarant célibataire ou divorcé"
 
     def function(self, simulation, period):
-        '''
-        Célibataire (2) ou divorcé (3)
-        'foy'
-        '''
         period = period.this_year
-        statmarit_holder = simulation.compute('statmarit', period)
+        statut_marital_holder = simulation.compute('statut_marital', period)
 
-        statmarit = self.filter_role(statmarit_holder, role = VOUS)
+        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
 
-        return period, (statmarit == 2) | (statmarit == 3)
+        return period, (statut_marital == 2) | (statut_marital == 3)
 
 
 class veuf(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
-    label = u"veuf"
+    label = u"Déclarant veuf"
 
     def function(self, simulation, period):
-        '''
-        Veuf (4)
-        'foy'
-        '''
         period = period.this_year
-        statmarit_holder = simulation.compute('statmarit', period)
+        statut_marital_holder = simulation.compute('statut_marital', period)
 
-        statmarit = self.filter_role(statmarit_holder, role = VOUS)
+        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
 
-        return period, statmarit == 4
+        return period, statut_marital == 4
 
 
-class jveuf(Variable):
+class jeune_veuf(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
-    label = u"jveuf"
+    label = u"Déclarant jeune veuf"
 
     def function(self, simulation, period):
-        '''
-        Jeune Veuf
-        'foy'
-        '''
         period = period.this_year
-        statmarit_holder = simulation.compute('statmarit', period)
+        statut_marital_holder = simulation.compute('statut_marital', period)
 
-        statmarit = self.filter_role(statmarit_holder, role = VOUS)
+        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
 
-        return period, statmarit == 6
+        return period, statut_marital == 6
 
 
 ###############################################################################
@@ -620,7 +587,7 @@ class rev_cat_rvcm(DatedVariable):
         Revenus des valeurs et capitaux mobiliers
         """
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         deficit_rcm = simulation.calculate('deficit_rcm', period)
         f2ch = simulation.calculate('f2ch', period)
         f2dc = simulation.calculate('f2dc', period)
@@ -638,7 +605,7 @@ class rev_cat_rvcm(DatedVariable):
         f2tr_bis = f2tr
         # # Calcul du revenu catégoriel
         # 1.2 Revenus des valeurs et capitaux mobiliers
-        b12 = min_(f2ch, rvcm.abat_assvie * (1 + marpac))
+        b12 = min_(f2ch, rvcm.abat_assvie * (1 + maries_ou_pacses))
         TOT1 = f2ch - b12  # c12
         # Part des frais s'imputant sur les revenus déclarés case DC
         den = ((f2dc_bis + f2ts) != 0) * (f2dc_bis + f2ts) + ((f2dc_bis + f2ts) == 0)
@@ -651,7 +618,7 @@ class rev_cat_rvcm(DatedVariable):
         rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + marpac)
+        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -668,7 +635,7 @@ class rev_cat_rvcm(DatedVariable):
         Revenus des valeurs et capitaux mobiliers
         """
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         deficit_rcm = simulation.calculate('deficit_rcm', period)
         f2ch = simulation.calculate('f2ch', period)
         f2dc = simulation.calculate('f2dc', period)
@@ -686,7 +653,7 @@ class rev_cat_rvcm(DatedVariable):
         f2tr_bis = f2tr
         # # Calcul du revenu catégoriel
         # 1.2 Revenus des valeurs et capitaux mobiliers
-        b12 = min_(f2ch, rvcm.abat_assvie * (1 + marpac))
+        b12 = min_(f2ch, rvcm.abat_assvie * (1 + maries_ou_pacses))
         TOT1 = f2ch - b12  # c12
         # Part des frais s'imputant sur les revenus déclarés case DC
         den = ((f2dc_bis + f2ts) != 0) * (f2dc_bis + f2ts) + ((f2dc_bis + f2ts) == 0)
@@ -699,7 +666,7 @@ class rev_cat_rvcm(DatedVariable):
         rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + marpac)
+        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -716,7 +683,7 @@ class rev_cat_rvcm(DatedVariable):
         Revenus des valeurs et capitaux mobiliers
         """
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         deficit_rcm = simulation.calculate('deficit_rcm', period)
         f2ch = simulation.calculate('f2ch', period)
         f2dc = simulation.calculate('f2dc', period)
@@ -736,7 +703,7 @@ class rev_cat_rvcm(DatedVariable):
 
         # # Calcul du revenu catégoriel
         # 1.2 Revenus des valeurs et capitaux mobiliers
-        b12 = min_(f2ch, rvcm.abat_assvie * (1 + marpac))
+        b12 = min_(f2ch, rvcm.abat_assvie * (1 + maries_ou_pacses))
         TOT1 = f2ch - b12  # c12
         # Part des frais s'imputant sur les revenus déclarés case DC
         den = ((f2dc_bis + f2ts) != 0) * (f2dc_bis + f2ts) + ((f2dc_bis + f2ts) == 0)
@@ -749,7 +716,7 @@ class rev_cat_rvcm(DatedVariable):
         rev = g12b + f2fu * (1 - rvcm.abatmob_taux)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + marpac)
+        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -771,7 +738,7 @@ class rfr_rvcm(Variable):
         Abattements sur rvcm à réintégrer dans le revenu fiscal de référence
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f2dc = simulation.calculate('f2dc', period)
         f2ts = simulation.calculate('f2ts', period)
         f2ca = simulation.calculate('f2ca', period)
@@ -796,7 +763,7 @@ class rfr_rvcm(Variable):
         rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + marpac)
+        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         i121 = - min_(0, rev - h12)
         return period, max_((rvcm.abatmob_taux) * (f2dc_bis + f2fu) - i121, 0)
 
@@ -1064,10 +1031,10 @@ class ir_plaf_qf(Variable):
         nb_adult = simulation.calculate('nb_adult', period)
         nb_pac = simulation.calculate('nb_pac', period)
         nbptr = simulation.calculate('nbptr', period)
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         veuf = simulation.calculate('veuf', period)
-        jveuf = simulation.calculate('jveuf', period)
-        celdiv = simulation.calculate('celdiv', period)
+        jeune_veuf = simulation.calculate('jeune_veuf', period)
+        celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         caseE = simulation.calculate('caseE', period)
         caseF = simulation.calculate('caseF', period)
         caseG = simulation.calculate('caseG', period)
@@ -1093,14 +1060,15 @@ class ir_plaf_qf(Variable):
         # diviser par 2)
         aa1 = min_((nbptr - 1) * 2, 2) / 2  # deux première demi part excédants une part
         aa2 = max_((nbptr - 2) * 2, 0)  # nombre de demi part restantes
-        # celdiv parents isolés
-        condition61 = celdiv & caseT
-        B1 = plafond_qf.celib_enf * aa1 + plafond_qf.marpac * aa2
+        # celibataire_ou_divorce parents isolés
+        condition61 = celibataire_ou_divorce & caseT
+        B1 = plafond_qf.celib_enf * aa1 + plafond_qf.maries_ou_pacses * aa2
         # tous les autres
-        B2 = plafond_qf.marpac * aa0  # si autre
-        # celdiv, veufs (non jveuf) vivants seuls et autres conditions
+        B2 = plafond_qf.maries_ou_pacses * aa0  # si autre
+        # celibataire_ou_divorce, veufs (non jeune_veuf) vivants seuls et autres conditions
+
         # TODO: année en dur... pour caseH
-        condition63 = (celdiv | (veuf & not_(jveuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (caseH < 1981)
+        condition63 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (caseH < 1981)
         B3 = plafond_qf.celib
 
         B = B1 * condition61 + \
@@ -1115,14 +1083,15 @@ class ir_plaf_qf(Variable):
         condition62a = (I >= C)
         # réduction complémentaire
         condition62b = (I < C)
-        # celdiv veuf
-        condition62caa0 = (celdiv | (veuf & not_(jveuf)))
+        # celibataire_ou_divorce veuf
+        condition62caa0 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf)))
         condition62caa1 = (nb_pac == 0) & (caseP | caseG | caseF | caseW)
         condition62caa2 = caseP & ((nbF - nbG > 0) | (nbH - nbI > 0))
         condition62caa3 = not_(caseN) & (caseE | caseK) & (caseH >= 1981)
         condition62caa = condition62caa0 & (condition62caa1 | condition62caa2 | condition62caa3)
         # marié pacs
-        condition62cab = (marpac | jveuf) & caseS & not_(caseP | caseF)
+        condition62cab = (maries_ou_pacses | jeune_veuf) & caseS & not_(caseP | caseF)
+
         condition62ca = (condition62caa | condition62cab)
 
         # plus de 590 euros si on a des plus de
@@ -2639,10 +2608,10 @@ class nbptr(Variable):
         '''
         period = period.this_year
         nb_pac = simulation.calculate('nb_pac', period)
-        marpac = simulation.calculate('marpac', period)
-        celdiv = simulation.calculate('celdiv', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
+        celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         veuf = simulation.calculate('veuf', period)
-        jveuf = simulation.calculate('jveuf', period)
+        jeune_veuf = simulation.calculate('jeune_veuf', period)
         nbF = simulation.calculate('nbF', period)
         nbG = simulation.calculate('nbG', period)
         nbH = simulation.calculate('nbH', period)
@@ -2710,13 +2679,13 @@ class nbptr(Variable):
         # # Régime des mariés ou pacsés
         m = 1 + quotient_familial.conj + enf + n2 + n4
 
-        # # veufs  hors jveuf
+        # # veufs  hors jeune_veuf
         v = 1 + enf + n2 + n3 + n5 + n6
 
         # # celib div
         c = 1 + enf + n2 + n3 + n6 + n7
 
-        return period, (marpac | jveuf) * m + (veuf & not_(jveuf)) * v + celdiv * c
+        return period, (maries_ou_pacses | jeune_veuf) * m + (veuf & not_(jeune_veuf)) * v + celibataire_ou_divorce * c
 
 
 ###############################################################################
@@ -2754,14 +2723,14 @@ class ppe_elig(Variable):
         period = period.this_year
         rfr = simulation.calculate('rfr', period)
         ppe_coef = simulation.calculate('ppe_coef', period)
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         veuf = simulation.calculate('veuf', period)
-        celdiv = simulation.calculate('celdiv', period)
+        celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         nbptr = simulation.calculate('nbptr', period)
         ppe = simulation.legislation_at(period.start).ir.credits_impot.ppe
 
-        seuil = (veuf | celdiv) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
-                + marpac * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
+        seuil = (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
+                + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
         return period, (rfr * ppe_coef) <= seuil
 
 
@@ -2866,8 +2835,8 @@ class ppe_brute(Variable):
         ppe_coef = simulation.calculate('ppe_coef', period)
         ppe_coef_tp_holder = simulation.compute('ppe_coef_tp', period)
         nb_pac = simulation.calculate('nb_pac', period)
-        marpac = simulation.calculate('marpac', period)
-        celdiv = simulation.calculate('celdiv', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
+        celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         veuf = simulation.calculate('veuf', period)
         caseT = simulation.calculate('caseT', period)
         caseL = simulation.calculate('caseL', period)
@@ -2888,8 +2857,8 @@ class ppe_brute(Variable):
 
         nb_pac_ppe = max_(0, nb_pac - eli1 - eli2 - eli3)
 
-        ligne2 = marpac & xor_(basevi >= ppe.seuil1, baseci >= ppe.seuil1)
-        ligne3 = (celdiv | veuf) & caseT & not_(veuf & caseT & caseL)
+        ligne2 = maries_ou_pacses & xor_(basevi >= ppe.seuil1, baseci >= ppe.seuil1)
+        ligne3 = (celibataire_ou_divorce | veuf) & caseT & not_(veuf & caseT & caseL)
         ligne1 = not_(ligne2) & not_(ligne3)
 
         base_monact = ligne2 * (eliv * basev + elic * basec)
@@ -2927,9 +2896,9 @@ class ppe_brute(Variable):
 
         # Primes pour enfants à charge
         maj_pac = ppe_elig * (eliv | elic) * (
-            (ligne1 & marpac & ((ppev + ppec) != 0) & (min_(basev, basec) <= ppe.seuil3)) * ppe.pac
+            (ligne1 & maries_ou_pacses & ((ppev + ppec) != 0) & (min_(basev, basec) <= ppe.seuil3)) * ppe.pac
             * (nb_pac_ppe + nbH * 0.5)
-            + (ligne1 & (celdiv | veuf) & eliv & (basev <= ppe.seuil3)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
+            + (ligne1 & (celibataire_ou_divorce | veuf) & eliv & (basev <= ppe.seuil3)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
             + (ligne2 & (base_monacti >= ppe.seuil1) & (base_monact <= ppe.seuil3)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
             + (ligne2 & (base_monact > ppe.seuil3) & (base_monact <= ppe.seuil5)) * ppe.pac
             * ((nb_pac_ppe != 0) + 0.5 * ((nb_pac_ppe == 0) & (nbH != 0)))

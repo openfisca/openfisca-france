@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from datetime import date
-import functools
 
-from openfisca_core.columns import (AgeCol, BoolCol, build_column, DateCol, EnumCol, FixedStrCol, FloatCol, IntCol,
+from openfisca_core.columns import (AgeCol, BoolCol, DateCol, EnumCol, FixedStrCol, FloatCol, IntCol,
     PeriodSizeIndependentIntCol, StrCol)
 from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import (calculate_output_add, calculate_output_add_divide, calculate_output_divide,
@@ -18,13 +17,12 @@ from openfisca_core.base_functions import (
     )
 from openfisca_core.formula_helpers import apply_thresholds, switch
 
-from ..entities import entity_class_by_symbol, Familles, FoyersFiscaux, Individus, Menages
+from ..entities import Familles, FoyersFiscaux, Individus, Menages
 
 
 __all__ = [
     'AgeCol',
     'apply_thresholds',
-    'build_column',
     'BoolCol',
     'calculate_output_add',
     'calculate_output_add_divide',
@@ -102,12 +100,3 @@ PAC3 = QUIFOY['pac3']
 PART = QUIFAM['part']
 PREF = QUIMEN['pref']
 VOUS = QUIFOY['vous']
-
-
-# Functions and decorators
-
-
-build_column = functools.partial(
-    build_column,
-    entity_class_by_symbol = entity_class_by_symbol,
-    )

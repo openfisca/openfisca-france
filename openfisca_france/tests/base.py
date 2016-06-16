@@ -5,7 +5,6 @@ from openfisca_core.tools import assert_near
 
 from .. import init_country
 from ..reforms import (
-    aides_ville_paris,
     allocations_familiales_imposables,
     cesthra_invalidee,
     plf2016,
@@ -34,7 +33,6 @@ tax_benefit_system = TaxBenefitSystem()
 # Reforms cache, used by long scripts like test_yaml.py
 
 build_reform_function_by_key = {
-    'aides_ville_paris': aides_ville_paris.build_reform,
     'allocations_familiales_imposables': allocations_familiales_imposables.build_reform,
     'cesthra_invalidee': cesthra_invalidee.build_reform,
     'plf2016': plf2016.build_reform,
