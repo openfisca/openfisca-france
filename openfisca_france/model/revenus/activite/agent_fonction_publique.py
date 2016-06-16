@@ -119,7 +119,7 @@ class indice_majore(Variable):
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         corps = simulation.calculate('corps', period)
         grade = simulation.calculate('grade', period)
-        echelon= simulation.calculate('echelon', period)
+        echelon = simulation.calculate('echelon', period)
         return period, get_indice(self, period, categorie_salarie, corps, grade, echelon)
 
 
@@ -178,6 +178,7 @@ class remuneration_principale(Variable):
                 )
             )
 
+
 class supp_familial_traitement(Variable):
     column = FloatCol
     entity_class = Individus
@@ -233,9 +234,11 @@ class supp_familial_traitement(Variable):
                    plafond_mensuel_3 * (fonc_nbenf == 3) +
                    plafond_mensuel_supp * max_(0, fonc_nbenf - 3))
 
-        sft = min_(max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher), plafond) * (categorie_salarie >= 2)
-        # Nota Bene:
-        # categorie_salarie is an EnumCol which enum is:
+        sft = (categorie_salarie >= 2) * min_(
+            max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher),
+            plafond
+            )
+        # Nota Bene: categorie_salarie is an EnumCol which enum is:
         # CAT = Enum(['prive_non_cadre',
         #             'prive_cadre',
         #             'public_titulaire_etat',

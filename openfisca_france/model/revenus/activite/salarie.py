@@ -25,8 +25,6 @@ class bourse_recherche(Variable):
     label = u"Bourse de recherche"
 
 
-
-
 class sal_pen_exo_etr(Variable):
     cerfa_field = {
         QUIFOY['vous']: u"1AC",
@@ -38,8 +36,6 @@ class sal_pen_exo_etr(Variable):
     entity_class = Individus
     label = u"Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif"
     start_date = date(2013, 1, 1)
-
-
 
 
 class frais_reels(Variable):
@@ -92,7 +88,7 @@ class ppe_tp_sa(Variable):
         QUIFOY['pac2']: u"1DX",
         QUIFOY['pac3']: u"1QX",
         }
-        
+
     column = BoolCol
     entity_class = Individus
     label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière"
