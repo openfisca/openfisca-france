@@ -21,6 +21,7 @@ def init_country():  # drop_survey_only_variables = False, simulate_f6de = False
     from .model import datatrees
     from .model import model  # Load output variables into entities. # noqa analysis:ignore
     from .model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import preprocessing
+    from .conf.cache_blacklist import cache_blacklist as conf_cache_blacklist
 
     # if simulate_f6de:
     #     del column_by_name['f6de']
@@ -73,6 +74,7 @@ def init_country():  # drop_survey_only_variables = False, simulate_f6de = False
         REV_TYP = None  # utils.REV_TYP  # Not defined for France
         REVENUES_CATEGORIES = REVENUES_CATEGORIES
         Scenario = scenarios.Scenario
+        cache_blacklist = conf_cache_blacklist
 
         def prefill_cache(self):
             # Compute one "zone APL" variable, to pre-load CSV of "code INSEE commune" to "Zone APL".

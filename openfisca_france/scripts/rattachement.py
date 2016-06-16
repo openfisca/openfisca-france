@@ -99,7 +99,7 @@ def define_scenario(year):
             date_naissance = 1973,
 #            cadre = True,
             salaire_imposable = 90000,
-            statmarit = u'Célibataire',
+            statut_marital = u'Célibataire',
             ),
         enfants = [
             dict(

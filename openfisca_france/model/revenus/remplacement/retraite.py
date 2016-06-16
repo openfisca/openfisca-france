@@ -9,6 +9,16 @@ class retraite_brute(Variable):
     label = u"Retraite brute"
 
 # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
-build_column('aer', IntCol(label = u"Allocation équivalent retraite (AER)"))
+class aer(Variable):
+    column = IntCol
+    entity_class = Individus
+    label = u"Allocation équivalent retraite (AER)"
 
-build_column('retraite_combattant', FloatCol(entity = 'ind', label = u"Retraite du combattant"))
+
+
+class retraite_combattant(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Retraite du combattant"
+
+
