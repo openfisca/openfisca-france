@@ -589,9 +589,6 @@ class salaire_super_brut_hors_allegements(Variable):
         reintegration_titre_restaurant_employeur = simulation.calculate(
             'reintegration_titre_restaurant_employeur', period)
         indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
-
-
-
         salaire_super_brut_hors_allegements = (
             salaire_de_base + remuneration_principale + remuneration_apprenti +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement + indemnite_fin_contrat +
