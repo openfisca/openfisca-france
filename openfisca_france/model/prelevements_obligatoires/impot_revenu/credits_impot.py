@@ -346,7 +346,7 @@ class aidper(DatedVariable):
         2002-2003
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         nbH = simulation.calculate('nbH', period)
         f7wi = simulation.calculate('f7wi', period)
@@ -355,7 +355,7 @@ class aidper(DatedVariable):
         P = _P.ir.credits_impot.aidper
 
         n = nb_pac2 - nbH / 2
-        max0 = (P.max * (1 + marpac) +
+        max0 = (P.max * (1 + maries_ou_pacses) +
             P.pac1 * (n >= 1) + P.pac2 * (n >= 2) + P.pac3 * (max_(n - 2, 0)) +
             ((n >= 2) * P.pac3 * nbH +
             (n == 1) * (P.pac2 + (nbH > 1) * P.pac3 * (nbH - 1) ) * (nbH >= 1) +
@@ -371,7 +371,7 @@ class aidper(DatedVariable):
         2004-2005
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         nbH = simulation.calculate('nbH', period)
         f7wi = simulation.calculate('f7wi', period)
@@ -381,7 +381,7 @@ class aidper(DatedVariable):
         P = _P.ir.credits_impot.aidper
 
         n = nb_pac2 - nbH/2
-        max0 = (P.max * (1 + marpac) +
+        max0 = (P.max * (1 + maries_ou_pacses) +
             P.pac1 * (n >= 1) + P.pac2 * (n >= 2) + P.pac3 * (max_(n - 2, 0)) +
             ((n >= 2) * P.pac3 * nbH +
             (n == 1) * (P.pac2 + (nbH > 1) * P.pac3 * (nbH - 1) ) * (nbH >= 1) +
@@ -400,7 +400,7 @@ class aidper(DatedVariable):
         cf. cerfa 50796
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7wi = simulation.calculate('f7wi', period)
         f7wj = simulation.calculate('f7wj', period)
@@ -408,7 +408,7 @@ class aidper(DatedVariable):
 
         P = _P.ir.credits_impot.aidper
 
-        max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
 
         max1 = max_(0, max0 - f7wj)
         return period, (P.taux_wj * min_(f7wj, max0) +
@@ -422,7 +422,7 @@ class aidper(DatedVariable):
         2010-2011
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7sf = simulation.calculate('f7sf', period)
         f7wi = simulation.calculate('f7wi', period)
@@ -431,7 +431,7 @@ class aidper(DatedVariable):
         _P = simulation.legislation_at(period.start)
 
         P = _P.ir.credits_impot.aidper
-        max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
 
         max1 = max_(0, max0 - f7wl - f7sf)
         max2 = max_(0, max1 - f7wj)
@@ -445,7 +445,7 @@ class aidper(DatedVariable):
         2012
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7wi = simulation.calculate('f7wi', period)
         f7wj = simulation.calculate('f7wj', period)
@@ -456,7 +456,7 @@ class aidper(DatedVariable):
         P = _P.ir.credits_impot.aidper
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements (7sa) et de la nature des
         #travaux, c'est un peu le bordel)
-        max00 = P.max * (1 + marpac)
+        max00 = P.max * (1 + maries_ou_pacses)
         max0 = max00 + P.pac1 * nb_pac2
         max1 = max_(0, max0 - max_(0,f7wl-max00))
         max2 = max_(0, max1 - f7wj)
@@ -471,7 +471,7 @@ class aidper(DatedVariable):
         2013
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7wj = simulation.calculate('f7wj', period)
         f7wl = simulation.calculate('f7wl', period)
@@ -481,7 +481,7 @@ class aidper(DatedVariable):
         P = _P.ir.credits_impot.aidper
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements et de la nature des
         # travaux, c'est un peu le bordel)
-        max00 = P.max * (1 + marpac)
+        max00 = P.max * (1 + maries_ou_pacses)
         max0 = max00 + P.pac1 * nb_pac2
         max1 = max_(0, max0 - max_(0,f7wl-max00))
 
@@ -496,7 +496,7 @@ class aidper(DatedVariable):
         2014 et supérieurs non vérifiée
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7wj = simulation.calculate('f7wj', period)
         f7wl = simulation.calculate('f7wl', period)
@@ -506,7 +506,7 @@ class aidper(DatedVariable):
         P = _P.ir.credits_impot.aidper
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements et de la nature des
         # travaux, c'est un peu le bordel)
-        max00 = P.max * (1 + marpac)
+        max00 = P.max * (1 + maries_ou_pacses)
         max0 = max00 + P.pac1 * nb_pac2
         max1 = max_(0, max0 - max_(0,f7wl-max00))
 
@@ -924,14 +924,14 @@ class divide(Variable):
         2005-2009
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f2dc = simulation.calculate('f2dc', period)
         f2gr = simulation.calculate('f2gr', period)
         _P = simulation.legislation_at(period.start)
 
         P = _P.ir.credits_impot.divide
 
-        max1 = P.max * (marpac + 1)
+        max1 = P.max * (maries_ou_pacses + 1)
         return period, min_(P.taux * (f2dc + f2gr), max1)
 
 
@@ -965,7 +965,7 @@ class inthab(DatedVariable):
         2007
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         caseP = simulation.calculate('caseP', period)
         caseF = simulation.calculate('caseF', period)
@@ -975,7 +975,7 @@ class inthab(DatedVariable):
         P = simulation.legislation_at(period.start).ir.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
-        max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
+        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
         return period, P.taux1 * min_(max0, f7uh)
 
     @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
@@ -985,7 +985,7 @@ class inthab(DatedVariable):
         2008
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         caseP = simulation.calculate('caseP', period)
         caseF = simulation.calculate('caseF', period)
@@ -998,7 +998,7 @@ class inthab(DatedVariable):
         P = _P.ir.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
-        max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
+        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
 
         max1 = max_(max0 - f7vy, 0)
         return period, (P.taux1 * min_(f7vy, max0) +
@@ -1011,7 +1011,7 @@ class inthab(DatedVariable):
         2009
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         caseP = simulation.calculate('caseP', period)
         caseF = simulation.calculate('caseF', period)
@@ -1025,7 +1025,7 @@ class inthab(DatedVariable):
         P = _P.ir.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
-        max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
+        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
@@ -1040,7 +1040,7 @@ class inthab(DatedVariable):
         2010
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         caseP = simulation.calculate('caseP', period)
         caseF = simulation.calculate('caseF', period)
@@ -1055,7 +1055,7 @@ class inthab(DatedVariable):
         P = _P.ir.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
-        max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
+        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
@@ -1072,7 +1072,7 @@ class inthab(DatedVariable):
         2011
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         caseP = simulation.calculate('caseP', period)
         caseF = simulation.calculate('caseF', period)
@@ -1089,7 +1089,7 @@ class inthab(DatedVariable):
         P = _P.ir.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
-        max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
+        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
@@ -1110,7 +1110,7 @@ class inthab(DatedVariable):
         2011
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         caseP = simulation.calculate('caseP', period)
         caseF = simulation.calculate('caseF', period)
@@ -1128,7 +1128,7 @@ class inthab(DatedVariable):
         P = _P.ir.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
-        max0 = P.max * (marpac + 1) * (1 + invalide) + nb_pac2 * P.add
+        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
@@ -1180,7 +1180,7 @@ class jeunes_ind(Variable):
         nbptr_holder = simulation.compute('nbptr', period)
         rfr_holder = simulation.compute('rfr', period)
         salaire_imposable =  simulation.calculate_add('salaire_imposable', period)
-        marpac_holder = simulation.compute('marpac', period)
+        maries_ou_pacses_holder = simulation.compute('maries_ou_pacses', period)
         elig_creimp_jeunes = simulation.calculate('elig_creimp_jeunes', period)
         _P = simulation.legislation_at(period.start)
 
@@ -1189,9 +1189,9 @@ class jeunes_ind(Variable):
         P = _P.ir.credits_impot.jeunes
         rfr = self.cast_from_entity_to_roles(rfr_holder)
         nbptr = self.cast_from_entity_to_roles(nbptr_holder)
-        marpac = self.cast_from_entity_to_roles(marpac_holder)
+        maries_ou_pacses = self.cast_from_entity_to_roles(maries_ou_pacses_holder)
 
-        elig = (age < P.age) * (rfr < P.rfr_plaf * (marpac * P.rfr_mult + not_(marpac)) + max_(0, nbptr - 2) * .5 *
+        elig = (age < P.age) * (rfr < P.rfr_plaf * (maries_ou_pacses * P.rfr_mult + not_(maries_ou_pacses)) + max_(0, nbptr - 2) * .5 *
                 P.rfr_maj + (nbptr == 1.5) * P.rfr_maj)
         montant = (
             (P.min <= salaire_imposable) * (salaire_imposable < P.int) * P.montant +
@@ -1307,10 +1307,10 @@ class prlire(Variable):
         period = period.this_year
         f2dh = simulation.calculate('f2dh', period)
         f2ch = simulation.calculate('f2ch', period)
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         _P = simulation.legislation_at(period.start)
 
-        plaf_resid = max_(_P.ir.rvcm.abat_assvie * (1 + marpac) - f2ch, 0)
+        plaf_resid = max_(_P.ir.rvcm.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
         return period, _P.ir.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
 
 
@@ -1327,7 +1327,7 @@ class quaenv(DatedVariable):
         2005
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7wf = simulation.calculate('f7wf', period)
         f7wg = simulation.calculate('f7wg', period)
@@ -1337,7 +1337,7 @@ class quaenv(DatedVariable):
         P = _P.ir.credits_impot.quaenv
 
         n = nb_pac2
-        max0 = P.max * (1 + marpac) + P.pac1 * (n >= 1) + P.pac2 * (n >= 2) + P.pac2 * (max_(n - 2, 0))
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * (n >= 1) + P.pac2 * (n >= 2) + P.pac2 * (max_(n - 2, 0))
 
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7wg)
@@ -1353,7 +1353,7 @@ class quaenv(DatedVariable):
         2006-2008
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7wf = simulation.calculate('f7wf', period)
         f7wg = simulation.calculate('f7wg', period)
@@ -1363,7 +1363,7 @@ class quaenv(DatedVariable):
 
         P = _P.ir.credits_impot.quaenv
 
-        max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
 
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7wg)
@@ -1381,7 +1381,7 @@ class quaenv(DatedVariable):
         2009
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7we = simulation.calculate('f7we', period)
         f7wf = simulation.calculate('f7wf', period)
@@ -1397,7 +1397,7 @@ class quaenv(DatedVariable):
         _P = simulation.legislation_at(period.start)
 
         P = _P.ir.credits_impot.quaenv
-        max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
 
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7se)
@@ -1426,7 +1426,7 @@ class quaenv(DatedVariable):
         2010-2011
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7we = simulation.calculate('f7we', period)
         f7wf = simulation.calculate('f7wf', period)
@@ -1442,7 +1442,7 @@ class quaenv(DatedVariable):
         _P = simulation.legislation_at(period.start)
 
         P = _P.ir.credits_impot.quaenv
-        max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
 
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7se)
@@ -1500,13 +1500,13 @@ class quaenv(DatedVariable):
         f7wg = simulation.calculate('f7wg', period)
         f7wh = simulation.calculate('f7wh', period)
         f7wk = simulation.calculate('f7wk', period)
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         quaenv_bouquet = simulation.calculate('quaenv_bouquet', period)
         rfr = simulation.calculate('rfr', period)
         P = simulation.legislation_at(period.start).ir.credits_impot.quaenv
 
-        max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
         maxi1 = max_(0, max0 - f7ty)
         maxi2 = max_(0, maxi1 - f7tx)
         maxi3 = max_(0, maxi2 - f7tw)
@@ -1577,13 +1577,13 @@ class quaenv(DatedVariable):
         f7wg = simulation.calculate('f7wg', period)
         f7wh = simulation.calculate('f7wh', period)
         f7wk = simulation.calculate('f7wk', period)
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         nb_pac2 = simulation.calculate('nb_pac2', period)
         quaenv_bouquet = simulation.calculate('quaenv_bouquet', period)
         rfr = simulation.calculate('rfr', period)
         P = simulation.legislation_at(period.start).ir.credits_impot.quaenv
 
-        max0 = P.max * (1 + marpac) + P.pac1 * nb_pac2
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
         max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - not_(quaenv_bouquet) * (f7ss + f7st + f7sv))
         max2 = max_(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq) - not_(quaenv_bouquet) * (f7sn + f7sq + f7sr))
         max3 = max_(0, max2 - quaenv_bouquet * (f7sv) - not_(quaenv_bouquet) * (f7se))

@@ -13,7 +13,7 @@
     nacc_impn: 1500
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -40,7 +40,7 @@
     nacc_impn: 1500
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -67,7 +67,7 @@
     nacc_impn: 1500
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -95,7 +95,7 @@
     nacc_impn: 1500
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -123,7 +123,7 @@
     nacc_impn: 1500
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -151,7 +151,7 @@
     nacc_impn: 1500
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -179,7 +179,7 @@
     nacc_impn: 1500
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -207,7 +207,7 @@
     nacc_impn: 1500
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -236,7 +236,7 @@
     nacc_impn: 1500
     salaire_imposable: 24000
     activite: 0
-    statmarit: 2
+    statut_marital: 2
     date_naissance: '1970-01-01'
   menages:
   - id: '0'

@@ -385,6 +385,10 @@
       2016-02: 91.40
     ass:
       2016-02: 100
+    asi:
+      2016-02: 100
+    aspa:
+      2016-02: 100
     # Autres ressources, on utilise le mois M-1
     paje_clca:
       2016-01: 100
@@ -406,13 +410,15 @@
       2016-01: 100
     revenus_locatifs:
       2016-01: 100
+    prime_forfaitaire_mensuelle_reprise_activite:
+      2016-01: 100
   output_variables:
     ppa:
       2016-02: 0
     ppa_ressources_hors_activite_individu:
-      2016-01: 700
+      2016-01: 800
     ppa_ressources_hors_activite:
-      2016-01: 1391.40
+      2016-01: 1691.40
 
 - name: "PPA: étudiant éligible (ressources > plancher)"
   period: 2016-01
@@ -525,3 +531,58 @@
     tns_micro_entreprise_type_activite: 2 # BNC, abattement de 34%
   output_variables:
     ppa_revenu_activite: 1000 * (1 - 0.34)
+
+
+- name: "Prise en compte de l'AAH: revenus d'activité > 29 * smic horaire brut"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    age: 40
+    salaire_net:
+      2016-01: 300
+      2015-12: 300
+      2015-11: 300
+      2015-10: 300
+    aah:
+      2016-01: 800
+      2015-12: 800
+      2015-11: 800
+      2015-10: 800
+  output_variables:
+    ppa_bonification:
+      2015-12: 67
+      2015-11: 67
+      2015-10: 67
+    rsa: 0
+    ppa: 524.16 + 67 - 0.38 * 1100 # =240
+    ppa_revenu_activite_individu:
+      2016-01: 1100
+    ppa_ressources_hors_activite_individu:
+      2016-01: 0
+
+- name: "Prise en compte de l'AAH: revenus d'activité < 29 * smic horaire brut"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    age: 40
+    salaire_net:
+      2016-01: 250
+      2015-12: 250
+      2015-11: 250
+      2015-10: 250
+    aah:
+      2016-01: 800
+      2015-12: 800
+      2015-11: 800
+      2015-10: 800
+  output_variables:
+    ppa_bonification:
+      2015-12: 0
+      2015-11: 0
+      2015-10: 0
+    rsa: 0
+    ppa: 0 # 524.16 + - 0.38 * 250 - 800 < 0
+    ppa_revenu_activite_individu:
+      2016-01: 250
+    ppa_ressources_hors_activite_individu:
+      2016-01: 800

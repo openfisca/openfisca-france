@@ -509,13 +509,13 @@ class cappme(DatedVariable):
         2002
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
 
         base = f7cf
-        seuil = P.seuil * (marpac + 1)
+        seuil = P.seuil * (maries_ou_pacses + 1)
         return period, P.taux * min_(base, seuil)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2003, 12, 31))
@@ -525,14 +525,14 @@ class cappme(DatedVariable):
         2003
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
 
         base = f7cf + f7cl
-        seuil = P.seuil * (marpac + 1)
+        seuil = P.seuil * (maries_ou_pacses + 1)
         return period, P.taux * min_(base, seuil)
 
     @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
@@ -542,7 +542,7 @@ class cappme(DatedVariable):
         2004
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
         f7cm = simulation.calculate('f7cm', period)
@@ -550,7 +550,7 @@ class cappme(DatedVariable):
         P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
 
         base = f7cf + f7cl + f7cm
-        seuil = P.seuil * (marpac + 1)
+        seuil = P.seuil * (maries_ou_pacses + 1)
         return period, P.taux * min_(base, seuil)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2008, 12, 31))
@@ -560,7 +560,7 @@ class cappme(DatedVariable):
         2005-2008
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
         f7cm = simulation.calculate('f7cm', period)
@@ -569,7 +569,7 @@ class cappme(DatedVariable):
         P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
 
         base = f7cf + f7cl + f7cm + f7cn
-        seuil = P.seuil * (marpac + 1)
+        seuil = P.seuil * (maries_ou_pacses + 1)
         return period, P.taux * min_(base, seuil)
 
     @dated_function(start = date(2009, 1, 1), stop = date(2010, 12, 31))
@@ -579,7 +579,7 @@ class cappme(DatedVariable):
         2009-2010
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
         f7cm = simulation.calculate('f7cm', period)
@@ -589,8 +589,8 @@ class cappme(DatedVariable):
         P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
 
         base = f7cf + f7cl + f7cm + f7cn + f7cu
-        seuil = P.seuil * (marpac + 1)
-        seuil = P.seuil_tpe * (marpac + 1) * (f7cu > 0) + P.seuil * (marpac + 1) * (f7cu <= 0)
+        seuil = P.seuil * (maries_ou_pacses + 1)
+        seuil = P.seuil_tpe * (maries_ou_pacses + 1) * (f7cu > 0) + P.seuil * (maries_ou_pacses + 1) * (f7cu <= 0)
         return period, P.taux * min_(base, seuil)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
@@ -600,7 +600,7 @@ class cappme(DatedVariable):
         2011
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
         f7cm = simulation.calculate('f7cm', period)
@@ -611,7 +611,7 @@ class cappme(DatedVariable):
         P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
 
         base = f7cl + f7cm + f7cn + f7cq
-        seuil = P.seuil_tpe * (marpac + 1) * (f7cu > 0) + P.seuil * (marpac + 1) * (f7cu <= 0)
+        seuil = P.seuil_tpe * (maries_ou_pacses + 1) * (f7cu > 0) + P.seuil * (maries_ou_pacses + 1) * (f7cu <= 0)
         max0 = max_(seuil - base, 0)
         return period, max_(P.taux25 * min_(base, seuil), P.taux * min_(max0, f7cf + f7cu))
 
@@ -622,7 +622,7 @@ class cappme(DatedVariable):
         2012 cf. 2041 GR
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
         f7cm = simulation.calculate('f7cm', period)
@@ -634,9 +634,9 @@ class cappme(DatedVariable):
 
         #TODO: gérer les changements de situation familiale
         base = f7cl + f7cm + f7cn
-        seuil1 = P.seuil * (marpac + 1)
-        seuil2 = max_(0, P.seuil_tpe * (marpac + 1) - min_(base, seuil1) - min_(f7cq, seuil1) - min_(f7cu, seuil1))
-        seuil3 = min_(P.seuil_tpe * (marpac + 1) - min_(base, seuil1) - min_(f7cq, seuil1), seuil1)
+        seuil1 = P.seuil * (maries_ou_pacses + 1)
+        seuil2 = max_(0, P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cq, seuil1) - min_(f7cu, seuil1))
+        seuil3 = min_(P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cq, seuil1), seuil1)
         return period, P.taux25 * min_(base, seuil1) + P.taux * min_(f7cq, seuil1) + P.taux18 * (min_(f7cf, seuil3) +
                 mini(f7cu, seuil2, seuil1))
 
@@ -647,7 +647,7 @@ class cappme(DatedVariable):
         2013
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cc = simulation.calculate('f7cc', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
@@ -659,9 +659,9 @@ class cappme(DatedVariable):
         P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
 
         base = f7cl + f7cm
-        seuil1 = P.seuil * (marpac + 1)
-        seuil2 = max_(0, P.seuil_tpe * (marpac + 1) - min_(base, seuil1) - min_(f7cn, seuil1) - min_(f7cu, seuil1))
-        seuil3 = min_(P.seuil_tpe * (marpac + 1) - min_(base, seuil1) - min_(f7cq, seuil1), seuil1)
+        seuil1 = P.seuil * (maries_ou_pacses + 1)
+        seuil2 = max_(0, P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cn, seuil1) - min_(f7cu, seuil1))
+        seuil3 = min_(P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cq, seuil1), seuil1)
         return period, P.taux25 * min_(base, seuil1) + P.taux22 * min_(f7cn, seuil1) + P.taux18 * (min_(f7cf + f7cc, seuil3) +
                 min_(f7cu + f7cq, seuil2))
 
@@ -1741,10 +1741,10 @@ class intagr(Variable):
         '''
         period = period.this_year
         f7um = simulation.calculate('f7um', period)
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         P = simulation.legislation_at(period.start).ir.reductions_impots.intagr
 
-        max1 = P.max * (1 + marpac)
+        max1 = P.max * (1 + maries_ou_pacses)
         return period, P.taux * min_(f7um, max1)
 
 
@@ -1800,12 +1800,12 @@ class invfor(DatedVariable):
         Investissements forestiers pour 2002-2005
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7un = simulation.calculate('f7un', period)
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.invfor
 
-        seuil = P.seuil * (marpac + 1)
+        seuil = P.seuil * (maries_ou_pacses + 1)
         return period, P.taux * min_(f7un, seuil)
 
     @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
@@ -1826,15 +1826,15 @@ class invfor(DatedVariable):
         Investissements forestiers pour 2009
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7un = simulation.calculate('f7un', period)
         f7up = simulation.calculate('f7up', period)
         f7uq = simulation.calculate('f7uq', period)
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.invfor
 
-        return period, P.taux * (min_(f7un, P.seuil * (marpac + 1)) + min_(f7up, P.ifortra_seuil * (marpac + 1)) +
-                min_(f7uq, P.iforges_seuil * (marpac + 1)))
+        return period, P.taux * (min_(f7un, P.seuil * (maries_ou_pacses + 1)) + min_(f7up, P.ifortra_seuil * (maries_ou_pacses + 1)) +
+                min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1)))
 
     @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
     def function_20100101_20101231(self, simulation, period):
@@ -1842,7 +1842,7 @@ class invfor(DatedVariable):
         Investissements forestiers pour 2010
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7te = simulation.calculate('f7te', period)
         f7un = simulation.calculate('f7un', period)
         f7up = simulation.calculate('f7up', period)
@@ -1852,9 +1852,9 @@ class invfor(DatedVariable):
         P = simulation.legislation_at(period.start).ir.reductions_impots.invfor
 
         return period, (P.taux * (
-            min_(f7un, P.seuil * (marpac + 1)) +
-            min_(f7up + f7uu + f7te, P.ifortra_seuil * (marpac + 1)) +
-            min_(f7uq, P.iforges_seuil * (marpac + 1))))
+            min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
+            min_(f7up + f7uu + f7te, P.ifortra_seuil * (maries_ou_pacses + 1)) +
+            min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))))
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_20110101_20111231(self, simulation, period):
@@ -1862,7 +1862,7 @@ class invfor(DatedVariable):
         Investissements forestiers pour 2011 cf. 2041 GK
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7te = simulation.calculate('f7te', period)
         f7tf = simulation.calculate('f7tf', period)
         f7ul = simulation.calculate('f7ul', period)
@@ -1874,14 +1874,14 @@ class invfor(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.invfor
 
-        max0 = max_(0, P.ifortra_seuil * (marpac + 1) - f7ul)
+        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu + f7te + f7uv + f7tf)
         return period, (P.taux * (
-            min_(f7un, P.seuil * (marpac + 1)) +
+            min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
             min_(f7up, max1) +
-            min_(f7uq, P.iforges_seuil * (marpac + 1))) +
+            min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))) +
             P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0) +
-            P.taux_ass * min_(f7ul, P.ifortra_seuil * (marpac + 1)))
+            P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1)))
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
@@ -1889,7 +1889,7 @@ class invfor(DatedVariable):
         Investissements forestiers pour 2012 cf. 2041 GK
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7te = simulation.calculate('f7te', period)
         f7tf = simulation.calculate('f7tf', period)
         f7tg = simulation.calculate('f7tg', period)
@@ -1903,16 +1903,16 @@ class invfor(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.invfor
 
-        max0 = max_(0, P.ifortra_seuil * (marpac + 1) - f7ul)
+        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu + f7te + f7uv + f7tf)
         max2 = max_(0, max1 - f7tg - f7uw)
         return period, (P.taux * (
-            min_(f7un, P.seuil * (marpac + 1)) +
+            min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
             min_(f7up, max2) +
-            min_(f7uq, P.iforges_seuil * (marpac + 1))) +
+            min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))) +
             P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0) +
             P.report11 * min_(f7tg + f7uw, max1) +
-            P.taux_ass * min_(f7ul, P.ifortra_seuil * (marpac + 1)))
+            P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1)))
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):
@@ -1920,7 +1920,7 @@ class invfor(DatedVariable):
         Investissements forestiers pour 2013 cf. 2041 GK
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7te = simulation.calculate('f7te', period)
         f7tf = simulation.calculate('f7tf', period)
         f7tg = simulation.calculate('f7tg', period)
@@ -1936,18 +1936,18 @@ class invfor(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.invfor
 
-        max0 = max_(0, P.ifortra_seuil * (marpac + 1) - f7ul)
+        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu + f7te + f7uv + f7tf)
         max2 = max_(0, max1 - f7tg - f7uw)
         max3 = max_(0, max2 - f7th - f7ux)
         return period, (P.taux * (
-            min_(f7un, P.seuil * (marpac + 1)) +
+            min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
             min_(f7up, max3) +
-            min_(f7uq, P.iforges_seuil * (marpac + 1))) +
+            min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))) +
             P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0) +
             P.report11 * min_(f7tg + f7uw, max1) +
             P.report12 * min_(f7th + f7ux, max2) +
-            P.taux_ass * min_(f7ul, P.ifortra_seuil * (marpac + 1)))
+            P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1)))
 
 
 class invlst(DatedVariable):
@@ -1962,7 +1962,7 @@ class invlst(DatedVariable):
         2004
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7xc = simulation.calculate('f7xc', period)
         f7xd = simulation.calculate('f7xd', period)
         f7xe = simulation.calculate('f7xe', period)
@@ -1979,9 +1979,9 @@ class invlst(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.invlst
 
-        seuil1 = P.seuil1 * (1 + marpac)
-        seuil2 = P.seuil2 * (1 + marpac)
-        seuil3 = P.seuil3 * (1 + marpac)
+        seuil1 = P.seuil1 * (1 + maries_ou_pacses)
+        seuil2 = P.seuil2 * (1 + maries_ou_pacses)
+        seuil3 = P.seuil3 * (1 + maries_ou_pacses)
 
         xc = P.taux_xc * min_(f7xc, seuil1 / 4)
         xd = P.taux_xd * f7xd
@@ -2006,7 +2006,7 @@ class invlst(DatedVariable):
         2005-2010
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7xc = simulation.calculate('f7xc', period)
         f7xd = simulation.calculate('f7xd', period)
         f7xe = simulation.calculate('f7xe', period)
@@ -2023,9 +2023,9 @@ class invlst(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.invlst
 
-        seuil1 = P.seuil1 * (1 + marpac)
-        seuil2 = P.seuil2 * (1 + marpac)
-        seuil3 = P.seuil3 * (1 + marpac)
+        seuil1 = P.seuil1 * (1 + maries_ou_pacses)
+        seuil2 = P.seuil2 * (1 + maries_ou_pacses)
+        seuil3 = P.seuil3 * (1 + maries_ou_pacses)
 
         xc = P.taux_xc * min_(f7xc, seuil1 / 6)
         xd = P.taux_xd * f7xd
@@ -2050,7 +2050,7 @@ class invlst(DatedVariable):
         2011
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7xa = simulation.calculate('f7xa', period)
         f7xb = simulation.calculate('f7xb', period)
         f7xc = simulation.calculate('f7xc', period)
@@ -2072,9 +2072,9 @@ class invlst(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.invlst
 
-        seuil1 = P.seuil1 * (1 + marpac)
-        seuil2 = P.seuil2 * (1 + marpac)
-        seuil3 = P.seuil3 * (1 + marpac)
+        seuil1 = P.seuil1 * (1 + maries_ou_pacses)
+        seuil2 = P.seuil2 * (1 + maries_ou_pacses)
+        seuil3 = P.seuil3 * (1 + maries_ou_pacses)
 
         xc = P.taux_xc * min_(f7xc, seuil1 / 6)
         xa = P.taux_xa * min_(f7xa, seuil2)
@@ -2095,7 +2095,7 @@ class invlst(DatedVariable):
         2012
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7xa = simulation.calculate('f7xa', period)
         f7xb = simulation.calculate('f7xb', period)
         f7xc = simulation.calculate('f7xc', period)
@@ -2120,9 +2120,9 @@ class invlst(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.invlst
 
-        seuil1 = P.seuil1 * (1 + marpac)
-        seuil2 = P.seuil2 * (1 + marpac)
-        seuil3 = P.seuil3 * (1 + marpac)
+        seuil1 = P.seuil1 * (1 + maries_ou_pacses)
+        seuil2 = P.seuil2 * (1 + maries_ou_pacses)
+        seuil3 = P.seuil3 * (1 + maries_ou_pacses)
 
         xc = P.taux_xc * min_(f7xc, seuil1 / 6)
         xa = P.taux_xa * min_(f7xa, seuil2)
@@ -2145,7 +2145,7 @@ class invlst(DatedVariable):
         2013
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7uy = simulation.calculate('f7uy', period)
         f7uz = simulation.calculate('f7uz', period)
         f7xf = simulation.calculate('f7xf', period)
@@ -2184,7 +2184,7 @@ class invrev(Variable):
         TODO 1/4 codé en dur
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7gs = simulation.calculate('f7gs', period)
         f7gt = simulation.calculate('f7gt', period)
         f7xg = simulation.calculate('f7xg', period)
@@ -2192,9 +2192,9 @@ class invrev(Variable):
         f7gv = simulation.calculate('f7gv', period)
         P = simulation.legislation_at(period.start).ir.reductions_impots.invrev
 
-        return period, (P.taux_gs * min_(f7gs, P.seuil_gs * (1 + marpac)) / 4 +
-                 P.taux_gu * min_(f7gu, P.seuil_gu * (1 + marpac)) / 4 +
-                 P.taux_xg * min_(f7xg, P.seuil_xg * (1 + marpac)) / 4 +
+        return period, (P.taux_gs * min_(f7gs, P.seuil_gs * (1 + maries_ou_pacses)) / 4 +
+                 P.taux_gu * min_(f7gu, P.seuil_gu * (1 + maries_ou_pacses)) / 4 +
+                 P.taux_xg * min_(f7xg, P.seuil_xg * (1 + maries_ou_pacses)) / 4 +
                  P.taux_gt * f7gt + P.taux_gt * f7gv)
 
 
@@ -2497,11 +2497,11 @@ class repsoc(Variable):
         2003-
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7fh = simulation.calculate('f7fh', period)
         P = simulation.legislation_at(period.start).ir.reductions_impots.repsoc
 
-        seuil = P.seuil * (marpac + 1)
+        seuil = P.seuil * (maries_ou_pacses + 1)
         return period, P.taux * min_(f7fh, seuil)
 
 
@@ -3065,13 +3065,13 @@ class sofipe(Variable):
         2009-2011
         """
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         rbg_int = simulation.calculate('rbg_int', period)
         f7gs = simulation.calculate('f7gs', period)
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.sofipe
 
-        max1 = min_(P.max * (marpac + 1), P.base * rbg_int)  # page3 ligne 18
+        max1 = min_(P.max * (maries_ou_pacses + 1), P.base * rbg_int)  # page3 ligne 18
         return period, P.taux * min_(f7gs, max1)
 
 
@@ -3088,12 +3088,12 @@ class spfcpi(DatedVariable):
         2002
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7gq = simulation.calculate('f7gq', period)
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.spfcpi
 
-        max1 = P.max * (marpac + 1)
+        max1 = P.max * (maries_ou_pacses + 1)
         return period, P.taux1 * min_(f7gq, max1)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
@@ -3104,13 +3104,13 @@ class spfcpi(DatedVariable):
         2003-2006
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7gq = simulation.calculate('f7gq', period)
         f7fq = simulation.calculate('f7fq', period)
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.spfcpi
 
-        max1 = P.max * (marpac + 1)
+        max1 = P.max * (maries_ou_pacses + 1)
         return period, (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1))
 
     @dated_function(start = date(2007, 1, 1), stop = date(2010, 12, 31))
@@ -3121,14 +3121,14 @@ class spfcpi(DatedVariable):
         2007-2010
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7gq = simulation.calculate('f7gq', period)
         f7fq = simulation.calculate('f7fq', period)
         f7fm = simulation.calculate('f7fm', period)
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.spfcpi
 
-        max1 = P.max * (marpac + 1)
+        max1 = P.max * (maries_ou_pacses + 1)
         return period, (P.taux1 * min_(f7gq, max1) +
                     P.taux1 * min_(f7fq, max1) +
                     P.taux2 * min_(f7fm, max1))
@@ -3141,7 +3141,7 @@ class spfcpi(DatedVariable):
         2011-2013
         '''
         period = period.this_year
-        marpac = simulation.calculate('marpac', period)
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7gq = simulation.calculate('f7gq', period)
         f7fq = simulation.calculate('f7fq', period)
         f7fm = simulation.calculate('f7fm', period)
@@ -3149,7 +3149,7 @@ class spfcpi(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).ir.reductions_impots.spfcpi
 
-        max1 = P.max * (marpac + 1)
+        max1 = P.max * (maries_ou_pacses + 1)
         return period, (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1) + P.taux2 * min_(f7fm, max1) +
                 P.taux3 * min_(f7fl, max1))
 

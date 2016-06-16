@@ -25,7 +25,7 @@ def define_scenario(year = 2013):
             activite = u'Actif occupé',
             date_naissance = 1970,
             salaire_imposable = 24000,
-            statmarit = u'Célibataire',
+            statut_marital = u'Célibataire',
             ),
         enfants = [
             dict(

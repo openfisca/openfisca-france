@@ -107,7 +107,7 @@ individus:
       2015-01: 649.74
       2015-02: 649.74
       year:2014-02: 7796.879999999998
-    statmarit: 1
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -363,20 +363,6 @@ familles:
   parents:
     - 54e223cbfe7cc56a2d0dc062
     - 54e223cbfe7cc56a2d0dc054
-  paris_logement_familles:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    year:2014-02: 0
   rsa:
     2014-02: 0
     2014-03: 0

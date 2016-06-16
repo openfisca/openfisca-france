@@ -41,11 +41,9 @@ class ppa_eligibilite_etudiants(Variable):
         m_2 = period.offset(-2, 'month')
         m_3 = period.offset(-3, 'month')
         condition_etudiant_i = condition_ressource(m_1) * condition_ressource(m_2) * condition_ressource(m_3)
-        condition_non_etudiant_i = simulation.calculate_add('ppa_revenu_activite_individu', period.last_3_months) > 0
-        condition_i = where(etudiant, condition_etudiant_i, condition_non_etudiant_i)
 
         # Au moins une personne de la famille doit être non étudiant ou avoir des ressources > plancher
-        condition_famille = self.any_by_roles(condition_i)
+        condition_famille = self.any_by_roles(not_(etudiant) + condition_etudiant_i, roles = [CHEF, CONJ])
         return period, ppa_majoree_eligibilite + condition_famille
 
 class ppa_montant_forfaitaire_familial_non_majore(Variable):
@@ -102,6 +100,9 @@ class ppa_revenu_activite_individu(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
+        P = simulation.legislation_at(period.start)
+        smic_horaire = P.cotsoc.gen.smic_h_b
+
         ressources = [
             'salaire_net',
             'revenus_stage_formation_pro',
@@ -124,7 +125,13 @@ class ppa_revenu_activite_individu(Variable):
                 ) / 12
         revenus_annualises = get_last_known('tns_benefice_exploitant_agricole') + get_last_known('tns_autres_revenus') + get_last_known('tns_micro_entreprise_benefice')
 
-        return period, revenus_mensualises + revenus_annualises
+        revenus_activites = revenus_mensualises + revenus_annualises
+
+        # L'aah est pris en compte comme revenu d'activité si  revenu d'activité hors aah > 29 * smic horaire brut
+        seuil_aah_activite = P.minim.ppa.seuil_aah_activite * smic_horaire
+        aah_activite = (revenus_activites >= seuil_aah_activite) * simulation.calculate('aah', period)
+
+        return period, revenus_activites + aah_activite
 
 class ppa_ressources_hors_activite(Variable):
     column = FloatCol
@@ -134,8 +141,14 @@ class ppa_ressources_hors_activite(Variable):
     def function(self, simulation, period, reference_period):
         pf = simulation.calculate('ppa_base_ressources_prestations_familiales', period, extra_params = [reference_period])
         ressources_hors_activite_individus = simulation.compute('ppa_ressources_hors_activite_individu', period)
-        ass = simulation.calculate('ass', reference_period)
-        ressources_hors_activite = self.sum_by_entity(ressources_hors_activite_individus) + pf + ass
+        ressources = [
+        'ass',
+        'asi',
+        'aspa'
+        ]
+
+        ressources_hors_activite = self.sum_by_entity(ressources_hors_activite_individus) + pf + sum(
+            simulation.calculate(ressource, reference_period) for ressource in ressources)
 
         return period, ressources_hors_activite
 
@@ -146,9 +159,10 @@ class ppa_ressources_hors_activite_individu(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
+        P = simulation.legislation_at(period.start)
+        smic_horaire = P.cotsoc.gen.smic_h_b
 
         ressources = [
-            'aah',
             'chomage_net',
             'retraite_nette',
             'retraite_combattant',
@@ -156,12 +170,18 @@ class ppa_ressources_hors_activite_individu(Variable):
             'pensions_alimentaires_percues',
             'prestation_compensatoire',
             'revenus_locatifs',
+            'prime_forfaitaire_mensuelle_reprise_activite',
             ]
 
         ressources_hors_activite_i = sum(
             simulation.calculate(ressource, period) for ressource in ressources)
+        revenus_activites = simulation.calculate('ppa_revenu_activite_individu', period)
 
-        return period, ressources_hors_activite_i
+        # L'aah est pris en compte comme revenu d'activité si  revenu d'activité hors aah > 29 * smic horaire brut
+        seuil_aah_activite = P.minim.ppa.seuil_aah_activite * smic_horaire
+        aah_hors_activite = (revenus_activites < seuil_aah_activite) * simulation.calculate('aah', period)
+
+        return period, ressources_hors_activite_i + aah_hors_activite
 
 class ppa_base_ressources_prestations_familiales(Variable):
     column = FloatCol

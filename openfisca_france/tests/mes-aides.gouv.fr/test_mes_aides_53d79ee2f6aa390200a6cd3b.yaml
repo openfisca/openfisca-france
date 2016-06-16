@@ -17,7 +17,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    statmarit: 2
+    statut_marital: 2
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -238,20 +238,6 @@ familles:
   parents:
     - 53d79ed1f6aa390200a6cd3a
     - 53d79ed1f6aa390200a6cd39
-  paris_logement_familles:
-    2013-07: 0
-    2013-08: 0
-    2013-09: 0
-    2013-10: 0
-    2013-11: 0
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    year:2013-07: 0
   rsa:
     2013-07: 0
     2013-08: 0

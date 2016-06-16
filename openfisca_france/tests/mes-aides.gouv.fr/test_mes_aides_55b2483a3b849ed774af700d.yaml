@@ -6,7 +6,7 @@ keywords:
 description: Sans enfant à charge, PLF ne doit pas être proposé.
 period: "month:2015-07"
 individus:
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 35
     age_en_mois: 426
     date_naissance: "1980-01-01"
@@ -70,12 +70,12 @@ individus:
       2015-06: 1000
       2015-07: 1000
       year:2014-07: 12000
-    statmarit: 1
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - a_charge_fiscale: true
+  - enfant_a_charge: true
     age: 35
     age_en_mois: 426
     date_naissance: "1980-01-01"
@@ -88,7 +88,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    statmarit: 1
+    statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -294,20 +294,6 @@ familles:
   parents:
     - 55b248373b849ed774af7000
     - 55b248373b849ed774af6fff
-  paris_logement_familles:
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-    2015-05: 0
-    2015-06: 0
-    year:2014-07: 0
   proprietaire_proche_famille: false
   rsa:
     2014-07: 0
@@ -362,7 +348,6 @@ menages:
   depcom: 75119
   enfants:
   loyer: 500
-  parisien: true
   personne_de_reference: 55b248373b849ed774af7000
   statut_occupation_logement: 4
 output_variables:
