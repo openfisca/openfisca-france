@@ -59,12 +59,12 @@ class adoption(Variable):
     label = u"Enfant adopté"
 
 
-
 class garde_alternee(Variable):
     column = BoolCol
     entity_class = Individus
     label = u'Enfant en garde alternée'
     base_function = requested_period_last_or_next_value
+
 
 class activite(Variable):
     column = EnumCol(
@@ -79,14 +79,10 @@ class activite(Variable):
     label = u"Activité"
 
 
-
-
 class enceinte(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Est enceinte"
-
-
 
 
 class statut_marital(Variable):
@@ -103,7 +99,6 @@ class statut_marital(Variable):
     label = u"Statut marital"
 
 
-
 class nbN(Variable):
     cerfa_field = u"N"
     column = PeriodSizeIndependentIntCol
@@ -116,7 +111,6 @@ class nbR(Variable):
     column = PeriodSizeIndependentIntCol
     entity_class = FoyersFiscaux
     label = u"Nombre de titulaires (autres que les enfants) de la carte invalidité d'au moins 80 %"
-
 
 
 class caseE(Variable):
@@ -162,13 +156,11 @@ class caseK(Variable):
     stop_date = date(2011, 12, 31)
 
 
-
 class caseL(Variable):
     cerfa_field = u"L"
     column = BoolCol
     entity_class = FoyersFiscaux
     label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant au moins 5 ans durant la période où vous viviez seul"
-
 
 
 class caseN(Variable):
@@ -288,20 +280,24 @@ class etudiant(Variable):
 
         return period, activite == 2
 
+
 class rempli_obligation_scolaire(Variable):
     column = BoolCol(default = True)
     entity_class = Individus
     label = u"Rempli l'obligation scolaire"
+
 
 class ressortissant_eee(Variable):
     column = BoolCol(default = True)
     entity_class = Individus
     label = u"Ressortissant de l'EEE ou de la Suisse."
 
+
 class duree_possession_titre_sejour(Variable):
     column = IntCol
     entity_class = Individus
     label = u"Durée depuis laquelle l'individu possède un titre de séjour (en années)"
+
 
 class enfant_place(Variable):
     column = BoolCol
