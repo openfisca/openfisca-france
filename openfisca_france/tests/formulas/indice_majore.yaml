@@ -23,6 +23,7 @@
 - name: u"Indice majoré pour échelon inexistant"
   period: 2014-01
   absolute_error_margin: 0.5
+  ignore: True
   input_variables:
     categorie_salarie: 4
     echelon: -28
@@ -34,6 +35,7 @@
 - name: u"Indice majoré pour grade inexistant"
   period: 2014-01
   absolute_error_margin: 0.5
+  ignore: True
   input_variables:
     categorie_salarie: 4
     echelon: 3
@@ -50,16 +52,17 @@
   output_variables:
     indice_majore: 0
 
-#- name: u"Indice majoré période non couverte"
-#  period: 1981-01
-#  absolute_error_margin: 0.5
-#  input_variables:
-#    categorie_salarie: 4
-#    echelon: 13
-#    corps: 'redacteur'
-#    grade: 1
-#  output_variables:
-#    indice_majore: 0
+- name: u"Indice majoré période non couverte"
+  period: 1981-01
+  absolute_error_margin: 0.5
+  ignore: True
+  input_variables:
+    categorie_salarie: 4
+    echelon: 13
+    corps: 'redacteur'
+    grade: 1
+  output_variables:
+    indice_majore: 0
 
 - name: u"Indice majoré pour deux agents"
   period: 2014-02
@@ -75,6 +78,7 @@
 - name: u"Indice majoré pour deux agents, dont l'un a un échelon invalide"
   period: 2014-02
   absolute_error_margin: 0.5
+  ignore: True
   input_variables:
     categorie_salarie: [4, 4]
     echelon: [-13, 13]
