@@ -49,6 +49,7 @@ from .prestations import (  # noqa analysis:ignore
 
 from prestations.minima_sociaux import (  # noqa analysis:ignore
     aah,
+    ada,
     asi_aspa,
     ass,
     cmu,
