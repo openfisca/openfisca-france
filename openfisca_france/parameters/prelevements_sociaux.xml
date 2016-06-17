@@ -2525,6 +2525,11 @@
       </CODE>
     </NODE>
   </NODE>
+  <NODE code="fin_syndic">
+    <CODE code="taux" format="percent">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.00016" />
+    </CODE>
+  </NODE>
   <NODE code="forfait_social">
     <CODE code="taux_plein" format="percent">
       <VALUE deb="2012-08-01" fuzzy="true" valeur="0.2" />
