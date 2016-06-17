@@ -674,7 +674,8 @@ class Scenario(scenarios.AbstractScenario):
                     #     conv.struct(
                     #         dict(
                     #             date_naissance = conv.test(
-                    #                 lambda date_naissance: period.start.date - date_naissance >= datetime.timedelta(0),
+                    #                 lambda date_naissance:
+                    #                     period.start.date - date_naissance >= datetime.timedelta(0),
                     #                 error = u"L'individu doit être né au plus tard le jour de la simulation",
                     #                 ),
                     #             ),
