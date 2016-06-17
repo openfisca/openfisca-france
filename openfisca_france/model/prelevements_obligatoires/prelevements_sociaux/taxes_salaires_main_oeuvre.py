@@ -5,9 +5,10 @@ from __future__ import division
 import csv
 import logging
 import pkg_resources
+import yaml
 
 from numpy import fromiter, logical_or as or_, round as round_
-
+from openfisca_core import conv
 
 import openfisca_france
 from ...base import *  # noqa analysis:ignore
@@ -310,24 +311,16 @@ class taux_versement_transport(Variable):
 
         preload_taux_versement_transport()
         public = (categorie_salarie >= 2)
-        default_value = 0.0
-        taux_aot = fromiter(
+        taux_versement_transport = fromiter(
             (
-                taux_aot_by_depcom.get(depcom_cell, default_value)
-                for depcom_cell in depcom_entreprise
+                get_taux_versement_transport(code_commune, period)
+                for code_commune in depcom_entreprise
                 ),
             dtype = 'float',
             )
-        taux_smt = fromiter(
-            (
-                taux_smt_by_depcom.get(depcom_cell, default_value)
-                for depcom_cell in depcom_entreprise
-                ),
-            dtype = 'float',
-            )
-        # "L'entreprise emploie-t-elle plus de 9 salariés  dans le périmètre de l'Autorité organisatrice de transport
+        # "L'entreprise emploie-t-elle plus de 9 ou 10 salariés dans le périmètre de l'Autorité organisatrice de transport
         # (AOT) suivante ou syndicat mixte de transport (SMT)"
-        return period, (taux_aot + taux_smt) * or_(effectif_entreprise >= seuil_effectif, public) / 100
+        return period, taux_versement_transport * or_(effectif_entreprise >= seuil_effectif, public) / 100
 
 
 class versement_transport(Variable):
@@ -344,25 +337,34 @@ class versement_transport(Variable):
 
 
 def preload_taux_versement_transport():
-    global taux_aot_by_depcom
-    global taux_smt_by_depcom
-    if taux_aot_by_depcom is None:
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/versement_transport/taux.csv',
-                ) as csv_file:
-            csv_reader = csv.DictReader(csv_file)
-            taux_aot_by_depcom = {
-                row['code INSEE']: float(row['taux'] or 0)  # autorité organisatrice des transports
-                for row in csv_reader
-                }
-    if taux_smt_by_depcom is None:
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/versement_transport/taux.csv',
-                ) as csv_file:
-            csv_reader = csv.DictReader(csv_file)
-            taux_smt_by_depcom = {
-                row['code INSEE']: float(row['taux additionnel'] or 0)  # syndicat mixte de transport
-                for row in csv_reader
-                }
+    if not 'table_versement_transport' in globals():
+        global table_versement_transport
+
+        print 'will load YAML'
+        table_versement_transport = yaml.load(file(openfisca_france.COUNTRY_DIR + '/assets/versement_transport/taux.yaml'), Loader=yaml.CLoader)
+        print 'loaded YAML'
+
+
+def get_taux_versement_transport(code_commune, period):
+    instant = period.start
+    taux_commune = table_versement_transport.get(code_commune, None)
+    if taux_commune is None:
+        return 0.0 + 0.0
+    else:
+        aot = taux_commune.get('aot', None)
+        smt = taux_commune.get('smt', None)
+        return select_temporal_taux_versement_transport(aot, instant) + select_temporal_taux_versement_transport(smt, instant)
+
+
+def select_temporal_taux_versement_transport(rates, instant):
+
+        if rates is None:
+            return 0.0
+
+        taux = rates.get('taux')
+        for date in sorted(taux, reverse=True):
+            if str(instant) >= date:
+                return float(taux[date])
+        return 0.0
+
+
