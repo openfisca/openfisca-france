@@ -339,10 +339,7 @@ class versement_transport(Variable):
 def preload_taux_versement_transport():
     if not 'table_versement_transport' in globals():
         global table_versement_transport
-
-        print 'will load YAML'
         table_versement_transport = yaml.load(file(openfisca_france.COUNTRY_DIR + '/assets/versement_transport/taux.yaml'), Loader=yaml.CLoader)
-        print 'loaded YAML'
 
 
 def get_taux_versement_transport(code_commune, period):
