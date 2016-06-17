@@ -73,6 +73,7 @@ class assiette_cotisations_sociales_prive(Variable):
             )
         return period, max_(assiette, smic_proratise * not_(apprenti)) * (assiette > 0)
 
+
 class indemnite_fin_contrat(Variable):
     column = FloatCol
     entity_class = Individus

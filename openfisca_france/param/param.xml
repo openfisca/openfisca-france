@@ -1093,7 +1093,7 @@
     <NODE code="indemnite_fin_contrat" description="Indémnité de fin de contrat (CDD)">
       <CODE code="taux" description="Pourcentage du salaire de base">
         <VALUE deb="2016-04-01" fuzzy="true" valeur=".1" />
-        <VALUE deb="2002-01-18" fin="2016-03-31" valeur=".1" /> <!--  Code du travail - Article L122-3-4  -->
+        <VALUE deb="2002-01-01" fin="2016-03-31" valeur=".1" /> <!--  Code du travail - Article L122-3-4  2002-01-18-->
       </CODE>
     </NODE>
     <NODE code="pat" description="employeur">
