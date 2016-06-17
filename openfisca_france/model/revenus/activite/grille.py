@@ -13,7 +13,7 @@ asset_path =  os.path.join(
     'grilles_fonction_publique',
     )
 
-xls_path =  os.path.join(
+xls_path = os.path.join(
     asset_path,
     'testgrid_CNRACL.xlsx',
     )
