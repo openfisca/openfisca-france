@@ -268,6 +268,11 @@ class cotisation_sociale_mode_recouvrement(Variable):
     entity_class = Individus
     label = u"Mode de recouvrement des cotisations sociales"
 
+class entreprise_est_association_non_lucrative(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"L'entreprise est une association à but non lucratif, par exemple loi de 1901"
+
 
 class depcom_entreprise(Variable):
     column = FixedStrCol(max_length = 5)
