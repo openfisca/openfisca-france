@@ -4,13 +4,13 @@ from ...base import *  # noqa analysis:ignore
 
 class asile_demandeur(Variable):
     column = BoolCol(default = False)
-    entity_class = Individus
-    label = u"Personne demandant l'ADA"
+    entity_class = Familles
+    label = u"Famille demandant l'asile"
 
 class place_hebergement(Variable):
     column = BoolCol(default = True)
     entity_class = Familles
-    label = u"Beneficie d'une place dans un centre d'hebergement"
+    label = u"Bénéficie d'une place dans un centre d'hébergement"
 
 class ada(DatedVariable):
     column = FloatCol(default = 0)
@@ -37,7 +37,16 @@ class ada(DatedVariable):
         asile_demandeur = simulation.calculate('asile_demandeur', period)
         print place_hebergement
         print period.days
-        ada_jour = np.where(asile_demandeur, np.where(place_hebergement, ada_nb_foyer[str(nb_parents + af_nbenf)], ada_nb_foyer[str(nb_parents + af_nbenf)] + 4.20), 0)
+        print nb_parents + af_nbenf
+        ada_jour = np.where(
+            asile_demandeur,
+            np.where(
+                place_hebergement,
+                ada_nb_foyer[str(nb_parents + af_nbenf)],
+                ada_nb_foyer[str(nb_parents + af_nbenf)] + 4.20
+                ),
+             0,
+             )
         print ada_jour
         ada = period.days * ada_jour
         return period, ada
