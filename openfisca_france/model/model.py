@@ -24,6 +24,7 @@ from .prelevements_obligatoires.impot_revenu import (  # noqa analysis:ignore
 
 from .prelevements_obligatoires.prelevements_sociaux.contributions_sociales import (  # noqa analysis:ignore
     activite,
+    versement_transport,
     capital,
     remplacement,
     )
