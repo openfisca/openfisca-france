@@ -140,13 +140,17 @@ class forfait_social(Variable):
             'prise_en_charge_employeur_prevoyance_complementaire', period)
         prise_en_charge_employeur_retraite_complementaire = simulation.calculate_add(
             'prise_en_charge_employeur_retraite_complementaire', period)
+        complementaire_sante_employeur = simulation.calculate_add('complementaire_sante_employeur', period)
 
         taux_plein = simulation.legislation_at(period.start).forfait_social.taux_plein
         taux_reduit = simulation.legislation_at(period.start).forfait_social.taux_reduit
 
         # TODO: complete this
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
-        assiette_taux_reduit = - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+        assiette_taux_reduit = (
+            - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+            - complementaire_sante_employeur
+            )
         return period, - (
             assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit
             )
