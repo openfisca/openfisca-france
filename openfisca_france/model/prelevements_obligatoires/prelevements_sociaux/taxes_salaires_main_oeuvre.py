@@ -3,9 +3,9 @@
 from __future__ import division
 
 import csv
+import json
 import logging
 import pkg_resources
-import yaml
 
 from numpy import fromiter, logical_or as or_, round as round_
 from openfisca_core import conv
@@ -339,7 +339,8 @@ class versement_transport(Variable):
 def preload_taux_versement_transport():
     if not 'table_versement_transport' in globals():
         global table_versement_transport
-        table_versement_transport = yaml.load(file(openfisca_france.COUNTRY_DIR + '/assets/versement_transport/taux.yaml'), Loader=yaml.CLoader)
+        with open(openfisca_france.COUNTRY_DIR + '/assets/versement_transport/taux.json') as data_file:
+            table_versement_transport = json.load(data_file)
 
 
 def get_taux_versement_transport(code_commune, period):
