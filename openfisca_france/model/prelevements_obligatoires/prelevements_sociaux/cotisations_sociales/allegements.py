@@ -141,8 +141,9 @@ class credit_impot_competitivite_emploi(DatedVariable):
         taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, cotsoc)
         credit_impot_competitivite_emploi = taux_cice * assiette_allegement
         non_cumul = not_(stagiaire)
+        association = simulation.calculate('entreprise_est_association_non_lucrative', period)
 
-        return period, credit_impot_competitivite_emploi * non_cumul
+        return period, credit_impot_competitivite_emploi * non_cumul * not_(association)
 
 
 class aide_premier_salarie(DatedVariable):
