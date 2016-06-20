@@ -103,6 +103,8 @@ class cotisations_employeur_main_d_oeuvre(Variable):
         formation_professionnelle = simulation.calculate('formation_professionnelle', period)
         participation_effort_construction = simulation.calculate_add('participation_effort_construction', period)
         prevoyance_obligatoire_cadre = simulation.calculate_add('prevoyance_obligatoire_cadre', period)
+        complementaire_sante_employeur = simulation.calculate_add('complementaire_sante_employeur', period)
+
         taxe_apprentissage = simulation.calculate_add('taxe_apprentissage', period)
         versement_transport = simulation.calculate_add('versement_transport', period)
 
@@ -115,6 +117,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
             formation_professionnelle +
             participation_effort_construction +
             prevoyance_obligatoire_cadre +
+            complementaire_sante_employeur +
             taxe_apprentissage +
             versement_transport
             )

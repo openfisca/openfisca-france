@@ -365,6 +365,18 @@ class primes_salaires(Variable):
     label = u"Indemnités, primes et avantages en argent"
 
 
+class complementaire_sante_montant(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Montant de la complémentaire santé obligatoire retenue par l'employeur"
+
+
+class complementaire_sante_taux_employeur(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Part de la complémentaire santé obligatoire payée par l'employeur"
+
+
 class prise_en_charge_employeur_prevoyance_complementaire(Variable):
     column = FloatCol()
     entity_class = Individus

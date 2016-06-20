@@ -49,8 +49,10 @@ class assiette_csg_non_abattue(Variable):
     def function(self, simulation, period):
         period = period.this_month
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
+        complementaire_sante_employeur = simulation.calculate_add('complementaire_sante_employeur', period)
+
         # TODO + indemnites_journalieres_maladie,
-        return period, - prevoyance_obligatoire_cadre
+        return period, - prevoyance_obligatoire_cadre - complementaire_sante_employeur
 
 
 class csg_deductible_salaire(Variable):
@@ -179,11 +181,12 @@ class salaire_imposable(Variable):
         hsup = simulation.calculate('hsup', period)
         rev_microsocial_declarant1 = simulation.calculate_divide('rev_microsocial_declarant1', period)
         indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
+        complementaire_sante_salarie = simulation.calculate('complementaire_sante_salarie', period)
 
         return period, (
             salaire_de_base + primes_salaires + remuneration_principale +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement + csg_deductible_salaire +
-            cotisations_salariales - hsup + rev_microsocial_declarant1 + indemnite_fin_contrat
+            cotisations_salariales - hsup + rev_microsocial_declarant1 + indemnite_fin_contrat + complementaire_sante_salarie
             )
 
 
