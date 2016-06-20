@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.1.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.1.0..3.0.0)
+
+* Update the rates of the versement transport contribution
+* Introduce an history of rates
+* Move its code to a new file (~ 5 functions)
+
+
 ## 3.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.0.0..2.0.0)
 
 * Make `enfant_a_charge` usable in monthly mode so that we can re-use it in mes-aides, and broaden its definition so that in includes children in `garde_alternee`.
