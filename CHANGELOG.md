@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.4.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.4.0..3.3.0)
+
+* Introduce the `entreprise_est_association_non_lucrative` boolean input variable
+* Null the CICE and taxe d'apprentissage (taxe + contribution supplémentaire) when this input is True
+* Force the computing of taxe sur les salaires when this input is True
+* Implement franchise, décôte and abattement associations non lucratives in Taxe sur les salaires
+
 ## 3.3.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.3.0..3.2.0)
 
 * Add variables for `complémentaire santé`, compulsory in 2016 :
@@ -18,13 +25,11 @@ It is included in the bases of the following variables.
 * Specifically, correct the proratisation of `plafond de la sécurité sociale` and `coefficient de proratisation`.
 * See issue #496 for details
 
-
 ## 3.1.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.1.0..3.0.0)
 
 * Update the rates of the versement transport contribution
 * Introduce an history of rates
 * Move its code to a new file (~ 5 functions)
-
 
 ## 3.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.0.0..2.0.0)
 
