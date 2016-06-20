@@ -160,15 +160,13 @@ class aah_eligible(Variable):
     def function(self, simulation, period):
         period = period.this_month
         law = simulation.legislation_at(period.start)
-
         taux_incapacite = simulation.calculate('taux_incapacite', period)
         age = simulation.calculate('age', period)
         autonomie_financiere = simulation.calculate('autonomie_financiere', period)
-
         eligible_aah = (
             (taux_incapacite >= 0.5) *
             (age <= law.minim.aah.age_legal_retraite) *
-            ((age >= law.fam.aeeh.age) + ((age >= 16) * (autonomie_financiere)))
+            ((age >= law.prestations.prestations_familiales.aeeh.age) + ((age >= 16) * (autonomie_financiere)))
         )
 
         return period, eligible_aah

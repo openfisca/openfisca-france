@@ -35,6 +35,8 @@ cotsoc.exo_bas_sal: null
 forfait_social: null
 cotsoc.sal.fonc.commun.plafond_base_solidarite: prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite
 cotsoc.agirc_gmp: null
+fam: prestations
+prestations: prestations.prestations_familiales
 taxation_capital.prelevements_sociaux.base_pat: taxation_capital.prelevements_sociaux.prelevement_social.revenus_du_patrimoine
 taxation_capital.prelevements_sociaux.base_plac: taxation_capital.prelevements_sociaux.prelevement_social.produits_de_placement
 taxation_capital.prelevements_sociaux.add_pat: taxation_capital.prelevements_sociaux.caps.revenus_du_patrimoine

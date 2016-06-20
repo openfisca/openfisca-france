@@ -94,6 +94,7 @@ def tax_scale(bases_tree, rates_tree = None):
 
 
 def transform_ipp_tree(root):
+    del root['baremes_ipp_tarification_energie_logement']
     del root['baremes_ipp_chomage_unemployment']
     # root['chomage'] = root.pop('baremes_ipp_chomage_unemployment')
 
@@ -757,8 +758,10 @@ def transform_ipp_tree(root):
     prelevements_sociaux['allegement_cotisation_allocations_familiales'] = prelevements_sociaux.pop('reduc_famille')
     # TODO ret-ac.yaml, ret-comp-ac.yaml, ret-comp-pl.yaml, ret-pl.yaml, ret-etat.yaml
     # TODO retraite chapeau
-    del root['baremes_ipp_prestations_sociales_social_benefits']
-    # root['prestations'] = root.pop('baremes_ipp_prestations_sociales_social_benefits')
+
+    root['prestations'] = prestations = root.pop('baremes_ipp_prestations_sociales_social_benefits')
+    prestations['prestations_familiales'] = prestations_familiales = dict()
+    prestations_familiales['aeeh'] = prestations['aeeh']
     # baremes_ipp_prestations_sociales_social_benefits:
     #   RENAME: prestations
     #   aa_plaf:
