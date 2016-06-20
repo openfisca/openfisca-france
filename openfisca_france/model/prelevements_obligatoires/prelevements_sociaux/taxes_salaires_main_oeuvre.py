@@ -4,7 +4,7 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_or as or_, round as round_
+from numpy import logical_or as or_, round as round_, logical_not as not_
 
 from ...base import *  # noqa analysis:ignore
 
@@ -47,6 +47,7 @@ class contribution_developpement_apprentissage(Variable):
 
     def function(self, simulation, period):
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
+
         cotisation = apply_bareme(
             simulation,
             period,
@@ -70,8 +71,12 @@ class contribution_supplementaire_apprentissage(DatedVariable):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         taux = simulation.legislation_at(period.start).cotsoc.contribution_supplementaire_apprentissage
 
+        # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
+        # -> pas de taxe d'apprentissage
+        association = simulation.calculate('entreprise_est_association_non_lucrative', period)
+
         if period.start.year > 2012:
-            taux_contribution = redevable_taxe_apprentissage * (
+            taux_contribution = (
                 (effectif_entreprise < 2000) * (ratio_alternants < .01) * taux.moins_2000_moins_1pc_alternants +
                 (effectif_entreprise >= 2000) * (ratio_alternants < .01) * taux.plus_2000_moins_1pc_alternants +
                 (.01 <= ratio_alternants) * (ratio_alternants < .02) * taux.entre_1_2_pc_alternants +
@@ -80,9 +85,9 @@ class contribution_supplementaire_apprentissage(DatedVariable):
                 (.04 <= ratio_alternants) * (ratio_alternants < .05) * taux.entre_4_5_pc_alternants
                 )
         else:
-            taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250 * redevable_taxe_apprentissage
+            taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250
             # TODO: gestion de la place dans le XML pb avec l'arbre des paramètres / preprocessing
-        return period, - taux_contribution * assiette_cotisations_sociales
+        return period, - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage * not_(association)
 
 
 class cotisations_employeur_main_d_oeuvre(Variable):
@@ -254,6 +259,11 @@ class taxe_apprentissage(Variable):
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
+
+        # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
+        # -> pas de taxe d'apprentissage
+        association = simulation.calculate('entreprise_est_association_non_lucrative', period)
+
         cotisation = apply_bareme(
             simulation,
             period,
@@ -261,7 +271,7 @@ class taxe_apprentissage(Variable):
             bareme_name = 'apprentissage',
             variable_name = self.__class__.__name__,
             )
-        return period, redevable_taxe_apprentissage * cotisation
+        return period, cotisation * redevable_taxe_apprentissage * not_(association)
 
 
 class taxe_salaires(Variable):
@@ -298,5 +308,3 @@ class taxe_salaires(Variable):
                 ) +
             round_(law.cotsoc.taxes_sal.taux.metro * base, 2)
             ) * assujettie_taxe_salaires
-
-
