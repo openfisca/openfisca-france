@@ -886,9 +886,9 @@
           <VALUE deb="2013-01-01" fin="2014-12-31" valeur="2.5" />
         </CODE>
         <CODE code="taux" description="Taux du CICE" format="percent">
-          <VALUE deb="2015-01-01" fuzzy="true" valeur=".06" />
-          <VALUE deb="2014-09-25" fin="2014-12-31" valeur=".06" />
-          <VALUE deb="2013-01-01" fin="2014-09-24" valeur=".04" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur=".06" />
+          <VALUE deb="2014-01-01" fin="2015-12-31" valeur=".06" />
+          <VALUE deb="2013-01-01" fin="2013-12-31" valeur=".04" />
         </CODE>
       </NODE>
       <NODE code="fillon" description="Exonération Fillon">
