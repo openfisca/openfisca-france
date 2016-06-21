@@ -1,0 +1,15 @@
+- period: "2016-06"
+  name: Forfait social
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1467
+    complementaire_sante_taux_employeur: .625
+    complementaire_sante_montant: 40
+    categorie_salarie: 1 # cadre
+    # prevoyance_obligatoire_cadre_taux_employeur: taux par défaut : 1.5 %
+  output_variables:
+    complementaire_sante_employeur: -40 * .625
+    complementaire_sante_salarie: -40 * (1 - .625)
+    prevoyance_obligatoire_cadre: 1467 * 1.5 / 100
+    # Forfait social : seulement le taux réduit de 8 %
+    forfait_social: -(40 * .625 + 1467 * 1.5 / 100) * 8 / 100

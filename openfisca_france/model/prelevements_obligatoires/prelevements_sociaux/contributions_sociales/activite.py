@@ -141,16 +141,24 @@ class forfait_social(Variable):
         prise_en_charge_employeur_retraite_complementaire = simulation.calculate_add(
             'prise_en_charge_employeur_retraite_complementaire', period)
         complementaire_sante_employeur = simulation.calculate_add('complementaire_sante_employeur', period)
+        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 
-        taux_plein = simulation.legislation_at(period.start).forfait_social.taux_plein
-        taux_reduit = simulation.legislation_at(period.start).forfait_social.taux_reduit
+        parametres = simulation.legislation_at(period.start).forfait_social
+        taux_plein = parametres.taux_plein
+        taux_reduit = parametres.taux_reduit
+        seuil_effectif_taux_reduit = simulation.parametres.seuil_effectif_prevoyance_complementaire
 
         # TODO: complete this
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
+
+        # Les cotisations de prévoyance complémentaire qui rentrent en compte dans l'assiette du taux réduit
+        # ne concernent que les entreprises de 10 ou 11 employés et plus
+        # https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
         assiette_taux_reduit = (
             - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
             - complementaire_sante_employeur
-            )
+            ) * (effectif_entreprise >= seuil_effectif_taux_reduit)
+
         return period, - (
             assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit
             )
