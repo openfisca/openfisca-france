@@ -50,9 +50,14 @@ class assiette_csg_non_abattue(Variable):
         period = period.this_month
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
         complementaire_sante_employeur = simulation.calculate_add('complementaire_sante_employeur', period)
+        prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate_add(
+            'prise_en_charge_employeur_prevoyance_complementaire', period)
 
         # TODO + indemnites_journalieres_maladie,
-        return period, - prevoyance_obligatoire_cadre - complementaire_sante_employeur
+        return period, (
+            - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+            - complementaire_sante_employeur
+            )
 
 
 class csg_deductible_salaire(Variable):
