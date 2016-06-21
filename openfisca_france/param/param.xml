@@ -2815,7 +2815,8 @@
         </TRANCHE>
         <TRANCHE code="tranche1">
           <SEUIL>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="7666" />
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="7713" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="7705" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="7666" />
             <VALUE deb="2011-01-01" fin="2013-12-31" valeur="7604" />
             <VALUE deb="2010-01-01" fin="2010-12-31" valeur="7491" />
@@ -2836,7 +2837,8 @@
         </TRANCHE>
         <TRANCHE code="tranche2">
           <SEUIL>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="15308" />
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="15401" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="15385" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="15308" />
             <VALUE deb="2011-01-01" fin="2013-12-31" valeur="15185" />
             <VALUE deb="2010-01-01" fin="2010-12-31" valeur="14960" />
@@ -2857,7 +2859,8 @@
         </TRANCHE>
         <TRANCHE code="tranche3">
           <SEUIL>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="151208" />
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="152122" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="151965" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="151208" />
             <VALUE deb="2013-01-01" fin="2013-12-31" valeur="150000" />
           </SEUIL>
