@@ -146,7 +146,7 @@ class forfait_social(Variable):
         parametres = simulation.legislation_at(period.start).forfait_social
         taux_plein = parametres.taux_plein
         taux_reduit = parametres.taux_reduit
-        seuil_effectif_taux_reduit = simulation.parametres.seuil_effectif_prevoyance_complementaire
+        seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
 
         # TODO: complete this
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette

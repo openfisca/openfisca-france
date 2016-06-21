@@ -4035,7 +4035,7 @@
       <VALUE deb="2009-01-01" fin="2014-12-31" valeur=".08" />
     </CODE>
     <!-- https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html -->
-    <CODE code="seuil_effectif_prévoyance_complémentaire"
+    <CODE code="seuil_effectif_prevoyance_complementaire"
           description="Seuil effectif à partir duquel les contributions patronales de prévoyance complémentaire rentrent dans l'assiette du FNAL à taux réduit">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="11" />
       <VALUE deb="2012-01-01" fin="2015-12-31" valeur="10" />
