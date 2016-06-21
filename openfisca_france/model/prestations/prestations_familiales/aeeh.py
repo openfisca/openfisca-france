@@ -17,8 +17,8 @@ class aeeh(DatedVariable):
     label = u"Allocation d'éducation de l'enfant handicapé"
     url = "http://vosdroits.service-public.fr/particuliers/N14808.xhtml"
 
-    @dated_function(start = date(2002, 1, 1))
-    def function_20020101(self, simulation, period):
+    @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
+    def function_20020101_20021231(self, simulation, period):
         '''
         Allocation d'éducation de l'enfant handicapé (Allocation d'éducation spécialisée avant le 1er janvier 2006)
 
