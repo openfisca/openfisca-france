@@ -291,6 +291,10 @@ class taxe_salaires(Variable):
             'prise_en_charge_employeur_prevoyance_complementaire', period)
 
         law = simulation.legislation_at(period.start)
+        entreprise_est_association_non_lucrative = \
+            simulation.calculate('entreprise_est_association_non_lucrative', period)
+
+        assujettissement = assujettie_taxe_salaires + entreprise_est_association_non_lucrative
 
         bareme = law.cotsoc.taxes_sal.taux_maj
         base = assiette_cotisations_sociales + (
@@ -307,4 +311,4 @@ class taxe_salaires(Variable):
                 round_base_decimals = 2
                 ) +
             round_(law.cotsoc.taxes_sal.taux.metro * base, 2)
-            ) * assujettie_taxe_salaires
+            ) * assujettissement
