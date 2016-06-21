@@ -5,11 +5,6 @@
       <VALUE deb="1995-01-01" fin="1996-07-31" valeur="0.3" />
     </CODE>
   </NODE>
-  <NODE code="aa_plaf">
-    <CODE code="plafonds_de_ressources">
-      <VALUE deb="1996-08-01" fin="2006-12-31" valeur="Mêmes plafonds que pour l'APJE" />
-    </CODE>
-  </NODE>
   <NODE code="ada">
     <NODE code="montant_journalier_selon_le_nombre_de_personnes">
       <CODE code="1" format="float" type="monetary">
@@ -45,93 +40,6 @@
     </NODE>
     <CODE code="supplement_si_non_heberge_dans_centres_d_accueil_ou_hebergement_d_urgence" format="float" type="monetary">
       <VALUE deb="2015-11-01" fuzzy="true" valeur="4.2" />
-    </CODE>
-  </NODE>
-  <NODE code="aeeh">
-    <CODE code="age_maximum_de_l_enfant">
-      <VALUE deb="2006-01-01" fuzzy="true" valeur="20" />
-    </CODE>
-    <NODE code="complement_d_allocation">
-      <CODE code="1ere_categorie" format="percent">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="0.24" />
-      </CODE>
-      <CODE code="2e_categorie" format="percent">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="0.65" />
-      </CODE>
-      <CODE code="3e_categorie" format="percent">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="0.92" />
-      </CODE>
-      <CODE code="4e_categorie" format="percent">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="1.4257" />
-      </CODE>
-      <CODE code="5e_categorie" format="percent">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="1.8221" />
-      </CODE>
-      <CODE code="6e_categorie_1" format="float" type="monetary">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="1104.18" />
-        <VALUE deb="2014-04-01" fin="2016-03-31" valeur="1103.08" />
-        <VALUE deb="2013-04-01" fin="2014-03-31" valeur="1096.5" />
-        <VALUE deb="2012-04-01" fin="2013-03-31" valeur="1082.43" />
-        <VALUE deb="2011-04-01" fin="2012-03-31" valeur="1060.16" />
-        <VALUE deb="2010-04-01" fin="2011-03-31" valeur="1038.36" />
-        <VALUE deb="2009-04-01" fin="2010-03-31" valeur="1029.1" />
-        <VALUE deb="2008-10-01" fin="2009-03-31" valeur="1018.91" />
-        <VALUE deb="2008-04-01" fin="2008-09-30" valeur="1010.82" />
-        <VALUE deb="2007-04-01" fin="2008-03-31" valeur="999.83" />
-        <VALUE deb="2006-04-01" fin="2007-03-31" valeur="982.15" />
-        <VALUE deb="2006-01-01" fin="2006-03-31" valeur="964.78" />
-      </CODE>
-    </NODE>
-    <NODE code="majoration_pour_parent_isole">
-      <CODE code="2e_categorie" format="percent">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="0.13" />
-      </CODE>
-      <CODE code="3e_categorie" format="percent">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="0.18" />
-      </CODE>
-      <CODE code="4e_categorie" format="percent">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="0.57" />
-      </CODE>
-      <CODE code="5e_categorie" format="percent">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="0.73" />
-      </CODE>
-      <CODE code="6e_categorie" format="percent">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="1.07" />
-      </CODE>
-    </NODE>
-    <CODE code="montant_de_bmaf" format="percent">
-      <VALUE deb="2006-01-01" fuzzy="true" valeur="0.32" />
-    </CODE>
-  </NODE>
-  <NODE code="aes">
-    <CODE code="age_maximum_de_l_enfant">
-      <VALUE deb="1976-08-01" fin="2005-12-31" valeur="20" />
-    </CODE>
-    <NODE code="complement_d_allocation">
-      <CODE code="1ere_categorie" format="percent">
-        <VALUE deb="1991-10-01" fin="2005-12-31" valeur="0.24" />
-        <VALUE deb="1984-01-01" fin="1991-09-30" valeur="0.72" />
-        <VALUE deb="1976-08-01" fin="1983-12-31" valeur="0.48" />
-      </CODE>
-      <CODE code="2e_categorie" format="percent">
-        <VALUE deb="2002-04-01" fin="2005-12-31" valeur="0.65" />
-        <VALUE deb="1991-10-01" fin="2002-03-31" valeur="0.72" />
-        <VALUE deb="1976-08-01" fin="1991-09-30" valeur="0.24" />
-      </CODE>
-      <CODE code="4e_categorie" format="percent">
-        <VALUE deb="2002-04-01" fin="2005-12-31" valeur="1.4257" />
-      </CODE>
-      <CODE code="5e_categorie" format="percent">
-        <VALUE deb="2002-04-01" fin="2005-12-31" valeur="1.8221" />
-      </CODE>
-      <CODE code="6e_categorie_2" format="float" type="monetary">
-        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="964.78" />
-        <VALUE deb="2004-04-01" fin="2004-12-31" valeur="945.87" />
-        <VALUE deb="2003-04-01" fin="2004-03-31" valeur="930.05" />
-      </CODE>
-    </NODE>
-    <CODE code="montant_de_bmaf_ou_en_euros" format="percent">
-      <VALUE deb="1976-08-01" fin="2005-12-31" valeur="0.32" />
     </CODE>
   </NODE>
   <NODE code="af_cm">
@@ -357,73 +265,6 @@
       <VALUE deb="2006-06-05" fuzzy="true" valeur="22" />
     </CODE>
   </NODE>
-  <NODE code="al_charge">
-    <NODE code="cas_des_colocataires_ou_des_proprietaires_1">
-      <CODE code="isole_ou_couple_avec_un_enfant_ou_une_personne_a_charge">
-        <VALUE deb="1994-07-01" fuzzy="true" valeur="Mêmes montants que dans le cas général" />
-      </CODE>
-      <CODE code="majoration_par_enfant_de_la_majoration_pour_charges">
-        <VALUE deb="1994-07-01" fuzzy="true" valeur="Mêmes montants que dans le cas général" />
-      </CODE>
-      <CODE code="personne_isolee_ou_menage_seul" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="26.61" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="26.46" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="25.9" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="25.64" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="25.36" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="25.28" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="24.56" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="23.9" />
-        <VALUE deb="2002-07-01" fin="2006-12-31" valeur="23.48" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="23.25" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="150" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="149" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="147" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="145" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="142" />
-      </CODE>
-    </NODE>
-    <NODE code="cas_general">
-      <CODE code="isole_ou_couple_avec_un_enfant_ou_une_personne_a_charge" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="65.29" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="64.92" />
-      </CODE>
-      <CODE code="majoration_par_enfant_de_la_majoration_pour_charges" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="12.06" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="11.99" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="11.74" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="11.62" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="11.49" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="11.45" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="11.12" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="10.82" />
-        <VALUE deb="2002-07-01" fin="2006-12-31" valeur="10.63" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="10.52" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="66" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="65" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="64" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="63" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="61" />
-      </CODE>
-      <CODE code="personne_isolee_ou_menage_seul" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="53.23" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="52.93" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="51.82" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="51.31" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="50.75" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="50.59" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="49.14" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="47.82" />
-        <VALUE deb="2002-07-01" fin="2006-12-31" valeur="46.97" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="46.5" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="300" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="297" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="293" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="289" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="282" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="al_etudiant">
     <NODE code="autres_dont_les_etudiants_en_chambres_rehabilitees_de_residences_universitaires">
       <CODE code="menages" format="float" type="monetary">
@@ -505,27 +346,6 @@
         <VALUE deb="1989-11-12" fin="2001-12-31" valeur="100" />
       </CODE>
     </NODE>
-  </NODE>
-  <NODE code="al_pac">
-    <CODE code="age_limite_pour_les_enfants_a_charge">
-      <VALUE deb="2000-01-01" fuzzy="true" valeur="21" />
-      <VALUE deb="1991-11-11" fin="1999-12-31" valeur="Même réglementation que pour les autres prestations familiales : cf. feuille &quot;def_pac&quot;" />
-    </CODE>
-    <NODE code="age_minimal">
-      <CODE code="pour_les_ascendants_et_leur_conjoint">
-        <VALUE deb="1991-11-11" fuzzy="true" valeur="65" />
-      </CODE>
-      <CODE code="pour_les_ascendants_et_leur_conjoints_qui_sont_invalides_ou_anciens_deportes_ou_internes">
-        <VALUE deb="1991-11-11" fuzzy="true" valeur="60" />
-      </CODE>
-    </NODE>
-    <CODE code="plafonds_de_ressources_que_les_potentiels_personnes_a_charge_autre_que_les_enfants_doivent_respecter">
-      <VALUE deb="2007-07-01" fuzzy="true" valeur="Plafonds indiqués à l'art. L815-9 du CSS (législation sur les allocations aux personnes âgées) multipliés par 1,25" />
-      <VALUE deb="1991-11-11" fin="2007-06-30" valeur="Plafonds indiqués à l'art. L815-8 du CSS (législation sur les allocations aux personnes âgées)" />
-    </CODE>
-    <CODE code="pourcentage_minimal_de_handicap_pour_les_ascendants_ou_descendants_du_3eme_degre_maximum" format="percent">
-      <VALUE deb="2000-01-01" fuzzy="true" valeur="0.8" />
-    </CODE>
   </NODE>
   <NODE code="al_param">
     <CODE code="constante_du_coefficient_k">
@@ -856,537 +676,6 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="al_plaf_acc">
-    <CODE code="intervalle_de_date_du_certificat_d_emprunt_correspondant_aux_plafonds_d_accession_a_la_propriete">
-      <VALUE deb="2014-09-01" fuzzy="true" valeur="Après le 30/09/2014" />
-      <VALUE deb="2013-01-01" fin="2014-08-31" valeur="Après le 31/12/2012" />
-      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="Après le 31/12/2011" />
-      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="Après le 31/12/2010" />
-      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="Après le 31/12/2009" />
-      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="Après le 31/12/2008" />
-      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="Après le 31/12/2007" />
-      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="Après le 31/12/2006" />
-      <VALUE deb="2005-09-01" fin="2006-12-31" valeur="Après le 31/08/2005" />
-      <VALUE deb="2003-07-01" fin="2005-08-31" valeur="Après le 30/06/2003" />
-      <VALUE deb="2002-07-01" fin="2003-06-30" valeur="Après le 30/06/2002" />
-      <VALUE deb="2001-07-01" fin="2002-06-30" valeur="Après le 30/06/2001" />
-      <VALUE deb="2000-07-01" fin="2001-06-30" valeur="Après le 30/06/2000" />
-      <VALUE deb="1999-07-01" fin="2000-06-30" valeur="Après le 30/06/1999" />
-      <VALUE deb="1998-07-01" fin="1999-06-30" valeur="Après le 30/06/1998" />
-      <VALUE deb="1997-07-01" fin="1998-06-30" valeur="Après le 30/06/1997" />
-      <VALUE deb="1994-07-01" fin="1997-06-30" valeur="Après le 30/06/1994" />
-      <VALUE deb="1992-07-01" fin="1994-06-30" valeur="Après le 30/06/1992" />
-      <VALUE deb="1991-07-01" fin="1992-06-30" valeur="Après le 30/06/1991" />
-      <VALUE deb="1990-07-01" fin="1991-06-30" valeur="Après le 30/06/1990" />
-    </CODE>
-    <NODE code="plafond_pour_accession_a_la_propriete_zone_1">
-      <CODE code="menage_ou_isole_avec_1_enfant" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="403.3" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="401.01" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="392.57" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="388.68" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="384.45" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="383.22" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="372.24" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="362.24" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="352.37" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="346.14" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="342.04" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="337.98" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="2191" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="2169" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="2167" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="2116" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="2078" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="2055" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="1955" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1870" />
-      </CODE>
-      <CODE code="menage_ou_isole_avec_2_enfants" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="414.57" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="412.22" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="403.54" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="399.54" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="395.19" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="393.93" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="382.64" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="372.36" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="362.22" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="355.82" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="351.6" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="347.43" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="2252" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="2230" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="2228" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="2176" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="2137" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="2113" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="2009" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1923" />
-      </CODE>
-      <CODE code="menage_ou_isole_avec_3_enfants" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="426.23" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="423.81" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="414.89" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="410.78" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="406.31" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="405.01" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="393.4" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="382.83" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="372.4" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="365.82" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="361.48" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="357.19" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="2315" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="2292" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="2290" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="2236" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="2196" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="2171" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="2063" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1976" />
-      </CODE>
-      <CODE code="menage_ou_isole_avec_4_enfants" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="437.66" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="435.18" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="426.02" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="421.8" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="417.21" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="415.88" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="403.96" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="393.11" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="382.4" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="375.64" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="371.19" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="366.79" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="2377" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="2353" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="2351" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="2296" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="2255" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="2229" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="2117" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="2029" />
-      </CODE>
-      <CODE code="menage_ou_isole_avec_5_enfants" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="446.93" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="444.4" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="435.05" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="430.74" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="426.05" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="424.69" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="412.52" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="401.44" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="390.51" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="383.61" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="379.06" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="374.57" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="2428" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="2404" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="2402" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="2346" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="2305" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="2280" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="2168" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="2075" />
-      </CODE>
-      <CODE code="menage_ou_isole_par_enfant_en_plus" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="38.92" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="38.7" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="37.89" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="37.51" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="37.1" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="36.98" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="35.92" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="34.96" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="34.01" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="33.41" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="33.01" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="32.62" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="211" />
-        <VALUE deb="1998-07-01" fin="2000-06-30" valeur="209" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="204" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="200" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="198" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="188" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="180" />
-      </CODE>
-      <CODE code="menage_seul" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="375.08" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="372.95" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="365.1" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="361.49" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="357.56" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="356.42" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="346.21" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="336.91" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="327.73" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="321.94" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="318.12" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="314.35" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="2038" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="2018" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="2016" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="1969" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="1934" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="1913" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="1862" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1817" />
-      </CODE>
-      <CODE code="personne_isolee_sans_enfant" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="311.23" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="309.47" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="302.96" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="299.96" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="296.7" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="297.75" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="287.28" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="279.56" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="271.95" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="267.14" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="263.97" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="260.84" />
-      </CODE>
-    </NODE>
-    <NODE code="plafond_pour_accession_a_la_propriete_zone_2">
-      <CODE code="menage_ou_isole_avec_1_enfant" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="362.35" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="360.3" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="352.72" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="349.23" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="345.43" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="344.33" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="334.46" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="325.48" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="316.61" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="311.01" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="307.32" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="303.68" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="1968" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="1949" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="1947" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="1901" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="1867" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="1847" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="1756" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1679" />
-      </CODE>
-      <CODE code="menage_ou_isole_avec_2_enfants" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="374.9" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="372.78" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="364.93" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="361.32" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="357.39" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="356.25" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="346.04" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="336.75" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="327.58" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="321.79" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="317.97" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="314.2" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="2037" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="2017" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="2015" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="1968" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="1933" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="1912" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="1818" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1738" />
-      </CODE>
-      <CODE code="menage_ou_isole_avec_3_enfants" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="387.83" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="385.63" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="377.51" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="373.77" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="369.7" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="368.52" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="357.96" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="348.35" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="338.86" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="332.87" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="328.92" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="325.02" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="2107" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="2086" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="2084" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="2035" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="1999" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="1977" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="1880" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1797" />
-      </CODE>
-      <CODE code="menage_ou_isole_avec_4_enfants" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="400.56" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="398.29" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="389.91" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="386.05" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="381.85" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="380.63" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="369.72" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="359.79" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="349.99" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="343.8" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="339.72" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="335.69" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="2176" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="2154" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="2152" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="2102" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="2065" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="2042" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="1942" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1856" />
-      </CODE>
-      <CODE code="menage_ou_isole_avec_5_enfants" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="428.92" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="426.49" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="417.51" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="413.38" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="408.88" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="407.58" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="395.9" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="385.27" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="374.78" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="368.15" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="363.78" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="359.47" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="2330" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="2307" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="2305" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="2251" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="2211" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="2187" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="2079" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1990" />
-      </CODE>
-      <CODE code="menage_ou_isole_par_enfant_en_plus" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="37.29" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="37.08" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="36.3" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="35.94" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="35.55" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="35.44" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="34.42" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="33.5" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="32.59" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="32.01" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="31.63" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="31.25" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="203" />
-        <VALUE deb="1998-07-01" fin="2000-06-30" valeur="201" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="196" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="193" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="191" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="182" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="174" />
-      </CODE>
-      <CODE code="menage_seul" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="334.73" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="332.83" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="325.82" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="322.59" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="319.08" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="318.06" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="308.95" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="300.65" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="292.46" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="287.29" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="283.88" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="280.51" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="1818" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="1800" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="1798" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="1756" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="1725" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="1706" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="1661" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1620" />
-      </CODE>
-      <CODE code="personne_isolee_sans_enfant" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="273.04" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="271.49" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="265.78" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="263.15" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="260.29" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="259.46" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="252.03" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="245.26" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="238.58" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="234.36" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="231.58" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="228.83" />
-      </CODE>
-    </NODE>
-    <NODE code="plafond_pour_accession_a_la_propriete_zone_3">
-      <CODE code="menage_ou_isole_avec_1_enfant" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="338.71" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="336.79" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="329.7" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="326.44" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="322.89" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="321.86" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="312.64" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="304.24" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="295.95" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="290.72" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="287.27" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="283.86" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="1840" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="1822" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="1820" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="1777" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="1745" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="1726" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="1640" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1570" />
-      </CODE>
-      <CODE code="menage_ou_isole_avec_2_enfants" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="352.71" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="350.71" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="343.33" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="339.93" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="336.23" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="335.16" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="325.56" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="316.82" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="308.19" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="302.74" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="299.15" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="295.6" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="1916" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="1897" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="1895" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="1851" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="1818" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="1798" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="1708" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1635" />
-      </CODE>
-      <CODE code="menage_ou_isole_avec_3_enfants" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="366.92" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="364.84" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="357.16" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="353.62" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="349.77" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="348.65" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="338.66" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="329.56" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="320.58" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="314.91" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="311.18" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="307.49" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="1993" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="1973" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="1971" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="1925" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="1891" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="1870" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="1776" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1700" />
-      </CODE>
-      <CODE code="menage_ou_isole_avec_4_enfants" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="380.9" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="378.74" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="370.77" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="367.1" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="363.11" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="361.95" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="351.58" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="342.14" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="332.82" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="326.94" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="323.06" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="319.23" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="2069" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="2049" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="2047" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="1999" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="1964" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="1942" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="1844" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1765" />
-      </CODE>
-      <CODE code="menage_ou_isole_avec_5_enfants" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="409.28" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="406.96" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="398.39" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="394.45" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="390.16" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="388.92" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="377.78" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="367.63" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="357.62" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="351.3" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="347.13" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="343.01" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="2223" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="2201" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="2199" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="2147" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="2109" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="2086" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="1982" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1896" />
-      </CODE>
-      <CODE code="menage_ou_isole_par_enfant_en_plus" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="35.48" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="35.28" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="34.54" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="34.2" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="33.83" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="33.72" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="32.75" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="31.87" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="31" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="30.45" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="30.09" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="29.73" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="193" />
-        <VALUE deb="1998-07-01" fin="2000-06-30" valeur="191" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="187" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="184" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="182" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="173" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="165" />
-      </CODE>
-      <CODE code="menage_seul" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="310.67" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="308.91" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="302.41" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="299.42" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="296.16" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="295.22" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="286.76" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="279.06" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="271.46" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="266.66" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="263.5" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="260.38" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="1688" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="1671" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="1669" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="1630" />
-        <VALUE deb="1994-07-01" fin="1997-06-30" valeur="1601" />
-        <VALUE deb="1992-07-01" fin="1994-06-30" valeur="1584" />
-        <VALUE deb="1991-07-01" fin="1992-06-30" valeur="1542" />
-        <VALUE deb="1990-07-01" fin="1991-06-30" valeur="1505" />
-      </CODE>
-      <CODE code="personne_isolee_sans_enfant" format="float" type="monetary">
-        <VALUE deb="2014-09-01" fuzzy="true" valeur="256.14" />
-        <VALUE deb="2013-01-01" fin="2014-08-31" valeur="254.69" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="249.33" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="246.86" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="244.17" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="243.39" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="236.42" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="230.07" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="223.8" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="219.84" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="217.23" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="214.65" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="al_plaf_loc1">
     <NODE code="plafonds_de_loyer_en_zone_1">
       <NODE code="menage_ou_isole">
@@ -1492,291 +781,6 @@
         <VALUE deb="1998-07-01" fin="1999-06-30" valeur="1543" />
         <VALUE deb="1997-07-01" fin="1998-06-30" valeur="1507" />
         <VALUE deb="1994-07-01" fin="1997-06-30" valeur="1456" />
-      </CODE>
-    </NODE>
-  </NODE>
-  <NODE code="al_plaf_loc2">
-    <CODE code="loyer_de_reference">
-      <VALUE deb="2001-01-01" fuzzy="true" valeur="Même loyers que les plafonds pour la zone 2" />
-    </CODE>
-    <CODE code="montant_forfaitaire_de_la_participation_minimale_po" format="float" type="monetary">
-      <VALUE deb="2014-10-01" fuzzy="true" valeur="34.73" />
-      <VALUE deb="2013-01-01" fin="2014-09-30" valeur="34.53" />
-      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="33.8" />
-      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="33.47" />
-      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="33.11" />
-      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="33" />
-      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="31" />
-      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="30" />
-      <VALUE deb="2004-06-01" fin="2006-12-31" valeur="29" />
-      <VALUE deb="2002-07-01" fin="2004-05-31" valeur="28" />
-      <VALUE deb="2002-01-01" fin="2002-06-30" valeur="26.68" />
-      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="175" />
-    </CODE>
-    <CODE code="montant_proportionnel_de_la_participation_minimale_po" format="percent">
-      <VALUE deb="2001-01-01" fuzzy="true" valeur="0.085" />
-    </CODE>
-    <NODE code="plafond_de_loyers_zone_1">
-      <CODE code="couples" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="352.92" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="350.92" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="343.53" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="340.13" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="336.43" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="335.36" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="325.75" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="317" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="308.37" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="302.92" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="299.33" />
-        <VALUE deb="2002-01-01" fin="2002-06-30" valeur="293.46" />
-        <VALUE deb="2001-07-01" fin="2001-12-31" valeur="1925" />
-        <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1902" />
-      </CODE>
-      <CODE code="majoration_par_enfant_supplementaire" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="57.86" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="57.53" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="56.32" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="55.76" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="55.15" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="54.97" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="53.39" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="51.96" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="50.54" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="49.65" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="48.44" />
-        <VALUE deb="2002-01-01" fin="2002-06-30" valeur="47.87" />
-        <VALUE deb="2001-07-01" fin="2001-12-31" valeur="314" />
-        <VALUE deb="2001-01-01" fin="2001-06-30" valeur="310" />
-      </CODE>
-      <CODE code="personnes_seules" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="292.62" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="290.96" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="284.84" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="282.02" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="278.95" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="278.06" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="270.09" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="262.84" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="255.68" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="251.16" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="248.18" />
-        <VALUE deb="2002-01-01" fin="2002-06-30" valeur="243.31" />
-        <VALUE deb="2001-07-01" fin="2001-12-31" valeur="1596" />
-        <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1577" />
-      </CODE>
-      <CODE code="personnes_seules_ou_couples_avec_1_enfant" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="398.87" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="396.61" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="388.26" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="384.42" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="380.24" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="379.03" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="368.17" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="358.28" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="348.52" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="342.36" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="334.01" />
-        <VALUE deb="2002-01-01" fin="2002-06-30" valeur="330.05" />
-        <VALUE deb="2001-07-01" fin="2001-12-31" valeur="2165" />
-        <VALUE deb="2001-01-01" fin="2001-06-30" valeur="2139" />
-      </CODE>
-    </NODE>
-    <NODE code="plafond_de_loyers_zone_2">
-      <CODE code="couples" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="312.15" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="310.38" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="303.85" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="300.84" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="297.57" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="296.62" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="288.12" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="280.38" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="272.74" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="267.92" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="264.74" />
-        <VALUE deb="2002-01-01" fin="2002-06-30" valeur="261.6" />
-        <VALUE deb="2001-07-01" fin="2001-12-31" valeur="1716" />
-        <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1696" />
-      </CODE>
-      <CODE code="majoration_par_enfant_supplementaire" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="51.12" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="50.83" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="49.76" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="49.27" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="48.73" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="48.57" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="47.18" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="45.91" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="44.66" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="43.87" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="43.35" />
-        <VALUE deb="2002-01-01" fin="2002-06-30" valeur="42.84" />
-        <VALUE deb="2001-07-01" fin="2001-12-31" valeur="281" />
-        <VALUE deb="2001-01-01" fin="2001-06-30" valeur="278" />
-      </CODE>
-      <CODE code="personnes_seules" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="255.03" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="253.58" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="248.24" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="245.78" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="243.11" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="242.33" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="235.39" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="229.07" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="222.83" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="218.89" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="216.29" />
-        <VALUE deb="2002-01-01" fin="2002-06-30" valeur="213.73" />
-        <VALUE deb="2001-07-01" fin="2001-12-31" valeur="1402" />
-        <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1385" />
-      </CODE>
-      <CODE code="personnes_seules_ou_couples_avec_1_enfant" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="351.25" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="349.26" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="341.91" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="338.52" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="334.84" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="333.77" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="324.21" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="315.5" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="306.91" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="301.48" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="297.91" />
-        <VALUE deb="2002-01-01" fin="2002-06-30" valeur="294.38" />
-        <VALUE deb="2001-07-01" fin="2001-12-31" valeur="1931" />
-        <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1908" />
-      </CODE>
-    </NODE>
-    <NODE code="plafond_de_loyers_zone_3">
-      <CODE code="couples" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="289.76" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="288.12" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="282.06" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="279.37" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="276.23" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="275.35" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="267.46" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="260.28" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="253.19" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="248.71" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="245.76" />
-        <VALUE deb="2002-01-01" fin="2002-06-30" valeur="242.85" />
-        <VALUE deb="2001-07-01" fin="2001-12-31" valeur="1593" />
-        <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1574" />
-      </CODE>
-      <CODE code="majoration_par_enfant_supplementaire" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="46.56" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="46.3" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="45.33" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="44.88" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="44.39" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="44.25" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="42.98" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="41.83" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="40.69" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="39.97" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="39.5" />
-        <VALUE deb="2002-01-01" fin="2002-06-30" valeur="39.03" />
-        <VALUE deb="2001-07-01" fin="2001-12-31" valeur="256" />
-        <VALUE deb="2001-01-01" fin="2001-06-30" valeur="253" />
-      </CODE>
-      <CODE code="personnes_seules" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="239.02" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="237.67" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="232.67" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="230.37" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="227.86" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="227.13" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="220.62" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="214.69" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="208.84" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="205.15" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="202.72" />
-        <VALUE deb="2002-01-01" fin="2002-06-30" valeur="200.32" />
-        <VALUE deb="2001-07-01" fin="2001-12-31" valeur="1314" />
-        <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1298" />
-      </CODE>
-      <CODE code="personnes_seules_ou_couples_avec_1_enfant" format="float" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="324.89" />
-        <VALUE deb="2013-01-01" fin="2014-09-30" valeur="323.05" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="316.25" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="313.12" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="309.71" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="308.72" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="299.87" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="291.82" />
-        <VALUE deb="2005-09-01" fin="2006-12-31" valeur="283.87" />
-        <VALUE deb="2003-07-01" fin="2005-08-31" valeur="278.85" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="275.54" />
-        <VALUE deb="2002-01-01" fin="2002-06-30" valeur="272.27" />
-        <VALUE deb="2001-07-01" fin="2001-12-31" valeur="1786" />
-        <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1765" />
-      </CODE>
-    </NODE>
-    <NODE code="tf">
-      <CODE code="couples_sans_enfant" format="percent">
-        <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0315" />
-        <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0394" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0331" />
-      </CODE>
-      <CODE code="personnes_isolees" format="percent">
-        <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0283" />
-        <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0354" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0308" />
-      </CODE>
-      <CODE code="personnes_seules_et_couples_avec_1_enfant" format="percent">
-        <VALUE deb="2007-07-01" fuzzy="true" valeur="0.027" />
-        <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0338" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0278" />
-      </CODE>
-      <CODE code="personnes_seules_et_couples_avec_2_enfants" format="percent">
-        <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0238" />
-        <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0297" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0257" />
-      </CODE>
-      <CODE code="personnes_seules_et_couples_avec_3_enfants" format="percent">
-        <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0201" />
-        <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0251" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0228" />
-      </CODE>
-      <CODE code="personnes_seules_et_couples_avec_4_enfants" format="percent">
-        <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0185" />
-        <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0231" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0217" />
-      </CODE>
-      <CODE code="variation_de_tf_par_enfant_supplementaire" format="percent">
-        <VALUE deb="2007-07-01" fuzzy="true" valeur="-0.0006" />
-        <VALUE deb="2002-01-01" fin="2007-06-30" valeur="-0.0007" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="-0.0006" />
-      </CODE>
-    </NODE>
-    <NODE code="tl">
-      <CODE code="debut_de_la_2eme_tranche_pour_le_calcul_de_tl_et_fin_de_la_1ere_tranche" format="percent">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="0.45" />
-      </CODE>
-      <CODE code="debut_de_la_3eme_tranche_pour_le_calcul_de_tl" format="percent">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="0.75" />
-      </CODE>
-      <CODE code="minorant_pour_la_1e_tranche">
-        <VALUE deb="2013-01-01" fuzzy="true" valeur="0" />
-      </CODE>
-      <CODE code="minorant_pour_la_2e_tranche">
-        <VALUE deb="2013-01-01" fuzzy="true" valeur="20.25" />
-      </CODE>
-      <CODE code="minorant_pour_la_3e_tranche">
-        <VALUE deb="2013-01-01" fuzzy="true" valeur="37.5" />
-      </CODE>
-      <CODE code="tl_pour_la_1ere_tranche">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="0" />
-      </CODE>
-      <CODE code="tl_pour_la_2eme_tranche">
-        <VALUE deb="2007-07-01" fuzzy="true" valeur="0.45" />
-        <VALUE deb="2001-01-01" fin="2007-06-30" valeur="0.56" />
-      </CODE>
-      <CODE code="tl_pour_la_3eme_tranche">
-        <VALUE deb="2007-07-01" fuzzy="true" valeur="0.68" />
-        <VALUE deb="2001-01-01" fin="2007-06-30" valeur="0.85" />
       </CODE>
     </NODE>
   </NODE>
@@ -1908,25 +912,6 @@
     <CODE code="limite_de_duree_en_mois_1">
       <VALUE deb="1976-10-01" fin="2009-05-31" valeur="18" />
     </CODE>
-  </NODE>
-  <NODE code="api_fl">
-    <NODE code="forfait_logement">
-      <CODE code="couple_1_enfant_1" format="percent">
-        <VALUE deb="2007-02-01" fin="2009-05-31" valeur="Même forfait logement que le RMI : cf. feuille &quot;RMI_FL&quot;" />
-        <VALUE deb="1997-04-01" fin="2007-01-31" valeur="0.2735" />
-        <VALUE deb="1976-10-01" fin="1997-03-31" valeur="Même évaluation de l'avantage en nature que pour les cotisations sociales" />
-      </CODE>
-      <CODE code="couples_2_enfants_ou_plus_1" format="percent">
-        <VALUE deb="2007-02-01" fin="2009-05-31" valeur="Même forfait logement que le RMI : cf. feuille &quot;RMI_FL&quot;" />
-        <VALUE deb="1997-04-01" fin="2007-01-31" valeur="0.3385" />
-        <VALUE deb="1976-10-01" fin="1997-03-31" valeur="Même évaluation de l'avantage en nature que pour les cotisations sociales" />
-      </CODE>
-      <CODE code="femmes_enceintes_1" format="percent">
-        <VALUE deb="2007-02-01" fin="2009-05-31" valeur="Même forfait logement que le RMI : cf. feuille &quot;RMI_FL&quot;" />
-        <VALUE deb="1997-04-01" fin="2007-01-31" valeur="0.1368" />
-        <VALUE deb="1976-10-01" fin="1997-03-31" valeur="Même évaluation de l'avantage en nature que pour les cotisations sociales" />
-      </CODE>
-    </NODE>
   </NODE>
   <NODE code="api_m">
     <NODE code="montant_en_de_la_bmaf">
@@ -2183,17 +1168,6 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="asi_cond">
-    <CODE code="age_minimal">
-      <VALUE deb="2006-01-01" fuzzy="true" valeur="Pas d'âge minimum" />
-    </CODE>
-    <CODE code="condition_d_age_et_de_ressources">
-      <VALUE deb="2006-01-01" fuzzy="true" valeur="Mêmes paramètres que pour l'ASPA" />
-    </CODE>
-    <CODE code="taux_minimum_d_invalidite" format="percent">
-      <VALUE deb="2006-01-01" fuzzy="true" valeur="0.6666" />
-    </CODE>
-  </NODE>
   <NODE code="asi_m_plaf">
     <NODE code="montant">
       <CODE code="1_allocataire" format="float" type="monetary">
@@ -2414,52 +1388,6 @@
       <VALUE deb="1978-01-01" fin="1986-06-30" valeur="1" />
     </CODE>
   </NODE>
-  <NODE code="cf_maj">
-    <NODE code="majoration">
-      <CODE code="1er_et_2eme_enfants_en_du_plafond_de_ressources_avec_0_enfant" format="percent">
-        <VALUE deb="2003-07-01" fuzzy="true" valeur="0.25" />
-        <VALUE deb="1986-01-01" fin="2003-06-30" valeur="Mêmes plafonds que pour l'APJE : cf. feuille &quot;APJE_P&quot;" />
-      </CODE>
-      <CODE code="3eme_enfant_et_plus_en_du_plafond_de_ressources_avec_0_enfant" format="percent">
-        <VALUE deb="2010-01-01" fuzzy="true" valeur="0.3" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.25" />
-        <VALUE deb="2003-07-01" fin="2008-12-31" valeur="0.3" />
-        <VALUE deb="1986-01-01" fin="2003-06-30" valeur="Mêmes plafonds que pour l'APJE : cf. feuille &quot;APJE_P&quot;" />
-      </CODE>
-      <CODE code="biactifs_et_parents_isoles" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="8420" />
-        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8386" />
-        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="8328" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="8173" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="8005" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="7926" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="7918" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="7702" />
-        <VALUE deb="2007-07-01" fin="2008-12-31" valeur="7588" />
-        <VALUE deb="2006-07-01" fin="2007-06-30" valeur="5969" />
-        <VALUE deb="2005-07-01" fin="2006-06-30" valeur="5869" />
-        <VALUE deb="2004-07-01" fin="2005-06-30" valeur="5771" />
-        <VALUE deb="2003-07-01" fin="2004-06-30" valeur="5663" />
-        <VALUE deb="1986-01-01" fin="2003-06-30" valeur="Mêmes plafonds que pour l'APJE : cf. feuille &quot;APJE_P&quot;" />
-      </CODE>
-    </NODE>
-    <CODE code="plafond_de_ressources_0_enfant" format="float" type="monetary">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="20947" />
-      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="20864" />
-      <VALUE deb="2014-01-01" fin="2014-12-31" valeur="20719" />
-      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="20333" />
-      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="19915" />
-      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="19718" />
-      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="19698" />
-      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="19161" />
-      <VALUE deb="2007-07-01" fin="2008-12-31" valeur="18878" />
-      <VALUE deb="2006-07-01" fin="2007-06-30" valeur="14850" />
-      <VALUE deb="2005-07-01" fin="2006-06-30" valeur="14602" />
-      <VALUE deb="2004-07-01" fin="2005-06-30" valeur="14358" />
-      <VALUE deb="2003-07-01" fin="2004-06-30" valeur="14090" />
-      <VALUE deb="1986-01-01" fin="2003-06-30" valeur="Mêmes plafonds que pour l'APJE : cf. feuille &quot;APJE_P&quot;" />
-    </CODE>
-  </NODE>
   <NODE code="cf_plaf">
     <CODE code="majoration_du_plafond_de_ressources_enfant_supplementaire" format="percent">
       <VALUE deb="1986-07-01" fuzzy="true" valeur="0.151333715761" />
@@ -2567,66 +1495,6 @@
       <VALUE deb="2016-01-01" fuzzy="true" valeur="15" />
     </CODE>
   </NODE>
-  <NODE code="paje_cm">
-    <NODE code="age_limite">
-      <CODE code="pour_les_enfants_adoptes">
-        <VALUE deb="2004-01-01" fuzzy="true" valeur="Même âge limite que pour les personnes à charge évoquées dans la feuille &quot;def_pac&quot;" />
-      </CODE>
-      <CODE code="pour_un_enfant_non_adopte">
-        <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
-      </CODE>
-    </NODE>
-    <NODE code="complement_de_libre_choix_d_activite_clca">
-      <CODE code="taux_partiel_50" format="percent">
-        <VALUE deb="2004-01-01" fuzzy="true" valeur="0.6246" />
-      </CODE>
-      <CODE code="taux_partiel_entre_50_et_80" format="percent">
-        <VALUE deb="2004-01-01" fuzzy="true" valeur="0.3603" />
-      </CODE>
-      <CODE code="taux_plein" format="percent">
-        <VALUE deb="2004-01-01" fuzzy="true" valeur="0.9662" />
-      </CODE>
-    </NODE>
-    <NODE code="complement_libre_choix_du_mode_de_garde_clcmg_1">
-      <CODE code="revenus_inferieurs_a_45_du_plafond_d_allocation" format="percent">
-        <VALUE deb="2008-05-01" fuzzy="true" valeur="1.1404" />
-        <VALUE deb="2004-01-01" fin="2008-04-30" valeur="1.0067" />
-      </CODE>
-      <CODE code="revenus_superieurs_a_45_du_plafond_d_allocation" format="percent">
-        <VALUE deb="2004-01-01" fuzzy="true" valeur="0.7191" />
-      </CODE>
-      <CODE code="revenus_superieurs_au_plafond_d_allocation" format="percent">
-        <VALUE deb="2004-01-01" fuzzy="true" valeur="0.4314" />
-      </CODE>
-    </NODE>
-    <NODE code="complement_optionnel_de_libre_choix_d_activite">
-      <CODE code="taux_plein_duree_de_l_arret_predeterminee" format="percent">
-        <VALUE deb="2004-01-01" fuzzy="true" valeur="1.5793" />
-      </CODE>
-    </NODE>
-    <CODE code="duree_de_versement_pour_les_enfants_adoptes_en_annee">
-      <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
-    </CODE>
-    <NODE code="paje">
-      <CODE code="allocation_de_base_en_de_la_bmaf" format="percent">
-        <VALUE deb="2004-01-01" fuzzy="true" valeur="0.4595" />
-      </CODE>
-    </NODE>
-  </NODE>
-  <NODE code="paje_cm2">
-    <CODE code="conditions_pour_qu_un_enfant_adopte_ouvre_droit_a_la_prime_a_son_arrivee">
-      <VALUE deb="2004-01-01" fuzzy="true" valeur="Mêmes conditions que celles pour les personnes à charge évoquées dans la feuille &quot;def_pac&quot;" />
-    </CODE>
-    <NODE code="montant_en_de_la_bmaf">
-      <CODE code="prime_a_l_adoption_de_la_paje_2" format="percent">
-        <VALUE deb="2005-08-01" fuzzy="true" valeur="4.595" />
-        <VALUE deb="2004-01-01" fin="2005-07-31" valeur="2.2975" />
-      </CODE>
-      <CODE code="prime_a_la_naissance_de_la_paje_1" format="percent">
-        <VALUE deb="2004-01-01" fuzzy="true" valeur="2.2975" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="paje_plaf">
     <NODE code="majoration_en_ou_en_du_plafond_de_ressources_avec_0_enfant">
       <CODE code="1er_et_2eme_enfant" format="percent">
@@ -2722,67 +1590,31 @@
       <VALUE deb="1978-01-01" fin="1978-06-30" valeur="8.58" />
     </CODE>
   </NODE>
-  <NODE code="pjm_prets">
-    <CODE code="cumul_de_prets" format="float" type="monetary">
-      <VALUE deb="1982-03-01" fin="1985-05-15" valeur="10800" />
-      <VALUE deb="1979-07-01" fin="1982-02-28" valeur="7500" />
-      <VALUE deb="1978-07-01" fin="1979-06-30" valeur="8600" />
-      <VALUE deb="1978-01-01" fin="1978-06-30" valeur="8300" />
-      <VALUE deb="1975-01-05" fin="1977-12-31" valeur="8600" />
-    </CODE>
-    <NODE code="pret_maximum">
-      <CODE code="pour_l_accession_a_la_propriete_d_un_logement_neuf_ou_ancien" format="float" type="monetary">
-        <VALUE deb="1982-03-01" fin="1985-05-15" valeur="10800" />
-        <VALUE deb="1979-07-01" fin="1982-02-28" valeur="7500" />
-        <VALUE deb="1978-07-01" fin="1979-06-30" valeur="8600" />
-        <VALUE deb="1978-01-01" fin="1978-06-30" valeur="8300" />
-        <VALUE deb="1975-01-05" fin="1977-12-31" valeur="8600" />
-      </CODE>
-      <CODE code="pour_l_equipement_mobilier_et_menager" format="float" type="monetary">
-        <VALUE deb="1982-03-01" fin="1985-05-15" valeur="10800" />
-        <VALUE deb="1979-07-01" fin="1982-02-28" valeur="7500" />
-        <VALUE deb="1978-07-01" fin="1979-06-30" valeur="8600" />
-        <VALUE deb="1978-01-01" fin="1978-06-30" valeur="8300" />
-        <VALUE deb="1975-01-05" fin="1977-12-31" valeur="8600" />
-      </CODE>
-      <CODE code="pour_les_premiers_frais_de_location" format="float" type="monetary">
-        <VALUE deb="1982-03-01" fin="1985-05-15" valeur="10800" />
-        <VALUE deb="1979-07-01" fin="1982-02-28" valeur="2200" />
-        <VALUE deb="1978-07-01" fin="1979-06-30" valeur="2550" />
-        <VALUE deb="1978-01-01" fin="1978-06-30" valeur="2450" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="prestations_familiales" description="Prestations familiales">
     <NODE code="aeeh" description="Allocation d'éducation de l'enfant handicapé / Allocation d'éducation spéciale">
-      <CODE code="age" description="Limite d'âge" format="integer" type="age">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur="20" />
-        <VALUE deb="1976-08-01" fin="2014-03-31" valeur="20" />
-      </CODE>
-      <CODE code="age_maximum_de_l_enfant">
+      <CODE code="age" description="Limite d'âge">
         <VALUE deb="2006-01-01" fuzzy="true" valeur="20" />
       </CODE>
       <CODE code="base" description="Allocation de base" format="percent">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur=".32" />
-        <VALUE deb="1985-01-01" fin="2014-03-31" valeur=".32" />
+        <VALUE deb="2006-01-01" fuzzy="true" valeur="0.32" />
       </CODE>
       <NODE code="complement_d_allocation">
-        <CODE code="1ere_categorie">
+        <CODE code="1ere_categorie" format="percent">
           <VALUE deb="2006-01-01" fuzzy="true" valeur="0.24" />
         </CODE>
-        <CODE code="2e_categorie">
+        <CODE code="2e_categorie" format="percent">
           <VALUE deb="2006-01-01" fuzzy="true" valeur="0.65" />
         </CODE>
-        <CODE code="3e_categorie">
+        <CODE code="3e_categorie" format="percent">
           <VALUE deb="2006-01-01" fuzzy="true" valeur="0.92" />
         </CODE>
-        <CODE code="4e_categorie">
+        <CODE code="4e_categorie" format="percent">
           <VALUE deb="2006-01-01" fuzzy="true" valeur="1.4257" />
         </CODE>
-        <CODE code="5e_categorie">
+        <CODE code="5e_categorie" format="percent">
           <VALUE deb="2006-01-01" fuzzy="true" valeur="1.8221" />
         </CODE>
-        <CODE code="6e_categorie_1">
+        <CODE code="6e_categorie_1" format="float" type="monetary">
           <VALUE deb="2016-04-01" fuzzy="true" valeur="1104.18" />
           <VALUE deb="2014-04-01" fin="2016-03-31" valeur="1103.08" />
           <VALUE deb="2013-04-01" fin="2014-03-31" valeur="1096.5" />
@@ -2797,19 +1629,6 @@
           <VALUE deb="2006-01-01" fin="2006-03-31" valeur="964.78" />
         </CODE>
       </NODE>
-      <CODE code="cpl1" description="Complément de catégorie 1" format="percent">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur=".24" />
-        <VALUE deb="1991-09-24" fin="2014-03-31" valeur=".24" />
-      </CODE>
-      <CODE code="cpl2" description="Complément de catégorie 2" format="percent">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur=".65" />
-        <VALUE deb="2002-04-01" fin="2014-03-31" valeur=".65" />
-        <VALUE deb="1991-09-24" fin="2002-03-31" valeur=".72" />
-      </CODE>
-      <CODE code="cpl3" description="Complément de catégorie 3" format="percent">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur=".92" />
-        <VALUE deb="2002-04-01" fin="2014-03-31" valeur=".92" />
-      </CODE>
       <CODE code="cpl3b" description="Seuil dépense b complément de catégorie 3" format="percent">
         <VALUE deb="2014-01-01" fuzzy="true" valeur=".59" />
         <VALUE deb="2002-04-01" fin="2013-12-31" valeur=".59" />
@@ -2817,11 +1636,6 @@
       <CODE code="cpl3c" description="Seuil dépense c complément de catégorie 3" format="percent">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="1.24" />
         <VALUE deb="2002-04-01" fin="2013-12-31" valeur="1.24" />
-      </CODE>
-      <CODE code="cpl4" description="Complément de catégorie 4" format="percent">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur="1.4257" />
-        <VALUE deb="2002-04-01" fin="2014-03-31" valeur="1.4257" />
-        <VALUE deb="1991-09-24" fin="2002-03-31" valeur="0" />
       </CODE>
       <CODE code="cpl4b" description="Seuil dépense b complément de catégorie 4" format="percent">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.8257" />
@@ -2838,78 +1652,28 @@
         <VALUE deb="2002-04-01" fin="2013-12-31" valeur="1.7457" />
         <VALUE deb="1991-09-24" fin="2002-03-31" valeur="0" />
       </CODE>
-      <CODE code="cpl5" description="Complément de catégorie 5" format="percent">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur="1.8221" />
-        <VALUE deb="2002-04-01" fin="2014-03-31" valeur="1.8221" />
-        <VALUE deb="1991-09-24" fin="2002-03-31" valeur="0" />
-      </CODE>
       <CODE code="cpl5a" description="Seuil dépense complément de catégorie 5" format="percent">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.7164" />
         <VALUE deb="2002-04-01" fin="2013-12-31" valeur="0.7164" />
         <VALUE deb="1991-09-24" fin="2002-03-31" valeur="0" />
       </CODE>
-      <CODE code="cpl6" description="Complément de catégorie 6 (majoration pour assistance d’une tierce personne invalide de 3e catégorie) " format="float" type="monetary">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="1104.18" />
-        <VALUE deb="2014-04-01" fin="2016-03-31" valeur="1103.08" />
-        <VALUE deb="2013-04-01" fin="2014-03-31" valeur="1096.50" />
-        <VALUE deb="2012-04-01" fin="2013-03-31" valeur="1082.43" />
-        <VALUE deb="2011-04-01" fin="2012-03-31" valeur="1060.17" />
-        <VALUE deb="2010-04-01" fin="2011-03-31" valeur="1038.36" />
-        <VALUE deb="2010-01-01" fin="2010-03-31" valeur="1029.10" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="1018.91" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="1010.82" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="999.83" />
-        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="982.15" />
-        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="964.78" />
-        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="945.87" />
-        <VALUE deb="2003-01-01" fin="2003-12-31" valeur="930.05" />
-        <VALUE deb="2002-04-01" fin="2002-12-31" valeur="916.32" />
-      </CODE>
-      <CODE code="maj2" description="Majoration (parent isolé) de catégorie 2" format="percent">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur=".13" />
-        <VALUE deb="2005-02-13" fin="2014-03-31" valeur=".13" />
-        <VALUE deb="2002-04-01" fin="2005-02-12" valeur=".00" />
-      </CODE>
-      <CODE code="maj3" description="Majoration (parent isolé) de catégorie 3" format="percent">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur=".18" />
-        <VALUE deb="2005-02-13" fin="2014-03-31" valeur=".18" />
-        <VALUE deb="2002-04-01" fin="2005-02-12" valeur=".00" />
-      </CODE>
-      <CODE code="maj4" description="Majoration (parent isolé) de catégorie 4" format="percent">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur=".57" />
-        <VALUE deb="2005-02-13" fin="2014-03-31" valeur=".57" />
-        <VALUE deb="2002-04-01" fin="2005-02-12" valeur=".00" />
-      </CODE>
-      <CODE code="maj5" description="Majoration (parent isolé) de catégorie 5" format="percent">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur=".73" />
-        <VALUE deb="2005-02-13" fin="2014-03-31" valeur=".73" />
-        <VALUE deb="2002-04-01" fin="2005-02-12" valeur=".00" />
-      </CODE>
-      <CODE code="maj6" description="Majoration (parent isolé) de catégorie 6" format="percent">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur="1.07" />
-        <VALUE deb="2005-02-13" fin="2014-03-31" valeur="1.07" />
-        <VALUE deb="2002-04-01" fin="2005-02-12" valeur=".00" />
-      </CODE>
       <NODE code="majoration_pour_parent_isole">
-        <CODE code="2e_categorie">
+        <CODE code="2e_categorie" format="percent">
           <VALUE deb="2006-01-01" fuzzy="true" valeur="0.13" />
         </CODE>
-        <CODE code="3e_categorie">
+        <CODE code="3e_categorie" format="percent">
           <VALUE deb="2006-01-01" fuzzy="true" valeur="0.18" />
         </CODE>
-        <CODE code="4e_categorie">
+        <CODE code="4e_categorie" format="percent">
           <VALUE deb="2006-01-01" fuzzy="true" valeur="0.57" />
         </CODE>
-        <CODE code="5e_categorie">
+        <CODE code="5e_categorie" format="percent">
           <VALUE deb="2006-01-01" fuzzy="true" valeur="0.73" />
         </CODE>
-        <CODE code="6e_categorie">
+        <CODE code="6e_categorie" format="percent">
           <VALUE deb="2006-01-01" fuzzy="true" valeur="1.07" />
         </CODE>
       </NODE>
-      <CODE code="montant_de_bmaf">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="0.32" />
-      </CODE>
     </NODE>
     <NODE code="af" description="Allocations familiales">
       <CODE code="age1" description="Âge mininimal pour toucher les AF" format="integer" type="age">

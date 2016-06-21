@@ -167,7 +167,7 @@ class aah_eligible(Variable):
             (taux_incapacite >= 0.5) *
             (age <= law.minim.aah.age_legal_retraite) *
             ((age >= law.prestations.prestations_familiales.aeeh.age) + ((age >= 16) * (autonomie_financiere)))
-        )
+            )
 
         return period, eligible_aah
     # TODO: dated_function : avant 2008, il fallait ne pas avoir travaillé pendant les 12 mois précédant la demande.

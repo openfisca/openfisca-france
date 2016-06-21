@@ -761,35 +761,44 @@ def transform_ipp_tree(root):
 
     root['prestations'] = prestations = root.pop('baremes_ipp_prestations_sociales_social_benefits')
     prestations['prestations_familiales'] = prestations_familiales = dict()
-    prestations_familiales['aeeh'] = prestations['aeeh']
-    # baremes_ipp_prestations_sociales_social_benefits:
-    #   RENAME: prestations
+    prestations_familiales['aeeh'] = aeeh = prestations.pop('aeeh')
+    aeeh['age'] = aeeh.pop('age_maximum_de_l_enfant')
+    aeeh['base'] = aeeh.pop('montant_de_bmaf')
+    del prestations['aa_plaf']
     #   aa_plaf:
     #     Plafonds de ressources: null  # Value must be a float
+    del prestations['aes']
     #   aes:
     #     Complément d'allocation:
     #       3e catégorie: null  # Changement d'unité de FRF à %
+    del prestations['al_charge']
     #   al_charge:
     #     Cas des colocataires ou des propriétaires (1):
     #       Isolé ou couple avec un enfant ou une personne à charge: null  # Value must be a float
     #       Majoration par enfant de la majoration pour charges: null  # Value must be a float
+    del prestations['al_pac']
     #   al_pac:
     #     Âge limite pour les enfants à charge: null  # Value must be a float
     #     Plafonds de ressources que les potentiels personnes à charge autre que les enfants doivent respecter:
     #       null  # Value must be a float
+    del prestations['al_plaf_acc']
     #   al_plaf_acc:
     #     Intervalle de date du certificat d'emprunt correspondant aux plafonds d'accession à la propriété:
     #       null  # Value must be a float
+    del prestations['al_plaf_loc2']
     #   al_plaf_loc2:
     #     Loyer de référence: null  # Value must be a float
+    del prestations['api_fl']
     #   api_fl:
     #     Forfait logement:
     #       Couple, 1 enfant (1): null  # Value must be a float
     #       couples_2_enfants_ou_plus_1: null  # Value must be a float
     #       Femmes enceintes (1): null  # Value must be a float
+    del prestations['asi_cond']
     #   asi_cond:
     #     Âge minimal: null  # Value must be a float
     #     Condition d'âge et de ressources: null  # Value must be a float
+    del prestations['cf_maj']
     #   cf_maj:
     #     Majoration:
     #        1er et 2ème enfants (en % du plafond de ressources avec 0 enfant): null  # Value must be a float
@@ -797,10 +806,13 @@ def transform_ipp_tree(root):
     #        Biactifs et parents isolés:
     #     Plafond de ressources _ 0 enfant: null  # Value must be a float
     #   paje_cm:
+    del prestations['paje_cm']
     #     age_limite:
     #       pour_les_enfants_adoptes: null  # Value must be a float
+    del prestations['paje_cm2']
     #   paje_cm2:
     #     conditions_pour_qu_un_enfant_adopte_ouvre_droit_a_la_prime_a_son_arrivee: null  # Value must be a float
+    del prestations['pjm_prets']
     #   pjm_prets:
     #     cumul_de_prets: null  # Value must be a float
     #     pret_maximum:

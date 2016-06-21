@@ -37,27 +37,30 @@ class aeeh(DatedVariable):
         handicap_holder = simulation.compute('handicap', period)
         isole = not_(simulation.calculate('en_couple', period))
         niveau_handicap_holder = simulation.compute('aeeh_niveau_handicap', period)
-        P = simulation.legislation_at(period.start).fam
+        prestations_familiales = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         niveau_handicap = self.split_by_roles(niveau_handicap_holder, roles = ENFS)
         handicap = self.split_by_roles(handicap_holder, roles = ENFS)
 
+        cpl = prestations_familiales.aeeh.complement_d_allocation
+        maj = prestations_familiales.aeeh.majoration_pour_parent_isole
+
         aeeh = 0
         for enfant in age.iterkeys():
-            enfhand = handicap[enfant] * (age[enfant] < P.aeeh.age) / 12
+            enfhand = handicap[enfant] * (age[enfant] < prestations_familiales.aeeh.age) / 12
             categ = niveau_handicap[enfant]
             aeeh += enfhand * (
-                P.af.bmaf * (
-                    P.aeeh.base +
-                    P.aeeh.cpl1 * (categ == 1) +
-                    (categ == 2) * (P.aeeh.cpl2 + P.aeeh.maj2 * isole) +
-                    (categ == 3) * (P.aeeh.cpl3 + P.aeeh.maj3 * isole) +
-                    (categ == 4) * (P.aeeh.cpl4 + P.aeeh.maj4 * isole) +
-                    (categ == 5) * (P.aeeh.cpl5 + P.aeeh.maj5 * isole) +
-                    (categ == 6) * (P.aeeh.maj6 * isole)
+                prestations_familiales.af.bmaf * (
+                    prestations_familiales.aeeh.base +
+                    cpl['1ere_categorie'] * (categ == 1) +
+                    (categ == 2) * (cpl['1ere_categorie'] + maj['2e_categorie'] * isole) +
+                    (categ == 3) * (cpl['2e_categorie'] + maj['3e_categorie'] * isole) +
+                    (categ == 4) * (cpl['3e_categorie'] + maj['4e_categorie'] * isole) +
+                    (categ == 5) * (cpl['4e_categorie'] + maj['5e_categorie'] * isole) +
+                    (categ == 6) * (maj['6e_categorie'] * isole)
                     ) +
-                (categ == 6) * P.aeeh.cpl6
+                (categ == 6) * cpl['6e_categorie_1']
                 )
 
     # L'attribution de l'AEEH de base et de ses compléments éventuels ne fait pas obstacle au
