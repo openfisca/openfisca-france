@@ -372,7 +372,8 @@ class complementaire_sante_montant(Variable):
 
 
 class complementaire_sante_taux_employeur(Variable):
-    column = FloatCol()
+    column = FloatCol(default = 0.5)
+    # La part minimum légale est de 50 %
     entity_class = Individus
     label = u"Part de la complémentaire santé obligatoire payée par l'employeur"
 
