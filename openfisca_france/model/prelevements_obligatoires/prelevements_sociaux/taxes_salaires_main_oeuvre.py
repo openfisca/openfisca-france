@@ -326,7 +326,7 @@ class taxe_salaires(Variable):
         # elles sont estimées en prenant l'effectif de l'entreprise et
         # considérant que l'unique salarié de la simulation est la moyenne.
         # http://www.impots.gouv.fr/portal/dgi/public/popup?typePage=cpr02&espId=2&docOid=documentstandard_1845
-        estimation = cotisation_individuelle * effectif_entreprise
+        estimation = cotisation_individuelle * effectif_entreprise * 12
         conditions = [estimation < parametres.franchise, estimation <= parametres.decote_montant, estimation > parametres.decote_montant]
         results = [0, estimation - (parametres.decote_montant - estimation) * parametres.decote_taux, estimation]
 
