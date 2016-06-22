@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.1.1 - [diff](https://github.com/openfisca/openfisca-france/compare/3.1.1..3.1.0)
+ * Change stop date of prestation aeeh 
+ 
 ## 3.1.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.1.0..3.0.0)
 
 * Update the rates of the versement transport contribution
