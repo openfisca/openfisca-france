@@ -6,7 +6,7 @@ addons:
     - python-scipy
 install:
   - pip install flake8  # Not yet available in Ubuntu precise (https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise)
-  - pip install -r requirements.txt
+  - pip install --editable .
 language: python
 python: "2.7"
 script: bash run-travis-tests.sh

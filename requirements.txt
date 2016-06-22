@@ -1,2 +1,0 @@
---editable git+https://github.com/openfisca/openfisca-core.git#egg=OpenFisca-Core
---editable .
