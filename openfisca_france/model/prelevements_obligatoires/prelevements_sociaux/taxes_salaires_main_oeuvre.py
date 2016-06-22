@@ -4,7 +4,9 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_or as or_, round as round_, logical_not as not_
+from numpy import logical_or as or_, logical_and as and_, round as round_, logical_not as not_
+
+import numpy as np
 
 from ...base import *  # noqa analysis:ignore
 
@@ -293,22 +295,58 @@ class taxe_salaires(Variable):
         law = simulation.legislation_at(period.start)
         entreprise_est_association_non_lucrative = \
             simulation.calculate('entreprise_est_association_non_lucrative', period)
+        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 
+        # impots.gouv.fr
+        # La taxe est due notamment par les : [...] organismes sans but lucratif
         assujettissement = assujettie_taxe_salaires + entreprise_est_association_non_lucrative
 
-        bareme = law.cotsoc.taxes_sal.taux_maj
+        parametres = law.cotsoc.taxes_sal
+        bareme = parametres.taux_maj
+        base = assiette_cotisations_sociales - prevoyance_obligatoire_cadre
         base = assiette_cotisations_sociales + (
                 - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
                 - complementaire_sante_employeur
                 )
+
         # TODO: exonérations apprentis
         # TODO: modify if DOM
 
-        return period, - (
+        cotisation_individuelle = (
             bareme.calc(
                 base,
                 factor = 1 / 12,
                 round_base_decimals = 2
                 ) +
-            round_(law.cotsoc.taxes_sal.taux.metro * base, 2)
-            ) * assujettissement
+            round_(parametres.taux.metro * base, 2)
+            )
+
+        # Une franchise et une décôte s'appliquent à cette taxe
+        # Etant donné que nous n'avons pas la distribution de salaires de l'entreprise,
+        # elles sont estimées en prenant l'effectif de l'entreprise et
+        # considérant que l'unique salarié de la simulation est la moyenne.
+        # http://www.impots.gouv.fr/portal/dgi/public/popup?typePage=cpr02&espId=2&docOid=documentstandard_1845
+        estimation = cotisation_individuelle * effectif_entreprise
+        conditions = [estimation < parametres.franchise, estimation <= parametres.decote_montant, estimation > parametres.decote_montant]
+        results = [0, estimation - (parametres.decote_montant - estimation) * parametres.decote_taux, estimation]
+
+        estimation_reduite = np.select(conditions, results)
+
+        # Abattement spécial de taxe sur les salaires
+        # Les associations à but non lucratif bénéficient d'un abattement important
+        estimation_abattue_negative = estimation_reduite - parametres.abattement_special
+        estimation_abattue = switch(
+            entreprise_est_association_non_lucrative,
+            {
+                0: estimation_reduite,
+                1: (estimation_abattue_negative >= 0) * estimation_abattue_negative,
+                }
+            )
+
+        with np.errstate(invalid='ignore'):
+            cotisation = switch(effectif_entreprise == 0, {
+                True: self.zeros(),
+                False: estimation_abattue / effectif_entreprise / 12
+                })
+
+        return period, - cotisation * assujettissement
