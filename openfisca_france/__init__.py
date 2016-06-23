@@ -91,10 +91,6 @@ def init_country():  # drop_survey_only_variables = False, simulate_f6de = False
                 None,
                 ),
             (
-                os.path.join(COUNTRY_DIR, 'parameters', 'fam.xml'),
-                None,
-                ),
-            (
                 os.path.join(COUNTRY_DIR, 'parameters', 'fonc.xml'),
                 None,
                 ),

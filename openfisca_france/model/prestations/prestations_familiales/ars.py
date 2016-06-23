@@ -24,7 +24,7 @@ class ars(Variable):
         af_nbenf = simulation.calculate('af_nbenf', period)
         autonomie_financiere_holder = simulation.compute('autonomie_financiere', period)
         base_ressources = simulation.calculate('prestations_familiales_base_ressources', period_br.this_month)
-        P = simulation.legislation_at(period.start).fam
+        P = simulation.legislation_at(period.start).prestations.prestations_familiales
         # TODO: convention sur la mensualisation
         # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
         # (appelée allocation différentielle), calculée en fonction des revenus, peut être versée.

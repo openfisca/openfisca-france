@@ -42,172 +42,6 @@
       <VALUE deb="2015-11-01" fuzzy="true" valeur="4.2" />
     </CODE>
   </NODE>
-  <NODE code="af_cm">
-    <NODE code="montant_en_de_la_bmaf_tranche_1">
-      <CODE code="2_enfants" format="percent">
-        <VALUE deb="1982-02-01" fuzzy="true" valeur="0.32" />
-        <VALUE deb="1981-07-01" fin="1982-01-31" valeur="0.255" />
-        <VALUE deb="1978-01-01" fin="1981-06-30" valeur="0.23" />
-        <VALUE deb="1976-08-01" fin="1977-12-31" valeur="0.22" />
-      </CODE>
-      <CODE code="3_enfants" format="percent">
-        <VALUE deb="2016-06-01" fuzzy="true" valeur="0.73" />
-      </CODE>
-      <CODE code="4_enfants" format="percent">
-        <VALUE deb="2016-06-01" fuzzy="true" valeur="1.14" />
-      </CODE>
-      <CODE code="5_enfants" format="percent">
-        <VALUE deb="2016-06-01" fuzzy="true" valeur="1.55" />
-      </CODE>
-    </NODE>
-    <NODE code="montant_en_de_la_bmaf_tranche_2">
-      <CODE code="2_enfants" format="percent">
-        <VALUE deb="2016-06-01" fuzzy="true" valeur="0.16" />
-      </CODE>
-      <CODE code="3_enfants" format="percent">
-        <VALUE deb="2016-06-01" fuzzy="true" valeur="0.365" />
-      </CODE>
-      <CODE code="4_enfants" format="percent">
-        <VALUE deb="2016-06-01" fuzzy="true" valeur="0.57" />
-      </CODE>
-      <CODE code="5_enfants" format="percent">
-        <VALUE deb="2016-06-01" fuzzy="true" valeur="0.775" />
-      </CODE>
-    </NODE>
-    <NODE code="montant_en_de_la_bmaf_tranche_3">
-      <CODE code="2_enfants" format="percent">
-        <VALUE deb="2016-06-01" fuzzy="true" valeur="0.08" />
-      </CODE>
-      <CODE code="3_enfants" format="percent">
-        <VALUE deb="2016-06-01" fuzzy="true" valeur="0.1825" />
-      </CODE>
-      <CODE code="4_enfants" format="percent">
-        <VALUE deb="2016-06-01" fuzzy="true" valeur="0.285" />
-      </CODE>
-      <CODE code="5_enfants" format="percent">
-        <VALUE deb="2016-06-01" fuzzy="true" valeur="0.3875" />
-      </CODE>
-    </NODE>
-    <CODE code="nombre_minimal_d_enfants_pour_avoir_droit_a_l_allocation">
-      <VALUE deb="1976-08-01" fuzzy="true" valeur="2" />
-      <VALUE deb="1932-06-14" fin="1976-07-31" valeur="0" />
-    </CODE>
-    <CODE code="par_enfant_supplementaire" format="percent">
-      <VALUE deb="1986-01-01" fin="2016-05-31" valeur="0.41" />
-      <VALUE deb="1981-07-01" fin="1985-12-31" valeur="0.39" />
-      <VALUE deb="1978-01-01" fin="1981-06-30" valeur="0.35" />
-      <VALUE deb="1976-08-01" fin="1977-12-31" valeur="0.33" />
-    </CODE>
-  </NODE>
-  <NODE code="af_cond">
-    <CODE code="majoration_ressource_par_enfant_supplementaire" format="float" type="monetary">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="5617" />
-    </CODE>
-    <NODE code="plafond_de_ressources_tranche_1">
-      <CODE code="2_enfants" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="67408" />
-      </CODE>
-      <CODE code="3_enfants" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="73025" />
-      </CODE>
-      <CODE code="4_enfants" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="78642" />
-      </CODE>
-      <CODE code="5_enfants" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="84259" />
-      </CODE>
-    </NODE>
-    <NODE code="plafond_de_ressources_tranche_2">
-      <CODE code="2_enfants" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="89847" />
-      </CODE>
-      <CODE code="3_enfants" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="95464" />
-      </CODE>
-      <CODE code="4_enfants" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="101081" />
-      </CODE>
-      <CODE code="5_enfants" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="106698" />
-      </CODE>
-    </NODE>
-    <NODE code="plafond_de_ressources_tranche_3">
-      <CODE code="2_enfants" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="89847" />
-      </CODE>
-      <CODE code="3_enfants" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="95464" />
-      </CODE>
-      <CODE code="4_enfants" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="101081" />
-      </CODE>
-      <CODE code="5_enfants" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="106698" />
-      </CODE>
-    </NODE>
-  </NODE>
-  <NODE code="af_maj">
-    <CODE code="duree_pendant_laquelle_la_majoration_pour_les_plus_de_20_ans_est_versee_en_annee">
-      <VALUE deb="2003-07-01" fuzzy="true" valeur="1" />
-    </CODE>
-    <NODE code="majoration_pour_les_enfants_en_de_la_bmaf">
-      <NODE code="age_de_plus_de_14_ans_4">
-        <CODE code="tranche_de_revenu_1" format="percent">
-          <VALUE deb="2008-05-01" fuzzy="true" valeur="0.16" />
-        </CODE>
-        <CODE code="tranche_de_revenu_2" format="percent">
-          <VALUE deb="2015-07-01" fuzzy="true" valeur="0.08" />
-        </CODE>
-        <CODE code="tranche_de_revenu_3" format="percent">
-          <VALUE deb="2015-07-01" fuzzy="true" valeur="0.04" />
-        </CODE>
-      </NODE>
-      <CODE code="age_de_plus_de_15_ans" format="percent">
-        <VALUE deb="1984-01-01" fin="1998-12-31" valeur="0.16" />
-      </CODE>
-      <CODE code="age_de_plus_de_16_ans_2_3" format="percent">
-        <VALUE deb="1999-01-01" fin="2008-04-30" valeur="0.16" />
-      </CODE>
-      <NODE code="age_de_plus_de_20_ans_5">
-        <CODE code="tranche_de_revenu_1" format="percent">
-          <VALUE deb="2003-07-01" fuzzy="true" valeur="0.20234" />
-        </CODE>
-        <CODE code="tranche_de_revenu_2" format="percent">
-          <VALUE deb="2015-07-01" fuzzy="true" valeur="0.10117" />
-        </CODE>
-        <CODE code="tranche_de_revenu_3" format="percent">
-          <VALUE deb="2015-07-01" fuzzy="true" valeur="0.05059" />
-        </CODE>
-      </NODE>
-      <CODE code="age_entre_10_et_15_ans" format="percent">
-        <VALUE deb="1984-01-01" fin="1998-12-31" valeur="0.09" />
-      </CODE>
-      <CODE code="age_entre_11_et_16_ans_1" format="percent">
-        <VALUE deb="1999-01-01" fin="2008-04-30" valeur="0.09" />
-      </CODE>
-    </NODE>
-    <CODE code="nombre_d_enfant_a_partir_duquel_l_aine_donne_droit_a_majoration">
-      <VALUE deb="1984-01-01" fuzzy="true" valeur="3" />
-    </CODE>
-    <CODE code="nombre_minimal_d_enfant_pour_avoir_droit_a_la_majoration_forfaitaire_pour_les_plus_de_20_ans">
-      <VALUE deb="2003-07-01" fuzzy="true" valeur="3" />
-    </CODE>
-  </NODE>
-  <NODE code="af_plaf">
-    <NODE code="majoration_plafond">
-      <CODE code="couples_biactifs_et_parents_isoles" format="float" type="monetary">
-        <VALUE deb="1998-03-01" fin="1998-12-31" valeur="84000" />
-      </CODE>
-      <CODE code="par_enfant_supplementaire" format="float" type="monetary">
-        <VALUE deb="1998-03-01" fin="1998-12-31" valeur="60000" />
-      </CODE>
-    </NODE>
-    <NODE code="plafond_de_ressources">
-      <CODE code="0_enfant_couples_monoactifs" format="float" type="monetary">
-        <VALUE deb="1998-03-01" fin="1998-12-31" valeur="180000" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="afg_c">
     <CODE code="montant_mensuel_maximum_1" format="float" type="monetary">
       <VALUE deb="1976-07-01" fin="1977-12-31" valeur="291.35" />
@@ -1592,7 +1426,11 @@
   </NODE>
   <NODE code="prestations_familiales" description="Prestations familiales">
     <NODE code="aeeh" description="Allocation d'éducation de l'enfant handicapé / Allocation d'éducation spéciale">
-      <CODE code="age" description="Limite d'âge">
+      <CODE code="age" description="Limite d'âge" format="integer" type="age">
+        <VALUE deb="2014-04-01" fuzzy="true" valeur="20" />
+        <VALUE deb="1976-08-01" fin="2014-03-31" valeur="20" />
+      </CODE>
+      <CODE code="age_maximum_de_l_enfant">
         <VALUE deb="2006-01-01" fuzzy="true" valeur="20" />
       </CODE>
       <CODE code="base" description="Allocation de base" format="percent">
@@ -1676,6 +1514,12 @@
       </NODE>
     </NODE>
     <NODE code="af" description="Allocations familiales">
+      <CODE code="2_enfants" format="percent">
+        <VALUE deb="1982-02-01" fuzzy="true" valeur="0.32" />
+        <VALUE deb="1981-07-01" fin="1982-01-31" valeur="0.255" />
+        <VALUE deb="1978-01-01" fin="1981-06-30" valeur="0.23" />
+        <VALUE deb="1976-08-01" fin="1977-12-31" valeur="0.22" />
+      </CODE>
       <CODE code="age1" description="Âge mininimal pour toucher les AF" format="integer" type="age">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
         <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0" />
@@ -1773,6 +1617,25 @@
           <VALUE deb="2015-07-01" fin="2015-12-31" valeur="0.25" />
         </CODE>
       </NODE>
+      <NODE code="montant_en_de_la_bmaf_tranche_1">
+        <CODE code="modulation" format="percent">
+          <VALUE deb="2015-07-01" fuzzy="true" valeur="1" />
+        </CODE>
+      </NODE>
+      <NODE code="montant_en_de_la_bmaf_tranche_2">
+        <CODE code="modulation" format="percent">
+          <VALUE deb="2015-07-01" fuzzy="true" valeur="0.5" />
+        </CODE>
+      </NODE>
+      <NODE code="montant_en_de_la_bmaf_tranche_3">
+        <CODE code="modulation" format="percent">
+          <VALUE deb="2015-07-01" fuzzy="true" valeur="0.25" />
+        </CODE>
+      </NODE>
+      <CODE code="nombre_minimal_d_enfants_pour_avoir_droit_a_l_allocation">
+        <VALUE deb="1976-08-01" fuzzy="true" valeur="2" />
+        <VALUE deb="1932-06-14" fin="1976-07-31" valeur="0" />
+      </CODE>
       <CODE code="seuil_rev_taux" description="Seuil de revenu pour être considéré comme enfant à charge (en smic)" format="percent">
         <VALUE deb="2014-04-01" fuzzy="true" valeur=".55" />
         <VALUE deb="2001-07-01" fin="2014-03-31" valeur=".55" />
@@ -1787,8 +1650,10 @@
           <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.32" />
         </CODE>
         <CODE code="enf3" description="Troisième enfant à charge et suivants" format="percent">
-          <VALUE deb="2016-04-01" fuzzy="true" valeur="0.41" />
-          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.41" />
+          <VALUE deb="1986-01-01" fuzzy="true" valeur="0.41" />
+          <VALUE deb="1981-07-01" fin="1985-12-31" valeur="0.39" />
+          <VALUE deb="1978-01-01" fin="1981-06-30" valeur="0.35" />
+          <VALUE deb="1976-08-01" fin="1977-12-31" valeur="0.33" />
         </CODE>
         <CODE code="enf_seul" description="Un seul enfant à charge (DOM)" format="percent">
           <VALUE deb="2016-04-01" fuzzy="true" valeur="0.0588" />
@@ -1800,6 +1665,73 @@
           <VALUE deb="2000-01-01" fin="2003-06-30" valeur="0" />
         </CODE>
       </NODE>
+    </NODE>
+    <NODE code="af_cond">
+      <CODE code="majoration_ressource_par_enfant_supplementaire" format="float" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="5617" />
+      </CODE>
+      <NODE code="plafond_de_ressources_tranche_1">
+        <CODE code="2_enfants" format="float" type="monetary">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="67408" />
+        </CODE>
+      </NODE>
+      <NODE code="plafond_de_ressources_tranche_2">
+        <CODE code="2_enfants" format="float" type="monetary">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="89847" />
+        </CODE>
+      </NODE>
+      <NODE code="plafond_de_ressources_tranche_3">
+        <CODE code="2_enfants" format="float" type="monetary">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="89847" />
+        </CODE>
+      </NODE>
+    </NODE>
+    <NODE code="af_maj">
+      <CODE code="duree_pendant_laquelle_la_majoration_pour_les_plus_de_20_ans_est_versee_en_annee">
+        <VALUE deb="2003-07-01" fuzzy="true" valeur="1" />
+      </CODE>
+      <NODE code="majoration_pour_les_enfants_en_de_la_bmaf">
+        <NODE code="age_de_plus_de_14_ans_4">
+          <CODE code="tranche_de_revenu_1" format="percent">
+            <VALUE deb="2008-05-01" fuzzy="true" valeur="0.16" />
+          </CODE>
+          <CODE code="tranche_de_revenu_2" format="percent">
+            <VALUE deb="2015-07-01" fuzzy="true" valeur="0.08" />
+          </CODE>
+          <CODE code="tranche_de_revenu_3" format="percent">
+            <VALUE deb="2015-07-01" fuzzy="true" valeur="0.04" />
+          </CODE>
+        </NODE>
+        <CODE code="age_de_plus_de_15_ans" format="percent">
+          <VALUE deb="1984-01-01" fin="1998-12-31" valeur="0.16" />
+        </CODE>
+        <CODE code="age_de_plus_de_16_ans_2_3" format="percent">
+          <VALUE deb="1999-01-01" fin="2008-04-30" valeur="0.16" />
+        </CODE>
+        <NODE code="age_de_plus_de_20_ans_5">
+          <CODE code="tranche_de_revenu_1" format="percent">
+            <VALUE deb="2003-07-01" fuzzy="true" valeur="0.20234" />
+          </CODE>
+          <CODE code="tranche_de_revenu_2" format="percent">
+            <VALUE deb="2015-07-01" fuzzy="true" valeur="0.10117" />
+          </CODE>
+          <CODE code="tranche_de_revenu_3" format="percent">
+            <VALUE deb="2015-07-01" fuzzy="true" valeur="0.05059" />
+          </CODE>
+        </NODE>
+        <CODE code="age_entre_10_et_15_ans" format="percent">
+          <VALUE deb="1984-01-01" fin="1998-12-31" valeur="0.09" />
+        </CODE>
+        <CODE code="age_entre_11_et_16_ans_1" format="percent">
+          <VALUE deb="1999-01-01" fin="2008-04-30" valeur="0.09" />
+        </CODE>
+      </NODE>
+      <CODE code="nombre_d_enfant_a_partir_duquel_l_aine_donne_droit_a_majoration">
+        <VALUE deb="1984-01-01" fuzzy="true" valeur="3" />
+      </CODE>
+      <CODE code="nombre_minimal_d_enfant_pour_avoir_droit_a_la_majoration_forfaitaire_pour_les_plus_de_20_ans">
+        <VALUE deb="2003-07-01" fuzzy="true" valeur="3" />
+      </CODE>
     </NODE>
     <NODE code="afeama" description="Aide à la famille pour l'emploi d'une assistante maternelle agréée">
       <CODE code="age1" description="Limite d'âge (stricte) pour bénéficier de l'AFEAMA" format="integer" type="age">
@@ -2344,6 +2276,21 @@
         <CODE code="prime_tx" description="Prime à la naissance et à l'adoption, en pourcentage de la BMAF" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="2.2975" />
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="2.2975" />
+        </CODE>
+      </NODE>
+    </NODE>
+    <NODE code="plaf">
+      <NODE code="majoration_plafond">
+        <CODE code="couples_biactifs_et_parents_isoles" format="float" type="monetary">
+          <VALUE deb="1998-03-01" fin="1998-12-31" valeur="84000" />
+        </CODE>
+        <CODE code="par_enfant_supplementaire" format="float" type="monetary">
+          <VALUE deb="1998-03-01" fin="1998-12-31" valeur="60000" />
+        </CODE>
+      </NODE>
+      <NODE code="plafond_de_ressources">
+        <CODE code="0_enfant_couples_monoactifs" format="float" type="monetary">
+          <VALUE deb="1998-03-01" fin="1998-12-31" valeur="180000" />
         </CODE>
       </NODE>
     </NODE>

@@ -93,7 +93,7 @@ class ppe_tp_sa(Variable):
         QUIFOY['pac2']: u"1DX",
         QUIFOY['pac3']: u"1QX",
         }
-        
+
     column = BoolCol
     entity_class = Individus
     label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière"
@@ -674,10 +674,10 @@ class af_nbenf_fonc(Variable):
         law = simulation.legislation_at(period.start)
         nbh_travaillees = 169
         smic_mensuel_brut = law.cotsoc.gen.smic_h_b * nbh_travaillees
-        autonomie_financiere_holder = (salaire_de_base / 6) >= (law.fam.af.seuil_rev_taux * smic_mensuel_brut)
+        autonomie_financiere_holder = (salaire_de_base / 6) >= (law.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
         age = self.split_by_roles(age_holder, roles = ENFS)
         autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
-        af_nbenf = nb_enf(age, autonomie_financiere, law.fam.af.age1, law.fam.af.age2)
+        af_nbenf = nb_enf(age, autonomie_financiere, law.prestations.prestations_familiales.af.age1, law.prestations.prestations_familiales.af.age2)
 
         return period, af_nbenf
 

@@ -33,7 +33,7 @@ class ppa_eligibilite_etudiants(Variable):
 
         # Pour un individu
         etudiant = simulation.calculate('etudiant', period) # individu
-        plancher_ressource = 169 * P.cotsoc.gen.smic_h_b * P.fam.af.seuil_rev_taux
+        plancher_ressource = 169 * P.cotsoc.gen.smic_h_b * P.prestations.prestations_familiales.af.seuil_rev_taux
         def condition_ressource(period):
             revenu_activite = simulation.calculate('ppa_revenu_activite_individu', period)
             return revenu_activite > plancher_ressource

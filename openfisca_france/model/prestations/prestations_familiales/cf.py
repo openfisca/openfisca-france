@@ -19,7 +19,7 @@ class cf_enfant_a_charge(Variable):
         autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         age = simulation.calculate('age', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         condition_age = (age >= 0) * (age < pfam.cf.age2)
         condition_situation = est_enfant_dans_famille * not_(autonomie_financiere)
@@ -39,7 +39,7 @@ class cf_enfant_eligible(Variable):
         age = simulation.calculate('age', period)
         rempli_obligation_scolaire = simulation.calculate('rempli_obligation_scolaire', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         condition_enfant = ((age >= pfam.cf.age1) * (age < pfam.enfants.age_intermediaire) *
             rempli_obligation_scolaire)
@@ -60,7 +60,7 @@ class cf_dom_enfant_eligible(Variable):
         age = simulation.calculate('age', period)
         rempli_obligation_scolaire = simulation.calculate('rempli_obligation_scolaire', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         condition_age = (age >= pfam.cf.age1) * (age < pfam.cf.age_limite_dom)
         condition_situation = cf_enfant_a_charge * rempli_obligation_scolaire
@@ -79,7 +79,7 @@ class cf_dom_enfant_trop_jeune(Variable):
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
         age = simulation.calculate('age', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         condition_age = (age >= 0) * (age < pfam.cf.age1)
 
@@ -109,7 +109,7 @@ class cf_plafond(Variable):
     def function(self, simulation, period):
         period = period.this_month
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         eligibilite_base = simulation.calculate('cf_eligibilite_base', period)
         eligibilite_dom = simulation.calculate('cf_eligibilite_dom', period)
@@ -149,7 +149,7 @@ class cf_majore_plafond(DatedVariable):
     def function(self, simulation, period):
         period = period.this_month
         plafond_base = simulation.calculate('cf_plafond', period)
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
         return period, plafond_base * pfam.cf.plafond_cf_majore
 
 
@@ -217,7 +217,7 @@ class cf_non_majore_avant_cumul(Variable):
         ressources = simulation.calculate('cf_ressources', period)
         plafond = simulation.calculate('cf_plafond', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 
@@ -250,7 +250,7 @@ class cf_majore_avant_cumul(DatedVariable):
         ressources = simulation.calculate('cf_ressources', period)
         plafond_majore = simulation.calculate('cf_majore_plafond', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 

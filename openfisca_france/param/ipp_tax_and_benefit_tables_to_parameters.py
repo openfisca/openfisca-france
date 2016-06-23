@@ -761,9 +761,20 @@ def transform_ipp_tree(root):
 
     root['prestations'] = prestations = root.pop('baremes_ipp_prestations_sociales_social_benefits')
     prestations['prestations_familiales'] = prestations_familiales = dict()
+    # aeeh
     prestations_familiales['aeeh'] = aeeh = prestations.pop('aeeh')
-    aeeh['age'] = aeeh.pop('age_maximum_de_l_enfant')
+    # aeeh['age'] = aeeh.pop('age_maximum_de_l_enfant')  TODO: problem with start date
     aeeh['base'] = aeeh.pop('montant_de_bmaf')
+    # af
+    prestations_familiales['af'] = af = prestations.pop('af_cm')
+    prestations_familiales['af_cond'] = af_con = prestations.pop('af_cond')
+    prestations_familiales['af_maj'] = af_maj = prestations.pop('af_maj')
+    prestations_familiales['plaf'] = af_plaf = prestations.pop('af_plaf')
+    af['taux'] = taux = dict()
+    taux['enf3'] = af.pop('par_enfant_supplementaire')
+    # af["montant_en_de_la_bmaf_tranche_1"] = montant_en_de_la_bmaf_tranche_1 = dict()
+
+
     del prestations['aa_plaf']
     #   aa_plaf:
     #     Plafonds de ressources: null  # Value must be a float

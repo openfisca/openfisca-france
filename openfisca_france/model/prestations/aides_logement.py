@@ -49,14 +49,14 @@ class al_nb_personnes_a_charge(Variable):
 
         period = period.this_month
         age_holder = simulation.compute('age', period)
-        age_max_enfant = simulation.legislation_at(period.start).fam.cf.age2
+        age_max_enfant = simulation.legislation_at(period.start).prestations.prestations_familiales.cf.age2
         residence_dom = simulation.calculate('residence_dom', period)
 
         def al_nb_enfants():
             autonomie_financiere_holder = simulation.compute('autonomie_financiere', period)
             age = self.split_by_roles(age_holder, roles = ENFS)
             autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
-            age_min_enfant = simulation.legislation_at(period.start).fam.af.age1
+            age_min_enfant = simulation.legislation_at(period.start).prestations.prestations_familiales.af.age1
 
             return nb_enf(age, autonomie_financiere, age_min_enfant, age_max_enfant - 1)
             # La limite sur l'age max est stricte.
@@ -354,7 +354,7 @@ class aide_logement_R0(Variable):
     def function(self, simulation, period):
         period = period.this_month
         al = simulation.legislation_at(period.start).al
-        pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
+        pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).prestations.prestations_familiales
         couple = simulation.calculate('al_couple', period)
         al_nb_pac = simulation.calculate('al_nb_personnes_a_charge', period)
         residence_dom = simulation.calculate('residence_dom')
@@ -648,7 +648,7 @@ class crds_logement(Variable):
     def function(self, simulation, period):
         period = period.this_month
         aide_logement_montant_brut = simulation.calculate('aide_logement_montant_brut', period)
-        crds = simulation.legislation_at(period.start).fam.af.crds
+        crds = simulation.legislation_at(period.start).prestations.prestations_familiales.af.crds
         return period, -aide_logement_montant_brut * crds
 
 

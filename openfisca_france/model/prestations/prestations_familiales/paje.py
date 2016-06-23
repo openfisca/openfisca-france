@@ -95,10 +95,10 @@ class paje_base(Variable):
         couple_biactif = simulation.calculate('biactivite', period)
         parent_isole = not_(simulation.calculate('en_couple', period))
         nombre_enfants = simulation.calculate('af_nbenf', period)
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         date_gel_paje = Instant((2013, 04, 01)) # Le montant de la PAJE est gelé depuis avril 2013.
-        bmaf = pfam.af.bmaf if period.start < date_gel_paje else simulation.legislation_at(date_gel_paje).fam.af.bmaf
+        bmaf = pfam.af.bmaf if period.start < date_gel_paje else simulation.legislation_at(date_gel_paje).prestations.prestations_familiales.af.bmaf
         montant_taux_plein = bmaf * pfam.paje.base.taux
 
         def plafond_avant_avril_2014():
@@ -180,7 +180,7 @@ class paje_base_enfant_eligible_avant_reforme_2014(Variable):
         autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         date_naissance = simulation.calculate('date_naissance', period)
         ne_avant_2014 = datetime64('2014-04-01') > date_naissance
-        age_limite = simulation.legislation_at(period.start).fam.paje.base.age
+        age_limite = simulation.legislation_at(period.start).prestations.prestations_familiales.paje.base.age
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
@@ -198,7 +198,7 @@ class paje_base_enfant_eligible_apres_reforme_2014(Variable):
         autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         date_naissance = simulation.calculate('date_naissance', period)
         ne_avant_2014 = datetime64('2014-04-01') > date_naissance
-        age_limite = simulation.legislation_at(period.start).fam.paje.base.age
+        age_limite = simulation.legislation_at(period.start).prestations.prestations_familiales.paje.base.age
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
@@ -224,13 +224,13 @@ class paje_naissance(Variable):
         base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
         isole = not_(simulation.calculate('en_couple', period))
         biactivite = simulation.calculate('biactivite', period)
-        P = simulation.legislation_at(period.start).fam
+        P = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         # age = self.split_by_roles(age_holder, roles = ENFS)
         age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
 
         date_gel_paje = Instant((2013, 04, 01)) # Le montant de la PAJE est gelé depuis avril 2013.
-        bmaf = P.af.bmaf if period.start < date_gel_paje else simulation.legislation_at(date_gel_paje).fam.af.bmaf
+        bmaf = P.af.bmaf if period.start < date_gel_paje else simulation.legislation_at(date_gel_paje).prestations.prestations_familiales.af.bmaf
         nais_prime = round(100 * P.paje.nais.prime_tx * bmaf) / 100
         # Versée au 7e mois de grossesse dans l'année
         # donc les enfants concernés sont les enfants qui ont -2 mois
@@ -288,7 +288,7 @@ class paje_clca(Variable):
         partiel1 = simulation.calculate('partiel1', period)
         partiel2 = simulation.calculate('partiel2', period)
 
-        P = simulation.legislation_at(period.start).fam
+        P = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
 
@@ -406,8 +406,8 @@ class paje_clmg(Variable):
         gar_dom = simulation.calculate('gar_dom', period)
         paje_clca_taux_partiel = simulation.calculate('paje_clca_taux_partiel', period)
         paje_clca_taux_plein = simulation.calculate('paje_clca_taux_plein', period)
-        P = simulation.legislation_at(period.start).fam
-        P_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
+        P = simulation.legislation_at(period.start).prestations.prestations_familiales
+        P_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).prestations.prestations_familiales
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         etudiant = self.split_by_roles(etu_holder, roles = [CHEF, PART])
@@ -486,7 +486,7 @@ class paje_colca(Variable):
         opt_colca = simulation.calculate('opt_colca', period)
         paje_base = simulation.calculate('paje_base', period)
 
-        P = simulation.legislation_at(period.start).fam
+        P = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
         age_m_benjamin = age_en_mois_benjamin(age_en_mois)
@@ -501,7 +501,7 @@ class paje_colca(Variable):
 # TODO: cumul avec clca self.colca_tot_m
 
 
-# def _afeama(self, age_holder, autonomie_financiere_holder, ape, af_nbenf, base_ressources, P = law.fam):
+# def _afeama(self, age_holder, autonomie_financiere_holder, ape, af_nbenf, base_ressources, P = law.prestations.prestations_familiales):
 #     '''
 #     Aide à la famille pour l'emploi d'une assistante maternelle agréée
 #     '''
@@ -558,7 +558,7 @@ class paje_colca(Variable):
 #     # Montant base ressources 2006, au 1er juillet 2007
 #
 #
-# def _aged(self, age_holder, autonomie_financiere_holder, base_ressources, ape_taux_partiel, dep_trim, P = law.fam):
+# def _aged(self, age_holder, autonomie_financiere_holder, base_ressources, ape_taux_partiel, dep_trim, P = law.prestations.prestations_familiales):
 #     '''
 #     Allocation garde d'enfant à domicile
 #
@@ -630,7 +630,7 @@ class ape_avant_cumul(Variable):
         inactif = simulation.calculate('inactif', period)
         partiel1 = simulation.calculate('partiel1', period)
         partiel2 = simulation.calculate('partiel2', period)
-        P = simulation.legislation_at(period.start).fam
+        P = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
@@ -672,8 +672,8 @@ class apje_avant_cumul(Variable):
         autonomie_financiere_holder = simulation.compute('autonomie_financiere', period.this_month)
         biactivite = simulation.calculate_add('biactivite', period)
         isole = not_(simulation.calculate('en_couple', period))
-        P = simulation.legislation_at(period.start).fam
-        P_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
+        P = simulation.legislation_at(period.start).prestations.prestations_familiales
+        P_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).prestations.prestations_familiales
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)

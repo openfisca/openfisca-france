@@ -315,4 +315,4 @@ class crds_pfam(Variable):
         apje = simulation.calculate_add('apje', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, -(af + cf + asf + ars + paje + ape + apje) * _P.fam.af.crds
+        return period, -(af + cf + asf + ars + paje + ape + apje) * _P.prestations.prestations_familiales.af.crds

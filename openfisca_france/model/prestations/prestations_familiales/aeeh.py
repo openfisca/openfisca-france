@@ -92,7 +92,7 @@ class aeeh(DatedVariable):
         age_holder = simulation.compute('age', period)
         handicap_holder = simulation.compute('handicap', period)
         niveau_handicap_holder = simulation.compute('aeeh_niveau_handicap', period)
-        P = simulation.legislation_at(period.start).fam
+        P = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         niveau_handicap = self.split_by_roles(niveau_handicap_holder, roles = ENFS)

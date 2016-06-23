@@ -41,7 +41,7 @@ class aefa(DatedVariable):
         api = simulation.calculate_add('api', period)
         rsa = simulation.calculate_add('rsa', period)
         P = simulation.legislation_at(period.start).minim.aefa
-        af = simulation.legislation_at(period.start).fam.af
+        af = simulation.legislation_at(period.start).prestations.prestations_familiales.af
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         aer = self.sum_by_entity(aer_holder)
@@ -78,7 +78,7 @@ class aefa(DatedVariable):
         api = simulation.calculate_add('api', period)
         rsa = simulation.calculate('rsa', period)
         P = simulation.legislation_at(period.start).minim.aefa
-        af = simulation.legislation_at(period.start).fam.af
+        af = simulation.legislation_at(period.start).prestations.prestations_familiales.af
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         aer = self.sum_by_entity(aer_holder)
@@ -116,7 +116,7 @@ class aefa(DatedVariable):
         api = simulation.calculate_add('api', period)
         rsa = simulation.calculate('rsa', period)
         P = simulation.legislation_at(period.start).minim.aefa
-        af = simulation.legislation_at(period.start).fam.af
+        af = simulation.legislation_at(period.start).prestations.prestations_familiales.af
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         aer = self.sum_by_entity(aer_holder)
@@ -162,7 +162,7 @@ class api(DatedVariable):
         rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
         af_majoration = simulation.calculate('af_majoration', period)
         rsa = simulation.calculate('rsa', period)
-        af = simulation.legislation_at(period.start).fam.af
+        af = simulation.legislation_at(period.start).prestations.prestations_familiales.af
         api = simulation.legislation_at(period.start).minim.api
 
         age = self.split_by_roles(age_holder, roles = ENFS)
@@ -403,7 +403,7 @@ class crds_mini(DatedVariable):
         """
         period = period.this_month
         rsa_activite = simulation.calculate('rsa_activite', period)
-        taux_crds = simulation.legislation_at(period.start).fam.af.crds
+        taux_crds = simulation.legislation_at(period.start).prestations.prestations_familiales.af.crds
 
         return period, - taux_crds * rsa_activite
 
@@ -842,7 +842,7 @@ class rsa_forfait_asf_individu(Variable):
         period = period.this_month
 
         asf_elig_enfant = simulation.calculate('asf_elig_enfant', period)
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
         minim = simulation.legislation_at(period.start).minim
 
         return period, asf_elig_enfant * pfam.af.bmaf * minim.rmi.forfait_asf.taux1

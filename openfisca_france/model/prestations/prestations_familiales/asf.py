@@ -20,7 +20,7 @@ class asf_elig_enfant(Variable):
         age = simulation.calculate('age', period)
         autonomie_financiere = simulation.calculate('autonomie_financiere', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         eligibilite = (
             (age >= pfam.af.age1) * (age < pfam.af.age3) *  # Âge compatible avec les prestations familiales
@@ -54,7 +54,7 @@ class asf(Variable):
     def function(self, simulation, period):
         period = period.this_month
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
         asf_elig = simulation.calculate('asf_elig', period)
         asf_par_enfant = simulation.calculate('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux1
         montant = self.sum_by_entity(asf_par_enfant, roles = ENFS)
