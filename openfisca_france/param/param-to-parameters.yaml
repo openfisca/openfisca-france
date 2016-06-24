@@ -47,18 +47,10 @@ prestations.prestations_familiales.aeeh.maj3: null
 prestations.prestations_familiales.aeeh.maj4: null
 prestations.prestations_familiales.aeeh.maj5: null
 prestations.prestations_familiales.aeeh.maj6: null
-# prestations.prestations_familiales.af.montant_en_de_la_bmaf_tranche_1.3_enfants: null
-# prestations.prestations_familiales.af.montant_en_de_la_bmaf_tranche_1.4_enfants: null
-# prestations.prestations_familiales.af.montant_en_de_la_bmaf_tranche_1.5_enfants: null
-# prestations.prestations_familiales.af.montant_en_de_la_bmaf_tranche_2.3_enfants: null
-# prestations.prestations_familiales.af.montant_en_de_la_bmaf_tranche_2.4_enfants: null
-# prestations.prestations_familiales.af.montant_en_de_la_bmaf_tranche_2.5_enfants: null
-# prestations.prestations_familiales.af.montant_en_de_la_bmaf_tranche_3.3_enfants: null
-# prestations.prestations_familiales.af.montant_en_de_la_bmaf_tranche_3.4_enfants: null
-# prestations.prestations_familiales.af.montant_en_de_la_bmaf_tranche_3.5_enfants: null
-# prestations.prestations_familiales.af_cond.majoration_ressource_par_enfant_supplementaire.3_enfants: null
-# prestations.prestations_familiales.af_cond.majoration_ressource_par_enfant_supplementaire.4_enfants: null
-# prestations.prestations_familiales.af_cond.majoration_ressource_par_enfant_supplementaire.5_enfants: null
+prestations.prestations_familiales.af.modulation.plafond1: prestations.prestations_familiales.af.modulation.plafond_tranche_1
+prestations.prestations_familiales.af.modulation.plafond2: prestations.prestations_familiales.af.modulation.plafond_tranche_2
+prestations.prestations_familiales.af.modulation.taux1: prestations.prestations_familiales.af.modulation.taux_tranche_2
+prestations.prestations_familiales.af.modulation.taux2: prestations.prestations_familiales.af.modulation.taux_tranche_3
 taxation_capital.prelevements_sociaux.base_pat: taxation_capital.prelevements_sociaux.prelevement_social.revenus_du_patrimoine
 taxation_capital.prelevements_sociaux.base_plac: taxation_capital.prelevements_sociaux.prelevement_social.produits_de_placement
 taxation_capital.prelevements_sociaux.add_pat: taxation_capital.prelevements_sociaux.caps.revenus_du_patrimoine

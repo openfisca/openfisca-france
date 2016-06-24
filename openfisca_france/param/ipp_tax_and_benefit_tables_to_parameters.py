@@ -767,9 +767,17 @@ def transform_ipp_tree(root):
     aeeh['base'] = aeeh.pop('montant_de_bmaf')
     # af
     prestations_familiales['af'] = af = prestations.pop('af_cm')
-    prestations_familiales['af_cond'] = af_con = prestations.pop('af_cond')
-    prestations_familiales['af_maj'] = af_maj = prestations.pop('af_maj')
-    prestations_familiales['plaf'] = af_plaf = prestations.pop('af_plaf')
+    modulation_ipp = prestations.pop('af_cond')
+    modulation = af['modulation']
+    modulation['taux_tranche_1'] = modulation.pop('tranche_1_en_de_la_bmaf')
+    modulation['taux_tranche_2'] = modulation.pop('tranche_2_en_de_la_bmaf')
+    modulation['taux_tranche_3'] = modulation.pop('tranche_3_en_de_la_bmaf')
+    modulation['majoration_plafond_par_enfant_supplementaire'] = modulation_ipp.pop('majoration_ressource_par_enfant_supplementaire')
+    modulation['plafond_tranche_1'] = modulation_ipp.pop('plafond_de_ressources_tranche_1')
+    modulation['plafond_tranche_2'] = modulation_ipp.pop('plafond_de_ressources_tranche_2')
+
+    af['majoration'] = prestations.pop('af_maj')
+    af['plafond_1998'] = af_plaf = prestations.pop('af_plaf')
     af['taux'] = taux = dict()
     taux['enf3'] = af.pop('par_enfant_supplementaire')
     # af["montant_en_de_la_bmaf_tranche_1"] = montant_en_de_la_bmaf_tranche_1 = dict()

@@ -131,13 +131,13 @@ class af_taux_modulation(DatedVariable):
         pfam = simulation.legislation_at(period.start).prestations.prestations_familiales.af
         base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
         modulation = pfam.modulation
-        plafond1 = modulation.plafond1 + max_(af_nbenf - 2, 0) * modulation.enfant_supp
-        plafond2 = modulation.plafond2 + max_(af_nbenf - 2, 0) * modulation.enfant_supp
+        plafond1 = modulation.plafond_tranche_1 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
+        plafond2 = modulation.plafond_tranche_2 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
 
         taux = (
             (base_ressources <= plafond1) * 1 +
-            (base_ressources > plafond1) * (base_ressources <= plafond2) * modulation.taux1 +
-            (base_ressources > plafond2) * modulation.taux2
+            (base_ressources > plafond1) * (base_ressources <= plafond2) * modulation.taux_tranche_2 +
+            (base_ressources > plafond2) * modulation.taux_tranche_3
         )
 
         return period, taux
@@ -157,13 +157,13 @@ class af_allocation_forfaitaire_taux_modulation(DatedVariable):
         nb_enf_tot = af_nbenf + af_forfaitaire_nbenf
         base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
         modulation = pfam.modulation
-        plafond1 = modulation.plafond1 + max_(nb_enf_tot - 2, 0) * modulation.enfant_supp
-        plafond2 = modulation.plafond2 + max_(nb_enf_tot - 2, 0) * modulation.enfant_supp
+        plafond1 = modulation.plafond_tranche_1 + max_(nb_enf_tot - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
+        plafond2 = modulation.plafond_tranche_2 + max_(nb_enf_tot - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
 
         taux = (
             (base_ressources <= plafond1) * 1 +
-            (base_ressources > plafond1) * (base_ressources <= plafond2) * modulation.taux1 +
-            (base_ressources > plafond2) * modulation.taux2
+            (base_ressources > plafond1) * (base_ressources <= plafond2) * modulation.taux_tranche_2 +
+            (base_ressources > plafond2) * modulation.taux_tranche_3
         )
 
         return period, taux
@@ -265,8 +265,8 @@ class af_complement_degressif(DatedVariable):
         af_majoration = simulation.calculate('af_majoration', period)
         pfam = simulation.legislation_at(period.start).prestations.prestations_familiales.af
         modulation = pfam.modulation
-        plafond1 = modulation.plafond1 + max_(af_nbenf - 2, 0) * modulation.enfant_supp
-        plafond2 = modulation.plafond2 + max_(af_nbenf - 2, 0) * modulation.enfant_supp
+        plafond1 = modulation.plafond_tranche_1 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
+        plafond2 = modulation.plafond_tranche_2 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
 
         depassement_plafond1 = max_(0, base_ressources - plafond1)
         depassement_plafond2 = max_(0, base_ressources - plafond2)
@@ -295,8 +295,8 @@ class af_allocation_forfaitaire_complement_degressif(DatedVariable):
         base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
         af_allocation_forfaitaire = simulation.calculate('af_allocation_forfaitaire', period)
         modulation = pfam.modulation
-        plafond1 = modulation.plafond1 + max_(af_nbenf - 2, 0) * modulation.enfant_supp
-        plafond2 = modulation.plafond2 + max_(af_nbenf - 2, 0) * modulation.enfant_supp
+        plafond1 = modulation.plafond_tranche_1 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
+        plafond2 = modulation.plafond_tranche_2 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
 
         depassement_plafond1 = max_(0, base_ressources - plafond1)
         depassement_plafond2 = max_(0, base_ressources - plafond2)

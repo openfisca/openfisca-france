@@ -3320,11 +3320,11 @@
           <VALUE deb="2016-01-01" fuzzy="true" valeur="78300" />
           <VALUE deb="2015-07-01" fin="2015-12-31" valeur="78300" />
         </CODE>
-        <CODE code="taux1" description="Taux de modulation au delà du plafond 1" format="percent">
+        <CODE code="taux1" description="Taux de modulation de la tranche 2" format="percent">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
           <VALUE deb="2015-07-01" fin="2015-12-31" valeur="0.5" />
         </CODE>
-        <CODE code="taux2" description="Taux de modulation au delà du plafond 2" format="percent">
+        <CODE code="taux2" description="Taux de modulation de la tranche 3" format="percent">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="0.25" />
           <VALUE deb="2015-07-01" fin="2015-12-31" valeur="0.25" />
         </CODE>
