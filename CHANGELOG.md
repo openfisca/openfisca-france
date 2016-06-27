@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.3.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.3.0..3.2.0)
+
+* Add variables for `complémentaire santé`, compulsory in 2016 :
+	* `complementaire_sante_taux_employeur`
+	* `complementaire_sante_employeur`
+	* `complementaire_sante_salarie`
+It is included in the bases of the following variables.
+
+* Correct `forfait_social` and link it to the `cotisations`, test it.
+* Correct `taxe_salaires` and update its rates
+* Test CSG-CRDS
+
 ## 3.2.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.2.0..3.1.0)
 
 * Consolidate the case of `temps partiel` for the input of a number of hours per month, based on the legal duration of 151.67 per month

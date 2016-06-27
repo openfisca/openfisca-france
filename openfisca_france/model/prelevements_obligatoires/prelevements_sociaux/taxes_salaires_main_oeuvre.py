@@ -103,6 +103,8 @@ class cotisations_employeur_main_d_oeuvre(Variable):
         formation_professionnelle = simulation.calculate('formation_professionnelle', period)
         participation_effort_construction = simulation.calculate_add('participation_effort_construction', period)
         prevoyance_obligatoire_cadre = simulation.calculate_add('prevoyance_obligatoire_cadre', period)
+        complementaire_sante_employeur = simulation.calculate_add('complementaire_sante_employeur', period)
+
         taxe_apprentissage = simulation.calculate_add('taxe_apprentissage', period)
         versement_transport = simulation.calculate_add('versement_transport', period)
 
@@ -115,6 +117,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
             formation_professionnelle +
             participation_effort_construction +
             prevoyance_obligatoire_cadre +
+            complementaire_sante_employeur +
             taxe_apprentissage +
             versement_transport
             )
@@ -273,10 +276,17 @@ class taxe_salaires(Variable):
         assujettie_taxe_salaires = simulation.calculate('assujettie_taxe_salaires', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
+        complementaire_sante_employeur = simulation.calculate('complementaire_sante_employeur', period)
+        prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate_add(
+            'prise_en_charge_employeur_prevoyance_complementaire', period)
+
         law = simulation.legislation_at(period.start)
 
         bareme = law.cotsoc.taxes_sal.taux_maj
-        base = assiette_cotisations_sociales - prevoyance_obligatoire_cadre
+        base = assiette_cotisations_sociales + (
+                - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+                - complementaire_sante_employeur
+                )
         # TODO: exonérations apprentis
         # TODO: modify if DOM
 

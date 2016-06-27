@@ -648,6 +648,36 @@ class prevoyance_obligatoire_cadre(Variable):
         return period, cotisation
 
 
+class complementaire_sante_employeur(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Couverture complémentaire santé collective d'entreprise - part employeur"
+
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        complementaire_sante_taux_employeur = simulation.calculate(
+            'complementaire_sante_taux_employeur', period)
+        complementaire_sante_montant = simulation.calculate('complementaire_sante_montant', period)
+
+        cotisation = - complementaire_sante_taux_employeur * complementaire_sante_montant
+        return period, cotisation
+
+
+class complementaire_sante_salarie(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Couverture complémentaire santé collective d'entreprise - part salarié"
+
+    def function(self, simulation, period):
+        period = period.start.period(u'month').offset('first-of')
+        complementaire_sante_taux_employeur = simulation.calculate(
+            'complementaire_sante_taux_employeur', period)
+        complementaire_sante_montant = simulation.calculate('complementaire_sante_montant', period)
+
+        cotisation = - (1 - complementaire_sante_taux_employeur) * complementaire_sante_montant
+        return period, cotisation
+
+
 class taille_entreprise(Variable):
     column = EnumCol(
         enum = Enum(
