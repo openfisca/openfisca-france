@@ -4,7 +4,9 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_or as or_, round as round_
+from numpy import logical_or as or_, logical_and as and_, round as round_, logical_not as not_
+
+import numpy as np
 
 from ...base import *  # noqa analysis:ignore
 
@@ -40,6 +42,19 @@ class conge_individuel_formation_cdd(Variable):
         return period, cotisation
 
 
+class redevable_taxe_apprentissage(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Entreprise redevable de la taxe d'apprentissage"
+
+    def function(self, simulation, period):
+        # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
+        # -> pas de taxe d'apprentissage
+        association = simulation.calculate('entreprise_est_association_non_lucrative', period)
+
+        return period, not_(association)
+
+
 class contribution_developpement_apprentissage(Variable):
     column = FloatCol
     entity_class = Individus
@@ -47,6 +62,7 @@ class contribution_developpement_apprentissage(Variable):
 
     def function(self, simulation, period):
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
+
         cotisation = apply_bareme(
             simulation,
             period,
@@ -71,7 +87,7 @@ class contribution_supplementaire_apprentissage(DatedVariable):
         taux = simulation.legislation_at(period.start).cotsoc.contribution_supplementaire_apprentissage
 
         if period.start.year > 2012:
-            taux_contribution = redevable_taxe_apprentissage * (
+            taux_contribution = (
                 (effectif_entreprise < 2000) * (ratio_alternants < .01) * taux.moins_2000_moins_1pc_alternants +
                 (effectif_entreprise >= 2000) * (ratio_alternants < .01) * taux.plus_2000_moins_1pc_alternants +
                 (.01 <= ratio_alternants) * (ratio_alternants < .02) * taux.entre_1_2_pc_alternants +
@@ -80,9 +96,9 @@ class contribution_supplementaire_apprentissage(DatedVariable):
                 (.04 <= ratio_alternants) * (ratio_alternants < .05) * taux.entre_4_5_pc_alternants
                 )
         else:
-            taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250 * redevable_taxe_apprentissage
+            taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250
             # TODO: gestion de la place dans le XML pb avec l'arbre des paramètres / preprocessing
-        return period, - taux_contribution * assiette_cotisations_sociales
+        return period, - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
 
 
 class cotisations_employeur_main_d_oeuvre(Variable):
@@ -254,6 +270,7 @@ class taxe_apprentissage(Variable):
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
+
         cotisation = apply_bareme(
             simulation,
             period,
@@ -261,7 +278,7 @@ class taxe_apprentissage(Variable):
             bareme_name = 'apprentissage',
             variable_name = self.__class__.__name__,
             )
-        return period, redevable_taxe_apprentissage * cotisation
+        return period, cotisation * redevable_taxe_apprentissage
 
 
 class taxe_salaires(Variable):
@@ -281,22 +298,60 @@ class taxe_salaires(Variable):
             'prise_en_charge_employeur_prevoyance_complementaire', period)
 
         law = simulation.legislation_at(period.start)
+        entreprise_est_association_non_lucrative = \
+            simulation.calculate('entreprise_est_association_non_lucrative', period)
+        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 
-        bareme = law.cotsoc.taxes_sal.taux_maj
+        # impots.gouv.fr
+        # La taxe est due notamment par les : [...] organismes sans but lucratif
+        assujettissement = assujettie_taxe_salaires + entreprise_est_association_non_lucrative
+
+        parametres = law.cotsoc.taxes_sal
+        bareme = parametres.taux_maj
+        base = assiette_cotisations_sociales - prevoyance_obligatoire_cadre
         base = assiette_cotisations_sociales + (
                 - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
                 - complementaire_sante_employeur
                 )
+
         # TODO: exonérations apprentis
         # TODO: modify if DOM
 
-        return period, - (
+        cotisation_individuelle = (
             bareme.calc(
                 base,
                 factor = 1 / 12,
                 round_base_decimals = 2
                 ) +
-            round_(law.cotsoc.taxes_sal.taux.metro * base, 2)
-            ) * assujettie_taxe_salaires
+            round_(parametres.taux.metro * base, 2)
+            )
 
+        # Une franchise et une décôte s'appliquent à cette taxe
+        # Etant donné que nous n'avons pas la distribution de salaires de l'entreprise,
+        # elles sont estimées en prenant l'effectif de l'entreprise et
+        # considérant que l'unique salarié de la simulation est la moyenne.
+        # http://www.impots.gouv.fr/portal/dgi/public/popup?typePage=cpr02&espId=2&docOid=documentstandard_1845
+        estimation = cotisation_individuelle * effectif_entreprise * 12
+        conditions = [estimation < parametres.franchise, estimation <= parametres.decote_montant, estimation > parametres.decote_montant]
+        results = [0, estimation - (parametres.decote_montant - estimation) * parametres.decote_taux, estimation]
 
+        estimation_reduite = np.select(conditions, results)
+
+        # Abattement spécial de taxe sur les salaires
+        # Les associations à but non lucratif bénéficient d'un abattement important
+        estimation_abattue_negative = estimation_reduite - parametres.abattement_special
+        estimation_abattue = switch(
+            entreprise_est_association_non_lucrative,
+            {
+                0: estimation_reduite,
+                1: (estimation_abattue_negative >= 0) * estimation_abattue_negative,
+                }
+            )
+
+        with np.errstate(invalid='ignore'):
+            cotisation = switch(effectif_entreprise == 0, {
+                True: self.zeros(),
+                False: estimation_abattue / effectif_entreprise / 12
+                })
+
+        return period, - cotisation * assujettissement

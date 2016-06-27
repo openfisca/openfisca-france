@@ -93,7 +93,7 @@ class ppe_tp_sa(Variable):
         QUIFOY['pac2']: u"1DX",
         QUIFOY['pac3']: u"1QX",
         }
-        
+
     column = BoolCol
     entity_class = Individus
     label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière"
@@ -268,6 +268,11 @@ class cotisation_sociale_mode_recouvrement(Variable):
     entity_class = Individus
     label = u"Mode de recouvrement des cotisations sociales"
 
+class entreprise_est_association_non_lucrative(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"L'entreprise est une association à but non lucratif, par exemple loi de 1901"
+
 
 class depcom_entreprise(Variable):
     column = FixedStrCol(max_length = 5)
@@ -400,12 +405,6 @@ class ratio_alternants(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Ratio d'alternants dans l'effectif moyen"
-
-
-class redevable_taxe_apprentissage(Variable):
-    column = BoolCol(default = True)
-    entity_class = Individus
-    label = u"Entreprise redevable de la taxe d'apprentissage"
 
 
 class remboursement_transport_base(Variable):
