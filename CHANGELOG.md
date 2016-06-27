@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.2.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.2.0..3.1.0)
+
+* Consolidate the case of `temps partiel` for the input of a number of hours per month, based on the legal duration of 151.67 per month
+* Specifically, correct the proratisation of `plafond de la sécurité sociale` and `coefficient de proratisation`.
+* See issue #496 for details
+
+
 ## 3.1.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.1.0..3.0.0)
 
 * Update the rates of the versement transport contribution
