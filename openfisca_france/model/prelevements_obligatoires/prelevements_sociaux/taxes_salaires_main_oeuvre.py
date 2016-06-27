@@ -42,6 +42,19 @@ class conge_individuel_formation_cdd(Variable):
         return period, cotisation
 
 
+class redevable_taxe_apprentissage(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Entreprise redevable de la taxe d'apprentissage"
+
+    def function(self, simulation, period):
+        # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
+        # -> pas de taxe d'apprentissage
+        association = simulation.calculate('entreprise_est_association_non_lucrative', period)
+
+        return period, not_(association)
+
+
 class contribution_developpement_apprentissage(Variable):
     column = FloatCol
     entity_class = Individus
@@ -73,10 +86,6 @@ class contribution_supplementaire_apprentissage(DatedVariable):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         taux = simulation.legislation_at(period.start).cotsoc.contribution_supplementaire_apprentissage
 
-        # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
-        # -> pas de taxe d'apprentissage
-        association = simulation.calculate('entreprise_est_association_non_lucrative', period)
-
         if period.start.year > 2012:
             taux_contribution = (
                 (effectif_entreprise < 2000) * (ratio_alternants < .01) * taux.moins_2000_moins_1pc_alternants +
@@ -89,7 +98,7 @@ class contribution_supplementaire_apprentissage(DatedVariable):
         else:
             taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250
             # TODO: gestion de la place dans le XML pb avec l'arbre des paramètres / preprocessing
-        return period, - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage * not_(association)
+        return period, - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
 
 
 class cotisations_employeur_main_d_oeuvre(Variable):
@@ -262,10 +271,6 @@ class taxe_apprentissage(Variable):
         period = period.start.period(u'month').offset('first-of')
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
 
-        # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
-        # -> pas de taxe d'apprentissage
-        association = simulation.calculate('entreprise_est_association_non_lucrative', period)
-
         cotisation = apply_bareme(
             simulation,
             period,
@@ -273,7 +278,7 @@ class taxe_apprentissage(Variable):
             bareme_name = 'apprentissage',
             variable_name = self.__class__.__name__,
             )
-        return period, cotisation * redevable_taxe_apprentissage * not_(association)
+        return period, cotisation * redevable_taxe_apprentissage
 
 
 class taxe_salaires(Variable):

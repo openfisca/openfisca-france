@@ -93,7 +93,7 @@ class ppe_tp_sa(Variable):
         QUIFOY['pac2']: u"1DX",
         QUIFOY['pac3']: u"1QX",
         }
-        
+
     column = BoolCol
     entity_class = Individus
     label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière"
@@ -405,12 +405,6 @@ class ratio_alternants(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Ratio d'alternants dans l'effectif moyen"
-
-
-class redevable_taxe_apprentissage(Variable):
-    column = BoolCol(default = True)
-    entity_class = Individus
-    label = u"Entreprise redevable de la taxe d'apprentissage"
 
 
 class remboursement_transport_base(Variable):
