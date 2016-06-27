@@ -1513,6 +1513,40 @@
         </CODE>
       </NODE>
     </NODE>
+    <NODE code="aes">
+      <CODE code="age_maximum_de_l_enfant">
+        <VALUE deb="1976-08-01" fin="2005-12-31" valeur="20" />
+      </CODE>
+      <CODE code="base" format="percent">
+        <VALUE deb="1976-08-01" fin="2005-12-31" valeur="0.32" />
+      </CODE>
+      <NODE code="complement_d_allocation">
+        <CODE code="1ere_categorie" format="percent">
+          <VALUE deb="1991-10-01" fin="2005-12-31" valeur="0.24" />
+          <VALUE deb="1984-01-01" fin="1991-09-30" valeur="0.72" />
+          <VALUE deb="1976-08-01" fin="1983-12-31" valeur="0.48" />
+        </CODE>
+        <CODE code="2e_categorie" format="percent">
+          <VALUE deb="2002-04-01" fin="2005-12-31" valeur="0.65" />
+          <VALUE deb="1991-10-01" fin="2002-03-31" valeur="0.72" />
+          <VALUE deb="1976-08-01" fin="1991-09-30" valeur="0.24" />
+        </CODE>
+        <CODE code="3e_categorie" format="percent">
+          <VALUE deb="2002-04-01" fin="2005-12-31" valeur="0.92" />
+        </CODE>
+        <CODE code="4e_categorie" format="percent">
+          <VALUE deb="2002-04-01" fin="2005-12-31" valeur="1.4257" />
+        </CODE>
+        <CODE code="5e_categorie" format="percent">
+          <VALUE deb="2002-04-01" fin="2005-12-31" valeur="1.8221" />
+        </CODE>
+        <CODE code="6e_categorie_2" format="float" type="monetary">
+          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="964.78" />
+          <VALUE deb="2004-04-01" fin="2004-12-31" valeur="945.87" />
+          <VALUE deb="2003-04-01" fin="2004-03-31" valeur="930.05" />
+        </CODE>
+      </NODE>
+    </NODE>
     <NODE code="af" description="Allocations familiales">
       <CODE code="2_enfants" format="percent">
         <VALUE deb="1982-02-01" fuzzy="true" valeur="0.32" />
@@ -1600,34 +1634,18 @@
           <VALUE deb="2003-07-01" fuzzy="true" valeur="1" />
         </CODE>
         <NODE code="majoration_pour_les_enfants_en_de_la_bmaf">
-          <NODE code="age_de_plus_de_14_ans_4">
-            <CODE code="tranche_de_revenu_1" format="percent">
-              <VALUE deb="2008-05-01" fuzzy="true" valeur="0.16" />
-            </CODE>
-            <CODE code="tranche_de_revenu_2" format="percent">
-              <VALUE deb="2015-07-01" fuzzy="true" valeur="0.08" />
-            </CODE>
-            <CODE code="tranche_de_revenu_3" format="percent">
-              <VALUE deb="2015-07-01" fuzzy="true" valeur="0.04" />
-            </CODE>
-          </NODE>
+          <CODE code="age_de_plus_de_14_ans_4_6" format="percent">
+            <VALUE deb="2008-05-01" fuzzy="true" valeur="0.16" />
+          </CODE>
           <CODE code="age_de_plus_de_15_ans" format="percent">
             <VALUE deb="1984-01-01" fin="1998-12-31" valeur="0.16" />
           </CODE>
           <CODE code="age_de_plus_de_16_ans_2_3" format="percent">
             <VALUE deb="1999-01-01" fin="2008-04-30" valeur="0.16" />
           </CODE>
-          <NODE code="age_de_plus_de_20_ans_5">
-            <CODE code="tranche_de_revenu_1" format="percent">
-              <VALUE deb="2003-07-01" fuzzy="true" valeur="0.20234" />
-            </CODE>
-            <CODE code="tranche_de_revenu_2" format="percent">
-              <VALUE deb="2015-07-01" fuzzy="true" valeur="0.10117" />
-            </CODE>
-            <CODE code="tranche_de_revenu_3" format="percent">
-              <VALUE deb="2015-07-01" fuzzy="true" valeur="0.05059" />
-            </CODE>
-          </NODE>
+          <CODE code="age_de_plus_de_20_ans_5_6" format="percent">
+            <VALUE deb="2003-07-01" fuzzy="true" valeur="0.20234" />
+          </CODE>
           <CODE code="age_entre_10_et_15_ans" format="percent">
             <VALUE deb="1984-01-01" fin="1998-12-31" valeur="0.09" />
           </CODE>

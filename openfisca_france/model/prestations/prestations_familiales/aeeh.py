@@ -43,8 +43,17 @@ class aeeh(DatedVariable):
         niveau_handicap = self.split_by_roles(niveau_handicap_holder, roles = ENFS)
         handicap = self.split_by_roles(handicap_holder, roles = ENFS)
 
-        cpl = prestations_familiales.aeeh.complement_d_allocation
-        maj = prestations_familiales.aeeh.majoration_pour_parent_isole
+        if period.start.year >= 2006:
+            base = prestations_familiales.aeeh.base
+            cpl = prestations_familiales.aeeh.complement_d_allocation
+            maj = prestations_familiales.aeeh.majoration_pour_parent_isole
+        else:
+            base = prestations_familiales.aes.base
+            cpl = prestations_familiales.aes.complement_d_allocation
+            cpl['6e_categorie_1'] = cpl['6e_categorie_2']
+            maj = dict()
+            for categorie in range(2, 7):
+                maj['{}e_categorie'.format(categorie)] = 0
 
         aeeh = 0
         for enfant in age.iterkeys():
@@ -52,7 +61,7 @@ class aeeh(DatedVariable):
             categ = niveau_handicap[enfant]
             aeeh += enfhand * (
                 prestations_familiales.af.bmaf * (
-                    prestations_familiales.aeeh.base +
+                    base +
                     cpl['1ere_categorie'] * (categ == 1) +
                     (categ == 2) * (cpl['1ere_categorie'] + maj['2e_categorie'] * isole) +
                     (categ == 3) * (cpl['2e_categorie'] + maj['3e_categorie'] * isole) +

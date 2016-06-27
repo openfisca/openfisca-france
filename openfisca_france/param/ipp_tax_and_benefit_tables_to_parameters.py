@@ -781,15 +781,20 @@ def transform_ipp_tree(root):
     af['taux'] = taux = dict()
     taux['enf3'] = af.pop('par_enfant_supplementaire')
     # af["montant_en_de_la_bmaf_tranche_1"] = montant_en_de_la_bmaf_tranche_1 = dict()
-
-
     del prestations['aa_plaf']
     #   aa_plaf:
     #     Plafonds de ressources: null  # Value must be a float
-    del prestations['aes']
     #   aes:
     #     Complément d'allocation:
     #       3e catégorie: null  # Changement d'unité de FRF à %
+    #  On retire l'élément qui pose problème
+    prestations['aes']['complement_d_allocation']['3e_categorie'] = [
+        element for element in prestations['aes']['complement_d_allocation']['3e_categorie']
+        if element['value'] is None or element['value'].endswith('%')
+        ]
+    prestations_familiales['aes'] = aes = prestations.pop('aes')
+    aes['base'] = aes.pop('montant_de_bmaf_ou_en_euros')
+    #
     del prestations['al_charge']
     #   al_charge:
     #     Cas des colocataires ou des propriétaires (1):
