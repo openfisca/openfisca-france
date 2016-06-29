@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.4.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.4.1..3.4.0)
+
+* Only enforce version and changelog update in CI when PR target is master.
+
 ## 3.4.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.4.0..3.3.0)
 
 * Introduce the `entreprise_est_association_non_lucrative` boolean input variable
