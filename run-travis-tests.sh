@@ -8,7 +8,7 @@
 set -x
 
 current_version=`python setup.py --version`
-if [ $TRAVIS_PULL_REQUEST != false ]
+if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" != false ]]
 then
     if git rev-parse $current_version
     then
