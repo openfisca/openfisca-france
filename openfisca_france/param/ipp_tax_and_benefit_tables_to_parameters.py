@@ -780,6 +780,7 @@ def transform_ipp_tree(root):
     af['plafond_1998'] = af_plaf = prestations.pop('af_plaf')
     af['taux'] = taux = dict()
     taux['enf3'] = af.pop('par_enfant_supplementaire')
+    # af.majoration.majoration_pour_les_enfants_en_de_la_bmaf['age_de_plus_de_20_ans'] = age_de_plus_de_20_ans = af.majoration.majoration_pour_les_enfants_en_de_la_bmaf.pop('age_de_plus_de_20_ans_5_6')
     # af["montant_en_de_la_bmaf_tranche_1"] = montant_en_de_la_bmaf_tranche_1 = dict()
 
 
@@ -790,23 +791,74 @@ def transform_ipp_tree(root):
     #   aes:
     #     Complément d'allocation:
     #       3e catégorie: null  # Changement d'unité de FRF à %
-    del prestations['al_charge']
+    # AL
+    prestations['aides_logement'] = aides_logement = dict()
+    aides_logement['al_charge'] = al_charge = prestations.pop('al_charge')
+    aides_logement['forfait_charges'] = forfait_charges = dict()
+    forfait_charges['cas_general'] = al_charge['personne_isolee_ou_menage_seul'].pop('cas_general')
+    # forfait_charges['majoration_par_enfant'] = al_charge['personne_isolee_ou_menage_seul_2'].pop('majoration_par_enfant_de_la_majoration_pour_charges')
+
+     # prestations['al_charge']
     #   al_charge:
     #     Cas des colocataires ou des propriétaires (1):
     #       Isolé ou couple avec un enfant ou une personne à charge: null  # Value must be a float
     #       Majoration par enfant de la majoration pour charges: null  # Value must be a float
-    del prestations['al_pac']
+    aides_logement['al_pac'] = al_pac = prestations.pop('al_pac')
+    # prestations['al_pac']
     #   al_pac:
     #     Âge limite pour les enfants à charge: null  # Value must be a float
     #     Plafonds de ressources que les potentiels personnes à charge autre que les enfants doivent respecter:
     #       null  # Value must be a float
-    del prestations['al_plaf_acc']
+    del prestations['al_plaf_acc']['intervalle_de_date_du_certificat_d_emprunt_correspondant_aux_plafonds_d_accession_a_la_propriete']
     #   al_plaf_acc:
     #     Intervalle de date du certificat d'emprunt correspondant aux plafonds d'accession à la propriété:
     #       null  # Value must be a float
-    del prestations['al_plaf_loc2']
-    #   al_plaf_loc2:
-    #     Loyer de référence: null  # Value must be a float
+
+    aides_logement['al_param2'] = al_param2 = prestations.pop('al_param2')
+    al_param2['r1_en_du_rsa_socle'] = r1_en_du_rsa_socle = al_param2.pop('r1_en_du_rsa_socle_1')
+    r1_en_du_rsa_socle = al_param2['r1_en_du_rsa_socle']
+    r1_en_du_rsa_socle['personne_isolee'] = personnes_isolees = r1_en_du_rsa_socle.pop('personnes_isolees_en_du_rmi_de_base')
+    r1_en_du_rsa_socle['majoration_enfant_a_charge_supp'] = majoration_enfant_a_charge_supp = r1_en_du_rsa_socle.pop('majoration_par_enfant_a_charge_supplementaire_en_du_rmi_de_base')
+    r1_en_du_rsa_socle['couple_sans_enf'] = couple_sans_enf = r1_en_du_rsa_socle.pop('couples_en_du_rmi_de_base')
+    r1_en_du_rsa_socle['personne_isolee_ou_couple_avec_1_enf'] = personne_isolee_ou_couple_avec_1_enf = r1_en_du_rsa_socle.pop('personnes_isolees_ou_couples_avec_1_enfant_en_du_rmi_de_base')
+    r1_en_du_rsa_socle['personne_isolee_ou_couple_avec_2_enf'] = personne_isolee_ou_couple_avec_2_enf = r1_en_du_rsa_socle.pop('personnes_isolees_ou_couples_avec_2_enfants_en_du_rmi_de_base')
+    aides_logement['r1'] = r1 = al_param2.pop('r1_en_du_rsa_socle')
+
+    al_param2['r2_ipp'] = r2_ipp = al_param2.pop('r2_en_de_la_bmaf_1')
+    r2_ipp['majoration_par_enf_supp_a_charge'] = majoration_par_enf_supp_a_charge = r2_ipp.pop('majoration_par_enfant_a_charge_supplementaire_en_de_la_bmaf_au_01_01_n_2')
+    r2_ipp['personnes_isolees_ou_couples_avec_2_enf'] = personnes_isolees_ou_couples_avec_2_enf = r2_ipp.pop('personnes_isolees_ou_couples_avec_2_enfants_en_de_la_bmaf_au_01_01_n_2')
+    aides_logement['r2'] = r2 = al_param2.pop('r2_ipp')
+
+    del prestations['al_plaf_loc2']['loyer_de_reference']
+
+    aides_logement['al_plaf_loc2'] = al_plaf_loc2 = prestations.pop('al_plaf_loc2')
+    al_plaf_loc2['taux_participation_fam_ipp'] = taux_participation_fam_ipp = al_plaf_loc2.pop('tf')
+    taux_participation_fam_ipp = al_plaf_loc2['taux_participation_fam_ipp']
+    taux_participation_fam_ipp['taux_1_adulte'] = taux_1_adulte = taux_participation_fam_ipp.pop('personnes_isolees')
+    taux_participation_fam_ipp['taux_2_adulte'] = taux_2_adulte = taux_participation_fam_ipp.pop('couples_sans_enfant')
+    taux_participation_fam_ipp['taux_1_enf'] = taux_1_enf = taux_participation_fam_ipp.pop('personnes_seules_et_couples_avec_1_enfant')
+    taux_participation_fam_ipp['taux_2_enf'] = taux_2_enf = taux_participation_fam_ipp.pop('personnes_seules_et_couples_avec_2_enfants')
+    taux_participation_fam_ipp['taux_3_enf'] = taux_3_enf = taux_participation_fam_ipp.pop('personnes_seules_et_couples_avec_3_enfants')
+    taux_participation_fam_ipp['taux_4_enf'] = taux_4_enf = taux_participation_fam_ipp.pop('personnes_seules_et_couples_avec_4_enfants')
+    taux_participation_fam_ipp['taux_enf_supp'] = taux_enf_supp = taux_participation_fam_ipp.pop('variation_de_tf_par_enfant_supplementaire')
+    aides_logement['taux_participation_fam'] = taux_participation_fam = al_plaf_loc2.pop('taux_participation_fam_ipp')
+
+    al_plaf_loc2['taux_participation_loyer_ipp'] = taux_participation_loyer_ipp = al_plaf_loc2.pop('tl')
+    taux_participation_loyer_ipp['taux_tranche_1'] = taux_tranche_1 = taux_participation_loyer_ipp.pop('tl_pour_la_1ere_tranche')
+    taux_participation_loyer_ipp['taux_tranche_2'] = taux_tranche_2 = taux_participation_loyer_ipp.pop('tl_pour_la_2eme_tranche')
+    taux_participation_loyer_ipp['taux_tranche_3'] = taux_tranche_3 = taux_participation_loyer_ipp.pop('tl_pour_la_3eme_tranche')
+    aides_logement['taux_participation_loyer'] = taux_participation_loyer = al_plaf_loc2.pop('taux_participation_loyer_ipp')
+
+    aides_logement['al_min'] = al_min = prestations.pop('al_min')
+    al_min['montant_min_mensuel'] = montant_min_mensuel = al_min.pop('montant_minimal_mensuel')
+    montant_min_mensuel['montant_min_apl_al'] = montant_min_apl_al = montant_min_mensuel.pop('apl_ou_al')
+
+    aides_logement['participation_min'] = participation_min = dict()
+    aides_logement['montant_forfaitaire'] = montant_forfaitaire = al_plaf_loc2.pop('montant_forfaitaire_de_la_participation_minimale_po')
+    aides_logement['taux'] = taux = al_plaf_loc2.pop('montant_proportionnel_de_la_participation_minimale_po')
+    participation_min['montant_forfaitaire']  = aides_logement.pop('montant_forfaitaire')
+    participation_min['taux']  = aides_logement.pop('taux')
+
     del prestations['api_fl']
     #   api_fl:
     #     Forfait logement:

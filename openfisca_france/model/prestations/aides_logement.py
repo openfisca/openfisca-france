@@ -335,13 +335,13 @@ class aide_logement_charges(Variable):
     label = u"Charges retenues dans le calcul des aides au logement"
 
     def function(self, simulation, period):
-        P = simulation.legislation_at(period.start).al.forfait_charges
+        P = simulation.legislation_at(period.start).prestations.aides_logement.forfait_charges
         al_nb_pac = simulation.calculate('al_nb_personnes_a_charge', period)
         couple = simulation.calculate('al_couple', period)
         coloc_holder = simulation.compute('coloc', period)
         coloc = self.any_by_roles(coloc_holder)
-        montant_coloc = where(couple, 1, 0.5) * P.fc1 + al_nb_pac * P.fc2
-        montant_cas_general = P.fc1 + al_nb_pac * P.fc2
+        montant_coloc = where(couple, 1, 0.5) * P.cas_general + al_nb_pac * P.majoration_par_enfant
+        montant_cas_general = P.cas_general + al_nb_pac * P.majoration_par_enfant
 
         return period, where(coloc, montant_coloc, montant_cas_general)
 
@@ -353,23 +353,23 @@ class aide_logement_R0(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        al = simulation.legislation_at(period.start).al
+        al = simulation.legislation_at(period.start).prestations.aides_logement
         pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).prestations.prestations_familiales
         couple = simulation.calculate('al_couple', period)
         al_nb_pac = simulation.calculate('al_nb_personnes_a_charge', period)
         residence_dom = simulation.calculate('residence_dom')
 
         R1 = al.rmi * (
-            al.R1.taux1 * not_(couple) * (al_nb_pac == 0) +
-            al.R1.taux2 * couple * (al_nb_pac == 0) +
-            al.R1.taux3 * (al_nb_pac == 1) +
-            al.R1.taux4 * (al_nb_pac >= 2) +
-            al.R1.taux5 * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al.r1.personne_isolee * not_(couple) * (al_nb_pac == 0) +
+            al.r1.couple_sans_enf * couple * (al_nb_pac == 0) +
+            al.r1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1) +
+            al.r1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2) +
+            al.r1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
         R2 = pfam_n_2.af.bmaf * (
-            al.R2.taux3_dom * residence_dom * (al_nb_pac == 1) +
-            al.R2.taux4 * (al_nb_pac >= 2) +
-            al.R2.taux5 * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al.r2.taux3_dom * residence_dom * (al_nb_pac == 1) +
+            al.r2.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2) +
+            al.r2.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         R0 = round_(12 * (R1 - R2) * (1 - al.autres.abat_sal))
@@ -384,30 +384,30 @@ class aide_logement_taux_famille(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        al = simulation.legislation_at(period.start).al
+        al = simulation.legislation_at(period.start).prestations.aides_logement
         couple = simulation.calculate('al_couple', period)
         al_nb_pac = simulation.calculate('al_nb_personnes_a_charge', period)
         residence_dom = simulation.calculate('residence_dom')
 
         TF_metropole = (
-            al.TF.taux1 * (not_(couple)) * (al_nb_pac == 0) +
-            al.TF.taux2 * (couple) * (al_nb_pac == 0) +
-            al.TF.taux3 * (al_nb_pac == 1) +
-            al.TF.taux4 * (al_nb_pac == 2) +
-            al.TF.taux5 * (al_nb_pac == 3) +
-            al.TF.taux6 * (al_nb_pac >= 4) +
-            al.TF.taux7 * (al_nb_pac > 4) * (al_nb_pac - 4)
+            al.taux_participation_fam.taux_1_adulte * (not_(couple)) * (al_nb_pac == 0) +
+            al.taux_participation_fam.taux_2_adulte * (couple) * (al_nb_pac == 0) +
+            al.taux_participation_fam.taux_1_enf * (al_nb_pac == 1) +
+            al.taux_participation_fam.taux_2_enf * (al_nb_pac == 2) +
+            al.taux_participation_fam.taux_3_enf * (al_nb_pac == 3) +
+            al.taux_participation_fam.taux_4_enf * (al_nb_pac >= 4) +
+            al.taux_participation_fam.taux_enf_supp * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
         TF_dom = (
-            al.TF.dom.taux1 * (not_(couple)) * (al_nb_pac == 0) +
-            al.TF.dom.taux2 * (couple) * (al_nb_pac == 0) +
-            al.TF.dom.taux3 * (al_nb_pac == 1) +
-            al.TF.dom.taux4 * (al_nb_pac == 2) +
-            al.TF.dom.taux5 * (al_nb_pac == 3) +
-            al.TF.dom.taux6 * (al_nb_pac == 4) +
-            al.TF.dom.taux7 * (al_nb_pac == 5) +
-            al.TF.dom.taux8 * (al_nb_pac >= 6)
+            al.taux_participation_fam.dom.taux1 * (not_(couple)) * (al_nb_pac == 0) +
+            al.taux_participation_fam.dom.taux2 * (couple) * (al_nb_pac == 0) +
+            al.taux_participation_fam.dom.taux3 * (al_nb_pac == 1) +
+            al.taux_participation_fam.dom.taux4 * (al_nb_pac == 2) +
+            al.taux_participation_fam.dom.taux5 * (al_nb_pac == 3) +
+            al.taux_participation_fam.dom.taux6 * (al_nb_pac == 4) +
+            al.taux_participation_fam.dom.taux7 * (al_nb_pac == 5) +
+            al.taux_participation_fam.dom.taux8 * (al_nb_pac >= 6)
             )
 
         return period, where(residence_dom, TF_dom, TF_metropole)
@@ -420,7 +420,7 @@ class aide_logement_taux_loyer(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        al = simulation.legislation_at(period.start).al
+        al = simulation.legislation_at(period.start).prestations.aides_logement
         z2 = al.loyers_plafond.zone2
 
         L = simulation.calculate('aide_logement_loyer_retenu', period)
@@ -438,8 +438,8 @@ class aide_logement_taux_loyer(Variable):
 
         # TODO: paramètres en dur ??
         TL = where(RL >= 0.75,
-            al.TL.taux3 * (RL - 0.75) + al.TL.taux2 * (0.75 - 0.45),
-            max_(0, al.TL.taux2 * (RL - 0.45))
+            al.taux_participation_loyer.taux_tranche_3 * (RL - 0.75) + al.taux_participation_loyer.taux_tranche_2 * (0.75 - 0.45),
+            max_(0, al.taux_participation_loyer.taux_tranche_2 * (RL - 0.45))
             )
 
         return period, TL
@@ -452,7 +452,7 @@ class aide_logement_participation_personelle(Variable):
 
     def function(self, simulation, period):
 
-        al = simulation.legislation_at(period.start).al
+        al = simulation.legislation_at(period.start).prestations.aides_logement
 
         R = simulation.calculate('aide_logement_base_ressources', period)
         R0 = simulation.calculate('aide_logement_R0', period)
@@ -461,7 +461,7 @@ class aide_logement_participation_personelle(Variable):
         loyer_retenu = simulation.calculate('aide_logement_loyer_retenu', period)
         charges_retenues = simulation.calculate('aide_logement_charges', period)
         E = loyer_retenu + charges_retenues
-        P0 = max_(al.pp.taux * E, al.pp.min)  # Participation personnelle minimale
+        P0 = max_(al.participation_min.taux * E, al.participation_min.montant_forfaitaire)  # Participation personnelle minimale
 
         Tf = simulation.calculate('aide_logement_taux_famille', period)
         Tl = simulation.calculate('aide_logement_taux_loyer', period)
@@ -478,7 +478,7 @@ class aide_logement_montant_brut(Variable):
     def function(self, simulation, period):
         period = period.this_month
 
-        al = simulation.legislation_at(period.start).al
+        al = simulation.legislation_at(period.start).prestations.aides_logement
         statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
         locataire = (
             (3 <= statut_occupation_logement) * (5 >= statut_occupation_logement)
@@ -494,7 +494,7 @@ class aide_logement_montant_brut(Variable):
 
         montant = select([locataire, accedant], [montant_locataire, montant_accedants])
 
-        montant = montant * (montant >= al.autres.nv_seuil)  # Montant minimal de versement
+        montant = montant * (montant >= al.al_min.montant_min_mensuel.montant_min_apl_al)  # Montant minimal de versement
 
         return period, montant
 
