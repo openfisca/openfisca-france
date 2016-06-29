@@ -14,7 +14,7 @@
 
 - period: "2015-11"
   description:
-    Rien au dessus de 2.5 fois le SMIC
+    C'est bon en dessous de 2.5 fois le SMIC
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 3643.79
@@ -37,5 +37,20 @@
     effectif_entreprise: 0
     categorie_salarie: 0 # non cadre
     contrat_de_travail_duree: 0
+  output_variables:
+    credit_impot_competitivite_emploi: 0
+
+- period: "2015-11"
+  description:
+    Pas de CICE pour les associations à but non lucratif
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1467
+    # nécessaire pour des requêtes sur un mois de salaire :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 0
+    categorie_salarie: 0 # non cadre
+    contrat_de_travail_duree: 0
+    entreprise_est_association_non_lucrative: 1
   output_variables:
     credit_impot_competitivite_emploi: 0
