@@ -6,8 +6,8 @@ from openfisca_core.columns import (AgeCol, BoolCol, DateCol, EnumCol, FixedStrC
     PeriodSizeIndependentIntCol, StrCol)
 from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import (calculate_output_add, calculate_output_add_divide, calculate_output_divide,
-    dated_function, DatedVariable, EntityToPersonColumn, missing_value, PersonToEntityColumn,
-    set_input_dispatch_by_period, set_input_divide_by_period, Variable)
+    dated_function, missing_value, set_input_dispatch_by_period, set_input_divide_by_period)
+from openfisca_core.variables import DatedVariable, EntityToPersonColumn, PersonToEntityColumn, Variable
 from openfisca_core.base_functions import (
     last_duration_last_value,
     requested_period_added_value,
@@ -17,7 +17,7 @@ from openfisca_core.base_functions import (
     )
 from openfisca_core.formula_helpers import apply_thresholds, switch
 
-from ..entities import Familles, FoyersFiscaux, Individus, Menages
+from openfisca_france.entities import Familles, FoyersFiscaux, Individus, Menages
 
 
 __all__ = [

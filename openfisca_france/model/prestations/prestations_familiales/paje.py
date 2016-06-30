@@ -4,8 +4,8 @@ from __future__ import division
 
 from numpy import (round, floor, maximum as max_, minimum as min_, logical_not as not_, datetime64)
 
-from ...base import *  # noqa analysis:ignore
-from .base_ressource import nb_enf, age_en_mois_benjamin
+from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf, age_en_mois_benjamin
 from openfisca_core.periods import Instant
 
 

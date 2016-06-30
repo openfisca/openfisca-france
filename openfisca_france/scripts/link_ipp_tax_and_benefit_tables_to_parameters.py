@@ -15,7 +15,7 @@ import sys
 import yaml
 
 
-from openfisca_france import init_country
+from openfisca_france import FranceTaxBenefitSystem
 
 
 date_names = (
@@ -181,8 +181,7 @@ def main():
 
 #    print yaml.dump(ipp_infos_by_value, allow_unicode = True, default_flow_style = False, indent = 2, width = 120)
 
-    TaxBenefitSystem = init_country()
-    tax_benefit_system = TaxBenefitSystem()
+    tax_benefit_system = FranceTaxBenefitSystem()
 
     # print yaml.dump(tax_benefit_system.legislation_json, allow_unicode = True, default_flow_style = False, indent = 2,
     #     width = 120)

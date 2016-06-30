@@ -2,13 +2,11 @@
 
 import json
 
+
 from numpy import logical_or as or_, fromiter
 
-from openfisca_core.columns import FloatCol
-from openfisca_core.formulas import Variable
-import openfisca_france
-from openfisca_france.entities import Individus
-
+from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
 
 class taux_versement_transport(Variable):
     column = FloatCol
@@ -56,7 +54,7 @@ class versement_transport(Variable):
 def preload_taux_versement_transport():
     if not 'table_versement_transport' in globals():
         global table_versement_transport
-        with open(openfisca_france.COUNTRY_DIR + '/assets/versement_transport/taux.json') as data_file:
+        with open(COUNTRY_DIR + '/assets/versement_transport/taux.json') as data_file:
             table_versement_transport = json.load(data_file)
 
 

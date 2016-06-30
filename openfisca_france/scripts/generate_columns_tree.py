@@ -16,7 +16,7 @@ import sys
 
 from openfisca_core import formulas
 
-from openfisca_france import init_country, model
+from openfisca_france import FranceTaxBenefitSystem, model
 try:
     from openfisca_france.model.datatrees import columns_name_tree_by_entity
 except ImportError:
@@ -25,8 +25,7 @@ except ImportError:
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
-TaxBenefitSystem = init_country()
-tax_benefit_system = TaxBenefitSystem()
+tax_benefit_system = FranceTaxBenefitSystem()
 
 
 class PrettyPrinter(pprint.PrettyPrinter):

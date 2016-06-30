@@ -4,7 +4,7 @@ from __future__ import division
 
 from numpy import abs as abs_, logical_not as not_, logical_or as or_, maximum as max_
 
-from ...base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class inapte_travail(Variable):

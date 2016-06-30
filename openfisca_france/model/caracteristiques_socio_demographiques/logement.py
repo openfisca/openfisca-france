@@ -4,7 +4,7 @@ from numpy import logical_not as not_, logical_or as or_
 from numpy.core.defchararray import startswith
 
 
-from ..base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class coloc(Variable):
@@ -14,10 +14,6 @@ class coloc(Variable):
 
 
 
-class depcom(Variable):
-    column = FixedStrCol(max_length = 5)
-    entity_class = Menages
-    label = u"Code INSEE (depcom) du lieu de résidence"
 
 
 
@@ -39,6 +35,10 @@ class loyer_individu(EntityToPersonColumn):
     entity_class = Individus
     label = u"Zone apl de la personne"
     variable = loyer
+class depcom(Variable):
+    column = FixedStrCol(max_length = 5)
+    entity_class = Menages
+    label = u"Code INSEE (depcom) du lieu de résidence"
 
 class loyer_famille(PersonToEntityColumn):
     entity_class = Familles

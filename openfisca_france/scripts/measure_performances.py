@@ -12,7 +12,7 @@ import time
 import numpy as np
 from openfisca_core import periods, simulations
 from openfisca_core.tools import assert_near
-from openfisca_france import init_country
+from openfisca_france import FranceTaxBenefitSystem
 
 
 args = None
@@ -85,8 +85,7 @@ def timeit(method):
     return timed
 
 
-TaxBenefitSystem = init_country()
-tax_benefit_system = TaxBenefitSystem()
+tax_benefit_system = FranceTaxBenefitSystem()
 
 
 @timeit
