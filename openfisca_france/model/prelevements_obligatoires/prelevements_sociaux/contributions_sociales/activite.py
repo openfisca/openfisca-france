@@ -49,8 +49,15 @@ class assiette_csg_non_abattue(Variable):
     def function(self, simulation, period):
         period = period.this_month
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
+        complementaire_sante_employeur = simulation.calculate_add('complementaire_sante_employeur', period)
+        prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate_add(
+            'prise_en_charge_employeur_prevoyance_complementaire', period)
+
         # TODO + indemnites_journalieres_maladie,
-        return period, - prevoyance_obligatoire_cadre
+        return period, (
+            - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+            - complementaire_sante_employeur
+            )
 
 
 class csg_deductible_salaire(Variable):
@@ -138,13 +145,25 @@ class forfait_social(Variable):
             'prise_en_charge_employeur_prevoyance_complementaire', period)
         prise_en_charge_employeur_retraite_complementaire = simulation.calculate_add(
             'prise_en_charge_employeur_retraite_complementaire', period)
+        complementaire_sante_employeur = simulation.calculate_add('complementaire_sante_employeur', period)
+        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 
-        taux_plein = simulation.legislation_at(period.start).forfait_social.taux_plein
-        taux_reduit = simulation.legislation_at(period.start).forfait_social.taux_reduit
+        parametres = simulation.legislation_at(period.start).forfait_social
+        taux_plein = parametres.taux_plein
+        taux_reduit = parametres.taux_reduit
+        seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
 
         # TODO: complete this
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
-        assiette_taux_reduit = - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+
+        # Les cotisations de prévoyance complémentaire qui rentrent en compte dans l'assiette du taux réduit
+        # ne concernent que les entreprises de 10 ou 11 employés et plus
+        # https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
+        assiette_taux_reduit = (
+            - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+            - complementaire_sante_employeur
+            ) * (effectif_entreprise >= seuil_effectif_taux_reduit)
+
         return period, - (
             assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit
             )
@@ -179,11 +198,12 @@ class salaire_imposable(Variable):
         hsup = simulation.calculate('hsup', period)
         rev_microsocial_declarant1 = simulation.calculate_divide('rev_microsocial_declarant1', period)
         indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
+        complementaire_sante_salarie = simulation.calculate('complementaire_sante_salarie', period)
 
         return period, (
             salaire_de_base + primes_salaires + remuneration_principale +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement + csg_deductible_salaire +
-            cotisations_salariales - hsup + rev_microsocial_declarant1 + indemnite_fin_contrat
+            cotisations_salariales - hsup + rev_microsocial_declarant1 + indemnite_fin_contrat + complementaire_sante_salarie
             )
 
 

@@ -58,7 +58,7 @@ class cotisations_employeur_contributives(Variable):
         vieillesse_deplafonnee_employeur = simulation.calculate_add('vieillesse_deplafonnee_employeur', period)
         vieillesse_plafonnee_employeur = simulation.calculate_add('vieillesse_plafonnee_employeur', period)
 
-        cotisations_employeur_contributives = (
+        cotisations = (
             # prive
             ags +
             agff_employeur +
@@ -76,7 +76,7 @@ class cotisations_employeur_contributives(Variable):
             pension_civile_employeur +
             rafp_employeur
             )
-        return period, cotisations_employeur_contributives
+        return period, cotisations
 
 
 class cotisations_employeur_non_contributives(Variable):
@@ -94,6 +94,7 @@ class cotisations_employeur_non_contributives(Variable):
         famille = simulation.calculate('famille', period)
         mmid_employeur = simulation.calculate_add('mmid_employeur', period)
         taxe_salaires = simulation.calculate_add('taxe_salaires', period)
+        forfait_social = simulation.calculate_add('forfait_social', period)
 
         cotisations_employeur_non_contributives = (
             allocations_temporaires_invalidite +
@@ -101,7 +102,8 @@ class cotisations_employeur_non_contributives(Variable):
             contribution_solidarite_autonomie +
             famille +
             mmid_employeur +
-            taxe_salaires
+            taxe_salaires +
+            forfait_social
             )
         return period, cotisations_employeur_non_contributives
 

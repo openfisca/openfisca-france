@@ -1,7 +1,7 @@
 name: "Business Develop (N)"
 period: "2015-02"
 input_variables:
-  contrat_de_travail: 4  # forfait jour année
+  contrat_de_travail: 5  # forfait jour année
   depcom_entreprise: "75102"
   effectif_entreprise: 5
   forfait_jours_remuneres_volume: 217

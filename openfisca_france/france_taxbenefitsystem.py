@@ -48,5 +48,5 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
         # Compute one "zone APL" variable, to pre-load CSV of "code INSEE commune" to "Zone APL".
         from .model.prestations import aides_logement
         aides_logement.preload_zone_apl()
-        from .model.prelevements_obligatoires.prelevements_sociaux import taxes_salaires_main_oeuvre
-        taxes_salaires_main_oeuvre.preload_taux_versement_transport()
+        from .model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales import versement_transport
+        versement_transport.preload_taux_versement_transport()
