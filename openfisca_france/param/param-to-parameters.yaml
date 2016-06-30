@@ -83,6 +83,19 @@ prestations.aides_logement.autres.nv_seuil: prestations.aides_logement.al_min.mo
 prestations.aides_logement.pp.min: prestations.aides_logement.participation_min.montant_forfaitaire
 prestations.aides_logement.pp.taux: prestations.aides_logement.participation_min.taux
 prestations.aides_logement.pp : null
+#ars: prestations.prestations_familiales
+prestations.prestations_familiales.ars.agep: prestations.prestations_familiales.ars.age_entree_primaire
+prestations.prestations_familiales.ars.ages: prestations.prestations_familiales.ars.age_sortie_lycee
+prestations.prestations_familiales.ars.agec: prestations.prestations_familiales.ars.age_entree_college
+prestations.prestations_familiales.ars.agel: prestations.prestations_familiales.ars.age_entree_lycee
+prestations.prestations_familiales.ars.plaf_enf_supp: prestations.prestations_familiales.ars.majoration_par_enf_supp
+prestations.prestations_familiales.ars.seuil_nv: prestations.prestations_familiales.ars.montant_seuil_non_versement
+prestations.prestations_familiales.ars.plaf: prestations.prestations_familiales.ars.plafond_ressources
+prestations.prestations_familiales.ars.tx0610: prestations.prestations_familiales.ars.taux_6_10
+prestations.prestations_familiales.ars.tx1114: prestations.prestations_familiales.ars.taux_11_14
+prestations.prestations_familiales.ars.tx1518: prestations.prestations_familiales.ars.taux_15_17
+
+
 taxation_capital.prelevements_sociaux.base_pat: taxation_capital.prelevements_sociaux.prelevement_social.revenus_du_patrimoine
 taxation_capital.prelevements_sociaux.base_plac: taxation_capital.prelevements_sociaux.prelevement_social.produits_de_placement
 taxation_capital.prelevements_sociaux.add_pat: taxation_capital.prelevements_sociaux.caps.revenus_du_patrimoine

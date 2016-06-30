@@ -842,13 +842,13 @@ def transform_ipp_tree(root):
     taux_participation_fam_ipp['taux_4_enf'] = taux_4_enf = taux_participation_fam_ipp.pop('personnes_seules_et_couples_avec_4_enfants')
     taux_participation_fam_ipp['taux_enf_supp'] = taux_enf_supp = taux_participation_fam_ipp.pop('variation_de_tf_par_enfant_supplementaire')
     aides_logement['taux_participation_fam'] = taux_participation_fam = al_plaf_loc2.pop('taux_participation_fam_ipp')
-
+    del taux_participation_fam_ipp
     al_plaf_loc2['taux_participation_loyer_ipp'] = taux_participation_loyer_ipp = al_plaf_loc2.pop('tl')
     taux_participation_loyer_ipp['taux_tranche_1'] = taux_tranche_1 = taux_participation_loyer_ipp.pop('tl_pour_la_1ere_tranche')
     taux_participation_loyer_ipp['taux_tranche_2'] = taux_tranche_2 = taux_participation_loyer_ipp.pop('tl_pour_la_2eme_tranche')
     taux_participation_loyer_ipp['taux_tranche_3'] = taux_tranche_3 = taux_participation_loyer_ipp.pop('tl_pour_la_3eme_tranche')
     aides_logement['taux_participation_loyer'] = taux_participation_loyer = al_plaf_loc2.pop('taux_participation_loyer_ipp')
-
+    del taux_participation_loyer_ipp
     aides_logement['al_min'] = al_min = prestations.pop('al_min')
     al_min['montant_min_mensuel'] = montant_min_mensuel = al_min.pop('montant_minimal_mensuel')
     montant_min_mensuel['montant_min_apl_al'] = montant_min_apl_al = montant_min_mensuel.pop('apl_ou_al')
@@ -865,6 +865,31 @@ def transform_ipp_tree(root):
     #       Couple, 1 enfant (1): null  # Value must be a float
     #       couples_2_enfants_ou_plus_1: null  # Value must be a float
     #       Femmes enceintes (1): null  # Value must be a float
+    prestations_familiales['ars'] = ars = dict()
+    ars['ars_cond'] = ars_cond = prestations.pop('ars_cond')
+    ars_m = prestations.pop('ars_m')
+    ars_maj = prestations.pop('ars_maj')
+    ars_min = prestations.pop('ars_min')
+    ars_plaf = prestations.pop('ars_plaf')
+    ars_cond['age_entree_primaire'] = age_entree_primaire = ars_cond.pop('age_minimal_de_l_enfant_1')
+    ars_cond['age_sortie_lycee'] = age_sortie_lycee = ars_cond.pop('age_maximal_de_l_enfant_2')
+    ars['age_entree_primaire'] = age_entree_primaire = ars_cond.pop('age_entree_primaire')
+    ars['age_sortie_lycee'] = age_sortie_lycee = ars_cond.pop('age_sortie_lycee')
+    ars['majoration_par_enf_supp'] = majoration_par_enf_supp = ars_plaf.pop('majoration_par_enfant_en_du_plafond_de_ressources_avec_0_enfant')
+    ars['montant_seuil_non_versement'] = montant_seuil_non_versement = ars_min.pop('montant_minimum_verse')
+    ars['plafond_ressources'] = plafond_ressources = ars_plaf.pop('plafond_de_ressources_0_enfant')
+    ars['taux_6_10'] = taux_6_10 = ars_m.pop('enfants_entre_6_et_11_ans_en_de_la_bmaf_1')
+    ars['taux_11_14'] = taux_11_14 = ars_m.pop('enfants_entre_11_et_15_ans_en_de_la_bmaf_2')
+    ars['taux_15_17'] = taux_15_17 = ars_m.pop('enfants_de_plus_de_15_ans_en_de_la_bmaf_3')
+
+    #ars['age_cond'] = age_cond = prestations.pop('ars_cond')
+    #ars['ars_m'] = ars_m = prestations.pop('ars_m')
+    #ars['ars_maj'] = ars_maj = prestations.pop('ars_maj')
+    #ars['ars_min'] = ars_min = prestations.pop('ars_min')
+    #ars['ars_plaf'] = ars_plaf = prestations.pop('ars_plaf')
+
+
+
     del prestations['asi_cond']
     #   asi_cond:
     #     Âge minimal: null  # Value must be a float

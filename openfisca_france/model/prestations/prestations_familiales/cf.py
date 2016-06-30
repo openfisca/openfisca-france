@@ -130,10 +130,10 @@ class cf_plafond(Variable):
         plafond_metropole = pfam.cf.plafond * taux_plafond_metropole + pfam.cf.majoration_plafond_biact_isole * majoration_plafond
 
         # Calcul du taux à appliquer au plafond de base pour les DOM
-        taux_plafond_dom = 1 + cf_nbenf * pfam.ars.plaf_enf_supp
+        taux_plafond_dom = 1 + cf_nbenf * pfam.ars.majoration_par_enf_supp
 
         # Calcul du plafond pour les DOM
-        plafond_dom = pfam.ars.plaf * taux_plafond_dom
+        plafond_dom = pfam.ars.plafond_ressources * taux_plafond_dom
 
         plafond = (eligibilite_base * plafond_metropole + eligibilite_dom * plafond_dom)
 

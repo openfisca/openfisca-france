@@ -2176,103 +2176,6 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="ars_cond">
-    <CODE code="age_maximal_de_l_enfant_2">
-      <VALUE deb="1990-09-06" fuzzy="true" valeur="18" />
-      <VALUE deb="1976-08-18" fin="1990-09-05" valeur="16" />
-    </CODE>
-    <CODE code="age_minimal_de_l_enfant_1">
-      <VALUE deb="1976-08-18" fuzzy="true" valeur="6" />
-    </CODE>
-  </NODE>
-  <NODE code="ars_m">
-    <NODE code="ars1114">
-      <CODE code="enfants_entre_11_et_15_ans_en_de_la_bmaf_2" format="percent">
-        <VALUE deb="2012-09-03" fuzzy="true" valeur="0.9467" />
-        <VALUE deb="2008-08-03" fin="2012-09-02" valeur="0.7649" />
-        <VALUE deb="2001-08-01" fin="2008-08-02" valeur="0.7322" />
-        <VALUE deb="1997-08-01" fin="2001-07-31" valeur="0.2" />
-        <VALUE deb="1995-08-01" fin="1997-07-31" valeur="0.3223" />
-        <VALUE deb="1978-01-01" fin="1995-07-31" valeur="0.2" />
-      </CODE>
-    </NODE>
-    <NODE code="ars1517">
-      <CODE code="enfants_de_plus_de_15_ans_en_de_la_bmaf_3" format="percent">
-        <VALUE deb="2012-09-03" fuzzy="true" valeur="0.9795" />
-        <VALUE deb="2008-08-03" fin="2012-09-02" valeur="0.7915" />
-        <VALUE deb="2001-08-01" fin="2008-08-02" valeur="0.7322" />
-        <VALUE deb="1997-08-01" fin="2001-07-31" valeur="0.2" />
-        <VALUE deb="1995-08-01" fin="1997-07-31" valeur="0.3223" />
-        <VALUE deb="1978-01-01" fin="1995-07-31" valeur="0.2" />
-      </CODE>
-    </NODE>
-    <NODE code="ars610">
-      <CODE code="enfants_entre_6_et_11_ans_en_de_la_bmaf_1" format="percent">
-        <VALUE deb="2012-09-03" fuzzy="true" valeur="0.8972" />
-        <VALUE deb="2008-08-03" fin="2012-09-02" valeur="0.725" />
-        <VALUE deb="2001-08-01" fin="2008-08-02" valeur="0.7322" />
-        <VALUE deb="1997-08-01" fin="2001-07-31" valeur="0.2" />
-        <VALUE deb="1995-08-01" fin="1997-07-31" valeur="0.322274972703" />
-        <VALUE deb="1986-08-01" fin="1995-07-31" valeur="0.2" />
-      </CODE>
-    </NODE>
-  </NODE>
-  <NODE code="ars_maj">
-    <NODE code="maj_ars">
-      <CODE code="majoration_exceptionnelle" format="float" type="monetary">
-        <VALUE deb="2000-08-10" fuzzy="true" valeur="1170.16" />
-        <VALUE deb="1999-08-12" fin="2000-08-09" valeur="1173.14" />
-        <VALUE deb="1998-08-22" fin="1999-08-11" valeur="1176.13" />
-        <VALUE deb="1997-08-24" fin="1998-08-21" valeur="1178.3" />
-        <VALUE deb="1996-08-21" fin="1997-08-23" valeur="584.206" />
-        <VALUE deb="1995-08-12" fin="1996-08-20" valeur="830" />
-        <VALUE deb="1994-08-12" fin="1995-08-11" valeur="1089" />
-        <VALUE deb="1993-08-26" fin="1994-08-11" valeur="1097" />
-        <VALUE deb="1977-09-17" fin="1993-08-25" valeur="300" />
-      </CODE>
-    </NODE>
-  </NODE>
-  <NODE code="ars_min">
-    <CODE code="montant_minimum_verse" format="float" type="monetary">
-      <VALUE deb="2002-08-09" fuzzy="true" valeur="15" />
-    </CODE>
-  </NODE>
-  <NODE code="ars_plaf">
-    <CODE code="majoration_par_enfant_en_du_plafond_de_ressources_avec_0_enfant" format="percent">
-      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.3" />
-      <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.300011206993" />
-      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.30001697889" />
-      <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.3" />
-      <VALUE deb="2008-10-10" fin="2008-12-31" valeur="0.29999472212" />
-      <VALUE deb="1997-07-01" fin="2008-10-09" valeur="0.3" />
-      <VALUE deb="1986-07-01" fin="1997-06-30" valeur="0.230763896594" />
-      <VALUE deb="1978-07-13" fin="1986-06-30" valeur="0.3" />
-    </CODE>
-    <CODE code="plafond_de_ressources_0_enfant" format="float" type="monetary">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="18772" />
-      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="18697" />
-      <VALUE deb="2014-01-01" fin="2014-12-31" valeur="18567" />
-      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="18221" />
-      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="17846" />
-      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="17669" />
-      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="17651" />
-      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="17170" />
-      <VALUE deb="2008-10-10" fin="2008-12-31" valeur="18947" />
-      <VALUE deb="2007-07-01" fin="2008-10-09" valeur="16916" />
-      <VALUE deb="2006-07-01" fin="2007-06-30" valeur="13307" />
-      <VALUE deb="2005-07-01" fin="2006-06-30" valeur="13085" />
-      <VALUE deb="2004-07-01" fin="2005-06-30" valeur="12866" />
-      <VALUE deb="2003-07-01" fin="2004-06-30" valeur="12626" />
-      <VALUE deb="2002-07-01" fin="2003-06-30" valeur="12415" />
-      <VALUE deb="2001-07-01" fin="2002-06-30" valeur="80153" />
-      <VALUE deb="2000-07-01" fin="2001-06-30" valeur="78891" />
-      <VALUE deb="1999-07-01" fin="2000-06-30" valeur="78499" />
-      <VALUE deb="1998-07-01" fin="1999-06-30" valeur="78031" />
-      <VALUE deb="1997-07-01" fin="1998-06-30" valeur="77182" />
-      <VALUE deb="1986-07-01" fin="1997-06-30" valeur="72104" />
-      <VALUE deb="1978-07-13" fin="1986-06-30" valeur="25500" />
-    </CODE>
-  </NODE>
   <NODE code="asf">
     <NODE code="montant_de_l_asf_en_de_la_bmaf">
       <CODE code="orphelin_ou_assimile_d_un_seul_parent" format="percent">
@@ -3085,24 +2988,36 @@
       </CODE>
     </NODE>
     <NODE code="ars" description="Allocation de rentrée scolaire">
-      <CODE code="agec" description="Âge d'entrée au collège" format="integer" type="age">
+      <CODE code="age_entree_college" description="Âge d'entrée au collège" format="integer" type="age">
         <VALUE deb="2015-04-01" fuzzy="true" valeur="11" />
         <VALUE deb="2002-01-01" fin="2015-03-31" valeur="11" />
       </CODE>
-      <CODE code="agel" description="Âge d'entrée au lycée" format="integer" type="age">
+      <CODE code="age_entree_lycee" description="Âge d'entrée au lycée" format="integer" type="age">
         <VALUE deb="2015-04-01" fuzzy="true" valeur="15" />
         <VALUE deb="2002-01-01" fin="2015-03-31" valeur="15" />
       </CODE>
-      <CODE code="agep" description="Âge d'entrée à l'école primaire" format="integer" type="age">
-        <VALUE deb="2015-04-01" fuzzy="true" valeur="6" />
-        <VALUE deb="2002-01-01" fin="2015-03-31" valeur="6" />
+      <CODE code="age_entree_primaire" description="Âge d'entrée à l'école primaire">
+        <VALUE deb="1976-08-18" fuzzy="true" valeur="6" />
       </CODE>
-      <CODE code="ages" description="Âge de sortie du lycée" format="integer" type="age">
-        <VALUE deb="2015-04-01" fuzzy="true" valeur="18" />
-        <VALUE deb="2002-01-01" fin="2015-03-31" valeur="18" />
+      <CODE code="age_sortie_lycee" description="Âge de sortie du lycée">
+        <VALUE deb="1990-09-06" fuzzy="true" valeur="18" />
+        <VALUE deb="1976-08-18" fin="1990-09-05" valeur="16" />
       </CODE>
-      <CODE code="plaf" description="Plafond de ressources" format="integer" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="18697" />
+      <CODE code="majoration_par_enf_supp" description="Majoration du plafond de ressources par enfant à charge" format="percent">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.3" />
+        <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.300011206993" />
+        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.30001697889" />
+        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.3" />
+        <VALUE deb="2008-10-10" fin="2008-12-31" valeur="0.29999472212" />
+        <VALUE deb="1997-07-01" fin="2008-10-09" valeur="0.3" />
+        <VALUE deb="1986-07-01" fin="1997-06-30" valeur="0.230763896594" />
+        <VALUE deb="1978-07-13" fin="1986-06-30" valeur="0.3" />
+      </CODE>
+      <CODE code="montant_seuil_non_versement" description="Seuil de non versement" format="float" type="monetary">
+        <VALUE deb="2002-08-09" fuzzy="true" valeur="15" />
+      </CODE>
+      <CODE code="plafond_ressources" description="Plafond de ressources" format="float" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="18772" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="18697" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="18567" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="18221" />
@@ -3110,39 +3025,44 @@
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="17669" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="17651" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="17170" />
-        <VALUE deb="2006-07-01" fin="2008-12-31" valeur="16916" />
-        <VALUE deb="2005-07-01" fin="2006-06-30" valeur="13307" />
+        <VALUE deb="2008-10-10" fin="2008-12-31" valeur="18947" />
+        <VALUE deb="2007-07-01" fin="2008-10-09" valeur="16916" />
+        <VALUE deb="2006-07-01" fin="2007-06-30" valeur="13307" />
+        <VALUE deb="2005-07-01" fin="2006-06-30" valeur="13085" />
         <VALUE deb="2004-07-01" fin="2005-06-30" valeur="12866" />
         <VALUE deb="2003-07-01" fin="2004-06-30" valeur="12626" />
         <VALUE deb="2002-07-01" fin="2003-06-30" valeur="12415" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="12219" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="12027" />
+        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="80153" />
+        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="78891" />
+        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="78499" />
+        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="78031" />
+        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="77182" />
+        <VALUE deb="1986-07-01" fin="1997-06-30" valeur="72104" />
+        <VALUE deb="1978-07-13" fin="1986-06-30" valeur="25500" />
       </CODE>
-      <CODE code="plaf_enf_supp" description="Majoration du plafond de ressources par enfant à charge" format="percent">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.3" />
-        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.3" />
+      <CODE code="taux_11_14" description="Taux pour les collégiens (en % de bmaf)" format="percent">
+        <VALUE deb="2012-09-03" fuzzy="true" valeur="0.9467" />
+        <VALUE deb="2008-08-03" fin="2012-09-02" valeur="0.7649" />
+        <VALUE deb="2001-08-01" fin="2008-08-02" valeur="0.7322" />
+        <VALUE deb="1997-08-01" fin="2001-07-31" valeur="0.2" />
+        <VALUE deb="1995-08-01" fin="1997-07-31" valeur="0.3223" />
+        <VALUE deb="1978-01-01" fin="1995-07-31" valeur="0.2" />
       </CODE>
-      <CODE code="seuil_nv" description="Seuil de non versement" format="integer" type="monetary">
-        <VALUE deb="2015-04-01" fuzzy="true" valeur="15" />
-        <VALUE deb="2002-01-01" fin="2015-03-31" valeur="15" />
+      <CODE code="taux_15_17" description="Taux pour les lycéens (en % de bmaf)" format="percent">
+        <VALUE deb="2012-09-03" fuzzy="true" valeur="0.9795" />
+        <VALUE deb="2008-08-03" fin="2012-09-02" valeur="0.7915" />
+        <VALUE deb="2001-08-01" fin="2008-08-02" valeur="0.7322" />
+        <VALUE deb="1997-08-01" fin="2001-07-31" valeur="0.2" />
+        <VALUE deb="1995-08-01" fin="1997-07-31" valeur="0.3223" />
+        <VALUE deb="1978-01-01" fin="1995-07-31" valeur="0.2" />
       </CODE>
-      <CODE code="tx0610" description="Taux pour les écoliers (en % de bmaf)" format="percent">
-        <VALUE deb="2015-04-01" fuzzy="true" valeur="0.8972" />
-        <VALUE deb="2012-09-03" fin="2015-03-31" valeur="0.8972" />
-        <VALUE deb="2008-01-01" fin="2012-09-02" valeur="0.725" />
-        <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.7322" />
-      </CODE>
-      <CODE code="tx1114" description="Taux pour les collégiens (en % de bmaf)" format="percent">
-        <VALUE deb="2015-04-01" fuzzy="true" valeur="0.9467" />
-        <VALUE deb="2012-09-01" fin="2015-03-31" valeur="0.9467" />
-        <VALUE deb="2008-01-01" fin="2012-08-31" valeur="0.7649" />
-        <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.7322" />
-      </CODE>
-      <CODE code="tx1518" description="Taux pour les lycéens (en % de bmaf)" format="percent">
-        <VALUE deb="2015-04-01" fuzzy="true" valeur="0.9795" />
-        <VALUE deb="2012-09-03" fin="2015-03-31" valeur="0.9795" />
-        <VALUE deb="2008-01-01" fin="2012-09-02" valeur="0.7915" />
-        <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.7322" />
+      <CODE code="taux_6_10" description="Taux pour les écoliers (en % de bmaf)" format="percent">
+        <VALUE deb="2012-09-03" fuzzy="true" valeur="0.8972" />
+        <VALUE deb="2008-08-03" fin="2012-09-02" valeur="0.725" />
+        <VALUE deb="2001-08-01" fin="2008-08-02" valeur="0.7322" />
+        <VALUE deb="1997-08-01" fin="2001-07-31" valeur="0.2" />
+        <VALUE deb="1995-08-01" fin="1997-07-31" valeur="0.322274972703" />
+        <VALUE deb="1986-08-01" fin="1995-07-31" valeur="0.2" />
       </CODE>
     </NODE>
     <NODE code="asf" description="Allocation de soutien familial">
