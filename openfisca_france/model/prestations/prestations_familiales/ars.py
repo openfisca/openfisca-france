@@ -48,9 +48,9 @@ class ars(Variable):
         # Plafond en fonction du nb d'enfants A CHARGE (Cf. article R543)
         ars_plaf_res = P.ars.plafond_ressources * (1 + af_nbenf * P.ars.majoration_par_enf_supp)
         arsbase = bmaf * (
-            P.ars.taux_6_10 * enf_primaire +
-            P.ars.taux_11_14 * enf_college +
-            P.ars.taux_15_17 * enf_lycee
+            P.ars.taux_primaire * enf_primaire +
+            P.ars.taux_college * enf_college +
+            P.ars.taux_lycee * enf_lycee
             )
         # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
         # ars_diff = (ars_plaf_res + arsbase - base_ressources) / arsnbenf

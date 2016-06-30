@@ -878,9 +878,9 @@ def transform_ipp_tree(root):
     ars['majoration_par_enf_supp'] = majoration_par_enf_supp = ars_plaf.pop('majoration_par_enfant_en_du_plafond_de_ressources_avec_0_enfant')
     ars['montant_seuil_non_versement'] = montant_seuil_non_versement = ars_min.pop('montant_minimum_verse')
     ars['plafond_ressources'] = plafond_ressources = ars_plaf.pop('plafond_de_ressources_0_enfant')
-    ars['taux_6_10'] = taux_6_10 = ars_m.pop('enfants_entre_6_et_11_ans_en_de_la_bmaf_1')
-    ars['taux_11_14'] = taux_11_14 = ars_m.pop('enfants_entre_11_et_15_ans_en_de_la_bmaf_2')
-    ars['taux_15_17'] = taux_15_17 = ars_m.pop('enfants_de_plus_de_15_ans_en_de_la_bmaf_3')
+    ars['taux_primaire'] = taux_primaire = ars_m.pop('enfants_entre_6_et_11_ans_en_de_la_bmaf_1')
+    ars['taux_college'] = taux_college = ars_m.pop('enfants_entre_11_et_15_ans_en_de_la_bmaf_2')
+    ars['taux_lycee'] = taux_lycee = ars_m.pop('enfants_de_plus_de_15_ans_en_de_la_bmaf_3')
 
     #ars['age_cond'] = age_cond = prestations.pop('ars_cond')
     #ars['ars_m'] = ars_m = prestations.pop('ars_m')
@@ -889,11 +889,25 @@ def transform_ipp_tree(root):
     #ars['ars_plaf'] = ars_plaf = prestations.pop('ars_plaf')
 
 
+    prestations['minima_sociaux'] = minima_sociaux = dict()
+    del prestations['asi_cond']['condition_d_age_et_de_ressources']
+    del prestations['asi_cond']['age_minimal']
+    minima_sociaux['asi'] = prestations.pop('asi_cond')
+    minima_sociaux['asi'].update(prestations.pop('asi_m_plaf'))
+    asi = minima_sociaux['asi']
+    montant = asi['montant']
+    plafond_de_ressources = asi['plafond_de_ressources']
+    asi['plafond_ressource_seul'] = plafond_ressource_seul = plafond_de_ressources.pop('personnes_seules')
+    asi['plafond_ressource_couple'] = plafond_ressource_couple = plafond_de_ressources.pop('couples')
+    asi['montant_seul'] = montant_seul = montant.pop('1_allocataire')
+    asi['montant_couple'] = montant_couple = montant.pop('2_allocataires')
 
-    del prestations['asi_cond']
-    #   asi_cond:
-    #     Âge minimal: null  # Value must be a float
-    #     Condition d'âge et de ressources: null  # Value must be a float
+    #plafond_ressource_seul = plafond_de_ressources['personnes_seules']
+    # plafond_ressource_couple = asi['couples']
+    #montant_couple = asi['2_allocataires']
+    #montant_seul = asi['1_allocataire']
+
+
     del prestations['cf_maj']
     #   cf_maj:
     #     Majoration:

@@ -91,9 +91,13 @@ prestations.prestations_familiales.ars.agel: prestations.prestations_familiales.
 prestations.prestations_familiales.ars.plaf_enf_supp: prestations.prestations_familiales.ars.majoration_par_enf_supp
 prestations.prestations_familiales.ars.seuil_nv: prestations.prestations_familiales.ars.montant_seuil_non_versement
 prestations.prestations_familiales.ars.plaf: prestations.prestations_familiales.ars.plafond_ressources
-prestations.prestations_familiales.ars.tx0610: prestations.prestations_familiales.ars.taux_6_10
-prestations.prestations_familiales.ars.tx1114: prestations.prestations_familiales.ars.taux_11_14
-prestations.prestations_familiales.ars.tx1518: prestations.prestations_familiales.ars.taux_15_17
+prestations.prestations_familiales.ars.tx0610: prestations.prestations_familiales.ars.taux_primaire
+prestations.prestations_familiales.ars.tx1114: prestations.prestations_familiales.ars.taux_college
+prestations.prestations_familiales.ars.tx1518: prestations.prestations_familiales.ars.taux_lycee
+# minima sociaux
+minim: prestations.minima_sociaux
+prestations.minima_sociaux.asi.plaf_seul: prestations.minima_sociaux.asi.plafond_ressource_seul
+prestations.minima_sociaux.asi.plaf_couple: prestations.minima_sociaux.asi.plafond_ressource_couple
 
 
 taxation_capital.prelevements_sociaux.base_pat: taxation_capital.prelevements_sociaux.prelevement_social.revenus_du_patrimoine

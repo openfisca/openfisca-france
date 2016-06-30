@@ -128,7 +128,7 @@ class aspa_eligibilite(Variable):
         age = simulation.calculate('age', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
         taux_incapacite = simulation.calculate('taux_incapacite', period)
-        P = simulation.legislation_at(period.start).minim
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux
         condition_invalidite = (taux_incapacite > P.aspa.taux_incapacite_aspa_anticipe) + inapte_travail
         condition_age_base = (age >= P.aspa.age_min)
         condition_age_anticipe = (age >= P.aah.age_legal_retraite) * condition_invalidite
@@ -204,7 +204,7 @@ class asi(Variable):
         en_couple = simulation.calculate('en_couple', period)
         asi_aspa_nb_alloc = simulation.calculate('asi_aspa_nb_alloc', period)
         base_ressources = simulation.calculate('asi_aspa_base_ressources', period)
-        P = simulation.legislation_at(period.start).minim
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux
 
         asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
         aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
@@ -230,9 +230,9 @@ class asi(Variable):
 
         ressources = base_ressources + montant_max
 
-        plafond_ressources = (elig1 * (P.asi.plaf_seul * not_(en_couple) + P.asi.plaf_couple * en_couple) +
-            elig2 * P.asi.plaf_couple +
-            elig3 * P.asi.plaf_couple +
+        plafond_ressources = (elig1 * (P.asi.plafond_ressource_seul * not_(en_couple) + P.asi.plafond_ressource_couple * en_couple) +
+            elig2 * P.asi.plafond_ressource_couple +
+            elig3 * P.asi.plafond_ressource_couple +
             elig4 * P.aspa.plaf_couple +
             elig5 * P.aspa.plaf_couple) / 12
 
@@ -286,7 +286,7 @@ class aspa(Variable):
         en_couple = simulation.calculate('en_couple', period)
         asi_aspa_nb_alloc = simulation.calculate('asi_aspa_nb_alloc', period)
         base_ressources = simulation.calculate('asi_aspa_base_ressources', period)
-        P = simulation.legislation_at(period.start).minim
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux
 
         asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
         aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
