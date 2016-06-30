@@ -94,6 +94,8 @@ prestations.prestations_familiales.ars.plaf: prestations.prestations_familiales.
 prestations.prestations_familiales.ars.tx0610: prestations.prestations_familiales.ars.taux_primaire
 prestations.prestations_familiales.ars.tx1114: prestations.prestations_familiales.ars.taux_college
 prestations.prestations_familiales.ars.tx1518: prestations.prestations_familiales.ars.taux_lycee
+prestations.prestations_familiales.asf.taux1: prestations.prestations_familiales.asf.taux_1_parent
+prestations.prestations_familiales.asf.taux2: prestations.prestations_familiales.asf.taux_2_parents
 # minima sociaux
 minim: prestations.minima_sociaux
 prestations.minima_sociaux.asi.plaf_seul: prestations.minima_sociaux.asi.plafond_ressource_seul

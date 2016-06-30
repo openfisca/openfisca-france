@@ -902,10 +902,13 @@ def transform_ipp_tree(root):
     asi['montant_seul'] = montant_seul = montant.pop('1_allocataire')
     asi['montant_couple'] = montant_couple = montant.pop('2_allocataires')
 
-    #plafond_ressource_seul = plafond_de_ressources['personnes_seules']
-    # plafond_ressource_couple = asi['couples']
-    #montant_couple = asi['2_allocataires']
-    #montant_seul = asi['1_allocataire']
+    prestations_familiales['asf'] = prestations.pop('asf')
+    asf = prestations_familiales['asf']
+    montant_de_l_asf_en_de_la_bmaf = asf['montant_de_l_asf_en_de_la_bmaf']
+    asf['taux_1_parent'] = taux_1_parent = montant_de_l_asf_en_de_la_bmaf.pop('orphelin_ou_assimile_d_un_seul_parent')
+    asf['taux_2_parents'] = taux_2_parents = montant_de_l_asf_en_de_la_bmaf.pop('orphelin_ou_assimile_des_deux_parents')
+
+
 
 
     del prestations['cf_maj']
