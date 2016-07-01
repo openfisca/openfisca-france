@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-
+import datetime
 import logging
 
 from ....base import *  # noqa analysis:ignore
@@ -150,23 +150,25 @@ class forfait_social(Variable):
 
         parametres = simulation.legislation_at(period.start).prelevements_sociaux.forfait_social
         taux_plein = parametres.taux_plein
-        taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
         seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
-
         # TODO: complete this
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
 
         # Les cotisations de prévoyance complémentaire qui rentrent en compte dans l'assiette du taux réduit
         # ne concernent que les entreprises de 10 ou 11 employés et plus
         # https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
-        assiette_taux_reduit = (
-            - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
-            - complementaire_sante_employeur
-            ) * (effectif_entreprise >= seuil_effectif_taux_reduit)
+        if period.start.date >= datetime.date(2012, 8, 01):
+            taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
+            assiette_taux_reduit = (
+                - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+                - complementaire_sante_employeur
+                ) * (effectif_entreprise >= seuil_effectif_taux_reduit)
 
-        return period, - (
-            assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit
-            )
+            return period, - (
+                assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit
+                )
+        else:
+            return period, - assiette_taux_plein * taux_plein
 
 
 class salaire_imposable(Variable):
