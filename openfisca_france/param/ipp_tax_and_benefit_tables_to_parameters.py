@@ -896,6 +896,78 @@ def transform_ipp_tree(root):
     complement_familial_en_de_la_bmaf_en_de_la_bmaf = cf['complement_familial_en_de_la_bmaf_en_de_la_bmaf']
     cf['taux_cf_base'] = taux_cf_base = complement_familial_en_de_la_bmaf_en_de_la_bmaf.pop('montant_de_base')
     cf['taux_cf_majore'] = taux_cf_majore = complement_familial_en_de_la_bmaf_en_de_la_bmaf.pop('montant_majore')
+    #ape
+    prestations_familiales['ape'] = ape = dict()
+    prestations_familiales['ape'] = ape = prestations.pop('ape')
+    ape = prestations_familiales['ape']
+    ape['age_max_enfant'] = age_max_enfant = ape.pop('age_maximal_de_l_enfant_1')
+    montant_mensuel_en_de_la_base_de_calcul = ape['montant_mensuel_en_de_la_base_de_calcul']
+    ape['taux_activite_sup_50'] = taux_activite_sup_50 = montant_mensuel_en_de_la_base_de_calcul.pop('pour_une_activite_de_plus_de_85h_mois_50_duree_legale')
+    ape['taux_activite_sup_80'] = taux_activite_sup_80 = montant_mensuel_en_de_la_base_de_calcul.pop('pour_une_activite_ou_formation_comprise_entre_50_et_80_de_la_duree_legale')
+    ape['taux_inactivite'] = taux_inactivite = montant_mensuel_en_de_la_base_de_calcul.pop('a_taux_plein')
+    # apje
+    prestations_familiales['apje'] = apje = dict()
+    prestations_familiales['apje'].update(prestations.pop('apje_cm'))
+    prestations_familiales['apje'].update(prestations.pop('apje_plaf'))
+    apje = prestations_familiales['apje']
+    apje['age_max_dernier_enf'] = age_max_dernier_enf = apje.pop('age_limite_des_enfants_ouvrant_droit_a_l_apje_2')
+    majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant = apje['majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant']
+    apje['taux_enfant_1_et_2'] = taux_enfant_1_et_2 = majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant.pop('1er_et_2eme_enfant')
+    apje['taux_enfant_3_et_plus'] = taux_enfant_3_et_plus = majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant.pop('3eme_enfant_et_plus')
+    apje['taux'] = taux = apje.pop('montant_de_l_apje_en_de_la_bmaf')
+
+
+
+
+
+
+
+
+
+    del prestations['paje_cm2']['conditions_pour_qu_un_enfant_adopte_ouvre_droit_a_la_prime_a_son_arrivee']
+    prestations_familiales['paje'] = paje = dict()
+    paje = prestations_familiales['paje']
+    prestations_familiales['paje'].update(prestations.pop('paje_cm'))
+    prestations_familiales['paje'].update(prestations.pop('paje_cm2'))
+    prestations_familiales['paje'].update(prestations.pop('paje_plaf'))
+    paje['base'] = base = dict()
+    paje['clca'] = clca = dict()
+    paje['clmg'] = clmg = dict()
+    paje['colca'] = colca = dict()
+    paje['prime_naissance'] = prime_naissance = dict()
+    base = paje['base']
+    clca = paje['clca']
+    clmg = paje['clmg']
+    colca = paje['colca']
+    prime_naissance = paje['prime_naissance']
+    age_limite = paje['age_limite']
+    paje['age_max_enfant'] = age_max = age_limite.pop('pour_un_enfant_non_adopte')
+    base['age_max_enfant'] = age_max_enfant = paje['age_max_enfant']
+    clca['age_max_enfant'] = age_max_enfant = paje['age_max_enfant']
+    paje['paje_ipp'] = paje_ipp = paje.pop('paje')
+    paje_ipp = paje['paje_ipp']
+    #paje['taux_allocation_base'] = taux_allocation_base = paje_ipp.pop('allocation_de_base_en_de_la_bmaf')
+    #base['taux_allocation_base'] = taux_allocation_base = paje.pop('taux_allocation_base')
+    #complement_de_libre_choix_d_activite_clca = paje['complement_de_libre_choix_d_activite_clca']
+
+
+
+
+    #paje['base'] =
+    #clca = paje['clca']
+    #clmg = paje['clmg']
+    #colca = paje['colca']
+    #prime_naissance =
+
+
+
+
+
+
+
+
+
+
 
     prestations['minima_sociaux'] = minima_sociaux = dict()
     del prestations['asi_cond']['condition_d_age_et_de_ressources']
@@ -927,12 +999,7 @@ def transform_ipp_tree(root):
     #        Biactifs et parents isolés:
     #     Plafond de ressources _ 0 enfant: null  # Value must be a float
     #   paje_cm:
-    del prestations['paje_cm']
-    #     age_limite:
-    #       pour_les_enfants_adoptes: null  # Value must be a float
-    del prestations['paje_cm2']
-    #   paje_cm2:
-    #     conditions_pour_qu_un_enfant_adopte_ouvre_droit_a_la_prime_a_son_arrivee: null  # Value must be a float
+
     del prestations['pjm_prets']
     #   pjm_prets:
     #     cumul_de_prets: null  # Value must be a float

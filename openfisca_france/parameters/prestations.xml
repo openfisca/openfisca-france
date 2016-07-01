@@ -1982,46 +1982,6 @@
       <VALUE deb="1974-07-01" fin="1977-12-31" valeur="23040" />
     </CODE>
   </NODE>
-  <NODE code="ape">
-    <CODE code="age_maximal_de_l_enfant_1">
-      <VALUE deb="1985-01-01" fuzzy="true" valeur="3" />
-    </CODE>
-    <CODE code="annees_d_activite_precedant_la_demande">
-      <VALUE deb="1985-01-01" fuzzy="true" valeur="2" />
-    </CODE>
-    <CODE code="duree_de_l_allocation_maximale_mois">
-      <VALUE deb="1987-04-01" fuzzy="true" valeur="36" />
-      <VALUE deb="1985-01-01" fin="1987-03-31" valeur="24" />
-    </CODE>
-    <NODE code="intervalle_considere_pour_le_calcul_du_nombre_d_annees_d_activite_precedant_la_demande_d_ape_mois">
-      <CODE code="pour_le_2e_enfant">
-        <VALUE deb="1994-07-01" fuzzy="true" valeur="60" />
-      </CODE>
-      <CODE code="pour_le_3e_enfant">
-        <VALUE deb="1987-04-01" fuzzy="true" valeur="120" />
-        <VALUE deb="1985-01-01" fin="1987-03-31" valeur="30" />
-      </CODE>
-    </NODE>
-    <NODE code="montant_mensuel_en_de_la_base_de_calcul">
-      <CODE code="a_taux_plein" format="percent">
-        <VALUE deb="1987-04-01" fuzzy="true" valeur="1.4257" />
-        <VALUE deb="1986-07-01" fin="1987-03-31" valeur="0.902" />
-        <VALUE deb="1985-01-01" fin="1986-06-30" valeur="0.624" />
-      </CODE>
-      <CODE code="pour_une_activite_de_plus_de_85h_mois_50_duree_legale" format="percent">
-        <VALUE deb="1994-07-01" fuzzy="true" valeur="0.9427" />
-        <VALUE deb="1985-01-01" fin="1994-06-30" valeur="0.451" />
-      </CODE>
-      <CODE code="pour_une_activite_ou_formation_comprise_entre_50_et_80_de_la_duree_legale" format="percent">
-        <VALUE deb="1987-04-01" fuzzy="true" valeur="0.7129" />
-        <VALUE deb="1985-01-01" fin="1987-03-31" valeur="0.451" />
-      </CODE>
-    </NODE>
-    <CODE code="nombre_minimal_d_enfants_pris_en_charge">
-      <VALUE deb="1994-07-01" fuzzy="true" valeur="2" />
-      <VALUE deb="1985-01-01" fin="1994-06-30" valeur="3" />
-    </CODE>
-  </NODE>
   <NODE code="api_cond">
     <CODE code="age_limite_de_l_enfant_en_annee_2">
       <VALUE deb="1976-10-01" fin="2009-05-31" valeur="3" />
@@ -2048,52 +2008,6 @@
         <VALUE deb="1976-10-01" fin="1977-11-26" valeur="0.44" />
       </CODE>
     </NODE>
-  </NODE>
-  <NODE code="apje_cm">
-    <CODE code="age_limite_des_enfants_ouvrant_droit_a_l_apje_2">
-      <VALUE deb="1985-01-01" fin="2003-12-31" valeur="3" />
-    </CODE>
-    <CODE code="mois_de_grossesse_ou_ouverture_des_droits_1">
-      <VALUE deb="1996-07-01" fin="2003-12-31" valeur="4" />
-      <VALUE deb="1985-01-01" fin="1996-06-30" valeur="3" />
-    </CODE>
-    <CODE code="montant_de_l_apje_en_de_la_bmaf" format="percent">
-      <VALUE deb="1985-01-01" fin="2003-12-31" valeur="0.4595" />
-    </CODE>
-  </NODE>
-  <NODE code="apje_plaf">
-    <NODE code="majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant">
-      <CODE code="1er_et_2eme_enfant" format="percent">
-        <VALUE deb="1996-07-01" fin="2006-12-31" valeur="0.25" />
-      </CODE>
-      <CODE code="3eme_enfant_et_plus" format="percent">
-        <VALUE deb="1996-07-01" fin="2006-12-31" valeur="0.3" />
-      </CODE>
-      <CODE code="biactifs_et_parents_isoles_1" format="float" type="monetary">
-        <VALUE deb="2005-07-01" fin="2006-12-31" valeur="5869" />
-        <VALUE deb="2004-07-01" fin="2005-06-30" valeur="5771" />
-        <VALUE deb="2003-07-01" fin="2004-06-30" valeur="5663" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="5568" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="5480.69" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="35385" />
-        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="35209" />
-        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="34999" />
-        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="34618" />
-        <VALUE deb="1996-07-01" fin="1997-06-30" valeur="33973" />
-      </CODE>
-    </NODE>
-    <CODE code="plafond_de_ressources_0_enfant" format="float" type="monetary">
-      <VALUE deb="2005-07-01" fin="2006-12-31" valeur="14602" />
-      <VALUE deb="2004-07-01" fin="2005-06-30" valeur="14358" />
-      <VALUE deb="2003-07-01" fin="2004-06-30" valeur="14090" />
-      <VALUE deb="2002-07-01" fin="2003-06-30" valeur="13854" />
-      <VALUE deb="2001-07-01" fin="2002-06-30" valeur="13636.26" />
-      <VALUE deb="2000-07-01" fin="2001-06-30" valeur="88039" />
-      <VALUE deb="1999-07-01" fin="2000-06-30" valeur="87601" />
-      <VALUE deb="1998-07-01" fin="1999-06-30" valeur="87072" />
-      <VALUE deb="1997-07-01" fin="1998-06-30" valeur="86132" />
-      <VALUE deb="1996-07-01" fin="1997-06-30" valeur="84526" />
-    </CODE>
   </NODE>
   <NODE code="apn_t_maj">
     <NODE code="majoration_naissance_ou_adoption">
@@ -2863,46 +2777,6 @@
       <VALUE deb="2016-01-01" fuzzy="true" valeur="15" />
     </CODE>
   </NODE>
-  <NODE code="paje_plaf">
-    <NODE code="majoration_en_ou_en_du_plafond_de_ressources_avec_0_enfant">
-      <CODE code="1er_et_2eme_enfant" format="percent">
-        <VALUE deb="2004-01-01" fuzzy="true" valeur="0.25" />
-      </CODE>
-      <CODE code="3eme_enfant_et_plus" format="percent">
-        <VALUE deb="2004-01-01" fuzzy="true" valeur="0.3" />
-      </CODE>
-      <CODE code="biactifs_et_parents_isoles_1" format="float" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="11534" />
-        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="11488" />
-        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="11408" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="11195" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="10965" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="10856" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="10845" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="10550" />
-        <VALUE deb="2007-07-01" fin="2008-12-31" valeur="10394" />
-        <VALUE deb="2006-07-01" fin="2007-06-30" valeur="8176" />
-        <VALUE deb="2005-07-01" fin="2006-06-30" valeur="8039" />
-        <VALUE deb="2004-07-01" fin="2005-06-30" valeur="7905" />
-        <VALUE deb="2004-01-01" fin="2004-06-30" valeur="7758" />
-      </CODE>
-    </NODE>
-    <CODE code="plafond_de_ressources_0_enfant" format="float" type="monetary">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="28697" />
-      <VALUE deb="2015-01-01" fin="2015-12-31" valeur="28583" />
-      <VALUE deb="2014-01-01" fin="2014-12-31" valeur="28384" />
-      <VALUE deb="2013-01-01" fin="2013-12-31" valeur="27855" />
-      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="27282" />
-      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="27012" />
-      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="26985" />
-      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="26250" />
-      <VALUE deb="2007-07-01" fin="2008-12-31" valeur="25862" />
-      <VALUE deb="2006-07-01" fin="2007-06-30" valeur="20344" />
-      <VALUE deb="2005-07-01" fin="2006-06-30" valeur="20004" />
-      <VALUE deb="2004-07-01" fin="2005-06-30" valeur="19670" />
-      <VALUE deb="2004-01-01" fin="2004-06-30" valeur="19303" />
-    </CODE>
-  </NODE>
   <NODE code="pd">
     <NODE code="taux_en_de_la_bmaf">
       <CODE code="1_enfant" format="percent">
@@ -3289,22 +3163,64 @@
       </CODE>
     </NODE>
     <NODE code="ape" description="Allocation parentale d'éducation (APE)">
-      <CODE code="age" description="Limite d'âge (stricte) pour bénéficier de l'APE" format="integer" type="age">
-        <VALUE deb="2000-01-01" fin="2006-06-30" valeur="3" />
+      <CODE code="age_max_enfant" description="Limite d'âge (stricte) pour bénéficier de l'APE">
+        <VALUE deb="1985-01-01" fuzzy="true" valeur="3" />
       </CODE>
-      <CODE code="tx_50" description="Activité au plus égale au mi-temps de la durée légale du travail (en % de la bmaf)" format="percent">
-        <VALUE deb="2000-01-01" fin="2006-06-30" valeur=".9427" />
+      <CODE code="annees_d_activite_precedant_la_demande">
+        <VALUE deb="1985-01-01" fuzzy="true" valeur="2" />
       </CODE>
-      <CODE code="tx_80" description="Activité entre 50% et 80% de la durée légale du travail (en % de la bmaf)" format="percent">
-        <VALUE deb="2000-01-01" fin="2006-06-30" valeur=".7129" />
+      <CODE code="duree_de_l_allocation_maximale_mois">
+        <VALUE deb="1987-04-01" fuzzy="true" valeur="36" />
+        <VALUE deb="1985-01-01" fin="1987-03-31" valeur="24" />
       </CODE>
-      <CODE code="tx_inactif" description="Cessation complète d'activité à plein temps (en % de la bmaf)" format="percent">
-        <VALUE deb="1987-04-01" fin="2006-06-30" valeur="1.4275" />
+      <NODE code="intervalle_considere_pour_le_calcul_du_nombre_d_annees_d_activite_precedant_la_demande_d_ape_mois">
+        <CODE code="pour_le_2e_enfant">
+          <VALUE deb="1994-07-01" fuzzy="true" valeur="60" />
+        </CODE>
+        <CODE code="pour_le_3e_enfant">
+          <VALUE deb="1987-04-01" fuzzy="true" valeur="120" />
+          <VALUE deb="1985-01-01" fin="1987-03-31" valeur="30" />
+        </CODE>
+      </NODE>
+      <CODE code="nombre_minimal_d_enfants_pris_en_charge">
+        <VALUE deb="1994-07-01" fuzzy="true" valeur="2" />
+        <VALUE deb="1985-01-01" fin="1994-06-30" valeur="3" />
+      </CODE>
+      <CODE code="taux_activite_sup_50" description="Activité au plus égale au mi-temps de la durée légale du travail (en % de la bmaf)" format="percent">
+        <VALUE deb="1994-07-01" fuzzy="true" valeur="0.9427" />
+        <VALUE deb="1985-01-01" fin="1994-06-30" valeur="0.451" />
+      </CODE>
+      <CODE code="taux_activite_sup_80" description="Activité entre 50% et 80% de la durée légale du travail (en % de la bmaf)" format="percent">
+        <VALUE deb="1987-04-01" fuzzy="true" valeur="0.7129" />
+        <VALUE deb="1985-01-01" fin="1987-03-31" valeur="0.451" />
+      </CODE>
+      <CODE code="taux_inactivite" description="Cessation complète d'activité à plein temps (en % de la bmaf)" format="percent">
+        <VALUE deb="1987-04-01" fuzzy="true" valeur="1.4257" />
+        <VALUE deb="1986-07-01" fin="1987-03-31" valeur="0.902" />
+        <VALUE deb="1985-01-01" fin="1986-06-30" valeur="0.624" />
       </CODE>
     </NODE>
     <NODE code="apje" description="Allocation pour jeune enfant (APJE)">
-      <CODE code="age" description="Âge limite inférieur" format="integer" type="age">
-        <VALUE deb="2000-01-01" fin="2006-06-30" valeur="3" />
+      <CODE code="age_max_dernier_enf" description="Âge limite inférieur">
+        <VALUE deb="1985-01-01" fin="2003-12-31" valeur="3" />
+      </CODE>
+      <NODE code="majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant">
+        <CODE code="biactifs_et_parents_isoles_1" format="float" type="monetary">
+          <VALUE deb="2005-07-01" fin="2006-12-31" valeur="5869" />
+          <VALUE deb="2004-07-01" fin="2005-06-30" valeur="5771" />
+          <VALUE deb="2003-07-01" fin="2004-06-30" valeur="5663" />
+          <VALUE deb="2002-07-01" fin="2003-06-30" valeur="5568" />
+          <VALUE deb="2001-07-01" fin="2002-06-30" valeur="5480.69" />
+          <VALUE deb="2000-07-01" fin="2001-06-30" valeur="35385" />
+          <VALUE deb="1999-07-01" fin="2000-06-30" valeur="35209" />
+          <VALUE deb="1998-07-01" fin="1999-06-30" valeur="34999" />
+          <VALUE deb="1997-07-01" fin="1998-06-30" valeur="34618" />
+          <VALUE deb="1996-07-01" fin="1997-06-30" valeur="33973" />
+        </CODE>
+      </NODE>
+      <CODE code="mois_de_grossesse_ou_ouverture_des_droits_1">
+        <VALUE deb="1996-07-01" fin="2003-12-31" valeur="4" />
+        <VALUE deb="1985-01-01" fin="1996-06-30" valeur="3" />
       </CODE>
       <CODE code="plaf" description="Plafond de ressources" format="integer" type="monetary">
         <VALUE deb="2005-07-01" fin="2006-06-30" valeur="14818" />
@@ -3322,14 +3238,26 @@
         <VALUE deb="2001-07-01" fin="2002-06-30" valeur="5481" />
         <VALUE deb="2000-07-01" fin="2001-06-30" valeur="5394" />
       </CODE>
-      <CODE code="plaf_tx1" description="Majoration du plafond pour les 2 premiers enfants" format="percent">
-        <VALUE deb="2000-07-01" fin="2006-06-30" valeur="0.25" />
-      </CODE>
-      <CODE code="plaf_tx2" description="Majoration du plafond à partir du 3ème enfant" format="percent">
-        <VALUE deb="2000-07-01" fin="2006-06-30" valeur="0.3" />
+      <CODE code="plafond_de_ressources_0_enfant" format="float" type="monetary">
+        <VALUE deb="2005-07-01" fin="2006-12-31" valeur="14602" />
+        <VALUE deb="2004-07-01" fin="2005-06-30" valeur="14358" />
+        <VALUE deb="2003-07-01" fin="2004-06-30" valeur="14090" />
+        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="13854" />
+        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="13636.26" />
+        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="88039" />
+        <VALUE deb="1999-07-01" fin="2000-06-30" valeur="87601" />
+        <VALUE deb="1998-07-01" fin="1999-06-30" valeur="87072" />
+        <VALUE deb="1997-07-01" fin="1998-06-30" valeur="86132" />
+        <VALUE deb="1996-07-01" fin="1997-06-30" valeur="84526" />
       </CODE>
       <CODE code="taux" description="Taux de l'APJE" format="percent">
-        <VALUE deb="2000-01-01" fin="2006-06-30" valeur="0.4595" />
+        <VALUE deb="1985-01-01" fin="2003-12-31" valeur="0.4595" />
+      </CODE>
+      <CODE code="taux_enfant_1_et_2" description="Majoration du plafond pour les 2 premiers enfants" format="percent">
+        <VALUE deb="1996-07-01" fin="2006-12-31" valeur="0.25" />
+      </CODE>
+      <CODE code="taux_enfant_3_et_plus" description="Majoration du plafond à partir du 3ème enfant" format="percent">
+        <VALUE deb="1996-07-01" fin="2006-12-31" valeur="0.3" />
       </CODE>
     </NODE>
     <NODE code="ars" description="Allocation de rentrée scolaire">
@@ -3547,10 +3475,17 @@
       </CODE>
     </NODE>
     <NODE code="paje" description="Prestation d'accueil du jeune enfant">
+      <NODE code="age_limite">
+        <CODE code="pour_les_enfants_adoptes">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
+        </CODE>
+      </NODE>
+      <CODE code="age_max_enfant">
+        <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
+      </CODE>
       <NODE code="base" description="Allocation de base">
-        <CODE code="age" description="Limite d'âge (stricte) pour bénéficier de la PAJE" format="integer" type="age">
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
-          <VALUE deb="2004-01-01" fin="2014-12-31" valeur="3" />
+        <CODE code="age_max_enfant" description="Limite d'âge (stricte) pour bénéficier de la PAJE">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
         </CODE>
         <NODE code="apres_2014">
           <CODE code="plaf_tx_par_enf" description="Majoration du plafond par enfant" format="percent">
@@ -3629,9 +3564,8 @@
         </CODE>
       </NODE>
       <NODE code="clca" description="Complément libre choix d'activité">
-        <CODE code="age" description="Limite d'âge (stricte)" format="integer" type="age">
-          <VALUE deb="2014-01-01" fuzzy="true" valeur="3" />
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="3" />
+        <CODE code="age_max_enfant" description="Limite d'âge (stricte)">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
         </CODE>
         <CODE code="avecab_tx_inactif" description="Taux pour les personnes inactives percevant l'allocation de base de la PAJE">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.9662" />
@@ -3803,7 +3737,90 @@
           <VALUE deb="2004-01-01" fin="2013-12-31" valeur="2.0388" />
         </CODE>
       </NODE>
-      <NODE code="nais" description="Prime à la naissance">
+      <NODE code="complement_de_libre_choix_d_activite_clca">
+        <CODE code="taux_partiel_50" format="percent">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.6246" />
+        </CODE>
+        <CODE code="taux_partiel_entre_50_et_80" format="percent">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.3603" />
+        </CODE>
+        <CODE code="taux_plein" format="percent">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.9662" />
+        </CODE>
+      </NODE>
+      <NODE code="complement_libre_choix_du_mode_de_garde_clcmg_1">
+        <CODE code="revenus_inferieurs_a_45_du_plafond_d_allocation" format="percent">
+          <VALUE deb="2008-05-01" fuzzy="true" valeur="1.1404" />
+          <VALUE deb="2004-01-01" fin="2008-04-30" valeur="1.0067" />
+        </CODE>
+        <CODE code="revenus_superieurs_a_45_du_plafond_d_allocation" format="percent">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.7191" />
+        </CODE>
+        <CODE code="revenus_superieurs_au_plafond_d_allocation" format="percent">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.4314" />
+        </CODE>
+      </NODE>
+      <NODE code="complement_optionnel_de_libre_choix_d_activite">
+        <CODE code="taux_plein_duree_de_l_arret_predeterminee" format="percent">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="1.5793" />
+        </CODE>
+      </NODE>
+      <CODE code="duree_de_versement_pour_les_enfants_adoptes_en_annee">
+        <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
+      </CODE>
+      <NODE code="majoration_en_ou_en_du_plafond_de_ressources_avec_0_enfant">
+        <CODE code="1er_et_2eme_enfant" format="percent">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.25" />
+        </CODE>
+        <CODE code="3eme_enfant_et_plus" format="percent">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.3" />
+        </CODE>
+        <CODE code="biactifs_et_parents_isoles_1" format="float" type="monetary">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="11534" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="11488" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="11408" />
+          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="11195" />
+          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="10965" />
+          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="10856" />
+          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="10845" />
+          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="10550" />
+          <VALUE deb="2007-07-01" fin="2008-12-31" valeur="10394" />
+          <VALUE deb="2006-07-01" fin="2007-06-30" valeur="8176" />
+          <VALUE deb="2005-07-01" fin="2006-06-30" valeur="8039" />
+          <VALUE deb="2004-07-01" fin="2005-06-30" valeur="7905" />
+          <VALUE deb="2004-01-01" fin="2004-06-30" valeur="7758" />
+        </CODE>
+      </NODE>
+      <NODE code="montant_en_de_la_bmaf">
+        <CODE code="prime_a_l_adoption_de_la_paje_2" format="percent">
+          <VALUE deb="2005-08-01" fuzzy="true" valeur="4.595" />
+          <VALUE deb="2004-01-01" fin="2005-07-31" valeur="2.2975" />
+        </CODE>
+        <CODE code="prime_a_la_naissance_de_la_paje_1" format="percent">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="2.2975" />
+        </CODE>
+      </NODE>
+      <NODE code="paje_ipp">
+        <CODE code="allocation_de_base_en_de_la_bmaf" format="percent">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.4595" />
+        </CODE>
+      </NODE>
+      <CODE code="plafond_de_ressources_0_enfant" format="float" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="28697" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="28583" />
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="28384" />
+        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="27855" />
+        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="27282" />
+        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="27012" />
+        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="26985" />
+        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="26250" />
+        <VALUE deb="2007-07-01" fin="2008-12-31" valeur="25862" />
+        <VALUE deb="2006-07-01" fin="2007-06-30" valeur="20344" />
+        <VALUE deb="2005-07-01" fin="2006-06-30" valeur="20004" />
+        <VALUE deb="2004-07-01" fin="2005-06-30" valeur="19670" />
+        <VALUE deb="2004-01-01" fin="2004-06-30" valeur="19303" />
+      </CODE>
+      <NODE code="prime_naissance" description="Prime à la naissance">
         <CODE code="adopt" description="facteur multitplicatif de la prime à l'adoption, en pourcentage de la BMAF" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="2" />
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="2" />
