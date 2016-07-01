@@ -2311,61 +2311,6 @@
       <VALUE deb="1976-08-01" fin="1977-06-30" valeur="694.5" />
     </CODE>
   </NODE>
-  <NODE code="cf_cm">
-    <CODE code="age_maximal_des_enfants_pris_en_compte">
-      <VALUE deb="2000-02-01" fuzzy="true" valeur="21" />
-      <VALUE deb="1997-01-01" fin="2000-01-31" valeur="18" />
-      <VALUE deb="1986-07-01" fin="1996-12-31" valeur="17" />
-      <VALUE deb="1978-01-01" fin="1986-06-30" valeur="3" />
-    </CODE>
-    <CODE code="age_minimal_des_enfants_pris_en_compte">
-      <VALUE deb="1986-07-01" fuzzy="true" valeur="3" />
-      <VALUE deb="1978-01-01" fin="1986-06-30" valeur="0" />
-    </CODE>
-    <NODE code="complement_familial_en_de_la_bmaf_en_de_la_bmaf">
-      <CODE code="montant_de_base" format="percent">
-        <VALUE deb="1983-01-01" fuzzy="true" valeur="0.4165" />
-        <VALUE deb="1978-01-01" fin="1982-12-31" valeur="0.4475" />
-      </CODE>
-      <CODE code="montant_majore" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.5416" />
-        <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.4999" />
-        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.4582" />
-      </CODE>
-    </NODE>
-    <CODE code="nombre_d_enfants_minimal">
-      <VALUE deb="1986-07-01" fuzzy="true" valeur="3" />
-      <VALUE deb="1978-01-01" fin="1986-06-30" valeur="1" />
-    </CODE>
-  </NODE>
-  <NODE code="cf_plaf">
-    <CODE code="majoration_du_plafond_de_ressources_enfant_supplementaire" format="percent">
-      <VALUE deb="1986-07-01" fuzzy="true" valeur="0.151333715761" />
-      <VALUE deb="1983-01-01" fin="1986-06-30" valeur="0.170095152673" />
-      <VALUE deb="1978-07-01" fin="1982-12-31" valeur="0.170111855302" />
-      <VALUE deb="1978-01-01" fin="1978-06-30" valeur="0.170112204119" />
-    </CODE>
-    <NODE code="plafond_de_ressources_pour_un_revenu_brut_imposable_1">
-      <CODE code="1_enfant" format="float" type="monetary">
-        <VALUE deb="1986-07-01" fuzzy="true" valeur="105528" />
-        <VALUE deb="1983-01-01" fin="1986-06-30" valeur="87242" />
-        <VALUE deb="1978-07-01" fin="1982-12-31" valeur="50034" />
-        <VALUE deb="1978-01-01" fin="1978-06-30" valeur="44270" />
-      </CODE>
-      <CODE code="1_enfant_biactifs_et_parents_isoles_2" format="float" type="monetary">
-        <VALUE deb="1986-07-01" fuzzy="true" valeur="139460" />
-        <VALUE deb="1983-01-01" fin="1986-06-30" valeur="102572" />
-        <VALUE deb="1978-07-01" fin="1982-12-31" valeur="58826" />
-        <VALUE deb="1978-01-01" fin="1978-06-30" valeur="52048" />
-      </CODE>
-      <CODE code="enfant_supplementaire" format="percent">
-        <VALUE deb="1986-07-01" fuzzy="true" valeur="0.199994314305" />
-        <VALUE deb="1983-01-01" fin="1986-06-30" valeur="0.205715137205" />
-        <VALUE deb="1978-07-01" fin="1982-12-31" valeur="0.200003997282" />
-        <VALUE deb="1978-01-01" fin="1978-06-30" valeur="0.20002258866" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="def_biactif">
     <NODE code="revenu_professionnel_plancher_pour_les_couples_biactifs">
       <CODE code="en_nombre_de_fois_de_la_bmaf">
@@ -3479,81 +3424,106 @@
       </CODE>
     </NODE>
     <NODE code="cf" description="Complément familial">
-      <CODE code="age1" description="Âge limite inférieur" format="integer" type="age">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur="3" />
-        <VALUE deb="1986-01-01" fin="2014-03-31" valeur="3" />
-      </CODE>
-      <CODE code="age2" description="Âge limite supérieur" format="integer" type="age">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur="21" />
-        <VALUE deb="1998-01-01" fin="2014-03-31" valeur="21" />
-        <VALUE deb="1997-01-01" fin="1997-12-31" valeur="18" />
-        <VALUE deb="1986-01-01" fin="1996-12-31" valeur="17" />
-      </CODE>
       <CODE code="age_limite_dom" description="Âge limite DOM" format="integer" type="age">
         <VALUE deb="2014-04-01" fuzzy="true" valeur="5" />
         <VALUE deb="1986-01-01" fin="2014-03-31" valeur="5" />
       </CODE>
-      <CODE code="majoration_plafond_biact_isole" description="Majoration du plafond pour biactifs ou isolé" format="integer" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="8386" />
+      <CODE code="age_max" description="Âge limite supérieur">
+        <VALUE deb="2000-02-01" fuzzy="true" valeur="21" />
+        <VALUE deb="1997-01-01" fin="2000-01-31" valeur="18" />
+        <VALUE deb="1986-07-01" fin="1996-12-31" valeur="17" />
+        <VALUE deb="1978-01-01" fin="1986-06-30" valeur="3" />
+      </CODE>
+      <CODE code="age_min" description="Âge limite inférieur">
+        <VALUE deb="1986-07-01" fuzzy="true" valeur="3" />
+        <VALUE deb="1978-01-01" fin="1986-06-30" valeur="0" />
+      </CODE>
+      <CODE code="majoration_du_plafond_de_ressources_enfant_supplementaire" format="percent">
+        <VALUE deb="1986-07-01" fuzzy="true" valeur="0.151333715761" />
+        <VALUE deb="1983-01-01" fin="1986-06-30" valeur="0.170095152673" />
+        <VALUE deb="1978-07-01" fin="1982-12-31" valeur="0.170111855302" />
+        <VALUE deb="1978-01-01" fin="1978-06-30" valeur="0.170112204119" />
+      </CODE>
+      <CODE code="majoration_plafond_2_premiers_enf" description="Majoration du plafond pour les 2 premiers enfants" format="percent">
+        <VALUE deb="1986-01-01" fuzzy="true" valeur="0.25" />
+      </CODE>
+      <CODE code="majoration_plafond_3eme_enf_et_plus" description="Majoration du plafond à partir du 3ème enfant" format="percent">
+        <VALUE deb="2010-01-01" fuzzy="true" valeur="0.3" />
+        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.25" />
+        <VALUE deb="1986-01-01" fin="2008-12-31" valeur="0.3" />
+      </CODE>
+      <CODE code="majoration_plafond_biact_isole" description="Majoration du plafond pour biactifs ou isolé" format="float" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="8420" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8386" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="8328" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="8173" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="8005" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="7926" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="7918" />
-        <VALUE deb="2008-07-01" fin="2009-12-31" valeur="7702" />
-        <VALUE deb="2007-07-01" fin="2008-06-30" valeur="7588" />
+        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="7702" />
+        <VALUE deb="2007-07-01" fin="2008-12-31" valeur="7588" />
         <VALUE deb="2006-07-01" fin="2007-06-30" valeur="5969" />
-        <VALUE deb="2005-07-01" fin="2006-06-30" valeur="5599" />
+        <VALUE deb="2005-07-01" fin="2006-06-30" valeur="5869" />
         <VALUE deb="2004-07-01" fin="2005-06-30" valeur="5771" />
-        <VALUE deb="2003-07-01" fin="2004-06-30" valeur="4663" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="5568" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="5481" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="5394" />
+        <VALUE deb="2003-07-01" fin="2004-06-30" valeur="5663" />
+        <VALUE deb="1986-01-01" fin="2003-06-30" valeur="33973" />
       </CODE>
-      <CODE code="majoration_plafond_tx1" description="Majoration du plafond pour les 2 premiers enfants" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.25" />
-        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.25" />
-      </CODE>
-      <CODE code="majoration_plafond_tx2" description="Majoration du plafond à partir du 3ème enfant" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.3" />
-        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.3" />
-      </CODE>
-      <CODE code="plafond" description="Plafond de ressources" format="integer" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="20864" />
-        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="20864" />
-        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="20719" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="20333" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="19916" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="19718" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="19698" />
-        <VALUE deb="2008-07-01" fin="2009-12-31" valeur="19161" />
-        <VALUE deb="2007-07-01" fin="2008-06-30" valeur="18878" />
-        <VALUE deb="2006-07-01" fin="2007-06-30" valeur="14850" />
-        <VALUE deb="2005-07-01" fin="2006-06-30" valeur="14818" />
-        <VALUE deb="2004-07-01" fin="2005-06-30" valeur="14358" />
-        <VALUE deb="2003-07-01" fin="2004-06-30" valeur="14090" />
-        <VALUE deb="2002-07-01" fin="2003-06-30" valeur="13854" />
-        <VALUE deb="2001-07-01" fin="2002-06-30" valeur="13636" />
-        <VALUE deb="2000-07-01" fin="2001-06-30" valeur="13421" />
+      <CODE code="nombre_d_enfants_minimal">
+        <VALUE deb="1986-07-01" fuzzy="true" valeur="3" />
+        <VALUE deb="1978-01-01" fin="1986-06-30" valeur="1" />
       </CODE>
       <CODE code="plafond_cf_majore" description="Plafond de ressources pour avoir droit au CF majoré" format="percent">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
         <VALUE deb="2014-04-01" fin="2015-12-31" valeur="0.5" />
       </CODE>
-      <CODE code="tx" description="Taux du complément familial" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.4165" />
-        <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.4165" />
+      <CODE code="plafond_de_ressources_0_enfant" description="Plafond de ressources" format="float" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="20947" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="20864" />
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="20719" />
+        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="20333" />
+        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="19915" />
+        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="19718" />
+        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="19698" />
+        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="19161" />
+        <VALUE deb="2007-07-01" fin="2008-12-31" valeur="18878" />
+        <VALUE deb="2006-07-01" fin="2007-06-30" valeur="14850" />
+        <VALUE deb="2005-07-01" fin="2006-06-30" valeur="14602" />
+        <VALUE deb="2004-07-01" fin="2005-06-30" valeur="14358" />
+        <VALUE deb="2003-07-01" fin="2004-06-30" valeur="14090" />
+        <VALUE deb="1986-01-01" fin="2003-06-30" valeur="84526" />
+      </CODE>
+      <NODE code="plafond_de_ressources_pour_un_revenu_brut_imposable_1">
+        <CODE code="1_enfant" format="float" type="monetary">
+          <VALUE deb="1986-07-01" fuzzy="true" valeur="105528" />
+          <VALUE deb="1983-01-01" fin="1986-06-30" valeur="87242" />
+          <VALUE deb="1978-07-01" fin="1982-12-31" valeur="50034" />
+          <VALUE deb="1978-01-01" fin="1978-06-30" valeur="44270" />
+        </CODE>
+        <CODE code="1_enfant_biactifs_et_parents_isoles_2" format="float" type="monetary">
+          <VALUE deb="1986-07-01" fuzzy="true" valeur="139460" />
+          <VALUE deb="1983-01-01" fin="1986-06-30" valeur="102572" />
+          <VALUE deb="1978-07-01" fin="1982-12-31" valeur="58826" />
+          <VALUE deb="1978-01-01" fin="1978-06-30" valeur="52048" />
+        </CODE>
+        <CODE code="enfant_supplementaire" format="percent">
+          <VALUE deb="1986-07-01" fuzzy="true" valeur="0.199994314305" />
+          <VALUE deb="1983-01-01" fin="1986-06-30" valeur="0.205715137205" />
+          <VALUE deb="1978-07-01" fin="1982-12-31" valeur="0.200003997282" />
+          <VALUE deb="1978-01-01" fin="1978-06-30" valeur="0.20002258866" />
+        </CODE>
+      </NODE>
+      <CODE code="taux_cf_base" description="Taux du complément familial" format="percent">
+        <VALUE deb="1983-01-01" fuzzy="true" valeur="0.4165" />
+        <VALUE deb="1978-01-01" fin="1982-12-31" valeur="0.4475" />
+      </CODE>
+      <CODE code="taux_cf_majore" description="Taux du complément familial majoré" format="percent">
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.5416" />
+        <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.4999" />
+        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.4582" />
       </CODE>
       <CODE code="tx_dom" description="Taux du complément familial dans les DOM" format="percent">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="0.2379" />
         <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.2379" />
-      </CODE>
-      <CODE code="tx_majore" description="Taux du complément familial majoré" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.5416" />
-        <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.4999" />
-        <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.4582" />
-        <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.4165" />
       </CODE>
       <CODE code="tx_majore_dom" description="Taux du complément familial majoré dans les DOM" format="percent">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="0.3093" />

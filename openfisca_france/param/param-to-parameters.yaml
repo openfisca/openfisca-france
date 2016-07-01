@@ -96,6 +96,13 @@ prestations.prestations_familiales.ars.tx1114: prestations.prestations_familiale
 prestations.prestations_familiales.ars.tx1518: prestations.prestations_familiales.ars.taux_lycee
 prestations.prestations_familiales.asf.taux1: prestations.prestations_familiales.asf.taux_1_parent
 prestations.prestations_familiales.asf.taux2: prestations.prestations_familiales.asf.taux_2_parents
+prestations.prestations_familiales.cf.age1: prestations.prestations_familiales.cf.age_min
+prestations.prestations_familiales.cf.age2: prestations.prestations_familiales.cf.age_max
+prestations.prestations_familiales.cf.majoration_plafond_tx1: prestations.prestations_familiales.cf.majoration_plafond_2_premiers_enf
+prestations.prestations_familiales.cf.majoration_plafond_tx2: prestations.prestations_familiales.cf.majoration_plafond_3eme_enf_et_plus
+prestations.prestations_familiales.cf.plafond: prestations.prestations_familiales.cf.plafond_de_ressources_0_enfant
+prestations.prestations_familiales.cf.tx: prestations.prestations_familiales.cf.taux_cf_base
+prestations.prestations_familiales.cf.tx_majore: prestations.prestations_familiales.cf.taux_cf_majore
 # minima sociaux
 minim: prestations.minima_sociaux
 prestations.minima_sociaux.asi.plaf_seul: prestations.minima_sociaux.asi.plafond_ressource_seul

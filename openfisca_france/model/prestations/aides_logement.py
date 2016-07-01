@@ -49,7 +49,7 @@ class al_nb_personnes_a_charge(Variable):
 
         period = period.this_month
         age_holder = simulation.compute('age', period)
-        age_max_enfant = simulation.legislation_at(period.start).prestations.prestations_familiales.cf.age2
+        age_max_enfant = simulation.legislation_at(period.start).prestations.prestations_familiales.cf.age_max
         residence_dom = simulation.calculate('residence_dom', period)
 
         def al_nb_enfants():

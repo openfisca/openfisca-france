@@ -882,12 +882,20 @@ def transform_ipp_tree(root):
     ars['taux_college'] = taux_college = ars_m.pop('enfants_entre_11_et_15_ans_en_de_la_bmaf_2')
     ars['taux_lycee'] = taux_lycee = ars_m.pop('enfants_de_plus_de_15_ans_en_de_la_bmaf_3')
 
-    #ars['age_cond'] = age_cond = prestations.pop('ars_cond')
-    #ars['ars_m'] = ars_m = prestations.pop('ars_m')
-    #ars['ars_maj'] = ars_maj = prestations.pop('ars_maj')
-    #ars['ars_min'] = ars_min = prestations.pop('ars_min')
-    #ars['ars_plaf'] = ars_plaf = prestations.pop('ars_plaf')
-
+    prestations_familiales['cf'] = cf = dict()
+    cf = prestations_familiales['cf']
+    prestations_familiales['cf'].update(prestations.pop('cf_maj'))
+    prestations_familiales['cf'].update(prestations.pop('cf_plaf'))
+    prestations_familiales['cf'].update(prestations.pop('cf_cm'))
+    cf['age_min'] = age_min = cf.pop('age_minimal_des_enfants_pris_en_compte')
+    cf['age_max'] = age_max = cf.pop('age_maximal_des_enfants_pris_en_compte')
+    majoration = cf['majoration']
+    cf['majoration_plafond_biact_isole'] = majoration_plafond_biact_isole = majoration.pop('biactifs_et_parents_isoles')
+    cf['majoration_plafond_2_premiers_enf'] = majoration_plafond_2_premiers_enf = majoration.pop('1er_et_2eme_enfants_en_du_plafond_de_ressources_avec_0_enfant')
+    cf['majoration_plafond_3eme_enf_et_plus'] = majoration_plafond_3eme_enf_et_plus = majoration.pop('3eme_enfant_et_plus_en_du_plafond_de_ressources_avec_0_enfant')
+    complement_familial_en_de_la_bmaf_en_de_la_bmaf = cf['complement_familial_en_de_la_bmaf_en_de_la_bmaf']
+    cf['taux_cf_base'] = taux_cf_base = complement_familial_en_de_la_bmaf_en_de_la_bmaf.pop('montant_de_base')
+    cf['taux_cf_majore'] = taux_cf_majore = complement_familial_en_de_la_bmaf_en_de_la_bmaf.pop('montant_majore')
 
     prestations['minima_sociaux'] = minima_sociaux = dict()
     del prestations['asi_cond']['condition_d_age_et_de_ressources']
@@ -911,7 +919,7 @@ def transform_ipp_tree(root):
 
 
 
-    del prestations['cf_maj']
+
     #   cf_maj:
     #     Majoration:
     #        1er et 2ème enfants (en % du plafond de ressources avec 0 enfant): null  # Value must be a float
