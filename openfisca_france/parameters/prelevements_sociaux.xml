@@ -2531,6 +2531,11 @@
     </CODE>
   </NODE>
   <NODE code="forfait_social">
+    <CODE code="seuil_effectif_prevoyance_complementaire" description="Seuil effectif à partir duquel les contributions patronales de prévoyance complémentaire rentrent dans l'assiette du FNAL à taux réduit">
+      <VALUE deb="2016-01-01" fuzzy="true" valeur="11" />
+      <VALUE deb="2012-01-01" fin="2015-12-31" valeur="10" />
+      <VALUE deb="2009-01-01" fin="2011-12-31" valeur="0" />
+    </CODE>
     <CODE code="taux_plein" format="percent">
       <VALUE deb="2012-08-01" fuzzy="true" valeur="0.2" />
       <VALUE deb="2012-01-01" fin="2012-07-31" valeur="0.08" />

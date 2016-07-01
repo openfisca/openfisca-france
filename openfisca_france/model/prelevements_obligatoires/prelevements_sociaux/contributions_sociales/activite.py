@@ -148,9 +148,9 @@ class forfait_social(Variable):
         complementaire_sante_employeur = simulation.calculate_add('complementaire_sante_employeur', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 
-        parametres = simulation.legislation_at(period.start).forfait_social
+        parametres = simulation.legislation_at(period.start).prelevements_sociaux.forfait_social
         taux_plein = parametres.taux_plein
-        taux_reduit = parametres.taux_reduit
+        taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
         seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
 
         # TODO: complete this
