@@ -99,13 +99,13 @@ class paje_base(Variable):
 
         date_gel_paje = Instant((2013, 04, 01)) # Le montant de la PAJE est gelé depuis avril 2013.
         bmaf = pfam.af.bmaf if period.start < date_gel_paje else simulation.legislation_at(date_gel_paje).prestations.prestations_familiales.af.bmaf
-        montant_taux_plein = bmaf * pfam.paje.base.taux
+        montant_taux_plein = bmaf * pfam.paje.base.taux_allocation_base
 
         def plafond_avant_avril_2014():
-            plafond_de_base = pfam.paje.base.avant_2014.plaf
-            maj_plafond_2_premiers_enfants = pfam.paje.base.avant_2014.plaf_tx1 * plafond_de_base
-            maj_plafond_par_enfant_sup = pfam.paje.base.avant_2014.plaf_tx2 * plafond_de_base
-            maj_plafond_seul_biactif = pfam.paje.base.avant_2014.plaf_maj
+            plafond_de_base = pfam.paje.base.avant_2014.plafond_ressources_0_enf
+            maj_plafond_2_premiers_enfants = pfam.paje.base.avant_2014.taux_majoration_2_premiers_enf * plafond_de_base
+            maj_plafond_par_enfant_sup = pfam.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * plafond_de_base
+            maj_plafond_seul_biactif = pfam.paje.base.avant_2014.majoration_biact_parent_isoles
 
             plafond = (
                 plafond_de_base +
@@ -242,9 +242,9 @@ class paje_naissance(Variable):
         nbenf = af_nbenf + nbnais  # On ajoute l'enfant à  naître;
 
         # Est-ce que ces taux n'ont pas été mis à jour en avril 2014 ?
-        plaf_tx = (nbenf > 0) + P.paje.base.avant_2014.plaf_tx1 * min_(nbenf, 2) + P.paje.base.avant_2014.plaf_tx2 * max_(nbenf - 2, 0)
+        plaf_tx = (nbenf > 0) + P.paje.base.avant_2014.taux_majoration_2_premiers_enf * min_(nbenf, 2) + P.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
         majo = isole | biactivite
-        plaf = P.paje.base.avant_2014.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.avant_2014.plaf_maj * majo
+        plaf = P.paje.base.avant_2014.plafond_ressources_0_enf * plaf_tx + (plaf_tx > 0) * P.paje.base.avant_2014.majoration_biact_parent_isoles * majo
         elig = (base_ressources <= plaf) * (nbnais != 0)
         nais_brut = nais_prime * elig * (nbnais)
         return period, nais_brut
@@ -447,9 +447,9 @@ class paje_clmg(Variable):
                             0.5 * (nb_enf(age, autonomie_financiere, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
                             ) * (
             empl_dir * (
-                (base_ressources < seuil1) * P.paje.clmg.empl_dir1 +
-                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.empl_dir2 +
-                (base_ressources >= seuil2) * P.paje.clmg.empl_dir3) +
+                (base_ressources < seuil1) * P.paje.clmg.taux_recours_emploi_1er_plafond +
+                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.taux_recours_emploi_2e_plafond +
+                (base_ressources >= seuil2) * P.paje.clmg.taux_recours_emploi_supp_2e_plafond) +
             ass_mat * (
                 (base_ressources < seuil1) * P.paje.clmg.ass_mat1 +
                 ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.ass_mat2 +
