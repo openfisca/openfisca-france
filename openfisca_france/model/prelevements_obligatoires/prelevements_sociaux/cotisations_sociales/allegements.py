@@ -396,9 +396,9 @@ def switch_on_allegement_mode(simulation, period, mode_recouvrement, variable_na
     return switch(
         mode_recouvrement,
         {
-            0: compute_allegement_annuel(simulation, period, 'allegement_fillon', compute_function),
-            1: compute_allegement_anticipe(simulation, period, 'allegement_fillon', compute_function),
-            2: compute_allegement_progressif(simulation, period, 'allegement_fillon', compute_function),
+            0: compute_allegement_annuel(simulation, period, variable_name, compute_function),
+            1: compute_allegement_anticipe(simulation, period, variable_name, compute_function),
+            2: compute_allegement_progressif(simulation, period, variable_name, compute_function),
         },
     )
 
