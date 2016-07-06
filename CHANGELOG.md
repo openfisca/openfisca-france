@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.0.1 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.0..4.0.1)
+* Correct bug in `switch_on_allegement_mode`
+
 ## 4.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.4.1..4.0.0)
 
 * Apply core API changes introduced by [openfisca-core 2.0](https://github.com/openfisca/openfisca-core/pull/388)
