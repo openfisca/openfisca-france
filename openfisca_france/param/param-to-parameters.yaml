@@ -125,20 +125,14 @@ prestations.prestations_familiales.paje.base.taux: prestations.prestations_famil
 prestations.prestations_familiales.paje.clmg.empl_dir1: prestations.prestations_familiales.paje.clmg.taux_recours_emploi_1er_plafond
 prestations.prestations_familiales.paje.clmg.empl_dir2: prestations.prestations_familiales.paje.clmg.taux_recours_emploi_2e_plafond
 prestations.prestations_familiales.paje.clmg.empl_dir3: prestations.prestations_familiales.paje.clmg.taux_recours_emploi_supp_2e_plafond
-#prestations.prestations_familiales.paje.base.taux: prestations.prestations_familiales.paje.base.taux_allocation_base
-#prestations.prestations_familiales.paje.clca.sansab_tx_inactif: prestations.prestations_familiales.paje.clca.sans_alloc_base_tx_plein
-#prestations.prestations_familiales.paje.clca.sansab_tx_partiel1: prestations.prestations_familiales.paje.clca.sans_alloc_base_tx_partiel_inf_50
-#prestations.prestations_familiales.paje.clca.sansab_tx_partiel2: prestations.prestations_familiales.paje.clca.sans_alloc_base_tx_partiel_inf_80
-#prestations.prestations_familiales.paje.
-#prestations.prestations_familiales.paje.
-
-
 
 
 # minima sociaux
 minim: prestations.minima_sociaux
 prestations.minima_sociaux.asi.plaf_seul: prestations.minima_sociaux.asi.plafond_ressource_seul
 prestations.minima_sociaux.asi.plaf_couple: prestations.minima_sociaux.asi.plafond_ressource_couple
+
+# TODO: sortir les paramètres de la prime d'activité (ppa) de rmi et faire merger avec IPP (pa_m)
 
 
  # api
