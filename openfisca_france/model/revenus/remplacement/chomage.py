@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from ...base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class chomeur_longue_duree(Variable):

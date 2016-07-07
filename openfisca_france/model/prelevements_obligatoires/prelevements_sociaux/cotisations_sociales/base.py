@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from ....base import CAT
+from openfisca_france.model.base import CAT
 
 def apply_bareme_for_relevant_type_sal(
         bareme_by_type_sal_name,

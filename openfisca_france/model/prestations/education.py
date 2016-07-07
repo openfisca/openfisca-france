@@ -4,7 +4,7 @@ from __future__ import division
 
 from numpy import logical_not as not_, logical_or as or_, round as round_
 
-from ..base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 SCOLARITE_INCONNUE = 0

@@ -13,8 +13,9 @@ from numpy import (ceil, fromiter, int16, logical_not as not_, logical_or as or_
 import openfisca_france
 from openfisca_core.periods import Instant
 
-from ..base import *  # noqa  analysis:ignore
-from .prestations_familiales.base_ressource import nb_enf
+from openfisca_france.model.base import *  # noqa  analysis:ignore
+from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
+from openfisca_france.model.caracteristiques_socio_demographiques.logement import statut_occupation_logement
 
 log = logging.getLogger(__name__)
 
@@ -628,13 +629,13 @@ class crds_logement(Variable):
 class statut_occupation_logement_individu(EntityToPersonColumn):
     entity_class = Individus
     label = u"Statut d'occupation de l'individu"
-    variable = Menages.column_by_name['statut_occupation_logement']
+    variable = statut_occupation_logement
 
 class statut_occupation_logement_famille(PersonToEntityColumn):
     entity_class = Familles
     label = u"Statut d'occupation de la famille"
     role = CHEF
-    variable = Individus.column_by_name['statut_occupation_logement_individu']
+    variable = statut_occupation_logement_individu
 
 class zone_apl(Variable):
     column = EnumCol(

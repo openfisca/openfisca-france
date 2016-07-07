@@ -1,5 +1,51 @@
 # Changelog
 
+## 4.0.1 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.0..4.0.1)
+* Correct bug in `switch_on_allegement_mode`
+
+## 4.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.4.1..4.0.0)
+
+* Apply core API changes introduced by [openfisca-core 2.0](https://github.com/openfisca/openfisca-core/pull/388)
+* Change the way the France tax benefit system is built
+* Change the way reforms are built
+* Move extensions from `./model/extensions` to `./extensions`
+* Warning : relatives imports are now impossible in model files.
+
+## 3.4.1 - [diff](https://github.com/openfisca/openfisca-france/compare/3.4.1..3.4.0)
+
+* Only enforce version and changelog update in CI when PR target is master.
+
+## 3.4.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.4.0..3.3.0)
+
+* Introduce the `entreprise_est_association_non_lucrative` boolean input variable
+* Null the CICE and taxe d'apprentissage (taxe + contribution supplémentaire) when this input is True
+* Force the computing of taxe sur les salaires when this input is True
+* Implement franchise, décôte and abattement associations non lucratives in Taxe sur les salaires
+
+## 3.3.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.3.0..3.2.0)
+
+* Add variables for `complémentaire santé`, compulsory in 2016 :
+	* `complementaire_sante_taux_employeur`
+	* `complementaire_sante_employeur`
+	* `complementaire_sante_salarie`
+It is included in the bases of the following variables.
+
+* Correct `forfait_social` and link it to the `cotisations`, test it.
+* Correct `taxe_salaires` and update its rates
+* Test CSG-CRDS
+
+## 3.2.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.2.0..3.1.0)
+
+* Consolidate the case of `temps partiel` for the input of a number of hours per month, based on the legal duration of 151.67 per month
+* Specifically, correct the proratisation of `plafond de la sécurité sociale` and `coefficient de proratisation`.
+* See issue #496 for details
+
+## 3.1.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.1.0..3.0.0)
+
+* Update the rates of the versement transport contribution
+* Introduce an history of rates
+* Move its code to a new file (~ 5 functions)
+
 ## 3.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.0.0..2.0.0)
 
 * Make `enfant_a_charge` usable in monthly mode so that we can re-use it in mes-aides, and broaden its definition so that in includes children in `garde_alternee`.
@@ -15,16 +61,16 @@
     * `celdiv` -> `celibataire_ou_divorce`
     * `jveuf` -> `jeune_veuf`
 
-## 2.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/2.0.0..1.3.1)
+## 2.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1..2.0.0)
 
 * Deprecate Paris reform
 * Introduce enfant_place
 
-## 1.3.1 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1...1.3.1rc0)
+## 1.3.1 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1rc0...1.3.1)
 
 * Adjust ppa computation
 
-## 1.3.1rc0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1rc0..1.3.0)
+## 1.3.1rc0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.0..1.3.1rc0)
 
 * Fix versioning enforcement
 

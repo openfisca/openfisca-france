@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from ...base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 # Gain de levée d'options
 # Bouvard: j'ai changé là mais pas dans le code, il faut chercher les f1uv

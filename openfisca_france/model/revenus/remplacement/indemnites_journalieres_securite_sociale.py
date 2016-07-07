@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from ...base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class indemnites_journalieres_maternite(Variable):
     column = FloatCol

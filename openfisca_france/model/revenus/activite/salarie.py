@@ -5,8 +5,8 @@ from numpy import (
     busday_count as original_busday_count, datetime64, maximum as max_, minimum as min_, timedelta64,
     )
 
-from ...base import *  # noqa analysis:ignore
-from ...prestations.prestations_familiales.base_ressource import nb_enf
+from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
 class indemnites_stage(Variable):
     column = FloatCol
@@ -93,7 +93,7 @@ class ppe_tp_sa(Variable):
         QUIFOY['pac2']: u"1DX",
         QUIFOY['pac3']: u"1QX",
         }
-        
+
     column = BoolCol
     entity_class = Individus
     label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière"
@@ -268,6 +268,11 @@ class cotisation_sociale_mode_recouvrement(Variable):
     entity_class = Individus
     label = u"Mode de recouvrement des cotisations sociales"
 
+class entreprise_est_association_non_lucrative(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"L'entreprise est une association à but non lucratif, par exemple loi de 1901"
+
 
 class depcom_entreprise(Variable):
     column = FixedStrCol(max_length = 5)
@@ -365,6 +370,19 @@ class primes_salaires(Variable):
     label = u"Indemnités, primes et avantages en argent"
 
 
+class complementaire_sante_montant(Variable):
+    column = FloatCol()
+    entity_class = Individus
+    label = u"Montant de la complémentaire santé obligatoire retenue par l'employeur"
+
+
+class complementaire_sante_taux_employeur(Variable):
+    column = FloatCol(default = 0.5)
+    # La part minimum légale est de 50 %
+    entity_class = Individus
+    label = u"Part de la complémentaire santé obligatoire payée par l'employeur"
+
+
 class prise_en_charge_employeur_prevoyance_complementaire(Variable):
     column = FloatCol()
     entity_class = Individus
@@ -387,12 +405,6 @@ class ratio_alternants(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Ratio d'alternants dans l'effectif moyen"
-
-
-class redevable_taxe_apprentissage(Variable):
-    column = BoolCol(default = True)
-    entity_class = Individus
-    label = u"Entreprise redevable de la taxe d'apprentissage"
 
 
 class remboursement_transport_base(Variable):

@@ -5,9 +5,8 @@ from __future__ import division
 
 from numpy import datetime64, maximum as max_, minimum as min_, round as round_, timedelta64
 
-from ....base import *  # noqa analysis:ignore
-from .base import apply_bareme_for_relevant_type_sal
-
+from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal
 
 class jei_date_demande(Variable):
     column = DateCol(default = date(2099, 12, 31))
@@ -150,7 +149,6 @@ class exoneration_cotisations_employeur_zfu(Variable):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         entreprise_chiffre_affaire = simulation.calculate('entreprise_chiffre_affaire', period)
         entreprise_bilan = simulation.calculate('entreprise_bilan', period)
-        smic_proratise = simulation.calculate('smic_proratise', period)
         taux_versement_transport = simulation.calculate('taux_versement_transport', period)
 
         # TODO: move to legislation parameters file

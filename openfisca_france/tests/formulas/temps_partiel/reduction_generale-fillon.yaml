@@ -1,0 +1,17 @@
+- period: "2016-01"
+  name: Base
+  relative_error_margin: 0.0001
+  input_variables:
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 1
+    heures_remunerees_volume: 130 # 130 heures par mois = 30h par semaine = 6/7
+    salaire_de_base: 1257.4 # ~ équivalent SMIC
+    contrat_de_travail: 1 # temps partiel
+  output_variables:
+    allegement_fillon: >
+      1257.4 *
+      (
+        (.2802 / .6)
+        *
+        (1.6 * ( (17599.4 * (6/7)) / (1257.4 * 12)) - 1)
+      )
