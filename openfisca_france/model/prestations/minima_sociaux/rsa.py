@@ -163,7 +163,7 @@ class api(DatedVariable):
         af_majoration = simulation.calculate('af_majoration', period)
         rsa = simulation.calculate('rsa', period)
         af = simulation.legislation_at(period.start).prestations.prestations_familiales.af
-        api = simulation.legislation_at(period.start).minim.api
+        api = simulation.legislation_at(period.start).prestations.minima_sociaux.api
 
         age = self.split_by_roles(age_holder, roles = ENFS)
         age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
@@ -197,12 +197,12 @@ class api(DatedVariable):
         # Le droit à l'allocation est réétudié tous les 3 mois.
         # # Calcul de l'année et mois de naissance du benjamin
 
-        condition = (floor(benjamin / 12) <= api.age - 1)
-        eligib = isole * ((enceinte != 0) | (nb_enf(age, autonomie_financiere, 0, api.age - 1) > 0)) * condition
+        condition = (floor(benjamin / 12) <= api.age_limite - 1)
+        eligib = isole * ((enceinte != 0) | (nb_enf(age, autonomie_financiere, 0, api.age_limite - 1) > 0)) * condition
 
         # moins de 20 ans avant inclusion dans rsa
         # moins de 25 ans après inclusion dans rsa
-        api1 = eligib * af.bmaf * (api.base + api.enf_sup * nb_enf(age, autonomie_financiere, af.age1, api.age_pac - 1))
+        api1 = eligib * af.bmaf * (api.base + api.supplement_par_enfant * nb_enf(age, autonomie_financiere, af.age1, api.age_pac - 1))
         rsa = (api.age_pac >= 25)  # dummy passage au rsa majoré
         br_api = rsa_base_ressources + af_majoration * not_(rsa)
         # On pourrait mensualiser RMI, BRrmi et forfait logement
@@ -453,36 +453,68 @@ class rsa_enfant_a_charge(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
+        import datetime
 
-        P_rsa = simulation.legislation_at(period.start).minim.rmi
+        if period.start.date > datetime.date(2009, 5, 31):
+            P_rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa
+            P_rmi = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
+            enfant = simulation.calculate('est_enfant_dans_famille', period)
+            age = simulation.calculate('age', period)
+            autonomie_financiere = simulation.calculate('autonomie_financiere', period)
+            ressources = simulation.calculate('rsa_base_ressources_individu', period) + (1 - P_rsa.pente) * simulation.calculate('rsa_revenu_activite_individu', period)
 
-        enfant = simulation.calculate('est_enfant_dans_famille', period)
-        age = simulation.calculate('age', period)
-        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
-        ressources = simulation.calculate('rsa_base_ressources_individu', period) + (1 - P_rsa.pente) * simulation.calculate('rsa_revenu_activite_individu', period)
 
+            # Règle CAF: Si un enfant touche des ressources, et que son impact global (augmentation du montant forfaitaire - ressources prises en compte) fait baisser le montant du RSA, alors il doit être exclu du calcul du RSA.
+            # Cette règle est complexe, on applique donc l'approximation suivante:
+            #       - Cas général: enfant pris en compte si ressources <= augmentation du MF pour un enfant supplémentaire (taux marginal).
+            #       - Si la présence de l'enfant ouvre droit au RSA majoré, pris en compte si ressources <= majoration du RSA pour isolement avec un enfant.
 
-        # Règle CAF: Si un enfant touche des ressources, et que son impact global (augmentation du montant forfaitaire - ressources prises en compte) fait baisser le montant du RSA, alors il doit être exclu du calcul du RSA.
-        # Cette règle est complexe, on applique donc l'approximation suivante:
-        #       - Cas général: enfant pris en compte si ressources <= augmentation du MF pour un enfant supplémentaire (taux marginal).
-        #       - Si la présence de l'enfant ouvre droit au RSA majoré, pris en compte si ressources <= majoration du RSA pour isolement avec un enfant.
+            def ouvre_droit_majoration():
+                enceinte_fam = simulation.calculate('enceinte_fam', period)
+                isole = not_(simulation.calculate('en_couple', period))
+                isolement_recent = simulation.calculate('rsa_isolement_recent', period)
+                presence_autres_enfants = self.sum_by_entity(enfant * not_(autonomie_financiere) * (age <= P_rsa.age_pac), entity = "famille") > 1
 
-        def ouvre_droit_majoration():
-            enceinte_fam = simulation.calculate('enceinte_fam', period)
-            isole = not_(simulation.calculate('en_couple', period))
-            isolement_recent = simulation.calculate('rsa_isolement_recent', period)
-            presence_autres_enfants = self.sum_by_entity(enfant * not_(autonomie_financiere) * (age <= P_rsa.age_pac), entity = "famille") > 1
+                return self.cast_from_entity_to_roles(not_(enceinte_fam) * isole * isolement_recent * not_(presence_autres_enfants), entity = 'famille')
 
-            return self.cast_from_entity_to_roles(not_(enceinte_fam) * isole * isolement_recent * not_(presence_autres_enfants), entity = 'famille')
-
-        return period, (
-            enfant * not_(autonomie_financiere) *
-            (age <= P_rsa.age_pac) *
-            where(ouvre_droit_majoration(),
-                ressources < (P_rsa.majo_rsa.pac0 - 1 + P_rsa.majo_rsa.pac_enf_sup) * P_rsa.rmi,
-                ressources < P_rsa.txps * P_rsa.rmi
+            rsa_enf_charge = (
+                enfant * not_(autonomie_financiere) *(age <= P_rsa.age_pac) * where(
+                ouvre_droit_majoration(),
+                ressources < (P_rsa.majo_rsa.pac0 - 1 + P_rsa.majo_rsa.pac_enf_sup) * P_rsa.montant_de_base_du_rsa,
+                ressources < P_rsa.txps * P_rsa.montant_de_base_du_rsa)
                 )
-            )
+
+        else:
+            P_rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa
+            P_rmi = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
+            enfant = simulation.calculate('est_enfant_dans_famille', period)
+            age = simulation.calculate('age', period)
+            autonomie_financiere = simulation.calculate('autonomie_financiere', period)
+            ressources = simulation.calculate('rsa_base_ressources_individu', period) + (1 - P_rsa.pente) * simulation.calculate('rsa_revenu_activite_individu', period)
+
+
+            # Règle CAF: Si un enfant touche des ressources, et que son impact global (augmentation du montant forfaitaire - ressources prises en compte) fait baisser le montant du RSA, alors il doit être exclu du calcul du RSA.
+            # Cette règle est complexe, on applique donc l'approximation suivante:
+            #       - Cas général: enfant pris en compte si ressources <= augmentation du MF pour un enfant supplémentaire (taux marginal).
+            #       - Si la présence de l'enfant ouvre droit au RSA majoré, pris en compte si ressources <= majoration du RSA pour isolement avec un enfant.
+
+            def ouvre_droit_majoration():
+                enceinte_fam = simulation.calculate('enceinte_fam', period)
+                isole = not_(simulation.calculate('en_couple', period))
+                isolement_recent = simulation.calculate('rsa_isolement_recent', period)
+                presence_autres_enfants = self.sum_by_entity(enfant * not_(autonomie_financiere) * (age <= P_rmi.age_pac), entity = "famille") > 1
+
+                return self.cast_from_entity_to_roles(not_(enceinte_fam) * isole * isolement_recent * not_(presence_autres_enfants), entity = 'famille')
+
+            rsa_enf_charge = (
+                enfant * not_(autonomie_financiere) *(age <= P_rmi.age_pac) * where(
+                ouvre_droit_majoration(),
+                ressources < (P_rmi.majo_rsa.pac0 - 1 + P_rmi.majo_rsa.pac_enf_sup) * P_rmi.rmi,
+                ressources < P_rmi.txps * P_rmi.rmi)
+                )
+
+
+        return period, rsa_enf_charge
 
 class rsa_nb_enfants(Variable):
     column = IntCol
@@ -522,7 +554,7 @@ class psa(DatedVariable):
         af_nbenf = simulation.calculate('af_nbenf', period)
 
         aide_logement = simulation.calculate('aide_logement', period)
-        P = simulation.legislation_at(period.start).minim.rmi
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
 
         activite = self.split_by_roles(activite_holder, roles = [CHEF, PART])
         dummy_api = api > 0
@@ -704,7 +736,7 @@ class rsa_base_ressources_patrimoine_individu(DatedVariable):
         valeur_locative_immo_non_loue = simulation.calculate('valeur_locative_immo_non_loue', period)
         valeur_locative_terrains_non_loue = simulation.calculate('valeur_locative_terrains_non_loue', period)
         revenus_locatifs = simulation.calculate('revenus_locatifs', period)
-        rsa = simulation.legislation_at(period.start).minim.rmi
+        rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
 
         return period, (
             interets_epargne_sur_livrets / 12 +
@@ -724,7 +756,7 @@ class rsa_condition_nationalite(Variable):
         period = period.this_month
         ressortissant_eee = simulation.calculate('ressortissant_eee', period)
         duree_possession_titre_sejour= simulation.calculate('duree_possession_titre_sejour', period)
-        duree_min_titre_sejour = simulation.legislation_at(period.start).minim.rmi.duree_min_titre_sejour
+        duree_min_titre_sejour = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi.duree_min_titre_sejour
 
         return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
@@ -744,7 +776,7 @@ class rsa_eligibilite(Variable):
         rsa_eligibilite_tns = simulation.calculate('rsa_eligibilite_tns', period)
         rsa_condition_nationalite = simulation.compute('rsa_condition_nationalite', period)
         condition_nationalite = self.any_by_roles(rsa_condition_nationalite, roles = [CHEF, PART])
-        rmi = simulation.legislation_at(period.start).minim.rmi
+        rmi = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
         age_min = (rsa_nb_enfants == 0) * rmi.age_pac
 
         eligib = (
@@ -843,9 +875,9 @@ class rsa_forfait_asf_individu(Variable):
 
         asf_elig_enfant = simulation.calculate('asf_elig_enfant', period)
         pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
-        minim = simulation.legislation_at(period.start).minim
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux
 
-        return period, asf_elig_enfant * pfam.af.bmaf * minim.rmi.forfait_asf.taux1
+        return period, asf_elig_enfant * pfam.af.bmaf * P.rmi.forfait_asf.taux1
 
 
 class rsa_forfait_logement(Variable):
@@ -855,38 +887,73 @@ class rsa_forfait_logement(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
+        import datetime
 
-        forf_logement = simulation.legislation_at(period.start).minim.rmi.forfait_logement
-        rmi = simulation.legislation_at(period.start).minim.rmi.rmi
+        if period.start.date > datetime.date(2009, 5, 31):
+            forf_logement = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa.forfait_logement
+            rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa.montant_de_base_du_rsa
 
-        nb_pac = simulation.calculate('nb_parents', period) + simulation.calculate('rsa_nb_enfants', period)
-        aide_logement = simulation.calculate('aide_logement', period)
+            nb_pac = simulation.calculate('nb_parents', period) + simulation.calculate('rsa_nb_enfants', period)
+            aide_logement = simulation.calculate('aide_logement', period)
 
-        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
+            statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
 
-        participation_frais_holder = simulation.compute('participation_frais', period)
-        participation_frais = self.cast_from_entity_to_roles(participation_frais_holder)
-        participation_frais = self.filter_role(participation_frais, role = CHEF)
+            participation_frais_holder = simulation.compute('participation_frais', period)
+            participation_frais = self.cast_from_entity_to_roles(participation_frais_holder)
+            participation_frais = self.filter_role(participation_frais, role = CHEF)
 
-        loyer_holder = simulation.compute('loyer', period)
-        loyer = self.cast_from_entity_to_roles(loyer_holder)
-        loyer = self.filter_role(loyer, role = CHEF)
+            loyer_holder = simulation.compute('loyer', period)
+            loyer = self.cast_from_entity_to_roles(loyer_holder)
+            loyer = self.filter_role(loyer, role = CHEF)
 
-        avantage_nature = or_(
-            (statut_occupation_logement == 2) * not_(loyer),
-            (statut_occupation_logement == 6) * (1 - participation_frais)
-        )
+            avantage_nature = or_(
+                (statut_occupation_logement == 2) * not_(loyer),
+                (statut_occupation_logement == 6) * (1 - participation_frais)
+            )
 
-        avantage_al = aide_logement > 0
+            avantage_al = aide_logement > 0
 
-        montant_forfait = rmi * (
-            (nb_pac == 1) * forf_logement.taux1 +
-            (nb_pac == 2) * forf_logement.taux2 +
-            (nb_pac >= 3) * forf_logement.taux3
-        )
+            montant_forfait = rsa * (
+                (nb_pac == 1) * forf_logement.taux1 +
+                (nb_pac == 2) * forf_logement.taux2 +
+                (nb_pac >= 3) * forf_logement.taux3
+            )
 
-        montant_al = avantage_al * min_(aide_logement, montant_forfait)
-        montant_nature = avantage_nature * montant_forfait
+            montant_al = avantage_al * min_(aide_logement, montant_forfait)
+            montant_nature = avantage_nature * montant_forfait
+
+        else:
+            forf_logement = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi.forfait_logement
+            rmi = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi.rmi
+
+            nb_pac = simulation.calculate('nb_parents', period) + simulation.calculate('rsa_nb_enfants', period)
+            aide_logement = simulation.calculate('aide_logement', period)
+
+            statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
+
+            participation_frais_holder = simulation.compute('participation_frais', period)
+            participation_frais = self.cast_from_entity_to_roles(participation_frais_holder)
+            participation_frais = self.filter_role(participation_frais, role = CHEF)
+
+            loyer_holder = simulation.compute('loyer', period)
+            loyer = self.cast_from_entity_to_roles(loyer_holder)
+            loyer = self.filter_role(loyer, role = CHEF)
+
+            avantage_nature = or_(
+                (statut_occupation_logement == 2) * not_(loyer),
+                (statut_occupation_logement == 6) * (1 - participation_frais)
+            )
+
+            avantage_al = aide_logement > 0
+
+            montant_forfait = rmi * (
+                (nb_pac == 1) * forf_logement.taux1 +
+                (nb_pac == 2) * forf_logement.taux2 +
+                (nb_pac >= 3) * forf_logement.taux3
+            )
+
+            montant_al = avantage_al * min_(aide_logement, montant_forfait)
+            montant_nature = avantage_nature * montant_forfait
 
         return period, max_(montant_al, montant_nature)
 
@@ -907,7 +974,7 @@ class rsa_majore(Variable):
         rsa_revenu_activite = simulation.calculate('rsa_revenu_activite', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
         rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
-        P = simulation.legislation_at(period.start).minim.rmi
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
 
         base_normalise = max_(rsa_socle_majore - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite, 0)
 
@@ -1010,7 +1077,7 @@ class rsa_non_majore(Variable):
         rsa_revenu_activite = simulation.calculate('rsa_revenu_activite', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
         rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
-        P = simulation.legislation_at(period.start).minim.rmi
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
 
         base_normalise = max_(rsa_socle - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite, 0)
 
@@ -1030,7 +1097,11 @@ class rsa_ressource_calculator:
             simulation.calculate('retraite_nette', period)  # +
             # simulation.calculate('ass', last_month)
         ) > 0
-        self.neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).minim.rmi.rmi
+        import datetime
+        if period.start.date > datetime.date(2009, 5, 31):
+            self.neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).prestations.minima_sociaux.rsa.montant_de_base_du_rsa
+        else:
+            self.neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).prestations.minima_sociaux.rmi.rmi
 
     def calcule_ressource(self, variable_name, revenu_pro = False):
         ressource_trois_derniers_mois = self.simulation.calculate_add(variable_name, self.three_previous_months)
@@ -1063,7 +1134,7 @@ class rsa_socle(Variable):
         nb_parents = simulation.calculate('nb_parents', period)
         eligib = simulation.calculate('rsa_eligibilite', period)
         rsa_nb_enfants = simulation.calculate('rsa_nb_enfants', period)
-        rmi = simulation.legislation_at(period.start).minim.rmi
+        rmi = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
 
         nb_personnes = nb_parents + rsa_nb_enfants
 
@@ -1085,7 +1156,7 @@ class rsa_socle_majore(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        rmi = simulation.legislation_at(period.start).minim.rmi
+        rmi = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
         eligib = simulation.calculate('rsa_majore_eligibilite', period)
         nbenf = simulation.calculate('rsa_nb_enfants', period)
         taux = rmi.majo_rsa.pac0 + rmi.majo_rsa.pac_enf_sup * nbenf

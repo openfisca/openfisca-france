@@ -6739,7 +6739,7 @@
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="101.80" />
       </CODE>
     </NODE>
-    <NODE code="rmi" description="Revenu de solidarité active">
+    <NODE code="rmi" description="Revenu minimum d'insertion">
       <CODE code="RMI_fixe" description="Fixe le Rmi dans les simulations" format="bool">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
         <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
@@ -6818,6 +6818,123 @@
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="200" />
       </CODE>
       <CODE code="rmi" description="Rsa socle" format="float" type="monetary">
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="524.68" />
+        <VALUE deb="2016-01-01" fin="2016-03-31" valeur="524.16" />
+        <VALUE deb="2015-09-01" fin="2015-12-31" valeur="524.16" />
+        <VALUE deb="2015-01-01" fin="2015-08-31" valeur="513.88" />
+        <VALUE deb="2014-09-01" fin="2014-12-31" valeur="509.30" />
+        <VALUE deb="2014-01-01" fin="2014-08-31" valeur="499.31" />
+        <VALUE deb="2013-09-01" fin="2013-12-31" valeur="492.90" />
+        <VALUE deb="2013-01-01" fin="2013-08-31" valeur="483.24" />
+        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="474.93" />
+        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="466.99" />
+        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="460.09" />
+        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="454.63" />
+        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="447.91" />
+        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="440.86" />
+        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="433.06" />
+        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="425.4" />
+        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="417.88" />
+        <VALUE deb="2003-01-01" fin="2003-12-31" valeur="411.7" />
+        <VALUE deb="2002-01-01" fin="2002-12-31" valeur="405.62" />
+        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="397.6" />
+      </CODE>
+      <CODE code="rsa_nv" description="Seuil de non versement" format="integer" type="monetary">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="6" />
+        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="6" />
+      </CODE>
+      <CODE code="txp2" description="Taux pour une 2nde personne" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.5" />
+        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.5" />
+      </CODE>
+      <CODE code="txp3" description="Taux pour une 3e personne" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.3" />
+        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.3" />
+      </CODE>
+      <CODE code="txps" description="Taux par personne supplémentaire" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.4" />
+        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.4" />
+      </CODE>
+    </NODE>
+    <NODE code="rsa" description="Revenu de solidarité active">
+      <CODE code="RMI_fixe" description="Fixe le Rmi dans les simulations" format="bool">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
+        <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
+      </CODE>
+      <CODE code="age_pac" description="Limite d'âge des enfants comptés à charge" format="integer" type="age">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="24" />
+        <VALUE deb="1977-10-01" fin="2014-12-31" valeur="24" />
+      </CODE>
+      <CODE code="duree_min_titre_sejour" description="Durée minimale de titre du séjour permettant de bénéficier du RSA" format="integer">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="5" />
+        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="5" />
+      </CODE>
+      <NODE code="forfait_asf" description="Forfait Allocation de Soutien Familial">
+        <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent">
+          <VALUE deb="2015-04-01" fuzzy="true" valeur="0.225" />
+          <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.225" />
+        </CODE>
+        <CODE code="taux2" description="Orphelin (de père et de mère), ou situation assimilée" format="percent">
+          <VALUE deb="2015-04-01" fuzzy="true" valeur="0.3" />
+          <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.3" />
+        </CODE>
+      </NODE>
+      <NODE code="forfait_logement" description="Forfait logement">
+        <CODE code="taux1" description="Fofait logement pour 1 personne (en % du rsa_socle)" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.12" />
+          <VALUE deb="1998-12-14" fin="2014-12-31" valeur="0.12" />
+        </CODE>
+        <CODE code="taux2" description="Forfait logement pour 2 personnes" format="percent">
+          <VALUE deb="2014-01-01" fuzzy="true" valeur="0.24" />
+          <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.24" />
+        </CODE>
+        <CODE code="taux3" description="Forfait logement pour 3 personnes ou plus" format="percent">
+          <VALUE deb="2014-01-01" fuzzy="true" valeur="0.297" />
+          <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.297" />
+        </CODE>
+      </NODE>
+      <NODE code="majo_rsa" description="Majoration du RSA socle pour parent isolé">
+        <CODE code="age" description="Âge limite du benjamin pour un versement sans condition de durée" format="integer" type="age">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
+          <VALUE deb="2009-06-01" fin="2014-12-31" valeur="3" />
+          <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
+        </CODE>
+        <CODE code="pac0" description="Taux de la majoration du RSA socle pour une femme enceinte sans enfant (en pourcentage du rsa de base pour un célibataire sans personne à charge)" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="1.28412" />
+          <VALUE deb="2009-06-20" fin="2014-12-31" valeur="1.28412" />
+          <VALUE deb="2009-06-01" fin="2009-06-19" valeur="1.284" />
+          <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
+        </CODE>
+        <CODE code="pac_enf_sup" description="Majoration du RSA socle par enfant supplémentaire (en pourcentage du rsa de base)" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.42804" />
+          <VALUE deb="2009-06-20" fin="2014-12-31" valeur="0.42804" />
+          <VALUE deb="2009-06-01" fin="2009-06-19" valeur="0.428" />
+          <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
+        </CODE>
+      </NODE>
+      <NODE code="patrimoine" description="Revenus liés au patrimoine">
+        <CODE code="abattement_valeur_locative_immo_non_loue" description="Abattement appliqué sur la valeur locative des biens immobiliers non loués" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.5" />
+          <VALUE deb="2009-01-01" fin="2014-12-31" valeur="0.5" />
+        </CODE>
+        <CODE code="abattement_valeur_locative_terrains_non_loue" description="Abattement appliqué sur la valeur locative des terrains non loués" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.8" />
+          <VALUE deb="2009-01-01" fin="2014-12-31" valeur="0.8" />
+        </CODE>
+        <CODE code="taux_interet_forfaitaire_epargne_non_remunere" description="Taux d'intérêt forfaitaire appliqué à l'épargne non rémunérée" format="percent">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.03" />
+          <VALUE deb="2009-01-01" fin="2014-12-31" valeur="0.03" />
+        </CODE>
+      </NODE>
+      <CODE code="pente" description="Pente du RSA" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
+        <VALUE deb="2009-07-01" fin="2015-12-31" valeur="0.62" />
+        <VALUE deb="2002-01-01" fin="2009-06-30" valeur="0.00" />
+      </CODE>
+      <CODE code="psa" description="Prime de solidarité active" format="integer" type="monetary">
+        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="200" />
+      </CODE>
+      <CODE code="rsa" description="Rsa socle" format="float" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="524.68" />
         <VALUE deb="2016-01-01" fin="2016-03-31" valeur="524.16" />
         <VALUE deb="2015-09-01" fin="2015-12-31" valeur="524.16" />

@@ -1003,6 +1003,32 @@ def transform_ipp_tree(root):
     asf['taux_2_parents'] = taux_2_parents = montant_de_l_asf_en_de_la_bmaf.pop('orphelin_ou_assimile_des_deux_parents')
 
 
+    minima_sociaux['rmi'] = rmi = dict()
+    rmi = minima_sociaux['rmi']
+    minima_sociaux['rmi'].update(prestations.pop('rmi_cond'))
+    minima_sociaux['rmi'].update(prestations.pop('rmi_fl'))
+    minima_sociaux['rmi'].update(prestations.pop('rmi_m'))
+    minima_sociaux['rmi'].update(prestations.pop('rmi_maj'))
+
+
+    minima_sociaux['rsa'] = rsa = dict()
+    rsa = minima_sociaux['rsa']
+    minima_sociaux['rsa'].update(prestations.pop('rsa_m'))
+    minima_sociaux['rsa'].update(prestations.pop('rsa_maj'))
+    minima_sociaux['rsa'].update(prestations.pop('rsa_fl'))
+    minima_sociaux['rsa'].update(prestations.pop('rsa_cond'))
+
+
+    minima_sociaux['api'] = api = dict()
+    minima_sociaux['api'].update(prestations.pop('api_cond'))
+    minima_sociaux['api'].update(prestations.pop('api_m'))
+    api = minima_sociaux['api']
+    api['age_limite'] = age_limite = api.pop('age_limite_de_l_enfant_en_annee_2')
+    montant_en_de_la_bmaf = api['montant_en_de_la_bmaf']
+    minima_sociaux['api'].update(api.pop('montant_en_de_la_bmaf'))
+
+    # TODO: créer un noeud pour la prime d'activité dans minima_sociaux et merger les paramètres. Il faut aussi
+    # afin de pouvoir remettre d'actualité le calcul dans ppa.py
 
 
 

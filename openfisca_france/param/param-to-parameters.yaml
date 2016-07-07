@@ -141,6 +141,10 @@ prestations.minima_sociaux.asi.plaf_seul: prestations.minima_sociaux.asi.plafond
 prestations.minima_sociaux.asi.plaf_couple: prestations.minima_sociaux.asi.plafond_ressource_couple
 
 
+ # api
+prestations.minima_sociaux.api.age: prestations.minima_sociaux.api.age_limite
+prestations.minima_sociaux.api.enf_sup: prestations.minima_sociaux.api.supplement_par_enfant
+
 taxation_capital.prelevements_sociaux.base_pat: taxation_capital.prelevements_sociaux.prelevement_social.revenus_du_patrimoine
 taxation_capital.prelevements_sociaux.base_plac: taxation_capital.prelevements_sociaux.prelevement_social.produits_de_placement
 taxation_capital.prelevements_sociaux.add_pat: taxation_capital.prelevements_sociaux.caps.revenus_du_patrimoine
