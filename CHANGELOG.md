@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.0.2 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.1..4.0.2)
+* Add Aide pour demandeur d'asile (ADA) 
+
 ## 4.0.1 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.0..4.0.1)
 * Correct bug in `switch_on_allegement_mode`
 
