@@ -35,9 +35,6 @@ class ada(DatedVariable):
         af_nbenf = simulation.calculate('af_nbenf', period)
         place_hebergement = simulation.calculate('place_hebergement', period)
         asile_demandeur = simulation.calculate('asile_demandeur', period)
-        print place_hebergement
-        print period.days
-        print nb_parents + af_nbenf
         ada_jour = np.where(
             asile_demandeur,
             np.where(
@@ -47,6 +44,5 @@ class ada(DatedVariable):
                 ),
              0,
              )
-        print ada_jour
         ada = period.days * ada_jour
         return period, ada
