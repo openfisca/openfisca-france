@@ -1048,8 +1048,7 @@ def transform_ipp_tree(root):
     #       pour_l_equipement_mobilier_et_menager: null  # Value must be a float
     #       pour_les_premiers_frais_de_location: null  # Value must be a float
 
-    root['baremes_ipp_retraites_pensions']
-
+    
     del root['baremes_ipp_retraites_pensions']['aad_fp']
     del root['baremes_ipp_retraites_pensions']['aad_rg']
     del root['baremes_ipp_retraites_pensions']['aod_fp_s']
