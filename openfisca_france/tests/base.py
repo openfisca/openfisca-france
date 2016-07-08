@@ -31,7 +31,7 @@ tax_benefit_system = FranceTaxBenefitSystem()
 reform_list = {
     'allocations_familiales_imposables': allocations_familiales_imposables.allocations_familiales_imposables,
     'cesthra_invalidee': cesthra_invalidee.cesthra_invalidee,
-    'plf2016': plf2016.reform,
+    'plf2016': plf2016.plf2016,
     # 'ayrault_muet': plf2016_ayrault_muet.build_reform,
     'plf2016_counterfactual': plf2016.counterfactual_reform,
     # 'plf2016_counterfactual_2014': plf2016.build_counterfactual_2014_reform,

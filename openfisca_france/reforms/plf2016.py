@@ -13,7 +13,7 @@ from ..model.base import DatedVariable, dated_function, date
 
 # What if the reform was applied the year before it should
 
-class reform(Reform):
+class plf2016(Reform):
     name = u'Projet de Loi de Finances 2016 appliquée aux revenus 2014'
     # key = 'plf2016'
 
