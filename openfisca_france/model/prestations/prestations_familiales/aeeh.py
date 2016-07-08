@@ -58,8 +58,8 @@ class aeeh(DatedVariable):
         # Ces allocations ne sont pas soumis à la CRDS
         return period, 12 * aeeh  # annualisé
 
-    @dated_function(start = date(2003, 1, 1), stop = date(2015, 12, 31))
-    def function_20030101_20151231(self, simulation, period):
+    @dated_function(start = date(2003, 1, 1))
+    def function_20030101(self, simulation, period):
         '''
         Allocation d'éducation de l'enfant handicapé (Allocation d'éducation spécialisée avant le 1er janvier 2006)
 
