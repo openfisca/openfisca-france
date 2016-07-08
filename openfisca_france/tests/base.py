@@ -72,7 +72,7 @@ def get_cached_composed_reform(reform_keys, tax_benefit_system):
             reforms = reforms,
             tax_benefit_system = tax_benefit_system,
             )
-        assert full_key == composed_reform.full_key
+        assert full_key == composed_reform.full_key, (full_key, composed_reform.full_key)
         reform_by_full_key[full_key] = composed_reform
     return composed_reform
 
