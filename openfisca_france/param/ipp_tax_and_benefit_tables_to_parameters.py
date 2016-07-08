@@ -960,6 +960,10 @@ def transform_ipp_tree(root):
     clmg['taux_recours_emploi_supp_2e_plafond'] = taux_recours_emploi_supp_2e_plafond = clmg.pop('revenus_superieurs_au_plafond_d_allocation')
 
 
+    minima_sociaux['ada'] = ada = dict()
+    minima_sociaux['ada'].update(prestations.pop('ada'))
+    ada['majoration_pers_supp'] = majoration_pers_supp = ada.pop('majoration_par_personne_supplementaire_maximum_10_par_famille')
+    ada['supplement_non_hebergement'] = supplement_non_hebergement = ada.pop('supplement_si_non_heberge_dans_centres_d_accueil_ou_hebergement_d_urgence')
     #paje['taux_allocation_base'] = taux_allocation_base = paje_ipp.pop('allocation_de_base_en_de_la_bmaf')
     #base['taux_allocation_base'] = taux_allocation_base = paje.pop('taux_allocation_base')
     #complement_de_libre_choix_d_activite_clca = paje['complement_de_libre_choix_d_activite_clca']
@@ -1048,7 +1052,7 @@ def transform_ipp_tree(root):
     #       pour_l_equipement_mobilier_et_menager: null  # Value must be a float
     #       pour_les_premiers_frais_de_location: null  # Value must be a float
 
-    
+
     del root['baremes_ipp_retraites_pensions']['aad_fp']
     del root['baremes_ipp_retraites_pensions']['aad_rg']
     del root['baremes_ipp_retraites_pensions']['aod_fp_s']

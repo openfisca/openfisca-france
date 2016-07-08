@@ -6,38 +6,12 @@
     </CODE>
   </NODE>
   <NODE code="ada">
-    <NODE code="montant_journalier_selon_le_nombre_de_personnes">
-      <CODE code="1" format="float" type="monetary">
-        <VALUE deb="2015-11-01" fuzzy="true" valeur="6.8" />
-      </CODE>
-      <CODE code="10" format="float" type="monetary">
-        <VALUE deb="2015-11-01" fuzzy="true" valeur="37.4" />
-      </CODE>
-      <CODE code="2" format="float" type="monetary">
-        <VALUE deb="2015-11-01" fuzzy="true" valeur="10.2" />
-      </CODE>
-      <CODE code="3" format="float" type="monetary">
-        <VALUE deb="2015-11-01" fuzzy="true" valeur="13.6" />
-      </CODE>
-      <CODE code="4" format="float" type="monetary">
-        <VALUE deb="2015-11-01" fuzzy="true" valeur="17" />
-      </CODE>
-      <CODE code="5" format="float" type="monetary">
-        <VALUE deb="2015-11-01" fuzzy="true" valeur="20.4" />
-      </CODE>
-      <CODE code="6" format="float" type="monetary">
-        <VALUE deb="2015-11-01" fuzzy="true" valeur="23.8" />
-      </CODE>
-      <CODE code="7" format="float" type="monetary">
-        <VALUE deb="2015-11-01" fuzzy="true" valeur="27.2" />
-      </CODE>
-      <CODE code="8" format="float" type="monetary">
-        <VALUE deb="2015-11-01" fuzzy="true" valeur="30.6" />
-      </CODE>
-      <CODE code="9" format="float" type="monetary">
-        <VALUE deb="2015-11-01" fuzzy="true" valeur="34" />
-      </CODE>
-    </NODE>
+    <CODE code="majoration_par_personne_supplementaire_maximum_10_par_famille" format="float" type="monetary">
+      <VALUE deb="2015-11-01" fuzzy="true" valeur="3.4" />
+    </CODE>
+    <CODE code="montant_journalier_pour_une_personne" format="float" type="monetary">
+      <VALUE deb="2015-11-01" fuzzy="true" valeur="6.8" />
+    </CODE>
     <CODE code="supplement_si_non_heberge_dans_centres_d_accueil_ou_hebergement_d_urgence" format="float" type="monetary">
       <VALUE deb="2015-11-01" fuzzy="true" valeur="4.2" />
     </CODE>
@@ -2970,10 +2944,10 @@
     </CODE>
     <NODE code="majoration_isolement_en_de_la_base_rsa">
       <CODE code="femmes_enceintes" format="percent">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="1.284" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="1.28412" />
       </CODE>
       <CODE code="par_enfant_a_charge" format="percent">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.428" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.42804" />
       </CODE>
     </NODE>
     <NODE code="majoration_montant_maximal_en_de_la_base_rsa">
