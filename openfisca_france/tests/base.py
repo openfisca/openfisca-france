@@ -15,6 +15,7 @@ from ..reforms import (
     )
 
 
+
 __all__ = [
     'assert_near',
     'get_cached_composed_reform',
@@ -30,9 +31,9 @@ tax_benefit_system = FranceTaxBenefitSystem()
 reform_list = {
     'allocations_familiales_imposables': allocations_familiales_imposables.allocations_familiales_imposables,
     'cesthra_invalidee': cesthra_invalidee.cesthra_invalidee,
-    'plf2016': plf2016.build_reform,
+    'plf2016': plf2016.reform,
     # 'ayrault_muet': plf2016_ayrault_muet.build_reform,
-    # 'plf2016_counterfactual': plf2016.build_counterfactual_reform,
+    'plf2016_counterfactual': plf2016.counterfactual_reform,
     # 'plf2016_counterfactual_2014': plf2016.build_counterfactual_2014_reform,
     'plf2015': plf2015.plf2015,
     # 'plfr2014': plfr2014.build_reform,
