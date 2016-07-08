@@ -13,6 +13,31 @@ from ..model.base import DatedVariable, dated_function, date
 
 # What if the reform was applied the year before it should
 
+def reform_modify_legislation_json(reference_legislation_json_copy):
+    reform_legislation_subtree = {
+        "@type": "Node",
+        "description": "PLF 2016 sur revenus 2014",
+        "children": {
+            "decote_seuil_celib": {
+                "@type": "Parameter",
+                "description": "Seuil de la décôte pour un célibataire",
+                "format": "integer",
+                "unit": "currency",
+                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 1165}],
+                },
+            "decote_seuil_couple": {
+                "@type": "Parameter",
+                "description": "Seuil de la décôte pour un couple",
+                "format": "integer",
+                "unit": "currency",
+                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 1920}],
+                },
+            },
+        }
+    reference_legislation_json_copy['children']['plf2016'] = reform_legislation_subtree
+    return reference_legislation_json_copy
+
+
 class plf2016(Reform):
     name = u'Projet de Loi de Finances 2016 appliquée aux revenus 2014'
     # key = 'plf2016'
@@ -31,33 +56,9 @@ class plf2016(Reform):
             decote_couple = (ir_plaf_qf < plf.decote_seuil_couple) * (plf.decote_seuil_couple - .75 * ir_plaf_qf)
             return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
-    def reform_modify_legislation_json(reference_legislation_json_copy):
-        reform_legislation_subtree = {
-            "@type": "Node",
-            "description": "PLF 2016 sur revenus 2014",
-            "children": {
-                "decote_seuil_celib": {
-                    "@type": "Parameter",
-                    "description": "Seuil de la décôte pour un célibataire",
-                    "format": "integer",
-                    "unit": "currency",
-                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 1165}],
-                    },
-                "decote_seuil_couple": {
-                    "@type": "Parameter",
-                    "description": "Seuil de la décôte pour un couple",
-                    "format": "integer",
-                    "unit": "currency",
-                    "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 1920}],
-                    },
-                },
-            }
-        reference_legislation_json_copy['children']['plf2016'] = reform_legislation_subtree
-        return reference_legislation_json_copy
-
     def apply(self):
-        self.update_variables(self.decote)
-        self.modify_legislation_json(modifier_function = self.reform_modify_legislation_json)
+        self.update_variable(self.decote)
+        self.modify_legislation_json(modifier_function = reform_modify_legislation_json)
 
 
 # Counterfactual ie business as usual
