@@ -1048,7 +1048,27 @@ def transform_ipp_tree(root):
     #       pour_l_equipement_mobilier_et_menager: null  # Value must be a float
     #       pour_les_premiers_frais_de_location: null  # Value must be a float
 
-    del root['baremes_ipp_retraites_pensions']
+    root['baremes_ipp_retraites_pensions']
+
+    del root['baremes_ipp_retraites_pensions']['aad_fp']
+    del root['baremes_ipp_retraites_pensions']['aad_rg']
+    del root['baremes_ipp_retraites_pensions']['aod_fp_s']
+    del root['baremes_ipp_retraites_pensions']['la_fp_a']
+    del root['baremes_ipp_retraites_pensions']['salval']
+    del root['baremes_ipp_retraites_pensions']['as']
+
+    root['retraites_pensions'] = retraites_pensions = root.pop('baremes_ipp_retraites_pensions')
+
+    minima_sociaux['aspa'] = aspa = dict()
+    minima_sociaux['aspa'].update(retraites_pensions['aspa'])
+    aspa = minima_sociaux['aspa']
+    minima_sociaux['aspa'].update(aspa.pop('montant_maximum_annuel'))
+    aspa['montant_annuel_couple'] = montant_annuel_couple = aspa.pop('couple_ou_lorsqu_un_seul_conjoint_est_beneficiaire_de_l_aspa_et_l_autre_de_l_allocation_supplementaire_d_invalidite')
+    aspa['montant_annuel_seul'] = montant_annuel_seul = aspa.pop('personnes_seules_ou_lorsque_un_seul_des_conjoints_beneficie_de_l_aspa')
+    minima_sociaux['aspa'].update(aspa.pop('plafond_de_ressources'))
+    aspa['plafond_ressources_couple'] = plafond_ressources_couple = aspa.pop('couples')
+    aspa['plafond_ressources_seul'] = plafond_ressources_seul = aspa.pop('personnes_seules')
+
     # root['retraites'] = root.pop('baremes_ipp_retraites_pensions')
     # baremes_ipp_retraites_pensions:
     #   RENAME: retraite
