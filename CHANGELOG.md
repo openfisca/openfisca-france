@@ -1,4 +1,6 @@
 # Changelog
+## 4.0.3 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.2..4.0.3)
+* Add a build to run all tests, including the ones flagged as ignored in their yaml properties.
 
 ## 4.0.2 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.1..4.0.2)
 * Remove wrong stop date of `aeeh`
