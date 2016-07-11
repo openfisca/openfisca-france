@@ -30,10 +30,10 @@ setup(
         ],
     extras_require = {
         'inversion_revenus': [
-            'scipy >= 0.12',
+            'scipy >= 0.17',
             ],
         'de_net_a_brut': [
-            'scipy >= 0.12',
+            'scipy >= 0.17',
             ],
         'taxipp': [
             'pandas >= 0.13',
