@@ -9,7 +9,7 @@ from openfisca_france.tests import base
 
 
 def test(year = 2015):
-    for reform_key in ['plf2016', 'plf2016_counterfactual', 'plf2016_counterfactual_2014']:
+    for reform_key in ['ayrault_muet']:
         yield run, reform_key, year
 
 

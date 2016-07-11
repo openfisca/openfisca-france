@@ -109,7 +109,7 @@ def counterfactual_modify_legislation_json(reference_legislation_json_copy):
     # montant : « 5 732 € ».
 
 
-class counterfactual_reform(Reform):
+class plf2016_counterfactual(Reform):
     name = u'Contrefactuel du PLF 2016 sur les revenus 2015'
     # key = 'plf2016_counterfactual'
 
@@ -131,7 +131,7 @@ class counterfactual_reform(Reform):
             return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
     def apply(self):
-        self.update_variables(self.decote)
+        self.update_variable(self.decote)
         self.modify_legislation_json(modifier_function = counterfactual_modify_legislation_json)
 
 
@@ -215,9 +215,9 @@ def counterfactual_2014_modify_legislation_json(reference_legislation_json_copy)
     return reference_legislation_json_copy
 
 
-class counterfactual_2014_reform(Reform):
-    key = 'plf2016_counterfactual_2014'
+class plf2016_counterfactual_2014(Reform):
     name = u'Contrefactuel 2014 du PLF 2016 sur les revenus 2015'
+    key = 'plf2016_counterfactual_2014'
 
     class decote(DatedVariable):
 
@@ -290,5 +290,6 @@ class counterfactual_2014_reform(Reform):
             return period, min_(ip_net, total_reductions)
 
     def apply(self):
-        self.update_variables(self.decote, self.reduction_impot_exceptionnelle, self.reductions)
+        for variable in [self.decote, self.reduction_impot_exceptionnelle, self.reductions]:
+            self.update_variable(variable)
         self.modify_legislation_json(modifier_function = counterfactual_2014_modify_legislation_json)
