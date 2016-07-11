@@ -5,8 +5,8 @@ from __future__ import division
 from numpy import round, maximum as max_, logical_not as not_, logical_or as or_, vectorize, where
 
 
-from ...base import *  # noqa analysis:ignore
-from .base_ressource import nb_enf
+from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
 
 class af_nbenf(Variable):

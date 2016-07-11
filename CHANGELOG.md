@@ -1,6 +1,20 @@
 # Changelog
 
-## 3.4.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.4.1..3.4.0)
+## 4.0.2 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.1..4.0.2)
+* Remove wrong stop date of `aeeh`
+
+## 4.0.1 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.0..4.0.1)
+* Correct bug in `switch_on_allegement_mode`
+
+## 4.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.4.1..4.0.0)
+
+* Apply core API changes introduced by [openfisca-core 2.0](https://github.com/openfisca/openfisca-core/pull/388)
+* Change the way the France tax benefit system is built
+* Change the way reforms are built
+* Move extensions from `./model/extensions` to `./extensions`
+* Warning : relatives imports are now impossible in model files.
+
+## 3.4.1 - [diff](https://github.com/openfisca/openfisca-france/compare/3.4.1..3.4.0)
 
 * Only enforce version and changelog update in CI when PR target is master.
 
@@ -50,16 +64,16 @@ It is included in the bases of the following variables.
     * `celdiv` -> `celibataire_ou_divorce`
     * `jveuf` -> `jeune_veuf`
 
-## 2.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/2.0.0..1.3.1)
+## 2.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1..2.0.0)
 
 * Deprecate Paris reform
 * Introduce enfant_place
 
-## 1.3.1 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1...1.3.1rc0)
+## 1.3.1 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1rc0...1.3.1)
 
 * Adjust ppa computation
 
-## 1.3.1rc0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1rc0..1.3.0)
+## 1.3.1rc0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.0..1.3.1rc0)
 
 * Fix versioning enforcement
 

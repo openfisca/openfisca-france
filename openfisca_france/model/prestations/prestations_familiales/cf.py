@@ -4,7 +4,7 @@ from __future__ import division
 
 from numpy import (round, maximum as max_, minimum as min_, logical_not as not_, logical_or as or_)
 
-from ...base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class cf_enfant_a_charge(Variable):

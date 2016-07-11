@@ -4,7 +4,7 @@ from __future__ import division
 
 from numpy import logical_not as not_, maximum as max_, minimum as min_
 
-from ..base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class exonere_taxe_habitation(Variable):

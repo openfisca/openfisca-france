@@ -14,8 +14,8 @@ from datetime import datetime
 
 from openfisca_core import periods
 
-from ....base import *  # noqa analysis:ignore
-from .....assets.holidays import holidays
+from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.assets.holidays import holidays
 
 
 log = logging.getLogger(__name__)
@@ -408,11 +408,12 @@ def switch_on_allegement_mode(simulation, period, mode_recouvrement, variable_na
     return switch(
         mode_recouvrement,
         {
-            0: compute_allegement_annuel(simulation, period, 'allegement_fillon', compute_function),
-            1: compute_allegement_anticipe(simulation, period, 'allegement_fillon', compute_function),
-            2: compute_allegement_progressif(simulation, period, 'allegement_fillon', compute_function),
-            },
-        )
+            0: compute_allegement_annuel(simulation, period, variable_name, compute_function),
+            1: compute_allegement_anticipe(simulation, period, variable_name, compute_function),
+            2: compute_allegement_progressif(simulation, period, variable_name, compute_function),
+        },
+    )
+
 
 
 def compute_allegement_annuel(simulation, period, variable_name, compute_function):

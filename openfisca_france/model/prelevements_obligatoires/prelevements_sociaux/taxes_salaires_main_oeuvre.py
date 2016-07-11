@@ -8,8 +8,8 @@ from numpy import logical_or as or_, logical_and as and_, round as round_, logic
 
 import numpy as np
 
-from ...base import *  # noqa analysis:ignore
-
+import openfisca_france
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 log = logging.getLogger(__name__)
 
@@ -22,7 +22,7 @@ taux_smt_by_depcom = None
 
 # Helpers
 
-from .cotisations_sociales.base import apply_bareme
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme
 
 # Cotisations proprement dites
 

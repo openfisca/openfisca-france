@@ -1,7 +1,7 @@
 import openfisca_france
 import datetime
 
-tbs = openfisca_france.init_tax_benefit_system()
+tbs = openfisca_france.FranceTaxBenefitSystem()
 
 scenario = tbs.new_scenario().init_from_attributes(
     period = "2016-01",

@@ -2,11 +2,12 @@
 
 from __future__ import division
 
-from openfisca_core import columns, reforms
+from openfisca_core import columns
+from openfisca_core.reforms import Reform
+from openfisca_core.variables import Variable
 from scipy.optimize import fsolve
 
 from .. import entities
-
 
 def calculate_net_from(salaire_de_base, simulation, period, requested_variable_names):
 
@@ -30,54 +31,48 @@ def calculate_net_from(salaire_de_base, simulation, period, requested_variable_n
 
     return net
 
+class salaire_de_base(Variable):
+    column = columns.FloatCol
+    entity_class = entities.Individus
+    label = u"Salaire brut ou traitement indiciaire brut"
+    url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
 
-def build_reform(tax_benefit_system):
+    def function(self, simulation, period):
+        # Calcule le salaire brut à partir du salaire net par inversion numérique.
 
-    Reform = reforms.make_reform(
-        key = 'de_net_a_brut',
-        name = u'Inversion du calcul brut -> net',
-        reference = tax_benefit_system,
-        )
+        net = simulation.get_array('salaire_net_a_payer', period)
 
-    class salaire_de_base(Reform.Variable):
-        column = columns.FloatCol
-        entity_class = entities.Individus
-        label = u"Salaire brut ou traitement indiciaire brut"
-        reference = tax_benefit_system.column_by_name["salaire_de_base"]
-        url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
+        assert net is not None
 
-        def function(self, simulation, period):
-            # Calcule le salaire brut à partir du salaire net par inversion numérique.
+        simulation = self.holder.entity.simulation
 
-            net = simulation.get_array('salaire_net_a_payer', period)
+        # List of variables already calculated. We will need it to remove their holders,
+        # that might contain undesired cache
+        requested_variable_names = simulation.requested_periods_by_variable_name.keys()
+        if requested_variable_names:
+            requested_variable_names.remove(u'salaire_de_base')
+        # Clean 'requested_periods_by_variable_name', that is used by -core to check for computation cycles.
+        # This variable, salaire_de_base, might have been called from variable X,
+        # that will be calculated again in our iterations to compute the salaire_net requested
+        # as an input variable, hence producing a cycle error
+        simulation.requested_periods_by_variable_name = dict()
 
-            assert net is not None
+        def solve_func(net):
+            def innerfunc(essai):
+                return calculate_net_from(essai, simulation, period, requested_variable_names) - net
+            return innerfunc
 
-            simulation = self.holder.entity.simulation
+        brut_calcule = \
+            fsolve(
+                solve_func(net),
+                net*1.5,  # on entend souvent parler cette méthode...
+                xtol = 1/10  # précision
+                )
 
-            # List of variables already calculated. We will need it to remove their holders,
-            # that might contain undesired cache
-            requested_variable_names = simulation.requested_periods_by_variable_name.keys()
-            if requested_variable_names:
-                requested_variable_names.remove(u'salaire_de_base')
-            # Clean 'requested_periods_by_variable_name', that is used by -core to check for computation cycles.
-            # This variable, salaire_de_base, might have been called from variable X,
-            # that will be calculated again in our iterations to compute the salaire_net requested
-            # as an input variable, hence producing a cycle error
-            simulation.requested_periods_by_variable_name = dict()
+        return period, brut_calcule
 
-            def solve_func(net):
-                def innerfunc(essai):
-                    return calculate_net_from(essai, simulation, period, requested_variable_names) - net
-                return innerfunc
+class de_net_a_brut(Reform):
+    name = u'Inversion du calcul brut -> net'
 
-            brut_calcule = \
-                fsolve(
-                    solve_func(net),
-                    net*1.5,  # on entend souvent parler cette méthode...
-                    xtol = 1/10  # précision
-                    )
-
-            return period, brut_calcule
-
-    return Reform()
+    def apply(self):
+        self.update_variable(salaire_de_base)

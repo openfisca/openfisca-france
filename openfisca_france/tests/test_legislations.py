@@ -5,16 +5,16 @@ import json
 
 from openfisca_core import conv, legislations, legislationsxml
 
-from openfisca_france import init_country
+from openfisca_france import FranceTaxBenefitSystem
 
 
 # Exceptionally for this test do not import TaxBenefitSystem from tests.base.
-TaxBenefitSystem = init_country()
+tax_benefit_system = FranceTaxBenefitSystem()
 
 
 def check_legislation_xml_file(year):
     legislation_tree = conv.check(legislationsxml.make_xml_legislation_info_list_to_xml_element(False))(
-        TaxBenefitSystem.legislation_xml_info_list, state = conv.default_state)
+        tax_benefit_system.legislation_xml_info_list, state = conv.default_state)
     legislation_xml_json = conv.check(legislationsxml.xml_legislation_to_json)(
         legislation_tree,
         state = conv.default_state,
@@ -44,8 +44,6 @@ def check_legislation_xml_file(year):
             unicode(json.dumps(legislation_json, ensure_ascii = False, indent = 2)),
             ).encode('utf-8'))
 
-    # Create tax_benefit system only now, to be able to debug XML validation errors in above code.
-    tax_benefit_system = TaxBenefitSystem()
     if tax_benefit_system.preprocess_legislation is not None:
         legislation_json = tax_benefit_system.preprocess_legislation(legislation_json)
 

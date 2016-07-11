@@ -3,7 +3,7 @@
 import openfisca_france
 from openfisca_france.reforms import plfr2014
 
-tax_benefit_system = openfisca_france.init_tax_benefit_system()
+tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
 reformed_tax_benefit_system = plfr2014.build_reform(tax_benefit_system)
 
 scenario = reformed_tax_benefit_system.new_scenario()

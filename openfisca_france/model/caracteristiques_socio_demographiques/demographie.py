@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from ..base import *  # noqa
+from openfisca_france.model.base import *  # noqa
 
 
 class idmen(Variable):
