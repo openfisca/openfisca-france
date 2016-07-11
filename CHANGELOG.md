@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.0.3 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.2..4.0.3)
+* Update numpy dependency to 1.11
+* Upgrade pip to >= 8.0 in travis
+* Do not install numpy from apt in travis
+* Install scipy by wheels
+* Fix semver version number towards OpenFisca-Core
+
 ## 4.0.2 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.1..4.0.2)
 * Remove wrong stop date of `aeeh`
 
