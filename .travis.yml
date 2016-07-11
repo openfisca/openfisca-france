@@ -1,7 +1,6 @@
 addons:
   apt:
     packages:
-    - python-numpy
     - python-yaml
     - python-scipy
 install:
