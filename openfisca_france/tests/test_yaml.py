@@ -207,6 +207,12 @@ def check_calculate_output(yaml_path, name, period_str, test, force, verbose = F
 
 
 def test(force = False, name_filter = None, options_by_path = None):
+    force_flag=os.getenv('FORCE')
+    if(force_flag == 'TRUE'):
+        force=True
+    else:
+        force=False
+
     if isinstance(name_filter, str):
         name_filter = name_filter.decode('utf-8')
     if options_by_path is None:

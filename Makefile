@@ -23,3 +23,6 @@ test: check-syntax-errors check-no-prints
 	@# Launch tests from openfisca_france/tests directory (and not .) because TaxBenefitSystem must be initialized
 	@# before parsing source files containing formulas.
 	nosetests openfisca_france/tests --exe --with-doctest
+
+test-xunit-force: check-syntax-errors check-no-prints
+	export FORCE=true; nosetests openfisca_france/tests/test_yaml.py --exe --with-xunit
