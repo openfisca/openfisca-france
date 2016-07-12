@@ -860,8 +860,8 @@ def transform_ipp_tree(root):
     aides_logement['participation_min'] = participation_min = dict()
     aides_logement['montant_forfaitaire'] = montant_forfaitaire = al_plaf_loc2.pop('montant_forfaitaire_de_la_participation_minimale_po')
     aides_logement['taux'] = taux = al_plaf_loc2.pop('montant_proportionnel_de_la_participation_minimale_po')
-    participation_min['montant_forfaitaire']  = aides_logement.pop('montant_forfaitaire')
-    participation_min['taux']  = aides_logement.pop('taux')
+    participation_min['montant_forfaitaire'] = aides_logement.pop('montant_forfaitaire')
+    participation_min['taux'] = aides_logement.pop('taux')
 
     del prestations['api_fl']
     #   api_fl:
@@ -920,8 +920,6 @@ def transform_ipp_tree(root):
     apje['taux_enfant_3_et_plus'] = taux_enfant_3_et_plus = majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant.pop('3eme_enfant_et_plus')
     apje['taux'] = taux = apje.pop('montant_de_l_apje_en_de_la_bmaf')
 
-
-
     del prestations['paje_cm2']['conditions_pour_qu_un_enfant_adopte_ouvre_droit_a_la_prime_a_son_arrivee']
     prestations_familiales['paje'] = paje = dict()
     paje = prestations_familiales['paje']
@@ -962,9 +960,9 @@ def transform_ipp_tree(root):
     minima_sociaux['ada'].update(prestations.pop('ada'))
     ada['majoration_pers_supp'] = majoration_pers_supp = ada.pop('majoration_par_personne_supplementaire_maximum_10_par_famille')
     ada['supplement_non_hebergement'] = supplement_non_hebergement = ada.pop('supplement_si_non_heberge_dans_centres_d_accueil_ou_hebergement_d_urgence')
-    #paje['taux_allocation_base'] = taux_allocation_base = paje_ipp.pop('allocation_de_base_en_de_la_bmaf')
-    #base['taux_allocation_base'] = taux_allocation_base = paje.pop('taux_allocation_base')
-    #complement_de_libre_choix_d_activite_clca = paje['complement_de_libre_choix_d_activite_clca']
+    # paje['taux_allocation_base'] = taux_allocation_base = paje_ipp.pop('allocation_de_base_en_de_la_bmaf')
+    # base['taux_allocation_base'] = taux_allocation_base = paje.pop('taux_allocation_base')
+    # complement_de_libre_choix_d_activite_clca = paje['complement_de_libre_choix_d_activite_clca']
 
 
 
