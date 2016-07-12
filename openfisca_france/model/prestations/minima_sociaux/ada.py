@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-from ...base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
+
 
 class asile_demandeur(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"Famille demandant l'asile"
 
+
 class place_hebergement(Variable):
     column = BoolCol(default = True)
     entity_class = Familles
     label = u"Bénéficie d'une place dans un centre d'hébergement"
+
 
 class ada(DatedVariable):
     column = FloatCol(default = 0)
@@ -27,7 +30,7 @@ class ada(DatedVariable):
         ada = simulation.legislation_at(period.start).prestations.minima.ada
 
         nb_pers = af_nbenf + nb_parents
-        
+
         ada_par_jour = (ada.montant_journalier_pour_une_personne +
             (nb_pers - 1) * ada.majoration_pers_supp +
             ada.supplement_non_hebergement * (not ada.place_hebergement)
