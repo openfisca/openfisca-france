@@ -114,7 +114,7 @@ class traitement_indiciaire_brut(Variable):
         # et en tenant compte des éléments de l'assiette
         # salarie['fonc']['etat']['excep_solidarite'] = salarie['fonc']['commun']['solidarite']
 
-        public_titulaire_etat = salarie['public_titulaire_etat'].copy()
+        public_titulaire_etat = salarie['public_titulaire_etat'] #.copy()
         public_titulaire_etat['rafp'].multiply_rates(TAUX_DE_PRIME, inplace = True)
         public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
 

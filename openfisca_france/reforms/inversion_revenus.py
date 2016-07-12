@@ -187,7 +187,8 @@ def build_reform(tax_benefit_system):
             """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
             """
             # Get value for year and divide below.
-            chomage_imposable_pour_inversion = simulation.get_array('chomage_imposable_pour_inversion', period.this_year)
+            chomage_imposable_pour_inversion = simulation.get_array(
+                'chomage_imposable_pour_inversion', period.this_year)
             if chomage_imposable_pour_inversion is None:
                 chomage_net = simulation.get_array('chomage_net', period)
                 if chomage_net is not None:
@@ -206,7 +207,8 @@ def build_reform(tax_benefit_system):
                             ) - chomage_net
                     return period, fsolve(solve_function, chomage_net)
 
-                chomage_imposable_pour_inversion = simulation.calculate_add_divide('chomage_imposable_pour_inversion', period)
+                chomage_imposable_pour_inversion = simulation.calculate_add_divide(
+                    'chomage_imposable_pour_inversion', period)
 
             # Calcule les allocations chômage brutes à partir des allocations imposables.
             # taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
@@ -237,7 +239,8 @@ def build_reform(tax_benefit_system):
             # period = period.this_month
 
             # Get value for year and divide below.
-            retraite_imposable_pour_inversion = simulation.get_array('retraite_imposable_pour_inversion', period.this_year)
+            retraite_imposable_pour_inversion = simulation.get_array(
+                'retraite_imposable_pour_inversion', period.this_year)
             if retraite_imposable_pour_inversion is None:
                 retraite_nette = simulation.get_array('retraite_nette', period)
                 if retraite_nette is not None:
@@ -256,7 +259,8 @@ def build_reform(tax_benefit_system):
                             ) - retraite_nette
                     return period, fsolve(solve_function, retraite_nette)
 
-                retraite_imposable_pour_inversion = simulation.calculate_add_divide('retraite_imposable_pour_inversion', period)
+                retraite_imposable_pour_inversion = simulation.calculate_add_divide(
+                    'retraite_imposable_pour_inversion', period)
 
             # Calcule les pensions de retraite brutes à partir des pensions imposables.
             taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
