@@ -7,6 +7,7 @@ from .. import FranceTaxBenefitSystem
 from ..reforms import (
     allocations_familiales_imposables,
     cesthra_invalidee,
+    inversion_directe_salaires,
     plf2016,
     plf2016_ayrault_muet,
     plf2015,
@@ -30,6 +31,7 @@ tax_benefit_system = FranceTaxBenefitSystem()
 reform_list = {
     'allocations_familiales_imposables': allocations_familiales_imposables.allocations_familiales_imposables,
     'cesthra_invalidee': cesthra_invalidee.cesthra_invalidee,
+    'inversion_directe_salaires': inversion_directe_salaires.inversion_directe_salaires,
     'plf2016': plf2016.plf2016,
     'ayrault_muet': plf2016_ayrault_muet.ayrault_muet,
     'plf2016_counterfactual': plf2016.plf2016_counterfactual,
