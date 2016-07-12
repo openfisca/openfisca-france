@@ -736,7 +736,7 @@ class rsa_base_ressources_patrimoine_individu(DatedVariable):
         valeur_locative_immo_non_loue = simulation.calculate('valeur_locative_immo_non_loue', period)
         valeur_locative_terrains_non_loue = simulation.calculate('valeur_locative_terrains_non_loue', period)
         revenus_locatifs = simulation.calculate('revenus_locatifs', period)
-        rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
+        rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa
 
         return period, (
             interets_epargne_sur_livrets / 12 +
@@ -756,7 +756,7 @@ class rsa_condition_nationalite(Variable):
         period = period.this_month
         ressortissant_eee = simulation.calculate('ressortissant_eee', period)
         duree_possession_titre_sejour= simulation.calculate('duree_possession_titre_sejour', period)
-        duree_min_titre_sejour = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi.duree_min_titre_sejour
+        duree_min_titre_sejour = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa.duree_min_titre_sejour
 
         return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
@@ -777,7 +777,8 @@ class rsa_eligibilite(Variable):
         rsa_condition_nationalite = simulation.compute('rsa_condition_nationalite', period)
         condition_nationalite = self.any_by_roles(rsa_condition_nationalite, roles = [CHEF, PART])
         rmi = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
-        age_min = (rsa_nb_enfants == 0) * rmi.age_pac
+        rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa
+        age_min = (rsa_nb_enfants == 0) * rsa.age_pac
 
         eligib = (
             (age_parents[CHEF] >= age_min) * not_(activite_parents[CHEF] == 2) +
@@ -974,7 +975,7 @@ class rsa_majore(Variable):
         rsa_revenu_activite = simulation.calculate('rsa_revenu_activite', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
         rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
-        P = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa
 
         base_normalise = max_(rsa_socle_majore - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite, 0)
 
@@ -1077,7 +1078,7 @@ class rsa_non_majore(Variable):
         rsa_revenu_activite = simulation.calculate('rsa_revenu_activite', period)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
         rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
-        P = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa
 
         base_normalise = max_(rsa_socle - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite, 0)
 
@@ -1135,17 +1136,30 @@ class rsa_socle(Variable):
         eligib = simulation.calculate('rsa_eligibilite', period)
         rsa_nb_enfants = simulation.calculate('rsa_nb_enfants', period)
         rmi = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
+        rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa
 
         nb_personnes = nb_parents + rsa_nb_enfants
+        import datetime
+        if period.start.date > datetime.date(2009, 5, 31):
+            taux = (
+                1 +
+                (nb_personnes >= 2) * rmi.txp2 +
+                (nb_personnes >= 3) * rmi.txp3 +
+                (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3) + # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
+                max_(nb_personnes - 4, 0) * rmi.txps
+                    )
+            socle = rsa.montant_de_base_du_rsa
+        else:
+            taux = (
+                1 +
+                (nb_personnes >= 2) * rmi.txp2 +
+                (nb_personnes >= 3) * rmi.txp3 +
+                (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3) + # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
+                max_(nb_personnes - 4, 0) * rmi.txps
+                    )
+            socle = rmi.rmi
 
-        taux = (
-            1 +
-            (nb_personnes >= 2) * rmi.txp2 +
-            (nb_personnes >= 3) * rmi.txp3 +
-            (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3) + # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
-            max_(nb_personnes - 4, 0) * rmi.txps
-        )
-        return period, eligib * rmi.rmi * taux
+        return period, eligib * socle * taux
 
 
 class rsa_socle_majore(Variable):
@@ -1157,7 +1171,15 @@ class rsa_socle_majore(Variable):
     def function(self, simulation, period):
         period = period.this_month
         rmi = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
+        rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa
         eligib = simulation.calculate('rsa_majore_eligibilite', period)
         nbenf = simulation.calculate('rsa_nb_enfants', period)
-        taux = rmi.majo_rsa.pac0 + rmi.majo_rsa.pac_enf_sup * nbenf
-        return period, eligib * rmi.rmi * taux
+        import datetime
+        if period.start.date > datetime.date(2009, 5, 31):
+            taux = rsa.majo_rsa.pac0 + rsa.majo_rsa.pac_enf_sup * nbenf
+            socle = rsa.montant_de_base_du_rsa
+        else:
+            taux = rmi.majo_rsa.pac0 + rmi.majo_rsa.pac_enf_sup * nbenf
+            socle = rmi.rmi
+            
+        return period, eligib * socle * taux
