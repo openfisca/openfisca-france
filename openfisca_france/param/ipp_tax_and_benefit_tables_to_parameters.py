@@ -780,6 +780,7 @@ def transform_ipp_tree(root):
     af['plafond_1998'] = af_plaf = prestations.pop('af_plaf')
     af['taux'] = taux = dict()
     taux['enf3'] = af.pop('par_enfant_supplementaire')
+    # af.majoration.majoration_pour_les_enfants_en_de_la_bmaf['age_de_plus_de_20_ans'] = age_de_plus_de_20_ans = af.majoration.majoration_pour_les_enfants_en_de_la_bmaf.pop('age_de_plus_de_20_ans_5_6')
     # af["montant_en_de_la_bmaf_tranche_1"] = montant_en_de_la_bmaf_tranche_1 = dict()
     del prestations['aa_plaf']
     #   aa_plaf:
@@ -794,35 +795,245 @@ def transform_ipp_tree(root):
         ]
     prestations_familiales['aes'] = aes = prestations.pop('aes')
     aes['base'] = aes.pop('montant_de_bmaf_ou_en_euros')
-    #
-    del prestations['al_charge']
+    # AL
+    prestations['aides_logement'] = aides_logement = dict()
+    aides_logement['al_charge'] = al_charge = prestations.pop('al_charge')
+    aides_logement['forfait_charges'] = forfait_charges = dict()
+    forfait_charges['cas_general'] = al_charge['personne_isolee_ou_menage_seul'].pop('cas_general')
+    # forfait_charges['majoration_par_enfant'] = al_charge['personne_isolee_ou_menage_seul_2'].pop('majoration_par_enfant_de_la_majoration_pour_charges')
+
+    # prestations['al_charge']
     #   al_charge:
     #     Cas des colocataires ou des propriétaires (1):
     #       Isolé ou couple avec un enfant ou une personne à charge: null  # Value must be a float
     #       Majoration par enfant de la majoration pour charges: null  # Value must be a float
-    del prestations['al_pac']
+    aides_logement['al_pac'] = al_pac = prestations.pop('al_pac')
+    # prestations['al_pac']
     #   al_pac:
     #     Âge limite pour les enfants à charge: null  # Value must be a float
     #     Plafonds de ressources que les potentiels personnes à charge autre que les enfants doivent respecter:
     #       null  # Value must be a float
-    del prestations['al_plaf_acc']
+    del prestations['al_plaf_acc']['intervalle_de_date_du_certificat_d_emprunt_correspondant_aux_plafonds_d_accession_a_la_propriete']
     #   al_plaf_acc:
     #     Intervalle de date du certificat d'emprunt correspondant aux plafonds d'accession à la propriété:
     #       null  # Value must be a float
-    del prestations['al_plaf_loc2']
-    #   al_plaf_loc2:
-    #     Loyer de référence: null  # Value must be a float
+
+    aides_logement['al_param2'] = al_param2 = prestations.pop('al_param2')
+    al_param2['r1_en_du_rsa_socle'] = r1_en_du_rsa_socle = al_param2.pop('r1_en_du_rsa_socle_1')
+    r1_en_du_rsa_socle = al_param2['r1_en_du_rsa_socle']
+    r1_en_du_rsa_socle['personne_isolee'] = personnes_isolees = r1_en_du_rsa_socle.pop('personnes_isolees_en_du_rmi_de_base')
+    r1_en_du_rsa_socle['majoration_enfant_a_charge_supp'] = majoration_enfant_a_charge_supp = r1_en_du_rsa_socle.pop('majoration_par_enfant_a_charge_supplementaire_en_du_rmi_de_base')
+    r1_en_du_rsa_socle['couple_sans_enf'] = couple_sans_enf = r1_en_du_rsa_socle.pop('couples_en_du_rmi_de_base')
+    r1_en_du_rsa_socle['personne_isolee_ou_couple_avec_1_enf'] = personne_isolee_ou_couple_avec_1_enf = r1_en_du_rsa_socle.pop('personnes_isolees_ou_couples_avec_1_enfant_en_du_rmi_de_base')
+    r1_en_du_rsa_socle['personne_isolee_ou_couple_avec_2_enf'] = personne_isolee_ou_couple_avec_2_enf = r1_en_du_rsa_socle.pop('personnes_isolees_ou_couples_avec_2_enfants_en_du_rmi_de_base')
+    aides_logement['r1'] = r1 = al_param2.pop('r1_en_du_rsa_socle')
+
+    al_param2['r2_ipp'] = r2_ipp = al_param2.pop('r2_en_de_la_bmaf_1')
+    r2_ipp['majoration_par_enf_supp_a_charge'] = majoration_par_enf_supp_a_charge = r2_ipp.pop('majoration_par_enfant_a_charge_supplementaire_en_de_la_bmaf_au_01_01_n_2')
+    r2_ipp['personnes_isolees_ou_couples_avec_2_enf'] = personnes_isolees_ou_couples_avec_2_enf = r2_ipp.pop('personnes_isolees_ou_couples_avec_2_enfants_en_de_la_bmaf_au_01_01_n_2')
+    aides_logement['r2'] = r2 = al_param2.pop('r2_ipp')
+
+    del prestations['al_plaf_loc2']['loyer_de_reference']
+
+    aides_logement['al_plaf_loc2'] = al_plaf_loc2 = prestations.pop('al_plaf_loc2')
+    al_plaf_loc2['taux_participation_fam_ipp'] = taux_participation_fam_ipp = al_plaf_loc2.pop('tf')
+    taux_participation_fam_ipp = al_plaf_loc2['taux_participation_fam_ipp']
+    taux_participation_fam_ipp['taux_1_adulte'] = taux_1_adulte = taux_participation_fam_ipp.pop('personnes_isolees')
+    taux_participation_fam_ipp['taux_2_adulte'] = taux_2_adulte = taux_participation_fam_ipp.pop('couples_sans_enfant')
+    taux_participation_fam_ipp['taux_1_enf'] = taux_1_enf = taux_participation_fam_ipp.pop('personnes_seules_et_couples_avec_1_enfant')
+    taux_participation_fam_ipp['taux_2_enf'] = taux_2_enf = taux_participation_fam_ipp.pop('personnes_seules_et_couples_avec_2_enfants')
+    taux_participation_fam_ipp['taux_3_enf'] = taux_3_enf = taux_participation_fam_ipp.pop('personnes_seules_et_couples_avec_3_enfants')
+    taux_participation_fam_ipp['taux_4_enf'] = taux_4_enf = taux_participation_fam_ipp.pop('personnes_seules_et_couples_avec_4_enfants')
+    taux_participation_fam_ipp['taux_enf_supp'] = taux_enf_supp = taux_participation_fam_ipp.pop('variation_de_tf_par_enfant_supplementaire')
+    aides_logement['taux_participation_fam'] = taux_participation_fam = al_plaf_loc2.pop('taux_participation_fam_ipp')
+    del taux_participation_fam_ipp
+    al_plaf_loc2['taux_participation_loyer_ipp'] = taux_participation_loyer_ipp = al_plaf_loc2.pop('tl')
+    taux_participation_loyer_ipp['taux_tranche_1'] = taux_tranche_1 = taux_participation_loyer_ipp.pop('tl_pour_la_1ere_tranche')
+    taux_participation_loyer_ipp['taux_tranche_2'] = taux_tranche_2 = taux_participation_loyer_ipp.pop('tl_pour_la_2eme_tranche')
+    taux_participation_loyer_ipp['taux_tranche_3'] = taux_tranche_3 = taux_participation_loyer_ipp.pop('tl_pour_la_3eme_tranche')
+    aides_logement['taux_participation_loyer'] = taux_participation_loyer = al_plaf_loc2.pop('taux_participation_loyer_ipp')
+    del taux_participation_loyer_ipp
+    aides_logement['al_min'] = al_min = prestations.pop('al_min')
+    al_min['montant_min_mensuel'] = montant_min_mensuel = al_min.pop('montant_minimal_mensuel')
+    montant_min_mensuel['montant_min_apl_al'] = montant_min_apl_al = montant_min_mensuel.pop('apl_ou_al')
+
+    aides_logement['participation_min'] = participation_min = dict()
+    aides_logement['montant_forfaitaire'] = montant_forfaitaire = al_plaf_loc2.pop('montant_forfaitaire_de_la_participation_minimale_po')
+    aides_logement['taux'] = taux = al_plaf_loc2.pop('montant_proportionnel_de_la_participation_minimale_po')
+    participation_min['montant_forfaitaire']  = aides_logement.pop('montant_forfaitaire')
+    participation_min['taux']  = aides_logement.pop('taux')
+
     del prestations['api_fl']
     #   api_fl:
     #     Forfait logement:
     #       Couple, 1 enfant (1): null  # Value must be a float
     #       couples_2_enfants_ou_plus_1: null  # Value must be a float
     #       Femmes enceintes (1): null  # Value must be a float
-    del prestations['asi_cond']
-    #   asi_cond:
-    #     Âge minimal: null  # Value must be a float
-    #     Condition d'âge et de ressources: null  # Value must be a float
-    del prestations['cf_maj']
+    prestations_familiales['ars'] = ars = dict()
+    ars['ars_cond'] = ars_cond = prestations.pop('ars_cond')
+    ars_m = prestations.pop('ars_m')
+    ars_maj = prestations.pop('ars_maj')
+    ars_min = prestations.pop('ars_min')
+    ars_plaf = prestations.pop('ars_plaf')
+    ars_cond['age_entree_primaire'] = age_entree_primaire = ars_cond.pop('age_minimal_de_l_enfant_1')
+    ars_cond['age_sortie_lycee'] = age_sortie_lycee = ars_cond.pop('age_maximal_de_l_enfant_2')
+    ars['age_entree_primaire'] = age_entree_primaire = ars_cond.pop('age_entree_primaire')
+    ars['age_sortie_lycee'] = age_sortie_lycee = ars_cond.pop('age_sortie_lycee')
+    ars['majoration_par_enf_supp'] = majoration_par_enf_supp = ars_plaf.pop('majoration_par_enfant_en_du_plafond_de_ressources_avec_0_enfant')
+    ars['montant_seuil_non_versement'] = montant_seuil_non_versement = ars_min.pop('montant_minimum_verse')
+    ars['plafond_ressources'] = plafond_ressources = ars_plaf.pop('plafond_de_ressources_0_enfant')
+    ars['taux_primaire'] = taux_primaire = ars_m.pop('enfants_entre_6_et_11_ans_en_de_la_bmaf_1')
+    ars['taux_college'] = taux_college = ars_m.pop('enfants_entre_11_et_15_ans_en_de_la_bmaf_2')
+    ars['taux_lycee'] = taux_lycee = ars_m.pop('enfants_de_plus_de_15_ans_en_de_la_bmaf_3')
+
+    prestations_familiales['cf'] = cf = dict()
+    cf = prestations_familiales['cf']
+    prestations_familiales['cf'].update(prestations.pop('cf_maj'))
+    prestations_familiales['cf'].update(prestations.pop('cf_plaf'))
+    prestations_familiales['cf'].update(prestations.pop('cf_cm'))
+    cf['age_min'] = age_min = cf.pop('age_minimal_des_enfants_pris_en_compte')
+    cf['age_max'] = age_max = cf.pop('age_maximal_des_enfants_pris_en_compte')
+    majoration = cf['majoration']
+    cf['majoration_plafond_biact_isole'] = majoration_plafond_biact_isole = majoration.pop('biactifs_et_parents_isoles')
+    cf['majoration_plafond_2_premiers_enf'] = majoration_plafond_2_premiers_enf = majoration.pop('1er_et_2eme_enfants_en_du_plafond_de_ressources_avec_0_enfant')
+    cf['majoration_plafond_3eme_enf_et_plus'] = majoration_plafond_3eme_enf_et_plus = majoration.pop('3eme_enfant_et_plus_en_du_plafond_de_ressources_avec_0_enfant')
+    complement_familial_en_de_la_bmaf_en_de_la_bmaf = cf['complement_familial_en_de_la_bmaf_en_de_la_bmaf']
+    cf['taux_cf_base'] = taux_cf_base = complement_familial_en_de_la_bmaf_en_de_la_bmaf.pop('montant_de_base')
+    cf['taux_cf_majore'] = taux_cf_majore = complement_familial_en_de_la_bmaf_en_de_la_bmaf.pop('montant_majore')
+    #ape
+    prestations_familiales['ape'] = ape = dict()
+    prestations_familiales['ape'] = ape = prestations.pop('ape')
+    ape = prestations_familiales['ape']
+    ape['age_max_enfant'] = age_max_enfant = ape.pop('age_maximal_de_l_enfant_1')
+    montant_mensuel_en_de_la_base_de_calcul = ape['montant_mensuel_en_de_la_base_de_calcul']
+    ape['taux_activite_sup_50'] = taux_activite_sup_50 = montant_mensuel_en_de_la_base_de_calcul.pop('pour_une_activite_de_plus_de_85h_mois_50_duree_legale')
+    ape['taux_activite_sup_80'] = taux_activite_sup_80 = montant_mensuel_en_de_la_base_de_calcul.pop('pour_une_activite_ou_formation_comprise_entre_50_et_80_de_la_duree_legale')
+    ape['taux_inactivite'] = taux_inactivite = montant_mensuel_en_de_la_base_de_calcul.pop('a_taux_plein')
+    # apje
+    prestations_familiales['apje'] = apje = dict()
+    prestations_familiales['apje'].update(prestations.pop('apje_cm'))
+    prestations_familiales['apje'].update(prestations.pop('apje_plaf'))
+    apje = prestations_familiales['apje']
+    apje['age_max_dernier_enf'] = age_max_dernier_enf = apje.pop('age_limite_des_enfants_ouvrant_droit_a_l_apje_2')
+    majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant = apje['majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant']
+    apje['taux_enfant_1_et_2'] = taux_enfant_1_et_2 = majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant.pop('1er_et_2eme_enfant')
+    apje['taux_enfant_3_et_plus'] = taux_enfant_3_et_plus = majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant.pop('3eme_enfant_et_plus')
+    apje['taux'] = taux = apje.pop('montant_de_l_apje_en_de_la_bmaf')
+
+
+
+    del prestations['paje_cm2']['conditions_pour_qu_un_enfant_adopte_ouvre_droit_a_la_prime_a_son_arrivee']
+    prestations_familiales['paje'] = paje = dict()
+    paje = prestations_familiales['paje']
+    prestations_familiales['paje'].update(prestations.pop('paje_cm'))
+    prestations_familiales['paje'].update(prestations.pop('paje_cm2'))
+    prestations_familiales['paje'].update(prestations.pop('paje_plaf'))
+    paje['base'] = base = dict()
+    paje['clca'] = clca = dict()
+    paje['clmg'] = clmg = dict()
+    paje['colca'] = colca = dict()
+    paje['prime_naissance'] = prime_naissance = dict()
+    base = paje['base']
+    clca = paje['clca']
+    clmg = paje['clmg']
+    colca = paje['colca']
+    prime_naissance = paje['prime_naissance']
+    age_limite = paje['age_limite']
+    paje['age_max_enfant'] = age_max = age_limite.pop('pour_un_enfant_non_adopte')
+    base['age_max_enfant'] = age_max_enfant = paje['age_max_enfant']
+    clca['age_max_enfant'] = age_max_enfant = paje['age_max_enfant']
+    paje['paje_ipp'] = paje_ipp = paje.pop('paje')
+    paje_ipp = paje['paje_ipp']
+    base['avant_2014'] = avant_2014 = dict()
+    avant_2014 = base['avant_2014']
+    avant_2014['plafond_ressources_0_enf'] = plafond_ressources_0_enf = paje.pop('plafond_de_ressources_0_enfant')
+    prestations_familiales['paje'].update(paje.pop('majoration_en_ou_en_du_plafond_de_ressources_avec_0_enfant'))
+    avant_2014['majoration_biact_parent_isoles'] = majoration_biact_parent_isoles = paje.pop('biactifs_et_parents_isoles_1')
+    avant_2014['taux_majoration_2_premiers_enf'] = taux_majoration_2_premiers_enf = paje.pop('1er_et_2eme_enfant')
+    avant_2014['taux_majoration_3eme_enf_et_plus'] = taux_majoration_3eme_enf_et_plus = paje.pop('3eme_enfant_et_plus')
+    base['taux_allocation_base'] = taux_allocation_base = paje_ipp.pop('allocation_de_base_en_de_la_bmaf')
+    paje['clmg'].update(paje.pop('complement_libre_choix_du_mode_de_garde_clcmg_1'))
+    clmg['taux_recours_emploi_1er_plafond'] = taux_recours_emploi_1er_plafond = clmg.pop('revenus_inferieurs_a_45_du_plafond_d_allocation')
+    clmg['taux_recours_emploi_2e_plafond'] = taux_recours_emploi_2e_plafond = clmg.pop('revenus_superieurs_a_45_du_plafond_d_allocation')
+    clmg['taux_recours_emploi_supp_2e_plafond'] = taux_recours_emploi_supp_2e_plafond = clmg.pop('revenus_superieurs_au_plafond_d_allocation')
+
+    prestations['minima_sociaux'] = minima_sociaux = dict()
+    minima_sociaux['ada'] = ada = dict()
+    minima_sociaux['ada'].update(prestations.pop('ada'))
+    ada['majoration_pers_supp'] = majoration_pers_supp = ada.pop('majoration_par_personne_supplementaire_maximum_10_par_famille')
+    ada['supplement_non_hebergement'] = supplement_non_hebergement = ada.pop('supplement_si_non_heberge_dans_centres_d_accueil_ou_hebergement_d_urgence')
+    #paje['taux_allocation_base'] = taux_allocation_base = paje_ipp.pop('allocation_de_base_en_de_la_bmaf')
+    #base['taux_allocation_base'] = taux_allocation_base = paje.pop('taux_allocation_base')
+    #complement_de_libre_choix_d_activite_clca = paje['complement_de_libre_choix_d_activite_clca']
+
+
+
+
+    #paje['base'] =
+    #clca = paje['clca']
+    #clmg = paje['clmg']
+    #colca = paje['colca']
+    #prime_naissance =
+
+
+
+
+
+
+
+
+
+
+
+    prestations['minima_sociaux'] = minima_sociaux = dict()
+    del prestations['asi_cond']['condition_d_age_et_de_ressources']
+    del prestations['asi_cond']['age_minimal']
+    minima_sociaux['asi'] = prestations.pop('asi_cond')
+    minima_sociaux['asi'].update(prestations.pop('asi_m_plaf'))
+    asi = minima_sociaux['asi']
+    montant = asi['montant']
+    plafond_de_ressources = asi['plafond_de_ressources']
+    asi['plafond_ressource_seul'] = plafond_ressource_seul = plafond_de_ressources.pop('personnes_seules')
+    asi['plafond_ressource_couple'] = plafond_ressource_couple = plafond_de_ressources.pop('couples')
+    asi['montant_seul'] = montant_seul = montant.pop('1_allocataire')
+    asi['montant_couple'] = montant_couple = montant.pop('2_allocataires')
+
+    prestations_familiales['asf'] = prestations.pop('asf')
+    asf = prestations_familiales['asf']
+    montant_de_l_asf_en_de_la_bmaf = asf['montant_de_l_asf_en_de_la_bmaf']
+    asf['taux_1_parent'] = taux_1_parent = montant_de_l_asf_en_de_la_bmaf.pop('orphelin_ou_assimile_d_un_seul_parent')
+    asf['taux_2_parents'] = taux_2_parents = montant_de_l_asf_en_de_la_bmaf.pop('orphelin_ou_assimile_des_deux_parents')
+
+
+    minima_sociaux['rmi'] = rmi = dict()
+    rmi = minima_sociaux['rmi']
+    minima_sociaux['rmi'].update(prestations.pop('rmi_cond'))
+    minima_sociaux['rmi'].update(prestations.pop('rmi_fl'))
+    minima_sociaux['rmi'].update(prestations.pop('rmi_m'))
+    minima_sociaux['rmi'].update(prestations.pop('rmi_maj'))
+
+
+    minima_sociaux['rsa'] = rsa = dict()
+    rsa = minima_sociaux['rsa']
+    minima_sociaux['rsa'].update(prestations.pop('rsa_m'))
+    minima_sociaux['rsa'].update(prestations.pop('rsa_maj'))
+    minima_sociaux['rsa'].update(prestations.pop('rsa_fl'))
+    minima_sociaux['rsa'].update(prestations.pop('rsa_cond'))
+
+
+    minima_sociaux['api'] = api = dict()
+    minima_sociaux['api'].update(prestations.pop('api_cond'))
+    minima_sociaux['api'].update(prestations.pop('api_m'))
+    api = minima_sociaux['api']
+    api['age_limite'] = age_limite = api.pop('age_limite_de_l_enfant_en_annee_2')
+    montant_en_de_la_bmaf = api['montant_en_de_la_bmaf']
+    minima_sociaux['api'].update(api.pop('montant_en_de_la_bmaf'))
+
+    # TODO: créer un noeud pour la prime d'activité dans minima_sociaux et merger les paramètres. Il faut aussi
+    # afin de pouvoir remettre d'actualité le calcul dans ppa.py
+
+
+
     #   cf_maj:
     #     Majoration:
     #        1er et 2ème enfants (en % du plafond de ressources avec 0 enfant): null  # Value must be a float
@@ -830,12 +1041,7 @@ def transform_ipp_tree(root):
     #        Biactifs et parents isolés:
     #     Plafond de ressources _ 0 enfant: null  # Value must be a float
     #   paje_cm:
-    del prestations['paje_cm']
-    #     age_limite:
-    #       pour_les_enfants_adoptes: null  # Value must be a float
-    del prestations['paje_cm2']
-    #   paje_cm2:
-    #     conditions_pour_qu_un_enfant_adopte_ouvre_droit_a_la_prime_a_son_arrivee: null  # Value must be a float
+
     del prestations['pjm_prets']
     #   pjm_prets:
     #     cumul_de_prets: null  # Value must be a float
@@ -844,7 +1050,26 @@ def transform_ipp_tree(root):
     #       pour_l_equipement_mobilier_et_menager: null  # Value must be a float
     #       pour_les_premiers_frais_de_location: null  # Value must be a float
 
-    del root['baremes_ipp_retraites_pensions']
+
+    del root['baremes_ipp_retraites_pensions']['aad_fp']
+    del root['baremes_ipp_retraites_pensions']['aad_rg']
+    del root['baremes_ipp_retraites_pensions']['aod_fp_s']
+    del root['baremes_ipp_retraites_pensions']['la_fp_a']
+    del root['baremes_ipp_retraites_pensions']['salval']
+    del root['baremes_ipp_retraites_pensions']['as']
+
+    root['retraites_pensions'] = retraites_pensions = root.pop('baremes_ipp_retraites_pensions')
+
+    minima_sociaux['aspa'] = aspa = dict()
+    minima_sociaux['aspa'].update(retraites_pensions['aspa'])
+    aspa = minima_sociaux['aspa']
+    minima_sociaux['aspa'].update(aspa.pop('montant_maximum_annuel'))
+    aspa['montant_annuel_couple'] = montant_annuel_couple = aspa.pop('couple_ou_lorsqu_un_seul_conjoint_est_beneficiaire_de_l_aspa_et_l_autre_de_l_allocation_supplementaire_d_invalidite')
+    aspa['montant_annuel_seul'] = montant_annuel_seul = aspa.pop('personnes_seules_ou_lorsque_un_seul_des_conjoints_beneficie_de_l_aspa')
+    minima_sociaux['aspa'].update(aspa.pop('plafond_de_ressources'))
+    aspa['plafond_ressources_couple'] = plafond_ressources_couple = aspa.pop('couples')
+    aspa['plafond_ressources_seul'] = plafond_ressources_seul = aspa.pop('personnes_seules')
+
     # root['retraites'] = root.pop('baremes_ipp_retraites_pensions')
     # baremes_ipp_retraites_pensions:
     #   RENAME: retraite

@@ -321,7 +321,7 @@ class af_allocation_forfaitaire(Variable):
         P = simulation.legislation_at(period.start).prestations.prestations_familiales.af
 
         bmaf = P.bmaf
-        af_forfait = round(bmaf * P.taux.forfait, 2)
+        af_forfait = round(bmaf * P.majoration.majoration_pour_les_enfants_en_de_la_bmaf.age_de_plus_de_20_ans_5_6, 2)
         af_allocation_forfaitaire = ((af_nbenf >= 2) * af_forfaitaire_nbenf) * af_forfait
 
         af_forfaitaire_taux_modulation = simulation.calculate('af_allocation_forfaitaire_taux_modulation', period)

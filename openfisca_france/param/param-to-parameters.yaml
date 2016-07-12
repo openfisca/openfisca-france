@@ -47,10 +47,105 @@ prestations.prestations_familiales.aeeh.maj3: null
 prestations.prestations_familiales.aeeh.maj4: null
 prestations.prestations_familiales.aeeh.maj5: null
 prestations.prestations_familiales.aeeh.maj6: null
+# af
 prestations.prestations_familiales.af.modulation.plafond1: prestations.prestations_familiales.af.modulation.plafond_tranche_1
 prestations.prestations_familiales.af.modulation.plafond2: prestations.prestations_familiales.af.modulation.plafond_tranche_2
 prestations.prestations_familiales.af.modulation.taux1: prestations.prestations_familiales.af.modulation.taux_tranche_2
 prestations.prestations_familiales.af.modulation.taux2: prestations.prestations_familiales.af.modulation.taux_tranche_3
+prestations.prestations_familiales.af.modulation.enfant_supp: prestations.prestations_familiales.af.modulation.majoration_plafond_par_enfant_supplementaire
+prestations.prestations_familiales.af.taux.forfait : prestations.prestations_familiales.af.majoration.majoration_pour_les_enfants_en_de_la_bmaf.age_de_plus_de_20_ans_5_6
+al: prestations.aides_logement
+prestations.aides_logement.forfait_charges.fc1: prestations.aides_logement.forfait_charges.cas_general
+prestations.aides_logement.forfait_charges.fc2: prestations.aides_logement.forfait_charges.majoration_par_enfant
+prestations.aides_logement.R1: prestations.aides_logement.r1
+prestations.aides_logement.r1.taux1: prestations.aides_logement.r1.personne_isolee
+prestations.aides_logement.r1.taux2: prestations.aides_logement.r1.couple_sans_enf
+prestations.aides_logement.r1.taux3: prestations.aides_logement.r1.personne_isolee_ou_couple_avec_1_enf
+prestations.aides_logement.r1.taux4: prestations.aides_logement.r1.personne_isolee_ou_couple_avec_2_enf
+prestations.aides_logement.r1.taux5: prestations.aides_logement.r1.majoration_enfant_supp_a_charge_supp
+prestations.aides_logement.R2: prestations.aides_logement.r2
+# taux3 vient des dom : pas renseigne dans bareme IPP
+prestations.aides_logement.r2.taux3_dom: prestations.aides_logement.r2.taux3_dom
+prestations.aides_logement.r2.taux4: prestations.aides_logement.r2.personnes_isolees_ou_couples_avec_2_enf
+prestations.aides_logement.r2.taux5: prestations.aides_logement.r2.majoration_par_enf_supp_a_charge
+prestations.aides_logement.TF: prestations.aides_logement.taux_participation_fam
+prestations.aides_logement.taux_participation_fam.taux1: prestations.aides_logement.taux_participation_fam.taux_1_adulte
+prestations.aides_logement.taux_participation_fam.taux2: prestations.aides_logement.taux_participation_fam.taux_2_adulte
+prestations.aides_logement.taux_participation_fam.taux3: prestations.aides_logement.taux_participation_fam.taux_1_enf
+prestations.aides_logement.taux_participation_fam.taux4: prestations.aides_logement.taux_participation_fam.taux_2_enf
+prestations.aides_logement.taux_participation_fam.taux5: prestations.aides_logement.taux_participation_fam.taux_3_enf
+prestations.aides_logement.taux_participation_fam.taux6: prestations.aides_logement.taux_participation_fam.taux_4_enf
+prestations.aides_logement.taux_participation_fam.taux7: prestations.aides_logement.taux_participation_fam.taux_enf_supp
+prestations.aides_logement.TL: prestations.aides_logement.taux_participation_loyer
+prestations.aides_logement.taux_participation_loyer.taux1: prestations.aides_logement.taux_participation_loyer.taux_tranche_1
+prestations.aides_logement.taux_participation_loyer.taux2: prestations.aides_logement.taux_participation_loyer.taux_tranche_2
+prestations.aides_logement.taux_participation_loyer.taux3: prestations.aides_logement.taux_participation_loyer.taux_tranche_3
+prestations.aides_logement.autres.nv_seuil: prestations.aides_logement.al_min.montant_min_mensuel.montant_min_apl_al
+prestations.aides_logement.pp.min: prestations.aides_logement.participation_min.montant_forfaitaire
+prestations.aides_logement.pp.taux: prestations.aides_logement.participation_min.taux
+prestations.aides_logement.pp : null
+#ars: prestations.prestations_familiales
+prestations.prestations_familiales.ars.agep: prestations.prestations_familiales.ars.age_entree_primaire
+prestations.prestations_familiales.ars.ages: prestations.prestations_familiales.ars.age_sortie_lycee
+prestations.prestations_familiales.ars.agec: prestations.prestations_familiales.ars.age_entree_college
+prestations.prestations_familiales.ars.agel: prestations.prestations_familiales.ars.age_entree_lycee
+prestations.prestations_familiales.ars.plaf_enf_supp: prestations.prestations_familiales.ars.majoration_par_enf_supp
+prestations.prestations_familiales.ars.seuil_nv: prestations.prestations_familiales.ars.montant_seuil_non_versement
+prestations.prestations_familiales.ars.plaf: prestations.prestations_familiales.ars.plafond_ressources
+prestations.prestations_familiales.ars.tx0610: prestations.prestations_familiales.ars.taux_primaire
+prestations.prestations_familiales.ars.tx1114: prestations.prestations_familiales.ars.taux_college
+prestations.prestations_familiales.ars.tx1518: prestations.prestations_familiales.ars.taux_lycee
+prestations.prestations_familiales.asf.taux1: prestations.prestations_familiales.asf.taux_1_parent
+prestations.prestations_familiales.asf.taux2: prestations.prestations_familiales.asf.taux_2_parents
+# cf
+prestations.prestations_familiales.cf.age1: prestations.prestations_familiales.cf.age_min
+prestations.prestations_familiales.cf.age2: prestations.prestations_familiales.cf.age_max
+prestations.prestations_familiales.cf.majoration_plafond_tx1: prestations.prestations_familiales.cf.majoration_plafond_2_premiers_enf
+prestations.prestations_familiales.cf.majoration_plafond_tx2: prestations.prestations_familiales.cf.majoration_plafond_3eme_enf_et_plus
+prestations.prestations_familiales.cf.plafond: prestations.prestations_familiales.cf.plafond_de_ressources_0_enfant
+prestations.prestations_familiales.cf.tx: prestations.prestations_familiales.cf.taux_cf_base
+prestations.prestations_familiales.cf.tx_majore: prestations.prestations_familiales.cf.taux_cf_majore
+# ape
+prestations.prestations_familiales.ape.age: prestations.prestations_familiales.ape.age_max_enfant
+prestations.prestations_familiales.ape.tx_50: prestations.prestations_familiales.ape.taux_activite_sup_50
+prestations.prestations_familiales.ape.tx_80: prestations.prestations_familiales.ape.taux_activite_sup_80
+prestations.prestations_familiales.ape.tx_inactif: prestations.prestations_familiales.ape.taux_inactivite
+# apje
+prestations.prestations_familiales.apje.age: prestations.prestations_familiales.apje.age_max_dernier_enf
+prestations.prestations_familiales.apje.plaf_tx1: prestations.prestations_familiales.apje.taux_enfant_1_et_2
+prestations.prestations_familiales.apje.plaf_tx2: prestations.prestations_familiales.apje.taux_enfant_3_et_plus
+# paje
+prestations.prestations_familiales.paje.nais: prestations.prestations_familiales.paje.prime_naissance
+prestations.prestations_familiales.paje.base.age: prestations.prestations_familiales.paje.base.age_max_enfant
+prestations.prestations_familiales.paje.clca.age: prestations.prestations_familiales.paje.clca.age_max_enfant
+prestations.prestations_familiales.paje.base.avant_2014.plaf: prestations.prestations_familiales.paje.base.avant_2014.plafond_ressources_0_enf
+prestations.prestations_familiales.paje.base.avant_2014.plaf_maj: prestations.prestations_familiales.paje.base.avant_2014.majoration_biact_parent_isoles
+prestations.prestations_familiales.paje.base.avant_2014.plaf_tx1: prestations.prestations_familiales.paje.base.avant_2014.taux_majoration_2_premiers_enf
+prestations.prestations_familiales.paje.base.avant_2014.plaf_tx2: prestations.prestations_familiales.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus
+prestations.prestations_familiales.paje.base.taux: prestations.prestations_familiales.paje.base.taux_allocation_base
+prestations.prestations_familiales.paje.clmg.empl_dir1: prestations.prestations_familiales.paje.clmg.taux_recours_emploi_1er_plafond
+prestations.prestations_familiales.paje.clmg.empl_dir2: prestations.prestations_familiales.paje.clmg.taux_recours_emploi_2e_plafond
+prestations.prestations_familiales.paje.clmg.empl_dir3: prestations.prestations_familiales.paje.clmg.taux_recours_emploi_supp_2e_plafond
+
+
+# minima sociaux
+minim: prestations.minima_sociaux
+prestations.minima_sociaux.asi.plaf_seul: prestations.minima_sociaux.asi.plafond_ressource_seul
+prestations.minima_sociaux.asi.plaf_couple: prestations.minima_sociaux.asi.plafond_ressource_couple
+
+# TODO: sortir les paramètres de la prime d'activité (ppa) de rmi et faire merger avec IPP (pa_m)
+
+
+ # api
+prestations.minima_sociaux.api.age: prestations.minima_sociaux.api.age_limite
+prestations.minima_sociaux.api.enf_sup: prestations.minima_sociaux.api.supplement_par_enfant
+
+# aspa
+prestations.minima_sociaux.aspa.montant_couple: prestations.minima_sociaux.aspa.montant_annuel_couple
+prestations.minima_sociaux.aspa.montant_seul: prestations.minima_sociaux.aspa.montant_annuel_seul
+prestations.minima_sociaux.aspa.plaf_couple: prestations.minima_sociaux.aspa.plafond_ressources_couple
+prestations.minima_sociaux.aspa.plaf_seul: prestations.minima_sociaux.aspa.plafond_ressources_seul
+
 taxation_capital.prelevements_sociaux.base_pat: taxation_capital.prelevements_sociaux.prelevement_social.revenus_du_patrimoine
 taxation_capital.prelevements_sociaux.base_plac: taxation_capital.prelevements_sociaux.prelevement_social.produits_de_placement
 taxation_capital.prelevements_sociaux.add_pat: taxation_capital.prelevements_sociaux.caps.revenus_du_patrimoine

@@ -99,13 +99,13 @@ class paje_base(Variable):
 
         date_gel_paje = Instant((2013, 04, 01)) # Le montant de la PAJE est gelé depuis avril 2013.
         bmaf = pfam.af.bmaf if period.start < date_gel_paje else simulation.legislation_at(date_gel_paje).prestations.prestations_familiales.af.bmaf
-        montant_taux_plein = bmaf * pfam.paje.base.taux
+        montant_taux_plein = bmaf * pfam.paje.base.taux_allocation_base
 
         def plafond_avant_avril_2014():
-            plafond_de_base = pfam.paje.base.avant_2014.plaf
-            maj_plafond_2_premiers_enfants = pfam.paje.base.avant_2014.plaf_tx1 * plafond_de_base
-            maj_plafond_par_enfant_sup = pfam.paje.base.avant_2014.plaf_tx2 * plafond_de_base
-            maj_plafond_seul_biactif = pfam.paje.base.avant_2014.plaf_maj
+            plafond_de_base = pfam.paje.base.avant_2014.plafond_ressources_0_enf
+            maj_plafond_2_premiers_enfants = pfam.paje.base.avant_2014.taux_majoration_2_premiers_enf * plafond_de_base
+            maj_plafond_par_enfant_sup = pfam.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * plafond_de_base
+            maj_plafond_seul_biactif = pfam.paje.base.avant_2014.majoration_biact_parent_isoles
 
             plafond = (
                 plafond_de_base +
@@ -180,7 +180,7 @@ class paje_base_enfant_eligible_avant_reforme_2014(Variable):
         autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         date_naissance = simulation.calculate('date_naissance', period)
         ne_avant_2014 = datetime64('2014-04-01') > date_naissance
-        age_limite = simulation.legislation_at(period.start).prestations.prestations_familiales.paje.base.age
+        age_limite = simulation.legislation_at(period.start).prestations.prestations_familiales.paje.base.age_max_enfant
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
@@ -198,7 +198,7 @@ class paje_base_enfant_eligible_apres_reforme_2014(Variable):
         autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         date_naissance = simulation.calculate('date_naissance', period)
         ne_avant_2014 = datetime64('2014-04-01') > date_naissance
-        age_limite = simulation.legislation_at(period.start).prestations.prestations_familiales.paje.base.age
+        age_limite = simulation.legislation_at(period.start).prestations.prestations_familiales.paje.base.age_max_enfant
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
@@ -231,7 +231,7 @@ class paje_naissance(Variable):
 
         date_gel_paje = Instant((2013, 04, 01)) # Le montant de la PAJE est gelé depuis avril 2013.
         bmaf = P.af.bmaf if period.start < date_gel_paje else simulation.legislation_at(date_gel_paje).prestations.prestations_familiales.af.bmaf
-        nais_prime = round(100 * P.paje.nais.prime_tx * bmaf) / 100
+        nais_prime = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
         # Versée au 7e mois de grossesse dans l'année
         # donc les enfants concernés sont les enfants qui ont -2 mois
         nbnais = 0
@@ -242,9 +242,9 @@ class paje_naissance(Variable):
         nbenf = af_nbenf + nbnais  # On ajoute l'enfant à  naître;
 
         # Est-ce que ces taux n'ont pas été mis à jour en avril 2014 ?
-        plaf_tx = (nbenf > 0) + P.paje.base.avant_2014.plaf_tx1 * min_(nbenf, 2) + P.paje.base.avant_2014.plaf_tx2 * max_(nbenf - 2, 0)
+        plaf_tx = (nbenf > 0) + P.paje.base.avant_2014.taux_majoration_2_premiers_enf * min_(nbenf, 2) + P.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
         majo = isole | biactivite
-        plaf = P.paje.base.avant_2014.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.avant_2014.plaf_maj * majo
+        plaf = P.paje.base.avant_2014.plafond_ressources_0_enf * plaf_tx + (plaf_tx > 0) * P.paje.base.avant_2014.majoration_biact_parent_isoles * majo
         elig = (base_ressources <= plaf) * (nbnais != 0)
         nais_brut = nais_prime * elig * (nbnais)
         return period, nais_brut
@@ -304,7 +304,7 @@ class paje_clca(Variable):
         age_m_benjamin = age_en_mois_benjamin(age_en_mois)
         condition1 = (af_nbenf == 1) * (age_m_benjamin >= 0) * (age_m_benjamin < P.paje.clca.duree1)
         age_benjamin = floor(age_m_benjamin / 12)
-        condition2 = (age_benjamin <= (P.paje.base.age - 1))
+        condition2 = (age_benjamin <= (P.paje.base.age_max_enfant - 1))
         condition = (af_nbenf >= 2) * condition2 + condition1
         paje_clca = (condition * P.af.bmaf) * (
                     (not_(paje)) * (inactif * P.paje.clca.sansab_tx_inactif +
@@ -447,9 +447,9 @@ class paje_clmg(Variable):
                             0.5 * (nb_enf(age, autonomie_financiere, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
                             ) * (
             empl_dir * (
-                (base_ressources < seuil1) * P.paje.clmg.empl_dir1 +
-                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.empl_dir2 +
-                (base_ressources >= seuil2) * P.paje.clmg.empl_dir3) +
+                (base_ressources < seuil1) * P.paje.clmg.taux_recours_emploi_1er_plafond +
+                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.taux_recours_emploi_2e_plafond +
+                (base_ressources >= seuil2) * P.paje.clmg.taux_recours_emploi_supp_2e_plafond) +
             ass_mat * (
                 (base_ressources < seuil1) * P.paje.clmg.ass_mat1 +
                 ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.ass_mat2 +
@@ -635,7 +635,7 @@ class ape_avant_cumul(Variable):
         age = self.split_by_roles(age_holder, roles = ENFS)
         autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
 
-        elig = (nb_enf(age, autonomie_financiere, 0, P.ape.age - 1) >= 1) & (nb_enf(age, autonomie_financiere, 0, P.af.age2) >= 2)
+        elig = (nb_enf(age, autonomie_financiere, 0, P.ape.age_max_enfant - 1) >= 1) & (nb_enf(age, autonomie_financiere, 0, P.af.age2) >= 2)
         # Inactif
         # Temps partiel 1
         # Salarié:
@@ -650,7 +650,7 @@ class ape_avant_cumul(Variable):
         # Salarié: Temps de travail compris entre 50 et 80 % de la durée du travail fixée dans l'entreprise.
         # Temps de travail compris entre 77 et 122 heures par mois et un revenu professionnel mensuel ne dépassant pas
         #  (smic_8.27*169*136 %)
-        ape = elig * (inactif * P.ape.tx_inactif + partiel1 * P.ape.tx_50 + partiel2 * P.ape.tx_80)
+        ape = elig * (inactif * P.ape.taux_inactivite + partiel1 * P.ape.taux_activite_sup_50 + partiel2 * P.ape.taux_activite_sup_80)
         # Cummul APE APJE CF
         return period, ape  # annualisé
 
@@ -679,13 +679,13 @@ class apje_avant_cumul(Variable):
         autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
 
         # TODO: APJE courte voir doc ERF 2006
-        nbenf = nb_enf(age, autonomie_financiere, 0, P.apje.age - 1)
+        nbenf = nb_enf(age, autonomie_financiere, 0, P.apje.age_max_dernier_enf - 1)
         bmaf = P.af.bmaf
         bmaf_n_2 = P_n_2.af.bmaf
         base = round(P.apje.taux * bmaf, 2)
         base2 = round(P.apje.taux * bmaf_n_2, 2)
 
-        plaf_tx = (nbenf > 0) + P.apje.plaf_tx1 * min_(nbenf, 2) + P.apje.plaf_tx2 * max_(nbenf - 2, 0)
+        plaf_tx = (nbenf > 0) + P.apje.taux_enfant_1_et_2 * min_(nbenf, 2) + P.apje.taux_enfant_3_et_plus * max_(nbenf - 2, 0)
         majo = isole | biactivite
         plaf = P.apje.plaf * plaf_tx + P.apje.plaf_maj * majo
         plaf2 = plaf + 12 * base2

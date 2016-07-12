@@ -56,7 +56,7 @@ class asf(Variable):
 
         pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
         asf_elig = simulation.calculate('asf_elig', period)
-        asf_par_enfant = simulation.calculate('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux1
+        asf_par_enfant = simulation.calculate('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux_1_parent
         montant = self.sum_by_entity(asf_par_enfant, roles = ENFS)
 
         return period, asf_elig * montant
