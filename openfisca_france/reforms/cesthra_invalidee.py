@@ -10,6 +10,7 @@ from openfisca_core.variables import Variable
 from .. import entities
 from ..model.prelevements_obligatoires.impot_revenu import ir
 
+
 def modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_subtree = {
         "@type": "Node",
@@ -65,7 +66,7 @@ class irpp(Variable):
         credits_impot = simulation.calculate('credits_impot', period)
         cehr = simulation.calculate('cehr', period)
         cesthra = simulation.calculate('cesthra', period = period)
-        P = simulation.legislation_at(period.start).ir.recouvrement
+        P = simulation.legislation_at(period.start).impot_revenu.recouvrement
 
         pre_result = iai - credits_impot + cehr + cesthra
         return period, ((iai > P.seuil) *
@@ -82,5 +83,3 @@ class cesthra_invalidee(Reform):
         self.add_variable(cesthra)
         self.update_variable(irpp)
         self.modify_legislation_json(modifier_function = modify_legislation_json)
-
-
