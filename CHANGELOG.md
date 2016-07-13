@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.6 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.4..4.0.5)
+
+* Add back extensions folder and README
+
 ## 4.0.5 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.4..4.0.5)
 
 * Fix inversion-directe-salaires reform
