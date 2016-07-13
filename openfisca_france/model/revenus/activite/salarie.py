@@ -749,7 +749,10 @@ class supp_familial_traitement(Variable):
                    plafond_mensuel_3 * (fonc_nbenf == 3) +
                    plafond_mensuel_supp * max_(0, fonc_nbenf - 3))
 
-        sft = min_(max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher), plafond) * (categorie_salarie >= 2)
+        sft = (categorie_salarie >= 2) * min_(
+            max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher),
+            plafond
+            )
         # Nota Bene:
         # categorie_salarie is an EnumCol which enum is:
         # CAT = Enum(['prive_non_cadre',
@@ -835,9 +838,6 @@ class salaire_super_brut_hors_allegements(Variable):
         reintegration_titre_restaurant_employeur = simulation.calculate(
             'reintegration_titre_restaurant_employeur', period)
         indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
-
-
-
         salaire_super_brut_hors_allegements = (
             salaire_de_base + remuneration_principale + remuneration_apprenti +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement + indemnite_fin_contrat +

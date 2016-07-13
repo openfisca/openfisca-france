@@ -1,9 +1,15 @@
 # Changelog
 
+## 4.0.5 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.4..4.0.5)
+
+* Fix inversion-directe-salaires reform
+
 ## 4.0.4 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.3..4.0.4)
+
 * Fix plf2016 and ayrault_muet reforms
 
 ## 4.0.3 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.2..4.0.3)
+
 * Update numpy dependency to 1.11
 * Upgrade pip to >= 8.0 in travis
 * Do not install numpy from apt in travis
@@ -11,9 +17,11 @@
 * Fix semver version number towards OpenFisca-Core
 
 ## 4.0.2 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.1..4.0.2)
+
 * Remove wrong stop date of `aeeh`
 
 ## 4.0.1 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.0..4.0.1)
+
 * Correct bug in `switch_on_allegement_mode`
 
 ## 4.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.4.1..4.0.0)
