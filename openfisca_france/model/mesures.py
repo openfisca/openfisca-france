@@ -367,12 +367,13 @@ class mini(Variable):
         aefa = simulation.calculate('aefa', period)
         api = simulation.calculate('api', period)
         ass = simulation.calculate_add('ass', period)
+        ppa = simulation.calculate_add('ppa', period)
         psa = simulation.calculate_add('psa', period)
 
         aah = self.sum_by_entity(aah_holder)
         caah = self.sum_by_entity(caah_holder)
 
-        return period, aspa + aah + caah + asi + rsa + aefa + api + ass + psa
+        return period, aspa + aah + caah + asi + rsa + aefa + api + ass + psa + ppa 
 
 
 class aides_logement(Variable):

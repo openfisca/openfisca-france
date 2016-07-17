@@ -110,6 +110,7 @@
       <NODE code="asi" color="244,160,80" desc="Allocation supplémentaire d'invalidité" shortname="ASI" />
       <NODE code="rsa" color="239,130,19" desc="Revenu de solidarité active" shortname="RSA" />
       <NODE code="psa" color="239,130,19" desc="Prime de solidarité active" shortname="PSA" />
+      <NODE code="ppa" color="239,130,19" desc="Prime pour l'activité" shortname="PPA" />
       <NODE code="aefa" color="237,119,3" desc="Aide exceptionelle de fin d'année" shortname="AEFA" />
       <NODE code="api" color="208,112,4" desc="Allocation parent isolé" shortname="API" />
     </NODE>
