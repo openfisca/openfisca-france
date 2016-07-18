@@ -21,7 +21,6 @@ __all__ = [
     'get_cached_composed_reform',
     'get_cached_reform',
     'tax_benefit_system',
-    'TaxBenefitSystem',
     ]
 
 tax_benefit_system = FranceTaxBenefitSystem()
