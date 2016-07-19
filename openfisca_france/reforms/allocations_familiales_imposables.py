@@ -8,7 +8,6 @@ from openfisca_core.reforms import Reform
 from openfisca_core.variables import Variable
 from .. import entities
 from ..model.base import QUIFOY
-from ..model.prelevements_obligatoires.impot_revenu import ir
 
 
 def modify_legislation_json(reference_legislation_json_copy):
@@ -98,4 +97,3 @@ class allocations_familiales_imposables(Reform):
         self.update_variable(self.rfr)
         self.add_variable(self.allocations_familiales_imposables)
         self.modify_legislation_json(modifier_function = modify_legislation_json)
-

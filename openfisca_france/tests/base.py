@@ -7,6 +7,7 @@ from .. import FranceTaxBenefitSystem
 from ..reforms import (
     allocations_familiales_imposables,
     cesthra_invalidee,
+    inversion_directe_salaires,
     plf2016,
     plf2016_ayrault_muet,
     plf2015,
@@ -20,7 +21,6 @@ __all__ = [
     'get_cached_composed_reform',
     'get_cached_reform',
     'tax_benefit_system',
-    'TaxBenefitSystem',
     ]
 
 tax_benefit_system = FranceTaxBenefitSystem()
@@ -30,10 +30,11 @@ tax_benefit_system = FranceTaxBenefitSystem()
 reform_list = {
     'allocations_familiales_imposables': allocations_familiales_imposables.allocations_familiales_imposables,
     'cesthra_invalidee': cesthra_invalidee.cesthra_invalidee,
-    'plf2016': plf2016.build_reform,
-    # 'ayrault_muet': plf2016_ayrault_muet.build_reform,
-    # 'plf2016_counterfactual': plf2016.build_counterfactual_reform,
-    # 'plf2016_counterfactual_2014': plf2016.build_counterfactual_2014_reform,
+    'inversion_directe_salaires': inversion_directe_salaires.inversion_directe_salaires,
+    'plf2016': plf2016.plf2016,
+    'ayrault_muet': plf2016_ayrault_muet.ayrault_muet,
+    'plf2016_counterfactual': plf2016.plf2016_counterfactual,
+    'plf2016_counterfactual_2014': plf2016.plf2016_counterfactual_2014,
     'plf2015': plf2015.plf2015,
     # 'plfr2014': plfr2014.build_reform,
     'trannoy_wasmer': trannoy_wasmer.trannoy_wasmer,
@@ -71,7 +72,7 @@ def get_cached_composed_reform(reform_keys, tax_benefit_system):
             reforms = reforms,
             tax_benefit_system = tax_benefit_system,
             )
-        assert full_key == composed_reform.full_key
+        assert full_key == composed_reform.full_key, (full_key, composed_reform.full_key)
         reform_by_full_key[full_key] = composed_reform
     return composed_reform
 
