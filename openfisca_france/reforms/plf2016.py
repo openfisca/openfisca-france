@@ -181,11 +181,12 @@ class plf2016_counterfactual(Reform):
             total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + \
                 donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + \
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
-	
-	    return period, min_(ip_net, total_reductions)
+
+            return period, min_(ip_net, total_reductions)
 
     def apply(self):
-        self.update_variable(self.decote, self.reductions, self.reduction_impot_exceptionnelle)
+        for variable in [self.decote, self.reductions, self.reduction_impot_exceptionnelle]:
+            self.update_variable(variable)
         self.modify_legislation_json(modifier_function = counterfactual_modify_legislation_json)
 
 
@@ -219,49 +220,49 @@ def counterfactual_2014_modify_legislation_json(reference_legislation_json_copy)
     # FIXME update_legislation is deprecated.
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
-        path = ('children', 'ir', 'children', 'bareme', 'brackets', 1, 'threshold'),
+        path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 1, 'threshold'),
         period = reform_period,
         value = 6011 * inflator,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
-        path = ('children', 'ir', 'children', 'bareme', 'brackets', 1, 'rate'),
+        path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 1, 'rate'),
         period = reform_period,
         value = .055,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
-        path = ('children', 'ir', 'children', 'bareme', 'brackets', 2, 'threshold'),
+        path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 2, 'threshold'),
         period = reform_period,
         value = 11991 * inflator,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
-        path = ('children', 'ir', 'children', 'bareme', 'brackets', 2, 'rate'),
+        path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 2, 'rate'),
         period = reform_period,
         value = .14,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
-        path = ('children', 'ir', 'children', 'bareme', 'brackets', 3, 'threshold'),
+        path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 3, 'threshold'),
         period = reform_period,
         value = 26631 * inflator,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
-        path = ('children', 'ir', 'children', 'bareme', 'brackets', 3, 'rate'),
+        path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 3, 'rate'),
         period = reform_period,
         value = .30,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
-        path = ('children', 'ir', 'children', 'bareme', 'brackets', 4, 'threshold'),
+        path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 4, 'threshold'),
         period = reform_period,
         value = 71397 * inflator,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
-        path = ('children', 'ir', 'children', 'bareme', 'brackets', 4, 'rate'),
+        path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 4, 'rate'),
         period = reform_period,
         value = .40,
         )
@@ -280,7 +281,7 @@ class plf2016_counterfactual_2014(Reform):
             period = period.start.offset('first-of', 'year').period('year')
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             inflator = 1 + .001 + .005
-            decote = simulation.legislation_at(period.start).ir.decote
+            decote = simulation.legislation_at(period.start).impot_revenu.decote
             assert decote.seuil == 1016
             return period, (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
@@ -293,7 +294,7 @@ class plf2016_counterfactual_2014(Reform):
             nb_parents = simulation.calculate('nb_parents')
             rfr = simulation.calculate('rfr')
             inflator = 1 + .001 + .005
-            # params = simulation.legislation_at(period.start).ir.reductions_impots.reduction_impot_exceptionnelle
+            # params = simulation.legislation_at(period.start).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
             seuil = 13795 * inflator
             majoration_seuil = 3536 * inflator
             montant_plafond = 350 * inflator

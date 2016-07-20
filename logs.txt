@@ -1,0 +1,16 @@
+openfisca_france.tests.test_basics.test_basics(<openfisca_core.simulations.Simulation object at 0x7f6eebc761d0>, 2006) ... ok
+openfisca_france.tests.test_basics.test_basics(<openfisca_core.simulations.Simulation object at 0x7f6ee52c3a90>, 2007) ... ok
+openfisca_france.tests.test_basics.test_basics(<openfisca_core.simulations.Simulation object at 0x7f6ee3324a90>, 2008) ... ok
+openfisca_france.tests.test_basics.test_basics(<openfisca_core.simulations.Simulation object at 0x7f6ee348af10>, 2009) ... ok
+openfisca_france.tests.test_basics.test_basics(<openfisca_core.simulations.Simulation object at 0x7f6ee02f0ad0>, 2010) ... ok
+openfisca_france.tests.test_basics.test_basics(<openfisca_core.simulations.Simulation object at 0x7f6edfdd87d0>, 2011) ... ok
+openfisca_france.tests.test_basics.test_basics(<openfisca_core.simulations.Simulation object at 0x7f6ee0016990>, 2012) ... ok
+openfisca_france.tests.test_basics.test_basics(<openfisca_core.simulations.Simulation object at 0x7f6ee3212e10>, 2013) ... ok
+openfisca_france.tests.test_basics.test_basics(<openfisca_core.simulations.Simulation object at 0x7f6edfb5f950>, 2014) ... ok
+openfisca_france.tests.test_basics.test_basics(<openfisca_core.simulations.Simulation object at 0x7f6ee002a7d0>, 2015) ... ok
+openfisca_france.tests.test_basics.test_basics(<openfisca_core.simulations.Simulation object at 0x7f6edfbe3050>, 2016) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 23.114s
+
+OK
