@@ -775,13 +775,19 @@ def transform_ipp_tree(root):
     modulation['majoration_plafond_par_enfant_supplementaire'] = modulation_ipp.pop('majoration_ressource_par_enfant_supplementaire')
     modulation['plafond_tranche_1'] = modulation_ipp.pop('plafond_de_ressources_tranche_1')
     modulation['plafond_tranche_2'] = modulation_ipp.pop('plafond_de_ressources_tranche_2')
-
     af['majoration'] = prestations.pop('af_maj')
     af['plafond_1998'] = af_plaf = prestations.pop('af_plaf')
     af['taux'] = taux = dict()
     taux['enf3'] = af.pop('par_enfant_supplementaire')
-    # af.majoration.majoration_pour_les_enfants_en_de_la_bmaf['age_de_plus_de_20_ans'] = age_de_plus_de_20_ans = af.majoration.majoration_pour_les_enfants_en_de_la_bmaf.pop('age_de_plus_de_20_ans_5_6')
-    # af["montant_en_de_la_bmaf_tranche_1"] = montant_en_de_la_bmaf_tranche_1 = dict()
+    #    af = prestations_familiales['af']
+    #    prestations_familiales['af'].update(prestations.pop('af_maj_dom'))
+    #    prestations_familiales['af'].update(af.pop('majoration_pour_le_premier_enfant_en_de_la_bmaf_dom'))
+    #    prestations_familiales['af'].update(af.pop('tranches_d_age'))
+    #    af['taux_1er_enf_tranche_2_dom'] = taux_1er_enf_tranche_2_dom = af.pop('taux_de_la_tranche_2')
+    #    af['age_1er_enf_tranche_1_dom'] = age_1er_enf_tranche_1_dom = af.pop('age_debut_de_la_premiere_tranche')
+    #    af['age_1er_enf_tranche_2_dom'] = age_1er_enf_tranche_2_dom = af.pop('age_debut_de_la_deuxieme_tranche')
+    #    af['taux_1er_enf_tranche_1_dom'] = taux_1er_enf_tranche_1_dom = af.pop('taux_de_la_tranche_1')
+
     del prestations['aa_plaf']
     #   aa_plaf:
     #     Plafonds de ressources: null  # Value must be a float
@@ -1049,17 +1055,10 @@ def transform_ipp_tree(root):
     #       pour_les_premiers_frais_de_location: null  # Value must be a float
 
 
-    del root['baremes_ipp_retraites_pensions']['aad_fp']
-    del root['baremes_ipp_retraites_pensions']['aad_rg']
-    del root['baremes_ipp_retraites_pensions']['aod_fp_s']
-    del root['baremes_ipp_retraites_pensions']['la_fp_a']
-    del root['baremes_ipp_retraites_pensions']['salval']
-    del root['baremes_ipp_retraites_pensions']['as']
-
-    root['retraites_pensions'] = retraites_pensions = root.pop('baremes_ipp_retraites_pensions')
+    del root['baremes_ipp_retraites_pensions']
 
     minima_sociaux['aspa'] = aspa = dict()
-    minima_sociaux['aspa'].update(retraites_pensions['aspa'])
+    minima_sociaux['aspa'].update(prestations.pop('aspa'))
     aspa = minima_sociaux['aspa']
     minima_sociaux['aspa'].update(aspa.pop('montant_maximum_annuel'))
     aspa['montant_annuel_couple'] = montant_annuel_couple = aspa.pop('couple_ou_lorsqu_un_seul_conjoint_est_beneficiaire_de_l_aspa_et_l_autre_de_l_allocation_supplementaire_d_invalidite')
