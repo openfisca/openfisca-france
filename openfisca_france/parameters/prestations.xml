@@ -5,89 +5,6 @@
       <VALUE deb="1995-01-01" fin="1996-07-31" valeur="0.3" />
     </CODE>
   </NODE>
-  <NODE code="af_maj_dom">
-    <CODE code="duree_pendant_laquelle_la_majoration_pour_les_plus_de_20_ans_est_versee_en_annee">
-      <VALUE deb="1991-08-06" fuzzy="true" valeur="1" />
-    </CODE>
-    <CODE code="les_allocations_familiales_pour_un_enfant_en_de_la_bmaf" format="percent">
-      <VALUE deb="1991-08-06" fuzzy="true" valeur="0.0588" />
-    </CODE>
-    <NODE code="majoration_a_partir_du_deuxieme_enfant_en_de_la_bmaf_dom">
-      <CODE code="taux_2eme_enfant" format="percent">
-        <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.2788" />
-        <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
-        <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.2715" />
-        <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.2594" />
-        <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.2463" />
-      </CODE>
-      <CODE code="taux_3eme_enfant" format="percent">
-        <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.3236" />
-        <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
-        <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.3084" />
-        <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.283" />
-        <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.2572" />
-      </CODE>
-      <CODE code="taux_4eme_enfant" format="percent">
-        <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.3457" />
-        <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
-        <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.3344" />
-        <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.3155" />
-        <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.2978" />
-      </CODE>
-      <CODE code="taux_5eme_enfant" format="percent">
-        <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.2806" />
-        <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
-        <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.2578" />
-        <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.2197" />
-        <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.1812" />
-      </CODE>
-      <CODE code="taux_6eme_enfant_et_plus" format="percent">
-        <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.2576" />
-        <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
-        <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.2307" />
-        <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.1859" />
-        <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.1411" />
-      </CODE>
-      <CODE code="taux_de_majoration_de_la_1ere_tranche_d_age" format="percent">
-        <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.0674" />
-        <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
-        <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.0634" />
-        <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.0567" />
-        <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.0505" />
-      </CODE>
-      <CODE code="taux_de_majoration_de_la_2eme_tranche_d_age" format="percent">
-        <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.1161" />
-        <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
-        <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.1083" />
-        <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.0954" />
-        <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.0827" />
-      </CODE>
-    </NODE>
-    <NODE code="majoration_pour_le_premier_enfant_en_de_la_bmaf_dom">
-      <CODE code="taux_de_la_tranche_1" format="percent">
-        <VALUE deb="1991-08-06" fuzzy="true" valeur="0.0369" />
-      </CODE>
-      <CODE code="taux_de_la_tranche_2" format="percent">
-        <VALUE deb="1991-08-06" fuzzy="true" valeur="0.0567" />
-      </CODE>
-    </NODE>
-    <CODE code="nombre_d_enfant_a_partir_duquel_l_aine_donne_droit_a_majoration">
-      <VALUE deb="1991-08-06" fuzzy="true" valeur="3" />
-    </CODE>
-    <CODE code="nombre_minimal_d_enfant_pour_avoir_droit_a_la_majoration_forfaitaire_pour_les_plus_de_20_ans">
-      <VALUE deb="1991-08-06" fuzzy="true" valeur="3" />
-    </CODE>
-    <NODE code="tranches_d_age">
-      <CODE code="age_debut_de_la_deuxieme_tranche">
-        <VALUE deb="1999-01-01" fuzzy="true" valeur="16" />
-        <VALUE deb="1991-08-06" fin="1998-12-31" valeur="15" />
-      </CODE>
-      <CODE code="age_debut_de_la_premiere_tranche">
-        <VALUE deb="1999-01-01" fuzzy="true" valeur="11" />
-        <VALUE deb="1991-08-06" fin="1998-12-31" valeur="10" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="afg_c">
     <CODE code="montant_mensuel_maximum_1" format="float" type="monetary">
       <VALUE deb="1976-07-01" fin="1977-12-31" valeur="291.35" />
@@ -4170,6 +4087,85 @@
         <VALUE deb="1978-01-01" fin="1981-06-30" valeur="0.23" />
         <VALUE deb="1976-08-01" fin="1977-12-31" valeur="0.22" />
       </CODE>
+      <NODE code="af_dom">
+        <CODE code="age_1er_enf_tranche_1_dom" description="Âge de début de la 1ere majoration">
+          <VALUE deb="1999-01-01" fuzzy="true" valeur="11" />
+          <VALUE deb="1991-08-06" fin="1998-12-31" valeur="10" />
+        </CODE>
+        <CODE code="age_1er_enf_tranche_2_dom" description="Âge de début de la 2ème majoration">
+          <VALUE deb="1999-01-01" fuzzy="true" valeur="16" />
+          <VALUE deb="1991-08-06" fin="1998-12-31" valeur="15" />
+        </CODE>
+        <CODE code="duree_pendant_laquelle_la_majoration_pour_les_plus_de_20_ans_est_versee_en_annee">
+          <VALUE deb="1991-08-06" fuzzy="true" valeur="1" />
+        </CODE>
+        <NODE code="majoration_a_partir_du_deuxieme_enfant_en_de_la_bmaf_dom">
+          <CODE code="taux_2eme_enfant" format="percent">
+            <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.2788" />
+            <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
+            <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.2715" />
+            <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.2594" />
+            <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.2463" />
+          </CODE>
+          <CODE code="taux_3eme_enfant" format="percent">
+            <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.3236" />
+            <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
+            <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.3084" />
+            <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.283" />
+            <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.2572" />
+          </CODE>
+          <CODE code="taux_4eme_enfant" format="percent">
+            <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.3457" />
+            <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
+            <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.3344" />
+            <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.3155" />
+            <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.2978" />
+          </CODE>
+          <CODE code="taux_5eme_enfant" format="percent">
+            <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.2806" />
+            <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
+            <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.2578" />
+            <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.2197" />
+            <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.1812" />
+          </CODE>
+          <CODE code="taux_6eme_enfant_et_plus" format="percent">
+            <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.2576" />
+            <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
+            <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.2307" />
+            <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.1859" />
+            <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.1411" />
+          </CODE>
+          <CODE code="taux_de_majoration_de_la_1ere_tranche_d_age" format="percent">
+            <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.0674" />
+            <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
+            <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.0634" />
+            <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.0567" />
+            <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.0505" />
+          </CODE>
+          <CODE code="taux_de_majoration_de_la_2eme_tranche_d_age" format="percent">
+            <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.1161" />
+            <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
+            <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.1083" />
+            <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.0954" />
+            <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.0827" />
+          </CODE>
+        </NODE>
+        <CODE code="nombre_d_enfant_a_partir_duquel_l_aine_donne_droit_a_majoration">
+          <VALUE deb="1991-08-06" fuzzy="true" valeur="3" />
+        </CODE>
+        <CODE code="nombre_minimal_d_enfant_pour_avoir_droit_a_la_majoration_forfaitaire_pour_les_plus_de_20_ans">
+          <VALUE deb="1991-08-06" fuzzy="true" valeur="3" />
+        </CODE>
+        <CODE code="taux_1er_enf_tranche_1_dom" description="1ère majoration pour âge" format="percent">
+          <VALUE deb="1991-08-06" fuzzy="true" valeur="0.0369" />
+        </CODE>
+        <CODE code="taux_1er_enf_tranche_2_dom" description="2ème majoration pour âge" format="percent">
+          <VALUE deb="1991-08-06" fuzzy="true" valeur="0.0567" />
+        </CODE>
+        <CODE code="taux_enfant_seul" description="Un seul enfant à charge (DOM)" format="percent">
+          <VALUE deb="1991-08-06" fuzzy="true" valeur="0.0588" />
+        </CODE>
+      </NODE>
       <CODE code="age1" description="Âge mininimal pour toucher les AF" format="integer" type="age">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
         <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0" />
@@ -4203,6 +4199,9 @@
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.005" />
         <VALUE deb="1996-01-01" fin="2013-12-31" valeur="0.005" />
       </CODE>
+      <CODE code="duree_pendant_laquelle_la_majoration_pour_les_plus_de_20_ans_est_versee_en_annee">
+        <VALUE deb="2003-07-01" fuzzy="true" valeur="1" />
+      </CODE>
       <CODE code="facteur_garde_alternee" description="Facteur multiplicatif pour un enfant en cas de garde alternée">
         <VALUE deb="2007-05-01" fuzzy="true" valeur="0.5" />
         <VALUE deb="2000-01-01" fin="2007-04-30" valeur="1" />
@@ -4227,68 +4226,32 @@
           <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.16" />
         </CODE>
       </NODE>
-      <NODE code="maj_age_un_enfant" description="Majorations pour âge">
-        <CODE code="age1" description="Âge de début de la 1ere majoration" format="integer" type="age">
-          <VALUE deb="2016-04-01" fuzzy="true" valeur="11" />
-          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="11" />
+      <NODE code="majoration_enfants">
+        <CODE code="age_minimal_forfait">
+          <VALUE deb="2003-07-01" fuzzy="true" valeur="20" />
         </CODE>
-        <CODE code="age2" description="Âge de début de la 2ème majoration" format="integer" type="age">
-          <VALUE deb="2016-04-01" fuzzy="true" valeur="16" />
-          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="16" />
+        <CODE code="taux_allocation_forfaitaire" description="Allocation forfaitaire par enfant de 20 ans" format="percent">
+          <VALUE deb="2003-07-01" fuzzy="true" valeur="0.20234" />
         </CODE>
-        <CODE code="taux1" description="1ère majoration pour âge" format="percent">
-          <VALUE deb="2016-04-01" fuzzy="true" valeur="0.0369" />
-          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.0369" />
-        </CODE>
-        <CODE code="taux2" description="2ème majoration pour âge" format="percent">
-          <VALUE deb="2016-04-01" fuzzy="true" valeur="0.0567" />
-          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.0567" />
-        </CODE>
-      </NODE>
-      <NODE code="majoration">
-        <CODE code="duree_pendant_laquelle_la_majoration_pour_les_plus_de_20_ans_est_versee_en_annee">
-          <VALUE deb="2003-07-01" fuzzy="true" valeur="1" />
-        </CODE>
-        <NODE code="majoration_pour_les_enfants_en_de_la_bmaf">
-          <CODE code="age_de_plus_de_20_ans_5_6" description="Allocation forfaitaire par enfant de 20 ans" format="percent">
-            <VALUE deb="2016-04-01" fuzzy="true" valeur="0.20234" />
-            <VALUE deb="2003-07-01" fin="2016-03-31" valeur="0.20234" />
-            <VALUE deb="2000-01-01" fin="2003-06-30" valeur="0" />
+        <NODE code="taux_appliques_aux_differentes_tranches_d_age">
+          <CODE code="taux_de_la_tranche_1" format="percent">
+            <VALUE deb="2008-05-01" fuzzy="true" valeur="0.16" />
+            <VALUE deb="1984-01-01" fin="2008-04-30" valeur="0.09" />
           </CODE>
-          <NODE code="allocation_forfaitaire">
-            <CODE code="age_minimum">
-              <VALUE deb="2003-07-01" fuzzy="true" valeur="20" />
-            </CODE>
-            <CODE code="taux" format="percent">
-              <VALUE deb="2003-07-01" fuzzy="true" valeur="0.20234" />
-            </CODE>
-          </NODE>
-          <NODE code="taux_appliques_aux_differentes_tranches_d_age">
-            <CODE code="taux_de_la_tranche_1" format="percent">
-              <VALUE deb="2008-05-01" fuzzy="true" valeur="0.16" />
-              <VALUE deb="1984-01-01" fin="2008-04-30" valeur="0.09" />
-            </CODE>
-            <CODE code="taux_de_la_tranche_2" format="percent">
-              <VALUE deb="1984-01-01" fin="2008-04-30" valeur="0.16" />
-            </CODE>
-          </NODE>
-          <NODE code="tranches_d_age">
-            <CODE code="age_debut_de_la_deuxieme_tranche">
-              <VALUE deb="1984-01-01" fin="2008-04-30" valeur="16" />
-            </CODE>
-            <CODE code="age_debut_de_la_premiere_tranche">
-              <VALUE deb="2008-05-01" fuzzy="true" valeur="14" />
-              <VALUE deb="1999-01-01" fin="2008-04-30" valeur="11" />
-              <VALUE deb="1984-01-01" fin="1998-12-31" valeur="10" />
-            </CODE>
-          </NODE>
+          <CODE code="taux_de_la_tranche_2" format="percent">
+            <VALUE deb="1984-01-01" fin="2008-04-30" valeur="0.16" />
+          </CODE>
         </NODE>
-        <CODE code="nombre_d_enfant_a_partir_duquel_l_aine_donne_droit_a_majoration">
-          <VALUE deb="1984-01-01" fuzzy="true" valeur="3" />
-        </CODE>
-        <CODE code="nombre_minimal_d_enfant_pour_avoir_droit_a_la_majoration_forfaitaire_pour_les_plus_de_20_ans">
-          <VALUE deb="2003-07-01" fuzzy="true" valeur="3" />
-        </CODE>
+        <NODE code="tranches_d_age">
+          <CODE code="age_debut_de_la_deuxieme_tranche">
+            <VALUE deb="1984-01-01" fin="2008-04-30" valeur="16" />
+          </CODE>
+          <CODE code="age_debut_de_la_premiere_tranche">
+            <VALUE deb="2008-05-01" fuzzy="true" valeur="14" />
+            <VALUE deb="1999-01-01" fin="2008-04-30" valeur="11" />
+            <VALUE deb="1984-01-01" fin="1998-12-31" valeur="10" />
+          </CODE>
+        </NODE>
       </NODE>
       <NODE code="modulation" description="Modulation des allocations familiales en fonction des ressources">
         <CODE code="majoration_plafond_par_enfant_supplementaire" description="Majoration du plafond annuel de ressources par enfant supplémentaire (à partir du 3e enfant)" format="float" type="monetary">
@@ -4313,6 +4276,12 @@
           <VALUE deb="2015-07-01" fuzzy="true" valeur="0.25" />
         </CODE>
       </NODE>
+      <CODE code="nombre_d_enfant_a_partir_duquel_l_aine_donne_droit_a_majoration">
+        <VALUE deb="1984-01-01" fuzzy="true" valeur="3" />
+      </CODE>
+      <CODE code="nombre_minimal_d_enfant_pour_avoir_droit_a_la_majoration_forfaitaire_pour_les_plus_de_20_ans">
+        <VALUE deb="2003-07-01" fuzzy="true" valeur="3" />
+      </CODE>
       <CODE code="nombre_minimal_d_enfants_pour_avoir_droit_a_l_allocation">
         <VALUE deb="1976-08-01" fuzzy="true" valeur="2" />
         <VALUE deb="1932-06-14" fin="1976-07-31" valeur="0" />
@@ -4350,10 +4319,6 @@
           <VALUE deb="1981-07-01" fin="1985-12-31" valeur="0.39" />
           <VALUE deb="1978-01-01" fin="1981-06-30" valeur="0.35" />
           <VALUE deb="1976-08-01" fin="1977-12-31" valeur="0.33" />
-        </CODE>
-        <CODE code="enf_seul" description="Un seul enfant à charge (DOM)" format="percent">
-          <VALUE deb="2016-04-01" fuzzy="true" valeur="0.0588" />
-          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.0588" />
         </CODE>
       </NODE>
     </NODE>

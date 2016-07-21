@@ -53,11 +53,13 @@ prestations.prestations_familiales.af.modulation.plafond2: prestations.prestatio
 prestations.prestations_familiales.af.modulation.taux1: prestations.prestations_familiales.af.modulation.taux_tranche_2
 prestations.prestations_familiales.af.modulation.taux2: prestations.prestations_familiales.af.modulation.taux_tranche_3
 prestations.prestations_familiales.af.modulation.enfant_supp: prestations.prestations_familiales.af.modulation.majoration_plafond_par_enfant_supplementaire
-prestations.prestations_familiales.af.taux.forfait : prestations.prestations_familiales.af.majoration.majoration_pour_les_enfants_en_de_la_bmaf.age_de_plus_de_20_ans_5_6
-#  prestations.prestations_familiales.af.maj_age_un_enfant.age1: prestations.prestations_familiales.af.age_1er_enf_tranche_1_dom
-#  prestations.prestations_familiales.af.maj_age_un_enfant.age2: prestations.prestations_familiales.af.age_1er_enf_tranche_2_dom
-#  prestations.prestations_familiales.af.maj_age_un_enfant.taux1: prestations.prestations_familiales.af.taux_1er_enf_tranche_1_dom
-#  prestations.prestations_familiales.af.maj_age_un_enfant.taux2: prestations.prestations_familiales.af.taux_1er_enf_tranche_2_dom
+prestations.prestations_familiales.af.taux.forfait : prestations.prestations_familiales.af.majoration_enfants.taux_allocation_forfaitaire
+prestations.prestations_familiales.af.maj_age_un_enfant.age1: prestations.prestations_familiales.af.af_dom.age_1er_enf_tranche_1_dom
+prestations.prestations_familiales.af.maj_age_un_enfant.age2: prestations.prestations_familiales.af.af_dom.age_1er_enf_tranche_2_dom
+prestations.prestations_familiales.af.maj_age_un_enfant.taux1: prestations.prestations_familiales.af.af_dom.taux_1er_enf_tranche_1_dom
+prestations.prestations_familiales.af.maj_age_un_enfant.taux2: prestations.prestations_familiales.af.af_dom.taux_1er_enf_tranche_2_dom
+prestations.prestations_familiales.af.taux.enf_seul : prestations.prestations_familiales.af.af_dom.taux_enfant_seul
+prestations.prestations_familiales.af.maj_age_un_enfant : null
 al: prestations.aides_logement
 prestations.aides_logement.forfait_charges.fc1: prestations.aides_logement.forfait_charges.cas_general
 prestations.aides_logement.forfait_charges.fc2: prestations.aides_logement.forfait_charges.majoration_par_enfant

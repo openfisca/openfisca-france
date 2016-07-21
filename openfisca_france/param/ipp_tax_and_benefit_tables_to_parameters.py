@@ -779,14 +779,25 @@ def transform_ipp_tree(root):
     af['plafond_1998'] = af_plaf = prestations.pop('af_plaf')
     af['taux'] = taux = dict()
     taux['enf3'] = af.pop('par_enfant_supplementaire')
-    #    af = prestations_familiales['af']
-    #    prestations_familiales['af'].update(prestations.pop('af_maj_dom'))
-    #    prestations_familiales['af'].update(af.pop('majoration_pour_le_premier_enfant_en_de_la_bmaf_dom'))
-    #    prestations_familiales['af'].update(af.pop('tranches_d_age'))
-    #    af['taux_1er_enf_tranche_2_dom'] = taux_1er_enf_tranche_2_dom = af.pop('taux_de_la_tranche_2')
-    #    af['age_1er_enf_tranche_1_dom'] = age_1er_enf_tranche_1_dom = af.pop('age_debut_de_la_premiere_tranche')
-    #    af['age_1er_enf_tranche_2_dom'] = age_1er_enf_tranche_2_dom = af.pop('age_debut_de_la_deuxieme_tranche')
-    #    af['taux_1er_enf_tranche_1_dom'] = taux_1er_enf_tranche_1_dom = af.pop('taux_de_la_tranche_1')
+    af = prestations_familiales['af']
+    af['af_dom'] = af_dom = prestations.pop('af_maj_dom')
+    af_dom = af['af_dom']
+    majoration_pour_le_premier_enfant_en_de_la_bmaf_dom = af_dom['majoration_pour_le_premier_enfant_en_de_la_bmaf_dom']
+    tranches_d_age = af_dom['tranches_d_age']
+    af_dom['taux_1er_enf_tranche_2_dom'] = taux_1er_enf_tranche_2_dom = majoration_pour_le_premier_enfant_en_de_la_bmaf_dom.pop('taux_de_la_tranche_2')
+    af_dom['taux_1er_enf_tranche_1_dom'] = taux_1er_enf_tranche_1_dom = majoration_pour_le_premier_enfant_en_de_la_bmaf_dom.pop('taux_de_la_tranche_1')
+    af_dom['age_1er_enf_tranche_1_dom'] = age_1er_enf_tranche_1_dom = tranches_d_age.pop('age_debut_de_la_premiere_tranche')
+    af_dom['age_1er_enf_tranche_2_dom'] = age_1er_enf_tranche_2_dom = tranches_d_age.pop('age_debut_de_la_deuxieme_tranche')
+    af_dom['taux_enfant_seul'] = taux_enfant_seul = af_dom.pop('les_allocations_familiales_pour_un_enfant_en_de_la_bmaf')
+    prestations_familiales['af'].update(af.pop('majoration'))
+    af['majoration_enfants'] = majoration_enfants = af.pop('majoration_pour_les_enfants_en_de_la_bmaf')
+    majoration_enfants = af['majoration_enfants']
+    af['majoration_enfants'].update(majoration_enfants.pop('allocation_forfaitaire'))
+    majoration_enfants['age_minimal_forfait'] = age_minimal_forfait = majoration_enfants.pop('age_minimum')
+    majoration_enfants['taux_allocation_forfaitaire'] = taux_allocation_forfaitaire = majoration_enfants.pop('taux')
+
+    #majoration_enfants['taux_allocation_forfaitaire'] = taux_allocation_forfaitaire = majoration_enfants['taux']
+
 
     del prestations['aa_plaf']
     #   aa_plaf:
