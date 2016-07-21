@@ -142,9 +142,9 @@ prestations.minima_sociaux.asi.plaf_couple: prestations.minima_sociaux.asi.plafo
 # rsa
 prestations.minima_sociaux.rsa.rsa : prestations.minima_sociaux.rsa.montant_de_base_du_rsa
 prestations.minima_sociaux.rsa.majo_rsa.age : prestations.minima_sociaux.rsa.majo_rsa.age_limite_enfant
-prestations.minima_sociaux.rsa.txp2 : prestations.minima_sociaux.rsa.majoration_rsa.taux_deuxieme_personne
-prestations.minima_sociaux.rsa.txp3 : prestations.minima_sociaux.rsa.majoration_rsa.taux_troisieme_personne
-prestations.minima_sociaux.rsa.txps : prestations.minima_sociaux.rsa.majoration_rsa.taux_personne_supp
+#prestations.minima_sociaux.rsa.txp2 : prestations.minima_sociaux.rsa.majoration_rsa.taux_deuxieme_personne
+#prestations.minima_sociaux.rsa.txp3 : prestations.minima_sociaux.rsa.majoration_rsa.taux_troisieme_personne
+#prestations.minima_sociaux.rsa.txps : prestations.minima_sociaux.rsa.majoration_rsa.taux_personne_supp
 
 # TODO: sortir les paramètres de la prime d'activité (ppa) de rmi et faire merger avec IPP (pa_m)
 

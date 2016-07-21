@@ -1181,5 +1181,5 @@ class rsa_socle_majore(Variable):
         else:
             taux = rmi.majo_rsa.pac0 + rmi.majo_rsa.pac_enf_sup * nbenf
             socle = rmi.rmi
-            
+
         return period, eligib * socle * taux

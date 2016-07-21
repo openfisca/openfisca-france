@@ -3743,6 +3743,17 @@
           <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.428" />
         </CODE>
       </NODE>
+      <NODE code="majoration_montant_maximal_en_de_la_base_rsa">
+        <CODE code="couple_1_enfant_ou_pour_le_deuxieme_enfant_1" format="percent">
+          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.3" />
+        </CODE>
+        <CODE code="couples_ou_celibataire_avec_un_enfant" format="percent">
+          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.5" />
+        </CODE>
+        <CODE code="par_enfant_supplementaire" format="percent">
+          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.4" />
+        </CODE>
+      </NODE>
       <NODE code="majoration_parent_isole">
         <CODE code="age_limite_enfant">
           <VALUE deb="2009-06-01" fuzzy="true" valeur="3" />
@@ -3752,17 +3763,6 @@
         </CODE>
         <CODE code="limite_de_duree_du_droit_a_la_majoration_pour_isolement_2">
           <VALUE deb="2009-06-01" fuzzy="true" valeur="18" />
-        </CODE>
-      </NODE>
-      <NODE code="majoration_rsa">
-        <CODE code="taux_deuxieme_personne" description="Taux pour une 2nde personne" format="percent">
-          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.5" />
-        </CODE>
-        <CODE code="taux_personne_supp" description="Taux par personne supplémentaire" format="percent">
-          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.4" />
-        </CODE>
-        <CODE code="taux_troisieme_personne" description="Taux pour une 3e personne" format="percent">
-          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.3" />
         </CODE>
       </NODE>
       <CODE code="montant_de_base_du_rsa" description="Rsa socle" format="float" type="monetary">
@@ -3812,6 +3812,18 @@
       <CODE code="rsa_nv" description="Seuil de non versement" format="integer" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="6" />
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="6" />
+      </CODE>
+      <CODE code="txp2" description="Taux pour une 2nde personne" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.5" />
+        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.5" />
+      </CODE>
+      <CODE code="txp3" description="Taux pour une 3e personne" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.3" />
+        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.3" />
+      </CODE>
+      <CODE code="txps" description="Taux par personne supplémentaire" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.4" />
+        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.4" />
       </CODE>
     </NODE>
   </NODE>
