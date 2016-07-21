@@ -3675,11 +3675,7 @@
         <VALUE deb="2015-01-01" fuzzy="true" valeur="24" />
         <VALUE deb="1977-10-01" fin="2014-12-31" valeur="24" />
       </CODE>
-      <CODE code="duree_min_titre_sejour" description="Durée minimale de titre du séjour permettant de bénéficier du RSA" format="integer">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="5" />
-        <VALUE deb="2002-01-01" fin="2015-12-31" valeur="5" />
-      </CODE>
-      <CODE code="duree_minimum_du_titre_de_sejour_annee">
+      <CODE code="duree_min_titre_sejour" description="Durée minimale de titre du séjour permettant de bénéficier du RSA">
         <VALUE deb="2009-06-01" fuzzy="true" valeur="5" />
       </CODE>
       <NODE code="forfait_asf" description="Forfait Allocation de Soutien Familial">
@@ -3718,7 +3714,7 @@
         </CODE>
       </NODE>
       <NODE code="majo_rsa" description="Majoration du RSA socle pour parent isolé">
-        <CODE code="age" description="Âge limite du benjamin pour un versement sans condition de durée" format="integer" type="age">
+        <CODE code="age_limite_enfant" description="Âge limite du benjamin pour un versement sans condition de durée" format="integer" type="age">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
           <VALUE deb="2009-06-01" fin="2014-12-31" valeur="3" />
           <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
@@ -3747,22 +3743,8 @@
           <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.428" />
         </CODE>
       </NODE>
-      <NODE code="majoration_montant_maximal_en_de_la_base_rsa">
-        <CODE code="celibataire_1_enfant" format="percent">
-          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.5" />
-        </CODE>
-        <CODE code="couple_1_enfant_ou_pour_le_deuxieme_enfant_1" format="percent">
-          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.3" />
-        </CODE>
-        <CODE code="couples" format="percent">
-          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.5" />
-        </CODE>
-        <CODE code="par_enfant_supplementaire" format="percent">
-          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.4" />
-        </CODE>
-      </NODE>
-      <NODE code="majoration_pour_isolement_en_mois">
-        <CODE code="age_limite_de_l_enfant_3_en_annee">
+      <NODE code="majoration_parent_isole">
+        <CODE code="age_limite_enfant">
           <VALUE deb="2009-06-01" fuzzy="true" valeur="3" />
         </CODE>
         <CODE code="duree_du_droit">
@@ -3772,7 +3754,18 @@
           <VALUE deb="2009-06-01" fuzzy="true" valeur="18" />
         </CODE>
       </NODE>
-      <CODE code="montant_de_base_du_rsa" format="float" type="monetary">
+      <NODE code="majoration_rsa">
+        <CODE code="taux_deuxieme_personne" description="Taux pour une 2nde personne" format="percent">
+          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.5" />
+        </CODE>
+        <CODE code="taux_personne_supp" description="Taux par personne supplémentaire" format="percent">
+          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.4" />
+        </CODE>
+        <CODE code="taux_troisieme_personne" description="Taux pour une 3e personne" format="percent">
+          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.3" />
+        </CODE>
+      </NODE>
+      <CODE code="montant_de_base_du_rsa" description="Rsa socle" format="float" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="524.68" />
         <VALUE deb="2015-09-01" fin="2016-03-31" valeur="524.16" />
         <VALUE deb="2015-01-01" fin="2015-08-31" valeur="513.88" />
@@ -3813,46 +3806,12 @@
       <CODE code="psa" description="Prime de solidarité active" format="integer" type="monetary">
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="200" />
       </CODE>
-      <CODE code="rsa" description="Rsa socle" format="float" type="monetary">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="524.68" />
-        <VALUE deb="2016-01-01" fin="2016-03-31" valeur="524.16" />
-        <VALUE deb="2015-09-01" fin="2015-12-31" valeur="524.16" />
-        <VALUE deb="2015-01-01" fin="2015-08-31" valeur="513.88" />
-        <VALUE deb="2014-09-01" fin="2014-12-31" valeur="509.30" />
-        <VALUE deb="2014-01-01" fin="2014-08-31" valeur="499.31" />
-        <VALUE deb="2013-09-01" fin="2013-12-31" valeur="492.90" />
-        <VALUE deb="2013-01-01" fin="2013-08-31" valeur="483.24" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="474.93" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="466.99" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="460.09" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="454.63" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="447.91" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="440.86" />
-        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="433.06" />
-        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="425.4" />
-        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="417.88" />
-        <VALUE deb="2003-01-01" fin="2003-12-31" valeur="411.7" />
-        <VALUE deb="2002-01-01" fin="2002-12-31" valeur="405.62" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="397.6" />
-      </CODE>
       <CODE code="rsa_jeune_en_heure_4">
         <VALUE deb="2010-09-01" fuzzy="true" valeur="3214" />
       </CODE>
       <CODE code="rsa_nv" description="Seuil de non versement" format="integer" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="6" />
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="6" />
-      </CODE>
-      <CODE code="txp2" description="Taux pour une 2nde personne" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.5" />
-        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.5" />
-      </CODE>
-      <CODE code="txp3" description="Taux pour une 3e personne" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.3" />
-        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.3" />
-      </CODE>
-      <CODE code="txps" description="Taux par personne supplémentaire" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.4" />
-        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.4" />
       </CODE>
     </NODE>
   </NODE>

@@ -1034,7 +1034,14 @@ def transform_ipp_tree(root):
     minima_sociaux['rsa'].update(prestations.pop('rsa_maj'))
     minima_sociaux['rsa'].update(prestations.pop('rsa_fl'))
     minima_sociaux['rsa'].update(prestations.pop('rsa_cond'))
-
+    rsa['duree_min_titre_sejour'] = duree_min_titre_sejour = rsa.pop('duree_minimum_du_titre_de_sejour_annee')
+    rsa['majoration_parent_isole'] = majoration_parent_isole = rsa.pop('majoration_pour_isolement_en_mois')
+    majoration_parent_isole = rsa['majoration_parent_isole']
+    majoration_parent_isole['age_limite_enfant'] = age_limite_enfant = majoration_parent_isole.pop('age_limite_de_l_enfant_3_en_annee')
+    rsa['majoration_rsa'] = majoration_rsa = rsa.pop('majoration_montant_maximal_en_de_la_base_rsa')
+    majoration_rsa['taux_deuxieme_personne'] = taux_deuxieme_personne = majoration_rsa.pop('couples_ou_celibataire_avec_un_enfant')
+    majoration_rsa['taux_troisieme_personne'] = taux_troisieme_personne = majoration_rsa.pop('couple_1_enfant_ou_pour_le_deuxieme_enfant_1')
+    majoration_rsa['taux_personne_supp'] = taux_personne_supp = majoration_rsa.pop('par_enfant_supplementaire')
 
     minima_sociaux['api'] = api = dict()
     minima_sociaux['api'].update(prestations.pop('api_cond'))
