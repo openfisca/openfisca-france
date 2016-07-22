@@ -478,10 +478,10 @@ class rsa_enfant_a_charge(Variable):
                 return self.cast_from_entity_to_roles(not_(enceinte_fam) * isole * isolement_recent * not_(presence_autres_enfants), entity = 'famille')
 
             rsa_enf_charge = (
-                enfant * not_(autonomie_financiere) *(age <= P_rsa.age_pac) * where(
+                enfant * not_(autonomie_financiere) * (age <= P_rsa.age_pac) * where(
                 ouvre_droit_majoration(),
                 ressources < (P_rsa.majo_rsa.pac0 - 1 + P_rsa.majo_rsa.pac_enf_sup) * P_rsa.montant_de_base_du_rsa,
-                ressources < P_rsa.txps * P_rsa.montant_de_base_du_rsa)
+                ressources < P_rsa.majoration_rsa.taux_personne_supp * P_rsa.montant_de_base_du_rsa)
                 )
 
         else:
@@ -893,7 +893,8 @@ class rsa_forfait_logement(Variable):
         if period.start.date > datetime.date(2009, 5, 31):
             forf_logement = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa.forfait_logement
             rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa.montant_de_base_du_rsa
-
+            rsa_socle = simulation.calculate('rsa_socle', period)
+            major_rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa.majoration_rsa
             nb_pac = simulation.calculate('nb_parents', period) + simulation.calculate('rsa_nb_enfants', period)
             aide_logement = simulation.calculate('aide_logement', period)
 
@@ -914,11 +915,14 @@ class rsa_forfait_logement(Variable):
 
             avantage_al = aide_logement > 0
 
-            montant_forfait = rsa * (
-                (nb_pac == 1) * forf_logement.taux1 +
-                (nb_pac == 2) * forf_logement.taux2 +
-                (nb_pac >= 3) * forf_logement.taux3
+            montant_forfait = (rsa *
+                ((nb_pac == 1) * forf_logement.taux_1_personne  +
+                (nb_pac == 2) * forf_logement.taux_2_personnes * ( 1 + major_rsa.taux_deuxieme_personne) +
+                (nb_pac >= 3) * forf_logement.taux_3_personnes_ou_plus * ( 1 + major_rsa.taux_deuxieme_personne + major_rsa.taux_troisieme_personne))
             )
+
+            print montant_forfait
+            print montant_forfait_bis
 
             montant_al = avantage_al * min_(aide_logement, montant_forfait)
             montant_nature = avantage_nature * montant_forfait
@@ -1143,10 +1147,10 @@ class rsa_socle(Variable):
         if period.start.date > datetime.date(2009, 5, 31):
             taux = (
                 1 +
-                (nb_personnes >= 2) * rmi.txp2 +
-                (nb_personnes >= 3) * rmi.txp3 +
-                (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3) + # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
-                max_(nb_personnes - 4, 0) * rmi.txps
+                (nb_personnes >= 2) * rsa.majoration_rsa.taux_deuxieme_personne +
+                (nb_personnes >= 3) * rsa.majoration_rsa.taux_troisieme_personne +
+                (nb_personnes >= 4) * where(nb_parents == 1, rsa.majoration_rsa.taux_personne_supp, rsa.majoration_rsa.taux_troisieme_personne) + # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
+                max_(nb_personnes - 4, 0) * rsa.majoration_rsa.taux_personne_supp
                     )
             socle = rsa.montant_de_base_du_rsa
         else:

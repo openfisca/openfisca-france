@@ -76,10 +76,10 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
 
     def function(self, simulation, period):
         nb_enfants = simulation.calculate('rsa_nb_enfants', period)
-        rmi = simulation.legislation_at(period.start).minim.rmi
+        rsa = simulation.legislation_at(period.start).minima_sociaux.rsa
         taux_majore = rmi.majo_rsa.pac0 + rmi.majo_rsa.pac_enf_sup * nb_enfants
 
-        return period, rmi.rmi * taux_majore
+        return period, rsa.montant_de_base_du_rsa * taux_majore
 
 class ppa_revenu_activite(Variable):
     column = FloatCol

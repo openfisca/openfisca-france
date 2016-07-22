@@ -1038,10 +1038,17 @@ def transform_ipp_tree(root):
     rsa['majoration_parent_isole'] = majoration_parent_isole = rsa.pop('majoration_pour_isolement_en_mois')
     majoration_parent_isole = rsa['majoration_parent_isole']
     majoration_parent_isole['age_limite_enfant'] = age_limite_enfant = majoration_parent_isole.pop('age_limite_de_l_enfant_3_en_annee')
-    #rsa['majoration_rsa'] = majoration_rsa = rsa.pop('majoration_montant_maximal_en_de_la_base_rsa')
-    #majoration_rsa['taux_deuxieme_personne'] = taux_deuxieme_personne = majoration_rsa.pop('couples_ou_celibataire_avec_un_enfant')
-    #majoration_rsa['taux_troisieme_personne'] = taux_troisieme_personne = majoration_rsa.pop('couple_1_enfant_ou_pour_le_deuxieme_enfant_1')
-    #majoration_rsa['taux_personne_supp'] = taux_personne_supp = majoration_rsa.pop('par_enfant_supplementaire')
+    rsa['majoration_rsa'] = majoration_rsa = rsa.pop('majoration_montant_maximal_en_de_la_base_rsa')
+    majoration_rsa['taux_deuxieme_personne'] = taux_deuxieme_personne = majoration_rsa.pop('couples_ou_celibataire_avec_un_enfant')
+    majoration_rsa['taux_troisieme_personne'] = taux_troisieme_personne = majoration_rsa.pop('couple_1_enfant_ou_pour_le_deuxieme_enfant_1')
+    majoration_rsa['taux_personne_supp'] = taux_personne_supp = majoration_rsa.pop('par_enfant_supplementaire')
+    rsa['forfait_logement'] = forfait_logement = rsa.pop('forfait_logement_en_du_montant_forfaitaire_du_rsa')
+    forfait_logement = rsa['forfait_logement']
+    forfait_logement['taux_1_personne'] = taux_1_personne = forfait_logement.pop('1_personne')
+    forfait_logement['taux_2_personnes'] = taux_2_personnes = forfait_logement.pop('2_personnes')
+    forfait_logement['taux_3_personnes_ou_plus'] = taux_3_personnes_ou_plus = forfait_logement.pop('3_personnes_ou_plus')
+
+
 
     minima_sociaux['api'] = api = dict()
     minima_sociaux['api'].update(prestations.pop('api_cond'))
@@ -1050,6 +1057,12 @@ def transform_ipp_tree(root):
     api['age_limite'] = age_limite = api.pop('age_limite_de_l_enfant_en_annee_2')
     montant_en_de_la_bmaf = api['montant_en_de_la_bmaf']
     minima_sociaux['api'].update(api.pop('montant_en_de_la_bmaf'))
+
+    minima_sociaux['ppa'] = ppa = dict()
+    ppa = minima_sociaux['ppa']
+    minima_sociaux['ppa'].update(prestations.pop('pa_fl'))
+    minima_sociaux['ppa'].update(prestations.pop('pa_m'))
+    ppa['pente'] = pente = ppa.pop('majoration_des_ressources_sur_les_revenus_d_activite')
 
     # TODO: créer un noeud pour la prime d'activité dans minima_sociaux et merger les paramètres. Il faut aussi
     # afin de pouvoir remettre d'actualité le calcul dans ppa.py

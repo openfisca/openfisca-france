@@ -3473,8 +3473,36 @@
           <VALUE deb="2015-09-01" fin="2016-12-31" valeur="95" />
         </CODE>
       </NODE>
+      <NODE code="majoration_isolement_en_de_la_base_rsa">
+        <CODE code="femmes_enceintes" format="percent">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="1.28412" />
+        </CODE>
+        <CODE code="par_enfant_a_charge" format="percent">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.42804" />
+        </CODE>
+      </NODE>
+      <NODE code="majoration_montant_maximal_en_de_la_base_rsa">
+        <CODE code="celibataire_1_enfant" format="percent">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
+        </CODE>
+        <CODE code="couple_1_enfant_ou_pour_le_deuxieme_enfant_1" format="percent">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.3" />
+        </CODE>
+        <CODE code="couples" format="percent">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
+        </CODE>
+        <CODE code="par_enfant_supplementaire" format="percent">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.4" />
+        </CODE>
+      </NODE>
+      <CODE code="montant_maximal_de_la_bonification_en_de_la_base_rsa" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="1.22782" />
+      </CODE>
+      <CODE code="montant_minimum_verse" format="float" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="15" />
+      </CODE>
       <CODE code="pente" description="Pente appliquée aux revenus d'activité pour la prime d'activité" format="percent">
-        <VALUE deb="2015-10-01" fuzzy="true" valeur="0.62" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.62" />
       </CODE>
       <CODE code="seuil_aah_activite" description="Revenu d'activité minimal perçu pour que l'AAH d'un individu soit considéré comme un revenu d'activité, en multiple du smic horaire brut" format="integer">
         <VALUE deb="2015-09-01" fin="2016-12-31" valeur="29" />
@@ -3482,6 +3510,17 @@
       <CODE code="seuil_non_versement" description="Seuil de non versement de la PPA" format="percent" type="monetary">
         <VALUE deb="2015-09-01" fin="2016-12-31" valeur="15" />
       </CODE>
+      <NODE code="taux_forfait_logement">
+        <CODE code="foyer_1_personne" format="percent">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.12" />
+        </CODE>
+        <CODE code="foyer_2_personnes" format="percent">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.16" />
+        </CODE>
+        <CODE code="foyer_3_personnes" format="percent">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.165" />
+        </CODE>
+      </NODE>
     </NODE>
     <NODE code="rmi" description="Revenu minimum d'insertion">
       <CODE code="RMI_fixe" description="Fixe le Rmi dans les simulations" format="bool">
@@ -3701,15 +3740,13 @@
           <VALUE deb="2014-01-01" fuzzy="true" valeur="0.297" />
           <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.297" />
         </CODE>
-      </NODE>
-      <NODE code="forfait_logement_en_du_montant_forfaitaire_du_rsa">
-        <CODE code="1_personne" format="percent">
+        <CODE code="taux_1_personne" format="percent">
           <VALUE deb="2009-06-01" fuzzy="true" valeur="0.12" />
         </CODE>
-        <CODE code="2_personnes" format="percent">
+        <CODE code="taux_2_personnes" format="percent">
           <VALUE deb="2009-06-01" fuzzy="true" valeur="0.16" />
         </CODE>
-        <CODE code="3_personnes_ou_plus" format="percent">
+        <CODE code="taux_3_personnes_ou_plus" format="percent">
           <VALUE deb="2009-06-01" fuzzy="true" valeur="0.165" />
         </CODE>
       </NODE>
@@ -3737,21 +3774,12 @@
       </CODE>
       <NODE code="majoration_isolement_en_de_la_base_rsa">
         <CODE code="femmes_enceintes" format="percent">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="1.28412" />
           <VALUE deb="2009-06-01" fin="2015-12-31" valeur="1.284" />
         </CODE>
         <CODE code="par_enfant_a_charge" format="percent">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.42804" />
           <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.428" />
-        </CODE>
-      </NODE>
-      <NODE code="majoration_montant_maximal_en_de_la_base_rsa">
-        <CODE code="couple_1_enfant_ou_pour_le_deuxieme_enfant_1" format="percent">
-          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.3" />
-        </CODE>
-        <CODE code="couples_ou_celibataire_avec_un_enfant" format="percent">
-          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.5" />
-        </CODE>
-        <CODE code="par_enfant_supplementaire" format="percent">
-          <VALUE deb="2009-06-01" fin="2015-12-31" valeur="0.4" />
         </CODE>
       </NODE>
       <NODE code="majoration_parent_isole">
@@ -3763,6 +3791,17 @@
         </CODE>
         <CODE code="limite_de_duree_du_droit_a_la_majoration_pour_isolement_2">
           <VALUE deb="2009-06-01" fuzzy="true" valeur="18" />
+        </CODE>
+      </NODE>
+      <NODE code="majoration_rsa">
+        <CODE code="taux_deuxieme_personne" description="Taux pour une 2nde personne" format="percent">
+          <VALUE deb="2009-06-01" fuzzy="true" valeur="0.5" />
+        </CODE>
+        <CODE code="taux_personne_supp" description="Taux par personne supplémentaire" format="percent">
+          <VALUE deb="2009-06-01" fuzzy="true" valeur="0.4" />
+        </CODE>
+        <CODE code="taux_troisieme_personne" description="Taux pour une 3e personne" format="percent">
+          <VALUE deb="2009-06-01" fuzzy="true" valeur="0.3" />
         </CODE>
       </NODE>
       <CODE code="montant_de_base_du_rsa" description="Rsa socle" format="float" type="monetary">
@@ -3813,65 +3852,7 @@
         <VALUE deb="2015-01-01" fuzzy="true" valeur="6" />
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="6" />
       </CODE>
-      <CODE code="txp2" description="Taux pour une 2nde personne" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.5" />
-        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.5" />
-      </CODE>
-      <CODE code="txp3" description="Taux pour une 3e personne" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.3" />
-        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.3" />
-      </CODE>
-      <CODE code="txps" description="Taux par personne supplémentaire" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.4" />
-        <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.4" />
-      </CODE>
     </NODE>
-  </NODE>
-  <NODE code="pa_fl">
-    <NODE code="taux_forfait_logement">
-      <CODE code="foyer_1_personne" format="percent">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.12" />
-      </CODE>
-      <CODE code="foyer_2_personnes" format="percent">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.16" />
-      </CODE>
-      <CODE code="foyer_3_personnes" format="percent">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.165" />
-      </CODE>
-    </NODE>
-  </NODE>
-  <NODE code="pa_m">
-    <CODE code="majoration_des_ressources_sur_les_revenus_d_activite" format="percent">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="0.62" />
-    </CODE>
-    <NODE code="majoration_isolement_en_de_la_base_rsa">
-      <CODE code="femmes_enceintes" format="percent">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="1.28412" />
-      </CODE>
-      <CODE code="par_enfant_a_charge" format="percent">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.42804" />
-      </CODE>
-    </NODE>
-    <NODE code="majoration_montant_maximal_en_de_la_base_rsa">
-      <CODE code="celibataire_1_enfant" format="percent">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
-      </CODE>
-      <CODE code="couple_1_enfant_ou_pour_le_deuxieme_enfant_1" format="percent">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.3" />
-      </CODE>
-      <CODE code="couples" format="percent">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
-      </CODE>
-      <CODE code="par_enfant_supplementaire" format="percent">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.4" />
-      </CODE>
-    </NODE>
-    <CODE code="montant_maximal_de_la_bonification_en_de_la_base_rsa" format="percent">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="1.22782" />
-    </CODE>
-    <CODE code="montant_minimum_verse" format="float" type="monetary">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="15" />
-    </CODE>
   </NODE>
   <NODE code="pd">
     <NODE code="taux_en_de_la_bmaf">
