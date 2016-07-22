@@ -921,9 +921,6 @@ class rsa_forfait_logement(Variable):
                 (nb_pac >= 3) * forf_logement.taux_3_personnes_ou_plus * ( 1 + major_rsa.taux_deuxieme_personne + major_rsa.taux_troisieme_personne))
             )
 
-            print montant_forfait
-            print montant_forfait_bis
-
             montant_al = avantage_al * min_(aide_logement, montant_forfait)
             montant_nature = avantage_nature * montant_forfait
 
