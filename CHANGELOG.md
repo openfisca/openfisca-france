@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.8 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.7..4.0.8)
+
+* Adapt PPA to avoid antedating paramameters of 3 months.
+
 ## 4.0.7 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.6..4.0.7)
 
 * Include ppa in minimas sociaux (mini) and update decompositions accordingly
