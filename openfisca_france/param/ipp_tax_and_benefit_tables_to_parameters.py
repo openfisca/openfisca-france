@@ -1062,10 +1062,21 @@ def transform_ipp_tree(root):
     ppa = minima_sociaux['ppa']
     minima_sociaux['ppa'].update(prestations.pop('pa_fl'))
     minima_sociaux['ppa'].update(prestations.pop('pa_m'))
-    #ppa['pente'] = pente = ppa.pop('majoration_des_ressources_sur_les_revenus_d_activite')
+    ppa['pente'] = pente = ppa.pop('majoration_des_ressources_sur_les_revenus_d_activite')
     majoration_isolement_en_de_la_base_rsa = ppa['majoration_isolement_en_de_la_base_rsa']
     ppa['majoration_isolement_femme_enceinte'] = majoration_isolement_femme_enceinte = majoration_isolement_en_de_la_base_rsa.pop('femmes_enceintes')
     ppa['majoration_isolement_enf_charge'] = majoration_isolement_enf_charge = majoration_isolement_en_de_la_base_rsa.pop('par_enfant_a_charge')
+    bonification = ppa['bonification']
+    bonification['seuil_bonification'] = seuil_bonification = bonification.pop('seuil_de_salaire_minimum_pour_beneficier_de_la_bonification_en_multiple_du_smic_horaire_brut')
+    bonification['seuil_max_bonification'] = seuil_max_bonification = bonification.pop('seuil_de_salaire_pour_beneficier_de_la_bonification_maximale_en_multiple_du_smic_horaire_brut')
+    bonification['taux_bonification_max'] = taux_bonification_max = bonification.pop('montant_maximal_de_la_bonification_en_de_la_base_rsa')
+    ppa['seuil_non_versement'] = seuil_non_versement = ppa.pop('montant_minimum_verse')
+    minima_sociaux['ppa'].update(ppa.pop('majoration_montant_maximal_en_de_la_base_rsa'))
+    ppa['taux_deuxieme_personne'] = taux_deuxieme_personne = ppa.pop('couples_ou_seul_avec_un_enfant')
+    ppa['taux_troisieme_personne'] = taux_troisieme_personne = ppa.pop('couple_1_enfant_ou_pour_le_deuxieme_enfant_1')
+    ppa['taux_personne_supp'] = taux_personne_supp = ppa.pop('par_enfant_supplementaire')
+
+
     # TODO: créer un noeud pour la prime d'activité dans minima_sociaux et merger les paramètres. Il faut aussi
     # afin de pouvoir remettre d'actualité le calcul dans ppa.py
 

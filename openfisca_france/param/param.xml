@@ -6159,7 +6159,6 @@
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="22780" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="22380" />
         </CODE>
->>>>>>> openfisca/master
         <CODE code="taux" description="Taux de l'abattement" format="percent">
           <VALUE deb="1960-01-01" fin="2005-12-31" valeur="0.2" />
         </CODE>
@@ -7020,6 +7019,15 @@
       </CODE>
       <CODE code="seuil_aah_activite" description="Revenu d'activité minimal perçu pour que l'AAH d'un individu soit considéré comme un revenu d'activité, en multiple du smic horaire brut" format="integer">
         <VALUE deb="2016-01-01" fin="2016-12-31" valeur="29" />
+      </CODE>
+      <CODE code="txp2" description="Taux pour une 2nde personne" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
+      </CODE>
+      <CODE code="txp3" description="Taux pour une 3e personne" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.3" />
+      </CODE>
+      <CODE code="txps" description="Taux par personne supplémentaire" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.4" />
       </CODE>
       <NODE code="bonification">
         <CODE code="montant_max" description="Bonification maximale, en pourcentage du montant de base du RSA" format="percent">

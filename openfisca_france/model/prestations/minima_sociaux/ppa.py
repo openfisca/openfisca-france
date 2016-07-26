@@ -57,18 +57,20 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
         nb_parents = simulation.calculate('nb_parents', period)
         nb_enfants = simulation.calculate('rsa_nb_enfants', period)
         ppa_majoree_eligibilite = simulation.calculate('rsa_majore_eligibilite', period)
-        rmi = simulation.legislation_at(reference_period.start).prestations.minima_sociaux.rmi
+        ppa = simulation.legislation_at(reference_period.start).prestations.minima_sociaux.ppa
+        rsa = simulation.legislation_at(reference_period.start).prestations.minima_sociaux.rsa
+
         nb_personnes = nb_parents + nb_enfants
 
         taux_non_majore = (
             1 +
-            (nb_personnes >= 2) * rmi.txp2 +
-            (nb_personnes >= 3) * rmi.txp3 +
-            (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3) + # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
-            max_(nb_personnes - 4, 0) * rmi.txps
+            (nb_personnes >= 2) * ppa.taux_deuxieme_personne +
+            (nb_personnes >= 3) * ppa.taux_troisieme_personne +
+            (nb_personnes >= 4) * where(nb_parents == 1, ppa.taux_personne_supp, ppa.taux_troisieme_personne) + # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
+            max_(nb_personnes - 4, 0) * ppa.taux_personne_supp
             )
 
-        return period, rmi.rmi * taux_non_majore
+        return period, rsa.montant_de_base_du_rsa * taux_non_majore
 
 class ppa_montant_forfaitaire_familial_majore(Variable):
     column = FloatCol
@@ -237,9 +239,9 @@ class ppa_bonification(Variable):
         smic_horaire = P.cotsoc.gen.smic_h_b
         rsa_base = P.prestations.minima_sociaux.rmi.rmi
         revenu_activite = simulation.calculate('ppa_revenu_activite_individu', period, extra_params = [reference_period])
-        seuil_1 = P.prestations.minima_sociaux.ppa.bonification.seuil_1 * smic_horaire
-        seuil_2 = P.prestations.minima_sociaux.ppa.bonification.seuil_2 * smic_horaire
-        bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.montant_max * rsa_base)
+        seuil_1 = P.prestations.minima_sociaux.ppa.bonification.seuil_bonification * smic_horaire
+        seuil_2 = P.prestations.minima_sociaux.ppa.bonification.seuil_max_bonification * smic_horaire
+        bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * rsa_base)
         bonification = bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
         bonification = max_(bonification, 0)
         bonification = min_(bonification, bonification_max)

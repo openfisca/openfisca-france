@@ -147,6 +147,13 @@ prestations.minima_sociaux.rsa.txp3 : prestations.minima_sociaux.rsa.majoration_
 prestations.minima_sociaux.rsa.txps : prestations.minima_sociaux.rsa.majoration_rsa.taux_personne_supp
 
 # TODO: sortir les paramètres de la prime d'activité (ppa) de rmi et faire merger avec IPP (pa_m)
+ # ppa
+prestations.minima_sociaux.ppa.bonification.seuil_1 : prestations.minima_sociaux.ppa.bonification.seuil_bonification
+prestations.minima_sociaux.ppa.bonification.seuil_2 : prestations.minima_sociaux.ppa.bonification.seuil_max_bonification
+prestations.minima_sociaux.ppa.bonification.montant_max : prestations.minima_sociaux.ppa.bonification.taux_bonification_max
+prestations.minima_sociaux.ppa.txp2 : prestations.minima_sociaux.ppa.taux_deuxieme_personne
+prestations.minima_sociaux.ppa.txp3 : prestations.minima_sociaux.ppa.taux_troisieme_personne
+prestations.minima_sociaux.ppa.txps : prestations.minima_sociaux.ppa.taux_personne_supp
 
 
  # api
