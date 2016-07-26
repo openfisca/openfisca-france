@@ -3473,14 +3473,15 @@
           <VALUE deb="2015-09-01" fin="2016-12-31" valeur="95" />
         </CODE>
       </NODE>
-      <NODE code="majoration_isolement_en_de_la_base_rsa">
-        <CODE code="femmes_enceintes" format="percent">
-          <VALUE deb="2016-01-01" fuzzy="true" valeur="1.28412" />
-        </CODE>
-        <CODE code="par_enfant_a_charge" format="percent">
-          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.42804" />
-        </CODE>
-      </NODE>
+      <CODE code="majoration_des_ressources_sur_les_revenus_d_activite" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.62" />
+      </CODE>
+      <CODE code="majoration_isolement_enf_charge" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.42804" />
+      </CODE>
+      <CODE code="majoration_isolement_femme_enceinte" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="1.28412" />
+      </CODE>
       <NODE code="majoration_montant_maximal_en_de_la_base_rsa">
         <CODE code="celibataire_1_enfant" format="percent">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
@@ -3502,7 +3503,7 @@
         <VALUE deb="2016-01-01" fuzzy="true" valeur="15" />
       </CODE>
       <CODE code="pente" description="Pente appliquée aux revenus d'activité pour la prime d'activité" format="percent">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.62" />
+        <VALUE deb="2015-10-01" fuzzy="true" valeur="0.62" />
       </CODE>
       <CODE code="seuil_aah_activite" description="Revenu d'activité minimal perçu pour que l'AAH d'un individu soit considéré comme un revenu d'activité, en multiple du smic horaire brut" format="integer">
         <VALUE deb="2015-09-01" fin="2016-12-31" valeur="29" />

@@ -13,8 +13,8 @@ class ppa_eligibilite(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        P = simulation.legislation_at(period.start)
-        age_min = P.minim.ppa.age_min
+        P = simulation.legislation_at(period.start).prestations
+        age_min = P.minima_sociaux.ppa.age_min
         condition_age_individus = simulation.calculate('age', period) >= age_min
         condition_age = self.any_by_roles(condition_age_individus)
         elig = condition_age
@@ -56,7 +56,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
         nb_parents = simulation.calculate('nb_parents', period)
         nb_enfants = simulation.calculate('rsa_nb_enfants', period)
         ppa_majoree_eligibilite = simulation.calculate('rsa_majore_eligibilite', period)
-        rmi = simulation.legislation_at(period.start).minim.rmi
+        rmi = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
         nb_personnes = nb_parents + nb_enfants
 
         taux_non_majore = (
@@ -76,10 +76,13 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
 
     def function(self, simulation, period):
         nb_enfants = simulation.calculate('rsa_nb_enfants', period)
+        ppa = simulation.legislation_at(period.start).prestations.minima_sociaux.ppa
         rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa
-        taux_majore = rmi.majo_rsa.pac0 + rmi.majo_rsa.pac_enf_sup * nb_enfants
 
-        return period, rsa.montant_de_base_du_rsa * taux_majore
+        #taux_majore = ppa.majoration_isolement_femme_enceinte + ppa.majoration_isolement_enf_charge * nb_enfants
+        taux_majore_bis = ppa.majoration_isolement_femme_enceinte + ppa.majoration_isolement_enf_charge * nb_enfants
+
+        return period, rsa.montant_de_base_du_rsa * taux_majore_bis
 
 class ppa_revenu_activite(Variable):
     column = FloatCol
@@ -128,7 +131,7 @@ class ppa_revenu_activite_individu(Variable):
         revenus_activites = revenus_mensualises + revenus_annualises
 
         # L'aah est pris en compte comme revenu d'activité si  revenu d'activité hors aah > 29 * smic horaire brut
-        seuil_aah_activite = P.minim.ppa.seuil_aah_activite * smic_horaire
+        seuil_aah_activite = P.prestations.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
         aah_activite = (revenus_activites >= seuil_aah_activite) * simulation.calculate('aah', period)
 
         return period, revenus_activites + aah_activite
@@ -178,7 +181,7 @@ class ppa_ressources_hors_activite_individu(Variable):
         revenus_activites = simulation.calculate('ppa_revenu_activite_individu', period)
 
         # L'aah est pris en compte comme revenu d'activité si  revenu d'activité hors aah > 29 * smic horaire brut
-        seuil_aah_activite = P.minim.ppa.seuil_aah_activite * smic_horaire
+        seuil_aah_activite = P.prestations.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
         aah_hors_activite = (revenus_activites < seuil_aah_activite) * simulation.calculate('aah', period)
 
         return period, ressources_hors_activite_i + aah_hors_activite
@@ -232,11 +235,11 @@ class ppa_bonification(Variable):
         period = period.this_month
         P = simulation.legislation_at(period.start)
         smic_horaire = P.cotsoc.gen.smic_h_b
-        rsa_base = P.minim.rmi.rmi
+        rsa_base = P.prestations.minima_sociaux.rmi.rmi
         revenu_activite = simulation.calculate('ppa_revenu_activite_individu', period)
-        seuil_1 = P.minim.ppa.bonification.seuil_1 * smic_horaire
-        seuil_2 = P.minim.ppa.bonification.seuil_2 * smic_horaire
-        bonification_max = round_(P.minim.ppa.bonification.montant_max * rsa_base)
+        seuil_1 = P.prestations.minima_sociaux.ppa.bonification.seuil_1 * smic_horaire
+        seuil_2 = P.prestations.minima_sociaux.ppa.bonification.seuil_2 * smic_horaire
+        bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.montant_max * rsa_base)
 
         bonification = bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
         bonification = max_(bonification, 0)
@@ -255,7 +258,7 @@ class ppa_fictive(Variable):
         ppa_majoree_eligibilite = simulation.calculate('rsa_majore_eligibilite', reference_period)
 
         elig = simulation.calculate('ppa_eligibilite', period)
-        pente = simulation.legislation_at(period.start).minim.ppa.pente
+        pente = simulation.legislation_at(period.start).prestations.minima_sociaux.ppa.pente
         mff_non_majore = simulation.calculate('ppa_montant_forfaitaire_familial_non_majore', period)
         mff_majore = simulation.calculate('ppa_montant_forfaitaire_familial_majore', period)
         montant_forfaitaire_familialise = where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
@@ -277,7 +280,7 @@ class ppa_fictive(Variable):
             - forfait_logement
             )
 
-        ppa_fictive = ppa_montant_base - max_(ppa_deduction,0)
+        ppa_fictive = ppa_montant_base - max_(ppa_deduction, 0)
         ppa_fictive = max_(ppa_fictive, 0)
         return period, elig * ppa_fictive
 
@@ -289,15 +292,17 @@ class ppa(DatedVariable):
     @dated_function(start = date(2016, 1, 1))
     def function(self, simulation, period):
         period = period.this_month
-        seuil_non_versement = simulation.legislation_at(period.start).minim.ppa.seuil_non_versement
+        seuil_non_versement = simulation.legislation_at(period.start).prestations.minima_sociaux.ppa.seuil_non_versement
         # éligibilité étudiants
 
         ppa_eligibilite_etudiants = simulation.calculate('ppa_eligibilite_etudiants', period)
         m_1 = period.last_month
         m_2 = m_1.last_month
         m_3 = m_2.last_month
-        ppa = sum(simulation.calculate('ppa_fictive', period2, extra_params = [period])
-            for period2 in [m_1, m_2, m_3]) / 3
+        ppa = sum(
+            simulation.calculate('ppa_fictive', period2, extra_params = [period])
+            for period2 in [m_1, m_2, m_3]
+            ) / 3
         ppa = ppa * ppa_eligibilite_etudiants * (ppa >= seuil_non_versement)
 
         return period, ppa
