@@ -194,15 +194,14 @@
       <CODE code="isf_base_decote" description="Base montant décote" format="float" type="monetary">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="17500" />
       </CODE>
+      <CODE code="isf_borne_min_decote" description="Plancher de la décote" format="float" type="monetary">
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="1300000" />
+      </CODE>
       <CODE code="isf_borne_sup_decote" description="Plafond de la décote" format="float" type="monetary">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="1400000" />
       </CODE>
       <CODE code="isf_taux_decote" description="Taux de la décote" format="percent">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="0.0125" />
-      </CODE>
-      <CODE code="min" description="Plancher de la décote" format="float" type="monetary">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="1300000" />
-        <VALUE deb="2013-01-01" fin="2014-12-31" valeur="1300000" />
       </CODE>
     </NODE>
     <NODE code="droits_soc" description="Droits sociaux"> ## parts actions détenus par salariés et mandataires sociaux intro en 2006 ##

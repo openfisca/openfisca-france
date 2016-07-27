@@ -175,3 +175,4 @@ isf: taxation_capital.isf
 taxation_capital.isf.decote.taux: taxation_capital.isf.decote.isf_taux_decote
 taxation_capital.isf.decote.base: taxation_capital.isf.decote.isf_base_decote
 taxation_capital.isf.decote.max: taxation_capital.isf.decote.isf_borne_sup_decote
+taxation_capital.isf.decote.min: taxation_capital.isf.decote.isf_borne_min_decote
