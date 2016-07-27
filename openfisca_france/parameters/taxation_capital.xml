@@ -5,17 +5,6 @@
       <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.6" />
     </CODE>
   </NODE>
-  <NODE code="decote">
-    <CODE code="borne_superieure_de_la_decote" format="float" type="monetary">
-      <VALUE deb="2013-01-01" fuzzy="true" valeur="1400000" />
-    </CODE>
-    <CODE code="parametre_de_calcul_de_la_decote_isf" format="float" type="monetary">
-      <VALUE deb="2013-01-01" fuzzy="true" valeur="17500" />
-    </CODE>
-    <CODE code="taux_de_la_decote_isf" format="percent">
-      <VALUE deb="2013-01-01" fuzzy="true" valeur="0.0125" />
-    </CODE>
-  </NODE>
   <NODE code="forfait_mobilier">
     <CODE code="majoration_forfaitaire" format="percent">
       <VALUE deb="1989-01-01" fuzzy="true" valeur="0.05" />
@@ -24,6 +13,10 @@
     </CODE>
   </NODE>
   <NODE code="isf" description="Impôt de solidarité sur la fortune (ISF)">
+    <CODE code="abattement_sur_residence_principale" format="percent">
+      <VALUE deb="2008-01-01" fuzzy="true" valeur="0.3" />
+      <VALUE deb="1999-01-01" fin="2007-12-31" valeur="0.2" />
+    </CODE>
     <BAREME code="bareme" description="Impôt de solidarité">
       <TRANCHE code="1ere_tranche">
         <SEUIL>
@@ -198,21 +191,18 @@
       </TRANCHE>
     </BAREME>
     <NODE code="decote" description="Décôte de l'ISF">
-      <CODE code="base" description="Base montant décote" format="float">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="17500" />
-        <VALUE deb="2013-01-01" fin="2014-12-31" valeur="17500" />
+      <CODE code="isf_base_decote" description="Base montant décote" format="float" type="monetary">
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="17500" />
       </CODE>
-      <CODE code="max" description="Plafond de la décote" format="float" type="monetary">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="1400000" />
-        <VALUE deb="2013-01-01" fin="2014-12-31" valeur="1400000" />
+      <CODE code="isf_borne_sup_decote" description="Plafond de la décote" format="float" type="monetary">
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="1400000" />
+      </CODE>
+      <CODE code="isf_taux_decote" description="Taux de la décote" format="percent">
+        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.0125" />
       </CODE>
       <CODE code="min" description="Plancher de la décote" format="float" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="1300000" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="1300000" />
-      </CODE>
-      <CODE code="taux" description="Taux de la décote" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0125" />
-        <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.0125" />
       </CODE>
     </NODE>
     <NODE code="droits_soc" description="Droits sociaux"> ## parts actions détenus par salariés et mandataires sociaux intro en 2006 ##
@@ -287,6 +277,17 @@
         <VALUE deb="2002-01-01" fin="2011-12-31" valeur="0.85" />
       </CODE>
     </NODE>
+    <CODE code="plafonnement_du_plafonnement" format="percent">
+      <VALUE deb="2013-01-01" fuzzy="true" valeur="0.5" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0" />
+      <VALUE deb="1996-01-01" fin="2011-12-31" valeur="0.5" />
+    </CODE>
+    <CODE code="plafonnement_taux_d_imposition_isf" format="percent">
+      <VALUE deb="2013-01-01" fuzzy="true" valeur="0.75" />
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0" />
+      <VALUE deb="1991-01-01" fin="2011-12-31" valeur="0.85" />
+      <VALUE deb="1989-01-01" fin="1990-12-31" valeur="0.7" />
+    </CODE>
     <NODE code="pme" description="Investissement PME">
       <CODE code="max" description="Plafond pour investissement dans les PME" format="integer" type="monetary"> ## ce type de réductions apparaît seulement en 2008 ##
       # <VALUE deb="2014-01-01" fuzzy="true" valeur="45000" />
@@ -320,6 +321,11 @@
         <VALUE deb="2002-01-01" fin="2011-12-31" valeur="75" />
       </CODE>
     </NODE>
+    <CODE code="reduction_isf_enfant_a_charge" format="float" type="monetary">
+      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="300" />
+      <VALUE deb="2002-01-01" fin="2011-12-31" valeur="150" />
+      <VALUE deb="1989-01-01" fin="2001-12-31" valeur="1000" />
+    </CODE>
     <NODE code="res_princ" description="Immeubles bâtis">
       <CODE code="taux" description="Taux d'abattement résidence principale" format="percent">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.30" />
@@ -474,19 +480,6 @@
       </NODE>
     </NODE>
   </NODE>
-  <NODE code="plaf">
-    <CODE code="plafonnement_du_plafonnement" format="percent">
-      <VALUE deb="2013-01-01" fuzzy="true" valeur="0.5" />
-      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0" />
-      <VALUE deb="1996-01-01" fin="2011-12-31" valeur="0.5" />
-    </CODE>
-    <CODE code="plafonnement_taux_d_imposition_isf" format="percent">
-      <VALUE deb="2013-01-01" fuzzy="true" valeur="0.75" />
-      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0" />
-      <VALUE deb="1991-01-01" fin="2011-12-31" valeur="0.85" />
-      <VALUE deb="1989-01-01" fin="1990-12-31" valeur="0.7" />
-    </CODE>
-  </NODE>
   <NODE code="prelevements_sociaux" description="Prélèvement social et contributions additionnelles">
     <CODE code="add_ret" description="Contribution additionnelle solidarité autonomie (pensions de retraites, pré-retraites et invalidité)" format="percent">
       <VALUE deb="2014-01-01" fuzzy="true" valeur=".003" />
@@ -573,16 +566,5 @@
         <VALUE deb="1990-01-01" fin="1993-06-30" valeur="0.011" />
       </CODE>
     </NODE>
-  </NODE>
-  <NODE code="reduc_exo">
-    <CODE code="abattement_sur_residence_principale" format="percent">
-      <VALUE deb="2008-01-01" fuzzy="true" valeur="0.3" />
-      <VALUE deb="1999-01-01" fin="2007-12-31" valeur="0.2" />
-    </CODE>
-    <CODE code="reduction_isf_enfant_a_charge" format="float" type="monetary">
-      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="300" />
-      <VALUE deb="2002-01-01" fin="2011-12-31" valeur="150" />
-      <VALUE deb="1989-01-01" fin="2001-12-31" valeur="1000" />
-    </CODE>
   </NODE>
 </NODE>

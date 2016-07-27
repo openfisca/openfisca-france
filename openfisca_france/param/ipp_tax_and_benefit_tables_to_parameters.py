@@ -1146,6 +1146,17 @@ def transform_ipp_tree(root):
         )
 
     isf['bareme'] = bareme = isf.pop('seuils_des_tranches_du_bareme_de_l_isf')
+    isf['decote'] = decote = taxation_capital.pop('decote')
+    decote = isf['decote']
+    decote['isf_taux_decote'] = isf_taux_decote = decote.pop('taux_de_la_decote_isf')
+    decote['isf_base_decote'] = isf_base_decote = decote.pop('parametre_de_calcul_de_la_decote_isf')
+    decote['isf_borne_sup_decote'] = isf_borne_sup_decote = decote.pop('borne_superieure_de_la_decote')
+
+
+    taxation_capital['isf'].update(taxation_capital.pop('plaf'))
+    taxation_capital['isf'].update(taxation_capital.pop('reduc_exo'))
+
+
 
 
 

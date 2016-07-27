@@ -172,3 +172,6 @@ taxation_capital.prelevements_sociaux.add_pat: taxation_capital.prelevements_soc
 taxation_capital.prelevements_sociaux.rsa: taxation_capital.prelevements_sociaux.caps.rsa
 
 isf: taxation_capital.isf
+taxation_capital.isf.decote.taux: taxation_capital.isf.decote.isf_taux_decote
+taxation_capital.isf.decote.base: taxation_capital.isf.decote.isf_base_decote
+taxation_capital.isf.decote.max: taxation_capital.isf.decote.isf_borne_sup_decote

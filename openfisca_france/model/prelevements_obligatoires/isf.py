@@ -494,8 +494,8 @@ class decote_isf(Variable):
         ass_isf = simulation.calculate('ass_isf', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.decote
 
-        elig = (ass_isf >= P.min) & (ass_isf <= P.max)
-        LB = P.base - P.taux * ass_isf
+        elig = (ass_isf >= P.min) & (ass_isf <= P.isf_borne_sup_decote)
+        LB = P.isf_base_decote - P.isf_taux_decote * ass_isf
         return period, LB * elig
 
 
