@@ -1137,6 +1137,20 @@ def transform_ipp_tree(root):
     #       metropole: null  # Value must be a float
 
     root['taxation_capital'] = taxation_capital = root.pop('baremes_ipp_taxation_capital')
+    taxation_capital['isf'] = isf = taxation_capital.pop('bareme_isf')
+    seuils_des_tranches_du_bareme_de_l_isf = isf['seuils_des_tranches_du_bareme_de_l_isf']
+    taux_marginaux_des_tranches_du_bareme_de_l_isf = isf['taux_marginaux_des_tranches_du_bareme_de_l_isf']
+    isf['seuils_des_tranches_du_bareme_de_l_isf'] = tax_scale(
+        bases_tree =  isf.pop('seuils_des_tranches_du_bareme_de_l_isf'),
+        rates_tree =  isf.pop('taux_marginaux_des_tranches_du_bareme_de_l_isf'),
+        )
+
+    isf['bareme'] = bareme = isf.pop('seuils_des_tranches_du_bareme_de_l_isf')
+
+
+
+
+
     #
     taxation_capital['prelevements_sociaux'] = prelevements_sociaux = taxation_capital.pop('ps')
     prelevements_sociaux['caps'] = caps = {}

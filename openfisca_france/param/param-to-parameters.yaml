@@ -140,20 +140,20 @@ prestations.minima_sociaux.asi.plaf_seul: prestations.minima_sociaux.asi.plafond
 prestations.minima_sociaux.asi.plaf_couple: prestations.minima_sociaux.asi.plafond_ressource_couple
 
 # rsa
-prestations.minima_sociaux.rsa.rsa : prestations.minima_sociaux.rsa.montant_de_base_du_rsa
-prestations.minima_sociaux.rsa.majo_rsa.age : prestations.minima_sociaux.rsa.majo_rsa.age_limite_enfant
-prestations.minima_sociaux.rsa.txp2 : prestations.minima_sociaux.rsa.majoration_rsa.taux_deuxieme_personne
-prestations.minima_sociaux.rsa.txp3 : prestations.minima_sociaux.rsa.majoration_rsa.taux_troisieme_personne
-prestations.minima_sociaux.rsa.txps : prestations.minima_sociaux.rsa.majoration_rsa.taux_personne_supp
+prestations.minima_sociaux.rsa.rsa: prestations.minima_sociaux.rsa.montant_de_base_du_rsa
+prestations.minima_sociaux.rsa.majo_rsa.age: prestations.minima_sociaux.rsa.majo_rsa.age_limite_enfant
+prestations.minima_sociaux.rsa.txp2: prestations.minima_sociaux.rsa.majoration_rsa.taux_deuxieme_personne
+prestations.minima_sociaux.rsa.txp3: prestations.minima_sociaux.rsa.majoration_rsa.taux_troisieme_personne
+prestations.minima_sociaux.rsa.txps: prestations.minima_sociaux.rsa.majoration_rsa.taux_personne_supp
 
 # TODO: sortir les paramètres de la prime d'activité (ppa) de rmi et faire merger avec IPP (pa_m)
  # ppa
-prestations.minima_sociaux.ppa.bonification.seuil_1 : prestations.minima_sociaux.ppa.bonification.seuil_bonification
-prestations.minima_sociaux.ppa.bonification.seuil_2 : prestations.minima_sociaux.ppa.bonification.seuil_max_bonification
-prestations.minima_sociaux.ppa.bonification.montant_max : prestations.minima_sociaux.ppa.bonification.taux_bonification_max
-prestations.minima_sociaux.ppa.txp2 : prestations.minima_sociaux.ppa.taux_deuxieme_personne
-prestations.minima_sociaux.ppa.txp3 : prestations.minima_sociaux.ppa.taux_troisieme_personne
-prestations.minima_sociaux.ppa.txps : prestations.minima_sociaux.ppa.taux_personne_supp
+prestations.minima_sociaux.ppa.bonification.seuil_1: prestations.minima_sociaux.ppa.bonification.seuil_bonification
+prestations.minima_sociaux.ppa.bonification.seuil_2: prestations.minima_sociaux.ppa.bonification.seuil_max_bonification
+prestations.minima_sociaux.ppa.bonification.montant_max: prestations.minima_sociaux.ppa.bonification.taux_bonification_max
+prestations.minima_sociaux.ppa.txp2: prestations.minima_sociaux.ppa.taux_deuxieme_personne
+prestations.minima_sociaux.ppa.txp3: prestations.minima_sociaux.ppa.taux_troisieme_personne
+prestations.minima_sociaux.ppa.txps: prestations.minima_sociaux.ppa.taux_personne_supp
 
 
  # api
@@ -170,3 +170,5 @@ taxation_capital.prelevements_sociaux.base_pat: taxation_capital.prelevements_so
 taxation_capital.prelevements_sociaux.base_plac: taxation_capital.prelevements_sociaux.prelevement_social.produits_de_placement
 taxation_capital.prelevements_sociaux.add_pat: taxation_capital.prelevements_sociaux.caps.revenus_du_patrimoine
 taxation_capital.prelevements_sociaux.rsa: taxation_capital.prelevements_sociaux.caps.rsa
+
+isf: taxation_capital.isf

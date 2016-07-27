@@ -1,178 +1,4 @@
 <NODE code="taxation_capital">
-  <NODE code="bareme_isf">
-    <NODE code="seuils_des_tranches_du_bareme_de_l_isf">
-      <CODE code="1ere_tranche" format="float" type="monetary">
-        <VALUE deb="2011-01-01" fuzzy="true" valeur="800000" />
-        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="790000" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="770000" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="760000" />
-        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="750000" />
-        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="732000" />
-        <VALUE deb="2002-01-01" fin="2004-12-31" valeur="720000" />
-        <VALUE deb="1997-01-01" fin="2001-12-31" valeur="4700000" />
-        <VALUE deb="1996-01-01" fin="1996-12-31" valeur="4610000" />
-        <VALUE deb="1995-01-01" fin="1995-12-31" valeur="4530000" />
-        <VALUE deb="1994-01-01" fin="1994-12-31" valeur="4470000" />
-        <VALUE deb="1992-01-01" fin="1993-12-31" valeur="4390000" />
-        <VALUE deb="1991-01-01" fin="1991-12-31" valeur="4260000" />
-        <VALUE deb="1990-01-01" fin="1990-12-31" valeur="4130000" />
-        <VALUE deb="1989-01-01" fin="1989-12-31" valeur="4000000" />
-        <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
-        <VALUE deb="1986-01-01" fin="1986-12-31" valeur="3600000" />
-        <VALUE deb="1985-01-01" fin="1985-12-31" valeur="3500000" />
-        <VALUE deb="1984-01-01" fin="1984-12-31" valeur="3400000" />
-        <VALUE deb="1983-01-01" fin="1983-12-31" valeur="3200000" />
-        <VALUE deb="1982-01-01" fin="1982-12-31" valeur="3000000" />
-      </CODE>
-      <CODE code="2eme_tranche" format="float" type="monetary">
-        <VALUE deb="2013-01-01" fuzzy="true" valeur="1300000" />
-        <VALUE deb="2011-01-01" fin="2012-12-31" valeur="1310000" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="1290000" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="1280000" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="1240000" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="1220000" />
-        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="1200000" />
-        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="1180000" />
-        <VALUE deb="2002-01-01" fin="2004-12-31" valeur="1160000" />
-        <VALUE deb="1997-01-01" fin="2001-12-31" valeur="7640000" />
-        <VALUE deb="1996-01-01" fin="1996-12-31" valeur="7500000" />
-        <VALUE deb="1995-01-01" fin="1995-12-31" valeur="7370000" />
-        <VALUE deb="1994-01-01" fin="1994-12-31" valeur="7270000" />
-        <VALUE deb="1992-01-01" fin="1993-12-31" valeur="7130000" />
-        <VALUE deb="1991-01-01" fin="1991-12-31" valeur="6920000" />
-        <VALUE deb="1990-01-01" fin="1990-12-31" valeur="6710000" />
-        <VALUE deb="1989-01-01" fin="1989-12-31" valeur="6500000" />
-        <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
-        <VALUE deb="1986-01-01" fin="1986-12-31" valeur="6000000" />
-        <VALUE deb="1985-01-01" fin="1985-12-31" valeur="5800000" />
-        <VALUE deb="1984-01-01" fin="1984-12-31" valeur="5600000" />
-        <VALUE deb="1983-01-01" fin="1983-12-31" valeur="5300000" />
-        <VALUE deb="1982-01-01" fin="1982-12-31" valeur="5000000" />
-      </CODE>
-      <CODE code="3eme_tranche" format="float" type="monetary">
-        <VALUE deb="2011-01-01" fuzzy="true" valeur="2570000" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="2530000" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="2520000" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="2450000" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="2420000" />
-        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="2380000" />
-        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="2339000" />
-        <VALUE deb="2002-01-01" fin="2004-12-31" valeur="2300000" />
-        <VALUE deb="1997-01-01" fin="2001-12-31" valeur="15160000" />
-        <VALUE deb="1996-01-01" fin="1996-12-31" valeur="14880000" />
-        <VALUE deb="1995-01-01" fin="1995-12-31" valeur="14620000" />
-        <VALUE deb="1994-01-01" fin="1994-12-31" valeur="14420000" />
-        <VALUE deb="1992-01-01" fin="1993-12-31" valeur="14150000" />
-        <VALUE deb="1991-01-01" fin="1991-12-31" valeur="13740000" />
-        <VALUE deb="1990-01-01" fin="1990-12-31" valeur="13320000" />
-        <VALUE deb="1989-01-01" fin="1989-12-31" valeur="12900000" />
-        <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
-        <VALUE deb="1986-01-01" fin="1986-12-31" valeur="11900000" />
-        <VALUE deb="1985-01-01" fin="1985-12-31" valeur="11500000" />
-        <VALUE deb="1984-01-01" fin="1984-12-31" valeur="11200000" />
-        <VALUE deb="1983-01-01" fin="1983-12-31" valeur="10600000" />
-        <VALUE deb="1982-01-01" fin="1982-12-31" valeur="10000000" />
-      </CODE>
-      <CODE code="4eme_tranche" format="float" type="monetary">
-        <VALUE deb="2013-01-01" fuzzy="true" valeur="5000000" />
-        <VALUE deb="2011-01-01" fin="2012-12-31" valeur="4040000" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="3980000" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="3960000" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="3850000" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="3800000" />
-        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="3730000" />
-        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3661000" />
-        <VALUE deb="2002-01-01" fin="2004-12-31" valeur="3600000" />
-        <VALUE deb="1997-01-01" fin="2001-12-31" valeur="23540000" />
-        <VALUE deb="1996-01-01" fin="1996-12-31" valeur="23100000" />
-        <VALUE deb="1995-01-01" fin="1995-12-31" valeur="22690000" />
-        <VALUE deb="1994-01-01" fin="1994-12-31" valeur="22380000" />
-        <VALUE deb="1992-01-01" fin="1993-12-31" valeur="21960000" />
-        <VALUE deb="1991-01-01" fin="1991-12-31" valeur="21320000" />
-        <VALUE deb="1990-01-01" fin="1990-12-31" valeur="20660000" />
-        <VALUE deb="1989-01-01" fin="1989-12-31" valeur="20000000" />
-        <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
-        <VALUE deb="1986-01-01" fin="1986-12-31" valeur="20600000" />
-        <VALUE deb="1985-01-01" fin="1985-12-31" valeur="20000000" />
-      </CODE>
-      <CODE code="5eme_tranche" format="float" type="monetary">
-        <VALUE deb="2013-01-01" fuzzy="true" valeur="10000000" />
-        <VALUE deb="2011-01-01" fin="2012-12-31" valeur="7710000" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="7600000" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="7570000" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="7360000" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="7270000" />
-        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="7140000" />
-        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="7017000" />
-        <VALUE deb="2002-01-01" fin="2004-12-31" valeur="6900000" />
-        <VALUE deb="1997-01-01" fin="2001-12-31" valeur="45580000" />
-        <VALUE deb="1996-01-01" fin="1996-12-31" valeur="44730000" />
-        <VALUE deb="1995-01-01" fin="1995-12-31" valeur="43940000" />
-        <VALUE deb="1994-01-01" fin="1994-12-31" valeur="43330000" />
-        <VALUE deb="1992-01-01" fin="1993-12-31" valeur="42520000" />
-        <VALUE deb="1991-01-01" fin="1991-12-31" valeur="41280000" />
-        <VALUE deb="1990-01-01" fin="1990-12-31" valeur="40000000" />
-      </CODE>
-      <CODE code="6eme_tranche" format="float" type="monetary">
-        <VALUE deb="2011-01-01" fin="2012-12-31" valeur="16790000" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="16540000" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="16480000" />
-        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="16020000" />
-        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="15810000" />
-        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="15530000" />
-        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="15255000" />
-        <VALUE deb="2002-01-01" fin="2004-12-31" valeur="15000000" />
-        <VALUE deb="1999-01-01" fin="2001-12-31" valeur="100000000" />
-      </CODE>
-    </NODE>
-    <NODE code="taux_marginaux_des_tranches_du_bareme_de_l_isf">
-      <CODE code="1ere_tranche" format="percent">
-        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.005" />
-        <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.0055" />
-        <VALUE deb="1989-01-01" fin="1998-12-31" valeur="0.005" />
-        <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
-        <VALUE deb="1982-01-01" fin="1986-12-31" valeur="0.005" />
-      </CODE>
-      <CODE code="2eme_tranche" format="percent">
-        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.007" />
-        <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.0075" />
-        <VALUE deb="1989-01-01" fin="1998-12-31" valeur="0.007" />
-        <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
-        <VALUE deb="1982-01-01" fin="1986-12-31" valeur="0.01" />
-      </CODE>
-      <CODE code="3eme_tranche" format="percent">
-        <VALUE deb="1999-01-01" fuzzy="true" valeur="0.01" />
-        <VALUE deb="1989-01-01" fin="1998-12-31" valeur="0.009" />
-        <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
-        <VALUE deb="1982-01-01" fin="1986-12-31" valeur="0.015" />
-      </CODE>
-      <CODE code="4eme_tranche" format="percent">
-        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.0125" />
-        <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.013" />
-        <VALUE deb="1990-01-01" fin="1998-12-31" valeur="0.012" />
-        <VALUE deb="1989-01-01" fin="1989-12-31" valeur="0.011" />
-        <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
-        <VALUE deb="1985-01-01" fin="1986-12-31" valeur="0.02" />
-      </CODE>
-      <CODE code="5eme_tranche" format="percent">
-        <VALUE deb="2013-01-01" fuzzy="true" valeur="0.015" />
-        <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.0165" />
-        <VALUE deb="1990-01-01" fin="1998-12-31" valeur="0.015" />
-      </CODE>
-      <CODE code="6eme_tranche" format="percent">
-        <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.018" />
-      </CODE>
-      <CODE code="nombre_de_tranches_du_bareme">
-        <VALUE deb="2013-01-01" fuzzy="true" valeur="5" />
-        <VALUE deb="1999-01-01" fin="2012-12-31" valeur="6" />
-        <VALUE deb="1990-01-01" fin="1998-12-31" valeur="5" />
-        <VALUE deb="1989-01-01" fin="1989-12-31" valeur="4" />
-        <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
-        <VALUE deb="1985-01-01" fin="1986-12-31" valeur="4" />
-        <VALUE deb="1982-01-01" fin="1984-12-31" valeur="3" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="bouclier">
     <CODE code="taux_bouclier_fiscal" format="percent">
       <VALUE deb="2006-01-01" fin="2010-12-31" valeur="0.5" />
@@ -196,6 +22,311 @@
       <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
       <VALUE deb="1982-01-01" fin="1986-12-31" valeur="0.05" />
     </CODE>
+  </NODE>
+  <NODE code="isf" description="Impôt de solidarité sur la fortune (ISF)">
+    <BAREME code="bareme" description="Impôt de solidarité">
+      <TRANCHE code="1ere_tranche">
+        <SEUIL>
+          <VALUE deb="2011-01-01" fuzzy="true" valeur="800000" />
+          <VALUE deb="2009-01-01" fin="2010-12-31" valeur="790000" />
+          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="770000" />
+          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="760000" />
+          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="750000" />
+          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="732000" />
+          <VALUE deb="2002-01-01" fin="2004-12-31" valeur="720000" />
+          <VALUE deb="1997-01-01" fin="2001-12-31" valeur="4700000" />
+          <VALUE deb="1996-01-01" fin="1996-12-31" valeur="4610000" />
+          <VALUE deb="1995-01-01" fin="1995-12-31" valeur="4530000" />
+          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="4470000" />
+          <VALUE deb="1992-01-01" fin="1993-12-31" valeur="4390000" />
+          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="4260000" />
+          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="4130000" />
+          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="4000000" />
+          <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
+          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="3600000" />
+          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="3500000" />
+          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="3400000" />
+          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="3200000" />
+          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="3000000" />
+        </SEUIL>
+        <TAUX>
+          <VALUE deb="2013-01-01" fuzzy="true" valeur="0.005" />
+          <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.0055" />
+          <VALUE deb="1989-01-01" fin="1998-12-31" valeur="0.005" />
+          <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
+          <VALUE deb="1982-01-01" fin="1986-12-31" valeur="0.005" />
+        </TAUX>
+      </TRANCHE>
+      <TRANCHE code="2eme_tranche">
+        <SEUIL>
+          <VALUE deb="2013-01-01" fuzzy="true" valeur="1300000" />
+          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="1310000" />
+          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="1290000" />
+          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="1280000" />
+          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="1240000" />
+          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="1220000" />
+          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="1200000" />
+          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="1180000" />
+          <VALUE deb="2002-01-01" fin="2004-12-31" valeur="1160000" />
+          <VALUE deb="1997-01-01" fin="2001-12-31" valeur="7640000" />
+          <VALUE deb="1996-01-01" fin="1996-12-31" valeur="7500000" />
+          <VALUE deb="1995-01-01" fin="1995-12-31" valeur="7370000" />
+          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="7270000" />
+          <VALUE deb="1992-01-01" fin="1993-12-31" valeur="7130000" />
+          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="6920000" />
+          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="6710000" />
+          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="6500000" />
+          <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
+          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="6000000" />
+          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="5800000" />
+          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="5600000" />
+          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="5300000" />
+          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="5000000" />
+        </SEUIL>
+        <TAUX>
+          <VALUE deb="2013-01-01" fuzzy="true" valeur="0.007" />
+          <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.0075" />
+          <VALUE deb="1989-01-01" fin="1998-12-31" valeur="0.007" />
+          <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
+          <VALUE deb="1982-01-01" fin="1986-12-31" valeur="0.01" />
+        </TAUX>
+      </TRANCHE>
+      <TRANCHE code="3eme_tranche">
+        <SEUIL>
+          <VALUE deb="2011-01-01" fuzzy="true" valeur="2570000" />
+          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="2530000" />
+          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="2520000" />
+          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="2450000" />
+          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="2420000" />
+          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="2380000" />
+          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="2339000" />
+          <VALUE deb="2002-01-01" fin="2004-12-31" valeur="2300000" />
+          <VALUE deb="1997-01-01" fin="2001-12-31" valeur="15160000" />
+          <VALUE deb="1996-01-01" fin="1996-12-31" valeur="14880000" />
+          <VALUE deb="1995-01-01" fin="1995-12-31" valeur="14620000" />
+          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="14420000" />
+          <VALUE deb="1992-01-01" fin="1993-12-31" valeur="14150000" />
+          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="13740000" />
+          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="13320000" />
+          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="12900000" />
+          <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
+          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="11900000" />
+          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="11500000" />
+          <VALUE deb="1984-01-01" fin="1984-12-31" valeur="11200000" />
+          <VALUE deb="1983-01-01" fin="1983-12-31" valeur="10600000" />
+          <VALUE deb="1982-01-01" fin="1982-12-31" valeur="10000000" />
+        </SEUIL>
+        <TAUX>
+          <VALUE deb="1999-01-01" fuzzy="true" valeur="0.01" />
+          <VALUE deb="1989-01-01" fin="1998-12-31" valeur="0.009" />
+          <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
+          <VALUE deb="1982-01-01" fin="1986-12-31" valeur="0.015" />
+        </TAUX>
+      </TRANCHE>
+      <TRANCHE code="4eme_tranche">
+        <SEUIL>
+          <VALUE deb="2013-01-01" fuzzy="true" valeur="5000000" />
+          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="4040000" />
+          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="3980000" />
+          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="3960000" />
+          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="3850000" />
+          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="3800000" />
+          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="3730000" />
+          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3661000" />
+          <VALUE deb="2002-01-01" fin="2004-12-31" valeur="3600000" />
+          <VALUE deb="1997-01-01" fin="2001-12-31" valeur="23540000" />
+          <VALUE deb="1996-01-01" fin="1996-12-31" valeur="23100000" />
+          <VALUE deb="1995-01-01" fin="1995-12-31" valeur="22690000" />
+          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="22380000" />
+          <VALUE deb="1992-01-01" fin="1993-12-31" valeur="21960000" />
+          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="21320000" />
+          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="20660000" />
+          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="20000000" />
+          <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
+          <VALUE deb="1986-01-01" fin="1986-12-31" valeur="20600000" />
+          <VALUE deb="1985-01-01" fin="1985-12-31" valeur="20000000" />
+        </SEUIL>
+        <TAUX>
+          <VALUE deb="2013-01-01" fuzzy="true" valeur="0.0125" />
+          <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.013" />
+          <VALUE deb="1990-01-01" fin="1998-12-31" valeur="0.012" />
+          <VALUE deb="1989-01-01" fin="1989-12-31" valeur="0.011" />
+          <VALUE deb="1987-01-01" fin="1988-12-31" valeur="0" />
+          <VALUE deb="1985-01-01" fin="1986-12-31" valeur="0.02" />
+        </TAUX>
+      </TRANCHE>
+      <TRANCHE code="5eme_tranche">
+        <SEUIL>
+          <VALUE deb="2013-01-01" fuzzy="true" valeur="10000000" />
+          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="7710000" />
+          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="7600000" />
+          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="7570000" />
+          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="7360000" />
+          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="7270000" />
+          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="7140000" />
+          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="7017000" />
+          <VALUE deb="2002-01-01" fin="2004-12-31" valeur="6900000" />
+          <VALUE deb="1997-01-01" fin="2001-12-31" valeur="45580000" />
+          <VALUE deb="1996-01-01" fin="1996-12-31" valeur="44730000" />
+          <VALUE deb="1995-01-01" fin="1995-12-31" valeur="43940000" />
+          <VALUE deb="1994-01-01" fin="1994-12-31" valeur="43330000" />
+          <VALUE deb="1992-01-01" fin="1993-12-31" valeur="42520000" />
+          <VALUE deb="1991-01-01" fin="1991-12-31" valeur="41280000" />
+          <VALUE deb="1990-01-01" fin="1990-12-31" valeur="40000000" />
+        </SEUIL>
+        <TAUX>
+          <VALUE deb="2013-01-01" fuzzy="true" valeur="0.015" />
+          <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.0165" />
+          <VALUE deb="1990-01-01" fin="1998-12-31" valeur="0.015" />
+        </TAUX>
+      </TRANCHE>
+      <TRANCHE code="6eme_tranche">
+        <SEUIL>
+          <VALUE deb="2011-01-01" fin="2012-12-31" valeur="16790000" />
+          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="16540000" />
+          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="16480000" />
+          <VALUE deb="2008-01-01" fin="2008-12-31" valeur="16020000" />
+          <VALUE deb="2007-01-01" fin="2007-12-31" valeur="15810000" />
+          <VALUE deb="2006-01-01" fin="2006-12-31" valeur="15530000" />
+          <VALUE deb="2005-01-01" fin="2005-12-31" valeur="15255000" />
+          <VALUE deb="2002-01-01" fin="2004-12-31" valeur="15000000" />
+          <VALUE deb="1999-01-01" fin="2001-12-31" valeur="100000000" />
+        </SEUIL>
+        <TAUX>
+          <VALUE deb="1999-01-01" fin="2012-12-31" valeur="0.018" />
+        </TAUX>
+      </TRANCHE>
+    </BAREME>
+    <NODE code="decote" description="Décôte de l'ISF">
+      <CODE code="base" description="Base montant décote" format="float">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="17500" />
+        <VALUE deb="2013-01-01" fin="2014-12-31" valeur="17500" />
+      </CODE>
+      <CODE code="max" description="Plafond de la décote" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="1400000" />
+        <VALUE deb="2013-01-01" fin="2014-12-31" valeur="1400000" />
+      </CODE>
+      <CODE code="min" description="Plancher de la décote" format="float" type="monetary">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="1300000" />
+        <VALUE deb="2013-01-01" fin="2014-12-31" valeur="1300000" />
+      </CODE>
+      <CODE code="taux" description="Taux de la décote" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0125" />
+        <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.0125" />
+      </CODE>
+    </NODE>
+    <NODE code="droits_soc" description="Droits sociaux"> ## parts actions détenus par salariés et mandataires sociaux intro en 2006 ##
+     <CODE code="taux1" description="Taux parts et actions détenues par les salariés et mandataires sociaux" format="percent">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
+        <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.25" />
+      </CODE>
+      <CODE code="taux2" description="Taux parts et actions avec engagement de conservation de 6 ans minimum" format="percent">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
+        <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.25" />
+        <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.5" />
+      </CODE>
+    </NODE>
+    <NODE code="forf_mob" description="Forfait mobilier">
+      <CODE code="taux" description="Taux forfait mobilier" format="percent">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.05" />
+        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.05" />
+      </CODE>
+    </NODE>
+    <NODE code="nonbat" description="Immeubles non bâtis">
+      <CODE code="seuil" description="Seuil biens ruraux" format="integer" type="monetary">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="101897" />
+        <VALUE deb="2011-01-01" fin="2013-12-31" valeur="101897" />
+        <VALUE deb="2004-01-01" fin="2010-12-31" valeur="76000" />
+      </CODE>
+      <CODE code="taux_f" description="Taux bois et forêts" format="percent">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
+        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.25" />
+      </CODE>
+      <CODE code="taux_r1" description="Taux biens ruraux" format="percent">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
+        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.25" />
+      </CODE>
+      <CODE code="taux_r2" description="Taux biens ruraux" format="percent">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
+        <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
+      </CODE>
+    </NODE>
+    <NODE code="plaf" description="Plafonnement de l'ISF">
+      <CODE code="seuil1" description="Premier seuil pour calcul du plafonnement" format="integer" type="monetary">
+        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="12255" />
+        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="12050" />
+        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="11995" />
+        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="11660" />
+        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="11530" />
+        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="11325" />
+        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="11157" />
+        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="10970" />
+      </CODE>
+      <CODE code="seuil2" description="Second seuil pour calcul du plafonnement" format="integer" type="monetary">
+        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="24510" />
+        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="24100" />
+        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="23990" />
+        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="23320" />
+        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="23060" />
+        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="22650" />
+        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="22314" />
+        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="21940" />
+      </CODE>
+      <CODE code="taux" description="Taux appliqué quand le montant de l'ISF avant plafonnement est supérieur au second seuil " format="percent">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
+        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.5" />
+        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0" />
+        <VALUE deb="1996-01-01" fin="2011-12-31" valeur="0.5" />
+      </CODE>
+    </NODE>
+    <NODE code="plafonnement" description="Revenus et produits de l'année">
+      <CODE code="taux" description="Taux appliqué aux revenus et produits de l'année pour le calcul du plafonnement" format="percent">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.75" />
+        <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.75" />
+        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0" />
+        <VALUE deb="2002-01-01" fin="2011-12-31" valeur="0.85" />
+      </CODE>
+    </NODE>
+    <NODE code="pme" description="Investissement PME">
+      <CODE code="max" description="Plafond pour investissement dans les PME" format="integer" type="monetary"> ## ce type de réductions apparaît seulement en 2008 ##
+      # <VALUE deb="2014-01-01" fuzzy="true" valeur="45000" />
+        <VALUE deb="2011-01-01" fin="2013-12-31" valeur="45000" />
+        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="50000" />
+        <VALUE deb="2008-01-01" fin="2008-12-31" valeur="50000000" /> ## no upperbound before 2009- set arbitrarily large##
+      <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0" /> # taux set to 0 to avoid error- expect prog to pass when date inf to 2008 #
+      # </CODE>
+      <CODE code="taux1" description="Taux pour investissement direct soc, holdings, fip, fcpi" format="percent">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
+        <VALUE deb="2008-01-01" fin="2013-12-31" valeur="0.5" />
+        <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0" /> # taux set to 0 to avoid error- expect prog to pass when date inf to 2008 #
+      </CODE>
+      <CODE code="taux2" description="Taux pour dons à certains organismes d'intérêt général" format="percent">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.75" />
+        <VALUE deb="2008-01-01" fin="2013-12-31" valeur="0.75" />
+        <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0" /> # taux set to 0 to avoid error- expect prog to pass when date inf to 2008 #
+      </CODE>
+    </NODE>
+    <NODE code="reduc_pac" description="Réductions pour personnes à charges">
+      <CODE code="reduc_1" description="Réduction pac sans garde alternée" format="integer" type="monetary">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
+        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0" />
+        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="300" />
+        <VALUE deb="2002-01-01" fin="2011-12-31" valeur="150" />
+      </CODE>
+      <CODE code="reduc_2" description="Réduction pac avec garde alternée" format="integer" type="monetary">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
+        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0" />
+        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="150" />
+        <VALUE deb="2002-01-01" fin="2011-12-31" valeur="75" />
+      </CODE>
+    </NODE>
+    <NODE code="res_princ" description="Immeubles bâtis">
+      <CODE code="taux" description="Taux d'abattement résidence principale" format="percent">
+        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.30" />
+        <VALUE deb="2008-01-01" fin="2013-12-31" valeur="0.30" />
+        <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.20" />
+      </CODE>
+    </NODE>
   </NODE>
   <NODE code="pfl">
     <NODE code="autres_produits_de_placement_a_revenu_fixe_comptes_sur_livrets_creances_depots_cautionnement_et_comptes_courants">
