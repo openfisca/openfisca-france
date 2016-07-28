@@ -1156,9 +1156,13 @@ def transform_ipp_tree(root):
 
     taxation_capital['isf'].update(taxation_capital.pop('plaf'))
     taxation_capital['isf'].update(taxation_capital.pop('reduc_exo'))
-
-
-
+    taxation_capital['isf'].update(taxation_capital.pop('isf_reduc_impot'))
+    isf['reduc_invest_don'] = reduc_invest_don = isf.pop('reduction_pour_investissements_au_capital_de_pme')
+    reduc_invest_don = isf['reduc_invest_don']
+    reduc_invest_don['plafond_invest_pme'] = plafond_invest_pme = reduc_invest_don.pop('plafond_pour_investissement_dans_les_pme')
+    reduc_invest_don['taux_invest_direct_soc_holding'] = taux_invest_direct_soc_holding = reduc_invest_don.pop('taux_pour_investissement_direct_soc_holdings_fip_fcpi')
+    isf['reduc_invest_don'].update(isf.pop('reduction_pour_dons_a_certains_organismes_d_interet_general'))
+    reduc_invest_don['taux_don_interet_general'] = taux_don_interet_general = reduc_invest_don.pop('taux_pour_dons_a_certains_organismes_d_interet_general')
 
 
 

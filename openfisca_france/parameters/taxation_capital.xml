@@ -287,7 +287,10 @@
       <VALUE deb="1991-01-01" fin="2011-12-31" valeur="0.85" />
       <VALUE deb="1989-01-01" fin="1990-12-31" valeur="0.7" />
     </CODE>
-    <NODE code="pme" description="Investissement PME">
+    <NODE code="reduc_invest_don" description="Investissement PME">
+      <CODE code="limite_reduction_de_l_isf_lie_aux_dons_realises" format="float" type="monetary">
+        <VALUE deb="2008-01-01" fuzzy="true" valeur="50000" />
+      </CODE>
       <CODE code="max" description="Plafond pour investissement dans les PME" format="integer" type="monetary"> ## ce type de réductions apparaît seulement en 2008 ##
       # <VALUE deb="2014-01-01" fuzzy="true" valeur="45000" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="45000" />
@@ -295,15 +298,15 @@
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="50000000" /> ## no upperbound before 2009- set arbitrarily large##
       <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0" /> # taux set to 0 to avoid error- expect prog to pass when date inf to 2008 #
       # </CODE>
-      <CODE code="taux1" description="Taux pour investissement direct soc, holdings, fip, fcpi" format="percent">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
-        <VALUE deb="2008-01-01" fin="2013-12-31" valeur="0.5" />
-        <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0" /> # taux set to 0 to avoid error- expect prog to pass when date inf to 2008 #
+      <CODE code="plafond_invest_pme" format="float" type="monetary">
+        <VALUE deb="2011-01-01" fuzzy="true" valeur="45000" />
+        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="50000" />
       </CODE>
-      <CODE code="taux2" description="Taux pour dons à certains organismes d'intérêt général" format="percent">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.75" />
-        <VALUE deb="2008-01-01" fin="2013-12-31" valeur="0.75" />
-        <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0" /> # taux set to 0 to avoid error- expect prog to pass when date inf to 2008 #
+      <CODE code="taux_don_interet_general" description="Taux pour dons à certains organismes d'intérêt général" format="percent">
+        <VALUE deb="2008-01-01" fuzzy="true" valeur="0.75" />
+      </CODE>
+      <CODE code="taux_invest_direct_soc_holding" description="Taux pour investissement direct soc, holdings, fip, fcpi" format="percent">
+        <VALUE deb="2008-01-01" fuzzy="true" valeur="0.5" />
       </CODE>
     </NODE>
     <NODE code="reduc_pac" description="Réductions pour personnes à charges">

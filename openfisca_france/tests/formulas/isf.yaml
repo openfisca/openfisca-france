@@ -1,0 +1,13 @@
+- name: "Impôt sur la fortune - Célibataire - Montant de la décôte"
+  ignore: True
+  keywords: isf
+  period: 2016
+  absolute_error_margin: 0.5
+  input_variables:
+    salaire_imposable: 50000
+    b1bc: 5000
+    b1ab: 2500000
+    b2nf: 7000
+  output_variables:
+    irpp: -7889
+    isf_inv_pme: 3500 # TODO: exemple service public

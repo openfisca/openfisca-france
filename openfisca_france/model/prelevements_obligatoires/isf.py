@@ -370,12 +370,20 @@ class isf_inv_pme(Variable):
         b2nf = simulation.calculate('b2nf', period)
         b2mx = simulation.calculate('b2mx', period)
         b2na = simulation.calculate('b2na', period)
-        P = simulation.legislation_at(period.start).taxation_capital.isf.pme
+        P = simulation.legislation_at(period.start).taxation_capital.isf.reduc_invest_don
 
-        inv_dir_soc = b2mt * P.taux2 + b2ne * P.taux1
-        holdings = b2mv * P.taux2 + b2nf * P.taux1
-        fip = b2mx * P.taux1
-        fcpi = b2na * P.taux1
+        import datetime
+        if period.start.date >= datetime.date(2008, 01, 01):
+            inv_dir_soc = b2mt * P.taux_don_interet_general + b2ne * P.taux_invest_direct_soc_holding
+            holdings = b2mv * P.taux_don_interet_general + b2nf * P.taux_invest_direct_soc_holding
+            fip = b2mx * P.taux_invest_direct_soc_holding
+            fcpi = b2na * P.taux_invest_direct_soc_holding
+        else:
+            inv_dir_soc = 0
+            holdings = 0
+            fip = 0
+            fcpi = 0
+
         return period, holdings + fip + fcpi + inv_dir_soc
 
 
@@ -387,10 +395,13 @@ class isf_org_int_gen(Variable):
     def function(self, simulation, period):
         period = period.this_year
         b2nc = simulation.calculate('b2nc', period)
-        P = simulation.legislation_at(period.start).taxation_capital.isf.pme
+        P = simulation.legislation_at(period.start).taxation_capital.isf.reduc_invest_don
+        import datetime
 
-        return period, b2nc * P.taux2
-
+        if period.start.date >= datetime.date(2008, 1, 01):
+            return period, b2nc * P.taux_don_interet_general
+        else:
+            return period, b2nc * 0
 
 class isf_avant_plaf(Variable):
     column = FloatCol(default = 0)
