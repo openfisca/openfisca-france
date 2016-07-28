@@ -491,7 +491,7 @@ class revetproduits(Variable):
             revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + retraite_titre_onereux_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon +
             rpns_pvct + imp_lib + fon
             )
-        return period, pt * P.taux
+        return period, pt * P.plafonnement_taux_d_imposition_isf
 
 
 class decote_isf(Variable):
