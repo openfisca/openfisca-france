@@ -269,7 +269,7 @@
       </CODE>
     </NODE>
     <NODE code="plafonnement" description="Revenus et produits de l'année">
-      <CODE code="taux" description="Taux appliqué aux revenus et produits de l'année pour le calcul du plafonnement" format="percent">
+      <CODE code="plafonnement_taux_d_imposition_isf" description="Taux appliqué aux revenus et produits de l'année pour le calcul du plafonnement" format="percent">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0.75" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.75" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0" />
