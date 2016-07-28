@@ -417,7 +417,7 @@ class isf_avant_plaf(Variable):
         isf_inv_pme = simulation.calculate('isf_inv_pme', period)
         isf_org_int_gen = simulation.calculate('isf_org_int_gen', period)
         isf_reduc_pac = simulation.calculate('isf_reduc_pac', period)
-        borne_max = simulation.legislation_at(period.start).taxation_capital.isf.pme.max
+        borne_max = simulation.legislation_at(period.start).taxation_capital.isf.reduc_invest_don.max
 
         return period, max_(0, isf_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
 
