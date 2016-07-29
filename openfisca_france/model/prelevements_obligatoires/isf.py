@@ -208,7 +208,7 @@ class isf_imm_bati(Variable):
         b1ac = simulation.calculate('b1ac', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.res_princ
 
-        return period, (1 - P.taux) * b1ab + b1ac
+        return period, (1 - P.abattement_sur_residence_principale) * b1ab + b1ac
 
 
 class isf_imm_non_bati(Variable):
@@ -348,8 +348,13 @@ class isf_reduc_pac(Variable):
         nb_pac = simulation.calculate('nb_pac', period)
         nbH = simulation.calculate('nbH', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.reduc_pac
+        import datetime
 
-        return period, P.reduc_1 * nb_pac + P.reduc_2 * nbH
+        if period.start.date >= datetime.date(2013, 1, 01):
+            return period, 0 * nb_pac + 0 * nbH
+        else:
+            return period, P.reduc_enf_garde * nb_pac + (P.reduc_enf_garde / 2) * nbH
+
 
 
 class isf_inv_pme(Variable):

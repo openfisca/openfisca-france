@@ -180,3 +180,5 @@ taxation_capital.isf.plafonnement.taux: taxation_capital.isf.plafonnement.plafon
 taxation_capital.isf.pme: taxation_capital.isf.reduc_invest_don
 taxation_capital.isf.reduc_invest_don.taux2: taxation_capital.isf.reduc_invest_don.taux_don_interet_general
 taxation_capital.isf.reduc_invest_don.taux1: taxation_capital.isf.reduc_invest_don.taux_invest_direct_soc_holding
+taxation_capital.isf.reduc_pac.reduc_1: taxation_capital.isf.reduc_pac.reduc_enf_garde
+taxation_capital.isf.res_princ.taux: taxation_capital.isf.res_princ.abattement_sur_residence_principale

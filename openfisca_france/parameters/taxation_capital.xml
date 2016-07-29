@@ -13,10 +13,6 @@
     </CODE>
   </NODE>
   <NODE code="isf" description="Impôt de solidarité sur la fortune (ISF)">
-    <CODE code="abattement_sur_residence_principale" format="percent">
-      <VALUE deb="2008-01-01" fuzzy="true" valeur="0.3" />
-      <VALUE deb="1999-01-01" fin="2007-12-31" valeur="0.2" />
-    </CODE>
     <BAREME code="bareme" description="Impôt de solidarité">
       <TRANCHE code="1ere_tranche">
         <SEUIL>
@@ -310,29 +306,22 @@
       </CODE>
     </NODE>
     <NODE code="reduc_pac" description="Réductions pour personnes à charges">
-      <CODE code="reduc_1" description="Réduction pac sans garde alternée" format="integer" type="monetary">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
-        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0" />
-        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="300" />
-        <VALUE deb="2002-01-01" fin="2011-12-31" valeur="150" />
-      </CODE>
       <CODE code="reduc_2" description="Réduction pac avec garde alternée" format="integer" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="150" />
         <VALUE deb="2002-01-01" fin="2011-12-31" valeur="75" />
       </CODE>
+      <CODE code="reduc_enf_garde" description="Réduction pac sans garde alternée" format="float" type="monetary">
+        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="300" />
+        <VALUE deb="2002-01-01" fin="2011-12-31" valeur="150" />
+        <VALUE deb="1989-01-01" fin="2001-12-31" valeur="1000" />
+      </CODE>
     </NODE>
-    <CODE code="reduction_isf_enfant_a_charge" format="float" type="monetary">
-      <VALUE deb="2012-01-01" fin="2012-12-31" valeur="300" />
-      <VALUE deb="2002-01-01" fin="2011-12-31" valeur="150" />
-      <VALUE deb="1989-01-01" fin="2001-12-31" valeur="1000" />
-    </CODE>
     <NODE code="res_princ" description="Immeubles bâtis">
-      <CODE code="taux" description="Taux d'abattement résidence principale" format="percent">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.30" />
-        <VALUE deb="2008-01-01" fin="2013-12-31" valeur="0.30" />
-        <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.20" />
+      <CODE code="abattement_sur_residence_principale" description="Taux d'abattement résidence principale" format="percent">
+        <VALUE deb="2008-01-01" fuzzy="true" valeur="0.3" />
+        <VALUE deb="1999-01-01" fin="2007-12-31" valeur="0.2" />
       </CODE>
     </NODE>
   </NODE>

@@ -1163,7 +1163,12 @@ def transform_ipp_tree(root):
     reduc_invest_don['taux_invest_direct_soc_holding'] = taux_invest_direct_soc_holding = reduc_invest_don.pop('taux_pour_investissement_direct_soc_holdings_fip_fcpi')
     isf['reduc_invest_don'].update(isf.pop('reduction_pour_dons_a_certains_organismes_d_interet_general'))
     reduc_invest_don['taux_don_interet_general'] = taux_don_interet_general = reduc_invest_don.pop('taux_pour_dons_a_certains_organismes_d_interet_general')
-
+    isf['reduc_pac'] = reduc_pac = dict()
+    reduc_pac = isf['reduc_pac']
+    reduc_pac['reduc_enf_garde'] = reduc_enf_garde = isf.pop('reduction_isf_enfant_a_charge')
+    isf['res_princ'] = res_princ = dict()
+    res_princ = isf['res_princ']
+    res_princ['abattement_sur_residence_principale'] = abattement_sur_residence_principale = isf.pop('abattement_sur_residence_principale')
 
 
 
