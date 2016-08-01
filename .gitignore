@@ -10,6 +10,7 @@
 /.noseids
 /.project
 /.settings
+/.vscode
 /build
 /cover
 /dist
