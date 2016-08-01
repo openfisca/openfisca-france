@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.9 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.8..4.0.9)
+
+* Adapt plfr2014 reform to new Reform API
+
 ## 4.0.8 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.7..4.0.8)
 
 * Adapt PPA to avoid antedating paramameters of 3 months.
