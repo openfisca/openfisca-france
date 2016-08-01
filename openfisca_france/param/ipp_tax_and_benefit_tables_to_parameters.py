@@ -1076,10 +1076,10 @@ def transform_ipp_tree(root):
     ppa['taux_troisieme_personne'] = taux_troisieme_personne = ppa.pop('couple_1_enfant_ou_pour_le_deuxieme_enfant_1')
     ppa['taux_personne_supp'] = taux_personne_supp = ppa.pop('par_enfant_supplementaire')
 
-
-    # TODO: créer un noeud pour la prime d'activité dans minima_sociaux et merger les paramètres. Il faut aussi
-    # afin de pouvoir remettre d'actualité le calcul dans ppa.py
-
+    minima_sociaux['aah'] = aah = dict()
+    aah = minima_sociaux['aah']
+    minima_sociaux['aah'].update(prestations.pop('aah'))
+    aah['tx_plaf_supp'] = tx_plaf_supp = aah.pop('majoration_par_enfant_supplementaire')
 
 
     #   cf_maj:

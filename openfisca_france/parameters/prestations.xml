@@ -3141,9 +3141,15 @@
         <VALUE deb="2011-11-01" fin="2012-09-30" valeur="60.33" />
         <VALUE deb="1983-07-01" fin="2011-10-31" valeur="60" />
       </CODE>
+      <CODE code="age_minimal">
+        <VALUE deb="2000-01-01" fuzzy="true" valeur="20" />
+      </CODE>
+      <CODE code="majoration_du_plafond_pour_un_couple" format="percent">
+        <VALUE deb="2000-01-01" fuzzy="true" valeur="1" />
+      </CODE>
       <CODE code="montant" description="Montant mensuel de l'allocation adulte handicapé" format="float" type="monetary">
-        <VALUE deb="2016-09-01" fuzzy="true" valeur="807.65" />
-        <VALUE deb="2015-09-01" fin="2016-08-31" valeur="807.65" />
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="808.46" />
+        <VALUE deb="2015-09-01" fin="2016-03-31" valeur="807.65" />
         <VALUE deb="2014-09-01" fin="2015-08-31" valeur="800.45" />
         <VALUE deb="2013-09-01" fin="2014-08-31" valeur="790.18" />
         <VALUE deb="2012-09-01" fin="2013-08-31" valeur="776.59" />
@@ -3154,20 +3160,25 @@
         <VALUE deb="2010-04-01" fin="2010-08-31" valeur="696.63" />
         <VALUE deb="2009-09-01" fin="2010-03-31" valeur="681.63" />
         <VALUE deb="2009-04-01" fin="2009-08-31" valeur="666.96" />
-        <VALUE deb="2008-09-01" fin="2009-03-31" valeur="652.60" />
-        <VALUE deb="2008-01-01" fin="2008-08-31" valeur="628.10" />
+        <VALUE deb="2008-09-01" fin="2009-03-31" valeur="652.6" />
+        <VALUE deb="2008-01-01" fin="2008-08-31" valeur="628.1" />
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="621.27" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="610.28" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="599.49" />
-        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="587.74" />
+        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="587.64" />
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="577.92" />
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="569.38" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="557.12" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="545.13" />
       </CODE>
+      <CODE code="plafond_de_ressources_en_multiple_du_montant_de_base">
+        <VALUE deb="2000-01-01" fuzzy="true" valeur="12" />
+      </CODE>
+      <CODE code="taux_d_incapcite" format="percent">
+        <VALUE deb="2000-01-01" fuzzy="true" valeur="0.8" />
+      </CODE>
       <CODE code="tx_plaf_supp" description="Majoration de plafond pour personne à charge (en pourcentage du plafond de base)" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur=".5" />
-        <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".5" />
+        <VALUE deb="2000-01-01" fuzzy="true" valeur="0.5" />
       </CODE>
     </NODE>
     <NODE code="aefa" description="Aide exceptionnelle de fin d'année">
