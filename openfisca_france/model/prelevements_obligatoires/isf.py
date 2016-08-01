@@ -377,17 +377,11 @@ class isf_inv_pme(Variable):
         b2na = simulation.calculate('b2na', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.reduc_invest_don
 
-        import datetime
-        if period.start.date >= datetime.date(2008, 01, 01):
-            inv_dir_soc = b2mt * P.taux_don_interet_general + b2ne * P.taux_invest_direct_soc_holding
-            holdings = b2mv * P.taux_don_interet_general + b2nf * P.taux_invest_direct_soc_holding
-            fip = b2mx * P.taux_invest_direct_soc_holding
-            fcpi = b2na * P.taux_invest_direct_soc_holding
-        else:
-            inv_dir_soc = 0
-            holdings = 0
-            fip = 0
-            fcpi = 0
+        inv_dir_soc = b2mt * P.taux_don_interet_general + b2ne * P.taux_invest_direct_soc_holding
+        holdings = b2mv * P.taux_don_interet_general + b2nf * P.taux_invest_direct_soc_holding
+        fip = b2mx * P.taux_invest_direct_soc_holding
+        fcpi = b2na * P.taux_invest_direct_soc_holding
+
 
         return period, holdings + fip + fcpi + inv_dir_soc
 
