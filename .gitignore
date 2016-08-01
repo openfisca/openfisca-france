@@ -5,6 +5,7 @@
 *.pyo
 .pydevproject
 .spyderproject
+.ipynb_checkpoints
 /.coverage
 /.noseids
 /.project
