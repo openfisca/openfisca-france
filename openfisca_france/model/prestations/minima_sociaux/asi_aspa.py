@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import abs as abs_, logical_not as not_, logical_or as or_, maximum as max_
+from numpy import abs as abs_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, where
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -82,16 +82,20 @@ class asi_aspa_base_ressources_individu(Variable):
 
         def abattement_salaire():
             aspa_couple_holder = simulation.compute('aspa_couple', period)
-            aspa_couple = self.cast_from_entity_to_role(aspa_couple_holder, role = VOUS)
+            aspa_couple = self.cast_from_entity_to_roles(aspa_couple_holder)
 
             # Abattement sur les salaires (appliqué sur une base trimestrielle)
             abattement_forfaitaire_base = (
                 leg_1er_janvier.cotsoc.gen.smic_h_b * legislation.cotsoc.gen.nb_heure_travail_mensuel
                 )
-            abattement_forfaitaire_taux = (aspa_couple * legislation.minim.aspa.abattement_forfaitaire_tx_couple +
-                not_(aspa_couple) * legislation.minim.aspa.abattement_forfaitaire_tx_seul
-            )
-            abattement_forfaitaire = abattement_forfaitaire_base * abattement_forfaitaire_taux
+
+            taux_abattement_forfaitaire = where(
+                aspa_couple,
+                legislation.minim.aspa.abattement_forfaitaire_tx_couple,
+                legislation.minim.aspa.abattement_forfaitaire_tx_seul
+                )
+
+            abattement_forfaitaire = abattement_forfaitaire_base * taux_abattement_forfaitaire
             salaire_de_base = simulation.calculate_add('salaire_de_base', three_previous_months)
 
             return min_(salaire_de_base, abattement_forfaitaire)
