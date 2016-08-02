@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.10 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.9..4.0.10)
+
+* Fix Landais, Piketty, Saez reform
+
 ## 4.0.9 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.8..4.0.9)
 
 * Adapt plfr2014 reform to new Reform API
