@@ -15,7 +15,6 @@
     ass_isf: 1392250 # 1390000 + #22500 + 4250 + 1000 - 3000
     decote_isf: 96.875 # 17500 - 0.0125 * 1392250
 
-
 - name: "Impôt sur la fortune - Célibataire - Abattement résidence principale"
   keywords: isf
   period: 2016
@@ -26,28 +25,19 @@
   output_variables:
     isf_imm_bati: 2500000 # 0.7 * 3000000 + 400000
 
-- name: "Impôt sur la fortune - Célibataire - ISF avant plafond"
-  ignore: True
+- name: "Impôt sur la fortune - Célibataire - ISF test"
   keywords: isf
   period: 2016
   absolute_error_margin: 5
   input_variables:
-    b1ab: 4000000
+    b1ab: 10000000
     b1bc: 30000
-    b1be: 100000
-    b1cf: 50000
+    b1be: 20000
+    b1cf: 60000
+    b2nc: 15000
+    rev_or: 100000
   output_variables:
-    isf_tot: 14370
-
-- name: "Impôt sur la fortune - Célibataire - ISF après plafond"
-  ignore: True
-  keywords: isf
-  period: 2016
-  absolute_error_margin: 5
-  input_variables:
-    b1ab: 4000000
-    b1bc: 30000
-    b1be: 100000
-    b1cf: 50000
-  output_variables:
-    isf_tot: 14370
+    isf_avant_plaf: 1
+    isf_apres_plaf: 2
+    irpp: 3
+    #isf_tot: 54147
