@@ -3439,15 +3439,12 @@
       <CODE code="cpltx" description="Taux du montant mensuel du complément aux adultes handicapés (avant 2005)" format="percent">
         <VALUE deb="2002-01-01" fin="2008-08-31" valeur="0.16" />
       </CODE>
-      <CODE code="cpltx_1" description="Montant mensuel du complément de ressources aux adultes handicapés (à partir de 2007)" format="float" type="monetary">
-        <VALUE deb="2015-09-01" fuzzy="true" valeur="179.31" />
-        <VALUE deb="2007-01-01" fin="2015-08-31" valeur="179.31" />
-      </CODE>
-      <CODE code="grph" description="Garantie de ressources pour les personnes handicapées (cpltx_1+aah)" format="float" type="monetary">
-        <VALUE deb="2015-09-01" fuzzy="true" valeur="979.76" />
+      <CODE code="garantie_ressources" description="Garantie de ressources pour les personnes handicapées (cpltx_1+aah)" format="float" type="monetary">
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="987.77" />
+        <VALUE deb="2015-09-01" fin="2016-03-31" valeur="986.96" />
         <VALUE deb="2014-09-01" fin="2015-08-31" valeur="979.76" />
         <VALUE deb="2013-09-01" fin="2014-08-31" valeur="969.49" />
-        <VALUE deb="2012-09-01" fin="2013-08-31" valeur="955.90" />
+        <VALUE deb="2012-09-01" fin="2013-08-31" valeur="955.9" />
         <VALUE deb="2012-04-01" fin="2012-08-31" valeur="939.29" />
         <VALUE deb="2011-09-01" fin="2012-03-31" valeur="922.93" />
         <VALUE deb="2011-04-01" fin="2011-08-31" valeur="906.92" />
@@ -3459,14 +3456,19 @@
         <VALUE deb="2008-01-01" fin="2008-08-31" valeur="807.41" />
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="800.58" />
         <VALUE deb="2006-07-01" fin="2006-12-31" valeur="789.59" />
-        <VALUE deb="2006-01-01" fin="2006-06-30" valeur="776.79" />
-        <VALUE deb="2005-07-01" fin="2005-12-31" valeur="776.79" />  # TODO FIXME
+        <VALUE deb="2005-07-01" fin="2006-06-30" valeur="776.79" />
       </CODE>
-      <CODE code="mva" description="Majoration pour la vie autonome" format="float" type="monetary">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="104.77" />
-        <VALUE deb="2008-01-01" fin="2014-12-31" valeur="104.77" />
+      <CODE code="majoration_vie_autonome" description="Majoration pour la vie autonome" format="float" type="monetary">
+        <VALUE deb="2008-01-01" fuzzy="true" valeur="104.77" />
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="103.63" />
-        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="101.80" />
+        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="101.8" />
+        <VALUE deb="2005-07-01" fin="2005-12-31" valeur="100" />
+      </CODE>
+      <CODE code="montant_complement_ressources" description="Montant mensuel du complément de ressources aux adultes handicapés (à partir de 2007)" format="float" type="monetary">
+        <VALUE deb="2006-07-01" fuzzy="true" valeur="179.31" />
+      </CODE>
+      <CODE code="taux_du_montant_mensuel_du_complement_aux_adultes_handicape_2" format="percent">
+        <VALUE deb="2002-01-01" fin="2008-08-31" valeur="0.16" />
       </CODE>
     </NODE>
     <NODE code="ppa" description="Prime Pour l'Activité">

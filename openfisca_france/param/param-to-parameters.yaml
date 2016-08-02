@@ -166,6 +166,11 @@ prestations.minima_sociaux.aspa.montant_seul: prestations.minima_sociaux.aspa.mo
 prestations.minima_sociaux.aspa.plaf_couple: prestations.minima_sociaux.aspa.plafond_ressources_couple
 prestations.minima_sociaux.aspa.plaf_seul: prestations.minima_sociaux.aspa.plafond_ressources_seul
 
+# aah / caah
+prestations.minima_sociaux.caah.grph: prestations.minima_sociaux.caah.garantie_ressources
+prestations.minima_sociaux.caah.mva: prestations.minima_sociaux.caah.majoration_vie_autonome
+prestations.minima_sociaux.caah.cpltx_1: prestations.minima_sociaux.caah.montant_complement_ressources
+
 taxation_capital.prelevements_sociaux.base_pat: taxation_capital.prelevements_sociaux.prelevement_social.revenus_du_patrimoine
 taxation_capital.prelevements_sociaux.base_plac: taxation_capital.prelevements_sociaux.prelevement_social.produits_de_placement
 taxation_capital.prelevements_sociaux.add_pat: taxation_capital.prelevements_sociaux.caps.revenus_du_patrimoine

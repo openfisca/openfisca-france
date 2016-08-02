@@ -1081,6 +1081,13 @@ def transform_ipp_tree(root):
     minima_sociaux['aah'].update(prestations.pop('aah'))
     aah['tx_plaf_supp'] = tx_plaf_supp = aah.pop('majoration_par_enfant_supplementaire')
 
+    minima_sociaux['caah'] = caah = dict()
+    caah = minima_sociaux['caah']
+    minima_sociaux['caah'].update(prestations.pop('caah'))
+    caah['garantie_ressources'] = garantie_ressources = caah.pop('montant_mensuel_de_la_garantie_de_ressources_pour_les_personnes_handicapees')
+    caah['majoration_vie_autonome'] = majoration_vie_autonome = caah.pop('majoration_pour_la_vie_autonome')
+    caah['montant_complement_ressources'] = montant_complement_ressources = caah.pop('montant_mensuel_du_complement_de_ressources_aux_adultes_handicapes_1')
+
 
     #   cf_maj:
     #     Majoration:
