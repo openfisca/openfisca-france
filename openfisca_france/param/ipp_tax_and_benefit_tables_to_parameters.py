@@ -917,6 +917,15 @@ def transform_ipp_tree(root):
     complement_familial_en_de_la_bmaf_en_de_la_bmaf = cf['complement_familial_en_de_la_bmaf_en_de_la_bmaf']
     cf['taux_cf_base'] = taux_cf_base = complement_familial_en_de_la_bmaf_en_de_la_bmaf.pop('montant_de_base')
     cf['taux_cf_majore'] = taux_cf_majore = complement_familial_en_de_la_bmaf_en_de_la_bmaf.pop('montant_majore')
+    prestations_familiales['cf'].update(prestations.pop('cf_cm_dom'))
+    cf['age_maximal_dom'] = age_maximal_dom = cf.pop('age_maximal')
+    cf['age_minimal_dom'] = age_minimal_dom = cf.pop('age_minimal')
+    complement_familial_en_de_la_bmaf_dom = cf['complement_familial_en_de_la_bmaf_dom']
+    cf['taux_base_dom'] = taux_base_dom = complement_familial_en_de_la_bmaf_dom.pop('montant_de_base')
+    cf['taux_majore_dom'] = taux_majore_dom = complement_familial_en_de_la_bmaf_dom.pop('montant_majore')
+    cf['nombre_enfant_minimum_dom'] = nombre_enfant_minimum_dom = cf.pop('nombre_d_enfant_minimum')
+    cf['age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom'] = age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom = cf.pop('age_en_dessous_duquel_l_enfant_prive_la_famille_du_complement_familiale')
+
     #ape
     prestations_familiales['ape'] = ape = dict()
     prestations_familiales['ape'] = ape = prestations.pop('ape')

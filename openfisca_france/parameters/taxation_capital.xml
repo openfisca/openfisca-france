@@ -325,6 +325,12 @@
       </CODE>
     </NODE>
   </NODE>
+  <NODE code="isf_abattement_biens">
+    <CODE code="taux_d_abattement_residence_principale" format="percent">
+      <VALUE deb="2008-01-01" fuzzy="true" valeur="0.3" />
+      <VALUE deb="1999-01-01" fin="2007-12-31" valeur="0.2" />
+    </CODE>
+  </NODE>
   <NODE code="pfl">
     <NODE code="autres_produits_de_placement_a_revenu_fixe_comptes_sur_livrets_creances_depots_cautionnement_et_comptes_courants">
       <CODE code="courus_entre_le_16_7_78_et_31_12_79" format="percent">

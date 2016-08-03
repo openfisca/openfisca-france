@@ -4533,9 +4533,8 @@
       </CODE>
     </NODE>
     <NODE code="cf" description="Complément familial">
-      <CODE code="age_limite_dom" description="Âge limite DOM" format="integer" type="age">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur="5" />
-        <VALUE deb="1986-01-01" fin="2014-03-31" valeur="5" />
+      <CODE code="age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom">
+        <VALUE deb="2002-01-01" fuzzy="true" valeur="3" />
       </CODE>
       <CODE code="age_max" description="Âge limite supérieur">
         <VALUE deb="2000-02-01" fuzzy="true" valeur="21" />
@@ -4543,9 +4542,15 @@
         <VALUE deb="1986-07-01" fin="1996-12-31" valeur="17" />
         <VALUE deb="1978-01-01" fin="1986-06-30" valeur="3" />
       </CODE>
-      <CODE code="age_min" description="Âge limite inférieur">
+      <CODE code="age_maximal_dom" description="Âge limite DOM">
+        <VALUE deb="2002-01-01" fuzzy="true" valeur="5" />
+      </CODE>
+      <CODE code="age_min">
         <VALUE deb="1986-07-01" fuzzy="true" valeur="3" />
         <VALUE deb="1978-01-01" fin="1986-06-30" valeur="0" />
+      </CODE>
+      <CODE code="age_minimal_dom" description="Âge limite inférieur">
+        <VALUE deb="2002-01-01" fuzzy="true" valeur="3" />
       </CODE>
       <CODE code="majoration_du_plafond_de_ressources_enfant_supplementaire" format="percent">
         <VALUE deb="1986-07-01" fuzzy="true" valeur="0.151333715761" />
@@ -4580,6 +4585,9 @@
       <CODE code="nombre_d_enfants_minimal">
         <VALUE deb="1986-07-01" fuzzy="true" valeur="3" />
         <VALUE deb="1978-01-01" fin="1986-06-30" valeur="1" />
+      </CODE>
+      <CODE code="nombre_enfant_minimum_dom">
+        <VALUE deb="2002-01-01" fuzzy="true" valeur="1" />
       </CODE>
       <CODE code="plafond_cf_majore" description="Plafond de ressources pour avoir droit au CF majoré" format="percent">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
@@ -4621,6 +4629,9 @@
           <VALUE deb="1978-01-01" fin="1978-06-30" valeur="0.20002258866" />
         </CODE>
       </NODE>
+      <CODE code="taux_base_dom" description="Taux du complément familial dans les DOM" format="percent">
+        <VALUE deb="2002-01-01" fuzzy="true" valeur="0.2379" />
+      </CODE>
       <CODE code="taux_cf_base" description="Taux du complément familial" format="percent">
         <VALUE deb="1983-01-01" fuzzy="true" valeur="0.4165" />
         <VALUE deb="1978-01-01" fin="1982-12-31" valeur="0.4475" />
@@ -4630,11 +4641,7 @@
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.4999" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.4582" />
       </CODE>
-      <CODE code="tx_dom" description="Taux du complément familial dans les DOM" format="percent">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.2379" />
-        <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.2379" />
-      </CODE>
-      <CODE code="tx_majore_dom" description="Taux du complément familial majoré dans les DOM" format="percent">
+      <CODE code="taux_majore_dom" description="Taux du complément familial majoré dans les DOM" format="percent">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="0.3093" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.2855" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2617" />

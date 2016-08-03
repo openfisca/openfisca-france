@@ -111,6 +111,11 @@ prestations.prestations_familiales.cf.majoration_plafond_tx2: prestations.presta
 prestations.prestations_familiales.cf.plafond: prestations.prestations_familiales.cf.plafond_de_ressources_0_enfant
 prestations.prestations_familiales.cf.tx: prestations.prestations_familiales.cf.taux_cf_base
 prestations.prestations_familiales.cf.tx_majore: prestations.prestations_familiales.cf.taux_cf_majore
+prestations.prestations_familiales.cf.age_limite_dom: prestations.prestations_familiales.cf.age_maximal_dom
+prestations.prestations_familiales.cf.age_min: prestations.prestations_familiales.cf.age_minimal_dom
+prestations.prestations_familiales.cf.tx_dom: prestations.prestations_familiales.cf.taux_base_dom
+prestations.prestations_familiales.cf.tx_majore_dom: prestations.prestations_familiales.cf.taux_majore_dom
+
 # ape
 prestations.prestations_familiales.ape.age: prestations.prestations_familiales.ape.age_max_enfant
 prestations.prestations_familiales.ape.tx_50: prestations.prestations_familiales.ape.taux_activite_sup_50
