@@ -624,6 +624,7 @@ class rev_cat_rvcm(DatedVariable):
         _P = simulation.legislation_at(period.start)
         finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl
         rvcm = simulation.legislation_at(period.start).impot_revenu.rvcm
+        import datetime
 
         f2dc_bis = f2dc
         f2tr_bis = f2tr
@@ -636,13 +637,16 @@ class rev_cat_rvcm(DatedVariable):
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie négative (à déduire des autres revenus nets de frais d'abattements
-        g12a = -min_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
+        g12a = -min_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
         # partie positive
-        g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
+        g12b = max_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        if period.start.date >= datetime.date(2012, 1, 01):
+            h12 = 0
+        else:
+            h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -671,6 +675,7 @@ class rev_cat_rvcm(DatedVariable):
         f2tr = simulation.calculate('f2tr', period)
         finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl
         rvcm = simulation.legislation_at(period.start).impot_revenu.rvcm
+        import datetime
 
         # Add f2da to f2dc and f2ee to f2tr when no PFL
         f2dc_bis = f2dc
@@ -684,13 +689,16 @@ class rev_cat_rvcm(DatedVariable):
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie négative (à déduire des autres revenus nets de frais d'abattements
-        g12a = -min_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
+        g12a = -min_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
         # partie positive
-        g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
+        g12b = max_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        if period.start.date >= datetime.date(2012, 1, 01):
+            h12 = 0
+        else:
+            h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -720,6 +728,7 @@ class rev_cat_rvcm(DatedVariable):
         f2ee = simulation.calculate('f2ee', period)
         finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl
         rvcm = simulation.legislation_at(period.start).impot_revenu.rvcm
+        import datetime
 
         # Add f2da to f2dc and f2ee to f2tr when no PFL
         f2dc_bis = f2dc + f2da  # TODO: l'abattement de 40% est déduit uniquement en l'absence de revenus déclarés case 2DA
@@ -734,13 +743,16 @@ class rev_cat_rvcm(DatedVariable):
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie négative (à déduire des autres revenus nets de frais d'abattements
-        g12a = -min_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
+        g12a = -min_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
         # partie positive
-        g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
-        rev = g12b + f2fu * (1 - rvcm.abatmob_taux)
+        g12b = max_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        rev = g12b + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        if period.start.date >= datetime.date(2012, 1, 01):
+            h12 = 0
+        else:
+            h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -771,6 +783,7 @@ class rfr_rvcm(Variable):
         f2da = simulation.calculate('f2da', period)
         finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl
         rvcm = simulation.legislation_at(period.start).impot_revenu.rvcm
+        import datetime
 
         if finpfl:
             f2dc_bis = f2dc + f2da
@@ -783,13 +796,16 @@ class rfr_rvcm(Variable):
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie positive
-        g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
+        g12b = max_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        if period.start.date >= datetime.date(2012, 1, 01):
+            h12 = 0
+        else:
+            h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         i121 = - min_(0, rev - h12)
-        return period, max_((rvcm.abatmob_taux) * (f2dc_bis + f2fu) - i121, 0)
+        return period, max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc_bis + f2fu) - i121, 0)
 
 
 class rev_cat_rfon(Variable):

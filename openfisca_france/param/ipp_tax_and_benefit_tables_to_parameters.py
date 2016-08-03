@@ -164,6 +164,21 @@ def transform_ipp_tree(root):
     specialbnc['marchandises'] = dict(max = specialbnc.pop('plafond_de_recettes_marchandises'))
     specialbnc['services'] = dict(max = specialbnc.pop('plafond_de_recettes_services'))
 
+    # pierre
+    impot_revenu['rvcm'] = rvcm = impot_revenu.pop('rcm')
+    rvcm = impot_revenu['rvcm']
+    produits_des_assurances_vies_et_assimiles = rvcm['produits_des_assurances_vies_et_assimiles']
+    rvcm['abat_assvie'] = abat_assvie = produits_des_assurances_vies_et_assimiles.pop('abattement')
+
+    #produits_des_assurances_vies_et_assimiles['abat_assvie_ipp'] = abat_assvie = produits_des_assurances_vies_et_assimiles.pop('abattement')
+    #impot_revenu['rvcm'].update(produits_des_assurances_vies_et_assimiles.pop('abat_assvie_ipp'))
+    #rvcm['abat_assvie'] = abat_assvie = rvcm.pop('abattement')
+    revenus_de_capitaux_mobiliers_dividendes = rvcm['revenus_de_capitaux_mobiliers_dividendes']
+    rvcm['abatmob'] = abatmob = revenus_de_capitaux_mobiliers_dividendes.pop('abattement_forfaitaire')
+    impot_revenu['rvcm'].update(rvcm.pop('revenus_de_capitaux_mobiliers_dividendes'))
+    rvcm['taux_abattement_capitaux_mobiliers'] = taux_abattement_capitaux_mobiliers = rvcm.pop('taux_de_l_abattement')
+
+
     del root['baremes_ipp_marche_du_travail_labour_market']
     # root['marche_du_travail'] = root.pop('baremes_ipp_marche_du_travail_labour_market')
 

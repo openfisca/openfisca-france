@@ -2750,30 +2750,6 @@
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
     </CODE>
   </NODE>
-  <NODE code="rcm">
-    <NODE code="produits_des_assurances_vies_et_assimiles">
-      <CODE code="abattement" format="float" type="monetary">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="4600" />
-        <VALUE deb="1997-01-01" fin="2000-12-31" valeur="30000" />
-      </CODE>
-    </NODE>
-    <NODE code="revenus_de_capitaux_mobiliers_dividendes">
-      <CODE code="abattement_forfaitaire" format="float" type="monetary">
-        <VALUE deb="2010-01-01" fin="2011-12-31" valeur="1525" />
-        <VALUE deb="2001-01-01" fin="2009-12-31" valeur="1220" />
-        <VALUE deb="1988-01-01" fin="2000-12-31" valeur="8000" />
-        <VALUE deb="1984-01-01" fin="1987-12-31" valeur="5000" />
-        <VALUE deb="1979-01-01" fin="1983-12-31" valeur="3000" />
-      </CODE>
-      <CODE code="plafond_du_credit_d_impot" format="float" type="monetary">
-        <VALUE deb="2004-01-01" fin="2009-12-31" valeur="115" />
-      </CODE>
-      <CODE code="taux_de_l_abattement" format="percent">
-        <VALUE deb="2010-01-01" fuzzy="true" valeur="0.4" />
-        <VALUE deb="1979-01-01" fin="2009-12-31" valeur="0.5" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="recouvrement" description="Mise en recouvrement de l'impôt">
     <CODE code="min" description="Seuil de recouvrement après imputations" format="integer" type="monetary">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="12" />
@@ -3630,26 +3606,25 @@
     </CODE>
   </NODE>
   <NODE code="rvcm" description="Revenus des valeurs et capitaux mobiliers">
-    <CODE code="abat_assvie" description="Abattement produits des contrats d'assurance vie" format="integer" type="monetary">
-      <VALUE deb="2014-01-01" fuzzy="true" valeur="4600" />
-      <VALUE deb="2001-01-01" fin="2013-12-31" valeur="4600" />
+    <CODE code="abat_assvie" description="Abattement produits des contrats d'assurance vie" format="float" type="monetary">
+      <VALUE deb="2001-01-01" fuzzy="true" valeur="4600" />
+      <VALUE deb="1997-01-01" fin="2000-12-31" valeur="30000" />
     </CODE>
-    <CODE code="abatmob" description="Abattement capitaux mobiliers - Max" format="integer" type="monetary">
-      <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
-      <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0" />
-      <VALUE deb="2006-01-01" fin="2011-12-31" valeur="1525" />
-      <VALUE deb="2001-01-01" fin="2005-12-31" valeur="1220" /> #TODO: check doesn't seams consitent with fiche de calcul
-        </CODE>
-    <CODE code="abatmob_taux" description="Abattement capitaux mobiliers - Taux" format="percent">
-      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.4" />
-      <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.4" />
-      <VALUE deb="1997-01-01" fin="2005-12-31" valeur="0.5" />
+    <CODE code="abatmob" description="Abattement capitaux mobiliers - Max" format="float" type="monetary">
+      <VALUE deb="2010-01-01" fin="2011-12-31" valeur="1525" />
+      <VALUE deb="2001-01-01" fin="2009-12-31" valeur="1220" />
+      <VALUE deb="1988-01-01" fin="2000-12-31" valeur="8000" />
+      <VALUE deb="1984-01-01" fin="1987-12-31" valeur="5000" />
+      <VALUE deb="1979-01-01" fin="1983-12-31" valeur="3000" />
     </CODE>
     <CODE code="majGO" description="majoration case GO" format="percent">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="1.25" />
       <VALUE deb="2006-01-01" fin="2014-12-31" valeur="1.25" /> #
         TODO: CHECK wild extension of date
       <VALUE deb="2002-01-01" fin="2005-12-31" valeur="1" />
+    </CODE>
+    <CODE code="plafond_du_credit_d_impot" format="float" type="monetary">
+      <VALUE deb="2004-01-01" fin="2009-12-31" valeur="115" />
     </CODE>
     <NODE code="prelevement_liberatoire" description="Prélèvement libératoire">
       <CODE code="action" description="Revenus des actions et parts soumis au prélèvement libératoire de 18% (case DA)">
@@ -3668,6 +3643,10 @@
         <VALUE deb="2004-01-01" fin="2007-12-31" valeur="0.160" />
       </CODE>
     </NODE>
+    <CODE code="taux_abattement_capitaux_mobiliers" description="Abattement capitaux mobiliers - Taux" format="percent">
+      <VALUE deb="2010-01-01" fuzzy="true" valeur="0.4" />
+      <VALUE deb="1979-01-01" fin="2009-12-31" valeur="0.5" />
+    </CODE>
   </NODE>
   <NODE code="sal_dom">
     <NODE code="emploi_d_un_salarie_a_domicile">
