@@ -3308,7 +3308,33 @@
         <VALUE deb="1983-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE code="saldom" description="Sommes versées pour l'emploi d'un salariés à domicile (à compléter)">
+    <NODE code="salarie_domicile" description="Sommes versées pour l'emploi d'un salariés à domicile (à compléter)">
+      <NODE code="emploi_d_un_salarie_a_domicile">
+        <CODE code="increment_du_plafond" format="float" type="monetary">
+          <VALUE deb="2005-01-01" fuzzy="true" valeur="1500" />
+        </CODE>
+        <CODE code="plafond" format="float" type="monetary">
+          <VALUE deb="2005-01-01" fuzzy="true" valeur="12000" />
+          <VALUE deb="2003-01-01" fin="2004-12-31" valeur="10000" />
+          <VALUE deb="2002-01-01" fin="2002-12-31" valeur="7400" />
+          <VALUE deb="2001-01-01" fin="2001-12-31" valeur="6900" />
+          <VALUE deb="1997-01-01" fin="2000-12-31" valeur="45000" />
+          <VALUE deb="1995-01-01" fin="1996-12-31" valeur="90000" />
+          <VALUE deb="1993-01-01" fin="1994-12-31" valeur="26000" />
+          <VALUE deb="1991-01-01" fin="1992-12-31" valeur="25000" />
+        </CODE>
+        <CODE code="plafond_maximum" format="float" type="monetary">
+          <VALUE deb="2005-01-01" fuzzy="true" valeur="15000" />
+        </CODE>
+        <CODE code="plafond_pour_invalides" format="float" type="monetary">
+          <VALUE deb="2005-01-01" fuzzy="true" valeur="20000" />
+          <VALUE deb="2001-01-01" fin="2004-12-31" valeur="13800" />
+          <VALUE deb="1997-01-01" fin="2000-12-31" valeur="90000" />
+        </CODE>
+        <CODE code="taux" format="percent">
+          <VALUE deb="1991-01-01" fuzzy="true" valeur="0.5" />
+        </CODE>
+      </NODE>
       <CODE code="max1" description="Plafond cas général" format="integer" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="12000" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="12000" />
@@ -3461,24 +3487,9 @@
       <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.25" />
       <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0" />
     </CODE>
-    <CODE code="def_agri_seuil" description="Déficit agricole///%cf art 156 du CGI" format="integer" type="monetary">
-      <VALUE deb="2014-01-01" fuzzy="true" valeur="106225" />
-      <VALUE deb="2011-01-01" fin="2013-12-31" valeur="106225" />
-      <VALUE deb="2010-01-01" fin="2010-12-31" valeur="104655" />
-      <VALUE deb="2009-01-01" fin="2009-12-31" valeur="104238" />
-      <VALUE deb="2007-01-01" fin="2008-12-31" valeur="101300" />
-      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="100000" />
-      <VALUE deb="2005-01-01" fin="2005-12-31" valeur="61080" />
-      <VALUE deb="2004-01-01" fin="2004-12-31" valeur="60000" />
-      <VALUE deb="2002-01-01" fin="2003-12-31" valeur="53360" />
-    </CODE>
-    <CODE code="def_fonc_seuil" description="Déficit foncier art 156-I-3 du CGI" format="integer" type="monetary">
-      <VALUE deb="2015-01-01" fuzzy="true" valeur="10700" />
-      <VALUE deb="2002-01-01" fin="2014-12-31" valeur="10700" />
-    </CODE>
     <NODE code="micro" description="Régime microentreprise/Spécial bnc">
       <NODE code="imputation_sur_le_revenu_global">
-        <CODE code="plafond_deficits_agricoles" format="float" type="monetary">
+        <CODE code="plafond_deficits_agricoles" description="Déficit agricole///%cf art 156 du CGI" format="float" type="monetary">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="107610" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="107075" />
           <VALUE deb="2011-01-01" fin="2012-12-31" valeur="106225" />
@@ -3495,7 +3506,7 @@
           <VALUE deb="1988-01-01" fin="1988-12-31" valeur="70000" />
           <VALUE deb="1979-01-01" fin="1987-12-31" valeur="40000" />
         </CODE>
-        <CODE code="plafond_deficits_fonciers" format="float" type="monetary">
+        <CODE code="plafond_deficits_fonciers" description="Déficit foncier art 156-I-3 du CGI" format="float" type="monetary">
           <VALUE deb="2001-01-01" fuzzy="true" valeur="10700" />
           <VALUE deb="1995-01-01" fin="2000-12-31" valeur="70000" />
           <VALUE deb="1992-01-01" fin="1994-12-31" valeur="50000" />
@@ -3647,34 +3658,6 @@
       <VALUE deb="2010-01-01" fuzzy="true" valeur="0.4" />
       <VALUE deb="1979-01-01" fin="2009-12-31" valeur="0.5" />
     </CODE>
-  </NODE>
-  <NODE code="sal_dom">
-    <NODE code="emploi_d_un_salarie_a_domicile">
-      <CODE code="increment_du_plafond" format="float" type="monetary">
-        <VALUE deb="2005-01-01" fuzzy="true" valeur="1500" />
-      </CODE>
-      <CODE code="plafond" format="float" type="monetary">
-        <VALUE deb="2005-01-01" fuzzy="true" valeur="12000" />
-        <VALUE deb="2003-01-01" fin="2004-12-31" valeur="10000" />
-        <VALUE deb="2002-01-01" fin="2002-12-31" valeur="7400" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="6900" />
-        <VALUE deb="1997-01-01" fin="2000-12-31" valeur="45000" />
-        <VALUE deb="1995-01-01" fin="1996-12-31" valeur="90000" />
-        <VALUE deb="1993-01-01" fin="1994-12-31" valeur="26000" />
-        <VALUE deb="1991-01-01" fin="1992-12-31" valeur="25000" />
-      </CODE>
-      <CODE code="plafond_maximum" format="float" type="monetary">
-        <VALUE deb="2005-01-01" fuzzy="true" valeur="15000" />
-      </CODE>
-      <CODE code="plafond_pour_invalides" format="float" type="monetary">
-        <VALUE deb="2005-01-01" fuzzy="true" valeur="20000" />
-        <VALUE deb="2001-01-01" fin="2004-12-31" valeur="13800" />
-        <VALUE deb="1997-01-01" fin="2000-12-31" valeur="90000" />
-      </CODE>
-      <CODE code="taux" format="percent">
-        <VALUE deb="1991-01-01" fuzzy="true" valeur="0.5" />
-      </CODE>
-    </NODE>
   </NODE>
   <NODE code="sofica">
     <NODE code="reduction_pour_souscriptions_de_parts_de_sofica">

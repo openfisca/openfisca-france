@@ -2605,7 +2605,7 @@ class saldom(DatedVariable):
         f7df = simulation.calculate('f7df', period)
         f7dg = simulation.calculate('f7dg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.saldom
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
         max1 = P.max1 * not_(isinvalid) + P.max3 * isinvalid
@@ -2623,7 +2623,7 @@ class saldom(DatedVariable):
         f7dl = simulation.calculate('f7dl', period)
         f7dg = simulation.calculate('f7dg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.saldom
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
         nbpacmin = nb_pac2 + f7dl
@@ -2646,7 +2646,7 @@ class saldom(DatedVariable):
         f7dl = simulation.calculate('f7dl', period)
         f7dg = simulation.calculate('f7dg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.saldom
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
         nbpacmin = nb_pac2 + f7dl
@@ -2671,7 +2671,7 @@ class saldom(DatedVariable):
         f7dq = simulation.calculate('f7dq', period)
         f7dg = simulation.calculate('f7dg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.saldom
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
         annee1 = f7dq

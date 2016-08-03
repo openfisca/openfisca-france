@@ -5,6 +5,7 @@ impot_revenu.abattements_rni.inv_max1: impot_revenu.abattements_rni.personne_age
 impot_revenu.abattements_rni.inv_max2: impot_revenu.abattements_rni.personne_agee_ou_invalide.plafond_de_ressources_2
 impot_revenu.abattements_rni.inv_montant: impot_revenu.abattements_rni.personne_agee_ou_invalide.montant
 impot_revenu.rvcm.abatmob_taux: impot_revenu.rvcm.taux_abattement_capitaux_mobiliers
+impot_revenu.reductions_impots.saldom: impot_revenu.reductions_impots.salarie_domicile
 # impot_revenu.bareme: null
 impot_revenu.charges_deductibles.acc75a: impot_revenu.charges_deductibles.accueil_personne_agee
 impot_revenu.charges_deductibles.accueil_personne_agee.max: impot_revenu.charges_deductibles.accueil_personne_agee.plafond
@@ -28,6 +29,8 @@ impot_revenu.rpns.micro.servi: impot_revenu.rpns.micro.specialbnc.services
 impot_revenu.rpns.micro.specialbnc.max: null  # using services since they are the same
 impot_revenu.rpns.micro.specialbnc.min: null  # using services since they are the same
 impot_revenu.microfoncier: impot_revenu.rpns.micro.microfoncier
+impot_revenu.rpns.def_agri_seuil: impot_revenu.rpns.micro.imputation_sur_le_revenu_global.plafond_deficits_agricoles
+impot_revenu.rpns.def_fonc_seuil: impot_revenu.rpns.micro.imputation_sur_le_revenu_global.plafond_deficits_fonciers
 # cotsoc.pat.cadre.agffc: prelevements_sociaux.cotisations_sociales.agff.employeur.cadre
 # cotsoc.pat.noncadre.agffnc: prelevements_sociaux.cotisations_sociales.agff.employeur.non_cadre
 csg: prelevements_sociaux.csg

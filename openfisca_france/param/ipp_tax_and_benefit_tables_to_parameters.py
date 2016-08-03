@@ -177,6 +177,9 @@ def transform_ipp_tree(root):
     rvcm['abatmob'] = abatmob = revenus_de_capitaux_mobiliers_dividendes.pop('abattement_forfaitaire')
     impot_revenu['rvcm'].update(rvcm.pop('revenus_de_capitaux_mobiliers_dividendes'))
     rvcm['taux_abattement_capitaux_mobiliers'] = taux_abattement_capitaux_mobiliers = rvcm.pop('taux_de_l_abattement')
+    impot_revenu['reductions_impots'] = reductions_impots = dict()
+    reductions_impots = impot_revenu['reductions_impots']
+    reductions_impots['salarie_domicile'] = salarie_domicile = impot_revenu.pop('sal_dom')
 
 
     del root['baremes_ipp_marche_du_travail_labour_market']
