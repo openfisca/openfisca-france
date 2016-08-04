@@ -14,6 +14,8 @@ impot_revenu.reductions_impots.dons.dfppce.max: impot_revenu.reductions_impots.d
 impot_revenu.reductions_impots.dons.dfppce.max_niv: impot_revenu.reductions_impots.dons.max_niv
 impot_revenu.reductions_impots.dons.dfppce: null
 impot_revenu.reductions_impots.spfcpi.max: impot_revenu.reductions_impots.spfcpi.plafond_celibataire
+impot_revenu.reductions_impots.garext.max: impot_revenu.reductions_impots.garext.plafond
+impot_revenu.credits_impot.garext.max: impot_revenu.credits_impot.garext.plafond
 # impot_revenu.bareme: null
 impot_revenu.charges_deductibles.acc75a: impot_revenu.charges_deductibles.accueil_personne_agee
 impot_revenu.charges_deductibles.accueil_personne_agee.max: impot_revenu.charges_deductibles.accueil_personne_agee.plafond

@@ -1118,14 +1118,20 @@
       </CODE>
     </NODE>
     <NODE code="garext" description="Frais de garde des enfants à l'extérieur du domicile">
-      <CODE code="max" description="Plafond" format="integer">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="2300" />
-        <VALUE deb="2005-01-01" fin="2013-12-31" valeur="2300" />
+      <CODE code="plafond" description="Plafond" format="float" type="monetary">
+        <VALUE deb="2001-01-01" fuzzy="true" valeur="2300" />
+        <VALUE deb="1991-01-01" fin="2000-12-31" valeur="15000" />
+        <VALUE deb="1988-01-01" fin="1990-12-31" valeur="13000" />
+        <VALUE deb="1986-01-01" fin="1987-12-31" valeur="10000" />
+        <VALUE deb="1985-01-01" fin="1985-12-31" valeur="5000" />
+        <VALUE deb="1984-01-01" fin="1984-12-31" valeur="4310" />
+        <VALUE deb="1983-01-01" fin="1983-12-31" valeur="4000" />
+        <VALUE deb="1978-01-01" fin="1982-12-31" valeur="3000" />
       </CODE>
       <CODE code="taux" description="Taux" format="percent">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.50" />
-        <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.50" />
+        <VALUE deb="2006-01-01" fuzzy="true" valeur="0.5" />
         <VALUE deb="1988-01-01" fin="2005-12-31" valeur="0.25" />
+        <VALUE deb="1978-01-01" fin="1987-12-31" valeur="0" />
       </CODE>
     </NODE>
     <NODE code="inthab" description="Intérêts des emprunts pour l'habitation principale">
@@ -1859,25 +1865,6 @@
       </CODE>
       <CODE code="taux" format="percent">
         <VALUE deb="2006-01-01" fuzzy="true" valeur="0.5" />
-      </CODE>
-    </NODE>
-  </NODE>
-  <NODE code="gardenf">
-    <NODE code="credit_d_impot_pour_frais_de_garde_d_enfants">
-      <CODE code="plafond" format="float" type="monetary">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="2300" />
-        <VALUE deb="1991-01-01" fin="2000-12-31" valeur="15000" />
-        <VALUE deb="1988-01-01" fin="1990-12-31" valeur="13000" />
-        <VALUE deb="1986-01-01" fin="1987-12-31" valeur="10000" />
-        <VALUE deb="1985-01-01" fin="1985-12-31" valeur="5000" />
-        <VALUE deb="1984-01-01" fin="1984-12-31" valeur="4310" />
-        <VALUE deb="1983-01-01" fin="1983-12-31" valeur="4000" />
-        <VALUE deb="1978-01-01" fin="1982-12-31" valeur="3000" />
-      </CODE>
-      <CODE code="taux" format="percent">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="0.5" />
-        <VALUE deb="1988-01-01" fin="2005-12-31" valeur="0.25" />
-        <VALUE deb="1978-01-01" fin="1987-12-31" valeur="0" />
       </CODE>
     </NODE>
   </NODE>
@@ -2773,7 +2760,7 @@
       </CODE>
     </NODE>
     <NODE code="garext" description="Garde des enfants à l'extérieur du domicile">
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+      <CODE code="plafond" description="Plafond" format="integer" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="2300" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="2300" />
       </CODE>

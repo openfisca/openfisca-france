@@ -1674,9 +1674,9 @@ class garext(DatedVariable):
         f7gb = simulation.calculate('f7gb', period)
         f7gc = simulation.calculate('f7gc', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.garext
+        P = simulation.legislation_at(period.start).impot_revenu.credits_impot.garext
 
-        max1 = P.max
+        max1 = P.plafond
         return period, P.taux * (min_(f7ga, max1) + min_(f7gb, max1) + min_(f7gc, max1))
 
     @dated_function(start = date(2003, 1, 1), stop = date(2005, 12, 31))
@@ -1694,10 +1694,10 @@ class garext(DatedVariable):
         f7gf = simulation.calculate('f7gf', period)
         f7gg = simulation.calculate('f7gg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.garext
+        P = simulation.legislation_at(period.start).impot_revenu.credits_impot.garext
 
-        max1 = P.max
-        max2 = P.max / 2
+        max1 = P.plafond
+        max2 = P.plafond / 2
         return period, P.taux * (min_(f7ga, max1) +
                            min_(f7gb, max1) +
                            min_(f7gc, max1) +

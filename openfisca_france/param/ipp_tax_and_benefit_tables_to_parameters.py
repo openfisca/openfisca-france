@@ -189,6 +189,8 @@ def transform_ipp_tree(root):
     reductions_impots['spfcpi'] = spfcpi = impot_revenu.pop('fcp')
     reductions_impots['spfcpi'].update(spfcpi.pop('reduction_d_impot_pour_souscriptions_de_parts_de_fcpi_ou_fip'))
     spfcpi['taux1'] = taux1 = spfcpi.pop('taux')
+    #garde Enfant
+
 
     impot_revenu['credits_impot'] = credits_impot = dict()
     credits_impot['ppe'] = ppe = impot_revenu.pop('ppe')
@@ -210,6 +212,11 @@ def transform_ipp_tree(root):
     ppe['taux3'] = taux3 = ppe.pop('phase_out_couples_mono_emploi')
     minimun_de_ppe = ppe['minimun_de_ppe']
     ppe['versmin'] = versmin = minimun_de_ppe.pop('montant')
+
+    credits_impot['garext'] = garext = impot_revenu.pop('gardenf')
+    credit_d_impot_pour_frais_de_garde_d_enfants = garext['credit_d_impot_pour_frais_de_garde_d_enfants']
+    credits_impot['garext'].update(garext.pop('credit_d_impot_pour_frais_de_garde_d_enfants'))
+    
 
     del root['baremes_ipp_marche_du_travail_labour_market']
     # root['marche_du_travail'] = root.pop('baremes_ipp_marche_du_travail_labour_market')
