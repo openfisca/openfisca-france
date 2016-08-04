@@ -1221,18 +1221,18 @@
       </CODE>
       <NODE code="coefficient_de_majoration_ppe_pour_temps_partiel">
         <CODE code="taux_1" format="percent">
-          <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.85" />
+          <VALUE deb="2006-01-01" fin="2015-12-31" valeur="0.85" />
           <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.65" />
           <VALUE deb="2002-01-01" fin="2004-12-31" valeur="0.45" />
         </CODE>
         <CODE code="taux_2" format="percent">
-          <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.15" />
+          <VALUE deb="2006-01-01" fin="2015-12-31" valeur="0.15" />
           <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.35" />
           <VALUE deb="2002-01-01" fin="2004-12-31" valeur="0.55" />
         </CODE>
       </NODE>
       <CODE code="eligi1" description="Seuil d'éligibilité - célibataire" format="float" type="monetary">
-        <VALUE deb="2007-01-01" fin="2014-12-31" valeur="16251" />
+        <VALUE deb="2007-01-01" fin="2015-12-31" valeur="16251" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="16042" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="12606" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="12383" />
@@ -1242,7 +1242,7 @@
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="76000" />
       </CODE>
       <CODE code="eligi2" description="Seuil d'éligibilité - couple" format="float" type="monetary">
-        <VALUE deb="2007-01-01" fin="2014-12-31" valeur="32498" />
+        <VALUE deb="2007-01-01" fin="2015-12-31" valeur="32498" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="32081" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="25211" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="24765" />
@@ -1252,7 +1252,7 @@
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="152000" />
       </CODE>
       <CODE code="eligi3" description="Seuil d'éligibilité - majoration par demi-part" format="float" type="monetary">
-        <VALUE deb="2007-01-01" fin="2014-12-31" valeur="4490" />
+        <VALUE deb="2007-01-01" fin="2015-12-31" valeur="4490" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="4432" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3483" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="3421" />
@@ -1262,7 +1262,7 @@
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="21000" />
       </CODE>
       <CODE code="monact" description="Prime monoactivité" format="float" type="monetary">
-        <VALUE deb="2007-01-01" fin="2014-12-31" valeur="83" />
+        <VALUE deb="2007-01-01" fin="2015-12-31" valeur="83" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="82" />
         <VALUE deb="2004-01-01" fin="2005-12-31" valeur="81" />
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="80" />
@@ -1275,7 +1275,7 @@
         <VALUE deb="2007-01-01" fin="2013-12-31" valeur="72" />
       </CODE>
       <CODE code="pac" description="Prime personne à charge" format="float" type="monetary">
-        <VALUE deb="2006-01-01" fin="2014-12-31" valeur="36" />
+        <VALUE deb="2006-01-01" fin="2015-12-31" valeur="36" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="35" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="34" />
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="33" />
@@ -1284,7 +1284,7 @@
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="200" />
       </CODE>
       <CODE code="seuil1" description="Seuil première tranche" format="float" type="monetary">
-        <VALUE deb="2007-01-01" fin="2014-12-31" valeur="3743" />
+        <VALUE deb="2007-01-01" fin="2015-12-31" valeur="3743" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="3695" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3570" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="3507" />
@@ -1294,7 +1294,7 @@
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="20575" />
       </CODE>
       <CODE code="seuil2" description="Seuil deuxième tranche" format="float" type="monetary">
-        <VALUE deb="2007-01-01" fin="2014-12-31" valeur="12475" />
+        <VALUE deb="2007-01-01" fin="2015-12-31" valeur="12475" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="12315" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="11899" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="11869" />
@@ -1304,7 +1304,7 @@
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="68583" />
       </CODE>
       <CODE code="seuil3" description="Seuil troisième tranche" format="float" type="monetary">
-        <VALUE deb="2007-01-01" fin="2014-12-31" valeur="17451" />
+        <VALUE deb="2007-01-01" fin="2015-12-31" valeur="17451" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="17227" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="16659" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="16364" />
@@ -1314,7 +1314,7 @@
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="96016" />
       </CODE>
       <CODE code="seuil4" description="Seuil quatrième tranche" format="float" type="monetary">
-        <VALUE deb="2007-01-01" fin="2014-12-31" valeur="24950" />
+        <VALUE deb="2007-01-01" fin="2015-12-31" valeur="24950" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="24630" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="23798" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="23377" />
@@ -1324,7 +1324,7 @@
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="137166" />
       </CODE>
       <CODE code="seuil5" description="Point de sortie pour les couples monoactifs" format="float" type="monetary">
-        <VALUE deb="2007-01-01" fin="2014-12-31" valeur="26572" />
+        <VALUE deb="2007-01-01" fin="2015-12-31" valeur="26572" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="26231" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="25376" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="24927" />
@@ -1334,25 +1334,25 @@
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="146257" />
       </CODE>
       <CODE code="taux1" description="Taux première tranche" format="percent">
-        <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.077" />
+        <VALUE deb="2006-01-01" fin="2015-12-31" valeur="0.077" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.068" />
         <VALUE deb="2003-01-01" fin="2004-12-31" valeur="0.046" />
         <VALUE deb="2001-01-01" fin="2002-12-31" valeur="0.044" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.022" />
       </CODE>
       <CODE code="taux2" description="Taux deuxième tranche" format="percent">
-        <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.193" />
+        <VALUE deb="2006-01-01" fin="2015-12-31" valeur="0.193" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.17" />
         <VALUE deb="2003-01-01" fin="2004-12-31" valeur="0.115" />
         <VALUE deb="2001-01-01" fin="2002-12-31" valeur="0.11" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.055" />
       </CODE>
       <CODE code="taux3" description="Taux troisième tranche" format="percent">
-        <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.051" />
+        <VALUE deb="2006-01-01" fin="2015-12-31" valeur="0.051" />
         <VALUE deb="2000-01-01" fin="2005-12-31" valeur="0.055" />
       </CODE>
       <CODE code="versmin" description="Versement minimum" format="float" type="monetary">
-        <VALUE deb="2005-01-01" fin="2014-12-31" valeur="30" />
+        <VALUE deb="2005-01-01" fin="2015-12-31" valeur="30" />
         <VALUE deb="2001-01-01" fin="2004-12-31" valeur="25" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="160" />
       </CODE>
