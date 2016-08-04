@@ -190,6 +190,26 @@ def transform_ipp_tree(root):
     reductions_impots['spfcpi'].update(spfcpi.pop('reduction_d_impot_pour_souscriptions_de_parts_de_fcpi_ou_fip'))
     spfcpi['taux1'] = taux1 = spfcpi.pop('taux')
 
+    impot_revenu['credits_impot'] = credits_impot = dict()
+    credits_impot['ppe'] = ppe = impot_revenu.pop('ppe')
+    credits_impot['ppe'].update(ppe.pop('seuil_de_rfr_pour_etre_eligibilite_a_la_ppe'))
+    ppe['eligi1'] = eligi1 = ppe.pop('personne_seule')
+    ppe['eligi2'] = eligi2 = ppe.pop('couple_marie_ou_pacse')
+    ppe['eligi3'] = eligi3 = ppe.pop('increment_par_demi_part_de_qf_au_dela_de_1_ou_2')
+    ppe['seuil1'] = seuil1 = ppe.pop('revenu_d_activite_individuel_minimum')
+    ppe['seuil2'] = seuil2 = ppe.pop('revenu_d_activite_individuel_permettant_d_obtenir_la_ppe_a_taux_plein_cas_general')
+    ppe['seuil3'] = seuil3 = ppe.pop('revenu_d_activite_individuel_maximum_cas_general')
+    ppe['seuil4'] = seuil4 = ppe.pop('revenu_d_activite_individuel_permettant_d_obtenir_la_ppe_a_taux_plein_couples_mono_revenus')
+    ppe['seuil5'] = seuil5 = ppe.pop('revenu_d_activite_individuel_maximum_couples_mono_emploi_et_parents_isoles')
+    credits_impot['ppe'].update(ppe.pop('supplements'))
+    ppe['monact'] = monact = ppe.pop('couples_mono_emploi')
+    ppe['pac'] = pac = ppe.pop('par_personne_a_charge')
+    credits_impot['ppe'].update(ppe.pop('taux_de_la_ppe'))
+    ppe['taux1'] = taux1 = ppe.pop('phase_in')
+    ppe['taux2'] = taux2 = ppe.pop('phase_out_cas_general')
+    ppe['taux3'] = taux3 = ppe.pop('phase_out_couples_mono_emploi')
+    minimun_de_ppe = ppe['minimun_de_ppe']
+    ppe['versmin'] = versmin = minimun_de_ppe.pop('montant')
 
     del root['baremes_ipp_marche_du_travail_labour_market']
     # root['marche_du_travail'] = root.pop('baremes_ipp_marche_du_travail_labour_market')

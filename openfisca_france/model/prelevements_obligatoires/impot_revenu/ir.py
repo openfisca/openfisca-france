@@ -2762,11 +2762,12 @@ class nbptr(Variable):
 ###############################################################################
 
 
-class ppe_coef(Variable):
+class ppe_coef(DatedVariable):
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"ppe_coef"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         PPE: coefficient de conversion en cas de changement en cours d'année
@@ -2778,11 +2779,12 @@ class ppe_coef(Variable):
         return period, 360 / nb_jour
 
 
-class ppe_elig(Variable):
+class ppe_elig(DatedVariable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
     label = u"ppe_elig"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence
@@ -2803,11 +2805,12 @@ class ppe_elig(Variable):
         return period, (rfr * ppe_coef) <= seuil
 
 
-class ppe_rev(Variable):
+class ppe_rev(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"ppe_rev"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         base ressource de la ppe
@@ -2827,11 +2830,12 @@ class ppe_rev(Variable):
         return period, rev_sa + rev_ns
 
 
-class ppe_coef_tp(Variable):
+class ppe_coef_tp(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"ppe_coef_tp"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         PPE: coefficient de conversion temps partiel
@@ -2850,11 +2854,12 @@ class ppe_coef_tp(Variable):
         return period, tp + not_(tp) * (frac_sa + frac_ns)
 
 
-class ppe_base(Variable):
+class ppe_base(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"ppe_base"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         period = period.this_year
         ppe_rev = simulation.calculate('ppe_rev', period)
@@ -2866,11 +2871,12 @@ class ppe_base(Variable):
         return period, ppe_rev / (ppe_coef_tp + (ppe_coef_tp == 0)) * ppe_coef
 
 
-class ppe_elig_individu(Variable):
+class ppe_elig_individu(DatedVariable):
     column = BoolCol(default = False)
     entity_class = Individus
     label = u"ppe_elig_i"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         Eligibilité individuelle à la ppe
@@ -2885,11 +2891,12 @@ class ppe_elig_individu(Variable):
         return period, (ppe_rev >= ppe.seuil1) & (ppe_coef_tp != 0)
 
 
-class ppe_brute(Variable):
+class ppe_brute(DatedVariable):
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Prime pour l'emploi brute"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         Prime pour l'emploi (avant éventuel dispositif de cumul avec le RSA)
