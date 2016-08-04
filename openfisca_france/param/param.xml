@@ -5064,7 +5064,7 @@
       <CODE code="caprisque" description="Capital risque (VL)" format="percent">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.24" /> # TODO: Check 2013
-      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.19" />
+        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.19" />
         <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.18" />
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.16" />
       </CODE>
@@ -5079,7 +5079,7 @@
       <CODE code="taux1" description="Plus values de cession de valeurs mobilières" format="percent">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.24" /> # TODO: à partir de 2013: imposition au barême progressif de l'ir avec abattement de  20 % (détention 2 à 4 ans), 30 % (4-6 ans), 40% (au-delà)
-       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.19" />
+        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.19" />
         <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.18" />
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.16" />
       </CODE>

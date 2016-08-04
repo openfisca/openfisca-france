@@ -1446,8 +1446,8 @@ class plus_values(DatedVariable):
         rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
         out = (plus_values.pvce * rpns_pvce +
                plus_values.taux1 * max_(0, f3vg - f3vh) +
-               plus_values.caprisque * f3vl +
-               plus_values.pea * f3vm +
+               plus_values.taux_pv_mob_pro * f3vl +
+               plus_values.pea.taux_avant_2_ans * f3vm +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
 
@@ -1482,8 +1482,8 @@ class plus_values(DatedVariable):
         rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
         out = (plus_values.pvce * rpns_pvce +
                plus_values.taux1 * max_(0, f3vg - f3vh) +
-               plus_values.caprisque * f3vl +
-               plus_values.pea * f3vm +
+               plus_values.taux_pv_mob_pro * f3vl +
+               plus_values.pea.taux_avant_2_ans * f3vm +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
             # revenus taxés à un taux proportionnel
@@ -1521,8 +1521,8 @@ class plus_values(DatedVariable):
         rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
         out = (plus_values.pvce * rpns_pvce +
                plus_values.taux1 * max_(0, f3vg - f3vh) +
-               plus_values.caprisque * f3vl +
-               plus_values.pea * f3vm +
+               plus_values.taux_pv_mob_pro * f3vl +
+               plus_values.pea.taux_avant_2_ans * f3vm +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
         # revenus taxés à un taux proportionnel
@@ -1566,8 +1566,8 @@ class plus_values(DatedVariable):
         rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
         out = (plus_values.pvce * rpns_pvce +
                plus_values.taux1 * max_(0, f3vg - f3vh) +
-               plus_values.caprisque * f3vl +
-               plus_values.pea * f3vm +
+               plus_values.taux_pv_mob_pro * f3vl +
+               plus_values.pea.taux_avant_2_ans * f3vm +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
 

@@ -169,10 +169,6 @@ def transform_ipp_tree(root):
     rvcm = impot_revenu['rvcm']
     produits_des_assurances_vies_et_assimiles = rvcm['produits_des_assurances_vies_et_assimiles']
     rvcm['abat_assvie'] = abat_assvie = produits_des_assurances_vies_et_assimiles.pop('abattement')
-
-    #produits_des_assurances_vies_et_assimiles['abat_assvie_ipp'] = abat_assvie = produits_des_assurances_vies_et_assimiles.pop('abattement')
-    #impot_revenu['rvcm'].update(produits_des_assurances_vies_et_assimiles.pop('abat_assvie_ipp'))
-    #rvcm['abat_assvie'] = abat_assvie = rvcm.pop('abattement')
     revenus_de_capitaux_mobiliers_dividendes = rvcm['revenus_de_capitaux_mobiliers_dividendes']
     rvcm['abatmob'] = abatmob = revenus_de_capitaux_mobiliers_dividendes.pop('abattement_forfaitaire')
     impot_revenu['rvcm'].update(rvcm.pop('revenus_de_capitaux_mobiliers_dividendes'))
@@ -180,6 +176,19 @@ def transform_ipp_tree(root):
     impot_revenu['reductions_impots'] = reductions_impots = dict()
     reductions_impots = impot_revenu['reductions_impots']
     reductions_impots['salarie_domicile'] = salarie_domicile = impot_revenu.pop('sal_dom')
+    # Plus-values
+    impot_revenu['plus_values'] = plus_values = impot_revenu.pop('pv')
+    impot_revenu['plus_values'].update(plus_values.pop('imposition_des_plus_values_de_cession_de_valeurs_mobilieres_et_des_plus_values_professionnelles'))
+    #plus_values['taux_pv_mob_pro'] = taux_pv_mob_pro = plus_values.pop('taux')
+
+    reductions_impots['dons'] = dons = impot_revenu.pop('dons')
+    dons_aux_oeuvres = dons['dons_aux_oeuvres']
+    dons['taux_dons_oeuvres'] = taux_dons_oeuvres = dons_aux_oeuvres.pop('taux')
+    dons_aux_partis_politiques = dons['dons_aux_partis_politiques']
+    dons['taux_max_dons_partipo'] = taux_max_dons_partipo = dons_aux_partis_politiques.pop('plafond')
+    reductions_impots['spfcpi'] = spfcpi = impot_revenu.pop('fcp')
+    reductions_impots['spfcpi'].update(spfcpi.pop('reduction_d_impot_pour_souscriptions_de_parts_de_fcpi_ou_fip'))
+    spfcpi['taux1'] = taux1 = spfcpi.pop('taux')
 
 
     del root['baremes_ipp_marche_du_travail_labour_market']

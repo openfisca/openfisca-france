@@ -6,6 +6,14 @@ impot_revenu.abattements_rni.inv_max2: impot_revenu.abattements_rni.personne_age
 impot_revenu.abattements_rni.inv_montant: impot_revenu.abattements_rni.personne_agee_ou_invalide.montant
 impot_revenu.rvcm.abatmob_taux: impot_revenu.rvcm.taux_abattement_capitaux_mobiliers
 impot_revenu.reductions_impots.saldom: impot_revenu.reductions_impots.salarie_domicile
+impot_revenu.plus_values.pea: impot_revenu.plus_values.pea.taux_avant_2_ans
+impot_revenu.plus_values.caprisque: impot_revenu.plus_values.taux_pv_mob_pro
+impot_revenu.reductions_impots.dfppce: impot_revenu.reductions_impots.dons.dfppce
+impot_revenu.reductions_impots.dons.dfppce.taux: impot_revenu.reductions_impots.dons.taux_dons_oeuvres
+impot_revenu.reductions_impots.dons.dfppce.max: impot_revenu.reductions_impots.dons.taux_max_dons_partipo
+impot_revenu.reductions_impots.dons.dfppce.max_niv: impot_revenu.reductions_impots.dons.max_niv
+impot_revenu.reductions_impots.dons.dfppce: null
+impot_revenu.reductions_impots.spfcpi.max: impot_revenu.reductions_impots.spfcpi.plafond_celibataire
 # impot_revenu.bareme: null
 impot_revenu.charges_deductibles.acc75a: impot_revenu.charges_deductibles.accueil_personne_agee
 impot_revenu.charges_deductibles.accueil_personne_agee.max: impot_revenu.charges_deductibles.accueil_personne_agee.plafond
