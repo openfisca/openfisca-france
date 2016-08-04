@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.1.0
+
+* Run yaml tests from CLI
+	* Exemple: `openfisca-run-test my_test.yaml`
+
 ## 4.0.11
 
 * Enhance and move getting-started notebook
