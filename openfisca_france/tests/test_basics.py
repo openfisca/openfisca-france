@@ -4,6 +4,8 @@ from __future__ import division
 
 import datetime
 
+from openfisca_core import periods
+
 from openfisca_france.simulations import Simulation
 
 from openfisca_france.model.base import CAT
@@ -27,15 +29,15 @@ scenarios = [
 
 
 def check_run(simulation, period):
-    assert simulation.calculate('revdisp') is not None, "Can't compute revdisp on period {}".format(period)
-    assert simulation.calculate('salaire_super_brut') is not None, \
+    assert simulation.calculate('revdisp', period) is not None, "Can't compute revdisp on period {}".format(period)
+    assert simulation.calculate('salaire_super_brut', period) is not None, \
         "Can't compute salaire_super_brut on period {}".format(period)
 
 
 def test_basics():
     for scenario in scenarios:
         simulation = Simulation(base.tax_benefit_system, scenario)
-        period = scenario['period']
+        period = periods.period(scenario['period'])
         yield check_run, simulation, period
 
 
