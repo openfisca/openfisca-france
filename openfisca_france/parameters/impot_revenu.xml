@@ -2303,17 +2303,6 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="prest_compen">
-    <NODE code="prestations_compensatoires">
-      <CODE code="plafond" format="float" type="monetary">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="30500" />
-        <VALUE deb="2000-01-01" fin="2000-12-31" valeur="200000" />
-      </CODE>
-      <CODE code="taux" format="percent">
-        <VALUE deb="2000-01-01" fuzzy="true" valeur="0.25" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="pv_immo" description="Plus-values immobilières">
     <CODE code="ann_det1" description="Nombre d'années pleines de détentions minimale (1er seuil)" format="integer">
       <VALUE deb="2011-01-01" fin="2012-01-31" valeur="5" />
@@ -2976,13 +2965,12 @@
       </CODE>
     </NODE>
     <NODE code="prcomp" description="Prestations compensatoires">
-      <CODE code="seuil" description="Seuil" format="integer" type="monetary">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="30500" />
-        <VALUE deb="2001-01-01" fin="2013-12-31" valeur="30500" />
+      <CODE code="seuil" description="Seuil" format="float" type="monetary">
+        <VALUE deb="2001-01-01" fuzzy="true" valeur="30500" />
+        <VALUE deb="2000-01-01" fin="2000-12-31" valeur="200000" />
       </CODE>
       <CODE code="taux" description="Taux" format="percent">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
-        <VALUE deb="2000-01-01" fin="2013-12-31" valeur="0.25" />
+        <VALUE deb="2000-01-01" fuzzy="true" valeur="0.25" />
       </CODE>
     </NODE>
     <NODE code="reduction_impot_exceptionnelle" description="Réduction d'impôt exceptionnelle">

@@ -263,6 +263,11 @@ def transform_ipp_tree(root):
     reductions_impots['invfor'].update(invfor.pop('reduction_d_impot_pour_investissements_forestiers'))
     invfor['seuil'] = invfor.pop('plafond_des_depenses_d_investissement_forestier')
 
+    # prestations compensatoires
+    reductions_impots['prcomp'] = prcomp = impot_revenu.pop('prest_compen')
+    reductions_impots['prcomp'].update(prcomp.pop('prestations_compensatoires'))
+    prcomp['seuil'] = prcomp.pop('plafond')
+
 
     del root['baremes_ipp_marche_du_travail_labour_market']
     # root['marche_du_travail'] = root.pop('baremes_ipp_marche_du_travail_labour_market')
