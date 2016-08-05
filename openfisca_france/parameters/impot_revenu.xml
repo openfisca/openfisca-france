@@ -1723,22 +1723,6 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="enfscol">
-    <NODE code="reduction_pour_enfants_scolarises">
-      <CODE code="college" format="float" type="monetary">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="61" />
-        <VALUE deb="1992-01-01" fin="2000-12-31" valeur="400" />
-      </CODE>
-      <CODE code="lycee" format="float" type="monetary">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="153" />
-        <VALUE deb="1992-01-01" fin="2000-12-31" valeur="1000" />
-      </CODE>
-      <CODE code="universite" format="float" type="monetary">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="183" />
-        <VALUE deb="1992-01-01" fin="2000-12-31" valeur="1200" />
-      </CODE>
-    </NODE>
-  </NODE>
   <NODE code="exo_ir">
     <NODE code="conditions_de_ressources_pour_exoneration_d_ir">
       <CODE code="apprentis" format="float" type="monetary">
@@ -1850,89 +1834,6 @@
         <VALUE deb="1979-01-01" fin="1979-12-31" valeur="20300" />
         <VALUE deb="1978-01-01" fin="1978-12-31" valeur="18300" />
         <VALUE deb="1977-01-01" fin="1977-12-31" valeur="16600" />
-      </CODE>
-    </NODE>
-  </NODE>
-  <NODE code="foret">
-    <CODE code="plafond_des_depenses_d_investissement_forestier" format="float" type="monetary">
-      <VALUE deb="2001-01-01" fuzzy="true" valeur="5700" />
-    </CODE>
-    <NODE code="reduction_d_impot_pour_investissements_forestiers">
-      <CODE code="taux" format="percent">
-        <VALUE deb="2012-01-01" fuzzy="true" valeur="0.18" />
-        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.22" />
-        <VALUE deb="2001-01-01" fin="2010-12-31" valeur="0.25" />
-      </CODE>
-    </NODE>
-    <NODE code="reduction_d_impot_pour_la_defense_des_forets_contre_les_incendies">
-      <CODE code="plafond" format="float" type="monetary">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="1000" />
-      </CODE>
-      <CODE code="taux" format="percent">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="0.5" />
-      </CODE>
-    </NODE>
-  </NODE>
-  <NODE code="habitat_princ">
-    <NODE code="deduction_des_charges">
-      <CODE code="increment" format="float" type="monetary">
-        <VALUE deb="1979-01-01" fin="1983-12-31" valeur="1000" />
-      </CODE>
-      <CODE code="plafond" format="float" type="monetary">
-        <VALUE deb="1979-01-01" fin="1983-12-31" valeur="7000" />
-      </CODE>
-    </NODE>
-    <NODE code="interets_d_emprunts">
-      <CODE code="increment" format="float" type="monetary">
-        <VALUE deb="1984-01-01" fin="2000-12-31" valeur="1500" />
-      </CODE>
-      <CODE code="plafond" format="float" type="monetary">
-        <VALUE deb="1984-01-01" fin="2000-12-31" valeur="9000" />
-      </CODE>
-    </NODE>
-    <NODE code="reduction_d_impot_pour_gros_travaux">
-      <CODE code="plafond" format="float" type="monetary">
-        <VALUE deb="1997-01-01" fin="1999-12-31" valeur="20000" />
-        <VALUE deb="1995-01-01" fin="1996-12-31" valeur="15000" />
-        <VALUE deb="1984-01-01" fin="1994-12-31" valeur="8000" />
-      </CODE>
-      <CODE code="taux" format="percent">
-        <VALUE deb="1997-01-01" fin="1999-12-31" valeur="0.2" />
-        <VALUE deb="1984-01-01" fin="1996-12-31" valeur="0.25" />
-      </CODE>
-    </NODE>
-    <NODE code="reduction_d_impot_pour_interets_d_emprunt_habitat">
-      <CODE code="increment_du_plafond" format="float" type="monetary">
-        <VALUE deb="2001-01-01" fin="2002-12-31" valeur="305" />
-        <VALUE deb="1985-01-01" fin="2000-12-31" valeur="2000" />
-      </CODE>
-      <CODE code="plafond_1" format="float" type="monetary">
-        <VALUE deb="2001-01-01" fin="2002-12-31" valeur="2287" />
-        <VALUE deb="1985-01-01" fin="2000-12-31" valeur="15000" />
-      </CODE>
-      <CODE code="plafond_2" format="float" type="monetary">
-        <VALUE deb="1986-01-01" fin="1996-12-31" valeur="30000" />
-      </CODE>
-      <CODE code="plafond_3" format="float" type="monetary">
-        <VALUE deb="2001-01-01" fin="2002-12-31" valeur="3049" />
-        <VALUE deb="1991-01-01" fin="2000-12-31" valeur="20000" />
-      </CODE>
-      <CODE code="taux" format="percent">
-        <VALUE deb="1984-01-01" fin="2002-12-31" valeur="0.25" />
-      </CODE>
-    </NODE>
-  </NODE>
-  <NODE code="heberg_sante">
-    <NODE code="reductions_d_impot_pour_depenses_d_accueil_dans_etablissement_pour_les_personnes_agees">
-      <CODE code="plafond" format="float" type="monetary">
-        <VALUE deb="2006-01-01" fuzzy="true" valeur="10000" />
-        <VALUE deb="2003-01-01" fin="2005-12-31" valeur="3000" />
-        <VALUE deb="2001-01-01" fin="2002-12-31" valeur="2300" />
-        <VALUE deb="2000-01-01" fin="2000-12-31" valeur="15000" />
-        <VALUE deb="1989-01-01" fin="1999-12-31" valeur="13000" />
-      </CODE>
-      <CODE code="taux" format="percent">
-        <VALUE deb="1989-01-01" fuzzy="true" valeur="0.25" />
       </CODE>
     </NODE>
   </NODE>
@@ -2581,15 +2482,15 @@
       </CODE>
     </NODE>
     <NODE code="daepad" description="Dépenses d'accueil dans un établissement pour personnes âgées dépendantes">
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="10000" />
-        <VALUE deb="2006-01-01" fin="2013-12-31" valeur="10000" />
-        <VALUE deb="2002-01-01" fin="2005-12-31" valeur="3000" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="2300" />
+      <CODE code="max" description="Plafond" format="float" type="monetary">
+        <VALUE deb="2006-01-01" fuzzy="true" valeur="10000" />
+        <VALUE deb="2003-01-01" fin="2005-12-31" valeur="3000" />
+        <VALUE deb="2001-01-01" fin="2002-12-31" valeur="2300" />
+        <VALUE deb="2000-01-01" fin="2000-12-31" valeur="15000" />
+        <VALUE deb="1989-01-01" fin="1999-12-31" valeur="13000" />
       </CODE>
       <CODE code="taux" description="Taux" format="percent">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
-        <VALUE deb="1989-01-01" fin="2013-12-31" valeur="0.25" />
+        <VALUE deb="1989-01-01" fuzzy="true" valeur="0.25" />
       </CODE>
     </NODE>
     <NODE code="deffor" description="Défense des forêts contre l'incendie">
@@ -2751,17 +2652,17 @@
       </CODE>
     </NODE>
     <NODE code="ecpess" description="Enfants à charge poursuivant leurs études secondaires ou supérieures">
-      <CODE code="col" description="Collège" format="integer" type="monetary">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="61" />
-        <VALUE deb="2001-01-01" fin="2013-12-31" valeur="61" />
+      <CODE code="col" description="Collège" format="float" type="monetary">
+        <VALUE deb="2001-01-01" fuzzy="true" valeur="61" />
+        <VALUE deb="1992-01-01" fin="2000-12-31" valeur="400" />
       </CODE>
-      <CODE code="lyc" description="Lycée" format="integer" type="monetary">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="153" />
-        <VALUE deb="2001-01-01" fin="2013-12-31" valeur="153" />
+      <CODE code="lyc" description="Lycée" format="float" type="monetary">
+        <VALUE deb="2001-01-01" fuzzy="true" valeur="153" />
+        <VALUE deb="1992-01-01" fin="2000-12-31" valeur="1000" />
       </CODE>
-      <CODE code="sup" description="Supérieur" format="integer" type="monetary">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="183" />
-        <VALUE deb="2001-01-01" fin="2013-12-31" valeur="183" />
+      <CODE code="sup" description="Supérieur" format="float" type="monetary">
+        <VALUE deb="2001-01-01" fuzzy="true" valeur="183" />
+        <VALUE deb="1992-01-01" fin="2000-12-31" valeur="1200" />
       </CODE>
     </NODE>
     <NODE code="garext" description="Garde des enfants à l'extérieur du domicile">
@@ -2794,14 +2695,53 @@
       </CODE>
     </NODE>
     <NODE code="intemp" description="Intérêts d'emprunts (WG)">
-      <CODE code="max" description="Maximum" format="integer" type="monetary">
+      <NODE code="deduction_des_charges">
+        <CODE code="increment" format="float" type="monetary">
+          <VALUE deb="1979-01-01" fin="1983-12-31" valeur="1000" />
+        </CODE>
+        <CODE code="plafond" format="float" type="monetary">
+          <VALUE deb="1979-01-01" fin="1983-12-31" valeur="7000" />
+        </CODE>
+      </NODE>
+      <NODE code="interets_d_emprunts">
+        <CODE code="increment" format="float" type="monetary">
+          <VALUE deb="1984-01-01" fin="2000-12-31" valeur="1500" />
+        </CODE>
+        <CODE code="plafond" format="float" type="monetary">
+          <VALUE deb="1984-01-01" fin="2000-12-31" valeur="9000" />
+        </CODE>
+      </NODE>
+      <CODE code="max" description="Maximum" format="float" type="monetary">
         <VALUE deb="2001-01-01" fin="2002-12-31" valeur="2287" />
+        <VALUE deb="1985-01-01" fin="2000-12-31" valeur="15000" />
       </CODE>
-      <CODE code="pac" description="Par personne à charge" format="integer" type="monetary">
+      <CODE code="pac" description="Par personne à charge" format="float" type="monetary">
         <VALUE deb="2001-01-01" fin="2002-12-31" valeur="305" />
+        <VALUE deb="1985-01-01" fin="2000-12-31" valeur="2000" />
       </CODE>
+      <CODE code="plafond_2" format="float" type="monetary">
+        <VALUE deb="1986-01-01" fin="1996-12-31" valeur="30000" />
+      </CODE>
+      <CODE code="plafond_3" format="float" type="monetary">
+        <VALUE deb="2001-01-01" fin="2002-12-31" valeur="3049" />
+        <VALUE deb="1991-01-01" fin="2000-12-31" valeur="20000" />
+      </CODE>
+      <NODE code="reduction_d_impot_pour_gros_travaux">
+        <CODE code="plafond" format="float" type="monetary">
+          <VALUE deb="1997-01-01" fin="1999-12-31" valeur="20000" />
+          <VALUE deb="1995-01-01" fin="1996-12-31" valeur="15000" />
+          <VALUE deb="1984-01-01" fin="1994-12-31" valeur="8000" />
+        </CODE>
+        <CODE code="taux" format="percent">
+          <VALUE deb="1997-01-01" fin="1999-12-31" valeur="0.2" />
+          <VALUE deb="1984-01-01" fin="1996-12-31" valeur="0.25" />
+        </CODE>
+      </NODE>
       <CODE code="taux" description="Taux" format="percent">
         <VALUE deb="2002-01-01" fin="2003-12-31" valeur="0.25" />
+      </CODE>
+      <CODE code="taux1" format="percent">
+        <VALUE deb="1984-01-01" fin="2002-12-31" valeur="0.25" />
       </CODE>
     </NODE>
     <NODE code="invfor" description="Investissements forestiers (UN, à compléter) ">
@@ -2813,6 +2753,14 @@
         <VALUE deb="2014-01-01" fuzzy="true" valeur="6250" />
         <VALUE deb="2009-01-01" fin="2013-12-31" valeur="6250" />
       </CODE>
+      <NODE code="reduction_d_impot_pour_la_defense_des_forets_contre_les_incendies">
+        <CODE code="plafond" format="float" type="monetary">
+          <VALUE deb="2006-01-01" fuzzy="true" valeur="1000" />
+        </CODE>
+        <CODE code="taux" format="percent">
+          <VALUE deb="2006-01-01" fuzzy="true" valeur="0.5" />
+        </CODE>
+      </NODE>
       <CODE code="report10" description="Report des excédents 2010" format="percent" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.25" />
@@ -2825,15 +2773,13 @@
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.18" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.18" />
       </CODE>
-      <CODE code="seuil" description="Seuil" format="integer" type="monetary">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="5700" />
-        <VALUE deb="2001-01-01" fin="2013-12-31" valeur="5700" />
+      <CODE code="seuil" description="Seuil" format="float" type="monetary">
+        <VALUE deb="2001-01-01" fuzzy="true" valeur="5700" />
       </CODE>
       <CODE code="taux" description="Taux" format="percent">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="0.18" />
-        <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.18" />
+        <VALUE deb="2012-01-01" fuzzy="true" valeur="0.18" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.22" />
-        <VALUE deb="2002-01-01" fin="2010-12-31" valeur="0.25" />
+        <VALUE deb="2001-01-01" fin="2010-12-31" valeur="0.25" />
       </CODE>
       <CODE code="taux_ass" description="Taux pour les assurances" format="percent" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.76" />

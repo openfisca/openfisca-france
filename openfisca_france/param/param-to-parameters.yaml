@@ -18,6 +18,7 @@ impot_revenu.reductions_impots.garext.max: impot_revenu.reductions_impots.garext
 impot_revenu.reductions_impots.ecodev.base: impot_revenu.reductions_impots.ecodev.taux_plafond
 impot_revenu.reductions_impots.ecodev.max: impot_revenu.reductions_impots.ecodev.plafond_par_personne
 impot_revenu.credits_impot.garext.max: impot_revenu.credits_impot.garext.plafond
+
 # impot_revenu.bareme: null
 impot_revenu.charges_deductibles.acc75a: impot_revenu.charges_deductibles.accueil_personne_agee
 impot_revenu.charges_deductibles.accueil_personne_agee.max: impot_revenu.charges_deductibles.accueil_personne_agee.plafond

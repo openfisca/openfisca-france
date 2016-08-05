@@ -238,6 +238,31 @@ def transform_ipp_tree(root):
     reductions_impots['ecodev'].update(ecodev.pop('compte_epargne_co_developpement'))
     ecodev['taux_plafond'] = taux_plafond = ecodev.pop('plafond_en_du_revenu_net_global')
 
+    #reduction impot emprunt
+    reductions_impots['intemp'] = intemp = impot_revenu.pop('habitat_princ')
+    reduction_d_impot_pour_interets_d_emprunt_habitat = intemp['reduction_d_impot_pour_interets_d_emprunt_habitat']
+    reduction_d_impot_pour_interets_d_emprunt_habitat['taux1'] = reduction_d_impot_pour_interets_d_emprunt_habitat.pop('taux')
+    reductions_impots['intemp'].update(intemp.pop('reduction_d_impot_pour_interets_d_emprunt_habitat'))
+    intemp['pac'] = intemp.pop('increment_du_plafond')
+    intemp['max'] = intemp.pop('plafond_1')
+
+    # accueil personne agée
+    reductions_impots['daepad'] = daepad = impot_revenu.pop('heberg_sante')
+    reductions_impots['daepad'].update(daepad.pop('reductions_d_impot_pour_depenses_d_accueil_dans_etablissement_pour_les_personnes_agees'))
+    daepad['max'] = daepad.pop('plafond')
+
+    # enfant scolarisé
+    reductions_impots['ecpess'] = ecpess = impot_revenu.pop('enfscol')
+    reductions_impots['ecpess'].update(ecpess.pop('reduction_pour_enfants_scolarises'))
+    ecpess['col'] = ecpess.pop('college')
+    ecpess['lyc'] = ecpess.pop('lycee')
+    ecpess['sup'] = ecpess.pop('universite')
+
+    # investissement foret
+    reductions_impots['invfor'] = invfor = impot_revenu.pop('foret')
+    reductions_impots['invfor'].update(invfor.pop('reduction_d_impot_pour_investissements_forestiers'))
+    invfor['seuil'] = invfor.pop('plafond_des_depenses_d_investissement_forestier')
+
 
     del root['baremes_ipp_marche_du_travail_labour_market']
     # root['marche_du_travail'] = root.pop('baremes_ipp_marche_du_travail_labour_market')
