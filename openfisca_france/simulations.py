@@ -1,218 +1,225 @@
 # -*- coding: utf-8 -*-
 
-import collections
-import datetime
 import itertools
-import logging
-import re
-import uuid
 
-from openfisca_core import conv, scenarios
+from openfisca_core import conv
+import openfisca_core.simulations
+
+from .entities import Familles, Menages, Individus, FoyersFiscaux
 
 
 def N_(message):
     return message
 
 
-log = logging.getLogger(__name__)
-year_or_month_or_day_re = re.compile(ur'(18|19|20)\d{2}(-(0[1-9]|1[0-2])(-([0-2]\d|3[0-1]))?)?$')
+class Simulation(openfisca_core.simulations.AbstractSimulation):
+    def __init__(self, tbs, test_case):
+        self.tax_benefit_system = tbs
 
+        assert 'parent1' in test_case
+        parent1 = test_case['parent1']
 
-class Scenario(scenarios.AbstractScenario):
-    def init_single_entity(self, axes = None, enfants = None, famille = None, foyer_fiscal = None, menage = None,
-            parent1 = None, parent2 = None, period = None):
-        if enfants is None:
-            enfants = []
-        assert parent1 is not None
-        famille = famille.copy() if famille is not None else {}
-        foyer_fiscal = foyer_fiscal.copy() if foyer_fiscal is not None else {}
+        parent2 = test_case['parent2'] if 'parent2' in test_case else None
+        axes = test_case['axes'] if 'axes' in test_case else None
+        period = test_case['period'] if 'period' in test_case else None
+
+        enfants = test_case['enfants'] if 'enfants' in test_case else []
+        famille = test_case['famille'].copy() if 'famille' in test_case else {}
+        foyer_fiscal = test_case['foyer_fiscal'].copy() if 'foyer_fiscal' in test_case else {}
+        menage = test_case['menage'].copy() if 'menage' in test_case else {}
+
         individus = []
-        menage = menage.copy() if menage is not None else {}
         for index, individu in enumerate([parent1, parent2] + (enfants or [])):
             if individu is None:
                 continue
-            id = individu.get('id')
-            if id is None:
+            ident = individu.get('id')
+            if ident is None:
                 individu = individu.copy()
-                individu['id'] = id = 'ind{}'.format(index)
+                individu['id'] = ident = 'ind{}'.format(index)
             individus.append(individu)
             if index <= 1:
-                famille.setdefault('parents', []).append(id)
-                foyer_fiscal.setdefault('declarants', []).append(id)
+                famille.setdefault('parents', []).append(ident)
+                foyer_fiscal.setdefault('declarants', []).append(ident)
                 if index == 0:
-                    menage['personne_de_reference'] = id
+                    menage['personne_de_reference'] = ident
                 else:
-                    menage['conjoint'] = id
+                    menage['conjoint'] = ident
             else:
-                famille.setdefault('enfants', []).append(id)
-                foyer_fiscal.setdefault('personnes_a_charge', []).append(id)
-                menage.setdefault('enfants', []).append(id)
-        conv.check(self.make_json_or_python_to_attributes())(dict(
-            axes = axes,
-            period = period,
-            test_case = dict(
-                familles = [famille],
-                foyers_fiscaux = [foyer_fiscal],
-                individus = individus,
-                menages = [menage],
-                ),
-            ))
-        return self
+                famille.setdefault('enfants', []).append(ident)
+                foyer_fiscal.setdefault('personnes_a_charge', []).append(ident)
+                menage.setdefault('enfants', []).append(ident)
 
-    def make_json_or_python_to_test_case(self, period = None, repair = False):
+        refined_dict = dict(
+            axes=axes,
+            period=period,
+            test_case=dict(
+                familles=[famille],
+                foyers_fiscaux=[foyer_fiscal],
+                individus=individus,
+                menages=[menage],
+                ),
+            )
+
+        conv.check(self.make_json_or_python_to_attributes())(refined_dict)
+
+        super(Simulation, self).__init__(tbs)
+
+    def make_json_or_python_to_test_case(self, period=None, repair=False):
         assert period is not None
 
-        def json_or_python_to_test_case(value, state = None):
+        def json_or_python_to_test_case(value, state=None):
             if value is None:
                 return value, None
             if state is None:
                 state = conv.default_state
 
-            column_by_name = self.tax_benefit_system.column_by_name
+            variable_class_by_name = self.tax_benefit_system.variable_class_by_name
 
             # First validation and conversion step
             test_case, error = conv.pipe(
                 conv.test_isinstance(dict),
                 conv.struct(
                     dict(
-                        familles = conv.pipe(
+                        familles=conv.pipe(
                             conv.make_item_to_singleton(),
                             conv.test_isinstance(list),
                             conv.uniform_sequence(
                                 conv.test_isinstance(dict),
-                                drop_none_items = True,
+                                drop_none_items=True,
                                 ),
-                            conv.function(scenarios.set_entities_json_id),
+                            conv.function(openfisca_core.simulations.set_entities_json_id),
                             conv.uniform_sequence(
                                 conv.struct(
                                     dict(itertools.chain(
                                         dict(
-                                            enfants = conv.pipe(
+                                            enfants=conv.pipe(
                                                 conv.make_item_to_singleton(),
                                                 conv.test_isinstance(list),
                                                 conv.uniform_sequence(
                                                     conv.test_isinstance((basestring, int)),
-                                                    drop_none_items = True,
+                                                    drop_none_items=True,
                                                     ),
                                                 conv.default([]),
                                                 ),
-                                            id = conv.pipe(
+                                            id=conv.pipe(
                                                 conv.test_isinstance((basestring, int)),
                                                 conv.not_none,
                                                 ),
-                                            parents = conv.pipe(
+                                            parents=conv.pipe(
                                                 conv.make_item_to_singleton(),
                                                 conv.test_isinstance(list),
                                                 conv.uniform_sequence(
                                                     conv.test_isinstance((basestring, int)),
-                                                    drop_none_items = True,
+                                                    drop_none_items=True,
                                                     ),
                                                 conv.default([]),
                                                 ),
                                             ).iteritems(),
                                         (
-                                            (column.name, column.json_to_python)
-                                            for column in column_by_name.itervalues()
-                                            if column.entity == 'fam'
+                                            (variable_class.__name__, variable_class.json_to_python())
+                                            for variable_class in variable_class_by_name.itervalues()
+                                            if variable_class.entity is Familles and hasattr(variable_class, 'column_type')
                                             ),
                                         )),
-                                    drop_none_values = True,
+                                    drop_none_values=True,
                                     ),
-                                drop_none_items = True,
+                                drop_none_items=True,
                                 ),
                             conv.default([]),
                             ),
-                        foyers_fiscaux = conv.pipe(
+                        foyers_fiscaux=conv.pipe(
                             conv.make_item_to_singleton(),
                             conv.test_isinstance(list),
                             conv.uniform_sequence(
                                 conv.test_isinstance(dict),
-                                drop_none_items = True,
+                                drop_none_items=True,
                                 ),
-                            conv.function(scenarios.set_entities_json_id),
+                            conv.function(openfisca_core.simulations.set_entities_json_id),
                             conv.uniform_sequence(
                                 conv.struct(
                                     dict(itertools.chain(
                                         dict(
-                                            declarants = conv.pipe(
+                                            declarants=conv.pipe(
                                                 conv.make_item_to_singleton(),
                                                 conv.test_isinstance(list),
                                                 conv.uniform_sequence(
                                                     conv.test_isinstance((basestring, int)),
-                                                    drop_none_items = True,
+                                                    drop_none_items=True,
                                                     ),
                                                 conv.default([]),
                                                 ),
-                                            id = conv.pipe(
+                                            id=conv.pipe(
                                                 conv.test_isinstance((basestring, int)),
                                                 conv.not_none,
                                                 ),
-                                            personnes_a_charge = conv.pipe(
+                                            personnes_a_charge=conv.pipe(
                                                 conv.make_item_to_singleton(),
                                                 conv.test_isinstance(list),
                                                 conv.uniform_sequence(
                                                     conv.test_isinstance((basestring, int)),
-                                                    drop_none_items = True,
+                                                    drop_none_items=True,
                                                     ),
                                                 conv.default([]),
                                                 ),
                                             ).iteritems(),
                                         (
-                                            (column.name, column.json_to_python)
-                                            for column in column_by_name.itervalues()
-                                            if column.entity == 'foy'
+                                            (variable_class.__name__, variable_class.json_to_python())
+                                            for variable_class in variable_class_by_name.itervalues()
+                                            if variable_class.entity is FoyersFiscaux and hasattr(variable_class, 'column_type')
                                             ),
                                         )),
-                                    drop_none_values = True,
+                                    drop_none_values=True,
                                     ),
-                                drop_none_items = True,
+                                drop_none_items=True,
                                 ),
                             conv.default([]),
                             ),
-                        individus = conv.pipe(
+                        individus=conv.pipe(
                             conv.make_item_to_singleton(),
                             conv.test_isinstance(list),
                             conv.uniform_sequence(
                                 conv.test_isinstance(dict),
-                                drop_none_items = True,
+                                drop_none_items=True,
                                 ),
-                            conv.function(scenarios.set_entities_json_id),
+                            conv.function(openfisca_core.simulations.set_entities_json_id),
                             conv.uniform_sequence(
                                 conv.struct(
                                     dict(itertools.chain(
                                         dict(
-                                            id = conv.pipe(
+                                            id=conv.pipe(
                                                 conv.test_isinstance((basestring, int)),
                                                 conv.not_none,
                                                 ),
                                             ).iteritems(),
                                         (
-                                            (column.name, column.json_to_python)
-                                            for column in column_by_name.itervalues()
-                                            if column.entity == 'ind' and column.name not in (
-                                                'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen')
+                                            (variable_class.__name__, variable_class.json_to_python())
+                                            for variable_class in variable_class_by_name.itervalues()
+                                            if (variable_class.entity is Individus and
+                                                hasattr(variable_class, 'column_type') and
+                                                variable_class.__name__ not in (
+                                                'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen'))
                                             ),
                                         )),
-                                    drop_none_values = True,
+                                    drop_none_values=True,
                                     ),
-                                drop_none_items = True,
+                                drop_none_items=True,
                                 ),
                             conv.empty_to_none,
                             conv.not_none,
                             ),
-                        menages = conv.pipe(
+                        menages=conv.pipe(
                             conv.make_item_to_singleton(),
                             conv.test_isinstance(list),
                             conv.uniform_sequence(
                                 conv.test_isinstance(dict),
-                                drop_none_items = True,
+                                drop_none_items=True,
                                 ),
-                            conv.function(scenarios.set_entities_json_id),
+                            conv.function(openfisca_core.simulations.set_entities_json_id),
                             conv.uniform_sequence(
                                 conv.struct(
                                     dict(itertools.chain(
                                         dict(
-                                            autres = conv.pipe(
+                                            autres=conv.pipe(
                                                 # personnes ayant un lien autre avec la personne de référence
                                                 conv.make_item_to_singleton(),
                                                 conv.test_isinstance(list),
@@ -223,38 +230,38 @@ class Scenario(scenarios.AbstractScenario):
                                                 conv.default([]),
                                                 ),
                                             # conjoint de la personne de référence
-                                            conjoint = conv.test_isinstance((basestring, int)),
-                                            enfants = conv.pipe(
+                                            conjoint=conv.test_isinstance((basestring, int)),
+                                            enfants=conv.pipe(
                                                 # enfants de la personne de référence ou de son conjoint
                                                 conv.make_item_to_singleton(),
                                                 conv.test_isinstance(list),
                                                 conv.uniform_sequence(
                                                     conv.test_isinstance((basestring, int)),
-                                                    drop_none_items = True,
+                                                    drop_none_items=True,
                                                     ),
                                                 conv.default([]),
                                                 ),
-                                            id = conv.pipe(
+                                            id=conv.pipe(
                                                 conv.test_isinstance((basestring, int)),
                                                 conv.not_none,
                                                 ),
-                                            personne_de_reference = conv.test_isinstance((basestring, int)),
+                                            personne_de_reference=conv.test_isinstance((basestring, int)),
                                             ).iteritems(),
                                         (
-                                            (column.name, column.json_to_python)
-                                            for column in column_by_name.itervalues()
-                                            if column.entity == 'men'
+                                            (variable_class.__name__, variable_class.json_to_python())
+                                            for variable_class in variable_class_by_name.itervalues()
+                                            if variable_class.entity is Menages  and hasattr(variable_class, 'column_type')
                                             ),
                                         )),
-                                    drop_none_values = True,
+                                    drop_none_values=True,
                                     ),
-                                drop_none_items = True,
+                                drop_none_items=True,
                                 ),
                             conv.default([]),
                             ),
                         ),
                     ),
-                )(value, state = state)
+                )(value, state=state)
             if error is not None:
                 return test_case, error
 
@@ -264,39 +271,39 @@ class Scenario(scenarios.AbstractScenario):
             menages_individus_id = [individu['id'] for individu in test_case['individus']]
             test_case, error = conv.struct(
                 dict(
-                    familles = conv.uniform_sequence(
+                    familles=conv.uniform_sequence(
                         conv.struct(
                             dict(
-                                enfants = conv.uniform_sequence(conv.test_in_pop(familles_individus_id)),
-                                parents = conv.uniform_sequence(conv.test_in_pop(familles_individus_id)),
+                                enfants=conv.uniform_sequence(conv.test_in_pop(familles_individus_id)),
+                                parents=conv.uniform_sequence(conv.test_in_pop(familles_individus_id)),
                                 ),
-                            default = conv.noop,
+                            default=conv.noop,
                             ),
                         ),
-                    foyers_fiscaux = conv.uniform_sequence(
+                    foyers_fiscaux=conv.uniform_sequence(
                         conv.struct(
                             dict(
-                                declarants = conv.uniform_sequence(conv.test_in_pop(foyers_fiscaux_individus_id)),
-                                personnes_a_charge = conv.uniform_sequence(conv.test_in_pop(
+                                declarants=conv.uniform_sequence(conv.test_in_pop(foyers_fiscaux_individus_id)),
+                                personnes_a_charge=conv.uniform_sequence(conv.test_in_pop(
                                     foyers_fiscaux_individus_id)),
                                 ),
-                            default = conv.noop,
+                            default=conv.noop,
                             ),
                         ),
-                    menages = conv.uniform_sequence(
+                    menages=conv.uniform_sequence(
                         conv.struct(
                             dict(
-                                autres = conv.uniform_sequence(conv.test_in_pop(menages_individus_id)),
-                                conjoint = conv.test_in_pop(menages_individus_id),
-                                enfants = conv.uniform_sequence(conv.test_in_pop(menages_individus_id)),
-                                personne_de_reference = conv.test_in_pop(menages_individus_id),
+                                autres=conv.uniform_sequence(conv.test_in_pop(menages_individus_id)),
+                                conjoint=conv.test_in_pop(menages_individus_id),
+                                enfants=conv.uniform_sequence(conv.test_in_pop(menages_individus_id)),
+                                personne_de_reference=conv.test_in_pop(menages_individus_id),
                                 ),
-                            default = conv.noop,
+                            default=conv.noop,
                             ),
                         ),
                     ),
-                default = conv.noop,
-                )(test_case, state = state)
+                default=conv.noop,
+                )(test_case, state=state)
 
             individu_by_id = {
                 individu['id']: individu
@@ -306,8 +313,8 @@ class Scenario(scenarios.AbstractScenario):
             if repair:
                 # Affecte à une famille chaque individu qui n'appartient à aucune d'entre elles.
                 new_famille = dict(
-                    enfants = [],
-                    parents = [],
+                    enfants=[],
+                    parents=[],
                     )
                 new_famille_id = None
                 for individu_id in familles_individus_id[:]:
@@ -393,8 +400,8 @@ class Scenario(scenarios.AbstractScenario):
 
                 # Affecte à un foyer fiscal chaque individu qui n'appartient à aucun d'entre eux.
                 new_foyer_fiscal = dict(
-                    declarants = [],
-                    personnes_a_charge = [],
+                    declarants=[],
+                    personnes_a_charge=[],
                     )
                 new_foyer_fiscal_id = None
                 for individu_id in foyers_fiscaux_individus_id[:]:
@@ -480,10 +487,10 @@ class Scenario(scenarios.AbstractScenario):
 
                 # Affecte à un ménage chaque individu qui n'appartient à aucun d'entre eux.
                 new_menage = dict(
-                    autres = [],
-                    conjoint = None,
-                    enfants = [],
-                    personne_de_reference = None,
+                    autres=[],
+                    conjoint=None,
+                    enfants=[],
+                    personne_de_reference=None,
                     )
                 new_menage_id = None
                 for individu_id in menages_individus_id[:]:
@@ -601,43 +608,43 @@ class Scenario(scenarios.AbstractScenario):
                 )
             test_case, error = conv.struct(
                 dict(
-                    familles = conv.pipe(
+                    familles=conv.pipe(
                         conv.uniform_sequence(
                             conv.struct(
                                 dict(
-                                    enfants = conv.uniform_sequence(
+                                    enfants=conv.uniform_sequence(
                                         conv.test(
                                             lambda individu_id:
                                                 individu_by_id[individu_id].get('handicap', False)
                                                 or find_age(individu_by_id[individu_id], period.start.date,
-                                                    default = 0) <= 25,
-                                            error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
+                                                    default=0) <= 25,
+                                            error=u"Une personne à charge d'un foyer fiscal doit avoir moins de"
                                                     u" 25 ans ou être handicapée",
                                             ),
                                         ),
-                                    parents = conv.pipe(
+                                    parents=conv.pipe(
                                         conv.empty_to_none,
                                         conv.not_none,
                                         conv.test(lambda parents: len(parents) <= 2,
-                                            error = N_(u'A "famille" must have at most 2 "parents"'))
+                                            error=N_(u'A "famille" must have at most 2 "parents"'))
                                         ),
                                     ),
-                                default = conv.noop,
+                                default=conv.noop,
                                 ),
                             ),
                         conv.empty_to_none,
                         conv.not_none,
                         ),
-                    foyers_fiscaux = conv.pipe(
+                    foyers_fiscaux=conv.pipe(
                         conv.uniform_sequence(
                             conv.struct(
                                 dict(
-                                    declarants = conv.pipe(
+                                    declarants=conv.pipe(
                                         conv.empty_to_none,
                                         conv.not_none,
                                         conv.test(
                                             lambda declarants: len(declarants) <= 2,
-                                            error = N_(u'A "foyer_fiscal" must have at most 2 "declarants"'),
+                                            error=N_(u'A "foyer_fiscal" must have at most 2 "declarants"'),
                                             ),
                                         conv.uniform_sequence(conv.pipe(
                                             # conv.test(lambda individu_id:
@@ -653,18 +660,18 @@ class Scenario(scenarios.AbstractScenario):
                                                 ),
                                             )),
                                         ),
-                                    personnes_a_charge = conv.uniform_sequence(
+                                    personnes_a_charge=conv.uniform_sequence(
                                         conv.test(
                                             lambda individu_id:
                                                 individu_by_id[individu_id].get('handicap', False)
                                                 or find_age(individu_by_id[individu_id], period.start.date,
-                                                    default = 0) <= 25,
-                                            error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
+                                                    default=0) <= 25,
+                                            error=u"Une personne à charge d'un foyer fiscal doit avoir moins de"
                                                     u" 25 ans ou être handicapée",
                                             ),
                                         ),
                                     ),
-                                default = conv.noop,
+                                default=conv.noop,
                                 ),
                             ),
                         conv.empty_to_none,
@@ -682,180 +689,30 @@ class Scenario(scenarios.AbstractScenario):
                     #         drop_none_values = 'missing',
                     #         ),
                     #     ),
-                    menages = conv.pipe(
+                    menages=conv.pipe(
                         conv.uniform_sequence(
                             conv.struct(
                                 dict(
-                                    personne_de_reference = conv.not_none,
+                                    personne_de_reference=conv.not_none,
                                     ),
-                                default = conv.noop,
+                                default=conv.noop,
                                 ),
                             ),
                         conv.empty_to_none,
                         conv.not_none,
                         ),
                     ),
-                default = conv.noop,
-                )(test_case, state = state)
+                default=conv.noop,
+                )(test_case, state=state)
 
             return test_case, error
 
         return json_or_python_to_test_case
 
-    def suggest(self):
-        """Returns a dict of suggestions and modifies self.test_case applying those suggestions."""
-        test_case = self.test_case
-        if test_case is None:
-            return None
-
-        period_start_date = self.period.start.date
-        period_start_year = self.period.start.year
-        suggestions = dict()
-
-        for individu in test_case['individus']:
-            individu_id = individu['id']
-            if individu.get('age') is None and individu.get('age_en_mois') is None and individu.get('date_naissance') is None:
-                # Add missing date_naissance date to person (a parent is 40 years old and a child is 10 years old.
-                is_parent = any(individu_id in famille['parents'] for famille in test_case['familles'])
-                birth_year = period_start_year - 40 if is_parent else period_start_year - 10
-                date_naissance = datetime.date(birth_year, 1, 1)
-                individu['date_naissance'] = date_naissance
-                suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
-                    'date_naissance'] = date_naissance.isoformat()
-            if individu.get('activite') is None:
-                if find_age(individu, period_start_date) < 16:
-                    individu['activite'] = 2  # Étudiant, élève
-                    suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
-                        'activite'] = u'2'  # Étudiant, élève
-
-        individu_by_id = {
-            individu['id']: individu
-            for individu in test_case['individus']
-            }
-
-        for foyer_fiscal in test_case['foyers_fiscaux']:
-            if len(foyer_fiscal['declarants']) == 1 and foyer_fiscal['personnes_a_charge']:
-                # Suggest "parent isolé" when foyer_fiscal contains a single "declarant" with "personnes_a_charge".
-                if foyer_fiscal.get('caseT') is None:
-                    suggestions.setdefault('test_case', {}).setdefault('foyers_fiscaux', {}).setdefault(
-                        foyer_fiscal['id'], {})['caseT'] = foyer_fiscal['caseT'] = True
-            elif len(foyer_fiscal['declarants']) == 2:
-                # Suggest "PACSé" or "Marié" instead of "Célibataire" when foyer_fiscal contains 2 "declarants" without
-                # "statut_marital".
-                statut_marital = 5  # PACSé
-                for individu_id in foyer_fiscal['declarants']:
-                    individu = individu_by_id[individu_id]
-                    if individu.get('statut_marital') == 1:  # Marié
-                        statut_marital = 1
-                for individu_id in foyer_fiscal['declarants']:
-                    individu = individu_by_id[individu_id]
-                    if individu.get('statut_marital') is None:
-                        individu['statut_marital'] = statut_marital
-                        suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
-                            'statut_marital'] = unicode(statut_marital)
-
-        return suggestions or None
-
-    def to_json(self):
-        self_json = collections.OrderedDict()
-        if self.axes is not None:
-            self_json['axes'] = self.axes
-        if self.period is not None:
-            self_json['period'] = str(self.period)
-
-        test_case = self.test_case
-        if test_case is not None:
-            column_by_name = self.tax_benefit_system.column_by_name
-            test_case_json = collections.OrderedDict()
-
-            familles_json = []
-            for famille in (test_case.get('familles') or []):
-                famille_json = collections.OrderedDict()
-                famille_json['id'] = famille['id']
-                parents = famille.get('parents')
-                if parents:
-                    famille_json['parents'] = parents
-                enfants = famille.get('enfants')
-                if enfants:
-                    famille_json['enfants'] = enfants
-                for column_name, variable_value in famille.iteritems():
-                    column = column_by_name.get(column_name)
-                    if column is not None and column.entity == 'fam':
-                        variable_value_json = column.transform_value_to_json(variable_value)
-                        if variable_value_json is not None:
-                            famille_json[column_name] = variable_value_json
-                familles_json.append(famille_json)
-            if familles_json:
-                test_case_json['familles'] = familles_json
-
-            foyers_fiscaux_json = []
-            for foyer_fiscal in (test_case.get('foyers_fiscaux') or []):
-                foyer_fiscal_json = collections.OrderedDict()
-                foyer_fiscal_json['id'] = foyer_fiscal['id']
-                declarants = foyer_fiscal.get('declarants')
-                if declarants:
-                    foyer_fiscal_json['declarants'] = declarants
-                personnes_a_charge = foyer_fiscal.get('personnes_a_charge')
-                if personnes_a_charge:
-                    foyer_fiscal_json['personnes_a_charge'] = personnes_a_charge
-                for column_name, variable_value in foyer_fiscal.iteritems():
-                    column = column_by_name.get(column_name)
-                    if column is not None and column.entity == 'foy':
-                        variable_value_json = column.transform_value_to_json(variable_value)
-                        if variable_value_json is not None:
-                            foyer_fiscal_json[column_name] = variable_value_json
-                foyers_fiscaux_json.append(foyer_fiscal_json)
-            if foyers_fiscaux_json:
-                test_case_json['foyers_fiscaux'] = foyers_fiscaux_json
-
-            individus_json = []
-            for individu in (test_case.get('individus') or []):
-                individu_json = collections.OrderedDict()
-                individu_json['id'] = individu['id']
-                for column_name, variable_value in individu.iteritems():
-                    column = column_by_name.get(column_name)
-                    if column is not None and column.entity == 'ind':
-                        variable_value_json = column.transform_value_to_json(variable_value)
-                        if variable_value_json is not None:
-                            individu_json[column_name] = variable_value_json
-                individus_json.append(individu_json)
-            if individus_json:
-                test_case_json['individus'] = individus_json
-
-            menages_json = []
-            for menage in (test_case.get('menages') or []):
-                menage_json = collections.OrderedDict()
-                menage_json['id'] = menage['id']
-                personne_de_reference = menage.get('personne_de_reference')
-                if personne_de_reference is not None:
-                    menage_json['personne_de_reference'] = personne_de_reference
-                conjoint = menage.get('conjoint')
-                if conjoint is not None:
-                    menage_json['conjoint'] = conjoint
-                enfants = menage.get('enfants')
-                if enfants:
-                    menage_json['enfants'] = enfants
-                autres = menage.get('autres')
-                if autres:
-                    menage_json['autres'] = autres
-                for column_name, variable_value in menage.iteritems():
-                    column = column_by_name.get(column_name)
-                    if column is not None and column.entity == 'men':
-                        variable_value_json = column.transform_value_to_json(variable_value)
-                        if variable_value_json is not None:
-                            menage_json[column_name] = variable_value_json
-                menages_json.append(menage_json)
-            if menages_json:
-                test_case_json['menages'] = menages_json
-
-            self_json['test_case'] = test_case_json
-        return self_json
-
 
 # Finders
 
-
-def find_age(individu, date, default = None):
+def find_age(individu, date, default=None):
     date_naissance = individu.get('date_naissance')
     if isinstance(date_naissance, dict):
         date_naissance = date_naissance.values()[0] if date_naissance else None

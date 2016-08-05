@@ -24,7 +24,7 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
     preprocess_legislation = staticmethod(preprocessing.preprocess_legislation)
     columns_name_tree_by_entity = datatrees.columns_name_tree_by_entity
 
-    REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
+    #REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
     REV_TYP = None  # utils.REV_TYP  # Not defined for France
     REVENUES_CATEGORIES = {
     'brut': ['salaire_brut', 'chomage_brut', 'retraite_brute', 'pensions_alimentaires_percues', 'pensions_alimentaires_versees', 'rev_cap_brut', 'fon'],
@@ -38,15 +38,16 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
         self.Scenario = scenarios.Scenario
         param_file = os.path.join(COUNTRY_DIR, 'param', 'param.xml')
         self.add_legislation_params(param_file)
-        self.add_variables_from_directory(os.path.join(COUNTRY_DIR,'model'))
-        self.cache_blacklist = conf_cache_blacklist
-        for extension_dir in EXTENSIONS_DIRECTORIES:
-            self.load_extension(extension_dir)
+        self.add_variable_classes_from_directory(os.path.join(COUNTRY_DIR,'model'))
+        #self.cache_blacklist = conf_cache_blacklist
+        #for extension_dir in EXTENSIONS_DIRECTORIES:
+        #    self.load_extension(extension_dir)
 
-
+'''
     def prefill_cache(self):
         # Compute one "zone APL" variable, to pre-load CSV of "code INSEE commune" to "Zone APL".
         from .model.prestations import aides_logement
         aides_logement.preload_zone_apl()
         from .model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales import versement_transport
         versement_transport.preload_taux_versement_transport()
+'''
