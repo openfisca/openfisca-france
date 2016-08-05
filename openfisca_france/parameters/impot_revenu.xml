@@ -825,6 +825,24 @@
       </TAUX>
     </TRANCHE>
   </BAREME>
+  <BAREME code="cehr_ipp">
+    <TRANCHE code="tranche1">
+      <SEUIL>
+        <VALUE deb="2011-01-01" fuzzy="true" valeur="250000" />
+      </SEUIL>
+      <TAUX>
+        <VALUE deb="2011-01-01" fuzzy="true" valeur="0.03" />
+      </TAUX>
+    </TRANCHE>
+    <TRANCHE code="tranche2">
+      <SEUIL>
+        <VALUE deb="2011-01-01" fuzzy="true" valeur="500000" />
+      </SEUIL>
+      <TAUX>
+        <VALUE deb="2011-01-01" fuzzy="true" valeur="0.04" />
+      </TAUX>
+    </TRANCHE>
+  </BAREME>
   <NODE code="charges_deductibles" description="Charges déductibles">
     <NODE code="accueil_personne_agee" description="Frais d'accueil d'une personne de plus de 75 ans">
       <CODE code="plafond" description="Maximum par personne" format="float" type="monetary">
@@ -1003,19 +1021,6 @@
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="3218.4" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3106.8" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="3019.2" />
-      </CODE>
-    </NODE>
-  </NODE>
-  <NODE code="codev">
-    <NODE code="compte_epargne_co_developpement">
-      <CODE code="plafond_en_du_revenu_net_global" format="percent">
-        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.25" />
-      </CODE>
-      <CODE code="plafond_par_personne" format="float" type="monetary">
-        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="20000" />
-      </CODE>
-      <CODE code="taux" format="percent">
-        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.4" />
       </CODE>
     </NODE>
   </NODE>
@@ -2735,14 +2740,14 @@
       </CODE>
     </NODE>
     <NODE code="ecodev" description="Sommes versées sur un compte épargne codéveloppement (case 7UH)">
-      <CODE code="base" description="Limite de x % du revenu" format="percent">
-        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.25" />
-      </CODE>
-      <CODE code="max" description="Maximum" format="integer" type="monetary">
+      <CODE code="plafond_par_personne" description="Maximum" format="float" type="monetary">
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="20000" />
       </CODE>
       <CODE code="taux" description="Taux" format="percent">
-        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.40" />
+        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.4" />
+      </CODE>
+      <CODE code="taux_plafond" description="Limite de x % du revenu" format="percent">
+        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.25" />
       </CODE>
     </NODE>
     <NODE code="ecpess" description="Enfants à charge poursuivant leurs études secondaires ou supérieures">
@@ -3516,22 +3521,6 @@
     <VALUE deb="1960-01-01" fin="1960-12-31" valeur="0.08" />
     <VALUE deb="1959-01-01" fin="1959-12-31" valeur="0.09" />
   </CODE>
-  <NODE code="taxe_hr">
-    <NODE code="contribution_exceptionnelle_sur_les_hauts_revenus">
-      <CODE code="seuil_de_la_1ere_tranche" format="float" type="monetary">
-        <VALUE deb="2011-01-01" fuzzy="true" valeur="250000" />
-      </CODE>
-      <CODE code="seuil_de_la_2eme_tranche" format="float" type="monetary">
-        <VALUE deb="2011-01-01" fuzzy="true" valeur="500000" />
-      </CODE>
-      <CODE code="taux_marginal_de_la_1ere_tranche" format="percent">
-        <VALUE deb="2011-01-01" fuzzy="true" valeur="0.03" />
-      </CODE>
-      <CODE code="taux_marginal_de_la_2eme_tranche" format="percent">
-        <VALUE deb="2011-01-01" fuzzy="true" valeur="0.04" />
-      </CODE>
-    </NODE>
-  </NODE>
   <CODE code="taxe_proportionnelle_tp" format="percent">
     <VALUE deb="1958-01-01" fin="1958-12-31" valeur="0.22" />
     <VALUE deb="1948-01-01" fin="1957-12-31" valeur="0.18" />

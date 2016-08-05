@@ -189,7 +189,6 @@ def transform_ipp_tree(root):
     reductions_impots['spfcpi'] = spfcpi = impot_revenu.pop('fcp')
     reductions_impots['spfcpi'].update(spfcpi.pop('reduction_d_impot_pour_souscriptions_de_parts_de_fcpi_ou_fip'))
     spfcpi['taux1'] = taux1 = spfcpi.pop('taux')
-    #garde Enfant
 
 
     impot_revenu['credits_impot'] = credits_impot = dict()
@@ -213,10 +212,32 @@ def transform_ipp_tree(root):
     minimun_de_ppe = ppe['minimun_de_ppe']
     ppe['versmin'] = versmin = minimun_de_ppe.pop('montant')
 
+    #garde Enfant
     credits_impot['garext'] = garext = impot_revenu.pop('gardenf')
     credit_d_impot_pour_frais_de_garde_d_enfants = garext['credit_d_impot_pour_frais_de_garde_d_enfants']
     credits_impot['garext'].update(garext.pop('credit_d_impot_pour_frais_de_garde_d_enfants'))
-    
+
+    # contribution haut revenus
+    taxe_hr = impot_revenu['taxe_hr']
+    impot_revenu['taxe_hr'].update(taxe_hr.pop('contribution_exceptionnelle_sur_les_hauts_revenus'))
+    impot_revenu['cehr_ipp'] = cehr_ipp = impot_revenu.pop('taxe_hr')
+
+    impot_revenu['cehr_ipp'] = tax_scale(
+        bases_tree = dict(
+            tranche1 = cehr_ipp.pop('seuil_de_la_1ere_tranche'),
+            tranche2 = cehr_ipp.pop('seuil_de_la_2eme_tranche'),
+            ),
+        rates_tree = dict(
+            tranche1 = cehr_ipp.pop('taux_marginal_de_la_1ere_tranche'),
+            tranche2 = cehr_ipp.pop('taux_marginal_de_la_2eme_tranche'),
+            ),
+        )
+
+    reductions_impots['ecodev'] = ecodev = impot_revenu.pop('codev')
+    compte_epargne_co_developpement = ecodev['compte_epargne_co_developpement']
+    reductions_impots['ecodev'].update(ecodev.pop('compte_epargne_co_developpement'))
+    ecodev['taux_plafond'] = taux_plafond = ecodev.pop('plafond_en_du_revenu_net_global')
+
 
     del root['baremes_ipp_marche_du_travail_labour_market']
     # root['marche_du_travail'] = root.pop('baremes_ipp_marche_du_travail_labour_market')

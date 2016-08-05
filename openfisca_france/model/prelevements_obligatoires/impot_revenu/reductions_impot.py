@@ -1631,7 +1631,7 @@ class ecodev(Variable):
         rbg_int = simulation.calculate('rbg_int', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.ecodev
 
-        return period, min_(f7uh * P.taux, min_(P.base * rbg_int, P.max))  # page3 ligne 18
+        return period, min_(f7uh * P.taux, min_(P.taux_plafond * rbg_int, P.plafond_par_personne))  # page3 ligne 18
 
 
 class ecpess(Variable):
