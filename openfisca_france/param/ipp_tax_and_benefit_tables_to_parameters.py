@@ -101,8 +101,8 @@ def transform_ipp_tree(root):
     root['impot_revenu'] = impot_revenu = root.pop('baremes_ipp_impot_revenu_income_tax')
     #
     impot_revenu['tspr'] = tspr = impot_revenu.pop('deductions')
-    tspr['abat_sal_pen'] = abat_sal_pen = tspr.pop('deduction_supplementaire')
-    abat_sal_pen['max'] = abat_sal_pen.pop('abattement_maximal')
+    tspr['abatsalpen'] = abatsalpen = tspr.pop('deduction_supplementaire')
+    abatsalpen['max'] = abatsalpen.pop('abattement_maximal')
     # TODO: gérer plaf_ab_dedsal
     tspr['abatpen'] = abatpen = {}
     tspr['abatpro'] = abatpro = tspr.pop(
@@ -211,6 +211,12 @@ def transform_ipp_tree(root):
     ppe['taux3'] = taux3 = ppe.pop('phase_out_couples_mono_emploi')
     minimun_de_ppe = ppe['minimun_de_ppe']
     ppe['versmin'] = versmin = minimun_de_ppe.pop('montant')
+
+    impot_revenu['plafond_qf'] = plafond_qf = impot_revenu.pop('plaf_qf')
+    impot_revenu['plafond_qf'].update(plafond_qf.pop('plafond_des_avantages_procures_par_demi_part_de_qf'))
+    plafond_qf['veuf'] = plafond_qf.pop('veuf_avec_un_ou_plusieurs_enfants_a_charge')
+    plafond_qf['celib'] = plafond_qf.pop('personnes_seules_ayant_eus_des_enfants')
+    plafond_qf['celib_enf'] = plafond_qf.pop('part_pour_le_1er_enfant_des_parents_isoles')
 
     #garde Enfant
     credits_impot['garext'] = garext = impot_revenu.pop('gardenf')
