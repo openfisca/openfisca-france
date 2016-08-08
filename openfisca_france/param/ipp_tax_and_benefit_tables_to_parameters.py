@@ -217,6 +217,7 @@ def transform_ipp_tree(root):
     plafond_qf['veuf'] = plafond_qf.pop('veuf_avec_un_ou_plusieurs_enfants_a_charge')
     plafond_qf['celib'] = plafond_qf.pop('personnes_seules_ayant_eus_des_enfants')
     plafond_qf['celib_enf'] = plafond_qf.pop('part_pour_le_1er_enfant_des_parents_isoles')
+    plafond_qf['reduc_postplafond'] = plafond_qf.pop('invalidite_ancien_combattant')
 
     #garde Enfant
     credits_impot['garext'] = garext = impot_revenu.pop('gardenf')
