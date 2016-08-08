@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '4.0.11',
+    version = '4.1.0',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -28,6 +28,9 @@ setup(
         ('share/locale/fr/LC_MESSAGES', ['openfisca_france/i18n/fr/LC_MESSAGES/openfisca-france.mo']),
         ('share/openfisca/openfisca-france', ['CHANGELOG.md', 'LICENSE', 'README.md']),
         ],
+    entry_points = {
+        'console_scripts': ['openfisca-run-test=openfisca_france.tests.test_yaml:main'],
+        },
     extras_require = {
         'inversion_revenus': [
             'scipy >= 0.17',
