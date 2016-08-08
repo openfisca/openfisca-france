@@ -107,6 +107,18 @@ prestations.aides_logement.autres.nv_seuil: prestations.aides_logement.al_min.mo
 prestations.aides_logement.pp.min: prestations.aides_logement.participation_min.montant_forfaitaire
 prestations.aides_logement.pp.taux: prestations.aides_logement.participation_min.taux
 prestations.aides_logement.pp : null
+prestations.aides_logement.loyers_plafond.zone1.L1: prestations.aides_logement.loyers_plafond.zone1.personnes_seules
+prestations.aides_logement.loyers_plafond.zone1.L2: prestations.aides_logement.loyers_plafond.zone1.couples
+prestations.aides_logement.loyers_plafond.zone1.L3: prestations.aides_logement.loyers_plafond.zone1.un_enfant
+prestations.aides_logement.loyers_plafond.zone1.L4: prestations.aides_logement.loyers_plafond.zone1.majoration_par_enf_supp
+prestations.aides_logement.loyers_plafond.zone2.L1: prestations.aides_logement.loyers_plafond.zone2.personnes_seules
+prestations.aides_logement.loyers_plafond.zone2.L2: prestations.aides_logement.loyers_plafond.zone2.couples
+prestations.aides_logement.loyers_plafond.zone2.L3: prestations.aides_logement.loyers_plafond.zone2.un_enfant
+prestations.aides_logement.loyers_plafond.zone2.L4: prestations.aides_logement.loyers_plafond.zone2.majoration_par_enf_supp
+prestations.aides_logement.loyers_plafond.zone3.L1: prestations.aides_logement.loyers_plafond.zone3.personnes_seules
+prestations.aides_logement.loyers_plafond.zone3.L2: prestations.aides_logement.loyers_plafond.zone3.couples
+prestations.aides_logement.loyers_plafond.zone3.L3: prestations.aides_logement.loyers_plafond.zone3.un_enfant
+prestations.aides_logement.loyers_plafond.zone3.L4: prestations.aides_logement.loyers_plafond.zone3.majoration_par_enf_supp
 #ars: prestations.prestations_familiales
 prestations.prestations_familiales.ars.agep: prestations.prestations_familiales.ars.age_entree_primaire
 prestations.prestations_familiales.ars.ages: prestations.prestations_familiales.ars.age_sortie_lycee

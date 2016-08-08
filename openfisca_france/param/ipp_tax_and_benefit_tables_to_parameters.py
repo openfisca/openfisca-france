@@ -928,7 +928,8 @@ def transform_ipp_tree(root):
     aides_logement['al_charge'] = al_charge = prestations.pop('al_charge')
     aides_logement['forfait_charges'] = forfait_charges = dict()
     forfait_charges['cas_general'] = al_charge['personne_isolee_ou_menage_seul'].pop('cas_general')
-    # forfait_charges['majoration_par_enfant'] = al_charge['personne_isolee_ou_menage_seul_2'].pop('majoration_par_enfant_de_la_majoration_pour_charges')
+    forfait_charges['majoration_par_enfant'] = al_charge.pop('majoration_par_enfant_de_la_majoration_pour_charges_2')
+
 
     # prestations['al_charge']
     #   al_charge:
@@ -980,6 +981,29 @@ def transform_ipp_tree(root):
     taux_participation_loyer_ipp['taux_tranche_2'] = taux_tranche_2 = taux_participation_loyer_ipp.pop('tl_pour_la_2eme_tranche')
     taux_participation_loyer_ipp['taux_tranche_3'] = taux_tranche_3 = taux_participation_loyer_ipp.pop('tl_pour_la_3eme_tranche')
     aides_logement['taux_participation_loyer'] = taux_participation_loyer = al_plaf_loc2.pop('taux_participation_loyer_ipp')
+    #par zone
+    aides_logement['loyers_plafond'] = loyers_plafond = dict()
+    loyers_plafond['zone1'] = zone1 = dict()
+    plafond_de_loyers_zone_1 = al_plaf_loc2['plafond_de_loyers_zone_1']
+    zone1['personnes_seules'] = plafond_de_loyers_zone_1.pop('personnes_seules')
+    zone1['couples'] = plafond_de_loyers_zone_1.pop('couples')
+    zone1['un_enfant'] = plafond_de_loyers_zone_1.pop('personnes_seules_ou_couples_avec_1_enfant')
+    zone1['majoration_par_enf_supp'] = plafond_de_loyers_zone_1.pop('majoration_par_enfant_supplementaire')
+
+    loyers_plafond['zone2'] = zone2 = dict()
+    plafond_de_loyers_zone_2 = al_plaf_loc2['plafond_de_loyers_zone_2']
+    zone2['personnes_seules'] = plafond_de_loyers_zone_2.pop('personnes_seules')
+    zone2['couples'] = plafond_de_loyers_zone_2.pop('couples')
+    zone2['un_enfant'] = plafond_de_loyers_zone_2.pop('personnes_seules_ou_couples_avec_1_enfant')
+    zone2['majoration_par_enf_supp'] = plafond_de_loyers_zone_2.pop('majoration_par_enfant_supplementaire')
+
+    loyers_plafond['zone3'] = zone3 = dict()
+    plafond_de_loyers_zone_3 = al_plaf_loc2['plafond_de_loyers_zone_3']
+    zone3['personnes_seules'] = plafond_de_loyers_zone_3.pop('personnes_seules')
+    zone3['couples'] = plafond_de_loyers_zone_3.pop('couples')
+    zone3['un_enfant'] = plafond_de_loyers_zone_3.pop('personnes_seules_ou_couples_avec_1_enfant')
+    zone3['majoration_par_enf_supp'] = plafond_de_loyers_zone_3.pop('majoration_par_enfant_supplementaire')
+
     del taux_participation_loyer_ipp
     aides_logement['al_min'] = al_min = prestations.pop('al_min')
     al_min['montant_min_mensuel'] = montant_min_mensuel = al_min.pop('montant_minimal_mensuel')
