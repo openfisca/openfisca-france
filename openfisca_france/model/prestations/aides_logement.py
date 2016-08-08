@@ -362,7 +362,7 @@ class aide_logement_R0(Variable):
         residence_dom = simulation.calculate('residence_dom')
         import datetime
 
-        if period.start.date >= datetime.date(2009, 6, 01):
+        if period.start.date >= datetime.date(2011, 6, 01):  #  deux ans après la mise en place du rsa
             R1 = minim_n_2.rsa.montant_de_base_du_rsa * (
                 al.r1.personne_isolee * not_(couple) * (al_nb_pac == 0) +
                 al.r1.couple_sans_enf * couple * (al_nb_pac == 0) +
@@ -378,7 +378,7 @@ class aide_logement_R0(Variable):
                 al.r1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2) +
                 al.r1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
                 )
-        
+
         R2 = pfam_n_2.af.bmaf * (
             al.r2.taux3_dom * residence_dom * (al_nb_pac == 1) +
             al.r2.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2) +
