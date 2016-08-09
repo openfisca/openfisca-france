@@ -179,7 +179,7 @@ def transform_ipp_tree(root):
     # Plus-values
     impot_revenu['plus_values'] = plus_values = impot_revenu.pop('pv')
     impot_revenu['plus_values'].update(plus_values.pop('imposition_des_plus_values_de_cession_de_valeurs_mobilieres_et_des_plus_values_professionnelles'))
-    #plus_values['taux_pv_mob_pro'] = taux_pv_mob_pro = plus_values.pop('taux')
+    plus_values['taux1'] = taux1 = plus_values.pop('taux')
 
     reductions_impots['dons'] = dons = impot_revenu.pop('dons')
     dons_aux_oeuvres = dons['dons_aux_oeuvres']
