@@ -76,7 +76,12 @@ class f2tr(Variable):
     entity_class = FoyersFiscaux
     label = u"Produits de placements à revenu fixe, intérêts et autres revenus assimilés (n'ouvrant pas droit à abattement)"
 
-
+class f2fa(Variable):
+    cerfa_field = u"2FA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Produits de placement à revenu fixe inférieurs à 2000€ taxables sur option à 24% (n'ouvrant pas droit à abattement)"
+    start_date = date(2013, 1, 1)
 
 
 # Autres revenus des valeurs et capitaux mobiliers
@@ -84,7 +89,7 @@ class f2cg(Variable):
     cerfa_field = u"2CG"
     column = IntCol(val_type = "monetary")
     entity_class = FoyersFiscaux
-    label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux sans CSG déductible"
+    label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR, 2FA déjà soumis au prélèvement sociaux sans CSG déductible"
 
 
 

@@ -692,6 +692,7 @@ class rev_cat_rvcm(DatedVariable):
         f2fu = simulation.calculate('f2fu', period)
         f2go = simulation.calculate('f2go', period)
         f2tr = simulation.calculate('f2tr', period)
+        f2fa = simulation.calculate('f2fa', period)
         f2da = simulation.calculate('f2da', period)
         f2ee = simulation.calculate('f2ee', period)
         finpfl = simulation.legislation_at(period.start).ir.autre.finpfl
@@ -724,8 +725,11 @@ class rev_cat_rvcm(DatedVariable):
         F2 = f2ca - F1
         TOT3 = (f2ts - F2) + f2go * rvcm.majGO + f2tr_bis - g12a
 
+        # Placement à revenu fixe n'excédant pas 2000 € taxables sur option à 24% (pas d'abattement possible')
+        TOT4 = f2fa
+
         DEF = deficit_rcm
-        return period, max_(TOT1 + TOT2 + TOT3 - DEF, 0)
+        return period, max_(TOT1 + TOT2 + TOT3 + TOT4 - DEF, 0)
 
 
 class rfr_rvcm(Variable):
@@ -1769,10 +1773,11 @@ class rev_cap_lib(DatedVariable):
         f2da = simulation.calculate('f2da', year)
         f2dh = simulation.calculate('f2dh', year)
         f2ee = simulation.calculate('f2ee', year)
+        f2fa = simulation.calculate('f2fa', year)
         _P = simulation.legislation_at(period.start)
         finpfl = simulation.legislation_at(period.start).ir.autre.finpfl
 
-        out = f2da + f2dh + f2ee
+        out = f2da + f2dh + f2ee + f2fa
         return period, out * not_(finpfl) / 12
 
 
@@ -1828,6 +1833,23 @@ class imp_lib(DatedVariable):
             - prelevement_liberatoire.assvie * f2dh
         return period, out
 
+    @dated_function(start = date(2013, 1, 1))
+    def function_20130101(self, simulation, period):
+        '''
+        Prelèvement libératoire sur les revenus du capital
+        '''
+        period = period.this_year
+        f2dh = simulation.calculate('f2dh', period)
+        f2ee = simulation.calculate('f2ee', period)
+        f2fa = simulation.calculate('f2fa', period
+        _P = simulation.legislation_at(period.start)
+        finpfl = simulation.legislation_at(period.start).ir.autre.finpfl
+        prelevement_liberatoire = simulation.legislation_at(period.start).ir.rvcm.prelevement_liberatoire
+
+        out = -(prelevement_liberatoire.autre * f2ee) * not_(finpfl) \
+            - prelevement_liberatoire.assvie * f2dh \
+            - prelevement_liberatoire.placement_inf2000 * f2fa
+        return period, out
 
 class fon(Variable):
     column = FloatCol

@@ -6035,6 +6035,9 @@
           <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.180" />
           <VALUE deb="2004-01-01" fin="2007-12-31" valeur="0.160" />
         </CODE>
+        <CODE code="placement_inf2000" description="Produits de placement à revenu fixe inférieurs à 2000€ taxables sur option (case 2FA)">
+          <VALUE deb="2013-01-01" fuzzy="true" valeur="0.240" />
+        </CODE>
       </NODE>
     </NODE>
     <BAREME code="teicaa" description="Taxe exceptionnelle sur l'indemnité compensatrice des agents d'assurance" type="monetary">
