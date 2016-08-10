@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.1
+
+* Add labels to several variables
+
 ## 4.1.0
 
 * Run yaml tests from CLI
