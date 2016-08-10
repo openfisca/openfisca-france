@@ -1841,7 +1841,7 @@ class imp_lib(DatedVariable):
         period = period.this_year
         f2dh = simulation.calculate('f2dh', period)
         f2ee = simulation.calculate('f2ee', period)
-        f2fa = simulation.calculate('f2fa', period
+        f2fa = simulation.calculate('f2fa', period)
         _P = simulation.legislation_at(period.start)
         finpfl = simulation.legislation_at(period.start).ir.autre.finpfl
         prelevement_liberatoire = simulation.legislation_at(period.start).ir.rvcm.prelevement_liberatoire
