@@ -4,10 +4,7 @@ check-no-prints:
 	@test -z "`git grep -w print openfisca_france/model`"
 
 check-syntax-errors:
-	@# This is a hack around flake8 not displaying E910 errors with the select option.
-	@# Do not analyse .gitignored files.
-	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
-	@test -z "`flake8 --first $(shell git ls-files | grep "\.py$$") | grep E901`"
+	python -m compileall -q .
 
 clean:
 	rm -rf build dist
