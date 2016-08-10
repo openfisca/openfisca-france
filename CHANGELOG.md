@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.2
+
+* Use "python -m compileall" to check for syntax errors, not flake8
+
 ## 4.1.1
 
 * Add labels to several variables
