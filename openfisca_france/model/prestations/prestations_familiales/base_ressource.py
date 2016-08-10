@@ -82,7 +82,7 @@ class biactivite(Variable):
 class div(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"div"
+    label = u"Dividendes imposés"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
