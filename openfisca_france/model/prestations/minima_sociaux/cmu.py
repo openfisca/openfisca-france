@@ -10,13 +10,13 @@ from numpy import (absolute as abs_, apply_along_axis, array, int32, logical_not
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-class acs_montant(DatedVariable):
+class acs_montant(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Montant de l'ACS en cas d'éligibilité"
+    start_date = date(2009, 8, 1)
 
-    @dated_function(start = date(2009, 8, 1))
-    def function_2009(self, simulation, period):
+    def function(self, simulation, period):
         period = period.this_month
         age_holder = simulation.compute('age', period)
         P = simulation.legislation_at(period.start).cmu
