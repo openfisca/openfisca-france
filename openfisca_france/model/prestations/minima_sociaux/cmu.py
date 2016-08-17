@@ -51,11 +51,12 @@ class cmu_forfait_logement_al(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
+        nb_personnes_foyer = simulation.calculate('cmu_nbp_foyer', period)
+        aide_logement = simulation.calculate_add('aide_logement', period)
         P = simulation.legislation_at(period.start).cmu.forfait_logement_al
         law_rsa = simulation.legislation_at(period.start).minim.rmi
 
-        return period, forfait_logement(cmu_nbp_foyer, P, law_rsa)
+        return period, (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rsa))
 
 
 class cmu_nbp_foyer(Variable):
@@ -234,7 +235,6 @@ class cmu_base_ressources(Variable):
         asf = simulation.calculate_add('asf', previous_year)
         paje_clca = simulation.calculate_add('paje_clca', previous_year)
         paje_prepare = simulation.calculate_add('paje_prepare', previous_year)
-        aide_logement = simulation.calculate_add('aide_logement', previous_year)
         statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
         cmu_forfait_logement_al = simulation.calculate('cmu_forfait_logement_al', period)
@@ -248,7 +248,7 @@ class cmu_base_ressources(Variable):
         age_pac = self.split_by_roles(age_holder, roles = ENFS)
 
         forfait_logement = (((statut_occupation_logement == 2) + (statut_occupation_logement == 6)) * cmu_forfait_logement_base +
-            (aide_logement > 0) * min_(cmu_forfait_logement_al, aide_logement))
+            cmu_forfait_logement_al)
 
         res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement
 
