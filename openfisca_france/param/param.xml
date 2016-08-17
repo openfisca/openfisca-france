@@ -6027,7 +6027,7 @@
           <VALUE deb="2004-01-01" fin="2007-12-31" valeur="0.160" />
         </CODE>
         <CODE code="assvie" description="Produits des contrats d'assurance vie (case DH)">
-          <VALUE deb="2002-01-01" fin="2012-12-31" valeur="0.075" />
+          <VALUE deb="2002-01-01" fuzzy="true" valeur="0.075" />
         </CODE>
         <CODE code="autre" description="Autres produits de placement (case EE)">
           <VALUE deb="2012-01-01" fuzzy="true" valeur="0.240" />
