@@ -735,7 +735,7 @@ class rev_cat_rvcm(DatedVariable):
 class rfr_rvcm(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"rfr_rvcm"
+    label = u"Revenu fiscal de référence - Abattement - Capitaux"
 
     def function(self, simulation, period):
         '''
@@ -1766,7 +1766,7 @@ class rev_cap_lib(DatedVariable):
         out = f2dh + f2ee
         return period, out * not_(finpfl) / 12
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2008, 1, 1))
     def function_20080101_20151231(self, simulation, period):
         period = period.this_month
         year = period.this_year
