@@ -337,7 +337,12 @@ def forfait_logement(nbp_foyer, P, law_rsa):
     '''
     Calcule le forfait logement en fonction du nombre de personnes dans le "foyer CMU" et d'un jeu de taux
     '''
-    return 12 * rsa_socle_base(nbp_foyer, law_rsa) * select(
+    montant_rsa_socle = law_rsa.rmi * (1 +
+        law_rsa.txp2 * (nbp_foyer >= 2) +
+        law_rsa.txp3 * (nbp_foyer >= 3)
+        )
+
+    return 12 * montant_rsa_socle * select(
             [nbp_foyer == 1, nbp_foyer == 2, nbp_foyer > 2],
             [P.taux_1p, P.taux_2p, P.taux_3p_plus]
             )
@@ -349,15 +354,4 @@ def nb_par_age(age_by_role, min, max):
     return sum(
         (min <= age) & (age <= max)
         for age in age_by_role.itervalues()
-        )
-
-
-def rsa_socle_base(nbp, P):
-    '''
-    Calcule le RSA socle du foyer pour nombre de personnes donné
-    '''
-    return P.rmi * (1 +
-        P.txp2 * (nbp >= 2) +
-        P.txp3 * (nbp >= 3) +
-        P.txps * max_(0, nbp - 3)
         )
