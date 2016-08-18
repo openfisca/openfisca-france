@@ -6159,7 +6159,6 @@
           <VALUE deb="2002-01-01" fin="2002-12-31" valeur="22780" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="22380" />
         </CODE>
->>>>>>> openfisca/master
         <CODE code="taux" description="Taux de l'abattement" format="percent">
           <VALUE deb="1960-01-01" fin="2005-12-31" valeur="0.2" />
         </CODE>
