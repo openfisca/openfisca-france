@@ -735,7 +735,7 @@ class rev_cat_rvcm(DatedVariable):
 class rfr_rvcm(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"Revenu fiscal de référence - Abattement - Capitaux"
+    label = u"Revenu fiscal de référence - Valeurs et capitaux mobiliers - Abattement"
 
     def function(self, simulation, period):
         '''
@@ -1799,7 +1799,7 @@ class avf(Variable):
 class imp_lib(DatedVariable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"Prelèvement libératoire sur les revenus du capital"
+    label = u"Prélèvement libératoire sur les revenus du capital"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
