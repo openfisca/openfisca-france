@@ -677,7 +677,7 @@ class rev_cat_rvcm(DatedVariable):
         DEF = deficit_rcm
         return period, max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2013, 1, 1))
     def function_20130101_20151231(self, simulation, period):
         """
         Revenus des valeurs et capitaux mobiliers
