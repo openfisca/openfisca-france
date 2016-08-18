@@ -16,12 +16,10 @@ class ppa_eligibilite(Variable):
         period = period.this_month
         P = simulation.legislation_at(reference_period.start).prestations
         age_min = P.minima_sociaux.ppa.age_min
-
-        condition_age_individus = simulation.compute('age', period) >= age_min
+        condition_age_individus = simulation.compute('age', period).array >= age_min
         condition_age = self.any_by_roles(condition_age_individus)
-        elig = condition_age
 
-        return period, elig
+        return period, condition_age
 
 
 class ppa_eligibilite_etudiants(Variable):
