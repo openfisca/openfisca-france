@@ -105,7 +105,7 @@ class af_base(Variable):
 
         eligibilite = or_(eligibilite_base, eligibilite_dom)
 
-        un_seul_enfant = eligibilite_dom * (af_nbenf == 1) * pfam.taux.enf_seul
+        un_seul_enfant = eligibilite_dom * (af_nbenf == 1) * pfam.af_dom.taux_enfant_seul
         plus_de_deux_enfants = (af_nbenf >= 2) * pfam.taux.enf2
         plus_de_trois_enfants = max_(af_nbenf - 2, 0) * pfam.taux.enf3
         taux_total = un_seul_enfant + plus_de_deux_enfants + plus_de_trois_enfants
@@ -216,8 +216,8 @@ class af_majoration_enfant(Variable):
         pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         montant_enfant_seul = pfam.af.bmaf * (
-            (pfam.af.maj_age_un_enfant.age1 <= age) * (age < pfam.af.maj_age_un_enfant.age2) * pfam.af.maj_age_un_enfant.taux1 +
-            (pfam.af.maj_age_un_enfant.age2 <= age) * pfam.af.maj_age_un_enfant.taux2
+            (pfam.af.af_dom.age_1er_enf_tranche_1_dom <= age) * (age < pfam.af.af_dom.age_1er_enf_tranche_2_dom) * pfam.af.af_dom.taux_1er_enf_tranche_1_dom +
+            (pfam.af.af_dom.age_1er_enf_tranche_2_dom <= age) * pfam.af.af_dom.taux_1er_enf_tranche_2_dom
             )
 
         montant_plusieurs_enfants = pfam.af.bmaf * (
@@ -309,19 +309,19 @@ class af_allocation_forfaitaire_complement_degressif(DatedVariable):
         return period, max_(0, af_allocation_forfaitaire - depassement_mensuel) * (depassement_mensuel > 0)
 
 
-class af_allocation_forfaitaire(Variable):
+class af_allocation_forfaitaire(DatedVariable):
     column = FloatCol
     entity_class = Familles
     label = u"Allocations familiales - forfait"
 
+    @dated_function(start = date(2003, 7, 1))
     def function(self, simulation, period):
         period = period.this_month
         af_nbenf = simulation.calculate('af_nbenf', period)
         af_forfaitaire_nbenf = simulation.calculate('af_allocation_forfaitaire_nb_enfants', period)
         P = simulation.legislation_at(period.start).prestations.prestations_familiales.af
-
         bmaf = P.bmaf
-        af_forfait = round(bmaf * P.majoration.majoration_pour_les_enfants_en_de_la_bmaf.age_de_plus_de_20_ans_5_6, 2)
+        af_forfait = round(bmaf * P.majoration_enfants.taux_allocation_forfaitaire, 2)
         af_allocation_forfaitaire = ((af_nbenf >= 2) * af_forfaitaire_nbenf) * af_forfait
 
         af_forfaitaire_taux_modulation = simulation.calculate('af_allocation_forfaitaire_taux_modulation', period)

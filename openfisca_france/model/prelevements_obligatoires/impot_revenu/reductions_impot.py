@@ -453,7 +453,7 @@ class reductions(DatedVariable):
 
         # pour tous les dfppce:
         # : note de bas de page
-        # TODO: plafonnement pour parti politiques depuis 2012 P.impot_revenu.reductions_impots.dfppce.max_niv
+        # TODO: plafonnement pour parti politiques depuis 2012 P.impot_revenu.reductions_impots.dons.max_niv
 
 
 class adhcga(Variable):
@@ -828,11 +828,11 @@ class dfppce(DatedVariable):
         rbg_int = simulation.calculate('rbg_int', period)
         f7uf = simulation.calculate('f7uf', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = f7uf
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
     def function_20040101_20041231(self, simulation, period):
@@ -845,11 +845,11 @@ class dfppce(DatedVariable):
         f7uf = simulation.calculate('f7uf', period)
         f7xs = simulation.calculate('f7xs', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
     def function_20050101_20051231(self, simulation, period):
@@ -863,11 +863,11 @@ class dfppce(DatedVariable):
         f7xs = simulation.calculate('f7xs', period)
         f7xt = simulation.calculate('f7xt', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
     def function_20060101_20061231(self, simulation, period):
@@ -882,11 +882,11 @@ class dfppce(DatedVariable):
         f7xt = simulation.calculate('f7xt', period)
         f7xu = simulation.calculate('f7xu', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
     def function_20070101_20071231(self, simulation, period):
@@ -902,11 +902,11 @@ class dfppce(DatedVariable):
         f7xu = simulation.calculate('f7xu', period)
         f7xw = simulation.calculate('f7xw', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu + f7xw
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2008, 1, 1), stop = date(2010, 12, 31))
     def function_20080101_20101231(self, simulation, period):
@@ -923,11 +923,11 @@ class dfppce(DatedVariable):
         f7xw = simulation.calculate('f7xw', period)
         f7xy = simulation.calculate('f7xy', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu + f7xw + f7xy
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_20110101_20111231(self, simulation, period):
@@ -944,11 +944,11 @@ class dfppce(DatedVariable):
         f7xw = simulation.calculate('f7xw', period)
         f7xy = simulation.calculate('f7xy', period)
         f7vc = simulation.calculate('f7vc', period)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
@@ -965,11 +965,11 @@ class dfppce(DatedVariable):
         f7xw = simulation.calculate('f7xw', period)
         f7xy = simulation.calculate('f7xy', period)
         f7vc = simulation.calculate('f7vc', period)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = min_(P.max_niv, f7uf) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):
@@ -987,11 +987,11 @@ class dfppce(DatedVariable):
         f7xw = simulation.calculate('f7xw', period)
         f7xy = simulation.calculate('f7xy', period)
         f7vc = simulation.calculate('f7vc', period)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
 
     # TODO: note de bas de page
@@ -1631,7 +1631,7 @@ class ecodev(Variable):
         rbg_int = simulation.calculate('rbg_int', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.ecodev
 
-        return period, min_(f7uh * P.taux, min_(P.base * rbg_int, P.max))  # page3 ligne 18
+        return period, min_(f7uh * P.taux, min_(P.taux_plafond * rbg_int, P.plafond_par_personne))  # page3 ligne 18
 
 
 class ecpess(Variable):
@@ -1674,9 +1674,9 @@ class garext(DatedVariable):
         f7gb = simulation.calculate('f7gb', period)
         f7gc = simulation.calculate('f7gc', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.garext
+        P = simulation.legislation_at(period.start).impot_revenu.credits_impot.garext
 
-        max1 = P.max
+        max1 = P.plafond
         return period, P.taux * (min_(f7ga, max1) + min_(f7gb, max1) + min_(f7gc, max1))
 
     @dated_function(start = date(2003, 1, 1), stop = date(2005, 12, 31))
@@ -1694,10 +1694,10 @@ class garext(DatedVariable):
         f7gf = simulation.calculate('f7gf', period)
         f7gg = simulation.calculate('f7gg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.garext
+        P = simulation.legislation_at(period.start).impot_revenu.credits_impot.garext
 
-        max1 = P.max
-        max2 = P.max / 2
+        max1 = P.plafond
+        max2 = P.plafond / 2
         return period, P.taux * (min_(f7ga, max1) +
                            min_(f7gb, max1) +
                            min_(f7gc, max1) +
@@ -2605,7 +2605,7 @@ class saldom(DatedVariable):
         f7df = simulation.calculate('f7df', period)
         f7dg = simulation.calculate('f7dg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.saldom
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
         max1 = P.max1 * not_(isinvalid) + P.max3 * isinvalid
@@ -2623,7 +2623,7 @@ class saldom(DatedVariable):
         f7dl = simulation.calculate('f7dl', period)
         f7dg = simulation.calculate('f7dg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.saldom
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
         nbpacmin = nb_pac2 + f7dl
@@ -2646,7 +2646,7 @@ class saldom(DatedVariable):
         f7dl = simulation.calculate('f7dl', period)
         f7dg = simulation.calculate('f7dg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.saldom
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
         nbpacmin = nb_pac2 + f7dl
@@ -2671,7 +2671,7 @@ class saldom(DatedVariable):
         f7dq = simulation.calculate('f7dq', period)
         f7dg = simulation.calculate('f7dg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.saldom
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
         annee1 = f7dq
@@ -3069,7 +3069,7 @@ class spfcpi(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.spfcpi
 
-        max1 = P.max * (maries_ou_pacses + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
         return period, P.taux1 * min_(f7gq, max1)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
@@ -3086,7 +3086,7 @@ class spfcpi(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.spfcpi
 
-        max1 = P.max * (maries_ou_pacses + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
         return period, (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1))
 
     @dated_function(start = date(2007, 1, 1), stop = date(2010, 12, 31))
@@ -3104,7 +3104,7 @@ class spfcpi(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.spfcpi
 
-        max1 = P.max * (maries_ou_pacses + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
         return period, (P.taux1 * min_(f7gq, max1) +
                     P.taux1 * min_(f7fq, max1) +
                     P.taux2 * min_(f7fm, max1))
@@ -3125,7 +3125,7 @@ class spfcpi(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.spfcpi
 
-        max1 = P.max * (maries_ou_pacses + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
         return period, (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1) + P.taux2 * min_(f7fm, max1) +
                 P.taux3 * min_(f7fl, max1))
 

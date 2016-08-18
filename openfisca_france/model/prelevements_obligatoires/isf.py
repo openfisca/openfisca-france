@@ -206,9 +206,9 @@ class isf_imm_bati(Variable):
         period = period.this_year
         b1ab = simulation.calculate('b1ab', period)
         b1ac = simulation.calculate('b1ac', period)
-        P = simulation.legislation_at(period.start).isf.res_princ
+        P = simulation.legislation_at(period.start).taxation_capital.isf.res_princ
 
-        return period, (1 - P.taux) * b1ab + b1ac
+        return period, (1 - P.abattement_sur_residence_principale) * b1ab + b1ac
 
 
 class isf_imm_non_bati(Variable):
@@ -225,7 +225,7 @@ class isf_imm_non_bati(Variable):
         b1be = simulation.calculate('b1be', period)
         b1bh = simulation.calculate('b1bh', period)
         b1bk = simulation.calculate('b1bk', period)
-        P = simulation.legislation_at(period.start).isf.nonbat
+        P = simulation.legislation_at(period.start).taxation_capital.isf.nonbat
 
         # forêts
         b1bd = b1bc * P.taux_f
@@ -253,7 +253,7 @@ class isf_actions_sal(Variable):  # # non présent en 2005##
         '''
         period = period.this_year
         b1cl = simulation.calculate('b1cl', period)
-        P = simulation.legislation_at(period.start).isf.droits_soc
+        P = simulation.legislation_at(period.start).taxation_capital.isf.droits_soc
 
         return period,  b1cl * P.taux1
 
@@ -271,7 +271,7 @@ class isf_droits_sociaux(Variable):
         b1ce = simulation.calculate('b1ce', period)
         b1cf = simulation.calculate('b1cf', period)
         b1cg = simulation.calculate('b1cg', period)
-        P = simulation.legislation_at(period.start).isf.droits_soc
+        P = simulation.legislation_at(period.start).taxation_capital.isf.droits_soc
 
         b1cc = b1cb * P.taux2
         return period, isf_actions_sal + b1cc + b1cd + b1ce + b1cf + b1cg
@@ -290,7 +290,7 @@ class ass_isf(Variable):
         isf_droits_sociaux = simulation.calculate('isf_droits_sociaux', period)
         b1cg = simulation.calculate('b1cg', period)
         b2gh = simulation.calculate('b2gh', period)
-        P = simulation.legislation_at(period.start).isf.forf_mob
+        P = simulation.legislation_at(period.start).taxation_capital.isf.forf_mob
 
         total = isf_imm_bati + isf_imm_non_bati + isf_droits_sociaux
         forf_mob = (b1cg != 0) * b1cg + (b1cg == 0) * total * P.taux
@@ -310,14 +310,14 @@ class isf_iai(DatedVariable):
     def function_20020101_20101231(self, simulation, period):
         period = period.this_year
         ass_isf = simulation.calculate('ass_isf', period)
-        bareme = simulation.legislation_at(period.start).isf.bareme
+        bareme = simulation.legislation_at(period.start).taxation_capital.isf.bareme
         return period, bareme.calc(ass_isf)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2015, 12, 31))
     def function_20110101_20151231(self, simulation, period):
         period = period.this_year
         ass_isf = simulation.calculate('ass_isf', period)
-        bareme = simulation.legislation_at(period.start).isf.bareme
+        bareme = simulation.legislation_at(period.start).taxation_capital.isf.bareme
         ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
         return period, bareme.calc(ass_isf)
 
@@ -347,9 +347,14 @@ class isf_reduc_pac(Variable):
         period = period.this_year
         nb_pac = simulation.calculate('nb_pac', period)
         nbH = simulation.calculate('nbH', period)
-        P = simulation.legislation_at(period.start).isf.reduc_pac
+        P = simulation.legislation_at(period.start).taxation_capital.isf.reduc_pac
+        import datetime
 
-        return period, P.reduc_1 * nb_pac + P.reduc_2 * nbH
+        if period.start.date >= datetime.date(2013, 1, 01):
+            return period, 0 * nb_pac + 0 * nbH
+        else:
+            return period, P.reduc_enf_garde * nb_pac + (P.reduc_enf_garde / 2) * nbH
+
 
 
 class isf_inv_pme(Variable):
@@ -370,12 +375,14 @@ class isf_inv_pme(Variable):
         b2nf = simulation.calculate('b2nf', period)
         b2mx = simulation.calculate('b2mx', period)
         b2na = simulation.calculate('b2na', period)
-        P = simulation.legislation_at(period.start).isf.pme
+        P = simulation.legislation_at(period.start).taxation_capital.isf.reduc_invest_don
 
-        inv_dir_soc = b2mt * P.taux2 + b2ne * P.taux1
-        holdings = b2mv * P.taux2 + b2nf * P.taux1
-        fip = b2mx * P.taux1
-        fcpi = b2na * P.taux1
+        inv_dir_soc = b2mt * P.taux_don_interet_general + b2ne * P.taux_invest_direct_soc_holding
+        holdings = b2mv * P.taux_don_interet_general + b2nf * P.taux_invest_direct_soc_holding
+        fip = b2mx * P.taux_invest_direct_soc_holding
+        fcpi = b2na * P.taux_invest_direct_soc_holding
+
+
         return period, holdings + fip + fcpi + inv_dir_soc
 
 
@@ -387,10 +394,13 @@ class isf_org_int_gen(Variable):
     def function(self, simulation, period):
         period = period.this_year
         b2nc = simulation.calculate('b2nc', period)
-        P = simulation.legislation_at(period.start).isf.pme
+        P = simulation.legislation_at(period.start).taxation_capital.isf.reduc_invest_don
+        import datetime
 
-        return period, b2nc * P.taux2
-
+        if period.start.date >= datetime.date(2008, 1, 01):
+            return period, b2nc * P.taux_don_interet_general
+        else:
+            return period, b2nc * 0
 
 class isf_avant_plaf(Variable):
     column = FloatCol(default = 0)
@@ -406,7 +416,7 @@ class isf_avant_plaf(Variable):
         isf_inv_pme = simulation.calculate('isf_inv_pme', period)
         isf_org_int_gen = simulation.calculate('isf_org_int_gen', period)
         isf_reduc_pac = simulation.calculate('isf_reduc_pac', period)
-        borne_max = simulation.legislation_at(period.start).isf.pme.max
+        borne_max = simulation.legislation_at(period.start).taxation_capital.isf.reduc_invest_don.max
 
         return period, max_(0, isf_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
 
@@ -464,7 +474,7 @@ class revetproduits(Variable):
         rpns_pvct_holder = simulation.compute('rpns_pvct', period)
         rev_cap_lib = simulation.calculate('rev_cap_lib', period)
         imp_lib = simulation.calculate('imp_lib', period)
-        P = simulation.legislation_at(period.start).isf.plafonnement
+        P = simulation.legislation_at(period.start).taxation_capital.isf.plafonnement
 
         revenu_assimile_pension_apres_abattements = self.sum_by_entity(pen_net_holder)
         rag = self.sum_by_entity(rag_holder)
@@ -480,7 +490,7 @@ class revetproduits(Variable):
             revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + retraite_titre_onereux_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon +
             rpns_pvct + imp_lib + fon
             )
-        return period, pt * P.taux
+        return period, pt * P.plafonnement_taux_d_imposition_isf
 
 
 class decote_isf(Variable):
@@ -492,10 +502,10 @@ class decote_isf(Variable):
     def function(self, simulation, period):
         period = period.this_year
         ass_isf = simulation.calculate('ass_isf', period)
-        P = simulation.legislation_at(period.start).isf.decote
+        P = simulation.legislation_at(period.start).taxation_capital.isf.decote
 
-        elig = (ass_isf >= P.min) & (ass_isf <= P.max)
-        LB = P.base - P.taux * ass_isf
+        elig = (ass_isf >= P.isf_borne_min_decote) & (ass_isf <= P.isf_borne_sup_decote)
+        LB = P.isf_base_decote - P.isf_taux_decote * ass_isf
         return period, LB * elig
 
 
@@ -511,7 +521,7 @@ class isf_apres_plaf(DatedVariable):
         tot_impot = simulation.calculate('tot_impot', period)
         revetproduits = simulation.calculate('revetproduits', period)
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
-        P = simulation.legislation_at(period.start).isf.plaf
+        P = simulation.legislation_at(period.start).taxation_capital.isf.plaf
 
         # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas
         # si entre les deux seuils; l'allègement est limité au 1er seuil

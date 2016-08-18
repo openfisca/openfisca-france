@@ -301,7 +301,7 @@ class aide_logement_loyer_retenu(Variable):
         chambre = self.any_by_roles(logement_chambre_holder)
         zone_apl = simulation.calculate('zone_apl_famille', period)
 
-        def loyer_reel():  # L1
+        def loyer_reel():  # personnes_seules L1
             coeff_meuble = where(statut_occupation_logement == 5, 2 / 3, 1)  # Coeff de 2/3 pour les meublés
             return round_(loyer * coeff_meuble)
 
@@ -356,17 +356,29 @@ class aide_logement_R0(Variable):
         period = period.this_month
         al = simulation.legislation_at(period.start).prestations.aides_logement
         pfam_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).prestations.prestations_familiales
+        minim_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).prestations.minima_sociaux
         couple = simulation.calculate('al_couple', period)
         al_nb_pac = simulation.calculate('al_nb_personnes_a_charge', period)
         residence_dom = simulation.calculate('residence_dom')
+        import datetime
 
-        R1 = al.rmi * (
-            al.r1.personne_isolee * not_(couple) * (al_nb_pac == 0) +
-            al.r1.couple_sans_enf * couple * (al_nb_pac == 0) +
-            al.r1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1) +
-            al.r1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2) +
-            al.r1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
-            )
+        if period.start.date >= datetime.date(2011, 6, 01):  #  deux ans après la mise en place du rsa
+            R1 = minim_n_2.rsa.montant_de_base_du_rsa * (
+                al.r1.personne_isolee * not_(couple) * (al_nb_pac == 0) +
+                al.r1.couple_sans_enf * couple * (al_nb_pac == 0) +
+                al.r1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1) +
+                al.r1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2) +
+                al.r1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
+                )
+        else:
+            R1 = minim_n_2.rmi.montant_de_base_du_rmi * (
+                al.r1.personne_isolee * not_(couple) * (al_nb_pac == 0) +
+                al.r1.couple_sans_enf * couple * (al_nb_pac == 0) +
+                al.r1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1) +
+                al.r1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2) +
+                al.r1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
+                )
+
         R2 = pfam_n_2.af.bmaf * (
             al.r2.taux3_dom * residence_dom * (al_nb_pac == 1) +
             al.r2.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2) +
@@ -429,10 +441,10 @@ class aide_logement_taux_loyer(Variable):
         al_nb_pac = simulation.calculate('al_nb_personnes_a_charge', period)
 
         loyer_reference = (
-            z2.L1 * (not_(couple)) * (al_nb_pac == 0) +
-            z2.L2 * (couple) * (al_nb_pac == 0) +
-            z2.L3 * (al_nb_pac >= 1) +
-            z2.L4 * (al_nb_pac > 1) * (al_nb_pac - 1)
+            z2.personnes_seules * (not_(couple)) * (al_nb_pac == 0) +
+            z2.couples * (couple) * (al_nb_pac == 0) +
+            z2.un_enfant * (al_nb_pac >= 1) +
+            z2.majoration_par_enf_supp * (al_nb_pac > 1) * (al_nb_pac - 1)
             )
 
         RL = L / loyer_reference

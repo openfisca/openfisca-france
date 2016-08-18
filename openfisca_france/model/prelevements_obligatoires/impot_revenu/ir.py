@@ -624,6 +624,7 @@ class rev_cat_rvcm(DatedVariable):
         _P = simulation.legislation_at(period.start)
         finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl
         rvcm = simulation.legislation_at(period.start).impot_revenu.rvcm
+        import datetime
 
         f2dc_bis = f2dc
         f2tr_bis = f2tr
@@ -636,13 +637,16 @@ class rev_cat_rvcm(DatedVariable):
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie négative (à déduire des autres revenus nets de frais d'abattements
-        g12a = -min_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
+        g12a = -min_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
         # partie positive
-        g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
+        g12b = max_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        if period.start.date >= datetime.date(2012, 1, 01):
+            h12 = 0
+        else:
+            h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -671,6 +675,7 @@ class rev_cat_rvcm(DatedVariable):
         f2tr = simulation.calculate('f2tr', period)
         finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl
         rvcm = simulation.legislation_at(period.start).impot_revenu.rvcm
+        import datetime
 
         # Add f2da to f2dc and f2ee to f2tr when no PFL
         f2dc_bis = f2dc
@@ -684,13 +689,16 @@ class rev_cat_rvcm(DatedVariable):
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie négative (à déduire des autres revenus nets de frais d'abattements
-        g12a = -min_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
+        g12a = -min_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
         # partie positive
-        g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
+        g12b = max_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        if period.start.date >= datetime.date(2012, 1, 01):
+            h12 = 0
+        else:
+            h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -720,6 +728,7 @@ class rev_cat_rvcm(DatedVariable):
         f2ee = simulation.calculate('f2ee', period)
         finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl
         rvcm = simulation.legislation_at(period.start).impot_revenu.rvcm
+        import datetime
 
         # Add f2da to f2dc and f2ee to f2tr when no PFL
         f2dc_bis = f2dc + f2da  # TODO: l'abattement de 40% est déduit uniquement en l'absence de revenus déclarés case 2DA
@@ -734,13 +743,16 @@ class rev_cat_rvcm(DatedVariable):
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie négative (à déduire des autres revenus nets de frais d'abattements
-        g12a = -min_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
+        g12a = -min_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
         # partie positive
-        g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
-        rev = g12b + f2fu * (1 - rvcm.abatmob_taux)
+        g12b = max_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        rev = g12b + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        if period.start.date >= datetime.date(2012, 1, 01):
+            h12 = 0
+        else:
+            h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -771,6 +783,7 @@ class rfr_rvcm(Variable):
         f2da = simulation.calculate('f2da', period)
         finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl
         rvcm = simulation.legislation_at(period.start).impot_revenu.rvcm
+        import datetime
 
         if finpfl:
             f2dc_bis = f2dc + f2da
@@ -783,13 +796,16 @@ class rfr_rvcm(Variable):
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie positive
-        g12b = max_(f2dc_bis * (1 - rvcm.abatmob_taux) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.abatmob_taux)
+        g12b = max_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        if period.start.date >= datetime.date(2012, 1, 01):
+            h12 = 0
+        else:
+            h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         i121 = - min_(0, rev - h12)
-        return period, max_((rvcm.abatmob_taux) * (f2dc_bis + f2fu) - i121, 0)
+        return period, max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc_bis + f2fu) - i121, 0)
 
 
 class rev_cat_rfon(Variable):
@@ -1430,8 +1446,8 @@ class plus_values(DatedVariable):
         rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
         out = (plus_values.pvce * rpns_pvce +
                plus_values.taux1 * max_(0, f3vg - f3vh) +
-               plus_values.caprisque * f3vl +
-               plus_values.pea * f3vm +
+               plus_values.taux_pv_mob_pro * f3vl +
+               plus_values.pea.taux_avant_2_ans * f3vm +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
 
@@ -1466,8 +1482,8 @@ class plus_values(DatedVariable):
         rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
         out = (plus_values.pvce * rpns_pvce +
                plus_values.taux1 * max_(0, f3vg - f3vh) +
-               plus_values.caprisque * f3vl +
-               plus_values.pea * f3vm +
+               plus_values.taux_pv_mob_pro * f3vl +
+               plus_values.pea.taux_avant_2_ans * f3vm +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
             # revenus taxés à un taux proportionnel
@@ -1505,8 +1521,8 @@ class plus_values(DatedVariable):
         rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
         out = (plus_values.pvce * rpns_pvce +
                plus_values.taux1 * max_(0, f3vg - f3vh) +
-               plus_values.caprisque * f3vl +
-               plus_values.pea * f3vm +
+               plus_values.taux_pv_mob_pro * f3vl +
+               plus_values.pea.taux_avant_2_ans * f3vm +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
         # revenus taxés à un taux proportionnel
@@ -1550,8 +1566,8 @@ class plus_values(DatedVariable):
         rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
         out = (plus_values.pvce * rpns_pvce +
                plus_values.taux1 * max_(0, f3vg - f3vh) +
-               plus_values.caprisque * f3vl +
-               plus_values.pea * f3vm +
+               plus_values.taux_pv_mob_pro * f3vl +
+               plus_values.pea.taux_avant_2_ans * f3vm +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
 
@@ -2746,11 +2762,12 @@ class nbptr(Variable):
 ###############################################################################
 
 
-class ppe_coef(Variable):
+class ppe_coef(DatedVariable):
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"ppe_coef"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         PPE: coefficient de conversion en cas de changement en cours d'année
@@ -2762,11 +2779,12 @@ class ppe_coef(Variable):
         return period, 360 / nb_jour
 
 
-class ppe_elig(Variable):
+class ppe_elig(DatedVariable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
     label = u"ppe_elig"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence
@@ -2787,11 +2805,12 @@ class ppe_elig(Variable):
         return period, (rfr * ppe_coef) <= seuil
 
 
-class ppe_rev(Variable):
+class ppe_rev(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"ppe_rev"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         base ressource de la ppe
@@ -2811,11 +2830,12 @@ class ppe_rev(Variable):
         return period, rev_sa + rev_ns
 
 
-class ppe_coef_tp(Variable):
+class ppe_coef_tp(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"ppe_coef_tp"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         PPE: coefficient de conversion temps partiel
@@ -2834,11 +2854,12 @@ class ppe_coef_tp(Variable):
         return period, tp + not_(tp) * (frac_sa + frac_ns)
 
 
-class ppe_base(Variable):
+class ppe_base(DatedVariable):
     column = FloatCol
     entity_class = Individus
     label = u"ppe_base"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         period = period.this_year
         ppe_rev = simulation.calculate('ppe_rev', period)
@@ -2850,11 +2871,12 @@ class ppe_base(Variable):
         return period, ppe_rev / (ppe_coef_tp + (ppe_coef_tp == 0)) * ppe_coef
 
 
-class ppe_elig_individu(Variable):
+class ppe_elig_individu(DatedVariable):
     column = BoolCol(default = False)
     entity_class = Individus
     label = u"ppe_elig_i"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         Eligibilité individuelle à la ppe
@@ -2869,11 +2891,12 @@ class ppe_elig_individu(Variable):
         return period, (ppe_rev >= ppe.seuil1) & (ppe_coef_tp != 0)
 
 
-class ppe_brute(Variable):
+class ppe_brute(DatedVariable):
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Prime pour l'emploi brute"
 
+    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         Prime pour l'emploi (avant éventuel dispositif de cumul avec le RSA)

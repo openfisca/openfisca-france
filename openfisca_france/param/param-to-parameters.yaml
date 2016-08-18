@@ -4,6 +4,21 @@ impot_revenu.abattements_rni.enf_montant: impot_revenu.abattements_rni.enfant_ma
 impot_revenu.abattements_rni.inv_max1: impot_revenu.abattements_rni.personne_agee_ou_invalide.plafond_de_ressources_1
 impot_revenu.abattements_rni.inv_max2: impot_revenu.abattements_rni.personne_agee_ou_invalide.plafond_de_ressources_2
 impot_revenu.abattements_rni.inv_montant: impot_revenu.abattements_rni.personne_agee_ou_invalide.montant
+impot_revenu.rvcm.abatmob_taux: impot_revenu.rvcm.taux_abattement_capitaux_mobiliers
+impot_revenu.reductions_impots.saldom: impot_revenu.reductions_impots.salarie_domicile
+impot_revenu.plus_values.pea: impot_revenu.plus_values.pea.taux_avant_2_ans
+impot_revenu.plus_values.caprisque: impot_revenu.plus_values.taux_pv_mob_pro
+impot_revenu.reductions_impots.dfppce: impot_revenu.reductions_impots.dons.dfppce
+impot_revenu.reductions_impots.dons.dfppce.taux: impot_revenu.reductions_impots.dons.taux_dons_oeuvres
+impot_revenu.reductions_impots.dons.dfppce.max: impot_revenu.reductions_impots.dons.taux_max_dons_partipo
+impot_revenu.reductions_impots.dons.dfppce.max_niv: impot_revenu.reductions_impots.dons.max_niv
+impot_revenu.reductions_impots.dons.dfppce: null
+impot_revenu.reductions_impots.spfcpi.max: impot_revenu.reductions_impots.spfcpi.plafond_celibataire
+impot_revenu.reductions_impots.garext.max: impot_revenu.reductions_impots.garext.plafond #inutile ??
+impot_revenu.reductions_impots.ecodev.base: impot_revenu.reductions_impots.ecodev.taux_plafond
+impot_revenu.reductions_impots.ecodev.max: impot_revenu.reductions_impots.ecodev.plafond_par_personne
+impot_revenu.credits_impot.garext.max: impot_revenu.credits_impot.garext.plafond
+
 # impot_revenu.bareme: null
 impot_revenu.charges_deductibles.acc75a: impot_revenu.charges_deductibles.accueil_personne_agee
 impot_revenu.charges_deductibles.accueil_personne_agee.max: impot_revenu.charges_deductibles.accueil_personne_agee.plafond
@@ -27,6 +42,8 @@ impot_revenu.rpns.micro.servi: impot_revenu.rpns.micro.specialbnc.services
 impot_revenu.rpns.micro.specialbnc.max: null  # using services since they are the same
 impot_revenu.rpns.micro.specialbnc.min: null  # using services since they are the same
 impot_revenu.microfoncier: impot_revenu.rpns.micro.microfoncier
+impot_revenu.rpns.def_agri_seuil: impot_revenu.rpns.micro.imputation_sur_le_revenu_global.plafond_deficits_agricoles
+impot_revenu.rpns.def_fonc_seuil: impot_revenu.rpns.micro.imputation_sur_le_revenu_global.plafond_deficits_fonciers
 # cotsoc.pat.cadre.agffc: prelevements_sociaux.cotisations_sociales.agff.employeur.cadre
 # cotsoc.pat.noncadre.agffnc: prelevements_sociaux.cotisations_sociales.agff.employeur.non_cadre
 csg: prelevements_sociaux.csg
@@ -53,7 +70,13 @@ prestations.prestations_familiales.af.modulation.plafond2: prestations.prestatio
 prestations.prestations_familiales.af.modulation.taux1: prestations.prestations_familiales.af.modulation.taux_tranche_2
 prestations.prestations_familiales.af.modulation.taux2: prestations.prestations_familiales.af.modulation.taux_tranche_3
 prestations.prestations_familiales.af.modulation.enfant_supp: prestations.prestations_familiales.af.modulation.majoration_plafond_par_enfant_supplementaire
-prestations.prestations_familiales.af.taux.forfait : prestations.prestations_familiales.af.majoration.majoration_pour_les_enfants_en_de_la_bmaf.age_de_plus_de_20_ans_5_6
+prestations.prestations_familiales.af.taux.forfait : prestations.prestations_familiales.af.majoration_enfants.taux_allocation_forfaitaire
+prestations.prestations_familiales.af.maj_age_un_enfant.age1: prestations.prestations_familiales.af.af_dom.age_1er_enf_tranche_1_dom
+prestations.prestations_familiales.af.maj_age_un_enfant.age2: prestations.prestations_familiales.af.af_dom.age_1er_enf_tranche_2_dom
+prestations.prestations_familiales.af.maj_age_un_enfant.taux1: prestations.prestations_familiales.af.af_dom.taux_1er_enf_tranche_1_dom
+prestations.prestations_familiales.af.maj_age_un_enfant.taux2: prestations.prestations_familiales.af.af_dom.taux_1er_enf_tranche_2_dom
+prestations.prestations_familiales.af.taux.enf_seul : prestations.prestations_familiales.af.af_dom.taux_enfant_seul
+prestations.prestations_familiales.af.maj_age_un_enfant : null
 al: prestations.aides_logement
 prestations.aides_logement.forfait_charges.fc1: prestations.aides_logement.forfait_charges.cas_general
 prestations.aides_logement.forfait_charges.fc2: prestations.aides_logement.forfait_charges.majoration_par_enfant
@@ -84,6 +107,18 @@ prestations.aides_logement.autres.nv_seuil: prestations.aides_logement.al_min.mo
 prestations.aides_logement.pp.min: prestations.aides_logement.participation_min.montant_forfaitaire
 prestations.aides_logement.pp.taux: prestations.aides_logement.participation_min.taux
 prestations.aides_logement.pp : null
+prestations.aides_logement.loyers_plafond.zone1.L1: prestations.aides_logement.loyers_plafond.zone1.personnes_seules
+prestations.aides_logement.loyers_plafond.zone1.L2: prestations.aides_logement.loyers_plafond.zone1.couples
+prestations.aides_logement.loyers_plafond.zone1.L3: prestations.aides_logement.loyers_plafond.zone1.un_enfant
+prestations.aides_logement.loyers_plafond.zone1.L4: prestations.aides_logement.loyers_plafond.zone1.majoration_par_enf_supp
+prestations.aides_logement.loyers_plafond.zone2.L1: prestations.aides_logement.loyers_plafond.zone2.personnes_seules
+prestations.aides_logement.loyers_plafond.zone2.L2: prestations.aides_logement.loyers_plafond.zone2.couples
+prestations.aides_logement.loyers_plafond.zone2.L3: prestations.aides_logement.loyers_plafond.zone2.un_enfant
+prestations.aides_logement.loyers_plafond.zone2.L4: prestations.aides_logement.loyers_plafond.zone2.majoration_par_enf_supp
+prestations.aides_logement.loyers_plafond.zone3.L1: prestations.aides_logement.loyers_plafond.zone3.personnes_seules
+prestations.aides_logement.loyers_plafond.zone3.L2: prestations.aides_logement.loyers_plafond.zone3.couples
+prestations.aides_logement.loyers_plafond.zone3.L3: prestations.aides_logement.loyers_plafond.zone3.un_enfant
+prestations.aides_logement.loyers_plafond.zone3.L4: prestations.aides_logement.loyers_plafond.zone3.majoration_par_enf_supp
 #ars: prestations.prestations_familiales
 prestations.prestations_familiales.ars.agep: prestations.prestations_familiales.ars.age_entree_primaire
 prestations.prestations_familiales.ars.ages: prestations.prestations_familiales.ars.age_sortie_lycee
@@ -105,6 +140,11 @@ prestations.prestations_familiales.cf.majoration_plafond_tx2: prestations.presta
 prestations.prestations_familiales.cf.plafond: prestations.prestations_familiales.cf.plafond_de_ressources_0_enfant
 prestations.prestations_familiales.cf.tx: prestations.prestations_familiales.cf.taux_cf_base
 prestations.prestations_familiales.cf.tx_majore: prestations.prestations_familiales.cf.taux_cf_majore
+prestations.prestations_familiales.cf.age_limite_dom: prestations.prestations_familiales.cf.age_maximal_dom
+prestations.prestations_familiales.cf.age_min: prestations.prestations_familiales.cf.age_minimal_dom
+prestations.prestations_familiales.cf.tx_dom: prestations.prestations_familiales.cf.taux_base_dom
+prestations.prestations_familiales.cf.tx_majore_dom: prestations.prestations_familiales.cf.taux_majore_dom
+
 # ape
 prestations.prestations_familiales.ape.age: prestations.prestations_familiales.ape.age_max_enfant
 prestations.prestations_familiales.ape.tx_50: prestations.prestations_familiales.ape.taux_activite_sup_50
@@ -133,7 +173,21 @@ minim: prestations.minima_sociaux
 prestations.minima_sociaux.asi.plaf_seul: prestations.minima_sociaux.asi.plafond_ressource_seul
 prestations.minima_sociaux.asi.plaf_couple: prestations.minima_sociaux.asi.plafond_ressource_couple
 
+# rsa
+prestations.minima_sociaux.rsa.rsa: prestations.minima_sociaux.rsa.montant_de_base_du_rsa
+prestations.minima_sociaux.rsa.majo_rsa.age: prestations.minima_sociaux.rsa.majo_rsa.age_limite_enfant
+prestations.minima_sociaux.rsa.txp2: prestations.minima_sociaux.rsa.majoration_rsa.taux_deuxieme_personne
+prestations.minima_sociaux.rsa.txp3: prestations.minima_sociaux.rsa.majoration_rsa.taux_troisieme_personne
+prestations.minima_sociaux.rsa.txps: prestations.minima_sociaux.rsa.majoration_rsa.taux_personne_supp
+
 # TODO: sortir les paramètres de la prime d'activité (ppa) de rmi et faire merger avec IPP (pa_m)
+ # ppa
+prestations.minima_sociaux.ppa.bonification.seuil_1: prestations.minima_sociaux.ppa.bonification.seuil_bonification
+prestations.minima_sociaux.ppa.bonification.seuil_2: prestations.minima_sociaux.ppa.bonification.seuil_max_bonification
+prestations.minima_sociaux.ppa.bonification.montant_max: prestations.minima_sociaux.ppa.bonification.taux_bonification_max
+prestations.minima_sociaux.ppa.txp2: prestations.minima_sociaux.ppa.taux_deuxieme_personne
+prestations.minima_sociaux.ppa.txp3: prestations.minima_sociaux.ppa.taux_troisieme_personne
+prestations.minima_sociaux.ppa.txps: prestations.minima_sociaux.ppa.taux_personne_supp
 
 
  # api
@@ -146,7 +200,24 @@ prestations.minima_sociaux.aspa.montant_seul: prestations.minima_sociaux.aspa.mo
 prestations.minima_sociaux.aspa.plaf_couple: prestations.minima_sociaux.aspa.plafond_ressources_couple
 prestations.minima_sociaux.aspa.plaf_seul: prestations.minima_sociaux.aspa.plafond_ressources_seul
 
+# aah / caah
+prestations.minima_sociaux.caah.grph: prestations.minima_sociaux.caah.garantie_ressources
+prestations.minima_sociaux.caah.mva: prestations.minima_sociaux.caah.majoration_vie_autonome
+prestations.minima_sociaux.caah.cpltx_1: prestations.minima_sociaux.caah.montant_complement_ressources
+
 taxation_capital.prelevements_sociaux.base_pat: taxation_capital.prelevements_sociaux.prelevement_social.revenus_du_patrimoine
 taxation_capital.prelevements_sociaux.base_plac: taxation_capital.prelevements_sociaux.prelevement_social.produits_de_placement
 taxation_capital.prelevements_sociaux.add_pat: taxation_capital.prelevements_sociaux.caps.revenus_du_patrimoine
 taxation_capital.prelevements_sociaux.rsa: taxation_capital.prelevements_sociaux.caps.rsa
+
+isf: taxation_capital.isf
+taxation_capital.isf.decote.taux: taxation_capital.isf.decote.isf_taux_decote
+taxation_capital.isf.decote.base: taxation_capital.isf.decote.isf_base_decote
+taxation_capital.isf.decote.max: taxation_capital.isf.decote.isf_borne_sup_decote
+taxation_capital.isf.decote.min: taxation_capital.isf.decote.isf_borne_min_decote
+taxation_capital.isf.plafonnement.taux: taxation_capital.isf.plafonnement.plafonnement_taux_d_imposition_isf
+taxation_capital.isf.pme: taxation_capital.isf.reduc_invest_don
+taxation_capital.isf.reduc_invest_don.taux2: taxation_capital.isf.reduc_invest_don.taux_don_interet_general
+taxation_capital.isf.reduc_invest_don.taux1: taxation_capital.isf.reduc_invest_don.taux_invest_direct_soc_holding
+taxation_capital.isf.reduc_pac.reduc_1: taxation_capital.isf.reduc_pac.reduc_enf_garde
+taxation_capital.isf.res_princ.taux: taxation_capital.isf.res_princ.abattement_sur_residence_principale

@@ -5064,7 +5064,7 @@
       <CODE code="caprisque" description="Capital risque (VL)" format="percent">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.24" /> # TODO: Check 2013
-      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.19" />
+        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.19" />
         <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.18" />
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.16" />
       </CODE>
@@ -5079,7 +5079,7 @@
       <CODE code="taux1" description="Plus values de cession de valeurs mobilières" format="percent">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.24" /> # TODO: à partir de 2013: imposition au barême progressif de l'ir avec abattement de  20 % (détention 2 à 4 ans), 30 % (4-6 ans), 40% (au-delà)
-       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.19" />
+        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.19" />
         <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.18" />
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.16" />
       </CODE>
@@ -7009,26 +7009,35 @@
     </NODE>
     <NODE code="ppa" description="Prime Pour l'Activité">
       <CODE code="pente" description="Pente appliquée aux revenus d'activité pour la prime d'activité" format="percent">
-        <VALUE deb="2015-10-01" fuzzy="true" valeur="0.62" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.62" />
       </CODE>
       <CODE code="seuil_non_versement" description="Seuil de non versement de la PPA" format="percent" type="monetary">
-        <VALUE deb="2015-09-01" fin="2016-12-31" valeur="15" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="15" />
       </CODE>
       <CODE code="age_min" description="Âge minimal pour bénéficier de la PPA" format="integer" type="age">
-        <VALUE deb="2015-09-01" fin="2016-12-31" valeur="18" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="18" />
       </CODE>
       <CODE code="seuil_aah_activite" description="Revenu d'activité minimal perçu pour que l'AAH d'un individu soit considéré comme un revenu d'activité, en multiple du smic horaire brut" format="integer">
-        <VALUE deb="2015-09-01" fin="2016-12-31" valeur="29" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="29" />
+      </CODE>
+      <CODE code="txp2" description="Taux pour une 2nde personne" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
+      </CODE>
+      <CODE code="txp3" description="Taux pour une 3e personne" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.3" />
+      </CODE>
+      <CODE code="txps" description="Taux par personne supplémentaire" format="percent">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.4" />
       </CODE>
       <NODE code="bonification">
         <CODE code="montant_max" description="Bonification maximale, en pourcentage du montant de base du RSA" format="percent">
-          <VALUE deb="2015-09-01" fin="2016-12-31" valeur="0.12782" />
+          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.12782" />
         </CODE>
         <CODE code="seuil_1" description="Seuil de salaire minimum pour bénéficier de la bonification, en multiple du smic horaire brut."           format="integer">
-          <VALUE deb="2015-09-01" fin="2016-12-31" valeur="59" />
+          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="59" />
         </CODE>
         <CODE code="seuil_2" description="Seuil de salaire pour bénéficier de la bonification maximale, en multiple du smic horaire brut."           format="integer">
-          <VALUE deb="2015-09-01" fin="2016-12-31" valeur="95" />
+          <VALUE deb="2016-01-01" fin="2016-12-31" valeur="95" />
         </CODE>
       </NODE>
     </NODE>

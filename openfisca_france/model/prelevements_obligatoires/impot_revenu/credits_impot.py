@@ -571,7 +571,7 @@ class ci_garext(Variable):
         _P = simulation.legislation_at(period.start)
 
         P = _P.impot_revenu.credits_impot.garext
-        max1 = P.max
+        max1 = P.plafond
         return period, P.taux * (min_(f7ga, max1) +
                               min_(f7gb, max1) +
                               min_(f7gc, max1) +
@@ -1678,7 +1678,7 @@ class saldom2(DatedVariable):
         f7dl = simulation.calculate('f7dl', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.reductions_impots.saldom
+        P = _P.impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
 
@@ -1704,7 +1704,7 @@ class saldom2(DatedVariable):
         f7dq = simulation.calculate('f7dq', period)
         _P = simulation.legislation_at(period.start)
 
-        P = _P.impot_revenu.reductions_impots.saldom
+        P = _P.impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
 

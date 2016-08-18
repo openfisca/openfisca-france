@@ -62,7 +62,7 @@ class cf_dom_enfant_eligible(Variable):
 
         pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
-        condition_age = (age >= pfam.cf.age_min) * (age < pfam.cf.age_limite_dom)
+        condition_age = (age >= pfam.cf.age_minimal_dom) * (age < pfam.cf.age_maximal_dom)
         condition_situation = cf_enfant_a_charge * rempli_obligation_scolaire
 
         return period, condition_age * condition_situation
@@ -222,7 +222,7 @@ class cf_non_majore_avant_cumul(Variable):
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 
         # Montant
-        montant = pfam.af.bmaf * (pfam.cf.taux_cf_base * eligibilite_base + pfam.cf.tx_dom * eligibilite_dom)
+        montant = pfam.af.bmaf * (pfam.cf.taux_cf_base * eligibilite_base + pfam.cf.taux_base_dom * eligibilite_dom)
 
         # Complément familial
         eligibilite = eligibilite_sous_condition * (ressources <= plafond)
@@ -255,7 +255,7 @@ class cf_majore_avant_cumul(DatedVariable):
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 
         # Montant
-        montant = pfam.af.bmaf * (pfam.cf.taux_cf_majore * eligibilite_base + pfam.cf.tx_majore_dom * eligibilite_dom)
+        montant = pfam.af.bmaf * (pfam.cf.taux_cf_majore * eligibilite_base + pfam.cf.taux_majore_dom * eligibilite_dom)
 
         eligibilite = eligibilite_sous_condition * (ressources <= plafond_majore)
 
