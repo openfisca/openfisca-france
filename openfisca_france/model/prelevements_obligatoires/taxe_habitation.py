@@ -65,7 +65,7 @@ class taxe_habitation(Variable):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
-        last_year= period.start.offset('first-of', 'month').period(-1,'year')
+        last_year= period.last_year
         exonere_taxe_habitation = simulation.calculate('exonere_taxe_habitation', period)
         nombre_enfants_a_charge_menage = self.sum_by_entity(simulation.calculate('enfant_a_charge', period))
         nombre_enfants_majeurs_celibataires_sans_enfant = simulation.calculate('nombre_enfants_majeurs_celibataires_sans_enfant', period)
