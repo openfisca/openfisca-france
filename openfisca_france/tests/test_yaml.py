@@ -206,7 +206,7 @@ def check_calculate_output(yaml_path, name, period_str, test, force, verbose = F
                     )
 
 
-def test(force = False, name_filter = None, options_by_path = None):
+def run_test(force = False, name_filter = None, options_by_path = None):
     if isinstance(name_filter, str):
         name_filter = name_filter.decode('utf-8')
     if options_by_path is None:
@@ -278,8 +278,7 @@ def test(force = False, name_filter = None, options_by_path = None):
                 yield checker, yaml_path, test.get('name') or filename_core, unicode(test['scenario'].period), test, \
                     force
 
-
-if __name__ == "__main__":
+def main():
     import argparse
     import logging
     import sys
@@ -310,7 +309,7 @@ if __name__ == "__main__":
 
     tests_found = False
     for test_index, (checker, yaml_path, name, period_str, test, force) in enumerate(
-            test(
+            run_test(
                 force = args.force,
                 name_filter = args.name,
                 options_by_path = options_by_path,
@@ -334,3 +333,6 @@ if __name__ == "__main__":
         sys.exit(1)
 
     sys.exit(0)
+
+if __name__ == "__main__":
+    main()
