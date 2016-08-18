@@ -6,6 +6,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 from numpy import maximum as max_, round as round_, minimum as min_, logical_not as not_, where, select
 
+
 class ppa_eligibilite(Variable):
     column = BoolCol
     entity_class = Familles
@@ -16,11 +17,12 @@ class ppa_eligibilite(Variable):
         P = simulation.legislation_at(reference_period.start).prestations
         age_min = P.minima_sociaux.ppa.age_min
 
-        condition_age_individus = simulation.calculate('age', period) >= age_min
+        condition_age_individus = simulation.compute('age', period) >= age_min
         condition_age = self.any_by_roles(condition_age_individus)
         elig = condition_age
 
         return period, elig
+
 
 class ppa_eligibilite_etudiants(Variable):
     column = BoolCol
@@ -33,11 +35,13 @@ class ppa_eligibilite_etudiants(Variable):
         ppa_majoree_eligibilite = simulation.calculate('rsa_majore_eligibilite', period)
 
         # Pour un individu
-        etudiant = simulation.calculate('etudiant', period) # individu
+        etudiant = simulation.calculate('etudiant', period)  # individu
         plancher_ressource = 169 * P.cotsoc.gen.smic_h_b * P.prestations.prestations_familiales.af.seuil_rev_taux
+
         def condition_ressource(period2):
             revenu_activite = simulation.calculate('ppa_revenu_activite_individu', period2, extra_params = [period])
             return revenu_activite > plancher_ressource
+
         m_1 = period.offset(-1, 'month')
         m_2 = period.offset(-2, 'month')
         m_3 = period.offset(-3, 'month')
@@ -46,6 +50,7 @@ class ppa_eligibilite_etudiants(Variable):
         # Au moins une personne de la famille doit être non étudiant ou avoir des ressources > plancher
         condition_famille = self.any_by_roles(not_(etudiant) + condition_etudiant_i, roles = [CHEF, CONJ])
         return period, ppa_majoree_eligibilite + condition_famille
+
 
 class ppa_montant_forfaitaire_familial_non_majore(Variable):
     column = FloatCol
@@ -66,11 +71,13 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
             1 +
             (nb_personnes >= 2) * ppa.taux_deuxieme_personne +
             (nb_personnes >= 3) * ppa.taux_troisieme_personne +
-            (nb_personnes >= 4) * where(nb_parents == 1, ppa.taux_personne_supp, ppa.taux_troisieme_personne) + # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
+            (nb_personnes >= 4) * where(nb_parents == 1, ppa.taux_personne_supp, ppa.taux_troisieme_personne) +
+            # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
             max_(nb_personnes - 4, 0) * ppa.taux_personne_supp
             )
 
         return period, rsa.montant_de_base_du_rsa * taux_non_majore
+
 
 class ppa_montant_forfaitaire_familial_majore(Variable):
     column = FloatCol
@@ -86,6 +93,7 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
 
         return period, rsa.montant_de_base_du_rsa * taux_majore
 
+
 class ppa_revenu_activite(Variable):
     column = FloatCol
     entity_class = Familles
@@ -93,10 +101,12 @@ class ppa_revenu_activite(Variable):
 
     def function(self, simulation, period, reference_period):
         period = period.this_month
-        ppa_revenu_activite_individus = simulation.compute('ppa_revenu_activite_individu', period, extra_params = [reference_period])
+        ppa_revenu_activite_individus = simulation.compute(
+            'ppa_revenu_activite_individu', period, extra_params = [reference_period])
         ppa_revenu_activite = self.sum_by_entity(ppa_revenu_activite_individus)
 
         return period, ppa_revenu_activite
+
 
 class ppa_revenu_activite_individu(Variable):
     column = FloatCol
@@ -127,8 +137,12 @@ class ppa_revenu_activite_individu(Variable):
             return select(
                 [valeur_n > 0, valeur_n_1 > 0, valeur_n_2 > 0],
                 [valeur_n, valeur_n_1, valeur_n_2]
-                ) / 12
-        revenus_annualises = get_last_known('tns_benefice_exploitant_agricole') + get_last_known('tns_autres_revenus') + get_last_known('tns_micro_entreprise_benefice')
+                ) / 12l
+        revenus_annualises = (
+            get_last_known('tns_benefice_exploitant_agricole') +
+            get_last_known('tns_autres_revenus') +
+            get_last_known('tns_micro_entreprise_benefice')
+            )
 
         revenus_activites = revenus_mensualises + revenus_annualises
 
@@ -138,24 +152,28 @@ class ppa_revenu_activite_individu(Variable):
 
         return period, revenus_activites + aah_activite
 
+
 class ppa_ressources_hors_activite(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Revenu hors activité pris en compte pour la PPA"
 
     def function(self, simulation, period, reference_period):
-        pf = simulation.calculate('ppa_base_ressources_prestations_familiales', period, extra_params = [reference_period])
-        ressources_hors_activite_individus = simulation.compute('ppa_ressources_hors_activite_individu', period, extra_params = [reference_period])
+        pf = simulation.calculate(
+            'ppa_base_ressources_prestations_familiales', period, extra_params = [reference_period])
+        ressources_hors_activite_individus = simulation.compute(
+            'ppa_ressources_hors_activite_individu', period, extra_params = [reference_period])
         ressources = [
-        'ass',
-        'asi',
-        'aspa'
-        ]
+            'ass',
+            'asi',
+            'aspa'
+            ]
 
         ressources_hors_activite = self.sum_by_entity(ressources_hors_activite_individus) + pf + sum(
             simulation.calculate(ressource, reference_period) for ressource in ressources)
 
         return period, ressources_hors_activite
+
 
 class ppa_ressources_hors_activite_individu(Variable):
     column = FloatCol
@@ -180,13 +198,15 @@ class ppa_ressources_hors_activite_individu(Variable):
 
         ressources_hors_activite_i = sum(
             simulation.calculate(ressource, period) for ressource in ressources)
-        revenus_activites = simulation.calculate('ppa_revenu_activite_individu', period, extra_params = [reference_period])
+        revenus_activites = simulation.calculate(
+            'ppa_revenu_activite_individu', period, extra_params = [reference_period])
 
         # L'aah est pris en compte comme revenu d'activité si  revenu d'activité hors aah > 29 * smic horaire brut
         seuil_aah_activite = P.prestations.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
         aah_hors_activite = (revenus_activites < seuil_aah_activite) * simulation.calculate('aah', period)
 
         return period, ressources_hors_activite_i + aah_hors_activite
+
 
 class ppa_base_ressources_prestations_familiales(Variable):
     column = FloatCol
@@ -200,7 +220,7 @@ class ppa_base_ressources_prestations_familiales(Variable):
             'af_base',
             'rsa_forfait_asf',
             'paje_base',
-           ]
+            ]
         prestations_autres = [
             'paje_clca',
             'paje_prepare',
@@ -217,6 +237,7 @@ class ppa_base_ressources_prestations_familiales(Variable):
 
         return period, result
 
+
 class ppa_base_ressources(Variable):
     column = FloatCol
     entity_class = Familles
@@ -224,9 +245,12 @@ class ppa_base_ressources(Variable):
 
     def function(self, simulation, period, reference_period):
         period = period.this_month
-        ppa_revenu_activite = simulation.calculate('ppa_revenu_activite', period, extra_params = [reference_period])
-        ppa_ressources_hors_activite = simulation.calculate('ppa_ressources_hors_activite', period, extra_params = [reference_period])
+        ppa_revenu_activite = simulation.calculate(
+            'ppa_revenu_activite', period, extra_params = [reference_period])
+        ppa_ressources_hors_activite = simulation.calculate(
+            'ppa_ressources_hors_activite', period, extra_params = [reference_period])
         return period, ppa_revenu_activite + ppa_ressources_hors_activite
+
 
 class ppa_bonification(Variable):
     column = FloatCol
@@ -238,7 +262,8 @@ class ppa_bonification(Variable):
         P = simulation.legislation_at(reference_period.start)
         smic_horaire = P.cotsoc.gen.smic_h_b
         rsa_base = P.prestations.minima_sociaux.rmi.rmi
-        revenu_activite = simulation.calculate('ppa_revenu_activite_individu', period, extra_params = [reference_period])
+        revenu_activite = simulation.calculate(
+            'ppa_revenu_activite_individu', period, extra_params = [reference_period])
         seuil_1 = P.prestations.minima_sociaux.ppa.bonification.seuil_bonification * smic_horaire
         seuil_2 = P.prestations.minima_sociaux.ppa.bonification.seuil_max_bonification * smic_horaire
         bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * rsa_base)
@@ -247,6 +272,7 @@ class ppa_bonification(Variable):
         bonification = min_(bonification, bonification_max)
 
         return period, bonification
+
 
 class ppa_fictive(Variable):
     column = FloatCol
@@ -260,8 +286,10 @@ class ppa_fictive(Variable):
 
         elig = simulation.calculate('ppa_eligibilite', period, extra_params = [reference_period])
         pente = simulation.legislation_at(reference_period.start).prestations.minima_sociaux.ppa.pente
-        mff_non_majore = simulation.calculate('ppa_montant_forfaitaire_familial_non_majore', period, extra_params = [reference_period])
-        mff_majore = simulation.calculate('ppa_montant_forfaitaire_familial_majore', period, extra_params = [reference_period])
+        mff_non_majore = simulation.calculate(
+            'ppa_montant_forfaitaire_familial_non_majore', period, extra_params = [reference_period])
+        mff_majore = simulation.calculate(
+            'ppa_montant_forfaitaire_familial_majore', period, extra_params = [reference_period])
         montant_forfaitaire_familialise = where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
         ppa_base_ressources = simulation.calculate('ppa_base_ressources', period, extra_params = [reference_period])
         ppa_revenu_activite = simulation.calculate('ppa_revenu_activite', period, extra_params = [reference_period])
@@ -271,19 +299,17 @@ class ppa_fictive(Variable):
         ppa_montant_base = (
             montant_forfaitaire_familialise +
             bonification +
-            pente * ppa_revenu_activite - ppa_base_ressources
-            - forfait_logement
+            pente * ppa_revenu_activite - ppa_base_ressources - forfait_logement
             )
 
         ppa_deduction = (
-            montant_forfaitaire_familialise
-            - ppa_base_ressources
-            - forfait_logement
+            montant_forfaitaire_familialise - ppa_base_ressources - forfait_logement
             )
 
         ppa_fictive = ppa_montant_base - max_(ppa_deduction, 0)
         ppa_fictive = max_(ppa_fictive, 0)
         return period, elig * ppa_fictive
+
 
 class ppa(DatedVariable):
     column = FloatCol
