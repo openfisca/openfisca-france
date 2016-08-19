@@ -13,6 +13,8 @@ class f2da(Variable):
     start_date = date(2008, 1, 1)
     stop_date = date(2012, 12, 31)
 
+  # à vérifier sur la nouvelle déclaration des revenus 2013
+
 class f2dh(Variable):
     cerfa_field = u"2DH"
     column = IntCol(val_type = "monetary")

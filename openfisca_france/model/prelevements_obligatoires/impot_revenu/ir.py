@@ -693,12 +693,15 @@ class rev_cat_rvcm(DatedVariable):
         f2go = simulation.calculate('f2go', period)
         f2tr = simulation.calculate('f2tr', period)
         f2fa = simulation.calculate('f2fa', period)
+        f2da = simulation.calculate('f2da', period)
         f2ee = simulation.calculate('f2ee', period)
         finpfl = simulation.legislation_at(period.start).ir.autre.finpfl
         rvcm = simulation.legislation_at(period.start).ir.rvcm
 
-        # Add f2ee to f2tr when no PFL
+        # Add f2da to f2dc and f2ee to f2tr when no PFL
+        f2dc_bis = f2dc + f2da  # TODO: l'abattement de 40% est déduit uniquement en l'absence de revenus déclarés case 2DA
         f2tr_bis = f2tr + f2ee
+
         # # Calcul du revenu catégoriel
         # 1.2 Revenus des valeurs et capitaux mobiliers
         b12 = min_(f2ch, rvcm.abat_assvie * (1 + maries_ou_pacses))
