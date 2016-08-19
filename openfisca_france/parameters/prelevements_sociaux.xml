@@ -1,17 +1,17 @@
 <NODE code="prelevements_sociaux">
   <NODE code="abat_red">
-    <CODE code="artistes" format="percent">
+    <CODE code="artistes" format="percent" origin="ipp">
       <VALUE deb="1975-01-01" fuzzy="true" valeur="0.3" />
     </CODE>
-    <CODE code="journalistes" format="percent">
+    <CODE code="journalistes" format="percent" origin="ipp">
       <VALUE deb="1975-01-01" fuzzy="true" valeur="0.2" />
     </CODE>
-    <CODE code="medecins" format="percent">
+    <CODE code="medecins" format="percent" origin="ipp">
       <VALUE deb="1975-01-01" fuzzy="true" valeur="0.3" />
     </CODE>
   </NODE>
   <NODE code="accidents">
-    <CODE code="employeur_sous_pss" format="percent">
+    <CODE code="employeur_sous_pss" format="percent" origin="ipp">
       <VALUE deb="1989-01-01" fin="1990-12-31" valeur="0.017" />
       <VALUE deb="1986-01-01" fin="1988-12-31" valeur="0.018" />
       <VALUE deb="1985-01-01" fin="1985-12-31" valeur="0.017" />
@@ -20,7 +20,7 @@
       <VALUE deb="1979-01-01" fin="1982-12-31" valeur="0.018" />
       <VALUE deb="1976-01-01" fin="1978-12-31" valeur="0.017" />
     </CODE>
-    <CODE code="employeur_tout_salaire" format="percent">
+    <CODE code="employeur_tout_salaire" format="percent" origin="ipp">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="0.01" />
       <VALUE deb="2008-01-01" fin="2015-12-31" valeur="0.011" />
       <VALUE deb="1993-01-01" fin="2007-12-31" valeur="0.01" />
@@ -30,99 +30,99 @@
   </NODE>
   <NODE code="alleg_gen">
     <NODE code="dispositifs_de_reductions_des_cotisations_famille_1993_1996">
-      <CODE code="0_1_1_smic" format="percent">
+      <CODE code="0_1_1_smic" format="percent" origin="ipp">
         <VALUE deb="1993-07-01" fin="1996-09-30" valeur="0.054" />
       </CODE>
-      <CODE code="1_1_1_2_smic" format="percent">
+      <CODE code="1_1_1_2_smic" format="percent" origin="ipp">
         <VALUE deb="1995-01-01" fin="1996-09-30" valeur="0.054" />
         <VALUE deb="1993-07-01" fin="1994-12-31" valeur="0.027" />
       </CODE>
-      <CODE code="1_2_1_3_smic" format="percent">
+      <CODE code="1_2_1_3_smic" format="percent" origin="ipp">
         <VALUE deb="1994-07-01" fin="1996-09-30" valeur="0.027" />
       </CODE>
     </NODE>
     <NODE code="ristournes_juppe_i_ii_et_iii_1995_2003">
-      <CODE code="plafond_en_nombre_de_smic">
+      <CODE code="plafond_en_nombre_de_smic" origin="ipp">
         <VALUE deb="1998-01-01" fin="2003-06-30" valeur="1.3" />
         <VALUE deb="1996-10-01" fin="1997-12-31" valeur="1.33" />
         <VALUE deb="1995-09-01" fin="1996-09-30" valeur="1.2" />
       </CODE>
-      <CODE code="taux">
+      <CODE code="taux" origin="ipp">
         <VALUE deb="1998-01-01" fin="2003-06-30" valeur="0.607" />
         <VALUE deb="1996-10-01" fin="1997-12-31" valeur="0.55" />
         <VALUE deb="1995-09-01" fin="1996-09-30" valeur="0.64" />
       </CODE>
-      <CODE code="taux_max_au_smic">
+      <CODE code="taux_max_au_smic" origin="ipp">
         <VALUE deb="1996-10-01" fin="2003-06-30" valeur="0.182" />
         <VALUE deb="1995-09-01" fin="1996-09-30" valeur="0.128" />
       </CODE>
     </NODE>
   </NODE>
   <NODE code="allegement_cotisation_allocations_familiales">
-    <CODE code="plafond_en_nombre_de_smic">
+    <CODE code="plafond_en_nombre_de_smic" origin="ipp">
       <VALUE deb="2016-04-01" fuzzy="true" valeur="3.5" />
       <VALUE deb="2015-01-01" fin="2016-03-31" valeur="1.6" />
     </CODE>
-    <CODE code="reduction" format="percent">
+    <CODE code="reduction" format="percent" origin="ipp">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="0.018" />
     </CODE>
   </NODE>
   <NODE code="asf">
     <NODE code="tranche_a">
-      <CODE code="employeur" format="percent">
+      <CODE code="employeur" format="percent" origin="ipp">
         <VALUE deb="1994-01-01" fin="2001-03-31" valeur="0.0116" />
         <VALUE deb="1990-10-01" fin="1993-12-31" valeur="0.0108" />
         <VALUE deb="1984-01-01" fin="1990-09-30" valeur="0.012" />
       </CODE>
-      <CODE code="salarie" format="percent">
+      <CODE code="salarie" format="percent" origin="ipp">
         <VALUE deb="1994-01-01" fin="2001-03-31" valeur="0.008" />
         <VALUE deb="1990-10-01" fin="1993-12-31" valeur="0.0072" />
         <VALUE deb="1984-01-01" fin="1990-09-30" valeur="0.008" />
       </CODE>
     </NODE>
     <NODE code="tranche_b">
-      <CODE code="employeur" format="percent">
+      <CODE code="employeur" format="percent" origin="ipp">
         <VALUE deb="1994-01-01" fin="2001-03-31" valeur="0.0129" />
         <VALUE deb="1984-04-01" fin="1993-12-31" valeur="0.012" />
       </CODE>
-      <CODE code="salarie" format="percent">
+      <CODE code="salarie" format="percent" origin="ipp">
         <VALUE deb="1994-01-01" fin="2001-03-31" valeur="0.0089" />
         <VALUE deb="1984-04-01" fin="1993-12-31" valeur="0.008" />
       </CODE>
     </NODE>
   </NODE>
   <NODE code="aubryii">
-    <CODE code="exoneration_annuelle_minimale" format="float" type="monetary">
+    <CODE code="exoneration_annuelle_minimale" format="float" origin="ipp" type="monetary">
       <VALUE deb="2002-07-01" fin="2003-06-30" valeur="647.77" />
       <VALUE deb="2001-07-01" fin="2002-06-30" valeur="636.32" />
       <VALUE deb="2000-07-01" fin="2001-06-30" valeur="4058" />
       <VALUE deb="2000-02-01" fin="2000-06-30" valeur="4000" />
     </CODE>
-    <CODE code="majoration_1" format="float" type="monetary">
+    <CODE code="majoration_1" format="float" origin="ipp" type="monetary">
       <VALUE deb="2002-07-01" fin="2003-06-30" valeur="226.59" />
       <VALUE deb="2001-07-01" fin="2002-06-30" valeur="222.58" />
       <VALUE deb="2000-07-01" fin="2001-06-30" valeur="1420" />
       <VALUE deb="2000-02-01" fin="2000-06-30" valeur="1400" />
     </CODE>
-    <CODE code="marjoration_2" format="float" type="monetary">
+    <CODE code="marjoration_2" format="float" origin="ipp" type="monetary">
       <VALUE deb="2002-07-01" fin="2003-06-30" valeur="566.76" />
       <VALUE deb="2001-07-01" fin="2002-06-30" valeur="556.74" />
       <VALUE deb="2000-07-01" fin="2001-06-30" valeur="3551" />
       <VALUE deb="2000-02-01" fin="2000-06-30" valeur="3500" />
     </CODE>
-    <CODE code="parametre_1" format="float" type="monetary">
+    <CODE code="parametre_1" format="float" origin="ipp" type="monetary">
       <VALUE deb="2002-07-01" fin="2003-06-30" valeur="6720.17" />
       <VALUE deb="2001-07-01" fin="2002-06-30" valeur="6601.35" />
       <VALUE deb="2000-07-01" fin="2001-06-30" valeur="42102" />
       <VALUE deb="2000-02-01" fin="2000-06-30" valeur="41500" />
     </CODE>
-    <CODE code="parametre_2" format="float" type="monetary">
+    <CODE code="parametre_2" format="float" origin="ipp" type="monetary">
       <VALUE deb="2002-07-01" fin="2003-06-30" valeur="1114.35" />
       <VALUE deb="2001-07-01" fin="2002-06-30" valeur="1094.65" />
       <VALUE deb="2000-07-01" fin="2001-06-30" valeur="6981.46" />
       <VALUE deb="2000-02-01" fin="2000-06-30" valeur="6881.68" />
     </CODE>
-    <CODE code="parametre_3" format="float" type="monetary">
+    <CODE code="parametre_3" format="float" origin="ipp" type="monetary">
       <VALUE deb="2002-07-01" fin="2003-06-30" valeur="3238.57" />
       <VALUE deb="2001-07-01" fin="2002-06-30" valeur="3181.31" />
       <VALUE deb="2000-07-01" fin="2001-06-30" valeur="20290" />
@@ -131,7 +131,7 @@
   </NODE>
   <NODE code="auto_entrepreneur">
     <NODE code="achat_vente_vente_a_consommer_sur_place_prestations_d_hebergement_sauf_location_hebergement_meuble">
-      <CODE code="chiffre_d_affaires" format="percent">
+      <CODE code="chiffre_d_affaires" format="percent" origin="ipp">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0.133" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.141" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.14" />
@@ -139,7 +139,7 @@
       </CODE>
     </NODE>
     <NODE code="activites_liberales_relevant_de_la_cipav">
-      <CODE code="chiffre_d_affaires" format="percent">
+      <CODE code="chiffre_d_affaires" format="percent" origin="ipp">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0.229" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.233" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.213" />
@@ -147,21 +147,21 @@
       </CODE>
     </NODE>
     <NODE code="formation_professionnelle">
-      <CODE code="artisans_alsace" format="percent">
+      <CODE code="artisans_alsace" format="percent" origin="ipp">
         <VALUE deb="2011-01-01" fuzzy="true" valeur="0.00176" />
       </CODE>
-      <CODE code="artisans_hors_alsace" format="percent">
+      <CODE code="artisans_hors_alsace" format="percent" origin="ipp">
         <VALUE deb="2011-01-01" fuzzy="true" valeur="0.003" />
       </CODE>
-      <CODE code="commercants_chiffre_d_affaires" format="percent">
+      <CODE code="commercants_chiffre_d_affaires" format="percent" origin="ipp">
         <VALUE deb="2011-01-01" fuzzy="true" valeur="0.001" />
       </CODE>
-      <CODE code="professions_liberales" format="percent">
+      <CODE code="professions_liberales" format="percent" origin="ipp">
         <VALUE deb="2011-01-01" fuzzy="true" valeur="0.002" />
       </CODE>
     </NODE>
     <NODE code="prestations_de_service">
-      <CODE code="chiffre_d_affaires" format="percent">
+      <CODE code="chiffre_d_affaires" format="percent" origin="ipp">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0.229" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.246" />
         <VALUE deb="2009-01-01" fin="2012-12-31" valeur="0.213" />
@@ -169,32 +169,32 @@
     </NODE>
   </NODE>
   <NODE code="cice">
-    <CODE code="plafond_smic">
+    <CODE code="plafond_smic" origin="ipp">
       <VALUE deb="2013-01-01" fuzzy="true" valeur="2.5" />
     </CODE>
-    <CODE code="taux" format="percent">
+    <CODE code="taux" format="percent" origin="ipp">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.06" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.04" />
     </CODE>
   </NODE>
   <NODE code="cont_sur_options">
     <NODE code="employeur">
-      <CODE code="taux_plein" format="percent">
+      <CODE code="taux_plein" format="percent" origin="ipp">
         <VALUE deb="2012-07-11" fuzzy="true" valeur="0.3" />
         <VALUE deb="2011-01-01" fin="2012-07-10" valeur="0.14" />
         <VALUE deb="2007-10-16" fin="2010-12-31" valeur="0.1" />
       </CODE>
-      <CODE code="taux_reduit" format="percent">
+      <CODE code="taux_reduit" format="percent" origin="ipp">
         <VALUE deb="2011-01-01" fin="2012-07-10" valeur="0.1" />
       </CODE>
     </NODE>
     <NODE code="salarie">
-      <CODE code="taux_plein" format="percent">
+      <CODE code="taux_plein" format="percent" origin="ipp">
         <VALUE deb="2012-07-11" fuzzy="true" valeur="0.1" />
         <VALUE deb="2011-01-01" fin="2012-07-10" valeur="0.08" />
         <VALUE deb="2007-10-16" fin="2010-12-31" valeur="0.025" />
       </CODE>
-      <CODE code="taux_reduit" format="percent">
+      <CODE code="taux_reduit" format="percent" origin="ipp">
         <VALUE deb="2011-01-01" fin="2012-07-10" valeur="0.025" />
       </CODE>
     </NODE>
@@ -204,52 +204,52 @@
       <NODE code="employeur">
         <BAREME code="cadre">
           <TRANCHE code="tranche_1">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0.012" />
             </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche_2">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="1" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0.013" />
             </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche_nulle">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="4" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0" />
             </TAUX>
           </TRANCHE>
         </BAREME>
         <BAREME code="non_cadre">
           <TRANCHE code="tranche_1">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0.012" />
             </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche_2">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="1" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0.013" />
             </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche_nulle">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="3" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0" />
             </TAUX>
           </TRANCHE>
@@ -258,62 +258,62 @@
       <NODE code="salarie">
         <BAREME code="cadre">
           <TRANCHE code="tranche_1">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0.008" />
             </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche_2">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="1" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0.009" />
             </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche_nulle">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="4" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0" />
             </TAUX>
           </TRANCHE>
         </BAREME>
         <BAREME code="non_cadre">
           <TRANCHE code="tranche_1">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0.008" />
             </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche_2">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="1" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0.009" />
             </TAUX>
           </TRANCHE>
           <TRANCHE code="tranche_nulle">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="3" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2001-04-01" fuzzy="true" valeur="0" />
             </TAUX>
           </TRANCHE>
         </BAREME>
       </NODE>
       <NODE code="tranche_c">
-        <CODE code="employeur" format="percent">
+        <CODE code="employeur" format="percent" origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="0.013" />
         </CODE>
-        <CODE code="salarie" format="percent">
+        <CODE code="salarie" format="percent" origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="0.009" />
         </CODE>
       </NODE>
@@ -321,18 +321,18 @@
     <NODE code="agirc">
       <BAREME code="employeur">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1948-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1948-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_b">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1948-01-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.1275" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.1268" />
             <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.126" />
@@ -357,10 +357,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_c">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1948-01-01" fuzzy="true" valeur="4" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.1275" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.1268" />
             <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.126" />
@@ -375,28 +375,28 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1948-01-01" fuzzy="true" valeur="8" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1948-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
       </BAREME>
       <BAREME code="employeur_depuis_81">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1981-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1981-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_b">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1981-01-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1995-01-01" fuzzy="true" valeur="0.1" />
             <VALUE deb="1994-01-01" fin="1994-12-31" valeur="0.0968" />
             <VALUE deb="1990-01-01" fin="1993-12-31" valeur="0.0936" />
@@ -408,10 +408,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_c">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1981-01-01" fuzzy="true" valeur="4" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.1275" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.1268" />
             <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.126" />
@@ -426,28 +426,28 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1981-01-01" fuzzy="true" valeur="8" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1981-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
       </BAREME>
       <BAREME code="salarie">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1948-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1948-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_b">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1948-01-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.078" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0775" />
             <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.077" />
@@ -472,10 +472,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_c">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1948-01-01" fuzzy="true" valeur="4" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.078" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0775" />
             <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.077" />
@@ -490,28 +490,28 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1948-01-01" fuzzy="true" valeur="8" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1948-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
       </BAREME>
       <BAREME code="salarie_depuis_81">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1981-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1981-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_b">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1981-01-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1995-01-01" fuzzy="true" valeur="0.05" />
             <VALUE deb="1994-01-01" fin="1994-12-31" valeur="0.0484" />
             <VALUE deb="1990-01-01" fin="1993-12-31" valeur="0.0468" />
@@ -523,10 +523,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_c">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1981-01-01" fuzzy="true" valeur="4" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.078" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0775" />
             <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.077" />
@@ -541,10 +541,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1981-01-01" fuzzy="true" valeur="8" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1981-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -553,10 +553,10 @@
     <NODE code="ags">
       <BAREME code="employeur">
         <TRANCHE code="tranche_a_b">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1974-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2016-01-01" fuzzy="true" valeur="0.0025" />
             <VALUE deb="2011-04-01" fin="2015-12-31" valeur="0.003" />
             <VALUE deb="2009-10-01" fin="2011-03-31" valeur="0.004" />
@@ -585,10 +585,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1974-01-01" fuzzy="true" valeur="4" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1974-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -597,53 +597,53 @@
     <NODE code="apec">
       <BAREME code="employeur">
         <TRANCHE code="tranche_a_b">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2011-01-01" fuzzy="true" valeur="0.00036" />
             <VALUE deb="1971-01-01" fin="2010-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="4" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
       </BAREME>
       <BAREME code="employeur_avant_2011">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_b">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2011-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1975-01-01" fin="2010-12-31" valeur="0.00036" />
             <VALUE deb="1971-01-01" fin="1974-12-31" valeur="0.00024" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="4" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
       </BAREME>
       <NODE code="forfait_annuel">
-        <CODE code="employeur" format="float" type="monetary">
+        <CODE code="employeur" format="float" origin="ipp" type="monetary">
           <VALUE deb="2010-03-01" fin="2010-12-31" valeur="12.46" />
           <VALUE deb="2009-03-01" fin="2010-02-28" valeur="12.35" />
           <VALUE deb="2008-03-01" fin="2009-02-28" valeur="11.98" />
@@ -680,7 +680,7 @@
           <VALUE deb="1977-03-01" fin="1978-02-28" valeur="15.6" />
           <VALUE deb="1976-03-01" fin="1977-02-28" valeur="13.68" />
         </CODE>
-        <CODE code="salarie" format="float" type="monetary">
+        <CODE code="salarie" format="float" origin="ipp" type="monetary">
           <VALUE deb="2010-03-01" fin="2010-12-31" valeur="8.31" />
           <VALUE deb="2009-03-01" fin="2010-02-28" valeur="8.23" />
           <VALUE deb="2008-03-01" fin="2009-02-28" valeur="7.99" />
@@ -720,47 +720,47 @@
       </NODE>
       <BAREME code="salarie">
         <TRANCHE code="tranche_a_b">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2011-01-01" fuzzy="true" valeur="0.00024" />
             <VALUE deb="1971-01-01" fin="2010-12-31" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="4" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
       </BAREME>
       <BAREME code="salarie_avant_2011">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_b">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2011-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1975-01-01" fin="2010-12-31" valeur="0.00024" />
             <VALUE deb="1971-01-01" fin="1974-12-31" valeur="0.00016" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="4" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -768,23 +768,23 @@
     </NODE>
     <NODE code="apprentissage">
       <NODE code="cas_des_entreprises_2000_salaries_ou_alternants_representent_1_de_l_effectif_i_i_i">
-        <CODE code="contribution_supplementaire_a_l_apprentissage_csa" format="percent">
+        <CODE code="contribution_supplementaire_a_l_apprentissage_csa" format="percent" origin="ipp">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="0.004" />
           <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.0025" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.002" />
         </CODE>
       </NODE>
       <NODE code="entreprises_de_250_salaries_et_plus">
-        <CODE code="contribution_supplementaire_a_l_apprentissage_csa" format="percent">
+        <CODE code="contribution_supplementaire_a_l_apprentissage_csa" format="percent" origin="ipp">
           <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.001" />
         </CODE>
       </NODE>
       <BAREME code="taxe_apprentissage">
         <TRANCHE code="tranche_unique">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1972-07-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2014-01-01" fuzzy="true" valeur="0.0068" />
             <VALUE deb="1993-01-01" fin="2013-12-31" valeur="0.005" />
             <VALUE deb="1977-01-01" fin="1992-12-31" valeur="0.006" />
@@ -796,10 +796,10 @@
     <NODE code="arrco">
       <BAREME code="employeur">
         <TRANCHE code="tranche_1">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1962-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0465" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.04575" />
             <VALUE deb="1999-01-01" fin="2013-12-31" valeur="0.045" />
@@ -820,10 +820,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_2">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1962-01-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.1215" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.12075" />
             <VALUE deb="2000-01-01" fin="2013-12-31" valeur="0.12" />
@@ -833,20 +833,20 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1962-01-01" fuzzy="true" valeur="3" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1962-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
       </BAREME>
       <BAREME code="salarie">
         <TRANCHE code="tranche_1">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1962-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.031" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0305" />
             <VALUE deb="1999-01-01" fin="2013-12-31" valeur="0.03" />
@@ -867,10 +867,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_2">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1962-01-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.081" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0805" />
             <VALUE deb="2000-01-01" fin="2013-12-31" valeur="0.08" />
@@ -880,16 +880,16 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1962-01-01" fuzzy="true" valeur="3" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1962-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
       </BAREME>
       <NODE code="taux_contractuels">
-        <CODE code="tranche_1" format="percent">
+        <CODE code="tranche_1" format="percent" origin="ipp">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.062" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.061" />
           <VALUE deb="1999-01-01" fin="2013-12-31" valeur="0.06" />
@@ -900,14 +900,14 @@
           <VALUE deb="1962-01-01" fin="1966-12-31" valeur="0.025" />
         </CODE>
         <NODE code="tranche_2">
-          <CODE code="entreprises_apres_01_01_1997" format="percent">
+          <CODE code="entreprises_apres_01_01_1997" format="percent" origin="ipp">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.162" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.161" />
             <VALUE deb="2000-01-01" fin="2013-12-31" valeur="0.16" />
             <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.15" />
             <VALUE deb="1997-01-01" fin="1998-12-31" valeur="0.14" />
           </CODE>
-          <CODE code="entreprises_avant_01_01_1997" format="percent">
+          <CODE code="entreprises_avant_01_01_1997" format="percent" origin="ipp">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.162" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.161" />
             <VALUE deb="2005-01-01" fin="2013-12-31" valeur="0.16" />
@@ -921,7 +921,7 @@
           </CODE>
         </NODE>
       </NODE>
-      <CODE code="taux_d_appel" format="percent">
+      <CODE code="taux_d_appel" format="percent" origin="ipp">
         <VALUE deb="1992-01-01" fuzzy="true" valeur="1.25" />
         <VALUE deb="1991-01-01" fin="1991-12-31" valeur="1.23" />
         <VALUE deb="1988-01-01" fin="1990-12-31" valeur="1.2" />
@@ -934,7 +934,7 @@
         <VALUE deb="1962-01-01" fin="1970-12-31" valeur="1" />
       </CODE>
       <NODE code="taux_effectifs">
-        <CODE code="tranche_1" format="percent">
+        <CODE code="tranche_1" format="percent" origin="ipp">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0775" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.07625" />
           <VALUE deb="1999-01-01" fin="2013-12-31" valeur="0.075" />
@@ -954,14 +954,14 @@
           <VALUE deb="1962-01-01" fin="1966-12-31" valeur="0.025" />
         </CODE>
         <NODE code="tranche_2">
-          <CODE code="entreprises_apres_01_01_1997" format="percent">
+          <CODE code="entreprises_apres_01_01_1997" format="percent" origin="ipp">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.2025" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.20125" />
             <VALUE deb="2000-01-01" fin="2013-12-31" valeur="0.2" />
             <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.1875" />
             <VALUE deb="1997-01-01" fin="1998-12-31" valeur="0.175" />
           </CODE>
-          <CODE code="entreprises_avant_01_01_1997" format="percent">
+          <CODE code="entreprises_avant_01_01_1997" format="percent" origin="ipp">
             <VALUE deb="2015-01-01" fuzzy="true" valeur="0.2025" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.20125" />
             <VALUE deb="2005-01-01" fin="2013-12-31" valeur="0.2" />
@@ -979,29 +979,29 @@
     <NODE code="casa">
       <BAREME code="pension">
         <TRANCHE code="tranche_unique">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="2013-04-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2013-04-01" fuzzy="true" valeur="0.003" />
           </TAUX>
         </TRANCHE>
       </BAREME>
-      <CODE code="seuil_d_exoneration_rfr_pour_1_part_de_qf_en_n_2" format="float" type="monetary">
+      <CODE code="seuil_d_exoneration_rfr_pour_1_part_de_qf_en_n_2" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="13956" />
         <VALUE deb="2015-01-01" fin="2016-03-31" valeur="13900" />
       </CODE>
-      <CODE code="seuil_d_exoneration_sur_l_irpp_paye_en_n_1" format="float" type="monetary">
+      <CODE code="seuil_d_exoneration_sur_l_irpp_paye_en_n_1" format="float" origin="ipp" type="monetary">
         <VALUE deb="2013-04-01" fuzzy="true" valeur="61" />
       </CODE>
     </NODE>
     <NODE code="cet">
       <BAREME code="employeur">
         <TRANCHE code="salaire_sous_8_pss">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1997-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2001-01-01" fuzzy="true" valeur="0.0022" />
             <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.0017" />
             <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.0013" />
@@ -1010,20 +1010,20 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1997-01-01" fuzzy="true" valeur="8" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1997-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
       </BAREME>
       <BAREME code="salarie">
         <TRANCHE code="salaire_sous_8_pss">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1997-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2001-01-01" fuzzy="true" valeur="0.0013" />
             <VALUE deb="2000-01-01" fin="2000-12-31" valeur="0.0011" />
             <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.0008" />
@@ -1032,10 +1032,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1997-01-01" fuzzy="true" valeur="8" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1997-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1044,10 +1044,10 @@
     <NODE code="chomage">
       <BAREME code="employeur">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1959-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2007-01-01" fuzzy="true" valeur="0.04" />
             <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.0404" />
             <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.04" />
@@ -1081,10 +1081,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_b">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1959-01-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2007-01-01" fuzzy="true" valeur="0.04" />
             <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.0404" />
             <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.04" />
@@ -1111,20 +1111,20 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1959-01-01" fuzzy="true" valeur="4" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1959-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
       </BAREME>
       <BAREME code="salarie">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1959-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2007-01-01" fuzzy="true" valeur="0.024" />
             <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.0244" />
             <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.024" />
@@ -1158,10 +1158,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_b">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1959-01-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2007-01-01" fuzzy="true" valeur="0.024" />
             <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.0244" />
             <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.024" />
@@ -1188,10 +1188,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1959-01-01" fuzzy="true" valeur="4" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1959-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1201,10 +1201,10 @@
       <NODE code="atiacl">
         <BAREME code="employeur">
           <TRANCHE code="tranche_unique">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="1947-09-19" fuzzy="true" valeur="0" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2013-01-01" fuzzy="true" valeur="0.004" />
               <VALUE deb="1982-01-01" fin="2012-12-31" valeur="0.005" />
               <VALUE deb="1980-07-01" fin="1981-12-31" valeur="0.004" />
@@ -1218,10 +1218,10 @@
       <NODE code="cnracl">
         <BAREME code="employeur">
           <TRANCHE code="tranche_unique">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="1947-09-19" fuzzy="true" valeur="0" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2017-01-01" fuzzy="true" valeur="0.3065" />
               <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.306" />
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.305" />
@@ -1258,10 +1258,10 @@
         <NODE code="salarie">
           <BAREME code="hors_nbi">
             <TRANCHE code="tranche_unique">
-              <SEUIL>
+              <SEUIL origin="ipp">
                 <VALUE deb="1947-09-19" fuzzy="true" valeur="0" />
               </SEUIL>
-              <TAUX>
+              <TAUX origin="ipp">
                 <VALUE deb="2020-01-01" fuzzy="true" valeur="0.111" />
                 <VALUE deb="2019-01-01" fin="2019-12-31" valeur="0.1083" />
                 <VALUE deb="2018-01-01" fin="2018-12-31" valeur="0.1056" />
@@ -1284,10 +1284,10 @@
           </BAREME>
           <BAREME code="nbi">
             <TRANCHE code="tranche_unique">
-              <SEUIL>
+              <SEUIL origin="ipp">
                 <VALUE deb="1947-09-19" fuzzy="true" valeur="0" />
               </SEUIL>
-              <TAUX>
+              <TAUX origin="ipp">
                 <VALUE deb="2020-01-01" fuzzy="true" valeur="0.1086" />
                 <VALUE deb="2019-01-01" fin="2019-12-31" valeur="0.1083" />
                 <VALUE deb="2018-01-01" fin="2018-12-31" valeur="0.1056" />
@@ -1311,7 +1311,7 @@
         </NODE>
       </NODE>
       <NODE code="fccpa">
-        <CODE code="hors_hospi" format="percent">
+        <CODE code="hors_hospi" format="percent" origin="ipp">
           <VALUE deb="2002-01-01" fin="2010-12-31" valeur="0.005" />
           <VALUE deb="1984-01-01" fin="2001-12-31" valeur="0.002" />
         </CODE>
@@ -1319,10 +1319,10 @@
       <NODE code="feh">
         <BAREME code="employeur">
           <TRANCHE code="tranche_unique">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="1947-09-19" fuzzy="true" valeur="0" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2002-01-01" fuzzy="true" valeur="0.01" />
               <VALUE deb="2000-01-01" fin="2001-12-31" valeur="0.008" />
               <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.0067" />
@@ -1335,10 +1335,10 @@
     <NODE code="construction">
       <BAREME code="construction_10_19">
         <TRANCHE code="tranche_unique">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1953-09-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1992-01-01" fin="2004-12-31" valeur="0.0045" />
             <VALUE deb="1991-01-01" fin="1991-12-31" valeur="0.0055" />
             <VALUE deb="1989-01-01" fin="1990-12-31" valeur="0.0065" />
@@ -1351,10 +1351,10 @@
       </BAREME>
       <BAREME code="construction_20">
         <TRANCHE code="tranche_unique">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1953-09-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1992-01-01" fuzzy="true" valeur="0.0045" />
             <VALUE deb="1991-01-01" fin="1991-12-31" valeur="0.0055" />
             <VALUE deb="1989-01-01" fin="1990-12-31" valeur="0.0065" />
@@ -1368,10 +1368,10 @@
     </NODE>
     <BAREME code="famille">
       <TRANCHE code="tranche_unique">
-        <SEUIL>
+        <SEUIL origin="ipp">
           <VALUE deb="1946-07-01" fuzzy="true" valeur="0" />
         </SEUIL>
-        <TAUX>
+        <TAUX origin="ipp">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="0.0525" />
           <VALUE deb="1991-02-01" fin="2013-12-31" valeur="0.054" />
           <VALUE deb="1990-01-01" fin="1991-01-31" valeur="0.07" />
@@ -1380,25 +1380,25 @@
       </TRANCHE>
     </BAREME>
     <NODE code="fds">
-      <BAREME code="cotisation_exceptionnelle_solidarite">
+      <BAREME both_origins="false" code="cotisation_exceptionnelle_solidarite">
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1982-11-01" fuzzy="true" valeur="4" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1982-11-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_unique">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1982-11-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1982-11-01" fuzzy="true" valeur="0.01" />
           </TAUX>
         </TRANCHE>
       </BAREME>
-      <CODE code="indice_majore_de_reference">
+      <CODE code="indice_majore_de_reference" origin="ipp">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="309" />
         <VALUE deb="2012-07-01" fin="2012-12-31" valeur="308" />
         <VALUE deb="2012-01-01" fin="2012-06-30" valeur="302" />
@@ -1416,11 +1416,11 @@
         <VALUE deb="1991-02-01" fin="1991-07-31" valeur="259" />
         <VALUE deb="1989-09-01" fin="1991-01-31" valeur="254" />
       </CODE>
-      <CODE code="plafond_base_solidarite" description="Plafond de la contribution exceptionnelle de solidarité " format="float" type="monetary">
+      <CODE code="plafond_base_solidarite" description="Plafond de la contribution exceptionnelle de solidarité " format="float" origin="openfisca" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="12516" />
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="12516" />  # TODO check. Pas dispo dans barème IPP
           </CODE>
-      <CODE code="seuil_d_assujettissement" format="float" type="monetary">
+      <CODE code="seuil_d_assujettissement" format="float" origin="ipp" type="monetary">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="1430.76" />
         <VALUE deb="2012-07-01" fin="2012-12-31" valeur="1426.12" />
         <VALUE deb="2012-01-01" fin="2012-06-30" valeur="1398.34" />
@@ -1487,7 +1487,7 @@
         <VALUE deb="1982-12-01" fin="1982-12-31" valeur="4535.08" />
         <VALUE deb="1982-11-01" fin="1982-11-30" valeur="4485.25" />
       </CODE>
-      <CODE code="traitement_brut_annuel" format="float" type="monetary">
+      <CODE code="traitement_brut_annuel" format="float" origin="ipp" type="monetary">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="17169.1215" />
         <VALUE deb="2012-07-01" fin="2012-12-31" valeur="17113.558" />
         <VALUE deb="2012-01-01" fin="2012-06-30" valeur="16780.177" />
@@ -1536,7 +1536,7 @@
         <VALUE deb="1990-01-01" fin="1990-03-31" valeur="71806" />
         <VALUE deb="1989-09-01" fin="1989-12-31" valeur="71448" />
       </CODE>
-      <CODE code="valeur_annuelle_point_fp" format="float" type="monetary">
+      <CODE code="valeur_annuelle_point_fp" format="float" origin="ipp" type="monetary">
         <VALUE deb="2010-07-01" fuzzy="true" valeur="55.5635" />
         <VALUE deb="2009-10-01" fin="2010-06-30" valeur="55.2871" />
         <VALUE deb="2009-07-01" fin="2009-09-30" valeur="55.1217" />
@@ -1578,13 +1578,13 @@
     </NODE>
     <NODE code="fnal">
       <NODE code="entreprises_de_plus_de_20_salaries">
-        <CODE code="au_dessus_du_pss" format="percent">
+        <CODE code="au_dessus_du_pss" format="percent" origin="ipp">
           <VALUE deb="2011-01-01" fuzzy="true" valeur="0.005" />
           <VALUE deb="1991-07-01" fin="2010-12-31" valeur="0.004" />
           <VALUE deb="1989-01-01" fin="1991-06-30" valeur="0.002" />
           <VALUE deb="1986-01-01" fin="1988-12-31" valeur="0.0013" />
         </CODE>
-        <CODE code="sous_pss" format="percent">
+        <CODE code="sous_pss" format="percent" origin="ipp">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.005" />
           <VALUE deb="1991-07-01" fin="2014-12-31" valeur="0.004" />
           <VALUE deb="1989-01-01" fin="1991-06-30" valeur="0.002" />
@@ -1593,18 +1593,18 @@
       </NODE>
       <BAREME code="tout_employeur">
         <TRANCHE code="sous_pss">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1972-07-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1972-07-01" fuzzy="true" valeur="0.001" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1972-07-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1972-07-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1612,46 +1612,46 @@
     </NODE>
     <NODE code="formation">
       <NODE code="10_salaries_ou_plus">
-        <CODE code="conges_de_formation" format="percent">
+        <CODE code="conges_de_formation" format="percent" origin="ipp">
           <VALUE deb="1993-01-01" fin="2014-12-31" valeur="0.002" />
           <VALUE deb="1991-01-01" fin="1992-12-31" valeur="0.0015" />
           <VALUE deb="1984-01-01" fin="1990-12-31" valeur="0.001" />
         </CODE>
-        <CODE code="contrats_et_periodes_de_professionnalisation_et_dif" format="percent">
+        <CODE code="contrats_et_periodes_de_professionnalisation_et_dif" format="percent" origin="ipp">
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur="0.005" />
         </CODE>
-        <CODE code="cotisation_formation_alternee" format="percent">
+        <CODE code="cotisation_formation_alternee" format="percent" origin="ipp">
           <VALUE deb="1993-01-01" fin="2008-04-30" valeur="0.004" />
           <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.003" />
         </CODE>
       </NODE>
-      <CODE code="11_salaries_et_plus" format="percent">
+      <CODE code="11_salaries_et_plus" format="percent" origin="ipp">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.01" />
       </CODE>
       <NODE code="decomposition_du_taux_employeur_de_50_a_300_salaries">
-        <CODE code="compte_personnel_de_formation" format="percent">
+        <CODE code="compte_personnel_de_formation" format="percent" origin="ipp">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.002" />
         </CODE>
-        <CODE code="conge_individuel_de_formation" format="percent">
+        <CODE code="conge_individuel_de_formation" format="percent" origin="ipp">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.002" />
         </CODE>
-        <CODE code="plan_de_formation" format="percent">
+        <CODE code="plan_de_formation" format="percent" origin="ipp">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.001" />
         </CODE>
-        <CODE code="professionnalisation" format="percent">
+        <CODE code="professionnalisation" format="percent" origin="ipp">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.003" />
         </CODE>
-        <CODE code="securisation_des_parcours_professionnels" format="percent">
+        <CODE code="securisation_des_parcours_professionnels" format="percent" origin="ipp">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.002" />
         </CODE>
       </NODE>
       <NODE code="employeur">
         <BAREME code="20_salaries_et_plus">
           <TRANCHE code="tout_salaire">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="1972-01-01" fuzzy="true" valeur="0" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.01" />
               <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.016" />
               <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.015" />
@@ -1665,10 +1665,10 @@
         </BAREME>
         <BAREME code="de_10_a_19_salaries">
           <TRANCHE code="tout_salaire">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="1972-01-01" fuzzy="true" valeur="0" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.01" />
               <VALUE deb="2005-01-01" fin="2014-12-31" valeur="0.0105" />
               <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.016" />
@@ -1683,28 +1683,28 @@
         </BAREME>
         <BAREME code="moins_de_10_salaries">
           <TRANCHE code="tout_salaire">
-            <SEUIL>
+            <SEUIL origin="ipp">
               <VALUE deb="1972-01-01" fuzzy="true" valeur="0" />
             </SEUIL>
-            <TAUX>
+            <TAUX origin="ipp">
               <VALUE deb="2005-01-01" fin="2015-12-31" valeur="0.0055" />
               <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.004" />
               <VALUE deb="1992-01-01" fin="2003-12-31" valeur="0.0015" />
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <CODE code="moins_de_11_salaries" format="percent">
+        <CODE code="moins_de_11_salaries" format="percent" origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="0.0055" />
         </CODE>
       </NODE>
       <NODE code="moins_de_10_salaries">
-        <CODE code="contribution_sur_contrats_d_insertion_en_alternance" format="percent">
+        <CODE code="contribution_sur_contrats_d_insertion_en_alternance" format="percent" origin="ipp">
           <VALUE deb="2004-01-01" fin="2008-04-30" valeur="0" />
           <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.001" />
         </CODE>
       </NODE>
       <NODE code="toute_entreprise">
-        <CODE code="salaires_cdd" format="percent">
+        <CODE code="salaires_cdd" format="percent" origin="ipp">
           <VALUE deb="1990-07-14" fuzzy="true" valeur="0.01" />
         </CODE>
       </NODE>
@@ -1712,10 +1712,10 @@
     <NODE code="ircantec">
       <BAREME code="employeur">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2017-01-01" fuzzy="true" valeur="0.042" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0408" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0396" />
@@ -1732,10 +1732,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_b_1_4_75_puis_1_a_8_pss">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2017-01-01" fuzzy="true" valeur="0.1255" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.1235" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.12175" />
@@ -1752,20 +1752,20 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="8" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
       </BAREME>
       <BAREME code="salarie">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2017-01-01" fuzzy="true" valeur="0.028" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0272" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0264" />
@@ -1782,10 +1782,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_b_1_4_75_puis_1_a_8_pss">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0695" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0675" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0658" />
@@ -1802,15 +1802,15 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="8" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1971-01-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
       </BAREME>
-      <CODE code="taux_d_appel" format="percent">
+      <CODE code="taux_d_appel" format="percent" origin="ipp">
         <VALUE deb="1992-01-01" fuzzy="true" valeur="1.25" />
         <VALUE deb="1991-04-01" fin="1991-12-31" valeur="1.2" />
         <VALUE deb="1989-01-01" fin="1991-03-31" valeur="1.09" />
@@ -1820,7 +1820,7 @@
       </CODE>
       <NODE code="taux_de_cotisations_contractuels">
         <NODE code="tranche_a">
-          <CODE code="agent" format="percent">
+          <CODE code="agent" format="percent" origin="ipp">
             <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0224" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.02176" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.02112" />
@@ -1831,7 +1831,7 @@
             <VALUE deb="1989-01-01" fin="2010-12-31" valeur="0.018" />
             <VALUE deb="1971-01-01" fin="1988-12-31" valeur="0.014" />
           </CODE>
-          <CODE code="employeur" format="percent">
+          <CODE code="employeur" format="percent" origin="ipp">
             <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0336" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.03264" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.03168" />
@@ -1844,7 +1844,7 @@
           </CODE>
         </NODE>
         <NODE code="tranche_b">
-          <CODE code="agent" format="percent">
+          <CODE code="agent" format="percent" origin="ipp">
             <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0556" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.054" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0526" />
@@ -1855,7 +1855,7 @@
             <VALUE deb="1989-01-01" fin="2010-12-31" valeur="0.0476" />
             <VALUE deb="1971-01-01" fin="1988-12-31" valeur="0.0425" />
           </CODE>
-          <CODE code="employeur" format="percent">
+          <CODE code="employeur" format="percent" origin="ipp">
             <VALUE deb="2017-01-01" fuzzy="true" valeur="0.1004" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0988" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0974" />
@@ -1872,10 +1872,10 @@
     <NODE code="mmid">
       <BAREME code="employeur">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2016-01-01" fuzzy="true" valeur="0.1284" />
             <VALUE deb="1992-01-01" fin="2015-12-31" valeur="0.128" />
             <VALUE deb="1984-01-01" fin="1991-12-31" valeur="0.126" />
@@ -1888,10 +1888,10 @@
       </BAREME>
       <BAREME code="employeur2">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1984-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1981-11-01" fin="1983-12-31" valeur="0.0545" />
             <VALUE deb="1979-01-01" fin="1981-10-31" valeur="0.0895" />
@@ -1902,23 +1902,23 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
       </BAREME>
-      <CODE code="reduction_65_ans" format="percent">
+      <CODE code="reduction_65_ans" format="percent" origin="ipp">
         <VALUE deb="1968-07-01" fin="1977-06-30" valeur="0.01" />
       </CODE>
       <BAREME code="salarie">
         <TRANCHE code="tout_salaire">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1998-01-01" fuzzy="true" valeur="0.0075" />
             <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.055" />
             <VALUE deb="1991-07-01" fin="1996-12-31" valeur="0.068" />
@@ -1933,10 +1933,10 @@
       </BAREME>
       <BAREME code="salarie2">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1980-01-01" fuzzy="true" valeur="0" />
             <VALUE deb="1979-01-01" fin="1979-12-31" valeur="0.01" />
             <VALUE deb="1976-10-01" fin="1978-12-31" valeur="0.03" />
@@ -1944,10 +1944,10 @@
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
@@ -1956,20 +1956,20 @@
     <NODE code="rafp">
       <BAREME code="employeur">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="2005-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2005-01-01" fuzzy="true" valeur="0.05" />
           </TAUX>
         </TRANCHE>
       </BAREME>
       <BAREME code="salarie">
         <TRANCHE code="tranche_a">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="2005-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2005-01-01" fuzzy="true" valeur="0.05" />
           </TAUX>
         </TRANCHE>
@@ -1978,10 +1978,10 @@
     <NODE code="vieillesse_deplafonnee">
       <BAREME code="employeur">
         <TRANCHE code="tranche_unique">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2017-01-01" fuzzy="true" valeur="0.019" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0185" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.018" />
@@ -1992,10 +1992,10 @@
       </BAREME>
       <BAREME code="salarie">
         <TRANCHE code="tranche_unique">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2017-01-01" fuzzy="true" valeur="0.004" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0035" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.003" />
@@ -2008,18 +2008,18 @@
     <NODE code="vieillesse_plafonnee">
       <BAREME code="employeur">
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_unique">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2016-01-01" fuzzy="true" valeur="0.0855" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.085" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0845" />
@@ -2036,18 +2036,18 @@
       </BAREME>
       <BAREME code="salarie">
         <TRANCHE code="tranche_nulle">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="1" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0" />
           </TAUX>
         </TRANCHE>
         <TRANCHE code="tranche_unique">
-          <SEUIL>
+          <SEUIL origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0" />
           </SEUIL>
-          <TAUX>
+          <TAUX origin="ipp">
             <VALUE deb="2016-01-01" fuzzy="true" valeur="0.069" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0685" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.068" />
@@ -2068,31 +2068,31 @@
     </NODE>
   </NODE>
   <NODE code="crds">
-    <CODE code="taux_crds" format="percent">
+    <CODE code="taux_crds" format="percent" origin="ipp">
       <VALUE deb="1996-02-01" fuzzy="true" valeur="0.005" />
     </CODE>
   </NODE>
   <NODE code="csa">
     <NODE code="sur_tout_salaire">
-      <CODE code="employeurs" format="percent">
+      <CODE code="employeurs" format="percent" origin="ipp">
         <VALUE deb="2004-07-01" fuzzy="true" valeur="0.003" />
       </CODE>
     </NODE>
   </NODE>
   <NODE code="csg" description="Contribution sociale généralisée (CSG)">
     <NODE code="abattement">
-      <CODE code="au_dessus_de_4_pss" format="percent">
+      <CODE code="au_dessus_de_4_pss" format="percent" origin="ipp">
         <VALUE deb="2005-01-01" fin="2010-12-31" valeur="0.03" />
         <VALUE deb="1991-02-01" fin="2004-12-31" valeur="0.05" />
       </CODE>
-      <CODE code="sous_4pss" format="percent">
+      <CODE code="sous_4pss" format="percent" origin="ipp">
         <VALUE deb="2012-01-01" fuzzy="true" valeur="0.0175" />
         <VALUE deb="2005-01-01" fin="2011-12-31" valeur="0.03" />
         <VALUE deb="1991-02-01" fin="2004-12-31" valeur="0.05" />
       </CODE>
     </NODE>
     <NODE code="activite" description="Revenus d'activité">
-      <NODE code="deductible" description="CSG déductible">
+      <NODE both_origins="false" code="deductible" description="CSG déductible" origin="openfisca">
         <BAREME code="abattement" description="Abattement de la base de la CSG déductible">
           <TRANCHE code="tranche0">
             <TAUX>
@@ -2122,7 +2122,7 @@
           <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".051" />
         </CODE>
       </NODE>
-      <NODE code="imposable" description="CSG imposable">
+      <NODE code="imposable" description="CSG imposable" origin="openfisca">
         <BAREME code="abattement" description="Abattement de la base de la CSG imposable">
           <TRANCHE code="tranche0">
             <TAUX>
@@ -2153,11 +2153,11 @@
           <VALUE deb="1991-02-01" fin="1993-06-30" valeur=".011" />
         </CODE>
       </NODE>
-      <CODE code="taux_csg_deductible" format="percent">
+      <CODE both_origins="false" code="taux_csg_deductible" format="percent" origin="ipp">
         <VALUE deb="1998-01-01" fuzzy="true" valeur="0.051" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
       </CODE>
-      <CODE code="taux_global_csg" format="percent">
+      <CODE code="taux_global_csg" format="percent" origin="ipp">
         <VALUE deb="1998-01-01" fuzzy="true" valeur="0.075" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.034" />
         <VALUE deb="1993-07-01" fin="1996-12-31" valeur="0.024" />
@@ -2165,20 +2165,20 @@
       </CODE>
     </NODE>
     <NODE code="allocations_chomage">
-      <CODE code="taux_csg_deductible" format="percent">
+      <CODE code="taux_csg_deductible" format="percent" origin="ipp">
         <VALUE deb="1998-01-01" fuzzy="true" valeur="0.038" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
       </CODE>
-      <CODE code="taux_csg_reduit" format="percent">
+      <CODE code="taux_csg_reduit" format="percent" origin="ipp">
         <VALUE deb="1998-01-01" fuzzy="true" valeur="0.038" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
       </CODE>
-      <CODE code="taux_global_csg" format="percent">
+      <CODE code="taux_global_csg" format="percent" origin="ipp">
         <VALUE deb="1998-01-01" fuzzy="true" valeur="0.062" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.034" />
       </CODE>
     </NODE>
-    <NODE code="capital" description="Revenus du capital">
+    <NODE both_origins="false" code="capital" description="Revenus du capital" origin="openfisca">
       <CODE code="deduc" description="dont CSG déductible" format="percent">
         <VALUE deb="2014-01-01" fuzzy="true" valeur=".051" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur=".051" />
@@ -2191,7 +2191,7 @@
         <VALUE deb="2000-01-01" fin="2003-12-31" valeur="0.075" />
       </CODE>
     </NODE>
-    <NODE code="chomage" description="Allocations chômage">
+    <NODE both_origins="false" code="chomage" description="Allocations chômage" origin="openfisca">
       <NODE code="deductible" description="CSG déductible">
         <BAREME code="abattement" description="Abattement de la base de la CSG déductible">
           <TRANCHE code="tranche0">
@@ -2264,7 +2264,7 @@
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="1" />
       </CODE>
     </NODE>
-    <NODE code="indemnites_journalieres" description="Indemnités journalières">
+    <NODE both_origins="false" code="indemnites_journalieres" description="Indemnités journalières" origin="openfisca">
       <NODE code="deductible" description="CSG déductible">
         <CODE code="taux" description="taux plein de la CSG déductible" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".038" />
@@ -2279,7 +2279,7 @@
         </CODE>
       </NODE>
     </NODE>
-    <NODE code="preretraite" description="Allocations de préretraite">
+    <NODE both_origins="false" code="preretraite" description="Allocations de préretraite" origin="openfisca">
       <NODE code="deductible" description="CSG déductible">
         <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".042" />
@@ -2300,60 +2300,60 @@
         </CODE>
       </NODE>
     </NODE>
-    <NODE code="remplacement">
+    <NODE both_origins="false" code="remplacement">
       <NODE code="allocations_de_preretraite">
-        <CODE code="taux_csg_deductible" format="percent">
+        <CODE code="taux_csg_deductible" format="percent" origin="ipp">
           <VALUE deb="2005-01-01" fuzzy="true" valeur="0.042" />
           <VALUE deb="1998-01-01" fin="2004-12-31" valeur="0.038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
         </CODE>
-        <CODE code="taux_csg_global" format="percent">
+        <CODE code="taux_csg_global" format="percent" origin="ipp">
           <VALUE deb="2008-01-01" fuzzy="true" valeur="0.075" />
           <VALUE deb="2005-01-01" fin="2007-12-31" valeur="0.066" />
           <VALUE deb="1998-01-01" fin="2004-12-31" valeur="0.062" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.034" />
         </CODE>
-        <CODE code="taux_csg_reduit" format="percent">
+        <CODE code="taux_csg_reduit" format="percent" origin="ipp">
           <VALUE deb="2008-01-01" fuzzy="true" valeur="0.038" />
         </CODE>
       </NODE>
       <NODE code="indemnites_journalieres_ij">
-        <CODE code="taux_csg_deductible" format="percent">
+        <CODE code="taux_csg_deductible" format="percent" origin="ipp">
           <VALUE deb="1998-01-01" fuzzy="true" valeur="0.038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
         </CODE>
-        <CODE code="taux_csg_global" format="percent">
+        <CODE code="taux_csg_global" format="percent" origin="ipp">
           <VALUE deb="1998-01-01" fuzzy="true" valeur="0.062" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.034" />
         </CODE>
       </NODE>
       <NODE code="pensions_de_retraite_d_invalidite">
-        <CODE code="seuil_d_ir" format="float" type="monetary">
+        <CODE code="seuil_d_ir" format="float" origin="ipp" type="monetary">
           <VALUE deb="1991-02-01" fin="2014-12-31" valeur="61" />
         </CODE>
-        <CODE code="seuil_de_rfr" format="float" type="monetary">
+        <CODE code="seuil_de_rfr" format="float" origin="ipp" type="monetary">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="13956" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur="13900" />
         </CODE>
-        <CODE code="taux_csg_deductible" format="percent">
+        <CODE code="taux_csg_deductible" format="percent" origin="ipp">
           <VALUE deb="2005-01-01" fuzzy="true" valeur="0.042" />
           <VALUE deb="1998-01-01" fin="2004-12-31" valeur="0.038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
         </CODE>
-        <CODE code="taux_csg_global" format="percent">
+        <CODE code="taux_csg_global" format="percent" origin="ipp">
           <VALUE deb="2005-01-01" fuzzy="true" valeur="0.066" />
           <VALUE deb="1998-01-01" fin="2004-12-31" valeur="0.062" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.034" />
           <VALUE deb="1993-07-01" fin="1996-12-31" valeur="0.024" />
           <VALUE deb="1991-02-01" fin="1993-06-30" valeur="0.011" />
         </CODE>
-        <CODE code="taux_csg_reduit" format="percent">
+        <CODE code="taux_csg_reduit" format="percent" origin="ipp">
           <VALUE deb="1998-01-01" fuzzy="true" valeur="0.038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
         </CODE>
       </NODE>
     </NODE>
-    <NODE code="retraite" description="Pensions de retraites et d'invalidité">
+    <NODE code="retraite" description="Pensions de retraites et d'invalidité" origin="openfisca">
       <NODE code="deductible" description="CSG déductible">
         <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".042" />
@@ -2377,7 +2377,7 @@
   </NODE>
   <NODE code="css_chom">
     <NODE code="cotisation_speciale_assurance_maladie">
-      <CODE code="taux" format="percent">
+      <CODE code="taux" format="percent" origin="ipp">
         <VALUE deb="1997-01-01" fin="1997-12-30" valeur="0.028" />
         <VALUE deb="1996-01-01" fin="1996-12-31" valeur="0.026" />
         <VALUE deb="1988-07-01" fin="1995-12-31" valeur="0.014" />
@@ -2386,23 +2386,23 @@
     </NODE>
     <NODE code="participation_retraite_complementaire">
       <NODE code="assiette_sjr">
-        <CODE code="affiliation_3_6_mois" format="percent">
+        <CODE code="affiliation_3_6_mois" format="percent" origin="ipp">
           <VALUE deb="1990-01-01" fuzzy="true" valeur="1" />
           <VALUE deb="1988-03-01" fin="1989-12-31" valeur="0.4" />
         </CODE>
-        <CODE code="affiliation_6_mois" format="percent">
+        <CODE code="affiliation_6_mois" format="percent" origin="ipp">
           <VALUE deb="1990-01-01" fuzzy="true" valeur="1" />
           <VALUE deb="1988-03-01" fin="1989-12-31" valeur="0.3" />
         </CODE>
       </NODE>
       <NODE code="taux">
-        <CODE code="affiliation_3_6_mois" format="percent">
+        <CODE code="affiliation_3_6_mois" format="percent" origin="ipp">
           <VALUE deb="2003-01-01" fuzzy="true" valeur="0.03" />
           <VALUE deb="1993-01-01" fin="2002-12-31" valeur="0.012" />
           <VALUE deb="1990-01-01" fin="1992-12-31" valeur="0.008" />
           <VALUE deb="1988-03-01" fin="1989-12-31" valeur="0.01" />
         </CODE>
-        <CODE code="affiliation_6_mois" format="percent">
+        <CODE code="affiliation_6_mois" format="percent" origin="ipp">
           <VALUE deb="2003-01-01" fuzzy="true" valeur="0.03" />
           <VALUE deb="1993-01-01" fin="2002-12-31" valeur="0.012" />
           <VALUE deb="1990-01-01" fin="1992-12-31" valeur="0.006" />
@@ -2413,7 +2413,7 @@
   </NODE>
   <NODE code="deces_ac">
     <NODE code="artisans">
-      <CODE code="sous_pss" format="percent">
+      <CODE code="sous_pss" format="percent" origin="ipp">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0.013" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.016" />
         <VALUE deb="2007-01-01" fin="2012-12-31" valeur="0.018" />
@@ -2425,7 +2425,7 @@
       </CODE>
     </NODE>
     <NODE code="commercants_industriels">
-      <CODE code="montant_forfaitaire_total" format="float" type="monetary">
+      <CODE code="montant_forfaitaire_total" format="float" origin="ipp" type="monetary">
         <VALUE deb="2000-01-01" fin="2004-08-23" valeur="800" />
         <VALUE deb="1998-01-01" fin="1999-12-31" valeur="796" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="724" />
@@ -2449,7 +2449,7 @@
         <VALUE deb="1979-01-01" fin="1979-12-31" valeur="157" />
         <VALUE deb="1975-01-01" fin="1978-12-31" valeur="150" />
       </CODE>
-      <CODE code="sous_pss" format="percent">
+      <CODE code="sous_pss" format="percent" origin="ipp">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0.013" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.011" />
         <VALUE deb="2007-01-01" fin="2012-12-31" valeur="0.013" />
@@ -2458,26 +2458,26 @@
     </NODE>
   </NODE>
   <NODE code="famille_ind">
-    <CODE code="entre_10_000_frf_et_1_pss" format="percent">
+    <CODE code="entre_10_000_frf_et_1_pss" format="percent" origin="ipp">
       <VALUE deb="1974-04-01" fin="1982-12-31" valeur="0.09" />
     </CODE>
-    <CODE code="revenu_professionnel_total" format="percent">
+    <CODE code="revenu_professionnel_total" format="percent" origin="ipp">
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0525" />
       <VALUE deb="1998-01-01" fin="2013-12-31" valeur="0.054" />
       <VALUE deb="1990-01-01" fin="1997-12-31" valeur="0.049" />
       <VALUE deb="1989-01-01" fin="1989-12-31" valeur="0.035" />
     </CODE>
-    <CODE code="si_revenu_d_activite_110_pss" format="percent">
+    <CODE code="si_revenu_d_activite_110_pss" format="percent" origin="ipp">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0215" />
     </CODE>
-    <CODE code="si_revenu_d_activite_140_pss" format="percent">
+    <CODE code="si_revenu_d_activite_140_pss" format="percent" origin="ipp">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0525" />
     </CODE>
-    <CODE code="sous_10_000_frf" format="percent">
+    <CODE code="sous_10_000_frf" format="percent" origin="ipp">
       <VALUE deb="1982-04-01" fin="1982-12-31" valeur="0.055" />
       <VALUE deb="1974-04-01" fin="1982-03-31" valeur="0.0325" />
     </CODE>
-    <CODE code="sous_pss" format="percent">
+    <CODE code="sous_pss" format="percent" origin="ipp">
       <VALUE deb="1991-02-01" fin="1997-12-31" valeur="0.005" />
       <VALUE deb="1990-01-01" fin="1991-01-31" valeur="0.021" />
       <VALUE deb="1989-01-01" fin="1989-12-31" valeur="0.045" />
@@ -2486,17 +2486,17 @@
   </NODE>
   <NODE code="fillon">
     <NODE code="ensemble_des_entreprises">
-      <CODE code="plafond">
+      <CODE code="plafond" origin="ipp">
         <VALUE deb="2005-07-01" fuzzy="true" valeur="1.6" />
       </CODE>
       <NODE code="reduction_maximale">
-        <CODE code="entreprises_de_20_salaries_et_plus">
+        <CODE code="entreprises_de_20_salaries_et_plus" origin="ipp">
           <VALUE deb="2017-01-01" fuzzy="true" valeur="0.2847" />
           <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.2842" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.2835" />
           <VALUE deb="2005-07-01" fin="2014-12-31" valeur="0.26" />
         </CODE>
-        <CODE code="entreprises_de_moins_de_20_salaries">
+        <CODE code="entreprises_de_moins_de_20_salaries" origin="ipp">
           <VALUE deb="2017-01-01" fuzzy="true" valeur="0.2807" />
           <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.2802" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.2795" />
@@ -2506,58 +2506,58 @@
       </NODE>
     </NODE>
     <NODE code="entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003">
-      <CODE code="plafond">
+      <CODE code="plafond" origin="ipp">
         <VALUE deb="2005-01-01" fin="2005-06-30" valeur="1.6" />
         <VALUE deb="2003-07-01" fin="2004-12-31" valeur="1.7" />
       </CODE>
-      <CODE code="reduction_maximale">
+      <CODE code="reduction_maximale" origin="ipp">
         <VALUE deb="2003-07-01" fin="2005-06-30" valeur="0.26" />
       </CODE>
     </NODE>
     <NODE code="entreprises_restees_aux_39_heures_hebdomadaires_au_30_06_2003">
-      <CODE code="plafond">
+      <CODE code="plafond" origin="ipp">
         <VALUE deb="2004-07-01" fin="2005-06-30" valeur="1.6" />
         <VALUE deb="2003-07-01" fin="2004-06-30" valeur="1.5" />
       </CODE>
-      <CODE code="reduction_maximale">
+      <CODE code="reduction_maximale" origin="ipp">
         <VALUE deb="2004-07-01" fin="2005-06-30" valeur="0.234" />
         <VALUE deb="2003-07-01" fin="2004-06-30" valeur="0.208" />
       </CODE>
     </NODE>
   </NODE>
   <NODE code="fin_syndic">
-    <CODE code="taux" format="percent">
+    <CODE code="taux" format="percent" origin="ipp">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="0.00016" />
     </CODE>
   </NODE>
   <NODE code="forfait_social">
-    <CODE code="seuil_effectif_prevoyance_complementaire" description="Seuil effectif à partir duquel les contributions patronales de prévoyance complémentaire rentrent dans l'assiette du FNAL à taux réduit">
+    <CODE code="seuil_effectif_prevoyance_complementaire" description="Seuil effectif à partir duquel les contributions patronales de prévoyance complémentaire rentrent dans l'assiette du FNAL à taux réduit" origin="openfisca">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="11" />
       <VALUE deb="2012-01-01" fin="2015-12-31" valeur="10" />
       <VALUE deb="2009-01-01" fin="2011-12-31" valeur="0" />
     </CODE>
-    <CODE code="taux_plein" format="percent">
+    <CODE code="taux_plein" format="percent" origin="ipp">
       <VALUE deb="2012-08-01" fuzzy="true" valeur="0.2" />
       <VALUE deb="2012-01-01" fin="2012-07-31" valeur="0.08" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.06" />
       <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.04" />
       <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.02" />
     </CODE>
-    <CODE code="taux_reduit_1" format="percent">
+    <CODE code="taux_reduit_1" format="percent" origin="ipp">
       <VALUE deb="2012-08-01" fuzzy="true" valeur="0.08" />
     </CODE>
-    <CODE code="taux_reduit_2" format="percent">
+    <CODE both_origins="false" code="taux_reduit_2" format="percent" origin="ipp">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="0.16" />
     </CODE>
   </NODE>
   <NODE code="formation_ac">
-    <CODE code="artisans_sous_pss" format="percent">
+    <CODE code="artisans_sous_pss" format="percent" origin="ipp">
       <VALUE deb="2008-01-01" fuzzy="true" valeur="0.0029" />
       <VALUE deb="2004-01-01" fin="2007-12-31" valeur="0.0024" />
       <VALUE deb="2000-01-01" fin="2003-12-31" valeur="0.0029" />
     </CODE>
     <NODE code="commercants_industriels">
-      <CODE code="sous_pss" format="percent">
+      <CODE code="sous_pss" format="percent" origin="ipp">
         <VALUE deb="2012-08-18" fuzzy="true" valeur="0.0025" />
         <VALUE deb="1992-01-01" fin="2012-08-17" valeur="0.0015" />
       </CODE>
@@ -2565,14 +2565,14 @@
   </NODE>
   <NODE code="formation_pl">
     <NODE code="formation_professionnelle">
-      <CODE code="sous_pss" format="percent">
+      <CODE code="sous_pss" format="percent" origin="ipp">
         <VALUE deb="2012-08-18" fuzzy="true" valeur="0.0025" />
         <VALUE deb="1992-01-01" fin="2012-08-17" valeur="0.0015" />
       </CODE>
     </NODE>
   </NODE>
   <NODE code="gmp">
-    <CODE code="cotisation_forfaitaire_annuelle_en_euros" format="float" type="monetary">
+    <CODE code="cotisation_forfaitaire_annuelle_en_euros" format="float" origin="ipp" type="monetary">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="816.84" />
       <VALUE deb="2014-01-01" fin="2015-12-31" valeur="796.08" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="795.12" />
@@ -2602,7 +2602,7 @@
       <VALUE deb="1989-01-01" fin="1989-12-31" valeur="2843" />
     </CODE>
     <NODE code="cotisation_forfaitaire_mensuelle_en_euros">
-      <CODE code="cotisation_totale" format="float" type="monetary">
+      <CODE code="cotisation_totale" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="68.07" />
         <VALUE deb="2014-01-01" fin="2015-12-31" valeur="66.34" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="66.26" />
@@ -2631,7 +2631,7 @@
         <VALUE deb="1990-01-01" fin="1990-12-31" valeur="255.666666667" />
         <VALUE deb="1989-01-01" fin="1989-12-31" valeur="236.916666667" />
       </CODE>
-      <CODE code="part_patronale" format="float" type="monetary">
+      <CODE code="part_patronale" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="42.23" />
         <VALUE deb="2014-01-01" fin="2015-12-31" valeur="41.17" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="41.13" />
@@ -2660,7 +2660,7 @@
         <VALUE deb="1990-01-01" fin="1990-12-31" valeur="191.75" />
         <VALUE deb="1989-01-01" fin="1989-12-31" valeur="177.6875" />
       </CODE>
-      <CODE code="part_salariale" format="float" type="monetary">
+      <CODE code="part_salariale" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="25.84" />
         <VALUE deb="2014-01-01" fin="2015-12-31" valeur="25.17" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="25.13" />
@@ -2690,7 +2690,7 @@
         <VALUE deb="1989-01-01" fin="1989-12-31" valeur="59.2291666667" />
       </CODE>
     </NODE>
-    <CODE code="salaire_charniere_annuel" format="float" type="monetary">
+    <CODE code="salaire_charniere_annuel" format="float" origin="ipp" type="monetary">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="42590.88" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="41913.84" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="41444.64" />
@@ -2723,13 +2723,13 @@
   </NODE>
   <NODE code="mmid_ac">
     <NODE code="assures_actifs">
-      <CODE code="sous_4_pss" format="percent">
+      <CODE code="sous_4_pss" format="percent" origin="ipp">
         <VALUE deb="1979-04-01" fin="1981-09-30" valeur="0.07" />
         <VALUE deb="1977-10-01" fin="1979-03-31" valeur="0.04" />
         <VALUE deb="1976-10-01" fin="1977-09-30" valeur="0.035" />
         <VALUE deb="1974-10-01" fin="1976-09-30" valeur="0.025" />
       </CODE>
-      <CODE code="sous_5_pss" format="percent">
+      <CODE code="sous_5_pss" format="percent" origin="ipp">
         <VALUE deb="2007-01-01" fin="2012-12-31" valeur="0.066" />
         <VALUE deb="2001-01-01" fin="2006-12-31" valeur="0.064" />
         <VALUE deb="1998-01-01" fin="2000-12-31" valeur="0.053" />
@@ -2743,11 +2743,11 @@
         <VALUE deb="1984-10-01" fin="1987-06-30" valeur="0.0845" />
         <VALUE deb="1981-10-01" fin="1984-09-30" valeur="0.0795" />
       </CODE>
-      <CODE code="sous_5_pss_supplement_pour_les_artisans_verse_au_titre_des_indemnites_journalieres_ij" format="percent">
+      <CODE code="sous_5_pss_supplement_pour_les_artisans_verse_au_titre_des_indemnites_journalieres_ij" format="percent" origin="ipp">
         <VALUE deb="1997-01-01" fin="2000-12-31" valeur="0.005" />
         <VALUE deb="1995-07-01" fin="1996-12-31" valeur="0.0025" />
       </CODE>
-      <CODE code="sous_pss" format="percent">
+      <CODE code="sous_pss" format="percent" origin="ipp">
         <VALUE deb="1998-01-01" fin="2012-12-31" valeur="0.006" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.024" />
         <VALUE deb="1984-10-01" fin="1996-12-31" valeur="0.031" />
@@ -2759,7 +2759,7 @@
         <VALUE deb="1975-04-01" fin="1975-09-30" valeur="0.067" />
         <VALUE deb="1974-10-01" fin="1975-03-31" valeur="0.0625" />
       </CODE>
-      <CODE code="toute_remuneration" format="percent">
+      <CODE code="toute_remuneration" format="percent" origin="ipp">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="0.065" />
         <VALUE deb="1974-10-01" fin="2012-12-31" valeur="0" />
         <VALUE deb="1973-04-01" fin="1974-09-30" valeur="0.107" />
@@ -2767,24 +2767,24 @@
       </CODE>
     </NODE>
     <NODE code="assures_retraites">
-      <CODE code="pension_totale" format="percent">
+      <CODE code="pension_totale" format="percent" origin="ipp">
         <VALUE deb="1973-04-01" fin="1974-09-30" valeur="0.107" />
         <VALUE deb="1970-04-01" fin="1973-03-31" valeur="0.145" />
       </CODE>
-      <CODE code="pensions_sous_5_pss" format="percent">
+      <CODE code="pensions_sous_5_pss" format="percent" origin="ipp">
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.024" />
         <VALUE deb="1987-07-01" fin="1996-12-31" valeur="0.034" />
         <VALUE deb="1986-01-01" fin="1987-06-30" valeur="0.031" />
         <VALUE deb="1985-09-01" fin="1985-12-31" valeur="0.03" />
         <VALUE deb="1981-10-01" fin="1985-08-31" valeur="0.05" />
       </CODE>
-      <CODE code="sous_4_pss" format="percent">
+      <CODE code="sous_4_pss" format="percent" origin="ipp">
         <VALUE deb="1979-04-01" fin="1981-09-30" valeur="0.07" />
         <VALUE deb="1977-10-01" fin="1979-03-31" valeur="0.04" />
         <VALUE deb="1976-10-01" fin="1977-09-30" valeur="0.035" />
         <VALUE deb="1974-10-01" fin="1976-09-30" valeur="0.025" />
       </CODE>
-      <CODE code="sous_pss" format="percent">
+      <CODE code="sous_pss" format="percent" origin="ipp">
         <VALUE deb="1981-04-01" fin="1981-09-30" valeur="0.03" />
         <VALUE deb="1979-04-01" fin="1981-03-31" valeur="0.0465" />
         <VALUE deb="1977-10-01" fin="1979-03-31" valeur="0.0765" />
@@ -2796,7 +2796,7 @@
     </NODE>
   </NODE>
   <NODE code="mmid_am">
-    <CODE code="allocations_chomage_et_preretraite" format="percent">
+    <CODE code="allocations_chomage_et_preretraite" format="percent" origin="ipp">
       <VALUE deb="2012-01-01" fuzzy="true" valeur="0.015" />
       <VALUE deb="2008-01-01" fin="2011-12-31" valeur="0.016" />
       <VALUE deb="2007-07-01" fin="2007-12-31" valeur="0.017" />
@@ -2806,7 +2806,7 @@
       <VALUE deb="1998-07-01" fin="1999-06-30" valeur="0.0125" />
       <VALUE deb="1997-01-01" fin="1998-06-30" valeur="0.01" />
     </CODE>
-    <CODE code="avantages_vieillesses" format="percent">
+    <CODE code="avantages_vieillesses" format="percent" origin="ipp">
       <VALUE deb="2012-01-01" fuzzy="true" valeur="0.015" />
       <VALUE deb="2008-01-01" fin="2011-12-31" valeur="0.016" />
       <VALUE deb="2007-07-01" fin="2007-12-31" valeur="0.017" />
@@ -2818,12 +2818,12 @@
       <VALUE deb="1989-09-01" fin="1993-12-31" valeur="0.007" />
     </CODE>
     <NODE code="salaries">
-      <CODE code="sous_plafond" format="percent">
+      <CODE code="sous_plafond" format="percent" origin="ipp">
         <VALUE deb="1967-10-01" fin="1986-01-10" valeur="0.015" />
         <VALUE deb="1947-07-01" fin="1967-09-30" valeur="0.01" />
         <VALUE deb="1946-07-01" fin="1947-06-30" valeur="0.02" />
       </CODE>
-      <CODE code="sur_tout_salaire" format="percent">
+      <CODE code="sur_tout_salaire" format="percent" origin="ipp">
         <VALUE deb="2012-01-01" fuzzy="true" valeur="0.015" />
         <VALUE deb="2008-01-01" fin="2011-12-31" valeur="0.016" />
         <VALUE deb="2007-07-01" fin="2007-12-31" valeur="0.017" />
@@ -2842,13 +2842,13 @@
   <NODE code="mmid_cl">
     <NODE code="fp_hospitaliers_collectivites_locales">
       <NODE code="sous_plafond">
-        <CODE code="agent" format="percent">
+        <CODE code="agent" format="percent" origin="ipp">
           <VALUE deb="1980-01-01" fin="1983-12-31" valeur="0" />
           <VALUE deb="1979-01-01" fin="1979-12-31" valeur="0.0025" />
           <VALUE deb="1976-10-01" fin="1978-12-31" valeur="0.0225" />
           <VALUE deb="1967-10-01" fin="1976-09-30" valeur="0.0175" />
         </CODE>
-        <CODE code="employeur" format="percent">
+        <CODE code="employeur" format="percent" origin="ipp">
           <VALUE deb="1981-11-01" fin="1983-12-31" valeur="0.02" />
           <VALUE deb="1979-01-01" fin="1981-10-31" valeur="0.055" />
           <VALUE deb="1976-10-01" fin="1978-12-31" valeur="0.075" />
@@ -2857,7 +2857,7 @@
         </CODE>
       </NODE>
       <NODE code="tout_traitement">
-        <CODE code="agent" format="percent">
+        <CODE code="agent" format="percent" origin="ipp">
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.0475" />
           <VALUE deb="1991-01-01" fin="1996-12-31" valeur="0.0605" />
           <VALUE deb="1988-07-01" fin="1990-12-31" valeur="0.0515" />
@@ -2867,7 +2867,7 @@
           <VALUE deb="1976-01-01" fin="1978-12-31" valeur="0.015" />
           <VALUE deb="1967-10-01" fin="1975-12-31" valeur="0.01" />
         </CODE>
-        <CODE code="employeur" format="percent">
+        <CODE code="employeur" format="percent" origin="ipp">
           <VALUE deb="1984-01-01" fuzzy="true" valeur="0.115" />
           <VALUE deb="1981-11-01" fin="1983-12-31" valeur="0.08" />
           <VALUE deb="1979-01-01" fin="1981-10-31" valeur="0.045" />
@@ -2880,13 +2880,13 @@
   <NODE code="mmid_etat">
     <NODE code="fp_etat">
       <NODE code="sous_pss">
-        <CODE code="agent" format="percent">
+        <CODE code="agent" format="percent" origin="ipp">
           <VALUE deb="1980-01-01" fin="1983-12-31" valeur="0" />
           <VALUE deb="1979-01-01" fin="1979-12-31" valeur="0.0025" />
           <VALUE deb="1976-10-01" fin="1978-12-31" valeur="0.0225" />
           <VALUE deb="1967-10-01" fin="1976-09-30" valeur="0.0175" />
         </CODE>
-        <CODE code="employeur" format="percent">
+        <CODE code="employeur" format="percent" origin="ipp">
           <VALUE deb="1981-11-01" fin="1983-12-31" valeur="0.02" />
           <VALUE deb="1979-01-01" fin="1981-10-31" valeur="0.055" />
           <VALUE deb="1976-10-01" fin="1978-12-31" valeur="0.075" />
@@ -2895,7 +2895,7 @@
         </CODE>
       </NODE>
       <NODE code="tout_traitement">
-        <CODE code="agent" format="percent">
+        <CODE code="agent" format="percent" origin="ipp">
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.0475" />
           <VALUE deb="1991-07-01" fin="1996-12-31" valeur="0.0605" />
           <VALUE deb="1988-07-01" fin="1991-06-30" valeur="0.0515" />
@@ -2905,7 +2905,7 @@
           <VALUE deb="1976-01-01" fin="1978-12-31" valeur="0.015" />
           <VALUE deb="1967-10-01" fin="1975-12-31" valeur="0.01" />
         </CODE>
-        <CODE code="employeur" format="percent">
+        <CODE code="employeur" format="percent" origin="ipp">
           <VALUE deb="1984-01-01" fuzzy="true" valeur="0.097" />
           <VALUE deb="1981-11-01" fin="1983-12-31" valeur="0.08" />
           <VALUE deb="1979-01-01" fin="1981-10-31" valeur="0.045" />
@@ -2917,13 +2917,13 @@
   </NODE>
   <NODE code="mmid_pl">
     <NODE code="assures_actifs">
-      <CODE code="sous_4_pss" format="percent">
+      <CODE code="sous_4_pss" format="percent" origin="ipp">
         <VALUE deb="1979-04-01" fin="1981-09-30" valeur="0.07" />
         <VALUE deb="1977-10-01" fin="1979-03-31" valeur="0.04" />
         <VALUE deb="1976-10-01" fin="1977-09-30" valeur="0.035" />
         <VALUE deb="1974-10-01" fin="1976-09-30" valeur="0.025" />
       </CODE>
-      <CODE code="sous_5_pss" format="percent">
+      <CODE code="sous_5_pss" format="percent" origin="ipp">
         <VALUE deb="2001-01-01" fin="2012-12-31" valeur="0.059" />
         <VALUE deb="1998-01-01" fin="2000-12-31" valeur="0.053" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.09" />
@@ -2936,7 +2936,7 @@
         <VALUE deb="1984-01-01" fin="1987-06-30" valeur="0.0845" />
         <VALUE deb="1981-10-01" fin="1983-12-31" valeur="0.0795" />
       </CODE>
-      <CODE code="sous_pss" format="percent">
+      <CODE code="sous_pss" format="percent" origin="ipp">
         <VALUE deb="1998-01-01" fin="2012-12-31" valeur="0.006" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.024" />
         <VALUE deb="1984-01-01" fin="1996-12-31" valeur="0.031" />
@@ -2948,7 +2948,7 @@
         <VALUE deb="1975-04-01" fin="1975-09-30" valeur="0.067" />
         <VALUE deb="1974-10-01" fin="1975-03-31" valeur="0.0625" />
       </CODE>
-      <CODE code="toute_remuneration" format="percent">
+      <CODE code="toute_remuneration" format="percent" origin="ipp">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="0.065" />
         <VALUE deb="1974-10-01" fin="2012-12-31" valeur="0" />
         <VALUE deb="1973-04-01" fin="1974-09-30" valeur="0.107" />
@@ -2956,23 +2956,23 @@
       </CODE>
     </NODE>
     <NODE code="assures_retraites">
-      <CODE code="pension_totale" format="percent">
+      <CODE code="pension_totale" format="percent" origin="ipp">
         <VALUE deb="1973-04-01" fin="1974-09-30" valeur="0.107" />
         <VALUE deb="1970-04-01" fin="1973-03-31" valeur="0.145" />
       </CODE>
-      <CODE code="pensions_sous_4_pss" format="percent">
+      <CODE code="pensions_sous_4_pss" format="percent" origin="ipp">
         <VALUE deb="1979-04-01" fin="1981-09-30" valeur="0.07" />
         <VALUE deb="1977-10-01" fin="1979-03-31" valeur="0.04" />
         <VALUE deb="1976-10-01" fin="1977-09-30" valeur="0.035" />
         <VALUE deb="1974-10-01" fin="1976-09-30" valeur="0.025" />
       </CODE>
-      <CODE code="pensions_sous_5_pss" format="percent">
+      <CODE code="pensions_sous_5_pss" format="percent" origin="ipp">
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.024" />
         <VALUE deb="1987-07-01" fin="1996-12-31" valeur="0.034" />
         <VALUE deb="1985-09-01" fin="1987-06-30" valeur="0.03" />
         <VALUE deb="1981-10-01" fin="1985-08-31" valeur="0.05" />
       </CODE>
-      <CODE code="pensions_sous_pss" format="percent">
+      <CODE code="pensions_sous_pss" format="percent" origin="ipp">
         <VALUE deb="1981-04-01" fin="1981-09-30" valeur="0.03" />
         <VALUE deb="1979-04-01" fin="1981-03-31" valeur="0.0465" />
         <VALUE deb="1977-10-01" fin="1979-03-31" valeur="0.0765" />
@@ -2985,13 +2985,13 @@
   </NODE>
   <NODE code="mmid_ret">
     <NODE code="avantages_de_retraite">
-      <CODE code="regime_general" format="percent">
+      <CODE code="regime_general" format="percent" origin="ipp">
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.028" />
         <VALUE deb="1996-01-01" fin="1996-12-31" valeur="0.026" />
         <VALUE deb="1987-07-01" fin="1995-12-31" valeur="0.014" />
         <VALUE deb="1980-07-01" fin="1987-06-30" valeur="0.01" />
       </CODE>
-      <CODE code="regimes_comp" format="percent">
+      <CODE code="regimes_comp" format="percent" origin="ipp">
         <VALUE deb="1998-01-01" fuzzy="true" valeur="0.01" />
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.038" />
         <VALUE deb="1996-01-01" fin="1996-12-31" valeur="0.036" />
@@ -3001,18 +3001,18 @@
     </NODE>
   </NODE>
   <NODE code="prevoyance">
-    <CODE code="taux" format="percent">
+    <CODE code="taux" format="percent" origin="ipp">
       <VALUE deb="1998-01-01" fin="2011-12-31" valeur="0.08" />
       <VALUE deb="1996-01-01" fin="1997-12-31" valeur="0.06" />
     </CODE>
   </NODE>
   <NODE code="prevoyance_deces_cadres">
-    <CODE code="employeur_sous_plafond" format="percent">
+    <CODE code="employeur_sous_plafond" format="percent" origin="ipp">
       <VALUE deb="1948-01-01" fuzzy="true" valeur="0.015" />
     </CODE>
   </NODE>
   <NODE code="pss">
-    <CODE code="plafond_de_la_securite_sociale_annuel" format="float" type="monetary">
+    <CODE code="plafond_de_la_securite_sociale_annuel" format="float" origin="ipp" type="monetary">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="38616" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="38040" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="37548" />
@@ -3092,7 +3092,7 @@
       <VALUE deb="1936-01-01" fin="1936-12-31" valeur="12000" />
       <VALUE deb="1930-07-01" fin="1935-12-31" valeur="10800" />
     </CODE>
-    <CODE code="plafond_de_la_securite_sociale_mensuel" format="float" type="monetary">
+    <CODE code="plafond_de_la_securite_sociale_mensuel" format="float" origin="ipp" type="monetary">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="3218" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="3170" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3129" />
@@ -3183,7 +3183,7 @@
   <NODE code="red_a">
     <NODE code="accidents_du_travail">
       <NODE code="sous_pss">
-        <CODE code="employeurs_france_hors_am" format="percent">
+        <CODE code="employeurs_france_hors_am" format="percent" origin="ipp">
           <VALUE deb="1973-03-01" fuzzy="true" valeur="0.0315" />
           <VALUE deb="1972-01-01" fin="1973-02-28" valeur="0.0273" />
           <VALUE deb="1971-01-01" fin="1971-12-31" valeur="0.0294" />
@@ -3197,7 +3197,7 @@
     </NODE>
     <NODE code="allocations_familiales">
       <NODE code="sous_pss">
-        <CODE code="employeurs" format="percent">
+        <CODE code="employeurs" format="percent" origin="ipp">
           <VALUE deb="1974-01-01" fuzzy="true" valeur="0.063" />
           <VALUE deb="1971-01-01" fin="1973-12-31" valeur="0.0735" />
           <VALUE deb="1967-10-01" fin="1970-12-31" valeur="0.0805" />
@@ -3209,46 +3209,46 @@
     <NODE code="assurance_maladie">
       <NODE code="sous_pss">
         <NODE code="employe_am">
-          <CODE code="moins_de_65_ans" format="percent">
+          <CODE code="moins_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1969-01-01" fuzzy="true" valeur="0.028" />
             <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.018" />
           </CODE>
-          <CODE code="plus_de_65_ans" format="percent">
+          <CODE code="plus_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1969-01-01" fuzzy="true" valeur="0.021" />
             <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.018" />
           </CODE>
         </NODE>
         <NODE code="employe_hors_am">
-          <CODE code="moins_de_65_ans" format="percent">
+          <CODE code="moins_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1969-01-01" fuzzy="true" valeur="0.0175" />
             <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.0145" />
           </CODE>
-          <CODE code="plus_de_65_ans" format="percent">
+          <CODE code="plus_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1969-01-01" fuzzy="true" valeur="0.0105" />
             <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.0145" />
           </CODE>
         </NODE>
-        <CODE code="employeur" format="percent">
+        <CODE code="employeur" format="percent" origin="ipp">
           <VALUE deb="1971-01-01" fuzzy="true" valeur="0.0732" />
           <VALUE deb="1969-01-01" fin="1970-12-31" valeur="0.0665" />
           <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.0605" />
         </CODE>
       </NODE>
       <NODE code="sur_tout_salaire">
-        <CODE code="employe" format="percent">
+        <CODE code="employe" format="percent" origin="ipp">
           <VALUE deb="1967-10-01" fuzzy="true" valeur="0.007" />
         </CODE>
-        <CODE code="employeurs" format="percent">
+        <CODE code="employeurs" format="percent" origin="ipp">
           <VALUE deb="1967-10-01" fuzzy="true" valeur="0.014" />
         </CODE>
       </NODE>
     </NODE>
     <NODE code="assurance_vieillesse">
       <NODE code="sous_pss">
-        <CODE code="employes" format="percent">
+        <CODE code="employes" format="percent" origin="ipp">
           <VALUE deb="1967-10-01" fuzzy="true" valeur="0.021" />
         </CODE>
-        <CODE code="employeurs" format="percent">
+        <CODE code="employeurs" format="percent" origin="ipp">
           <VALUE deb="1974-01-01" fuzzy="true" valeur="0.0508" />
           <VALUE deb="1971-01-01" fin="1973-12-31" valeur="0.0403" />
           <VALUE deb="1967-10-01" fin="1970-12-31" valeur="0.0385" />
@@ -3258,22 +3258,22 @@
     <NODE code="assurances_sociales_avant_1967">
       <NODE code="sous_pss">
         <NODE code="employe_am">
-          <CODE code="moins_de_65_ans" format="percent">
+          <CODE code="moins_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1960-01-01" fin="1967-09-30" valeur="0.049" />
           </CODE>
-          <CODE code="plus_de_65_ans" format="percent">
+          <CODE code="plus_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1960-01-01" fin="1967-09-30" valeur="0.021" />
           </CODE>
         </NODE>
         <NODE code="employe_hors_am">
-          <CODE code="moins_de_65_ans" format="percent">
+          <CODE code="moins_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1960-01-01" fin="1967-09-30" valeur="0.042" />
           </CODE>
-          <CODE code="plus_de_65_ans" format="percent">
+          <CODE code="plus_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1960-01-01" fin="1967-09-30" valeur="0.014" />
           </CODE>
         </NODE>
-        <CODE code="employeur" format="percent">
+        <CODE code="employeur" format="percent" origin="ipp">
           <VALUE deb="1966-10-01" fin="1967-09-30" valeur="0.105" />
           <VALUE deb="1962-04-01" fin="1966-09-30" valeur="0.0995" />
           <VALUE deb="1961-01-01" fin="1962-03-31" valeur="0.0945" />
@@ -3285,24 +3285,24 @@
   <NODE code="red_j">
     <NODE code="accidents_travail_sous_pss">
       <NODE code="employeurs_am">
-        <CODE code="presse_periodique" format="percent">
+        <CODE code="presse_periodique" format="percent" origin="ipp">
           <VALUE deb="1974-01-01" fuzzy="true" valeur="0.0144" />
           <VALUE deb="1973-03-01" fin="1973-12-31" valeur="0.0176" />
         </CODE>
-        <CODE code="presse_quotidienne" format="percent">
+        <CODE code="presse_quotidienne" format="percent" origin="ipp">
           <VALUE deb="1974-01-01" fuzzy="true" valeur="0.0208" />
           <VALUE deb="1973-03-01" fin="1973-12-31" valeur="0.0192" />
         </CODE>
       </NODE>
       <NODE code="employeurs_france_hors_am">
-        <CODE code="presse_periodique" format="percent">
+        <CODE code="presse_periodique" format="percent" origin="ipp">
           <VALUE deb="1974-01-01" fuzzy="true" valeur="0.0176" />
           <VALUE deb="1969-06-01" fin="1973-12-31" valeur="0.0168" />
           <VALUE deb="1969-01-01" fin="1969-05-31" valeur="0.024" />
           <VALUE deb="1966-10-01" fin="1968-12-31" valeur="0.0225" />
           <VALUE deb="1964-01-01" fin="1966-09-30" valeur="0.017" />
         </CODE>
-        <CODE code="presse_quotidienne" format="percent">
+        <CODE code="presse_quotidienne" format="percent" origin="ipp">
           <VALUE deb="1974-01-01" fuzzy="true" valeur="0.0248" />
           <VALUE deb="1973-03-01" fin="1973-12-31" valeur="0.024" />
           <VALUE deb="1970-01-01" fin="1973-02-28" valeur="0.0256" />
@@ -3314,7 +3314,7 @@
     </NODE>
     <NODE code="allocations_familiales">
       <NODE code="sous_pss">
-        <CODE code="employeurs" format="percent">
+        <CODE code="employeurs" format="percent" origin="ipp">
           <VALUE deb="1974-01-01" fuzzy="true" valeur="0.072" />
           <VALUE deb="1971-01-01" fin="1973-12-31" valeur="0.084" />
           <VALUE deb="1967-10-01" fin="1970-12-31" valeur="0.092" />
@@ -3325,46 +3325,46 @@
     <NODE code="assurance_maladie">
       <NODE code="sous_pss">
         <NODE code="employe_am">
-          <CODE code="moins_de_65_ans" format="percent">
+          <CODE code="moins_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1969-01-01" fuzzy="true" valeur="0.032" />
             <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.022" />
           </CODE>
-          <CODE code="plus_de_65_ans" format="percent">
+          <CODE code="plus_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1969-01-01" fuzzy="true" valeur="0.024" />
             <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.022" />
           </CODE>
         </NODE>
         <NODE code="employe_hors_am">
-          <CODE code="moins_de_65_ans" format="percent">
+          <CODE code="moins_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1969-01-01" fuzzy="true" valeur="0.02" />
             <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.018" />
           </CODE>
-          <CODE code="plus_de_65_ans" format="percent">
+          <CODE code="plus_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1969-01-01" fuzzy="true" valeur="0.012" />
             <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.018" />
           </CODE>
         </NODE>
-        <CODE code="employeur" format="percent">
+        <CODE code="employeur" format="percent" origin="ipp">
           <VALUE deb="1971-01-01" fuzzy="true" valeur="0.0836" />
           <VALUE deb="1969-01-01" fin="1970-12-31" valeur="0.076" />
           <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.072" />
         </CODE>
       </NODE>
       <NODE code="totalite_remuneration">
-        <CODE code="employe" format="percent">
+        <CODE code="employe" format="percent" origin="ipp">
           <VALUE deb="1967-10-01" fuzzy="true" valeur="0.008" />
         </CODE>
-        <CODE code="employeur" format="percent">
+        <CODE code="employeur" format="percent" origin="ipp">
           <VALUE deb="1967-10-01" fuzzy="true" valeur="0.016" />
         </CODE>
       </NODE>
     </NODE>
     <NODE code="assurance_vieillesse">
       <NODE code="sous_pss">
-        <CODE code="employes" format="percent">
+        <CODE code="employes" format="percent" origin="ipp">
           <VALUE deb="1967-10-01" fuzzy="true" valeur="0.024" />
         </CODE>
-        <CODE code="employeurs" format="percent">
+        <CODE code="employeurs" format="percent" origin="ipp">
           <VALUE deb="1974-01-01" fuzzy="true" valeur="0.058" />
           <VALUE deb="1971-01-01" fin="1973-12-31" valeur="0.046" />
           <VALUE deb="1967-10-01" fin="1970-12-31" valeur="0.044" />
@@ -3374,22 +3374,22 @@
     <NODE code="assurances_sociales_avant_1967">
       <NODE code="sous_pss">
         <NODE code="employe_am">
-          <CODE code="moins_de_65_ans" format="percent">
+          <CODE code="moins_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1964-01-01" fin="1967-09-30" valeur="0.056" />
           </CODE>
-          <CODE code="plus_de_65_ans" format="percent">
+          <CODE code="plus_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1964-01-01" fin="1967-09-30" valeur="0.024" />
           </CODE>
         </NODE>
         <NODE code="employe_hors_am">
-          <CODE code="moins_de_65_ans" format="percent">
+          <CODE code="moins_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1964-01-01" fin="1967-09-30" valeur="0.016" />
           </CODE>
-          <CODE code="plus_de_65_ans" format="percent">
+          <CODE code="plus_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1964-01-01" fin="1967-09-30" valeur="0.048" />
           </CODE>
         </NODE>
-        <CODE code="employeur" format="percent">
+        <CODE code="employeur" format="percent" origin="ipp">
           <VALUE deb="1966-10-01" fin="1967-09-30" valeur="0.12" />
           <VALUE deb="1964-01-01" fin="1966-09-30" valeur="0.114" />
         </CODE>
@@ -3399,7 +3399,7 @@
   <NODE code="red_m">
     <NODE code="accidents_travail">
       <NODE code="sous_pss">
-        <CODE code="employeur" format="percent">
+        <CODE code="employeur" format="percent" origin="ipp">
           <VALUE deb="1973-01-01" fuzzy="true" valeur="0.0147" />
           <VALUE deb="1972-01-01" fin="1972-12-31" valeur="0.0108" />
           <VALUE deb="1971-01-01" fin="1971-12-31" valeur="0.0154" />
@@ -3411,7 +3411,7 @@
     </NODE>
     <NODE code="allocations_familiales">
       <NODE code="sous_pss">
-        <CODE code="employeurs_sous_pss" format="percent">
+        <CODE code="employeurs_sous_pss" format="percent" origin="ipp">
           <VALUE deb="1974-01-01" fuzzy="true" valeur="0.063" />
           <VALUE deb="1971-01-01" fin="1973-12-31" valeur="0.0735" />
           <VALUE deb="1967-10-01" fin="1970-12-31" valeur="0.0805" />
@@ -3423,36 +3423,36 @@
     <NODE code="assurance_maladie">
       <NODE code="sous_pss">
         <NODE code="employe_am">
-          <CODE code="moins_de_65_ans" format="percent">
+          <CODE code="moins_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1969-01-01" fuzzy="true" valeur="0.028" />
             <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.018" />
           </CODE>
-          <CODE code="plus_de_65_ans" format="percent">
+          <CODE code="plus_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1969-01-01" fuzzy="true" valeur="0.021" />
             <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.018" />
           </CODE>
         </NODE>
         <NODE code="employe_hors_am">
-          <CODE code="moins_de_65_ans" format="percent">
+          <CODE code="moins_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1969-01-01" fuzzy="true" valeur="0.0175" />
             <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.0145" />
           </CODE>
-          <CODE code="plus_de_65_ans" format="percent">
+          <CODE code="plus_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1969-01-01" fuzzy="true" valeur="0.0105" />
             <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.0145" />
           </CODE>
         </NODE>
-        <CODE code="employeur" format="percent">
+        <CODE code="employeur" format="percent" origin="ipp">
           <VALUE deb="1971-01-01" fuzzy="true" valeur="0.0732" />
           <VALUE deb="1969-01-01" fin="1970-12-31" valeur="0.0665" />
           <VALUE deb="1967-10-01" fin="1968-12-31" valeur="0.0605" />
         </CODE>
       </NODE>
       <NODE code="totalite_remuneration">
-        <CODE code="employe" format="percent">
+        <CODE code="employe" format="percent" origin="ipp">
           <VALUE deb="1967-10-01" fuzzy="true" valeur="0.007" />
         </CODE>
-        <CODE code="employeur" format="percent">
+        <CODE code="employeur" format="percent" origin="ipp">
           <VALUE deb="1967-10-01" fuzzy="true" valeur="0.014" />
         </CODE>
       </NODE>
@@ -3460,14 +3460,14 @@
     <NODE code="assurance_vieillesse">
       <NODE code="sous_pss">
         <NODE code="employe">
-          <CODE code="moins_de_65_ans" format="percent">
+          <CODE code="moins_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0.021" />
           </CODE>
-          <CODE code="plus_de_65_ans" format="percent">
+          <CODE code="plus_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1967-10-01" fuzzy="true" valeur="0" />
           </CODE>
         </NODE>
-        <CODE code="employeur" format="percent">
+        <CODE code="employeur" format="percent" origin="ipp">
           <VALUE deb="1974-01-01" fuzzy="true" valeur="0.0508" />
           <VALUE deb="1971-01-01" fin="1973-12-31" valeur="0.0403" />
           <VALUE deb="1967-10-01" fin="1970-12-31" valeur="0.0385" />
@@ -3477,22 +3477,22 @@
     <NODE code="assurances_sociales">
       <NODE code="sous_pss">
         <NODE code="employe_am_sous_pss">
-          <CODE code="moins_de_65_ans" format="percent">
+          <CODE code="moins_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1961-05-01" fin="1967-09-30" valeur="0.049" />
           </CODE>
-          <CODE code="plus_de_65_ans" format="percent">
+          <CODE code="plus_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1961-05-01" fin="1967-09-30" valeur="0.021" />
           </CODE>
         </NODE>
         <NODE code="employe_hors_am">
-          <CODE code="moins_de_65_ans" format="percent">
+          <CODE code="moins_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1961-05-01" fin="1967-09-30" valeur="0.014" />
           </CODE>
-          <CODE code="plus_de_65_ans" format="percent">
+          <CODE code="plus_de_65_ans" format="percent" origin="ipp">
             <VALUE deb="1961-05-01" fin="1967-09-30" valeur="0.042" />
           </CODE>
         </NODE>
-        <CODE code="employeur_sous_pss" format="percent">
+        <CODE code="employeur_sous_pss" format="percent" origin="ipp">
           <VALUE deb="1966-10-01" fin="1967-09-30" valeur="0.105" />
           <VALUE deb="1962-04-01" fin="1966-09-30" valeur="0.0995" />
           <VALUE deb="1961-05-01" fin="1962-03-31" valeur="0.0945" />
@@ -3502,7 +3502,7 @@
   </NODE>
   <NODE code="ret_ac">
     <NODE code="artisans">
-      <CODE code="sous_pss" format="percent">
+      <CODE code="sous_pss" format="percent" origin="ipp">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.1715" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.1705" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.1695" />
@@ -3522,7 +3522,7 @@
       </CODE>
     </NODE>
     <NODE code="industriels_et_commercants">
-      <CODE code="sous_pss" format="percent">
+      <CODE code="sous_pss" format="percent" origin="ipp">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.1715" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.1705" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.1695" />
@@ -3542,7 +3542,7 @@
       </CODE>
     </NODE>
     <NODE code="tous_independants">
-      <CODE code="tout_salaire" format="percent">
+      <CODE code="tout_salaire" format="percent" origin="ipp">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.006" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0035" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.002" />
@@ -3551,22 +3551,22 @@
   </NODE>
   <NODE code="ret_comp_ac">
     <NODE code="artisans">
-      <CODE code="entre_1_et_4_pss" format="percent">
+      <CODE code="entre_1_et_4_pss" format="percent" origin="ipp">
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur="0.076" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.075" />
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="0.07" />
       </CODE>
-      <CODE code="sous_1_pss" format="percent">
+      <CODE code="sous_1_pss" format="percent" origin="ipp">
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur="0.072" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.071" />
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="0.07" />
       </CODE>
-      <CODE code="sous_3_pss" format="percent">
+      <CODE code="sous_3_pss" format="percent" origin="ipp">
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.049" />
         <VALUE deb="1985-01-01" fin="1996-12-31" valeur="0.045" />
         <VALUE deb="1978-01-01" fin="1984-12-31" valeur="0.044" />
       </CODE>
-      <CODE code="sous_4_pss" format="percent">
+      <CODE code="sous_4_pss" format="percent" origin="ipp">
         <VALUE deb="2005-01-01" fin="2007-12-31" valeur="0.07" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.067" />
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0.062" />
@@ -3576,20 +3576,20 @@
       </CODE>
     </NODE>
     <NODE code="artisans_industriels_commercants">
-      <CODE code="entre_1_plafond_rci_et_4_plafonds_pss" format="percent">
+      <CODE code="entre_1_plafond_rci_et_4_plafonds_pss" format="percent" origin="ipp">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="0.08" />
       </CODE>
-      <CODE code="montant_du_plafond_rci" format="float" type="monetary">
+      <CODE code="montant_du_plafond_rci" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="37546" />
         <VALUE deb="2014-01-01" fin="2015-12-31" valeur="37513" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="37032" />
       </CODE>
-      <CODE code="sous_plafond_rci" format="percent">
+      <CODE code="sous_plafond_rci" format="percent" origin="ipp">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="0.07" />
       </CODE>
     </NODE>
     <NODE code="industriels_commercants">
-      <CODE code="sous_3_pss" format="percent">
+      <CODE code="sous_3_pss" format="percent" origin="ipp">
         <VALUE deb="2005-01-01" fin="2012-12-31" valeur="0.065" />
         <VALUE deb="2004-07-01" fin="2004-12-31" valeur="0.045" />
         <VALUE deb="2004-01-01" fin="2004-06-30" valeur="0.035" />
@@ -3599,11 +3599,11 @@
   <NODE code="ret_comp_pl">
     <NODE code="agents_generaux_d_assurance">
       <NODE code="commissions_et_remunerations_brutes_dans_la_limite_d_un_plafond">
-        <CODE code="taux_contractuel" format="percent">
+        <CODE code="taux_contractuel" format="percent" origin="ipp">
           <VALUE deb="1971-01-01" fuzzy="true" valeur="0.063" />
           <VALUE deb="1968-01-01" fin="1970-12-31" valeur="0.036" />
         </CODE>
-        <CODE code="taux_effectif" format="percent">
+        <CODE code="taux_effectif" format="percent" origin="ipp">
           <VALUE deb="2004-01-01" fuzzy="true" valeur="0.09" />
           <VALUE deb="2002-01-01" fin="2003-12-31" valeur="0.081585" />
           <VALUE deb="1998-01-01" fin="2001-12-31" valeur="0.080325" />
@@ -3611,14 +3611,14 @@
           <VALUE deb="1971-01-01" fin="1992-12-31" valeur="0.063" />
           <VALUE deb="1968-01-01" fin="1970-12-31" valeur="0.036" />
         </CODE>
-        <CODE code="taux_invalidite_deces" format="percent">
+        <CODE code="taux_invalidite_deces" format="percent" origin="ipp">
           <VALUE deb="2012-01-01" fuzzy="true" valeur="0.007" />
           <VALUE deb="2004-01-01" fin="2011-12-31" valeur="0.01" />
         </CODE>
       </NODE>
     </NODE>
     <NODE code="chirurgiens_dentistes_sages_femmes_depuis_janvier_2009">
-      <CODE code="entre_0_85_et_5_pss" format="percent">
+      <CODE code="entre_0_85_et_5_pss" format="percent" origin="ipp">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.105" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.104" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.103" />
@@ -3635,12 +3635,12 @@
     </NODE>
     <NODE code="infirmiers_masseurs_kine_orthophonistes_orthoptistes">
       <NODE code="commissions_et_remunerations_brutes_entre_un_seuil_plancher_et_un_seuil_plafond">
-        <CODE code="retraite_complementaire" format="percent">
+        <CODE code="retraite_complementaire" format="percent" origin="ipp">
           <VALUE deb="1996-01-01" fuzzy="true" valeur="0.03" />
         </CODE>
       </NODE>
       <NODE code="sous_5_pss">
-        <CODE code="regime_supplementaire_pour_les_auxilliaires_medicaux_conventionnes_asv" format="percent">
+        <CODE code="regime_supplementaire_pour_les_auxilliaires_medicaux_conventionnes_asv" format="percent" origin="ipp">
           <VALUE deb="2011-01-01" fuzzy="true" valeur="0.004" />
           <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.0025" />
         </CODE>
@@ -3648,7 +3648,7 @@
     </NODE>
     <NODE code="medecins">
       <NODE code="sous_3_5_pss">
-        <CODE code="retraite_complementaire" format="percent">
+        <CODE code="retraite_complementaire" format="percent" origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="0.096" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.095" />
           <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.093" />
@@ -3662,7 +3662,7 @@
         </CODE>
       </NODE>
       <NODE code="sous_5_pss">
-        <CODE code="regime_supplementaire_obligatoire_pour_les_medecins_conventionnes_asv" format="percent">
+        <CODE code="regime_supplementaire_obligatoire_pour_les_medecins_conventionnes_asv" format="percent" origin="ipp">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.021" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.015" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.009" />
@@ -3672,17 +3672,17 @@
     </NODE>
     <NODE code="notaires">
       <NODE code="moyenne_des_produits_de_base_de_l_office_des_3_dernieres_annees_limitee_a_3_moyenne_generale_des_produits_des_offices_de_france">
-        <CODE code="colmar_metz" format="percent">
+        <CODE code="colmar_metz" format="percent" origin="ipp">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.036" />
           <VALUE deb="1963-01-01" fin="2014-12-31" valeur="0.04" />
           <VALUE deb="1951-01-01" fin="1962-12-31" valeur="0.02" />
         </CODE>
-        <CODE code="section_a_allocation_variable" format="percent">
+        <CODE code="section_a_allocation_variable" format="percent" origin="ipp">
           <VALUE deb="2005-01-01" fuzzy="true" valeur="0.045" />
           <VALUE deb="1962-01-01" fin="2004-12-31" valeur="0.025" />
           <VALUE deb="1949-01-01" fin="1961-12-31" valeur="0.05" />
         </CODE>
-        <CODE code="section_u_allocation_uniforme" format="percent">
+        <CODE code="section_u_allocation_uniforme" format="percent" origin="ipp">
           <VALUE deb="2005-01-01" fuzzy="true" valeur="0.045" />
           <VALUE deb="1962-01-01" fin="2004-12-31" valeur="0.02" />
           <VALUE deb="1949-01-01" fin="1961-12-31" valeur="0.05" />
@@ -3691,7 +3691,7 @@
     </NODE>
     <NODE code="pharmaciens">
       <NODE code="sous_5_pss">
-        <CODE code="regime_supplementaire_pour_les_biologistes_medicaux_conventionnes_uniquement_asv" format="percent">
+        <CODE code="regime_supplementaire_pour_les_biologistes_medicaux_conventionnes_uniquement_asv" format="percent" origin="ipp">
           <VALUE deb="2008-01-01" fuzzy="true" valeur="0.003" />
         </CODE>
       </NODE>
@@ -3699,14 +3699,14 @@
   </NODE>
   <NODE code="ret_etat">
     <NODE code="taux_employeur_explicite">
-      <CODE code="ati" format="percent">
+      <CODE code="ati" format="percent" origin="ipp">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="0.0032" />
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur="0.0033" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.0032" />
         <VALUE deb="2007-01-01" fin="2008-12-31" valeur="0.0031" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.003" />
       </CODE>
-      <CODE code="pensions_civils" format="percent">
+      <CODE code="pensions_civils" format="percent" origin="ipp">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.7428" />
         <VALUE deb="2013-12-01" fin="2013-12-31" valeur="0.4428" />
         <VALUE deb="2013-01-01" fin="2013-11-30" valeur="0.7428" />
@@ -3719,7 +3719,7 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="0.5074" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="0.499" />
       </CODE>
-      <CODE code="pensions_militaires" format="percent">
+      <CODE code="pensions_militaires" format="percent" origin="ipp">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="1.2607" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="1.2155" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="1.1414" />
@@ -3730,7 +3730,7 @@
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="1" />
       </CODE>
     </NODE>
-    <CODE code="taux_implicite" format="percent">
+    <CODE code="taux_implicite" format="percent" origin="ipp">
       <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.594" />
       <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.568" />
       <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0.527" />
@@ -3745,50 +3745,50 @@
   </NODE>
   <NODE code="ret_pl">
     <NODE code="assurance_vieillesse">
-      <CODE code="entre_0_85_et_5_pss" format="percent">
+      <CODE code="entre_0_85_et_5_pss" format="percent" origin="ipp">
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0187" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0181" />
         <VALUE deb="2004-01-01" fin="2012-12-31" valeur="0.016" />
       </CODE>
-      <CODE code="entre_1_et_5_pss" format="percent">
+      <CODE code="entre_1_et_5_pss" format="percent" origin="ipp">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0187" />
       </CODE>
-      <CODE code="sous_0_85_pss" format="percent">
+      <CODE code="sous_0_85_pss" format="percent" origin="ipp">
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.101" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0975" />
         <VALUE deb="2012-07-04" fin="2012-12-31" valeur="0.0863" />
         <VALUE deb="2004-01-01" fin="2012-07-03" valeur="0.086" />
       </CODE>
-      <CODE code="sous_1_pss" format="percent">
+      <CODE code="sous_1_pss" format="percent" origin="ipp">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0823" />
       </CODE>
-      <CODE code="sous_5_pss" format="percent">
+      <CODE code="sous_5_pss" format="percent" origin="ipp">
         <VALUE deb="1993-01-01" fin="2003-12-31" valeur="0.014" />
       </CODE>
     </NODE>
   </NODE>
   <NODE code="retraites_chapeau">
-    <CODE code="majoration" format="percent">
+    <CODE code="majoration" format="percent" origin="ipp">
       <VALUE deb="2010-01-01" fuzzy="true" valeur="0.3" />
     </CODE>
-    <CODE code="taux_1" format="percent">
+    <CODE code="taux_1" format="percent" origin="ipp">
       <VALUE deb="2013-01-01" fuzzy="true" valeur="0.32" />
       <VALUE deb="2010-01-01" fin="2012-12-31" valeur="0.16" />
       <VALUE deb="2004-01-01" fin="2009-12-31" valeur="0.08" />
     </CODE>
-    <CODE code="taux_2" format="percent">
+    <CODE code="taux_2" format="percent" origin="ipp">
       <VALUE deb="2013-01-01" fuzzy="true" valeur="0.24" />
       <VALUE deb="2010-01-01" fin="2012-12-31" valeur="0.12" />
       <VALUE deb="2004-01-01" fin="2009-12-31" valeur="0.06" />
     </CODE>
-    <CODE code="taux_3" format="percent">
+    <CODE code="taux_3" format="percent" origin="ipp">
       <VALUE deb="2013-01-01" fuzzy="true" valeur="0.48" />
       <VALUE deb="2010-01-01" fin="2012-12-31" valeur="0.24" />
       <VALUE deb="2004-01-01" fin="2009-12-31" valeur="0.12" />
     </CODE>
   </NODE>
   <NODE code="rp">
-    <CODE code="retenues" format="percent">
+    <CODE code="retenues" format="percent" origin="ipp">
       <VALUE deb="2020-01-01" fuzzy="true" valeur="0.111" />
       <VALUE deb="2019-01-01" fin="2019-12-31" valeur="0.1083" />
       <VALUE deb="2018-01-01" fin="2018-12-31" valeur="0.1056" />
@@ -3810,7 +3810,7 @@
   </NODE>
   <NODE code="sncf">
     <NODE code="regime_de_retraite">
-      <CODE code="cotisations_employes" format="percent">
+      <CODE code="cotisations_employes" format="percent" origin="ipp">
         <VALUE deb="2026-01-01" fuzzy="true" valeur="0.1095" />
         <VALUE deb="2025-01-01" fin="2025-12-31" valeur="0.1068" />
         <VALUE deb="2024-01-01" fin="2024-12-31" valeur="0.1041" />
@@ -3826,7 +3826,7 @@
         <VALUE deb="2007-01-01" fin="2014-12-31" valeur="0.0785" />
       </CODE>
       <NODE code="cotisations_employeur">
-        <CODE code="t1" format="percent">
+        <CODE code="t1" format="percent" origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="0.2386" />
           <VALUE deb="2014-01-01" fin="2015-12-31" valeur="0.236" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.2319" />
@@ -3837,7 +3837,7 @@
           <VALUE deb="2008-01-01" fin="2008-12-31" valeur="0.2256" />
           <VALUE deb="2007-01-01" fin="2007-12-31" valeur="0.2252" />
         </CODE>
-        <CODE code="t2" format="percent">
+        <CODE code="t2" format="percent" origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="0.1181" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.1172" />
           <VALUE deb="2011-01-01" fin="2014-12-31" valeur="0.1126" />
@@ -3849,10 +3849,10 @@
       </NODE>
     </NODE>
     <NODE code="regime_prevoyance">
-      <CODE code="employeurs" format="percent">
+      <CODE code="employeurs" format="percent" origin="ipp">
         <VALUE deb="2007-01-01" fuzzy="true" valeur="0.096" />
       </CODE>
-      <CODE code="salaries" format="percent">
+      <CODE code="salaries" format="percent" origin="ipp">
         <VALUE deb="2007-01-01" fuzzy="true" valeur="0.0015" />
       </CODE>
     </NODE>
@@ -3860,13 +3860,13 @@
   <NODE code="ss">
     <NODE code="salaire_sous_pss">
       <NODE code="cotisation_ouvriere">
-        <CODE code="moins_de_65_ans" format="percent">
+        <CODE code="moins_de_65_ans" format="percent" origin="ipp">
           <VALUE deb="1945-01-01" fin="1967-08-31" valeur="0.06" />
           <VALUE deb="1937-01-01" fin="1944-12-31" valeur="0.04" />
           <VALUE deb="1936-01-01" fin="1936-12-31" valeur="0.035" />
           <VALUE deb="1930-07-01" fin="1935-12-31" valeur="0.04" />
         </CODE>
-        <CODE code="plus_de_65_ans" format="percent">
+        <CODE code="plus_de_65_ans" format="percent" origin="ipp">
           <VALUE deb="1948-07-01" fin="1967-08-31" valeur="0.02" />
           <VALUE deb="1945-01-01" fin="1948-06-30" valeur="0.06" />
           <VALUE deb="1937-01-01" fin="1944-12-31" valeur="0.04" />
@@ -3874,7 +3874,7 @@
           <VALUE deb="1930-07-01" fin="1935-12-31" valeur="0.04" />
         </CODE>
       </NODE>
-      <CODE code="cotisation_patronale" format="percent">
+      <CODE code="cotisation_patronale" format="percent" origin="ipp">
         <VALUE deb="1966-09-01" fin="1967-08-31" valeur="0.15" />
         <VALUE deb="1962-01-01" fin="1966-08-31" valeur="0.1425" />
         <VALUE deb="1961-01-01" fin="1961-12-31" valeur="0.135" />
@@ -3888,19 +3888,19 @@
     </NODE>
   </NODE>
   <NODE code="taxsal">
-    <CODE code="majoration1" format="percent">
+    <CODE code="majoration1" format="percent" origin="ipp">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="0.085" />
       <VALUE deb="1968-11-01" fin="2014-12-31" valeur="0.0425" />
     </CODE>
-    <CODE code="majoration2" format="percent">
+    <CODE code="majoration2" format="percent" origin="ipp">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="0.136" />
       <VALUE deb="1968-11-01" fin="2014-12-31" valeur="0.0935" />
     </CODE>
-    <CODE code="majoration_3" format="percent">
+    <CODE code="majoration_3" format="percent" origin="ipp">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="0.2" />
       <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.1575" />
     </CODE>
-    <CODE code="plafond1" format="float" type="monetary">
+    <CODE code="plafond1" format="float" origin="ipp" type="monetary">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="7713" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="7705" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="7666" />
@@ -3930,7 +3930,7 @@
       <VALUE deb="1979-01-01" fin="1988-12-31" valeur="32800" />
       <VALUE deb="1968-11-01" fin="1978-12-31" valeur="30000" />
     </CODE>
-    <CODE code="plafond2" format="float" type="monetary">
+    <CODE code="plafond2" format="float" origin="ipp" type="monetary">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="15401" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="15385" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="15308" />
@@ -3960,70 +3960,70 @@
       <VALUE deb="1979-01-01" fin="1988-12-31" valeur="65600" />
       <VALUE deb="1968-11-01" fin="1978-12-31" valeur="60000" />
     </CODE>
-    <CODE code="plafond_3" format="float" type="monetary">
+    <CODE code="plafond_3" format="float" origin="ipp" type="monetary">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="152122" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="151965" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="151208" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="150000" />
     </CODE>
-    <CODE code="taux1" format="percent">
+    <CODE code="taux1" format="percent" origin="ipp">
       <VALUE deb="1968-11-01" fuzzy="true" valeur="0.0425" />
     </CODE>
-    <CODE code="taux_guadeloupe_martinique_reunion" format="percent">
+    <CODE code="taux_guadeloupe_martinique_reunion" format="percent" origin="ipp">
       <VALUE deb="1968-11-01" fuzzy="true" valeur="0.0295" />
     </CODE>
-    <CODE code="taux_guyane" format="percent">
+    <CODE code="taux_guyane" format="percent" origin="ipp">
       <VALUE deb="1968-11-01" fuzzy="true" valeur="0.0255" />
     </CODE>
   </NODE>
   <NODE code="tehr">
-    <CODE code="plafond_en_du_chiffre_d_affaire_de_l_entreprises" format="percent">
+    <CODE code="plafond_en_du_chiffre_d_affaire_de_l_entreprises" format="percent" origin="ipp">
       <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.05" />
     </CODE>
-    <CODE code="seuil" format="float" type="monetary">
+    <CODE code="seuil" format="float" origin="ipp" type="monetary">
       <VALUE deb="2013-01-01" fin="2014-12-31" valeur="1000000" />
     </CODE>
-    <CODE code="taux" format="percent">
+    <CODE code="taux" format="percent" origin="ipp">
       <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.5" />
     </CODE>
   </NODE>
   <NODE code="veuvage">
     <NODE code="salaries">
-      <CODE code="sous_plafond" format="percent">
+      <CODE code="sous_plafond" format="percent" origin="ipp">
         <VALUE deb="1981-01-01" fin="1981-12-31" valeur="0.001" />
       </CODE>
-      <CODE code="sur_tout_salaire" format="percent">
+      <CODE code="sur_tout_salaire" format="percent" origin="ipp">
         <VALUE deb="1982-01-01" fin="2004-06-30" valeur="0.001" />
       </CODE>
     </NODE>
   </NODE>
   <NODE code="vfs">
-    <CODE code="majoration1" format="percent">
+    <CODE code="majoration1" format="percent" origin="ipp">
       <VALUE deb="1957-01-01" fin="1967-12-31" valeur="0.05" />
     </CODE>
-    <CODE code="majoration2" format="percent">
+    <CODE code="majoration2" format="percent" origin="ipp">
       <VALUE deb="1957-01-01" fin="1967-12-31" valeur="0.11" />
     </CODE>
-    <CODE code="plafond1" format="float" type="monetary">
+    <CODE code="plafond1" format="float" origin="ipp" type="monetary">
       <VALUE deb="1957-01-01" fin="1967-12-31" valeur="3000000" />
     </CODE>
-    <CODE code="plafond2" format="float" type="monetary">
+    <CODE code="plafond2" format="float" origin="ipp" type="monetary">
       <VALUE deb="1957-01-01" fin="1967-12-31" valeur="6000000" />
     </CODE>
-    <CODE code="taux1" format="percent">
+    <CODE code="taux1" format="percent" origin="ipp">
       <VALUE deb="1949-01-01" fin="1967-12-31" valeur="0.05" />
     </CODE>
-    <CODE code="taux_sur_les_pensions" format="percent">
+    <CODE code="taux_sur_les_pensions" format="percent" origin="ipp">
       <VALUE deb="1949-01-01" fin="1956-12-31" valeur="0.03" />
     </CODE>
   </NODE>
   <NODE code="vt">
-    <CODE code="bourg_en_bresse" format="percent">
+    <CODE code="bourg_en_bresse" format="percent" origin="ipp">
       <VALUE deb="2011-07-01" fuzzy="true" valeur="0.0075" />
       <VALUE deb="2004-07-01" fin="2011-06-30" valeur="0.006" />
       <VALUE deb="1983-07-01" fin="2004-06-30" valeur="0.005" />
     </CODE>
-    <CODE code="essonne" format="percent">
+    <CODE code="essonne" format="percent" origin="ipp">
       <VALUE deb="2015-07-01" fuzzy="true" valeur="0.0191" />
       <VALUE deb="2014-07-01" fin="2015-06-30" valeur="0.017" />
       <VALUE deb="2013-07-01" fin="2014-06-30" valeur="0.016" />
@@ -4036,7 +4036,7 @@
       <VALUE deb="1979-01-01" fin="1988-12-31" valeur="0.012" />
       <VALUE deb="1975-08-01" fin="1978-12-31" valeur="0.01" />
     </CODE>
-    <CODE code="hauts_de_seine" format="percent">
+    <CODE code="hauts_de_seine" format="percent" origin="ipp">
       <VALUE deb="2015-07-01" fuzzy="true" valeur="0.0285" />
       <VALUE deb="2013-01-01" fin="2015-06-30" valeur="0.027" />
       <VALUE deb="2004-01-01" fin="2012-12-31" valeur="0.026" />
@@ -4048,7 +4048,7 @@
       <VALUE deb="1975-07-01" fin="1978-12-31" valeur="0.019" />
       <VALUE deb="1971-09-01" fin="1975-06-30" valeur="0.017" />
     </CODE>
-    <CODE code="lyon" format="percent">
+    <CODE code="lyon" format="percent" origin="ipp">
       <VALUE deb="2003-01-01" fuzzy="true" valeur="0.0175" />
       <VALUE deb="1994-01-01" fin="2002-12-31" valeur="0.0163" />
       <VALUE deb="1993-04-01" fin="1993-12-31" valeur="0.015" />
@@ -4057,13 +4057,13 @@
       <VALUE deb="1975-08-01" fin="1976-12-31" valeur="0.0125" />
       <VALUE deb="1974-01-01" fin="1975-07-31" valeur="0.0075" />
     </CODE>
-    <CODE code="marseille" format="percent">
+    <CODE code="marseille" format="percent" origin="ipp">
       <VALUE deb="2011-01-01" fuzzy="true" valeur="0.02" />
       <VALUE deb="2001-01-01" fin="2010-12-31" valeur="0.018" />
       <VALUE deb="1989-01-01" fin="2000-12-31" valeur="0.0175" />
       <VALUE deb="1974-01-01" fin="1988-12-31" valeur="0.015" />
     </CODE>
-    <CODE code="paris" format="percent">
+    <CODE code="paris" format="percent" origin="ipp">
       <VALUE deb="2015-07-01" fuzzy="true" valeur="0.0285" />
       <VALUE deb="2013-01-01" fin="2015-06-30" valeur="0.027" />
       <VALUE deb="2004-01-01" fin="2012-12-31" valeur="0.026" />
@@ -4075,7 +4075,7 @@
       <VALUE deb="1975-07-01" fin="1978-12-31" valeur="0.019" />
       <VALUE deb="1971-09-01" fin="1975-06-30" valeur="0.017" />
     </CODE>
-    <CODE code="seine_saint_denis" format="percent">
+    <CODE code="seine_saint_denis" format="percent" origin="ipp">
       <VALUE deb="2015-07-01" fuzzy="true" valeur="0.0191" />
       <VALUE deb="2013-01-01" fin="2015-06-30" valeur="0.018" />
       <VALUE deb="2004-01-01" fin="2012-12-31" valeur="0.017" />
@@ -4086,17 +4086,17 @@
       <VALUE deb="1971-09-01" fin="1975-06-30" valeur="0.017" />
     </CODE>
     <NODE code="taux_maximal_hors_ile_de_france">
-      <CODE code="sous_pss" format="percent">
+      <CODE code="sous_pss" format="percent" origin="ipp">
         <VALUE deb="1989-09-01" fin="1993-03-31" valeur="0.0175" />
         <VALUE deb="1974-01-01" fin="1989-08-31" valeur="0.015" />
       </CODE>
-      <CODE code="tout_salaire" format="percent">
+      <CODE code="tout_salaire" format="percent" origin="ipp">
         <VALUE deb="2003-01-01" fuzzy="true" valeur="0.0175" />
         <VALUE deb="1994-01-01" fin="2002-12-31" valeur="0.0163" />
         <VALUE deb="1993-04-01" fin="1993-12-31" valeur="0.015" />
       </CODE>
     </NODE>
-    <CODE code="toulouse" format="percent">
+    <CODE code="toulouse" format="percent" origin="ipp">
       <VALUE deb="2011-07-01" fuzzy="true" valeur="0.02" />
       <VALUE deb="2007-01-01" fin="2011-06-30" valeur="0.018" />
       <VALUE deb="1991-04-01" fin="2006-12-31" valeur="0.0175" />
@@ -4104,7 +4104,7 @@
       <VALUE deb="1975-01-01" fin="1986-03-31" valeur="0.01" />
       <VALUE deb="1974-01-01" fin="1974-12-31" valeur="0.0091" />
     </CODE>
-    <CODE code="val_d_oise" format="percent">
+    <CODE code="val_d_oise" format="percent" origin="ipp">
       <VALUE deb="2015-07-01" fuzzy="true" valeur="0.0191" />
       <VALUE deb="2014-07-01" fin="2015-06-30" valeur="0.017" />
       <VALUE deb="2013-07-01" fin="2014-06-30" valeur="0.016" />
@@ -4117,7 +4117,7 @@
       <VALUE deb="1979-01-01" fin="1988-12-31" valeur="0.012" />
       <VALUE deb="1975-08-01" fin="1978-12-31" valeur="0.01" />
     </CODE>
-    <CODE code="val_de_marne" format="percent">
+    <CODE code="val_de_marne" format="percent" origin="ipp">
       <VALUE deb="2015-07-01" fuzzy="true" valeur="0.0191" />
       <VALUE deb="2013-01-01" fin="2015-06-30" valeur="0.018" />
       <VALUE deb="2004-01-01" fin="2012-12-31" valeur="0.017" />
