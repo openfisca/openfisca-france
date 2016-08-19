@@ -1358,13 +1358,13 @@ class microentreprise(Variable):
 class plus_values(DatedVariable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"Plus_values"
+    label = u"Taxation des plus_values"
 
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
     def function_20070101_20071231(self, simulation, period):  # f3sd is in f3vd holder
         """
-        Taxation des plus value
-        TODO: f3vt, 2013 f3Vg au barème / tout refaire
+        Taxation des plus values
+        TODO: 2013 f3Vg au barème / tout refaire
         """
         period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
@@ -1401,7 +1401,7 @@ class plus_values(DatedVariable):
     def function_20080101_20111231(self, simulation, period):  # f3sd is in f3vd holder
         """
         Taxation des plus value
-        TODO: f3vt, 2013 f3Vg au barème / tout refaire
+        TODO:  2013 f3Vg au barème / tout refaire
         """
         period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
@@ -1485,7 +1485,7 @@ class plus_values(DatedVariable):
     def function_20130101_20151231(self, simulation, period):  # f3sd is in f3vd holder
         """
         Taxation des plus value
-        TODO: f3vt, 2013 f3Vg au barème / tout refaire
+        TODO: 2013 f3Vg au barème / tout refaire
         """
         period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
