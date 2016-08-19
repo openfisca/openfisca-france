@@ -1805,7 +1805,7 @@ class imp_lib(DatedVariable):
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
     def function_20020101_20071231(self, simulation, period):
         '''
-        Prelèvement libératoire sur les revenus du capital
+        Prélèvement libératoire sur les revenus du capital
         '''
         period = period.this_year
         f2dh = simulation.calculate('f2dh', period)
