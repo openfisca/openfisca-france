@@ -1,5 +1,6 @@
 # Changelog
 
+<<<<<<< b31874f50c9af2a9405b84888d5cb5f69755fafe
 ## 4.1.14
 
 * Add cerfa boxe : 3vt (PEA)
@@ -11,6 +12,11 @@
 ## 4.1.12
 
 * Fix links in README
+=======
+## 4.1.12
+
+* Add cerfa boxe : 3vt (PEA)
+>>>>>>> Add 3vt (PEA)
 
 ## 4.1.11
 
