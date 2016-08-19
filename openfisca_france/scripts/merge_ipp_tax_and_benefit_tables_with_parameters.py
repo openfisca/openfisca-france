@@ -86,6 +86,8 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
+    assert os.path.isdir(args.source_dir), args.source_dir
+
     file_system_encoding = sys.getfilesystemencoding()
 
     original_element_tree = etree.parse(args.origin)
