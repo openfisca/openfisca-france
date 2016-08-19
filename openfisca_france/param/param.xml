@@ -6027,13 +6027,16 @@
           <VALUE deb="2004-01-01" fin="2007-12-31" valeur="0.160" />
         </CODE>
         <CODE code="assvie" description="Produits des contrats d'assurance vie (case DH)">
-          <VALUE deb="2002-01-01" fin="2012-12-31" valeur="0.075" />
+          <VALUE deb="2002-01-01" fuzzy="true" valeur="0.075" />
         </CODE>
         <CODE code="autre" description="Autres produits de placement (case EE)">
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.240" />
+          <VALUE deb="2012-01-01" fuzzy="true" valeur="0.240" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.190" />
           <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.180" />
           <VALUE deb="2004-01-01" fin="2007-12-31" valeur="0.160" />
+        </CODE>
+        <CODE code="placement_inf2000" description="Produits de placement à revenu fixe inférieurs à 2000€ taxables sur option (case 2FA)">
+          <VALUE deb="2013-01-01" fuzzy="true" valeur="0.240" />
         </CODE>
       </NODE>
     </NODE>

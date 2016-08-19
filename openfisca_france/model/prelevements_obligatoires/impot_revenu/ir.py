@@ -677,7 +677,7 @@ class rev_cat_rvcm(DatedVariable):
         DEF = deficit_rcm
         return period, max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2013, 1, 1))
     def function_20130101_20151231(self, simulation, period):
         """
         Revenus des valeurs et capitaux mobiliers
@@ -692,6 +692,7 @@ class rev_cat_rvcm(DatedVariable):
         f2fu = simulation.calculate('f2fu', period)
         f2go = simulation.calculate('f2go', period)
         f2tr = simulation.calculate('f2tr', period)
+        f2fa = simulation.calculate('f2fa', period)
         f2da = simulation.calculate('f2da', period)
         f2ee = simulation.calculate('f2ee', period)
         finpfl = simulation.legislation_at(period.start).ir.autre.finpfl
@@ -724,14 +725,17 @@ class rev_cat_rvcm(DatedVariable):
         F2 = f2ca - F1
         TOT3 = (f2ts - F2) + f2go * rvcm.majGO + f2tr_bis - g12a
 
+        # Placement à revenu fixe n'excédant pas 2000 € taxables sur option à 24% (pas d'abattement possible')
+        TOT4 = f2fa
+
         DEF = deficit_rcm
-        return period, max_(TOT1 + TOT2 + TOT3 - DEF, 0)
+        return period, max_(TOT1 + TOT2 + TOT3 + TOT4 - DEF, 0)
 
 
 class rfr_rvcm(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"rfr_rvcm"
+    label = u"Revenu fiscal de référence - Valeurs et capitaux mobiliers - Abattement"
 
     def function(self, simulation, period):
         '''
@@ -1762,17 +1766,18 @@ class rev_cap_lib(DatedVariable):
         out = f2dh + f2ee
         return period, out * not_(finpfl) / 12
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2008, 1, 1))
     def function_20080101_20151231(self, simulation, period):
         period = period.this_month
         year = period.this_year
         f2da = simulation.calculate('f2da', year)
         f2dh = simulation.calculate('f2dh', year)
         f2ee = simulation.calculate('f2ee', year)
+        f2fa = simulation.calculate('f2fa', year)
         _P = simulation.legislation_at(period.start)
         finpfl = simulation.legislation_at(period.start).ir.autre.finpfl
 
-        out = f2da + f2dh + f2ee
+        out = f2da + f2dh + f2ee + f2fa
         return period, out * not_(finpfl) / 12
 
 
@@ -1794,13 +1799,13 @@ class avf(Variable):
 class imp_lib(DatedVariable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"Prelèvement libératoire sur les revenus du capital"
+    label = u"Prélèvement libératoire sur les revenus du capital"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
     def function_20020101_20071231(self, simulation, period):
         '''
-        Prelèvement libératoire sur les revenus du capital
+        Prélèvement libératoire sur les revenus du capital
         '''
         period = period.this_year
         f2dh = simulation.calculate('f2dh', period)
@@ -1814,7 +1819,7 @@ class imp_lib(DatedVariable):
     @dated_function(start = date(2008, 1, 1), stop = date(2012, 12, 31))
     def function_20080101_20121231(self, simulation, period):
         '''
-        Prelèvement libératoire sur les revenus du capital
+        Prélèvement libératoire sur les revenus du capital
         '''
         period = period.this_year
         f2da = simulation.calculate('f2da', period)
@@ -1828,6 +1833,23 @@ class imp_lib(DatedVariable):
             - prelevement_liberatoire.assvie * f2dh
         return period, out
 
+    @dated_function(start = date(2013, 1, 1))
+    def function_20130101(self, simulation, period):
+        '''
+        Prélèvement libératoire sur les revenus du capital
+        '''
+        period = period.this_year
+        f2dh = simulation.calculate('f2dh', period)
+        f2ee = simulation.calculate('f2ee', period)
+        f2fa = simulation.calculate('f2fa', period)
+        _P = simulation.legislation_at(period.start)
+        finpfl = simulation.legislation_at(period.start).ir.autre.finpfl
+        prelevement_liberatoire = simulation.legislation_at(period.start).ir.rvcm.prelevement_liberatoire
+
+        out = -(prelevement_liberatoire.autre * f2ee) * not_(finpfl) \
+            - prelevement_liberatoire.assvie * f2dh \
+            - prelevement_liberatoire.placement_inf2000 * f2fa
+        return period, out
 
 class fon(Variable):
     column = FloatCol

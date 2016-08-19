@@ -358,7 +358,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'f2ts',  # Revenus de valeurs mobilières, produits des contrats d'assurance-vie d'une durée inférieure à 8 ans et distributions (n'ouvrant pas droit à abattement)
                     'f2go',  # Autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié (n'ouvrant pas droit à abattement)
                     'f2tr',  # Produits de placements à revenu fixe, intérêts et autres revenus assimilés (n'ouvrant pas droit à abattement)
-                    'f2cg',  # Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux sans CSG déductible
+                    'f2fa',  # Produits de placement à revenu fixe inférieurs à 2000€ taxables sur option à 24% (n'ouvrant pas droit à abattement)
+                    'f2cg',  # Revenus des lignes 2DC, 2CH, 2TS, 2TR, 2FA déjà soumis au prélèvement sociaux sans CSG déductible
                     'f2bh',  # Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux avec CSG déductible
                     'f2ca',  # Frais et charges déductibles
                     'f2aa',  # Déficits des années antérieures non encore déduits
