@@ -1440,12 +1440,13 @@ class plus_values(DatedVariable):
     def function_20120101_20121231(self, simulation, period):  # f3sd is in f3vd holder
         """
         Taxation des plus value
-        TODO: f3vt, 2013 f3Vg au barème / tout refaire
+        TODO: 2013 f3Vg au barème / tout refaire
         """
         period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
         f3vh = simulation.calculate('f3vh', period)
         f3vl = simulation.calculate('f3vl', period)
+        f3vt = simulation.calculate('f3vt', period)
         f3vm = simulation.calculate('f3vm', period)
         f3vi_holder = simulation.compute('f3vi', period)
         f3vf_holder = simulation.compute('f3vf', period)
@@ -1467,6 +1468,7 @@ class plus_values(DatedVariable):
                plus_values.taux1 * max_(0, f3vg - f3vh) +
                plus_values.caprisque * f3vl +
                plus_values.pea * f3vm +
+               plus_values.pea2 * f3vt +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
         # revenus taxés à un taux proportionnel
@@ -1490,6 +1492,7 @@ class plus_values(DatedVariable):
         f3vh = simulation.calculate('f3vh', period)
         f3vl = simulation.calculate('f3vl', period)
         f3vm = simulation.calculate('f3vm', period)
+        f3vt = simulation.calculate('f3vt', period)
         f3vi_holder = simulation.compute('f3vi', period)
         f3vf_holder = simulation.compute('f3vf', period)
         f3vd_holder = simulation.compute('f3vd', period)
@@ -1512,6 +1515,7 @@ class plus_values(DatedVariable):
                plus_values.taux1 * max_(0, f3vg - f3vh) +
                plus_values.caprisque * f3vl +
                plus_values.pea * f3vm +
+               plus_values.pea2 * f3vt +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
 

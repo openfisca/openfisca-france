@@ -96,6 +96,7 @@ class div(Variable):
         f3vh_holder = simulation.compute('f3vh', period)
         f3vl_holder = simulation.compute('f3vl', period)
         f3vm_holder = simulation.compute('f3vm', period)
+        f3vt_holder = simulation.compute('f3vt', period)
 
         f3vc = self.cast_from_entity_to_role(f3vc_holder, role = VOUS)
         f3ve = self.cast_from_entity_to_role(f3ve_holder, role = VOUS)
@@ -103,8 +104,9 @@ class div(Variable):
         f3vh = self.cast_from_entity_to_role(f3vh_holder, role = VOUS)
         f3vl = self.cast_from_entity_to_role(f3vl_holder, role = VOUS)
         f3vm = self.cast_from_entity_to_role(f3vm_holder, role = VOUS)
+        f3vt = self.cast_from_entity_to_role(f3vt_holder, role = VOUS)
 
-        return period, f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
+        return period, f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + f3vt + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
 
 class rev_coll(Variable):
