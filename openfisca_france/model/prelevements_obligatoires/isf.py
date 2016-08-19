@@ -661,7 +661,7 @@ class bouclier_rev(Variable):
         rev_cap_lib = simulation.calculate('rev_cap_lib', period)
         rev_exo = simulation.calculate('rev_exo', period)
         rev_or = simulation.calculate('rev_or', period)
-        cd_penali = simulation.calculate('cd_penali', period)
+        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
 
 
@@ -697,7 +697,7 @@ class bouclier_rev(Variable):
         # Pension alimentaires
         # Cotisations ou primes versées au titre de l'épargne retraite
 
-        charges = cd_penali + cd_eparet
+        charges = pensions_alimentaires_deduites + cd_eparet
 
         return period, revenus - charges
 
