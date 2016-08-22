@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.3
+
+* Delete rfr_n_1
+
 ## 4.1.2
 
 * Use "python -m compileall" to check for syntax errors, not flake8

@@ -65,13 +65,14 @@ class taxe_habitation(Variable):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
+        last_year= period.last_year
         exonere_taxe_habitation = simulation.calculate('exonere_taxe_habitation', period)
         nombre_enfants_a_charge_menage = self.sum_by_entity(simulation.calculate('enfant_a_charge', period))
         nombre_enfants_majeurs_celibataires_sans_enfant = simulation.calculate('nombre_enfants_majeurs_celibataires_sans_enfant', period)
-        rfr_n_1_holder = simulation.compute('rfr_n_1', period)
+        rfr_holder = simulation.compute('rfr', last_year)
 
-        rfr_n_1 = self.cast_from_entity_to_role(rfr_n_1_holder, role = VOUS)
-        rfr_n_1 = self.sum_by_entity(rfr_n_1)
+        rfr = self.cast_from_entity_to_role(rfr_holder, role = VOUS)
+        rfr = self.sum_by_entity(rfr)
 
 
         # Variables TODO: à inclure dans la fonction
@@ -135,7 +136,7 @@ class taxe_habitation(Variable):
         # Pour bénéficier de cet abattement, les contribuables doivent remplir deux conditions :
 
         abattement_special_modeste = (valeur_locative_brute <= ((seuil_elig_special_modeste + seuil_elig_special_modeste_add * (pac_enf + pac_asc)) * valeur_locative_moyenne)
-     #       ) * (rfr_n_1 <= 100  # TODO
+     #       ) * (rfr <= 100  # TODO
             ) * taux_special_modeste * valeur_locative_moyenne
 
         #     abattement facultatif en faveur des personnes handicapées ou invalides.

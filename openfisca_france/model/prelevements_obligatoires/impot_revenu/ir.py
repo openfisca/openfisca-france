@@ -46,21 +46,6 @@ class jour_xyz(Variable):
     entity_class = FoyersFiscaux
     label = u"Jours décomptés au titre de cette déclaration"
 
-
-
-
-class rfr_n_1(Variable):
-    column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
-    label = u"Revenu fiscal de référence année n - 1"
-
-
-class rfr_n_2(Variable):
-    column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
-    label = u"Revenu fiscal de référence année n - 2"
-
-
 class nbptr_n_2(Variable):
     column = PeriodSizeIndependentIntCol(val_type = "monetary")
     entity_class = FoyersFiscaux
