@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.8
+
+* Refactor rsa.py
+
 ## 4.1.7
 
 * Fix bug in CMU forfait_logement
