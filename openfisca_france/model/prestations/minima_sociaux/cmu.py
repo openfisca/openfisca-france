@@ -160,39 +160,59 @@ class cmu_base_ressources_individu(Variable):
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
         # N-1
-        last_year = period.last_year
         last_month = period.last_month
 
-        salaire_net = simulation.calculate_add('salaire_net', previous_year)
-        chomage_net = simulation.calculate('chomage_net', previous_year)
-        retraite_nette = simulation.calculate('retraite_nette', previous_year)
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
-        pensions_alimentaires_versees_individu = simulation.calculate(
-            'pensions_alimentaires_versees_individu', previous_year
+        P = simulation.legislation_at(period.start).cmu
+
+        ressources_a_inclure = [
+            'aah',
+            'allocation_securisation_professionnelle',
+            'bourse_enseignement_sup',
+            'bourse_recherche',
+            'chomage_net',
+            'dedommagement_victime_amiante',
+            'gains_exceptionnels',
+            'indemnites_chomage_partiel',
+            'indemnites_journalieres',
+            'indemnites_stage',
+            'pensions_alimentaires_percues',
+            'pensions_invalidite',
+            'prestation_compensatoire',
+            'prime_forfaitaire_mensuelle_reprise_activite',
+            'retraite_combattant',
+            'retraite_nette',
+            'revenus_stage_formation_pro',
+            'rsa_base_ressources_patrimoine_individu',
+            'salaire_net',
+        ]
+
+        ressources = sum(
+            [simulation.calculate_add(ressource, previous_year) for ressource in ressources_a_inclure]
             )
-        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_individu', previous_year)
-        aah = simulation.calculate_add('aah', previous_year)
-        indemnites_journalieres = simulation.calculate('indemnites_journalieres', previous_year)
-        indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
-        revenus_stage_formation_pro_annee = simulation.calculate('revenus_stage_formation_pro', previous_year)
-        allocation_securisation_professionnelle = simulation.calculate(
-            'allocation_securisation_professionnelle', previous_year
-            )
-        prime_forfaitaire_mensuelle_reprise_activite = simulation.calculate(
-            'prime_forfaitaire_mensuelle_reprise_activite', previous_year
-            )
-        dedommagement_victime_amiante = simulation.calculate('dedommagement_victime_amiante', previous_year)
-        prestation_compensatoire = simulation.calculate('prestation_compensatoire', previous_year)
-        retraite_combattant = simulation.calculate('retraite_combattant', previous_year)
-        pensions_invalidite = simulation.calculate('pensions_invalidite', previous_year)
-        indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', previous_year)
-        bourse_enseignement_sup = simulation.calculate('bourse_enseignement_sup', previous_year)
-        bourse_recherche = simulation.calculate('bourse_recherche', previous_year)
-        gains_exceptionnels = simulation.calculate('gains_exceptionnels', previous_year)
+
+        pensions_alim_versees = abs_(simulation.calculate_add('pensions_alimentaires_versees_individu', previous_year))
+
         revenus_stage_formation_pro_last_month = simulation.calculate('revenus_stage_formation_pro', last_month)
-        chomage_last_month = simulation.calculate('chomage_net', last_month)
+
+        # Abattement sur revenus d'activité si chômage ou formation professionnelle
+        def abbattement_chomage():
+            indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', previous_year)
+            salaire_net = simulation.calculate_add('salaire_net', previous_year)
+            chomage_last_month = simulation.calculate('chomage_net', last_month)
+            condition = or_(chomage_last_month > 0, revenus_stage_formation_pro_last_month > 0)
+            assiette = indemnites_chomage_partiel + salaire_net
+            return condition * assiette * P.abattement_chomage
+
+
+        # Revenus de stage de formation professionnelle exclus si plus perçus depuis 1 mois
+        def neutralisation_stage_formation_pro():
+            revenus_stage_formation_pro_annee = simulation.calculate_add('revenus_stage_formation_pro', previous_year)
+            return (revenus_stage_formation_pro_last_month == 0) * revenus_stage_formation_pro_annee
+
 
         def revenus_tns():
+            last_year = period.last_year
+
             revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
 
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
@@ -202,21 +222,8 @@ class cmu_base_ressources_individu(Variable):
 
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
-        P = simulation.legislation_at(period.start).cmu
 
-        # Revenus de stage de formation professionnelle exclus si plus perçus depuis 1 mois
-        revenus_stage_formation_pro = revenus_stage_formation_pro_annee * (revenus_stage_formation_pro_last_month > 0)
-
-        # Abattement sur revenus d'activité si chômage ou formation professionnelle
-        abattement_chomage_fp = or_(chomage_last_month > 0, revenus_stage_formation_pro_last_month > 0)
-
-        return period, ((salaire_net + indemnites_chomage_partiel) * (1 - abattement_chomage_fp * P.abattement_chomage) +
-            indemnites_stage + aah + chomage_net + retraite_nette + pensions_alimentaires_percues -
-            abs_(pensions_alimentaires_versees_individu) + rsa_base_ressources_patrimoine_i +
-            allocation_securisation_professionnelle + indemnites_journalieres +
-            prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
-            retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche +
-            gains_exceptionnels + revenus_tns() + revenus_stage_formation_pro)
+        return period, ressources + revenus_tns() - pensions_alim_versees - abbattement_chomage() - neutralisation_stage_formation_pro()
 
 
 class cmu_base_ressources(Variable):
@@ -227,14 +234,23 @@ class cmu_base_ressources(Variable):
     def function(self, simulation, period):
         period = period.this_month
         previous_year = period.start.period('year').offset(-1)
-        aspa = simulation.calculate_add('aspa', previous_year)
-        ass = simulation.calculate_add('ass', previous_year)
-        asi = simulation.calculate_add('asi', previous_year)
-        af = simulation.calculate_add('af', previous_year)
-        cf = simulation.calculate_add('cf', previous_year)
-        asf = simulation.calculate_add('asf', previous_year)
-        paje_clca = simulation.calculate_add('paje_clca', previous_year)
-        paje_prepare = simulation.calculate_add('paje_prepare', previous_year)
+
+        ressources_a_inclure = [
+            'af',
+            'asf',
+            'asi',
+            'aspa',
+            'ass',
+            'cf',
+            'paje_clca',
+            'paje_prepare',
+        ]
+
+        ressources = sum(
+            [simulation.calculate_add(ressource, previous_year) for ressource in ressources_a_inclure]
+            )
+
+
         statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
         cmu_forfait_logement_al = simulation.calculate('cmu_forfait_logement_al', period)
@@ -250,11 +266,7 @@ class cmu_base_ressources(Variable):
         forfait_logement = (((statut_occupation_logement == 2) + (statut_occupation_logement == 6)) * cmu_forfait_logement_base +
             cmu_forfait_logement_al)
 
-        res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement
-
-        res += (aspa + ass + asi + af + cf + asf)
-
-        res += paje_clca + paje_prepare
+        res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement + ressources
 
         for key, age in age_pac.iteritems():
             res += (0 <= age) * (age <= P.age_limite_pac) * cmu_br_i_pac[key]
