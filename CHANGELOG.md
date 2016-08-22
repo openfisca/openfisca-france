@@ -1,5 +1,30 @@
 # Changelog
 
+## 4.1.2
+
+* Use "python -m compileall" to check for syntax errors, not flake8
+
+## 4.1.1
+
+* Add labels to several variables
+
+## 4.1.0
+
+* Run yaml tests from CLI
+	* Exemple: `openfisca-run-test my_test.yaml`
+
+## 4.0.11
+
+* Enhance and move getting-started notebook
+
+## 4.0.10 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.9..4.0.10)
+
+* Fix Landais, Piketty, Saez reform
+
+## 4.0.9 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.8..4.0.9)
+
+* Adapt plfr2014 reform to new Reform API
+
 ## 4.0.8 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.7..4.0.8)
 
 * Adapt PPA to avoid antedating paramameters of 3 months.

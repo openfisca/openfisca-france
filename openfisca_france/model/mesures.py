@@ -227,7 +227,7 @@ class rev_trav(Variable):
 class pen(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"Total des pensions et revenus de remplacement"
+    label = u"Pensions et revenus de remplacement"
     url = "http://fr.wikipedia.org/wiki/Rente"
 
     def function(self, simulation, period):
@@ -311,7 +311,7 @@ class rev_cap(Variable):
 class psoc(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
-    label = u"Total des prestations sociales"
+    label = u"Prestations sociales"
     url = "http://fr.wikipedia.org/wiki/Prestation_sociale"
 
     def function(self, simulation, period):
@@ -329,7 +329,7 @@ class psoc(Variable):
 class pfam(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
-    label = u"Total des prestations familiales"
+    label = u"Prestations familiales"
     url = "http://www.social-sante.gouv.fr/informations-pratiques,89/fiches-pratiques,91/prestations-familiales,1885/les-prestations-familiales,12626.html"
 
     def function(self, simulation, period):
@@ -418,7 +418,7 @@ class impo(Variable):
 class crds(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"Total des contributions au remboursement de la dette sociale"
+    label = u"Contributions au remboursement de la dette sociale"
 
     def function(self, simulation, period):
         """Contribution au remboursement de la dette sociale"""
@@ -450,7 +450,7 @@ class crds(Variable):
 class csg(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"Total des contributions sociale généralisée"
+    label = u"Contributions sociales généralisées"
 
     def function(self, simulation, period):
         """Contribution sociale généralisée"""

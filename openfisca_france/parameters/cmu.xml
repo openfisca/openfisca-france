@@ -1,4 +1,4 @@
-<NODE code="cmu" description="Couverture Maladie Universelle">
+<NODE both_origins="false" code="cmu" description="Couverture Maladie Universelle" origin="openfisca">
   <CODE code="abattement_chomage" description="Abattement sur les revenus d'activité en cas de chômage" format="percent">
     <VALUE deb="2015-01-01" fuzzy="true" valeur="0.3" />
     <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.3" />

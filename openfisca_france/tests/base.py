@@ -36,7 +36,7 @@ reform_list = {
     'plf2016_counterfactual': plf2016.plf2016_counterfactual,
     'plf2016_counterfactual_2014': plf2016.plf2016_counterfactual_2014,
     'plf2015': plf2015.plf2015,
-    # 'plfr2014': plfr2014.build_reform,
+    'plfr2014': plfr2014.plfr2014,
     'trannoy_wasmer': trannoy_wasmer.trannoy_wasmer,
     }
 

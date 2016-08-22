@@ -6,11 +6,12 @@
 *.pyo
 .pydevproject
 .spyderproject
-.tags*
+.ipynb_checkpoints
 /.coverage
 /.noseids
 /.project
 /.settings
+/.vscode
 /build
 /cover
 /dist

@@ -1,4 +1,4 @@
-<NODE code="bourses_education" description="Bourses de l'Éducation nationale">
+<NODE both_origins="false" code="bourses_education" description="Bourses de l'Éducation nationale" origin="openfisca">
   <NODE code="bourse_college" description="Bourse des collèges">
     <CODE code="coeff_enfant_supplementaire" description="Coefficient à rajouter aux plafonds pour chaque enfant à charge" format="percent">
       <VALUE deb="2016-07-01" fuzzy="true" valeur="0.3" />

@@ -411,6 +411,7 @@ class crds_mini(DatedVariable):
 class div_ms(Variable):
     column = FloatCol
     entity_class = Individus
+    label = u"Dividende entrant en compte dans le calcul des minimas"
 
     def function(self, simulation, period):
         period = period.this_month

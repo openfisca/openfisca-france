@@ -1,4 +1,4 @@
-<NODE code="crds" description="Contribution au remboursement de la dette sociale (CRDS)">
+<NODE both_origins="false" code="crds" description="Contribution au remboursement de la dette sociale (CRDS)" origin="openfisca">
   <NODE code="activite" description="Revenus d'activité">
     <BAREME code="abattement" description="Abattement sur les revenus d'activité, du chômage et des préretraites">
       <TRANCHE code="tranche0">
