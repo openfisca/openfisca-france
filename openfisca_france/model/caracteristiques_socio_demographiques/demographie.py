@@ -24,7 +24,6 @@ class idfam(Variable):
     label = u"Identifiant de la famille"
 
 
-
 class quimen(Variable):
     column = EnumCol(enum = QUIMEN)
     entity_class = Individus
