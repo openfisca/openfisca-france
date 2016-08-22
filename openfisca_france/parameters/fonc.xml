@@ -1,4 +1,4 @@
-<NODE code="fonc" description="Traitement des fonctionnaires">
+<NODE both_origins="false" code="fonc" description="Traitement des fonctionnaires" origin="openfisca">
   <CODE code="IM_100" description="Indice 100 majoré" format="float">
     <VALUE deb="2015-01-01" fuzzy="true" valeur="5556.35" />
     <VALUE deb="2010-07-01" fin="2014-12-31" valeur="5556.35" />

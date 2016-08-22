@@ -86,6 +86,8 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
+    assert os.path.isdir(args.source_dir), args.source_dir
+
     file_system_encoding = sys.getfilesystemencoding()
 
     original_element_tree = etree.parse(args.origin)
@@ -266,9 +268,16 @@ def merge_elements(element, original_element, path = None):
             for child in element:
                 if child.get('code') == original_child.get('code'):
                     merge_elements(child, original_child)
+                    if child.tag == 'CODE':
+                        assert child.attrib['origin'] == u'ipp', child.attrib['origin']
+                        child.attrib['both_origins'] = u'true'
+                        # TODO Make the diff between child and original_child values to establish
+                        # if there is a conflict.
                     break
             else:
-                # A child with the same code as the original child doesn't exist yet.
+                # A child with the same code as the original child doesn't exist yet in element.
+                child.attrib['both_origins'] = u'false'
+                original_child.attrib['origin'] = u'openfisca'
                 element.append(original_child)
 
 
@@ -445,6 +454,7 @@ def transform_value_to_element(leaf):
 
 
 def transform_values_to_element_children(values, element):
+    element.attrib['origin'] = u'ipp'
     j = 0
     for i, value in enumerate(values[1:]):
         next_value = values[j]
