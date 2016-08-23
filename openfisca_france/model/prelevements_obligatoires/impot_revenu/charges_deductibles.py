@@ -288,13 +288,13 @@ class cd1(DatedVariable):
         Renvoie la liste des charges déductibles avant rbg_int pour 2002
         '''
         period = period.this_year
-        cd_penali = simulation.calculate('cd_penali', period)
+        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
-        cd_percap = simulation.calculate('cd_percap', period)
+        pertes_capital_societes_nouvelles = simulation.calculate('pertes_capital_societes_nouvelles', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_doment = simulation.calculate('cd_doment', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment
+        niches1 = pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles + cd_deddiv + cd_doment
         return period, niches1
 
     @dated_function(start = date(2004, 1, 1), stop = date(2005, 12, 31))
@@ -303,14 +303,15 @@ class cd1(DatedVariable):
         Renvoie la liste des charges déductibles avant rbg_int pour 2004
         '''
         period = period.this_year
-        cd_penali = simulation.calculate('cd_penali', period)
+        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
-        cd_percap = simulation.calculate('cd_percap', period)
+        pertes_capital_societes_nouvelles = simulation.calculate('pertes_capital_societes_nouvelles', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_doment = simulation.calculate('cd_doment', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment + cd_eparet
+        niches1 = (pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles +
+                   cd_deddiv + cd_doment + cd_eparet)
         return period, niches1
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
@@ -319,13 +320,13 @@ class cd1(DatedVariable):
         Renvoie la liste des charges déductibles avant rbg_int pour 2006
         '''
         period = period.this_year
-        cd_penali = simulation.calculate('cd_penali', period)
+        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
-        cd_percap = simulation.calculate('cd_percap', period)
+        pertes_capital_societes_nouvelles = simulation.calculate('pertes_capital_societes_nouvelles', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_eparet
+        niches1 = pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles + cd_deddiv + cd_eparet
         return period, niches1
 
     @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
@@ -334,12 +335,12 @@ class cd1(DatedVariable):
         Renvoie la liste des charges déductibles avant rbg_int pour 2007
         '''
         period = period.this_year
-        cd_penali = simulation.calculate('cd_penali', period)
+        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet
+        niches1 = pensions_alimentaires_deduites + cd_acc75a + cd_deddiv + cd_eparet
         return period, niches1
 
     @dated_function(start = date(2009, 1, 1), stop = date(2013, 12, 31))
@@ -348,13 +349,13 @@ class cd1(DatedVariable):
         Renvoie la liste des charges déductibles avant rbg_int pour 2009
         '''
         period = period.this_year
-        cd_penali = simulation.calculate('cd_penali', period)
+        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
-        cd_grorep = simulation.calculate('cd_grorep', period)
+        grosses_reparations = simulation.calculate('grosses_reparations', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
+        niches1 = pensions_alimentaires_deduites + cd_acc75a + cd_deddiv + cd_eparet + grosses_reparations
         return period, niches1
 
     @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
@@ -363,13 +364,13 @@ class cd1(DatedVariable):
         Renvoie la liste des charges déductibles avant rbg_int pour 2014
         '''
         period = period.this_year
-        cd_penali = simulation.calculate('cd_penali', period)
+        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
-        cd_grorep = simulation.calculate('cd_grorep', period)
+        grosses_reparations = simulation.calculate('grosses_reparations', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
+        niches1 = pensions_alimentaires_deduites + cd_acc75a + cd_deddiv + cd_eparet + grosses_reparations
         # log.error("Charges déductibles to be checked because not defined for %s", 2014)
         return period, niches1
 
@@ -387,9 +388,9 @@ class cd2(DatedVariable):
         '''
         period = period.this_year
         cd_sofipe = simulation.calculate('cd_sofipe', period)
-        cd_cinema = simulation.calculate('cd_cinema', period)
+        cinema = simulation.calculate('cinema', period)
 
-        niches2 = cd_sofipe + cd_cinema
+        niches2 = cd_sofipe + cinema
         return period, niches2
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
@@ -409,9 +410,9 @@ class cd2(DatedVariable):
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
         period = period.this_year
-        cd_ecodev = simulation.calculate('cd_ecodev', period)
+        epargne_codeveloppement = simulation.calculate('epargne_codeveloppement', period)
 
-        niches2 = cd_ecodev
+        niches2 = epargne_codeveloppement
         return period, niches2
 
 
@@ -442,7 +443,7 @@ class charges_deduc(Variable):
         return period, cd1 + cd2
 
 
-class cd_penali(Variable):
+class pensions_alimentaires_deduites(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Pensions alimentaires"
@@ -485,10 +486,10 @@ class cd_acc75a(Variable):
         return period, min_(f6eu, amax)
 
 
-class cd_percap(DatedVariable):
+class pertes_capital_societes_nouvelles(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"cd_percap"
+    label = u"pertes_capital_societes_nouvelles"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
     def function_20020101_20021231(self, simulation, period):
@@ -609,10 +610,10 @@ class cd_sofipe(Variable):
         return period, min_(f6cc, plafond)
 
 
-class cd_cinema(Variable):
+class cinema(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"cd_cinema"
+    label = u"cinema"
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
 
@@ -631,10 +632,10 @@ class cd_cinema(Variable):
         return period, min_(f6aa, max1)
 
 
-class cd_ecodev(Variable):
+class epargne_codeveloppement(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"cd_ecodev"
+    label = u"epargne_codeveloppement"
     start_date = date(2007, 1, 1)
     stop_date = date(2008, 12, 31)
 
@@ -653,10 +654,10 @@ class cd_ecodev(Variable):
         return period, min_(f6eh, plafond)
 
 
-class cd_grorep(Variable):
+class grosses_reparations(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"cd_grorep"
+    label = u"grosses_reparations"
     start_date = date(2009, 1, 1)
 
     def function(self, simulation, period):
