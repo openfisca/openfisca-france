@@ -3,7 +3,7 @@
 import json
 
 
-from numpy import logical_or as or_, fromiter
+from openfisca_core.numpy_wrapper import logical_or as or_, fromiter
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
@@ -79,5 +79,3 @@ def select_temporal_taux_versement_transport(rates, instant):
             if str(instant) >= date:
                 return float(taux[date])
         return 0.0
-
-

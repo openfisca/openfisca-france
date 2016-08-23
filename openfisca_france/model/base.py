@@ -20,8 +20,13 @@ from openfisca_core.base_functions import (
     requested_period_last_value,
     )
 
+from openfisca_core.formula_helpers import apply_thresholds, switch
+
 
 __all__ = [
+    'apply_thresholds',
+    'switch',
+    
     'AgeCol',
     'BoolCol',
     'DateCol',

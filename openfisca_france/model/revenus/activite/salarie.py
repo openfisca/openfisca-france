@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from functools import partial
-from numpy import (
+from openfisca_core.numpy_wrapper import (
     busday_count as original_busday_count, datetime64, maximum as max_, minimum as min_, timedelta64,
     )
 

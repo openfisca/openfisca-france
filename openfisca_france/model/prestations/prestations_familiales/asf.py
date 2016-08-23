@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import logical_not as not_
+from openfisca_core.numpy_wrapper import logical_not as not_
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 

@@ -3,7 +3,7 @@
 from __future__ import division
 
 
-from numpy import datetime64, timedelta64
+from openfisca_core.numpy_wrapper import datetime64, timedelta64
 
 
 from openfisca_france.model.base import *  # noqa analysis:ignore

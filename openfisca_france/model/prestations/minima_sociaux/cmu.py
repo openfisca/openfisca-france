@@ -4,7 +4,7 @@ from __future__ import division
 
 from functools import partial
 
-from numpy import (absolute as abs_, apply_along_axis, array, int32, logical_not as not_, logical_or as or_,
+from openfisca_core.numpy_wrapper import (absolute as abs_, apply_along_axis, array, int32, logical_not as not_, logical_or as or_,
                    maximum as max_, minimum as min_, select)
 
 from openfisca_france.model.base import *  # noqa analysis:ignore

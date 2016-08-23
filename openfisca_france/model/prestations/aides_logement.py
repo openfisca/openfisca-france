@@ -7,7 +7,7 @@ import json
 import logging
 import pkg_resources
 
-from numpy import (ceil, fromiter, int16, logical_not as not_, logical_or as or_, logical_and as and_, maximum as max_,
+from openfisca_core.numpy_wrapper import (ceil, fromiter, int16, logical_not as not_, logical_or as or_, logical_and as and_, maximum as max_,
     minimum as min_, round as round_, where, select, take)
 
 import openfisca_france
