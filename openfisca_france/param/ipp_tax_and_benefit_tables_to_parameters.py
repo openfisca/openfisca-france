@@ -1123,6 +1123,8 @@ def transform_ipp_tree(root):
     bmaf = prestations['bmaf']
     af['bmaf_ipp'] = bmaf_ipp =prestations.pop('bmaf')
     af['bmaf'] = bmaf_ipp.pop('base_mensuelle_de_calcul_des_allocations_familiales_bmaf')
+    af['taux'] = taux = dict()
+    taux['enf2'] = af.pop('2_enfants')
 
     prestations['minima_sociaux'] = minima_sociaux = dict()
     minima_sociaux['ada'] = ada = dict()

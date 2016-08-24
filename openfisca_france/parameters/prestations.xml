@@ -3779,12 +3779,6 @@
       </NODE>
     </NODE>
     <NODE code="af" description="Allocations familiales">
-      <CODE code="2_enfants" format="percent" origin="ipp">
-        <VALUE deb="1982-02-01" fuzzy="true" valeur="0.32" />
-        <VALUE deb="1981-07-01" fin="1982-01-31" valeur="0.255" />
-        <VALUE deb="1978-01-01" fin="1981-06-30" valeur="0.23" />
-        <VALUE deb="1976-08-01" fin="1977-12-31" valeur="0.22" />
-      </CODE>
       <NODE code="af_dom">
         <CODE both_origins="true" code="age_1er_enf_tranche_1_dom" description="Âge de début de la 1ere majoration" origin="ipp">
           <VALUE deb="1999-01-01" fuzzy="true" valeur="11" />
@@ -4038,15 +4032,15 @@
           <VALUE deb="2016-04-01" fuzzy="true" valeur="0" />
           <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0" />
         </CODE>
-        <CODE code="enf2" description="Deuxième enfant à charge" format="percent" origin="openfisca">
-          <VALUE deb="2016-04-01" fuzzy="true" valeur="0.32" />
-          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.32" />
+        <CODE both_origins="true" code="enf2" description="Deuxième enfant à charge" format="percent" origin="ipp">
+          <VALUE deb="1982-02-01" fuzzy="true" valeur="0.32" />
+          <VALUE deb="1981-07-01" fin="1982-01-31" valeur="0.255" />
+          <VALUE deb="1978-01-01" fin="1981-06-30" valeur="0.23" />
+          <VALUE deb="1976-08-01" fin="1977-12-31" valeur="0.22" />
         </CODE>
-        <CODE both_origins="true" code="enf3" description="Troisième enfant à charge et suivants" format="percent" origin="ipp">
-          <VALUE deb="1986-01-01" fuzzy="true" valeur="0.41" />
-          <VALUE deb="1981-07-01" fin="1985-12-31" valeur="0.39" />
-          <VALUE deb="1978-01-01" fin="1981-06-30" valeur="0.35" />
-          <VALUE deb="1976-08-01" fin="1977-12-31" valeur="0.33" />
+        <CODE code="enf3" description="Troisième enfant à charge et suivants" format="percent" origin="openfisca">
+          <VALUE deb="2016-04-01" fuzzy="true" valeur="0.41" />
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.41" />
         </CODE>
       </NODE>
     </NODE>
