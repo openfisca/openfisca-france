@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.5
+
+* Follow OpenFisca-Core major release
+
 ## 4.1.4
 
 * Update travis procedures
