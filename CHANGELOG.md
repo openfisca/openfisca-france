@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.4
+
+* Update travis procedures
+
 ## 4.1.3
 
 * Delete rfr_n_1
