@@ -4,7 +4,7 @@ from __future__ import division
 
 from functools import partial
 
-from openfisca_core.numpy_wrapper import (absolute as abs_, apply_along_axis, array, int32, logical_not as not_, logical_or as or_,
+from openfisca_core.numpy_wrapper import (absolute as abs_, logical_not as not_, logical_or as or_,
                    maximum as max_, minimum as min_, select)
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
@@ -90,7 +90,8 @@ class cmu_c_plafond(Variable):
     entity_class = Familles
     label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
 
-    def function(self, simulation, period):
+    # matrix manipulations (TODO)
+    '''def function(self, simulation, period):
         period = period.this_month
         age_holder = simulation.compute('age', period)
         alt_holder = simulation.compute('garde_alternee', period)
@@ -134,7 +135,7 @@ class cmu_c_plafond(Variable):
             (1 + cmu_eligible_majoration_dom * P.majoration_dom) *
             (1 + coeff_pac)
             )
-
+    '''
 
 class acs_plafond(Variable):
     column = FloatCol
