@@ -908,7 +908,7 @@ def transform_ipp_tree(root):
     majoration_enfants['age_minimal_forfait'] = age_minimal_forfait = majoration_enfants.pop('age_minimum')
     majoration_enfants['taux_allocation_forfaitaire'] = taux_allocation_forfaitaire = majoration_enfants.pop('taux')
 
-    #majoration_enfants['taux_allocation_forfaitaire'] = taux_allocation_forfaitaire = majoration_enfants['taux']
+
 
 
     del prestations['aa_plaf']
@@ -1116,6 +1116,13 @@ def transform_ipp_tree(root):
     clmg['taux_recours_emploi_1er_plafond'] = taux_recours_emploi_1er_plafond = clmg.pop('revenus_inferieurs_a_45_du_plafond_d_allocation')
     clmg['taux_recours_emploi_2e_plafond'] = taux_recours_emploi_2e_plafond = clmg.pop('revenus_superieurs_a_45_du_plafond_d_allocation')
     clmg['taux_recours_emploi_supp_2e_plafond'] = taux_recours_emploi_supp_2e_plafond = clmg.pop('revenus_superieurs_au_plafond_d_allocation')
+
+    #autres
+    def_pac = prestations['def_pac']
+    af['seuil_rev_taux'] = def_pac.pop('revenu_plafond_pour_les_personnes_a_charge_n_etant_plus_sous_l_obligation_scolaire_en_du_smic_2')
+    bmaf = prestations['bmaf']
+    af['bmaf_ipp'] = bmaf_ipp =prestations.pop('bmaf')
+    af['bmaf'] = bmaf_ipp.pop('base_mensuelle_de_calcul_des_allocations_familiales_bmaf')
 
     prestations['minima_sociaux'] = minima_sociaux = dict()
     minima_sociaux['ada'] = ada = dict()
