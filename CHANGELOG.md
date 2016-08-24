@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.3
+
+* Add country_package_name attribute
+
 ## 4.1.2
 
 * Use "python -m compileall" to check for syntax errors, not flake8
