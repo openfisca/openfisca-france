@@ -23,6 +23,7 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
     DEFAULT_DECOMP_FILE = decompositions.DEFAULT_DECOMP_FILE
     preprocess_legislation = staticmethod(preprocessing.preprocess_legislation)
     columns_name_tree_by_entity = datatrees.columns_name_tree_by_entity
+    country_package_name = 'openfisca_france'
 
     REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
     REV_TYP = None  # utils.REV_TYP  # Not defined for France
