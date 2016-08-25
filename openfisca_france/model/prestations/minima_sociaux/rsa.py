@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select, where)
+from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select, where, floor_divide)
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf, age_en_mois_benjamin
@@ -826,27 +826,17 @@ class rsa_forfait_asf(Variable):
     def function(self, simulation, period):
         period = period.this_month
         # Si un ASF est versé, on ne prend pas en compte le montant réel mais un forfait.
-        asf_verse = simulation.calculate('asf', period) > 0
-        rsa_forfait_asf_i_holder = simulation.compute('rsa_forfait_asf_individu', period)
-        montant = self.sum_by_entity(rsa_forfait_asf_i_holder, roles = ENFS)
-
-        return period, asf_verse * montant
-
-
-class rsa_forfait_asf_individu(Variable):
-    column = FloatCol(default = 0)
-    entity_class = Individus
-    label = u"RSA - Montant individuel de forfait ASF"
-    start_date = date(2014, 4, 1)
-
-    def function(self, simulation, period):
-        period = period.this_month
-
-        asf_elig_enfant = simulation.calculate('asf_elig_enfant', period)
         pfam = simulation.legislation_at(period.start).fam
         minim = simulation.legislation_at(period.start).minim
 
-        return period, asf_elig_enfant * pfam.af.bmaf * minim.rmi.forfait_asf.taux1
+        asf_verse = simulation.calculate('asf', period)
+        montant_forfaitaire_par_enfant = pfam.af.bmaf * minim.rmi.forfait_asf.taux1
+
+        # Division euclidienne du montant réel par le montant forfaitaire
+        nb_beneficiaires = floor_divide(asf_verse, montant_forfaitaire_par_enfant)
+
+
+        return period, nb_beneficiaires * montant_forfaitaire_par_enfant
 
 
 class rsa_forfait_logement(Variable):

@@ -2,7 +2,10 @@
 
 ## 4.1.6
 
-* Fix bug in RSA: one need to be **strictly** more that 25 to benefit it.
+* Fix bugs in RSA:
+  * One need to be **strictly** more that 25 to benefit it.
+  * Apply rsa_forfait_asf accordingly to the asf actually being paid.
+* Deprecate rsa_forfait_asf_individu
 
 ## 4.1.5
 
