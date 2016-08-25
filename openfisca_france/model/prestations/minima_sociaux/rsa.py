@@ -749,8 +749,8 @@ class rsa_eligibilite(Variable):
         age_min = (rsa_nb_enfants == 0) * rmi.age_pac
 
         eligib = (
-            (age_parents[CHEF] >= age_min) * not_(activite_parents[CHEF] == 2) +
-            (age_parents[PART] >= age_min) * not_(activite_parents[PART] == 2)
+            (age_parents[CHEF] > age_min) * not_(activite_parents[CHEF] == 2) +
+            (age_parents[PART] > age_min) * not_(activite_parents[PART] == 2)
         )
         eligib = eligib * (
             condition_nationalite *

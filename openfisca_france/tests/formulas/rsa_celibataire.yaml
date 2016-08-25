@@ -250,3 +250,10 @@
       "2014-01": 0
     rsa:
       "2014-01": 0
+
+- period: "2015-01"
+  name: "Pas de RSA si âge < 25"
+  input_variables:
+    date_naissance: "1990-01-02"  # 24 ans
+  output_variables:
+    rsa: 0
