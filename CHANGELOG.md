@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.6
+
+* Fix bug in RSA: one need to be **strictly** more that 25 to benefit it.
+
 ## 4.1.5
 
 * Follow OpenFisca-Core major release
