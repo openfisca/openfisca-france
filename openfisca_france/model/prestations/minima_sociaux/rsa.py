@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select, where, floor_divide)
+from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select, where)
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf, age_en_mois_benjamin
@@ -833,7 +833,7 @@ class rsa_forfait_asf(Variable):
         montant_forfaitaire_par_enfant = pfam.af.bmaf * minim.rmi.forfait_asf.taux1
 
         # Division euclidienne du montant réel par le montant forfaitaire
-        nb_beneficiaires = floor_divide(asf_verse, montant_forfaitaire_par_enfant)
+        nb_beneficiaires = asf_verse // montant_forfaitaire_par_enfant
 
 
         return period, nb_beneficiaires * montant_forfaitaire_par_enfant
