@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from openfisca_core.reforms import Reform, compose_reforms
+#from openfisca_core.reforms import Reform, compose_reforms
 from openfisca_core.tools import assert_near
 
 from .. import FranceTaxBenefitSystem
-from ..reforms import (
+'''from ..reforms import (
     allocations_familiales_imposables,
     cesthra_invalidee,
     inversion_directe_salaires,
@@ -14,17 +14,18 @@ from ..reforms import (
     plfr2014,
     trannoy_wasmer,
     )
-
+'''
 
 __all__ = [
     'assert_near',
-    'get_cached_composed_reform',
-    'get_cached_reform',
+#    'get_cached_composed_reform',
+#    'get_cached_reform',
     'tax_benefit_system',
     ]
 
 tax_benefit_system = FranceTaxBenefitSystem()
 
+'''
 # Reforms cache, used by long scripts like test_yaml.py
 # The reforms commented haven't been adapted to the new core API yet.
 reform_list = {
@@ -79,3 +80,5 @@ def get_cached_composed_reform(reform_keys, tax_benefit_system):
 
 def get_cached_reform(reform_key, tax_benefit_system):
     return get_cached_composed_reform([reform_key], tax_benefit_system)
+
+'''

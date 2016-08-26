@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from numpy import logical_not as not_, logical_or as or_
-from numpy.core.defchararray import startswith
+from openfisca_core.numpy_wrapper import logical_not as not_, logical_or as or_, startswith
 
 
 from openfisca_france.model.base import *  # noqa analysis:ignore

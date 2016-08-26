@@ -5,7 +5,7 @@ from __future__ import division
 import logging
 
 
-from numpy import int16, maximum as max_, minimum as min_, logical_not as not_, logical_or as or_
+from openfisca_core.numpy_wrapper import int16, maximum as max_, minimum as min_, logical_not as not_, logical_or as or_
 
 
 from openfisca_france.model.base import *  # noqa analysis:ignore

@@ -5,7 +5,7 @@ from __future__ import division
 from functools import partial
 import logging
 
-from numpy import (
+from openfisca_core.numpy_wrapper import (
     busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, logical_and as and_,
     maximum as max_, minimum as min_, round as round_, timedelta64
 )
@@ -74,7 +74,6 @@ class coefficient_proratisation(Variable):
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1,
                                                                                      'D')  # busday ignores the last day
-
         jours_ouvres_ce_mois = busday_count(
             debut_mois,
             fin_mois,
@@ -291,7 +290,8 @@ class allegement_fillon(DatedVariable):
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
 
     # Attention : cet allègement a des règles de cumul spécifiques
-
+    # uses max_nb_cycles (TODO)
+    '''
     @dated_function(date(2005, 7, 1))
     def function(self, simulation, period):
         period = period.this_month
@@ -307,6 +307,7 @@ class allegement_fillon(DatedVariable):
         )
 
         return period, allegement * not_(stagiaire) * not_(apprenti)
+    '''
 
 
 def compute_allegement_fillon(simulation, period):
@@ -346,6 +347,8 @@ class allegement_cotisation_allocations_familiales(DatedVariable):
     label = u"Allègement de la cotisation d'allocationos familiales sur les bas et moyens salaires"
     url = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
 
+    # uses max_nb_cycles (TODO)
+    '''
     @dated_function(date(2015, 1, 1))
     def function(self, simulation, period):
         period = period.this_month
@@ -362,6 +365,7 @@ class allegement_cotisation_allocations_familiales(DatedVariable):
         )
 
         return period, allegement * not_(stagiaire) * not_(apprenti)
+    '''
 
 
 def compute_allegement_cotisation_allocations_familiales(simulation, period):

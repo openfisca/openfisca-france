@@ -4,9 +4,7 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_or as or_, logical_and as and_, round as round_, logical_not as not_
-
-import numpy as np
+from openfisca_core.numpy_wrapper import logical_or as or_, logical_and as and_, round as round_, logical_not as not_, errstate, select
 
 import openfisca_france
 from openfisca_france.model.base import *  # noqa analysis:ignore
@@ -335,7 +333,7 @@ class taxe_salaires(Variable):
         conditions = [estimation < parametres.franchise, estimation <= parametres.decote_montant, estimation > parametres.decote_montant]
         results = [0, estimation - (parametres.decote_montant - estimation) * parametres.decote_taux, estimation]
 
-        estimation_reduite = np.select(conditions, results)
+        estimation_reduite = select(conditions, results)
 
         # Abattement spécial de taxe sur les salaires
         # Les associations à but non lucratif bénéficient d'un abattement important
@@ -348,7 +346,7 @@ class taxe_salaires(Variable):
                 }
             )
 
-        with np.errstate(invalid='ignore'):
+        with errstate(invalid='ignore'):
             cotisation = switch(effectif_entreprise == 0, {
                 True: self.zeros(),
                 False: estimation_abattue / effectif_entreprise / 12

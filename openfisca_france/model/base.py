@@ -2,72 +2,83 @@
 
 from datetime import date
 
-from openfisca_core.columns import (AgeCol, BoolCol, DateCol, EnumCol, FixedStrCol, FloatCol, IntCol,
-    PeriodSizeIndependentIntCol, StrCol)
+from openfisca_core.columns import (AgeCol, BoolCol, DateCol, EnumCol,
+    FixedStrCol, FloatCol, IntCol, PeriodSizeIndependentIntCol, StrCol)
 from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import (calculate_output_add, calculate_output_add_divide, calculate_output_divide,
-    dated_function, missing_value, set_input_dispatch_by_period, set_input_divide_by_period)
-from openfisca_core.variables import DatedVariable, EntityToPersonColumn, PersonToEntityColumn, Variable
+from openfisca_core.variables import (Variable, PersonToEntityColumn,
+    EntityToPersonColumn, DatedVariable, calculate_output_add,
+    calculate_output_divide, set_input_divide_by_period,
+    set_input_dispatch_by_period, dated_function)
+from openfisca_france.entities import (Familles, FoyersFiscaux, Individus,
+                                       Menages)
 from openfisca_core.base_functions import (
+    missing_value,
     last_duration_last_value,
     requested_period_added_value,
     requested_period_default_value,
     requested_period_last_or_next_value,
     requested_period_last_value,
     )
-from openfisca_core.formula_helpers import apply_thresholds, switch
 
-from openfisca_france.entities import Familles, FoyersFiscaux, Individus, Menages
+from openfisca_core.formula_helpers import apply_thresholds, switch
 
 
 __all__ = [
-    'AgeCol',
     'apply_thresholds',
+    'switch',
+    
+    'AgeCol',
     'BoolCol',
-    'calculate_output_add',
-    'calculate_output_add_divide',
-    'calculate_output_divide',
-    'CAT',
-    'CHEF',
-    'CONJ',
-    'CREF',
-    'date',
     'DateCol',
-    'dated_function',
-    'DatedVariable',
-    'ENFS',
-    'EntityToPersonColumn',
-    'Enum',
     'EnumCol',
-    'Familles',
     'FixedStrCol',
     'FloatCol',
+    'IntCol',
+    'PeriodSizeIndependentIntCol',
+    'StrCol',
+
+    'Familles',
     'FoyersFiscaux',
     'Individus',
-    'IntCol',
-    'last_duration_last_value',
     'Menages',
+
     'missing_value',
-    'PAC1',
-    'PAC2',
-    'PAC3',
-    'PART',
-    'PeriodSizeIndependentIntCol',
-    'PersonToEntityColumn',
-    'PREF',
-    'QUIFAM',
-    'QUIFOY',
-    'QUIMEN',
+    'last_duration_last_value',
     'requested_period_added_value',
     'requested_period_default_value',
     'requested_period_last_or_next_value',
     'requested_period_last_value',
-    'set_input_dispatch_by_period',
-    'set_input_divide_by_period',
-    'switch',
+
     'Variable',
-    'StrCol',
+    'PersonToEntityColumn',
+    'EntityToPersonColumn',
+    'DatedVariable',
+    'calculate_output_add',
+    'calculate_output_divide',
+    'set_input_divide_by_period',
+    'set_input_dispatch_by_period',
+    'dated_function',
+
     'TAUX_DE_PRIME',
+
+    'CAT',
+
+    'date',
+
+    'Enum',
+
+    'CHEF',
+    'CONJ',
+    'CREF',
+    'ENFS',
+    'PAC1',
+    'PAC2',
+    'PAC3',
+    'PART',
+    'PREF',
+    'QUIFAM',
+    'QUIFOY',
+    'QUIMEN',
     'VOUS',
     ]
 

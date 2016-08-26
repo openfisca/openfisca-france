@@ -3,7 +3,7 @@
 import json
 
 
-from numpy import logical_or as or_, fromiter
+from openfisca_core.numpy_wrapper import logical_or as or_, fromiter
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
@@ -23,13 +23,15 @@ class taux_versement_transport(Variable):
 
         preload_taux_versement_transport()
         public = (categorie_salarie >= 2)
-        taux_versement_transport = fromiter(
+        taux_versement_transport = 0.
+        """ fromiter(
             (
                 get_taux_versement_transport(code_commune, period)
                 for code_commune in depcom_entreprise
                 ),
             dtype = 'float',
             )
+        """
         # "L'entreprise emploie-t-elle plus de 9 ou 10 salariés dans le périmètre de l'Autorité organisatrice de transport
         # (AOT) suivante ou syndicat mixte de transport (SMT)"
         return period, taux_versement_transport * or_(effectif_entreprise >= seuil_effectif, public) / 100
@@ -79,5 +81,3 @@ def select_temporal_taux_versement_transport(rates, instant):
             if str(instant) >= date:
                 return float(taux[date])
         return 0.0
-
-

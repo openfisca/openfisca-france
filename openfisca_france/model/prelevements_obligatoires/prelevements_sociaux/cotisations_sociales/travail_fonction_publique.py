@@ -4,7 +4,7 @@ from __future__ import division
 
 import math
 
-from numpy import minimum as min_
+from openfisca_core.numpy_wrapper import minimum as min_
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal
