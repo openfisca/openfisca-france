@@ -1,4 +1,7 @@
+#! /usr/bin/env bash
+
 # On travis CI, we use the openfisca_bot key. It is locally decrypted on the CI environment from openfisca_bot.enc before deploying.
+
 
 version=`python setup.py --version`
 eval "$(ssh-agent -s)" #start the ssh agent
