@@ -250,7 +250,7 @@ class Simulation(openfisca_core.simulations.AbstractSimulation):
                                         (
                                             (variable_class.__name__, variable_class.json_to_python())
                                             for variable_class in variable_class_by_name.itervalues()
-                                            if variable_class.entity is Menages  and hasattr(variable_class, 'column_type')
+                                            if variable_class.entity is Menages and hasattr(variable_class, 'column_type')
                                             ),
                                         )),
                                     drop_none_values=True,
