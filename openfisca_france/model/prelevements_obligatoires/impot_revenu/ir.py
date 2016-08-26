@@ -108,6 +108,8 @@ class age_en_mois(Variable):
     label = u"Âge (en mois)"
 
     def function(self, simulation, period):
+        # _array_by_period manipulation (optimization ?)
+        '''
         # If age_en_mois is known at the same day of another month, compute the new age_en_mois from it.
         holder = self.holder
         start = period.start
@@ -116,6 +118,7 @@ class age_en_mois(Variable):
                 last_start = last_period.start
                 if last_start.day == start.day:
                     return period, last_array + ((start.year - last_start.year) * 12 + (start.month - last_start.month))
+        '''
 
         has_birth = simulation.get_or_new_holder('date_naissance')._array is not None
         if not has_birth:

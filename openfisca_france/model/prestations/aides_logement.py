@@ -183,7 +183,7 @@ class aide_logement_neutralisation_rsa(Variable):
         chomage_n_2 = self.sum_by_entity(chomage)
         taux_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro.taux
 
-        abattement = (activite_n_2 + chomage_n_2) * rsa_last_month
+        abattement = (activite_n_2 + chomage_n_2) * 0.# rsa_last_month uses cycles (TODO)
         abattement = round_((1 - taux_frais_pro) * abattement)
 
         return period, abattement
@@ -302,7 +302,6 @@ class aide_logement_loyer_retenu(Variable):
             plafond_personne_seule = take(plafonds_by_zone[0], zone_apl)
             plafond_couple = take(plafonds_by_zone[1], zone_apl)
             plafond_famille = take(plafonds_by_zone[2], zone_apl) + (al_nb_pac > 1) * (al_nb_pac - 1) * take(plafonds_by_zone[3], zone_apl)
-
             plafond = select(
                 [not_(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
                 [plafond_personne_seule, plafond_famille],
@@ -311,7 +310,6 @@ class aide_logement_loyer_retenu(Variable):
 
             coeff_coloc = where(coloc, al.loyers_plafond.colocation, 1)
             coeff_chambre = where(chambre, al.loyers_plafond.chambre, 1)
-
             return round_(plafond * coeff_coloc * coeff_chambre, 2)
 
         # loyer retenu
@@ -650,11 +648,13 @@ class zone_apl(Variable):
     entity_class = Menages
     label = u"Zone APL"
 
+    # fromiter (TODO)
+    '''
     def function(self, simulation, period):
-        '''
+        ''
         Retrouve la zone APL (aide personnalisée au logement) de la commune
         en fonction du depcom (code INSEE)
-        '''
+        ''
         period = period
         depcom = simulation.calculate('depcom', period)
 
@@ -666,7 +666,7 @@ class zone_apl(Variable):
                 for depcom_cell in depcom
                 ),
             dtype = int16,
-            )
+            )'''
 
 def preload_zone_apl():
     global zone_apl_by_depcom
