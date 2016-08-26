@@ -52,7 +52,7 @@ def get_flat_parameters(legislation_json):
                 parameter_json['origin'] = origin
             both_origins = attributes.get('both_origins')
             if both_origins is not None:
-                parameter_json['both_origin'] = both_origins
+                parameter_json['both_origins'] = both_origins
             if 'xml_file_path' in node_json:
                 parameter_json['xml_file_path'] = get_relative_file_path(node_json['xml_file_path'])
             parameter_json = collections.OrderedDict(sorted(parameter_json.iteritems()))

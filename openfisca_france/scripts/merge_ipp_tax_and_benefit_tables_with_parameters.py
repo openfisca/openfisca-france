@@ -271,14 +271,42 @@ def merge_elements(element, original_element, path = None):
                     if child.tag == 'CODE':
                         assert child.attrib['origin'] == u'ipp', child.attrib['origin']
                         child.attrib['both_origins'] = u'true'
-                        # TODO Make the diff between child and original_child values to establish
-                        # if there is a conflict.
+                    if elements_have_conflict(original_child, child):
+                        log.info(u'Conflict between original_child:\n{}\nand child\n{}'.format(
+                            etree.tostring(original_child),
+                            etree.tostring(child),
+                            ))
                     break
             else:
                 # A child with the same code as the original child doesn't exist yet in element.
                 child.attrib['both_origins'] = u'false'
                 original_child.attrib['origin'] = u'openfisca'
                 element.append(original_child)
+
+
+def elements_have_conflict(node1, node2):
+    def same_attribute(attribute):
+        return node1.attrib.get(attribute) == node2.attrib.get(attribute)
+
+    def values_do_not_overlap(values1, values2):
+        for value1 in values1:
+            for value2 in values2:
+                if value1.attrib['deb'] == value2.attrib['deb'] \
+                        and value1.attrib.get('fin') == value2.attrib.get('fin') \
+                        and value1.attrib['valeur'] != value2.attrib['valeur']:
+                    return False
+
+    assert node1.attrib['code'] == node2.attrib['code'], (node1, node2)
+    tag = node1.tag
+    if tag == 'CODE':
+        return all([
+            same_attribute('format'),
+            same_attribute('type'),
+            values_do_not_overlap(list(node1), list(node2)),
+            ])
+    else:
+        # raise NotImplementedError(tag)
+        pass
 
 
 def prepare_xml_values(name, leafs):
