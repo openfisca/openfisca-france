@@ -405,6 +405,7 @@ def transform_node_to_element(name, node):
         if node.get('TYPE') == u'BAREME':
             scale_element = etree.Element('BAREME', attrib = dict(
                 code = strings.slugify(name, separator = u'_'),
+                origin = u'ipp',
                 ))
             for slice_name in node.get('SEUIL', {}).keys():
                 slice_element = etree.Element('TRANCHE', attrib = dict(
@@ -441,6 +442,7 @@ def transform_node_to_element(name, node):
         else:
             node_element = etree.Element('NODE', attrib = dict(
                 code = strings.slugify(name, separator = u'_'),
+                origin = u'ipp',
                 ))
             for key, value in node.iteritems():
                 child_element = transform_node_to_element(key, value)
@@ -454,6 +456,7 @@ def transform_node_to_element(name, node):
             return None
         code_element = etree.Element('CODE', attrib = dict(
             code = strings.slugify(name, separator = u'_'),
+            origin = u'ipp',
             ))
         if format is not None:
             code_element.set('format', format)
@@ -482,7 +485,6 @@ def transform_value_to_element(leaf):
 
 
 def transform_values_to_element_children(values, element):
-    element.attrib['origin'] = u'ipp'
     j = 0
     for i, value in enumerate(values[1:]):
         next_value = values[j]
