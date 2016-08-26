@@ -39,7 +39,6 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
 
         param_files = [
             '__root__.xml',
-            'al.xml',
             'bouclier_fiscal.xml',
             'bourses_education.xml',
             'cmu.xml',
@@ -48,8 +47,6 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
             'fonc.xml',
             'forfait_social.xml',
             'impot_revenu.xml',
-            'isf.xml',
-            'minim.xml',
             'prelevements_sociaux.xml',
             'prestations.xml',
             'taxation_capital.xml',
