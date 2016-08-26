@@ -4438,7 +4438,7 @@
           <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
         </CODE>
       </NODE>
-      <CODE code="age_max_enfant" origin="ipp">
+      <CODE both_origins="false" code="age_max_enfant" origin="ipp">
         <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
       </CODE>
       <NODE code="base" description="Allocation de base">
@@ -4456,7 +4456,7 @@
               <VALUE deb="2016-01-01" fuzzy="true" valeur="29286" />
               <VALUE deb="2014-04-01" fin="2015-12-31" valeur="29286" />
               <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
-            </CODE>F
+            </CODE>
             <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux partiel" format="integer" type="monetary">
               <VALUE deb="2016-01-01" fuzzy="true" valeur="9664" />
               <VALUE deb="2014-04-01" fin="2015-12-31" valeur="9664" />
@@ -4522,17 +4522,14 @@
         <CODE both_origins="true" code="age_max_enfant" description="Limite d'âge (stricte)" origin="ipp">
           <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
         </CODE>
-        <CODE both_origins="false" code="avecab_tx_inactif" description="Taux pour les personnes inactives percevant l'allocation de base de la PAJE" origin="openfisca">
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.9662" />
-          <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.9662" />
+        <CODE both_origins="true" code="avecab_tx_inactif" description="Taux pour les personnes inactives percevant l'allocation de base de la PAJE" format="percent" origin="ipp">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.9662" />
         </CODE>
-        <CODE both_origins="false" code="avecab_tx_partiel1" description="Taux pour les personnes à temps partiel inf. à 50% percevant l'allocation de base de la PAJE" origin="openfisca">
-          <VALUE deb="2014-01-01" fuzzy="true" valeur="0.6246" />
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.6246" />
+        <CODE both_origins="true" code="avecab_tx_partiel1" description="Taux pour les personnes à temps partiel inf. à 50% percevant l'allocation de base de la PAJE" format="percent" origin="ipp">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.6246" />
         </CODE>
-        <CODE both_origins="false" code="avecab_tx_partiel2" description="Taux pour les personnes à temps partiel 50pc-80pc percevant l'allocation de base de la PAJE" origin="openfisca">
-          <VALUE deb="2014-01-01" fuzzy="true" valeur="0.3603" />
-          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.3603" />
+        <CODE both_origins="true" code="avecab_tx_partiel2" description="Taux pour les personnes à temps partiel 50pc-80pc percevant l'allocation de base de la PAJE" format="percent" origin="ipp">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.3603" />
         </CODE>
         <CODE both_origins="false" code="duree1" description="Durée (en mois) de versement pour le premier enfant" format="integer" origin="openfisca" type="months">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="6" />
@@ -4688,17 +4685,6 @@
         <CODE code="sansab" description="Taux de la prestation en cas de non perception de l'allocation de base de la PAJE" format="percent">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="2.0388" />
           <VALUE deb="2004-01-01" fin="2013-12-31" valeur="2.0388" />
-        </CODE>
-      </NODE>
-      <NODE both_origins="false" code="complement_de_libre_choix_d_activite_clca">
-        <CODE code="taux_partiel_50" format="percent" origin="ipp">
-          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.6246" />
-        </CODE>
-        <CODE code="taux_partiel_entre_50_et_80" format="percent" origin="ipp">
-          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.3603" />
-        </CODE>
-        <CODE code="taux_plein" format="percent" origin="ipp">
-          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.9662" />
         </CODE>
       </NODE>
       <NODE code="complement_optionnel_de_libre_choix_d_activite">

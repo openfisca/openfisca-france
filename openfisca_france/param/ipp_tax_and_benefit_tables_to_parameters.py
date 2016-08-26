@@ -1125,6 +1125,11 @@ def transform_ipp_tree(root):
     af['bmaf'] = bmaf_ipp.pop('base_mensuelle_de_calcul_des_allocations_familiales_bmaf')
     af['taux'] = taux = dict()
     taux['enf2'] = af.pop('2_enfants')
+    clca['avecab_tx_inactifipp'] = avecab_tx_inactifipp = paje.pop('complement_de_libre_choix_d_activite_clca')
+    clca['avecab_tx_inactif'] = avecab_tx_inactifipp.pop('taux_plein')
+    clca['avecab_tx_partiel2'] = avecab_tx_inactifipp.pop('taux_partiel_entre_50_et_80')
+    clca['avecab_tx_partiel1'] = avecab_tx_inactifipp.pop('taux_partiel_50')
+    complement_optionnel_de_libre_choix_d_activite = paje['complement_optionnel_de_libre_choix_d_activite']
 
     prestations['minima_sociaux'] = minima_sociaux = dict()
     minima_sociaux['ada'] = ada = dict()
