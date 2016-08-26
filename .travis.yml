@@ -5,7 +5,8 @@ addons:
 install:
   - pip install --upgrade pip  # pip >= 8.0 needed to be compatible with "manylinux" wheels, used by numpy >= 1.11
   - pip install flake8  # Not yet available in Ubuntu precise (https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise)
-  - pip install -r requirements.txt .[inversion_revenus] 
+  - pip install -r requirements.txt
+  - pip install --editable .[inversion_revenus]
 language: python
 python: "2.7"
 script: bash run-travis-tests.sh
