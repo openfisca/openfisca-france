@@ -1,4 +1,4 @@
-<NODE code="tns" description="Travailleurs non-salariés" origin="openfisca">
+<NODE both_origins="false" code="tns" description="Travailleurs non-salariés" origin="openfisca">
   <NODE code="auto_entrepreneur" description="Taux global de cotisations sociales et formation à appliquer au CA de l'auto-entrepreneur">
     <CODE code="achat_revente" description="Activité de type Achat-Revente" format="percent">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="0.134" />
