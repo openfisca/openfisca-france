@@ -1,4 +1,4 @@
-<NODE both_origins="false" code="cotsoc" description="Cotisations sociales" origin="openfisca">
+<NODE code="cotsoc" description="Cotisations sociales" origin="openfisca">
   <NODE code="accident" description="Accident du travail"> # Wild distinction between the rates. TODO: handle the extreme diversity...
       <CODE code="eleve" description="Accident du travail (taux eleve)">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="0.05" />

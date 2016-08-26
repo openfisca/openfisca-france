@@ -284,7 +284,6 @@ def merge_elements(element, original_element, path = None):
             else:
                 # A `child` of `element` with the same code as the `original_child` was not found.
                 original_child.attrib['origin'] = u'openfisca'
-                original_child.attrib['both_origins'] = u'false'
                 element.append(original_child)
 
 

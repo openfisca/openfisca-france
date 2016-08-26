@@ -1416,7 +1416,7 @@
         <VALUE deb="1991-02-01" fin="1991-07-31" valeur="259" />
         <VALUE deb="1989-09-01" fin="1991-01-31" valeur="254" />
       </CODE>
-      <CODE both_origins="false" code="plafond_base_solidarite" description="Plafond de la contribution exceptionnelle de solidarité " format="float" origin="openfisca" type="monetary">
+      <CODE code="plafond_base_solidarite" description="Plafond de la contribution exceptionnelle de solidarité " format="float" origin="openfisca" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="12516" />
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="12516" />  # TODO check. Pas dispo dans barème IPP
           </CODE>
@@ -2092,7 +2092,7 @@
       </CODE>
     </NODE>
     <NODE both_origins="true" code="activite" description="Revenus d'activité" origin="ipp">
-      <NODE both_origins="false" code="deductible" description="CSG déductible" origin="openfisca">
+      <NODE code="deductible" description="CSG déductible" origin="openfisca">
         <BAREME code="abattement" description="Abattement de la base de la CSG déductible">
           <TRANCHE code="tranche0">
             <TAUX>
@@ -2122,7 +2122,7 @@
           <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".051" />
         </CODE>
       </NODE>
-      <NODE both_origins="false" code="imposable" description="CSG imposable" origin="openfisca">
+      <NODE code="imposable" description="CSG imposable" origin="openfisca">
         <BAREME code="abattement" description="Abattement de la base de la CSG imposable">
           <TRANCHE code="tranche0">
             <TAUX>
@@ -2178,7 +2178,7 @@
         <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.034" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="capital" description="Revenus du capital" origin="openfisca">
+    <NODE code="capital" description="Revenus du capital" origin="openfisca">
       <CODE code="deduc" description="dont CSG déductible" format="percent">
         <VALUE deb="2014-01-01" fuzzy="true" valeur=".051" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur=".051" />
@@ -2191,7 +2191,7 @@
         <VALUE deb="2000-01-01" fin="2003-12-31" valeur="0.075" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="chomage" description="Allocations chômage" origin="openfisca">
+    <NODE code="chomage" description="Allocations chômage" origin="openfisca">
       <NODE code="deductible" description="CSG déductible">
         <BAREME code="abattement" description="Abattement de la base de la CSG déductible">
           <TRANCHE code="tranche0">
@@ -2264,7 +2264,7 @@
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="1" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="indemnites_journalieres" description="Indemnités journalières" origin="openfisca">
+    <NODE code="indemnites_journalieres" description="Indemnités journalières" origin="openfisca">
       <NODE code="deductible" description="CSG déductible">
         <CODE code="taux" description="taux plein de la CSG déductible" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".038" />
@@ -2279,7 +2279,7 @@
         </CODE>
       </NODE>
     </NODE>
-    <NODE both_origins="false" code="preretraite" description="Allocations de préretraite" origin="openfisca">
+    <NODE code="preretraite" description="Allocations de préretraite" origin="openfisca">
       <NODE code="deductible" description="CSG déductible">
         <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".042" />
@@ -2353,7 +2353,7 @@
         </CODE>
       </NODE>
     </NODE>
-    <NODE both_origins="false" code="retraite" description="Pensions de retraites et d'invalidité" origin="openfisca">
+    <NODE code="retraite" description="Pensions de retraites et d'invalidité" origin="openfisca">
       <NODE code="deductible" description="CSG déductible">
         <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".042" />
@@ -2531,7 +2531,7 @@
     </CODE>
   </NODE>
   <NODE both_origins="true" code="forfait_social" origin="ipp">
-    <CODE both_origins="false" code="seuil_effectif_prevoyance_complementaire" description="Seuil effectif à partir duquel les contributions patronales de prévoyance complémentaire rentrent dans l'assiette du FNAL à taux réduit" origin="openfisca">
+    <CODE code="seuil_effectif_prevoyance_complementaire" description="Seuil effectif à partir duquel les contributions patronales de prévoyance complémentaire rentrent dans l'assiette du FNAL à taux réduit" origin="openfisca">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="11" />
       <VALUE deb="2012-01-01" fin="2015-12-31" valeur="10" />
       <VALUE deb="2009-01-01" fin="2011-12-31" valeur="0" />
