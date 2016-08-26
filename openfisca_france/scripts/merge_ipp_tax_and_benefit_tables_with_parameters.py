@@ -129,6 +129,7 @@ def main():
             element.set('code', name)
             parent_element.append(element)
 
+    # Build `tree` from IPP YAML files.
     tree = collections.OrderedDict()
     for source_dir_encoded, directories_name_encoded, filenames_encoded in os.walk(args.source_dir):
         directories_name_encoded.sort()
@@ -237,6 +238,7 @@ def main():
 
     root_element = transform_node_to_element(u'root', tree)
     merge_elements(root_element, original_root_element)
+    # Since now `original_root_element` is discarded.
 
     if os.path.exists(args.target):
         for xml_file_path in glob.glob(os.path.join(args.target, '*.xml')):
@@ -264,53 +266,52 @@ def merge_elements(element, original_element, path = None):
     path.append(element.get('code'))
     assert element.tag == original_element.tag, 'At {}, IPP element "{}"" differs from original element "{}"'.format(
         '.'.join(path), element.tag, original_element.tag)
+
+    # Only param.xml nodes have a `description` attribute.
     description = original_element.get('description')
-    if description:
+    if description is not None:
         element.attrib['description'] = description
+
     if element.tag == 'NODE':
         for original_child in original_element:
             for child in element:
                 if child.get('code') == original_child.get('code'):
                     merge_elements(child, original_child)
-                    if child.tag == 'CODE':
-                        assert child.attrib['origin'] == u'ipp', child.attrib['origin']
-                        child.attrib['both_origins'] = u'true'
+                    child.attrib['both_origins'] = u'true'
                     if elements_have_conflict(original_child, child):
-                        log.info(u'Conflict between original_child:\n{}\nand child\n{}'.format(
-                            etree.tostring(original_child),
-                            etree.tostring(child),
-                            ))
+                        original_child.attrib['conflict'] = u'true'
                     break
             else:
-                # A child with the same code as the original child doesn't exist yet in element.
-                child.attrib['both_origins'] = u'false'
+                # A `child` of `element` with the same code as the `original_child` was not found.
                 original_child.attrib['origin'] = u'openfisca'
+                original_child.attrib['both_origins'] = u'false'
                 element.append(original_child)
 
 
 def elements_have_conflict(node1, node2):
-    def same_attribute(attribute):
-        return node1.attrib.get(attribute) == node2.attrib.get(attribute)
+    return False  # TODO
+    # def same_attribute(attribute):
+    #     return node1.attrib.get(attribute) == node2.attrib.get(attribute)
 
-    def values_do_not_overlap(values1, values2):
-        for value1 in values1:
-            for value2 in values2:
-                if value1.attrib['deb'] == value2.attrib['deb'] \
-                        and value1.attrib.get('fin') == value2.attrib.get('fin') \
-                        and value1.attrib['valeur'] != value2.attrib['valeur']:
-                    return False
+    # def values_do_not_overlap(values1, values2):
+    #     for value1 in values1:
+    #         for value2 in values2:
+    #             if value1.attrib['deb'] == value2.attrib['deb'] \
+    #                     and value1.attrib.get('fin') == value2.attrib.get('fin') \
+    #                     and value1.attrib['valeur'] != value2.attrib['valeur']:
+    #                 return False
 
-    assert node1.attrib['code'] == node2.attrib['code'], (node1, node2)
-    tag = node1.tag
-    if tag == 'CODE':
-        return all([
-            same_attribute('format'),
-            same_attribute('type'),
-            values_do_not_overlap(list(node1), list(node2)),
-            ])
-    else:
-        # raise NotImplementedError(tag)
-        pass
+    # assert node1.attrib['code'] == node2.attrib['code'], (node1, node2)
+    # tag = node1.tag
+    # if tag == 'CODE':
+    #     return all([
+    #         same_attribute('format'),
+    #         same_attribute('type'),
+    #         values_do_not_overlap(list(node1), list(node2)),
+    #         ])
+    # else:
+    #     # raise NotImplementedError(tag)
+    #     pass
 
 
 def prepare_xml_values(name, leafs):

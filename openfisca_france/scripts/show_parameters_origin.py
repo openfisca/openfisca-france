@@ -47,10 +47,10 @@ def get_flat_parameters(legislation_json):
                 if fragment
                 )
             parameter_json['name'] = u'.'.join(attributes.get('names', []))
-            origin = attributes.get('origin')
+            origin = node_json.get('origin') or attributes.get('origin')
             if origin is not None:
                 parameter_json['origin'] = origin
-            both_origins = attributes.get('both_origins')
+            both_origins = node_json.get('both_origins') or attributes.get('both_origins')
             if both_origins is not None:
                 parameter_json['both_origins'] = both_origins
             if 'xml_file_path' in node_json:
@@ -101,6 +101,8 @@ def main():
                     else None,
                     ]))
                 )).encode('utf-8')
+        else:
+            print(u'{}: no origin'.format(parameter_json['name'])).encode('utf-8')
 
 
 if __name__ == "__main__":
