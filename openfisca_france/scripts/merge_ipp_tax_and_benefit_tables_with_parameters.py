@@ -8,6 +8,7 @@
 import argparse
 import collections
 import datetime
+import glob
 import itertools
 import logging
 import os
@@ -237,7 +238,10 @@ def main():
     root_element = transform_node_to_element(u'root', tree)
     merge_elements(root_element, original_root_element)
 
-    if not os.path.exists(args.target):
+    if os.path.exists(args.target):
+        for xml_file_path in glob.glob(os.path.join(args.target, '*.xml')):
+            os.remove(xml_file_path)
+    else:
         os.mkdir(args.target)
     for child_element in root_element[:]:
         root_element.remove(child_element)
