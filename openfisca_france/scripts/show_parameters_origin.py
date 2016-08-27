@@ -37,20 +37,15 @@ def get_relative_file_path(absolute_file_path):
 
 def get_flat_parameters(legislation_json):
     # Adapted from openfisca_web_api.environment
-    def walk_legislation_json(attributes, node_json, parameters_json):
+    def walk_legislation_json(node_json, parameters_json, names):
         children_json = node_json.get('children') or None
         if children_json is None:
             parameter_json = node_json.copy()  # No need to deepcopy since it is a leaf.
-            parameter_json['description'] = u' ; '.join(
-                fragment
-                for fragment in attributes.get('descriptions', []) + [node_json.get('description')]
-                if fragment
-                )
-            parameter_json['name'] = u'.'.join(attributes.get('names', []))
-            origin = node_json.get('origin') or attributes.get('origin')
+            parameter_json['name'] = u'.'.join(names)
+            origin = node_json.get('origin')
             if origin is not None:
                 parameter_json['origin'] = origin
-            both_origins = node_json.get('both_origins') or attributes.get('both_origins')
+            both_origins = node_json.get('both_origins')
             if both_origins is not None:
                 parameter_json['both_origins'] = both_origins
             if 'xml_file_path' in node_json:
@@ -60,19 +55,14 @@ def get_flat_parameters(legislation_json):
         else:
             for child_name, child_json in children_json.iteritems():
                 walk_legislation_json(
-                    attributes={
-                        'both_origins': node_json.get('both_origins'),
-                        'descriptions': attributes.get('descriptions', []) + [node_json.get('description')],
-                        'names': attributes.get('names', []) + [child_name],
-                        'origin': node_json.get('origin'),
-                        },
+                    names=names + [child_name],
                     node_json=child_json,
                     parameters_json=parameters_json,
                     )
 
     parameters_json = []
     walk_legislation_json(
-        attributes={},
+        names=[],
         node_json=legislation_json,
         parameters_json=parameters_json,
         )
@@ -96,8 +86,8 @@ def main():
                     u'origin={}'.format(parameter_json['origin'])
                     if 'origin' in parameter_json
                     else None,
-                    u'both_origins={}'.format(parameter_json['both_origins'])
-                    if 'both_origins' in parameter_json
+                    u'both_origins (cf param-to-parameters.yaml)'.format(parameter_json['both_origins'])
+                    if parameter_json.get('both_origins')
                     else None,
                     ]))
                 )).encode('utf-8')
