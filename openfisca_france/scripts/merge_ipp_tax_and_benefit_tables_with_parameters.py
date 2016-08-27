@@ -258,6 +258,13 @@ def main():
     return 0
 
 
+def add_origin_openfisca_attrib(element):
+    element.attrib['origin'] = u'openfisca'
+    for child_element in element:
+        if child_element.tag in ('NODE', 'CODE', 'BAREME'):
+            add_origin_openfisca_attrib(child_element)
+
+
 def merge_elements(element, original_element, path = None):
     if path is None:
         path = []
@@ -272,7 +279,7 @@ def merge_elements(element, original_element, path = None):
     if description is not None:
         element.attrib['description'] = description
 
-    if element.tag == 'NODE':
+    if element.tag == 'NODE':  # Only consider merging NODE children (not CODE, BAREME).
         for original_child in original_element:
             for child in element:
                 if child.get('code') == original_child.get('code'):
@@ -283,7 +290,7 @@ def merge_elements(element, original_element, path = None):
                     break
             else:
                 # A `child` of `element` with the same code as the `original_child` was not found.
-                original_child.attrib['origin'] = u'openfisca'
+                add_origin_openfisca_attrib(original_child)
                 element.append(original_child)
 
 
