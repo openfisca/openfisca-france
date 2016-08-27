@@ -201,43 +201,43 @@
       </CODE>
     </NODE>
     <NODE code="droits_soc" description="Droits sociaux" origin="openfisca"> ## parts actions détenus par salariés et mandataires sociaux intro en 2006 ##
-     <CODE code="taux1" description="Taux parts et actions détenues par les salariés et mandataires sociaux" format="percent">
+     <CODE code="taux1" description="Taux parts et actions détenues par les salariés et mandataires sociaux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="taux2" description="Taux parts et actions avec engagement de conservation de 6 ans minimum" format="percent">
+      <CODE code="taux2" description="Taux parts et actions avec engagement de conservation de 6 ans minimum" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.25" />
         <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.5" />
       </CODE>
     </NODE>
     <NODE code="forf_mob" description="Forfait mobilier" origin="openfisca">
-      <CODE code="taux" description="Taux forfait mobilier" format="percent">
+      <CODE code="taux" description="Taux forfait mobilier" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.05" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.05" />
       </CODE>
     </NODE>
     <NODE code="nonbat" description="Immeubles non bâtis" origin="openfisca">
-      <CODE code="seuil" description="Seuil biens ruraux" format="integer" type="monetary">
+      <CODE code="seuil" description="Seuil biens ruraux" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="101897" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="101897" />
         <VALUE deb="2004-01-01" fin="2010-12-31" valeur="76000" />
       </CODE>
-      <CODE code="taux_f" description="Taux bois et forêts" format="percent">
+      <CODE code="taux_f" description="Taux bois et forêts" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="taux_r1" description="Taux biens ruraux" format="percent">
+      <CODE code="taux_r1" description="Taux biens ruraux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="taux_r2" description="Taux biens ruraux" format="percent">
+      <CODE code="taux_r2" description="Taux biens ruraux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
       </CODE>
     </NODE>
     <NODE code="plaf" description="Plafonnement de l'ISF" origin="openfisca">
-      <CODE code="seuil1" description="Premier seuil pour calcul du plafonnement" format="integer" type="monetary">
+      <CODE code="seuil1" description="Premier seuil pour calcul du plafonnement" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="12255" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="12050" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="11995" />
@@ -247,7 +247,7 @@
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="11157" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="10970" />
       </CODE>
-      <CODE code="seuil2" description="Second seuil pour calcul du plafonnement" format="integer" type="monetary">
+      <CODE code="seuil2" description="Second seuil pour calcul du plafonnement" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="24510" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="24100" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="23990" />
@@ -257,7 +257,7 @@
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="22314" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="21940" />
       </CODE>
-      <CODE code="taux" description="Taux appliqué quand le montant de l'ISF avant plafonnement est supérieur au second seuil " format="percent">
+      <CODE code="taux" description="Taux appliqué quand le montant de l'ISF avant plafonnement est supérieur au second seuil " format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.5" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0" />
@@ -265,7 +265,7 @@
       </CODE>
     </NODE>
     <NODE code="plafonnement" description="Revenus et produits de l'année" origin="openfisca">
-      <CODE code="plafonnement_taux_d_imposition_isf" description="Taux appliqué aux revenus et produits de l'année pour le calcul du plafonnement" format="percent">
+      <CODE code="plafonnement_taux_d_imposition_isf" description="Taux appliqué aux revenus et produits de l'année pour le calcul du plafonnement" format="percent" origin="openfisca">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0.75" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.75" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0" />

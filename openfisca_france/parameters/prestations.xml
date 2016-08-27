@@ -130,12 +130,12 @@
       </NODE>
     </NODE>
     <NODE code="autres" description="Autres dispositions communes" origin="openfisca">
-      <CODE code="abat_sal" description="Abattement salarié" format="percent">
+      <CODE code="abat_sal" description="Abattement salarié" format="percent" origin="openfisca">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.10" />
         <VALUE deb="2006-01-01" fin="2015-12-31" valeur="0.10" />
         <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.28" />
       </CODE>
-      <CODE code="nr_seuil" description="Seuil de non recouvrement" format="integer" type="monetary">
+      <CODE code="nr_seuil" description="Seuil de non recouvrement" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="21" />
         <VALUE deb="2011-01-01" fin="2014-12-31" valeur="21" />
         <VALUE deb="2002-01-01" fin="2010-12-31" valeur="16" />
@@ -442,40 +442,40 @@
       </CODE>
     </NODE>
     <NODE code="ressources" description="Dispositions applicables aux ressources" origin="openfisca">
-      <CODE code="abattement_chomage_indemnise" description="Abattement pour chômage indemnisé (R351-13)" format="percent">
+      <CODE code="abattement_chomage_indemnise" description="Abattement pour chômage indemnisé (R351-13)" format="percent" origin="openfisca">
         <VALUE deb="2018-01-01" fuzzy="true" valeur="0.3" />
         <VALUE deb="2002-01-01" fin="2017-12-31" valeur="0.3" />
       </CODE>
-      <CODE code="dar_1" description="Abattement R. 351-6 (double activité)" format="integer" type="monetary">
+      <CODE code="dar_1" description="Abattement R. 351-6 (double activité)" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="95" />
         <VALUE deb="2007-07-01" fin="2013-12-31" valeur="95" />
         <VALUE deb="2002-01-01" fin="2007-06-30" valeur="76" />
       </CODE>
-      <CODE code="dar_10" description="Abattement forfaitaire R351-11" format="integer" type="monetary">
+      <CODE code="dar_10" description="Abattement forfaitaire R351-11" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="2589" />
         <VALUE deb="2007-07-01" fin="2013-12-31" valeur="2589" />
         <VALUE deb="2003-07-01" fin="2007-06-30" valeur="2071" />
         <VALUE deb="2002-07-01" fin="2003-06-30" valeur="2034" />
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="0" />
       </CODE>
-      <CODE code="dar_2" description="Plancher ressources APL en secteur accession R. 351-7-1" format="float" type="monetary">
+      <CODE code="dar_2" description="Plancher ressources APL en secteur accession R. 351-7-1" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="8000" />
         <VALUE deb="2007-07-01" fin="2013-12-31" valeur="8000" />
         <VALUE deb="2003-07-01" fin="2007-06-30" valeur="6400" />
         <VALUE deb="2002-07-01" fin="2003-06-30" valeur="6300" />
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="6173.82" />
       </CODE>
-      <CODE code="dar_2_2" description="Plancher ressources AL en secteur accession R. 351-7-1" format="float" type="monetary">
+      <CODE code="dar_2_2" description="Plancher ressources AL en secteur accession R. 351-7-1" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="3900" />
         <VALUE deb="2007-07-01" fin="2013-12-31" valeur="3900" />
         <VALUE deb="2002-07-01" fin="2007-06-30" valeur="3100" />
       </CODE>
-      <CODE code="dar_3" description="Coefficient R. 351-7-1" format="float">
+      <CODE code="dar_3" description="Coefficient R. 351-7-1" format="float" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="16.25" />
         <VALUE deb="2007-07-01" fin="2013-12-31" valeur="16.25" />
         <VALUE deb="2002-01-01" fin="2007-06-30" valeur="13" />
       </CODE>
-      <CODE code="dar_4" description="Plancher de ressources pour les étudiants (R. 351-7-2)" format="float" type="monetary">
+      <CODE code="dar_4" description="Plancher de ressources pour les étudiants (R. 351-7-2)" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="7600" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="7600" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="7500" />
@@ -486,27 +486,27 @@
         <VALUE deb="2002-07-01" fin="2007-06-30" valeur="5500" />
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="5411.62" />
       </CODE>
-      <CODE code="dar_5" description="Minoration du plancher de ressources étudiants pour boursiers" format="float" type="monetary">
+      <CODE code="dar_5" description="Minoration du plancher de ressources étudiants pour boursiers" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="1500" />
         <VALUE deb="2013-01-01" fin="2014-12-31" valeur="1500" />
         <VALUE deb="2007-07-01" fin="2012-12-31" valeur="1400" />
         <VALUE deb="2002-12-01" fin="2007-06-30" valeur="1100" />
         <VALUE deb="2002-01-01" fin="2002-11-30" valeur="990.86" />
       </CODE>
-      <CODE code="dar_6" description="Demandes antérieures au 1er juillet" format="float" type="monetary">
+      <CODE code="dar_6" description="Demandes antérieures au 1er juillet" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0" />
         <VALUE deb="2007-07-01" fin="2008-12-31" valeur="5500" />
         <VALUE deb="2002-07-01" fin="2007-06-30" valeur="4400" />
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="4420.76" />
       </CODE>
-      <CODE code="dar_7" description="Majoration si 2 étudiants" format="integer" type="monetary">
+      <CODE code="dar_7" description="Majoration si 2 étudiants" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
         <VALUE deb="2005-09-01" fin="2014-12-31" valeur="0" />
         <VALUE deb="2002-07-01" fin="2005-08-31" valeur="2000" />
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="0" />
       </CODE>
-      <CODE code="dar_8" description="Montant 2ème alinéa du III de R. 351-7" format="float" type="monetary">
+      <CODE code="dar_8" description="Montant 2ème alinéa du III de R. 351-7" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="1273.52" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1273.52" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="1248.55" />
@@ -516,7 +516,7 @@
         <VALUE deb="2002-07-01" fin="2008-12-31" valeur="1085" />
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="0" />
       </CODE>
-      <CODE code="dar_9" description="Montant 3ème alinéa du III de R. 351-7" format="float" type="monetary">
+      <CODE code="dar_9" description="Montant 3ème alinéa du III de R. 351-7" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="1910.29" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1910.29" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="1872.83" />
@@ -526,8 +526,8 @@
         <VALUE deb="2002-07-01" fin="2008-12-31" valeur="1627" />
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="0" />
       </CODE>
-      <NODE code="efress" description="Évaluation forfaitaire des ressources R. 351-7">
-        <CODE code="dar_2a" description="Évaluation forfaitaire des ressources pour un salarié R. 351-7" format="float" type="monetary">
+      <NODE code="efress" description="Évaluation forfaitaire des ressources R. 351-7" origin="openfisca">
+        <CODE code="dar_2a" description="Évaluation forfaitaire des ressources pour un salarié R. 351-7" format="float" origin="openfisca" type="monetary">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="9571.45" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur="9571.45" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="9541" />
@@ -543,7 +543,7 @@
           <VALUE deb="2004-01-01" fin="2004-12-31" valeur="6932.45" />
           <VALUE deb="2003-01-01" fin="2003-12-31" valeur="6770.05" />
         </CODE>
-        <CODE code="dar_2b" description="Évaluation forfaitaire des ressources pour un employeur ou un travailleur indépendant R. 351-7" format="float" type="monetary">
+        <CODE code="dar_2b" description="Évaluation forfaitaire des ressources pour un employeur ou un travailleur indépendant R. 351-7" format="float" origin="openfisca" type="monetary">
           <VALUE deb="2014-07-01" fuzzy="true" valeur="14145" />
           <VALUE deb="2013-07-01" fin="2014-06-30" valeur="14145" />
           <VALUE deb="2012-07-01" fin="2013-06-30" valeur="14100" />
@@ -559,10 +559,10 @@
           <VALUE deb="2002-07-01" fin="2003-06-30" valeur="10245" />
           <VALUE deb="2001-07-01" fin="2002-06-30" valeur="10005" />
         </CODE>
-        <CODE code="dar_3a" description="Coefficient multiplicateur du smic horaire brut au 31/12/n-2 (R. 351-7) pour un salarié" format="float">
+        <CODE code="dar_3a" description="Coefficient multiplicateur du smic horaire brut au 31/12/n-2 (R. 351-7) pour un salarié" format="float" origin="openfisca">
           <VALUE deb="2007-07-01" fin="2012-12-31" valeur="1015" />
         </CODE>
-        <CODE code="dar_3b" description="Coefficient multiplicateur du smic horaire brut au 01/07 précédent la date d'ouverture des droits (R. 351-7) pour un employeur ou un travailleur indépendant" format="float">
+        <CODE code="dar_3b" description="Coefficient multiplicateur du smic horaire brut au 01/07 précédent la date d'ouverture des droits (R. 351-7) pour un employeur ou un travailleur indépendant" format="float" origin="openfisca">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="1500" />
           <VALUE deb="2007-07-01" fin="2015-12-31" valeur="1500" />
         </CODE>
@@ -589,35 +589,35 @@
     </CODE>
     <NODE both_origins="true" code="taux_participation_fam" description="Taux dépendant de la taille du ménage" origin="ipp">
       <NODE code="dom" description="TF pour les DOM" origin="openfisca">
-        <CODE code="taux1" description="Taux pour 1 adulte" format="percent">
+        <CODE code="taux1" description="Taux pour 1 adulte" format="percent" origin="openfisca">
           <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0281" />
           <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0281" />
         </CODE>
-        <CODE code="taux2" description="Taux pour 2 adultes" format="percent">
+        <CODE code="taux2" description="Taux pour 2 adultes" format="percent" origin="openfisca">
           <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0299" />
           <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0299" />
         </CODE>
-        <CODE code="taux3" description="Taux pour 1 enfant" format="percent">
+        <CODE code="taux3" description="Taux pour 1 enfant" format="percent" origin="openfisca">
           <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0238" />
           <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0238" />
         </CODE>
-        <CODE code="taux4" description="Taux pour 2 enfants" format="percent">
+        <CODE code="taux4" description="Taux pour 2 enfants" format="percent" origin="openfisca">
           <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0217" />
           <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0217" />
         </CODE>
-        <CODE code="taux5" description="Taux pour 3 enfants" format="percent">
+        <CODE code="taux5" description="Taux pour 3 enfants" format="percent" origin="openfisca">
           <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0194" />
           <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0194" />
         </CODE>
-        <CODE code="taux6" description="Taux pour 4 enfants" format="percent">
+        <CODE code="taux6" description="Taux pour 4 enfants" format="percent" origin="openfisca">
           <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0180" />
           <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0180" />
         </CODE>
-        <CODE code="taux7" description="Taux pour 5 enfants" format="percent">
+        <CODE code="taux7" description="Taux pour 5 enfants" format="percent" origin="openfisca">
           <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0169" />
           <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0169" />
         </CODE>
-        <CODE code="taux8" description="Taux pour 6 enfants" format="percent">
+        <CODE code="taux8" description="Taux pour 6 enfants" format="percent" origin="openfisca">
           <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0162" />
           <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0162" />
         </CODE>
@@ -2981,26 +2981,26 @@
       </CODE>
     </NODE>
     <NODE code="aefa" description="Aide exceptionnelle de fin d'année" origin="openfisca">
-      <CODE code="forf2008" description="Montant de l'aide forfaitaire exceptionnelle de 2008" format="float" type="monetary">
+      <CODE code="forf2008" description="Montant de l'aide forfaitaire exceptionnelle de 2008" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="67.55" />
       </CODE>
-      <CODE code="mon_maj" description="Montant majoré" format="float" type="monetary">
+      <CODE code="mon_maj" description="Montant majoré" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="219.53" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="219.53" />
       </CODE>
-      <CODE code="mon_seul" description="Montant de l'aide pour une personne seule" format="float" type="monetary">
+      <CODE code="mon_seul" description="Montant de l'aide pour une personne seule" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="152.45" />
         <VALUE deb="2001-01-01" fin="2013-12-31" valeur="152.45" />
       </CODE>
-      <CODE code="tx_2p" description="Taux pour la seconde personne" format="percent">
+      <CODE code="tx_2p" description="Taux pour la seconde personne" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur=".50" />
         <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".50" />
       </CODE>
-      <CODE code="tx_3pac" description="Taux au delà de la troisième personne à charge incluse" format="percent">
+      <CODE code="tx_3pac" description="Taux au delà de la troisième personne à charge incluse" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur=".40" />
         <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".40" />
       </CODE>
-      <CODE code="tx_supp" description="Taux personne supplémentaire" format="percent">
+      <CODE code="tx_supp" description="Taux personne supplémentaire" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur=".30" />
         <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".30" />
       </CODE>
@@ -3179,17 +3179,17 @@
       </CODE>
     </NODE>
     <NODE code="ass" description="Allocation de solidarité spécifique" origin="openfisca">
-      <CODE code="abat_rev_non_subst_conj" description="Abbatement appliqué aux revenus interompus et non substitués du conjoint (pas de pension de retraite, ni de chômage, etc.">
+      <CODE code="abat_rev_non_subst_conj" description="Abbatement appliqué aux revenus interompus et non substitués du conjoint (pas de pension de retraite, ni de chômage, etc." origin="openfisca">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="1" />
         <VALUE deb="2008-05-01" fin="2015-12-31" valeur="1" />
         <VALUE deb="2005-01-01" fin="2008-04-30" valeur="0" />
       </CODE>
-      <CODE code="abat_rev_subst_conj" description="Abbatement appliqué aux revenus interompus et substitués du conjoint, en cas de licenciement, départ en retraite, etc.">
+      <CODE code="abat_rev_subst_conj" description="Abbatement appliqué aux revenus interompus et substitués du conjoint, en cas de licenciement, départ en retraite, etc." origin="openfisca">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.3" />
         <VALUE deb="2008-05-01" fin="2015-12-31" valeur="0.3" />
         <VALUE deb="2005-01-01" fin="2008-04-30" valeur="0" />
       </CODE>
-      <CODE code="montant_maj" description="Montant journalier majoré" format="float" type="monetary">
+      <CODE code="montant_maj" description="Montant journalier majoré" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="23.32" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="23.32" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="23.12" />
@@ -3207,7 +3207,7 @@
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="19.19" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="18.81" />
       </CODE>
-      <CODE code="montant_plein" description="Montant journalier à taux plein" format="float" type="monetary">
+      <CODE code="montant_plein" description="Montant journalier à taux plein" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="16.25" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="16.25" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="16.11" />
@@ -3225,11 +3225,11 @@
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="13.36" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="13.10" />
       </CODE>
-      <CODE code="plaf_coup" description="Plafond de ressources pour un couple (mensuel), en multiple du montant journalier à taux plein" format="float" type="monetary">
+      <CODE code="plaf_coup" description="Plafond de ressources pour un couple (mensuel), en multiple du montant journalier à taux plein" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="110" />
         <VALUE deb="2005-01-01" fin="2015-12-31" valeur="110" />
       </CODE>
-      <CODE code="plaf_seul" description="Plafond de ressources pour une personne seule (mensuel), en multiple du montant journalier à taux plein" format="float" type="monetary">
+      <CODE code="plaf_seul" description="Plafond de ressources pour une personne seule (mensuel), en multiple du montant journalier à taux plein" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="70" />
         <VALUE deb="2005-01-01" fin="2015-12-31" valeur="70" />
       </CODE>
@@ -3338,25 +3338,25 @@
         <VALUE deb="2002-01-01" fin="2015-12-31" valeur="5" />
       </CODE>
       <NODE code="forfait_asf" description="Forfait Allocation de Soutien Familial" origin="openfisca">
-        <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent">
+        <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent" origin="openfisca">
           <VALUE deb="2015-04-01" fuzzy="true" valeur="0.225" />
           <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.225" />
         </CODE>
-        <CODE code="taux2" description="Orphelin (de père et de mère), ou situation assimilée" format="percent">
+        <CODE code="taux2" description="Orphelin (de père et de mère), ou situation assimilée" format="percent" origin="openfisca">
           <VALUE deb="2015-04-01" fuzzy="true" valeur="0.3" />
           <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.3" />
         </CODE>
       </NODE>
       <NODE code="forfait_logement" description="Forfait logement" origin="openfisca">
-        <CODE code="taux1" description="Fofait logement pour 1 personne (en % du rsa_socle)" format="percent">
+        <CODE code="taux1" description="Fofait logement pour 1 personne (en % du rsa_socle)" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.12" />
           <VALUE deb="1998-12-14" fin="2014-12-31" valeur="0.12" />
         </CODE>
-        <CODE code="taux2" description="Forfait logement pour 2 personnes" format="percent">
+        <CODE code="taux2" description="Forfait logement pour 2 personnes" format="percent" origin="openfisca">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="0.24" />
           <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.24" />
         </CODE>
-        <CODE code="taux3" description="Forfait logement pour 3 personnes ou plus" format="percent">
+        <CODE code="taux3" description="Forfait logement pour 3 personnes ou plus" format="percent" origin="openfisca">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="0.297" />
           <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.297" />
         </CODE>
@@ -3373,18 +3373,18 @@
         </CODE>
       </NODE>
       <NODE code="majo_rsa" description="Majoration du RSA socle pour parent isolé" origin="openfisca">
-        <CODE code="age" description="Âge limite du benjamin pour un versement sans condition de durée" format="integer" type="age">
+        <CODE code="age" description="Âge limite du benjamin pour un versement sans condition de durée" format="integer" origin="openfisca" type="age">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
           <VALUE deb="2009-06-01" fin="2014-12-31" valeur="3" />
           <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
         </CODE>
-        <CODE code="pac0" description="Taux de la majoration du RSA socle pour une femme enceinte sans enfant (en pourcentage du rsa de base pour un célibataire sans personne à charge)" format="percent">
+        <CODE code="pac0" description="Taux de la majoration du RSA socle pour une femme enceinte sans enfant (en pourcentage du rsa de base pour un célibataire sans personne à charge)" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="1.28412" />
           <VALUE deb="2009-06-20" fin="2014-12-31" valeur="1.28412" />
           <VALUE deb="2009-06-01" fin="2009-06-19" valeur="1.284" />
           <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
         </CODE>
-        <CODE code="pac_enf_sup" description="Majoration du RSA socle par enfant supplémentaire (en pourcentage du rsa de base)" format="percent">
+        <CODE code="pac_enf_sup" description="Majoration du RSA socle par enfant supplémentaire (en pourcentage du rsa de base)" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.42804" />
           <VALUE deb="2009-06-20" fin="2014-12-31" valeur="0.42804" />
           <VALUE deb="2009-06-01" fin="2009-06-19" valeur="0.428" />
@@ -3441,15 +3441,15 @@
         <VALUE deb="1989-01-01" fin="2009-05-31" valeur="1" />
       </CODE>
       <NODE code="patrimoine" description="Revenus liés au patrimoine" origin="openfisca">
-        <CODE code="abattement_valeur_locative_immo_non_loue" description="Abattement appliqué sur la valeur locative des biens immobiliers non loués" format="percent">
+        <CODE code="abattement_valeur_locative_immo_non_loue" description="Abattement appliqué sur la valeur locative des biens immobiliers non loués" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.5" />
           <VALUE deb="2009-01-01" fin="2014-12-31" valeur="0.5" />
         </CODE>
-        <CODE code="abattement_valeur_locative_terrains_non_loue" description="Abattement appliqué sur la valeur locative des terrains non loués" format="percent">
+        <CODE code="abattement_valeur_locative_terrains_non_loue" description="Abattement appliqué sur la valeur locative des terrains non loués" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.8" />
           <VALUE deb="2009-01-01" fin="2014-12-31" valeur="0.8" />
         </CODE>
-        <CODE code="taux_interet_forfaitaire_epargne_non_remunere" description="Taux d'intérêt forfaitaire appliqué à l'épargne non rémunérée" format="percent">
+        <CODE code="taux_interet_forfaitaire_epargne_non_remunere" description="Taux d'intérêt forfaitaire appliqué à l'épargne non rémunérée" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.03" />
           <VALUE deb="2009-01-01" fin="2014-12-31" valeur="0.03" />
         </CODE>
@@ -3517,11 +3517,11 @@
         <VALUE deb="2009-06-01" fuzzy="true" valeur="5" />
       </CODE>
       <NODE code="forfait_asf" description="Forfait Allocation de Soutien Familial" origin="openfisca">
-        <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent">
+        <CODE code="taux1" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée" format="percent" origin="openfisca">
           <VALUE deb="2015-04-01" fuzzy="true" valeur="0.225" />
           <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.225" />
         </CODE>
-        <CODE code="taux2" description="Orphelin (de père et de mère), ou situation assimilée" format="percent">
+        <CODE code="taux2" description="Orphelin (de père et de mère), ou situation assimilée" format="percent" origin="openfisca">
           <VALUE deb="2015-04-01" fuzzy="true" valeur="0.3" />
           <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.3" />
         </CODE>
@@ -3550,18 +3550,18 @@
         </CODE>
       </NODE>
       <NODE code="majo_rsa" description="Majoration du RSA socle pour parent isolé" origin="openfisca">
-        <CODE code="age_limite_enfant" description="Âge limite du benjamin pour un versement sans condition de durée" format="integer" type="age">
+        <CODE code="age_limite_enfant" description="Âge limite du benjamin pour un versement sans condition de durée" format="integer" origin="openfisca" type="age">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
           <VALUE deb="2009-06-01" fin="2014-12-31" valeur="3" />
           <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
         </CODE>
-        <CODE code="pac0" description="Taux de la majoration du RSA socle pour une femme enceinte sans enfant (en pourcentage du rsa de base pour un célibataire sans personne à charge)" format="percent">
+        <CODE code="pac0" description="Taux de la majoration du RSA socle pour une femme enceinte sans enfant (en pourcentage du rsa de base pour un célibataire sans personne à charge)" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="1.28412" />
           <VALUE deb="2009-06-20" fin="2014-12-31" valeur="1.28412" />
           <VALUE deb="2009-06-01" fin="2009-06-19" valeur="1.284" />
           <VALUE deb="1997-01-01" fin="2009-05-31" valeur="0" />
         </CODE>
-        <CODE code="pac_enf_sup" description="Majoration du RSA socle par enfant supplémentaire (en pourcentage du rsa de base)" format="percent">
+        <CODE code="pac_enf_sup" description="Majoration du RSA socle par enfant supplémentaire (en pourcentage du rsa de base)" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.42804" />
           <VALUE deb="2009-06-20" fin="2014-12-31" valeur="0.42804" />
           <VALUE deb="2009-06-01" fin="2009-06-19" valeur="0.428" />
@@ -3623,15 +3623,15 @@
         <VALUE deb="2009-06-01" fuzzy="true" valeur="1" />
       </CODE>
       <NODE code="patrimoine" description="Revenus liés au patrimoine" origin="openfisca">
-        <CODE code="abattement_valeur_locative_immo_non_loue" description="Abattement appliqué sur la valeur locative des biens immobiliers non loués" format="percent">
+        <CODE code="abattement_valeur_locative_immo_non_loue" description="Abattement appliqué sur la valeur locative des biens immobiliers non loués" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.5" />
           <VALUE deb="2009-01-01" fin="2014-12-31" valeur="0.5" />
         </CODE>
-        <CODE code="abattement_valeur_locative_terrains_non_loue" description="Abattement appliqué sur la valeur locative des terrains non loués" format="percent">
+        <CODE code="abattement_valeur_locative_terrains_non_loue" description="Abattement appliqué sur la valeur locative des terrains non loués" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.8" />
           <VALUE deb="2009-01-01" fin="2014-12-31" valeur="0.8" />
         </CODE>
-        <CODE code="taux_interet_forfaitaire_epargne_non_remunere" description="Taux d'intérêt forfaitaire appliqué à l'épargne non rémunérée" format="percent">
+        <CODE code="taux_interet_forfaitaire_epargne_non_remunere" description="Taux d'intérêt forfaitaire appliqué à l'épargne non rémunérée" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.03" />
           <VALUE deb="2009-01-01" fin="2014-12-31" valeur="0.03" />
         </CODE>
@@ -3958,21 +3958,21 @@
         <VALUE deb="2000-01-01" fin="2007-04-30" valeur="1" />
       </CODE>
       <NODE code="maj_age_deux_enfants" description="Majorations pour âge" origin="openfisca">
-        <CODE code="age1" description="Âge de début de la 1ere majoration" format="integer" type="age">
+        <CODE code="age1" description="Âge de début de la 1ere majoration" format="integer" origin="openfisca" type="age">
           <VALUE deb="2014-04-01" fuzzy="true" valeur="11" />
           <VALUE deb="2002-01-01" fin="2014-03-31" valeur="11" />
         </CODE>
-        <CODE code="age2" description="Âge de début de la 2ème majoration" format="integer" type="age">
+        <CODE code="age2" description="Âge de début de la 2ème majoration" format="integer" origin="openfisca" type="age">
           <VALUE deb="2014-04-01" fuzzy="true" valeur="14" />
           <VALUE deb="2008-05-01" fin="2014-03-31" valeur="14" />
           <VALUE deb="2002-01-01" fin="2008-04-30" valeur="16" />
         </CODE>
-        <CODE code="taux1" description="1ère majoration pour âge" format="percent">
+        <CODE code="taux1" description="1ère majoration pour âge" format="percent" origin="openfisca">
           <VALUE deb="2014-04-01" fuzzy="true" valeur="0.00" />
           <VALUE deb="2008-05-01" fin="2014-03-31" valeur="0.00" />
           <VALUE deb="2002-01-01" fin="2008-04-30" valeur="0.09" />
         </CODE>
-        <CODE code="taux2" description="2ème majoration pour âge (14 ans pour les enfants né après le 30/04/97)" format="percent">
+        <CODE code="taux2" description="2ème majoration pour âge (14 ans pour les enfants né après le 30/04/97)" format="percent" origin="openfisca">
           <VALUE deb="2014-04-01" fuzzy="true" valeur="0.16" />
           <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.16" />
         </CODE>
@@ -4074,60 +4074,60 @@
       </NODE>
     </NODE>
     <NODE code="afeama" description="Aide à la famille pour l'emploi d'une assistante maternelle agréée" origin="openfisca">
-      <CODE code="age1" description="Limite d'âge (stricte) pour bénéficier de l'AFEAMA" format="integer" type="age">
+      <CODE code="age1" description="Limite d'âge (stricte) pour bénéficier de l'AFEAMA" format="integer" origin="openfisca" type="age">
         <VALUE deb="2000-01-01" fin="2006-12-31" valeur="6" />
       </CODE>
-      <CODE code="mult_seuil1" description="Premier plafond de ressources pour un enfant (en % du plafond ARS)" format="percent">
+      <CODE code="mult_seuil1" description="Premier plafond de ressources pour un enfant (en % du plafond ARS)" format="percent" origin="openfisca">
         <VALUE deb="2000-01-01" fin="2006-12-31" valeur=".8" />
       </CODE>
-      <CODE code="mult_seuil2" description="Second plafond de ressources pour un enfant" format="percent">
+      <CODE code="mult_seuil2" description="Second plafond de ressources pour un enfant" format="percent" origin="openfisca">
         <VALUE deb="2000-01-01" fin="2006-12-31" valeur="1.1" />
       </CODE>
-      <CODE code="taux_maxi" description="Montant maximal (en pourcentage de la BMAF)" format="percent">
+      <CODE code="taux_maxi" description="Montant maximal (en pourcentage de la BMAF)" format="percent" origin="openfisca">
         <VALUE deb="2000-01-01" fin="2006-12-31" valeur=".2937" />
       </CODE>
-      <CODE code="taux_med" description="Montant median (en pourcentage de la BMAF)" format="percent">
+      <CODE code="taux_med" description="Montant median (en pourcentage de la BMAF)" format="percent" origin="openfisca">
         <VALUE deb="2000-01-01" fin="2006-12-31" valeur=".2322" />
       </CODE>
-      <CODE code="taux_mini" description="Montant minimal (en pourcentage de la BMAF)" format="percent">
+      <CODE code="taux_mini" description="Montant minimal (en pourcentage de la BMAF)" format="percent" origin="openfisca">
         <VALUE deb="2000-01-01" fin="2006-12-31" valeur=".1924" />
       </CODE>
     </NODE>
     <NODE code="aged" description="Allocation de garde d'enfant à domicile (AGED)" origin="openfisca">
-      <CODE code="age1" description="Première limite d'âge (stricte) pour bénéficier de l'AGED" format="integer" type="age">
+      <CODE code="age1" description="Première limite d'âge (stricte) pour bénéficier de l'AGED" format="integer" origin="openfisca" type="age">
         <VALUE deb="2001-01-01" fin="2006-12-31" valeur="3" />
       </CODE>
-      <CODE code="age2" description="Seconde limite d'âge (stricte) pour bénéficier de l'AGED " format="integer" type="age">
+      <CODE code="age2" description="Seconde limite d'âge (stricte) pour bénéficier de l'AGED " format="integer" origin="openfisca" type="age">
         <VALUE deb="2001-01-01" fin="2006-12-31" valeur="6" />
       </CODE>
-      <CODE code="remb_plaf1" description="Plafond des remboursements trimestriels (sans conditions de resources)" format="percent">
+      <CODE code="remb_plaf1" description="Plafond des remboursements trimestriels (sans conditions de resources)" format="percent" origin="openfisca">
         <VALUE deb="2003-07-01" fin="2004-06-30" valeur="1050" />
         <VALUE deb="2002-07-01" fin="2003-06-30" valeur="1032" />
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="1016.23" />
         <VALUE deb="2001-07-01" fin="2001-12-31" valeur="6666" />
       </CODE>
-      <CODE code="remb_plaf2" description="Plafond des remboursements trimestriels (sous conditions de resources)" format="percent">
+      <CODE code="remb_plaf2" description="Plafond des remboursements trimestriels (sous conditions de resources)" format="percent" origin="openfisca">
         <VALUE deb="2003-07-01" fin="2004-06-30" valeur="1574" />
         <VALUE deb="2002-07-01" fin="2003-06-30" valeur="1548" />
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="1524.03" />
         <VALUE deb="2001-07-01" fin="2001-12-31" valeur="9997" />
       </CODE>
-      <CODE code="remb_plaf3" description="Plafond des remboursements trimestriels (entre les deux limites d'âge ou APE taux partiel)" format="float" type="monetary">
+      <CODE code="remb_plaf3" description="Plafond des remboursements trimestriels (entre les deux limites d'âge ou APE taux partiel)" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2003-07-01" fin="2004-06-30" valeur="525" />
         <VALUE deb="2002-07-01" fin="2003-06-30" valeur="516" />
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="507.81" />
         <VALUE deb="2001-07-01" fin="2001-12-31" valeur="3331" />
       </CODE>
-      <CODE code="remb_taux1" description="Taux de remboursement des cotisations (sans condition de ressources)" format="percent">
+      <CODE code="remb_taux1" description="Taux de remboursement des cotisations (sans condition de ressources)" format="percent" origin="openfisca">
         <VALUE deb="2000-01-01" fin="2006-12-31" valeur=".5" />
       </CODE>
-      <CODE code="remb_taux2" description="Taux de remboursement des cotisations (sous condition de ressources)" format="percent">
+      <CODE code="remb_taux2" description="Taux de remboursement des cotisations (sous condition de ressources)" format="percent" origin="openfisca">
         <VALUE deb="2000-01-01" fin="2006-12-31" valeur=".75" />
       </CODE>
-      <CODE code="remb_taux3" description="Taux de remboursements des cotisations (entre les deux limites d'âge ou APE taux partiel)" format="percent">
+      <CODE code="remb_taux3" description="Taux de remboursements des cotisations (entre les deux limites d'âge ou APE taux partiel)" format="percent" origin="openfisca">
         <VALUE deb="2003-07-01" fin="2006-12-31" valeur=".5" />
       </CODE>
-      <CODE code="revenus_plaf" description="Plafond des revenus nets catégoriels annuels" format="percent">
+      <CODE code="revenus_plaf" description="Plafond des revenus nets catégoriels annuels" format="percent" origin="openfisca">
         <VALUE deb="2003-07-01" fin="2004-06-30" valeur="35335" />
         <VALUE deb="2002-07-01" fin="2003-06-30" valeur="34744" />
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="34196.91" />
@@ -4448,15 +4448,15 @@
       </CODE>
     </NODE>
     <NODE code="enfants" description="Enfants à charge" origin="openfisca">
-      <CODE code="age_intermediaire" description="Âge intermédiaire à partir duquel une condition de ressource s'applique pour être considéré comme enfant à charge" format="integer" type="age">
+      <CODE code="age_intermediaire" description="Âge intermédiaire à partir duquel une condition de ressource s'applique pour être considéré comme enfant à charge" format="integer" origin="openfisca" type="age">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="16" />
         <VALUE deb="2001-01-01" fin="2015-12-31" valeur="16" />
       </CODE>
-      <CODE code="age_limite" description="Âge limite (strict) pour être considéré comme enfant à charge" format="integer" type="age">
+      <CODE code="age_limite" description="Âge limite (strict) pour être considéré comme enfant à charge" format="integer" origin="openfisca" type="age">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="20" />
         <VALUE deb="2001-01-01" fin="2015-12-31" valeur="20" />
       </CODE>
-      <CODE code="age_minimal" description="Âge minimal pour être considéré comme enfant à charge" format="integer" type="age">
+      <CODE code="age_minimal" description="Âge minimal pour être considéré comme enfant à charge" format="integer" origin="openfisca" type="age">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0" />
         <VALUE deb="2001-01-01" fin="2015-12-31" valeur="0" />
       </CODE>
@@ -4475,30 +4475,30 @@
           <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
         </CODE>
         <NODE code="apres_2014" origin="openfisca">
-          <CODE code="plaf_tx_par_enf" description="Majoration du plafond par enfant" format="percent">
+          <CODE code="plaf_tx_par_enf" description="Majoration du plafond par enfant" format="percent" origin="openfisca">
             <VALUE deb="2016-01-01" fuzzy="true" valeur="0.22" />
             <VALUE deb="2014-04-01" fin="2015-12-31" valeur="0.22" />
             <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
           </CODE>
-          <NODE code="taux_partiel">
-            <CODE code="plaf" description="Plafond de ressources de base pour PAJE à taux partiel" format="integer" type="monetary">
+          <NODE code="taux_partiel" origin="openfisca">
+            <CODE code="plaf" description="Plafond de ressources de base pour PAJE à taux partiel" format="integer" origin="openfisca" type="monetary">
               <VALUE deb="2016-01-01" fuzzy="true" valeur="29286" />
               <VALUE deb="2014-04-01" fin="2015-12-31" valeur="29286" />
               <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
             </CODE>F
-            <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux partiel" format="integer" type="monetary">
+            <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux partiel" format="integer" origin="openfisca" type="monetary">
               <VALUE deb="2016-01-01" fuzzy="true" valeur="9664" />
               <VALUE deb="2014-04-01" fin="2015-12-31" valeur="9664" />
               <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
             </CODE>
           </NODE>
-          <NODE code="taux_plein">
-            <CODE code="plaf" description="Plafond de ressources de base pour PAJE à taux plein" format="integer" type="monetary">
+          <NODE code="taux_plein" origin="openfisca">
+            <CODE code="plaf" description="Plafond de ressources de base pour PAJE à taux plein" format="integer" origin="openfisca" type="monetary">
               <VALUE deb="2016-01-01" fuzzy="true" valeur="24514" />
               <VALUE deb="2014-04-01" fin="2015-12-31" valeur="24514" />
               <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
             </CODE>
-            <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux plein" format="integer" type="monetary">
+            <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux plein" format="integer" origin="openfisca" type="monetary">
               <VALUE deb="2016-01-01" fuzzy="true" valeur="8089" />
               <VALUE deb="2014-04-01" fin="2015-12-31" valeur="8089" />
               <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
@@ -4706,15 +4706,15 @@
         </CODE>
       </NODE>
       <NODE code="colca" description="Complément optionnel libre choix d'activité" origin="openfisca">
-        <CODE code="age" description="Age limite (strict) de perception" format="integer" type="age">
+        <CODE code="age" description="Age limite (strict) de perception" format="integer" origin="openfisca" type="age">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="1" />
           <VALUE deb="2004-01-01" fin="2013-12-31" valeur="1" />
         </CODE>
-        <CODE code="avecab" description="Taux de la prestation en cas de perception de l'allocation de base de la PAJE" format="percent">
+        <CODE code="avecab" description="Taux de la prestation en cas de perception de l'allocation de base de la PAJE" format="percent" origin="openfisca">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="1.5793" />
           <VALUE deb="2004-01-01" fin="2013-12-31" valeur="1.5793" />
         </CODE>
-        <CODE code="sansab" description="Taux de la prestation en cas de non perception de l'allocation de base de la PAJE" format="percent">
+        <CODE code="sansab" description="Taux de la prestation en cas de non perception de l'allocation de base de la PAJE" format="percent" origin="openfisca">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="2.0388" />
           <VALUE deb="2004-01-01" fin="2013-12-31" valeur="2.0388" />
         </CODE>
@@ -4748,11 +4748,11 @@
         </CODE>
       </NODE>
       <NODE code="prime_naissance" description="Prime à la naissance" origin="openfisca">
-        <CODE code="adopt" description="facteur multitplicatif de la prime à l'adoption, en pourcentage de la BMAF" format="percent">
+        <CODE code="adopt" description="facteur multitplicatif de la prime à l'adoption, en pourcentage de la BMAF" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="2" />
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="2" />
         </CODE>
-        <CODE code="prime_tx" description="Prime à la naissance et à l'adoption, en pourcentage de la BMAF" format="percent">
+        <CODE code="prime_tx" description="Prime à la naissance et à l'adoption, en pourcentage de la BMAF" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="2.2975" />
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="2.2975" />
         </CODE>

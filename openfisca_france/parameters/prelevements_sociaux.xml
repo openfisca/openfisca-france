@@ -2093,7 +2093,7 @@
     </NODE>
     <NODE both_origins="true" code="activite" description="Revenus d'activité" origin="ipp">
       <NODE code="deductible" description="CSG déductible" origin="openfisca">
-        <BAREME code="abattement" description="Abattement de la base de la CSG déductible">
+        <BAREME code="abattement" description="Abattement de la base de la CSG déductible" origin="openfisca">
           <TRANCHE code="tranche0">
             <TAUX>
               <VALUE deb="2015-01-01" fuzzy="true" valeur=".0175" />
@@ -2117,13 +2117,13 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <CODE code="taux" description="taux de la CSG déductible" format="percent">
+        <CODE code="taux" description="taux de la CSG déductible" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".051" />
           <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".051" />
         </CODE>
       </NODE>
       <NODE code="imposable" description="CSG imposable" origin="openfisca">
-        <BAREME code="abattement" description="Abattement de la base de la CSG imposable">
+        <BAREME code="abattement" description="Abattement de la base de la CSG imposable" origin="openfisca">
           <TRANCHE code="tranche0">
             <TAUX>
               <VALUE deb="2015-01-01" fuzzy="true" valeur=".0175" />
@@ -2147,7 +2147,7 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <CODE code="taux" description="taux de la CSG imposable" format="percent">
+        <CODE code="taux" description="taux de la CSG imposable" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".024" />
           <VALUE deb="1993-07-01" fin="2014-12-31" valeur=".024" />
           <VALUE deb="1991-02-01" fin="1993-06-30" valeur=".011" />
@@ -2179,21 +2179,21 @@
       </CODE>
     </NODE>
     <NODE code="capital" description="Revenus du capital" origin="openfisca">
-      <CODE code="deduc" description="dont CSG déductible" format="percent">
+      <CODE code="deduc" description="dont CSG déductible" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur=".051" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur=".051" />
         <VALUE deb="2004-01-01" fin="2011-12-31" valeur=".058" />
         <VALUE deb="2000-01-01" fin="2003-12-31" valeur=".051" />
       </CODE>
-      <CODE code="glob" description="Taux global" format="percent">
+      <CODE code="glob" description="Taux global" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.082" />
         <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.082" />
         <VALUE deb="2000-01-01" fin="2003-12-31" valeur="0.075" />
       </CODE>
     </NODE>
     <NODE code="chomage" description="Allocations chômage" origin="openfisca">
-      <NODE code="deductible" description="CSG déductible">
-        <BAREME code="abattement" description="Abattement de la base de la CSG déductible">
+      <NODE code="deductible" description="CSG déductible" origin="openfisca">
+        <BAREME code="abattement" description="Abattement de la base de la CSG déductible" origin="openfisca">
           <TRANCHE code="tranche0">
             <TAUX>
               <VALUE deb="2015-01-01" fuzzy="true" valeur=".0175" />
@@ -2217,20 +2217,20 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
+        <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".042" />
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
           <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
         </CODE>
-        <CODE code="taux_reduit" description="taux réduit de la CSG déductible" format="percent">
+        <CODE code="taux_reduit" description="taux réduit de la CSG déductible" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".038" />
           <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
         </CODE>
       </NODE>
-      <NODE code="imposable" description="CSG imposable">
-        <BAREME code="abattement" description="Abattement de la base de la CSG imposable">
+      <NODE code="imposable" description="CSG imposable" origin="openfisca">
+        <BAREME code="abattement" description="Abattement de la base de la CSG imposable" origin="openfisca">
           <TRANCHE code="tranche0">
             <TAUX>
               <VALUE deb="2015-01-01" fuzzy="true" valeur=".0175" />
@@ -2254,46 +2254,46 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
-        <CODE code="taux" description="taux de la CSG imposable" format="percent">
+        <CODE code="taux" description="taux de la CSG imposable" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".024" />
           <VALUE deb="1997-01-01" fin="2014-12-31" valeur=".024" />
         </CODE>
       </NODE>
-      <CODE code="min_exo" description="Revenu minimum imposable (en multiple du smic annuel brut)">
+      <CODE code="min_exo" description="Revenu minimum imposable (en multiple du smic annuel brut)" origin="openfisca">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="1" />
       </CODE>
     </NODE>
     <NODE code="indemnites_journalieres" description="Indemnités journalières" origin="openfisca">
-      <NODE code="deductible" description="CSG déductible">
-        <CODE code="taux" description="taux plein de la CSG déductible" format="percent">
+      <NODE code="deductible" description="CSG déductible" origin="openfisca">
+        <CODE code="taux" description="taux plein de la CSG déductible" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".038" />
           <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
         </CODE>
       </NODE>
-      <NODE code="imposable" description="CSG imposable">
-        <CODE code="taux" description="taux de la CSG imposable" format="percent">
+      <NODE code="imposable" description="CSG imposable" origin="openfisca">
+        <CODE code="taux" description="taux de la CSG imposable" format="percent" origin="openfisca">
           <VALUE deb="2014-10-11" fuzzy="true" valeur=".024" />
           <VALUE deb="1997-01-01" fin="2014-10-10" valeur=".024" />
         </CODE>
       </NODE>
     </NODE>
     <NODE code="preretraite" description="Allocations de préretraite" origin="openfisca">
-      <NODE code="deductible" description="CSG déductible">
-        <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
+      <NODE code="deductible" description="CSG déductible" origin="openfisca">
+        <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".042" />
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
           <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
         </CODE>
-        <CODE code="taux_reduit" description="taux réduit de la CSG déductible" format="percent">
+        <CODE code="taux_reduit" description="taux réduit de la CSG déductible" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".038" />
           <VALUE deb="2008-01-01" fin="2014-12-31" valeur=".038" />
         </CODE>
       </NODE>
-      <NODE code="imposable" description="CSG imposable">
-        <CODE code="taux" description="taux de la CSG imposable" format="percent">
+      <NODE code="imposable" description="CSG imposable" origin="openfisca">
+        <CODE code="taux" description="taux de la CSG imposable" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".033" />
           <VALUE deb="2007-10-11" fin="2014-12-31" valeur=".033" />
           <VALUE deb="1998-01-01" fin="2007-10-10" valeur=".024" />
@@ -2354,21 +2354,21 @@
       </NODE>
     </NODE>
     <NODE code="retraite" description="Pensions de retraites et d'invalidité" origin="openfisca">
-      <NODE code="deductible" description="CSG déductible">
-        <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent">
+      <NODE code="deductible" description="CSG déductible" origin="openfisca">
+        <CODE code="taux_plein" description="taux plein de la CSG déductible" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".042" />
           <VALUE deb="2005-01-01" fin="2014-12-31" valeur=".042" />
           <VALUE deb="1998-01-01" fin="2004-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
         </CODE>
-        <CODE code="taux_reduit" description="taux réduit de la CSG déductible" format="percent">
+        <CODE code="taux_reduit" description="taux réduit de la CSG déductible" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".038" />
           <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".038" />
           <VALUE deb="1997-01-01" fin="1997-12-31" valeur=".01" />
         </CODE>
       </NODE>
-      <NODE code="imposable" description="CSG imposable">
-        <CODE code="taux" description="taux de la CSG imposable" format="percent">
+      <NODE code="imposable" description="CSG imposable" origin="openfisca">
+        <CODE code="taux" description="taux de la CSG imposable" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".024" />
           <VALUE deb="1997-01-01" fin="2014-12-31" valeur=".024" />
         </CODE>
