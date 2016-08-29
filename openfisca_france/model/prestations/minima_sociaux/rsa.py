@@ -86,7 +86,6 @@ class rsa_base_ressources_individu(Variable):
             'dedommagement_victime_amiante',
             'div_ms',
             'gains_exceptionnels',
-            'indemnites_stage',
             'pensions_alimentaires_percues',
             'pensions_invalidite',
             'prestation_compensatoire',
