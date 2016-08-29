@@ -321,3 +321,24 @@
   output_variables:
     rsa:
       "2014-01": 750.46
+
+
+
+- name: "Seules les AF réellements perçues doivent être prises en compte dans le RSA"
+  period: 2016-01
+  relative_error_margin: 0.05
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+    af: 50
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "parent2"
+      age: 35
+    - id: "enfant1"
+      age: 6
+    - id: "enfant2"
+      age: 8
+  output_variables:
+    rsa_base_ressources: 50

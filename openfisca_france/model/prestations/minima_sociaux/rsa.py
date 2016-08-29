@@ -175,7 +175,6 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
         period = period.this_month
 
         prestations_calculees = [
-            'af_base',
             'rsa_forfait_asf',
             'paje_base',
            ]
@@ -187,11 +186,16 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
 
         result = sum(simulation.calculate(prestation, period) for prestation in prestations_calculees)
         result += sum(simulation.calculate_add(prestation, period.last_3_months) / 3 for prestation in prestations_autres)
+
         cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', period)
         cf = simulation.calculate('cf', period)
         # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
         cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
-        result = result + cf_non_majore
+
+        af_base = simulation.calculate('af_base', period)
+        af = simulation.calculate('af', period)
+
+        result = result + cf_non_majore + min_(af_base, af) # Si des AF on été injectées, et sont plus faibles que le
 
         return period, result
 
