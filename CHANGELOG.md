@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.1.7
+
+* Fix bug in CMU forfait_logement
+* Refactor CMU computation
+
 ## 4.1.6
 
 * Fix bugs in RSA:
