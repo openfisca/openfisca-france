@@ -1,24 +1,21 @@
-addons:
-  apt:
-    packages:
-    - python-yaml
-install:
-  - pip install --upgrade pip  # pip >= 8.0 needed to be compatible with "manylinux" wheels, used by numpy >= 1.11
-  - pip install flake8  # Not yet available in Ubuntu precise (https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise)
-  - pip install -r requirements.txt
-  - pip install --editable .[inversion_revenus]
+sudo: false # Use new Travis container-based infrastructure
 language: python
-python: "2.7"
-script: bash run-travis-tests.sh
-sudo: false
-virtualenv:
-  system_site_packages: true
+python: 2.7
+cache: pip
+install:
+  - pip install --upgrade pip wheel  # pip >= 8.0 needed to be compatible with "manylinux" wheels, used by numpy >= 1.11
+  - pip install flake8
+  - pip install -r requirements.txt
+  - ./travis-change-other-repos-branches.sh
+  - pip install --editable .[inversion_revenus]
+script: ./travis-run-tests.sh
 before_deploy:
-- openssl aes-256-cbc -K $encrypted_f6aff9134f80_key -iv $encrypted_f6aff9134f80_iv -in openfisca_bot.enc -out openfisca_bot -d
+  - python setup.py compile_catalog
+  - openssl aes-256-cbc -K $encrypted_f6aff9134f80_key -iv $encrypted_f6aff9134f80_iv -in openfisca_bot.enc -out openfisca_bot -d
 deploy:
   - provider: script
     skip_cleanup: true
-    script: ./release-tag.sh
+    script: ./travis-release-tag.sh
     on:
       branch: master
   - provider: pypi
