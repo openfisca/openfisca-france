@@ -3,6 +3,8 @@
 ## 4.1.8
 
 * Refactor rsa.py
+* Do not take stages gratification into account
+* Do not take into acccount more AF that it have been declared
 
 ## 4.1.7
 
