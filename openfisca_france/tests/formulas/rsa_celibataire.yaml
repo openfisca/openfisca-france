@@ -250,3 +250,27 @@
       "2014-01": 0
     rsa:
       "2014-01": 0
+
+- period: "2015-01"
+  name: "Pas de RSA si âge < 25"
+  input_variables:
+    date_naissance: "1990-01-02"  # 24 ans
+  output_variables:
+    rsa: 0
+
+- name: "Seul l'ASF réellement perçu doit être forfaiterement pris en compte dans le RSA"
+  period: 2016-01
+  relative_error_margin: 0.05
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1", "enfant2"]
+    asf: 100
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 6
+    - id: "enfant2"
+      age: 8
+  output_variables:
+    rsa_forfait_asf: 91.38
