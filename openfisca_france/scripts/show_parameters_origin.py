@@ -84,14 +84,26 @@ def suppress_stdout(f):
 
 def get_parameters_origin_dataframe():
     tax_benefit_system = FranceTaxBenefitSystem()
+
+    parser = input_variables_extractors.setup(tax_benefit_system)
+    captured_get_input_variables_and_parameters = suppress_stdout(parser.get_input_variables_and_parameters)
+    variable_names_by_parameter_name = collections.defaultdict(list)
+    for column in tax_benefit_system.column_by_name.values():
+        _, parameter_names = captured_get_input_variables_and_parameters(column)
+        if parameter_names is not None:
+            for parameter_name in parameter_names:
+                variable_names_by_parameter_name[parameter_name].append(column.name)
+
     legislation_json = tax_benefit_system.get_legislation(with_source_file_infos=True)
     parameters_json = get_flat_parameters(legislation_json)
     result = dict()
     for parameter_json in parameters_json:
+        variable_names = variable_names_by_parameter_name.get(parameter_json['name'])
         if 'origin' in parameter_json or 'both_origins' in parameter_json:
             result[parameter_json['name']] = dict(
+                used_by_variables = variable_names,
                 origin = parameter_json['origin'] if 'origin' in parameter_json else None,
-                both_origins = True if parameter_json.get('both_origins') else False,
+                conflicts = parameter_json['conflicts'] if 'conflicts' in parameter_json else None,
                 )
 
     import pandas as pd

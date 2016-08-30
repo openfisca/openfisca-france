@@ -45,7 +45,6 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
             'cotsoc.xml',
             'crds.xml',
             'fonc.xml',
-            'forfait_social.xml',
             'impot_revenu.xml',
             'prelevements_sociaux.xml',
             'prestations.xml',

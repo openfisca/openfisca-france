@@ -681,9 +681,17 @@ def transform_ipp_tree(root):
         )
     assert not construction_employeur_sur_tout_salaire
     #
-    prelevements_sociaux['csg'] = csg = prelevements_sociaux.pop('csg_activite')
-    csg['activite'] = csg.pop('revenus_d_activite')
-    csg['remplacement'] = prelevements_sociaux.pop('csg_remplacement')
+    prelevements_sociaux['contributions'] = contributions = dict()
+    contributions['csg'] = csg = prelevements_sociaux.pop('csg_activite')
+    csg['activite'] = csg_activite = csg.pop('revenus_d_activite')
+    csg_activite['deductible'] = csg_activite_deductible = dict()
+    csg_activite_deductible['taux'] = csg_activite.pop('taux_csg_deductible')
+    csg_activite['taux_global'] = csg_activite.pop('taux_global_csg')
+
+    csg['remplacement'] = csg_remplacement = prelevements_sociaux.pop('csg_remplacement')
+
+    contributions['crds'] = crds = prelevements_sociaux.pop('crds')
+
     #
     deces_ac = prelevements_sociaux['deces_ac']
     commercants_industriels = deces_ac['commercants_industriels']
