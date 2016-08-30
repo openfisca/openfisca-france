@@ -23,12 +23,10 @@ class aeeh(DatedVariable):
     def function_20030101(self, simulation, period):
         '''
         Allocation d'éducation de l'enfant handicapé (Allocation d'éducation spécialisée avant le 1er janvier 2006)
-
         Ce montant peut être majoré par un complément accordé par la Cdaph qui prend en compte :
         le coût du handicap de l'enfant,
         la cessation ou la réduction d'activité professionnelle d'un ou l'autre des deux parents,
         l'embauche d'une tierce personne rémunérée.
-
         Une majoration est versée au parent isolé bénéficiaire d'un complément d'Aeeh lorsqu'il cesse ou réduit
         son activité professionnelle ou lorsqu'il embauche une tierce personne rémunérée.
         '''
@@ -82,4 +80,4 @@ class aeeh(DatedVariable):
     # du complément d'AEEH et la PCH.
 
         # Ces allocations ne sont pas soumis à la CRDS
-        return period, 12 * aeeh  # annualisé
+        return period, 12 * aeeh # annualisé

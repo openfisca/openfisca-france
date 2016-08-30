@@ -77,7 +77,7 @@ class aefa(DatedVariable):
         aer_holder = simulation.compute('aer', period)
         api = simulation.calculate_add('api', period)
         rsa = simulation.calculate('rsa', period)
-        P = simulation.legislation_at(period.start).minim.aefa
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux.aefa
         af = simulation.legislation_at(period.start).prestations.prestations_familiales.af
 
         age = self.split_by_roles(age_holder, roles = ENFS)
@@ -115,7 +115,7 @@ class aefa(DatedVariable):
         aer_holder = simulation.compute('aer', period)
         api = simulation.calculate_add('api', period)
         rsa = simulation.calculate('rsa', period)
-        P = simulation.legislation_at(period.start).minim.aefa
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux.aefa
         af = simulation.legislation_at(period.start).prestations.prestations_familiales.af
 
         age = self.split_by_roles(age_holder, roles = ENFS)

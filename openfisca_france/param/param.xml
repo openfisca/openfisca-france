@@ -3683,7 +3683,7 @@
               <VALUE deb="2016-01-01" fuzzy="true" valeur="29286" />
               <VALUE deb="2014-04-01" fin="2015-12-31" valeur="29286" />
               <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
-            </CODE>F
+            </CODE>
             <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux partiel" format="integer" type="monetary">
               <VALUE deb="2016-01-01" fuzzy="true" valeur="9664" />
               <VALUE deb="2014-04-01" fin="2015-12-31" valeur="9664" />

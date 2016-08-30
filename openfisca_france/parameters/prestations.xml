@@ -2723,56 +2723,6 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="bmaf" origin="ipp">
-    <CODE code="base_mensuelle_de_calcul_des_allocations_familiales_bmaf" format="float" origin="ipp" type="monetary">
-      <VALUE deb="2016-04-01" fuzzy="true" valeur="406.62" />
-      <VALUE deb="2014-04-01" fin="2016-03-31" valeur="406.21274" />
-      <VALUE deb="2013-04-01" fin="2014-03-31" valeur="403.79" />
-      <VALUE deb="2012-01-01" fin="2013-03-31" valeur="399" />
-      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="395.04" />
-      <VALUE deb="2009-01-01" fin="2010-12-31" valeur="389.2" />
-      <VALUE deb="2008-01-01" fin="2008-12-31" valeur="377.86" />
-      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="374.12" />
-      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="367.87" />
-      <VALUE deb="2005-01-01" fin="2005-12-31" valeur="361.37" />
-      <VALUE deb="2004-01-01" fin="2004-12-31" valeur="353.59" />
-      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="347.68" />
-      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="341.87" />
-      <VALUE deb="2001-01-01" fin="2001-12-31" valeur="2196.38" />
-      <VALUE deb="2000-01-01" fin="2000-12-31" valeur="2157.54" />
-      <VALUE deb="1999-01-01" fin="1999-12-31" valeur="2146.81" />
-      <VALUE deb="1998-01-01" fin="1998-12-31" valeur="2131.68" />
-      <VALUE deb="1997-01-01" fin="1997-12-31" valeur="2108.49" />
-      <VALUE deb="1995-01-01" fin="1996-12-31" valeur="2078.97" />
-      <VALUE deb="1994-01-01" fin="1994-12-31" valeur="2054.32" />
-      <VALUE deb="1993-01-01" fin="1993-12-31" valeur="2014.04" />
-      <VALUE deb="1992-07-01" fin="1992-12-31" valeur="1974" />
-      <VALUE deb="1992-01-01" fin="1992-06-30" valeur="1939.64" />
-      <VALUE deb="1991-07-01" fin="1991-12-31" valeur="1920.44" />
-      <VALUE deb="1991-01-01" fin="1991-06-30" valeur="1905.2" />
-      <VALUE deb="1990-07-01" fin="1990-12-31" valeur="1873.35" />
-      <VALUE deb="1990-01-01" fin="1990-06-30" valeur="1848.4" />
-      <VALUE deb="1989-07-01" fin="1989-12-31" valeur="1807.9" />
-      <VALUE deb="1989-01-01" fin="1989-06-30" valeur="1789.83" />
-      <VALUE deb="1988-07-01" fin="1988-12-31" valeur="1770.18" />
-      <VALUE deb="1988-01-01" fin="1988-06-30" valeur="1745.4" />
-      <VALUE deb="1987-07-01" fin="1987-12-31" valeur="1700.18" />
-      <VALUE deb="1986-07-01" fin="1987-06-30" valeur="1683.35" />
-      <VALUE deb="1986-01-01" fin="1986-06-30" valeur="1662.57" />
-      <VALUE deb="1985-07-01" fin="1985-12-31" valeur="1642.05" />
-      <VALUE deb="1985-01-01" fin="1985-06-30" valeur="1602" />
-      <VALUE deb="1984-07-01" fin="1984-12-31" valeur="1549.33" />
-      <VALUE deb="1984-01-01" fin="1984-06-30" valeur="1513.76" />
-      <VALUE deb="1983-07-01" fin="1983-12-31" valeur="1479" />
-      <VALUE deb="1983-01-01" fin="1983-06-30" valeur="1422" />
-      <VALUE deb="1982-07-01" fin="1982-12-31" valeur="1323" />
-      <VALUE deb="1981-07-01" fin="1982-06-30" valeur="1093.25" />
-      <VALUE deb="1978-07-01" fin="1981-06-30" valeur="850" />
-      <VALUE deb="1978-01-01" fin="1978-06-30" valeur="818" />
-      <VALUE deb="1977-07-01" fin="1977-12-31" valeur="768" />
-      <VALUE deb="1976-08-01" fin="1977-06-30" valeur="694.5" />
-    </CODE>
-  </NODE>
   <NODE code="def_biactif" origin="ipp">
     <NODE code="revenu_professionnel_plancher_pour_les_couples_biactifs" origin="ipp">
       <CODE code="en_nombre_de_fois_de_la_bmaf" origin="ipp">
@@ -2792,9 +2742,6 @@
     </CODE>
     <CODE code="age_maximal_pour_les_personnes_a_charge_en_apprentissage_en_stage_de_formation_ou_donnant_droit_a_l_aes_1" origin="ipp">
       <VALUE deb="1985-12-22" fuzzy="true" valeur="20" />
-    </CODE>
-    <CODE code="revenu_plafond_pour_les_personnes_a_charge_n_etant_plus_sous_l_obligation_scolaire_en_du_smic_2" format="percent" origin="ipp">
-      <VALUE deb="1985-12-22" fuzzy="true" valeur="0.55" />
     </CODE>
   </NODE>
   <NODE code="icaf" origin="ipp">
@@ -3145,6 +3092,20 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="7455.3" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="7323.48" />
       </CODE>
+      <CODE code="personnes_seules" format="float" origin="ipp" type="monetary">
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="9609.6" />
+        <VALUE deb="2014-10-01" fin="2016-03-31" valeur="9600" />
+        <VALUE deb="2014-04-01" fin="2014-09-30" valeur="9503.89" />
+        <VALUE deb="2013-04-01" fin="2014-03-31" valeur="9447.21" />
+        <VALUE deb="2012-04-01" fin="2013-03-31" valeur="9325.98" />
+        <VALUE deb="2011-04-01" fin="2012-03-31" valeur="8907.34" />
+        <VALUE deb="2010-04-01" fin="2011-03-31" valeur="8507.49" />
+        <VALUE deb="2009-04-01" fin="2010-03-31" valeur="8309.27" />
+        <VALUE deb="2008-09-01" fin="2009-03-31" valeur="7781.27" />
+        <VALUE deb="2008-01-01" fin="2008-08-31" valeur="7719.52" />
+        <VALUE deb="2007-01-01" fin="2007-12-31" valeur="7635.53" />
+        <VALUE deb="2006-01-01" fin="2006-12-31" valeur="7500.53" />
+      </CODE>
       <CODE both_origins="true" code="plafond_ressources_couple" description="Plafond de ressources annuelles pour un couple" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="14918.9" />
         <VALUE deb="2014-10-01" fin="2016-03-31" valeur="14904" />
@@ -3159,9 +3120,9 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="13374.16" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="13137.69" />
       </CODE>
-      <CODE both_origins="true" code="plafond_ressources_seul" description="Plafond de ressources annuelles pour une personne seule" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="9609.6" />
-        <VALUE deb="2014-10-01" fin="2016-03-31" valeur="9600" />
+      <CODE code="plafond_ressources_seul" description="Plafond de ressources annuelles pour une personne seule" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="9600" />
+        <VALUE deb="2014-10-01" fin="2015-12-31" valeur="9600" />
         <VALUE deb="2014-04-01" fin="2014-09-30" valeur="9503.89" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="9447.21" />
         <VALUE deb="2012-04-01" fin="2013-03-31" valeur="9325.98" />
@@ -3172,6 +3133,10 @@
         <VALUE deb="2008-01-01" fin="2008-08-31" valeur="7719.52" />
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="7635.53" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="7500.53" />
+        <VALUE deb="2005-01-01" fin="2005-12-31" valeur="7367.78688" />
+        <VALUE deb="2004-01-01" fin="2004-12-31" valeur="7223.45" />
+        <VALUE deb="2003-01-01" fin="2003-12-31" valeur="7102.56671" />
+        <VALUE deb="2002-01-01" fin="2002-12-31" valeur="6997.60267" />
       </CODE>
       <CODE code="taux_incapacite_aspa_anticipe" description="Taux d'incapacité nécessaire pour percevoir l'ASPA de manière anticipée" format="percent" origin="openfisca">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
@@ -3653,6 +3618,123 @@
       </CODE>
     </NODE>
   </NODE>
+  <NODE code="paje_clca" origin="ipp">
+    <NODE code="complement_de_libre_choix_d_activite_clca_pour_les_beneficiaires_de_l_allocation_de_base_enfant_ne_ou_adopte_apres_avril_2014" origin="ipp">
+      <CODE code="taux_partiel_50" format="percent" origin="ipp">
+        <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.6246" />
+      </CODE>
+      <CODE code="taux_partiel_entre_50_et_80" format="percent" origin="ipp">
+        <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.3603" />
+      </CODE>
+      <CODE code="taux_plein" format="percent" origin="ipp">
+        <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.9662" />
+      </CODE>
+    </NODE>
+    <NODE code="complement_de_libre_choix_d_activite_clca_pour_les_non_beneficiaires_de_l_allocation_de_base_enfant_ne_ou_adopte_avant_avril_2014" origin="ipp">
+      <CODE code="prestation_partagee_d_education_de_l_enfant_prepare" format="percent" origin="ipp">
+        <VALUE deb="2014-04-01" fin="2014-12-31" valeur="0.9662" />
+        <VALUE deb="2004-01-01" fin="2014-03-31" valeur="1.4257" />
+      </CODE>
+      <CODE code="taux_partiel_50" format="percent" origin="ipp">
+        <VALUE deb="2014-04-01" fin="2014-12-31" valeur="0.6246" />
+        <VALUE deb="2004-01-01" fin="2014-03-31" valeur="1.0841" />
+      </CODE>
+      <CODE code="taux_partiel_entre_50_et_80" format="percent" origin="ipp">
+        <VALUE deb="2014-04-01" fin="2014-12-31" valeur="0.3603" />
+        <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0.8198" />
+      </CODE>
+    </NODE>
+    <NODE code="complement_optionnel_de_libre_choix_d_activite" origin="ipp">
+      <CODE code="taux_plein_duree_de_l_arret_predeterminee" format="percent" origin="ipp">
+        <VALUE deb="2004-01-01" fin="2014-12-31" valeur="1.5793" />
+      </CODE>
+    </NODE>
+  </NODE>
+  <NODE code="paje_cmg" origin="ipp">
+    <NODE code="complement_libre_choix_du_mode_de_garde_clcmg_en_de_la_bmaf_1" origin="ipp">
+      <CODE code="revenus_inferieurs_a_45_du_plafond_d_allocation" format="percent" origin="ipp">
+        <VALUE deb="2012-06-01" fuzzy="true" valeur="1.0067" />
+        <VALUE deb="2008-05-01" fin="2012-05-31" valeur="1.1404" />
+        <VALUE deb="2004-01-01" fin="2008-04-30" valeur="1.0067" />
+      </CODE>
+      <CODE code="revenus_superieurs_a_45_du_plafond_d_allocation" format="percent" origin="ipp">
+        <VALUE deb="2004-01-01" fuzzy="true" valeur="0.7191" />
+      </CODE>
+      <CODE code="revenus_superieurs_au_plafond_d_allocation" format="percent" origin="ipp">
+        <VALUE deb="2004-01-01" fuzzy="true" valeur="0.4314" />
+      </CODE>
+    </NODE>
+    <CODE code="majoration_du_plafond_pour_une_personne_isolee" format="percent" origin="ipp">
+      <VALUE deb="2008-05-01" fuzzy="true" valeur="0.4" />
+    </CODE>
+    <CODE code="remuneration_brute_maximale_de_l_assistante_maternelle_par_jour_et_par_enfant_en_multiple_du_smic_horaire" origin="ipp">
+      <VALUE deb="2004-01-01" fuzzy="true" valeur="5" />
+    </CODE>
+    <NODE code="taux_pour_recours_a_une_assistante_maternelle_une_association_une_entreprise_ou_une_microcreche_en_de_la_bmaf" origin="ipp">
+      <CODE code="apres_le_second_plafond" format="percent" origin="ipp">
+        <VALUE deb="2004-01-01" fuzzy="true" valeur="1.1505" />
+      </CODE>
+      <CODE code="sous_le_premier_plafond" format="percent" origin="ipp">
+        <VALUE deb="2004-01-01" fuzzy="true" valeur="1.7257" />
+      </CODE>
+      <CODE code="sous_le_second_plafond" format="percent" origin="ipp">
+        <VALUE deb="2004-01-01" fuzzy="true" valeur="1.4381" />
+      </CODE>
+    </NODE>
+    <NODE code="taux_pour_recours_a_une_garde_a_domicile_en_de_la_bmaf" origin="ipp">
+      <CODE code="apres_le_second_plafond" format="percent" origin="ipp">
+        <VALUE deb="2004-01-01" fuzzy="true" valeur="1.51" />
+      </CODE>
+      <CODE code="sous_le_premier_plafond" format="percent" origin="ipp">
+        <VALUE deb="2004-01-01" fuzzy="true" valeur="2.0853" />
+      </CODE>
+      <CODE code="sous_le_second_plafond" format="percent" origin="ipp">
+        <VALUE deb="2004-01-01" fuzzy="true" valeur="1.7979" />
+      </CODE>
+    </NODE>
+  </NODE>
+  <NODE code="paje_prepare" origin="ipp">
+    <NODE code="age_limite" origin="ipp">
+      <CODE code="etre_ne_ou_adopte_apres" origin="ipp">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="2015" />
+      </CODE>
+      <CODE code="pour_les_enfants_adoptes" origin="ipp">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
+      </CODE>
+      <CODE code="pour_un_enfant_non_adopte" origin="ipp">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
+      </CODE>
+    </NODE>
+    <NODE code="age_maximal_du_plus_jeune_enfant_pour_beneficier_de_la_prepare_en_annee_1" origin="ipp">
+      <CODE code="deux_enfants_ou_plus" origin="ipp">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
+      </CODE>
+      <CODE code="un_enfant" origin="ipp">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="1" />
+      </CODE>
+    </NODE>
+    <NODE code="condition_prepare_majoree" origin="ipp">
+      <CODE code="nombre_d_enfants_a_charge_minimum" origin="ipp">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
+      </CODE>
+    </NODE>
+    <NODE code="prepare_majoree_en_de_la_bmaf" origin="ipp">
+      <CODE code="taux" format="percent" origin="ipp">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="1.5793" />
+      </CODE>
+    </NODE>
+    <NODE code="prestation_partagee_d_education_de_l_enfant_prepare_en_de_la_bmaf" origin="ipp">
+      <CODE code="prestation_partagee_d_education_de_l_enfant_prepare" format="percent" origin="ipp">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.9662" />
+      </CODE>
+      <CODE code="taux_partiel_50" format="percent" origin="ipp">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.6246" />
+      </CODE>
+      <CODE code="taux_partiel_entre_50_et_80" format="percent" origin="ipp">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.3603" />
+      </CODE>
+    </NODE>
+  </NODE>
   <NODE code="pd" origin="ipp">
     <NODE code="taux_en_de_la_bmaf" origin="ipp">
       <CODE code="1_enfant" format="percent" origin="ipp">
@@ -3832,12 +3914,6 @@
       </NODE>
     </NODE>
     <NODE both_origins="true" code="af" description="Allocations familiales" origin="ipp">
-      <CODE code="2_enfants" format="percent" origin="ipp">
-        <VALUE deb="1982-02-01" fuzzy="true" valeur="0.32" />
-        <VALUE deb="1981-07-01" fin="1982-01-31" valeur="0.255" />
-        <VALUE deb="1978-01-01" fin="1981-06-30" valeur="0.23" />
-        <VALUE deb="1976-08-01" fin="1977-12-31" valeur="0.22" />
-      </CODE>
       <NODE both_origins="true" code="af_dom" origin="ipp">
         <CODE both_origins="true" code="age_1er_enf_tranche_1_dom" description="Âge de début de la 1ere majoration" origin="ipp">
           <VALUE deb="1999-01-01" fuzzy="true" valeur="11" />
@@ -3852,50 +3928,43 @@
         </CODE>
         <NODE code="majoration_a_partir_du_deuxieme_enfant_en_de_la_bmaf_dom" origin="ipp">
           <CODE code="taux_2eme_enfant" format="percent" origin="ipp">
-            <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.2788" />
-            <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
+            <VALUE deb="1993-01-01" fin="1998-12-31" valeur="0.2788" />
             <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.2715" />
             <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.2594" />
             <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.2463" />
           </CODE>
           <CODE code="taux_3eme_enfant" format="percent" origin="ipp">
-            <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.3236" />
-            <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
+            <VALUE deb="1993-01-01" fin="1998-12-31" valeur="0.3236" />
             <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.3084" />
             <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.283" />
             <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.2572" />
           </CODE>
           <CODE code="taux_4eme_enfant" format="percent" origin="ipp">
-            <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.3457" />
-            <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
+            <VALUE deb="1993-01-01" fin="1998-12-31" valeur="0.3457" />
             <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.3344" />
             <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.3155" />
             <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.2978" />
           </CODE>
           <CODE code="taux_5eme_enfant" format="percent" origin="ipp">
-            <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.2806" />
-            <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
+            <VALUE deb="1993-01-01" fin="1998-12-31" valeur="0.2806" />
             <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.2578" />
             <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.2197" />
             <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.1812" />
           </CODE>
           <CODE code="taux_6eme_enfant_et_plus" format="percent" origin="ipp">
-            <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.2576" />
-            <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
+            <VALUE deb="1993-01-01" fin="1998-12-31" valeur="0.2576" />
             <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.2307" />
             <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.1859" />
             <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.1411" />
           </CODE>
           <CODE code="taux_de_majoration_de_la_1ere_tranche_d_age" format="percent" origin="ipp">
-            <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.0674" />
-            <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
+            <VALUE deb="1993-01-01" fin="1998-12-31" valeur="0.0674" />
             <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.0634" />
             <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.0567" />
             <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.0505" />
           </CODE>
           <CODE code="taux_de_majoration_de_la_2eme_tranche_d_age" format="percent" origin="ipp">
-            <VALUE deb="1993-09-08" fin="1998-12-31" valeur="0.1161" />
-            <VALUE deb="1993-01-01" fin="1993-09-07" valeur="0" />
+            <VALUE deb="1993-01-01" fin="1998-12-31" valeur="0.1161" />
             <VALUE deb="1992-07-01" fin="1992-12-31" valeur="0.1083" />
             <VALUE deb="1992-02-12" fin="1992-06-30" valeur="0.0954" />
             <VALUE deb="1991-08-06" fin="1992-02-11" valeur="0.0827" />
@@ -3929,14 +3998,13 @@
         <VALUE deb="2014-04-01" fuzzy="true" valeur="20" />
         <VALUE deb="2003-07-01" fin="2014-03-31" valeur="20" />
       </CODE>
-      <CODE code="bmaf" description="Base mensuelle des allocations familiales" format="float" origin="openfisca" type="monetary">
+      <CODE both_origins="true" code="bmaf" description="Base mensuelle des allocations familiales" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="406.62" />
-        <VALUE deb="2014-04-01" fin="2016-03-31" valeur="406.21" />
+        <VALUE deb="2014-04-01" fin="2016-03-31" valeur="406.21274" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="403.79" />
-        <VALUE deb="2012-04-01" fin="2013-03-31" valeur="399" />
-        <VALUE deb="2011-01-01" fin="2012-03-31" valeur="395.04" />
-        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="389.20" />
-        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="389.20" />
+        <VALUE deb="2012-01-01" fin="2013-03-31" valeur="399" />
+        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="395.04" />
+        <VALUE deb="2009-01-01" fin="2010-12-31" valeur="389.2" />
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="377.86" />
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="374.12" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="367.87" />
@@ -3944,7 +4012,39 @@
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="353.59" />
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="347.68" />
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="341.87" />
-        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="334.84" />
+        <VALUE deb="2001-01-01" fin="2001-12-31" valeur="2196.38" />
+        <VALUE deb="2000-01-01" fin="2000-12-31" valeur="2157.54" />
+        <VALUE deb="1999-01-01" fin="1999-12-31" valeur="2146.81" />
+        <VALUE deb="1998-01-01" fin="1998-12-31" valeur="2131.68" />
+        <VALUE deb="1997-01-01" fin="1997-12-31" valeur="2108.49" />
+        <VALUE deb="1995-01-01" fin="1996-12-31" valeur="2078.97" />
+        <VALUE deb="1994-01-01" fin="1994-12-31" valeur="2054.32" />
+        <VALUE deb="1993-01-01" fin="1993-12-31" valeur="2014.04" />
+        <VALUE deb="1992-07-01" fin="1992-12-31" valeur="1974" />
+        <VALUE deb="1992-01-01" fin="1992-06-30" valeur="1939.64" />
+        <VALUE deb="1991-07-01" fin="1991-12-31" valeur="1920.44" />
+        <VALUE deb="1991-01-01" fin="1991-06-30" valeur="1905.2" />
+        <VALUE deb="1990-07-01" fin="1990-12-31" valeur="1873.35" />
+        <VALUE deb="1990-01-01" fin="1990-06-30" valeur="1848.4" />
+        <VALUE deb="1989-07-01" fin="1989-12-31" valeur="1807.9" />
+        <VALUE deb="1989-01-01" fin="1989-06-30" valeur="1789.83" />
+        <VALUE deb="1988-07-01" fin="1988-12-31" valeur="1770.18" />
+        <VALUE deb="1988-01-01" fin="1988-06-30" valeur="1745.4" />
+        <VALUE deb="1987-07-01" fin="1987-12-31" valeur="1700.18" />
+        <VALUE deb="1986-07-01" fin="1987-06-30" valeur="1683.35" />
+        <VALUE deb="1986-01-01" fin="1986-06-30" valeur="1662.57" />
+        <VALUE deb="1985-07-01" fin="1985-12-31" valeur="1642.05" />
+        <VALUE deb="1985-01-01" fin="1985-06-30" valeur="1602" />
+        <VALUE deb="1984-07-01" fin="1984-12-31" valeur="1549.33" />
+        <VALUE deb="1984-01-01" fin="1984-06-30" valeur="1513.76" />
+        <VALUE deb="1983-07-01" fin="1983-12-31" valeur="1479" />
+        <VALUE deb="1983-01-01" fin="1983-06-30" valeur="1422" />
+        <VALUE deb="1982-07-01" fin="1982-12-31" valeur="1323" />
+        <VALUE deb="1981-07-01" fin="1982-06-30" valeur="1093.25" />
+        <VALUE deb="1978-07-01" fin="1981-06-30" valeur="850" />
+        <VALUE deb="1978-01-01" fin="1978-06-30" valeur="818" />
+        <VALUE deb="1977-07-01" fin="1977-12-31" valeur="768" />
+        <VALUE deb="1976-08-01" fin="1977-06-30" valeur="694.5" />
       </CODE>
       <CODE code="crds" description="Taux de crds" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.005" />
@@ -4052,24 +4152,23 @@
           </CODE>
         </NODE>
       </NODE>
-      <CODE code="seuil_rev_taux" description="Seuil de revenu pour être considéré comme enfant à charge (en smic)" format="percent" origin="openfisca">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur=".55" />
-        <VALUE deb="2001-07-01" fin="2014-03-31" valeur=".55" />
+      <CODE both_origins="true" code="seuil_rev_taux" description="Seuil de revenu pour être considéré comme enfant à charge (en smic)" format="percent" origin="ipp">
+        <VALUE deb="1985-12-22" fuzzy="true" valeur="0.55" />
       </CODE>
       <NODE both_origins="true" code="taux" description="Taux (% de la BMAF)" origin="ipp">
         <CODE code="enf1" description="Premier enfant à charge" format="percent" origin="openfisca">
           <VALUE deb="2016-04-01" fuzzy="true" valeur="0" />
           <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0" />
         </CODE>
-        <CODE code="enf2" description="Deuxième enfant à charge" format="percent" origin="openfisca">
-          <VALUE deb="2016-04-01" fuzzy="true" valeur="0.32" />
-          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.32" />
+        <CODE both_origins="true" code="enf2" description="Deuxième enfant à charge" format="percent" origin="ipp">
+          <VALUE deb="1982-02-01" fuzzy="true" valeur="0.32" />
+          <VALUE deb="1981-07-01" fin="1982-01-31" valeur="0.255" />
+          <VALUE deb="1978-01-01" fin="1981-06-30" valeur="0.23" />
+          <VALUE deb="1976-08-01" fin="1977-12-31" valeur="0.22" />
         </CODE>
-        <CODE both_origins="true" code="enf3" description="Troisième enfant à charge et suivants" format="percent" origin="ipp">
-          <VALUE deb="1986-01-01" fuzzy="true" valeur="0.41" />
-          <VALUE deb="1981-07-01" fin="1985-12-31" valeur="0.39" />
-          <VALUE deb="1978-01-01" fin="1981-06-30" valeur="0.35" />
-          <VALUE deb="1976-08-01" fin="1977-12-31" valeur="0.33" />
+        <CODE code="enf3" description="Troisième enfant à charge et suivants" format="percent" origin="openfisca">
+          <VALUE deb="2016-04-01" fuzzy="true" valeur="0.41" />
+          <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.41" />
         </CODE>
       </NODE>
     </NODE>
@@ -4462,17 +4561,13 @@
       </CODE>
     </NODE>
     <NODE both_origins="true" code="paje" description="Prestation d'accueil du jeune enfant" origin="ipp">
-      <NODE code="age_limite" origin="ipp">
-        <CODE code="pour_les_enfants_adoptes" origin="ipp">
-          <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
-        </CODE>
-      </NODE>
-      <CODE code="age_max_enfant" origin="ipp">
+      <CODE code="age_limite_de_l_enfant_adopte_ou_non" origin="ipp">
         <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
       </CODE>
-      <NODE both_origins="true" code="base" description="Allocation de base" origin="ipp">
-        <CODE both_origins="true" code="age_max_enfant" description="Limite d'âge (stricte) pour bénéficier de la PAJE" origin="ipp">
-          <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
+      <NODE code="base" description="Allocation de base" origin="openfisca">
+        <CODE code="age_max_enfant" description="Limite d'âge (stricte) pour bénéficier de la PAJE" format="integer" origin="openfisca" type="age">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="3" />
+          <VALUE deb="2004-01-01" fin="2014-12-31" valeur="3" />
         </CODE>
         <NODE code="apres_2014" origin="openfisca">
           <CODE code="plaf_tx_par_enf" description="Majoration du plafond par enfant" format="percent" origin="openfisca">
@@ -4485,7 +4580,7 @@
               <VALUE deb="2016-01-01" fuzzy="true" valeur="29286" />
               <VALUE deb="2014-04-01" fin="2015-12-31" valeur="29286" />
               <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
-            </CODE>F
+            </CODE>
             <CODE code="plaf_maj" description="Majoration pour biactifs et isolés, pour plafond taux partiel" format="integer" origin="openfisca" type="monetary">
               <VALUE deb="2016-01-01" fuzzy="true" valeur="9664" />
               <VALUE deb="2014-04-01" fin="2015-12-31" valeur="9664" />
@@ -4505,9 +4600,9 @@
             </CODE>
           </NODE>
         </NODE>
-        <NODE both_origins="true" code="avant_2014" origin="ipp">
-          <CODE both_origins="true" code="majoration_biact_parent_isoles" description="Majoration pour biactifs et isolés" format="float" origin="ipp" type="monetary">
-            <VALUE deb="2016-01-01" fuzzy="true" valeur="11534" />
+        <NODE code="avant_2014" origin="openfisca">
+          <CODE code="majoration_biact_parent_isoles" description="Majoration pour biactifs et isolés" format="integer" origin="openfisca" type="monetary">
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="11488" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="11488" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="11408" />
             <VALUE deb="2013-01-01" fin="2013-12-31" valeur="11195" />
@@ -4521,12 +4616,12 @@
             <VALUE deb="2004-07-01" fin="2005-06-30" valeur="7905" />
             <VALUE deb="2004-01-01" fin="2004-06-30" valeur="7758" />
           </CODE>
-          <CODE both_origins="true" code="plafond_ressources_0_enf" description="Plafond de ressources" format="float" origin="ipp" type="monetary">
-            <VALUE deb="2016-01-01" fuzzy="true" valeur="28697" />
+          <CODE code="plafond_ressources_0_enf" description="Plafond de ressources" format="integer" origin="openfisca" type="monetary">
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="28583" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="28583" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="28384" />
             <VALUE deb="2013-01-01" fin="2013-12-31" valeur="27855" />
-            <VALUE deb="2012-01-01" fin="2012-12-31" valeur="27282" />
+            <VALUE deb="2012-01-01" fin="2012-12-31" valeur="27283" />
             <VALUE deb="2011-01-01" fin="2011-12-31" valeur="27012" />
             <VALUE deb="2010-01-01" fin="2010-12-31" valeur="26985" />
             <VALUE deb="2009-01-01" fin="2009-12-31" valeur="26250" />
@@ -4536,20 +4631,24 @@
             <VALUE deb="2004-07-01" fin="2005-06-30" valeur="19670" />
             <VALUE deb="2004-01-01" fin="2004-06-30" valeur="19303" />
           </CODE>
-          <CODE both_origins="true" code="taux_majoration_2_premiers_enf" description="Majoration du plafond pour les 2 premiers enfants" format="percent" origin="ipp">
-            <VALUE deb="2004-01-01" fuzzy="true" valeur="0.25" />
+          <CODE code="taux_majoration_2_premiers_enf" description="Majoration du plafond pour les 2 premiers enfants" format="percent" origin="openfisca">
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.25" />
+            <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.25" />
           </CODE>
-          <CODE both_origins="true" code="taux_majoration_3eme_enf_et_plus" description="Majoration du plafond à partir du 3ème enfant" format="percent" origin="ipp">
-            <VALUE deb="2004-01-01" fuzzy="true" valeur="0.3" />
+          <CODE code="taux_majoration_3eme_enf_et_plus" description="Majoration du plafond à partir du 3ème enfant" format="percent" origin="openfisca">
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.3" />
+            <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.3" />
           </CODE>
         </NODE>
-        <CODE both_origins="true" code="taux_allocation_base" description="Allocation de base (en % de la bmaf)" format="percent" origin="ipp">
-          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.4595" />
+        <CODE code="taux_allocation_base" description="Allocation de base (en % de la bmaf)" format="percent" origin="openfisca">
+          <VALUE deb="2015-01-01" fuzzy="true" valeur="0.4595" />
+          <VALUE deb="2004-01-01" fin="2014-12-31" valeur="0.4595" />
         </CODE>
       </NODE>
-      <NODE both_origins="true" code="clca" description="Complément libre choix d'activité" origin="ipp">
-        <CODE both_origins="true" code="age_max_enfant" description="Limite d'âge (stricte)" origin="ipp">
-          <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
+      <NODE code="clca" description="Complément libre choix d'activité" origin="openfisca">
+        <CODE code="age_max_enfant" description="Limite d'âge (stricte)" format="integer" origin="openfisca" type="age">
+          <VALUE deb="2014-01-01" fuzzy="true" valeur="3" />
+          <VALUE deb="2004-01-01" fin="2013-12-31" valeur="3" />
         </CODE>
         <CODE code="avecab_tx_inactif" description="Taux pour les personnes inactives percevant l'allocation de base de la PAJE" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.9662" />
@@ -4583,7 +4682,7 @@
           <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0.8198" />
         </CODE>
       </NODE>
-      <NODE both_origins="true" code="clmg" description="Complément de libre choix du mode de garde" origin="ipp">
+      <NODE code="clmg" description="Complément de libre choix du mode de garde" origin="openfisca">
         <CODE code="age1" description="Limite d'âge (stricte) pour une prestation pleine" format="integer" origin="openfisca" type="age">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="3" />
           <VALUE deb="2004-01-01" fin="2013-12-31" valeur="3" />
@@ -4694,15 +4793,17 @@
           <VALUE deb="2004-07-01" fin="2005-06-30" valeur="5901" />
           <VALUE deb="2004-01-01" fin="2004-06-30" valeur="5791" />
         </CODE>
-        <CODE both_origins="true" code="taux_recours_emploi_1er_plafond" description="Taux pour recours à un emploi direct avant le premier plafond" format="percent" origin="ipp">
-          <VALUE deb="2008-05-01" fuzzy="true" valeur="1.1404" />
-          <VALUE deb="2004-01-01" fin="2008-04-30" valeur="1.0067" />
+        <CODE code="taux_recours_emploi_1er_plafond" description="Taux pour recours à un emploi direct avant le premier plafond" format="percent" origin="openfisca">
+          <VALUE deb="2014-01-01" fuzzy="true" valeur="1.1404" />
+          <VALUE deb="2001-01-01" fin="2013-12-31" valeur="1.1404" />
         </CODE>
-        <CODE both_origins="true" code="taux_recours_emploi_2e_plafond" description="Taux pour recours à un emploi direct avant le second plafond" format="percent" origin="ipp">
-          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.7191" />
+        <CODE code="taux_recours_emploi_2e_plafond" description="Taux pour recours à un emploi direct avant le second plafond" format="percent" origin="openfisca">
+          <VALUE deb="2014-01-01" fuzzy="true" valeur="0.7191" />
+          <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0.7191" />
         </CODE>
-        <CODE both_origins="true" code="taux_recours_emploi_supp_2e_plafond" description="Taux pour recours à un emploi direct après le second plafond" format="percent" origin="ipp">
-          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.4314" />
+        <CODE code="taux_recours_emploi_supp_2e_plafond" description="Taux pour recours à un emploi direct après le second plafond" format="percent" origin="openfisca">
+          <VALUE deb="2014-01-01" fuzzy="true" valeur="0.4314" />
+          <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0.4314" />
         </CODE>
       </NODE>
       <NODE code="colca" description="Complément optionnel libre choix d'activité" origin="openfisca">
@@ -4719,25 +4820,35 @@
           <VALUE deb="2004-01-01" fin="2013-12-31" valeur="2.0388" />
         </CODE>
       </NODE>
-      <NODE code="complement_de_libre_choix_d_activite_clca" origin="ipp">
-        <CODE code="taux_partiel_50" format="percent" origin="ipp">
-          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.6246" />
-        </CODE>
-        <CODE code="taux_partiel_entre_50_et_80" format="percent" origin="ipp">
-          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.3603" />
-        </CODE>
-        <CODE code="taux_plein" format="percent" origin="ipp">
-          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.9662" />
-        </CODE>
-      </NODE>
-      <NODE code="complement_optionnel_de_libre_choix_d_activite" origin="ipp">
-        <CODE code="taux_plein_duree_de_l_arret_predeterminee" format="percent" origin="ipp">
-          <VALUE deb="2004-01-01" fuzzy="true" valeur="1.5793" />
-        </CODE>
-      </NODE>
       <CODE code="duree_de_versement_pour_les_enfants_adoptes_en_annee" origin="ipp">
         <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
       </CODE>
+      <CODE code="majoration_du_plafond_par_enfant_a_charge" format="percent" origin="ipp">
+        <VALUE deb="2014-04-01" fuzzy="true" valeur="0.22" />
+      </CODE>
+      <NODE code="majoration_en_ou_en_du_plafond_de_ressources_avec_0_enfant" origin="ipp">
+        <CODE code="1er_et_2eme_enfant" format="percent" origin="ipp">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.25" />
+        </CODE>
+        <CODE code="3eme_enfant_et_plus" format="percent" origin="ipp">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.3" />
+        </CODE>
+        <CODE code="biactifs_et_parents_isoles_1" format="float" origin="ipp" type="monetary">
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="11534" />
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="11488" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="11408" />
+          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="11195" />
+          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="10965" />
+          <VALUE deb="2011-01-01" fin="2011-12-31" valeur="10856" />
+          <VALUE deb="2010-01-01" fin="2010-12-31" valeur="10845" />
+          <VALUE deb="2009-01-01" fin="2009-12-31" valeur="10550" />
+          <VALUE deb="2007-07-01" fin="2008-12-31" valeur="10394" />
+          <VALUE deb="2006-07-01" fin="2007-06-30" valeur="8176" />
+          <VALUE deb="2005-07-01" fin="2006-06-30" valeur="8039" />
+          <VALUE deb="2004-07-01" fin="2005-06-30" valeur="7905" />
+          <VALUE deb="2004-01-01" fin="2004-06-30" valeur="7758" />
+        </CODE>
+      </NODE>
       <NODE code="montant_en_de_la_bmaf" origin="ipp">
         <CODE code="prime_a_l_adoption_de_la_paje_2" format="percent" origin="ipp">
           <VALUE deb="2005-08-01" fuzzy="true" valeur="4.595" />
@@ -4747,6 +4858,37 @@
           <VALUE deb="2004-01-01" fuzzy="true" valeur="2.2975" />
         </CODE>
       </NODE>
+      <NODE code="paje" origin="ipp">
+        <CODE code="allocation_de_base_en_de_la_bmaf" format="percent" origin="ipp">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="0.4595" />
+        </CODE>
+      </NODE>
+      <NODE code="periode_de_reference_pour_justifier_les_8_trimestres_de_cotisation_vieillesse_1" origin="ipp">
+        <CODE code="deux_enfants" origin="ipp">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="4" />
+        </CODE>
+        <CODE code="trois_enfants_ou_plus" origin="ipp">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="5" />
+        </CODE>
+        <CODE code="un_enfant" origin="ipp">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="2" />
+        </CODE>
+      </NODE>
+      <CODE code="plafond_de_ressources_0_enfant" format="float" origin="ipp" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="28697" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="28583" />
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="28384" />
+        <VALUE deb="2013-01-01" fin="2013-12-31" valeur="27855" />
+        <VALUE deb="2012-01-01" fin="2012-12-31" valeur="27282" />
+        <VALUE deb="2011-01-01" fin="2011-12-31" valeur="27012" />
+        <VALUE deb="2010-01-01" fin="2010-12-31" valeur="26985" />
+        <VALUE deb="2009-01-01" fin="2009-12-31" valeur="26250" />
+        <VALUE deb="2007-07-01" fin="2008-12-31" valeur="25862" />
+        <VALUE deb="2006-07-01" fin="2007-06-30" valeur="20344" />
+        <VALUE deb="2005-07-01" fin="2006-06-30" valeur="20004" />
+        <VALUE deb="2004-07-01" fin="2005-06-30" valeur="19670" />
+        <VALUE deb="2004-01-01" fin="2004-06-30" valeur="19303" />
+      </CODE>
       <NODE code="prime_naissance" description="Prime à la naissance" origin="openfisca">
         <CODE code="adopt" description="facteur multitplicatif de la prime à l'adoption, en pourcentage de la BMAF" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="2" />
