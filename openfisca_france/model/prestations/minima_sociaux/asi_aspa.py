@@ -153,16 +153,19 @@ class asi_eligibilite(Variable):
         period = period.this_month
         last_month = period.start.period('month').offset(-1)
 
-        aspa_eligibilite = simulation.calculate('aspa_eligibilite', period)
+        non_eligible_aspa = not_(simulation.calculate('aspa_eligibilite', period))
+        touche_pension_invalidite = simulation.calculate('pensions_invalidite', period) > 0
         handicap = simulation.calculate('handicap', period)
-        retraite_nette = simulation.calculate('retraite_nette', last_month)
-        pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
-
-        condition_situation = handicap & not_(aspa_eligibilite)
-        condition_pensionnement = (retraite_nette + pensions_invalidite) > 0
+        touche_retraite = simulation.calculate('retraite_nette', last_month) > 0
         condition_nationalite = simulation.calculate('asi_aspa_condition_nationalite', period)
 
-        return period, condition_situation * condition_pensionnement * condition_nationalite
+        eligible = (
+            non_eligible_aspa *
+            condition_nationalite *
+            (handicap * touche_retraite + touche_pension_invalidite)
+            )
+
+        return period, eligible
 
 
 class asi_aspa_condition_nationalite(Variable):

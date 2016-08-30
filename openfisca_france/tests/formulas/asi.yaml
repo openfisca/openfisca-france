@@ -1,0 +1,8 @@
+- name: "ASI - Une personne"
+  period: 2016-08
+  absolute_error_margin: 1
+  input_variables:
+    age: 50
+    pensions_invalidite: 200
+  output_variables:
+    asi: 404
