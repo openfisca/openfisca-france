@@ -121,7 +121,7 @@ def get_parameters_origin_dataframe():
                 used_by_variables = variable_names,
                 origin = parameter_json['origin'] if 'origin' in parameter_json else None,
                 conflicts = parameter_json['conflicts'] if 'conflicts' in parameter_json else None,
-                from = original_name if original_name else None,
+                from_variable = original_name if original_name else None,
                 )
 
     import pandas as pd
