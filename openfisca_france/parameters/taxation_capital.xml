@@ -1,4 +1,4 @@
-<NODE both_origins="true" code="taxation_capital" origin="ipp">
+<NODE code="taxation_capital" origin="ipp">
   <NODE code="bouclier" origin="ipp">
     <CODE code="taux_bouclier_fiscal" format="percent" origin="ipp">
       <VALUE deb="2006-01-01" fin="2010-12-31" valeur="0.5" />
@@ -12,8 +12,8 @@
       <VALUE deb="1982-01-01" fin="1986-12-31" valeur="0.05" />
     </CODE>
   </NODE>
-  <NODE both_origins="true" code="isf" description="Impôt de solidarité sur la fortune (ISF)" origin="ipp">
-    <BAREME both_origins="true" code="bareme" description="Impôt de solidarité" origin="ipp">
+  <NODE code="isf" description="Impôt de solidarité sur la fortune (ISF)" origin="ipp">
+    <BAREME code="bareme" description="Impôt de solidarité" origin="ipp">
       <TRANCHE code="1ere_tranche">
         <SEUIL>
           <VALUE deb="2011-01-01" fuzzy="true" valeur="800000" />
@@ -186,17 +186,17 @@
         </TAUX>
       </TRANCHE>
     </BAREME>
-    <NODE both_origins="true" code="decote" description="Décôte de l'ISF" origin="ipp">
-      <CODE both_origins="true" code="isf_base_decote" description="Base montant décote" format="float" origin="ipp" type="monetary">
+    <NODE code="decote" description="Décôte de l'ISF" origin="ipp">
+      <CODE code="isf_base_decote" conflicts="attrib:type(None)" description="Base montant décote" format="float" origin="ipp" type="monetary">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="17500" />
       </CODE>
-      <CODE both_origins="true" code="isf_borne_min_decote" description="Plancher de la décote" format="float" origin="ipp" type="monetary">
+      <CODE code="isf_borne_min_decote" description="Plancher de la décote" format="float" origin="ipp" type="monetary">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="1300000" />
       </CODE>
-      <CODE both_origins="true" code="isf_borne_sup_decote" description="Plafond de la décote" format="float" origin="ipp" type="monetary">
+      <CODE code="isf_borne_sup_decote" description="Plafond de la décote" format="float" origin="ipp" type="monetary">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="1400000" />
       </CODE>
-      <CODE both_origins="true" code="isf_taux_decote" description="Taux de la décote" format="percent" origin="ipp">
+      <CODE code="isf_taux_decote" description="Taux de la décote" format="percent" origin="ipp">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="0.0125" />
       </CODE>
     </NODE>
@@ -283,7 +283,7 @@
       <VALUE deb="1991-01-01" fin="2011-12-31" valeur="0.85" />
       <VALUE deb="1989-01-01" fin="1990-12-31" valeur="0.7" />
     </CODE>
-    <NODE both_origins="true" code="reduc_invest_don" description="Investissement PME" origin="ipp">
+    <NODE code="reduc_invest_don" description="Investissement PME" origin="ipp">
       <CODE code="limite_reduction_de_l_isf_lie_aux_dons_realises" format="float" origin="ipp" type="monetary">
         <VALUE deb="2008-01-01" fuzzy="true" valeur="50000" />
       </CODE>
@@ -298,28 +298,28 @@
         <VALUE deb="2011-01-01" fuzzy="true" valeur="45000" />
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="50000" />
       </CODE>
-      <CODE both_origins="true" code="taux_don_interet_general" description="Taux pour dons à certains organismes d'intérêt général" format="percent" origin="ipp">
+      <CODE code="taux_don_interet_general" description="Taux pour dons à certains organismes d'intérêt général" format="percent" origin="ipp">
         <VALUE deb="2008-01-01" fuzzy="true" valeur="0.75" />
       </CODE>
-      <CODE both_origins="true" code="taux_invest_direct_soc_holding" description="Taux pour investissement direct soc, holdings, fip, fcpi" format="percent" origin="ipp">
+      <CODE code="taux_invest_direct_soc_holding" description="Taux pour investissement direct soc, holdings, fip, fcpi" format="percent" origin="ipp">
         <VALUE deb="2008-01-01" fuzzy="true" valeur="0.5" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="reduc_pac" description="Réductions pour personnes à charges" origin="ipp">
+    <NODE code="reduc_pac" description="Réductions pour personnes à charges" origin="ipp">
       <CODE code="reduc_2" description="Réduction pac avec garde alternée" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="150" />
         <VALUE deb="2002-01-01" fin="2011-12-31" valeur="75" />
       </CODE>
-      <CODE both_origins="true" code="reduc_enf_garde" description="Réduction pac sans garde alternée" format="float" origin="ipp" type="monetary">
+      <CODE code="reduc_enf_garde" conflicts="attrib:format(integer)" description="Réduction pac sans garde alternée" format="float" origin="ipp" type="monetary">
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="300" />
         <VALUE deb="2002-01-01" fin="2011-12-31" valeur="150" />
         <VALUE deb="1989-01-01" fin="2001-12-31" valeur="1000" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="res_princ" description="Immeubles bâtis" origin="ipp">
-      <CODE both_origins="true" code="abattement_sur_residence_principale" description="Taux d'abattement résidence principale" format="percent" origin="ipp">
+    <NODE code="res_princ" description="Immeubles bâtis" origin="ipp">
+      <CODE code="abattement_sur_residence_principale" conflicts="children:dates_overlap((('1999-01-01', '2007-12-31'), ('2002-01-01', '2007-12-31')))" description="Taux d'abattement résidence principale" format="percent" origin="ipp">
         <VALUE deb="2008-01-01" fuzzy="true" valeur="0.3" />
         <VALUE deb="1999-01-01" fin="2007-12-31" valeur="0.2" />
       </CODE>
@@ -477,20 +477,20 @@
       </NODE>
     </NODE>
   </NODE>
-  <NODE both_origins="true" code="prelevements_sociaux" description="Prélèvement social et contributions additionnelles" origin="ipp">
+  <NODE code="prelevements_sociaux" description="Prélèvement social et contributions additionnelles" origin="ipp">
     <CODE code="add_ret" description="Contribution additionnelle solidarité autonomie (pensions de retraites, pré-retraites et invalidité)" format="percent" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur=".003" />
       <VALUE deb="2013-04-01" fin="2013-12-31" valeur=".003" />
     </CODE>
-    <NODE both_origins="true" code="caps" origin="ipp">
+    <NODE code="caps" origin="ipp">
       <CODE code="produits_de_placement" format="percent" origin="ipp">
         <VALUE deb="2004-07-01" fuzzy="true" valeur="0.003" />
       </CODE>
-      <CODE both_origins="true" code="revenus_du_patrimoine" description="Contribution additionnelle solidarité autonomie (revenus du patrimoine)" format="percent" origin="ipp">
+      <CODE code="revenus_du_patrimoine" description="Contribution additionnelle solidarité autonomie (revenus du patrimoine)" format="percent" origin="ipp">
         <VALUE deb="2004-07-01" fuzzy="true" valeur="0.003" />
         <VALUE deb="2003-01-01" fin="2004-06-30" valeur="0.0015" />
       </CODE>
-      <CODE both_origins="true" code="rsa" description="Contribution au financement du revenu de solidarité active" format="percent" origin="ipp">
+      <CODE code="rsa" conflicts="children:dates_overlap((('2009-01-01', '2011-12-31'), ('2009-01-01', '2012-12-31')))" description="Contribution au financement du revenu de solidarité active" format="percent" origin="ipp">
         <VALUE deb="2009-01-01" fin="2012-12-31" valeur="0.011" />
       </CODE>
     </NODE>
@@ -508,15 +508,15 @@
         <VALUE deb="1996-02-01" fuzzy="true" valeur="0.005" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="prelevement_social" origin="ipp">
-      <CODE both_origins="true" code="produits_de_placement" description="Prélèvement social (revenus des produits de placement)" format="percent" origin="ipp">
+    <NODE code="prelevement_social" origin="ipp">
+      <CODE code="produits_de_placement" conflicts="children:dates_overlap((('1998-01-01', '2009-12-31'), ('1998-01-01', '2010-12-31')))" description="Prélèvement social (revenus des produits de placement)" format="percent" origin="ipp">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="0.045" />
         <VALUE deb="2012-07-01" fin="2012-12-31" valeur="0.054" />
         <VALUE deb="2011-10-01" fin="2012-06-30" valeur="0.034" />
         <VALUE deb="2011-01-01" fin="2011-09-30" valeur="0.022" />
         <VALUE deb="1998-01-01" fin="2010-12-31" valeur="0.02" />
       </CODE>
-      <CODE both_origins="true" code="revenus_du_patrimoine" description="Prélèvement social (revenus du patrimoine)" format="percent" origin="ipp">
+      <CODE code="revenus_du_patrimoine" conflicts="children:dates_overlap((('2010-01-01', '2010-12-31'), ('2010-01-01', '2011-09-30')))" description="Prélèvement social (revenus du patrimoine)" format="percent" origin="ipp">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="0.045" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.054" />
         <VALUE deb="2011-10-01" fin="2011-12-31" valeur="0.034" />

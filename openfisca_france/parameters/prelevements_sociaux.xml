@@ -1,4 +1,4 @@
-<NODE both_origins="true" code="prelevements_sociaux" origin="ipp">
+<NODE code="prelevements_sociaux" origin="ipp">
   <NODE code="abat_red" origin="ipp">
     <CODE code="artistes" format="percent" origin="ipp">
       <VALUE deb="1975-01-01" fuzzy="true" valeur="0.3" />
@@ -199,8 +199,8 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE both_origins="true" code="contributions" origin="ipp">
-    <NODE both_origins="true" code="crds" description="Contribution au remboursement de la dette sociale (CRDS)" origin="ipp">
+  <NODE code="contributions" origin="ipp">
+    <NODE code="crds" description="Contribution au remboursement de la dette sociale (CRDS)" origin="ipp">
       <NODE code="activite" description="Revenus d'activité" origin="openfisca">
         <BAREME code="abattement" description="Abattement sur les revenus d'activité, du chômage et des préretraites" origin="openfisca">
           <TRANCHE code="tranche0">
@@ -245,7 +245,7 @@
         <VALUE deb="1996-02-01" fuzzy="true" valeur="0.005" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="csg" description="Contribution sociale généralisée (CSG)" origin="ipp">
+    <NODE code="csg" description="Contribution sociale généralisée (CSG)" origin="ipp">
       <NODE code="abattement" origin="ipp">
         <CODE code="au_dessus_de_4_pss" format="percent" origin="ipp">
           <VALUE deb="2005-01-01" fin="2010-12-31" valeur="0.03" />
@@ -257,8 +257,8 @@
           <VALUE deb="1991-02-01" fin="2004-12-31" valeur="0.05" />
         </CODE>
       </NODE>
-      <NODE both_origins="true" code="activite" description="Revenus d'activité" origin="ipp">
-        <NODE both_origins="true" code="deductible" description="CSG déductible" origin="ipp">
+      <NODE code="activite" description="Revenus d'activité" origin="ipp">
+        <NODE code="deductible" description="CSG déductible" origin="ipp">
           <BAREME code="abattement" description="Abattement de la base de la CSG déductible" origin="openfisca">
             <TRANCHE code="tranche0">
               <TAUX>
@@ -283,7 +283,7 @@
               </TAUX>
             </TRANCHE>
           </BAREME>
-          <CODE both_origins="true" code="taux" description="taux de la CSG déductible" format="percent" origin="ipp">
+          <CODE code="taux" description="taux de la CSG déductible" format="percent" origin="ipp">
             <VALUE deb="1998-01-01" fuzzy="true" valeur="0.051" />
             <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.01" />
           </CODE>
@@ -538,7 +538,7 @@
       </NODE>
     </NODE>
   </NODE>
-  <NODE both_origins="true" code="cotisations_sociales" origin="ipp">
+  <NODE code="cotisations_sociales" origin="ipp">
     <NODE code="agff" origin="ipp">
       <NODE code="employeur" origin="ipp">
         <BAREME code="cadre" origin="ipp">
@@ -1718,7 +1718,7 @@
         </TAUX>
       </TRANCHE>
     </BAREME>
-    <NODE both_origins="true" code="fds" origin="ipp">
+    <NODE code="fds" origin="ipp">
       <BAREME code="cotisation_exceptionnelle_solidarite" origin="ipp">
         <TRANCHE code="tranche_nulle">
           <SEUIL>
@@ -2568,13 +2568,13 @@
       <VALUE deb="2015-01-01" fuzzy="true" valeur="0.00016" />
     </CODE>
   </NODE>
-  <NODE both_origins="true" code="forfait_social" description="Forfait social" origin="ipp">
+  <NODE code="forfait_social" description="Forfait social" origin="ipp">
     <CODE code="seuil_effectif_prevoyance_complementaire" description="Seuil effectif à partir duquel les contributions patronales de prévoyance complémentaire rentrent dans l'assiette du FNAL à taux réduit" origin="openfisca">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="11" />
       <VALUE deb="2012-01-01" fin="2015-12-31" valeur="10" />
       <VALUE deb="2009-01-01" fin="2011-12-31" valeur="0" />
     </CODE>
-    <CODE both_origins="true" code="taux_plein" description="Taux plein" format="percent" origin="ipp">
+    <CODE code="taux_plein" conflicts="children:valeurs(('2012-01-01', '2012-07-31'):0.08,.08)" description="Taux plein" format="percent" origin="ipp">
       <VALUE deb="2012-08-01" fuzzy="true" valeur="0.2" />
       <VALUE deb="2012-01-01" fin="2012-07-31" valeur="0.08" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.06" />
