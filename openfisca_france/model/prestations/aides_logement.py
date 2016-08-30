@@ -71,7 +71,7 @@ class al_nb_personnes_a_charge(Variable):
             age = age_holder.array
 
             # Parametres
-            plafond_ressource = simulation.legislation_at(period.n_2.stop).minim.aspa.plaf_seul * 1.25
+            plafond_ressource = simulation.legislation_at(period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
             taux_incapacite_minimum = 0.8
 
             adulte_handicape = (
@@ -146,7 +146,7 @@ class aide_logement_abattement_chomage_indemnise(Variable):
         chomage_net_m_1 = simulation.calculate('chomage_net', period.offset(-1))
         chomage_net_m_2 = simulation.calculate('chomage_net', period.offset(-2))
         revenus_activite_pro = simulation.calculate('salaire_imposable', period.n_2)
-        taux_abattement = simulation.legislation_at(period.start).al.ressources.abattement_chomage_indemnise
+        taux_abattement = simulation.legislation_at(period.start).prestations.aides_logement.ressources.abattement_chomage_indemnise
         taux_frais_pro = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro.taux
 
         abattement = and_(chomage_net_m_1 > 0, chomage_net_m_2 > 0) * taux_abattement * revenus_activite_pro
@@ -205,7 +205,7 @@ class aide_logement_base_ressources_defaut(Variable):
         rev_coll_holder = simulation.compute('rev_coll', period.n_2)
         rev_coll = self.sum_by_entity(rev_coll_holder)
         biactivite = simulation.calculate('biactivite', period)
-        Pr = simulation.legislation_at(period.start).al.ressources
+        Pr = simulation.legislation_at(period.start).prestations.aides_logement.ressources
         base_ressources_holder = simulation.compute('prestations_familiales_base_ressources_individu', period)
         base_ressources_parents = self.sum_by_entity(base_ressources_holder, roles = [CHEF, PART])
         abattement_chomage_indemnise_holder = simulation.compute('aide_logement_abattement_chomage_indemnise', period)
@@ -213,7 +213,7 @@ class aide_logement_base_ressources_defaut(Variable):
         abattement_depart_retraite_holder = simulation.compute('aide_logement_abattement_depart_retraite', period)
         abattement_depart_retraite = self.sum_by_entity(abattement_depart_retraite_holder, roles = [CHEF, PART])
         neutralisation_rsa = simulation.calculate('aide_logement_neutralisation_rsa', period)
-        abattement_ressources_enfant = simulation.legislation_at(period.n_2.stop).minim.aspa.plaf_seul * 1.25
+        abattement_ressources_enfant = simulation.legislation_at(period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
         br_enfants = self.sum_by_entity(
             max_(0, base_ressources_holder.array - abattement_ressources_enfant), roles = ENFS)
         ressources = (
@@ -253,8 +253,8 @@ class aide_logement_base_ressources(Variable):
 
         plafond_eval_forfaitaire = 1015 * smic_horaire_brut_n2
 
-        plafond_salaire_jeune_isole = simulation.legislation_at(period.start).al.ressources.dar_8
-        plafond_salaire_jeune_couple = simulation.legislation_at(period.start).al.ressources.dar_9
+        plafond_salaire_jeune_isole = simulation.legislation_at(period.start).prestations.aides_logement.ressources.dar_8
+        plafond_salaire_jeune_couple = simulation.legislation_at(period.start).prestations.aides_logement.ressources.dar_9
         plafond_salaire_jeune = where(en_couple, plafond_salaire_jeune_couple, plafond_salaire_jeune_isole)
 
         neutral_jeune = or_(age[CHEF] < 25, and_(en_couple, age[PART] < 25))
@@ -269,7 +269,7 @@ class aide_logement_base_ressources(Variable):
 
         # Planchers de ressources pour étudiants
         # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
-        Pr = simulation.legislation_at(period.start).al.ressources
+        Pr = simulation.legislation_at(period.start).prestations.aides_logement.ressources
         etudiant_holder = simulation.compute('etudiant', period)
         boursier_holder = simulation.compute('boursier', period)
         etudiant = self.split_by_roles(etudiant_holder, roles = [CHEF, PART])
@@ -290,7 +290,7 @@ class aide_logement_loyer_retenu(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        al = simulation.legislation_at(period.start).al
+        al = simulation.legislation_at(period.start).prestations.aides_logement
         al_nb_pac = simulation.calculate('al_nb_personnes_a_charge', period)
         couple = simulation.calculate('al_couple', period)
         statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
@@ -309,7 +309,9 @@ class aide_logement_loyer_retenu(Variable):
             # Preprocessing pour pouvoir accéder aux paramètres dynamiquement par zone.
             plafonds_by_zone = [
                 [0] +
-                [al.loyers_plafond['zone' + str(zone)]['L' + str(i)] for zone in range(1, 4)] for i in range(1, 5)
+                [al.loyers_plafond['zone' + str(zone)][i]
+                for zone in range(1, 4)]
+                for i in ['personnes_seules', 'couples', 'un_enfant', 'majoration_par_enf_supp']
                 ]
             plafond_personne_seule = take(plafonds_by_zone[0], zone_apl)
             plafond_couple = take(plafonds_by_zone[1], zone_apl)
