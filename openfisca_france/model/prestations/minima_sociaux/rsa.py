@@ -39,6 +39,18 @@ class rsa_base_ressources(DatedVariable):
 
         return period, rsa_base_ressources_prestations_familiales + rsa_base_ressources_minima_sociaux + ressources_individuelles
 
+class rsa_has_ressources_substitution(Variable):
+    column = FloatCol
+    label = u"Présence de ressources de substitution au mois M, qui désactivent la neutralisation des revenus professionnels interrompus au moins M."
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.this_month
+        return period, (
+            simulation.calculate('chomage_net', period.this_month) +
+            simulation.calculate('indemnites_journalieres', period.this_month) +
+            simulation.calculate('retraite_nette', period.this_month)  # +
+        ) > 0
 
 class rsa_base_ressources_individu(Variable):
     column = FloatCol
@@ -47,41 +59,63 @@ class rsa_base_ressources_individu(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        three_previous_months = period.last_3_months
+        last_3_months = period.last_3_months
 
-        r = rsa_ressource_calculator(simulation, period)
+        # Revenus professionels
+        types_revenus_pros = [
+            'chomage_net',
+            'retraite_nette',
+            ]
 
-        # Ressources professionelles
-        chomage_net = r.calcule_ressource('chomage_net', revenu_pro = True)
-        retraite_nette = r.calcule_ressource('retraite_nette', revenu_pro = True)
+        has_ressources_substitution = simulation.calculate('rsa_has_ressources_substitution', period)
 
-        pensions_alimentaires_percues = r.calcule_ressource('pensions_alimentaires_percues')
-        allocation_aide_retour_emploi = r.calcule_ressource('allocation_aide_retour_emploi')
-        allocation_securisation_professionnelle = r.calcule_ressource('allocation_securisation_professionnelle')
-        prestation_compensatoire = r.calcule_ressource('prestation_compensatoire')
-        retraite_titre_onereux_declarant1 = r.calcule_ressource('retraite_titre_onereux_declarant1')
-        revenus_fonciers_minima_sociaux = r.calcule_ressource('revenus_fonciers_minima_sociaux')
-        div_ms = r.calcule_ressource('div_ms')
-        gains_exceptionnels = r.calcule_ressource('gains_exceptionnels')
-        dedommagement_victime_amiante = r.calcule_ressource('dedommagement_victime_amiante')
-        pensions_invalidite = r.calcule_ressource('pensions_invalidite')
-        rsa_base_ressources_patrimoine_i = r.calcule_ressource('rsa_base_ressources_patrimoine_individu')
-        prime_forfaitaire_mensuelle_reprise_activite = r.calcule_ressource('prime_forfaitaire_mensuelle_reprise_activite')
-        rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', three_previous_months)
-        rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', three_previous_months)
+        # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
+        revenus_pro = sum(
+            simulation.calculate_add(type_revenu, last_3_months) * not_(
+                (simulation.calculate(type_revenu, period.this_month) == 0) *
+                (simulation.calculate(type_revenu, period.last_month) > 0) *
+                not_(has_ressources_substitution)
+                )
+            for type_revenu in types_revenus_pros
+            )
+
+        types_revenus_non_pros = [
+            'allocation_aide_retour_emploi',
+            'allocation_securisation_professionnelle',
+            'dedommagement_victime_amiante',
+            'div_ms',
+            'gains_exceptionnels',
+            'pensions_alimentaires_percues',
+            'pensions_invalidite',
+            'prestation_compensatoire',
+            'prime_forfaitaire_mensuelle_reprise_activite',
+            'retraite_titre_onereux_declarant1',
+            'revenus_fonciers_minima_sociaux',
+            'rsa_base_ressources_patrimoine_individu',
+            ]
+
+        # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
+        # sans condition de revenu de substitution.
+        import datetime
+        if period.start.date > datetime.date(2009, 5, 31):
+            neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).prestations.minima_sociaux.rsa.montant_de_base_du_rsa
+        else:
+            neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).prestations.minima_sociaux.rmi.rmi
+
+        revenus_non_pros = sum(
+            max_(0, simulation.calculate_add(type_revenu, last_3_months) - neutral_max_forfaitaire * (
+                    (simulation.calculate(type_revenu, period.this_month) == 0) *
+                    (simulation.calculate(type_revenu, period.last_month) > 0)
+                ))
+            for type_revenu in types_revenus_non_pros
+            )
+
+        rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', last_3_months)
+        rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', last_3_months)
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
 
-        result = (
-            chomage_net + retraite_nette + pensions_alimentaires_percues + retraite_titre_onereux_declarant1 + rev_cap_bar +
-            rev_cap_lib + revenus_fonciers_minima_sociaux + div_ms +
-            gains_exceptionnels + dedommagement_victime_amiante + pensions_invalidite + allocation_aide_retour_emploi +
-            allocation_securisation_professionnelle + prestation_compensatoire +
-            rsa_base_ressources_patrimoine_i + prime_forfaitaire_mensuelle_reprise_activite
-        ) / 3
-
-        return period, result
-
+        return period, (revenus_pro + revenus_non_pros + rev_cap_bar + rev_cap_lib) / 3
 
 class rsa_base_ressources_minima_sociaux(Variable):
     column = FloatCol
@@ -101,7 +135,6 @@ class rsa_base_ressources_minima_sociaux(Variable):
         caah = self.sum_by_entity(caah_holder) / 3
 
         return period, aspa + asi + ass + aah + caah
-
 
 class rsa_base_ressources_prestations_familiales(DatedVariable):
     column = FloatCol
@@ -145,7 +178,6 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
         period = period.this_month
 
         prestations_calculees = [
-            'af_base',
             'rsa_forfait_asf',
             'paje_base',
            ]
@@ -157,14 +189,18 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
 
         result = sum(simulation.calculate(prestation, period) for prestation in prestations_calculees)
         result += sum(simulation.calculate_add(prestation, period.last_3_months) / 3 for prestation in prestations_autres)
+
         cf_non_majore_avant_cumul = simulation.calculate('cf_non_majore_avant_cumul', period)
         cf = simulation.calculate('cf', period)
         # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
         cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
-        result = result + cf_non_majore
+
+        af_base = simulation.calculate('af_base', period)
+        af = simulation.calculate('af', period)
+
+        result = result + cf_non_majore + min_(af_base, af) # Si des AF on été injectées, et sont plus faibles que le
 
         return period, result
-
 
 class crds_mini(DatedVariable):
     column = FloatCol
@@ -181,7 +217,6 @@ class crds_mini(DatedVariable):
         taux_crds = simulation.legislation_at(period.start).prestations.prestations_familiales.af.crds
 
         return period, - taux_crds * rsa_activite
-
 
 class div_ms(Variable):
     column = FloatCol
@@ -204,7 +239,6 @@ class div_ms(Variable):
         f3vm = self.cast_from_entity_to_role(f3vm_holder, role = VOUS)
 
         return period, (f3vc + f3ve + f3vg + f3vl + f3vm) / 12
-
 
 class enceinte_fam(Variable):
     column = BoolCol
@@ -306,8 +340,6 @@ class participation_frais(Variable):
     entity_class = Menages
     label = u"Partipation aux frais de logement pour un hebergé à titre gratuit"
 
-
-
 class rsa_revenu_activite(Variable):
     column = FloatCol
     label = u"Revenus d'activité du RSA"
@@ -332,35 +364,36 @@ class rsa_revenu_activite_individu(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
+        last_3_months = period.last_3_months
 
-        r = rsa_ressource_calculator(simulation, period)
 
-        salaire_net = r.calcule_ressource('salaire_net', revenu_pro = True)
-        indemnites_journalieres = r.calcule_ressource('indemnites_journalieres', revenu_pro = True)
-        indemnites_chomage_partiel = r.calcule_ressource('indemnites_chomage_partiel', revenu_pro = True)
-        indemnites_volontariat = r.calcule_ressource('indemnites_volontariat', revenu_pro = True)
-        revenus_stage_formation_pro = r.calcule_ressource('revenus_stage_formation_pro', revenu_pro = True)
-        indemnites_stage = r.calcule_ressource('indemnites_stage', revenu_pro = True)
-        bourse_recherche = r.calcule_ressource('bourse_recherche', revenu_pro = True)
-        hsup = r.calcule_ressource('hsup', revenu_pro = True)
-        etr = r.calcule_ressource('etr', revenu_pro = True)
+        # Note Auto-entrepreneurs:
+        # D'après les caisses, le revenu pris en compte pour les AE pour le RSA ne prend en compte que
+        # l'abattement standard sur le CA, mais pas les cotisations pour charges sociales.
 
-        # Ressources TNS
+        types_revenus_activite = [
+            'salaire_net',
+            'indemnites_journalieres',
+            'indemnites_chomage_partiel',
+            'indemnites_volontariat',
+            'revenus_stage_formation_pro',
+            'bourse_recherche',
+            'hsup',
+            'etr',
+            'tns_auto_entrepreneur_benefice',
+        ]
 
-        # WARNING : D'après les caisses, le revenu pris en compte pour les AE pour le RSA ne prend en compte que
-        # l'abattement standard sur le CA, mais pas les cotisations pour charges sociales. Dans l'attente d'une
-        # éventuelle correction, nous implémentons selon leurs instructions. Si changement, il suffira de remplacer le
-        # tns_auto_entrepreneur_benefice par tns_auto_entrepreneur_revenus_net
-        tns_auto_entrepreneur_revenus_rsa = r.calcule_ressource('tns_auto_entrepreneur_benefice', revenu_pro = True)
+        has_ressources_substitution = simulation.calculate('rsa_has_ressources_substitution', period)
 
-        result = (
-            salaire_net + indemnites_journalieres + indemnites_chomage_partiel + indemnites_volontariat +
-            revenus_stage_formation_pro + indemnites_stage + bourse_recherche + hsup + etr +
-            tns_auto_entrepreneur_revenus_rsa
-        ) / 3
-
-        return period, result
-
+        # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
+        return period, sum(
+            simulation.calculate_add(type_revenu, last_3_months) * not_(
+                (simulation.calculate(type_revenu, period.this_month) == 0) *
+                (simulation.calculate(type_revenu, period.last_month) > 0) *
+                not_(has_ressources_substitution)
+                )
+            for type_revenu in types_revenus_activite
+            ) / 3
 
 class revenus_fonciers_minima_sociaux(Variable):
     column = FloatCol
@@ -378,7 +411,6 @@ class revenus_fonciers_minima_sociaux(Variable):
 
         return period, (f4ba + f4be) / 12
 
-
 class rsa(DatedVariable):
     calculate_output = calculate_output_add
     column = FloatCol
@@ -395,7 +427,6 @@ class rsa(DatedVariable):
         rsa = (1 - rsa_non_calculable) * max_(rsa_majore, rsa_non_majore)
 
         return period, rsa
-
 
 class rsa_base_ressources_patrimoine_individu(DatedVariable):
     column = FloatCol
@@ -436,7 +467,6 @@ class rsa_condition_nationalite(Variable):
 
         return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
-
 class rsa_eligibilite(Variable):
     column = BoolCol
     entity_class = Familles
@@ -457,8 +487,8 @@ class rsa_eligibilite(Variable):
         age_min = (rsa_nb_enfants == 0) * rsa.age_pac
 
         eligib = (
-            (age_parents[CHEF] >= age_min) * not_(activite_parents[CHEF] == 2) +
-            (age_parents[PART] >= age_min) * not_(activite_parents[PART] == 2)
+            (age_parents[CHEF] > age_min) * not_(activite_parents[CHEF] == 2) +
+            (age_parents[PART] > age_min) * not_(activite_parents[PART] == 2)
         )
         eligib = eligib * (
             condition_nationalite *
@@ -466,7 +496,6 @@ class rsa_eligibilite(Variable):
             )
 
         return period, eligib
-
 
 class rsa_eligibilite_tns(Variable):
     column = BoolCol
@@ -524,7 +553,6 @@ class rsa_eligibilite_tns(Variable):
 
         return period, eligibilite_agricole * (1 - tns_avec_employe) * eligibilite_chiffre_affaire
 
-
 class rsa_forfait_asf(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -534,28 +562,16 @@ class rsa_forfait_asf(Variable):
     def function(self, simulation, period):
         period = period.this_month
         # Si un ASF est versé, on ne prend pas en compte le montant réel mais un forfait.
-        asf_verse = simulation.calculate('asf', period) > 0
-        rsa_forfait_asf_i_holder = simulation.compute('rsa_forfait_asf_individu', period)
-        montant = self.sum_by_entity(rsa_forfait_asf_i_holder, roles = ENFS)
-
-        return period, asf_verse * montant
-
-
-class rsa_forfait_asf_individu(Variable):
-    column = FloatCol(default = 0)
-    entity_class = Individus
-    label = u"RSA - Montant individuel de forfait ASF"
-    start_date = date(2014, 4, 1)
-
-    def function(self, simulation, period):
-        period = period.this_month
-
-        asf_elig_enfant = simulation.calculate('asf_elig_enfant', period)
         pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
-        P = simulation.legislation_at(period.start).prestations.minima_sociaux
+        minim = simulation.legislation_at(period.start).prestations.minima_sociaux
 
-        return period, asf_elig_enfant * pfam.af.bmaf * P.rmi.forfait_asf.taux1
+        asf_verse = simulation.calculate('asf', period)
+        montant_forfaitaire_par_enfant = pfam.af.bmaf * minim.rmi.forfait_asf.taux1
 
+        # Division euclidienne du montant réel par le montant forfaitaire
+        nb_beneficiaires = asf_verse // montant_forfaitaire_par_enfant
+
+        return period, nb_beneficiaires * montant_forfaitaire_par_enfant
 
 class rsa_forfait_logement(Variable):
     column = FloatCol
@@ -635,7 +651,6 @@ class rsa_forfait_logement(Variable):
 
         return period, max_(montant_al, montant_nature)
 
-
 class rsa_isolement_recent(Variable):
     column = BoolCol
     entity_class = Familles
@@ -690,7 +705,6 @@ class rsa_majore_eligibilite(Variable):
 
         return period, eligib
 
-
 class rsa_non_calculable(Variable):
     column = EnumCol(
         enum = Enum([
@@ -725,7 +739,6 @@ class rsa_non_calculable(Variable):
 
         return period, non_calculable
 
-
 class rsa_non_calculable_tns_individu(Variable):
     column = BoolCol
     entity_class = Individus
@@ -743,7 +756,6 @@ class rsa_non_calculable_tns_individu(Variable):
             (tns_autres_revenus > 0)
             )
 
-
 class rsa_non_majore(Variable):
     column = FloatCol
     label = u"Revenu de solidarité active - non majoré"
@@ -760,47 +772,6 @@ class rsa_non_majore(Variable):
         base_normalise = max_(rsa_socle - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite, 0)
 
         return period, base_normalise * (base_normalise >= P.rsa_nv)
-
-
-class rsa_ressource_calculator:
-
-    def __init__(self, simulation, period):
-        self.period = period
-        self.simulation = simulation
-        self.three_previous_months = period.last_3_months
-        self.last_month = period.last_month
-        self.has_ressources_substitution = (
-            simulation.calculate('chomage_net', period) +
-            simulation.calculate('indemnites_journalieres', period) +
-            simulation.calculate('retraite_nette', period)  # +
-            # simulation.calculate('ass', last_month)
-        ) > 0
-        import datetime
-        if period.start.date > datetime.date(2009, 5, 31):
-            self.neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).prestations.minima_sociaux.rsa.montant_de_base_du_rsa
-        else:
-            self.neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).prestations.minima_sociaux.rmi.rmi
-
-    def calcule_ressource(self, variable_name, revenu_pro = False):
-        ressource_trois_derniers_mois = self.simulation.calculate_add(variable_name, self.three_previous_months)
-        ressource_mois_courant = self.simulation.calculate(variable_name, self.period)
-        ressource_last_month = self.simulation.calculate(variable_name, self.last_month)
-
-        if revenu_pro:
-            condition = (
-                (ressource_mois_courant == 0) *
-                (ressource_last_month > 0) *
-                not_(self.has_ressources_substitution)
-            )
-            return (1 - condition) * ressource_trois_derniers_mois
-        else:
-            condition = (
-                (ressource_mois_courant == 0) *
-                (ressource_last_month > 0)
-            )
-            return max_(0,
-                ressource_trois_derniers_mois - condition * self.neutral_max_forfaitaire)
-
 
 class rsa_socle(Variable):
     column = FloatCol
@@ -837,7 +808,6 @@ class rsa_socle(Variable):
             socle = rmi.rmi
 
         return period, eligib * socle * taux
-
 
 class rsa_socle_majore(Variable):
     column = FloatCol

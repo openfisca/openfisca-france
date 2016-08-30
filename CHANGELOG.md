@@ -1,5 +1,23 @@
 # Changelog
 
+## 4.1.8
+
+* Refactor rsa.py
+* Do not take stages gratification into account
+* Do not take into acccount more AF that it have been declared
+
+## 4.1.7
+
+* Fix bug in CMU forfait_logement
+* Refactor CMU computation
+
+## 4.1.6
+
+* Fix bugs in RSA:
+  * One need to be **strictly** more that 25 to benefit it.
+  * Apply rsa_forfait_asf accordingly to the asf actually being paid.
+* Deprecate rsa_forfait_asf_individu
+
 ## 4.1.5
 
 * Follow OpenFisca-Core major release

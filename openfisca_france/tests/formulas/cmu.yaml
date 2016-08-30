@@ -1,0 +1,19 @@
+- name: "CMU-C: Le forfait logement n'augmente plus avec le nombre de personnes à charges à partir de 3 personnes"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1980-01-01'
+    cmu_nb_pac: 10
+    aide_logement: 300
+  output_variables:
+    cmu_forfait_logement_al: 12 * 155.83
+
+- name: "CMU-C: Si les AL sont inférieures, au forfait, on retient le montant réel pour le forfait logement"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1980-01-01'
+    cmu_nb_pac: 10
+    aide_logement: 50
+  output_variables:
+    cmu_forfait_logement_al: 12 * 50
