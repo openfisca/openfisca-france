@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.1.10
+
+* Refactor asi_aspa.py
+* Fix abattement for conjoint salary
+* Adjust interaction with AAH
+* Small fix on RSA: don't use euclidian division because of rounding issues
+* Small fix on PPA: don't take into acccount more AF that it have been declared (see 4.1.8)
+
 ## 4.1.9
 
 * Tighten CMU/ACS eligibility conditions when when person is less than 25
