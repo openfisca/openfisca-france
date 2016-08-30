@@ -69,6 +69,22 @@ def get_flat_parameters(legislation_json):
     return parameters_json
 
 
+def get_parameters_origin_dataframe():
+    tax_benefit_system = FranceTaxBenefitSystem()
+    legislation_json = tax_benefit_system.get_legislation(with_source_file_infos=True)
+    parameters_json = get_flat_parameters(legislation_json)
+    result = dict()
+    for parameter_json in parameters_json:
+        if 'origin' in parameter_json or 'both_origins' in parameter_json:
+            result[parameter_json['name']] = dict(
+                origin = parameter_json['origin'] if 'origin' in parameter_json else None,
+                both_origins = True if parameter_json.get('both_origins') else False,
+                )
+
+    import pandas as pd
+    return pd.DataFrame.from_dict(result, orient = 'index')
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
@@ -93,6 +109,7 @@ def main():
                 )).encode('utf-8')
         else:
             print(u'{}: no origin'.format(parameter_json['name'])).encode('utf-8')
+
 
 
 if __name__ == "__main__":
