@@ -72,11 +72,11 @@ class csg_deductible_salaire(Variable):
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
 
-        law = simulation.legislation_at(period.start).prelevements_sociaux
+        csg = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
-            law_node = law.csg.activite.deductible,
+            law_node = csg.activite.deductible,
             plafond_securite_sociale = plafond_securite_sociale,
             )
         return period, montant_csg
@@ -93,12 +93,12 @@ class csg_imposable_salaire(Variable):
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        law = simulation.legislation_at(period.start).prelevements_sociaux
+        legislation = simulation.legislation_at(period.start)
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
-            law_node = law.csg.activite.imposable,
+            law_node = legislation.prelevements_sociaux.contributions.csg.activite.imposable,
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
@@ -120,7 +120,7 @@ class crds_salaire(Variable):
         law = simulation.legislation_at(period.start)
 
         montant_crds = montant_csg_crds(
-            law_node = law.crds.activite,
+            law_node = law.prelevements_sociaux.contributions.crds.activite,
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
             plafond_securite_sociale = plafond_securite_sociale,

@@ -41,7 +41,7 @@ class csg_cap_bar(Variable):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, -rev_cap_bar * _P.prelevements_sociaux.csg.capital.glob
+        return period, -rev_cap_bar * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class csg_cap_bar_declarant1(EntityToPersonColumn):
@@ -158,7 +158,7 @@ class csg_pv_mo(Variable):
         f3vg = simulation.calculate('f3vg', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, -f3vg * _P.prelevements_sociaux.csg.capital.glob
+        return period, -f3vg * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class crds_pv_mo(Variable):
@@ -256,7 +256,7 @@ class csg_pv_immo(Variable):
         f3vz = simulation.calculate('f3vz', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, -f3vz * _P.prelevements_sociaux.csg.capital.glob
+        return period, -f3vz * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class crds_pv_immo(Variable):
@@ -355,7 +355,7 @@ class csg_fon(Variable):
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, -rev_cat_rfon * _P.prelevements_sociaux.csg.capital.glob
+        return period, -rev_cat_rfon * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class crds_fon(Variable):
@@ -456,7 +456,7 @@ class csg_cap_lib(Variable):
         rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, -rev_cap_lib * _P.prelevements_sociaux.csg.capital.glob
+        return period, -rev_cap_lib * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class csg_cap_lib_declarant1(EntityToPersonColumn):
@@ -530,7 +530,7 @@ class prelsoc_cap_lib_declarant1(EntityToPersonColumn):
 
 
 # TODO: non_imposabilité pour les revenus au barème
-#        verse = (-csgcap_bar - crdscap_bar - prelsoccap_bar) > bareme.prelevements_sociaux.csg.capital.nonimp
+#        verse = (-csgcap_bar - crdscap_bar - prelsoccap_bar) > bareme.prelevements_sociaux.contributions.csg.capital.nonimp
 # #        verse=1
 #        # CSG sur les revenus du patrimoine non imposés au barême (contributions sociales déjà prélevées)
 #
