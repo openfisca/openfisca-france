@@ -1,6 +1,6 @@
-<NODE both_origins="false" code="crds" description="Contribution au remboursement de la dette sociale (CRDS)" origin="openfisca">
-  <NODE code="activite" description="Revenus d'activité">
-    <BAREME code="abattement" description="Abattement sur les revenus d'activité, du chômage et des préretraites">
+<NODE code="crds" description="Contribution au remboursement de la dette sociale (CRDS)" origin="openfisca">
+  <NODE code="activite" description="Revenus d'activité" origin="openfisca">
+    <BAREME code="abattement" description="Abattement sur les revenus d'activité, du chômage et des préretraites" origin="openfisca">
       <TRANCHE code="tranche0">
         <TAUX>
           <VALUE deb="2015-01-01" fuzzy="true" valeur=".0175" />
@@ -24,17 +24,17 @@
         </TAUX>
       </TRANCHE>
     </BAREME>
-    <CODE code="taux" description="taux de la CRDS" format="percent">
+    <CODE code="taux" description="taux de la CRDS" format="percent" origin="openfisca">
       <VALUE deb="2015-01-01" fuzzy="true" valeur=".005" />
       <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".005" />
     </CODE>
   </NODE>
-  <CODE code="capital" description="Revenus du capital" format="percent">
+  <CODE code="capital" description="Revenus du capital" format="percent" origin="openfisca">
     <VALUE deb="2014-01-01" fuzzy="true" valeur=".005" />
     <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".005" />
   </CODE>
-  <NODE code="retraite" description="Retraites et pensions d'invalidité">
-    <CODE code="taux" description="taux de la CRDS" format="percent">
+  <NODE code="retraite" description="Retraites et pensions d'invalidité" origin="openfisca">
+    <CODE code="taux" description="taux de la CRDS" format="percent" origin="openfisca">
       <VALUE deb="2015-01-01" fuzzy="true" valeur=".005" />
       <VALUE deb="1998-01-01" fin="2014-12-31" valeur=".005" />
     </CODE>

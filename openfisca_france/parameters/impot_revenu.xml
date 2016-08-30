@@ -1,6 +1,6 @@
-<NODE code="impot_revenu" description="Impôt sur le revenu">
-  <NODE code="abattements_rni" description="Abattements spéciaux">
-    <NODE code="enfant_marie">
+<NODE both_origins="true" code="impot_revenu" description="Impôt sur le revenu" origin="ipp">
+  <NODE both_origins="true" code="abattements_rni" description="Abattements spéciaux" origin="ipp">
+    <NODE both_origins="true" code="enfant_marie" origin="ipp">
       <CODE both_origins="true" code="montant" description="Enfants à charge (par personne rattachée)" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="5732" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="5726" />
@@ -41,7 +41,7 @@
         <VALUE deb="1977-01-01" fin="1977-12-31" valeur="7900" />
       </CODE>
     </NODE>
-    <NODE code="personne_agee_ou_invalide">
+    <NODE both_origins="true" code="personne_agee_ou_invalide" origin="ipp">
       <CODE both_origins="true" code="montant" description="Âgé ou invalide - montant" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="2348" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="2344" />
@@ -154,24 +154,24 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE both_origins="false" code="autre" description="Variables pour scénario de réforme" origin="openfisca">
-    <CODE code="finpfl" description="Indicatrice pour imposition des revenus du capital au barème" format="bool">
+  <NODE code="autre" description="Variables pour scénario de réforme" origin="openfisca">
+    <CODE code="finpfl" description="Indicatrice pour imposition des revenus du capital au barème" format="bool" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
       <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0" />
     </CODE>
   </NODE>
-  <BAREME code="bareme" description="Tranches de l'IR">
+  <BAREME both_origins="true" code="bareme" description="Tranches de l'IR" origin="ipp">
     <TRANCHE code="tranche_1">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="2001-01-01" fuzzy="true" valeur="0" />
         <VALUE deb="1945-01-01" fin="2000-12-31" valeur="0" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="1945-01-01" fuzzy="true" valeur="0" />
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche_2">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="2015-01-01" fuzzy="true" valeur="9700" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="9690" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="6011" />
@@ -227,7 +227,7 @@
         <VALUE deb="1947-01-01" fin="1947-12-31" valeur="100000" />
         <VALUE deb="1945-01-01" fin="1946-12-31" valeur="40000" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.14" />
         <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.055" />
         <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.0683" />
@@ -243,7 +243,7 @@
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche_3">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="2015-01-01" fuzzy="true" valeur="26791" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="26764" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="11991" />
@@ -299,7 +299,7 @@
         <VALUE deb="1946-01-01" fin="1948-12-31" valeur="200000" />
         <VALUE deb="1945-01-01" fin="1945-12-31" valeur="100000" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.3" />
         <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.14" />
         <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.1914" />
@@ -317,7 +317,7 @@
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche_4">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="2015-01-01" fuzzy="true" valeur="71826" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="71754" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="26631" />
@@ -373,7 +373,7 @@
         <VALUE deb="1946-01-01" fin="1947-12-31" valeur="500000" />
         <VALUE deb="1945-01-01" fin="1945-12-31" valeur="300000" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.41" />
         <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.3" />
         <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.2826" />
@@ -391,7 +391,7 @@
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche_5">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="2015-01-01" fuzzy="true" valeur="152108" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="151956" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="71397" />
@@ -448,7 +448,7 @@
         <VALUE deb="1946-01-01" fin="1947-12-31" valeur="1000000" />
         <VALUE deb="1945-01-01" fin="1945-12-31" valeur="500000" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.45" />
         <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.41" />
         <VALUE deb="2006-01-01" fin="2009-12-31" valeur="0.4" />
@@ -467,7 +467,7 @@
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche_6">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="151200" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="150000" />
         <VALUE deb="2006-01-01" fin="2011-12-31" valeur="0" />
@@ -516,7 +516,7 @@
         <VALUE deb="1948-01-01" fin="1948-12-31" valeur="800000" />
         <VALUE deb="1947-01-01" fin="1947-12-31" valeur="2000000" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.45" />
         <VALUE deb="2006-01-01" fin="2011-12-31" valeur="0" />
         <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.4262" />
@@ -534,7 +534,7 @@
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche_7">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="49624" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="48747" />
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="47932" />
@@ -580,7 +580,7 @@
         <VALUE deb="1949-01-01" fin="1949-12-31" valeur="2000000" />
         <VALUE deb="1948-01-01" fin="1948-12-31" valeur="1200000" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.4809" />
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="0.4958" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.5275" />
@@ -597,7 +597,7 @@
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche_8">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="1992-01-01" fin="1992-12-31" valeur="73450" />
         <VALUE deb="1991-01-01" fin="1991-12-31" valeur="71450" />
         <VALUE deb="1990-01-01" fin="1990-12-31" valeur="69370" />
@@ -630,7 +630,7 @@
         <VALUE deb="1949-01-01" fin="1949-12-31" valeur="3000000" />
         <VALUE deb="1948-01-01" fin="1948-12-31" valeur="2000000" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.336" />
         <VALUE deb="1974-01-01" fin="1986-12-31" valeur="0.35" />
         <VALUE deb="1973-01-01" fin="1973-12-31" valeur="0.5" />
@@ -643,7 +643,7 @@
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche_9">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="1992-01-01" fin="1992-12-31" valeur="84740" />
         <VALUE deb="1991-01-01" fin="1991-12-31" valeur="82430" />
         <VALUE deb="1990-01-01" fin="1990-12-31" valeur="80030" />
@@ -667,7 +667,7 @@
         <VALUE deb="1949-01-01" fin="1972-12-31" valeur="0" />
         <VALUE deb="1948-01-01" fin="1948-12-31" valeur="3000000" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.384" />
         <VALUE deb="1974-01-01" fin="1986-12-31" valeur="0.4" />
         <VALUE deb="1973-01-01" fin="1973-12-31" valeur="0.6" />
@@ -676,7 +676,7 @@
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche_10">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="1992-01-01" fin="1992-12-31" valeur="141190" />
         <VALUE deb="1991-01-01" fin="1991-12-31" valeur="137340" />
         <VALUE deb="1990-01-01" fin="1990-12-31" valeur="133340" />
@@ -697,13 +697,13 @@
         <VALUE deb="1975-01-01" fin="1975-12-31" valeur="50400" />
         <VALUE deb="1974-01-01" fin="1974-12-31" valeur="45825" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.432" />
         <VALUE deb="1974-01-01" fin="1986-12-31" valeur="0.45" />
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche_11">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="1992-01-01" fin="1992-12-31" valeur="194190" />
         <VALUE deb="1991-01-01" fin="1991-12-31" valeur="188900" />
         <VALUE deb="1990-01-01" fin="1990-12-31" valeur="183400" />
@@ -724,13 +724,13 @@
         <VALUE deb="1975-01-01" fin="1975-12-31" valeur="71375" />
         <VALUE deb="1974-01-01" fin="1974-12-31" valeur="64900" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.49" />
         <VALUE deb="1974-01-01" fin="1986-12-31" valeur="0.5" />
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche_12">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="1992-01-01" fin="1992-12-31" valeur="229710" />
         <VALUE deb="1991-01-01" fin="1991-12-31" valeur="223450" />
         <VALUE deb="1990-01-01" fin="1990-12-31" valeur="216940" />
@@ -750,13 +750,13 @@
         <VALUE deb="1975-01-01" fin="1975-12-31" valeur="92400" />
         <VALUE deb="1974-01-01" fin="1974-12-31" valeur="84000" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.539" />
         <VALUE deb="1974-01-01" fin="1986-12-31" valeur="0.55" />
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche_13">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="1992-01-01" fin="1992-12-31" valeur="261290" />
         <VALUE deb="1991-01-01" fin="1991-12-31" valeur="254170" />
         <VALUE deb="1990-01-01" fin="1990-12-31" valeur="246770" />
@@ -775,25 +775,25 @@
         <VALUE deb="1975-01-01" fin="1976-12-31" valeur="113450" />
         <VALUE deb="1974-01-01" fin="1974-12-31" valeur="103150" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="1987-01-01" fin="1992-12-31" valeur="0.568" />
         <VALUE deb="1986-01-01" fin="1986-12-31" valeur="0.58" />
         <VALUE deb="1974-01-01" fin="1985-12-31" valeur="0.6" />
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche_14">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="1985-01-01" fin="1985-12-31" valeur="241740" />
         <VALUE deb="1984-01-01" fin="1984-12-31" valeur="228920" />
         <VALUE deb="1983-01-01" fin="1983-12-31" valeur="212750" />
         <VALUE deb="1982-01-01" fin="1982-12-31" valeur="195000" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="1982-01-01" fin="1985-12-31" valeur="0.65" />
       </TAUX>
     </TRANCHE>
   </BAREME>
-  <BAREME both_origins="false" code="cehr" description="Contribution exceptionnelle sur les hauts revenus" origin="openfisca" type="monetary">
+  <BAREME code="cehr" description="Contribution exceptionnelle sur les hauts revenus" origin="openfisca" type="monetary">
     <TRANCHE code="tranche0">
       <SEUIL>
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
@@ -825,26 +825,26 @@
       </TAUX>
     </TRANCHE>
   </BAREME>
-  <BAREME both_origins="false" code="cehr_ipp">
+  <BAREME code="cehr_ipp" origin="ipp">
     <TRANCHE code="tranche1">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="2011-01-01" fuzzy="true" valeur="250000" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="2011-01-01" fuzzy="true" valeur="0.03" />
       </TAUX>
     </TRANCHE>
     <TRANCHE code="tranche2">
-      <SEUIL origin="ipp">
+      <SEUIL>
         <VALUE deb="2011-01-01" fuzzy="true" valeur="500000" />
       </SEUIL>
-      <TAUX origin="ipp">
+      <TAUX>
         <VALUE deb="2011-01-01" fuzzy="true" valeur="0.04" />
       </TAUX>
     </TRANCHE>
   </BAREME>
-  <NODE code="charges_deductibles" description="Charges déductibles">
-    <NODE code="accueil_personne_agee" description="Frais d'accueil d'une personne de plus de 75 ans">
+  <NODE both_origins="true" code="charges_deductibles" description="Charges déductibles" origin="ipp">
+    <NODE both_origins="true" code="accueil_personne_agee" description="Frais d'accueil d'une personne de plus de 75 ans" origin="ipp">
       <CODE both_origins="true" code="plafond" description="Maximum par personne" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="3407" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3403" />
@@ -877,7 +877,7 @@
         <VALUE deb="1984-01-01" fin="1984-12-31" valeur="12810" />
       </CODE>
     </NODE>
-    <NODE code="acquisition_de_navire">
+    <NODE code="acquisition_de_navire" origin="ipp">
       <CODE code="plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="1990-01-01" fin="1999-12-31" valeur="25000" />
       </CODE>
@@ -886,16 +886,16 @@
       </CODE>
     </NODE>
     <NODE code="cinema" description="Souscription en faveur du cinéma ou de l'audiovisuel (case AA)" origin="openfisca">
-      <CODE code="max" description="Maximum" format="integer" type="monetary">
+      <CODE code="max" description="Maximum" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="18000" />
         <VALUE deb="2001-01-01" fin="2013-12-31" valeur="18000" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="1984-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE code="compte_epargne_codev" description="Compte épargne codéveloppement">
+    <NODE both_origins="true" code="compte_epargne_codev" description="Compte épargne codéveloppement" origin="ipp">
       <CODE both_origins="true" code="plafond" description="Limite de y euros par personne" format="float" origin="ipp" type="monetary">
         <VALUE deb="2007-01-01" fin="2008-12-31" valeur="20000" />
       </CODE>
@@ -903,7 +903,7 @@
         <VALUE deb="2007-01-01" fin="2008-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE code="deductions_pour_investissements_en_actions">
+    <NODE code="deductions_pour_investissements_en_actions" origin="ipp">
       <CODE code="plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="1987-01-01" fin="1996-12-31" valeur="6000" />
         <VALUE deb="1978-01-01" fin="1986-12-31" valeur="5000" />
@@ -912,17 +912,17 @@
         <VALUE deb="1978-01-01" fin="1996-12-31" valeur="500" />
       </CODE>
     </NODE>
-    <NODE code="deductions_pour_navires_de_commerce">
+    <NODE code="deductions_pour_navires_de_commerce" origin="ipp">
       <CODE code="plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="1996-01-01" fin="2000-12-31" valeur="500000" />
       </CODE>
     </NODE>
-    <NODE code="grosses_reparations" description="Grosses réparations des nus-propriétaires">
+    <NODE both_origins="true" code="grosses_reparations" description="Grosses réparations des nus-propriétaires" origin="ipp">
       <CODE both_origins="true" code="plafond" description="Plafond des dépenses" format="float" origin="ipp" type="monetary">
         <VALUE deb="2009-01-01" fuzzy="true" valeur="25000" />
       </CODE>
     </NODE>
-    <NODE code="pensions_alimentaires" description="Pensions alimentaires">
+    <NODE both_origins="true" code="pensions_alimentaires" description="Pensions alimentaires" origin="ipp">
       <CODE both_origins="true" code="plafond" description="Limite par enfant" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="5732" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="5726" />
@@ -968,7 +968,7 @@
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE code="pertes_en_capital_societes_nouvelles" description="Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA)">
+    <NODE both_origins="true" code="pertes_en_capital_societes_nouvelles" description="Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA)" origin="ipp">
       <CODE both_origins="true" code="plafond_cb" description="Case CB" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fin="2006-12-31" valeur="15250" />
         <VALUE deb="1994-01-01" fin="2000-12-31" valeur="100000" />
@@ -977,7 +977,7 @@
         <VALUE deb="2003-01-01" fin="2006-12-31" valeur="30000" />
       </CODE>
     </NODE>
-    <NODE code="reduction_pour_souscriptions_de_parts_de_sofica">
+    <NODE code="reduction_pour_souscriptions_de_parts_de_sofica" origin="ipp">
       <CODE code="plafond_de_la_reduction" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fin="2005-12-31" valeur="18000" />
         <VALUE deb="1997-01-01" fin="2000-12-31" valeur="120000" />
@@ -986,7 +986,7 @@
         <VALUE deb="1985-01-01" fin="2005-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE code="sofipeche" description="Souscription au capital des SOFIPECHE (case CC)">
+    <NODE both_origins="true" code="sofipeche" description="Souscription au capital des SOFIPECHE (case CC)" origin="ipp">
       <CODE both_origins="true" code="plafond" description="Maximum" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fin="2006-12-31" valeur="19000" />
         <VALUE deb="1998-01-01" fin="2000-12-31" valeur="125000" />
@@ -995,7 +995,7 @@
         <VALUE deb="1998-01-01" fin="2006-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="versements_perp" description="Déduction pour versements sur PERP">
+    <NODE both_origins="true" code="versements_perp" description="Déduction pour versements sur PERP" origin="ipp">
       <CODE both_origins="true" code="max" description="Maximum par personne" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="30038" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="29626" />
@@ -1024,105 +1024,105 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="credits_impot" description="Crédits d'impôt">
-    <NODE both_origins="false" code="accult" description="Acquisition de biens culturels" origin="openfisca">
-      <CODE code="taux" description="Taux" format="percent">
+  <NODE both_origins="true" code="credits_impot" description="Crédits d'impôt" origin="ipp">
+    <NODE code="accult" description="Acquisition de biens culturels" origin="openfisca">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.40" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.40" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="acqgpl" description="Dépenses d'acquisition ou de transformation d'un véhicule GPL ou mixte" origin="openfisca">
-      <CODE code="mont_up" description="Case UP" format="integer">
+    <NODE code="acqgpl" description="Dépenses d'acquisition ou de transformation d'un véhicule GPL ou mixte" origin="openfisca">
+      <CODE code="mont_up" description="Case UP" format="integer" origin="openfisca">
         <VALUE deb="2006-01-01" fin="2007-12-31" valeur="2000" />
         <VALUE deb="2002-01-01" fin="2005-12-31" valeur="1525" />
       </CODE>
-      <CODE code="mont_uq" description="Case UQ" format="integer">
+      <CODE code="mont_uq" description="Case UQ" format="integer" origin="openfisca">
         <VALUE deb="2006-01-01" fin="2007-12-31" valeur="3000" />
         <VALUE deb="2002-01-01" fin="2005-12-31" valeur="2300" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="aidmob" description="Crédit d'impôt aide à la mobilité" origin="openfisca">
-      <CODE code="montant" description="Montant par personne" format="integer">
+    <NODE code="aidmob" description="Crédit d'impôt aide à la mobilité" origin="openfisca">
+      <CODE code="montant" description="Montant par personne" format="integer" origin="openfisca">
         <VALUE deb="2007-01-01" fin="2008-12-31" valeur="2000" />
         <VALUE deb="2005-01-01" fin="2006-12-31" valeur="1500" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="aidper" description="Dépenses en faveur de l'aide aux personnes" origin="openfisca">
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+    <NODE code="aidper" description="Dépenses en faveur de l'aide aux personnes" origin="openfisca">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="5000" />
         <VALUE deb="2005-01-01" fin="2014-12-31" valeur="5000" />
         <VALUE deb="2002-01-01" fin="2004-12-31" valeur="4000" />
       </CODE>
-      <CODE code="pac1" description="Majoration du plafond pour le 1er enfant" format="integer" type="monetary">
+      <CODE code="pac1" description="Majoration du plafond pour le 1er enfant" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="400" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="400" />
       </CODE>
-      <CODE code="pac2" description="Majoration du plafond pour le 2eme enfant" format="integer" type="monetary">
+      <CODE code="pac2" description="Majoration du plafond pour le 2eme enfant" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="400" />
         <VALUE deb="2008-01-01" fin="2013-12-31" valeur="400" />
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="500" />
       </CODE>
-      <CODE code="pac3" description="Majoration du plafond par enfant supplémentaire" format="integer" type="monetary">
+      <CODE code="pac3" description="Majoration du plafond par enfant supplémentaire" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="400" />
         <VALUE deb="2008-01-01" fin="2013-12-31" valeur="400" />
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="600" />
       </CODE>
-      <CODE code="taux_sf" description="Taux (SF)" format="percent">
+      <CODE code="taux_sf" description="Taux (SF)" format="percent" origin="openfisca">
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.15" />
         <VALUE deb="2010-01-01" fin="2011-12-31" valeur="0.30" />
       </CODE>
-      <CODE code="taux_wi" description="Taux (WI)" format="percent">
+      <CODE code="taux_wi" description="Taux (WI)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.15" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.15" />
       </CODE>
-      <CODE code="taux_wj" description="Taux (WJ)" format="percent">
+      <CODE code="taux_wj" description="Taux (WJ)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="taux_wl" description="Taux (WL)" format="percent">
+      <CODE code="taux_wl" description="Taux (WL)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.40" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.40" />
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur="0.30" />
       </CODE>
-      <CODE code="taux_wr" description="Taux (WL)" format="percent">
+      <CODE code="taux_wr" description="Taux (WL)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.40" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.40" />
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur="0.30" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="assloy" description="Primes d'assurances pour loyers impayés" origin="openfisca">
-      <CODE code="taux" description="Taux" format="percent">
+    <NODE code="assloy" description="Primes d'assurances pour loyers impayés" origin="openfisca">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.38" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.38" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.45" />
         <VALUE deb="2005-01-01" fin="2010-12-31" valeur="0.50" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="cotsyn_credit" description="Cotisations syndicales" origin="openfisca">
-      <CODE code="seuil" description="Seuil" format="percent">
+    <NODE code="cotsyn_credit" description="Cotisations syndicales" origin="openfisca">
+      <CODE code="seuil" description="Seuil" format="percent" origin="openfisca">
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.01" />
       </CODE>
-      <CODE code="taux" description="Cotisations syndicales" format="percent">
+      <CODE code="taux" description="Cotisations syndicales" format="percent" origin="openfisca">
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.66" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="divide" description="Dividendes" origin="openfisca">
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+    <NODE code="divide" description="Dividendes" origin="openfisca">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2004-01-01" fin="2009-12-31" valeur="115" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.4" />
         <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.4" />
         <VALUE deb="1979-01-01" fin="2005-12-31" valeur="0.5" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="drbail" description="taxe additionnelle de droit au bail" origin="openfisca">
-      <CODE code="taux" description="Taux" format="percent">
+    <NODE code="drbail" description="taxe additionnelle de droit au bail" origin="openfisca">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.025" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.025" />
       </CODE>
     </NODE>
-    <NODE code="garext" description="Frais de garde des enfants à l'extérieur du domicile">
+    <NODE both_origins="true" code="garext" description="Frais de garde des enfants à l'extérieur du domicile" origin="ipp">
       <CODE both_origins="true" code="plafond" description="Plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="2300" />
         <VALUE deb="1991-01-01" fin="2000-12-31" valeur="15000" />
@@ -1139,92 +1139,92 @@
         <VALUE deb="1978-01-01" fin="1987-12-31" valeur="0" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="inthab" description="Intérêts des emprunts pour l'habitation principale" origin="openfisca">
-      <CODE code="add" description="Par enfant à charge" format="integer" type="monetary">
+    <NODE code="inthab" description="Intérêts des emprunts pour l'habitation principale" origin="openfisca">
+      <CODE code="add" description="Par enfant à charge" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="500" />
         <VALUE deb="2007-01-01" fin="2013-12-31" valeur="500" />
       </CODE>
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="3750" />
         <VALUE deb="2007-01-01" fin="2013-12-31" valeur="3750" />
       </CODE>
-      <CODE code="taux1" description="Taux 1" format="percent">
+      <CODE code="taux1" description="Taux 1" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.4" />
         <VALUE deb="2007-01-01" fin="2013-12-31" valeur="0.4" />
       </CODE>
-      <CODE code="taux2" description="Taux 2" format="percent">
+      <CODE code="taux2" description="Taux 2" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.3" />
         <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.3" />
       </CODE>
-      <CODE code="taux3" description="Taux 3" format="percent">
+      <CODE code="taux3" description="Taux 3" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.25" />
         <VALUE deb="2007-01-01" fin="2010-12-31" valeur="0.2" />
       </CODE>
-      <CODE code="taux4" description="Taux 4" format="percent">
+      <CODE code="taux4" description="Taux 4" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.2" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.2" />
       </CODE>
-      <CODE code="taux5" description="Taux 5" format="percent">
+      <CODE code="taux5" description="Taux 5" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.15" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.15" />
       </CODE>
-      <CODE code="taux6" description="Taux 6" format="percent">
+      <CODE code="taux6" description="Taux 6" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.1" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.1" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="jeunes" description="Crédit jeunes actifs" origin="openfisca">
-      <CODE code="age" description="Âge limite" format="integer" type="monetary">
+    <NODE code="jeunes" description="Crédit jeunes actifs" origin="openfisca">
+      <CODE code="age" description="Âge limite" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2005-01-01" fin="2008-12-31" valeur="26" />
       </CODE>
-      <CODE code="int" description="Seuil intemédiaire de revenus" format="integer" type="monetary">
+      <CODE code="int" description="Seuil intemédiaire de revenus" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2005-01-01" fin="2008-12-31" valeur="10060" />
       </CODE>
-      <CODE code="max" description="Plafond de revenus" format="integer" type="monetary">
+      <CODE code="max" description="Plafond de revenus" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2005-01-01" fin="2008-12-31" valeur="12060" />
       </CODE>
-      <CODE code="min" description="Plancher de revenus" format="integer" type="monetary">
+      <CODE code="min" description="Plancher de revenus" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2005-01-01" fin="2008-12-31" valeur="2970" />
       </CODE>
-      <CODE code="montant" description="montant" format="integer">
+      <CODE code="montant" description="montant" format="integer" origin="openfisca">
         <VALUE deb="2005-01-01" fin="2008-12-31" valeur="1500" />
       </CODE>
-      <CODE code="nonvers" description="Seuil de non versement" format="percent">
+      <CODE code="nonvers" description="Seuil de non versement" format="percent" origin="openfisca">
         <VALUE deb="2005-01-01" fin="2008-12-31" valeur="25" />
       </CODE>
-      <CODE code="rfr_maj" description="Majoration du revenu fiscal de référence plafond (par demi-part supplémentaire)" format="integer" type="monetary">
+      <CODE code="rfr_maj" description="Majoration du revenu fiscal de référence plafond (par demi-part supplémentaire)" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2005-01-01" fin="2008-12-31" valeur="4276" />
       </CODE>
-      <CODE code="rfr_mult" description="Multiplicateur du RFR plafond pour couple" format="percent">
+      <CODE code="rfr_mult" description="Multiplicateur du RFR plafond pour couple" format="percent" origin="openfisca">
         <VALUE deb="2005-01-01" fin="2008-12-31" valeur="2" />
       </CODE>
-      <CODE code="rfr_plaf" description="Revenu fiscal de référence plafond (personne seule)" format="integer" type="monetary">
+      <CODE code="rfr_plaf" description="Revenu fiscal de référence plafond (personne seule)" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2005-01-01" fin="2008-12-31" valeur="25000" />
       </CODE>
-      <CODE code="taux" description="taux" format="percent">
+      <CODE code="taux" description="taux" format="percent" origin="openfisca">
         <VALUE deb="2005-01-01" fin="2008-12-31" valeur=".75" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="percvm" description="Crédit d’impôt pertes sur cessions de valeurs mobilières" origin="openfisca">
-      <CODE code="taux" description="Taux" format="percent">
+    <NODE code="percvm" description="Crédit d’impôt pertes sur cessions de valeurs mobilières" origin="openfisca">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.19" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="ppe" description="Prime pour l'emploi">
-      <CODE both_origins="false" code="TP_nbh" description="Nombre d'heure du temps plein" format="integer" origin="openfisca" type="hours">
+    <NODE both_origins="true" code="ppe" description="Prime pour l'emploi" origin="ipp">
+      <CODE code="TP_nbh" description="Nombre d'heure du temps plein" format="integer" origin="openfisca" type="hours">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="1820" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="1820" />
       </CODE>
-      <CODE both_origins="false" code="TP_nbj" description="Nombre de jour du temps plein" format="integer" origin="openfisca" type="days">
+      <CODE code="TP_nbj" description="Nombre de jour du temps plein" format="integer" origin="openfisca" type="days">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="360" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="360" />
       </CODE>
-      <CODE both_origins="false" code="abatns" description="Abatement non salarié" format="percent" origin="openfisca">
+      <CODE code="abatns" description="Abatement non salarié" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="1.1111" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="1.1111" />
       </CODE>
-      <NODE code="coefficient_de_majoration_ppe_pour_temps_partiel">
+      <NODE code="coefficient_de_majoration_ppe_pour_temps_partiel" origin="ipp">
         <CODE code="taux_1" format="percent" origin="ipp">
           <VALUE deb="2006-01-01" fin="2015-12-31" valeur="0.85" />
           <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.65" />
@@ -1362,189 +1362,189 @@
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="160" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="preetu" description="Souscription de prêts étudiants" origin="openfisca">
-      <CODE code="max" description="Plafond" format="integer">
+    <NODE code="preetu" description="Souscription de prêts étudiants" origin="openfisca">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="1000" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="1000" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="prlire" description="Prélèvement libératoire à restituer" origin="openfisca">
-      <CODE code="taux" description="Taux" format="percent">
+    <NODE code="prlire" description="Prélèvement libératoire à restituer" origin="openfisca">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.075" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.075" />
       </CODE>
     </NODE>
     <NODE code="quaenv" description="Dépenses en faveur des économies d'énergies" origin="openfisca">
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="8000" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="8000" />
       </CODE>
-      <CODE code="pac1" description="Majoration du plafond pour le 1er enfant" format="integer">
+      <CODE code="pac1" description="Majoration du plafond pour le 1er enfant" format="integer" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="400" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="400" />
       </CODE>
-      <CODE code="pac2" description="Majoration du plafond pour le 2nd enfant" format="integer">
+      <CODE code="pac2" description="Majoration du plafond pour le 2nd enfant" format="integer" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="400" />
         <VALUE deb="2008-01-01" fin="2013-12-31" valeur="400" />
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="500" />
       </CODE>
-      <CODE code="pac3" description="Majoration du plafond par enfant supplémentaire" format="integer">
+      <CODE code="pac3" description="Majoration du plafond par enfant supplémentaire" format="integer" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="400" />
         <VALUE deb="2008-01-01" fin="2013-12-31" valeur="400" />
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="600" />
       </CODE>
-      <CODE code="taux10" description="Taux 10%" format="percent">
+      <CODE code="taux10" description="Taux 10%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.10" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.10" />
       </CODE>
-      <CODE code="taux11" description="Taux 11%" format="percent">
+      <CODE code="taux11" description="Taux 11%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.11" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.11" />
       </CODE>
-      <CODE code="taux15" description="Taux 15%" format="percent">
+      <CODE code="taux15" description="Taux 15%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.15" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.15" />
       </CODE>
-      <CODE code="taux17" description="Taux 17%" format="percent">
+      <CODE code="taux17" description="Taux 17%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.17" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.17" />
       </CODE>
-      <CODE code="taux18" description="Taux 18%" format="percent">
+      <CODE code="taux18" description="Taux 18%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.18" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.18" />
       </CODE>
-      <CODE code="taux23" description="Taux 23%" format="percent">
+      <CODE code="taux23" description="Taux 23%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.23" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.23" />
       </CODE>
-      <CODE code="taux26" description="Taux 26%" format="percent">
+      <CODE code="taux26" description="Taux 26%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.26" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.26" />
       </CODE>
-      <CODE code="taux32" description="Taux 32%" format="percent">
+      <CODE code="taux32" description="Taux 32%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.32" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.32" />
       </CODE>
-      <CODE code="taux34" description="Taux 34%" format="percent">
+      <CODE code="taux34" description="Taux 34%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.34" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.34" />
       </CODE>
-      <CODE code="taux40" description="Taux 40%" format="percent">
+      <CODE code="taux40" description="Taux 40%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.40" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.40" />
       </CODE>
-      <CODE code="taux_sb" description="Taux (SB)" format="percent">
+      <CODE code="taux_sb" description="Taux (SB)" format="percent" origin="openfisca">
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.22" />
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="taux_sc" description="Taux (SC)" format="percent">
+      <CODE code="taux_sc" description="Taux (SC)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.13" />
         <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.13" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.40" />
       </CODE>
-      <CODE code="taux_sd" description="Taux (SD)" format="percent">
+      <CODE code="taux_sd" description="Taux (SD)" format="percent" origin="openfisca">
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.10" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.36" />
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.40" />
       </CODE>
-      <CODE code="taux_se" description="Taux (SE)" format="percent">
+      <CODE code="taux_se" description="Taux (SE)" format="percent" origin="openfisca">
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.17" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.45" />
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.50" />
       </CODE>
-      <CODE code="taux_sh" description="Taux (SH)" format="percent">
+      <CODE code="taux_sh" description="Taux (SH)" format="percent" origin="openfisca">
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.15" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.13" />
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.15" />
       </CODE>
-      <CODE code="taux_tt" description="Taux (TT)" format="percent">
+      <CODE code="taux_tt" description="Taux (TT)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.10" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.10" />
       </CODE>
-      <CODE code="taux_tu" description="Taux (TU)" format="percent">
+      <CODE code="taux_tu" description="Taux (TU)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.11" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.11" />
       </CODE>
-      <CODE code="taux_tv" description="Taux (TV)" format="percent">
+      <CODE code="taux_tv" description="Taux (TV)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.15" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.15" />
       </CODE>
-      <CODE code="taux_tw" description="Taux (TW)" format="percent">
+      <CODE code="taux_tw" description="Taux (TW)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.17" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.17" />
       </CODE>
-      <CODE code="taux_tx" description="Taux (TX)" format="percent">
+      <CODE code="taux_tx" description="Taux (TX)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.26" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.26" />
       </CODE>
-      <CODE code="taux_ty" description="Taux (TY)" format="percent">
+      <CODE code="taux_ty" description="Taux (TY)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.32" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.32" />
       </CODE>
-      <CODE code="taux_vt" description="Taux (VT)" format="percent">
+      <CODE code="taux_vt" description="Taux (VT)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.10" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.10" />
       </CODE>
-      <CODE code="taux_vu" description="Taux (VU)" format="percent">
+      <CODE code="taux_vu" description="Taux (VU)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="taux_vv" description="Taux (VV)" format="percent">
+      <CODE code="taux_vv" description="Taux (VV)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.15" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.15" />
       </CODE>
-      <CODE code="taux_vw" description="Taux (VW)" format="percent">
+      <CODE code="taux_vw" description="Taux (VW)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.30" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.30" />
       </CODE>
-      <CODE code="taux_vy" description="Taux (VY)" format="percent">
+      <CODE code="taux_vy" description="Taux (VY)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.40" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.40" />
       </CODE>
-      <CODE code="taux_vz" description="Taux (VZ)" format="percent">
+      <CODE code="taux_vz" description="Taux (VZ)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.20" />
         <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.20" />
       </CODE>
-      <CODE code="taux_wf" description="Taux (WF)" format="percent">
+      <CODE code="taux_wf" description="Taux (WF)" format="percent" origin="openfisca">
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.45" />
         <VALUE deb="2006-01-01" fin="2010-12-31" valeur="0.50" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.40" />
       </CODE>
-      <CODE code="taux_wg" description="Taux (WG)" format="percent">
+      <CODE code="taux_wg" description="Taux (WG)" format="percent" origin="openfisca">
         <VALUE deb="2006-01-01" fin="2009-12-31" valeur="0.40" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="taux_wh" description="Taux (WH)" format="percent">
+      <CODE code="taux_wh" description="Taux (WH)" format="percent" origin="openfisca">
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.22" />
         <VALUE deb="2006-01-01" fin="2010-12-31" valeur="0.25" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="0.15" />
       </CODE>
-      <CODE code="taux_wk" description="Taux (WK)" format="percent">
+      <CODE code="taux_wk" description="Taux (WK)" format="percent" origin="openfisca">
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.36" />
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.40" />
       </CODE>
-      <CODE code="taux_wq" description="Taux (WQ)" format="percent">
+      <CODE code="taux_wq" description="Taux (WQ)" format="percent" origin="openfisca">
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.13" />
         <VALUE deb="2006-01-01" fin="2010-12-31" valeur="0.15" />
       </CODE>
     </NODE>
   </NODE>
-  <NODE both_origins="false" code="crl" description="Contribution sur les revenus locatifs" origin="openfisca">
-    <CODE code="seuil" description="Seuil" format="integer" type="monetary">
+  <NODE code="crl" description="Contribution sur les revenus locatifs" origin="openfisca">
+    <CODE code="seuil" description="Seuil" format="integer" origin="openfisca" type="monetary">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="1830" />
       <VALUE deb="2001-01-01" fin="2013-12-31" valeur="1830" />
     </CODE>
-    <CODE code="taux" description="Taux" format="percent">
+    <CODE code="taux" description="Taux" format="percent" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.025" />
       <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0.025" />
     </CODE>
   </NODE>
-  <NODE both_origins="false" code="decote" description="Décote" origin="openfisca">
-    <CODE code="seuil" description="Seuil de la décôte" format="integer" type="monetary">
+  <NODE code="decote" description="Décote" origin="openfisca">
+    <CODE code="seuil" description="Seuil de la décôte" format="integer" origin="openfisca" type="monetary">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="1016" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1016" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="960" />
@@ -1558,17 +1558,17 @@
       <VALUE deb="2003-01-01" fin="2003-12-31" valeur="786" />
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="772" />
     </CODE>
-    <CODE code="seuil_celib" description="Seuil de la décote pour un célibataire" format="integer" type="monetary">
+    <CODE code="seuil_celib" description="Seuil de la décote pour un célibataire" format="integer" origin="openfisca" type="monetary">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="1135" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1135" />
     </CODE>
-    <CODE code="seuil_couple" description="Seuil de la décote pour un couple" format="integer" type="monetary">
+    <CODE code="seuil_couple" description="Seuil de la décote pour un couple" format="integer" origin="openfisca" type="monetary">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="1870" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1870" />
     </CODE>
   </NODE>
-  <NODE code="deduc_sal">
-    <NODE code="reduction_d_impot_pour_cotisations_syndicales">
+  <NODE code="deduc_sal" origin="ipp">
+    <NODE code="reduction_d_impot_pour_cotisations_syndicales" origin="ipp">
       <CODE code="plafond" format="percent" origin="ipp">
         <VALUE deb="1988-01-01" fuzzy="true" valeur="0.01" />
       </CODE>
@@ -1580,8 +1580,8 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="divers">
-    <NODE code="aide_aux_repreneurs_d_entreprise_cf_10">
+  <NODE code="divers" origin="ipp">
+    <NODE code="aide_aux_repreneurs_d_entreprise_cf_10" origin="ipp">
       <CODE code="reduction" format="float" origin="ipp" type="monetary">
         <VALUE deb="2006-01-01" fuzzy="true" valeur="1000" />
       </CODE>
@@ -1589,7 +1589,7 @@
         <VALUE deb="2006-01-01" fuzzy="true" valeur="400" />
       </CODE>
     </NODE>
-    <NODE code="assurances_vie">
+    <NODE code="assurances_vie" origin="ipp">
       <CODE code="increment" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fin="2004-12-31" valeur="150" />
         <VALUE deb="1983-01-01" fin="2000-12-31" valeur="1000" />
@@ -1607,7 +1607,7 @@
         <VALUE deb="1978-01-01" fin="1982-12-31" valeur="0" />
       </CODE>
     </NODE>
-    <NODE code="depenses_de_restauration_des_monuments_historiques_cf_11">
+    <NODE code="depenses_de_restauration_des_monuments_historiques_cf_11" origin="ipp">
       <CODE code="plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="2008-01-01" fuzzy="true" valeur="20000" />
       </CODE>
@@ -1617,7 +1617,7 @@
         <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE code="depenses_pour_la_formation_des_chefs_d_entreprises">
+    <NODE code="depenses_pour_la_formation_des_chefs_d_entreprises" origin="ipp">
       <CODE code="plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="1992-01-01" fin="1996-12-31" valeur="5000" />
       </CODE>
@@ -1625,7 +1625,7 @@
         <VALUE deb="1992-01-01" fin="1996-12-31" valeur="0.35" />
       </CODE>
     </NODE>
-    <NODE code="frais_de_comptabilite_cf_3">
+    <NODE code="frais_de_comptabilite_cf_3" origin="ipp">
       <CODE code="montant" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="915" />
         <VALUE deb="1994-01-01" fin="2000-12-31" valeur="6000" />
@@ -1633,7 +1633,7 @@
         <VALUE deb="1982-01-01" fin="1991-12-31" valeur="2000" />
       </CODE>
     </NODE>
-    <NODE code="interets_d_emprunt_pour_reprise_de_societe_cf_8">
+    <NODE code="interets_d_emprunt_pour_reprise_de_societe_cf_8" origin="ipp">
       <CODE code="plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="2008-01-01" fuzzy="true" valeur="20000" />
         <VALUE deb="2004-01-01" fin="2007-12-31" valeur="10000" />
@@ -1642,7 +1642,7 @@
         <VALUE deb="2004-01-01" fuzzy="true" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE code="interets_paiements_differes_agriculteurs_cf_9">
+    <NODE code="interets_paiements_differes_agriculteurs_cf_9" origin="ipp">
       <CODE code="plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="2005-01-01" fuzzy="true" valeur="5000" />
       </CODE>
@@ -1650,7 +1650,7 @@
         <VALUE deb="2005-01-01" fuzzy="true" valeur="0.5" />
       </CODE>
     </NODE>
-    <NODE code="prets_a_la_consommation_cf_7">
+    <NODE code="prets_a_la_consommation_cf_7" origin="ipp">
       <CODE code="plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="2004-01-01" fin="2005-12-31" valeur="600" />
       </CODE>
@@ -1660,7 +1660,7 @@
         <VALUE deb="1996-01-01" fin="1997-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE code="protection_du_patrimoine_naturel_cf_13">
+    <NODE code="protection_du_patrimoine_naturel_cf_13" origin="ipp">
       <CODE code="plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="2010-01-01" fuzzy="true" valeur="10000" />
       </CODE>
@@ -1670,7 +1670,7 @@
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE code="rachat_d_entreprise">
+    <NODE code="rachat_d_entreprise" origin="ipp">
       <CODE code="plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="1992-01-01" fin="1999-12-31" valeur="40000" />
         <VALUE deb="1987-01-01" fin="1991-12-31" valeur="150000" />
@@ -1680,7 +1680,7 @@
         <VALUE deb="1987-01-01" fin="1991-12-31" valeur="0" />
       </CODE>
     </NODE>
-    <NODE code="rente_survie_cf_4">
+    <NODE code="rente_survie_cf_4" origin="ipp">
       <CODE code="increment" format="float" origin="ipp" type="monetary">
         <VALUE deb="2004-01-01" fuzzy="true" valeur="300" />
         <VALUE deb="2001-01-01" fin="2003-12-31" valeur="230" />
@@ -1699,7 +1699,7 @@
         <VALUE deb="1978-01-01" fin="1982-12-31" valeur="0" />
       </CODE>
     </NODE>
-    <NODE code="restauration_du_patrimoine_bati_cf_12">
+    <NODE code="restauration_du_patrimoine_bati_cf_12" origin="ipp">
       <CODE code="plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="2009-01-01" fuzzy="true" valeur="100000" />
       </CODE>
@@ -1714,7 +1714,7 @@
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.4" />
       </CODE>
     </NODE>
-    <NODE code="versement_fond_salarial">
+    <NODE code="versement_fond_salarial" origin="ipp">
       <CODE code="plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="1996-01-01" fin="1997-12-31" valeur="5000" />
       </CODE>
@@ -1723,8 +1723,8 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="exo_ir">
-    <NODE code="conditions_de_ressources_pour_exoneration_d_ir">
+  <NODE code="exo_ir" origin="ipp">
+    <NODE code="conditions_de_ressources_pour_exoneration_d_ir" origin="ipp">
       <CODE code="apprentis" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="17490" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="17345" />
@@ -1837,8 +1837,8 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="majo_excep">
-    <NODE code="majorations_exceptionnelles_d_impot">
+  <NODE code="majo_excep" origin="ipp">
+    <NODE code="majorations_exceptionnelles_d_impot" origin="ipp">
       <CODE code="seuil_1" format="float" origin="ipp" type="monetary">
         <VALUE deb="1984-01-01" fin="1984-12-31" valeur="32080" />
         <VALUE deb="1983-01-01" fin="1983-12-31" valeur="20000" />
@@ -1907,8 +1907,8 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE both_origins="false" code="non_imposable" description="Condition de non imposabilité" origin="openfisca">
-    <CODE code="seuil" description="Seuil de non imposabilité" format="integer" type="monetary">
+  <NODE code="non_imposable" description="Condition de non imposabilité" origin="openfisca">
+    <CODE code="seuil" description="Seuil de non imposabilité" format="integer" origin="openfisca" type="monetary">
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="11791" />
       <VALUE deb="2010-01-01" fin="2011-12-31" valeur="11300" />
       <VALUE deb="2009-01-01" fin="2009-12-31" valeur="11139" />
@@ -1920,7 +1920,7 @@
       <VALUE deb="2003-01-01" fin="2003-12-31" valeur="8106" />
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="7844" />
     </CODE>
-    <CODE code="supp" description="Supplément par part_seuil 1ère tranche" format="integer" type="monetary">
+    <CODE code="supp" description="Supplément par part_seuil 1ère tranche" format="integer" origin="openfisca" type="monetary">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="6011" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="6011" />
       <VALUE deb="2010-01-01" fin="2012-12-31" valeur="5963" />
@@ -1935,8 +1935,8 @@
       <VALUE deb="2001-01-01" fin="2001-12-31" valeur="4121" />
     </CODE>
   </NODE>
-  <NODE code="plaf_nich">
-    <NODE code="plafonnement_des_niches">
+  <NODE code="plaf_nich" origin="ipp">
+    <NODE code="plafonnement_des_niches" origin="ipp">
       <CODE code="majoration" format="float" origin="ipp" type="monetary">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="8000" />
       </CODE>
@@ -1955,7 +1955,7 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="plafond_qf" description="Plafonnement du quotient familial">
+  <NODE both_origins="true" code="plafond_qf" description="Plafonnement du quotient familial" origin="ipp">
     <CODE both_origins="true" code="celib" description="Non mariés ou non PACS" format="float" origin="ipp" type="monetary">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="902" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="901" />
@@ -2002,7 +2002,7 @@
       <VALUE deb="1987-01-01" fin="1987-12-31" valeur="14230" />
       <VALUE deb="1986-01-01" fin="1986-12-31" valeur="13770" />
     </CODE>
-    <NODE code="decote">
+    <NODE code="decote" origin="ipp">
       <CODE code="parametres_de_calcul" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="1920" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1870" />
@@ -2144,8 +2144,8 @@
       <VALUE deb="1998-01-01" fin="1998-12-31" valeur="11000" />
     </CODE>
   </NODE>
-  <NODE code="plus_values" description="Impôt sur les plus values à taux forfaitaires">
-    <NODE code="imposition_des_plus_values_mobilieres_levees_d_options_attribuees_depuis_27_4_2000_cessions_realisees_moins_de_deux_ans_apres_la_levee">
+  <NODE both_origins="true" code="plus_values" description="Impôt sur les plus values à taux forfaitaires" origin="ipp">
+    <NODE code="imposition_des_plus_values_mobilieres_levees_d_options_attribuees_depuis_27_4_2000_cessions_realisees_moins_de_deux_ans_apres_la_levee" origin="ipp">
       <CODE code="seuil_tranche_superieure" format="float" origin="ipp" type="monetary">
         <VALUE deb="2009-01-01" fin="2012-12-31" valeur="152500" />
         <VALUE deb="2001-01-01" fin="2008-12-31" valeur="152000" />
@@ -2159,7 +2159,7 @@
         <VALUE deb="2000-01-01" fin="2009-12-31" valeur="0.4" />
       </CODE>
     </NODE>
-    <NODE code="pea">
+    <NODE both_origins="true" code="pea" origin="ipp">
       <CODE both_origins="true" code="taux_avant_2_ans" description="Clôture PEA avant 2 ans (3VM)" format="percent" origin="ipp">
         <VALUE deb="1991-01-01" fuzzy="true" valeur="0.225" />
       </CODE>
@@ -2169,11 +2169,11 @@
         <VALUE deb="1978-01-01" fin="1983-12-31" valeur="0.15" />
       </CODE>
     </NODE>
-    <CODE both_origins="false" code="pvce" description="Plus value de cession (RPNS) 16%" format="percent" origin="openfisca">
+    <CODE code="pvce" description="Plus value de cession (RPNS) 16%" format="percent" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.16" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.16" />
     </CODE>
-    <CODE both_origins="false" code="seuil_d_imposition" format="float" origin="ipp" type="monetary">
+    <CODE code="seuil_d_imposition" format="float" origin="ipp" type="monetary">
       <VALUE deb="2010-01-01" fin="2010-12-31" valeur="25830" />
       <VALUE deb="2009-01-01" fin="2009-12-31" valeur="25730" />
       <VALUE deb="2008-01-01" fin="2008-12-31" valeur="25000" />
@@ -2203,22 +2203,22 @@
       <VALUE deb="1984-01-01" fin="2007-12-31" valeur="0.16" />
       <VALUE deb="1978-01-01" fin="1983-12-31" valeur="0.15" />
     </CODE>
-    <CODE both_origins="false" code="taux1" description="Plus values de cession de valeurs mobilières" format="percent" origin="openfisca">
+    <CODE code="taux1" description="Plus values de cession de valeurs mobilières" format="percent" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.24" />
       <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.24" /> # TODO: à partir de 2013: imposition au barême progressif de l'ir avec abattement de  20 % (détention 2 à 4 ans), 30 % (4-6 ans), 40% (au-delà)
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.19" />
       <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.18" />
       <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.16" />
     </CODE>
-    <CODE both_origins="false" code="taux2" description="Actions gratuites 18%" format="percent" origin="openfisca">
+    <CODE code="taux2" description="Actions gratuites 18%" format="percent" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.18" />
       <VALUE deb="2009-01-01" fin="2013-12-31" valeur="0.18" />
     </CODE>
-    <CODE both_origins="false" code="taux3" description="Actions gratuites 30%" format="percent" origin="openfisca">
+    <CODE code="taux3" description="Actions gratuites 30%" format="percent" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.30" />
       <VALUE deb="1995-01-01" fin="2013-12-31" valeur="0.30" />
     </CODE>
-    <CODE both_origins="false" code="taux4" description="Actions gratuites 40%" format="percent" origin="openfisca">
+    <CODE code="taux4" description="Actions gratuites 40%" format="percent" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.41" />
       <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.41" />
       <VALUE deb="2000-01-01" fin="2009-12-31" valeur="0.40" />
@@ -2231,8 +2231,8 @@
       <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.16" />
     </CODE>
   </NODE>
-  <NODE code="pme">
-    <NODE code="emprunts_contractes_pour_la_reprise_d_une_pme">
+  <NODE code="pme" origin="ipp">
+    <NODE code="emprunts_contractes_pour_la_reprise_d_une_pme" origin="ipp">
       <CODE code="plafond_1" format="float" origin="ipp" type="monetary">
         <VALUE deb="1992-01-01" fin="1997-12-31" valeur="25000" />
       </CODE>
@@ -2248,156 +2248,156 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE both_origins="false" code="pv_immo" description="Plus-values immobilières" origin="openfisca">
-    <CODE code="ann_det1" description="Nombre d'années pleines de détentions minimale (1er seuil)" format="integer">
+  <NODE code="pv_immo" description="Plus-values immobilières" origin="openfisca">
+    <CODE code="ann_det1" description="Nombre d'années pleines de détentions minimale (1er seuil)" format="integer" origin="openfisca">
       <VALUE deb="2011-01-01" fin="2012-01-31" valeur="5" />
     </CODE>
-    <CODE code="ann_det2" description="Nombre d'années pleines de détentions 2e seuil" format="integer">
+    <CODE code="ann_det2" description="Nombre d'années pleines de détentions 2e seuil" format="integer" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="17" />
       <VALUE deb="2012-02-01" fin="2013-12-31" valeur="17" />
     </CODE>
-    <CODE code="ann_det3" description="Nombre d'années pleines de détentions 3e seuil" format="integer">
+    <CODE code="ann_det3" description="Nombre d'années pleines de détentions 3e seuil" format="integer" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="24" />
       <VALUE deb="2012-02-01" fin="2013-12-31" valeur="24" />
     </CODE>
-    <CODE code="taux" description="Taux d'imposition" format="percent">
+    <CODE code="taux" description="Taux d'imposition" format="percent" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur=".19" />
       <VALUE deb="2012-01-01" fin="2013-12-31" valeur=".19" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur=".17" />
       <VALUE deb="2005-01-01" fin="2010-12-31" valeur=".16" />
     </CODE>
-    <CODE code="taux1" description="Pas annuel du taux (après seuil 1)" format="percent">
+    <CODE code="taux1" description="Pas annuel du taux (après seuil 1)" format="percent" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur=".02" />
       <VALUE deb="2012-02-01" fin="2013-12-31" valeur=".02" />
       <VALUE deb="2011-01-01" fin="2012-01-31" valeur=".1" />
     </CODE>
-    <CODE code="taux2" description="Pas annuel du taux (après seuil 2)" format="percent">
+    <CODE code="taux2" description="Pas annuel du taux (après seuil 2)" format="percent" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur=".04" />
       <VALUE deb="2012-02-01" fin="2013-12-31" valeur=".04" />
     </CODE>
-    <CODE code="taux3" description="Pas annuel du taux (après seuil 3)" format="percent">
+    <CODE code="taux3" description="Pas annuel du taux (après seuil 3)" format="percent" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur=".08" />
       <VALUE deb="2012-02-01" fin="2013-12-31" valeur=".08" />
     </CODE>
   </NODE>
-  <NODE both_origins="false" code="quotient_familial" description="Parts de quotient familial" origin="openfisca">
-    <CODE code="cdcd" description="Enfant issu du conjoint décédé">
+  <NODE code="quotient_familial" description="Parts de quotient familial" origin="openfisca">
+    <CODE code="cdcd" description="Enfant issu du conjoint décédé" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0" />
       <VALUE deb="2008-01-01" fin="2013-12-31" valeur="0" />
       <VALUE deb="2002-01-01" fin="2007-12-31" valeur="1" />
     </CODE>
-    <CODE code="conj" description="Conjoint d'un couple marié ou pacsé">
+    <CODE code="conj" description="Conjoint d'un couple marié ou pacsé" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="1" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="1" />
     </CODE>
-    <CODE code="enf1" description="Enfant de rang 1 ou 2">
+    <CODE code="enf1" description="Enfant de rang 1 ou 2" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
     </CODE>
-    <CODE code="enf2" description="Enfant de rang 3 ou plus">
+    <CODE code="enf2" description="Enfant de rang 3 ou plus" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="1" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="1" />
     </CODE>
-    <CODE code="inv1" description="Enfant invalides (cases G ou I)">
+    <CODE code="inv1" description="Enfant invalides (cases G ou I)" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
     </CODE>
-    <CODE code="inv2" description="Adultes invalides (case R)">
+    <CODE code="inv2" description="Adultes invalides (case R)" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
     </CODE>
-    <CODE code="isol" description="Parent isolé">
+    <CODE code="isol" description="Parent isolé" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
     </CODE>
-    <CODE code="not31a" description="Note 3 : Case P">
+    <CODE code="not31a" description="Note 3 : Case P" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
     </CODE>
-    <CODE code="not31b" description="Note 3 : case W ou G">
+    <CODE code="not31b" description="Note 3 : case W ou G" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
     </CODE>
-    <CODE code="not32" description="Note 3: personne seule ayant élevé des enfants">
+    <CODE code="not32" description="Note 3: personne seule ayant élevé des enfants" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
     </CODE>
-    <CODE code="not41" description="Note 4 : contribuables invalides">
+    <CODE code="not41" description="Note 4 : contribuables invalides" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
     </CODE>
-    <CODE code="not42" description="Note 4 : anciens combattants">
+    <CODE code="not42" description="Note 4 : anciens combattants" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
     </CODE>
-    <CODE code="not6" description="Note 6">
+    <CODE code="not6" description="Note 6" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
     </CODE>
   </NODE>
-  <NODE both_origins="false" code="recouvrement" description="Mise en recouvrement de l'impôt" origin="openfisca">
-    <CODE code="min" description="Seuil de recouvrement après imputations" format="integer" type="monetary">
+  <NODE code="recouvrement" description="Mise en recouvrement de l'impôt" origin="openfisca">
+    <CODE code="min" description="Seuil de recouvrement après imputations" format="integer" origin="openfisca" type="monetary">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="12" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="12" />
     </CODE>
-    <CODE code="seuil" description="Seuil de recouvrement avant imputations" format="integer" type="monetary">
+    <CODE code="seuil" description="Seuil de recouvrement avant imputations" format="integer" origin="openfisca" type="monetary">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="61" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="61" />
     </CODE>
   </NODE>
-  <NODE code="reductions_impots" description="Réduction d'impôt">
-    <NODE both_origins="false" code="adhcga" description="Frais de comptabilité et d'adhésion CGA" origin="openfisca">
-      <CODE code="max" description="Plafond par exploitation" format="integer" type="monetary">
+  <NODE both_origins="true" code="reductions_impots" description="Réduction d'impôt" origin="ipp">
+    <NODE code="adhcga" description="Frais de comptabilité et d'adhésion CGA" origin="openfisca">
+      <CODE code="max" description="Plafond par exploitation" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="915" />
         <VALUE deb="2001-01-01" fin="2013-12-31" valeur="915" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="assvie" description="Assurance-vie" origin="openfisca">
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+    <NODE code="assvie" description="Assurance-vie" origin="openfisca">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2001-01-01" fin="2004-12-31" valeur="610" />
       </CODE>
-      <CODE code="pac" description="Par enfant à charge" format="integer" type="monetary">
+      <CODE code="pac" description="Par enfant à charge" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2001-01-01" fin="2004-12-31" valeur="150" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="1984-01-01" fin="2004-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="cappme" description="Souscriptions au capital des PME" origin="openfisca">
-      <CODE code="seuil" description="Seuil" format="integer" type="monetary">
+    <NODE code="cappme" description="Souscriptions au capital des PME" origin="openfisca">
+      <CODE code="seuil" description="Seuil" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="20000" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="20000" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="5717" />
       </CODE>
-      <CODE code="seuil_tpe" description="Seuil TPE" format="integer" type="monetary">
+      <CODE code="seuil_tpe" description="Seuil TPE" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="50000" />
         <VALUE deb="2009-01-01" fin="2013-12-31" valeur="50000" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.18" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.18" />
         <VALUE deb="2011-01-01" fin="2012-12-31" valeur="0.22" />
         <VALUE deb="2002-01-01" fin="2010-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="taux18" description="Taux 18%" format="percent">
+      <CODE code="taux18" description="Taux 18%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.18" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.18" />
       </CODE>
-      <CODE code="taux22" description="Taux 22%" format="percent">
+      <CODE code="taux22" description="Taux 22%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.22" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.22" />
       </CODE>
-      <CODE code="taux25" description="Taux 25%" format="percent">
+      <CODE code="taux25" description="Taux 25%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="cotsyn" description="Cotisations syndicales" origin="openfisca">
-      <CODE code="seuil" description="Seuil" format="percent">
+    <NODE code="cotsyn" description="Cotisations syndicales" origin="openfisca">
+      <CODE code="seuil" description="Seuil" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.01" />
         <VALUE deb="1988-01-01" fin="2013-12-31" valeur="0.01" />
       </CODE>
-      <CODE code="taux" description="taux de cotisations syndicales" format="percent">
+      <CODE code="taux" description="taux de cotisations syndicales" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.66" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="0.66" />
         <VALUE deb="2001-01-01" fin="2004-12-31" valeur="0.50" />
@@ -2405,17 +2405,17 @@
         <VALUE deb="1988-01-01" fin="1990-12-31" valeur="0.20" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="creaen" description="Aides aux créateurs d'entreprises (à compléter)" origin="openfisca">
-      <CODE code="base" description="Aides aux créateurs d'entreprises" format="integer" type="monetary">
+    <NODE code="creaen" description="Aides aux créateurs d'entreprises (à compléter)" origin="openfisca">
+      <CODE code="base" description="Aides aux créateurs d'entreprises" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="1000" />
         <VALUE deb="2006-01-01" fin="2013-12-31" valeur="1000" />
       </CODE>
-      <CODE code="hand" description="Par personne handicapée" format="integer" type="monetary">
+      <CODE code="hand" description="Par personne handicapée" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="400" />
         <VALUE deb="2006-01-01" fin="2013-12-31" valeur="400" />
       </CODE>
     </NODE>
-    <NODE code="daepad" description="Dépenses d'accueil dans un établissement pour personnes âgées dépendantes">
+    <NODE both_origins="true" code="daepad" description="Dépenses d'accueil dans un établissement pour personnes âgées dépendantes" origin="ipp">
       <CODE both_origins="true" code="max" description="Plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="2006-01-01" fuzzy="true" valeur="10000" />
         <VALUE deb="2003-01-01" fin="2005-12-31" valeur="3000" />
@@ -2427,39 +2427,39 @@
         <VALUE deb="1989-01-01" fuzzy="true" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="deffor" description="Défense des forêts contre l'incendie" origin="openfisca">
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+    <NODE code="deffor" description="Défense des forêts contre l'incendie" origin="openfisca">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="1000" />
         <VALUE deb="2006-01-01" fin="2013-12-31" valeur="1000" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
         <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.5" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="doment" description="Investissements dans les DOM-TOM dans le cadre d'une entreprise (à compléter)" origin="openfisca">
-      <CODE code="iDOMe_taux1" description="Investissements dans les DOM-TOM dans le cadre d'une entreprise">
+    <NODE code="doment" description="Investissements dans les DOM-TOM dans le cadre d'une entreprise (à compléter)" origin="openfisca">
+      <CODE code="iDOMe_taux1" description="Investissements dans les DOM-TOM dans le cadre d'une entreprise" origin="openfisca">
         <VALUE deb="2004-01-01" fin="2009-12-31" valeur="0" />
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="0.5" />
       </CODE>
-      <CODE code="iDOMe_taux2" description="Investissements dans les DOM-TOM dans le cadre d'une entreprise">
+      <CODE code="iDOMe_taux2" description="Investissements dans les DOM-TOM dans le cadre d'une entreprise" origin="openfisca">
         <VALUE deb="2003-01-01" fin="2009-12-31" valeur="0.6" />
       </CODE>
-      <CODE code="iDOMls_taux" description="Investissements dans les DOM-TOM dans le logement social">
+      <CODE code="iDOMls_taux" description="Investissements dans les DOM-TOM dans le logement social" origin="openfisca">
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.5" />
         <VALUE deb="2003-01-01" fin="2008-12-31" valeur="0" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="domlog" description="Investissement OUTRE-MER dans le secteur du logement (à compléter)" origin="openfisca">
-      <CODE code="taux1" description="Premier taux" format="percent">
+    <NODE code="domlog" description="Investissement OUTRE-MER dans le secteur du logement (à compléter)" origin="openfisca">
+      <CODE code="taux1" description="Premier taux" format="percent" origin="openfisca">
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.08" />
       </CODE>
-      <CODE code="taux2" description="Second taux" format="percent">
+      <CODE code="taux2" description="Second taux" format="percent" origin="openfisca">
         <VALUE deb="2002-01-01" fin="2007-12-31" valeur="0.05" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="donapd" description="Dons effectués à des organises d'aide aux personnes en difficulté" origin="openfisca">
-      <CODE code="max" description="Plafond des dépenses" format="integer" type="monetary">
+    <NODE code="donapd" description="Dons effectués à des organises d'aide aux personnes en difficulté" origin="openfisca">
+      <CODE code="max" description="Plafond des dépenses" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="521" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="521" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="513" />
@@ -2473,7 +2473,7 @@
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="407" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="400" />
       </CODE>
-      <CODE code="taux" description="Taux de la réduction d'impôt" format="percent">
+      <CODE code="taux" description="Taux de la réduction d'impôt" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.75" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="0.75" />
         <VALUE deb="2003-01-01" fin="2004-12-31" valeur="0.66" />
@@ -2481,8 +2481,8 @@
         <VALUE deb="1988-01-01" fin="1995-12-31" valeur="0.50" />
       </CODE>
     </NODE>
-    <NODE code="dons">
-      <NODE code="dons_aux_partis_politiques">
+    <NODE both_origins="true" code="dons" origin="ipp">
+      <NODE code="dons_aux_partis_politiques" origin="ipp">
         <CODE code="taux" format="percent" origin="ipp">
           <VALUE deb="2005-01-01" fuzzy="true" valeur="0.66" />
           <VALUE deb="2002-01-01" fin="2004-12-31" valeur="0.6" />
@@ -2490,7 +2490,7 @@
           <VALUE deb="1996-01-01" fin="1998-12-31" valeur="0.4" />
         </CODE>
       </NODE>
-      <NODE code="dons_coluche">
+      <NODE code="dons_coluche" origin="ipp">
         <CODE code="plafond" format="float" origin="ipp" type="monetary">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="529" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="526" />
@@ -2524,7 +2524,7 @@
           <VALUE deb="1988-01-01" fin="1995-12-31" valeur="0.5" />
         </CODE>
       </NODE>
-      <NODE code="dons_d_interet_general">
+      <NODE code="dons_d_interet_general" origin="ipp">
         <CODE code="plafond" format="percent" origin="ipp">
           <VALUE deb="2002-01-01" fuzzy="true" valeur="0.2" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.1" />
@@ -2538,7 +2538,7 @@
         <VALUE deb="2014-01-01" fuzzy="true" valeur="15000" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="15000" />
       </CODE>
-      <NODE code="reduction_d_impot_pour_les_dons">
+      <NODE code="reduction_d_impot_pour_les_dons" origin="ipp">
         <CODE code="plafond_en_du_revenu_global" format="percent" origin="ipp">
           <VALUE deb="2002-01-01" fuzzy="true" valeur="0.2" />
           <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.1" />
@@ -2553,28 +2553,28 @@
         <VALUE deb="1996-01-01" fin="2001-12-31" valeur="0.5" />
         <VALUE deb="1989-01-01" fin="1995-12-31" valeur="0.4" />
       </CODE>
-      <CODE both_origins="false" code="taux_max_dons_partipo" description="Plafond" format="percent" origin="ipp">
+      <CODE both_origins="true" code="taux_max_dons_partipo" description="Plafond" format="percent" origin="ipp">
         <VALUE deb="2002-01-01" fuzzy="true" valeur="0.2" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.1" />
         <VALUE deb="1999-01-01" fin="2000-12-31" valeur="0.06" />
         <VALUE deb="1996-01-01" fin="1998-12-31" valeur="0.05" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="duflot" description="Investissements locatifs intermédiaires" origin="openfisca">
-      <CODE code="plafond" description="Plafond" format="integer" type="monetary">
+    <NODE code="duflot" description="Investissements locatifs intermédiaires" origin="openfisca">
+      <CODE code="plafond" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2017-01-01" fuzzy="true" valeur="300000" />
         <VALUE deb="2013-01-01" fin="2016-12-31" valeur="300000" />
       </CODE>
-      <CODE code="taux_m" description="Taux métropole" format="percent">
+      <CODE code="taux_m" description="Taux métropole" format="percent" origin="openfisca">
         <VALUE deb="2017-01-01" fuzzy="true" valeur="0.18" />
         <VALUE deb="2013-01-01" fin="2016-12-31" valeur="0.18" />
       </CODE>
-      <CODE code="taux_om" description="Taux outre-mer" format="percent">
+      <CODE code="taux_om" description="Taux outre-mer" format="percent" origin="openfisca">
         <VALUE deb="2017-01-01" fuzzy="true" valeur="0.29" />
         <VALUE deb="2013-01-01" fin="2016-12-31" valeur="0.29" />
       </CODE>
     </NODE>
-    <NODE code="ecodev" description="Sommes versées sur un compte épargne codéveloppement (case 7UH)">
+    <NODE both_origins="true" code="ecodev" description="Sommes versées sur un compte épargne codéveloppement (case 7UH)" origin="ipp">
       <CODE both_origins="true" code="plafond_par_personne" description="Maximum" format="float" origin="ipp" type="monetary">
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="20000" />
       </CODE>
@@ -2585,7 +2585,7 @@
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE code="ecpess" description="Enfants à charge poursuivant leurs études secondaires ou supérieures">
+    <NODE both_origins="true" code="ecpess" description="Enfants à charge poursuivant leurs études secondaires ou supérieures" origin="ipp">
       <CODE both_origins="true" code="col" description="Collège" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="61" />
         <VALUE deb="1992-01-01" fin="2000-12-31" valeur="400" />
@@ -2599,37 +2599,37 @@
         <VALUE deb="1992-01-01" fin="2000-12-31" valeur="1200" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="garext" description="Garde des enfants à l'extérieur du domicile" origin="openfisca">
-      <CODE code="plafond" description="Plafond" format="integer" type="monetary">
+    <NODE code="garext" description="Garde des enfants à l'extérieur du domicile" origin="openfisca">
+      <CODE code="plafond" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="2300" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="2300" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
         <VALUE deb="2006-01-01" fin="2013-12-31" valeur="0.5" />
         <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="intagr" description="Intérêts pour paiement différé accordé aux agriculteurs" origin="openfisca">
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+    <NODE code="intagr" description="Intérêts pour paiement différé accordé aux agriculteurs" origin="openfisca">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="5000" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="5000" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="0.5" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="intcon" description="Intérêts des prêts à la consommation (UH)" origin="openfisca">
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+    <NODE code="intcon" description="Intérêts des prêts à la consommation (UH)" origin="openfisca">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2004-01-01" fin="2005-12-31" valeur="600" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2004-01-01" fin="2005-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="intemp" description="Intérêts d'emprunts (WG)">
-      <NODE code="deduction_des_charges">
+    <NODE both_origins="true" code="intemp" description="Intérêts d'emprunts (WG)" origin="ipp">
+      <NODE code="deduction_des_charges" origin="ipp">
         <CODE code="increment" format="float" origin="ipp" type="monetary">
           <VALUE deb="1979-01-01" fin="1983-12-31" valeur="1000" />
         </CODE>
@@ -2637,7 +2637,7 @@
           <VALUE deb="1979-01-01" fin="1983-12-31" valeur="7000" />
         </CODE>
       </NODE>
-      <NODE code="interets_d_emprunts">
+      <NODE code="interets_d_emprunts" origin="ipp">
         <CODE code="increment" format="float" origin="ipp" type="monetary">
           <VALUE deb="1984-01-01" fin="2000-12-31" valeur="1500" />
         </CODE>
@@ -2645,7 +2645,7 @@
           <VALUE deb="1984-01-01" fin="2000-12-31" valeur="9000" />
         </CODE>
       </NODE>
-      <CODE both_origins="false" code="max" description="Maximum" format="float" origin="ipp" type="monetary">
+      <CODE both_origins="true" code="max" description="Maximum" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fin="2002-12-31" valeur="2287" />
         <VALUE deb="1985-01-01" fin="2000-12-31" valeur="15000" />
       </CODE>
@@ -2660,7 +2660,7 @@
         <VALUE deb="2001-01-01" fin="2002-12-31" valeur="3049" />
         <VALUE deb="1991-01-01" fin="2000-12-31" valeur="20000" />
       </CODE>
-      <NODE code="reduction_d_impot_pour_gros_travaux">
+      <NODE code="reduction_d_impot_pour_gros_travaux" origin="ipp">
         <CODE code="plafond" format="float" origin="ipp" type="monetary">
           <VALUE deb="1997-01-01" fin="1999-12-31" valeur="20000" />
           <VALUE deb="1995-01-01" fin="1996-12-31" valeur="15000" />
@@ -2678,16 +2678,16 @@
         <VALUE deb="1984-01-01" fin="2002-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE code="invfor" description="Investissements forestiers (UN, à compléter) ">
-      <CODE both_origins="false" code="iforges_seuil" description="" format="integer" origin="openfisca" type="monetary">
+    <NODE both_origins="true" code="invfor" description="Investissements forestiers (UN, à compléter) " origin="ipp">
+      <CODE code="iforges_seuil" description="" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="2000" />
         <VALUE deb="2009-01-01" fin="2013-12-31" valeur="2000" />
       </CODE>
-      <CODE both_origins="false" code="ifortra_seuil" description="" format="integer" origin="openfisca" type="monetary">
+      <CODE code="ifortra_seuil" description="" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="6250" />
         <VALUE deb="2009-01-01" fin="2013-12-31" valeur="6250" />
       </CODE>
-      <NODE code="reduction_d_impot_pour_la_defense_des_forets_contre_les_incendies">
+      <NODE code="reduction_d_impot_pour_la_defense_des_forets_contre_les_incendies" origin="ipp">
         <CODE code="plafond" format="float" origin="ipp" type="monetary">
           <VALUE deb="2006-01-01" fuzzy="true" valeur="1000" />
         </CODE>
@@ -2695,15 +2695,15 @@
           <VALUE deb="2006-01-01" fuzzy="true" valeur="0.5" />
         </CODE>
       </NODE>
-      <CODE both_origins="false" code="report10" description="Report des excédents 2010" format="percent" origin="openfisca" type="monetary">
+      <CODE code="report10" description="Report des excédents 2010" format="percent" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
-      <CODE both_origins="false" code="report11" description="Report des excédents 2011" format="percent" origin="openfisca" type="monetary">
+      <CODE code="report11" description="Report des excédents 2011" format="percent" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.22" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.22" />
       </CODE>
-      <CODE both_origins="false" code="report12" description="Report des excédents 2011" format="percent" origin="openfisca" type="monetary">
+      <CODE code="report12" description="Report des excédents 2011" format="percent" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.18" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.18" />
       </CODE>
@@ -2721,195 +2721,195 @@
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.9" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="invlst" description="Investissements locatifs dans le secteur touristique" origin="openfisca">
-      <CODE code="seuil1" description="Seuil1" format="integer" type="monetary">
+    <NODE code="invlst" description="Investissements locatifs dans le secteur touristique" origin="openfisca">
+      <CODE code="seuil1" description="Seuil1" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="50000" />
         <VALUE deb="2004-01-01" fin="2013-12-31" valeur="50000" />
       </CODE>
-      <CODE code="seuil2" description="Seuil2" format="integer" type="monetary">
+      <CODE code="seuil2" description="Seuil2" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="50000" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="50000" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="38120" />
       </CODE>
-      <CODE code="seuil3" description="Seuil3" format="integer" type="monetary">
+      <CODE code="seuil3" description="Seuil3" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="50000" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="50000" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="45760" />
       </CODE>
-      <CODE code="taux_xa" description="Taux (XA)" format="percent">
+      <CODE code="taux_xa" description="Taux (XA)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.4" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.4" />
       </CODE>
-      <CODE code="taux_xb" description="Taux (XB)" format="percent">
+      <CODE code="taux_xb" description="Taux (XB)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.2" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.2" />
       </CODE>
-      <CODE code="taux_xc" description="Taux (XC)" format="percent"># TODO: check boxes (XC...XO) over the years
+      <CODE code="taux_xc" description="Taux (XC)" format="percent" origin="openfisca"># TODO: check boxes (XC...XO) over the years
           <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.25" /># TODO: check 2013
         </CODE>
-      <CODE code="taux_xd" description="Taux (XD)" format="percent">
+      <CODE code="taux_xd" description="Taux (XD)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.00" />
         <VALUE deb="2007-01-01" fin="2013-12-31" valeur="0.00" />
         <VALUE deb="2004-01-01" fin="2006-12-31" valeur="0.15" />
       </CODE>
-      <CODE code="taux_xe" description="Taux (XE)" format="percent">
+      <CODE code="taux_xe" description="Taux (XE)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.00" />
         <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.00" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.20" />
         <VALUE deb="2004-01-01" fin="2008-12-31" valeur="0.00" />
       </CODE>
-      <CODE code="taux_xf" description="Taux (XF)" format="percent">
+      <CODE code="taux_xf" description="Taux (XF)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="0.25" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.00" />
       </CODE>
-      <CODE code="taux_xg" description="Taux (XG)" format="percent">
+      <CODE code="taux_xg" description="Taux (XG)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.36" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.36" /># TODO: check 2013
         <VALUE deb="2005-01-01" fin="2010-12-31" valeur="0.40" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.10" />
       </CODE>
-      <CODE code="taux_xh" description="Taux (XH)" format="percent">
+      <CODE code="taux_xh" description="Taux (XH)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.18" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.18" /># TODO: check 2013
         <VALUE deb="2005-01-01" fin="2010-12-31" valeur="0.20" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.10" />
       </CODE>
-      <CODE code="taux_xi" description="Taux (XI)" format="percent">
+      <CODE code="taux_xi" description="Taux (XI)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.25" />
         <VALUE deb="2005-01-01" fin="2009-12-31" valeur="0.00" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.20" />
       </CODE>
-      <CODE code="taux_xj" description="Taux (XJ)" format="percent">
+      <CODE code="taux_xj" description="Taux (XJ)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.20" />
         <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.20" />
         <VALUE deb="2008-01-01" fin="2009-12-31" valeur="0.00" />
         <VALUE deb="2004-01-01" fin="2007-12-31" valeur="0.10" />
       </CODE>
-      <CODE code="taux_xk" description="Taux (XK)" format="percent">
+      <CODE code="taux_xk" description="Taux (XK)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2010-01-01" fin="2013-12-31" valeur="0.25" />
         <VALUE deb="2008-01-01" fin="2009-12-31" valeur="0.00" />
         <VALUE deb="2005-01-01" fin="2007-12-31" valeur="0.20" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.00" />
       </CODE>
-      <CODE code="taux_xl" description="Taux (XL)" format="percent">
+      <CODE code="taux_xl" description="Taux (XL)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.20" />
         <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.20" />
       </CODE>
-      <CODE code="taux_xm" description="Taux (XM)" format="percent">
+      <CODE code="taux_xm" description="Taux (XM)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.20" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="0.20" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="0.00" />
       </CODE>
-      <CODE code="taux_xn" description="Taux (XN)" format="percent">
+      <CODE code="taux_xn" description="Taux (XN)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2007-01-01" fin="2013-12-31" valeur="0.25" />
         <VALUE deb="2004-01-01" fin="2006-12-31" valeur="0.00" />
       </CODE>
-      <CODE code="taux_xo" description="Taux (XO)" format="percent">
+      <CODE code="taux_xo" description="Taux (XO)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2008-01-01" fin="2013-12-31" valeur="0.25" />
         <VALUE deb="2004-01-01" fin="2007-12-31" valeur="0.00" />
       </CODE>
-      <CODE code="taux_xp" description="Taux (XP)" format="percent">
+      <CODE code="taux_xp" description="Taux (XP)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="taux_xq" description="Taux (XQ)" format="percent">
+      <CODE code="taux_xq" description="Taux (XQ)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.20" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.20" />
       </CODE>
-      <CODE code="taux_xr" description="Taux (XR)" format="percent">
+      <CODE code="taux_xr" description="Taux (XR)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="taux_xx" description="Taux (XX)" format="percent">
+      <CODE code="taux_xx" description="Taux (XX)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.3" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.3" />
       </CODE>
-      <CODE code="taux_xz" description="Taux (XZ)" format="percent">
+      <CODE code="taux_xz" description="Taux (XZ)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.15" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.15" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="invrev" description="Investissements locatifs dans les résidences de tourisme situées dans une zone de revitalisation rurale" origin="openfisca">
-      <CODE code="seuil_gs" description="Case GS" format="integer" type="monetary">
+    <NODE code="invrev" description="Investissements locatifs dans les résidences de tourisme situées dans une zone de revitalisation rurale" origin="openfisca">
+      <CODE code="seuil_gs" description="Case GS" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2002-01-01" fin="2003-12-31" valeur="45760" />
       </CODE>
-      <CODE code="seuil_gu" description="Case GU" format="integer" type="monetary">
+      <CODE code="seuil_gu" description="Case GU" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2002-01-01" fin="2003-12-31" valeur="45760" />
       </CODE>
-      <CODE code="seuil_xg" description="Case XG" format="integer" type="monetary">
+      <CODE code="seuil_xg" description="Case XG" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2002-01-01" fin="2003-12-31" valeur="38120" />
       </CODE>
-      <CODE code="taux_gs" description="case GS" format="percent">
+      <CODE code="taux_gs" description="case GS" format="percent" origin="openfisca">
         <VALUE deb="2002-01-01" fin="2003-12-31" valeur="0.15" />
       </CODE>
-      <CODE code="taux_gt" description="Case GT" format="percent">
+      <CODE code="taux_gt" description="Case GT" format="percent" origin="openfisca">
         <VALUE deb="2002-01-01" fin="2003-12-31" valeur="0.15" />
       </CODE>
-      <CODE code="taux_gu" description="Case GU" format="percent">
+      <CODE code="taux_gu" description="Case GU" format="percent" origin="openfisca">
         <VALUE deb="2002-01-01" fin="2003-12-31" valeur="0.10" />
       </CODE>
-      <CODE code="taux_gv" description="Case GV" format="percent">
+      <CODE code="taux_gv" description="Case GV" format="percent" origin="openfisca">
         <VALUE deb="2002-01-01" fin="2003-12-31" valeur="0.10" />
       </CODE>
-      <CODE code="taux_xg" description="Case XG" format="percent">
+      <CODE code="taux_xg" description="Case XG" format="percent" origin="openfisca">
         <VALUE deb="2002-01-01" fin="2003-12-31" valeur="0.10" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="locmeu" description="Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences (cases 7IJ à 7IS" origin="openfisca">
-      <CODE code="max" description="Maximum" format="integer" type="monetary">
+    <NODE code="locmeu" description="Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences (cases 7IJ à 7IS" origin="openfisca">
+      <CODE code="max" description="Maximum" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="300000" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="300000" /> # suppr
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="300000" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.25" />
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="taux11" description="taux 11%" format="percent">
+      <CODE code="taux11" description="taux 11%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.11" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.11" />
       </CODE>
-      <CODE code="taux18" description="taux 18%" format="percent">
+      <CODE code="taux18" description="taux 18%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.18" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.18" />
       </CODE>
-      <CODE code="taux20" description="taux 20%" format="percent">
+      <CODE code="taux20" description="taux 20%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.20" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.20" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="mohist" description="Travaux de conservation et de restauration d'objets classées monuments historiques" origin="openfisca">
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+    <NODE code="mohist" description="Travaux de conservation et de restauration d'objets classées monuments historiques" origin="openfisca">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="20000" />
         <VALUE deb="2008-01-01" fin="2013-12-31" valeur="20000" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.18" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.18" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.25" />
         <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="patnat" description="Dépenses de protection du patrimoine naturel" origin="openfisca">
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+    <NODE code="patnat" description="Dépenses de protection du patrimoine naturel" origin="openfisca">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="10000" />
         <VALUE deb="2010-01-01" fin="2013-12-31" valeur="10000" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.18" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.18" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.22" />
         <VALUE deb="2010-01-01" fin="2010-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE code="prcomp" description="Prestations compensatoires">
+    <NODE both_origins="true" code="prcomp" description="Prestations compensatoires" origin="ipp">
       <CODE both_origins="true" code="seuil" description="Seuil" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="30500" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="200000" />
@@ -2918,86 +2918,86 @@
         <VALUE deb="2000-01-01" fuzzy="true" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="reduction_impot_exceptionnelle" description="Réduction d'impôt exceptionnelle" origin="openfisca">
-      <CODE code="majoration_seuil" description="Majoration du seuil par demi-part supplémentaire" format="integer" type="monetary">
+    <NODE code="reduction_impot_exceptionnelle" description="Réduction d'impôt exceptionnelle" origin="openfisca">
+      <CODE code="majoration_seuil" description="Majoration du seuil par demi-part supplémentaire" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2013-01-01" fin="2015-12-31" valeur="3536" />
       </CODE>
-      <CODE code="montant_plafond" description="Montant plafond par part pour les deux premières parts" format="integer" type="monetary">
+      <CODE code="montant_plafond" description="Montant plafond par part pour les deux premières parts" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2013-01-01" fin="2015-12-31" valeur="350" />
       </CODE>
-      <CODE code="seuil" description="Seuil (à partir duquel la réduction décroît) par part pour les deux premières parts" format="integer" type="monetary">
+      <CODE code="seuil" description="Seuil (à partir duquel la réduction décroît) par part pour les deux premières parts" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2013-01-01" fin="2015-12-31" valeur="13795" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="repsoc" description="Intérêts d'emprunts pour reprises de société" origin="openfisca">
-      <CODE code="seuil" description="Seuil" format="integer" type="monetary">
+    <NODE code="repsoc" description="Intérêts d'emprunts pour reprises de société" origin="openfisca">
+      <CODE code="seuil" description="Seuil" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="20000" />
         <VALUE deb="2008-01-01" fin="2013-12-31" valeur="20000" />
         <VALUE deb="2004-01-01" fin="2007-12-31" valeur="10000" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2004-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="resimm" description="Travaux de restauration immobilière" origin="openfisca">
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+    <NODE code="resimm" description="Travaux de restauration immobilière" origin="openfisca">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="100000" />
         <VALUE deb="2009-01-01" fin="2013-12-31" valeur="100000" />
       </CODE>
-      <CODE code="taux_ra" description="Taux_RA" format="percent">
+      <CODE code="taux_ra" description="Taux_RA" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.27" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.27" />
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.3" />
       </CODE>
-      <CODE code="taux_rb" description="Taux_RB" format="percent">
+      <CODE code="taux_rb" description="Taux_RB" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.36" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.36" />
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.4" />
       </CODE>
-      <CODE code="taux_rc" description="Taux_RC" format="percent">
+      <CODE code="taux_rc" description="Taux_RC" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.30" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.30" />
       </CODE>
-      <CODE code="taux_rd" description="Taux_RD" format="percent">
+      <CODE code="taux_rd" description="Taux_RD" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.4" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.4" />
       </CODE>
-      <CODE code="taux_re" description="Taux_RE" format="percent">
+      <CODE code="taux_re" description="Taux_RE" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.22" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.22" />
       </CODE>
-      <CODE code="taux_rf" description="Taux_RF" format="percent">
+      <CODE code="taux_rf" description="Taux_RF" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.30" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.30" />
       </CODE>
-      <CODE code="taux_sx" description="Taux_SX" format="percent">
+      <CODE code="taux_sx" description="Taux_SX" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.22" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.22" />
       </CODE>
-      <CODE code="taux_sy" description="Taux_SY" format="percent">
+      <CODE code="taux_sy" description="Taux_SY" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.30" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.30" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="rsceha" description="Rentes de survie et contrats d'épargne handicap" origin="openfisca">
-      <CODE code="seuil1" description="Premier seuil" format="integer" type="monetary">
+    <NODE code="rsceha" description="Rentes de survie et contrats d'épargne handicap" origin="openfisca">
+      <CODE code="seuil1" description="Premier seuil" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="1525" />
         <VALUE deb="2004-01-01" fin="2013-12-31" valeur="1525" />
         <VALUE deb="2001-01-01" fin="2003-12-31" valeur="1070" />
       </CODE>
-      <CODE code="seuil2" description="Second seuil" format="integer" type="monetary">
+      <CODE code="seuil2" description="Second seuil" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="300" />
         <VALUE deb="2004-01-01" fin="2013-12-31" valeur="300" />
         <VALUE deb="2001-01-01" fin="2003-12-31" valeur="230" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="1983-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
     </NODE>
-    <NODE code="salarie_domicile" description="Sommes versées pour l'emploi d'un salariés à domicile (à compléter)">
-      <NODE both_origins="false" code="emploi_d_un_salarie_a_domicile">
+    <NODE both_origins="true" code="salarie_domicile" description="Sommes versées pour l'emploi d'un salariés à domicile (à compléter)" origin="ipp">
+      <NODE code="emploi_d_un_salarie_a_domicile" origin="ipp">
         <CODE code="increment_du_plafond" format="float" origin="ipp" type="monetary">
           <VALUE deb="2005-01-01" fuzzy="true" valeur="1500" />
         </CODE>
@@ -3023,31 +3023,31 @@
           <VALUE deb="1991-01-01" fuzzy="true" valeur="0.5" />
         </CODE>
       </NODE>
-      <CODE both_origins="false" code="max1" description="Plafond cas général" format="integer" origin="openfisca" type="monetary">
+      <CODE code="max1" description="Plafond cas général" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="12000" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="12000" />
         <VALUE deb="2003-01-01" fin="2004-12-31" valeur="10000" />
         <VALUE deb="2002-01-01" fin="2002-12-31" valeur="7400" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="6900" />
       </CODE>
-      <CODE both_origins="false" code="max1_1ereAnnee" description="Plafond 1ère année" format="integer" origin="openfisca" type="monetary">
+      <CODE code="max1_1ereAnnee" description="Plafond 1ère année" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="15000" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="15000" />
       </CODE>
-      <CODE both_origins="false" code="max2" description="Plafond du plafond" format="integer" origin="openfisca" type="monetary">
+      <CODE code="max2" description="Plafond du plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="15000" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="15000" />
       </CODE>
-      <CODE both_origins="false" code="max2_1ereAnnee" description="Plafond du plafond 1ère année" format="integer" origin="openfisca" type="monetary">
+      <CODE code="max2_1ereAnnee" description="Plafond du plafond 1ère année" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="18000" />
         <VALUE deb="2009-01-01" fin="2013-12-31" valeur="18000" />
       </CODE>
-      <CODE both_origins="false" code="max3" description="Plafond si présence d'un invalide" format="integer" origin="openfisca" type="monetary">
+      <CODE code="max3" description="Plafond si présence d'un invalide" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="20000" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="20000" />
         <VALUE deb="2001-01-01" fin="2004-12-31" valeur="13800" />
       </CODE>
-      <CODE both_origins="false" code="pac" description="Par enfant mineur à charge" format="integer" origin="openfisca" type="monetary">
+      <CODE code="pac" description="Par enfant mineur à charge" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="1500" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="1500" />
       </CODE>
@@ -3056,60 +3056,60 @@
         <VALUE deb="1991-01-01" fin="2013-12-31" valeur="0.5" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="scelli" description="Investissements locatifs neufs: dispositif SCELLIER" origin="openfisca">
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+    <NODE code="scelli" description="Investissements locatifs neufs: dispositif SCELLIER" origin="openfisca">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="300000" />
         <VALUE deb="2009-01-01" fin="2013-12-31" valeur="300000" />
       </CODE>
-      <CODE code="taux1" description="Taux 1" format="percent">
+      <CODE code="taux1" description="Taux 1" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2009-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="taux13" description="Taux 13%" format="percent">
+      <CODE code="taux13" description="Taux 13%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.13" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.13" />
       </CODE>
-      <CODE code="taux15" description="Taux 15%" format="percent">
+      <CODE code="taux15" description="Taux 15%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.15" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.15" />
       </CODE>
-      <CODE code="taux2" description="Taux 2" format="percent">
+      <CODE code="taux2" description="Taux 2" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.40" />
         <VALUE deb="2009-01-01" fin="2013-12-31" valeur="0.40" />
       </CODE>
-      <CODE code="taux22" description="Taux 22%" format="percent">
+      <CODE code="taux22" description="Taux 22%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.22" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.22" />
       </CODE>
-      <CODE code="taux24" description="Taux 24%" format="percent">
+      <CODE code="taux24" description="Taux 24%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.24" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.24" />
       </CODE>
-      <CODE code="taux36" description="Taux 36%" format="percent">
+      <CODE code="taux36" description="Taux 36%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.36" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.36" />
       </CODE>
-      <CODE code="taux6" description="Taux 6%" format="percent">
+      <CODE code="taux6" description="Taux 6%" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.06" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.06" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="sofica" description="Souscription au capital de SOFICA" origin="openfisca">
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+    <NODE code="sofica" description="Souscription au capital de SOFICA" origin="openfisca">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="18000" />
         <VALUE deb="2001-01-01" fin="2013-12-31" valeur="18000" />
       </CODE>
-      <CODE code="taux1" description="Plafond (en % du RNG)" format="percent">
+      <CODE code="taux1" description="Plafond (en % du RNG)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="1985-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="taux2" description="Taux2" format="percent">
+      <CODE code="taux2" description="Taux2" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.36" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.36" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.43" />
         <VALUE deb="2006-01-01" fin="2010-12-31" valeur="0.48" />
       </CODE>
-      <CODE code="taux3" description="Taux3" format="percent">
+      <CODE code="taux3" description="Taux3" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.30" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.30" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.36" />
@@ -3117,21 +3117,21 @@
       </CODE>
     </NODE>
     <NODE code="sofipe" description="Souscription au capital d'une SOFIPECHE" origin="openfisca">
-      <CODE code="base" description="base" format="percent">
+      <CODE code="base" description="base" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.25" />
         <VALUE deb="2009-01-01" fin="2013-12-31" valeur="0.25" />
       </CODE>
-      <CODE code="max" description="Plafond" format="integer" type="monetary">
+      <CODE code="max" description="Plafond" format="integer" origin="openfisca" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="19000" />
         <VALUE deb="2009-01-01" fin="2013-12-31" valeur="19000" />
       </CODE>
-      <CODE code="taux" description="Taux" format="percent">
+      <CODE code="taux" description="Taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.36" />
         <VALUE deb="2011-01-01" fin="2013-12-31" valeur="0.36" />
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="0.4" />
       </CODE>
     </NODE>
-    <NODE code="spfcpi" description="Souscription de parts de fonds communs de placement dans l'innovation ou de fonds d'investissement de proximité">
+    <NODE both_origins="true" code="spfcpi" description="Souscription de parts de fonds communs de placement dans l'innovation ou de fonds d'investissement de proximité" origin="ipp">
       <CODE both_origins="true" code="plafond_celibataire" description="Plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="2002-01-01" fuzzy="true" valeur="12000" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="11434" />
@@ -3143,12 +3143,12 @@
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="22868" />
         <VALUE deb="1997-01-01" fin="2000-12-31" valeur="150000" />
       </CODE>
-      <CODE both_origins="false" code="taux1" description="Premier taux" format="percent" origin="ipp">
+      <CODE both_origins="true" code="taux1" description="Premier taux" format="percent" origin="ipp">
         <VALUE deb="2012-01-01" fuzzy="true" valeur="0.18" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.22" />
         <VALUE deb="1997-01-01" fin="2010-12-31" valeur="0.25" />
       </CODE>
-      <CODE both_origins="false" code="taux2" description="Second taux" format="percent" origin="openfisca">
+      <CODE code="taux2" description="Second taux" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.38" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.38" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.45" />
@@ -3166,8 +3166,8 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="rpns" description="Revenus des professions non salariées">
-    <CODE both_origins="false" code="cga_max" description="Abattement centre de gestion agréé ou association aggréé///si revenu inférieur à " format="integer" origin="openfisca" type="monetary">
+  <NODE both_origins="true" code="rpns" description="Revenus des professions non salariées" origin="ipp">
+    <CODE code="cga_max" description="Abattement centre de gestion agréé ou association aggréé///si revenu inférieur à " format="integer" origin="openfisca" type="monetary">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
       <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0" />
       <VALUE deb="2005-01-01" fin="2005-12-31" valeur="120100" />
@@ -3175,18 +3175,18 @@
       <VALUE deb="2003-01-01" fin="2003-12-31" valeur="115900" />
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="113900" />
     </CODE>
-    <CODE both_origins="false" code="cga_taux" description="Taux de l'abattement CGA-AA" format="percent" origin="openfisca">
+    <CODE code="cga_taux" description="Taux de l'abattement CGA-AA" format="percent" origin="openfisca">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
       <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0" />
       <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.2" />
     </CODE>
-    <CODE both_origins="false" code="cga_taux2" description="Taux de la pénalité non CGA-AA" format="percent" origin="openfisca">
+    <CODE code="cga_taux2" description="Taux de la pénalité non CGA-AA" format="percent" origin="openfisca">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="0.25" />
       <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.25" />
       <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0" />
     </CODE>
-    <NODE both_origins="false" code="micro" description="Régime microentreprise/Spécial bnc">
-      <NODE code="imputation_sur_le_revenu_global">
+    <NODE both_origins="true" code="micro" description="Régime microentreprise/Spécial bnc" origin="ipp">
+      <NODE both_origins="true" code="imputation_sur_le_revenu_global" origin="ipp">
         <CODE both_origins="true" code="plafond_deficits_agricoles" description="Déficit agricole///%cf art 156 du CGI" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="107610" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="107075" />
@@ -3210,7 +3210,7 @@
           <VALUE deb="1992-01-01" fin="1994-12-31" valeur="50000" />
         </CODE>
       </NODE>
-      <NODE code="microentreprise">
+      <NODE code="microentreprise" origin="ipp">
         <CODE code="montant_minimum" format="float" origin="ipp" type="monetary">
           <VALUE deb="2001-01-01" fuzzy="true" valeur="305" />
           <VALUE deb="1991-01-01" fin="2000-12-31" valeur="2000" />
@@ -3227,7 +3227,7 @@
           <VALUE deb="1991-01-01" fin="1998-12-31" valeur="0.5" />
         </CODE>
       </NODE>
-      <NODE code="microfoncier" description="Microfoncier">
+      <NODE both_origins="true" code="microfoncier" description="Microfoncier" origin="ipp">
         <CODE both_origins="true" code="max" description="Si revenu inférieur à" format="float" origin="ipp" type="monetary">
           <VALUE deb="2001-01-01" fuzzy="true" valeur="15000" />
           <VALUE deb="1999-01-01" fin="2000-12-31" valeur="60000" />
@@ -3239,9 +3239,9 @@
           <VALUE deb="1997-01-01" fin="1998-12-31" valeur="0.333333333333" />
         </CODE>
       </NODE>
-      <NODE code="specialbnc" description="Régime spécial BNC">
-        <NODE code="marchandises" description="Activité de vente">
-          <CODE both_origins="false" code="max" description="Maximum" format="float" origin="ipp" type="monetary">
+      <NODE both_origins="true" code="specialbnc" description="Régime spécial BNC" origin="ipp">
+        <NODE both_origins="true" code="marchandises" description="Activité de vente" origin="ipp">
+          <CODE both_origins="true" code="max" description="Maximum" format="float" origin="ipp" type="monetary">
             <VALUE deb="2013-01-01" fuzzy="true" valeur="82200" />
             <VALUE deb="2011-01-01" fin="2012-12-31" valeur="81500" />
             <VALUE deb="2010-01-01" fin="2010-12-31" valeur="80300" />
@@ -3252,7 +3252,7 @@
             <VALUE deb="1996-01-01" fin="1998-12-31" valeur="100000" />
             <VALUE deb="1991-01-01" fin="1995-12-31" valeur="70000" />
           </CODE>
-          <CODE both_origins="false" code="min" description="Minimum" format="integer" origin="openfisca" type="monetary">
+          <CODE code="min" description="Minimum" format="integer" origin="openfisca" type="monetary">
             <VALUE deb="2014-01-01" fuzzy="true" valeur="305" />
             <VALUE deb="2001-01-01" fin="2013-12-31" valeur="305" />
           </CODE>
@@ -3264,8 +3264,8 @@
             <VALUE deb="1991-01-01" fin="1998-12-31" valeur="0.50" />
           </CODE>
         </NODE>
-        <NODE code="services" description="Activité de service">
-          <CODE both_origins="false" code="max" description="Maximum" format="float" origin="ipp" type="monetary">
+        <NODE both_origins="true" code="services" description="Activité de service" origin="ipp">
+          <CODE both_origins="true" code="max" description="Maximum" format="float" origin="ipp" type="monetary">
             <VALUE deb="2013-01-01" fuzzy="true" valeur="32900" />
             <VALUE deb="2011-01-01" fin="2012-12-31" valeur="32600" />
             <VALUE deb="2010-01-01" fin="2010-12-31" valeur="32100" />
@@ -3276,7 +3276,7 @@
             <VALUE deb="1996-01-01" fin="1998-12-31" valeur="100000" />
             <VALUE deb="1991-01-01" fin="1995-12-31" valeur="70000" />
           </CODE>
-          <CODE both_origins="false" code="min" description="Minimum" format="integer" origin="openfisca" type="monetary">
+          <CODE code="min" description="Minimum" format="integer" origin="openfisca" type="monetary">
             <VALUE deb="2014-01-01" fuzzy="true" valeur="305" />
             <VALUE deb="2002-01-01" fin="2013-12-31" valeur="305" />
           </CODE>
@@ -3295,16 +3295,16 @@
         </CODE>
       </NODE>
     </NODE>
-    <NODE both_origins="false" code="microsocial" description="Régime micro-social" origin="openfisca">
-      <CODE code="bnc" description="Taux professions libérales relevant du RSI/CIPAV (bnc)" format="percent">
+    <NODE code="microsocial" description="Régime micro-social" origin="openfisca">
+      <CODE code="bnc" description="Taux professions libérales relevant du RSI/CIPAV (bnc)" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.022" />
         <VALUE deb="2009-01-01" fin="2013-12-31" valeur="0.022" />
       </CODE>
-      <CODE code="servi" description="Taux pour les activités de prestations et de services" format="percent">
+      <CODE code="servi" description="Taux pour les activités de prestations et de services" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.017" />
         <VALUE deb="2009-01-01" fin="2013-12-31" valeur="0.017" />
       </CODE>
-      <CODE code="vente" description="Taux pour les activités de ventes" format="percent">
+      <CODE code="vente" description="Taux pour les activités de ventes" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.01" />
         <VALUE deb="2009-01-01" fin="2013-12-31" valeur="0.01" />
       </CODE>
@@ -3314,7 +3314,7 @@
       <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.16" />
     </CODE>
   </NODE>
-  <NODE code="rvcm" description="Revenus des valeurs et capitaux mobiliers">
+  <NODE both_origins="true" code="rvcm" description="Revenus des valeurs et capitaux mobiliers" origin="ipp">
     <CODE both_origins="true" code="abat_assvie" description="Abattement produits des contrats d'assurance vie" format="float" origin="ipp" type="monetary">
       <VALUE deb="2001-01-01" fuzzy="true" valeur="4600" />
       <VALUE deb="1997-01-01" fin="2000-12-31" valeur="30000" />
@@ -3326,7 +3326,7 @@
       <VALUE deb="1984-01-01" fin="1987-12-31" valeur="5000" />
       <VALUE deb="1979-01-01" fin="1983-12-31" valeur="3000" />
     </CODE>
-    <CODE both_origins="false" code="majGO" description="majoration case GO" format="percent" origin="openfisca">
+    <CODE code="majGO" description="majoration case GO" format="percent" origin="openfisca">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="1.25" />
       <VALUE deb="2006-01-01" fin="2014-12-31" valeur="1.25" /> #
         TODO: CHECK wild extension of date
@@ -3336,16 +3336,16 @@
       <VALUE deb="2004-01-01" fin="2009-12-31" valeur="115" />
     </CODE>
     <NODE code="prelevement_liberatoire" description="Prélèvement libératoire" origin="openfisca">
-      <CODE code="action" description="Revenus des actions et parts soumis au prélèvement libératoire de 18% (case DA)">
+      <CODE code="action" description="Revenus des actions et parts soumis au prélèvement libératoire de 18% (case DA)" origin="openfisca">
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.210" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.190" />
         <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.180" />
         <VALUE deb="2004-01-01" fin="2007-12-31" valeur="0.160" />
       </CODE>
-      <CODE code="assvie" description="Produits des contrats d'assurance vie (case DH)">
+      <CODE code="assvie" description="Produits des contrats d'assurance vie (case DH)" origin="openfisca">
         <VALUE deb="2002-01-01" fin="2012-12-31" valeur="0.075" />
       </CODE>
-      <CODE code="autre" description="Autres produits de placement (case EE)">
+      <CODE code="autre" description="Autres produits de placement (case EE)" origin="openfisca">
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.240" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.190" />
         <VALUE deb="2008-01-01" fin="2010-12-31" valeur="0.180" />
@@ -3357,8 +3357,8 @@
       <VALUE deb="1979-01-01" fin="2009-12-31" valeur="0.5" />
     </CODE>
   </NODE>
-  <NODE code="sofica">
-    <NODE code="reduction_pour_souscriptions_de_parts_de_sofica">
+  <NODE code="sofica" origin="ipp">
+    <NODE code="reduction_pour_souscriptions_de_parts_de_sofica" origin="ipp">
       <CODE code="plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="18000" />
         <VALUE deb="1997-01-01" fin="2000-12-31" valeur="120000" />
@@ -3376,8 +3376,8 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="sofipeche">
-    <NODE code="reduction_pour_souscriptions_de_parts_de_sofipeche">
+  <NODE code="sofipeche" origin="ipp">
+    <NODE code="reduction_pour_souscriptions_de_parts_de_sofipeche" origin="ipp">
       <CODE code="plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="2009-01-01" fin="2011-12-31" valeur="19000" />
         <VALUE deb="2007-01-01" fin="2008-12-31" valeur="0" />
@@ -3430,8 +3430,8 @@
       </TAUX>
     </TRANCHE>
   </BAREME>
-  <NODE code="tspr" description="Total salaires pensions et rentes">
-    <NODE code="abatpen" description="Abattement sur les pensions">
+  <NODE both_origins="true" code="tspr" description="Total salaires pensions et rentes" origin="ipp">
+    <NODE both_origins="true" code="abatpen" description="Abattement sur les pensions" origin="ipp">
       <CODE both_origins="true" code="max" description="Abattement maximum pour l'ensemble du foyer" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="3711" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3707" />
@@ -3471,7 +3471,7 @@
         <VALUE deb="1978-01-01" fin="1978-12-31" valeur="6000" />
         <VALUE deb="1977-01-01" fin="1977-12-31" valeur="5000" />
       </CODE>
-      <CODE both_origins="false" code="min" description="Abattement minimum par bénéficiaire" format="float" origin="ipp" type="monetary">
+      <CODE both_origins="true" code="min" description="Abattement minimum par bénéficiaire" format="float" origin="ipp" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="379" />
         <VALUE deb="2010-01-01" fin="2013-12-31" valeur="374" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="368" />
@@ -3499,7 +3499,7 @@
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.10" />
       </CODE>
     </NODE>
-    <NODE both_origins="false" code="abatpro" description="Abattement forfaitaire pour frais professionnels">
+    <NODE both_origins="true" code="abatpro" description="Abattement forfaitaire pour frais professionnels" origin="ipp">
       <CODE both_origins="true" code="max" description="Abattement maximum" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="12169" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="12157" />
@@ -3590,7 +3590,7 @@
         <VALUE deb="1943-01-01" fuzzy="true" valeur="0.1" />
       </CODE>
     </NODE>
-    <NODE code="abatsalpen" description="Abattement 20%">
+    <NODE both_origins="true" code="abatsalpen" description="Abattement 20%" origin="ipp">
       <CODE both_origins="true" code="max" description="Abattement maximum" format="float" origin="ipp" type="monetary">
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="24020" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="23580" />
@@ -3659,19 +3659,19 @@
       </CODE>
     </NODE>
     <NODE code="abatviag" description="Rentes viagères à titre onéreux" origin="openfisca">
-      <CODE code="taux1" description="Moins de 50 ans" format="percent">
+      <CODE code="taux1" description="Moins de 50 ans" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.7" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.7" />
       </CODE>
-      <CODE code="taux2" description="De 50 à 59 ans" format="percent">
+      <CODE code="taux2" description="De 50 à 59 ans" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.5" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.5" />
       </CODE>
-      <CODE code="taux3" description="De 60 à 69 ans" format="percent">
+      <CODE code="taux3" description="De 60 à 69 ans" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.4" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.4" />
       </CODE>
-      <CODE code="taux4" description="À partir de 70 ans" format="percent">
+      <CODE code="taux4" description="À partir de 70 ans" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.3" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.3" />
       </CODE>
