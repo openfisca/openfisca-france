@@ -112,12 +112,12 @@ def get_parameters_origin_dataframe():
     parameters_json = get_flat_parameters(legislation_json)
     result = dict()
     for parameter_json in parameters_json:
-
+        name = parameter_json['name']
         variable_names = variable_names_by_parameter_name.get(parameter_json['name'])
         original_name = original_name_by_name.get(name) if parameter_json.get('origin') == 'ipp' else None
 
         if 'origin' in parameter_json or 'both_origins' in parameter_json:
-            result[parameter_json['name']] = dict(
+            result[name] = dict(
                 used_by_variables = variable_names,
                 origin = parameter_json['origin'] if 'origin' in parameter_json else None,
                 conflicts = parameter_json['conflicts'] if 'conflicts' in parameter_json else None,
