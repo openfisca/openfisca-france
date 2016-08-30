@@ -110,7 +110,7 @@ class prelsoc_cap_bar(DatedVariable):
         total = P.base_pat + P.add_pat
         return period, -rev_cap_bar * total
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2009, 1, 1))
     def function_2009_2015(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
@@ -198,7 +198,7 @@ class prelsoc_pv_mo(DatedVariable):
         total = P.base_pat + P.add_pat
         return period, -f3vg * total
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2009, 1, 1))
     def function_20090101_20151231(self, simulation, period):
         """
         Calcule le prélèvement social sur les plus-values de cession de valeurs mobilières
@@ -283,7 +283,7 @@ class prelsoc_pv_immo(DatedVariable):
 
         return period, -f3vz * total
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2009, 1, 1))
     def function_20090101_20151231(self, simulation, period):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
@@ -372,7 +372,7 @@ class prelsoc_fon(DatedVariable):
 
         return period, -rev_cat_rfon * total
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2009, 1, 1))
     def function_20090101_20151231(self, simulation, period):
         '''
         Calcule le prélèvement social sur les revenus fonciers

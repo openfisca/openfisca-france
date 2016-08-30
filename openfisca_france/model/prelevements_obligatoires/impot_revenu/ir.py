@@ -662,7 +662,7 @@ class rev_cat_rvcm(DatedVariable):
         DEF = deficit_rcm
         return period, max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2013, 1, 1))
     def function_20130101_20151231(self, simulation, period):
         """
         Revenus des valeurs et capitaux mobiliers
@@ -1479,7 +1479,7 @@ class plus_values(DatedVariable):
                 # TODO: chek this rpns missing ?
         return period, round(out)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2013, 1, 1))
     def function_20130101_20151231(self, simulation, period):  # f3sd is in f3vd holder
         """
         Taxation des plus value
@@ -1747,7 +1747,7 @@ class rev_cap_lib(DatedVariable):
         out = f2dh + f2ee
         return period, out * not_(finpfl) / 12
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2008, 1, 1))
     def function_20080101_20151231(self, simulation, period):
         period = period.this_month
         year = period.this_year
