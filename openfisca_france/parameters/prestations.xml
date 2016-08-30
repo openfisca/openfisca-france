@@ -1,4 +1,4 @@
-<NODE both_origins="true" code="prestations" origin="ipp">
+<NODE code="prestations" origin="ipp">
   <NODE code="aa_m" origin="ipp">
     <CODE code="montant_de_l_allocation_d_adoption_en_de_la_bmaf" format="percent" origin="ipp">
       <VALUE deb="1996-08-01" fin="2006-12-31" valeur="0.4595" />
@@ -46,7 +46,7 @@
       <VALUE deb="1976-07-01" fin="1977-12-31" valeur="291.35" />
     </CODE>
   </NODE>
-  <NODE both_origins="true" code="aides_logement" description="Allocations logement" origin="ipp">
+  <NODE code="aides_logement" description="Allocations logement" origin="ipp">
     <NODE code="al_charge" origin="ipp">
       <NODE code="personne_isolee_ou_menage_seul" origin="ipp">
         <CODE code="cas_des_colocataires_ou_des_proprietaires_1" format="float" origin="ipp" type="monetary">
@@ -68,15 +68,15 @@
         </CODE>
       </NODE>
     </NODE>
-    <NODE both_origins="true" code="al_min" origin="ipp">
-      <NODE both_origins="true" code="montant_min_mensuel" origin="ipp">
+    <NODE code="al_min" origin="ipp">
+      <NODE code="montant_min_mensuel" origin="ipp">
         <CODE code="apl1_foyer" format="float" origin="ipp" type="monetary">
           <VALUE deb="2007-01-01" fuzzy="true" valeur="26.68" />
         </CODE>
         <CODE code="apl2_foyer" format="float" origin="ipp" type="monetary">
           <VALUE deb="2007-01-01" fuzzy="true" valeur="15" />
         </CODE>
-        <CODE both_origins="true" code="montant_min_apl_al" description="Seuil de non versement" format="float" origin="ipp" type="monetary">
+        <CODE code="montant_min_apl_al" conflicts="attrib:format(integer),children:dates_overlap((('2002-01-01', '2004-05-31'), ('2002-01-01', '2004-06-30')))" description="Seuil de non versement" format="float" origin="ipp" type="monetary">
           <VALUE deb="2007-01-01" fuzzy="true" valeur="15" />
           <VALUE deb="2004-06-01" fin="2006-12-31" valeur="24" />
           <VALUE deb="2002-01-01" fin="2004-05-31" valeur="15" />
@@ -141,8 +141,8 @@
         <VALUE deb="2002-01-01" fin="2010-12-31" valeur="16" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="forfait_charges" description="Forfait de charge" origin="ipp">
-      <CODE both_origins="true" code="cas_general" description="Cas général - isolé ou couple" format="float" origin="ipp" type="monetary">
+    <NODE code="forfait_charges" description="Forfait de charge" origin="ipp">
+      <CODE code="cas_general" conflicts="children:dates_overlap((('2001-07-01', '2002-06-30'), ('2002-01-01', '2002-06-30')))" description="Cas général - isolé ou couple" format="float" origin="ipp" type="monetary">
         <VALUE deb="2014-10-01" fuzzy="true" valeur="53.23" />
         <VALUE deb="2013-01-01" fin="2014-09-30" valeur="52.93" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="51.82" />
@@ -159,7 +159,7 @@
         <VALUE deb="1997-07-01" fin="1998-06-30" valeur="289" />
         <VALUE deb="1994-07-01" fin="1997-06-30" valeur="282" />
       </CODE>
-      <CODE both_origins="true" code="majoration_par_enfant" description="Cas général - par personne à charge supplémentaire" format="float" origin="ipp" type="monetary">
+      <CODE code="majoration_par_enfant" conflicts="children:dates_overlap((('2001-07-01', '2002-06-30'), ('2002-01-01', '2002-06-30')))" description="Cas général - par personne à charge supplémentaire" format="float" origin="ipp" type="monetary">
         <VALUE deb="2014-10-01" fuzzy="true" valeur="12.06" />
         <VALUE deb="2013-01-01" fin="2014-09-30" valeur="11.99" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="11.74" />
@@ -177,7 +177,7 @@
         <VALUE deb="1994-07-01" fin="1997-06-30" valeur="61" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="loyers_plafond" description="Loyers plafond" origin="ipp">
+    <NODE code="loyers_plafond" description="Loyers plafond" origin="ipp">
       <CODE code="autre" description="Si article L.351-15" format="percent" origin="openfisca">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.75" />
         <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.75" />
@@ -190,8 +190,8 @@
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.75" />
         <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.75" />
       </CODE>
-      <NODE both_origins="true" code="zone1" description="Zone 1" origin="ipp">
-        <CODE both_origins="true" code="couples" description="Zone 1 - 2 adultes" format="float" origin="ipp" type="monetary">
+      <NODE code="zone1" description="Zone 1" origin="ipp">
+        <CODE code="couples" description="Zone 1 - 2 adultes" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-10-01" fuzzy="true" valeur="352.92" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="350.92" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="343.53" />
@@ -207,7 +207,7 @@
           <VALUE deb="2001-07-01" fin="2001-12-31" valeur="1925" />
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1902" />
         </CODE>
-        <CODE both_origins="true" code="majoration_par_enf_supp" description="Zone 1 - enfants supplémentaires" format="float" origin="ipp" type="monetary">
+        <CODE code="majoration_par_enf_supp" description="Zone 1 - enfants supplémentaires" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-10-01" fuzzy="true" valeur="57.86" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="57.53" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="56.32" />
@@ -223,7 +223,7 @@
           <VALUE deb="2001-07-01" fin="2001-12-31" valeur="314" />
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="310" />
         </CODE>
-        <CODE both_origins="true" code="personnes_seules" description="Zone 1 - 1 adulte" format="float" origin="ipp" type="monetary">
+        <CODE code="personnes_seules" conflicts="children:valeurs(('2002-07-01', '2003-06-30'):248.18,248.1)" description="Zone 1 - 1 adulte" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-10-01" fuzzy="true" valeur="292.62" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="290.96" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="284.84" />
@@ -239,7 +239,7 @@
           <VALUE deb="2001-07-01" fin="2001-12-31" valeur="1596" />
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1577" />
         </CODE>
-        <CODE both_origins="true" code="un_enfant" description="Zone 1 - 1 enfant" format="float" origin="ipp" type="monetary">
+        <CODE code="un_enfant" description="Zone 1 - 1 enfant" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-10-01" fuzzy="true" valeur="398.87" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="396.61" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="388.26" />
@@ -256,8 +256,8 @@
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="2139" />
         </CODE>
       </NODE>
-      <NODE both_origins="true" code="zone2" description="Zone 2" origin="ipp">
-        <CODE both_origins="true" code="couples" description="Zone 2 - 2 adultes" format="float" origin="ipp" type="monetary">
+      <NODE code="zone2" description="Zone 2" origin="ipp">
+        <CODE code="couples" description="Zone 2 - 2 adultes" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-10-01" fuzzy="true" valeur="312.15" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="310.38" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="303.85" />
@@ -273,7 +273,7 @@
           <VALUE deb="2001-07-01" fin="2001-12-31" valeur="1716" />
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1696" />
         </CODE>
-        <CODE both_origins="true" code="majoration_par_enf_supp" description="Zone 2 - enfants supplémentaires" format="float" origin="ipp" type="monetary">
+        <CODE code="majoration_par_enf_supp" description="Zone 2 - enfants supplémentaires" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-10-01" fuzzy="true" valeur="51.12" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="50.83" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="49.76" />
@@ -289,7 +289,7 @@
           <VALUE deb="2001-07-01" fin="2001-12-31" valeur="281" />
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="278" />
         </CODE>
-        <CODE both_origins="true" code="personnes_seules" description="Zone 2 - 1 adulte" format="float" origin="ipp" type="monetary">
+        <CODE code="personnes_seules" description="Zone 2 - 1 adulte" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-10-01" fuzzy="true" valeur="255.03" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="253.58" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="248.24" />
@@ -305,7 +305,7 @@
           <VALUE deb="2001-07-01" fin="2001-12-31" valeur="1402" />
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1385" />
         </CODE>
-        <CODE both_origins="true" code="un_enfant" description="Zone 2 - 1 enfant" format="float" origin="ipp" type="monetary">
+        <CODE code="un_enfant" description="Zone 2 - 1 enfant" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-10-01" fuzzy="true" valeur="351.25" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="349.26" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="341.91" />
@@ -322,8 +322,8 @@
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1908" />
         </CODE>
       </NODE>
-      <NODE both_origins="true" code="zone3" description="Zone 3" origin="ipp">
-        <CODE both_origins="true" code="couples" description="Zone 3 - 2 adultes" format="float" origin="ipp" type="monetary">
+      <NODE code="zone3" description="Zone 3" origin="ipp">
+        <CODE code="couples" conflicts="children:valeurs(('2011-01-01', '2011-12-31'):279.37,279.27)" description="Zone 3 - 2 adultes" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-10-01" fuzzy="true" valeur="289.76" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="288.12" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="282.06" />
@@ -339,7 +339,7 @@
           <VALUE deb="2001-07-01" fin="2001-12-31" valeur="1593" />
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1574" />
         </CODE>
-        <CODE both_origins="true" code="majoration_par_enf_supp" description="Zone 3 - enfants supplémentaires" format="float" origin="ipp" type="monetary">
+        <CODE code="majoration_par_enf_supp" conflicts="children:valeurs(('2013-01-01', '2014-09-30'):46.3,46.30)" description="Zone 3 - enfants supplémentaires" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-10-01" fuzzy="true" valeur="46.56" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="46.3" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="45.33" />
@@ -355,7 +355,7 @@
           <VALUE deb="2001-07-01" fin="2001-12-31" valeur="256" />
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="253" />
         </CODE>
-        <CODE both_origins="true" code="personnes_seules" description="Zone 3 - 1 adulte" format="float" origin="ipp" type="monetary">
+        <CODE code="personnes_seules" description="Zone 3 - 1 adulte" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-10-01" fuzzy="true" valeur="239.02" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="237.67" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="232.67" />
@@ -371,7 +371,7 @@
           <VALUE deb="2001-07-01" fin="2001-12-31" valeur="1314" />
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1298" />
         </CODE>
-        <CODE both_origins="true" code="un_enfant" description="Zone 3 - 1 enfant" format="float" origin="ipp" type="monetary">
+        <CODE code="un_enfant" description="Zone 3 - 1 enfant" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-10-01" fuzzy="true" valeur="324.89" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="323.05" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="316.25" />
@@ -389,8 +389,8 @@
         </CODE>
       </NODE>
     </NODE>
-    <NODE both_origins="true" code="participation_min" origin="ipp">
-      <CODE both_origins="true" code="montant_forfaitaire" description="Participation minimale" format="float" origin="ipp" type="monetary">
+    <NODE code="participation_min" origin="ipp">
+      <CODE code="montant_forfaitaire" conflicts="children:dates_overlap((('2002-07-01', '2003-06-30'), ('2002-07-01', '2004-05-31')))" description="Participation minimale" format="float" origin="ipp" type="monetary">
         <VALUE deb="2014-10-01" fuzzy="true" valeur="34.73" />
         <VALUE deb="2013-01-01" fin="2014-09-30" valeur="34.53" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="33.8" />
@@ -404,12 +404,12 @@
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="26.68" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="175" />
       </CODE>
-      <CODE both_origins="true" code="taux" description="Taux de participation" format="percent" origin="ipp">
+      <CODE code="taux" description="Taux de participation" format="percent" origin="ipp">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="0.085" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="r1" description="R1 (% du RMI)" origin="ipp">
-      <CODE both_origins="true" code="couple_sans_enf" description="Taux pour 2 adultes" format="percent" origin="ipp">
+    <NODE code="r1" description="R1 (% du RMI)" origin="ipp">
+      <CODE code="couple_sans_enf" description="Taux pour 2 adultes" format="percent" origin="ipp">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="1.26" />
       </CODE>
       <CODE code="majoration_enfant_a_charge_supp" format="percent" origin="ipp">
@@ -419,21 +419,21 @@
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0.4" />
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.4" />
       </CODE>
-      <CODE both_origins="true" code="personne_isolee" description="Taux pour 1 adulte" format="percent" origin="ipp">
+      <CODE code="personne_isolee" description="Taux pour 1 adulte" format="percent" origin="ipp">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="0.88" />
       </CODE>
-      <CODE both_origins="true" code="personne_isolee_ou_couple_avec_1_enf" description="Taux pour 1 enfant" format="percent" origin="ipp">
+      <CODE code="personne_isolee_ou_couple_avec_1_enf" description="Taux pour 1 enfant" format="percent" origin="ipp">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="1.503" />
       </CODE>
-      <CODE both_origins="true" code="personne_isolee_ou_couple_avec_2_enf" description="Taux pour 2 enfants" format="percent" origin="ipp">
+      <CODE code="personne_isolee_ou_couple_avec_2_enf" description="Taux pour 2 enfants" format="percent" origin="ipp">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="1.803" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="r2" description="R2 (% de la BMAF)" origin="ipp">
-      <CODE both_origins="true" code="majoration_par_enf_supp_a_charge" description="Taux par enfants supplémentaires" format="percent" origin="ipp">
+    <NODE code="r2" description="R2 (% de la BMAF)" origin="ipp">
+      <CODE code="majoration_par_enf_supp_a_charge" description="Taux par enfants supplémentaires" format="percent" origin="ipp">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="0.41" />
       </CODE>
-      <CODE both_origins="true" code="personnes_isolees_ou_couples_avec_2_enf" description="Taux pour 2 enfants" format="percent" origin="ipp">
+      <CODE code="personnes_isolees_ou_couples_avec_2_enf" description="Taux pour 2 enfants" format="percent" origin="ipp">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="0.32" />
       </CODE>
       <CODE code="taux3_dom" description="Taux pour 1 enfant (seulement pour les DOM)" format="percent" origin="openfisca">
@@ -587,7 +587,7 @@
       <VALUE deb="2003-07-01" fin="2004-06-30" valeur="405.62" />
       <VALUE deb="2002-01-01" fin="2003-06-30" valeur="397.60" />
     </CODE>
-    <NODE both_origins="true" code="taux_participation_fam" description="Taux dépendant de la taille du ménage" origin="ipp">
+    <NODE code="taux_participation_fam" description="Taux dépendant de la taille du ménage" origin="ipp">
       <NODE code="dom" description="TF pour les DOM" origin="openfisca">
         <CODE code="taux1" description="Taux pour 1 adulte" format="percent" origin="openfisca">
           <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0281" />
@@ -622,43 +622,43 @@
           <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0162" />
         </CODE>
       </NODE>
-      <CODE both_origins="true" code="taux_1_adulte" description="Taux pour 1 adulte" format="percent" origin="ipp">
+      <CODE code="taux_1_adulte" description="Taux pour 1 adulte" format="percent" origin="ipp">
         <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0283" />
         <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0354" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0308" />
       </CODE>
-      <CODE both_origins="true" code="taux_1_enf" description="Taux pour 1 enfant" format="percent" origin="ipp">
+      <CODE code="taux_1_enf" description="Taux pour 1 enfant" format="percent" origin="ipp">
         <VALUE deb="2007-07-01" fuzzy="true" valeur="0.027" />
         <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0338" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0278" />
       </CODE>
-      <CODE both_origins="true" code="taux_2_adulte" description="Taux pour 2 adultes" format="percent" origin="ipp">
+      <CODE code="taux_2_adulte" conflicts="children:dates_overlap((('2001-01-01', '2001-12-31'), ('2001-07-01', '2007-06-30')))" description="Taux pour 2 adultes" format="percent" origin="ipp">
         <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0315" />
         <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0394" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0331" />
       </CODE>
-      <CODE both_origins="true" code="taux_2_enf" description="Taux pour 2 enfants" format="percent" origin="ipp">
+      <CODE code="taux_2_enf" description="Taux pour 2 enfants" format="percent" origin="ipp">
         <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0238" />
         <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0297" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0257" />
       </CODE>
-      <CODE both_origins="true" code="taux_3_enf" description="Taux pour 3 enfants" format="percent" origin="ipp">
+      <CODE code="taux_3_enf" description="Taux pour 3 enfants" format="percent" origin="ipp">
         <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0201" />
         <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0251" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0228" />
       </CODE>
-      <CODE both_origins="true" code="taux_4_enf" description="Taux pour 4 enfants" format="percent" origin="ipp">
+      <CODE code="taux_4_enf" description="Taux pour 4 enfants" format="percent" origin="ipp">
         <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0185" />
         <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0231" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0217" />
       </CODE>
-      <CODE both_origins="true" code="taux_enf_supp" description="Taux par enfant supplémentaire" format="percent" origin="ipp">
+      <CODE code="taux_enf_supp" description="Taux par enfant supplémentaire" format="percent" origin="ipp">
         <VALUE deb="2007-07-01" fuzzy="true" valeur="-0.0006" />
         <VALUE deb="2002-01-01" fin="2007-06-30" valeur="-0.0007" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="-0.0006" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="taux_participation_loyer" description="Taux complémentaire" origin="ipp">
+    <NODE code="taux_participation_loyer" description="Taux complémentaire" origin="ipp">
       <CODE code="debut_de_la_2eme_tranche_pour_le_calcul_de_tl_et_fin_de_la_1ere_tranche" format="percent" origin="ipp">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="0.45" />
       </CODE>
@@ -674,14 +674,14 @@
       <CODE code="minorant_pour_la_3e_tranche" origin="ipp">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="37.5" />
       </CODE>
-      <CODE both_origins="true" code="taux_tranche_1" description="Tranche 00-45%" format="percent" origin="ipp">
+      <CODE code="taux_tranche_1" description="Tranche 00-45%" format="percent" origin="ipp">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="0" />
       </CODE>
-      <CODE both_origins="true" code="taux_tranche_2" description="Tranche 45-75%" format="percent" origin="ipp">
+      <CODE code="taux_tranche_2" conflicts="children:dates_overlap((('2001-01-01', '2007-06-30'), ('2002-01-01', '2007-06-30')))" description="Tranche 45-75%" format="percent" origin="ipp">
         <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0045" />
         <VALUE deb="2001-01-01" fin="2007-06-30" valeur="0.0056" />
       </CODE>
-      <CODE both_origins="true" code="taux_tranche_3" description="Tranche 75-max" format="percent" origin="ipp">
+      <CODE code="taux_tranche_3" conflicts="children:dates_overlap((('2001-01-01', '2007-06-30'), ('2002-01-01', '2007-06-30')))" description="Tranche 75-max" format="percent" origin="ipp">
         <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0068" />
         <VALUE deb="2001-01-01" fin="2007-06-30" valeur="0.0085" />
       </CODE>
@@ -2929,8 +2929,8 @@
       <VALUE deb="1948-10-01" fin="1949-03-31" valeur="58000" />
     </CODE>
   </NODE>
-  <NODE both_origins="true" code="minima_sociaux" description="Minima sociaux" origin="ipp">
-    <NODE both_origins="true" code="aah" description="Allocation pour adulte handicapé (AAH)" origin="ipp">
+  <NODE code="minima_sociaux" description="Minima sociaux" origin="ipp">
+    <NODE code="aah" description="Allocation pour adulte handicapé (AAH)" origin="ipp">
       <CODE code="age_legal_retraite" description="Âge légal de départ à la retraite" format="float" origin="openfisca" type="age">
         <VALUE deb="2050-07-01" fuzzy="true" valeur="62" />
         <VALUE deb="2017-01-01" fin="2050-06-30" valeur="62" />
@@ -2946,7 +2946,7 @@
       <CODE code="majoration_du_plafond_pour_un_couple" format="percent" origin="ipp">
         <VALUE deb="2000-01-01" fuzzy="true" valeur="1" />
       </CODE>
-      <CODE both_origins="true" code="montant" description="Montant mensuel de l'allocation adulte handicapé" format="float" origin="ipp" type="monetary">
+      <CODE code="montant" conflicts="children:dates_overlap((('2015-09-01', '2016-03-31'), ('2015-09-01', '2016-08-31')))" description="Montant mensuel de l'allocation adulte handicapé" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="808.46" />
         <VALUE deb="2015-09-01" fin="2016-03-31" valeur="807.65" />
         <VALUE deb="2014-09-01" fin="2015-08-31" valeur="800.45" />
@@ -2976,7 +2976,7 @@
       <CODE code="taux_d_incapcite" format="percent" origin="ipp">
         <VALUE deb="2000-01-01" fuzzy="true" valeur="0.8" />
       </CODE>
-      <CODE both_origins="true" code="tx_plaf_supp" description="Majoration de plafond pour personne à charge (en pourcentage du plafond de base)" format="percent" origin="ipp">
+      <CODE code="tx_plaf_supp" conflicts="children:dates_overlap((('1998-01-01', '2014-12-31'), ('2000-01-01', None)))" description="Majoration de plafond pour personne à charge (en pourcentage du plafond de base)" format="percent" origin="ipp">
         <VALUE deb="2000-01-01" fuzzy="true" valeur="0.5" />
       </CODE>
     </NODE>
@@ -3005,8 +3005,8 @@
         <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".30" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="api" description="Allocation parent isolé" origin="ipp">
-      <CODE both_origins="true" code="age_limite" description="Limite d'âge des enfants ouvrant droit" origin="ipp">
+    <NODE code="api" description="Allocation parent isolé" origin="ipp">
+      <CODE code="age_limite" conflicts="attrib:type(age),attrib:format(integer),children:dates_overlap((('1976-10-01', '2009-05-31'), ('1977-10-01', '2014-12-31')))" description="Limite d'âge des enfants ouvrant droit" origin="ipp">
         <VALUE deb="1976-10-01" fin="2009-05-31" valeur="3" />
       </CODE>
       <CODE code="age_pac" description="Limite d'âge des enfants comptés à charge" format="integer" origin="openfisca" type="age">
@@ -3031,13 +3031,13 @@
         <VALUE deb="1977-11-27" fin="2009-05-31" valeur="2" />
         <VALUE deb="1976-10-01" fin="1977-11-26" valeur="1.74" />
       </CODE>
-      <CODE both_origins="true" code="supplement_par_enfant" description="Majoration de taux par enfant supplémentaire (en pourcentage de la BMAF)" format="percent" origin="ipp">
+      <CODE code="supplement_par_enfant" conflicts="children:dates_overlap((('1976-10-01', '1977-11-26'), ('1977-10-01', '2009-05-31')))" description="Majoration de taux par enfant supplémentaire (en pourcentage de la BMAF)" format="percent" origin="ipp">
         <VALUE deb="1977-11-27" fin="2009-05-31" valeur="0.5" />
         <VALUE deb="1976-10-01" fin="1977-11-26" valeur="0.44" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="asi" description="Allocation supplémentaire d'invalidité" origin="ipp">
-      <CODE both_origins="true" code="montant_couple" description="Montant annuel couple" format="float" origin="ipp" type="monetary">
+    <NODE code="asi" description="Allocation supplémentaire d'invalidité" origin="ipp">
+      <CODE code="montant_couple" conflicts="children:dates_overlap((('2014-04-01', '2015-03-31'), ('2014-04-01', '2016-03-31')))" description="Montant annuel couple" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="8003.27" />
         <VALUE deb="2014-04-01" fin="2016-03-31" valeur="7995.28" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="7947.6" />
@@ -3050,7 +3050,7 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="7246.9" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="7118.77" />
       </CODE>
-      <CODE both_origins="true" code="montant_seul" description="Montant annuel personne seule" format="float" origin="ipp" type="monetary">
+      <CODE code="montant_seul" conflicts="children:dates_overlap((('2014-04-01', '2015-03-31'), ('2014-04-01', '2016-03-31')))" description="Montant annuel personne seule" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="4850.01" />
         <VALUE deb="2014-04-01" fin="2016-03-31" valeur="4845.17" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="4816.28" />
@@ -3063,7 +3063,7 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="4391.68" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="4314.03" />
       </CODE>
-      <CODE both_origins="true" code="plafond_ressource_couple" description="Plafond de ressources (allocation comprise) pour un couple" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_ressource_couple" conflicts="children:dates_overlap((('2014-04-01', '2015-03-31'), ('2014-04-01', '2016-03-31')))" description="Plafond de ressources (allocation comprise) pour un couple" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="14770.07" />
         <VALUE deb="2014-04-01" fin="2016-03-31" valeur="14755.32" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="14667.32" />
@@ -3076,7 +3076,7 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="13374.16" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="13137.69" />
       </CODE>
-      <CODE both_origins="true" code="plafond_ressource_seul" description="Plafond de ressources (allocation comprise) pour une personne seule" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_ressource_seul" conflicts="children:dates_overlap((('2008-09-01', '2008-12-31'), ('2008-09-01', '2009-03-31')))" description="Plafond de ressources (allocation comprise) pour une personne seule" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="8432.47" />
         <VALUE deb="2014-04-01" fin="2016-03-31" valeur="8424.05" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="8373.81" />
@@ -3093,7 +3093,7 @@
         <VALUE deb="2006-01-01" fuzzy="true" valeur="0.6666" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="aspa" description="Allocation solidarité aux personne agées (ASPA - Minimum vieillesse)" origin="ipp">
+    <NODE code="aspa" description="Allocation solidarité aux personne agées (ASPA - Minimum vieillesse)" origin="ipp">
       <CODE code="abattement_forfaitaire_tx_couple" description="Fraction du SMIC pour l'abattement (couple)" format="float" origin="openfisca">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="1.5" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="1.5" />
@@ -3117,7 +3117,7 @@
         <VALUE deb="2007-02-01" fin="2015-12-31" valeur="0" />
         <VALUE deb="1986-01-01" fin="2007-01-31" valeur="0.1" />
       </CODE>
-      <CODE both_origins="true" code="montant_annuel_couple" description="Montant annuel pour un couple marié" format="float" origin="ipp" type="monetary">
+      <CODE code="montant_annuel_couple" conflicts="children:dates_overlap((('2014-10-01', '2015-12-31'), ('2014-10-01', '2016-03-31')))" description="Montant annuel pour un couple marié" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="14918.9" />
         <VALUE deb="2014-10-01" fin="2016-03-31" valeur="14904" />
         <VALUE deb="2014-04-01" fin="2014-09-30" valeur="14755.32" />
@@ -3131,7 +3131,7 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="13374.17" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="13137.69" />
       </CODE>
-      <CODE both_origins="true" code="montant_annuel_seul" description="Montant annuel pour une personne seule" format="float" origin="ipp" type="monetary">
+      <CODE code="montant_annuel_seul" conflicts="children:dates_overlap((('2014-10-01', '2015-12-31'), ('2014-10-01', '2016-03-31')))" description="Montant annuel pour une personne seule" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="9609.6" />
         <VALUE deb="2014-10-01" fin="2016-03-31" valeur="9600" />
         <VALUE deb="2014-04-01" fin="2014-09-30" valeur="9503.89" />
@@ -3145,7 +3145,7 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="7455.3" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="7323.48" />
       </CODE>
-      <CODE both_origins="true" code="plafond_ressources_couple" description="Plafond de ressources annuelles pour un couple" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_ressources_couple" conflicts="children:dates_overlap((('2014-10-01', '2015-12-31'), ('2014-10-01', '2016-03-31')))" description="Plafond de ressources annuelles pour un couple" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="14918.9" />
         <VALUE deb="2014-10-01" fin="2016-03-31" valeur="14904" />
         <VALUE deb="2014-04-01" fin="2014-09-30" valeur="14755.32" />
@@ -3159,7 +3159,7 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="13374.16" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="13137.69" />
       </CODE>
-      <CODE both_origins="true" code="plafond_ressources_seul" description="Plafond de ressources annuelles pour une personne seule" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_ressources_seul" conflicts="children:dates_overlap((('2014-10-01', '2015-12-31'), ('2014-10-01', '2016-03-31')))" description="Plafond de ressources annuelles pour une personne seule" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="9609.6" />
         <VALUE deb="2014-10-01" fin="2016-03-31" valeur="9600" />
         <VALUE deb="2014-04-01" fin="2014-09-30" valeur="9503.89" />
@@ -3234,11 +3234,11 @@
         <VALUE deb="2005-01-01" fin="2015-12-31" valeur="70" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="caah" description="Complément de l'allocation pour adulte handicapé (CAAH)" origin="ipp">
+    <NODE code="caah" description="Complément de l'allocation pour adulte handicapé (CAAH)" origin="ipp">
       <CODE code="cpltx" description="Taux du montant mensuel du complément aux adultes handicapés (avant 2005)" format="percent" origin="openfisca">
         <VALUE deb="2002-01-01" fin="2008-08-31" valeur="0.16" />
       </CODE>
-      <CODE both_origins="true" code="garantie_ressources" description="Garantie de ressources pour les personnes handicapées (cpltx_1+aah)" format="float" origin="ipp" type="monetary">
+      <CODE code="garantie_ressources" conflicts="children:dates_overlap((('2005-07-01', '2005-12-31'), ('2005-07-01', '2006-06-30')))" description="Garantie de ressources pour les personnes handicapées (cpltx_1+aah)" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="987.77" />
         <VALUE deb="2015-09-01" fin="2016-03-31" valeur="986.96" />
         <VALUE deb="2014-09-01" fin="2015-08-31" valeur="979.76" />
@@ -3257,31 +3257,31 @@
         <VALUE deb="2006-07-01" fin="2006-12-31" valeur="789.59" />
         <VALUE deb="2005-07-01" fin="2006-06-30" valeur="776.79" />
       </CODE>
-      <CODE both_origins="true" code="majoration_vie_autonome" description="Majoration pour la vie autonome" format="float" origin="ipp" type="monetary">
+      <CODE code="majoration_vie_autonome" conflicts="children:valeurs(('2006-01-01', '2006-12-31'):101.8,101.80)" description="Majoration pour la vie autonome" format="float" origin="ipp" type="monetary">
         <VALUE deb="2008-01-01" fuzzy="true" valeur="104.77" />
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="103.63" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="101.8" />
         <VALUE deb="2005-07-01" fin="2005-12-31" valeur="100" />
       </CODE>
-      <CODE both_origins="true" code="montant_complement_ressources" description="Montant mensuel du complément de ressources aux adultes handicapés (à partir de 2007)" format="float" origin="ipp" type="monetary">
+      <CODE code="montant_complement_ressources" description="Montant mensuel du complément de ressources aux adultes handicapés (à partir de 2007)" format="float" origin="ipp" type="monetary">
         <VALUE deb="2006-07-01" fuzzy="true" valeur="179.31" />
       </CODE>
       <CODE code="taux_du_montant_mensuel_du_complement_aux_adultes_handicape_2" format="percent" origin="ipp">
         <VALUE deb="2002-01-01" fin="2008-08-31" valeur="0.16" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="ppa" description="Prime Pour l'Activité" origin="ipp">
+    <NODE code="ppa" description="Prime Pour l'Activité" origin="ipp">
       <CODE code="age_min" description="Âge minimal pour bénéficier de la PPA" format="integer" origin="openfisca" type="age">
         <VALUE deb="2016-01-01" fin="2016-12-31" valeur="18" />
       </CODE>
-      <NODE both_origins="true" code="bonification" origin="ipp">
-        <CODE both_origins="true" code="seuil_bonification" description="Seuil de salaire minimum pour bénéficier de la bonification, en multiple du smic horaire brut." origin="ipp">
+      <NODE code="bonification" origin="ipp">
+        <CODE code="seuil_bonification" conflicts="attrib:format(integer)" description="Seuil de salaire minimum pour bénéficier de la bonification, en multiple du smic horaire brut." origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="59" />
         </CODE>
-        <CODE both_origins="true" code="seuil_max_bonification" description="Seuil de salaire pour bénéficier de la bonification maximale, en multiple du smic horaire brut." origin="ipp">
+        <CODE code="seuil_max_bonification" conflicts="attrib:format(integer)" description="Seuil de salaire pour bénéficier de la bonification maximale, en multiple du smic horaire brut." origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="95" />
         </CODE>
-        <CODE both_origins="true" code="taux_bonification_max" description="Bonification maximale, en pourcentage du montant de base du RSA" format="percent" origin="ipp">
+        <CODE code="taux_bonification_max" description="Bonification maximale, en pourcentage du montant de base du RSA" format="percent" origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="0.122782" />
         </CODE>
       </NODE>
@@ -3291,16 +3291,16 @@
       <CODE code="majoration_isolement_femme_enceinte" format="percent" origin="ipp">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="1.28412" />
       </CODE>
-      <CODE both_origins="true" code="pente" description="Pente appliquée aux revenus d'activité pour la prime d'activité" format="percent" origin="ipp">
+      <CODE code="pente" description="Pente appliquée aux revenus d'activité pour la prime d'activité" format="percent" origin="ipp">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.62" />
       </CODE>
       <CODE code="seuil_aah_activite" description="Revenu d'activité minimal perçu pour que l'AAH d'un individu soit considéré comme un revenu d'activité, en multiple du smic horaire brut" format="integer" origin="openfisca">
         <VALUE deb="2016-01-01" fin="2016-12-31" valeur="29" />
       </CODE>
-      <CODE both_origins="true" code="seuil_non_versement" description="Seuil de non versement de la PPA" format="float" origin="ipp" type="monetary">
+      <CODE code="seuil_non_versement" conflicts="attrib:format(percent)" description="Seuil de non versement de la PPA" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="15" />
       </CODE>
-      <CODE both_origins="true" code="taux_deuxieme_personne" description="Taux pour une 2nde personne" format="percent" origin="ipp">
+      <CODE code="taux_deuxieme_personne" description="Taux pour une 2nde personne" format="percent" origin="ipp">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
       </CODE>
       <NODE code="taux_forfait_logement" origin="ipp">
@@ -3314,14 +3314,14 @@
           <VALUE deb="2016-01-01" fuzzy="true" valeur="0.165" />
         </CODE>
       </NODE>
-      <CODE both_origins="true" code="taux_personne_supp" description="Taux par personne supplémentaire" format="percent" origin="ipp">
+      <CODE code="taux_personne_supp" description="Taux par personne supplémentaire" format="percent" origin="ipp">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.4" />
       </CODE>
-      <CODE both_origins="true" code="taux_troisieme_personne" description="Taux pour une 3e personne" format="percent" origin="ipp">
+      <CODE code="taux_troisieme_personne" description="Taux pour une 3e personne" format="percent" origin="ipp">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.3" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="rmi" description="Revenu minimum d'insertion" origin="ipp">
+    <NODE code="rmi" description="Revenu minimum d'insertion" origin="ipp">
       <CODE code="RMI_fixe" description="Fixe le Rmi dans les simulations" format="bool" origin="openfisca">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
         <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
@@ -3501,7 +3501,7 @@
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.4" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="rsa" description="Revenu de solidarité active" origin="ipp">
+    <NODE code="rsa" description="Revenu de solidarité active" origin="ipp">
       <CODE code="RMI_fixe" description="Fixe le Rmi dans les simulations" format="bool" origin="openfisca">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
         <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0" />
@@ -3513,7 +3513,7 @@
         <VALUE deb="2015-01-01" fuzzy="true" valeur="24" />
         <VALUE deb="1977-10-01" fin="2014-12-31" valeur="24" />
       </CODE>
-      <CODE both_origins="true" code="duree_min_titre_sejour" description="Durée minimale de titre du séjour permettant de bénéficier du RSA" origin="ipp">
+      <CODE code="duree_min_titre_sejour" conflicts="children:dates_overlap((('2002-01-01', '2015-12-31'), ('2009-06-01', None))),attrib:format(integer)" description="Durée minimale de titre du séjour permettant de bénéficier du RSA" origin="ipp">
         <VALUE deb="2009-06-01" fuzzy="true" valeur="5" />
       </CODE>
       <NODE code="forfait_asf" description="Forfait Allocation de Soutien Familial" origin="openfisca">
@@ -3526,7 +3526,7 @@
           <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.3" />
         </CODE>
       </NODE>
-      <NODE both_origins="true" code="forfait_logement" description="Forfait logement" origin="ipp">
+      <NODE code="forfait_logement" description="Forfait logement" origin="ipp">
         <CODE code="taux1" description="Fofait logement pour 1 personne (en % du rsa_socle)" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.12" />
           <VALUE deb="1998-12-14" fin="2014-12-31" valeur="0.12" />
@@ -3592,18 +3592,18 @@
           <VALUE deb="2009-06-01" fuzzy="true" valeur="18" />
         </CODE>
       </NODE>
-      <NODE both_origins="true" code="majoration_rsa" origin="ipp">
-        <CODE both_origins="true" code="taux_deuxieme_personne" description="Taux pour une 2nde personne" format="percent" origin="ipp">
+      <NODE code="majoration_rsa" origin="ipp">
+        <CODE code="taux_deuxieme_personne" conflicts="children:dates_overlap((('2002-01-01', '2014-12-31'), ('2009-06-01', None)))" description="Taux pour une 2nde personne" format="percent" origin="ipp">
           <VALUE deb="2009-06-01" fuzzy="true" valeur="0.5" />
         </CODE>
-        <CODE both_origins="true" code="taux_personne_supp" description="Taux par personne supplémentaire" format="percent" origin="ipp">
+        <CODE code="taux_personne_supp" conflicts="children:dates_overlap((('2002-01-01', '2014-12-31'), ('2009-06-01', None)))" description="Taux par personne supplémentaire" format="percent" origin="ipp">
           <VALUE deb="2009-06-01" fuzzy="true" valeur="0.4" />
         </CODE>
-        <CODE both_origins="true" code="taux_troisieme_personne" description="Taux pour une 3e personne" format="percent" origin="ipp">
+        <CODE code="taux_troisieme_personne" conflicts="children:dates_overlap((('2002-01-01', '2014-12-31'), ('2009-06-01', None)))" description="Taux pour une 3e personne" format="percent" origin="ipp">
           <VALUE deb="2009-06-01" fuzzy="true" valeur="0.3" />
         </CODE>
       </NODE>
-      <CODE both_origins="true" code="montant_de_base_du_rsa" description="Rsa socle" format="float" origin="ipp" type="monetary">
+      <CODE code="montant_de_base_du_rsa" conflicts="children:dates_overlap((('2009-01-01', '2009-12-31'), ('2009-06-01', '2009-12-31')))" description="Rsa socle" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="524.68" />
         <VALUE deb="2015-09-01" fin="2016-03-31" valeur="524.16" />
         <VALUE deb="2015-01-01" fin="2015-08-31" valeur="513.88" />
@@ -3708,8 +3708,8 @@
       <VALUE deb="1978-01-01" fin="1978-06-30" valeur="8.58" />
     </CODE>
   </NODE>
-  <NODE both_origins="true" code="prestations_familiales" description="Prestations familiales" origin="ipp">
-    <NODE both_origins="true" code="aeeh" description="Allocation d'éducation de l'enfant handicapé / Allocation d'éducation spéciale" origin="ipp">
+  <NODE code="prestations_familiales" description="Prestations familiales" origin="ipp">
+    <NODE code="aeeh" description="Allocation d'éducation de l'enfant handicapé / Allocation d'éducation spéciale" origin="ipp">
       <CODE code="age" description="Limite d'âge" format="integer" origin="openfisca" type="age">
         <VALUE deb="2014-04-01" fuzzy="true" valeur="20" />
         <VALUE deb="1976-08-01" fin="2014-03-31" valeur="20" />
@@ -3717,7 +3717,7 @@
       <CODE code="age_maximum_de_l_enfant" origin="ipp">
         <VALUE deb="2006-01-01" fuzzy="true" valeur="20" />
       </CODE>
-      <CODE both_origins="true" code="base" description="Allocation de base" format="percent" origin="ipp">
+      <CODE code="base" conflicts="children:dates_overlap((('1985-01-01', '2014-03-31'), ('2006-01-01', None)))" description="Allocation de base" format="percent" origin="ipp">
         <VALUE deb="2006-01-01" fuzzy="true" valeur="0.32" />
       </CODE>
       <NODE code="complement_d_allocation" origin="ipp">
@@ -3831,19 +3831,19 @@
         </CODE>
       </NODE>
     </NODE>
-    <NODE both_origins="true" code="af" description="Allocations familiales" origin="ipp">
+    <NODE code="af" description="Allocations familiales" origin="ipp">
       <CODE code="2_enfants" format="percent" origin="ipp">
         <VALUE deb="1982-02-01" fuzzy="true" valeur="0.32" />
         <VALUE deb="1981-07-01" fin="1982-01-31" valeur="0.255" />
         <VALUE deb="1978-01-01" fin="1981-06-30" valeur="0.23" />
         <VALUE deb="1976-08-01" fin="1977-12-31" valeur="0.22" />
       </CODE>
-      <NODE both_origins="true" code="af_dom" origin="ipp">
-        <CODE both_origins="true" code="age_1er_enf_tranche_1_dom" description="Âge de début de la 1ere majoration" origin="ipp">
+      <NODE code="af_dom" origin="ipp">
+        <CODE code="age_1er_enf_tranche_1_dom" conflicts="attrib:type(age),attrib:format(integer)" description="Âge de début de la 1ere majoration" origin="ipp">
           <VALUE deb="1999-01-01" fuzzy="true" valeur="11" />
           <VALUE deb="1991-08-06" fin="1998-12-31" valeur="10" />
         </CODE>
-        <CODE both_origins="true" code="age_1er_enf_tranche_2_dom" description="Âge de début de la 2ème majoration" origin="ipp">
+        <CODE code="age_1er_enf_tranche_2_dom" conflicts="attrib:type(age),attrib:format(integer)" description="Âge de début de la 2ème majoration" origin="ipp">
           <VALUE deb="1999-01-01" fuzzy="true" valeur="16" />
           <VALUE deb="1991-08-06" fin="1998-12-31" valeur="15" />
         </CODE>
@@ -3907,13 +3907,13 @@
         <CODE code="nombre_minimal_d_enfant_pour_avoir_droit_a_la_majoration_forfaitaire_pour_les_plus_de_20_ans" origin="ipp">
           <VALUE deb="1991-08-06" fuzzy="true" valeur="3" />
         </CODE>
-        <CODE both_origins="true" code="taux_1er_enf_tranche_1_dom" description="1ère majoration pour âge" format="percent" origin="ipp">
+        <CODE code="taux_1er_enf_tranche_1_dom" description="1ère majoration pour âge" format="percent" origin="ipp">
           <VALUE deb="1991-08-06" fuzzy="true" valeur="0.0369" />
         </CODE>
-        <CODE both_origins="true" code="taux_1er_enf_tranche_2_dom" description="2ème majoration pour âge" format="percent" origin="ipp">
+        <CODE code="taux_1er_enf_tranche_2_dom" description="2ème majoration pour âge" format="percent" origin="ipp">
           <VALUE deb="1991-08-06" fuzzy="true" valeur="0.0567" />
         </CODE>
-        <CODE both_origins="true" code="taux_enfant_seul" description="Un seul enfant à charge (DOM)" format="percent" origin="ipp">
+        <CODE code="taux_enfant_seul" description="Un seul enfant à charge (DOM)" format="percent" origin="ipp">
           <VALUE deb="1991-08-06" fuzzy="true" valeur="0.0588" />
         </CODE>
       </NODE>
@@ -3977,11 +3977,11 @@
           <VALUE deb="2002-01-01" fin="2014-03-31" valeur="0.16" />
         </CODE>
       </NODE>
-      <NODE both_origins="true" code="majoration_enfants" origin="ipp">
+      <NODE code="majoration_enfants" origin="ipp">
         <CODE code="age_minimal_forfait" origin="ipp">
           <VALUE deb="2003-07-01" fuzzy="true" valeur="20" />
         </CODE>
-        <CODE both_origins="true" code="taux_allocation_forfaitaire" description="Allocation forfaitaire par enfant de 20 ans" format="percent" origin="ipp">
+        <CODE code="taux_allocation_forfaitaire" description="Allocation forfaitaire par enfant de 20 ans" format="percent" origin="ipp">
           <VALUE deb="2003-07-01" fuzzy="true" valeur="0.20234" />
         </CODE>
         <NODE code="taux_appliques_aux_differentes_tranches_d_age" origin="ipp">
@@ -4004,26 +4004,26 @@
           </CODE>
         </NODE>
       </NODE>
-      <NODE both_origins="true" code="modulation" description="Modulation des allocations familiales en fonction des ressources" origin="ipp">
-        <CODE both_origins="true" code="majoration_plafond_par_enfant_supplementaire" description="Majoration du plafond annuel de ressources par enfant supplémentaire (à partir du 3e enfant)" format="float" origin="ipp" type="monetary">
+      <NODE code="modulation" description="Modulation des allocations familiales en fonction des ressources" origin="ipp">
+        <CODE code="majoration_plafond_par_enfant_supplementaire" conflicts="children:valeurs(('2016-01-01', None):5617,5595)" description="Majoration du plafond annuel de ressources par enfant supplémentaire (à partir du 3e enfant)" format="float" origin="ipp" type="monetary">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="5617" />
           <VALUE deb="2015-07-01" fin="2015-12-31" valeur="5595" />
         </CODE>
-        <CODE both_origins="true" code="plafond_tranche_1" description="Plafond annuel de ressources n°1" format="float" origin="ipp" type="monetary">
+        <CODE code="plafond_tranche_1" conflicts="children:valeurs(('2016-01-01', None):67408,55950)" description="Plafond annuel de ressources n°1" format="float" origin="ipp" type="monetary">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="67408" />
           <VALUE deb="2015-07-01" fin="2015-12-31" valeur="67140" />
         </CODE>
-        <CODE both_origins="true" code="plafond_tranche_2" description="Plafond annuel de ressources n°2" format="float" origin="ipp" type="monetary">
+        <CODE code="plafond_tranche_2" conflicts="children:valeurs(('2016-01-01', None):89847,78300)" description="Plafond annuel de ressources n°2" format="float" origin="ipp" type="monetary">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="89847" />
           <VALUE deb="2015-07-01" fin="2015-12-31" valeur="89490" />
         </CODE>
         <CODE code="taux_tranche_1" format="percent" origin="ipp">
           <VALUE deb="2015-07-01" fuzzy="true" valeur="1" />
         </CODE>
-        <CODE both_origins="true" code="taux_tranche_2" description="Taux de modulation de la tranche 2" format="percent" origin="ipp">
+        <CODE code="taux_tranche_2" description="Taux de modulation de la tranche 2" format="percent" origin="ipp">
           <VALUE deb="2015-07-01" fuzzy="true" valeur="0.5" />
         </CODE>
-        <CODE both_origins="true" code="taux_tranche_3" description="Taux de modulation de la tranche 3" format="percent" origin="ipp">
+        <CODE code="taux_tranche_3" description="Taux de modulation de la tranche 3" format="percent" origin="ipp">
           <VALUE deb="2015-07-01" fuzzy="true" valeur="0.25" />
         </CODE>
       </NODE>
@@ -4056,7 +4056,7 @@
         <VALUE deb="2014-04-01" fuzzy="true" valeur=".55" />
         <VALUE deb="2001-07-01" fin="2014-03-31" valeur=".55" />
       </CODE>
-      <NODE both_origins="true" code="taux" description="Taux (% de la BMAF)" origin="ipp">
+      <NODE code="taux" description="Taux (% de la BMAF)" origin="ipp">
         <CODE code="enf1" description="Premier enfant à charge" format="percent" origin="openfisca">
           <VALUE deb="2016-04-01" fuzzy="true" valeur="0" />
           <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0" />
@@ -4065,7 +4065,7 @@
           <VALUE deb="2016-04-01" fuzzy="true" valeur="0.32" />
           <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.32" />
         </CODE>
-        <CODE both_origins="true" code="enf3" description="Troisième enfant à charge et suivants" format="percent" origin="ipp">
+        <CODE code="enf3" description="Troisième enfant à charge et suivants" format="percent" origin="ipp">
           <VALUE deb="1986-01-01" fuzzy="true" valeur="0.41" />
           <VALUE deb="1981-07-01" fin="1985-12-31" valeur="0.39" />
           <VALUE deb="1978-01-01" fin="1981-06-30" valeur="0.35" />
@@ -4134,8 +4134,8 @@
         <VALUE deb="2001-07-01" fin="2001-12-31" valeur="224317" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="ape" description="Allocation parentale d'éducation (APE)" origin="ipp">
-      <CODE both_origins="true" code="age_max_enfant" description="Limite d'âge (stricte) pour bénéficier de l'APE" origin="ipp">
+    <NODE code="ape" description="Allocation parentale d'éducation (APE)" origin="ipp">
+      <CODE code="age_max_enfant" conflicts="attrib:type(age),attrib:format(integer)" description="Limite d'âge (stricte) pour bénéficier de l'APE" origin="ipp">
         <VALUE deb="1985-01-01" fuzzy="true" valeur="3" />
       </CODE>
       <CODE code="annees_d_activite_precedant_la_demande" origin="ipp">
@@ -4158,22 +4158,22 @@
         <VALUE deb="1994-07-01" fuzzy="true" valeur="2" />
         <VALUE deb="1985-01-01" fin="1994-06-30" valeur="3" />
       </CODE>
-      <CODE both_origins="true" code="taux_activite_sup_50" description="Activité au plus égale au mi-temps de la durée légale du travail (en % de la bmaf)" format="percent" origin="ipp">
+      <CODE code="taux_activite_sup_50" description="Activité au plus égale au mi-temps de la durée légale du travail (en % de la bmaf)" format="percent" origin="ipp">
         <VALUE deb="1994-07-01" fuzzy="true" valeur="0.9427" />
         <VALUE deb="1985-01-01" fin="1994-06-30" valeur="0.451" />
       </CODE>
-      <CODE both_origins="true" code="taux_activite_sup_80" description="Activité entre 50% et 80% de la durée légale du travail (en % de la bmaf)" format="percent" origin="ipp">
+      <CODE code="taux_activite_sup_80" description="Activité entre 50% et 80% de la durée légale du travail (en % de la bmaf)" format="percent" origin="ipp">
         <VALUE deb="1987-04-01" fuzzy="true" valeur="0.7129" />
         <VALUE deb="1985-01-01" fin="1987-03-31" valeur="0.451" />
       </CODE>
-      <CODE both_origins="true" code="taux_inactivite" description="Cessation complète d'activité à plein temps (en % de la bmaf)" format="percent" origin="ipp">
+      <CODE code="taux_inactivite" description="Cessation complète d'activité à plein temps (en % de la bmaf)" format="percent" origin="ipp">
         <VALUE deb="1987-04-01" fuzzy="true" valeur="1.4257" />
         <VALUE deb="1986-07-01" fin="1987-03-31" valeur="0.902" />
         <VALUE deb="1985-01-01" fin="1986-06-30" valeur="0.624" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="apje" description="Allocation pour jeune enfant (APJE)" origin="ipp">
-      <CODE both_origins="true" code="age_max_dernier_enf" description="Âge limite inférieur" origin="ipp">
+    <NODE code="apje" description="Allocation pour jeune enfant (APJE)" origin="ipp">
+      <CODE code="age_max_dernier_enf" conflicts="attrib:type(age),attrib:format(integer),children:dates_overlap((('1985-01-01', '2003-12-31'), ('2000-01-01', '2006-06-30')))" description="Âge limite inférieur" origin="ipp">
         <VALUE deb="1985-01-01" fin="2003-12-31" valeur="3" />
       </CODE>
       <NODE code="majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant" origin="ipp">
@@ -4222,17 +4222,17 @@
         <VALUE deb="1997-07-01" fin="1998-06-30" valeur="86132" />
         <VALUE deb="1996-07-01" fin="1997-06-30" valeur="84526" />
       </CODE>
-      <CODE both_origins="true" code="taux" description="Taux de l'APJE" format="percent" origin="ipp">
+      <CODE code="taux" conflicts="children:dates_overlap((('1985-01-01', '2003-12-31'), ('2000-01-01', '2006-06-30')))" description="Taux de l'APJE" format="percent" origin="ipp">
         <VALUE deb="1985-01-01" fin="2003-12-31" valeur="0.4595" />
       </CODE>
-      <CODE both_origins="true" code="taux_enfant_1_et_2" description="Majoration du plafond pour les 2 premiers enfants" format="percent" origin="ipp">
+      <CODE code="taux_enfant_1_et_2" conflicts="children:dates_overlap((('1996-07-01', '2006-12-31'), ('2000-07-01', '2006-06-30')))" description="Majoration du plafond pour les 2 premiers enfants" format="percent" origin="ipp">
         <VALUE deb="1996-07-01" fin="2006-12-31" valeur="0.25" />
       </CODE>
-      <CODE both_origins="true" code="taux_enfant_3_et_plus" description="Majoration du plafond à partir du 3ème enfant" format="percent" origin="ipp">
+      <CODE code="taux_enfant_3_et_plus" conflicts="children:dates_overlap((('1996-07-01', '2006-12-31'), ('2000-07-01', '2006-06-30')))" description="Majoration du plafond à partir du 3ème enfant" format="percent" origin="ipp">
         <VALUE deb="1996-07-01" fin="2006-12-31" valeur="0.3" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="ars" description="Allocation de rentrée scolaire" origin="ipp">
+    <NODE code="ars" description="Allocation de rentrée scolaire" origin="ipp">
       <CODE code="age_entree_college" description="Âge d'entrée au collège" format="integer" origin="openfisca" type="age">
         <VALUE deb="2015-04-01" fuzzy="true" valeur="11" />
         <VALUE deb="2002-01-01" fin="2015-03-31" valeur="11" />
@@ -4241,14 +4241,14 @@
         <VALUE deb="2015-04-01" fuzzy="true" valeur="15" />
         <VALUE deb="2002-01-01" fin="2015-03-31" valeur="15" />
       </CODE>
-      <CODE both_origins="true" code="age_entree_primaire" description="Âge d'entrée à l'école primaire" origin="ipp">
+      <CODE code="age_entree_primaire" conflicts="attrib:type(age),attrib:format(integer)" description="Âge d'entrée à l'école primaire" origin="ipp">
         <VALUE deb="1976-08-18" fuzzy="true" valeur="6" />
       </CODE>
-      <CODE both_origins="true" code="age_sortie_lycee" description="Âge de sortie du lycée" origin="ipp">
+      <CODE code="age_sortie_lycee" conflicts="attrib:type(age),attrib:format(integer)" description="Âge de sortie du lycée" origin="ipp">
         <VALUE deb="1990-09-06" fuzzy="true" valeur="18" />
         <VALUE deb="1976-08-18" fin="1990-09-05" valeur="16" />
       </CODE>
-      <CODE both_origins="true" code="majoration_par_enf_supp" description="Majoration du plafond de ressources par enfant à charge" format="percent" origin="ipp">
+      <CODE code="majoration_par_enf_supp" conflicts="children:dates_overlap((('1997-07-01', '2008-10-09'), ('2002-01-01', '2015-12-31')))" description="Majoration du plafond de ressources par enfant à charge" format="percent" origin="ipp">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.3" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.300011206993" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.30001697889" />
@@ -4258,10 +4258,10 @@
         <VALUE deb="1986-07-01" fin="1997-06-30" valeur="0.230763896594" />
         <VALUE deb="1978-07-13" fin="1986-06-30" valeur="0.3" />
       </CODE>
-      <CODE both_origins="true" code="montant_seuil_non_versement" description="Seuil de non versement" format="float" origin="ipp" type="monetary">
+      <CODE code="montant_seuil_non_versement" conflicts="attrib:format(integer),children:dates_overlap((('2002-01-01', '2015-03-31'), ('2002-08-09', None)))" description="Seuil de non versement" format="float" origin="ipp" type="monetary">
         <VALUE deb="2002-08-09" fuzzy="true" valeur="15" />
       </CODE>
-      <CODE both_origins="true" code="plafond_ressources" description="Plafond de ressources" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_ressources" conflicts="attrib:format(integer),children:dates_overlap((('2006-07-01', '2007-06-30'), ('2006-07-01', '2008-12-31')))" description="Plafond de ressources" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="18772" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="18697" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="18567" />
@@ -4285,7 +4285,7 @@
         <VALUE deb="1986-07-01" fin="1997-06-30" valeur="72104" />
         <VALUE deb="1978-07-13" fin="1986-06-30" valeur="25500" />
       </CODE>
-      <CODE both_origins="true" code="taux_college" description="Taux pour les collégiens (en % de bmaf)" format="percent" origin="ipp">
+      <CODE code="taux_college" conflicts="children:dates_overlap((('2001-08-01', '2008-08-02'), ('2002-01-01', '2007-12-31')))" description="Taux pour les collégiens (en % de bmaf)" format="percent" origin="ipp">
         <VALUE deb="2012-09-03" fuzzy="true" valeur="0.9467" />
         <VALUE deb="2008-08-03" fin="2012-09-02" valeur="0.7649" />
         <VALUE deb="2001-08-01" fin="2008-08-02" valeur="0.7322" />
@@ -4293,7 +4293,7 @@
         <VALUE deb="1995-08-01" fin="1997-07-31" valeur="0.3223" />
         <VALUE deb="1978-01-01" fin="1995-07-31" valeur="0.2" />
       </CODE>
-      <CODE both_origins="true" code="taux_lycee" description="Taux pour les lycéens (en % de bmaf)" format="percent" origin="ipp">
+      <CODE code="taux_lycee" conflicts="children:dates_overlap((('2001-08-01', '2008-08-02'), ('2002-01-01', '2007-12-31')))" description="Taux pour les lycéens (en % de bmaf)" format="percent" origin="ipp">
         <VALUE deb="2012-09-03" fuzzy="true" valeur="0.9795" />
         <VALUE deb="2008-08-03" fin="2012-09-02" valeur="0.7915" />
         <VALUE deb="2001-08-01" fin="2008-08-02" valeur="0.7322" />
@@ -4301,7 +4301,7 @@
         <VALUE deb="1995-08-01" fin="1997-07-31" valeur="0.3223" />
         <VALUE deb="1978-01-01" fin="1995-07-31" valeur="0.2" />
       </CODE>
-      <CODE both_origins="true" code="taux_primaire" description="Taux pour les écoliers (en % de bmaf)" format="percent" origin="ipp">
+      <CODE code="taux_primaire" conflicts="children:dates_overlap((('2001-08-01', '2008-08-02'), ('2002-01-01', '2007-12-31')))" description="Taux pour les écoliers (en % de bmaf)" format="percent" origin="ipp">
         <VALUE deb="2012-09-03" fuzzy="true" valeur="0.8972" />
         <VALUE deb="2008-08-03" fin="2012-09-02" valeur="0.725" />
         <VALUE deb="2001-08-01" fin="2008-08-02" valeur="0.7322" />
@@ -4310,7 +4310,7 @@
         <VALUE deb="1986-08-01" fin="1995-07-31" valeur="0.2" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="asf" description="Allocation de soutien familial" origin="ipp">
+    <NODE code="asf" description="Allocation de soutien familial" origin="ipp">
       <NODE code="montant_de_l_asf_dans_le_calcul_du_rsa_et_de_la_ppa_en_de_la_bmaf" origin="ipp">
         <CODE code="orphelin_ou_assimile_d_un_seul_parent" format="percent" origin="ipp">
           <VALUE deb="2009-06-01" fuzzy="true" valeur="0.225" />
@@ -4319,36 +4319,36 @@
           <VALUE deb="2009-06-01" fuzzy="true" valeur="0.3" />
         </CODE>
       </NODE>
-      <CODE both_origins="true" code="taux_1_parent" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée, en pourcentage de la BMAF" format="percent" origin="ipp">
+      <CODE code="taux_1_parent" conflicts="children:dates_overlap((('1978-01-01', '2014-03-31'), ('2002-01-01', '2014-03-31')))" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée, en pourcentage de la BMAF" format="percent" origin="ipp">
         <VALUE deb="2015-04-01" fuzzy="true" valeur="0.2476" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2363" />
         <VALUE deb="1978-01-01" fin="2014-03-31" valeur="0.225" />
         <VALUE deb="1970-12-26" fin="1977-12-31" valeur="0.16" />
       </CODE>
-      <CODE both_origins="true" code="taux_2_parents" description="Orphelin (de père et de mère), ou situation assimilée" format="percent" origin="ipp">
+      <CODE code="taux_2_parents" conflicts="children:dates_overlap((('1970-12-26', '2014-03-31'), ('2002-01-01', '2014-03-31')))" description="Orphelin (de père et de mère), ou situation assimilée" format="percent" origin="ipp">
         <VALUE deb="2015-04-01" fuzzy="true" valeur="0.33" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.315" />
         <VALUE deb="1970-12-26" fin="2014-03-31" valeur="0.3" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="cf" description="Complément familial" origin="ipp">
+    <NODE code="cf" description="Complément familial" origin="ipp">
       <CODE code="age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom" origin="ipp">
         <VALUE deb="2002-01-01" fuzzy="true" valeur="3" />
       </CODE>
-      <CODE both_origins="true" code="age_max" description="Âge limite supérieur" origin="ipp">
+      <CODE code="age_max" conflicts="attrib:type(age),attrib:format(integer),children:dates_overlap((('1978-01-01', '1986-06-30'), ('1986-01-01', '1996-12-31')))" description="Âge limite supérieur" origin="ipp">
         <VALUE deb="2000-02-01" fuzzy="true" valeur="21" />
         <VALUE deb="1997-01-01" fin="2000-01-31" valeur="18" />
         <VALUE deb="1986-07-01" fin="1996-12-31" valeur="17" />
         <VALUE deb="1978-01-01" fin="1986-06-30" valeur="3" />
       </CODE>
-      <CODE both_origins="true" code="age_maximal_dom" description="Âge limite DOM" origin="ipp">
+      <CODE code="age_maximal_dom" conflicts="attrib:type(age),children:dates_overlap((('1986-01-01', '2014-03-31'), ('2002-01-01', None))),attrib:format(integer)" description="Âge limite DOM" origin="ipp">
         <VALUE deb="2002-01-01" fuzzy="true" valeur="5" />
       </CODE>
       <CODE code="age_min" origin="ipp">
         <VALUE deb="1986-07-01" fuzzy="true" valeur="3" />
         <VALUE deb="1978-01-01" fin="1986-06-30" valeur="0" />
       </CODE>
-      <CODE both_origins="true" code="age_minimal_dom" description="Âge limite inférieur" origin="ipp">
+      <CODE code="age_minimal_dom" conflicts="attrib:type(age),children:dates_overlap((('1986-01-01', '2014-03-31'), ('2002-01-01', None))),attrib:format(integer)" description="Âge limite inférieur" origin="ipp">
         <VALUE deb="2002-01-01" fuzzy="true" valeur="3" />
       </CODE>
       <CODE code="majoration_du_plafond_de_ressources_enfant_supplementaire" format="percent" origin="ipp">
@@ -4357,15 +4357,15 @@
         <VALUE deb="1978-07-01" fin="1982-12-31" valeur="0.170111855302" />
         <VALUE deb="1978-01-01" fin="1978-06-30" valeur="0.170112204119" />
       </CODE>
-      <CODE both_origins="true" code="majoration_plafond_2_premiers_enf" description="Majoration du plafond pour les 2 premiers enfants" format="percent" origin="ipp">
+      <CODE code="majoration_plafond_2_premiers_enf" description="Majoration du plafond pour les 2 premiers enfants" format="percent" origin="ipp">
         <VALUE deb="1986-01-01" fuzzy="true" valeur="0.25" />
       </CODE>
-      <CODE both_origins="true" code="majoration_plafond_3eme_enf_et_plus" description="Majoration du plafond à partir du 3ème enfant" format="percent" origin="ipp">
+      <CODE code="majoration_plafond_3eme_enf_et_plus" conflicts="children:dates_overlap((('1986-01-01', '2008-12-31'), ('2002-01-01', '2014-12-31')))" description="Majoration du plafond à partir du 3ème enfant" format="percent" origin="ipp">
         <VALUE deb="2010-01-01" fuzzy="true" valeur="0.3" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.25" />
         <VALUE deb="1986-01-01" fin="2008-12-31" valeur="0.3" />
       </CODE>
-      <CODE both_origins="true" code="majoration_plafond_biact_isole" description="Majoration du plafond pour biactifs ou isolé" format="float" origin="ipp" type="monetary">
+      <CODE code="majoration_plafond_biact_isole" conflicts="children:dates_overlap((('1986-01-01', '2003-06-30'), ('2000-07-01', '2001-06-30'))),attrib:format(integer)" description="Majoration du plafond pour biactifs ou isolé" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="8420" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8386" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="8328" />
@@ -4392,7 +4392,7 @@
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
         <VALUE deb="2014-04-01" fin="2015-12-31" valeur="0.5" />
       </CODE>
-      <CODE both_origins="true" code="plafond_de_ressources_0_enfant" description="Plafond de ressources" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_de_ressources_0_enfant" conflicts="children:dates_overlap((('1986-01-01', '2003-06-30'), ('2000-07-01', '2001-06-30'))),attrib:format(integer)" description="Plafond de ressources" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="20947" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="20864" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="20719" />
@@ -4428,19 +4428,19 @@
           <VALUE deb="1978-01-01" fin="1978-06-30" valeur="0.20002258866" />
         </CODE>
       </NODE>
-      <CODE both_origins="true" code="taux_base_dom" description="Taux du complément familial dans les DOM" format="percent" origin="ipp">
+      <CODE code="taux_base_dom" description="Taux du complément familial dans les DOM" format="percent" origin="ipp">
         <VALUE deb="2002-01-01" fuzzy="true" valeur="0.2379" />
       </CODE>
-      <CODE both_origins="true" code="taux_cf_base" description="Taux du complément familial" format="percent" origin="ipp">
+      <CODE code="taux_cf_base" description="Taux du complément familial" format="percent" origin="ipp">
         <VALUE deb="1983-01-01" fuzzy="true" valeur="0.4165" />
         <VALUE deb="1978-01-01" fin="1982-12-31" valeur="0.4475" />
       </CODE>
-      <CODE both_origins="true" code="taux_cf_majore" description="Taux du complément familial majoré" format="percent" origin="ipp">
+      <CODE code="taux_cf_majore" description="Taux du complément familial majoré" format="percent" origin="ipp">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="0.5416" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.4999" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.4582" />
       </CODE>
-      <CODE both_origins="true" code="taux_majore_dom" description="Taux du complément familial majoré dans les DOM" format="percent" origin="ipp">
+      <CODE code="taux_majore_dom" description="Taux du complément familial majoré dans les DOM" format="percent" origin="ipp">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="0.3093" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.2855" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2617" />
@@ -4461,7 +4461,7 @@
         <VALUE deb="2001-01-01" fin="2015-12-31" valeur="0" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="paje" description="Prestation d'accueil du jeune enfant" origin="ipp">
+    <NODE code="paje" description="Prestation d'accueil du jeune enfant" origin="ipp">
       <NODE code="age_limite" origin="ipp">
         <CODE code="pour_les_enfants_adoptes" origin="ipp">
           <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
@@ -4470,8 +4470,8 @@
       <CODE code="age_max_enfant" origin="ipp">
         <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
       </CODE>
-      <NODE both_origins="true" code="base" description="Allocation de base" origin="ipp">
-        <CODE both_origins="true" code="age_max_enfant" description="Limite d'âge (stricte) pour bénéficier de la PAJE" origin="ipp">
+      <NODE code="base" description="Allocation de base" origin="ipp">
+        <CODE code="age_max_enfant" conflicts="attrib:type(age),attrib:format(integer)" description="Limite d'âge (stricte) pour bénéficier de la PAJE" origin="ipp">
           <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
         </CODE>
         <NODE code="apres_2014" origin="openfisca">
@@ -4505,8 +4505,8 @@
             </CODE>
           </NODE>
         </NODE>
-        <NODE both_origins="true" code="avant_2014" origin="ipp">
-          <CODE both_origins="true" code="majoration_biact_parent_isoles" description="Majoration pour biactifs et isolés" format="float" origin="ipp" type="monetary">
+        <NODE code="avant_2014" origin="ipp">
+          <CODE code="majoration_biact_parent_isoles" conflicts="children:valeurs(('2016-01-01', None):11534,11488),attrib:format(integer)" description="Majoration pour biactifs et isolés" format="float" origin="ipp" type="monetary">
             <VALUE deb="2016-01-01" fuzzy="true" valeur="11534" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="11488" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="11408" />
@@ -4521,7 +4521,7 @@
             <VALUE deb="2004-07-01" fin="2005-06-30" valeur="7905" />
             <VALUE deb="2004-01-01" fin="2004-06-30" valeur="7758" />
           </CODE>
-          <CODE both_origins="true" code="plafond_ressources_0_enf" description="Plafond de ressources" format="float" origin="ipp" type="monetary">
+          <CODE code="plafond_ressources_0_enf" conflicts="children:valeurs(('2012-01-01', '2012-12-31'):27282,27283),attrib:format(integer)" description="Plafond de ressources" format="float" origin="ipp" type="monetary">
             <VALUE deb="2016-01-01" fuzzy="true" valeur="28697" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="28583" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="28384" />
@@ -4536,19 +4536,19 @@
             <VALUE deb="2004-07-01" fin="2005-06-30" valeur="19670" />
             <VALUE deb="2004-01-01" fin="2004-06-30" valeur="19303" />
           </CODE>
-          <CODE both_origins="true" code="taux_majoration_2_premiers_enf" description="Majoration du plafond pour les 2 premiers enfants" format="percent" origin="ipp">
+          <CODE code="taux_majoration_2_premiers_enf" description="Majoration du plafond pour les 2 premiers enfants" format="percent" origin="ipp">
             <VALUE deb="2004-01-01" fuzzy="true" valeur="0.25" />
           </CODE>
-          <CODE both_origins="true" code="taux_majoration_3eme_enf_et_plus" description="Majoration du plafond à partir du 3ème enfant" format="percent" origin="ipp">
+          <CODE code="taux_majoration_3eme_enf_et_plus" description="Majoration du plafond à partir du 3ème enfant" format="percent" origin="ipp">
             <VALUE deb="2004-01-01" fuzzy="true" valeur="0.3" />
           </CODE>
         </NODE>
-        <CODE both_origins="true" code="taux_allocation_base" description="Allocation de base (en % de la bmaf)" format="percent" origin="ipp">
+        <CODE code="taux_allocation_base" description="Allocation de base (en % de la bmaf)" format="percent" origin="ipp">
           <VALUE deb="2004-01-01" fuzzy="true" valeur="0.4595" />
         </CODE>
       </NODE>
-      <NODE both_origins="true" code="clca" description="Complément libre choix d'activité" origin="ipp">
-        <CODE both_origins="true" code="age_max_enfant" description="Limite d'âge (stricte)" origin="ipp">
+      <NODE code="clca" description="Complément libre choix d'activité" origin="ipp">
+        <CODE code="age_max_enfant" conflicts="attrib:type(age),attrib:format(integer)" description="Limite d'âge (stricte)" origin="ipp">
           <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
         </CODE>
         <CODE code="avecab_tx_inactif" description="Taux pour les personnes inactives percevant l'allocation de base de la PAJE" origin="openfisca">
@@ -4583,7 +4583,7 @@
           <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0.8198" />
         </CODE>
       </NODE>
-      <NODE both_origins="true" code="clmg" description="Complément de libre choix du mode de garde" origin="ipp">
+      <NODE code="clmg" description="Complément de libre choix du mode de garde" origin="ipp">
         <CODE code="age1" description="Limite d'âge (stricte) pour une prestation pleine" format="integer" origin="openfisca" type="age">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="3" />
           <VALUE deb="2004-01-01" fin="2013-12-31" valeur="3" />
@@ -4694,14 +4694,14 @@
           <VALUE deb="2004-07-01" fin="2005-06-30" valeur="5901" />
           <VALUE deb="2004-01-01" fin="2004-06-30" valeur="5791" />
         </CODE>
-        <CODE both_origins="true" code="taux_recours_emploi_1er_plafond" description="Taux pour recours à un emploi direct avant le premier plafond" format="percent" origin="ipp">
+        <CODE code="taux_recours_emploi_1er_plafond" conflicts="children:dates_overlap((('2001-01-01', '2013-12-31'), ('2004-01-01', '2008-04-30')))" description="Taux pour recours à un emploi direct avant le premier plafond" format="percent" origin="ipp">
           <VALUE deb="2008-05-01" fuzzy="true" valeur="1.1404" />
           <VALUE deb="2004-01-01" fin="2008-04-30" valeur="1.0067" />
         </CODE>
-        <CODE both_origins="true" code="taux_recours_emploi_2e_plafond" description="Taux pour recours à un emploi direct avant le second plafond" format="percent" origin="ipp">
+        <CODE code="taux_recours_emploi_2e_plafond" conflicts="children:dates_overlap((('2001-01-01', '2013-12-31'), ('2004-01-01', None)))" description="Taux pour recours à un emploi direct avant le second plafond" format="percent" origin="ipp">
           <VALUE deb="2004-01-01" fuzzy="true" valeur="0.7191" />
         </CODE>
-        <CODE both_origins="true" code="taux_recours_emploi_supp_2e_plafond" description="Taux pour recours à un emploi direct après le second plafond" format="percent" origin="ipp">
+        <CODE code="taux_recours_emploi_supp_2e_plafond" conflicts="children:dates_overlap((('2001-01-01', '2013-12-31'), ('2004-01-01', None)))" description="Taux pour recours à un emploi direct après le second plafond" format="percent" origin="ipp">
           <VALUE deb="2004-01-01" fuzzy="true" valeur="0.4314" />
         </CODE>
       </NODE>

@@ -1,4 +1,4 @@
-<NODE both_origins="true" code="prelevements_sociaux" origin="ipp">
+<NODE code="prelevements_sociaux" origin="ipp">
   <NODE code="abat_red" origin="ipp">
     <CODE code="artistes" format="percent" origin="ipp">
       <VALUE deb="1975-01-01" fuzzy="true" valeur="0.3" />
@@ -199,7 +199,7 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE both_origins="true" code="cotisations_sociales" origin="ipp">
+  <NODE code="cotisations_sociales" origin="ipp">
     <NODE code="agff" origin="ipp">
       <NODE code="employeur" origin="ipp">
         <BAREME code="cadre" origin="ipp">
@@ -1379,7 +1379,7 @@
         </TAUX>
       </TRANCHE>
     </BAREME>
-    <NODE both_origins="true" code="fds" origin="ipp">
+    <NODE code="fds" origin="ipp">
       <BAREME code="cotisation_exceptionnelle_solidarite" origin="ipp">
         <TRANCHE code="tranche_nulle">
           <SEUIL>
@@ -2079,7 +2079,7 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE both_origins="true" code="csg" description="Contribution sociale généralisée (CSG)" origin="ipp">
+  <NODE code="csg" description="Contribution sociale généralisée (CSG)" origin="ipp">
     <NODE code="abattement" origin="ipp">
       <CODE code="au_dessus_de_4_pss" format="percent" origin="ipp">
         <VALUE deb="2005-01-01" fin="2010-12-31" valeur="0.03" />
@@ -2091,7 +2091,7 @@
         <VALUE deb="1991-02-01" fin="2004-12-31" valeur="0.05" />
       </CODE>
     </NODE>
-    <NODE both_origins="true" code="activite" description="Revenus d'activité" origin="ipp">
+    <NODE code="activite" description="Revenus d'activité" origin="ipp">
       <NODE code="deductible" description="CSG déductible" origin="openfisca">
         <BAREME code="abattement" description="Abattement de la base de la CSG déductible" origin="openfisca">
           <TRANCHE code="tranche0">
@@ -2530,7 +2530,7 @@
       <VALUE deb="2015-01-01" fuzzy="true" valeur="0.00016" />
     </CODE>
   </NODE>
-  <NODE both_origins="true" code="forfait_social" origin="ipp">
+  <NODE code="forfait_social" origin="ipp">
     <CODE code="seuil_effectif_prevoyance_complementaire" description="Seuil effectif à partir duquel les contributions patronales de prévoyance complémentaire rentrent dans l'assiette du FNAL à taux réduit" origin="openfisca">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="11" />
       <VALUE deb="2012-01-01" fin="2015-12-31" valeur="10" />
