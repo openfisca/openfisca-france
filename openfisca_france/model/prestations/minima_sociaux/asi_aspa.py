@@ -73,7 +73,7 @@ class asi_aspa_base_ressources_individu(Variable):
 
         # Inclus l'AAH si conjoint non pensionné ASPA, retraite et pension invalidité
         # FIXME Il faudrait vérifier que le conjoint est pensionné ASPA, pas qu'il est juste éligible !
-        aah = simulation.calculate('aah', period)
+        aah = simulation.calculate_add('aah', three_previous_months)
         aah = aah * not_(aspa_eligibilite)
 
         pensions_alimentaires_versees = simulation.calculate_add(
