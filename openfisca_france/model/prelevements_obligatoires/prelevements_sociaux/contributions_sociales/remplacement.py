@@ -317,6 +317,6 @@ class crds_pfam(Variable):
         paje = simulation.calculate_add('paje', period)
         ape = simulation.calculate_add('ape', period)
         apje = simulation.calculate_add('apje', period)
-        taux_crds = simulation.legislation_at(period.start).prelevements_sociaux.contributions.crds.taux_crds
+        taux_crds = simulation.legislation_at(period.start).prelevements_sociaux.contributions.crds.taux
 
         return period, -(af + cf + asf + ars + paje + ape + apje) * taux_crds
