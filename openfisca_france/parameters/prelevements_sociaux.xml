@@ -2068,7 +2068,7 @@
     </NODE>
   </NODE>
   <NODE code="crds" origin="ipp">
-    <CODE code="taux_crds" format="percent" origin="ipp">
+    <CODE code="taux" format="percent" origin="ipp">
       <VALUE deb="1996-02-01" fuzzy="true" valeur="0.005" />
     </CODE>
   </NODE>
