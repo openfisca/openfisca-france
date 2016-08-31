@@ -2927,7 +2927,7 @@
         <VALUE deb="2000-01-01" fuzzy="true" valeur="0.5" />
       </CODE>
     </NODE>
-    <NODE code="aefa" description="Aide exceptionnelle de fin d'année" origin="openfisca">
+    <NODE code="aefa" description="Aide exceptionnelle de fin d'année" origin="ipp">
       <CODE code="forf2008" description="Montant de l'aide forfaitaire exceptionnelle de 2008" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="67.55" />
       </CODE>
@@ -2935,21 +2935,17 @@
         <VALUE deb="2014-01-01" fuzzy="true" valeur="219.53" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="219.53" />
       </CODE>
-      <CODE code="mon_seul" description="Montant de l'aide pour une personne seule" format="float" origin="openfisca" type="monetary">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur="152.45" />
-        <VALUE deb="2001-01-01" fin="2013-12-31" valeur="152.45" />
+      <CODE code="mon_seul" conflicts="children:dates_overlap((('2001-01-01', '2013-12-31'), ('2003-01-01', None)))" description="Montant de l'aide pour une personne seule" format="float" origin="ipp" type="monetary">
+        <VALUE deb="2003-01-01" fuzzy="true" valeur="125.45" />
       </CODE>
-      <CODE code="tx_2p" description="Taux pour la seconde personne" format="percent" origin="openfisca">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur=".50" />
-        <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".50" />
+      <CODE code="tx_2p" conflicts="children:dates_overlap((('1998-01-01', '2013-12-31'), ('2003-01-01', None)))" description="Taux pour la seconde personne" format="percent" origin="ipp">
+        <VALUE deb="2003-01-01" fuzzy="true" valeur="0.5" />
       </CODE>
-      <CODE code="tx_3pac" description="Taux au delà de la troisième personne à charge incluse" format="percent" origin="openfisca">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur=".40" />
-        <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".40" />
+      <CODE code="tx_3pac" conflicts="children:dates_overlap((('1998-01-01', '2013-12-31'), ('2003-01-01', None)))" description="Taux au delà de la troisième personne à charge incluse" format="percent" origin="ipp">
+        <VALUE deb="2003-01-01" fuzzy="true" valeur="0.4" />
       </CODE>
-      <CODE code="tx_supp" description="Taux personne supplémentaire" format="percent" origin="openfisca">
-        <VALUE deb="2014-01-01" fuzzy="true" valeur=".30" />
-        <VALUE deb="1998-01-01" fin="2013-12-31" valeur=".30" />
+      <CODE code="tx_supp" conflicts="children:dates_overlap((('1998-01-01', '2013-12-31'), ('2003-01-01', None)))" description="Taux personne supplémentaire" format="percent" origin="ipp">
+        <VALUE deb="2003-01-01" fuzzy="true" valeur="0.3" />
       </CODE>
     </NODE>
     <NODE code="api" description="Allocation parent isolé" origin="ipp">

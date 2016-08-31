@@ -1268,6 +1268,16 @@ def transform_ipp_tree(root):
     caah['montant_complement_ressources'] = montant_complement_ressources = caah.pop('montant_mensuel_du_complement_de_ressources_aux_adultes_handicapes_1')
 
 
+    # Aefa
+    minima_sociaux['aefa'] = prestations.pop('aefa')
+    aefa = minima_sociaux['aefa']
+    aefa['mon_seul'] = aefa.pop('montant_de_la_prime')
+    taux_de_majoration_selon_la_taille_du_foyer_1 = aefa['taux_de_majoration_selon_la_taille_du_foyer_1']
+    aefa['tx_2p'] = taux_de_majoration_selon_la_taille_du_foyer_1.pop('deux_personnes')
+    aefa['tx_3pac'] = taux_de_majoration_selon_la_taille_du_foyer_1.pop('taux_au_dela_de_la_troisieme_personne_a_charge_incluse')
+    aefa['tx_supp'] = taux_de_majoration_selon_la_taille_du_foyer_1.pop('personne_supplementaire_si_conjoint')
+
+
     #   cf_maj:
     #     Majoration:
     #        1er et 2ème enfants (en % du plafond de ressources avec 0 enfant): null  # Value must be a float
