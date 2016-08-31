@@ -11,7 +11,7 @@ import copy
 import logging
 import os
 
-from openfisca_core import conv, periods, scenarios
+from openfisca_core import conv, periods, simulations
 from openfisca_core.tools import assert_near
 import numpy as np
 import yaml
@@ -21,51 +21,53 @@ from openfisca_france.tests import base
 
 log = logging.getLogger(__name__)
 
+root_dir = os.path.abspath(os.path.dirname(base.__file__))
+
 options_by_dir = collections.OrderedDict((
     (
-        os.path.abspath(os.path.join(os.path.dirname(__file__), 'calculateur_impots')),
+        os.path.join(root_dir, 'calculateur_impots'),
         dict(
-            calculate_output = False,
-            default_absolute_error_margin = 0.5,
-            ignore = True,  # TODO: Remove
-            reforms = ['inversion_revenus'],
+            calculate_output=False,
+            default_absolute_error_margin=0.5,
+            ignore=True,  # TODO: Remove
+            reforms=['inversion_revenus'],
             ),
         ),
     (
-        os.path.abspath(os.path.join(os.path.dirname(__file__), 'fiches_de_paie')),
+        os.path.join(root_dir, 'fiches_de_paie'),
         dict(
-            calculate_output = False,
-            default_absolute_error_margin = 0.005,
+            calculate_output=False,
+            default_absolute_error_margin=0.005,
             ),
         ),
     (
-        os.path.abspath(os.path.join(os.path.dirname(__file__), 'formulas')),
+        os.path.join(root_dir, 'formulas'),
         dict(
-            calculate_output = False,
-            default_absolute_error_margin = 0.005,
+            calculate_output=False,
+            default_absolute_error_margin=0.005,
             ),
         ),
     (
-        os.path.abspath(os.path.join(os.path.dirname(__file__), 'mes-aides.gouv.fr')),
+        os.path.join(root_dir, 'mes-aides.gouv.fr'),
         dict(
-            calculate_output = True,
-            default_relative_error_margin = 0.02,
+            calculate_output=True,
+            default_relative_error_margin=0.02,
             ),
         ),
     (
-        os.path.abspath(os.path.join(os.path.dirname(__file__), 'ui.openfisca.fr')),
+        os.path.join(root_dir, 'ui.openfisca.fr'),
         dict(
-            calculate_output = False,
-            default_absolute_error_margin = 0.005,
+            calculate_output=False,
+            default_absolute_error_margin=0.005,
             ),
         ),
     (
-        os.path.abspath(os.path.join(os.path.dirname(__file__), 'scipy')),
+        os.path.join(root_dir, 'scipy'),
         dict(
-            calculate_output = False,
-            default_absolute_error_margin = 0.005,
-            reforms = ['de_net_a_brut'],
-            requires = 'scipy',
+            calculate_output=False,
+            default_absolute_error_margin=0.005,
+            reforms=['de_net_a_brut'],
+            requires='scipy',
             ),
         ),
     ))
@@ -110,8 +112,8 @@ yaml.add_representer(unicode, lambda dumper, data: dumper.represent_scalar(u'tag
 # Functions
 
 
-def assert_near_calculate_output(value, target_value, absolute_error_margin = 0, message = '',
-        relative_error_margin = None):
+def assert_near_calculate_output(value, target_value, absolute_error_margin=0, message='',
+        relative_error_margin=None):
     # Redefinition of assert_near that accepts to compare monthy values with yearly values.
     assert absolute_error_margin is not None or relative_error_margin is not None
     if isinstance(value, (list, tuple)):
@@ -148,13 +150,10 @@ def assert_near_calculate_output(value, target_value, absolute_error_margin = 0,
                     abs(target_value - value), abs(relative_error_margin * target_value))
 
 
-def check(yaml_path, name, period_str, test, force, verbose = False):
-    scenario = test['scenario']
-    scenario.suggest()
-    simulation = scenario.new_simulation(debug = verbose)
-    output_variables = test.get(u'output_variables')
+def check(yaml_path, name, period_str, simulation, force, verbose=False):
+    output_variables = simulation.output_variables
     if output_variables is not None:
-        output_variables_name_to_ignore = test.get(u'output_variables_name_to_ignore') or set()
+        output_variables_name_to_ignore = simulation.output_variables_name_to_ignore or set()
         for variable_name, expected_value in output_variables.iteritems():
             if not force and variable_name in output_variables_name_to_ignore:
                 continue
@@ -163,27 +162,24 @@ def check(yaml_path, name, period_str, test, force, verbose = False):
                     assert_near(
                         simulation.calculate(variable_name, requested_period),
                         expected_value_at_period,
-                        absolute_error_margin = test.get('absolute_error_margin'),
-                        message = u'{}@{}: '.format(variable_name, requested_period),
-                        relative_error_margin = test.get('relative_error_margin'),
+                        absolute_error_margin=simulation.absolute_error_margin,
+                        message=u'{}@{}: '.format(variable_name, requested_period),
+                        relative_error_margin=simulation.relative_error_margin,
                         )
             else:
                 assert_near(
                     simulation.calculate(variable_name),
                     expected_value,
-                    absolute_error_margin = test.get('absolute_error_margin'),
-                    message = u'{}@{}: '.format(variable_name, period_str),
-                    relative_error_margin = test.get('relative_error_margin'),
+                    absolute_error_margin=simulation.absolute_error_margin,
+                    message=u'{}@{}: '.format(variable_name, period_str),
+                    relative_error_margin=simulation.relative_error_margin,
                     )
 
 
-def check_calculate_output(yaml_path, name, period_str, test, force, verbose = False):
-    scenario = test['scenario']
-    scenario.suggest()
-    simulation = scenario.new_simulation(debug = verbose)
-    output_variables = test.get(u'output_variables')
+def check_calculate_output(yaml_path, name, period_str, simulation, force, verbose=False):
+    output_variables = simulation.output_variables
     if output_variables is not None:
-        output_variables_name_to_ignore = test.get(u'output_variables_name_to_ignore') or set()
+        output_variables_name_to_ignore = simulation.output_variables_name_to_ignore or set()
         for variable_name, expected_value in output_variables.iteritems():
             if not force and variable_name in output_variables_name_to_ignore:
                 continue
@@ -192,21 +188,21 @@ def check_calculate_output(yaml_path, name, period_str, test, force, verbose = F
                     assert_near_calculate_output(
                         simulation.calculate_output(variable_name, requested_period),
                         expected_value_at_period,
-                        absolute_error_margin = test.get('absolute_error_margin'),
-                        message = u'{}@{}: '.format(variable_name, requested_period),
-                        relative_error_margin = test.get('relative_error_margin'),
+                        absolute_error_margin=simulation.absolute_error_margin,
+                        message=u'{}@{}: '.format(variable_name, requested_period),
+                        relative_error_margin=simulation.relative_error_margin,
                         )
             else:
                 assert_near_calculate_output(
                     simulation.calculate_output(variable_name),
                     expected_value,
-                    absolute_error_margin = test.get('absolute_error_margin'),
-                    message = u'{}@{}: '.format(variable_name, period_str),
-                    relative_error_margin = test.get('relative_error_margin'),
+                    absolute_error_margin=simulation.absolute_error_margin,
+                    message=u'{}@{}: '.format(variable_name, period_str),
+                    relative_error_margin=simulation.relative_error_margin,
                     )
 
 
-def test(force = False, name_filter = None, options_by_path = None):
+def test(force=False, name_filter=None, options_by_path=None):
     if isinstance(name_filter, str):
         name_filter = name_filter.decode('utf-8')
     if options_by_path is None:
@@ -234,8 +230,8 @@ def test(force = False, name_filter = None, options_by_path = None):
 
         reform_keys = options.get('reforms')
         tax_benefit_system_for_path = base.get_cached_composed_reform(
-            reform_keys = reform_keys,
-            tax_benefit_system = base.tax_benefit_system,
+            reform_keys=reform_keys,
+            tax_benefit_system=base.tax_benefit_system,
             ) if reform_keys is not None else base.tax_benefit_system
 
         for yaml_path in yaml_paths:
@@ -246,36 +242,29 @@ def test(force = False, name_filter = None, options_by_path = None):
                 conv.make_item_to_singleton(),
                 conv.uniform_sequence(
                     conv.noop,
-                    drop_none_items = True,
+                    drop_none_items=True,
                     ),
                 )(tests)
             if error is not None:
                 embedding_error = conv.embed_error(tests, u'errors', error)
                 assert embedding_error is None, embedding_error
                 raise ValueError("Error in test {}:\n{}".format(yaml_path, yaml.dump(tests, allow_unicode = True,
-                    default_flow_style = False, indent = 2, width = 120)))
+                    default_flow_style=False, indent=2, width=120)))
 
             for test in tests:
-                test, error = scenarios.make_json_or_python_to_test(
-                    tax_benefit_system = tax_benefit_system_for_path,
-                    default_absolute_error_margin = options.get('default_absolute_error_margin'),
-                    default_relative_error_margin = options.get('default_relative_error_margin'),
-                    )(test)
-                if error is not None:
-                    embedding_error = conv.embed_error(test, u'errors', error)
-                    assert embedding_error is None, embedding_error
-                    raise ValueError("Error in test {}:\n{}\nYaml test content: \n{}\n".format(
-                        yaml_path, error, yaml.dump(test, allow_unicode = True,
-                        default_flow_style = False, indent = 2, width = 120)))
-
-                if not force and test.get(u'ignore', False):
+                simulation = base.Simulation.init_test(
+                    tax_benefit_system_for_path, test,
+                    default_absolute_error_margin=options.get('default_absolute_error_margin'),
+                    default_relative_error_margin=options.get('default_relative_error_margin'),
+                    )
+                if not force and simulation.ignore:
                     continue
                 if name_filter is not None and name_filter not in filename_core \
-                        and name_filter not in (test.get('name', u'')) \
-                        and name_filter not in (test.get('keywords', [])):
+                        and name_filter not in (simulation.name) \
+                        and name_filter not in (simulation.keywords):
                     continue
                 checker = check_calculate_output if options['calculate_output'] else check
-                yield checker, yaml_path, test.get('name') or filename_core, unicode(test['scenario'].period), test, \
+                yield checker, yaml_path, simulation.name or filename_core, unicode(simulation.period), simulation, \
                     force
 
 
@@ -284,14 +273,14 @@ if __name__ == "__main__":
     import logging
     import sys
 
-    parser = argparse.ArgumentParser(description = __doc__)
-    parser.add_argument('paths', help = "path (file or directory) of tests to execute", metavar = 'PATH', nargs = '*')
-    parser.add_argument('-f', '--force', action = 'store_true', default = False,
-        help = 'force testing of tests with "ignore" flag and formulas belonging to "ignore_output_variables" list')
-    parser.add_argument('-n', '--name', default = None, help = "partial name of tests to execute")
-    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('paths', help="path (file or directory) of tests to execute", metavar='PATH', nargs='*')
+    parser.add_argument('-f', '--force', action='store_true', default=False,
+        help='force testing of tests with "ignore" flag and formulas belonging to "ignore_output_variables" list')
+    parser.add_argument('-n', '--name', default=None, help="partial name of tests to execute")
+    parser.add_argument('-v', '--verbose', action='store_true', default=False, help="increase output verbosity")
     args = parser.parse_args()
-    logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
+    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.WARNING, stream=sys.stdout)
 
     if args.paths:
         options_by_path = collections.OrderedDict()
@@ -301,8 +290,8 @@ if __name__ == "__main__":
             options = options_by_dir.get(dir)
             if options is None:
                 options = dict(
-                    calculate_output = False,
-                    default_absolute_error_margin = 0.005,
+                    calculate_output=False,
+                    default_absolute_error_margin=0.005,
                     )
             options_by_path[path] = options
     else:
@@ -311,9 +300,9 @@ if __name__ == "__main__":
     tests_found = False
     for test_index, (checker, yaml_path, name, period_str, test, force) in enumerate(
             test(
-                force = args.force,
-                name_filter = args.name,
-                options_by_path = options_by_path,
+                force=args.force,
+                name_filter=args.name,
+                options_by_path=options_by_path,
                 ),
             1):
         keywords = test.get('keywords', [])

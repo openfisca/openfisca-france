@@ -62,7 +62,7 @@ class Simulation(openfisca_core.simulations.AbstractSimulation):
 
         conv.check(self.make_json_or_python_to_attributes())(refined_dict)
 
-        super(Simulation, self).__init__(tbs)
+        self.instantiate_variables()
 
     def make_json_or_python_to_test_case(self, period=None, repair=False):
         assert period is not None
@@ -708,6 +708,61 @@ class Simulation(openfisca_core.simulations.AbstractSimulation):
             return test_case, error
 
         return json_or_python_to_test_case
+
+    def suggest(self):
+        """Returns a dict of suggestions and modifies self.test_case applying those suggestions."""
+        test_case = self.test_case
+        if test_case is None:
+            return None
+
+        period_start_date = self.period.start.date
+        period_start_year = self.period.start.year
+        suggestions = dict()
+
+        for individu in test_case['individus']:
+            individu_id = individu['id']
+            if individu.get('age') is None and individu.get('age_en_mois') is None and individu.get('date_naissance') is None:
+                # Add missing date_naissance date to person (a parent is 40 years old and a child is 10 years old.
+                is_parent = any(individu_id in famille['parents'] for famille in test_case['familles'])
+                birth_year = period_start_year - 40 if is_parent else period_start_year - 10
+                date_naissance = datetime.date(birth_year, 1, 1)
+                individu['date_naissance'] = date_naissance
+                suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
+                    'date_naissance'] = date_naissance.isoformat()
+            if individu.get('activite') is None:
+                if find_age(individu, period_start_date) < 16:
+                    individu['activite'] = 2  # Étudiant, élève
+                    suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
+                        'activite'] = u'2'  # Étudiant, élève
+
+        individu_by_id = {
+            individu['id']: individu
+            for individu in test_case['individus']
+            }
+
+        for foyer_fiscal in test_case['foyers_fiscaux']:
+            if len(foyer_fiscal['declarants']) == 1 and foyer_fiscal['personnes_a_charge']:
+                # Suggest "parent isolé" when foyer_fiscal contains a single "declarant" with "personnes_a_charge".
+                if foyer_fiscal.get('caseT') is None:
+                    suggestions.setdefault('test_case', {}).setdefault('foyers_fiscaux', {}).setdefault(
+                        foyer_fiscal['id'], {})['caseT'] = foyer_fiscal['caseT'] = True
+            elif len(foyer_fiscal['declarants']) == 2:
+                # Suggest "PACSé" or "Marié" instead of "Célibataire" when foyer_fiscal contains 2 "declarants" without
+                # "statut_marital".
+                statut_marital = 5  # PACSé
+                for individu_id in foyer_fiscal['declarants']:
+                    individu = individu_by_id[individu_id]
+                    if individu.get('statut_marital') == 1:  # Marié
+                        statut_marital = 1
+                for individu_id in foyer_fiscal['declarants']:
+                    individu = individu_by_id[individu_id]
+                    if individu.get('statut_marital') is None:
+                        individu['statut_marital'] = statut_marital
+                        suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
+                            'statut_marital'] = unicode(statut_marital)
+
+        return suggestions or None
+
 
 
 # Finders
