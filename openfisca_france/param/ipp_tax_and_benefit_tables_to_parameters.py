@@ -1104,15 +1104,14 @@ def transform_ipp_tree(root):
     prime_naissance = paje['prime_naissance']
     paje['base'].update(paje.pop('paje'))
     base['taux_allocation_base'] = base.pop('allocation_de_base_en_de_la_bmaf')
-    # TODO: changer date passage clca -> PreParE
-    #    paje['clca'].update(paje.pop('complement_de_libre_choix_d_activite_clca_pour_les_beneficiaires_de_l_allocation_de_base_enfant_ne_ou_adopte_apres_avril_2014'))
-    #    clca['avecab_tx_inactif'] = clca.pop('taux_plein')
-    #    clca['avecab_tx_partiel2'] = clca.pop('taux_partiel_entre_50_et_80')
-    #    clca['avecab_tx_partiel1'] = clca.pop('taux_partiel_50')
-    #    paje['clca'].update(paje.pop('complement_de_libre_choix_d_activite_clca_pour_les_non_beneficiaires_de_l_allocation_de_base_enfant_ne_ou_adopte_avant_avril_2014'))
-    #    clca['sansab_tx_inactif'] = clca.pop('prestation_partagee_d_education_de_l_enfant_prepare')
-    #    clca['sansab_tx_partiel1'] = clca.pop('taux_partiel_50')
-    #    clca['sansab_tx_partiel2'] = clca.pop('taux_partiel_entre_50_et_80')
+    paje['clca'].update(paje.pop('complement_de_libre_choix_d_activite_clca_pour_les_beneficiaires_de_l_allocation_de_base_enfant_ne_ou_adopte_apres_avril_2014'))
+    clca['avecab_tx_inactif'] = clca.pop('taux_plein')
+    clca['avecab_tx_partiel2'] = clca.pop('taux_partiel_entre_50_et_80')
+    clca['avecab_tx_partiel1'] = clca.pop('taux_partiel_50')
+    paje['clca'].update(paje.pop('complement_de_libre_choix_d_activite_clca_pour_les_non_beneficiaires_de_l_allocation_de_base_enfant_ne_ou_adopte_avant_avril_2014'))
+    clca['sansab_tx_inactif'] = clca.pop('taux_plein')
+    clca['sansab_tx_partiel1'] = clca.pop('taux_partiel_50')
+    clca['sansab_tx_partiel2'] = clca.pop('taux_partiel_entre_50_et_80')
 
     base['avant_2014'] = avant_2014 = dict()
     avant_2014 = base['avant_2014']
@@ -1143,18 +1142,15 @@ def transform_ipp_tree(root):
     clmg['domi1'] = taux_pour_recours_a_une_garde_a_domicile_en_de_la_bmaf.pop('sous_le_premier_plafond')
     clmg['domi2'] = taux_pour_recours_a_une_garde_a_domicile_en_de_la_bmaf.pop('sous_le_second_plafond')
     clmg['domi3'] = taux_pour_recours_a_une_garde_a_domicile_en_de_la_bmaf.pop('apres_le_second_plafond')
-
-
+    # colca
+    complement_optionnel_de_libre_choix_d_activite = paje.pop('complement_optionnel_de_libre_choix_d_activite')
+    colca['avecab'] = complement_optionnel_de_libre_choix_d_activite.pop('taux_plein_duree_de_l_arret_predeterminee')
 
     base['age_max_enfant'] = paje['age_limite_de_l_enfant_adopte_ou_non']
     clca['age_max_enfant'] = paje.pop('age_limite_de_l_enfant_adopte_ou_non')
-    #base['plaf_tx_par_enf'] = paje.pop('majoration_du_plafond_par_enfant_a_charge') TODO: modifier fonction pour pas que ça soit pris en compte avant 2014
+    base['plaf_tx_par_enf'] = paje.pop('majoration_du_plafond_par_enfant_a_charge')
 
 
-    #    age_limite_de_l_enfant_adopte_ou_non = paje['age_limite_de_l_enfant_adopte_ou_non']
-    #    paje['age_max_enfant'] = age_max = age_limite.pop('pour_un_enfant_non_adopte')
-    #    base['age_max_enfant'] = age_max_enfant = paje['age_max_enfant']
-    #    clca['age_max_enfant'] = age_max_enfant = paje['age_max_enfant']
 
 
     #autres
