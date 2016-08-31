@@ -1163,9 +1163,6 @@ def transform_ipp_tree(root):
     montant_en_de_la_bmaf = paje['montant_en_de_la_bmaf']
     prime_naissance['prime_tx'] = montant_en_de_la_bmaf.pop('prime_a_la_naissance_de_la_paje_1')
 
-
-
-
     #autres
     def_pac = prestations['def_pac']
     af['seuil_rev_taux'] = def_pac.pop('revenu_plafond_pour_les_personnes_a_charge_n_etant_plus_sous_l_obligation_scolaire_en_du_smic_2')
@@ -1174,38 +1171,12 @@ def transform_ipp_tree(root):
     af['bmaf'] = bmaf_ipp.pop('base_mensuelle_de_calcul_des_allocations_familiales_bmaf')
     af['taux'] = taux = dict()
     taux['enf2'] = af.pop('2_enfants')
-    #    clca['avecab_tx_inactifipp'] = avecab_tx_inactifipp = paje.pop('complement_de_libre_choix_d_activite_clca')
-    #    clca['avecab_tx_inactif'] = avecab_tx_inactifipp.pop('taux_plein')
-    #    clca['avecab_tx_partiel2'] = avecab_tx_inactifipp.pop('taux_partiel_entre_50_et_80')
-    #    clca['avecab_tx_partiel1'] = avecab_tx_inactifipp.pop('taux_partiel_50')
-    #complement_optionnel_de_libre_choix_d_activite = paje['complement_optionnel_de_libre_choix_d_activite']
 
     prestations['minima_sociaux'] = minima_sociaux = dict()
     minima_sociaux['ada'] = ada = dict()
     minima_sociaux['ada'].update(prestations.pop('ada'))
     ada['majoration_pers_supp'] = majoration_pers_supp = ada.pop('majoration_par_personne_supplementaire_maximum_10_par_famille')
     ada['supplement_non_hebergement'] = supplement_non_hebergement = ada.pop('supplement_si_non_heberge_dans_centres_d_accueil_ou_hebergement_d_urgence')
-    # paje['taux_allocation_base'] = taux_allocation_base = paje_ipp.pop('allocation_de_base_en_de_la_bmaf')
-    # base['taux_allocation_base'] = taux_allocation_base = paje.pop('taux_allocation_base')
-    # complement_de_libre_choix_d_activite_clca = paje['complement_de_libre_choix_d_activite_clca']
-
-
-
-
-    #paje['base'] =
-    #clca = paje['clca']
-    #clmg = paje['clmg']
-    #colca = paje['colca']
-    #prime_naissance =
-
-
-
-
-
-
-
-
-
 
 
     prestations['minima_sociaux'] = minima_sociaux = dict()
@@ -1295,6 +1266,16 @@ def transform_ipp_tree(root):
     caah['garantie_ressources'] = garantie_ressources = caah.pop('montant_mensuel_de_la_garantie_de_ressources_pour_les_personnes_handicapees')
     caah['majoration_vie_autonome'] = majoration_vie_autonome = caah.pop('majoration_pour_la_vie_autonome')
     caah['montant_complement_ressources'] = montant_complement_ressources = caah.pop('montant_mensuel_du_complement_de_ressources_aux_adultes_handicapes_1')
+
+
+    # Aefa
+    minima_sociaux['aefa'] = prestations.pop('aefa')
+    aefa = minima_sociaux['aefa']
+    aefa['mon_seul'] = aefa.pop('montant_de_la_prime')
+    taux_de_majoration_selon_la_taille_du_foyer_1 = aefa['taux_de_majoration_selon_la_taille_du_foyer_1']
+    aefa['tx_2p'] = taux_de_majoration_selon_la_taille_du_foyer_1.pop('deux_personnes')
+    aefa['tx_3pac'] = taux_de_majoration_selon_la_taille_du_foyer_1.pop('taux_au_dela_de_la_troisieme_personne_a_charge_incluse')
+    aefa['tx_supp'] = taux_de_majoration_selon_la_taille_du_foyer_1.pop('personne_supplementaire_si_conjoint')
 
 
     #   cf_maj:
