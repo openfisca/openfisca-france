@@ -8,16 +8,22 @@
 import argparse
 import collections
 import pkg_resources
-import json
 import logging
 import os
 import sys
 
+from openfisca_parsers import input_variables_extractors
+import yaml
+
 from openfisca_france.france_taxbenefitsystem import FranceTaxBenefitSystem
 
 
-app_name = os.path.splitext(os.path.basename(__file__))[0]
 country_package_dir_path = pkg_resources.get_distribution('OpenFisca-France').location
+
+package_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
+param_dir = os.path.join(package_dir, 'param')
+
+app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
 
 
@@ -45,9 +51,6 @@ def get_flat_parameters(legislation_json):
             origin = node_json.get('origin')
             if origin is not None:
                 parameter_json['origin'] = origin
-            both_origins = node_json.get('both_origins')
-            if both_origins is not None:
-                parameter_json['both_origins'] = both_origins
             if 'xml_file_path' in node_json:
                 parameter_json['xml_file_path'] = get_relative_file_path(node_json['xml_file_path'])
             parameter_json = collections.OrderedDict(sorted(parameter_json.iteritems()))
@@ -69,30 +72,112 @@ def get_flat_parameters(legislation_json):
     return parameters_json
 
 
+def suppress_stdout(f):
+    def _suppress_stdout(*args, **kwargs):
+        import sys
+        from cStringIO import StringIO
+        backup = sys.stdout
+        try:
+            sys.stdout = StringIO()
+            result = f(*args, **kwargs)
+        finally:
+            sys.stdout.close()
+            sys.stdout = backup
+        return result
+    return _suppress_stdout
+
+
+def get_parameters_origin_dataframe():
+
+    with open(os.path.join(param_dir, 'param-to-parameters.yaml')) as param_translations_file:
+        param_translations = yaml.load(param_translations_file)
+    original_name_by_name = {
+        value: key
+        for key, value in param_translations.iteritems()
+        if value
+        }
+
+    tax_benefit_system = FranceTaxBenefitSystem()
+
+    parser = input_variables_extractors.setup(tax_benefit_system)
+    captured_get_input_variables_and_parameters = suppress_stdout(parser.get_input_variables_and_parameters)
+    variable_names_by_parameter_name = collections.defaultdict(list)
+    for column in tax_benefit_system.column_by_name.values():
+        _, parameter_names = captured_get_input_variables_and_parameters(column)
+        if parameter_names is not None:
+            for parameter_name in parameter_names:
+                variable_names_by_parameter_name[parameter_name].append(column.name)
+
+    legislation_json = tax_benefit_system.get_legislation(with_source_file_infos=True)
+    parameters_json = get_flat_parameters(legislation_json)
+    result = dict()
+    for parameter_json in parameters_json:
+        name = parameter_json['name']
+        variable_names = variable_names_by_parameter_name.get(parameter_json['name'])
+        original_name = original_name_by_name.get(name) if parameter_json.get('origin') == 'ipp' else None
+
+        if 'origin' in parameter_json or 'both_origins' in parameter_json:
+            result[name] = dict(
+                used_by_variables = variable_names,
+                origin = parameter_json['origin'] if 'origin' in parameter_json else None,
+                conflicts = parameter_json['conflicts'] if 'conflicts' in parameter_json else None,
+                from_variable = original_name if original_name else None,
+                )
+
+    import pandas as pd
+    return pd.DataFrame.from_dict(result, orient = 'index')
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
+    parser.add_argument('-p', '--param-translations',
+        default = os.path.join(param_dir, 'param-to-parameters.yaml'),
+        help = 'path of YAML file containing the association between param elements and OpenFisca parameters')
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
+    with open(args.param_translations) as param_translations_file:
+        param_translations = yaml.load(param_translations_file)
+    original_name_by_name = {
+        value: key
+        for key, value in param_translations.iteritems()
+        if value
+        }
+
     tax_benefit_system = FranceTaxBenefitSystem()
+
+    parser = input_variables_extractors.setup(tax_benefit_system)
+    captured_get_input_variables_and_parameters = suppress_stdout(parser.get_input_variables_and_parameters)
+    variable_names_by_parameter_name = collections.defaultdict(list)
+    for column in tax_benefit_system.column_by_name.values():
+        _, parameter_names = captured_get_input_variables_and_parameters(column)
+        if parameter_names is not None:
+            for parameter_name in parameter_names:
+                variable_names_by_parameter_name[parameter_name].append(column.name)
+
     legislation_json = tax_benefit_system.get_legislation(with_source_file_infos=True)
     parameters_json = get_flat_parameters(legislation_json)
     for parameter_json in parameters_json:
-        if 'origin' in parameter_json or 'both_origins' in parameter_json:
-            print(u'{}: {}'.format(
-                parameter_json['name'],
-                u' '.join(filter(None, [
-                    u'origin={}'.format(parameter_json['origin'])
-                    if 'origin' in parameter_json
-                    else None,
-                    u'both_origins (cf param-to-parameters.yaml)'.format(parameter_json['both_origins'])
-                    if parameter_json.get('both_origins')
-                    else None,
-                    ]))
-                )).encode('utf-8')
-        else:
-            print(u'{}: no origin'.format(parameter_json['name'])).encode('utf-8')
+        name = parameter_json['name']
+        variable_names = variable_names_by_parameter_name.get(name)
+        original_name = original_name_by_name.get(name) if parameter_json.get('origin') == 'ipp' else None
+        print(u'{}: {}'.format(
+            name,
+            u' ; '.join(filter(None, [
+                u'used by variables: {}'.format(u', '.join(variable_names))
+                if variable_names is not None else 'used by no variable',
+                u'origin: {}'.format(parameter_json['origin'])
+                if 'origin' in parameter_json
+                else None,
+                u'conflicts: {}'.format(u', '.join(parameter_json['conflicts']))
+                if 'conflicts' in parameter_json
+                else None,
+                u'(from {})'.format(original_name)
+                if original_name
+                else None,
+                ]))
+            )).encode('utf-8')
 
 
 if __name__ == "__main__":

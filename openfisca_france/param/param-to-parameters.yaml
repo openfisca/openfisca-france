@@ -46,10 +46,12 @@ impot_revenu.rpns.def_agri_seuil: impot_revenu.rpns.micro.imputation_sur_le_reve
 impot_revenu.rpns.def_fonc_seuil: impot_revenu.rpns.micro.imputation_sur_le_revenu_global.plafond_deficits_fonciers
 # cotsoc.pat.cadre.agffc: prelevements_sociaux.cotisations_sociales.agff.employeur.cadre
 # cotsoc.pat.noncadre.agffnc: prelevements_sociaux.cotisations_sociales.agff.employeur.non_cadre
-csg: prelevements_sociaux.csg
+crds: prelevements_sociaux.contributions.crds
+csg: prelevements_sociaux.contributions.csg
+
 prelsoc: taxation_capital.prelevements_sociaux
 cotsoc.exo_bas_sal: null
-forfait_social.seuil_effectif_prevoyance_complementaire: prelevements_sociaux.forfait_social.seuil_effectif_prevoyance_complementaire
+forfait_social: prelevements_sociaux.forfait_social
 cotsoc.sal.fonc.commun.plafond_base_solidarite: prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite
 cotsoc.agirc_gmp: null
 fam: prestations.prestations_familiales

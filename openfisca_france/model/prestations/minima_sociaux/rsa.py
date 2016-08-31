@@ -403,7 +403,7 @@ class crds_mini(DatedVariable):
         """
         period = period.this_month
         rsa_activite = simulation.calculate('rsa_activite', period)
-        taux_crds = simulation.legislation_at(period.start).prestations.prestations_familiales.af.crds
+        taux_crds = simulation.legislation_at(period.start).prelevements_sociaux.contributions.crds.taux
 
         return period, - taux_crds * rsa_activite
 

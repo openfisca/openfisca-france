@@ -237,6 +237,7 @@ def main():
     ipp_tax_and_benefit_tables_to_parameters.transform_ipp_tree(tree)
 
     root_element = transform_node_to_element(u'root', tree)
+    add_origin_openfisca_attrib(original_root_element)
     merge_elements(root_element, original_root_element)
     # Since now `original_root_element` is discarded.
 
@@ -266,58 +267,58 @@ def add_origin_openfisca_attrib(element):
 
 
 def merge_elements(element, original_element, path = None):
+    assert element.attrib['code'] == original_element.attrib['code'], (element, original_element)
     if path is None:
         path = []
-    else:
-        path = path[:]
-    path.append(element.get('code'))
+    path = path + [element.get('code')]
     assert element.tag == original_element.tag, 'At {}, IPP element "{}"" differs from original element "{}"'.format(
         '.'.join(path), element.tag, original_element.tag)
 
     # Only param.xml nodes have a `description` attribute.
     description = original_element.get('description')
     if description is not None:
+        assert element.get('description') is None, element.get('description')
+        # TODO Get description of element in YAML files.
         element.attrib['description'] = description
 
-    if element.tag == 'NODE':  # Only consider merging NODE children (not CODE, BAREME).
-        for original_child in original_element:
-            for child in element:
-                if child.get('code') == original_child.get('code'):
-                    merge_elements(child, original_child)
-                    child.attrib['both_origins'] = u'true'
-                    if elements_have_conflict(original_child, child):
-                        original_child.attrib['conflict'] = u'true'
+    if element.tag == 'NODE':
+        for original_child_element in original_element:
+            for child_element in element:
+                if child_element.get('code') == original_child_element.get('code'):
+                    merge_elements(child_element, original_child_element, path)
                     break
             else:
-                # A `child` of `element` with the same code as the `original_child` was not found.
-                add_origin_openfisca_attrib(original_child)
-                element.append(original_child)
+                # A `child_element` of `element` with the same code as the `original_child_element` was not found.
+                element.append(original_child_element)
+    elif element.tag == 'CODE':
+        # Set `conflicts` attribute on CODE element.
+        conflicts = set()
+        # if element.attrib.get('format') != original_element.attrib.get('format'):
+        #     conflicts.add(u'attrib:format({})'.format(original_element.attrib.get('format')))
+        type_attrib = element.attrib.get('type')
+        original_type_attrib = original_element.attrib.get('type')
+        if type_attrib is not None and original_type_attrib is not None and type_attrib != original_type_attrib:
+            conflicts.add(u'attrib:type({})'.format(original_element.attrib.get('type')))
 
+        valeurs_by_deb_fin = collections.defaultdict(list)
+        for value_element in list(element) + list(original_element):
+            deb_fin = (value_element.attrib['deb'], value_element.attrib.get('fin'))
+            valeurs_by_deb_fin[deb_fin].append(value_element.attrib['valeur'])
 
-def elements_have_conflict(node1, node2):
-    return False  # TODO
-    # def same_attribute(attribute):
-    #     return node1.attrib.get(attribute) == node2.attrib.get(attribute)
+        # Check for dates overlaps.
+        for (deb1, fin1), (deb2, fin2) in itertools.combinations(sorted(valeurs_by_deb_fin.keys()), 2):
+            if deb2 < fin1:
+                conflicts.add(u'children:dates_overlap({})'.format(((deb1, fin1), (deb2, fin2))))
+                break
+        else:
+            # Check for values mismatchs.
+            for deb_fin, valeurs in valeurs_by_deb_fin.iteritems():
+                if len(set(valeurs)) > 1:
+                    conflicts.add(u'children:valeurs({}:{})'.format(deb_fin, ','.join(valeurs)))
+                    break
 
-    # def values_do_not_overlap(values1, values2):
-    #     for value1 in values1:
-    #         for value2 in values2:
-    #             if value1.attrib['deb'] == value2.attrib['deb'] \
-    #                     and value1.attrib.get('fin') == value2.attrib.get('fin') \
-    #                     and value1.attrib['valeur'] != value2.attrib['valeur']:
-    #                 return False
-
-    # assert node1.attrib['code'] == node2.attrib['code'], (node1, node2)
-    # tag = node1.tag
-    # if tag == 'CODE':
-    #     return all([
-    #         same_attribute('format'),
-    #         same_attribute('type'),
-    #         values_do_not_overlap(list(node1), list(node2)),
-    #         ])
-    # else:
-    #     # raise NotImplementedError(tag)
-    #     pass
+        if conflicts:
+            element.attrib['conflicts'] = u','.join(conflicts)
 
 
 def prepare_xml_values(name, leafs):
