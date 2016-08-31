@@ -1094,12 +1094,16 @@ def transform_ipp_tree(root):
     del prestations['paje_cm2']['conditions_pour_qu_un_enfant_adopte_ouvre_droit_a_la_prime_a_son_arrivee']
     prestations_familiales['paje'] = paje = dict()
     paje = prestations_familiales['paje']
+    paje['clmg'] = clmg = dict()
     prestations_familiales['paje'].update(prestations.pop('paje_cm'))
     prestations_familiales['paje'].update(prestations.pop('paje_cm2'))
     prestations_familiales['paje'].update(prestations.pop('paje_plaf'))
+    prestations_familiales['paje'].update(prestations.pop('paje_clca'))
+    prestations_familiales['paje'].update(prestations.pop('paje_prepare'))
+    prestations_familiales['paje'].update(prestations.pop('plaf_cmg'))
+    paje['clmg'].update(prestations.pop('paje_cmg'))
     paje['base'] = base = dict()
     paje['clca'] = clca = dict()
-    paje['clmg'] = clmg = dict()
     paje['colca'] = colca = dict()
     paje['prime_naissance'] = prime_naissance = dict()
     base = paje['base']
@@ -1107,27 +1111,60 @@ def transform_ipp_tree(root):
     clmg = paje['clmg']
     colca = paje['colca']
     prime_naissance = paje['prime_naissance']
-    print paje.keys()
+    paje['base'].update(paje.pop('paje'))
+    base['taux_allocation_base'] = base.pop('allocation_de_base_en_de_la_bmaf')
+    paje['clca'].update(paje.pop('complement_de_libre_choix_d_activite_clca_pour_les_beneficiaires_de_l_allocation_de_base_enfant_ne_ou_adopte_apres_avril_2014'))
+    clca['avecab_tx_inactif'] = clca.pop('taux_plein')
+    clca['avecab_tx_partiel2'] = clca.pop('taux_partiel_entre_50_et_80')
+    clca['avecab_tx_partiel1'] = clca.pop('taux_partiel_50')
+    paje['clca'].update(paje.pop('complement_de_libre_choix_d_activite_clca_pour_les_non_beneficiaires_de_l_allocation_de_base_enfant_ne_ou_adopte_avant_avril_2014'))
+    clca['sansab_tx_inactif'] = clca.pop('taux_plein')
+    clca['sansab_tx_partiel1'] = clca.pop('taux_partiel_50')
+    clca['sansab_tx_partiel2'] = clca.pop('taux_partiel_entre_50_et_80')
+
+    base['avant_2014'] = avant_2014 = dict()
+    avant_2014 = base['avant_2014']
+    avant_2014['plafond_ressources_0_enf'] = paje.pop('plafond_de_ressources_0_enfant')
+    prestations_familiales['paje'].update(paje.pop('majoration_en_ou_en_du_plafond_de_ressources_avec_0_enfant'))
+    avant_2014['majoration_biact_parent_isoles'] = majoration_biact_parent_isoles = paje.pop('biactifs_et_parents_isoles_1')
+    avant_2014['taux_majoration_2_premiers_enf'] = taux_majoration_2_premiers_enf = paje.pop('1er_et_2eme_enfant')
+    avant_2014['taux_majoration_3eme_enf_et_plus'] = taux_majoration_3eme_enf_et_plus = paje.pop('3eme_enfant_et_plus')
+    paje['clmg'].update(clmg.pop('complement_libre_choix_du_mode_de_garde_en_de_la_bmaf_1'))
+    clmg['taux_recours_emploi_1er_plafond'] = clmg.pop('revenus_inferieurs_a_45_du_plafond_d_allocation')
+    clmg['taux_recours_emploi_2e_plafond'] = clmg.pop('revenus_superieurs_a_45_du_plafond_d_allocation')
+    clmg['taux_recours_emploi_supp_2e_plafond'] = clmg.pop('revenus_superieurs_au_plafond_d_allocation')
+    #plaf_cmg
+    premier_plafond_ne_ou_adopte_avant_le_1er_avril_2014 = paje['premier_plafond_ne_ou_adopte_avant_le_1er_avril_2014']
+    deuxieme_plafond_ne_ou_adopte_avant_le_1er_avril_2014 = paje['deuxieme_plafond_ne_ou_adopte_avant_le_1er_avril_2014']
+    clmg['seuil11'] = premier_plafond_ne_ou_adopte_avant_le_1er_avril_2014.pop('un_enfant')
+    clmg['seuil12'] = premier_plafond_ne_ou_adopte_avant_le_1er_avril_2014.pop('deux_enfants')
+    clmg['seuil1sup'] = premier_plafond_ne_ou_adopte_avant_le_1er_avril_2014.pop('majoration_pour_un_enfant_supplementaire')
+    clmg['seuil21'] = deuxieme_plafond_ne_ou_adopte_avant_le_1er_avril_2014.pop('un_enfant')
+    clmg['seuil22'] = deuxieme_plafond_ne_ou_adopte_avant_le_1er_avril_2014.pop('deux_enfants')
+    clmg['seuil2sup'] = deuxieme_plafond_ne_ou_adopte_avant_le_1er_avril_2014.pop('majoration_pour_un_enfant_supplementaire')
+    # cmg taux
+    taux_pour_recours_a_une_assistante_maternelle_une_association_une_entreprise_ou_une_microcreche_en_de_la_bmaf = clmg['taux_pour_recours_a_une_assistante_maternelle_une_association_une_entreprise_ou_une_microcreche_en_de_la_bmaf']
+    taux_pour_recours_a_une_garde_a_domicile_en_de_la_bmaf = clmg['taux_pour_recours_a_une_garde_a_domicile_en_de_la_bmaf']
+    clmg['ass_mat1'] = taux_pour_recours_a_une_assistante_maternelle_une_association_une_entreprise_ou_une_microcreche_en_de_la_bmaf.pop('sous_le_premier_plafond')
+    clmg['ass_mat2'] = taux_pour_recours_a_une_assistante_maternelle_une_association_une_entreprise_ou_une_microcreche_en_de_la_bmaf.pop('sous_le_second_plafond')
+    clmg['ass_mat3'] = taux_pour_recours_a_une_assistante_maternelle_une_association_une_entreprise_ou_une_microcreche_en_de_la_bmaf.pop('apres_le_second_plafond')
+    clmg['domi1'] = taux_pour_recours_a_une_garde_a_domicile_en_de_la_bmaf.pop('sous_le_premier_plafond')
+    clmg['domi2'] = taux_pour_recours_a_une_garde_a_domicile_en_de_la_bmaf.pop('sous_le_second_plafond')
+    clmg['domi3'] = taux_pour_recours_a_une_garde_a_domicile_en_de_la_bmaf.pop('apres_le_second_plafond')
+    # colca
+    complement_optionnel_de_libre_choix_d_activite = paje.pop('complement_optionnel_de_libre_choix_d_activite')
+    colca['avecab'] = complement_optionnel_de_libre_choix_d_activite.pop('taux_plein_duree_de_l_arret_predeterminee')
+
+    base['age_max_enfant'] = paje['age_limite_de_l_enfant_adopte_ou_non']
+    clca['age_max_enfant'] = paje.pop('age_limite_de_l_enfant_adopte_ou_non')
+    base['apres_2014'] = apres_2014 = dict()
+    apres_2014['plaf_tx_par_enf'] = paje.pop('majoration_du_plafond_par_enfant_a_charge')
+    paje['prime_naissance'] = prime_naissance = dict()
+    montant_en_de_la_bmaf = paje['montant_en_de_la_bmaf']
+    prime_naissance['prime_tx'] = montant_en_de_la_bmaf.pop('prime_a_la_naissance_de_la_paje_1')
 
 
-    #    age_limite_de_l_enfant_adopte_ou_non = paje['age_limite_de_l_enfant_adopte_ou_non']
-    #    paje['age_max_enfant'] = age_max = age_limite.pop('pour_un_enfant_non_adopte')
-    #    base['age_max_enfant'] = age_max_enfant = paje['age_max_enfant']
-    #    clca['age_max_enfant'] = age_max_enfant = paje['age_max_enfant']
-    #    paje['paje_ipp'] = paje_ipp = paje.pop('paje')
-    #    paje_ipp = paje['paje_ipp']
-    #    base['avant_2014'] = avant_2014 = dict()
-    #    avant_2014 = base['avant_2014']
-    #    avant_2014['plafond_ressources_0_enf'] = plafond_ressources_0_enf = paje.pop('plafond_de_ressources_0_enfant')
-    #    prestations_familiales['paje'].update(paje.pop('majoration_en_ou_en_du_plafond_de_ressources_avec_0_enfant'))
-    #    avant_2014['majoration_biact_parent_isoles'] = majoration_biact_parent_isoles = paje.pop('biactifs_et_parents_isoles_1')
-    #    avant_2014['taux_majoration_2_premiers_enf'] = taux_majoration_2_premiers_enf = paje.pop('1er_et_2eme_enfant')
-    #    avant_2014['taux_majoration_3eme_enf_et_plus'] = taux_majoration_3eme_enf_et_plus = paje.pop('3eme_enfant_et_plus')
-    #    base['taux_allocation_base'] = taux_allocation_base = paje_ipp.pop('allocation_de_base_en_de_la_bmaf')
-    #    paje['clmg'].update(paje.pop('complement_libre_choix_du_mode_de_garde_clcmg_1'))
-    #    clmg['taux_recours_emploi_1er_plafond'] = taux_recours_emploi_1er_plafond = clmg.pop('revenus_inferieurs_a_45_du_plafond_d_allocation')
-    #    clmg['taux_recours_emploi_2e_plafond'] = taux_recours_emploi_2e_plafond = clmg.pop('revenus_superieurs_a_45_du_plafond_d_allocation')
-    #    clmg['taux_recours_emploi_supp_2e_plafond'] = taux_recours_emploi_supp_2e_plafond = clmg.pop('revenus_superieurs_au_plafond_d_allocation')
+
 
     #autres
     def_pac = prestations['def_pac']
