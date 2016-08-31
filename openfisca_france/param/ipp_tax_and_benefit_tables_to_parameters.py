@@ -1148,7 +1148,8 @@ def transform_ipp_tree(root):
 
     base['age_max_enfant'] = paje['age_limite_de_l_enfant_adopte_ou_non']
     clca['age_max_enfant'] = paje.pop('age_limite_de_l_enfant_adopte_ou_non')
-    base['plaf_tx_par_enf'] = paje.pop('majoration_du_plafond_par_enfant_a_charge')
+    base['apres_2014'] = apres_2014 = dict()
+    apres_2014['plaf_tx_par_enf'] = paje.pop('majoration_du_plafond_par_enfant_a_charge')
 
 
 

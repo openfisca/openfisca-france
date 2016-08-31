@@ -4461,11 +4461,9 @@
         <CODE both_origins="true" code="age_max_enfant" description="Limite d'âge (stricte) pour bénéficier de la PAJE" origin="ipp">
           <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
         </CODE>
-        <NODE code="apres_2014" origin="openfisca">
-          <CODE code="plaf_tx_par_enf" description="Majoration du plafond par enfant" format="percent" origin="openfisca">
-            <VALUE deb="2016-01-01" fuzzy="true" valeur="0.22" />
-            <VALUE deb="2014-04-01" fin="2015-12-31" valeur="0.22" />
-            <VALUE deb="2004-01-01" fin="2014-03-31" valeur="0" />
+        <NODE both_origins="true" code="apres_2014" origin="ipp">
+          <CODE both_origins="true" code="plaf_tx_par_enf" description="Majoration du plafond par enfant" format="percent" origin="ipp">
+            <VALUE deb="2014-04-01" fuzzy="true" valeur="0.22" />
           </CODE>
           <NODE code="taux_partiel" origin="openfisca">
             <CODE code="plaf" description="Plafond de ressources de base pour PAJE à taux partiel" format="integer" origin="openfisca" type="monetary">
@@ -4733,9 +4731,6 @@
       </NODE>
       <CODE code="duree_de_versement_pour_les_enfants_adoptes_en_annee" origin="ipp">
         <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
-      </CODE>
-      <CODE code="majoration_du_plafond_par_enfant_a_charge" format="percent" origin="ipp">
-        <VALUE deb="2014-04-01" fuzzy="true" valeur="0.22" />
       </CODE>
       <NODE code="montant_en_de_la_bmaf" origin="ipp">
         <CODE code="prime_a_l_adoption_de_la_paje_2" format="percent" origin="ipp">

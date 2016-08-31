@@ -119,9 +119,11 @@ class paje_base(Variable):
             import datetime
             plafond_de_base = pfam.paje.base.apres_2014.taux_plein.plaf
             maj_plafond_seul_biactif = pfam.paje.base.apres_2014.taux_plein.plaf_maj
-            maj_plafond_par_enfant = (plafond_de_base *
-                pfam.paje.base.apres_2014.plaf_tx_par_enf * (period.start.date >= datetime.date(2014, 4, 01))
-            )
+            if period.start.date >= datetime.date(2014, 4, 01):
+                maj_plafond_par_enfant = plafond_de_base * pfam.paje.base.apres_2014.plaf_tx_par_enf
+            else:
+                maj_plafond_par_enfant = 0
+            
             plafond = (
                 plafond_de_base +
                 nombre_enfants * maj_plafond_par_enfant +
@@ -133,9 +135,10 @@ class paje_base(Variable):
             import datetime
             plafond_de_base = pfam.paje.base.apres_2014.taux_partiel.plaf
             maj_plafond_seul_biactif = pfam.paje.base.apres_2014.taux_partiel.plaf_maj
-            maj_plafond_par_enfant = (plafond_de_base *
-                pfam.paje.base.apres_2014.plaf_tx_par_enf * (period.start.date >= datetime.date(2014, 4, 01))
-            )
+            if period.start.date >= datetime.date(2014, 4, 01):
+                maj_plafond_par_enfant = plafond_de_base * pfam.paje.base.apres_2014.plaf_tx_par_enf
+            else:
+                maj_plafond_par_enfant = 0
 
             plafond = (
                 plafond_de_base +
