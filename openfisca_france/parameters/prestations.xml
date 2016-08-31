@@ -4737,9 +4737,6 @@
           <VALUE deb="2005-08-01" fuzzy="true" valeur="4.595" />
           <VALUE deb="2004-01-01" fin="2005-07-31" valeur="2.2975" />
         </CODE>
-        <CODE code="prime_a_la_naissance_de_la_paje_1" format="percent" origin="ipp">
-          <VALUE deb="2004-01-01" fuzzy="true" valeur="2.2975" />
-        </CODE>
       </NODE>
       <NODE code="montant_maximale_de_la_prise_en_charge" origin="ipp">
         <CODE code="enfant_de_3_a_6_ans" origin="ipp">
@@ -4804,14 +4801,13 @@
           <VALUE deb="2015-01-01" fuzzy="true" valeur="0.3603" />
         </CODE>
       </NODE>
-      <NODE code="prime_naissance" description="Prime à la naissance" origin="openfisca">
+      <NODE both_origins="true" code="prime_naissance" description="Prime à la naissance" origin="ipp">
         <CODE code="adopt" description="facteur multitplicatif de la prime à l'adoption, en pourcentage de la BMAF" format="percent" origin="openfisca">
           <VALUE deb="2015-01-01" fuzzy="true" valeur="2" />
           <VALUE deb="2004-01-01" fin="2014-12-31" valeur="2" />
         </CODE>
-        <CODE code="prime_tx" description="Prime à la naissance et à l'adoption, en pourcentage de la BMAF" format="percent" origin="openfisca">
-          <VALUE deb="2015-01-01" fuzzy="true" valeur="2.2975" />
-          <VALUE deb="2004-01-01" fin="2014-12-31" valeur="2.2975" />
+        <CODE both_origins="true" code="prime_tx" description="Prime à la naissance et à l'adoption, en pourcentage de la BMAF" format="percent" origin="ipp">
+          <VALUE deb="2004-01-01" fuzzy="true" valeur="2.2975" />
         </CODE>
       </NODE>
     </NODE>

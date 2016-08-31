@@ -1150,6 +1150,9 @@ def transform_ipp_tree(root):
     clca['age_max_enfant'] = paje.pop('age_limite_de_l_enfant_adopte_ou_non')
     base['apres_2014'] = apres_2014 = dict()
     apres_2014['plaf_tx_par_enf'] = paje.pop('majoration_du_plafond_par_enfant_a_charge')
+    paje['prime_naissance'] = prime_naissance = dict()
+    montant_en_de_la_bmaf = paje['montant_en_de_la_bmaf']
+    prime_naissance['prime_tx'] = montant_en_de_la_bmaf.pop('prime_a_la_naissance_de_la_paje_1')
 
 
 
