@@ -36,7 +36,7 @@ def test_allocations_familiales_imposables():
 
     absolute_error_margin = 0.01
     af = reference_simulation.calculate_add('af')
-    expected_af = [1528.35] * 10
+    expected_af = [(12 * 399.0) * .32] * 10  # Pas de hangement de BMAF en cours d'année
     assert_near(expected_af, af, absolute_error_margin = absolute_error_margin)
     rbg = reference_simulation.calculate('rbg')
 

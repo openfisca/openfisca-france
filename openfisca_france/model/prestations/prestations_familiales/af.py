@@ -22,6 +22,7 @@ class af_nbenf(Variable):
 
         return period, af_nbenf
 
+
 class af_coeff_garde_alternee(DatedVariable):
     column = FloatCol(default = 1)
     entity_class = Familles
@@ -41,6 +42,7 @@ class af_coeff_garde_alternee(DatedVariable):
         coeff = 1 - (nb_enf_garde_alternee / (nb_enf + (nb_enf == 0))) * 0.5
 
         return period, coeff
+
 
 class af_allocation_forfaitaire_nb_enfants(Variable):
     column = IntCol
