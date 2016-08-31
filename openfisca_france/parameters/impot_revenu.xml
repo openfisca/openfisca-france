@@ -1,7 +1,7 @@
 <NODE code="impot_revenu" description="Impôt sur le revenu" origin="ipp">
   <NODE code="abattements_rni" description="Abattements spéciaux" origin="ipp">
     <NODE code="enfant_marie" origin="ipp">
-      <CODE code="montant" conflicts="attrib:format(integer)" description="Enfants à charge (par personne rattachée)" format="float" origin="ipp" type="monetary">
+      <CODE code="montant" description="Enfants à charge (par personne rattachée)" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="5732" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="5726" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="5753" />
@@ -42,7 +42,7 @@
       </CODE>
     </NODE>
     <NODE code="personne_agee_ou_invalide" origin="ipp">
-      <CODE code="montant" conflicts="attrib:format(integer)" description="Âgé ou invalide - montant" format="float" origin="ipp" type="monetary">
+      <CODE code="montant" description="Âgé ou invalide - montant" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="2348" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="2344" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="2332" />
@@ -78,7 +78,7 @@
         <VALUE deb="1978-01-01" fin="1978-12-31" valeur="3720" />
         <VALUE deb="1977-01-01" fin="1977-12-31" valeur="3400" />
       </CODE>
-      <CODE code="plafond_de_ressources_1" conflicts="attrib:format(integer)" description="Âgé ou invalide - 1er cas limite" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_de_ressources_1" description="Âgé ou invalide - 1er cas limite" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="14730" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="14710" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="14630" />
@@ -115,7 +115,7 @@
         <VALUE deb="1978-01-01" fin="1978-12-31" valeur="23000" />
         <VALUE deb="1977-01-01" fin="1977-12-31" valeur="21000" />
       </CODE>
-      <CODE code="plafond_de_ressources_2" conflicts="children:valeurs(('2008-01-01', '2008-12-31'):13950,22500),attrib:format(integer)" description="Âgé ou invalide - 2ème cas limite" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_de_ressources_2" conflicts="children:valeurs(('2008-01-01', '2008-12-31'):13950,22500)" description="Âgé ou invalide - 2ème cas limite" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="23730" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="23700" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="23580" />
@@ -845,7 +845,7 @@
   </BAREME>
   <NODE code="charges_deductibles" description="Charges déductibles" origin="ipp">
     <NODE code="accueil_personne_agee" description="Frais d'accueil d'une personne de plus de 75 ans" origin="ipp">
-      <CODE code="plafond" conflicts="attrib:format(integer),children:dates_overlap((('2010-01-01', '2012-12-31'), ('2010-01-01', '2013-12-31')))" description="Maximum par personne" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond" conflicts="children:dates_overlap((('2010-01-01', '2012-12-31'), ('2010-01-01', '2013-12-31')))" description="Maximum par personne" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="3407" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3403" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3386" />
@@ -896,7 +896,7 @@
       </CODE>
     </NODE>
     <NODE code="compte_epargne_codev" description="Compte épargne codéveloppement" origin="ipp">
-      <CODE code="plafond" conflicts="attrib:format(integer)" description="Limite de y euros par personne" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond" description="Limite de y euros par personne" format="float" origin="ipp" type="monetary">
         <VALUE deb="2007-01-01" fin="2008-12-31" valeur="20000" />
       </CODE>
       <CODE code="plafond_pct_rng" description="Limite de x % du revenu" format="percent" origin="ipp">
@@ -918,12 +918,12 @@
       </CODE>
     </NODE>
     <NODE code="grosses_reparations" description="Grosses réparations des nus-propriétaires" origin="ipp">
-      <CODE code="plafond" conflicts="attrib:format(integer)" description="Plafond des dépenses" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond" description="Plafond des dépenses" format="float" origin="ipp" type="monetary">
         <VALUE deb="2009-01-01" fuzzy="true" valeur="25000" />
       </CODE>
     </NODE>
     <NODE code="pensions_alimentaires" description="Pensions alimentaires" origin="ipp">
-      <CODE code="plafond" conflicts="attrib:format(integer),children:valeurs(('2015-01-01', None):5732,5726)" description="Limite par enfant" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond" conflicts="children:valeurs(('2015-01-01', None):5732,5726)" description="Limite par enfant" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="5732" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="5726" />
         <VALUE deb="2010-01-01" fin="2013-12-31" valeur="5698" />
@@ -969,11 +969,11 @@
       </CODE>
     </NODE>
     <NODE code="pertes_en_capital_societes_nouvelles" description="Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA)" origin="ipp">
-      <CODE code="plafond_cb" conflicts="attrib:format(integer)" description="Case CB" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_cb" description="Case CB" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fin="2006-12-31" valeur="15250" />
         <VALUE deb="1994-01-01" fin="2000-12-31" valeur="100000" />
       </CODE>
-      <CODE code="plafond_da" conflicts="attrib:format(integer)" description="Case DA" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_da" description="Case DA" format="float" origin="ipp" type="monetary">
         <VALUE deb="2003-01-01" fin="2006-12-31" valeur="30000" />
       </CODE>
     </NODE>
@@ -987,7 +987,7 @@
       </CODE>
     </NODE>
     <NODE code="sofipeche" description="Souscription au capital des SOFIPECHE (case CC)" origin="ipp">
-      <CODE code="plafond" conflicts="attrib:format(integer)" description="Maximum" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond" description="Maximum" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fin="2006-12-31" valeur="19000" />
         <VALUE deb="1998-01-01" fin="2000-12-31" valeur="125000" />
       </CODE>
@@ -996,7 +996,7 @@
       </CODE>
     </NODE>
     <NODE code="versements_perp" description="Déduction pour versements sur PERP" origin="ipp">
-      <CODE code="max" conflicts="attrib:format(integer),children:dates_overlap((('2011-01-01', '2011-12-31'), ('2011-01-01', '2012-12-31')))" description="Maximum par personne" format="float" origin="ipp" type="monetary">
+      <CODE code="max" conflicts="children:dates_overlap((('2011-01-01', '2011-12-31'), ('2011-01-01', '2012-12-31')))" description="Maximum par personne" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="30038" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="29626" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="29098" />
@@ -1009,7 +1009,7 @@
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="24854.4" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="24153.6" />
       </CODE>
-      <CODE code="min" conflicts="attrib:format(integer),children:dates_overlap((('2011-01-01', '2011-12-31'), ('2011-01-01', '2012-12-31')))" description="Minimum par personne" format="float" origin="ipp" type="monetary">
+      <CODE code="min" conflicts="children:dates_overlap((('2011-01-01', '2011-12-31'), ('2011-01-01', '2012-12-31')))" description="Minimum par personne" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="3755" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3703" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3638" />
@@ -1123,7 +1123,7 @@
       </CODE>
     </NODE>
     <NODE code="garext" description="Frais de garde des enfants à l'extérieur du domicile" origin="ipp">
-      <CODE code="plafond" conflicts="attrib:type(None),attrib:format(integer)" description="Plafond" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond" description="Plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="2300" />
         <VALUE deb="1991-01-01" fin="2000-12-31" valeur="15000" />
         <VALUE deb="1988-01-01" fin="1990-12-31" valeur="13000" />
@@ -1236,7 +1236,7 @@
           <VALUE deb="2002-01-01" fin="2004-12-31" valeur="0.55" />
         </CODE>
       </NODE>
-      <CODE code="eligi1" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31'))),attrib:format(integer)" description="Seuil d'éligibilité - célibataire" format="float" origin="ipp" type="monetary">
+      <CODE code="eligi1" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31')))" description="Seuil d'éligibilité - célibataire" format="float" origin="ipp" type="monetary">
         <VALUE deb="2007-01-01" fin="2015-12-31" valeur="16251" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="16042" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="12606" />
@@ -1246,7 +1246,7 @@
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="11772" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="76000" />
       </CODE>
-      <CODE code="eligi2" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31'))),attrib:format(integer)" description="Seuil d'éligibilité - couple" format="float" origin="ipp" type="monetary">
+      <CODE code="eligi2" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31')))" description="Seuil d'éligibilité - couple" format="float" origin="ipp" type="monetary">
         <VALUE deb="2007-01-01" fin="2015-12-31" valeur="32498" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="32081" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="25211" />
@@ -1256,7 +1256,7 @@
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="23544" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="152000" />
       </CODE>
-      <CODE code="eligi3" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31'))),attrib:format(integer)" description="Seuil d'éligibilité - majoration par demi-part" format="float" origin="ipp" type="monetary">
+      <CODE code="eligi3" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31')))" description="Seuil d'éligibilité - majoration par demi-part" format="float" origin="ipp" type="monetary">
         <VALUE deb="2007-01-01" fin="2015-12-31" valeur="4490" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="4432" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3483" />
@@ -1266,7 +1266,7 @@
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="3253" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="21000" />
       </CODE>
-      <CODE code="monact" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31'))),attrib:format(integer)" description="Prime monoactivité" format="float" origin="ipp" type="monetary">
+      <CODE code="monact" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31')))" description="Prime monoactivité" format="float" origin="ipp" type="monetary">
         <VALUE deb="2007-01-01" fin="2015-12-31" valeur="83" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="82" />
         <VALUE deb="2004-01-01" fin="2005-12-31" valeur="81" />
@@ -1279,7 +1279,7 @@
         <VALUE deb="2014-01-01" fuzzy="true" valeur="72" />
         <VALUE deb="2007-01-01" fin="2013-12-31" valeur="72" />
       </CODE>
-      <CODE code="pac" conflicts="children:dates_overlap((('2006-01-01', '2013-12-31'), ('2006-01-01', '2015-12-31'))),attrib:format(integer)" description="Prime personne à charge" format="float" origin="ipp" type="monetary">
+      <CODE code="pac" conflicts="children:dates_overlap((('2006-01-01', '2013-12-31'), ('2006-01-01', '2015-12-31')))" description="Prime personne à charge" format="float" origin="ipp" type="monetary">
         <VALUE deb="2006-01-01" fin="2015-12-31" valeur="36" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="35" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="34" />
@@ -1288,7 +1288,7 @@
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="31" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="200" />
       </CODE>
-      <CODE code="seuil1" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31'))),attrib:format(integer)" description="Seuil première tranche" format="float" origin="ipp" type="monetary">
+      <CODE code="seuil1" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31')))" description="Seuil première tranche" format="float" origin="ipp" type="monetary">
         <VALUE deb="2007-01-01" fin="2015-12-31" valeur="3743" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="3695" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="3570" />
@@ -1298,7 +1298,7 @@
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="3187" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="20575" />
       </CODE>
-      <CODE code="seuil2" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31'))),attrib:format(integer)" description="Seuil deuxième tranche" format="float" origin="ipp" type="monetary">
+      <CODE code="seuil2" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31')))" description="Seuil deuxième tranche" format="float" origin="ipp" type="monetary">
         <VALUE deb="2007-01-01" fin="2015-12-31" valeur="12475" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="12315" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="11899" />
@@ -1308,7 +1308,7 @@
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="10623" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="68583" />
       </CODE>
-      <CODE code="seuil3" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31'))),attrib:format(integer)" description="Seuil troisième tranche" format="float" origin="ipp" type="monetary">
+      <CODE code="seuil3" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31')))" description="Seuil troisième tranche" format="float" origin="ipp" type="monetary">
         <VALUE deb="2007-01-01" fin="2015-12-31" valeur="17451" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="17227" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="16659" />
@@ -1318,7 +1318,7 @@
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="14872" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="96016" />
       </CODE>
-      <CODE code="seuil4" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31'))),attrib:format(integer)" description="Seuil quatrième tranche" format="float" origin="ipp" type="monetary">
+      <CODE code="seuil4" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31')))" description="Seuil quatrième tranche" format="float" origin="ipp" type="monetary">
         <VALUE deb="2007-01-01" fin="2015-12-31" valeur="24950" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="24630" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="23798" />
@@ -1328,7 +1328,7 @@
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="21246" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="137166" />
       </CODE>
-      <CODE code="seuil5" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31'))),attrib:format(integer)" description="Point de sortie pour les couples monoactifs" format="float" origin="ipp" type="monetary">
+      <CODE code="seuil5" conflicts="children:dates_overlap((('2007-01-01', '2013-12-31'), ('2007-01-01', '2015-12-31')))" description="Point de sortie pour les couples monoactifs" format="float" origin="ipp" type="monetary">
         <VALUE deb="2007-01-01" fin="2015-12-31" valeur="26572" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="26231" />
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="25376" />
@@ -1356,7 +1356,7 @@
         <VALUE deb="2006-01-01" fin="2015-12-31" valeur="0.051" />
         <VALUE deb="2000-01-01" fin="2005-12-31" valeur="0.055" />
       </CODE>
-      <CODE code="versmin" conflicts="children:dates_overlap((('2005-01-01', '2013-12-31'), ('2005-01-01', '2015-12-31'))),attrib:format(integer)" description="Versement minimum" format="float" origin="ipp" type="monetary">
+      <CODE code="versmin" conflicts="children:dates_overlap((('2005-01-01', '2013-12-31'), ('2005-01-01', '2015-12-31')))" description="Versement minimum" format="float" origin="ipp" type="monetary">
         <VALUE deb="2005-01-01" fin="2015-12-31" valeur="30" />
         <VALUE deb="2001-01-01" fin="2004-12-31" valeur="25" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="160" />
@@ -1956,7 +1956,7 @@
     </NODE>
   </NODE>
   <NODE code="plafond_qf" description="Plafonnement du quotient familial" origin="ipp">
-    <CODE code="celib" conflicts="children:valeurs(('2015-01-01', None):902,901),attrib:format(integer)" description="Non mariés ou non PACS" format="float" origin="ipp" type="monetary">
+    <CODE code="celib" conflicts="children:valeurs(('2015-01-01', None):902,901)" description="Non mariés ou non PACS" format="float" origin="ipp" type="monetary">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="902" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="901" />
       <VALUE deb="2010-01-01" fin="2013-12-31" valeur="897" />
@@ -1973,7 +1973,7 @@
       <VALUE deb="1999-01-01" fin="1999-12-31" valeur="6130" />
       <VALUE deb="1997-01-01" fin="1998-12-31" valeur="6100" />
     </CODE>
-    <CODE code="celib_enf" conflicts="children:valeurs(('2015-01-01', None):3562,3558),attrib:format(integer)" description="Cas célibataires avec enfant(s)" format="float" origin="ipp" type="monetary">
+    <CODE code="celib_enf" conflicts="children:valeurs(('2015-01-01', None):3562,3558)" description="Cas célibataires avec enfant(s)" format="float" origin="ipp" type="monetary">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="3562" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3558" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3540" />
@@ -2109,7 +2109,7 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="2051" />
       <VALUE deb="2001-01-01" fin="2001-12-31" valeur="2017" />
     </CODE>
-    <CODE code="reduc_postplafond" conflicts="attrib:format(integer),children:dates_overlap((('2009-01-01', '2009-12-31'), ('2009-01-01', '2011-12-31')))" description="Réduction post plafond" format="float" origin="ipp" type="monetary">
+    <CODE code="reduc_postplafond" conflicts="children:dates_overlap((('2009-01-01', '2009-12-31'), ('2009-01-01', '2011-12-31')))" description="Réduction post plafond" format="float" origin="ipp" type="monetary">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="1506" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1504" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1497" />
@@ -2125,7 +2125,7 @@
       <VALUE deb="2001-01-01" fin="2001-12-31" valeur="570" />
       <VALUE deb="1998-01-01" fin="2000-12-31" valeur="4336" />
     </CODE>
-    <CODE code="veuf" conflicts="attrib:format(integer),children:valeurs(('2010-01-01', '2012-12-31'):2336,2236)" description="Veuf avec enfants à charge" format="float" origin="ipp" type="monetary">
+    <CODE code="veuf" conflicts="children:valeurs(('2015-01-01', None):1682,1680)" description="Veuf avec enfants à charge" format="float" origin="ipp" type="monetary">
       <VALUE deb="2015-01-01" fuzzy="true" valeur="1682" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1680" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="1672" />
@@ -2416,7 +2416,7 @@
       </CODE>
     </NODE>
     <NODE code="daepad" description="Dépenses d'accueil dans un établissement pour personnes âgées dépendantes" origin="ipp">
-      <CODE code="max" conflicts="attrib:format(integer),children:dates_overlap((('2001-01-01', '2001-12-31'), ('2001-01-01', '2002-12-31')))" description="Plafond" format="float" origin="ipp" type="monetary">
+      <CODE code="max" conflicts="children:dates_overlap((('2001-01-01', '2001-12-31'), ('2001-01-01', '2002-12-31')))" description="Plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="2006-01-01" fuzzy="true" valeur="10000" />
         <VALUE deb="2003-01-01" fin="2005-12-31" valeur="3000" />
         <VALUE deb="2001-01-01" fin="2002-12-31" valeur="2300" />
@@ -2575,7 +2575,7 @@
       </CODE>
     </NODE>
     <NODE code="ecodev" description="Sommes versées sur un compte épargne codéveloppement (case 7UH)" origin="ipp">
-      <CODE code="plafond_par_personne" conflicts="attrib:format(integer)" description="Maximum" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_par_personne" description="Maximum" format="float" origin="ipp" type="monetary">
         <VALUE deb="2009-01-01" fin="2010-12-31" valeur="20000" />
       </CODE>
       <CODE code="taux" conflicts="children:valeurs(('2009-01-01', '2010-12-31'):0.4,0.40)" description="Taux" format="percent" origin="ipp">
@@ -2586,15 +2586,15 @@
       </CODE>
     </NODE>
     <NODE code="ecpess" description="Enfants à charge poursuivant leurs études secondaires ou supérieures" origin="ipp">
-      <CODE code="col" conflicts="attrib:format(integer)" description="Collège" format="float" origin="ipp" type="monetary">
+      <CODE code="col" description="Collège" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="61" />
         <VALUE deb="1992-01-01" fin="2000-12-31" valeur="400" />
       </CODE>
-      <CODE code="lyc" conflicts="attrib:format(integer)" description="Lycée" format="float" origin="ipp" type="monetary">
+      <CODE code="lyc" description="Lycée" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="153" />
         <VALUE deb="1992-01-01" fin="2000-12-31" valeur="1000" />
       </CODE>
-      <CODE code="sup" conflicts="attrib:format(integer)" description="Supérieur" format="float" origin="ipp" type="monetary">
+      <CODE code="sup" description="Supérieur" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="183" />
         <VALUE deb="1992-01-01" fin="2000-12-31" valeur="1200" />
       </CODE>
@@ -2645,11 +2645,11 @@
           <VALUE deb="1984-01-01" fin="2000-12-31" valeur="9000" />
         </CODE>
       </NODE>
-      <CODE code="max" conflicts="attrib:format(integer)" description="Maximum" format="float" origin="ipp" type="monetary">
+      <CODE code="max" description="Maximum" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fin="2002-12-31" valeur="2287" />
         <VALUE deb="1985-01-01" fin="2000-12-31" valeur="15000" />
       </CODE>
-      <CODE code="pac" conflicts="attrib:format(integer)" description="Par personne à charge" format="float" origin="ipp" type="monetary">
+      <CODE code="pac" description="Par personne à charge" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fin="2002-12-31" valeur="305" />
         <VALUE deb="1985-01-01" fin="2000-12-31" valeur="2000" />
       </CODE>
@@ -2707,7 +2707,7 @@
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.18" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.18" />
       </CODE>
-      <CODE code="seuil" conflicts="attrib:format(integer)" description="Seuil" format="float" origin="ipp" type="monetary">
+      <CODE code="seuil" description="Seuil" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="5700" />
       </CODE>
       <CODE code="taux" conflicts="children:dates_overlap((('2001-01-01', '2010-12-31'), ('2002-01-01', '2010-12-31')))" description="Taux" format="percent" origin="ipp">
@@ -2910,7 +2910,7 @@
       </CODE>
     </NODE>
     <NODE code="prcomp" description="Prestations compensatoires" origin="ipp">
-      <CODE code="seuil" conflicts="attrib:format(integer)" description="Seuil" format="float" origin="ipp" type="monetary">
+      <CODE code="seuil" description="Seuil" format="float" origin="ipp" type="monetary">
         <VALUE deb="2001-01-01" fuzzy="true" valeur="30500" />
         <VALUE deb="2000-01-01" fin="2000-12-31" valeur="200000" />
       </CODE>
@@ -3132,7 +3132,7 @@
       </CODE>
     </NODE>
     <NODE code="spfcpi" description="Souscription de parts de fonds communs de placement dans l'innovation ou de fonds d'investissement de proximité" origin="ipp">
-      <CODE code="plafond_celibataire" conflicts="attrib:format(integer)" description="Plafond" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_celibataire" description="Plafond" format="float" origin="ipp" type="monetary">
         <VALUE deb="2002-01-01" fuzzy="true" valeur="12000" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="11434" />
         <VALUE deb="1997-01-01" fin="2000-12-31" valeur="75000" />
@@ -3187,7 +3187,7 @@
     </CODE>
     <NODE code="micro" description="Régime microentreprise/Spécial bnc" origin="ipp">
       <NODE code="imputation_sur_le_revenu_global" origin="ipp">
-        <CODE code="plafond_deficits_agricoles" conflicts="attrib:format(integer),children:dates_overlap((('2001-01-01', '2003-12-31'), ('2002-01-01', '2003-12-31')))" description="Déficit agricole///%cf art 156 du CGI" format="float" origin="ipp" type="monetary">
+        <CODE code="plafond_deficits_agricoles" conflicts="children:dates_overlap((('2001-01-01', '2003-12-31'), ('2002-01-01', '2003-12-31')))" description="Déficit agricole///%cf art 156 du CGI" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="107610" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="107075" />
           <VALUE deb="2011-01-01" fin="2012-12-31" valeur="106225" />
@@ -3204,7 +3204,7 @@
           <VALUE deb="1988-01-01" fin="1988-12-31" valeur="70000" />
           <VALUE deb="1979-01-01" fin="1987-12-31" valeur="40000" />
         </CODE>
-        <CODE code="plafond_deficits_fonciers" conflicts="attrib:format(integer)" description="Déficit foncier art 156-I-3 du CGI" format="float" origin="ipp" type="monetary">
+        <CODE code="plafond_deficits_fonciers" description="Déficit foncier art 156-I-3 du CGI" format="float" origin="ipp" type="monetary">
           <VALUE deb="2001-01-01" fuzzy="true" valeur="10700" />
           <VALUE deb="1995-01-01" fin="2000-12-31" valeur="70000" />
           <VALUE deb="1992-01-01" fin="1994-12-31" valeur="50000" />
@@ -3228,7 +3228,7 @@
         </CODE>
       </NODE>
       <NODE code="microfoncier" description="Microfoncier" origin="ipp">
-        <CODE code="max" conflicts="attrib:format(integer)" description="Si revenu inférieur à" format="float" origin="ipp" type="monetary">
+        <CODE code="max" description="Si revenu inférieur à" format="float" origin="ipp" type="monetary">
           <VALUE deb="2001-01-01" fuzzy="true" valeur="15000" />
           <VALUE deb="1999-01-01" fin="2000-12-31" valeur="60000" />
           <VALUE deb="1997-01-01" fin="1998-12-31" valeur="30000" />
@@ -3241,7 +3241,7 @@
       </NODE>
       <NODE code="specialbnc" description="Régime spécial BNC" origin="ipp">
         <NODE code="marchandises" description="Activité de vente" origin="ipp">
-          <CODE code="max" conflicts="attrib:format(integer),children:dates_overlap((('2011-01-01', '2012-12-31'), ('2011-01-01', '2013-12-31')))" description="Maximum" format="float" origin="ipp" type="monetary">
+          <CODE code="max" conflicts="children:dates_overlap((('2011-01-01', '2012-12-31'), ('2011-01-01', '2013-12-31')))" description="Maximum" format="float" origin="ipp" type="monetary">
             <VALUE deb="2013-01-01" fuzzy="true" valeur="82200" />
             <VALUE deb="2011-01-01" fin="2012-12-31" valeur="81500" />
             <VALUE deb="2010-01-01" fin="2010-12-31" valeur="80300" />
@@ -3265,7 +3265,7 @@
           </CODE>
         </NODE>
         <NODE code="services" description="Activité de service" origin="ipp">
-          <CODE code="max" conflicts="attrib:format(integer),children:dates_overlap((('2011-01-01', '2012-12-31'), ('2011-01-01', '2013-12-31')))" description="Maximum" format="float" origin="ipp" type="monetary">
+          <CODE code="max" conflicts="children:dates_overlap((('2011-01-01', '2012-12-31'), ('2011-01-01', '2013-12-31')))" description="Maximum" format="float" origin="ipp" type="monetary">
             <VALUE deb="2013-01-01" fuzzy="true" valeur="32900" />
             <VALUE deb="2011-01-01" fin="2012-12-31" valeur="32600" />
             <VALUE deb="2010-01-01" fin="2010-12-31" valeur="32100" />
@@ -3315,11 +3315,11 @@
     </CODE>
   </NODE>
   <NODE code="rvcm" description="Revenus des valeurs et capitaux mobiliers" origin="ipp">
-    <CODE code="abat_assvie" conflicts="attrib:format(integer)" description="Abattement produits des contrats d'assurance vie" format="float" origin="ipp" type="monetary">
+    <CODE code="abat_assvie" description="Abattement produits des contrats d'assurance vie" format="float" origin="ipp" type="monetary">
       <VALUE deb="2001-01-01" fuzzy="true" valeur="4600" />
       <VALUE deb="1997-01-01" fin="2000-12-31" valeur="30000" />
     </CODE>
-    <CODE code="abatmob" conflicts="attrib:format(integer),children:dates_overlap((('2001-01-01', '2005-12-31'), ('2001-01-01', '2009-12-31')))" description="Abattement capitaux mobiliers - Max" format="float" origin="ipp" type="monetary">
+    <CODE code="abatmob" conflicts="children:dates_overlap((('2001-01-01', '2005-12-31'), ('2001-01-01', '2009-12-31')))" description="Abattement capitaux mobiliers - Max" format="float" origin="ipp" type="monetary">
       <VALUE deb="2010-01-01" fin="2011-12-31" valeur="1525" />
       <VALUE deb="2001-01-01" fin="2009-12-31" valeur="1220" />
       <VALUE deb="1988-01-01" fin="2000-12-31" valeur="8000" />
@@ -3432,7 +3432,7 @@
   </BAREME>
   <NODE code="tspr" description="Total salaires pensions et rentes" origin="ipp">
     <NODE code="abatpen" description="Abattement sur les pensions" origin="ipp">
-      <CODE code="max" conflicts="attrib:format(integer)" description="Abattement maximum pour l'ensemble du foyer" format="float" origin="ipp" type="monetary">
+      <CODE code="max" description="Abattement maximum pour l'ensemble du foyer" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="3711" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3707" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3689" />
@@ -3471,7 +3471,7 @@
         <VALUE deb="1978-01-01" fin="1978-12-31" valeur="6000" />
         <VALUE deb="1977-01-01" fin="1977-12-31" valeur="5000" />
       </CODE>
-      <CODE code="min" conflicts="attrib:format(integer)" description="Abattement minimum par bénéficiaire" format="float" origin="ipp" type="monetary">
+      <CODE code="min" description="Abattement minimum par bénéficiaire" format="float" origin="ipp" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="379" />
         <VALUE deb="2010-01-01" fin="2013-12-31" valeur="374" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="368" />
@@ -3500,7 +3500,7 @@
       </CODE>
     </NODE>
     <NODE code="abatpro" description="Abattement forfaitaire pour frais professionnels" origin="ipp">
-      <CODE code="max" conflicts="attrib:format(integer)" description="Abattement maximum" format="float" origin="ipp" type="monetary">
+      <CODE code="max" description="Abattement maximum" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="12169" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="12157" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="12097" />
@@ -3540,7 +3540,7 @@
         <VALUE deb="1946-01-01" fin="1950-12-31" valeur="50000" />
         <VALUE deb="1943-01-01" fin="1945-12-31" valeur="20000" />
       </CODE>
-      <CODE code="min" conflicts="attrib:format(integer),children:dates_overlap((('2010-01-01', '2012-12-31'), ('2010-01-01', '2013-12-31')))" description="Abattement minimum - Cas général" format="float" origin="ipp" type="monetary">
+      <CODE code="min" conflicts="children:dates_overlap((('2010-01-01', '2012-12-31'), ('2010-01-01', '2013-12-31')))" description="Abattement minimum - Cas général" format="float" origin="ipp" type="monetary">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="426" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="424" />
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur="421" />
@@ -3567,7 +3567,7 @@
         <VALUE deb="1978-01-01" fin="1989-12-31" valeur="1800" />
         <VALUE deb="1977-01-01" fin="1977-12-31" valeur="1500" />
       </CODE>
-      <CODE code="min2" conflicts="attrib:format(integer),children:dates_overlap((('2010-01-01', '2012-12-31'), ('2010-01-01', '2013-12-31')))" description="Abattement minimum - Demandeur d'emploi" format="float" origin="ipp" type="monetary">
+      <CODE code="min2" conflicts="children:dates_overlap((('2010-01-01', '2012-12-31'), ('2010-01-01', '2013-12-31')))" description="Abattement minimum - Demandeur d'emploi" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="937" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="936" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="931" />
@@ -3591,7 +3591,7 @@
       </CODE>
     </NODE>
     <NODE code="abatsalpen" description="Abattement 20%" origin="ipp">
-      <CODE code="max" conflicts="attrib:format(integer)" description="Abattement maximum" format="float" origin="ipp" type="monetary">
+      <CODE code="max" description="Abattement maximum" format="float" origin="ipp" type="monetary">
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="24020" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="23580" />
         <VALUE deb="2003-01-01" fin="2003-12-31" valeur="23180" />

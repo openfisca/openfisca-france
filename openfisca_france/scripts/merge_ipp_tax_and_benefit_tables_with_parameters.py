@@ -293,9 +293,11 @@ def merge_elements(element, original_element, path = None):
     elif element.tag == 'CODE':
         # Set `conflicts` attribute on CODE element.
         conflicts = set()
-        if element.attrib.get('format') != original_element.attrib.get('format'):
-            conflicts.add(u'attrib:format({})'.format(original_element.attrib.get('format')))
-        if element.attrib.get('type') != original_element.attrib.get('type'):
+        # if element.attrib.get('format') != original_element.attrib.get('format'):
+        #     conflicts.add(u'attrib:format({})'.format(original_element.attrib.get('format')))
+        type_attrib = element.attrib.get('type')
+        original_type_attrib = original_element.attrib.get('type')
+        if type_attrib is not None and original_type_attrib is not None and type_attrib != original_type_attrib:
             conflicts.add(u'attrib:type({})'.format(original_element.attrib.get('type')))
 
         valeurs_by_deb_fin = collections.defaultdict(list)

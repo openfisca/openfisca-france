@@ -3931,13 +3931,16 @@
   </NODE>
   <NODE code="taxsal" origin="ipp">
     <CODE code="majoration1" format="percent" origin="ipp">
-      <VALUE deb="1968-11-01" fuzzy="true" valeur="0.0425" />
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.085" />
+      <VALUE deb="1968-11-01" fin="2014-12-31" valeur="0.0425" />
     </CODE>
     <CODE code="majoration2" format="percent" origin="ipp">
-      <VALUE deb="1968-11-01" fuzzy="true" valeur="0.0935" />
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.136" />
+      <VALUE deb="1968-11-01" fin="2014-12-31" valeur="0.0935" />
     </CODE>
     <CODE code="majoration_3" format="percent" origin="ipp">
-      <VALUE deb="2013-01-01" fuzzy="true" valeur="0.1575" />
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.2" />
+      <VALUE deb="2013-01-01" fin="2014-12-31" valeur="0.1575" />
     </CODE>
     <CODE code="plafond1" format="float" origin="ipp" type="monetary">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="7713" />
