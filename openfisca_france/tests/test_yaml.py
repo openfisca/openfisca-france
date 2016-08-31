@@ -160,7 +160,7 @@ def check(yaml_path, name, period_str, simulation, force, verbose=False):
             if isinstance(expected_value, dict):
                 for requested_period, expected_value_at_period in expected_value.iteritems():
                     assert_near(
-                        simulation.calculate(variable_name, requested_period),
+                        simulation.calculate(variable_name, requested_period).value,
                         expected_value_at_period,
                         absolute_error_margin=simulation.absolute_error_margin,
                         message=u'{}@{}: '.format(variable_name, requested_period),
@@ -168,7 +168,7 @@ def check(yaml_path, name, period_str, simulation, force, verbose=False):
                         )
             else:
                 assert_near(
-                    simulation.calculate(variable_name),
+                    simulation.calculate(variable_name).value,
                     expected_value,
                     absolute_error_margin=simulation.absolute_error_margin,
                     message=u'{}@{}: '.format(variable_name, period_str),
@@ -194,7 +194,7 @@ def check_calculate_output(yaml_path, name, period_str, simulation, force, verbo
                         )
             else:
                 assert_near_calculate_output(
-                    simulation.calculate_output(variable_name),
+                    simulation.calculate_output(variable_name).value,
                     expected_value,
                     absolute_error_margin=simulation.absolute_error_margin,
                     message=u'{}@{}: '.format(variable_name, period_str),
@@ -253,7 +253,7 @@ def test(force=False, name_filter=None, options_by_path=None):
 
             for test in tests:
                 simulation = base.Simulation.init_test(
-                    tax_benefit_system_for_path, test,
+                    tax_benefit_system_for_path, test, yaml_path,
                     default_absolute_error_margin=options.get('default_absolute_error_margin'),
                     default_relative_error_margin=options.get('default_relative_error_margin'),
                     )
