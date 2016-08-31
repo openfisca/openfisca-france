@@ -30,7 +30,6 @@ class asi_aspa_base_ressources_individu(Variable):
         legislation = simulation.legislation_at(period.start)
         leg_1er_janvier = simulation.legislation_at(period.start.offset('first-of', 'year'))
 
-        aspa_eligibilite = simulation.calculate('aspa_eligibilite', period)
 
 
         ressources_incluses = [
@@ -71,10 +70,14 @@ class asi_aspa_base_ressources_individu(Variable):
 
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
-        # Inclus l'AAH si conjoint non pensionné ASPA, retraite et pension invalidité
-        # FIXME Il faudrait vérifier que le conjoint est pensionné ASPA, pas qu'il est juste éligible !
+
+        pension_invalidite = (simulation.calculate('pensions_invalidite', period) > 0)
+        aspa_eligibilite = simulation.calculate('aspa_eligibilite', period)
+        asi_eligibilite = simulation.calculate('asi_eligibilite', period)
+
+        # Inclus l'AAH si conjoint non éligible ASPA, retraite et pension invalidité
         aah = simulation.calculate_add('aah', three_previous_months)
-        aah = aah * not_(aspa_eligibilite)
+        aah = aah * not_(aspa_eligibilite) * not_(asi_eligibilite) * not_(pension_invalidite)
 
         pensions_alimentaires_versees = simulation.calculate_add(
             'pensions_alimentaires_versees_individu', three_previous_months
