@@ -88,7 +88,6 @@ def suppress_stdout(f):
 
 
 def get_parameters_origin_dataframe():
-
     with open(os.path.join(param_dir, 'param-to-parameters.yaml')) as param_translations_file:
         param_translations = yaml.load(param_translations_file)
     original_name_by_name = {
@@ -120,7 +119,8 @@ def get_parameters_origin_dataframe():
             result[name] = dict(
                 used_by_variables = variable_names,
                 origin = parameter_json['origin'] if 'origin' in parameter_json else None,
-                conflicts = parameter_json['conflicts'] if 'conflicts' in parameter_json else None,
+                conflicts = parameter_json['conflicts'] \
+                    if 'conflicts' in parameter_json and name not in conflicting_parameters_to_ignore else None,
                 from_variable = original_name if original_name else None,
                 )
 
@@ -171,13 +171,22 @@ def main():
                 if 'origin' in parameter_json
                 else None,
                 u'conflicts: {}'.format(u', '.join(parameter_json['conflicts']))
-                if 'conflicts' in parameter_json
+                if 'conflicts' in parameter_json and name not in conflicting_parameters_to_ignore
                 else None,
                 u'(from {})'.format(original_name)
                 if original_name
                 else None,
                 ]))
             )).encode('utf-8')
+
+
+conflicting_parameters_to_ignore = [
+    'impot_revenu.plafond_qf.celib',  # IPP est plus à jour
+    'impot_revenu.plafond_qf.celib_enf',  # IPP est plus à jour
+    'impot_revenu.plafond_qf.veuf',  # IPP est plus à jour
+    'prestations.prestations_familiales.paje.base.avant_2014.majoration_biact_parent_isoles',  # IPP est plus à jour
+    'prestations.prestations_familiales.paje.base.avant_2014.plafond_ressources_0_enf',  # IPP est plus à jour
+    ]
 
 
 if __name__ == "__main__":
