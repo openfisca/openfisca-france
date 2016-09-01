@@ -14,6 +14,27 @@ class cmu_acs_eligibilite(Variable):
     entity_class = Familles
     label = u"Pré-éligibilité à la CMU, avant prise en compte des ressources"
 
+    def function(self, simulation, period):
+        period = period.this_month
+        previous_year = period.start.period('year').offset(-1)
+        age_min = simulation.legislation_at(period.start).cmu.age_limite_pac
+        nb_enfants = simulation.calculate('cmu_nb_pac', period)
+
+        # Une personne de 25 ans ne doit pas être à charge fiscale, ni hébergée par ses parents, ni recevoir de pensions alimentaires pour pouvoir bénéficier de la CMU individuellement.
+        a_charge_des_parents = simulation.calculate('enfant_a_charge', period)
+        habite_chez_parents = simulation.calculate('habite_chez_parents', period)
+        recoit_pension = simulation.calculate_add('pensions_alimentaires_percues', previous_year) > 0
+        condition_independance = not_(a_charge_des_parents + habite_chez_parents + recoit_pension)
+
+        age = simulation.calculate('age', period)
+        condition_age = (age >= age_min)
+
+
+        eligibilite_famille = (nb_enfants > 0) + self.any_by_roles(condition_age) + not_(self.any_by_roles(not_(condition_independance)))
+
+        return period, eligibilite_famille
+
+
 class acs_montant(Variable):
     column = FloatCol(default = 0)
     entity_class = Familles
@@ -313,6 +334,7 @@ class cmu_c(Variable):
         cmu_c_plafond = simulation.calculate('cmu_c_plafond', this_month)
         cmu_base_ressources = simulation.calculate('cmu_base_ressources', this_month)
         residence_mayotte = simulation.calculate('residence_mayotte', this_month)
+        cmu_acs_eligibilite = simulation.calculate('cmu_acs_eligibilite', period)
 
         rsa_socle = simulation.calculate('rsa_socle', this_month)
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', this_month)
@@ -324,7 +346,8 @@ class cmu_c(Variable):
         eligibilite_basique = cmu_base_ressources <= cmu_c_plafond
         eligibilite_rsa = (rsa > 0) * (rsa_base_ressources < socle - rsa_forfait_logement)
 
-        return period, not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
+
+        return period, cmu_acs_eligibilite * not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
 
 
 class acs(Variable):
@@ -340,8 +363,13 @@ class acs(Variable):
         acs_plafond = simulation.calculate('acs_plafond', period)
         acs_montant = simulation.calculate('acs_montant', period)
         residence_mayotte = simulation.calculate('residence_mayotte', period)
+        cmu_acs_eligibilite = simulation.calculate('cmu_acs_eligibilite', period)
 
-        return period, not_(residence_mayotte) * not_(cmu_c) * (cmu_base_ressources <= acs_plafond) * acs_montant / 12
+        return period, (
+            cmu_acs_eligibilite *
+            not_(residence_mayotte) * not_(cmu_c) *
+            (cmu_base_ressources <= acs_plafond) *
+            acs_montant / 12)
 
 
 ############################################################################
