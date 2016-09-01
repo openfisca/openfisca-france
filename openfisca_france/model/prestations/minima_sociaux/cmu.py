@@ -9,6 +9,10 @@ from numpy import (absolute as abs_, apply_along_axis, array, int32, logical_not
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
+class cmu_acs_eligibilite(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Pré-éligibilité à la CMU, avant prise en compte des ressources"
 
 class acs_montant(Variable):
     column = FloatCol(default = 0)
