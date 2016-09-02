@@ -306,16 +306,16 @@ def merge_elements(element, original_element, path = None):
             valeurs_by_deb_fin[deb_fin].append(value_element.attrib['valeur'])
 
         # Check for dates overlaps.
-        for (deb1, fin1), (deb2, fin2) in itertools.combinations(sorted(valeurs_by_deb_fin.keys()), 2):
-            if deb2 < fin1:
-                conflicts.add(u'children:dates_overlap({})'.format(((deb1, fin1), (deb2, fin2))))
+        # for (deb1, fin1), (deb2, fin2) in itertools.combinations(sorted(valeurs_by_deb_fin.keys()), 2):
+        #     if deb2 < fin1:
+        #         conflicts.add(u'children:dates_overlap({})'.format(((deb1, fin1), (deb2, fin2))))
+        #         break
+        # else:
+        # Check for values mismatchs.
+        for deb_fin, valeurs in valeurs_by_deb_fin.iteritems():
+            if len(set(map(float, valeurs))) > 1:
+                conflicts.add(u'children:valeurs({}:{})'.format(deb_fin, ','.join(valeurs)))
                 break
-        else:
-            # Check for values mismatchs.
-            for deb_fin, valeurs in valeurs_by_deb_fin.iteritems():
-                if len(set(valeurs)) > 1:
-                    conflicts.add(u'children:valeurs({}:{})'.format(deb_fin, ','.join(valeurs)))
-                    break
 
         if conflicts:
             element.attrib['conflicts'] = u','.join(conflicts)

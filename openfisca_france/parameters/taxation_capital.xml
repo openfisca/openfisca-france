@@ -319,7 +319,7 @@
       </CODE>
     </NODE>
     <NODE code="res_princ" description="Immeubles bâtis" origin="ipp">
-      <CODE code="abattement_sur_residence_principale" conflicts="children:dates_overlap((('1999-01-01', '2007-12-31'), ('2002-01-01', '2007-12-31')))" description="Taux d'abattement résidence principale" format="percent" origin="ipp">
+      <CODE code="abattement_sur_residence_principale" description="Taux d'abattement résidence principale" format="percent" origin="ipp">
         <VALUE deb="2008-01-01" fuzzy="true" valeur="0.3" />
         <VALUE deb="1999-01-01" fin="2007-12-31" valeur="0.2" />
       </CODE>
@@ -490,7 +490,7 @@
         <VALUE deb="2004-07-01" fuzzy="true" valeur="0.003" />
         <VALUE deb="2003-01-01" fin="2004-06-30" valeur="0.0015" />
       </CODE>
-      <CODE code="rsa" conflicts="children:dates_overlap((('2009-01-01', '2011-12-31'), ('2009-01-01', '2012-12-31')))" description="Contribution au financement du revenu de solidarité active" format="percent" origin="ipp">
+      <CODE code="rsa" description="Contribution au financement du revenu de solidarité active" format="percent" origin="ipp">
         <VALUE deb="2009-01-01" fin="2012-12-31" valeur="0.011" />
       </CODE>
     </NODE>
@@ -509,14 +509,14 @@
       </CODE>
     </NODE>
     <NODE code="prelevement_social" origin="ipp">
-      <CODE code="produits_de_placement" conflicts="children:dates_overlap((('1998-01-01', '2009-12-31'), ('1998-01-01', '2010-12-31')))" description="Prélèvement social (revenus des produits de placement)" format="percent" origin="ipp">
+      <CODE code="produits_de_placement" description="Prélèvement social (revenus des produits de placement)" format="percent" origin="ipp">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="0.045" />
         <VALUE deb="2012-07-01" fin="2012-12-31" valeur="0.054" />
         <VALUE deb="2011-10-01" fin="2012-06-30" valeur="0.034" />
         <VALUE deb="2011-01-01" fin="2011-09-30" valeur="0.022" />
         <VALUE deb="1998-01-01" fin="2010-12-31" valeur="0.02" />
       </CODE>
-      <CODE code="revenus_du_patrimoine" conflicts="children:dates_overlap((('2010-01-01', '2010-12-31'), ('2010-01-01', '2011-09-30')))" description="Prélèvement social (revenus du patrimoine)" format="percent" origin="ipp">
+      <CODE code="revenus_du_patrimoine" description="Prélèvement social (revenus du patrimoine)" format="percent" origin="ipp">
         <VALUE deb="2013-01-01" fuzzy="true" valeur="0.045" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.054" />
         <VALUE deb="2011-10-01" fin="2011-12-31" valeur="0.034" />

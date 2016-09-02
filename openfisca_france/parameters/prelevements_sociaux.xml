@@ -2574,7 +2574,7 @@
       <VALUE deb="2012-01-01" fin="2015-12-31" valeur="10" />
       <VALUE deb="2009-01-01" fin="2011-12-31" valeur="0" />
     </CODE>
-    <CODE code="taux_plein" conflicts="children:valeurs(('2012-01-01', '2012-07-31'):0.08,.08)" description="Taux plein" format="percent" origin="ipp">
+    <CODE code="taux_plein" description="Taux plein" format="percent" origin="ipp">
       <VALUE deb="2012-08-01" fuzzy="true" valeur="0.2" />
       <VALUE deb="2012-01-01" fin="2012-07-31" valeur="0.08" />
       <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.06" />
