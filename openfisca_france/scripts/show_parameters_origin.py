@@ -181,11 +181,20 @@ def main():
 
 
 conflicting_parameters_to_ignore = [
-    'impot_revenu.plafond_qf.celib',  # IPP est plus à jour
-    'impot_revenu.plafond_qf.celib_enf',  # IPP est plus à jour
-    'impot_revenu.plafond_qf.veuf',  # IPP est plus à jour
-    'prestations.prestations_familiales.paje.base.avant_2014.majoration_biact_parent_isoles',  # IPP est plus à jour
-    'prestations.prestations_familiales.paje.base.avant_2014.plafond_ressources_0_enf',  # IPP est plus à jour
+    # IPP est plus à jour
+    'impot_revenu.plafond_qf.celib',
+    'impot_revenu.plafond_qf.celib_enf',
+    'impot_revenu.plafond_qf.veuf',
+    'prestations.prestations_familiales.paje.base.avant_2014.majoration_biact_parent_isoles',
+    'prestations.prestations_familiales.paje.base.avant_2014.plafond_ressources_0_enf',
+    'impot_revenu.charges_deductibles.pensions_alimentaires.plafond',
+    'impot_revenu.plafond_qf.reduc_postplafond',
+    'impot_revenu.rpns.micro.imputation_sur_le_revenu_global.plafond_deficits_agricoles',
+    'prestations.prestations_familiales.ars.plafond_ressources',
+    # IPP utulise les paramètres apparaissant dans la législation
+    'prestations.prestations_familiales.af.modulation.majoration_plafond_par_enfant_supplementaire',
+    'prestations.prestations_familiales.af.modulation.plafond_tranche_1',
+    'prestations.prestations_familiales.af.modulation.plafond_tranche_2',
     ]
 
 
