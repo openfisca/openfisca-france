@@ -290,8 +290,6 @@ class allegement_fillon(DatedVariable):
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
 
     # Attention : cet allègement a des règles de cumul spécifiques
-    # uses max_nb_cycles (TODO)
-    '''
     @dated_function(date(2005, 7, 1))
     def function(self, simulation, period):
         period = period.this_month
@@ -307,7 +305,6 @@ class allegement_fillon(DatedVariable):
         )
 
         return period, allegement * not_(stagiaire) * not_(apprenti)
-    '''
 
 
 def compute_allegement_fillon(simulation, period):
@@ -347,8 +344,6 @@ class allegement_cotisation_allocations_familiales(DatedVariable):
     label = u"Allègement de la cotisation d'allocationos familiales sur les bas et moyens salaires"
     url = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
 
-    # uses max_nb_cycles (TODO)
-    '''
     @dated_function(date(2015, 1, 1))
     def function(self, simulation, period):
         period = period.this_month
@@ -365,7 +360,6 @@ class allegement_cotisation_allocations_familiales(DatedVariable):
         )
 
         return period, allegement * not_(stagiaire) * not_(apprenti)
-    '''
 
 
 def compute_allegement_cotisation_allocations_familiales(simulation, period):

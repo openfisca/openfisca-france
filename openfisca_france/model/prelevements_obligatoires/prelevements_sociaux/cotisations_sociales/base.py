@@ -41,8 +41,7 @@ def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None,
                 cotisation_type = cotisation_type,
                 bareme_name = bareme_name,
                 )
-            )
-    ''' + (
+            ) + (
         # anticipé
         cotisation_mode_recouvrement == 0) * (
             compute_cotisation_anticipee(
@@ -53,7 +52,6 @@ def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None,
                 variable_name = variable_name,
                 )
             )
-    '''
     return cotisation
 
 
