@@ -87,45 +87,51 @@ def suppress_stdout(f):
     return _suppress_stdout
 
 
-def get_parameters_origin_dataframe():
-    with open(os.path.join(param_dir, 'param-to-parameters.yaml')) as param_translations_file:
+def get_attributes_by_parameter_name(param_translations, tax_benefit_system, variable_names_by_parameter_name):
+    with open(param_translations) as param_translations_file:
         param_translations = yaml.load(param_translations_file)
     original_name_by_name = {
         value: key
         for key, value in param_translations.iteritems()
         if value
         }
+    legislation_json = tax_benefit_system.get_legislation(with_source_file_infos=True)
+    parameters_json = get_flat_parameters(legislation_json)
+    attributes_by_parameter_name = dict()
+    for parameter_json in parameters_json:
+        name = parameter_json['name']
+        attributes_by_parameter_name[name] = dict(
+            used_by_variables = variable_names_by_parameter_name.get(name),
+            description = parameter_json.get('description'),
+            origin = parameter_json['origin'],
+            original_name = original_name_by_name.get(name) if parameter_json['origin'] == 'ipp' else None,
+            conflicts = parameter_json.get('conflicts') if name not in conflicting_parameters_to_ignore else None,
+            )
+    return attributes_by_parameter_name
 
+
+def get_attributes_by_parameter_name_dataframe():
     tax_benefit_system = FranceTaxBenefitSystem()
+    variable_names_by_parameter_name = get_variable_names_by_parameter_name(tax_benefit_system)
+    attributes_by_parameter_name = get_attributes_by_parameter_name(
+        param_translations = os.path.join(param_dir, 'param-to-parameters.yaml'),
+        tax_benefit_system = tax_benefit_system,
+        variable_names_by_parameter_name = variable_names_by_parameter_name,
+        )
+    import pandas as pd
+    return pd.DataFrame.from_dict(attributes_by_parameter_name, orient = 'index')
 
+
+def get_variable_names_by_parameter_name(tax_benefit_system):
     parser = input_variables_extractors.setup(tax_benefit_system)
-    captured_get_input_variables_and_parameters = suppress_stdout(parser.get_input_variables_and_parameters)
+    get_input_variables_and_parameters = suppress_stdout(parser.get_input_variables_and_parameters)
     variable_names_by_parameter_name = collections.defaultdict(list)
     for column in tax_benefit_system.column_by_name.values():
-        _, parameter_names = captured_get_input_variables_and_parameters(column)
+        _, parameter_names = get_input_variables_and_parameters(column)
         if parameter_names is not None:
             for parameter_name in parameter_names:
                 variable_names_by_parameter_name[parameter_name].append(column.name)
-
-    legislation_json = tax_benefit_system.get_legislation(with_source_file_infos=True)
-    parameters_json = get_flat_parameters(legislation_json)
-    result = dict()
-    for parameter_json in parameters_json:
-        name = parameter_json['name']
-        variable_names = variable_names_by_parameter_name.get(parameter_json['name'])
-        original_name = original_name_by_name.get(name) if parameter_json.get('origin') == 'ipp' else None
-
-        if 'origin' in parameter_json or 'both_origins' in parameter_json:
-            result[name] = dict(
-                used_by_variables = variable_names,
-                origin = parameter_json['origin'] if 'origin' in parameter_json else None,
-                conflicts = parameter_json['conflicts'] \
-                    if 'conflicts' in parameter_json and name not in conflicting_parameters_to_ignore else None,
-                from_variable = original_name if original_name else None,
-                )
-
-    import pandas as pd
-    return pd.DataFrame.from_dict(result, orient = 'index')
+    return variable_names_by_parameter_name
 
 
 def main():
@@ -137,45 +143,26 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    with open(args.param_translations) as param_translations_file:
-        param_translations = yaml.load(param_translations_file)
-    original_name_by_name = {
-        value: key
-        for key, value in param_translations.iteritems()
-        if value
-        }
-
     tax_benefit_system = FranceTaxBenefitSystem()
+    variable_names_by_parameter_name = get_variable_names_by_parameter_name(tax_benefit_system)
+    attributes_by_parameter_name = get_attributes_by_parameter_name(
+        args.param_translations,
+        tax_benefit_system = tax_benefit_system,
+        variable_names_by_parameter_name = variable_names_by_parameter_name,
+        )
 
-    parser = input_variables_extractors.setup(tax_benefit_system)
-    captured_get_input_variables_and_parameters = suppress_stdout(parser.get_input_variables_and_parameters)
-    variable_names_by_parameter_name = collections.defaultdict(list)
-    for column in tax_benefit_system.column_by_name.values():
-        _, parameter_names = captured_get_input_variables_and_parameters(column)
-        if parameter_names is not None:
-            for parameter_name in parameter_names:
-                variable_names_by_parameter_name[parameter_name].append(column.name)
-
-    legislation_json = tax_benefit_system.get_legislation(with_source_file_infos=True)
-    parameters_json = get_flat_parameters(legislation_json)
-    for parameter_json in parameters_json:
-        name = parameter_json['name']
-        variable_names = variable_names_by_parameter_name.get(name)
-        original_name = original_name_by_name.get(name) if parameter_json.get('origin') == 'ipp' else None
+    for name, attributes in attributes_by_parameter_name.iteritems():
+        origin = attributes['origin']
+        description = attributes['description']
         print(u'{}: {}'.format(
             name,
             u' ; '.join(filter(None, [
-                u'used by variables: {}'.format(u', '.join(variable_names))
-                if variable_names is not None else 'used by no variable',
-                u'origin: {}'.format(parameter_json['origin'])
-                if 'origin' in parameter_json
-                else None,
-                u'conflicts: {}'.format(u', '.join(parameter_json['conflicts']))
-                if 'conflicts' in parameter_json and name not in conflicting_parameters_to_ignore
-                else None,
-                u'(from {})'.format(original_name)
-                if original_name
-                else None,
+                u'origin: {}'.format(origin),
+                u'description: {}'.format(description) if description else None,
+                u'old name {}'.format(attributes['original_name']) if attributes['original_name'] else None,
+                u'still used by {}'.format(u', '.join(attributes['used_by_variables']))
+                if origin == 'openfisca' and attributes['used_by_variables'] else None,
+                u'conflicts: {}'.format(u', '.join(attributes['conflicts'])) if attributes['conflicts'] else None,
                 ]))
             )).encode('utf-8')
 
