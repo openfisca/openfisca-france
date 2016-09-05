@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import itertools
+import uuid
 
 from openfisca_core import conv
 import openfisca_core.simulations
