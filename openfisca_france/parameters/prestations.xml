@@ -4636,12 +4636,12 @@
           <VALUE deb="2004-07-01" fin="2005-06-30" valeur="2655" />
           <VALUE deb="2004-01-01" fin="2004-06-30" valeur="2626" />
         </CODE>
-        <CODE code="seuil21" conflicts="children:valeurs(('2012-01-01', '2012-12-31'):44068,45068)" description="Second plafond de ressources pour un enfant" origin="ipp">
+        <CODE code="seuil21" description="Second plafond de ressources pour un enfant" origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="47405" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur="47217" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="46888" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="46014" />
-          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="44068" />
+          <VALUE deb="2012-01-01" fin="2012-12-31" valeur="45068" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="44621" />
           <VALUE deb="2010-01-01" fin="2010-12-31" valeur="44576" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="43363" />
