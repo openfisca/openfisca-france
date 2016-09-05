@@ -300,21 +300,36 @@ def merge_elements(element, original_element, path = None):
         if type_attrib is not None and original_type_attrib is not None and type_attrib != original_type_attrib:
             conflicts.add(u'attrib:type({})'.format(original_element.attrib.get('type')))
 
-        valeurs_by_deb_fin = collections.defaultdict(list)
-        for value_element in list(element) + list(original_element):
-            deb_fin = (value_element.attrib['deb'], value_element.attrib.get('fin'))
-            valeurs_by_deb_fin[deb_fin].append(value_element.attrib['valeur'])
+        # Check that every `original_element` child (VALUE elements) is included in `element` children.
+        def is_included_in_ipp(original_value_element):
+            for value_element in element:
+                assert 'deb' in original_value_element.attrib, original_value_element
+                assert 'deb' in value_element.attrib, value_element
+                assert 'valeur' in original_value_element.attrib, original_value_element
+                assert 'valeur' in value_element.attrib, value_element
+                is_valid = original_value_element.attrib['deb'] >= value_element.attrib['deb'] and (
+                    'fin' not in original_value_element.attrib and 'fin' not in value_element.attrib or (
+                        'fin' in original_value_element.attrib and
+                        'fin' in value_element.attrib and
+                        original_value_element.attrib['fin'] <= value_element.attrib['fin']
+                        ) or (
+                        'fin' in original_value_element.attrib and
+                        'fin' not in value_element.attrib and
+                        'fuzzy' in value_element.attrib
+                        ) or (
+                        'fin' not in original_value_element.attrib and
+                        'fin' in value_element.attrib and
+                        'fuzzy' in original_value_element.attrib
+                        )
+                    ) and \
+                    float(original_value_element.attrib['valeur']) == float(value_element.attrib['valeur'])
+                if is_valid:
+                    return True
+            return False
 
-        # Check for dates overlaps.
-        # for (deb1, fin1), (deb2, fin2) in itertools.combinations(sorted(valeurs_by_deb_fin.keys()), 2):
-        #     if deb2 < fin1:
-        #         conflicts.add(u'children:dates_overlap({})'.format(((deb1, fin1), (deb2, fin2))))
-        #         break
-        # else:
-        # Check for values mismatchs.
-        for deb_fin, valeurs in valeurs_by_deb_fin.iteritems():
-            if len(set(map(float, valeurs))) > 1:
-                conflicts.add(u'children:valeurs({}:{})'.format(deb_fin, ','.join(valeurs)))
+        for original_value_element in original_element:
+            if not is_included_in_ipp(original_value_element):
+                conflicts.add(u'children:openfisca-not-fully-included-in-ipp')
                 break
 
         if conflicts:
