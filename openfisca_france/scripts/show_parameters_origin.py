@@ -177,11 +177,13 @@ conflicting_parameters_to_ignore = [
     'impot_revenu.charges_deductibles.pensions_alimentaires.plafond',
     'impot_revenu.plafond_qf.reduc_postplafond',
     'impot_revenu.rpns.micro.imputation_sur_le_revenu_global.plafond_deficits_agricoles',
+    'impot_revenu.rvcm.abatmob'
     'prestations.prestations_familiales.ars.plafond_ressources',
-    # IPP utulise les paramètres apparaissant dans la législation
+    # IPP utilise les paramètres apparaissant dans la législation
     'prestations.prestations_familiales.af.modulation.majoration_plafond_par_enfant_supplementaire',
     'prestations.prestations_familiales.af.modulation.plafond_tranche_1',
     'prestations.prestations_familiales.af.modulation.plafond_tranche_2',
+    'impot_revenu.rpns.micro.microfoncier.taux'  # 0.33 vs .33333333
     ]
 
 
