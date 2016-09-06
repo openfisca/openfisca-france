@@ -2,6 +2,8 @@
 
 from __future__ import division
 
+
+import datetime
 import logging
 
 from numpy import (datetime64, logical_and as and_, logical_not as not_, logical_or as or_, logical_xor as xor_,
@@ -612,7 +614,6 @@ class rev_cat_rvcm(DatedVariable):
         _P = simulation.legislation_at(period.start)
         finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl
         rvcm = simulation.legislation_at(period.start).impot_revenu.rvcm
-        import datetime
 
         f2dc_bis = f2dc
         f2tr_bis = f2tr
@@ -631,10 +632,7 @@ class rev_cat_rvcm(DatedVariable):
         rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        if period.start.date >= datetime.date(2012, 1, 01):
-            h12 = 0
-        else:
-            h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -663,7 +661,6 @@ class rev_cat_rvcm(DatedVariable):
         f2tr = simulation.calculate('f2tr', period)
         finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl
         rvcm = simulation.legislation_at(period.start).impot_revenu.rvcm
-        import datetime
 
         # Add f2da to f2dc and f2ee to f2tr when no PFL
         f2dc_bis = f2dc
@@ -737,10 +734,7 @@ class rev_cat_rvcm(DatedVariable):
         rev = g12b + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        if period.start.date >= datetime.date(2012, 1, 01):
-            h12 = 0
-        else:
-            h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        h12 = 0
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
