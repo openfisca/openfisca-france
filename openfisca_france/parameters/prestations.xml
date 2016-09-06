@@ -76,7 +76,7 @@
         <CODE code="apl2_foyer" format="float" origin="ipp" type="monetary">
           <VALUE deb="2007-01-01" fuzzy="true" valeur="15" />
         </CODE>
-        <CODE code="montant_min_apl_al" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2002-01-01,fin=2004-06-30,valeur=15)" description="Seuil de non versement" format="float" origin="ipp" type="monetary">
+        <CODE code="montant_min_apl_al" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2004-06-30,openfisca_valeur=15,ipp_valeur=unknown)" description="Seuil de non versement" format="float" origin="ipp" type="monetary">
           <VALUE deb="2007-01-01" fuzzy="true" valeur="15" />
           <VALUE deb="2004-06-01" fin="2006-12-31" valeur="24" />
           <VALUE deb="2002-01-01" fin="2004-05-31" valeur="15" />
@@ -223,7 +223,7 @@
           <VALUE deb="2001-07-01" fin="2001-12-31" valeur="314" />
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="310" />
         </CODE>
-        <CODE code="personnes_seules" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2002-07-01,fin=2003-06-30,valeur=248.1)" description="Zone 1 - 1 adulte" format="float" origin="ipp" type="monetary">
+        <CODE code="personnes_seules" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-07-01,openfisca_fin=2003-06-30,openfisca_valeur=248.1,ipp_valeur=248.18)" description="Zone 1 - 1 adulte" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-10-01" fuzzy="true" valeur="292.62" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="290.96" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="284.84" />
@@ -323,7 +323,7 @@
         </CODE>
       </NODE>
       <NODE code="zone3" description="Zone 3" origin="ipp">
-        <CODE code="couples" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2011-01-01,fin=2011-12-31,valeur=279.27)" description="Zone 3 - 2 adultes" format="float" origin="ipp" type="monetary">
+        <CODE code="couples" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2011-01-01,openfisca_fin=2011-12-31,openfisca_valeur=279.27,ipp_valeur=279.37)" description="Zone 3 - 2 adultes" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-10-01" fuzzy="true" valeur="289.76" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="288.12" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="282.06" />
@@ -390,7 +390,7 @@
       </NODE>
     </NODE>
     <NODE code="participation_min" origin="ipp">
-      <CODE code="montant_forfaitaire" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2009-01-01,fin=2010-12-31,valeur=33)" description="Participation minimale" format="float" origin="ipp" type="monetary">
+      <CODE code="montant_forfaitaire" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2009-01-01,openfisca_fin=2010-12-31,openfisca_valeur=33,ipp_valeur=unknown)" description="Participation minimale" format="float" origin="ipp" type="monetary">
         <VALUE deb="2014-10-01" fuzzy="true" valeur="34.73" />
         <VALUE deb="2013-01-01" fin="2014-09-30" valeur="34.53" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="33.8" />
@@ -632,7 +632,7 @@
         <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0338" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0278" />
       </CODE>
-      <CODE code="taux_2_adulte" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2001-07-01,fin=2007-06-30,valeur=0.0394)" description="Taux pour 2 adultes" format="percent" origin="ipp">
+      <CODE code="taux_2_adulte" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2001-07-01,openfisca_fin=2007-06-30,openfisca_valeur=0.0394,ipp_valeur=unknown)" description="Taux pour 2 adultes" format="percent" origin="ipp">
         <VALUE deb="2007-07-01" fuzzy="true" valeur="0.0315" />
         <VALUE deb="2002-01-01" fin="2007-06-30" valeur="0.0394" />
         <VALUE deb="2001-01-01" fin="2001-12-31" valeur="0.0331" />
@@ -2893,7 +2893,7 @@
       <CODE code="majoration_du_plafond_pour_un_couple" format="percent" origin="ipp">
         <VALUE deb="2000-01-01" fuzzy="true" valeur="1" />
       </CODE>
-      <CODE code="montant" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2015-09-01,fin=2016-08-31,valeur=807.65)" description="Montant mensuel de l'allocation adulte handicapé" format="float" origin="ipp" type="monetary">
+      <CODE code="montant" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2015-09-01,openfisca_fin=2016-08-31,openfisca_valeur=807.65,ipp_valeur=unknown)" description="Montant mensuel de l'allocation adulte handicapé" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="808.46" />
         <VALUE deb="2015-09-01" fin="2016-03-31" valeur="807.65" />
         <VALUE deb="2014-09-01" fin="2015-08-31" valeur="800.45" />
@@ -2923,7 +2923,7 @@
       <CODE code="taux_d_incapcite" format="percent" origin="ipp">
         <VALUE deb="2000-01-01" fuzzy="true" valeur="0.8" />
       </CODE>
-      <CODE code="tx_plaf_supp" conflicts="children:openfisca-not-fully-included-in-ipp(deb=1998-01-01,fin=2014-12-31,valeur=.5)" description="Majoration de plafond pour personne à charge (en pourcentage du plafond de base)" format="percent" origin="ipp">
+      <CODE code="tx_plaf_supp" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=1998-01-01,openfisca_fin=2014-12-31,openfisca_valeur=.5,ipp_valeur=unknown)" description="Majoration de plafond pour personne à charge (en pourcentage du plafond de base)" format="percent" origin="ipp">
         <VALUE deb="2000-01-01" fuzzy="true" valeur="0.5" />
       </CODE>
     </NODE>
@@ -2935,21 +2935,21 @@
         <VALUE deb="2014-01-01" fuzzy="true" valeur="219.53" />
         <VALUE deb="2005-01-01" fin="2013-12-31" valeur="219.53" />
       </CODE>
-      <CODE code="mon_seul" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2014-01-01,fin=None,valeur=152.45)" description="Montant de l'aide pour une personne seule" format="float" origin="ipp" type="monetary">
+      <CODE code="mon_seul" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2014-01-01,openfisca_fin=None,openfisca_valeur=152.45,ipp_valeur=unknown)" description="Montant de l'aide pour une personne seule" format="float" origin="ipp" type="monetary">
         <VALUE deb="2003-01-01" fuzzy="true" valeur="125.45" />
       </CODE>
-      <CODE code="tx_2p" conflicts="children:openfisca-not-fully-included-in-ipp(deb=1998-01-01,fin=2013-12-31,valeur=.50)" description="Taux pour la seconde personne" format="percent" origin="ipp">
+      <CODE code="tx_2p" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=1998-01-01,openfisca_fin=2013-12-31,openfisca_valeur=.50,ipp_valeur=unknown)" description="Taux pour la seconde personne" format="percent" origin="ipp">
         <VALUE deb="2003-01-01" fuzzy="true" valeur="0.5" />
       </CODE>
-      <CODE code="tx_3pac" conflicts="children:openfisca-not-fully-included-in-ipp(deb=1998-01-01,fin=2013-12-31,valeur=.40)" description="Taux au delà de la troisième personne à charge incluse" format="percent" origin="ipp">
+      <CODE code="tx_3pac" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=1998-01-01,openfisca_fin=2013-12-31,openfisca_valeur=.40,ipp_valeur=unknown)" description="Taux au delà de la troisième personne à charge incluse" format="percent" origin="ipp">
         <VALUE deb="2003-01-01" fuzzy="true" valeur="0.4" />
       </CODE>
-      <CODE code="tx_supp" conflicts="children:openfisca-not-fully-included-in-ipp(deb=1998-01-01,fin=2013-12-31,valeur=.30)" description="Taux personne supplémentaire" format="percent" origin="ipp">
+      <CODE code="tx_supp" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=1998-01-01,openfisca_fin=2013-12-31,openfisca_valeur=.30,ipp_valeur=unknown)" description="Taux personne supplémentaire" format="percent" origin="ipp">
         <VALUE deb="2003-01-01" fuzzy="true" valeur="0.3" />
       </CODE>
     </NODE>
     <NODE code="api" description="Allocation parent isolé" origin="ipp">
-      <CODE code="age_limite" conflicts="children:openfisca-not-fully-included-in-ipp(deb=1977-10-01,fin=2014-12-31,valeur=3)" description="Limite d'âge des enfants ouvrant droit" origin="ipp">
+      <CODE code="age_limite" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=1977-10-01,openfisca_fin=2014-12-31,openfisca_valeur=3,ipp_valeur=unknown)" description="Limite d'âge des enfants ouvrant droit" origin="ipp">
         <VALUE deb="1976-10-01" fin="2009-05-31" valeur="3" />
       </CODE>
       <CODE code="age_pac" description="Limite d'âge des enfants comptés à charge" format="integer" origin="openfisca" type="age">
@@ -2974,13 +2974,13 @@
         <VALUE deb="1977-11-27" fin="2009-05-31" valeur="2" />
         <VALUE deb="1976-10-01" fin="1977-11-26" valeur="1.74" />
       </CODE>
-      <CODE code="supplement_par_enfant" conflicts="children:openfisca-not-fully-included-in-ipp(deb=1977-10-01,fin=2009-05-31,valeur=0.5)" description="Majoration de taux par enfant supplémentaire (en pourcentage de la BMAF)" format="percent" origin="ipp">
+      <CODE code="supplement_par_enfant" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=1977-10-01,openfisca_fin=2009-05-31,openfisca_valeur=0.5,ipp_valeur=unknown)" description="Majoration de taux par enfant supplémentaire (en pourcentage de la BMAF)" format="percent" origin="ipp">
         <VALUE deb="1977-11-27" fin="2009-05-31" valeur="0.5" />
         <VALUE deb="1976-10-01" fin="1977-11-26" valeur="0.44" />
       </CODE>
     </NODE>
     <NODE code="asi" description="Allocation supplémentaire d'invalidité" origin="ipp">
-      <CODE code="montant_couple" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2005-01-01,fin=2005-12-31,valeur=0)" description="Montant annuel couple" format="float" origin="ipp" type="monetary">
+      <CODE code="montant_couple" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2005-01-01,openfisca_fin=2005-12-31,openfisca_valeur=0,ipp_valeur=unknown)" description="Montant annuel couple" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="8003.27" />
         <VALUE deb="2014-04-01" fin="2016-03-31" valeur="7995.28" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="7947.6" />
@@ -2993,7 +2993,7 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="7246.9" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="7118.77" />
       </CODE>
-      <CODE code="montant_seul" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2005-01-01,fin=2005-12-31,valeur=0)" description="Montant annuel personne seule" format="float" origin="ipp" type="monetary">
+      <CODE code="montant_seul" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2005-01-01,openfisca_fin=2005-12-31,openfisca_valeur=0,ipp_valeur=unknown)" description="Montant annuel personne seule" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="4850.01" />
         <VALUE deb="2014-04-01" fin="2016-03-31" valeur="4845.17" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="4816.28" />
@@ -3006,7 +3006,7 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="4391.68" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="4314.03" />
       </CODE>
-      <CODE code="plafond_ressource_couple" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2005-01-01,fin=2005-12-31,valeur=12905.2902)" description="Plafond de ressources (allocation comprise) pour un couple" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_ressource_couple" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2005-01-01,openfisca_fin=2005-12-31,openfisca_valeur=12905.2902,ipp_valeur=unknown)" description="Plafond de ressources (allocation comprise) pour un couple" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="14770.07" />
         <VALUE deb="2014-04-01" fin="2016-03-31" valeur="14755.32" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="14667.32" />
@@ -3019,7 +3019,7 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="13374.16" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="13137.69" />
       </CODE>
-      <CODE code="plafond_ressource_seul" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2009-01-01,fin=2009-12-31,valeur=7781.27)" description="Plafond de ressources (allocation comprise) pour une personne seule" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_ressource_seul" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2009-01-01,openfisca_fin=2009-12-31,openfisca_valeur=7781.27,ipp_valeur=unknown)" description="Plafond de ressources (allocation comprise) pour une personne seule" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="8432.47" />
         <VALUE deb="2014-04-01" fin="2016-03-31" valeur="8424.05" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="8373.81" />
@@ -3060,7 +3060,7 @@
         <VALUE deb="2007-02-01" fin="2015-12-31" valeur="0" />
         <VALUE deb="1986-01-01" fin="2007-01-31" valeur="0.1" />
       </CODE>
-      <CODE code="montant_annuel_couple" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2008-09-01,fin=2009-03-31,valeur=13629.38)" description="Montant annuel pour un couple marié" format="float" origin="ipp" type="monetary">
+      <CODE code="montant_annuel_couple" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2008-09-01,openfisca_fin=2009-03-31,openfisca_valeur=13629.38,ipp_valeur=13629.44)" description="Montant annuel pour un couple marié" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="14918.9" />
         <VALUE deb="2014-10-01" fin="2016-03-31" valeur="14904" />
         <VALUE deb="2014-04-01" fin="2014-09-30" valeur="14755.32" />
@@ -3074,7 +3074,7 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="13374.17" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="13137.69" />
       </CODE>
-      <CODE code="montant_annuel_seul" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2008-09-01,fin=2009-03-31,valeur=7597.57)" description="Montant annuel pour une personne seule" format="float" origin="ipp" type="monetary">
+      <CODE code="montant_annuel_seul" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2008-09-01,openfisca_fin=2009-03-31,openfisca_valeur=7597.57,ipp_valeur=7597.59)" description="Montant annuel pour une personne seule" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="9609.6" />
         <VALUE deb="2014-10-01" fin="2016-03-31" valeur="9600" />
         <VALUE deb="2014-04-01" fin="2014-09-30" valeur="9503.89" />
@@ -3102,7 +3102,7 @@
         <VALUE deb="2007-01-01" fin="2007-12-31" valeur="7635.53" />
         <VALUE deb="2006-01-01" fin="2006-12-31" valeur="7500.53" />
       </CODE>
-      <CODE code="plafond_ressources_couple" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2005-01-01,fin=2005-12-31,valeur=12905.2902)" description="Plafond de ressources annuelles pour un couple" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_ressources_couple" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2005-01-01,openfisca_fin=2005-12-31,openfisca_valeur=12905.2902,ipp_valeur=unknown)" description="Plafond de ressources annuelles pour un couple" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="14918.9" />
         <VALUE deb="2014-10-01" fin="2016-03-31" valeur="14904" />
         <VALUE deb="2014-04-01" fin="2014-09-30" valeur="14755.32" />
@@ -3242,7 +3242,7 @@
         <CODE code="seuil_max_bonification" description="Seuil de salaire pour bénéficier de la bonification maximale, en multiple du smic horaire brut." origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="95" />
         </CODE>
-        <CODE code="taux_bonification_max" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2016-01-01,fin=2016-12-31,valeur=0.12782)" description="Bonification maximale, en pourcentage du montant de base du RSA" format="percent" origin="ipp">
+        <CODE code="taux_bonification_max" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2016-01-01,openfisca_fin=2016-12-31,openfisca_valeur=0.12782,ipp_valeur=unknown)" description="Bonification maximale, en pourcentage du montant de base du RSA" format="percent" origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="0.122782" />
         </CODE>
       </NODE>
@@ -3474,7 +3474,7 @@
         <VALUE deb="2015-01-01" fuzzy="true" valeur="24" />
         <VALUE deb="1977-10-01" fin="2014-12-31" valeur="24" />
       </CODE>
-      <CODE code="duree_min_titre_sejour" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2002-01-01,fin=2015-12-31,valeur=5)" description="Durée minimale de titre du séjour permettant de bénéficier du RSA" origin="ipp">
+      <CODE code="duree_min_titre_sejour" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2015-12-31,openfisca_valeur=5,ipp_valeur=unknown)" description="Durée minimale de titre du séjour permettant de bénéficier du RSA" origin="ipp">
         <VALUE deb="2009-06-01" fuzzy="true" valeur="5" />
       </CODE>
       <NODE code="forfait_asf" description="Forfait Allocation de Soutien Familial" origin="openfisca">
@@ -3554,17 +3554,17 @@
         </CODE>
       </NODE>
       <NODE code="majoration_rsa" origin="ipp">
-        <CODE code="taux_deuxieme_personne" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2002-01-01,fin=2014-12-31,valeur=0.5)" description="Taux pour une 2nde personne" format="percent" origin="ipp">
+        <CODE code="taux_deuxieme_personne" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2014-12-31,openfisca_valeur=0.5,ipp_valeur=unknown)" description="Taux pour une 2nde personne" format="percent" origin="ipp">
           <VALUE deb="2009-06-01" fuzzy="true" valeur="0.5" />
         </CODE>
-        <CODE code="taux_personne_supp" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2002-01-01,fin=2014-12-31,valeur=0.4)" description="Taux par personne supplémentaire" format="percent" origin="ipp">
+        <CODE code="taux_personne_supp" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2014-12-31,openfisca_valeur=0.4,ipp_valeur=unknown)" description="Taux par personne supplémentaire" format="percent" origin="ipp">
           <VALUE deb="2009-06-01" fuzzy="true" valeur="0.4" />
         </CODE>
-        <CODE code="taux_troisieme_personne" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2002-01-01,fin=2014-12-31,valeur=0.3)" description="Taux pour une 3e personne" format="percent" origin="ipp">
+        <CODE code="taux_troisieme_personne" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2014-12-31,openfisca_valeur=0.3,ipp_valeur=unknown)" description="Taux pour une 3e personne" format="percent" origin="ipp">
           <VALUE deb="2009-06-01" fuzzy="true" valeur="0.3" />
         </CODE>
       </NODE>
-      <CODE code="montant_de_base_du_rsa" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2009-01-01,fin=2009-12-31,valeur=454.63)" description="Rsa socle" format="float" origin="ipp" type="monetary">
+      <CODE code="montant_de_base_du_rsa" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2009-01-01,openfisca_fin=2009-12-31,openfisca_valeur=454.63,ipp_valeur=unknown)" description="Rsa socle" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="524.68" />
         <VALUE deb="2015-09-01" fin="2016-03-31" valeur="524.16" />
         <VALUE deb="2015-01-01" fin="2015-08-31" valeur="513.88" />
@@ -3678,7 +3678,7 @@
       <CODE code="age_maximum_de_l_enfant" origin="ipp">
         <VALUE deb="2006-01-01" fuzzy="true" valeur="20" />
       </CODE>
-      <CODE code="base" conflicts="children:openfisca-not-fully-included-in-ipp(deb=1985-01-01,fin=2014-03-31,valeur=.32)" description="Allocation de base" format="percent" origin="ipp">
+      <CODE code="base" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=1985-01-01,openfisca_fin=2014-03-31,openfisca_valeur=.32,ipp_valeur=unknown)" description="Allocation de base" format="percent" origin="ipp">
         <VALUE deb="2006-01-01" fuzzy="true" valeur="0.32" />
       </CODE>
       <NODE code="complement_d_allocation" origin="ipp">
@@ -3877,7 +3877,7 @@
         <VALUE deb="2014-04-01" fuzzy="true" valeur="20" />
         <VALUE deb="2003-07-01" fin="2014-03-31" valeur="20" />
       </CODE>
-      <CODE code="bmaf" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2014-04-01,fin=2016-03-31,valeur=406.21)" description="Base mensuelle des allocations familiales" format="float" origin="ipp" type="monetary">
+      <CODE code="bmaf" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2014-04-01,openfisca_fin=2016-03-31,openfisca_valeur=406.21,ipp_valeur=406.21274)" description="Base mensuelle des allocations familiales" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="406.62" />
         <VALUE deb="2014-04-01" fin="2016-03-31" valeur="406.21274" />
         <VALUE deb="2013-04-01" fin="2014-03-31" valeur="403.79" />
@@ -3960,7 +3960,7 @@
         <CODE code="age_minimal_forfait" origin="ipp">
           <VALUE deb="2003-07-01" fuzzy="true" valeur="20" />
         </CODE>
-        <CODE code="taux_allocation_forfaitaire" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2000-01-01,fin=2003-06-30,valeur=0)" description="Allocation forfaitaire par enfant de 20 ans" format="percent" origin="ipp">
+        <CODE code="taux_allocation_forfaitaire" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2000-01-01,openfisca_fin=2003-06-30,openfisca_valeur=0,ipp_valeur=unknown)" description="Allocation forfaitaire par enfant de 20 ans" format="percent" origin="ipp">
           <VALUE deb="2003-07-01" fuzzy="true" valeur="0.20234" />
         </CODE>
         <NODE code="taux_appliques_aux_differentes_tranches_d_age" origin="ipp">
@@ -3988,11 +3988,11 @@
           <VALUE deb="2016-01-01" fuzzy="true" valeur="5617" />
           <VALUE deb="2015-07-01" fin="2015-12-31" valeur="5595" />
         </CODE>
-        <CODE code="plafond_tranche_1" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2016-01-01,fin=None,valeur=55950)" description="Plafond annuel de ressources n°1" format="float" origin="ipp" type="monetary">
+        <CODE code="plafond_tranche_1" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2016-01-01,openfisca_fin=None,openfisca_valeur=55950,ipp_valeur=67408)" description="Plafond annuel de ressources n°1" format="float" origin="ipp" type="monetary">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="67408" />
           <VALUE deb="2015-07-01" fin="2015-12-31" valeur="67140" />
         </CODE>
-        <CODE code="plafond_tranche_2" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2016-01-01,fin=None,valeur=78300)" description="Plafond annuel de ressources n°2" format="float" origin="ipp" type="monetary">
+        <CODE code="plafond_tranche_2" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2016-01-01,openfisca_fin=None,openfisca_valeur=78300,ipp_valeur=89847)" description="Plafond annuel de ressources n°2" format="float" origin="ipp" type="monetary">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="89847" />
           <VALUE deb="2015-07-01" fin="2015-12-31" valeur="89490" />
         </CODE>
@@ -4144,14 +4144,14 @@
         <VALUE deb="1987-04-01" fuzzy="true" valeur="0.7129" />
         <VALUE deb="1985-01-01" fin="1987-03-31" valeur="0.451" />
       </CODE>
-      <CODE code="taux_inactivite" conflicts="children:openfisca-not-fully-included-in-ipp(deb=1987-04-01,fin=2006-06-30,valeur=1.4275)" description="Cessation complète d'activité à plein temps (en % de la bmaf)" format="percent" origin="ipp">
+      <CODE code="taux_inactivite" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=1987-04-01,openfisca_fin=2006-06-30,openfisca_valeur=1.4275,ipp_valeur=unknown)" description="Cessation complète d'activité à plein temps (en % de la bmaf)" format="percent" origin="ipp">
         <VALUE deb="1987-04-01" fuzzy="true" valeur="1.4257" />
         <VALUE deb="1986-07-01" fin="1987-03-31" valeur="0.902" />
         <VALUE deb="1985-01-01" fin="1986-06-30" valeur="0.624" />
       </CODE>
     </NODE>
     <NODE code="apje" description="Allocation pour jeune enfant (APJE)" origin="ipp">
-      <CODE code="age_max_dernier_enf" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2000-01-01,fin=2006-06-30,valeur=3)" description="Âge limite inférieur" origin="ipp">
+      <CODE code="age_max_dernier_enf" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2000-01-01,openfisca_fin=2006-06-30,openfisca_valeur=3,ipp_valeur=unknown)" description="Âge limite inférieur" origin="ipp">
         <VALUE deb="1985-01-01" fin="2003-12-31" valeur="3" />
       </CODE>
       <NODE code="majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant" origin="ipp">
@@ -4200,7 +4200,7 @@
         <VALUE deb="1997-07-01" fin="1998-06-30" valeur="86132" />
         <VALUE deb="1996-07-01" fin="1997-06-30" valeur="84526" />
       </CODE>
-      <CODE code="taux" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2000-01-01,fin=2006-06-30,valeur=0.4595)" description="Taux de l'APJE" format="percent" origin="ipp">
+      <CODE code="taux" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2000-01-01,openfisca_fin=2006-06-30,openfisca_valeur=0.4595,ipp_valeur=unknown)" description="Taux de l'APJE" format="percent" origin="ipp">
         <VALUE deb="1985-01-01" fin="2003-12-31" valeur="0.4595" />
       </CODE>
       <CODE code="taux_enfant_1_et_2" description="Majoration du plafond pour les 2 premiers enfants" format="percent" origin="ipp">
@@ -4226,7 +4226,7 @@
         <VALUE deb="1990-09-06" fuzzy="true" valeur="18" />
         <VALUE deb="1976-08-18" fin="1990-09-05" valeur="16" />
       </CODE>
-      <CODE code="majoration_par_enf_supp" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2002-01-01,fin=2015-12-31,valeur=0.3)" description="Majoration du plafond de ressources par enfant à charge" format="percent" origin="ipp">
+      <CODE code="majoration_par_enf_supp" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2015-12-31,openfisca_valeur=0.3,ipp_valeur=unknown)" description="Majoration du plafond de ressources par enfant à charge" format="percent" origin="ipp">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.3" />
         <VALUE deb="2012-01-01" fin="2013-12-31" valeur="0.300011206993" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.30001697889" />
@@ -4236,10 +4236,10 @@
         <VALUE deb="1986-07-01" fin="1997-06-30" valeur="0.230763896594" />
         <VALUE deb="1978-07-13" fin="1986-06-30" valeur="0.3" />
       </CODE>
-      <CODE code="montant_seuil_non_versement" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2002-01-01,fin=2015-03-31,valeur=15)" description="Seuil de non versement" format="float" origin="ipp" type="monetary">
+      <CODE code="montant_seuil_non_versement" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2015-03-31,openfisca_valeur=15,ipp_valeur=unknown)" description="Seuil de non versement" format="float" origin="ipp" type="monetary">
         <VALUE deb="2002-08-09" fuzzy="true" valeur="15" />
       </CODE>
-      <CODE code="plafond_ressources" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2006-07-01,fin=2008-12-31,valeur=16916)" description="Plafond de ressources" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_ressources" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2006-07-01,openfisca_fin=2008-12-31,openfisca_valeur=16916,ipp_valeur=unknown)" description="Plafond de ressources" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="18772" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="18697" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="18567" />
@@ -4263,7 +4263,7 @@
         <VALUE deb="1986-07-01" fin="1997-06-30" valeur="72104" />
         <VALUE deb="1978-07-13" fin="1986-06-30" valeur="25500" />
       </CODE>
-      <CODE code="taux_college" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2012-09-01,fin=2015-03-31,valeur=0.9467)" description="Taux pour les collégiens (en % de bmaf)" format="percent" origin="ipp">
+      <CODE code="taux_college" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2012-09-01,openfisca_fin=2015-03-31,openfisca_valeur=0.9467,ipp_valeur=unknown)" description="Taux pour les collégiens (en % de bmaf)" format="percent" origin="ipp">
         <VALUE deb="2012-09-03" fuzzy="true" valeur="0.9467" />
         <VALUE deb="2008-08-03" fin="2012-09-02" valeur="0.7649" />
         <VALUE deb="2001-08-01" fin="2008-08-02" valeur="0.7322" />
@@ -4271,7 +4271,7 @@
         <VALUE deb="1995-08-01" fin="1997-07-31" valeur="0.3223" />
         <VALUE deb="1978-01-01" fin="1995-07-31" valeur="0.2" />
       </CODE>
-      <CODE code="taux_lycee" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2008-01-01,fin=2012-09-02,valeur=0.7915)" description="Taux pour les lycéens (en % de bmaf)" format="percent" origin="ipp">
+      <CODE code="taux_lycee" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2008-01-01,openfisca_fin=2012-09-02,openfisca_valeur=0.7915,ipp_valeur=unknown)" description="Taux pour les lycéens (en % de bmaf)" format="percent" origin="ipp">
         <VALUE deb="2012-09-03" fuzzy="true" valeur="0.9795" />
         <VALUE deb="2008-08-03" fin="2012-09-02" valeur="0.7915" />
         <VALUE deb="2001-08-01" fin="2008-08-02" valeur="0.7322" />
@@ -4279,7 +4279,7 @@
         <VALUE deb="1995-08-01" fin="1997-07-31" valeur="0.3223" />
         <VALUE deb="1978-01-01" fin="1995-07-31" valeur="0.2" />
       </CODE>
-      <CODE code="taux_primaire" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2008-01-01,fin=2012-09-02,valeur=0.725)" description="Taux pour les écoliers (en % de bmaf)" format="percent" origin="ipp">
+      <CODE code="taux_primaire" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2008-01-01,openfisca_fin=2012-09-02,openfisca_valeur=0.725,ipp_valeur=unknown)" description="Taux pour les écoliers (en % de bmaf)" format="percent" origin="ipp">
         <VALUE deb="2012-09-03" fuzzy="true" valeur="0.8972" />
         <VALUE deb="2008-08-03" fin="2012-09-02" valeur="0.725" />
         <VALUE deb="2001-08-01" fin="2008-08-02" valeur="0.7322" />
@@ -4297,13 +4297,13 @@
           <VALUE deb="2009-06-01" fuzzy="true" valeur="0.3" />
         </CODE>
       </NODE>
-      <CODE code="taux_1_parent" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2016-04-01,fin=None,valeur=0.2589)" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée, en pourcentage de la BMAF" format="percent" origin="ipp">
+      <CODE code="taux_1_parent" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2016-04-01,openfisca_fin=None,openfisca_valeur=0.2589,ipp_valeur=unknown)" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée, en pourcentage de la BMAF" format="percent" origin="ipp">
         <VALUE deb="2015-04-01" fuzzy="true" valeur="0.2476" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.2363" />
         <VALUE deb="1978-01-01" fin="2014-03-31" valeur="0.225" />
         <VALUE deb="1970-12-26" fin="1977-12-31" valeur="0.16" />
       </CODE>
-      <CODE code="taux_2_parents" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2016-04-01,fin=None,valeur=0.3450)" description="Orphelin (de père et de mère), ou situation assimilée" format="percent" origin="ipp">
+      <CODE code="taux_2_parents" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2016-04-01,openfisca_fin=None,openfisca_valeur=0.3450,ipp_valeur=unknown)" description="Orphelin (de père et de mère), ou situation assimilée" format="percent" origin="ipp">
         <VALUE deb="2015-04-01" fuzzy="true" valeur="0.33" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.315" />
         <VALUE deb="1970-12-26" fin="2014-03-31" valeur="0.3" />
@@ -4313,20 +4313,20 @@
       <CODE code="age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom" origin="ipp">
         <VALUE deb="2002-01-01" fuzzy="true" valeur="3" />
       </CODE>
-      <CODE code="age_max" conflicts="children:openfisca-not-fully-included-in-ipp(deb=1998-01-01,fin=2014-03-31,valeur=21)" description="Âge limite supérieur" origin="ipp">
+      <CODE code="age_max" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=1998-01-01,openfisca_fin=2014-03-31,openfisca_valeur=21,ipp_valeur=unknown)" description="Âge limite supérieur" origin="ipp">
         <VALUE deb="2000-02-01" fuzzy="true" valeur="21" />
         <VALUE deb="1997-01-01" fin="2000-01-31" valeur="18" />
         <VALUE deb="1986-07-01" fin="1996-12-31" valeur="17" />
         <VALUE deb="1978-01-01" fin="1986-06-30" valeur="3" />
       </CODE>
-      <CODE code="age_maximal_dom" conflicts="children:openfisca-not-fully-included-in-ipp(deb=1986-01-01,fin=2014-03-31,valeur=5)" description="Âge limite DOM" origin="ipp">
+      <CODE code="age_maximal_dom" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=1986-01-01,openfisca_fin=2014-03-31,openfisca_valeur=5,ipp_valeur=unknown)" description="Âge limite DOM" origin="ipp">
         <VALUE deb="2002-01-01" fuzzy="true" valeur="5" />
       </CODE>
       <CODE code="age_min" origin="ipp">
         <VALUE deb="1986-07-01" fuzzy="true" valeur="3" />
         <VALUE deb="1978-01-01" fin="1986-06-30" valeur="0" />
       </CODE>
-      <CODE code="age_minimal_dom" conflicts="children:openfisca-not-fully-included-in-ipp(deb=1986-01-01,fin=2014-03-31,valeur=3)" description="Âge limite inférieur" origin="ipp">
+      <CODE code="age_minimal_dom" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=1986-01-01,openfisca_fin=2014-03-31,openfisca_valeur=3,ipp_valeur=unknown)" description="Âge limite inférieur" origin="ipp">
         <VALUE deb="2002-01-01" fuzzy="true" valeur="3" />
       </CODE>
       <CODE code="majoration_du_plafond_de_ressources_enfant_supplementaire" format="percent" origin="ipp">
@@ -4338,12 +4338,12 @@
       <CODE code="majoration_plafond_2_premiers_enf" description="Majoration du plafond pour les 2 premiers enfants" format="percent" origin="ipp">
         <VALUE deb="1986-01-01" fuzzy="true" valeur="0.25" />
       </CODE>
-      <CODE code="majoration_plafond_3eme_enf_et_plus" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2002-01-01,fin=2014-12-31,valeur=0.3)" description="Majoration du plafond à partir du 3ème enfant" format="percent" origin="ipp">
+      <CODE code="majoration_plafond_3eme_enf_et_plus" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2014-12-31,openfisca_valeur=0.3,ipp_valeur=unknown)" description="Majoration du plafond à partir du 3ème enfant" format="percent" origin="ipp">
         <VALUE deb="2010-01-01" fuzzy="true" valeur="0.3" />
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="0.25" />
         <VALUE deb="1986-01-01" fin="2008-12-31" valeur="0.3" />
       </CODE>
-      <CODE code="majoration_plafond_biact_isole" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2008-07-01,fin=2009-12-31,valeur=7702)" description="Majoration du plafond pour biactifs ou isolé" format="float" origin="ipp" type="monetary">
+      <CODE code="majoration_plafond_biact_isole" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2008-07-01,openfisca_fin=2009-12-31,openfisca_valeur=7702,ipp_valeur=unknown)" description="Majoration du plafond pour biactifs ou isolé" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="8420" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8386" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="8328" />
@@ -4370,7 +4370,7 @@
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
         <VALUE deb="2014-04-01" fin="2015-12-31" valeur="0.5" />
       </CODE>
-      <CODE code="plafond_de_ressources_0_enfant" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2012-01-01,fin=2012-12-31,valeur=19916)" description="Plafond de ressources" format="float" origin="ipp" type="monetary">
+      <CODE code="plafond_de_ressources_0_enfant" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2012-01-01,openfisca_fin=2012-12-31,openfisca_valeur=19916,ipp_valeur=19915)" description="Plafond de ressources" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="20947" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="20864" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="20719" />
@@ -4413,7 +4413,7 @@
         <VALUE deb="1983-01-01" fuzzy="true" valeur="0.4165" />
         <VALUE deb="1978-01-01" fin="1982-12-31" valeur="0.4475" />
       </CODE>
-      <CODE code="taux_cf_majore" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2002-01-01,fin=2014-03-31,valeur=0.4165)" description="Taux du complément familial majoré" format="percent" origin="ipp">
+      <CODE code="taux_cf_majore" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2014-03-31,openfisca_valeur=0.4165,ipp_valeur=unknown)" description="Taux du complément familial majoré" format="percent" origin="ipp">
         <VALUE deb="2016-04-01" fuzzy="true" valeur="0.5416" />
         <VALUE deb="2015-04-01" fin="2016-03-31" valeur="0.4999" />
         <VALUE deb="2014-04-01" fin="2015-03-31" valeur="0.4582" />
@@ -4458,7 +4458,7 @@
           <VALUE deb="2004-01-01" fuzzy="true" valeur="3" />
         </CODE>
         <NODE code="apres_2014" origin="ipp">
-          <CODE code="plaf_tx_par_enf" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2004-01-01,fin=2014-03-31,valeur=0)" description="Majoration du plafond par enfant" format="percent" origin="ipp">
+          <CODE code="plaf_tx_par_enf" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2004-01-01,openfisca_fin=2014-03-31,openfisca_valeur=0,ipp_valeur=unknown)" description="Majoration du plafond par enfant" format="percent" origin="ipp">
             <VALUE deb="2014-04-01" fuzzy="true" valeur="0.22" />
           </CODE>
           <NODE code="taux_partiel" origin="openfisca">
@@ -4502,7 +4502,7 @@
             <VALUE deb="2004-07-01" fin="2005-06-30" valeur="7905" />
             <VALUE deb="2004-01-01" fin="2004-06-30" valeur="7758" />
           </CODE>
-          <CODE code="plafond_ressources_0_enf" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2012-01-01,fin=2012-12-31,valeur=27283)" description="Plafond de ressources" format="float" origin="ipp" type="monetary">
+          <CODE code="plafond_ressources_0_enf" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2012-01-01,openfisca_fin=2012-12-31,openfisca_valeur=27283,ipp_valeur=27282)" description="Plafond de ressources" format="float" origin="ipp" type="monetary">
             <VALUE deb="2016-01-01" fuzzy="true" valeur="28697" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="28583" />
             <VALUE deb="2014-01-01" fin="2014-12-31" valeur="28384" />
@@ -4579,7 +4579,7 @@
         <CODE code="domi1" description="Taux pour recours à une garde à domicile avant le premier plafond" format="percent" origin="ipp">
           <VALUE deb="2004-01-01" fuzzy="true" valeur="2.0853" />
         </CODE>
-        <CODE code="domi2" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2014-01-01,fin=None,valeur=1.7976)" description="Taux pour recours à une garde à domicile avant le second plafond" format="percent" origin="ipp">
+        <CODE code="domi2" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2014-01-01,openfisca_fin=None,openfisca_valeur=1.7976,ipp_valeur=unknown)" description="Taux pour recours à une garde à domicile avant le second plafond" format="percent" origin="ipp">
           <VALUE deb="2004-01-01" fuzzy="true" valeur="1.7979" />
         </CODE>
         <CODE code="domi3" description="Taux pour recours à une garde à domicile après le second plafond" format="percent" origin="ipp">
@@ -4636,7 +4636,7 @@
           <VALUE deb="2004-07-01" fin="2005-06-30" valeur="2655" />
           <VALUE deb="2004-01-01" fin="2004-06-30" valeur="2626" />
         </CODE>
-        <CODE code="seuil21" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2012-01-01,fin=2012-12-31,valeur=45068)" description="Second plafond de ressources pour un enfant" origin="ipp">
+        <CODE code="seuil21" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2012-01-01,openfisca_fin=2012-12-31,openfisca_valeur=45068,ipp_valeur=44068)" description="Second plafond de ressources pour un enfant" origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="47405" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur="47217" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="46888" />
@@ -4681,15 +4681,15 @@
           <VALUE deb="2004-07-01" fin="2005-06-30" valeur="5901" />
           <VALUE deb="2004-01-01" fin="2004-06-30" valeur="5791" />
         </CODE>
-        <CODE code="taux_recours_emploi_1er_plafond" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2001-01-01,fin=2013-12-31,valeur=1.1404)" description="Taux pour recours à un emploi direct avant le premier plafond" format="percent" origin="ipp">
+        <CODE code="taux_recours_emploi_1er_plafond" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2001-01-01,openfisca_fin=2013-12-31,openfisca_valeur=1.1404,ipp_valeur=unknown)" description="Taux pour recours à un emploi direct avant le premier plafond" format="percent" origin="ipp">
           <VALUE deb="2012-06-01" fuzzy="true" valeur="1.0067" />
           <VALUE deb="2008-05-01" fin="2012-05-31" valeur="1.1404" />
           <VALUE deb="2004-01-01" fin="2008-04-30" valeur="1.0067" />
         </CODE>
-        <CODE code="taux_recours_emploi_2e_plafond" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2001-01-01,fin=2013-12-31,valeur=0.7191)" description="Taux pour recours à un emploi direct avant le second plafond" format="percent" origin="ipp">
+        <CODE code="taux_recours_emploi_2e_plafond" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2001-01-01,openfisca_fin=2013-12-31,openfisca_valeur=0.7191,ipp_valeur=unknown)" description="Taux pour recours à un emploi direct avant le second plafond" format="percent" origin="ipp">
           <VALUE deb="2004-01-01" fuzzy="true" valeur="0.7191" />
         </CODE>
-        <CODE code="taux_recours_emploi_supp_2e_plafond" conflicts="children:openfisca-not-fully-included-in-ipp(deb=2001-01-01,fin=2013-12-31,valeur=0.4314)" description="Taux pour recours à un emploi direct après le second plafond" format="percent" origin="ipp">
+        <CODE code="taux_recours_emploi_supp_2e_plafond" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2001-01-01,openfisca_fin=2013-12-31,openfisca_valeur=0.4314,ipp_valeur=unknown)" description="Taux pour recours à un emploi direct après le second plafond" format="percent" origin="ipp">
           <VALUE deb="2004-01-01" fuzzy="true" valeur="0.4314" />
         </CODE>
       </NODE>

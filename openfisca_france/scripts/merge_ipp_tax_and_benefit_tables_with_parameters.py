@@ -329,11 +329,21 @@ def merge_elements(element, original_element, path = None):
 
         for original_value_element in original_element:
             if not is_included_in_ipp(original_value_element):
-                conflicts.add(u'children:openfisca-not-fully-included-in-ipp(deb={},fin={},valeur={})'.format(
-                    original_value_element.get('deb'),
-                    original_value_element.get('fin'),
-                    original_value_element.get('valeur'),
-                    ))
+                ipp_valeur_list = [
+                    value_element.attrib['valeur']
+                    for value_element in element
+                    if value_element.attrib['deb'] == original_value_element.attrib['deb'] and
+                    value_element.get('fin') == original_value_element.get('fin')
+                    ]
+                ipp_valeur = ipp_valeur_list[0] if ipp_valeur_list else 'unknown'
+                conflicts.add(
+                    u'children:openfisca-not-fully-included-in-ipp('
+                    'openfisca_deb={},openfisca_fin={},openfisca_valeur={},ipp_valeur={})'.format(
+                        original_value_element.attrib['deb'],
+                        original_value_element.get('fin'),
+                        original_value_element.attrib['valeur'],
+                        ipp_valeur,
+                        ))
                 break
 
         if conflicts:
