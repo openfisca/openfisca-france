@@ -3,6 +3,7 @@
 from __future__ import division
 
 import csv
+import datetime
 import json
 import logging
 import pkg_resources
@@ -362,24 +363,20 @@ class aide_logement_R0(Variable):
         couple = simulation.calculate('al_couple', period)
         al_nb_pac = simulation.calculate('al_nb_personnes_a_charge', period)
         residence_dom = simulation.calculate('residence_dom')
-        import datetime
 
-        if period.start.date >= datetime.date(2011, 6, 01):  #  deux ans après la mise en place du rsa
-            R1 = minim_n_2.rsa.montant_de_base_du_rsa * (
-                al.r1.personne_isolee * not_(couple) * (al_nb_pac == 0) +
-                al.r1.couple_sans_enf * couple * (al_nb_pac == 0) +
-                al.r1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1) +
-                al.r1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2) +
-                al.r1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
-                )
+        n_2 = period.start.offset(-2, 'year')  # deux ans après la mise en place du rsa le 2009-06-01
+        if n_2.start.date >= datetime.date(2009, 6, 01):
+            montant_de_base = minim_n_2.rsa.montant_de_base_du_rsa
         else:
-            R1 = minim_n_2.rmi.montant_de_base_du_rmi * (
-                al.r1.personne_isolee * not_(couple) * (al_nb_pac == 0) +
-                al.r1.couple_sans_enf * couple * (al_nb_pac == 0) +
-                al.r1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1) +
-                al.r1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2) +
-                al.r1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
-                )
+            montant_de_base = minim_n_2.rmi.montant_de_base_du_rmi
+
+        R1 = montant_de_base * (
+            al.r1.personne_isolee * not_(couple) * (al_nb_pac == 0) +
+            al.r1.couple_sans_enf * couple * (al_nb_pac == 0) +
+            al.r1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1) +
+            al.r1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2) +
+            al.r1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
+            )
 
         R2 = pfam_n_2.af.bmaf * (
             al.r2.taux3_dom * residence_dom * (al_nb_pac == 1) +

@@ -2418,12 +2418,11 @@ class patnat(DatedVariable):
 class prcomp(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"prcomp"
+    label = u"Prestations compensatoires"
 
     def function(self, simulation, period):
         '''
         Prestations compensatoires
-        2002-
         '''
         period = period.this_year
         f7wm = simulation.calculate('f7wm', period)
@@ -2434,27 +2433,34 @@ class prcomp(Variable):
 
         div = (f7wo == 0) * 1 + f7wo  # Pour éviter les divisions par zéro
 
-        return period, ((f7wm == 0) * ((f7wn == f7wo) * P.taux * min_(f7wn, P.seuil) +
-                                  (f7wn < f7wo) * (f7wo <= P.seuil) * P.taux * f7wn +
-                                  max_(0, (f7wn < f7wo) * (f7wo > P.seuil) * P.taux * P.seuil * f7wn / div)) +
-                (f7wm != 0) * ((f7wn == f7wm) * (f7wo <= P.seuil) * P.taux * f7wm +
-                                  max_(0, (f7wn == f7wm) * (f7wo >= P.seuil) * P.taux * f7wm / div) +
-                                  (f7wn > f7wm) * (f7wo <= P.seuil) * P.taux * f7wn +
-                                  max_(0, (f7wn > f7wm) * (f7wo >= P.seuil) * P.taux * f7wn / div)) +
-                 P.taux * f7wp)
+        return period, (
+            (f7wm == 0) * (
+                (f7wn == f7wo) * P.taux * min_(f7wn, P.seuil) +
+                (f7wn < f7wo) * (f7wo <= P.seuil) * P.taux * f7wn +
+                max_(0, (f7wn < f7wo) * (f7wo > P.seuil) * P.taux * P.seuil * f7wn / div)
+                ) +
+            (f7wm != 0) * (
+                (f7wn == f7wm) * (f7wo <= P.seuil) * P.taux * f7wm +
+                max_(0, (f7wn == f7wm) * (f7wo >= P.seuil) * P.taux * f7wm / div) +
+                (f7wn > f7wm) * (f7wo <= P.seuil) * P.taux * f7wn +
+                max_(0, (f7wn > f7wm) * (f7wo >= P.seuil) * P.taux * f7wn / div)
+                ) +
+            P.taux * f7wp
+            )
 
 
-class reduction_impot_exceptionnelle(DatedVariable):
+class reduction_impot_exceptionnelle(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Réduction d'impôt exceptionnelle"
+    start_date = date(2013, 1, 1)
+    stop_date = date(2013, 12, 31)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'year').period('year')
-        nb_adult = simulation.calculate('nb_adult')
-        nbptr = simulation.calculate('nbptr')
-        rfr = simulation.calculate('rfr')
+        nb_adult = simulation.calculate('nb_adult', period)
+        nbptr = simulation.calculate('nbptr', period)
+        rfr = simulation.calculate('rfr', period)
         params = simulation.legislation_at(period.start).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
         plafond = params.seuil * nb_adult + (nbptr - nb_adult) * 2 * params.majoration_seuil
         montant = params.montant_plafond * nb_adult

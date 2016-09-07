@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.0.0
+
+* Rename:
+    * `cd_penali` -> `pensions_alimentaires_deduites`
+		* TODO list all the changed name
+
+
 ## 4.1.5
 
 * Follow OpenFisca-Core major release

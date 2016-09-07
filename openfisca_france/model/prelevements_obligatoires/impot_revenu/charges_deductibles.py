@@ -152,11 +152,9 @@ class f6eh(Variable):
     entity_class = FoyersFiscaux
     start_date = date(2005, 1, 1)
     stop_date = date(2005, 12, 31)
+# TODO: vérifier date de début et de fin de cette case (rien en 12 et 13)
 
-  # TODO: vérifier date de début et de fin de cette case (rien en 12 et 13)
 
-# Pertes en capital consécutives à la souscription au capital de sociétés
-# nouvelles ou de sociétés en difficulté
 class f6da(Variable):
     cerfa_field = u"DA"
     column = IntCol(val_type = "monetary")
@@ -175,7 +173,7 @@ class f6cb(Variable):
     start_date = date(2009, 1, 1)
 
 
-# TODO: before 2006 wasPertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration complémentaire)
+# TODO: before 2006 was Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration complémentaire)
 
 class f6hj(Variable):
     cerfa_field = u"6HJ"
@@ -489,7 +487,7 @@ class cd_acc75a(Variable):
 class pertes_capital_societes_nouvelles(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"pertes_capital_societes_nouvelles"
+    label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
     def function_20020101_20021231(self, simulation, period):
@@ -537,7 +535,7 @@ class cd_deddiv(Variable):
 class cd_doment(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"cd_doment"
+    label = u"Investissements DOM-TOM dans le cadre d’une entreprise"
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
 
@@ -545,7 +543,6 @@ class cd_doment(Variable):
         '''
         Investissements DOM-TOM dans le cadre d’une entreprise (case EH de la
         déclaration n° 2042 complémentaire)
-        2002-2005
         '''
         period = period.this_year
         f6eh = simulation.calculate('f6eh', period)
@@ -590,7 +587,7 @@ class cd_eparet(Variable):
 class cd_sofipe(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"cd_sofipe"
+    label = u"Souscriptions au capital des SOFIPÊCHE"
     start_date = date(2002, 1, 1)
     stop_date = date(2006, 12, 31)
 
@@ -598,7 +595,6 @@ class cd_sofipe(Variable):
         '''
         Souscriptions au capital des SOFIPÊCHE (case CC de la déclaration
         complémentaire)
-        2002-2006
         '''
         period = period.this_year
         f6cc = simulation.calculate('f6cc', period)
@@ -613,7 +609,7 @@ class cd_sofipe(Variable):
 class cinema(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"cinema"
+    label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel"
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
 
@@ -621,7 +617,6 @@ class cinema(Variable):
         '''
         Souscriptions en faveur du cinéma ou de l’audiovisuel (case AA de la
         déclaration n° 2042 complémentaire)
-        2002-2005
         '''
         period = period.this_year
         f6aa = simulation.calculate('f6aa', period)
@@ -635,7 +630,7 @@ class cinema(Variable):
 class epargne_codeveloppement(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"epargne_codeveloppement"
+    label = u"Versements sur un compte épargne codéveloppement"
     start_date = date(2007, 1, 1)
     stop_date = date(2008, 12, 31)
 
@@ -643,7 +638,6 @@ class epargne_codeveloppement(Variable):
         '''
         Versements sur un compte épargne codéveloppement (case EH de la déclaration
         complémentaire)
-        2007-2008
         '''
         period = period.this_year
         f6eh = simulation.calculate('f6eh', period)
@@ -657,13 +651,12 @@ class epargne_codeveloppement(Variable):
 class grosses_reparations(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"grosses_reparations"
+    label = u"Dépenses de grosses réparations des nus-propriétaires"
     start_date = date(2009, 1, 1)
 
     def function(self, simulation, period):
         '''
         Dépenses de grosses réparations des nus-propriétaires (case 6CB et 6HJ)
-        2009-
         '''
         period = period.this_year
         f6cb = simulation.calculate('f6cb', period)

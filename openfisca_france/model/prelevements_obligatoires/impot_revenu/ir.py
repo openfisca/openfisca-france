@@ -375,13 +375,13 @@ class revenu_activite_salariee(Variable):
 class revenu_activite_non_salariee(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"rev_act_nonsal"
+    label = u"Revenu d'activité non salariée""
 
     def function(self, simulation, period):
         period = period.this_year
         rpns_i = simulation.calculate('rpns_individu', period)
 
-        return period, rpns_i # TODO: vérifier cette définition
+        return period, rpns_i  # TODO: vérifier cette définition
 
 
 class revenu_activite(Variable):
@@ -713,7 +713,6 @@ class rev_cat_rvcm(DatedVariable):
         f2ee = simulation.calculate('f2ee', period)
         finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl
         rvcm = simulation.legislation_at(period.start).impot_revenu.rvcm
-        import datetime
 
         # Add f2da to f2dc and f2ee to f2tr when no PFL
         f2dc_bis = f2dc + f2da  # TODO: l'abattement de 40% est déduit uniquement en l'absence de revenus déclarés case 2DA
@@ -765,7 +764,6 @@ class rfr_rvcm(Variable):
         f2da = simulation.calculate('f2da', period)
         finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl
         rvcm = simulation.legislation_at(period.start).impot_revenu.rvcm
-        import datetime
 
         if finpfl:
             f2dc_bis = f2dc + f2da
@@ -799,7 +797,6 @@ class rev_cat_rfon(Variable):
     def function(self, simulation, period):
         """
         Revenus fonciers
-        TODO: add assert in validator
         """
         period = period.this_year
         f4ba = simulation.calculate('f4ba', period)
@@ -1583,13 +1580,13 @@ class iai(Variable):
         return period, iaidrdi + plus_values + cont_rev_loc + teicaa
 
 
-class cehr(DatedVariable):
+class cehr(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Contribution exceptionnelle sur les hauts revenus"
+    start_date = date(2011, 1, 1)
     url = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
 
-    @dated_function(start = date(2011, 1, 1))
     def function(self, simulation, period):
         '''
         Contribution exceptionnelle sur les hauts revenus
@@ -2744,12 +2741,12 @@ class nbptr(Variable):
 ###############################################################################
 
 
-class ppe_coef(DatedVariable):
+class ppe_coef(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"Coefficient - Prime pour l'emploi"
+    label = u"Coefficient de conversion - Prime pour l'emploi"
+    stop_date = date(2015, 12, 31)
 
-    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         PPE: coefficient de conversion en cas de changement en cours d'année
@@ -2761,16 +2758,15 @@ class ppe_coef(DatedVariable):
         return period, 360 / nb_jour
 
 
-class ppe_elig(DatedVariable):
+class ppe_elig(Variable):
     column = BoolCol(default = False)
     entity_class = FoyersFiscaux
-    label = u"ppe_elig"
+    label = u"PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence"
+    stop_date = date(2015, 12, 31)
 
-    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence
-        'foy'
         CF ligne 1: http://bofip.impots.gouv.fr/bofip/3913-PGP.html
         '''
         period = period.this_year
@@ -2787,19 +2783,15 @@ class ppe_elig(DatedVariable):
         return period, (rfr * ppe_coef) <= seuil
 
 
-class ppe_rev(DatedVariable):
+class ppe_rev(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"ppe_rev"
+    label = u"Base ressource de la ppe"
+    stop_date = date(2015, 12, 31)
 
-    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
-        '''
-        base ressource de la ppe
-        'ind'
-        '''
         period = period.this_year
-        salaire_imposable =  simulation.calculate_add('salaire_imposable', period)
+        salaire_imposable = simulation.calculate_add('salaire_imposable', period)
         hsup = simulation.calculate('hsup', period)
         rpns = simulation.calculate('rpns', period)
         ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe
@@ -2808,21 +2800,17 @@ class ppe_rev(DatedVariable):
         rev_sa = salaire_imposable + hsup  # TODO: + TV + TW + TX + AQ + LZ + VJ
         # Revenu d'activité non salarié
         rev_ns = min_(0, rpns) / ppe.abatns + max_(0, rpns) * ppe.abatns
-            #TODO: très bizarre la partie min(0,rpns) - après vérification c'est dans la loi
+        # très bizarre la partie min(0, rpns) - après vérification c'est dans la loi
         return period, rev_sa + rev_ns
 
 
-class ppe_coef_tp(DatedVariable):
+class ppe_coef_tp(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"ppe_coef_tp"
+    label = u"PPE: coefficient de conversion temps partiel"
+    stop_date = date(2015, 12, 31)
 
-    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
-        '''
-        PPE: coefficient de conversion temps partiel
-        'ind'
-        '''
         period = period.this_year
         ppe_du_sa = simulation.calculate('ppe_du_sa', period)
         ppe_du_ns = simulation.calculate('ppe_du_ns', period)
@@ -2836,12 +2824,12 @@ class ppe_coef_tp(DatedVariable):
         return period, tp + not_(tp) * (frac_sa + frac_ns)
 
 
-class ppe_base(DatedVariable):
+class ppe_base(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"ppe_base"
+    label = u"Montant de base de la PPE"
+    stop_date = date(2015, 12, 31)
 
-    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         period = period.this_year
         ppe_rev = simulation.calculate('ppe_rev', period)
@@ -2853,17 +2841,16 @@ class ppe_base(DatedVariable):
         return period, ppe_rev / (ppe_coef_tp + (ppe_coef_tp == 0)) * ppe_coef
 
 
-class ppe_elig_individu(DatedVariable):
+class ppe_elig_individu(Variable):
     column = BoolCol(default = False)
     entity_class = Individus
-    label = u"ppe_elig_i"
+    label = u"Eligibilité individuelle à la ppe"
+    stop_date = date(2015, 12, 31)
 
-    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         Eligibilité individuelle à la ppe
         Attention : condition de plafonnement introduite dans ppe brute
-        'ind'
         '''
         period = period.this_year
         ppe_rev = simulation.calculate('ppe_rev', period)
@@ -2873,16 +2860,15 @@ class ppe_elig_individu(DatedVariable):
         return period, (ppe_rev >= ppe.seuil1) & (ppe_coef_tp != 0)
 
 
-class ppe_brute(DatedVariable):
+class ppe_brute(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Prime pour l'emploi brute"
+    stop_date = date(2015, 12, 31)
 
-    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         '''
         Prime pour l'emploi (avant éventuel dispositif de cumul avec le RSA)
-        'foy'
         Cf. http://travail-emploi.gouv.fr/informations-pratiques,89/fiches-pratiques,91/remuneration,113/la-prime-pour-l-emploi-ppe,1034.html
         '''
         period = period.this_year
@@ -2982,17 +2968,16 @@ class ppe_brute(DatedVariable):
         return period, ppe_tot
 
 
-class ppe(DatedVariable):
+class ppe(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
     label = u"Prime pour l'emploi"
+    stop_date = date(2015, 12, 31)
     url = "http://vosdroits.service-public.fr/particuliers/F2882.xhtml"
 
-    @dated_function(stop = date(2015, 12, 31))
     def function(self, simulation, period):
         """
         PPE effectivement versée
-        'foy'
         """
         period = period.this_year
         ppe_brute = simulation.calculate('ppe_brute', period)
@@ -3002,6 +2987,6 @@ class ppe(DatedVariable):
         rsa_act_i = self.split_by_roles(rsa_act_i_holder, roles = [VOUS, CONJ])
 
         #   On retranche le RSA activité de la PPE
-        #   Dans les agrégats officiels de la DGFP, c'est la PPE brute qu'il faut comparer
+        #   Dans les agrégats officiels de la DGFP, c'est à la PPE brute qu'il faut comparer
         ppe = max_(ppe_brute - rsa_act_i[VOUS] - rsa_act_i[CONJ], 0)
         return period, ppe
