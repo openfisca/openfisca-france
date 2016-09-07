@@ -356,7 +356,8 @@ class revenu_assimile_salaire_apres_abattements(Variable):
         abattement_minimum = abatpro.min * not_(chomeur_longue_duree) + abatpro.min2 * chomeur_longue_duree
         abatfor = round(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
         return period, (
-            (frais_reels > abatfor) * (revenu_assimile_salaire - frais_reels) + (frais_reels <= abatfor) * max_(0, revenu_assimile_salaire - abatfor)
+            (frais_reels > abatfor) * (revenu_assimile_salaire - frais_reels) +
+            (frais_reels <= abatfor) * max_(0, revenu_assimile_salaire - abatfor)
             )
 
 
@@ -367,7 +368,7 @@ class revenu_activite_salariee(Variable):
 
     def function(self, simulation, period):
         period = period.this_year
-        salaire_imposable =  simulation.calculate_add('salaire_imposable', period)
+        salaire_imposable = simulation.calculate_add('salaire_imposable', period)
 
         return period, salaire_imposable
 
@@ -375,7 +376,7 @@ class revenu_activite_salariee(Variable):
 class revenu_activite_non_salariee(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"Revenu d'activité non salariée""
+    label = u"Revenu d'activité non salariée"
 
     def function(self, simulation, period):
         period = period.this_year
