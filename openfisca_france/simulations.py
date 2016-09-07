@@ -2,6 +2,7 @@
 
 import itertools
 import uuid
+import datetime
 
 from openfisca_core import conv
 import openfisca_core.simulations
