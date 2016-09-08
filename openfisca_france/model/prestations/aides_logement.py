@@ -8,7 +8,7 @@ import logging
 import pkg_resources
 
 from openfisca_core.numpy_wrapper import (ceil, fromiter, int16, logical_not as not_, logical_or as or_, logical_and as and_, maximum as max_,
-    minimum as min_, round as round_, where, select, take)
+    minimum as min_, round as round_, where, select, take, vector_map)
 
 import openfisca_france
 from openfisca_core.periods import Instant
@@ -648,25 +648,20 @@ class zone_apl(Variable):
     entity_class = Menages
     label = u"Zone APL"
 
-    # fromiter (TODO)
-    '''
     def function(self, simulation, period):
-        ''
+        '''
         Retrouve la zone APL (aide personnalisée au logement) de la commune
         en fonction du depcom (code INSEE)
-        ''
+        '''
         period = period
         depcom = simulation.calculate('depcom', period)
 
         preload_zone_apl()
         default_value = 2
-        return period, fromiter(
-            (
-                zone_apl_by_depcom.get(depcom_cell, default_value)
-                for depcom_cell in depcom
-                ),
-            dtype = int16,
-            )'''
+        return period, vector_map(
+            depcom,
+            lambda depcom_cell: zone_apl_by_depcom.get(depcom_cell, default_value)
+            )
 
 def preload_zone_apl():
     global zone_apl_by_depcom

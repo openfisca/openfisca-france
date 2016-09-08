@@ -338,6 +338,7 @@ class af(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
+
         af_base = simulation.calculate('af_base', period)
         af_majoration = simulation.calculate('af_majoration', period)
         af_allocation_forfaitaire = simulation.calculate('af_allocation_forfaitaire', period)
