@@ -266,6 +266,46 @@ def add_origin_openfisca_attrib(element):
             add_origin_openfisca_attrib(child_element)
 
 
+def build_inclusion_conflict(original_value_element, element):
+    ipp_valeur_list = [
+        value_element.attrib['valeur']
+        for value_element in element
+        if value_element.attrib['deb'] == original_value_element.attrib['deb'] and
+        value_element.get('fin') == original_value_element.get('fin')
+        ]
+    ipp_valeur = ipp_valeur_list[0] if ipp_valeur_list else 'unknown'
+    return (
+        u'children:openfisca-not-fully-included-in-ipp('
+        'openfisca_deb={},openfisca_fin={},openfisca_valeur={},ipp_valeur={})'.format(
+            original_value_element.attrib['deb'],
+            original_value_element.get('fin'),
+            original_value_element.attrib['valeur'],
+            ipp_valeur,
+            ))
+
+
+def is_included_in_ipp_values(original_value_element, element):
+    return any(
+        original_value_element.attrib['deb'] >= value_element.attrib['deb'] and (
+            'fin' not in original_value_element.attrib and 'fin' not in value_element.attrib or (
+                'fin' in original_value_element.attrib and
+                'fin' in value_element.attrib and
+                original_value_element.attrib['fin'] <= value_element.attrib['fin']
+                ) or (
+                'fin' in original_value_element.attrib and
+                'fin' not in value_element.attrib and
+                'fuzzy' in value_element.attrib
+                ) or (
+                'fin' not in original_value_element.attrib and
+                'fin' in value_element.attrib and
+                'fuzzy' in original_value_element.attrib
+                )
+            ) and
+        float(original_value_element.attrib['valeur']) == float(value_element.attrib['valeur'])
+        for value_element in element
+        )
+
+
 def merge_elements(element, original_element, path = None):
     assert element.attrib['code'] == original_element.attrib['code'], (element, original_element)
     if path is None:
@@ -291,7 +331,6 @@ def merge_elements(element, original_element, path = None):
                 # A `child_element` of `element` with the same code as the `original_child_element` was not found.
                 element.append(original_child_element)
     elif element.tag == 'CODE':
-        # Set `conflicts` attribute on CODE element.
         conflicts = set()
         # if element.attrib.get('format') != original_element.attrib.get('format'):
         #     conflicts.add(u'attrib:format({})'.format(original_element.attrib.get('format')))
@@ -301,53 +340,49 @@ def merge_elements(element, original_element, path = None):
             conflicts.add(u'attrib:type({})'.format(original_element.attrib.get('type')))
 
         # Check that every `original_element` child (VALUE elements) is included in `element` children.
-        def is_included_in_ipp(original_value_element):
-            for value_element in element:
-                assert 'deb' in original_value_element.attrib, original_value_element
-                assert 'deb' in value_element.attrib, value_element
-                assert 'valeur' in original_value_element.attrib, original_value_element
-                assert 'valeur' in value_element.attrib, value_element
-                is_valid = original_value_element.attrib['deb'] >= value_element.attrib['deb'] and (
-                    'fin' not in original_value_element.attrib and 'fin' not in value_element.attrib or (
-                        'fin' in original_value_element.attrib and
-                        'fin' in value_element.attrib and
-                        original_value_element.attrib['fin'] <= value_element.attrib['fin']
-                        ) or (
-                        'fin' in original_value_element.attrib and
-                        'fin' not in value_element.attrib and
-                        'fuzzy' in value_element.attrib
-                        ) or (
-                        'fin' not in original_value_element.attrib and
-                        'fin' in value_element.attrib and
-                        'fuzzy' in original_value_element.attrib
-                        )
-                    ) and \
-                    float(original_value_element.attrib['valeur']) == float(value_element.attrib['valeur'])
-                if is_valid:
-                    return True
-            return False
-
         for original_value_element in original_element:
-            if not is_included_in_ipp(original_value_element):
-                ipp_valeur_list = [
-                    value_element.attrib['valeur']
-                    for value_element in element
-                    if value_element.attrib['deb'] == original_value_element.attrib['deb'] and
-                    value_element.get('fin') == original_value_element.get('fin')
-                    ]
-                ipp_valeur = ipp_valeur_list[0] if ipp_valeur_list else 'unknown'
-                conflicts.add(
-                    u'children:openfisca-not-fully-included-in-ipp('
-                    'openfisca_deb={},openfisca_fin={},openfisca_valeur={},ipp_valeur={})'.format(
-                        original_value_element.attrib['deb'],
-                        original_value_element.get('fin'),
-                        original_value_element.attrib['valeur'],
-                        ipp_valeur,
-                        ))
+            if not is_included_in_ipp_values(original_value_element=original_value_element, element=element):
+                conflicts.add(build_inclusion_conflict(original_value_element=original_value_element, element=element))
                 break
 
         if conflicts:
             element.attrib['conflicts'] = u','.join(conflicts)
+
+    elif element.tag == 'BAREME':
+        conflicts = set()
+        type_attrib = element.attrib.get('type')
+        original_type_attrib = original_element.attrib.get('type')
+        if type_attrib is not None and original_type_attrib is not None and type_attrib != original_type_attrib:
+            conflicts.add(u'attrib:type({})'.format(original_element.attrib.get('type')))
+
+        # Check that every `original_element` child (VALUE elements) is included in `element` children
+        # for each TAUX and SEUIL of each TRANCHE.
+        for tranche_index, original_tranche_element in enumerate(original_element):
+            if tranche_index > len(element) - 1:
+                conflicts.add('children:not-enough-TRANCHE-elements')
+                break
+            tranche_element = element[tranche_index]
+            taux_element = tranche_element.find('TAUX')
+            original_taux_element = original_tranche_element.find('TAUX')
+            for original_value_element in original_taux_element:
+                if not is_included_in_ipp_values(original_value_element=original_value_element, element=taux_element):
+                    conflicts.add(
+                        build_inclusion_conflict(original_value_element=original_value_element, element=taux_element)
+                        )
+                    break
+            seuil_element = tranche_element.find('SEUIL')
+            original_seuil_element = original_tranche_element.find('SEUIL')
+            for original_value_element in original_seuil_element:
+                if not is_included_in_ipp_values(original_value_element=original_value_element, element=seuil_element):
+                    conflicts.add(
+                        build_inclusion_conflict(original_value_element=original_value_element, element=seuil_element)
+                        )
+                    break
+
+        if conflicts:
+            element.attrib['conflicts'] = u','.join(conflicts)
+    else:
+        raise NotImplementedError(element.tag)
 
 
 def prepare_xml_values(name, leafs):

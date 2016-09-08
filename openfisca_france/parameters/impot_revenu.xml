@@ -160,7 +160,7 @@
       <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0" />
     </CODE>
   </NODE>
-  <BAREME code="bareme" description="Tranches de l'IR" origin="ipp">
+  <BAREME code="bareme" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2005-12-31,openfisca_valeur=0.1914,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2001-01-01,openfisca_fin=2002-12-31,openfisca_valeur=0.0705,ipp_valeur=unknown)" description="Tranches de l'IR" origin="ipp">
     <TRANCHE code="tranche_1">
       <SEUIL>
         <VALUE deb="2001-01-01" fuzzy="true" valeur="0" />
