@@ -160,7 +160,7 @@
       <VALUE deb="2001-01-01" fin="2013-12-31" valeur="0" />
     </CODE>
   </NODE>
-  <BAREME code="bareme" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2005-12-31,openfisca_valeur=0.1914,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2001-01-01,openfisca_fin=2002-12-31,openfisca_valeur=0.0705,ipp_valeur=unknown)" description="Tranches de l'IR" origin="ipp">
+  <BAREME code="bareme" conflicts="children:different-number-of-TRANCHE" description="Tranches de l'IR" origin="ipp">
     <TRANCHE code="tranche_1">
       <SEUIL>
         <VALUE deb="2001-01-01" fuzzy="true" valeur="0" />
@@ -996,7 +996,7 @@
       </CODE>
     </NODE>
     <NODE code="versements_perp" description="Déduction pour versements sur PERP" origin="ipp">
-      <CODE code="max" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2012-01-01,openfisca_fin=2013-12-31,openfisca_valeur=29098,ipp_valeur=unknown)" description="Maximum par personne" format="float" origin="ipp" type="monetary">
+      <CODE code="max" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2006-01-01,openfisca_fin=2006-12-31,openfisca_valeur=25747,ipp_valeur=25747.2),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2012-01-01,openfisca_fin=2013-12-31,openfisca_valeur=29098,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2007-01-01,openfisca_fin=2007-12-31,openfisca_valeur=26621,ipp_valeur=26620.8),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2004-01-01,openfisca_fin=2004-12-31,openfisca_valeur=24154,ipp_valeur=24153.6),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2010-01-01,openfisca_fin=2010-12-31,openfisca_valeur=28282,ipp_valeur=28281.6),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2008-01-01,openfisca_fin=2008-12-31,openfisca_valeur=27446,ipp_valeur=27446.4),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2005-01-01,openfisca_fin=2005-12-31,openfisca_valeur=24854,ipp_valeur=24854.4)" description="Maximum par personne" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="30038" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="29626" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="29098" />
@@ -1009,7 +1009,7 @@
         <VALUE deb="2005-01-01" fin="2005-12-31" valeur="24854.4" />
         <VALUE deb="2004-01-01" fin="2004-12-31" valeur="24153.6" />
       </CODE>
-      <CODE code="min" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2012-01-01,openfisca_fin=2013-12-31,openfisca_valeur=3638,ipp_valeur=unknown)" description="Minimum par personne" format="float" origin="ipp" type="monetary">
+      <CODE code="min" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2006-01-01,openfisca_fin=2006-12-31,openfisca_valeur=3218,ipp_valeur=3218.4),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2008-01-01,openfisca_fin=2008-12-31,openfisca_valeur=3431,ipp_valeur=3430.8),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2010-01-01,openfisca_fin=2010-12-31,openfisca_valeur=3535,ipp_valeur=3535.2),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2005-01-01,openfisca_fin=2005-12-31,openfisca_valeur=3107,ipp_valeur=3106.8),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2011-01-01,openfisca_fin=2011-12-31,openfisca_valeur=3637,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2004-01-01,openfisca_fin=2004-12-31,openfisca_valeur=3019,ipp_valeur=3019.2),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2012-01-01,openfisca_fin=2013-12-31,openfisca_valeur=3638,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2007-01-01,openfisca_fin=2007-12-31,openfisca_valeur=3328,ipp_valeur=3327.6)" description="Minimum par personne" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="3755" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3703" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="3638" />
@@ -3187,7 +3187,7 @@
     </CODE>
     <NODE code="micro" description="Régime microentreprise/Spécial bnc" origin="ipp">
       <NODE code="imputation_sur_le_revenu_global" origin="ipp">
-        <CODE code="plafond_deficits_agricoles" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2011-01-01,openfisca_fin=2013-12-31,openfisca_valeur=106225,ipp_valeur=unknown)" description="Déficit agricole///%cf art 156 du CGI" format="float" origin="ipp" type="monetary">
+        <CODE code="plafond_deficits_agricoles" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2005-01-01,openfisca_fin=2005-12-31,openfisca_valeur=61080,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2010-01-01,openfisca_fin=2010-12-31,openfisca_valeur=104655,ipp_valeur=104665),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2011-01-01,openfisca_fin=2013-12-31,openfisca_valeur=106225,ipp_valeur=unknown)" description="Déficit agricole///%cf art 156 du CGI" format="float" origin="ipp" type="monetary">
           <VALUE deb="2014-01-01" fuzzy="true" valeur="107610" />
           <VALUE deb="2013-01-01" fin="2013-12-31" valeur="107075" />
           <VALUE deb="2011-01-01" fin="2012-12-31" valeur="106225" />
@@ -3241,7 +3241,7 @@
       </NODE>
       <NODE code="specialbnc" description="Régime spécial BNC" origin="ipp">
         <NODE code="marchandises" description="Activité de vente" origin="ipp">
-          <CODE code="max" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2011-01-01,openfisca_fin=2013-12-31,openfisca_valeur=81500,ipp_valeur=unknown)" description="Maximum" format="float" origin="ipp" type="monetary">
+          <CODE code="max" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2011-01-01,openfisca_fin=2013-12-31,openfisca_valeur=81500,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2001-01-01,openfisca_fin=2001-12-31,openfisca_valeur=76225,ipp_valeur=76224.51)" description="Maximum" format="float" origin="ipp" type="monetary">
             <VALUE deb="2013-01-01" fuzzy="true" valeur="82200" />
             <VALUE deb="2011-01-01" fin="2012-12-31" valeur="81500" />
             <VALUE deb="2010-01-01" fin="2010-12-31" valeur="80300" />
@@ -3265,7 +3265,7 @@
           </CODE>
         </NODE>
         <NODE code="services" description="Activité de service" origin="ipp">
-          <CODE code="max" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2011-01-01,openfisca_fin=2013-12-31,openfisca_valeur=32600,ipp_valeur=unknown)" description="Maximum" format="float" origin="ipp" type="monetary">
+          <CODE code="max" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2011-01-01,openfisca_fin=2013-12-31,openfisca_valeur=32600,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2001-01-01,openfisca_fin=2001-12-31,openfisca_valeur=26679,ipp_valeur=26678.58)" description="Maximum" format="float" origin="ipp" type="monetary">
             <VALUE deb="2013-01-01" fuzzy="true" valeur="32900" />
             <VALUE deb="2011-01-01" fin="2012-12-31" valeur="32600" />
             <VALUE deb="2010-01-01" fin="2010-12-31" valeur="32100" />
@@ -3319,7 +3319,7 @@
       <VALUE deb="2001-01-01" fuzzy="true" valeur="4600" />
       <VALUE deb="1997-01-01" fin="2000-12-31" valeur="30000" />
     </CODE>
-    <CODE code="abatmob" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2014-01-01,openfisca_fin=None,openfisca_valeur=0,ipp_valeur=unknown)" description="Abattement capitaux mobiliers - Max" format="float" origin="ipp" type="monetary">
+    <CODE code="abatmob" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2006-01-01,openfisca_fin=2011-12-31,openfisca_valeur=1525,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2012-01-01,openfisca_fin=2013-12-31,openfisca_valeur=0,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2014-01-01,openfisca_fin=None,openfisca_valeur=0,ipp_valeur=unknown)" description="Abattement capitaux mobiliers - Max" format="float" origin="ipp" type="monetary">
       <VALUE deb="2010-01-01" fin="2011-12-31" valeur="1525" />
       <VALUE deb="2001-01-01" fin="2009-12-31" valeur="1220" />
       <VALUE deb="1988-01-01" fin="2000-12-31" valeur="8000" />
@@ -3500,7 +3500,7 @@
       </CODE>
     </NODE>
     <NODE code="abatpro" description="Abattement forfaitaire pour frais professionnels" origin="ipp">
-      <CODE code="max" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2016-01-01,openfisca_fin=None,openfisca_valeur=12170,ipp_valeur=unknown)" description="Abattement maximum" format="float" origin="ipp" type="monetary">
+      <CODE code="max" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2015-01-01,openfisca_fin=2015-12-31,openfisca_valeur=12170,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2016-01-01,openfisca_fin=None,openfisca_valeur=12170,ipp_valeur=unknown)" description="Abattement maximum" format="float" origin="ipp" type="monetary">
         <VALUE deb="2015-01-01" fuzzy="true" valeur="12169" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="12157" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="12097" />
