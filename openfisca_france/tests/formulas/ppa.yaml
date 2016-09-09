@@ -683,3 +683,24 @@
       2015-12: 1500
       2015-11: 1500
       2015-10: 1500
+
+- name: "PPA - Les IJSS sont toujours considérés comme un revenu d'activité quand un autre revenu d'activité est perçu"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1998-01-01' # age < 18 sur le trimestre de référence
+    indemnites_journalieres_maladie:
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+    salaire_net:
+      2015-12: 300
+      2015-11: 300
+      2015-10: 300
+    date_arret_de_travail: 2015-01-01
+  output_variables:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 800
+      2015-11: 800
+      2015-10: 800

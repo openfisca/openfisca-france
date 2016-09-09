@@ -333,6 +333,7 @@ class rsa_indemnites_journalieres_activite(Variable):
         date_arret_de_travail = simulation.calculate('date_arret_de_travail')
         three_months_ago = datetime64(period.start.offset(-3,'month'))
         condition_date_arret_travail =  date_arret_de_travail > three_months_ago
+        condition_activite = simulation.calculate('salaire_net', period) > 0
 
         # IJSS prises en compte comme un revenu d'activité seulement les 3 premiers mois qui suivent l'arrêt de travail
         ijss_activite_sous_condition = sum(simulation.calculate(ressource, period) for ressource in [
@@ -346,7 +347,7 @@ class rsa_indemnites_journalieres_activite(Variable):
             'indemnites_journalieres_maternite',
             'indemnites_journalieres_paternite',
             'indemnites_journalieres_adoption',
-        ]) + condition_date_arret_travail * ijss_activite_sous_condition
+        ]) + (condition_date_arret_travail + condition_activite) * ijss_activite_sous_condition
 
         return period, ijss_activite
 
