@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.1.9
+
+* Tighten CMU/ACS eligibility conditions when when person is less than 25
+* Introduce `cmu_acs_eligibilite`, `habite_chez_parents`
+
 ## 4.1.8
 
 * Refactor rsa.py
