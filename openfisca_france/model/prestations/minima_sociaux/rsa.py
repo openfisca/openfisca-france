@@ -93,6 +93,7 @@ class rsa_base_ressources_individu(Variable):
             'retraite_titre_onereux_declarant1',
             'revenus_fonciers_minima_sociaux',
             'rsa_base_ressources_patrimoine_individu',
+            'rsa_indemnites_journalieres_hors_activite',
             ]
 
         # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
@@ -375,7 +376,6 @@ class rsa_revenu_activite_individu(Variable):
 
         types_revenus_activite = [
             'salaire_net',
-            'indemnites_journalieres',
             'indemnites_chomage_partiel',
             'indemnites_volontariat',
             'revenus_stage_formation_pro',
@@ -383,6 +383,7 @@ class rsa_revenu_activite_individu(Variable):
             'hsup',
             'etr',
             'tns_auto_entrepreneur_benefice',
+            'rsa_indemnites_journalieres_activite',
         ]
 
         has_ressources_substitution = simulation.calculate('rsa_has_ressources_substitution', period)
