@@ -35,6 +35,8 @@ class bourse_college(Variable):
             scolarite == SCOLARITE_COLLEGE for scolarite in scolarites.itervalues()
         )
 
+        rfr.entity = nb_enfants.entity  # ARGHH DON'T DO THAT !!!! ABSTRACTION LEAK !!!
+
         montant_par_enfant = apply_thresholds(
             rfr,
             thresholds = [
