@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import abs as abs_, logical_not as not_, logical_or as or_, maximum as max_
+from numpy import abs as abs_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, where
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -27,36 +27,38 @@ class asi_aspa_base_ressources_individu(Variable):
         period = period.this_month
         last_year = period.last_year
         three_previous_months = period.last_3_months
+        legislation = simulation.legislation_at(period.start)
+        leg_1er_janvier = simulation.legislation_at(period.start.offset('first-of', 'year'))
 
-        aspa_eligibilite = simulation.calculate('aspa_eligibilite', period)
-        aspa_couple_holder = simulation.compute('aspa_couple', period)
-        salaire_de_base = simulation.calculate_add('salaire_de_base', three_previous_months)
-        chomage_net = simulation.calculate_add('chomage_net', three_previous_months)
-        retraite_brute = simulation.calculate_add('retraite_brute', three_previous_months)
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
-        pensions_alimentaires_versees_individu = simulation.calculate(
-            'pensions_alimentaires_versees_individu', three_previous_months
-            )
-        retraite_titre_onereux_declarant1 = simulation.calculate_add('retraite_titre_onereux_declarant1', three_previous_months)
-        rpns = simulation.calculate_add_divide('rpns', three_previous_months)
-        rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
-        rev_cap_lib_holder = simulation.compute_add_divide('rev_cap_lib', three_previous_months)
-        revenus_fonciers_minima_sociaux = simulation.calculate_add('revenus_fonciers_minima_sociaux', three_previous_months)
-        div_ms = simulation.calculate_add('div_ms', three_previous_months)
-        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', three_previous_months)
-        allocation_securisation_professionnelle = simulation.calculate(
-            'allocation_securisation_professionnelle', three_previous_months
-            )
-        prime_forfaitaire_mensuelle_reprise_activite = simulation.calculate(
-            'prime_forfaitaire_mensuelle_reprise_activite', three_previous_months
-            )
-        dedommagement_victime_amiante = simulation.calculate('dedommagement_victime_amiante', three_previous_months)
-        prestation_compensatoire = simulation.calculate('prestation_compensatoire', three_previous_months)
-        pensions_invalidite = simulation.calculate('pensions_invalidite', three_previous_months)
-        gains_exceptionnels = simulation.calculate('gains_exceptionnels', three_previous_months)
-        indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', three_previous_months)
-        indemnites_journalieres = simulation.calculate('indemnites_journalieres', three_previous_months)
-        indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
+
+
+        ressources_incluses = [
+            'allocation_securisation_professionnelle',
+            'chomage_net',
+            'dedommagement_victime_amiante',
+            'div_ms',
+            'gains_exceptionnels',
+            'indemnites_chomage_partiel',
+            'indemnites_journalieres',
+            'indemnites_volontariat',
+            'pensions_alimentaires_percues',
+            'pensions_invalidite',
+            'prestation_compensatoire',
+            'prime_forfaitaire_mensuelle_reprise_activite',
+            'retraite_brute',
+            'retraite_titre_onereux_declarant1',
+            'revenus_fonciers_minima_sociaux',
+            'revenus_stage_formation_pro',
+            'rsa_base_ressources_patrimoine_individu',
+            'salaire_de_base',
+        ]
+
+        def revenus_capitaux():
+            rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
+            rev_cap_lib_holder = simulation.compute_add_divide('rev_cap_lib', three_previous_months)
+            rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
+            rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+            return max_(0, rev_cap_bar) + max_(0, rev_cap_lib)
 
         def revenus_tns():
             revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', three_previous_months)
@@ -68,39 +70,46 @@ class asi_aspa_base_ressources_individu(Variable):
 
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
-        rsa_base_ressources_patrimoine_i = simulation.calculate_add(
-            'rsa_base_ressources_patrimoine_individu', three_previous_months
-            )
+
+        pension_invalidite = (simulation.calculate('pensions_invalidite', period) > 0)
+        aspa_eligibilite = simulation.calculate('aspa_eligibilite', period)
+        asi_eligibilite = simulation.calculate('asi_eligibilite', period)
+
+        # Inclus l'AAH si conjoint non éligible ASPA, retraite et pension invalidité
         aah = simulation.calculate_add('aah', three_previous_months)
-        legislation = simulation.legislation_at(period.start)
-        leg_1er_janvier = simulation.legislation_at(period.start.offset('first-of', 'year'))
+        aah = aah * not_(aspa_eligibilite) * not_(asi_eligibilite) * not_(pension_invalidite)
 
-        aspa_couple = self.cast_from_entity_to_role(aspa_couple_holder, role = VOUS)
-        rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
-        rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
-
-        # Inclus l'AAH si conjoint non pensionné ASPA, retraite et pension invalidité
-        # FIXME Il faudrait vérifier que le conjoint est pensionné ASPA, pas qu'il est juste éligible !
-        aah = aah * not_(aspa_eligibilite)
-
-        # Abattement sur les salaires (appliqué sur une base trimestrielle)
-        abattement_forfaitaire_base = (
-            leg_1er_janvier.cotsoc.gen.smic_h_b * legislation.cotsoc.gen.nb_heure_travail_mensuel
+        pensions_alimentaires_versees = simulation.calculate_add(
+            'pensions_alimentaires_versees_individu', three_previous_months
             )
-        abattement_forfaitaire_taux = (aspa_couple * legislation.minim.aspa.abattement_forfaitaire_tx_couple +
-            not_(aspa_couple) * legislation.minim.aspa.abattement_forfaitaire_tx_seul
-        )
-        abattement_forfaitaire = abattement_forfaitaire_base * abattement_forfaitaire_taux
-        salaire_de_base = max_(0, salaire_de_base - abattement_forfaitaire)
 
-        return period, (salaire_de_base + chomage_net + retraite_brute + pensions_alimentaires_percues -
-               abs_(pensions_alimentaires_versees_individu) + retraite_titre_onereux_declarant1 + rpns +
-               max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, revenus_fonciers_minima_sociaux) + max_(0, div_ms) +  # max_(0,etr) +
-               revenus_stage_formation_pro + allocation_securisation_professionnelle +
-               prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
-               pensions_invalidite + gains_exceptionnels + indemnites_journalieres + indemnites_chomage_partiel +
-               indemnites_volontariat + revenus_tns() + rsa_base_ressources_patrimoine_i + aah
-               ) / 3
+        def abattement_salaire():
+            aspa_couple_holder = simulation.compute('aspa_couple', period)
+            aspa_couple = self.cast_from_entity_to_roles(aspa_couple_holder)
+
+            # Abattement sur les salaires (appliqué sur une base trimestrielle)
+            abattement_forfaitaire_base = (
+                leg_1er_janvier.cotsoc.gen.smic_h_b * legislation.cotsoc.gen.nb_heure_travail_mensuel
+                )
+
+            taux_abattement_forfaitaire = where(
+                aspa_couple,
+                legislation.minim.aspa.abattement_forfaitaire_tx_couple,
+                legislation.minim.aspa.abattement_forfaitaire_tx_seul
+                )
+
+            abattement_forfaitaire = abattement_forfaitaire_base * taux_abattement_forfaitaire
+            salaire_de_base = simulation.calculate_add('salaire_de_base', three_previous_months)
+
+            return min_(salaire_de_base, abattement_forfaitaire)
+
+
+        base_ressources_3_mois = sum(
+            max_(0, simulation.calculate_add(ressource_type, three_previous_months))
+            for ressource_type in ressources_incluses
+            ) + aah + revenus_capitaux() + revenus_tns() - abs_(pensions_alimentaires_versees) - abattement_salaire()
+
+        return period, base_ressources_3_mois / 3
 
 
 class asi_aspa_base_ressources(Variable):
@@ -147,16 +156,19 @@ class asi_eligibilite(Variable):
         period = period.this_month
         last_month = period.start.period('month').offset(-1)
 
-        aspa_eligibilite = simulation.calculate('aspa_eligibilite', period)
+        non_eligible_aspa = not_(simulation.calculate('aspa_eligibilite', period))
+        touche_pension_invalidite = simulation.calculate('pensions_invalidite', period) > 0
         handicap = simulation.calculate('handicap', period)
-        retraite_nette = simulation.calculate('retraite_nette', last_month)
-        pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
-
-        condition_situation = handicap & not_(aspa_eligibilite)
-        condition_pensionnement = (retraite_nette + pensions_invalidite) > 0
+        touche_retraite = simulation.calculate('retraite_nette', last_month) > 0
         condition_nationalite = simulation.calculate('asi_aspa_condition_nationalite', period)
 
-        return period, condition_situation * condition_pensionnement * condition_nationalite
+        eligible = (
+            non_eligible_aspa *
+            condition_nationalite *
+            (handicap * touche_retraite + touche_pension_invalidite)
+            )
+
+        return period, eligible
 
 
 class asi_aspa_condition_nationalite(Variable):

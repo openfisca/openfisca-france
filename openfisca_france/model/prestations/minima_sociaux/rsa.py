@@ -529,12 +529,12 @@ class rsa_forfait_asf(Variable):
         minim = simulation.legislation_at(period.start).minim
 
         asf_verse = simulation.calculate('asf', period)
-        montant_forfaitaire_par_enfant = pfam.af.bmaf * minim.rmi.forfait_asf.taux1
+        montant_verse_par_enfant = pfam.af.bmaf * pfam.asf.taux1
+        montant_retenu_rsa_par_enfant = pfam.af.bmaf * minim.rmi.forfait_asf.taux1
 
-        # Division euclidienne du montant réel par le montant forfaitaire
-        nb_beneficiaires = asf_verse // montant_forfaitaire_par_enfant
+        asf_retenue = asf_verse * (montant_retenu_rsa_par_enfant / montant_verse_par_enfant)
 
-        return period, nb_beneficiaires * montant_forfaitaire_par_enfant
+        return period, asf_retenue
 
 class rsa_forfait_logement(Variable):
     column = FloatCol
