@@ -349,6 +349,15 @@ class rsa_indemnites_journalieres_activite(Variable):
 
         return period, ijss_activite
 
+class rsa_indemnites_journalieres_hors_activite(Variable):
+    column = FloatCol
+    label = u"Indemnités journalières prises en compte comme revenu de remplacement"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.this_month
+        return period, simulation.calculate('indemnites_journalieres', period) - simulation.calculate('rsa_indemnites_journalieres_activite', period)
+
 class rsa_revenu_activite_individu(Variable):
     column = FloatCol
     label = u"Revenus d'activité du Rsa - Individuel"
