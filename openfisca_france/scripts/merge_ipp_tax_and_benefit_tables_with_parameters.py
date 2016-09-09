@@ -354,29 +354,38 @@ def merge_elements(element, original_element, path = None):
         if type_attrib is not None and original_type_attrib is not None and type_attrib != original_type_attrib:
             conflicts.add(u'attrib:type({})'.format(original_element.attrib.get('type')))
 
+        # Some BAREME in param.xml have a first TRANCHE with only zero values for TAUX and SEUIL.
+        # Skip it to ease conflict detection.
+        def only_zero_values(value_elements):
+            return all(
+                float(value_element.attrib['valeur']) == 0
+                for value_element in value_elements
+                )
+        first_tranche = original_element[0]
+        is_first_tranche_empty = only_zero_values(first_tranche.find('TAUX')) and \
+            only_zero_values(first_tranche.find('SEUIL'))
+        if is_first_tranche_empty:
+            original_element = original_element[1:]
+
         # Check that every `original_element` child (VALUE elements) is included in `element` children
         # for each TAUX and SEUIL of each TRANCHE.
-        for tranche_index, original_tranche_element in enumerate(original_element):
-            if tranche_index > len(element) - 1:
-                conflicts.add('children:not-enough-TRANCHE-elements')
-                break
-            tranche_element = element[tranche_index]
-            taux_element = tranche_element.find('TAUX')
-            original_taux_element = original_tranche_element.find('TAUX')
-            for original_value_element in original_taux_element:
-                if not is_included_in_ipp_values(original_value_element=original_value_element, element=taux_element):
-                    conflicts.add(
-                        build_inclusion_conflict(original_value_element=original_value_element, element=taux_element)
-                        )
-                    break
-            seuil_element = tranche_element.find('SEUIL')
-            original_seuil_element = original_tranche_element.find('SEUIL')
-            for original_value_element in original_seuil_element:
-                if not is_included_in_ipp_values(original_value_element=original_value_element, element=seuil_element):
-                    conflicts.add(
-                        build_inclusion_conflict(original_value_element=original_value_element, element=seuil_element)
-                        )
-                    break
+        if len(original_element) != len(element):
+            conflicts.add('children:different-number-of-TRANCHE')
+        else:
+            for tranche_index, original_tranche_element in enumerate(original_element):
+                def handle_child(tag):
+                    tag_element = tranche_element.find(tag)
+                    original_tag_element = original_tranche_element.find(tag)
+                    tag_conflicts = set()
+                    for original_value_element in original_tag_element:
+                        if not is_included_in_ipp_values(original_value_element, tag_element):
+                            tag_conflicts.add(build_inclusion_conflict(original_value_element, tag_element))
+                    if tag_conflicts:
+                        tag_element.attrib['conflicts'] = u','.join(tag_conflicts)
+
+                tranche_element = element[tranche_index]
+                handle_child('TAUX')
+                handle_child('SEUIL')
 
         if conflicts:
             element.attrib['conflicts'] = u','.join(conflicts)
