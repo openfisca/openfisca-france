@@ -613,3 +613,75 @@
       2015-12: 250
     ppa_ressources_hors_activite_individu:
       2015-12: 800
+
+- name: "PPA - Les IJSS sont considérés comme un revenu de remplacement après 3 mois "
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1998-01-01' # age < 18 sur le trimestre de référence
+    indemnites_journalieres_maladie:
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+    date_arret_de_travail: 2015-07-01
+  output_variables:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 0
+      2015-11: 0
+      2015-10: 0
+    ppa_base_ressources:
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+
+
+- name: "PPA - Les IJSS sont considérés comme un revenu d'activité les 3 premiers mois "
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1998-01-01' # age < 18 sur le trimestre de référence
+    indemnites_journalieres_maladie:
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+    indemnites_journalieres_accident_travail:
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+    indemnites_journalieres_maladie_professionnelle:
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+    date_arret_de_travail: 2015-08-01
+  output_variables:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 0
+      2015-11: 0
+      2015-10: 1500
+
+- name: "PPA - Les IJSS maternité/paternité/adoptions sont toujours considérés comme un revenu d'activité"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1998-01-01' # age < 18 sur le trimestre de référence
+    indemnites_journalieres_maternite:
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+    indemnites_journalieres_paternite:
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+    indemnites_journalieres_adoption:
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+    date_arret_de_travail: 2015-01-01
+  output_variables:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 1500
+      2015-11: 1500
+      2015-10: 1500
