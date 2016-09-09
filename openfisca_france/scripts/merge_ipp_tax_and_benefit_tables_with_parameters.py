@@ -343,7 +343,6 @@ def merge_elements(element, original_element, path = None):
         for original_value_element in original_element:
             if not is_included_in_ipp_values(original_value_element=original_value_element, element=element):
                 conflicts.add(build_inclusion_conflict(original_value_element=original_value_element, element=element))
-                break
 
         if conflicts:
             element.attrib['conflicts'] = u','.join(conflicts)
