@@ -186,7 +186,7 @@ def check_calculate_output(yaml_path, name, period_str, simulation, force, verbo
             if isinstance(expected_value, dict):
                 for requested_period, expected_value_at_period in expected_value.iteritems():
                     assert_near_calculate_output(
-                        simulation.calculate_output(variable_name, requested_period),
+                        simulation.calculate_output(variable_name, requested_period).value,
                         expected_value_at_period,
                         absolute_error_margin=simulation.absolute_error_margin,
                         message=u'{}@{}: '.format(variable_name, requested_period),
