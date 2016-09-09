@@ -384,14 +384,12 @@
       2015-12: 500
     indemnites_journalieres_maternite:
       2015-12: 500
-    indemnites_journalieres_accident_travail:
-      2015-12: 500
     indemnites_chomage_partiel:
       2015-12: 500
   output_variables:
     ppa: 0
     ppa_revenu_activite:
-      2015-12: 3000
+      2015-12: 2500
 
 - name: "PPA: ressources prises en compte hors activité (M-1)"
   period: 2016-02
