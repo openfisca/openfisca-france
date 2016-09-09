@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select, where)
+from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select, where, datetime64)
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf, age_en_mois_benjamin
@@ -321,6 +321,33 @@ class rsa_revenu_activite(Variable):
         return period, self.sum_by_entity(
             (not_(enfant_i) + rsa_enfant_a_charge_i)  * rsa_revenu_activite_i
             )
+
+class rsa_indemnites_journalieres_activite(Variable):
+    column = FloatCol
+    label = u"Indemnités journalières prises en compte comme revenu d'activité"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.this_month
+        date_arret_de_travail = simulation.calculate('date_arret_de_travail')
+        three_months_ago = datetime64(period.start.offset(-3,'month'))
+        condition_date_arret_travail =  date_arret_de_travail > three_months_ago
+
+        # IJSS prises en compte comme un revenu d'activité seulement les 3 premiers mois qui suivent l'arrêt de travail
+        ijss_activite_sous_condition = sum(simulation.calculate(ressource, period) for ressource in [
+            'indemnites_journalieres_maladie',
+            'indemnites_journalieres_accident_travail',
+            'indemnites_journalieres_maladie_professionnelle',
+        ])
+
+        ijss_activite = sum(simulation.calculate(ressource, period) for ressource in [
+            # IJSS toujours prises en compte comme un revenu d'activité
+            'indemnites_journalieres_maternite',
+            'indemnites_journalieres_paternite',
+            'indemnites_journalieres_adoption',
+        ]) + condition_date_arret_travail * ijss_activite_sous_condition
+
+        return period, ijss_activite
 
 class rsa_revenu_activite_individu(Variable):
     column = FloatCol
