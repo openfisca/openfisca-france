@@ -2927,6 +2927,17 @@
         <VALUE deb="2000-01-01" fuzzy="true" valeur="0.5" />
       </CODE>
     </NODE>
+    <NODE code="ada" origin="ipp">
+      <CODE code="majoration_pers_supp" format="float" origin="ipp" type="monetary">
+        <VALUE deb="2015-11-01" fuzzy="true" valeur="3.4" />
+      </CODE>
+      <CODE code="montant_journalier_pour_une_personne" format="float" origin="ipp" type="monetary">
+        <VALUE deb="2015-11-01" fuzzy="true" valeur="6.8" />
+      </CODE>
+      <CODE code="supplement_non_hebergement" format="float" origin="ipp" type="monetary">
+        <VALUE deb="2015-11-01" fuzzy="true" valeur="4.2" />
+      </CODE>
+    </NODE>
     <NODE code="aefa" description="Aide exceptionnelle de fin d'année" origin="ipp">
       <CODE code="forf2008" description="Montant de l'aide forfaitaire exceptionnelle de 2008" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2008-01-01" fin="2008-12-31" valeur="67.55" />

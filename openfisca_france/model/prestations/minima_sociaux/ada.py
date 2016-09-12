@@ -15,15 +15,15 @@ class ada(Variable):
         af_nbenf = simulation.calculate('af_nbenf', period)
         place_hebergement = simulation.calculate('place_hebergement', period)
         asile_demandeur = simulation.calculate('asile_demandeur', period)
-        ada = simulation.legislation_at(period.start).prestations.minima.ada
+        ada = simulation.legislation_at(period.start).prestations.minima_sociaux.ada
 
         nb_pers = af_nbenf + nb_parents
         ada_par_jour = (ada.montant_journalier_pour_une_personne +
             (nb_pers - 1) * ada.majoration_pers_supp +
-            ada.supplement_non_hebergement * (not ada.place_hebergement)
+            ada.supplement_non_hebergement * (not place_hebergement)
             )
 
-        montant_ada = period.days * ada_par_jour
+        montant_ada = period.days * ada_par_jour * asile_demandeur
         return period, montant_ada
 
 
