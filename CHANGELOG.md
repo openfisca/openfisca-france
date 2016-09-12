@@ -2,10 +2,17 @@
 
 ## 5.0.0
 
-* Rename:
-    * `cd_penali` -> `pensions_alimentaires_deduites`
-		* TODO list all the changed name
+* Rename variables:
+	* `cd_penali` -> `pensions_alimentaires_deduites`
+	* `cd_percap` -> `pertes_capital_societes_nouvellespertes_capital_societes_nouvelles`
+	* `cd_cinema` -> `cinema`
+	* `cd_ecodev` -> `epargne_codeveloppement`
+	* `cd_grorep` -> `grosses_reparations`
 
+* Add variables for allocation pour demadneur d'asile (ADA):
+	* `asile_demandeur`
+	* `place_hebergement`
+	* `ada`
 
 ## 4.1.5
 
