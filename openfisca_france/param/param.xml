@@ -6120,7 +6120,8 @@
         <CODE code="min" description="Abattement minimum - Cas général" format="integer" type="monetary">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="426" />
           <VALUE deb="2014-01-01" fin="2015-12-31" valeur="426" />
-          <VALUE deb="2010-01-01" fin="2013-12-31" valeur="421" />
+          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="424" />
+          <VALUE deb="2010-01-01" fin="2012-12-31" valeur="421" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="415" />
           <VALUE deb="2008-01-01" fin="2008-12-31" valeur="413" />
           <VALUE deb="2007-01-01" fin="2007-12-31" valeur="401" />
@@ -6135,7 +6136,8 @@
           <VALUE deb="2016-01-01" fuzzy="true" valeur="937" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur="937" />
           <VALUE deb="2014-01-01" fin="2014-12-31" valeur="936" />
-          <VALUE deb="2010-01-01" fin="2013-12-31" valeur="924" />
+          <VALUE deb="2013-01-01" fin="2013-12-31" valeur="931" />
+          <VALUE deb="2010-01-01" fin="2012-12-31" valeur="924" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="910" />
           <VALUE deb="2008-01-01" fin="2008-12-31" valeur="906" />
           <VALUE deb="2007-01-01" fin="2007-12-31" valeur="880" />

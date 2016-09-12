@@ -169,6 +169,7 @@ def main():
 
 conflicting_parameters_to_ignore = [
     # IPP est plus à jour
+    'impot_revenu.charges_deductibles.accueil_personne_agee.plafond',
     'impot_revenu.plafond_qf.celib',
     'impot_revenu.plafond_qf.celib_enf',
     'impot_revenu.plafond_qf.veuf',
