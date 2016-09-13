@@ -90,11 +90,13 @@ class bourse_lycee_nombre_parts(Variable):
         plafonds_reference = simulation.legislation_at(period.start).bourses_education.bourse_lycee.plafonds_reference
         increments_par_point_de_charge = simulation.legislation_at(period.start).bourses_education.bourse_lycee.increments_par_point_de_charge
 
+        rfr.entity = points_de_charge.entity  # ARGHH DON'T DO THAT !!!! ABSTRACTION LEAK !!!
+
         choices = [10, 9, 8, 7, 6, 5, 4, 3]
         nombre_parts = apply_thresholds(
             rfr,
             thresholds = [
-                round(
+                round_(
                     plafonds_reference['{}_parts'.format(index)] +
                     ((points_de_charge - 9) * increments_par_point_de_charge['{}_parts'.format(index)])
                     )

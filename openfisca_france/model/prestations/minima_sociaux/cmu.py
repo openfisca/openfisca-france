@@ -90,8 +90,7 @@ class cmu_c_plafond(Variable):
     entity_class = Familles
     label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
 
-    # matrix manipulations (TODO)
-    '''def function(self, simulation, period):
+    def function(self, simulation, period):
         period = period.this_month
         age_holder = simulation.compute('age', period)
         alt_holder = simulation.compute('garde_alternee', period)
@@ -101,10 +100,18 @@ class cmu_c_plafond(Variable):
 
         PAC = [PART] + ENFS
 
+
+        from IPython.core.debugger import Tracer
+        Tracer()()
+
         # Calcul du coefficient personnes à charge, avec prise en compte de la garde alternée
 
+        # WARNING !!! ABSTRACTION LEAK !!!
+        import numpy
+        from openfisca_core.node import Node
+
         # Tableau des coefficients
-        coefficients_array = array(
+        coefficients_array = numpy.array(
             [P.coeff_p2, P.coeff_p3_p4, P.coeff_p3_p4] + [P.coeff_p5_plus] * (len(PAC) - 3)
             )
 
@@ -112,9 +119,9 @@ class cmu_c_plafond(Variable):
         age_by_role = self.split_by_roles(age_holder, roles = PAC)
         alt_by_role = self.split_by_roles(alt_holder, roles = PAC)
 
-        age_and_alt_matrix = array(
+        age_and_alt_matrix = numpy.array(
             [
-                (role == PART) * 10000 + age_by_role[role] * 10 + alt_by_role[role] - (age_by_role[role] < 0) * 999999
+                (role == PART) * 10000 + age_by_role[role].value * 10 + alt_by_role[role].value - (age_by_role[role].value < 0) * 999999
                 for role in sorted(age_by_role)
                 ]
             ).transpose()
@@ -122,20 +129,21 @@ class cmu_c_plafond(Variable):
         # Calcul avec matrices intermédiaires
         reverse_sorted = partial(sorted, reverse = True)
 
-        sorted_age_and_alt_matrix = apply_along_axis(reverse_sorted, 1, age_and_alt_matrix)
+        sorted_age_and_alt_matrix = numpy.apply_along_axis(reverse_sorted, 1, age_and_alt_matrix)
         # Calcule weighted_alt_matrix, qui vaut 0.5 pour les enfants en garde alternée, 1 sinon.
         sorted_present_matrix = sorted_age_and_alt_matrix >= 0
         sorted_alt_matrix = (sorted_age_and_alt_matrix % 10) * sorted_present_matrix
         weighted_alt_matrix = sorted_present_matrix - sorted_alt_matrix * 0.5
 
         # Calcul final du coefficient
-        coeff_pac = weighted_alt_matrix.dot(coefficients_array)
+        coeff_pac_array = weighted_alt_matrix.dot(coefficients_array)
+        coeff_pac = Node(coeff_pac_array, cmu_eligible_majoration_dom.entity, simulation)
 
         return period, (P.plafond_base *
             (1 + cmu_eligible_majoration_dom * P.majoration_dom) *
             (1 + coeff_pac)
             )
-    '''
+
 
 class acs_plafond(Variable):
     column = FloatCol
