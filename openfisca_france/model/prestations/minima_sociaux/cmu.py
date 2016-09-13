@@ -100,10 +100,6 @@ class cmu_c_plafond(Variable):
 
         PAC = [PART] + ENFS
 
-
-        from IPython.core.debugger import Tracer
-        Tracer()()
-
         # Calcul du coefficient personnes à charge, avec prise en compte de la garde alternée
 
         # WARNING !!! ABSTRACTION LEAK !!!
