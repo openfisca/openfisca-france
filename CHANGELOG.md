@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.11
+
+* Remove end dates where not necessary
+
 ## 4.1.10
 
 * Refactor asi_aspa.py
