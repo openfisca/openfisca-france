@@ -675,7 +675,7 @@ class primes_fonction_publique(Variable):
 class af_nbenf_fonc(Variable):
     column = IntCol
     entity_class = Familles
-    label = u"Nombre d'enfants dans la famille au sens des allocations familiales pour le fonctionnaires"
+    label = u"Nombre d'enfants dans la famille au sens des allocations familiales pour les fonctionnaires"
     # Hack pour éviter une boucle infinie
 
     def function(self, simulation, period):
