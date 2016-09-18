@@ -12,17 +12,10 @@ class coloc(Variable):
     entity_class = Individus
     label = u"Vie en colocation"
 
-
-
-
-
-
-
 class logement_chambre(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Le logement est considéré comme une chambre"
-
 
 
 class loyer(Variable):
@@ -57,7 +50,10 @@ class proprietaire_proche_famille(Variable):
     entity_class = Familles
     label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
 
-
+class habite_chez_parents(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"L'individu habite chez ses parents"
 
 class statut_occupation_logement(Variable):
     column = EnumCol(

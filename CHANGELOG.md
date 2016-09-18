@@ -14,6 +14,41 @@
 	* `place_hebergement`
 	* `ada`
 
+## 4.1.11
+
+* Remove end dates where not necessary
+
+## 4.1.10
+
+* Refactor asi_aspa.py
+* Fix abattement for conjoint salary
+* Adjust interaction with AAH
+* Small fix on RSA: don't use euclidian division because of rounding issues
+* Small fix on PPA: don't take into acccount more AF that it have been declared (see 4.1.8)
+
+## 4.1.9
+
+* Tighten CMU/ACS eligibility conditions when when person is less than 25
+* Introduce `cmu_acs_eligibilite`, `habite_chez_parents`
+
+## 4.1.8
+
+* Refactor rsa.py
+* Do not take stages gratification into account
+* Do not take into acccount more AF that it have been declared
+
+## 4.1.7
+
+* Fix bug in CMU forfait_logement
+* Refactor CMU computation
+
+## 4.1.6
+
+* Fix bugs in RSA:
+  * One need to be **strictly** more that 25 to benefit it.
+  * Apply rsa_forfait_asf accordingly to the asf actually being paid.
+* Deprecate rsa_forfait_asf_individu
+
 ## 4.1.5
 
 * Follow OpenFisca-Core major release

@@ -313,7 +313,7 @@ class isf_iai(DatedVariable):
         bareme = simulation.legislation_at(period.start).taxation_capital.isf.bareme
         return period, bareme.calc(ass_isf)
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2011, 1, 1))
     def function_20110101_20151231(self, simulation, period):
         period = period.this_year
         ass_isf = simulation.calculate('ass_isf', period)
@@ -546,7 +546,7 @@ class isf_apres_plaf(DatedVariable):
         #    est limité à 50% de l'ISF
         return period, isf_avant_plaf
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2013, 1, 1))
     def function_20130101_20151231(self, simulation, period):
         """
         Impôt sur la fortune après plafonnement

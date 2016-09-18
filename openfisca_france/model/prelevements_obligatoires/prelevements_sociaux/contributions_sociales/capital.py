@@ -119,8 +119,8 @@ class prelsoc_cap_bar(DatedVariable):
             )
         return period, -rev_cap_bar * total
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
-    def function_2013_2015(self, simulation, period):
+    @dated_function(start = date(2013, 1, 1))
+    def function_2013_(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
@@ -132,8 +132,6 @@ class prelsoc_cap_bar(DatedVariable):
         return period, -rev_cap_bar * total
 
 
-
-
 class prelsoc_cap_bar_declarant1(EntityToPersonColumn):
     entity_class = Individus
     label = u"Prélèvements sociaux sur les revenus du capital soumis au barème (pour le premier déclarant du foyer fiscal)"  # noqa
@@ -141,8 +139,7 @@ class prelsoc_cap_bar_declarant1(EntityToPersonColumn):
     variable = prelsoc_cap_bar
 
 
-# plus-values de valeurs mobilières
-
+# Plus-values de valeurs mobilières
 
 class csg_pv_mo(Variable):
     column = FloatCol(default = 0)
@@ -239,8 +236,7 @@ class prelsoc_pv_mo(DatedVariable):
         return period, -f3vg * total
 
 
-# plus-values immobilières
-
+# Plus-values immobilières
 
 class csg_pv_immo(Variable):
     column = FloatCol(default = 0)
@@ -324,7 +320,7 @@ class prelsoc_pv_immo(DatedVariable):
         return period, -f3vz * total
 
     @dated_function(start = date(2013, 1, 1))
-    def function_20120101_(self, simulation, period):
+    def function_20130101_(self, simulation, period):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
@@ -337,8 +333,7 @@ class prelsoc_pv_immo(DatedVariable):
         return period, -f3vz * total
 
 
-# revenus fonciers
-
+# Revenus fonciers
 
 class csg_fon(Variable):
     column = FloatCol(default = 0)

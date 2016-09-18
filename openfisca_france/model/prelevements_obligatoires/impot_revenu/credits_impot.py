@@ -1264,7 +1264,7 @@ class preetu(DatedVariable):
         max1 = P.max * (1 + f7vo)
         return period, P.taux * min_(f7uk, max1)
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2008, 1, 1))
     def function_20080101_20151231(self, simulation, period):
         '''
         Crédit d’impôt pour souscription de prêts étudiants (cases 7UK, 7VO et 7TD)
