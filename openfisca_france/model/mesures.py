@@ -373,7 +373,7 @@ class mini(Variable):
         aah = self.sum_by_entity(aah_holder)
         caah = self.sum_by_entity(caah_holder)
 
-        return period, aspa + aah + caah + asi + rsa + aefa + api + ass + psa + ppa 
+        return period, aspa + aah + caah + asi + rsa + aefa + api + ass + psa + ppa
 
 
 class aides_logement(Variable):
@@ -485,7 +485,6 @@ class cotisations_non_contributives(Variable):
         '''
         Cotisations sociales non contributives (hors prelsoc_cap_lib, prelsoc_cap_bar)
         '''
-        period = period.this_year
         cotisations_employeur_non_contributives = simulation.calculate('cotisations_employeur_non_contributives',
             period)
         cotisations_salariales_non_contributives = simulation.calculate('cotisations_salariales_non_contributives',
