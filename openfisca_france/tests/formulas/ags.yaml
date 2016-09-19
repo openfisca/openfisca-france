@@ -12,6 +12,6 @@
     - id: "parent1"
       contrat_de_travail: 1
       heures_remunerees_volume: 20
-      salaire_de_base: 1000
+      salaire_de_base: 0
   output_variables:
     ags: 0
