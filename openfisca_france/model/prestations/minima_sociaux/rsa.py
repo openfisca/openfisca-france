@@ -577,12 +577,12 @@ class rsa_forfait_asf(Variable):
     def function(self, simulation, period):
         period = period.this_month
         # Si un ASF est versé, on ne prend pas en compte le montant réel mais un forfait.
-        pfam = simulation.legislation_at(period.start).prestations_familiales
-        minim = simulation.legislation_at(period.start).minima_sociaux
+        prestations_familiales = simulation.legislation_at(period.start).prestations.prestations_familiales
+        minima_sociaux = simulation.legislation_at(period.start).prestations.minima_sociaux
 
         asf_verse = simulation.calculate('asf', period)
-        montant_verse_par_enfant = pfam.af.bmaf * pfam.asf.taux1
-        montant_retenu_rsa_par_enfant = pfam.af.bmaf * minim.rmi.forfait_asf.taux1
+        montant_verse_par_enfant = prestations_familiales.af.bmaf * prestations_familiales.asf.taux_1_parent
+        montant_retenu_rsa_par_enfant = prestations_familiales.af.bmaf * minima_sociaux.rmi.forfait_asf.taux1
 
         asf_retenue = asf_verse * (montant_retenu_rsa_par_enfant / montant_verse_par_enfant)
 
