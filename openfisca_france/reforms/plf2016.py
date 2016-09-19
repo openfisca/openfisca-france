@@ -217,7 +217,6 @@ def counterfactual_2014_modify_legislation_json(reference_legislation_json_copy)
     #     value = 3536 * inflator,
     #     )
 
-    # FIXME update_legislation is deprecated.
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
         path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 1, 'threshold'),
