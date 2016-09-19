@@ -11,5 +11,6 @@
   individus:
     - id: "parent1"
       contrat_de_travail: 1
+      salaire_de_base: 1000
   output_variables:
     ags: 0
