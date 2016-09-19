@@ -476,7 +476,7 @@ class csg(Variable):
                 csg_cap_lib_declarant1 + csg_pv_mo + csg_pv_immo + csg_cap_bar_declarant1)
 
 
-class cotsoc_noncontrib(Variable):
+class cotisations_non_contributives(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
     label = u"Cotisations sociales non contributives"
