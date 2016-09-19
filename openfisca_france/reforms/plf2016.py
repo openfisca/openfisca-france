@@ -227,43 +227,43 @@ def counterfactual_2014_modify_legislation_json(reference_legislation_json_copy)
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
         path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 1, 'rate'),
-        period = reform_period,
+        start = reform_period.start,
         value = .055,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
         path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 2, 'threshold'),
-        period = reform_period,
+        start = reform_period.start,
         value = 11991 * inflator,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
         path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 2, 'rate'),
-        period = reform_period,
+        start = reform_period.start,
         value = .14,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
         path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 3, 'threshold'),
-        period = reform_period,
+        start = reform_period.start,
         value = 26631 * inflator,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
         path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 3, 'rate'),
-        period = reform_period,
+        start = reform_period.start,
         value = .30,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
         path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 4, 'threshold'),
-        period = reform_period,
+        start = reform_period.start,
         value = 71397 * inflator,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
         path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 4, 'rate'),
-        period = reform_period,
+        start = reform_period.start,
         value = .40,
         )
 
