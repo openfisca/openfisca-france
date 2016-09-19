@@ -97,8 +97,8 @@ class asi_aspa_base_ressources_individu(Variable):
 
             taux_abattement_forfaitaire = where(
                 aspa_couple,
-                legislation.minima_sociaux.aspa.abattement_forfaitaire_tx_couple,
-                legislation.minima_sociaux.aspa.abattement_forfaitaire_tx_seul
+                legislation.prestations.minima_sociaux.aspa.abattement_forfaitaire_tx_couple,
+                legislation.prestations.minima_sociaux.aspa.abattement_forfaitaire_tx_seul
                 )
 
             abattement_forfaitaire = abattement_forfaitaire_base * taux_abattement_forfaitaire

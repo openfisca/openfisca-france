@@ -110,7 +110,7 @@ class rsa_base_ressources_individu(Variable):
 
         # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
         # sans condition de revenu de substitution.
-        neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).minim.rmi.rmi
+        neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).minimima_sociaux.rmi.rmi
         revenus_non_pros = sum(
             max_(0, simulation.calculate_add(type_revenu, last_3_months) - neutral_max_forfaitaire * (
                 (simulation.calculate(type_revenu, period.this_month) == 0) *
