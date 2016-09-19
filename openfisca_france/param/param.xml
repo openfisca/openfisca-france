@@ -6853,7 +6853,8 @@
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="200" />
       </CODE>
       <CODE code="rmi" description="Rsa socle" format="float" type="monetary">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="524.68" />
+        <VALUE deb="2016-09-01" valeur="535.17" />
+        <VALUE deb="2016-04-01" fin="2016-08-31" valeur="524.68" />
         <VALUE deb="2016-01-01" fin="2016-03-31" valeur="524.16" />
         <VALUE deb="2015-09-01" fin="2015-12-31" valeur="524.16" />
         <VALUE deb="2015-01-01" fin="2015-08-31" valeur="513.88" />
