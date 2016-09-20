@@ -67,7 +67,7 @@ options_by_dir = collections.OrderedDict((
             calculate_output=False,
             default_absolute_error_margin=0.005,
             reforms=['de_net_a_brut'],
-            requires='scipy',
+            #requires='scipy',
             ),
         ),
     ))
