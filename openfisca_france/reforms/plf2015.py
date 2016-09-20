@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import division
+from datetime import date
 
 from openfisca_core import periods
 from openfisca_core.reforms import Reform, update_legislation
-from ..model.base import *
+from ..model.base import DatedVariable, dated_function
 
 
 def modify_legislation_json(reference_legislation_json_copy):
@@ -35,14 +36,12 @@ def modify_legislation_json(reference_legislation_json_copy):
         legislation_json = reference_legislation_json_copy,
         path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 1, 'rate'),
         start = reform_period.start,
-        stop = reform_period.stop,
         value = 0,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
         path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 2, 'threshold'),
         start = reform_period.start,
-        stop = reform_period.stop,
         value = 9690,
         )
 
