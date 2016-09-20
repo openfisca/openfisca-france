@@ -49,7 +49,7 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
             'prestations.xml',
             'taxation_capital.xml',
             'tns.xml'
-        ]
+            ]
 
         for param_file in param_files:
             param_path = os.path.join(COUNTRY_DIR, 'parameters', param_file)
