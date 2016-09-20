@@ -4,7 +4,6 @@ import datetime
 
 from openfisca_core import periods, reforms
 from openfisca_core.reforms import Reform
-from openfisca_core.variables import Variable
 
 from openfisca_france.tests.base import assert_near, tax_benefit_system
 
