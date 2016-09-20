@@ -4,18 +4,18 @@ import datetime
 
 from openfisca_core import periods, reforms
 from openfisca_core.reforms import Reform
-from openfisca_core.variables import Variable
 
 from openfisca_france.tests.base import assert_near, tax_benefit_system
 
 simulation_year = 2013
 simulation_period = periods.period('year', simulation_year)
 
+
 def modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_json = reforms.update_legislation(
         legislation_json = reference_legislation_json_copy,
         path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 0, 'rate'),
-        period = simulation_period,
+        start = simulation_period.start,
         value = 1,
         )
     return reform_legislation_json
@@ -26,6 +26,7 @@ class ir_100_tranche_1(Reform):
 
     def apply(self):
         self.modify_legislation_json(modifier_function = modify_legislation_json)
+
 
 def test_parametric_reform():
     reform = ir_100_tranche_1(tax_benefit_system)
