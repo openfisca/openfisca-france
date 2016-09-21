@@ -14,8 +14,8 @@ from openfisca_france.tests.base import tax_benefit_system
 def modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_json = update_legislation(
         legislation_json = reference_legislation_json_copy,
-        path = ('children', 'cotsoc', 'children', 'gen', 'children', 'smic_h_b', 'values'),
-        start = periods.period("year", "2013"),
+        path = ['children', 'cotsoc', 'children', 'gen', 'children', 'smic_h_b', 'values'],
+        period = periods.period("year", 2013),
         value = 9,
         )
     return reform_legislation_json
