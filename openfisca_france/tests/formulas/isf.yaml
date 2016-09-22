@@ -28,6 +28,7 @@
 - name: "Impôt sur la fortune - Célibataire - ISF test"
   keywords: isf
   period: 2016
+  ignore: True
   absolute_error_margin: 5
   input_variables:
     b1ab: 10000000
