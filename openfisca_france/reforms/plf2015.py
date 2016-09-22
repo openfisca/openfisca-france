@@ -35,13 +35,13 @@ def modify_legislation_json(reference_legislation_json_copy):
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
         path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 1, 'rate'),
-        start = reform_period.start,
+        period = reform_period,
         value = 0,
         )
     reference_legislation_json_copy = update_legislation(
         legislation_json = reference_legislation_json_copy,
         path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 2, 'threshold'),
-        start = reform_period.start,
+        period = reform_period,
         value = 9690,
         )
 

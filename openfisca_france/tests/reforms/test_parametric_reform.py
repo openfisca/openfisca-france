@@ -14,8 +14,8 @@ simulation_period = periods.period('year', simulation_year)
 def modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_json = reforms.update_legislation(
         legislation_json = reference_legislation_json_copy,
-        path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 0, 'rate'),
-        start = simulation_period.start,
+        path = ['children', 'impot_revenu', 'children', 'bareme', 'brackets', 0, 'rate'],
+        period = simulation_period,
         value = 1,
         )
     return reform_legislation_json
