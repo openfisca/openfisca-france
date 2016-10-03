@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.12
+
+* Fix links in README
+
 ## 4.1.11
 
 * Remove end dates where not necessary
