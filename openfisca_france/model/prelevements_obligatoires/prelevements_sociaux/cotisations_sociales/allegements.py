@@ -343,7 +343,7 @@ def compute_allegement_fillon(simulation, period):
 class allegement_cotisation_allocations_familiales(DatedVariable):
     column = FloatCol
     entity_class = Individus
-    label = u"Allègement de la cotisation d'allocationos familiales sur les bas et moyens salaires"
+    label = u"Allègement de la cotisation d'allocations familiales sur les bas et moyens salaires"
     url = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
 
     @dated_function(date(2015, 1, 1))
