@@ -14,6 +14,10 @@
 	* `place_hebergement`
 	* `ada`
 
+## 4.1.13
+
+* Increase RSA base amount to 535.17 from September 2016
+
 ## 4.1.12
 
 * Fix links in README
