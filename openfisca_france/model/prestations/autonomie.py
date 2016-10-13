@@ -27,7 +27,7 @@ from __future__ import division
 
 from numpy import maximum as max_, minimum as min_, zeros
 
-from ..base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 @reference_formula
