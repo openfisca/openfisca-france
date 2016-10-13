@@ -1,28 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 from __future__ import division
 
 from numpy import maximum as max_, minimum as min_, zeros
@@ -30,8 +8,7 @@ from numpy import maximum as max_, minimum as min_, zeros
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-@reference_formula
-class apa_domicile(SimpleFormulaColumn):
+class apa_domicile(Variable):
     column = FloatCol
     label = u"Allocation personalisée d'autonomie"
     entity_class = Familles
@@ -75,8 +52,7 @@ class apa_domicile(SimpleFormulaColumn):
         return period, apa * (apa >= seuil_non_versement)
 
 
-@reference_formula
-class apa_etablissement(SimpleFormulaColumn):
+class apa_etablissement(Variable):
     column = FloatCol
     label = u"Allocation personalisée d'autonomie"
     entity_class = Familles
@@ -125,8 +101,7 @@ class apa_etablissement(SimpleFormulaColumn):
         return period, apa * (apa >= seuil_non_versement)
 
 
-@reference_formula
-class base_ressources_apa(SimpleFormulaColumn):
+class base_ressources_apa(Variable):
     column = FloatCol
     label = u"Base ressources de l'allocation personalisée d'autonomie"
     entity_class = Familles
@@ -134,7 +109,8 @@ class base_ressources_apa(SimpleFormulaColumn):
     def function(self, simulation, period):
         return zeros(self.holder.entity.count)
 
-reference_input_variable(
+
+class gir(Variable):
     column = EnumCol(
         enum = Enum(
             [
@@ -148,30 +124,24 @@ reference_input_variable(
                 ],
             ),
         default = 0,
-        ),
-    entity_class = Individus,
-    label = u"Groupe iso-ressources de l'individu",
-    name = "gir",
-    )
+        )
+    entity_class = Individus
+    label = u"Groupe iso-ressources de l'individu"
 
 
-reference_input_variable(
-    column = FloatCol,
-    entity_class = Individus,
-    label = u"Plan d'aide à domicile pour une personne dépendate",
-    name = "dependance_plan_aide_domicile",
-    )
+class dependance_plan_aide_domicile(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Plan d'aide à domicile pour une personne dépendate"
 
-reference_input_variable(
-    column = FloatCol,
-    entity_class = Individus,
-    label = u"Tarif dépendance de l'établissement pour les GIR 5 et 6",
-    name = "dependance_tarif_etablissement_gir_5_6",
-    )
 
-reference_input_variable(
-    column = FloatCol,
-    entity_class = Individus,
-    label = u"Tarif dépendance de l'établissement pour le GIR de la personne dépendante",
-    name = "dependance_tarif_etablissement_gir_dependant",
-    )
+class dependance_tarif_etablissement_gir_5_6(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Tarif dépendance de l'établissement pour les GIR 5 et 6"
+
+
+class dependance_tarif_etablissement_gir_dependant(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Tarif dépendance de l'établissement pour le GIR de la personne dépendante"
