@@ -1,0 +1,46 @@
+- name: "base ressources APA domicile celibataire sans ressources GIR 1"
+  description: Montant base ressources
+  period: 2014-01
+  absolute_error_margin: 0.03
+  input_variables:
+    age: 70 
+    gir: "Gir 1"
+  output_variables:
+    base_ressources_apa: 0
+
+- name: "plan d'aide APA domicile celibataire sans ressources GIR 1"
+  description: Montant base ressources
+  period: 2014-01
+  absolute_error_margin: 0.03
+  input_variables:
+    age: 70 
+    gir: "Gir 1"
+    dependance_plan_aide_domicile: 2000
+  output_variables:
+    dependance_plan_aide_domicile: 2000
+    base_ressources_apa: 0
+
+
+- name: "APA domicile celibataire sans ressources GIR 1"
+  description: Montant APA
+  period: 2014-01
+  absolute_error_margin: 0.03
+  input_variables:
+    age: 70 
+    gir: "Gir 1"
+    dependance_plan_aide_domicile: 2000
+  output_variables:
+    base_ressources_apa: 0
+    apa_domicile: 1312.67  
+    apa_etablissement: 0
+
+- name: "APA condition d'âge"
+  description: Montant APA
+  period: 2014-01
+  absolute_error_margin: 0.03
+  input_variables:
+    age: 60 
+    dependance_plan_aide_domicile: 2000
+  output_variables:
+    apa_domicile: 0
+    apa_etablissement: 0
