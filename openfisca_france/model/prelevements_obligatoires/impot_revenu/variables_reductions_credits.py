@@ -1,397 +1,610 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
-from ...base import *  # noqa
+from openfisca_france.model.base import *  # noqa
 
 
 # Dons à des organismes établis en France
-build_column('f7ud', IntCol(entity = 'foy',
-                label = u"Dons à des organismes d'aide aux personnes en difficulté",
-                val_type = "monetary",
-                cerfa_field = u'7UD'))
+class f7ud(Variable):
+    cerfa_field = u"7UD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dons à des organismes d'aide aux personnes en difficulté"
 
-build_column('f7uf', IntCol(entity = 'foy',
-                label = u"Dons à d'autres oeuvres d'utilité publique ou fiscalement assimilables aux oeuvres d'intérêt général",
-                val_type = "monetary",
-                cerfa_field = u'7UF')) # début/fin ?
 
-build_column('f7xs', IntCol(entity = 'foy',
-                label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -5",
-                val_type = "monetary",
-                cerfa_field = u'7XS'))
 
-build_column('f7xt', IntCol(entity = 'foy',
-                label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -4",
-                val_type = "monetary",
-                cerfa_field = u'7XT'))
+class f7uf(Variable):
+    cerfa_field = u"7UF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dons à d'autres oeuvres d'utilité publique ou fiscalement assimilables aux oeuvres d'intérêt général"
 
-build_column('f7xu', IntCol(entity = 'foy',
-                label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -3",
-                val_type = "monetary",
-                start = date(2006, 1, 1),
-                cerfa_field = u'7XU'))
+ # début/fin ?
 
-build_column('f7xw', IntCol(entity = 'foy',
-                label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -2",
-                val_type = "monetary",
-                start = date(2007, 1, 1),
-                cerfa_field = u'7XW'))
+class f7xs(Variable):
+    cerfa_field = u"7XS"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -5"
 
-build_column('f7xy', IntCol(entity = 'foy',
-                label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -1",
-                val_type = "monetary",
-                start = date(2008, 1, 1),
-                cerfa_field = u'7XY'))
 
-build_column('f7va', IntCol(entity = 'foy',
-                label = u"Dons à des organismes d'aides aux personnes établis dans un Etat européen",
-                val_type = "monetary",
-                cerfa_field = u'7VA',
-                start = date(2011, 1, 1)))
 
-build_column('f7vc', IntCol(entity = 'foy',
-                label = u"Dons à des autres organismes établis dans un Etat européen",
-                val_type = "monetary",
-                cerfa_field = u'7VC',
-                start = date(2011, 1, 1)))  # f7va, f7vc 2011 ou 2013 ?
+class f7xt(Variable):
+    cerfa_field = u"7XT"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -4"
+
+
+
+class f7xu(Variable):
+    cerfa_field = u"7XU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -3"
+    start_date = date(2006, 1, 1)
+
+
+
+class f7xw(Variable):
+    cerfa_field = u"7XW"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -2"
+    start_date = date(2007, 1, 1)
+
+
+
+class f7xy(Variable):
+    cerfa_field = u"7XY"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -1"
+    start_date = date(2008, 1, 1)
+
+
+
+class f7va(Variable):
+    cerfa_field = u"7VA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dons à des organismes d'aides aux personnes établis dans un Etat européen"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7vc(Variable):
+    cerfa_field = u"7VC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dons à des autres organismes établis dans un Etat européen"
+    start_date = date(2011, 1, 1)
+
+  # f7va, f7vc 2011 ou 2013 ?
 
 # Cotisations syndicales des salariées et pensionnés
-build_column('f7ac', IntCol(entity = 'ind',
-                label = u"Cotisations syndicales des salariées et pensionnés",
-                val_type = "monetary",
-                start = date(2013, 1, 1),
-                cerfa_field = {QUIFOY['vous']: u"7AC",
-                               QUIFOY['conj']: u"7AE",
-                               QUIFOY['pac1']: u"7AG",
-                               }))  # f7ac, f7ae, f7ag
+class f7ac(Variable):
+    cerfa_field = {QUIFOY['vous']: u"7AC",
+        QUIFOY['conj']: u"7AE",
+        QUIFOY['pac1']: u"7AG",
+        }
+    column = IntCol(val_type = "monetary")
+    entity_class = Individus
+    label = u"Cotisations syndicales des salariées et pensionnés"
+    start_date = date(2013, 1, 1)
+
+  # f7ac, f7ae, f7ag
 
 # Salarié à domicile
-build_column('f7db', IntCol(entity = 'foy',
-                label = u"Sommes versées pour l'emploi d'un salarié à domicile par les personnes ayant excercé une activité professionnelle ou ayant été demandeur d'emploi l'année de perception des revenus déclarés",
-                val_type = "monetary",
-                start = date(2007, 1, 1),
-                cerfa_field = u'7DB'))
+class f7db(Variable):
+    cerfa_field = u"7DB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Sommes versées pour l'emploi d'un salarié à domicile par les personnes ayant excercé une activité professionnelle ou ayant été demandeur d'emploi l'année de perception des revenus déclarés"
+    start_date = date(2007, 1, 1)
 
-build_column('f7df', IntCol(entity = 'foy',
-                label = u"Sommes versées pour l'emploi d'un salarié à domicile par les personnes retraités, ou inactives l'année de perception des revenus déclarés",
-                val_type = "monetary",
-                cerfa_field = u'7DF'))
 
-build_column('f7dq', BoolCol(entity = 'foy',
-                 label = u"Emploi direct pour la première fois d'un salarié à domicile durant l'année de perception des revenus déclarés",
-                 start = date(2009, 1, 1),
-                 cerfa_field = u'7DQ'))
 
-build_column('f7dg', BoolCol(entity = 'foy',
-                 label = u"Vous, votre conjoint ou une personne à votre charge à une carte d'invalidité d'au moins 80 % l'année de perception des revenus déclarés",
-                 cerfa_field = u'7DG'))
+class f7df(Variable):
+    cerfa_field = u"7DF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Sommes versées pour l'emploi d'un salarié à domicile par les personnes retraités, ou inactives l'année de perception des revenus déclarés"
 
-build_column('f7dl', IntCol(entity = 'foy',
-                label = u"Nombre d'ascendants bénéficiaires de l'APA, âgés de plus de 65 ans, pour lesquels des dépenses ont été engagées l'année de perception des revenus déclarés",
-                cerfa_field = u'7DL'))
+
+
+class f7dq(Variable):
+    cerfa_field = u"7DQ"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Emploi direct pour la première fois d'un salarié à domicile durant l'année de perception des revenus déclarés"
+    start_date = date(2009, 1, 1)
+
+
+
+class f7dg(Variable):
+    cerfa_field = u"7DG"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Vous, votre conjoint ou une personne à votre charge à une carte d'invalidité d'au moins 80 % l'année de perception des revenus déclarés"
+
+
+
+class f7dl(Variable):
+    cerfa_field = u"7DL"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Nombre d'ascendants bénéficiaires de l'APA, âgés de plus de 65 ans, pour lesquels des dépenses ont été engagées l'année de perception des revenus déclarés"
+
+
 
 # Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale
-build_column('f7uh_2007', IntCol(entity = 'foy',
-                label = u"Intérêts payés la première année de remboursement du prêt pour l'habitation principale",
-                val_type = "monetary",
-                cerfa_field = u'7UH',
-                start = date(2007, 1, 1),
-                end = date(2007, 12, 31)))
+class f7uh_2007(Variable):
+    cerfa_field = u"7UH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Intérêts payés la première année de remboursement du prêt pour l'habitation principale"
+    start_date = date(2007, 1, 1)
+    stop_date = date(2007, 12, 31)
 
-build_column('f7vy', IntCol(entity = 'foy',
-                label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): Première annuité",
-                val_type = "monetary",
-                start = date(2008, 1, 1),
-                cerfa_field = u'7VY'))
 
-build_column('f7vz', IntCol(entity = 'foy',
-                label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): annuités suivantes",
-                val_type = "monetary",
-                start = date(2008, 1, 1),
-                cerfa_field = u'7VZ'))
 
-build_column('f7vx', IntCol(entity = 'foy',
-                label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs BBC acquis ou construits du 01/01/2009 au 30/09/2011",
-                val_type = "monetary",
-                cerfa_field = u'7VX'))
+class f7vy(Variable):
+    cerfa_field = u"7VY"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): Première annuité"
+    start_date = date(2008, 1, 1)
 
-build_column('f7vw', IntCol(entity = 'foy',
-                label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: première annuité",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7VW'))
 
-build_column('f7vv', IntCol(entity = 'foy',
-                label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: annuités suivantes",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7VV'))  # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
 
-build_column('f7vu', IntCol(entity = 'foy',
-                label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: première annuité",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7VU'))  # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
+class f7vz(Variable):
+    cerfa_field = u"7VZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): annuités suivantes"
+    start_date = date(2008, 1, 1)
 
-build_column('f7vt', IntCol(entity = 'foy',
-                label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: annuités suivantes",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7VT'))  # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
+
+
+class f7vx(Variable):
+    cerfa_field = u"7VX"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs BBC acquis ou construits du 01/01/2009 au 30/09/2011"
+
+
+
+class f7vw(Variable):
+    cerfa_field = u"7VW"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: première annuité"
+    start_date = date(2010, 1, 1)
+
+
+
+class f7vv(Variable):
+    cerfa_field = u"7VV"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: annuités suivantes"
+    start_date = date(2011, 1, 1)
+
+  # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
+
+class f7vu(Variable):
+    cerfa_field = u"7VU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: première annuité"
+    start_date = date(2011, 1, 1)
+
+  # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
+
+class f7vt(Variable):
+    cerfa_field = u"7VT"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: annuités suivantes"
+    start_date = date(2012, 1, 1)
+
+  # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
 
 # Dépenses d'accueil dans un établissement pour personnes âgées dépendantes
-build_column('f7cd', IntCol(entity = 'foy',
-                label = u"Dépenses d'accueil dans un établissement pour personnes âgées dépendantes: 1ere personne",
-                val_type = "monetary",
-                cerfa_field = u'7CD'))
+class f7cd(Variable):
+    cerfa_field = u"7CD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses d'accueil dans un établissement pour personnes âgées dépendantes: 1ere personne"
 
-build_column('f7ce', IntCol(entity = 'foy',
-                label = u"Dépenses d'accueil dans un établissement pour personnes âgées dépendantes: 2éme personne",
-                val_type = "monetary",
-                cerfa_field = u'7CE'))
+
+
+class f7ce(Variable):
+    cerfa_field = u"7CE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses d'accueil dans un établissement pour personnes âgées dépendantes: 2éme personne"
+
+
 
 # Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus
-build_column('f7ga', IntCol(entity = 'foy',
-                label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 1er enfant à charge",
-                val_type = "monetary",
-                cerfa_field = u'7GA'))
+class f7ga(Variable):
+    cerfa_field = u"7GA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 1er enfant à charge"
 
-build_column('f7gb', IntCol(entity = 'foy',
-                label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 2ème enfant à charge",
-                val_type = "monetary",
-                cerfa_field = u'7GB'))
 
-build_column('f7gc', IntCol(entity = 'foy',
-                label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 3ème enfant à charge",
-                val_type = "monetary",
-                cerfa_field = u'7GC'))
 
-build_column('f7ge', IntCol(entity = 'foy',
-                label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 1er enfant à charge en résidence alternée",
-                val_type = "monetary",
-                cerfa_field = u'7GE'))
+class f7gb(Variable):
+    cerfa_field = u"7GB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 2ème enfant à charge"
 
-build_column('f7gf', IntCol(entity = 'foy',
-                label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 2ème enfant à charge en résidence alternée",
-                val_type = "monetary",
-                cerfa_field = u'7GF'))
 
-build_column('f7gg', IntCol(entity = 'foy',
-                label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 3ème enfant à charge en résidence alternée",
-                val_type = "monetary",
-                cerfa_field = u'7GG'))
+
+class f7gc(Variable):
+    cerfa_field = u"7GC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 3ème enfant à charge"
+
+
+
+class f7ge(Variable):
+    cerfa_field = u"7GE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 1er enfant à charge en résidence alternée"
+
+
+
+class f7gf(Variable):
+    cerfa_field = u"7GF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 2ème enfant à charge en résidence alternée"
+
+
+
+class f7gg(Variable):
+    cerfa_field = u"7GG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Frais de garde des enfants de moins de 6 ans au 01/01 de l'année de perception des revenus: 3ème enfant à charge en résidence alternée"
+
+
 
 # Nombre d'enfants à charge poursuivant leurs études
-build_column('f7ea', PeriodSizeIndependentIntCol(entity = 'foy',
-                label = u"Nombre d'enfants à charge poursuivant leurs études au collège",
-                cerfa_field = u'7EA'))
+class f7ea(Variable):
+    cerfa_field = u"7EA"
+    column = PeriodSizeIndependentIntCol
+    entity_class = FoyersFiscaux
+    label = u"Nombre d'enfants à charge poursuivant leurs études au collège"
 
-build_column('f7eb', PeriodSizeIndependentIntCol(entity = 'foy',
-                label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études au collège",
-                cerfa_field = u'7EB'))
 
-build_column('f7ec', PeriodSizeIndependentIntCol(entity = 'foy',
-                label = u"Nombre d'enfants à charge poursuivant leurs études au lycée",
-                cerfa_field = u'7EC'))
 
-build_column('f7ed', PeriodSizeIndependentIntCol(entity = 'foy',
-                label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études au lycée",
-                cerfa_field = u'7ED'))
+class f7eb(Variable):
+    cerfa_field = u"7EB"
+    column = PeriodSizeIndependentIntCol
+    entity_class = FoyersFiscaux
+    label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études au collège"
 
-build_column('f7ef', PeriodSizeIndependentIntCol(entity = 'foy',
-                label = u"Nombre d'enfants à charge poursuivant leurs études dans l'enseignement supérieur",
-                cerfa_field = u'7EF'))
 
-build_column('f7eg', PeriodSizeIndependentIntCol(entity = 'foy',
-                label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études dans l'enseignement supérieur",
-                cerfa_field = u'7EG'))
+
+class f7ec(Variable):
+    cerfa_field = u"7EC"
+    column = PeriodSizeIndependentIntCol
+    entity_class = FoyersFiscaux
+    label = u"Nombre d'enfants à charge poursuivant leurs études au lycée"
+
+
+
+class f7ed(Variable):
+    cerfa_field = u"7ED"
+    column = PeriodSizeIndependentIntCol
+    entity_class = FoyersFiscaux
+    label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études au lycée"
+
+
+
+class f7ef(Variable):
+    cerfa_field = u"7EF"
+    column = PeriodSizeIndependentIntCol
+    entity_class = FoyersFiscaux
+    label = u"Nombre d'enfants à charge poursuivant leurs études dans l'enseignement supérieur"
+
+
+
+class f7eg(Variable):
+    cerfa_field = u"7EG"
+    column = PeriodSizeIndependentIntCol
+    entity_class = FoyersFiscaux
+    label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études dans l'enseignement supérieur"
+
+
 
 # Intérêts des prêts étudiants
-build_column('f7td', IntCol(entity = 'foy',
-                label = u"Intérêts des prêts étudiants versés avant l'année de perception des revenus déclarés",
-                val_type = "monetary",
-                start = date(2008, 1, 1),
-                cerfa_field = u'7TD'))
+class f7td(Variable):
+    cerfa_field = u"7TD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Intérêts des prêts étudiants versés avant l'année de perception des revenus déclarés"
+    start_date = date(2008, 1, 1)
 
-build_column('f7vo', PeriodSizeIndependentIntCol(entity = 'foy',
-                label = u"Nombre d'années de remboursement du prêt étudiant avant l'année de perception des revenus déclarés",
-                start = date(2006, 1, 1),
-                cerfa_field = u'7VO'))
 
-build_column('f7uk', IntCol(entity = 'foy',
-                label = u"Intérêts des prêts étudiants versés durant l'année de perception des revenus déclarés",
-                val_type = "monetary",
-                cerfa_field = u'7UK'))
+
+class f7vo(Variable):
+    cerfa_field = u"7VO"
+    column = PeriodSizeIndependentIntCol
+    entity_class = FoyersFiscaux
+    label = u"Nombre d'années de remboursement du prêt étudiant avant l'année de perception des revenus déclarés"
+    start_date = date(2006, 1, 1)
+
+
+
+class f7uk(Variable):
+    cerfa_field = u"7UK"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Intérêts des prêts étudiants versés durant l'année de perception des revenus déclarés"
+
+
 
 # Primes de rente survie, contrats d'épargne handicap
-build_column('f7gz', IntCol(entity = 'foy',
-                label = u"Primes de rente survie, contrats d'épargne handicap",
-                val_type = "monetary",
-                cerfa_field = u'7GZ'))
+class f7gz(Variable):
+    cerfa_field = u"7GZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Primes de rente survie, contrats d'épargne handicap"
+
+
 
 # Prestations compensatoires
-build_column('f7wm', IntCol(entity = 'foy',
-                label = u"Prestations compensatoires: Capital fixé en substitution de rente",
-                val_type = "monetary",
-                cerfa_field = u'7WM'))
+class f7wm(Variable):
+    cerfa_field = u"7WM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Prestations compensatoires: Capital fixé en substitution de rente"
 
-build_column('f7wn', IntCol(entity = 'foy',
-                label = u"Prestations compensatoires: Sommes versées l'année de perception des revenus déclarés",
-                val_type = "monetary",
-                cerfa_field = u'7WN'))
 
-build_column('f7wo', IntCol(entity = 'foy',
-                label = u"Prestations compensatoires: Sommes totales décidées par jugement l'année de perception des revenus déclarés ou capital reconstitué",
-                val_type = "monetary",
-                cerfa_field = u'7WO'))
 
-build_column('f7wp', IntCol(entity = 'foy',
-                label = u"Prestations compensatoires: Report des sommes décidées l'année de perception des revenus -1",
-                val_type = "monetary",
-                cerfa_field = u'7WP'))
+class f7wn(Variable):
+    cerfa_field = u"7WN"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Prestations compensatoires: Sommes versées l'année de perception des revenus déclarés"
+
+
+
+class f7wo(Variable):
+    cerfa_field = u"7WO"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Prestations compensatoires: Sommes totales décidées par jugement l'année de perception des revenus déclarés ou capital reconstitué"
+
+
+
+class f7wp(Variable):
+    cerfa_field = u"7WP"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Prestations compensatoires: Report des sommes décidées l'année de perception des revenus -1"
+
+
 
 # Dépenses en faveur de la qualité environnementale de l'habitation principale
-build_column('f7we', BoolCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés",
-                start = date(2009, 1, 1),
-                cerfa_field = u'7WE'))
+class f7we(Variable):
+    cerfa_field = u"7WE"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés"
+    start_date = date(2009, 1, 1)
 
-build_column('f7wg', BoolCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés -1",
-                val_type = "monetary",
-                cerfa_field = u'7WG',
-                start = date(2012, 1, 1)))
 
-build_column('f7wa', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique des murs avant le 03/04/2012",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7WA'))
 
-build_column('f7wb', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique des murs à compter du 04/04/2012",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7WB'))
+class f7wg(Variable):
+    cerfa_field = u"7WG"
+    column = BoolCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés -1"
+    start_date = date(2012, 1, 1)
 
-build_column('f7wc', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique sur plus de la moitié de la surface des murs extérieurs",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7WC'))
 
-build_column('f7ve', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de la toiture avant le 04/04/2012",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7VE'))
 
-build_column('f7vf', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de la toiture à compter du 04/04/2012",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7VF'))
+class f7wa(Variable):
+    cerfa_field = u"7WA"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique des murs avant le 03/04/2012"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
 
-build_column('f7vg', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de toute la toiture",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7VG'))
 
-build_column('f7sg', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Matériaux d'isolation thermique des murs (acquisitionn et pose)",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SG'))
 
-build_column('f7sj', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Matériaux d'isolation thermique des parois vitrées",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SJ'))
+class f7wb(Variable):
+    cerfa_field = u"7WB"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique des murs à compter du 04/04/2012"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
 
-build_column('f7sk', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Volets isolants",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SK'))
 
-build_column('f7sl', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Portes d'entrées donnant sur l'extérieur",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SL'))
 
-build_column('f7sm', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de production d'électricité utilisant l'énergie radiative du soleil",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SM'))
+class f7wc(Variable):
+    cerfa_field = u"7WC"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique sur plus de la moitié de la surface des murs extérieurs"
+    start_date = date(2012, 1, 1)
 
-build_column('f7sn', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Appareils de chauffage au bois ou autres biomasses remplaçant un appareil équivalent",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SN'))
 
-build_column('f7so', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Appareils de chauffage au bois ou autres biomasses ne remplaçant pas un appareil équivalent",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SO'))
 
-build_column('f7sp', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur autres que air/air et autres que géothermiques dont la finalité essentielle est la production de chaleur",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SP'))
+class f7ve(Variable):
+    cerfa_field = u"7VE"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de la toiture avant le 04/04/2012"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
 
-build_column('f7sq', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur géothermiques dont la finalité essentielle est la production de chaleur",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SQ'))
 
-build_column('f7sr', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur (autres que air/air) dédiées à la production d'eau chaude sanitaire (chauffe-eaux thermodynamiques)",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SR'))
 
-build_column('f7ss', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de fourniture d'eau chaude sanitaire fonctionnant à l'énergie solaire et dotés de capteurs solaires",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SS'))
+class f7vf(Variable):
+    cerfa_field = u"7VF"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de la toiture à compter du 04/04/2012"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
 
-build_column('f7st', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Autres équipements de production d'énergie utilisant une source d'énergie renouvelable (éolien, hydraulique)",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7ST'))
 
-build_column('f7su', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de récupération et de traitement des eaux pluviales",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SU'))
 
-build_column('f7sv', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Diagnostic de performance énergétique",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SV'))
+class f7vg(Variable):
+    cerfa_field = u"7VG"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de toute la toiture"
+    start_date = date(2012, 1, 1)
 
-build_column('f7sw', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de raccordement à un réseau de chaleur",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SW'))
+
+
+class f7sg(Variable):
+    cerfa_field = u"7SG"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Matériaux d'isolation thermique des murs (acquisitionn et pose)"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7sj(Variable):
+    cerfa_field = u"7SJ"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Matériaux d'isolation thermique des parois vitrées"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7sk(Variable):
+    cerfa_field = u"7SK"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Volets isolants"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7sl(Variable):
+    cerfa_field = u"7SL"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Portes d'entrées donnant sur l'extérieur"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7sm(Variable):
+    cerfa_field = u"7SM"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de production d'électricité utilisant l'énergie radiative du soleil"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7sn(Variable):
+    cerfa_field = u"7SN"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Appareils de chauffage au bois ou autres biomasses remplaçant un appareil équivalent"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7so(Variable):
+    cerfa_field = u"7SO"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Appareils de chauffage au bois ou autres biomasses ne remplaçant pas un appareil équivalent"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7sp(Variable):
+    cerfa_field = u"7SP"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur autres que air/air et autres que géothermiques dont la finalité essentielle est la production de chaleur"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7sq(Variable):
+    cerfa_field = u"7SQ"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur géothermiques dont la finalité essentielle est la production de chaleur"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7sr(Variable):
+    cerfa_field = u"7SR"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur (autres que air/air) dédiées à la production d'eau chaude sanitaire (chauffe-eaux thermodynamiques)"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ss(Variable):
+    cerfa_field = u"7SS"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de fourniture d'eau chaude sanitaire fonctionnant à l'énergie solaire et dotés de capteurs solaires"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7st(Variable):
+    cerfa_field = u"7ST"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Autres équipements de production d'énergie utilisant une source d'énergie renouvelable (éolien, hydraulique)"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7su(Variable):
+    cerfa_field = u"7SU"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de récupération et de traitement des eaux pluviales"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7sv(Variable):
+    cerfa_field = u"7SV"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Diagnostic de performance énergétique"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7sw(Variable):
+    cerfa_field = u"7SW"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de raccordement à un réseau de chaleur"
+    start_date = date(2012, 1, 1)
+
+
 
               # TODO, nouvelle variable à intégrer dans OF (cf ancien nom déjà utilisé)
                                 # TODO vérifier pour les années précédentes
@@ -399,1947 +612,3140 @@ build_column('f7sw', IntCol(entity = 'foy',
 # Intérêts d'emprunts
 #     build_column('f7wg', IntCol(entity = 'foy', label = u"Intérêts d'emprunts", val_type = "monetary", cerfa_field = u'7')) # cf pour quelle année
 #
-build_column('f7wq', BoolCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées du 01/01/2012 au 03/04/2012",
-                start = date(2010, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7WQ'))
+class f7wq(Variable):
+    cerfa_field = u"7WQ"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées du 01/01/2012 au 03/04/2012"
+    start_date = date(2010, 1, 1)
+    stop_date = date(2012, 12, 31)
 
-build_column('f7ws', BoolCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolations des parois vitrées à compter du 04/04/2012",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7WS'))
 
-build_column('f7wt', BoolCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées réalisées sur au moins la moitié des fenêtres du logement ",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7WT'))
 
-build_column('f7wu', BoolCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de volets avant 2012",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7WU'))
+class f7ws(Variable):
+    cerfa_field = u"7WS"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolations des parois vitrées à compter du 04/04/2012"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
 
-build_column('f7wv', BoolCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de volets en 2012",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7WV'))
 
-build_column('f7ww', BoolCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de portes avant 2012",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7WW'))
 
-build_column('f7wx', BoolCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de portes en 2012",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7WX'))
+class f7wt(Variable):
+    cerfa_field = u"7WT"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées réalisées sur au moins la moitié des fenêtres du logement "
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
 
-build_column('f7wh', BoolCol(entity = 'foy', label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (logement achevé depuis plus de 2 ans): bouquet de travaux réalisé pendant l'année de perception des revenus",
-                start = date(2013, 1, 1),
-                cerfa_field = u'7WH'))
 
-build_column('f7wk', BoolCol(entity = 'foy',
-                 label = u"Votre habitation principale est une maison individuelle",
-                 start = date(2009, 1, 1),
-                 cerfa_field = u'7WK'))
 
-build_column('f7wf', BoolCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées avant le 01/01/n-1",
-                end = date(2013, 12, 31),
-                cerfa_field = u'7WF'))
+class f7wu(Variable):
+    cerfa_field = u"7WU"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de volets avant 2012"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7wv(Variable):
+    cerfa_field = u"7WV"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de volets en 2012"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7ww(Variable):
+    cerfa_field = u"7WW"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de portes avant 2012"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7wx(Variable):
+    cerfa_field = u"7WX"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de portes en 2012"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7wh(Variable):
+    cerfa_field = u"7WH"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (logement achevé depuis plus de 2 ans): bouquet de travaux réalisé pendant l'année de perception des revenus"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7wk(Variable):
+    cerfa_field = u"7WK"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Votre habitation principale est une maison individuelle"
+    start_date = date(2009, 1, 1)
+
+
+
+class f7wf(Variable):
+    cerfa_field = u"7WF"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées avant le 01/01/n-1"
+    stop_date = date(2013, 12, 31)
+
+
 
 # Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale
-build_column('f7wi', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: Ascenseurs électriques à traction",
-                val_type = "monetary",
-                cerfa_field = u'7WI',
-                end = date(2012, 12, 31)))
+class f7wi(Variable):
+    cerfa_field = u"7WI"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: Ascenseurs électriques à traction"
+    stop_date = date(2012, 12, 31)
 
-build_column('f7wj', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: équipements spécialement conçus pour les personnes âgées ou handicapées",
-                val_type = "monetary",
-                cerfa_field = u'7WJ'))
 
-build_column('f7wl', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: travaux de prévention des risques technologiques",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7WL'))
 
-build_column('f7wr', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de l'aide aux personnes réalisées dans des habitations données en location : travaux de prévention des risques technologiques",
-                val_type = "monetary",
-                start = date(2013, 1, 1),
-                cerfa_field = u'7WR'))
+class f7wj(Variable):
+    cerfa_field = u"7WJ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: équipements spécialement conçus pour les personnes âgées ou handicapées"
+
+
+
+class f7wl(Variable):
+    cerfa_field = u"7WL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: travaux de prévention des risques technologiques"
+    start_date = date(2010, 1, 1)
+
+
+
+class f7wr(Variable):
+    cerfa_field = u"7WR"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de l'aide aux personnes réalisées dans des habitations données en location : travaux de prévention des risques technologiques"
+    start_date = date(2013, 1, 1)
+
+
 
 # Investissements dans les DOM-TOM dans le cadre d'une entrepise
-build_column('f7ur', IntCol(entity = 'foy',
-                label = u"Investissements réalisés en n-1, total réduction d’impôt",
-                val_type = "monetary",
-                cerfa_field = u'7UR',
-                end = date(2008, 12, 31)))
-
-build_column('f7oz', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-6",
-                val_type = "monetary",
-                cerfa_field = u'7OZ',
-                end = date(2011, 12, 31)))  # TODO: vérifier les années antérieures
-
-build_column('f7pz', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer réalisés en 2007 dans le cadre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
-                val_type = "monetary",
-                cerfa_field = u'7PZ',
-                end = date(2013, 12, 31)))
-
-build_column('f7qz', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer réalisés en 2008 dans le casdre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
-                val_type = "monetary",
-                cerfa_field = u'7QZ',
-                end = date(2012, 12, 31)))
-
-build_column('f7rz', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3",
-                val_type = "monetary",
-                cerfa_field = u'7RZ',
-                end = date(2010, 12, 31)))
-
-build_column('f7qv', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010, nvestissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%",
-                val_type = "monetary",
-                cerfa_field = u'7QV',
-                end = date(2011, 12, 31)))
-
-build_column('f7qo', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010 à hauteur de 50%",
-                val_type = "monetary",
-                cerfa_field = u'7QO',
-                end = date(2009, 12, 31)))
-
-build_column('f7qp', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010 à hauteur de 60%",
-                val_type = "monetary",
-                cerfa_field = u'7QP',
-                end = date(2009, 12, 31)))
-
-build_column('f7pa', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%",
-                val_type = "monetary",
-                cerfa_field = u'7PA',
-                end = date(2011, 12, 31)))
-
-build_column('f7pb', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%",
-                val_type = "monetary",
-                cerfa_field = u'7PB',
-                end = date(2011, 12, 31)))
-
-build_column('f7pc', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée",
-                val_type = "monetary",
-                cerfa_field = u'7PC',
-                end = date(2011, 12, 31)))
-
-build_column('f7pd', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011",
-                val_type = "monetary",
-                cerfa_field = u'7PD',
-                end = date(2011, 12, 31)))
-
-build_column('f7qe', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%",
-                val_type = "monetary",
-                cerfa_field = u'7QE',
-                end = date(2009, 12, 31)))
-
-build_column('f7pe', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%",
-                val_type = "monetary",
-                cerfa_field = u'7PE',
-                end = date(2011, 12, 31)))
-
-build_column('f7pf', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%",
-                val_type = "monetary",
-                cerfa_field = u'7PF',
-                end = date(2011, 12, 31)))
-
-build_column('f7pg', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée",
-                val_type = "monetary",
-                cerfa_field = u'7PG',
-                end = date(2011, 12, 31)))
-
-build_column('f7ph', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011",
-                val_type = "monetary",
-                cerfa_field = u'7PH',
-                end = date(2011, 12, 31)))
-
-build_column('f7pi', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%",
-                val_type = "monetary",
-                cerfa_field = u'7PI',
-                end = date(2011, 12, 31)))
-
-build_column('f7pj', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%",
-                val_type = "monetary",
-                cerfa_field = u'7PJ',
-                end = date(2011, 12, 31)))
-
-build_column('f7pk', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt calculée",
-                val_type = "monetary",
-                cerfa_field = u'7PK',
-                end = date(2011, 12, 31)))
-
-build_column('f7pl', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011",
-                val_type = "monetary",
-                cerfa_field = u'7PL',
-                end = date(2011, 12, 31)))
-
-build_column('f7pm', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%",
-                cerfa_field = u'7PM',
-                end = date(2013, 12, 31)))
-
-build_column('f7pn', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %",
-                cerfa_field = u'7PN',
-                end = date(2013, 12, 31)))
-
-build_column('f7po', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %",
-                cerfa_field = u'7PO',
-                end = date(2013, 12, 31)))
-
-build_column('f7pp', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise",
-                cerfa_field = u'7PP',
-                end = date(2013, 12, 31)))
-
-build_column('f7pq', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
-                cerfa_field = u'7PQ',
-                end = date(2013, 12, 31)))
-
-build_column('f7pr', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
-                cerfa_field = u'7PR',
-                end = date(2013, 12, 31)))
-
-build_column('f7ps', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %",
-                cerfa_field = u'7PS',
-                end = date(2013, 12, 31)))
-
-build_column('f7pt', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %",
-                cerfa_field = u'7PT',
-                end = date(2013, 12, 31)))
-
-build_column('f7pu', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise",
-                cerfa_field = u'7PU',
-                end = date(2013, 12, 31)))
-
-build_column('f7pv', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
-                cerfa_field = u'7PV',
-                end = date(2013, 12, 31)))
-
-build_column('f7pw', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
-                cerfa_field = u'7PW',
-                end = date(2013, 12, 31)))
-
-build_column('f7px', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt  à hauteur de 52,63 %",
-                cerfa_field = u'7PX',
-                end = date(2013, 12, 31)))
-
-build_column('f7py', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
-                cerfa_field = u'7PY',
-                start = date(2012, 1, 1)))
-
-build_column('f7rg', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise",
-                cerfa_field = u'7RG',
-                start = date(2012, 1, 1)))
-
-build_column('f7rh', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
-                cerfa_field = u'7RH',
-                start = date(2012, 1, 1)))
-
-build_column('f7ri', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
-                cerfa_field = u'7RI',
-                start = date(2012, 1, 1)))
-
-build_column('f7rj', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %",
-                cerfa_field = u'7RJ',
-                start = date(2012, 1, 1)))
-
-build_column('f7rk', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
-                cerfa_field = u'7RK',
-                start = date(2012, 1, 1)))
-
-build_column('f7rl', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
-                cerfa_field = u'7RL',
-                start = date(2012, 1, 1)))
-
-build_column('f7rm', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise",
-                cerfa_field = u'7RM',
-                start = date(2012, 1, 1)))
-
-build_column('f7rn', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
-                cerfa_field = u'7RN',
-                start = date(2012, 1, 1)))
-
-build_column('f7ro', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
-                cerfa_field = u'7RO',
-                start = date(2012, 1, 1)))
-
-build_column('f7rp', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
-                cerfa_field = u'7RP',
-                start = date(2012, 1, 1)))
-
-build_column('f7rq', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
-                cerfa_field = u'7RQ',
-                start = date(2012, 1, 1)))
-
-build_column('f7rr', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise",
-                cerfa_field = u'7RR',
-                start = date(2012, 1, 1)))
-
-build_column('f7rs', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
-                cerfa_field = u'7RS',
-                start = date(2012, 1, 1)))
-
-build_column('f7rt', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
-                cerfa_field = u'7RT',
-                start = date(2012, 1, 1)))
-
-build_column('f7ru', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
-                cerfa_field = u'7RU',
-                start = date(2012, 1, 1)))
-
-build_column('f7rv', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
-                cerfa_field = u'7RV',
-                start = date(2012, 1, 1)))
-
-build_column('f7rw', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise",
-                cerfa_field = u'7RW',
-                start = date(2012, 1, 1)))
-
-build_column('f7rx', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
-                cerfa_field = u'7RX',
-                start = date(2012, 1, 1)))
-
-build_column('f7ry', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
-                cerfa_field = u'7RY',
-                start = date(2012, 1, 1)))
-
-build_column('f7nu', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
-                cerfa_field = u'7NU',
-                start = date(2012, 1, 1)))
-
-build_column('f7nv', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
-                cerfa_field = u'7NV',
-                start = date(2012, 1, 1)))
-
-build_column('f7nw', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise",
-                cerfa_field = u'7NW',
-                start = date(2012, 1, 1)))
-
-build_column('f7nx', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
-                cerfa_field = u'7NX',
-                start = date(2012, 1, 1)))
-
-build_column('f7ny', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
-                cerfa_field = u'7NY',
-                start = date(2012, 1, 1))) #TODO: 7N* : end ?
-
-build_column('f7mn', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%",
-                val_type = "monetary",
-                cerfa_field = u'7MN',
-                start = date(2011, 1, 1),
-                end = date(2012, 12, 31)))
-
-build_column('f7lh', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%",
-                val_type = "monetary",
-                cerfa_field = u'7LH',
-                end = date(2011, 12, 31)))
-
-build_column('f7mb', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%",
-                val_type = "monetary",
-                cerfa_field = u'7MB',
-                start = date(2011, 1, 1),
-                end = date(2012, 12, 31)))
-
-build_column('f7kt', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt, Investissements dans votre entreprise",
-                val_type = "monetary",
-                cerfa_field = u'7KT',
-                start = date(2011, 1, 1),
-                end = date(2012, 12, 31)))
-
-build_column('f7li', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%",
-                val_type = "monetary",
-                cerfa_field = u'7LI',
-                start = date(2011, 1, 1)))
-
-build_column('f7mc', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%",
-                val_type = "monetary",
-                cerfa_field = u'7MC',
-                start = date(2011, 1, 1),
-                end = date(2012, 12, 31)))
-
-build_column('f7ku', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements dans votre entreprise",
-                val_type = "monetary",
-                cerfa_field = u'7KU',
-                start = date(2011, 1, 1),
-                end = date(2011, 12, 31)))
+class f7ur(Variable):
+    cerfa_field = u"7UR"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements réalisés en n-1, total réduction d’impôt"
+    stop_date = date(2008, 12, 31)
+
+
+
+class f7oz(Variable):
+    cerfa_field = u"7OZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-6"
+    stop_date = date(2011, 12, 31)
+
+  # TODO: vérifier les années antérieures
+
+class f7pz(Variable):
+    cerfa_field = u"7PZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer réalisés en 2007 dans le cadre d'une entreprise: report de réduction d'impôt non imputée les années antérieures"
+    stop_date = date(2013, 12, 31)
+
+
+
+class f7qz(Variable):
+    cerfa_field = u"7QZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer réalisés en 2008 dans le casdre d'une entreprise: report de réduction d'impôt non imputée les années antérieures"
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7rz(Variable):
+    cerfa_field = u"7RZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3"
+    stop_date = date(2010, 12, 31)
+
+
+
+class f7qv(Variable):
+    cerfa_field = u"7QV"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010, nvestissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%"
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7qo(Variable):
+    cerfa_field = u"7QO"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010 à hauteur de 50%"
+    stop_date = date(2009, 12, 31)
+
+
+
+class f7qp(Variable):
+    cerfa_field = u"7QP"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010 à hauteur de 60%"
+    stop_date = date(2009, 12, 31)
+
+
+
+class f7pa(Variable):
+    cerfa_field = u"7PA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%"
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7pb(Variable):
+    cerfa_field = u"7PB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7pc(Variable):
+    cerfa_field = u"7PC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7pd(Variable):
+    cerfa_field = u"7PD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011"
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7qe(Variable):
+    cerfa_field = u"7QE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%"
+    stop_date = date(2009, 12, 31)
+
+
+
+class f7pe(Variable):
+    cerfa_field = u"7PE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%"
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7pf(Variable):
+    cerfa_field = u"7PF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7pg(Variable):
+    cerfa_field = u"7PG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7ph(Variable):
+    cerfa_field = u"7PH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011"
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7pi(Variable):
+    cerfa_field = u"7PI"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%"
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7pj(Variable):
+    cerfa_field = u"7PJ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7pk(Variable):
+    cerfa_field = u"7PK"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7pl(Variable):
+    cerfa_field = u"7PL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011"
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7pm(Variable):
+    cerfa_field = u"7PM"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%"
+    stop_date = date(2013, 12, 31)
+
+
+
+class f7pn(Variable):
+    cerfa_field = u"7PN"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %"
+    stop_date = date(2013, 12, 31)
+
+
+
+class f7po(Variable):
+    cerfa_field = u"7PO"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %"
+    stop_date = date(2013, 12, 31)
+
+
+
+class f7pp(Variable):
+    cerfa_field = u"7PP"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise"
+    stop_date = date(2013, 12, 31)
+
+
+
+class f7pq(Variable):
+    cerfa_field = u"7PQ"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
+    stop_date = date(2013, 12, 31)
+
+
+
+class f7pr(Variable):
+    cerfa_field = u"7PR"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
+    stop_date = date(2013, 12, 31)
+
+
+
+class f7ps(Variable):
+    cerfa_field = u"7PS"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %"
+    stop_date = date(2013, 12, 31)
+
+
+
+class f7pt(Variable):
+    cerfa_field = u"7PT"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %"
+    stop_date = date(2013, 12, 31)
+
+
+
+class f7pu(Variable):
+    cerfa_field = u"7PU"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise"
+    stop_date = date(2013, 12, 31)
+
+
+
+class f7pv(Variable):
+    cerfa_field = u"7PV"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
+    stop_date = date(2013, 12, 31)
+
+
+
+class f7pw(Variable):
+    cerfa_field = u"7PW"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
+    stop_date = date(2013, 12, 31)
+
+
+
+class f7px(Variable):
+    cerfa_field = u"7PX"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt  à hauteur de 52,63 %"
+    stop_date = date(2013, 12, 31)
+
+
+
+class f7py(Variable):
+    cerfa_field = u"7PY"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rg(Variable):
+    cerfa_field = u"7RG"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rh(Variable):
+    cerfa_field = u"7RH"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ri(Variable):
+    cerfa_field = u"7RI"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rj(Variable):
+    cerfa_field = u"7RJ"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rk(Variable):
+    cerfa_field = u"7RK"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rl(Variable):
+    cerfa_field = u"7RL"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rm(Variable):
+    cerfa_field = u"7RM"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rn(Variable):
+    cerfa_field = u"7RN"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ro(Variable):
+    cerfa_field = u"7RO"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rp(Variable):
+    cerfa_field = u"7RP"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rq(Variable):
+    cerfa_field = u"7RQ"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rr(Variable):
+    cerfa_field = u"7RR"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rs(Variable):
+    cerfa_field = u"7RS"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rt(Variable):
+    cerfa_field = u"7RT"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ru(Variable):
+    cerfa_field = u"7RU"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rv(Variable):
+    cerfa_field = u"7RV"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rw(Variable):
+    cerfa_field = u"7RW"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rx(Variable):
+    cerfa_field = u"7RX"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ry(Variable):
+    cerfa_field = u"7RY"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7nu(Variable):
+    cerfa_field = u"7NU"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7nv(Variable):
+    cerfa_field = u"7NV"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7nw(Variable):
+    cerfa_field = u"7NW"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7nx(Variable):
+    cerfa_field = u"7NX"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ny(Variable):
+    cerfa_field = u"7NY"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
+    start_date = date(2012, 1, 1)
+
+ #TODO: 7N* : end ?
+
+class f7mn(Variable):
+    cerfa_field = u"7MN"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%"
+    start_date = date(2011, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7lh(Variable):
+    cerfa_field = u"7LH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7mb(Variable):
+    cerfa_field = u"7MB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%"
+    start_date = date(2011, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7kt(Variable):
+    cerfa_field = u"7KT"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt, Investissements dans votre entreprise"
+    start_date = date(2011, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7li(Variable):
+    cerfa_field = u"7LI"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7mc(Variable):
+    cerfa_field = u"7MC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%"
+    start_date = date(2011, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7ku(Variable):
+    cerfa_field = u"7KU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements dans votre entreprise"
+    start_date = date(2011, 1, 1)
+    stop_date = date(2011, 12, 31)
+
+
 
 # TODO: 7sz se rapporte à des choses différentes en 2012 et 2013 par rapport aux années précédentes, cf pour les années antérieures
 
-build_column('f7sz', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location",
-                val_type = "monetary",
-                cerfa_field = u'7SZ',
-                start = date(2006, 1, 1)))
+class f7sz(Variable):
+    cerfa_field = u"7SZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location"
+    start_date = date(2006, 1, 1)
 
-build_column('fhsa', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 52,63%",
-                val_type = "monetary",
-                cerfa_field = u'HSA',
-                start = date(2013, 1, 1)))
 
-build_column('fhsb', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 62,5%",
-                val_type = "monetary",
-                cerfa_field = u'HSB',
-                start = date(2013, 1, 1)))
 
-build_column('fhsf', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 52,63%",
-                val_type = "monetary",
-                cerfa_field = u'HSF',
-                start = date(2013, 1, 1)))
+class fhsa(Variable):
+    cerfa_field = u"HSA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 52,63%"
+    start_date = date(2013, 1, 1)
 
-build_column('fhsg', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 62,5%",
-                val_type = "monetary",
-                cerfa_field = u'HSG',
-                start = date(2013, 1, 1)))
 
-build_column('fhsc', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise en 2010",
-                val_type = "monetary",
-                cerfa_field = u'HSC',
-                start = date(2013, 1, 1)))
 
-build_column('fhsh', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise en 2011",
-                val_type = "monetary",
-                cerfa_field = u'HSH',
-                start = date(2013, 1, 1)))
+class fhsb(Variable):
+    cerfa_field = u"HSB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 62,5%"
+    start_date = date(2013, 1, 1)
 
-build_column('fhsd', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2010",
-                val_type = "monetary",
-                cerfa_field = u'HSD',
-                start = date(2013, 1, 1)))
 
-build_column('fhsi', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2011",
-                val_type = "monetary",
-                cerfa_field = u'HSI',
-                start = date(2013, 1, 1)))
 
-build_column('fhse', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010",
-                val_type = "monetary",
-                cerfa_field = u'HSE',
-                start = date(2013, 1, 1)))
+class fhsf(Variable):
+    cerfa_field = u"HSF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 52,63%"
+    start_date = date(2013, 1, 1)
 
-build_column('fhsj', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011",
-                val_type = "monetary",
-                cerfa_field = u'HSJ',
-                start = date(2013, 1, 1)))
 
-build_column('fhsk', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2010 à hauteur de 52,63%",
-                val_type = "monetary",
-                cerfa_field = u'HSK',
-                start = date(2013, 1, 1)))
 
-build_column('fhsl', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2010 à hauteur de 62,5%",
-                val_type = "monetary",
-                cerfa_field = u'HSL',
-                start = date(2013, 1, 1)))
+class fhsg(Variable):
+    cerfa_field = u"HSG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 62,5%"
+    start_date = date(2013, 1, 1)
 
-build_column('fhsp', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2011 à hauteur de 52,63%",
-                val_type = "monetary",
-                cerfa_field = u'HSP',
-                start = date(2013, 1, 1)))
 
-build_column('fhsq', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2011 à hauteur de 62,5%",
-                val_type = "monetary",
-                cerfa_field = u'HSQ',
-                start = date(2013, 1, 1)))
 
-build_column('fhsm', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise en 2010",
-                val_type = "monetary",
-                cerfa_field = u'HSM',
-                start = date(2013, 1, 1)))
+class fhsc(Variable):
+    cerfa_field = u"HSC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise en 2010"
+    start_date = date(2013, 1, 1)
 
-build_column('fhsr', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise en 2011",
-                val_type = "monetary",
-                cerfa_field = u'HSR',
-                start = date(2013, 1, 1)))
 
-build_column('fhsn', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe en 2010",
-                val_type = "monetary",
-                cerfa_field = u'HSN',
-                start = date(2013, 1, 1)))
 
-build_column('fhss', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe en 2011",
-                val_type = "monetary",
-                cerfa_field = u'HSS',
-                start = date(2013, 1, 1)))
+class fhsh(Variable):
+    cerfa_field = u"HSH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise en 2011"
+    start_date = date(2013, 1, 1)
 
-build_column('fhso', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010",
-                val_type = "monetary",
-                cerfa_field = u'HSO',
-                start = date(2013, 1, 1)))
 
-build_column('fhst', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011",
-                val_type = "monetary",
-                cerfa_field = u'HST',
-                start = date(2013, 1, 1)))
 
-build_column('fhsu', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 52,63%",
-                val_type = "monetary",
-                cerfa_field = u'HSU',
-                start = date(2013, 1, 1)))
+class fhsd(Variable):
+    cerfa_field = u"HSD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2010"
+    start_date = date(2013, 1, 1)
 
-build_column('fhsv', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%",
-                val_type = "monetary",
-                cerfa_field = u'HSV',
-                start = date(2013, 1, 1)))
 
-build_column('fhsw', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise",
-                val_type = "monetary",
-                cerfa_field = u'HSW',
-                start = date(2013, 1, 1)))
 
-build_column('fhsx', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé",
-                val_type = "monetary",
-                cerfa_field = u'HSX',
-                start = date(2013, 1, 1)))
+class fhsi(Variable):
+    cerfa_field = u"HSI"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2011"
+    start_date = date(2013, 1, 1)
 
-build_column('fhsy', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013",
-                val_type = "monetary",
-                cerfa_field = u'HS',
-                start = date(2013, 1, 1)))
 
-build_column('fhsz', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 52,63%",
-                val_type = "monetary",
-                cerfa_field = u'HSZ',
-                start = date(2013, 1, 1)))
 
-build_column('fhta', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%",
-                val_type = "monetary",
-                cerfa_field = u'HTA',
-                start = date(2013, 1, 1)))
+class fhse(Variable):
+    cerfa_field = u"HSE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010"
+    start_date = date(2013, 1, 1)
 
-build_column('fhtb', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise",
-                val_type = "monetary",
-                cerfa_field = u'HTB',
-                start = date(2013, 1, 1)))
 
-build_column('fhtc', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé",
-                val_type = "monetary",
-                cerfa_field = u'HTC',
-                start = date(2013, 1, 1)))
 
-build_column('fhtd', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013",
-                val_type = "monetary",
-                cerfa_field = u'HTD',
-                start = date(2013, 1, 1)))
+class fhsj(Variable):
+    cerfa_field = u"HSJ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhsk(Variable):
+    cerfa_field = u"HSK"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2010 à hauteur de 52,63%"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhsl(Variable):
+    cerfa_field = u"HSL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2010 à hauteur de 62,5%"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhsp(Variable):
+    cerfa_field = u"HSP"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2011 à hauteur de 52,63%"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhsq(Variable):
+    cerfa_field = u"HSQ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2011 à hauteur de 62,5%"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhsm(Variable):
+    cerfa_field = u"HSM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise en 2010"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhsr(Variable):
+    cerfa_field = u"HSR"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise en 2011"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhsn(Variable):
+    cerfa_field = u"HSN"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe en 2010"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhss(Variable):
+    cerfa_field = u"HSS"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe en 2011"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhso(Variable):
+    cerfa_field = u"HSO"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhst(Variable):
+    cerfa_field = u"HST"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhsu(Variable):
+    cerfa_field = u"HSU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 52,63%"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhsv(Variable):
+    cerfa_field = u"HSV"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhsw(Variable):
+    cerfa_field = u"HSW"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhsx(Variable):
+    cerfa_field = u"HSX"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhsy(Variable):
+    cerfa_field = u"HS"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhsz(Variable):
+    cerfa_field = u"HSZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 52,63%"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhta(Variable):
+    cerfa_field = u"HTA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhtb(Variable):
+    cerfa_field = u"HTB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhtc(Variable):
+    cerfa_field = u"HTC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhtd(Variable):
+    cerfa_field = u"HTD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013"
+    start_date = date(2013, 1, 1)
+
+
 
 # Aide aux créateurs et repreneurs d'entreprises
-build_column('f7fy', IntCol(entity = 'foy',
-                label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées avant l'année n-1 et ayant pris fin en année n-1",
-                cerfa_field = u'7FY',
-                end = date(2011, 12, 31)))
+class f7fy(Variable):
+    cerfa_field = u"7FY"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées avant l'année n-1 et ayant pris fin en année n-1"
+    stop_date = date(2011, 12, 31)
 
-build_column('f7gy', IntCol(entity = 'foy',
-                label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées avant l'année n-1 et ayant pris fin en année n-1",
-                cerfa_field = u'7GY',
-                start = date(2006, 1, 1),
-                end = date(2011, 12, 31)))
 
-build_column('f7hy', IntCol(entity = 'foy',
-                label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées en n-1 et n'ayant pas pris fin en n-1",
-                cerfa_field = u'7HY',
-                start = date(2009, 1, 1),
-                end = date(2011, 12, 31)))
 
-build_column('f7ky', IntCol(entity = 'foy',
-                label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées en n-1 et ayant pris fin en n-1",
-                cerfa_field = u'7KY',
-                start = date(2009, 1, 1),
-                end = date(2011, 12, 31)))
+class f7gy(Variable):
+    cerfa_field = u"7GY"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées avant l'année n-1 et ayant pris fin en année n-1"
+    start_date = date(2006, 1, 1)
+    stop_date = date(2011, 12, 31)
 
-build_column('f7iy', IntCol(entity = 'foy',
-                label = u"Report du solde de réduction d'impôt non encore imputé sur les investissements réalisés",
-                cerfa_field = u'7IY',
-                start = date(2013, 1, 1)))
 
-build_column('f7ly', IntCol(entity = 'foy',
-                label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions ayant pas pris fin l'année de perception des revenus déclarés",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7LY'))  # 2012 et 2013 ok
 
-build_column('f7my', IntCol(entity = 'foy',
-                label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions ayant pas pris fin l'année de perception des revenus déclarés",
-                cerfa_field = u'7MY',
-                start = date(2010, 1, 1)))  # 2012 et 2013 ok
+class f7hy(Variable):
+    cerfa_field = u"7HY"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées en n-1 et n'ayant pas pris fin en n-1"
+    start_date = date(2009, 1, 1)
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7ky(Variable):
+    cerfa_field = u"7KY"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées en n-1 et ayant pris fin en n-1"
+    start_date = date(2009, 1, 1)
+    stop_date = date(2011, 12, 31)
+
+
+
+class f7iy(Variable):
+    cerfa_field = u"7IY"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Report du solde de réduction d'impôt non encore imputé sur les investissements réalisés"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7ly(Variable):
+    cerfa_field = u"7LY"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions ayant pas pris fin l'année de perception des revenus déclarés"
+    start_date = date(2010, 1, 1)
+
+  # 2012 et 2013 ok
+
+class f7my(Variable):
+    cerfa_field = u"7MY"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions ayant pas pris fin l'année de perception des revenus déclarés"
+    start_date = date(2010, 1, 1)
+
+  # 2012 et 2013 ok
 
 # Travaux de restauration immobilière
-build_column('f7ra', IntCol(entity = 'foy',
-                label = u"Travaux de restauration immobilière dans une zone de protection du patrimoine architectural, urbain et paysager",
-                val_type = "monetary",
-                start = date(2009, 1, 1),
-                cerfa_field = u'7RA'))  # 2012 et 2013 ok
+class f7ra(Variable):
+    cerfa_field = u"7RA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Travaux de restauration immobilière dans une zone de protection du patrimoine architectural, urbain et paysager"
+    start_date = date(2009, 1, 1)
 
-build_column('f7rb', IntCol(entity = 'foy',
-                label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
-                val_type = "monetary",
-                start = date(2009, 1, 1),
-                cerfa_field = u'7RB'))
+  # 2012 et 2013 ok
 
-build_column('f7rc', IntCol(entity = 'foy',
-                label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7RC'))
+class f7rb(Variable):
+    cerfa_field = u"7RB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
+    start_date = date(2009, 1, 1)
 
-build_column('f7rd', IntCol(entity = 'foy',
-                label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7RD'))
 
-build_column('f7re', IntCol(entity = 'foy',
-                label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7RE'))
 
-build_column('f7rf', IntCol(entity = 'foy',
-                label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7RF'))
+class f7rc(Variable):
+    cerfa_field = u"7RC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
+    start_date = date(2011, 1, 1)
 
-build_column('f7sx', IntCol(entity = 'foy',
-                label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
-                val_type = "monetary",
-                start = date(2013, 1, 1),
-                cerfa_field = u'7SX'))
 
-build_column('f7sy', IntCol(entity = 'foy',
-                label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé",
-                val_type = "monetary",
-                start = date(2013, 1, 1),
-                cerfa_field = u'7SY')) # 2012 et 2013 ok
 
-build_column('f7gw', IntCol(entity = 'foy',
-                label = u"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
-                cerfa_field = u'7GW',
-                start = date(2013, 1, 1)))
+class f7rd(Variable):
+    cerfa_field = u"7RD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
+    start_date = date(2011, 1, 1)
 
-build_column('f7gx', IntCol(entity = 'foy',
-                label = u"Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
-                cerfa_field = u'7GX',
-                start = date(2013, 1, 1)))
+
+
+class f7re(Variable):
+    cerfa_field = u"7RE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7rf(Variable):
+    cerfa_field = u"7RF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7sx(Variable):
+    cerfa_field = u"7SX"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7sy(Variable):
+    cerfa_field = u"7SY"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
+    start_date = date(2013, 1, 1)
+
+ # 2012 et 2013 ok
+
+class f7gw(Variable):
+    cerfa_field = u"7GW"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7gx(Variable):
+    cerfa_field = u"7GX"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt"
+    start_date = date(2013, 1, 1)
+
+
 
 # Investissements locatifs dans le secteur de touristique
-build_column('f7xa', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique: travaux engagés avant 2011 dans un village résidentiel de tourisme",
-                val_type = "monetary",
-                cerfa_field = u'7XA',
-                start = date(2011, 1, 1),
-                end = date(2012, 12, 31)))
+class f7xa(Variable):
+    cerfa_field = u"7XA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique: travaux engagés avant 2011 dans un village résidentiel de tourisme"
+    start_date = date(2011, 1, 1)
+    stop_date = date(2012, 12, 31)
 
-build_column('f7xb', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique: travaux engagés avant 2011 dans une résidence de tourisme classée ou meublée",
-                val_type = "monetary",
-                cerfa_field = u'7XB',
-                start = date(2011, 1, 1),
-                end = date(2012, 12, 31)))
 
-build_column('f7xc', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique: prix d'acquisition ou de revient d'un logement neuf acquis ou achevé en n-1",
-                val_type = "monetary",
-                cerfa_field = u'7XC',
-                end = date(2012, 12, 31)))
 
-build_column('f7xd', BoolCol(entity = 'foy',
-                 label = u"Investissements locatifs dans le secteur de touristique: logement neuf, demande d'étalement du solde de la réduction d'impôt sur 6 ans",
-                 cerfa_field = u'7XD',
-                 start = date(2009, 1, 1),
-                 end = date(2012, 12, 31)))
+class f7xb(Variable):
+    cerfa_field = u"7XB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique: travaux engagés avant 2011 dans une résidence de tourisme classée ou meublée"
+    start_date = date(2011, 1, 1)
+    stop_date = date(2012, 12, 31)
 
-build_column('f7xe', BoolCol(entity = 'foy',
-                 label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, demande d'étalement du solde de la réduction d'impôt sur 6 ans",
-                 cerfa_field = u'7XE',
-                 start = date(2009, 1, 1),
-                 end = date(2012, 12, 31)))
 
-build_column('f7xf', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures",
-                val_type = "monetary",
-                cerfa_field = u'7XF'))
 
-build_column('f7xh', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique: travaux de reconstruction, agrandissement, réparation dans une résidence de tourisme classée ou un meublé de tourisme",
-                val_type = "monetary",
-                cerfa_field = u'7XH',
-                end = date(2012, 12, 31)))
+class f7xc(Variable):
+    cerfa_field = u"7XC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique: prix d'acquisition ou de revient d'un logement neuf acquis ou achevé en n-1"
+    stop_date = date(2012, 12, 31)
 
-build_column('f7xi', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7XI'))
 
-build_column('f7xj', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, report des dépenses d'investissement des années antérieures",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7XJ'))
 
-build_column('f7xk', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7XK'))
+class f7xd(Variable):
+    cerfa_field = u"7XD"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique: logement neuf, demande d'étalement du solde de la réduction d'impôt sur 6 ans"
+    start_date = date(2009, 1, 1)
+    stop_date = date(2012, 12, 31)
 
-build_column('f7xl', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, prix de revient d'un logement réhabilité en n-1 et achevé depuis moins de 15 ans",
-                val_type = "monetary",
-                cerfa_field = u'7XL',
-                end = date(2012, 12, 31)))
 
-build_column('f7xm', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, report de dépenses des travaux de réhabilitation achevés les années antérieures",
-                val_type = "monetary",
-                cerfa_field = u'7XM'))
+
+class f7xe(Variable):
+    cerfa_field = u"7XE"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, demande d'étalement du solde de la réduction d'impôt sur 6 ans"
+    start_date = date(2009, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7xf(Variable):
+    cerfa_field = u"7XF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures"
+
+
+
+class f7xh(Variable):
+    cerfa_field = u"7XH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique: travaux de reconstruction, agrandissement, réparation dans une résidence de tourisme classée ou un meublé de tourisme"
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7xi(Variable):
+    cerfa_field = u"7XI"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures"
+    start_date = date(2010, 1, 1)
+
+
+
+class f7xj(Variable):
+    cerfa_field = u"7XJ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, report des dépenses d'investissement des années antérieures"
+    start_date = date(2010, 1, 1)
+
+
+
+class f7xk(Variable):
+    cerfa_field = u"7XK"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures"
+    start_date = date(2010, 1, 1)
+
+
+
+class f7xl(Variable):
+    cerfa_field = u"7XL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, prix de revient d'un logement réhabilité en n-1 et achevé depuis moins de 15 ans"
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7xm(Variable):
+    cerfa_field = u"7XM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, report de dépenses des travaux de réhabilitation achevés les années antérieures"
+
+
 
 # TODO: f7xn cf années < à 2011 (possible erreur dans le label pour ces dates, à vérifier)
-build_column('f7xn', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures",
-                val_type = "monetary",
-                cerfa_field = u'7XN',
-                start = date(2012, 1, 1)))
+class f7xn(Variable):
+    cerfa_field = u"7XN"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures"
+    start_date = date(2012, 1, 1)
 
-build_column('f7xo', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
-                val_type = "monetary",
-                start = date(2008, 1, 1),
-                cerfa_field = u'7XO'))
 
-build_column('f7xp', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7XP'))
 
-build_column('f7xq', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7XQ'))
+class f7xo(Variable):
+    cerfa_field = u"7XO"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures"
+    start_date = date(2008, 1, 1)
 
-build_column('f7xr', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures",
-                start = date(2011, 1, 1),
-                val_type = "monetary",
-                cerfa_field = u'7XR'))
 
-build_column('f7xv', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures",
-                val_type = "monetary",
-                cerfa_field = u'7XV',
-                start = date(2012, 1, 1)))
 
-build_column('f7xx', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique: travaux engagés après 2012 dans un village résidentiel de tourisme",
-                val_type = "monetary",
-                cerfa_field = u'7XX',
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31)))
+class f7xp(Variable):
+    cerfa_field = u"7XP"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures"
+    start_date = date(2011, 1, 1)
 
-build_column('f7xz', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique: travaux engagés après 2012 dans une résidence de tourisme classée ou un meublé tourisme",
-                val_type = "monetary",
-                cerfa_field = u'7XZ',
-                start = date(2012, 1, 1)))
 
-build_column('f7uy', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures",
-                val_type = "monetary",
-                cerfa_field = u'7UY',
-                start = date(2013, 1, 1)))
 
-build_column('f7uz', IntCol(entity = 'foy',
-                label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures",
-                val_type = "monetary",
-                cerfa_field = u'7UZ',
-                start = date(2013, 1, 1)))
+class f7xq(Variable):
+    cerfa_field = u"7XQ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7xr(Variable):
+    cerfa_field = u"7XR"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7xv(Variable):
+    cerfa_field = u"7XV"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7xx(Variable):
+    cerfa_field = u"7XX"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique: travaux engagés après 2012 dans un village résidentiel de tourisme"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7xz(Variable):
+    cerfa_field = u"7XZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique: travaux engagés après 2012 dans une résidence de tourisme classée ou un meublé tourisme"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7uy(Variable):
+    cerfa_field = u"7UY"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7uz(Variable):
+    cerfa_field = u"7UZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures"
+    start_date = date(2013, 1, 1)
+
+
 
 # Souscriptions au capital des PME
-build_column('f7cf', IntCol(entity = 'foy',
-                label = u"Souscriptions au capital des PME non cotées, petites entreprises en phase de démarrage, ou d'expansion",
-                val_type = "monetary",
-                cerfa_field = u'7CF'))
+class f7cf(Variable):
+    cerfa_field = u"7CF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscriptions au capital des PME non cotées, petites entreprises en phase de démarrage, ou d'expansion"
 
-build_column('f7cl', IntCol(entity = 'foy',
-                label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -4",
-                val_type = "monetary",
-                cerfa_field = u'7CL'))
 
-build_column('f7cm', IntCol(entity = 'foy',
-                label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -3",
-                val_type = "monetary",
-                cerfa_field = u'7CM'))
 
-build_column('f7cn', IntCol(entity = 'foy',
-                label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -2",
-                val_type = "monetary",
-                cerfa_field = u'7CN'))
+class f7cl(Variable):
+    cerfa_field = u"7CL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -4"
 
-build_column('f7cc', IntCol(entity = 'foy',
-                label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1",
-                val_type = "monetary",
-                start = date(2013, 1, 1),
-                cerfa_field = u'7CC'))
 
-build_column('f7cq', IntCol(entity = 'foy',
-                label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1pour les start-up",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7CQ'))
 
-build_column('f7cu', IntCol(entity = 'foy',
-                label = u"Souscriptions au capital des PME non cotées, montant versé au titre de souscriptions antérieures",
-                val_type = "monetary",
-                cerfa_field = u'7CU'))
+class f7cm(Variable):
+    cerfa_field = u"7CM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -3"
+
+
+
+class f7cn(Variable):
+    cerfa_field = u"7CN"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -2"
+
+
+
+class f7cc(Variable):
+    cerfa_field = u"7CC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7cq(Variable):
+    cerfa_field = u"7CQ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1pour les start-up"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7cu(Variable):
+    cerfa_field = u"7CU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscriptions au capital des PME non cotées, montant versé au titre de souscriptions antérieures"
+
+
 
 # TODO: en 2013 et 2012 plus de sofipêche (pourtant présent dans param à ces dates...), case 7gs réutilisée
 
-build_column('f7gs', IntCol(entity = 'foy',
-                label = u"Reports concernant les investissements achevés ou acquis au cours des années antérieures: Investissements réalisés en n-3 en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",
-                val_type = "monetary",
-                cerfa_field = u'7GS',
-                start = date(2013, 1, 1)))
+class f7gs(Variable):
+    cerfa_field = u"7GS"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Reports concernant les investissements achevés ou acquis au cours des années antérieures: Investissements réalisés en n-3 en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    start_date = date(2013, 1, 1)
+
+
 
 # Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
-build_column('f7ua', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UA', end = date(2007, 12, 31)))
-build_column('f7ub', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UB', end = date(2007, 12, 31)))
+class f7ua(Variable):
+    cerfa_field = u"7UA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    stop_date = date(2007, 12, 31)
+
+
+class f7ub(Variable):
+    cerfa_field = u"7UB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    stop_date = date(2007, 12, 31)
+
+
 
 # En 2013 les "7" sont remplacés par des "H" dans les CERFA-FIELDS
 # en 2013 et 2012, 7uc se rapporte à autre chose, réutilisation de la case
 #    build_column('f7uc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UC', end = date(2011,12,31)))  # vérifier <=2011
 
-build_column('f7uc', IntCol(entity = 'foy',
-                label = u"Cotisations pour la défense des forêts contre l'incendie ",
-                val_type = "monetary",
-                cerfa_field = u'7UC'))
-
-build_column('f7ui', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UI', end = date(2008, 12, 31)))
-build_column('f7uj', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7UJ', end = date(2007, 12, 31)))
-build_column('f7qb', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QB', end = date(2011, 12, 31)))
-build_column('f7qc', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QC', end = date(2011, 12, 31)))
-build_column('f7qd', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QD', end = date(2011, 12, 31)))
-build_column('f7qk', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QK', end = date(2009, 12, 31)))
-build_column('f7qn', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QN', end = date(2010, 12, 31)))
-build_column('f7kg', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7KG', end = date(2010, 12, 31)))
-build_column('f7ql', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QL', end = date(2011, 12, 31)))
-build_column('f7qt', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QT', end = date(2011, 12, 31)))
-build_column('f7qm', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QM', end = date(2011, 12, 31)))
-build_column('f7qu', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QU'))
-build_column('f7ki', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7KI'))
-build_column('f7qj', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QJ'))
-build_column('f7qw', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QW'))
-build_column('f7qx', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QX'))
-build_column('f7qf', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QF'))
-build_column('f7qg', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QG'))
-build_column('f7qh', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QH'))
-build_column('f7qi', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QI'))
-build_column('f7qq', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QQ'))
-build_column('f7qr', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QR'))
-build_column('f7qs', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7QS'))
-build_column('f7mm', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7MM', start = date(2010, 1, 1), end = date(2012, 12, 31)))
-build_column('f7lg', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7LG', start = date(2010, 1, 1)))
-build_column('f7ma', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7MA', start = date(2010, 1, 1)))
-build_column('f7ks', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7KS'))
-build_column('f7kh', IntCol(entity = 'foy', label = u"", val_type = "monetary", cerfa_field = u'7KH'))
-
-build_column('f7oa', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% avant 2009",
-                val_type = "monetary",
-                cerfa_field = u'7OA',
-                start = date(2011, 1, 1)))
-
-build_column('f7ob', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2009",
-                val_type = "monetary",
-                cerfa_field = u'7OB',
-                start = date(2011, 1, 1)))
-
-build_column('f7oc', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010",
-                val_type = "monetary",
-                cerfa_field = u'7OC',
-                start = date(2011, 1, 1)))
-
-build_column('f7oh', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% avant 2009",
-                val_type = "monetary",
-                cerfa_field = u'7OH',
-                start = date(2011, 1, 1)))
-
-build_column('f7oi', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2009",
-                val_type = "monetary",
-                cerfa_field = u'7OI',
-                start = date(2011, 1, 1)))
-
-build_column('f7oj', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010",
-                val_type = "monetary",
-                cerfa_field = u'7OJ',
-                start = date(2011, 1, 1)))
-
-build_column('f7ok', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Autres investissements",
-                val_type = "monetary",
-                cerfa_field = u'7OK',
-                start = date(2011, 1, 1)))
-
-build_column('f7ol', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009",
-                val_type = "monetary",
-                cerfa_field = u'7OL',
-                start = date(2012, 1, 1)))
-
-build_column('f7om', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009",
-                val_type = "monetary",
-                cerfa_field = u'7OM',
-                start = date(2012, 1, 1)))
-
-build_column('f7on', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010",
-                val_type = "monetary",
-                cerfa_field = u'7ON',
-                start = date(2012, 1, 1)))
-
-build_column('f7oo', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009",
-                val_type = "monetary",
-                cerfa_field = u'7OO',
-                start = date(2012, 1, 1)))
-
-build_column('f7op', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009",
-                val_type = "monetary",
-                cerfa_field = u'7OP',
-                start = date(2012, 1, 1)))
-
-build_column('f7oq', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010",
-                val_type = "monetary",
-                cerfa_field = u'7OQ',
-                start = date(2012, 1, 1)))
-
-build_column('f7or', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011",
-                val_type = "monetary",
-                cerfa_field = u'7OR',
-                start = date(2012, 1, 1)))
-
-build_column('f7os', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009",
-                val_type = "monetary",
-                cerfa_field = u'7OS',
-                start = date(2012, 1, 1)))
-
-build_column('f7ot', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009",
-                val_type = "monetary",
-                cerfa_field = u'7OT',
-                start = date(2012, 1, 1)))
-
-build_column('f7ou', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010",
-                val_type = "monetary",
-                cerfa_field = u'7OU',
-                start = date(2012, 1, 1)))
-
-build_column('f7ov', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011",
-                val_type = "monetary",
-                cerfa_field = u'7OV',
-                start = date(2012, 1, 1)))
-
-build_column('f7ow', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, ",
-                val_type = "monetary",
-                cerfa_field = u'7OW',
-                start = date(2012, 1, 1))) #TODO: 7O* : end ?
-
-build_column('fhod', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés avant le 1.1.2011",
-                val_type = "monetary",
-                cerfa_field = u'HOD',
-                start = date(2013, 1, 1)))
-
-build_column('fhoe', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010",
-                val_type = "monetary",
-                cerfa_field = u'HOE',
-                start = date(2013, 1, 1)))
-
-build_column('fhof', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011",
-                val_type = "monetary",
-                cerfa_field = u'HOF',
-                start = date(2013, 1, 1)))
+class f7uc(Variable):
+    cerfa_field = u"7UC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Cotisations pour la défense des forêts contre l'incendie "
 
 
-build_column('fhog', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010",
-                val_type = "monetary",
-                cerfa_field = u'HOG',
-                start = date(2013, 1, 1)))
+
+class f7ui(Variable):
+    cerfa_field = u"7UI"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    stop_date = date(2008, 12, 31)
 
 
-build_column('fhox', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2011",
-                val_type = "monetary",
-                cerfa_field = u'HOX',
-                start = date(2013, 1, 1)))
+class f7uj(Variable):
+    cerfa_field = u"7UJ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    stop_date = date(2007, 12, 31)
 
 
-build_column('fhoy', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2012",
-                val_type = "monetary",
-                cerfa_field = u'HOY',
-                start = date(2013, 1, 1)))
+class f7qb(Variable):
+    cerfa_field = u"7QB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    stop_date = date(2011, 12, 31)
 
 
-build_column('fhoz', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Autres investissements",
-                val_type = "monetary",
-                cerfa_field = u'HOZ',
-                start = date(2013, 1, 1)))
+class f7qc(Variable):
+    cerfa_field = u"7QC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    stop_date = date(2011, 12, 31)
+
+
+class f7qd(Variable):
+    cerfa_field = u"7QD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    stop_date = date(2011, 12, 31)
+
+
+class f7qk(Variable):
+    cerfa_field = u"7QK"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    stop_date = date(2009, 12, 31)
+
+
+class f7qn(Variable):
+    cerfa_field = u"7QN"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    stop_date = date(2010, 12, 31)
+
+
+class f7kg(Variable):
+    cerfa_field = u"7KG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    stop_date = date(2010, 12, 31)
+
+
+class f7ql(Variable):
+    cerfa_field = u"7QL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    stop_date = date(2011, 12, 31)
+
+
+class f7qt(Variable):
+    cerfa_field = u"7QT"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    stop_date = date(2011, 12, 31)
+
+
+class f7qm(Variable):
+    cerfa_field = u"7QM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    stop_date = date(2011, 12, 31)
+
+
+class f7qu(Variable):
+    cerfa_field = u"7QU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+class f7ki(Variable):
+    cerfa_field = u"7KI"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+class f7qj(Variable):
+    cerfa_field = u"7QJ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+class f7qw(Variable):
+    cerfa_field = u"7QW"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+class f7qx(Variable):
+    cerfa_field = u"7QX"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+class f7qf(Variable):
+    cerfa_field = u"7QF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+class f7qg(Variable):
+    cerfa_field = u"7QG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+class f7qh(Variable):
+    cerfa_field = u"7QH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+class f7qi(Variable):
+    cerfa_field = u"7QI"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+class f7qq(Variable):
+    cerfa_field = u"7QQ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+class f7qr(Variable):
+    cerfa_field = u"7QR"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+class f7qs(Variable):
+    cerfa_field = u"7QS"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+class f7mm(Variable):
+    cerfa_field = u"7MM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    start_date = date(2010, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+class f7lg(Variable):
+    cerfa_field = u"7LG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    start_date = date(2010, 1, 1)
+
+
+class f7ma(Variable):
+    cerfa_field = u"7MA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    start_date = date(2010, 1, 1)
+
+
+class f7ks(Variable):
+    cerfa_field = u"7KS"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+class f7kh(Variable):
+    cerfa_field = u"7KH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+
+
+
+class f7oa(Variable):
+    cerfa_field = u"7OA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% avant 2009"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7ob(Variable):
+    cerfa_field = u"7OB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2009"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7oc(Variable):
+    cerfa_field = u"7OC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7oh(Variable):
+    cerfa_field = u"7OH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% avant 2009"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7oi(Variable):
+    cerfa_field = u"7OI"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2009"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7oj(Variable):
+    cerfa_field = u"7OJ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7ok(Variable):
+    cerfa_field = u"7OK"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Autres investissements"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7ol(Variable):
+    cerfa_field = u"7OL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7om(Variable):
+    cerfa_field = u"7OM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7on(Variable):
+    cerfa_field = u"7ON"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7oo(Variable):
+    cerfa_field = u"7OO"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7op(Variable):
+    cerfa_field = u"7OP"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7oq(Variable):
+    cerfa_field = u"7OQ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7or(Variable):
+    cerfa_field = u"7OR"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7os(Variable):
+    cerfa_field = u"7OS"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ot(Variable):
+    cerfa_field = u"7OT"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ou(Variable):
+    cerfa_field = u"7OU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ov(Variable):
+    cerfa_field = u"7OV"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ow(Variable):
+    cerfa_field = u"7OW"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, "
+    start_date = date(2012, 1, 1)
+
+ #TODO: 7O* : end ?
+
+class fhod(Variable):
+    cerfa_field = u"HOD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés avant le 1.1.2011"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhoe(Variable):
+    cerfa_field = u"HOE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhof(Variable):
+    cerfa_field = u"HOF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
+    start_date = date(2013, 1, 1)
+
+
+
+
+class fhog(Variable):
+    cerfa_field = u"HOG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010"
+    start_date = date(2013, 1, 1)
+
+
+
+
+class fhox(Variable):
+    cerfa_field = u"HOX"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2011"
+    start_date = date(2013, 1, 1)
+
+
+
+
+class fhoy(Variable):
+    cerfa_field = u"HOY"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2012"
+    start_date = date(2013, 1, 1)
+
+
+
+
+class fhoz(Variable):
+    cerfa_field = u"HOZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Autres investissements"
+    start_date = date(2013, 1, 1)
+
+
 
 # Investissements outre-mer dans le logement social
 
-build_column('fhra', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2013, Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010",
-                val_type = "monetary",
-                cerfa_field = u'HRA',
-                start = date(2013, 1, 1)))
+class fhra(Variable):
+    cerfa_field = u"HRA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2013, Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
+    start_date = date(2013, 1, 1)
 
-build_column('fhrb', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2013, Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011",
-                val_type = "monetary",
-                cerfa_field = u'HRB',
-                start = date(2013, 1, 1)))
 
-build_column('fhrc', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2013, Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2012",
-                val_type = "monetary",
-                cerfa_field = u'HRC',
-                start = date(2013, 1, 1)))
 
-build_column('fhrd', IntCol(entity = 'foy',
-                label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2013, Autres investissements",
-                val_type = "monetary",
-                cerfa_field = u'HRD',
-                start = date(2013, 1, 1)))
+class fhrb(Variable):
+    cerfa_field = u"HRB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2013, Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhrc(Variable):
+    cerfa_field = u"HRC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2013, Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2012"
+    start_date = date(2013, 1, 1)
+
+
+
+class fhrd(Variable):
+    cerfa_field = u"HRD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2013, Autres investissements"
+    start_date = date(2013, 1, 1)
+
+
 
 # Souscription de parts de fonds communs de placement dans l'innovation,
 # de fonds d'investissement de proximité
-build_column('f7gq', IntCol(entity = 'foy',
-                label = u"Souscription de parts de fonds communs de placement dans l'innovation",
-                val_type = "monetary",
-                cerfa_field = u'7GQ'))
+class f7gq(Variable):
+    cerfa_field = u"7GQ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscription de parts de fonds communs de placement dans l'innovation"
 
-build_column('f7fq', IntCol(entity = 'foy',
-                label = u"Souscription de parts de fonds d'investissement de proximité",
-                val_type = "monetary",
-                cerfa_field = u'7FQ'))
 
-build_column('f7fm', IntCol(entity = 'foy',
-                label = u"Souscription de parts de fonds d'investissement de proximité investis en Corse",
-                val_type = "monetary",
-                start = date(2007, 1, 1),
-                cerfa_field = u'7FM'))
 
-build_column('f7fl', IntCol(entity = 'foy',
-                label = u"Souscription de parts de fonds d'investissement de proximité investis outre-mer par des personnes domiciliées outre-mer",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7FL'))
+class f7fq(Variable):
+    cerfa_field = u"7FQ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscription de parts de fonds d'investissement de proximité"
+
+
+
+class f7fm(Variable):
+    cerfa_field = u"7FM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscription de parts de fonds d'investissement de proximité investis en Corse"
+    start_date = date(2007, 1, 1)
+
+
+
+class f7fl(Variable):
+    cerfa_field = u"7FL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscription de parts de fonds d'investissement de proximité investis outre-mer par des personnes domiciliées outre-mer"
+    start_date = date(2011, 1, 1)
+
+
 
 # Souscriptions au capital de SOFICA
-build_column('f7gn', IntCol(entity = 'foy',
-                label = u"Souscriptions au capital de SOFICA 36 %",
-                val_type = "monetary",
-                cerfa_field = u'7GN',
-                start = date(2006, 1, 1)))
+class f7gn(Variable):
+    cerfa_field = u"7GN"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscriptions au capital de SOFICA 36 %"
+    start_date = date(2006, 1, 1)
 
-build_column('f7fn', IntCol(entity = 'foy',
-                label = u"Souscriptions au capital de SOFICA 30 %",
-                val_type = "monetary",
-                cerfa_field = u'7FN',
-                start = date(2006, 1, 1)))
+
+
+class f7fn(Variable):
+    cerfa_field = u"7FN"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Souscriptions au capital de SOFICA 30 %"
+    start_date = date(2006, 1, 1)
+
+
 
 # Intérêts d'emprunt pour reprise de société
-build_column('f7fh', IntCol(entity = 'foy',
-                label = u"Intérêts d'emprunt pour reprise de société",
-                val_type = "monetary",
-                cerfa_field = u'7FH'))
+class f7fh(Variable):
+    cerfa_field = u"7FH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Intérêts d'emprunt pour reprise de société"
+
+
 
 # Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée))
-build_column('f7ff', IntCol(entity = 'foy',
-                label = u"Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée)",
-                val_type = "monetary",
-                cerfa_field = u'7FF'))
+class f7ff(Variable):
+    cerfa_field = u"7FF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Frais de comptabilité et d'adhésion à un CGA (centre de gestion agréée) ou à une AA (association agréée)"
 
-build_column('f7fg', IntCol(entity = 'foy',
-                label = u"Frais de comptabilité et d'adhésion à un CGA ou à une AA: nombre d'exploitations",
-                cerfa_field = u'7FG'))
+
+
+class f7fg(Variable):
+    cerfa_field = u"7FG"
+    column = IntCol
+    entity_class = FoyersFiscaux
+    label = u"Frais de comptabilité et d'adhésion à un CGA ou à une AA: nombre d'exploitations"
+
+
 
 # Travaux de conservation et de restauration d’objets classés monuments historiques
-build_column('f7nz', IntCol(entity = 'foy',
-                label = u"Travaux de conservation et de restauration d’objets classés monuments historiques",
-                val_type = "monetary",
-                start = date(2008, 1, 1),
-                cerfa_field = u'7NZ'))
+class f7nz(Variable):
+    cerfa_field = u"7NZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Travaux de conservation et de restauration d’objets classés monuments historiques"
+    start_date = date(2008, 1, 1)
+
+
 
 # Dépenses de protection du patrimoine naturel
-build_column('f7ka', IntCol(entity = 'foy',
-                label = u"Dépenses de protection du patrimoine naturel",
-                val_type = "monetary",
-                cerfa_field = u'7KA',
-                start = date(2010, 1, 1)))
+class f7ka(Variable):
+    cerfa_field = u"7KA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de protection du patrimoine naturel"
+    start_date = date(2010, 1, 1)
 
-build_column('f7kb', IntCol(entity = 'foy',
-                label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)",
-                val_type = "monetary",
-                cerfa_field = u'7KB',
-                start = date(2011, 1, 1)))
 
-build_column('f7kc', IntCol(entity = 'foy',
-                label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)",
-                val_type = "monetary",
-                cerfa_field = u'7KC',
-                start = date(2012, 1, 1)))
 
-build_column('f7kd', IntCol(entity = 'foy',
-                label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)",
-                val_type = "monetary",
-                cerfa_field = u'7KD',
-                start = date(2013, 1, 1)))
+class f7kb(Variable):
+    cerfa_field = u"7KB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)"
+    start_date = date(2011, 1, 1)
 
-build_column('f7uh', IntCol(entity = 'foy',
-                label = u"Dons et cotisations versés aux partis politiques",
-                val_type = "monetary",
-                cerfa_field = u'7UH',
-                start = date(2007, 1, 1))) #TODO: séparer en plusieurs variables (même case pour plusieurs variables selon les années)
+
+
+class f7kc(Variable):
+    cerfa_field = u"7KC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7kd(Variable):
+    cerfa_field = u"7KD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7uh(Variable):
+    cerfa_field = u"7UH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dons et cotisations versés aux partis politiques"
+    start_date = date(2007, 1, 1)
+
+ #TODO: séparer en plusieurs variables (même case pour plusieurs variables selon les années)
 
 # Investissements forestiers
-build_column('f7un', IntCol(entity = 'foy',
-                label = u"Investissements forestiers: acquisition",
-                val_type = "monetary",
-                cerfa_field = u'7UN'))
+class f7un(Variable):
+    cerfa_field = u"7UN"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements forestiers: acquisition"
 
-build_column('f7ul', IntCol(entity = 'foy',
-                label = u"Investissements forestiers",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7UL'))
 
-build_column('f7uu', IntCol(entity = 'foy',
-                label = u"Investissements forestiers",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7UU'))
 
-build_column('f7uv', IntCol(entity = 'foy',
-                label = u"Investissements forestiers",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7UV'))
+class f7ul(Variable):
+    cerfa_field = u"7UL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements forestiers"
+    start_date = date(2011, 1, 1)
 
-build_column('f7uw', IntCol(entity = 'foy',
-                label = u"Investissements forestiers",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7UW'))
 
-build_column('f7th', IntCol(entity = 'foy',
-                label = u"Investissements forestiers",
-                val_type = "monetary",
-                start = date(2013, 1, 1),
-                cerfa_field = u'7TH'))
 
-build_column('f7ux', IntCol(entity = 'foy',
-                label = u"Investissements forestiers",
-                val_type = "monetary",
-                start = date(2013, 1, 1),
-                cerfa_field = u'7UX'))
+class f7uu(Variable):
+    cerfa_field = u"7UU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements forestiers"
+    start_date = date(2010, 1, 1)
 
-build_column('f7tg', IntCol(entity = 'foy',
-                label = u"Investissements forestiers",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7TG'))
 
-build_column('f7tf', IntCol(entity = 'foy',
-                label = u"Investissements forestiers",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                end = date(2013, 12, 31),
-                cerfa_field = u'7TF'))
 
-build_column('f7ut', IntCol(entity = 'foy',
-                label = u"Investissements forestiers",
-                val_type = "monetary",
-                start = date(2009, 1, 1),
-                cerfa_field = u'7UT'))
+class f7uv(Variable):
+    cerfa_field = u"7UV"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements forestiers"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7uw(Variable):
+    cerfa_field = u"7UW"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements forestiers"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7th(Variable):
+    cerfa_field = u"7TH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements forestiers"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7ux(Variable):
+    cerfa_field = u"7UX"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements forestiers"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7tg(Variable):
+    cerfa_field = u"7TG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements forestiers"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7tf(Variable):
+    cerfa_field = u"7TF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements forestiers"
+    start_date = date(2011, 1, 1)
+    stop_date = date(2013, 12, 31)
+
+
+
+class f7ut(Variable):
+    cerfa_field = u"7UT"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements forestiers"
+    start_date = date(2009, 1, 1)
+
+
 
 # Intérêts pour paiement différé accordé aux agriculteurs
-build_column('f7um', IntCol(entity = 'foy',
-                label = u"Intérêts pour paiement différé accordé aux agriculteurs",
-                val_type = "monetary",
-                cerfa_field = u'7UM'))
+class f7um(Variable):
+    cerfa_field = u"7UM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Intérêts pour paiement différé accordé aux agriculteurs"
+
+
 
 # Investissements locatifs neufs : Dispositif Scellier:
-build_column('f7hj', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole",
-                val_type = "monetary",
-                start = date(2009, 1, 1),
-                cerfa_field = u'7HJ'))
-
-build_column('f7hk', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM",
-                val_type = "monetary",
-                start = date(2009, 1, 1),
-                cerfa_field = u'7HK'))
-
-build_column('f7hn', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole avec promesse d'achat avant le 1er janvier 2010",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7HN'))
-
-build_column('f7ho', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM avec promesse d'achat avant le 1er janvier 2010",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7HO'))
-
-build_column('f7hl', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 (métropole et DOM ne respectant pas les plafonds)",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7HL'))
-
-build_column('f7hm', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 dans les DOM et respectant les plafonds",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7HM'))
-
-build_column('f7hr', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009, en métropole en 2009; dans les DOM du 1.1.2009 au 26.5.2009 ; dans les DOM du 27.5.2009 au 30.12.2009 lorsqu'ils ne respectent pas les plafonds spécifiques",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7HR'))
-
-build_column('f7hs', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 dans les DOM COM du 27.5.2009 au 31.12.2009 respectant les plafonds spécifiques",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7HS'))
-
-build_column('f7la', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2009",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7LA'))
-
-build_column('f7lb', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2010",
-                val_type = "monetary",
-                cerfa_field = u'7LB',
-                start = date(2011, 1, 1)))
-
-build_column('f7lc', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2010",
-                val_type = "monetary",
-                cerfa_field = u'7LC',
-                start = date(2011, 1, 1)))
-
-build_column('f7ld', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2011",
-                val_type = "monetary",
-                cerfa_field = u'7LD',
-                start = date(2012, 1, 1)))
-
-build_column('f7le', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2011",
-                val_type = "monetary",
-                cerfa_field = u'7LE',
-                start = date(2012, 1, 1)))
-
-build_column('f7lf', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2011",
-                val_type = "monetary",
-                cerfa_field = u'7LF',
-                start = date(2012, 1, 1)))
-
-build_column('f7ls', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010",
-                val_type = "monetary",
-                cerfa_field = u'7LS',
-                start = date(2013, 1, 1)))
-
-build_column('f7lm', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010",
-                val_type = "monetary",
-                cerfa_field = u'7LM',
-                start = date(2013, 1, 1)))
-
-build_column('f7lz', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Report du solde de réduction d'impôt de l'année 2012",
-                val_type = "monetary",
-                cerfa_field = u'7LZ',
-                start = date(2013, 1, 1)))
-
-build_column('f7mg', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2012 : report du solde de réduction d'impôt de l'année 2012",
-                val_type = "monetary",
-                cerfa_field = u'7MG',
-                start = date(2013, 1, 1)))
-
-build_column('f7na', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, métropole, BBC",
-                val_type = "monetary",
-                cerfa_field = u'7NA',
-                start = date(2011, 1, 1)))
-
-build_column('f7nb', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, ",
-                val_type = "monetary",
-                cerfa_field = u'7NB',
-                start = date(2011, 1, 1)))
-
-build_column('f7nc', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, métropole, BBC",
-                val_type = "monetary",
-                cerfa_field = u'7NC',
-                start = date(2011, 1, 1)))
-
-build_column('f7nd', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, métropole, BBC",
-                val_type = "monetary",
-                cerfa_field = u'7ND',
-                start = date(2011, 1, 1)))
-
-build_column('f7ne', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, métropole, BBC",
-                val_type = "monetary",
-                cerfa_field = u'7NE',
-                start = date(2011, 1, 1)))
-
-build_column('f7nf', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, ",
-                val_type = "monetary",
-                cerfa_field = u'7NF',
-                start = date(2011, 1, 1)))
-
-build_column('f7ng', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, ",
-                val_type = "monetary",
-                cerfa_field = u'7NG',
-                start = date(2011, 1, 1)))
-
-build_column('f7nh', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, métropole, non-BBC",
-                val_type = "monetary",
-                cerfa_field = u'7NH',
-                start = date(2011, 1, 1)))
-
-build_column('f7ni', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, métropole, non-BBC",
-                val_type = "monetary",
-                cerfa_field = u'7NI',
-                start = date(2011, 1, 1)))
-
-build_column('f7nj', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, métropole, non-BBC",
-                val_type = "monetary",
-                cerfa_field = u'7NJ',
-                start = date(2011, 1, 1)))
-
-build_column('f7nk', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
-                val_type = "monetary",
-                cerfa_field = u'7NK',
-                start = date(2011, 1, 1)))
-
-build_column('f7nl', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
-                val_type = "monetary",
-                cerfa_field = u'7NL',
-                start = date(2011, 1, 1)))
-
-build_column('f7nm', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
-                val_type = "monetary",
-                cerfa_field = u'7NM',
-                start = date(2011, 1, 1)))
-
-build_column('f7nn', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
-                val_type = "monetary",
-                cerfa_field = u'7NN',
-                start = date(2011, 1, 1)))
-
-build_column('f7no', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
-                val_type = "monetary",
-                cerfa_field = u'7NO',
-                start = date(2011, 1, 1)))
-
-build_column('f7np', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
-                val_type = "monetary",
-                cerfa_field = u'7NP',
-                start = date(2011, 1, 1)))
-
-build_column('f7nq', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
-                val_type = "monetary",
-                cerfa_field = u'7NQ',
-                start = date(2011, 1, 1)))
-
-build_column('f7nr', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
-                val_type = "monetary",
-                cerfa_field = u'7NR',
-                start = date(2011, 1, 1)))
-
-build_column('f7ns', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
-                val_type = "monetary",
-                cerfa_field = u'7NS',
-                start = date(2011, 1, 1)))
-
-build_column('f7nt', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
-                val_type = "monetary",
-                cerfa_field = u'7NT',
-                start = date(2011, 1, 1)))
-
-build_column('f7hv', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole",
-                val_type = "monetary",
-                cerfa_field = u'7HV',
-                start = date(2011, 1, 1)))
-
-build_column('f7hw', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 dans les DOM COM",
-                val_type = "monetary",
-                cerfa_field = u'7HW',
-                start = date(2011, 1, 1)))
-
-build_column('f7hx', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole avec promesse d'achat avant le 1.1.2010",
-                val_type = "monetary",
-                cerfa_field = u'7HX',
-                start = date(2011, 1, 1)))
-
-build_column('f7hz', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 dans les DOM COM avec promesse d'achat avant le 1.1.2010",
-                val_type = "monetary",
-                cerfa_field = u'7HZ',
-                start = date(2011, 1, 1)))
-
-build_column('f7ht', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2009, Investissements réalisés en 2009 et achevés en 2010, en métropole en 2009; dans les DOM du 1.1.2009 au 26.5.2009 ; dans les DOM du 27.5.2009 au 30.12.2009 lorsqu'ils ne respectent pas les plafonds spécifiques",
-                val_type = "monetary",
-                cerfa_field = u'7HT',
-                start = date(2011, 1, 1)))
-
-build_column('f7hu', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2009, Investissements réalisés en 2009 et achevés en 2010, dans les DOM COM du 27.5.2009 au 31.12.2009 respectant les plafonds spécifiques",
-                val_type = "monetary",
-                cerfa_field = u'7HU',
-                start = date(2011, 1, 1)))
-
-build_column('f7ha', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés et réalisés en 2011",
-                val_type = "monetary",
-                cerfa_field = u'7HA',
-                start = date(2012, 1, 1)))
-
-build_column('f7hb', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés et réalisés en 2011, avec promesse d'achat en 2010",
-                val_type = "monetary",
-                cerfa_field = u'7HB',
-                start = date(2012, 1, 1)))
-
-build_column('f7hg', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2011 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna",
-                val_type = "monetary",
-                cerfa_field = u'7HG',
-                start = date(2012, 1, 1)))
-
-build_column('f7hh', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2011 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna avec promesse d'achat en 2010",
-                val_type = "monetary",
-                cerfa_field = u'7HH',
-                start = date(2012, 1, 1)))
-
-build_column('f7hd', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, réalisés en 2010, en métropole et dans les DOM-COM",
-                val_type = "monetary",
-                cerfa_field = u'7HD',
-                start = date(2012, 1, 1)))
-
-build_column('f7he', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, en métropole et dans les DOM-COM avec promesse d'achat avant le 1.1.2010",
-                val_type = "monetary",
-                cerfa_field = u'7HE',
-                start = date(2012, 1, 1)))
-
-build_column('f7hf', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, Investissements réalisés en 2009 en métropole et dans les DOM-COM",
-                val_type = "monetary",
-                cerfa_field = u'7HF',
-                start = date(2012, 1, 1)))
-
-build_column('f7ja', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2012, métropole, BBC",
-                val_type = "monetary",
-                cerfa_field = u'7JA',
-                start = date(2012, 1, 1)))
-
-build_column('f7jb', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, métropole, BBC",
-                val_type = "monetary",
-                cerfa_field = u'7JB',
-                start = date(2012, 1, 1)))
-
-build_column('f7jd', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, métropole, BBC",
-                val_type = "monetary",
-                cerfa_field = u'7JD',
-                start = date(2012, 1, 1)))
-
-build_column('f7je', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, métropole, BBC ",
-                val_type = "monetary",
-                cerfa_field = u'7JE',
-                start = date(2012, 1, 1)))
-
-build_column('f7jf', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2012, métropole, non-BBC",
-                val_type = "monetary",
-                cerfa_field = u'7JF',
-                start = date(2012, 1, 1)))
-
-build_column('f7jg', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, métropole, non-BBC",
-                val_type = "monetary",
-                cerfa_field = u'7JG',
-                start = date(2012, 1, 1)))
-
-build_column('f7jh', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, métropole, non-BBC",
-                val_type = "monetary",
-                cerfa_field = u'7JH',
-                start = date(2012, 1, 1)))
-
-build_column('f7jj', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, métropole, non-BBC",
-                val_type = "monetary",
-                cerfa_field = u'7JJ',
-                start = date(2012, 1, 1)))
-
-build_column('f7jk', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
-                val_type = "monetary",
-                cerfa_field = u'7JK',
-                start = date(2012, 1, 1)))
-
-build_column('f7jl', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
-                val_type = "monetary",
-                cerfa_field = u'7JL',
-                start = date(2012, 1, 1)))
-
-build_column('f7jm', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
-                val_type = "monetary",
-                cerfa_field = u'7JM',
-                start = date(2012, 1, 1)))
-
-build_column('f7jn', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon",
-                val_type = "monetary",
-                cerfa_field = u'7JN',
-                start = date(2012, 1, 1)))
-
-build_column('f7jo', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
-                val_type = "monetary",
-                cerfa_field = u'7JO',
-                start = date(2012, 1, 1)))
-
-build_column('f7jp', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
-                val_type = "monetary",
-                cerfa_field = u'7JP',
-                start = date(2012, 1, 1)))
-
-build_column('f7jq', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
-                val_type = "monetary",
-                cerfa_field = u'7JQ',
-                start = date(2012, 1, 1)))
-
-build_column('f7jr', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna",
-                val_type = "monetary",
-                cerfa_field = u'7JR',
-                start = date(2012, 1, 1)))
-
-build_column('f7gj', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",
-                val_type = "monetary",
-                cerfa_field = u'7GJ',
-                start = date(2013, 1, 1)))
-
-build_column('f7gk', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon, avec promesse d'achat en 2011",
-                val_type = "monetary",
-                cerfa_field = u'7GK',
-                start = date(2013, 1, 1)))
-
-build_column('f7gl', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2012 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",
-                val_type = "monetary",
-                cerfa_field = u'7GL',
-                start = date(2013, 1, 1)))
-
-build_column('f7gp', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2012 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon, avec promesse d'achat en 2010s",
-                val_type = "monetary",
-                cerfa_field = u'7GP',
-                start = date(2013, 1, 1)))
-
-build_column('f7fa', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, métropole, BBC",
-                val_type = "monetary",
-                cerfa_field = u'7FA',
-                start = date(2013, 1, 1)))
-
-build_column('f7fb', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, métropole, non-BBC",
-                val_type = "monetary",
-                cerfa_field = u'7FB',
-                start = date(2013, 1, 1)))
-
-build_column('f7fc', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon",
-                val_type = "monetary",
-                cerfa_field = u'7FC',
-                start = date(2013, 1, 1)))
-
-build_column('f7fd', IntCol(entity = 'foy',
-                label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna",
-                val_type = "monetary",
-                cerfa_field = u'7FD',
-                start = date(2013, 1, 1)))
+class f7hj(Variable):
+    cerfa_field = u"7HJ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole"
+    start_date = date(2009, 1, 1)
+
+
+
+class f7hk(Variable):
+    cerfa_field = u"7HK"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM"
+    start_date = date(2009, 1, 1)
+
+
+
+class f7hn(Variable):
+    cerfa_field = u"7HN"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole avec promesse d'achat avant le 1er janvier 2010"
+    start_date = date(2010, 1, 1)
+
+
+
+class f7ho(Variable):
+    cerfa_field = u"7HO"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM avec promesse d'achat avant le 1er janvier 2010"
+    start_date = date(2010, 1, 1)
+
+
+
+class f7hl(Variable):
+    cerfa_field = u"7HL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 (métropole et DOM ne respectant pas les plafonds)"
+    start_date = date(2010, 1, 1)
+
+
+
+class f7hm(Variable):
+    cerfa_field = u"7HM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 dans les DOM et respectant les plafonds"
+    start_date = date(2010, 1, 1)
+
+
+
+class f7hr(Variable):
+    cerfa_field = u"7HR"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009, en métropole en 2009; dans les DOM du 1.1.2009 au 26.5.2009 ; dans les DOM du 27.5.2009 au 30.12.2009 lorsqu'ils ne respectent pas les plafonds spécifiques"
+    start_date = date(2010, 1, 1)
+
+
+
+class f7hs(Variable):
+    cerfa_field = u"7HS"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 dans les DOM COM du 27.5.2009 au 31.12.2009 respectant les plafonds spécifiques"
+    start_date = date(2010, 1, 1)
+
+
+
+class f7la(Variable):
+    cerfa_field = u"7LA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2009"
+    start_date = date(2010, 1, 1)
+
+
+
+class f7lb(Variable):
+    cerfa_field = u"7LB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2010"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7lc(Variable):
+    cerfa_field = u"7LC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2010"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7ld(Variable):
+    cerfa_field = u"7LD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2011"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7le(Variable):
+    cerfa_field = u"7LE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2011"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7lf(Variable):
+    cerfa_field = u"7LF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2011"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ls(Variable):
+    cerfa_field = u"7LS"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7lm(Variable):
+    cerfa_field = u"7LM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7lz(Variable):
+    cerfa_field = u"7LZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Report du solde de réduction d'impôt de l'année 2012"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7mg(Variable):
+    cerfa_field = u"7MG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2012 : report du solde de réduction d'impôt de l'année 2012"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7na(Variable):
+    cerfa_field = u"7NA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, métropole, BBC"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7nb(Variable):
+    cerfa_field = u"7NB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, "
+    start_date = date(2011, 1, 1)
+
+
+
+class f7nc(Variable):
+    cerfa_field = u"7NC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, métropole, BBC"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7nd(Variable):
+    cerfa_field = u"7ND"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, métropole, BBC"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7ne(Variable):
+    cerfa_field = u"7NE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, métropole, BBC"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7nf(Variable):
+    cerfa_field = u"7NF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, "
+    start_date = date(2011, 1, 1)
+
+
+
+class f7ng(Variable):
+    cerfa_field = u"7NG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, "
+    start_date = date(2011, 1, 1)
+
+
+
+class f7nh(Variable):
+    cerfa_field = u"7NH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, métropole, non-BBC"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7ni(Variable):
+    cerfa_field = u"7NI"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, métropole, non-BBC"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7nj(Variable):
+    cerfa_field = u"7NJ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, métropole, non-BBC"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7nk(Variable):
+    cerfa_field = u"7NK"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7nl(Variable):
+    cerfa_field = u"7NL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7nm(Variable):
+    cerfa_field = u"7NM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7nn(Variable):
+    cerfa_field = u"7NN"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7no(Variable):
+    cerfa_field = u"7NO"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7np(Variable):
+    cerfa_field = u"7NP"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7nq(Variable):
+    cerfa_field = u"7NQ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7nr(Variable):
+    cerfa_field = u"7NR"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7ns(Variable):
+    cerfa_field = u"7NS"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7nt(Variable):
+    cerfa_field = u"7NT"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7hv(Variable):
+    cerfa_field = u"7HV"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7hw(Variable):
+    cerfa_field = u"7HW"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 dans les DOM COM"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7hx(Variable):
+    cerfa_field = u"7HX"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole avec promesse d'achat avant le 1.1.2010"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7hz(Variable):
+    cerfa_field = u"7HZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 dans les DOM COM avec promesse d'achat avant le 1.1.2010"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7ht(Variable):
+    cerfa_field = u"7HT"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2009, Investissements réalisés en 2009 et achevés en 2010, en métropole en 2009; dans les DOM du 1.1.2009 au 26.5.2009 ; dans les DOM du 27.5.2009 au 30.12.2009 lorsqu'ils ne respectent pas les plafonds spécifiques"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7hu(Variable):
+    cerfa_field = u"7HU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2009, Investissements réalisés en 2009 et achevés en 2010, dans les DOM COM du 27.5.2009 au 31.12.2009 respectant les plafonds spécifiques"
+    start_date = date(2011, 1, 1)
+
+
+
+class f7ha(Variable):
+    cerfa_field = u"7HA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés et réalisés en 2011"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7hb(Variable):
+    cerfa_field = u"7HB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés et réalisés en 2011, avec promesse d'achat en 2010"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7hg(Variable):
+    cerfa_field = u"7HG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2011 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7hh(Variable):
+    cerfa_field = u"7HH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2011 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna avec promesse d'achat en 2010"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7hd(Variable):
+    cerfa_field = u"7HD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, réalisés en 2010, en métropole et dans les DOM-COM"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7he(Variable):
+    cerfa_field = u"7HE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, en métropole et dans les DOM-COM avec promesse d'achat avant le 1.1.2010"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7hf(Variable):
+    cerfa_field = u"7HF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, Investissements réalisés en 2009 en métropole et dans les DOM-COM"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ja(Variable):
+    cerfa_field = u"7JA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2012, métropole, BBC"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jb(Variable):
+    cerfa_field = u"7JB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, métropole, BBC"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jd(Variable):
+    cerfa_field = u"7JD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, métropole, BBC"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7je(Variable):
+    cerfa_field = u"7JE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, métropole, BBC "
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jf(Variable):
+    cerfa_field = u"7JF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2012, métropole, non-BBC"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jg(Variable):
+    cerfa_field = u"7JG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, métropole, non-BBC"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jh(Variable):
+    cerfa_field = u"7JH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, métropole, non-BBC"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jj(Variable):
+    cerfa_field = u"7JJ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, métropole, non-BBC"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jk(Variable):
+    cerfa_field = u"7JK"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jl(Variable):
+    cerfa_field = u"7JL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jm(Variable):
+    cerfa_field = u"7JM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jn(Variable):
+    cerfa_field = u"7JN"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jo(Variable):
+    cerfa_field = u"7JO"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jp(Variable):
+    cerfa_field = u"7JP"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jq(Variable):
+    cerfa_field = u"7JQ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jr(Variable):
+    cerfa_field = u"7JR"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7gj(Variable):
+    cerfa_field = u"7GJ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7gk(Variable):
+    cerfa_field = u"7GK"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon, avec promesse d'achat en 2011"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7gl(Variable):
+    cerfa_field = u"7GL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2012 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7gp(Variable):
+    cerfa_field = u"7GP"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2012 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon, avec promesse d'achat en 2010s"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7fa(Variable):
+    cerfa_field = u"7FA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, métropole, BBC"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7fb(Variable):
+    cerfa_field = u"7FB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, métropole, non-BBC"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7fc(Variable):
+    cerfa_field = u"7FC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7fd(Variable):
+    cerfa_field = u"7FD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna"
+    start_date = date(2013, 1, 1)
+
+
 
 # Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
-build_column('f7ij', IntCol(entity = 'foy',
-                label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 et achevés en 2012, engagement de réalisation de l'investissement en 2011",
-                val_type = "monetary",
-                start = date(2009, 1, 1),
-                cerfa_field = u'7IJ'))
+class f7ij(Variable):
+    cerfa_field = u"7IJ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 et achevés en 2012, engagement de réalisation de l'investissement en 2011"
+    start_date = date(2009, 1, 1)
 
-build_column('f7il', IntCol(entity = 'foy',
-                label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 et achevés en 2012, promesse d'achat en 2010",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7IL'))
 
-build_column('f7im', IntCol(entity = 'foy',
-                label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2010 et achevés en 2012 avec promesse d'achat en 2009",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7IM'))
 
-build_column('f7ik', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Reports de 1/9 de l'investissement réalisé et achevé en 2009",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7IK'))
+class f7il(Variable):
+    cerfa_field = u"7IL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 et achevés en 2012, promesse d'achat en 2010"
+    start_date = date(2010, 1, 1)
 
-build_column('f7in', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, investissement réalisé du 1.1.2011 au 31.3.2011",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7IN'))
 
-build_column('f7iv', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, investissement réalisé du 1.4.2011 au 31.12.2011",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7IV'))
 
-build_column('f7iw', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 et achevés en 2012",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7IW'))
+class f7im(Variable):
+    cerfa_field = u"7IM"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2010 et achevés en 2012 avec promesse d'achat en 2009"
+    start_date = date(2010, 1, 1)
 
-build_column('f7io', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : ",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7IO'))
 
-build_column('f7ip', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : ",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7IP'))
 
-build_column('f7ir', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : ",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7IR'))
+class f7ik(Variable):
+    cerfa_field = u"7IK"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Reports de 1/9 de l'investissement réalisé et achevé en 2009"
+    start_date = date(2010, 1, 1)
 
-build_column('f7iq', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : ",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7IQ'))
 
-build_column('f7iu', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : ",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7IU'))
 
-build_column('f7it', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : ",
-                val_type = "monetary",
-                start = date(2011, 1, 1),
-                cerfa_field = u'7IT'))
+class f7in(Variable):
+    cerfa_field = u"7IN"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, investissement réalisé du 1.1.2011 au 31.3.2011"
+    start_date = date(2011, 1, 1)
 
-build_column('f7is', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé: année  n-4",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7IS'))
 
-build_column('f7ia', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7IA'))
 
-build_column('f7ib', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7IB'))
+class f7iv(Variable):
+    cerfa_field = u"7IV"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, investissement réalisé du 1.4.2011 au 31.12.2011"
+    start_date = date(2011, 1, 1)
 
-build_column('f7ic', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 et achevés en 2011 avec promesse d'achat en 2009 ou réalisés en 2009",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7IC'))
 
-build_column('f7id', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Engagement de réalisation de l'investissement en 2012",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7ID'))
 
-build_column('f7ie', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Promesse d'achat en 2011",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7IE'))
+class f7iw(Variable):
+    cerfa_field = u"7IW"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 et achevés en 2012"
+    start_date = date(2011, 1, 1)
 
-build_column('f7if', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.1.2012 au 31.3.2012, investissement réalisé du 1.1.2012 au 31.3.2012",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7IF'))
 
-build_column('f7ig', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.4.2012 au 31.12.2012",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7IG'))
 
-build_column('f7ix', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2009; réalisés en 2009 et achevés en 2010; réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report du solde de réduction d'impôt de l'année 2011",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7IX'))
+class f7io(Variable):
+    cerfa_field = u"7IO"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : "
+    start_date = date(2011, 1, 1)
 
-build_column('f7ih', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report du solde de réduction d'impôt de l'année 2011",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7IH'))
 
-build_column('f7iz', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2011",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7IZ'))
 
-build_column('f7jt', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2013, Engagement de réalisation de l'investissement en 2013",
-                val_type = "monetary",
-                cerfa_field = u'7JT',
-                start = date(2013, 1, 1)))
+class f7ip(Variable):
+    cerfa_field = u"7IP"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : "
+    start_date = date(2011, 1, 1)
 
-build_column('f7ju', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2013, Engagement de réalisation de l'investissement en 2012",
-                val_type = "monetary",
-                cerfa_field = u'7JU',
-                start = date(2013, 1, 1)))
 
-build_column('f7jv', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2012",
-                val_type = "monetary",
-                cerfa_field = u'7JV',
-                start = date(2013, 1, 1)))
 
-build_column('f7jw', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011",
-                val_type = "monetary",
-                cerfa_field = u'7JW',
-                start = date(2013, 1, 1)))
+class f7ir(Variable):
+    cerfa_field = u"7IR"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : "
+    start_date = date(2011, 1, 1)
 
-build_column('f7jx', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010",
-                val_type = "monetary",
-                cerfa_field = u'7JX',
-                start = date(2013, 1, 1)))
 
-build_column('f7jy', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2010 avec promesse d'achat en 2009 ou réalisés en 2009",
-                val_type = "monetary",
-                cerfa_field = u'7JY',
-                start = date(2013, 1, 1)))
 
-build_column('f7jc', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report du solde de réduction d'impôt de l'année 2012",
-                val_type = "monetary",
-                cerfa_field = u'7JC',
-                start = date(2013, 1, 1)))
+class f7iq(Variable):
+    cerfa_field = u"7IQ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : "
+    start_date = date(2011, 1, 1)
 
-build_column('f7ji', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d'impôt de l'année 2012",
-                val_type = "monetary",
-                cerfa_field = u'7JI',
-                start = date(2013, 1, 1)))
 
-build_column('f7js', IntCol(entity = 'foy',
-                label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d’impôt de l’année 2012",
-                val_type = "monetary",
-                cerfa_field = u'7JS',
-                start = date(2013, 1, 1)))
+
+class f7iu(Variable):
+    cerfa_field = u"7IU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : "
+    start_date = date(2011, 1, 1)
+
+
+
+class f7it(Variable):
+    cerfa_field = u"7IT"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : "
+    start_date = date(2011, 1, 1)
+
+
+
+class f7is(Variable):
+    cerfa_field = u"7IS"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé: année  n-4"
+    start_date = date(2010, 1, 1)
+
+
+
+class f7ia(Variable):
+    cerfa_field = u"7IA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ib(Variable):
+    cerfa_field = u"7IB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ic(Variable):
+    cerfa_field = u"7IC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 et achevés en 2011 avec promesse d'achat en 2009 ou réalisés en 2009"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7id(Variable):
+    cerfa_field = u"7ID"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Engagement de réalisation de l'investissement en 2012"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ie(Variable):
+    cerfa_field = u"7IE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Promesse d'achat en 2011"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7if(Variable):
+    cerfa_field = u"7IF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.1.2012 au 31.3.2012, investissement réalisé du 1.1.2012 au 31.3.2012"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ig(Variable):
+    cerfa_field = u"7IG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.4.2012 au 31.12.2012"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ix(Variable):
+    cerfa_field = u"7IX"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2009; réalisés en 2009 et achevés en 2010; réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report du solde de réduction d'impôt de l'année 2011"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7ih(Variable):
+    cerfa_field = u"7IH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report du solde de réduction d'impôt de l'année 2011"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7iz(Variable):
+    cerfa_field = u"7IZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2011"
+    start_date = date(2012, 1, 1)
+
+
+
+class f7jt(Variable):
+    cerfa_field = u"7JT"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2013, Engagement de réalisation de l'investissement en 2013"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7ju(Variable):
+    cerfa_field = u"7JU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2013, Engagement de réalisation de l'investissement en 2012"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7jv(Variable):
+    cerfa_field = u"7JV"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2012"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7jw(Variable):
+    cerfa_field = u"7JW"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7jx(Variable):
+    cerfa_field = u"7JX"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7jy(Variable):
+    cerfa_field = u"7JY"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2010 avec promesse d'achat en 2009 ou réalisés en 2009"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7jc(Variable):
+    cerfa_field = u"7JC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report du solde de réduction d'impôt de l'année 2012"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7ji(Variable):
+    cerfa_field = u"7JI"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d'impôt de l'année 2012"
+    start_date = date(2013, 1, 1)
+
+
+
+class f7js(Variable):
+    cerfa_field = u"7JS"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d’impôt de l’année 2012"
+    start_date = date(2013, 1, 1)
+
+
 
 # Investissements locatifs dans les résidences de tourisme situées dans une zone de
 # revitalisation rurale
@@ -2348,350 +3754,528 @@ build_column('f7js', IntCol(entity = 'foy',
 # réutilisation de cases en 2013
 # """
 
-build_column('f7gt', IntCol(entity = 'foy',
-                label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2010",
-                val_type = "monetary",
-                cerfa_field = u'7GT',
-                start = date(2013, 1, 1)))  # vérif <=2012
+class f7gt(Variable):
+    cerfa_field = u"7GT"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2010"
+    start_date = date(2013, 1, 1)
 
-build_column('f7gu', IntCol(entity = 'foy',
-                label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2009",
-                val_type = "monetary",
-                cerfa_field = u'7GU',
-                start = date(2013, 1, 1)))  # vérif <=2012
+  # vérif <=2012
 
-build_column('f7gv', IntCol(entity = 'foy',
-                label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés et achevés en 2012 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
-                val_type = "monetary",
-                cerfa_field = u'7GV',
-                start = date(2013, 1, 1)))  # vérif <=2012
+class f7gu(Variable):
+    cerfa_field = u"7GU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2009"
+    start_date = date(2013, 1, 1)
 
-build_column('f7xg', IntCol(entity = 'foy', label = u"Investissement locatif dans le secteur touristique, travaux réalisés dans un village résidentiel de tourisme",
-                val_type = "monetary",
-                cerfa_field = u'7XG',
-                end = date(2012, 12, 1)))  # vérif <=2012
+  # vérif <=2012
+
+class f7gv(Variable):
+    cerfa_field = u"7GV"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés et achevés en 2012 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+    start_date = date(2013, 1, 1)
+
+  # vérif <=2012
+
+class f7xg(Variable):
+    cerfa_field = u"7XG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissement locatif dans le secteur touristique, travaux réalisés dans un village résidentiel de tourisme"
+    stop_date = date(2012, 12, 1)
+
+  # vérif <=2012
 
 # Crédits d'impôts en f7
 # Acquisition de biens culturels
-build_column('f7uo', IntCol(entity = 'foy',
-                label = u"Acquisition de biens culturels",
-                val_type = "monetary",
-                cerfa_field = u'7UO'))
+class f7uo(Variable):
+    cerfa_field = u"7UO"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Acquisition de biens culturels"
+
+
 
 # Mécénat d'entreprise
-build_column('f7us', IntCol(entity = 'foy',
-                label = u"Réduction d'impôt mécénat d'entreprise",
-                val_type = "monetary",
-                cerfa_field = u'7US'))
+class f7us(Variable):
+    cerfa_field = u"7US"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Réduction d'impôt mécénat d'entreprise"
+
+
 
 # Crédits d’impôt pour dépenses en faveur de la qualité environnementale
 
-build_column('f7sb', IntCol(entity = 'foy',
-               label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %",
-               val_type = "monetary",
-               cerfa_field = u'7SB',
-               start = date(2009, 1, 1),
-               end = date(2011, 12, 31)))
+class f7sb(Variable):
+    cerfa_field = u"7SB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %"
+    start_date = date(2009, 1, 1)
+    stop_date = date(2011, 12, 31)
 
-build_column('f7sc', IntCol(entity = 'foy',
-               label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale",
-               val_type = "monetary",
-               cerfa_field = u'7SC',
-               start = date(2009, 1, 1),
-               end = date(2009, 12, 1)))
+
+
+class f7sc(Variable):
+    cerfa_field = u"7SC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale"
+    start_date = date(2009, 1, 1)
+    stop_date = date(2009, 12, 1)
+
+
 # """
 # réutilisation de case pour 2013
 # """
 
-build_column('f7sd', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à condensation",
-                val_type = "monetary",
-                cerfa_field = u'7SD',
-                start = date(2009, 1, 1)))
+class f7sd(Variable):
+    cerfa_field = u"7SD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à condensation"
+    start_date = date(2009, 1, 1)
 
-build_column('f7se', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à micro-cogénération gaz",
-                val_type = "monetary",
-                cerfa_field = u'7SE',
-                start = date(2009, 1, 1)))
 
-build_column('f7sh', IntCol(entity = 'foy',
-                label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, isolation thermique: matériaux d'isolation des toitures (acquisition et pose)",
-                val_type = "monetary",
-                cerfa_field = u'7SH',
-                start = date(2010, 1, 1)))
+
+class f7se(Variable):
+    cerfa_field = u"7SE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à micro-cogénération gaz"
+    start_date = date(2009, 1, 1)
+
+
+
+class f7sh(Variable):
+    cerfa_field = u"7SH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, isolation thermique: matériaux d'isolation des toitures (acquisition et pose)"
+    start_date = date(2010, 1, 1)
+
+
 # ('f7wg', IntCol() déjà disponible
 
 # Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte en 2007 et investissements forestiers aprés ???
 
-build_column('f7up', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt pour investissements forestiers: travaux",
-                val_type = "monetary",
-                cerfa_field = u'7UP',
-                start = date(2009, 1, 1)))
+class f7up(Variable):
+    cerfa_field = u"7UP"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt pour investissements forestiers: travaux"
+    start_date = date(2009, 1, 1)
 
-build_column('f7uq', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt pour investissements forestiers: contrat de gestion",
-                val_type = "monetary",
-                cerfa_field = u'7UQ',
-                start = date(2009, 1, 1)))
+
+
+class f7uq(Variable):
+    cerfa_field = u"7UQ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt pour investissements forestiers: contrat de gestion"
+    start_date = date(2009, 1, 1)
+
+
 
 # Déclaration de déménagement correspondant à un crédit d'impôt aide à la mobilité
-build_column('f1ar', BoolCol(entity = 'foy',
-                label = u"Crédit d'impôt aide à la mobilité : le déclarant déménage à plus de 200 km pour son emploi",
-                cerfa_field = u'1AR',
-                end = date(2080, 12, 31)))
+class f1ar(Variable):
+    cerfa_field = u"1AR"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt aide à la mobilité : le déclarant déménage à plus de 200 km pour son emploi"
+    stop_date = date(2080, 12, 31)
+
+
 #TODO: QUIFOY
-build_column('f1br', BoolCol(entity = 'foy',
-                label = u"Crédit d'impôt aide à la mobilité : le conjoint déménage à plus de 200 km pour son emploi",
-                cerfa_field = u'1BR',
-                end = date(2008, 12, 31)))
+class f1br(Variable):
+    cerfa_field = u"1BR"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt aide à la mobilité : le conjoint déménage à plus de 200 km pour son emploi"
+    stop_date = date(2008, 12, 31)
 
-build_column('f1cr', BoolCol(entity = 'foy',
-                label = u"Crédit d'impôt aide à la mobilité : la 1ère personne à charge déménage à plus de 200 km pour son emploi",
-                cerfa_field = u'1CR',
-                end = date(2008, 12, 31)))
 
-build_column('f1dr', BoolCol(entity = 'foy',
-                label = u"Crédit d'impôt aide à la mobilité : la 2è personne à charge déménage à plus de 200 km pour son emploi",
-                cerfa_field = u'1DR',
-                end = date(2008, 12, 31)))
 
-build_column('f1er', BoolCol(entity = 'foy',
-                label = u"Crédit d'impôt aide à la mobilité : la 3è personne à charge déménage à plus de 200 km pour son emploi",
-                cerfa_field = u'1ER',
-                end = date(2006, 12, 31)))
+class f1cr(Variable):
+    cerfa_field = u"1CR"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt aide à la mobilité : la 1ère personne à charge déménage à plus de 200 km pour son emploi"
+    stop_date = date(2008, 12, 31)
+
+
+
+class f1dr(Variable):
+    cerfa_field = u"1DR"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt aide à la mobilité : la 2è personne à charge déménage à plus de 200 km pour son emploi"
+    stop_date = date(2008, 12, 31)
+
+
+
+class f1er(Variable):
+    cerfa_field = u"1ER"
+    column = BoolCol
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt aide à la mobilité : la 3è personne à charge déménage à plus de 200 km pour son emploi"
+    stop_date = date(2006, 12, 31)
+
+
 
 # Crédit d’impôt représentatif de la taxe additionnelle au droit de bail
-build_column('f4tq', IntCol(entity = 'foy',
-                label = u"Crédit d’impôt représentatif de la taxe additionnelle au droit de bail",
-                val_type = "monetary",
-                cerfa_field = u'4TQ'))  # vérif libéllé, en 2013=Montant des loyers courus du 01/01/1998 au 30/09/1998 provenant des immeubles
+class f4tq(Variable):
+    cerfa_field = u"4TQ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d’impôt représentatif de la taxe additionnelle au droit de bail"
+
+  # vérif libéllé, en 2013=Montant des loyers courus du 01/01/1998 au 30/09/1998 provenant des immeubles
                                        # pour lesquels la cessation ou l'interruption de la location est intervenue en 2013 et qui ont été
                                        # soumis à la taxe additionnelle au droit de bail
 
 # Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
 
-build_column('f7sf', IntCol(entity = 'foy',
-                label = u"Crédit de travaux en faveur d'aides aux personnes pour des logements en location (avant 2012 ) / Appareils de régulation du chauffage, matériaux de calorifugeage (après 2011)",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SF'))
+class f7sf(Variable):
+    cerfa_field = u"7SF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit de travaux en faveur d'aides aux personnes pour des logements en location (avant 2012 ) / Appareils de régulation du chauffage, matériaux de calorifugeage (après 2011)"
+    start_date = date(2012, 1, 1)
 
-build_column('f7si', IntCol(entity = 'foy',
-                label = u"Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose)",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'7SI'))
 
-build_column('f7te', IntCol(entity = 'foy',
-                label = u"Dépenses d'investissement forestier",
-                val_type = "monetary",
-                start = date(2010, 1, 1),
-                cerfa_field = u'7TE'))
 
-build_column('f7tu', IntCol(entity = 'foy',
-                label = u"Dépenses de travaux dans l'habitation principale",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7TU'))
+class f7si(Variable):
+    cerfa_field = u"7SI"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose)"
+    start_date = date(2012, 1, 1)
 
-build_column('f7tt', IntCol(entity = 'foy',
-                label = u"Dépenses de travaux dans l'habitation principale",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7TT'))
 
-build_column('f7tv', IntCol(entity = 'foy',
-                label = u"Dépenses de travaux dans l'habitation principale",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7TV'))
 
-build_column('f7tx', IntCol(entity = 'foy',
-                label = u"Dépenses de travaux dans l'habitation principale",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7TX'))
+class f7te(Variable):
+    cerfa_field = u"7TE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses d'investissement forestier"
+    start_date = date(2010, 1, 1)
 
-build_column('f7ty', IntCol(entity = 'foy',
-                label = u"Dépenses de travaux dans l'habitation principale",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7TY'))
 
-build_column('f7tw', IntCol(entity = 'foy',
-                label = u"Dépenses de travaux dans l'habitation principale",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                end = date(2012, 12, 31),
-                cerfa_field = u'7TW'))
+
+class f7tu(Variable):
+    cerfa_field = u"7TU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de travaux dans l'habitation principale"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7tt(Variable):
+    cerfa_field = u"7TT"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de travaux dans l'habitation principale"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7tv(Variable):
+    cerfa_field = u"7TV"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de travaux dans l'habitation principale"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7tx(Variable):
+    cerfa_field = u"7TX"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de travaux dans l'habitation principale"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7ty(Variable):
+    cerfa_field = u"7TY"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de travaux dans l'habitation principale"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
+
+class f7tw(Variable):
+    cerfa_field = u"7TW"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Dépenses de travaux dans l'habitation principale"
+    start_date = date(2012, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+
 
 # Réduction d'impôts sur les investissements locatifs intermédiaires (loi Duflot)
 
-build_column('f7gh', IntCol(entity = 'foy',
-                label = u"Investissements locatifs intermédiaires en métropole",
-                val_type = "monetary",
-                start = date(2013, 1, 1),
-                cerfa_field = u'7GH'))
+class f7gh(Variable):
+    cerfa_field = u"7GH"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs intermédiaires en métropole"
+    start_date = date(2013, 1, 1)
 
-build_column('f7gi', IntCol(entity = 'foy',
-                label = u"Investissements locatifs intermédiaires outre-mer",
-                val_type = "monetary",
-                start = date(2013, 1, 1),
-                cerfa_field = u'7GI'))
+
+
+class f7gi(Variable):
+    cerfa_field = u"7GI"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Investissements locatifs intermédiaires outre-mer"
+    start_date = date(2013, 1, 1)
+
+
 
 
 # section 8
 
-build_column('f8tc', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt autres entreprises (recherche non encore remboursé (années antérieures))",  # différence de label entre les années à voir
-                val_type = "monetary",
-                end = date(2008, 12, 31),
-                cerfa_field = u'8TC'))
+class f8tc(Variable):
+    cerfa_field = u"8TC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt autres entreprises (recherche non encore remboursé (années antérieures))"
+    stop_date = date(2008, 12, 31)
 
-build_column('f8tb', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt recherche (entreprises bénéficiant de la restitution immédiate)",  # TODO: différence de label entre les années à voir
-                val_type = "monetary",
-                cerfa_field = u'8TB'))
 
-build_column('f8te', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: adhésion à un groupement de prévention agréé",
-                val_type = "monetary",
-                cerfa_field = u'8TE'))
 
-build_column('f8tf', IntCol(entity = 'foy',
-                label = u"Reprises de réductions ou de crédits d'impôt",
-                val_type = "monetary",
-                cerfa_field = u'8TF'))
+class f8tb(Variable):
+    cerfa_field = u"8TB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt recherche (entreprises bénéficiant de la restitution immédiate)"
 
-build_column('f8tg', IntCol(entity = 'foy',
-                label = u"Crédits d'impôt en faveur des entreprises: Investissement en Corse",
-                val_type = "monetary",
-                cerfa_field = u'8TG'))
 
-build_column('f8tl', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt compétitivité emploi (CICE), entreprises bénéficiant de la restitution immédiate",
-                val_type = "monetary",
-                cerfa_field = u'8TL'))
 
-build_column('f8to', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, report non imputé les années antérieures",
-                val_type = "monetary",
-                cerfa_field = u'8TO'))
+class f8te(Variable):
+    cerfa_field = u"8TE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: adhésion à un groupement de prévention agréé"
 
-build_column('f8tp', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, reprise de crédit d'impôt",
-                val_type = "monetary",
-                cerfa_field = u'8TP'))
 
-build_column('f8ts', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, crédit d'impôt",
-                val_type = "monetary",
-                start = date(2012, 1, 1),
-                cerfa_field = u'8TS'))
 
-build_column('f8uz', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: Famille",
-                val_type = "monetary",
-                cerfa_field = u'8UZ'))
+class f8tf(Variable):
+    cerfa_field = u"8TF"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Reprises de réductions ou de crédits d'impôt"
 
-build_column('f8uw', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt compétitivité emploi (CICE), autres entreprises",
-                val_type = "monetary",
-                start = date(2013, 1, 1),
-                cerfa_field = u'8UW'))
 
-build_column('f8tz', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: Apprentissage",
-                val_type = "monetary",
-                cerfa_field = u'8TZ'))
 
-build_column('f8wa', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: Agriculture biologique",
-                val_type = "monetary",
-                cerfa_field = u'8WA'))
+class f8tg(Variable):
+    cerfa_field = u"8TG"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédits d'impôt en faveur des entreprises: Investissement en Corse"
 
-build_column('f8wb', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: Prospection commerciale",
-                val_type = "monetary",
-                cerfa_field = u'8WB'))
 
-build_column('f8wc__2008', IntCol(entity = 'foy',
-                 label = u"Crédit d'impôt en faveur des entreprises: Nouvelles technologies",
-                 val_type = "monetary",
-                 cerfa_field = u'8WC',
-                 end = date(2008, 12, 31)))
 
-build_column('f8wc', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: Prêts sans intérêt",
-                val_type = "monetary",
-                cerfa_field = u'8WC',
-                start = date(2012, 1, 1)))
+class f8tl(Variable):
+    cerfa_field = u"8TL"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt compétitivité emploi (CICE), entreprises bénéficiant de la restitution immédiate"
 
-build_column('f8wd', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: Formation des chefs d'entreprise",
-                val_type = "monetary",
-                start = date(2006, 1, 1),
-                cerfa_field = u'8WD'))
 
-build_column('f8we', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: Intéressement",
-                val_type = "monetary",
-                start = date(2008, 1, 1),
-                cerfa_field = u'8WE'))
 
-build_column('f8wr', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: Métiers d'art",
-                val_type = "monetary",
-                start = date(2006, 1, 1),
-                cerfa_field = u'8WR'))
+class f8to(Variable):
+    cerfa_field = u"8TO"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, report non imputé les années antérieures"
 
-build_column('f8ws', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: Emploi de salariés réservistes",
-                val_type = "monetary",
-                cerfa_field = u'8WS',
-                start = date(2006, 1, 1),
-                end = date(2009, 12, 31)))  # verif<=2012
 
-build_column('f8wt', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: Remplacement pour congé des agriculteurs",
-                val_type = "monetary",
-                start = date(2006, 1, 1),
-                cerfa_field = u'8WT'))
 
-build_column('f8wu', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: Maître restaurateur",
-                val_type = "monetary",
-                start = date(2006, 1, 1),
-                cerfa_field = u'8WU'))
+class f8tp(Variable):
+    cerfa_field = u"8TP"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, reprise de crédit d'impôt"
 
-build_column('f8wv', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: Débitants de tabac",
-                val_type = "monetary",
-                cerfa_field = u'8WV',
-                start = date(2007, 1, 1),
-                end = date(2012, 12, 31)))  # verif<=2012
 
-build_column('f8wx', IntCol(entity = 'foy',
-                label = u"Crédit d'impôt en faveur des entreprises: Formation des salariés à l'économie d'entreprise",
-                val_type = "monetary",
-                cerfa_field = u'8WX',
-                start = date(2007, 1, 1),
-                end = date(2009, 12, 31)))  # verif<=2012
 
-build_column('elig_creimp_exc_2008', IntCol(entity = 'foy', #TODO: coder http://www11.minefi.gouv.fr/boi/boi2009/5fppub/textes/5b2509/5b2509.pdf B.12
-                default = 1,
-                label = u"Éligibilité au crédit d'impôt exceptionnel sur les revenus 2008",
-                val_type = 'monetary',
-                start = date(2008, 1, 1),
-                end = date(2008, 12, 31)))
+class f8ts(Variable):
+    cerfa_field = u"8TS"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, crédit d'impôt"
+    start_date = date(2012, 1, 1)
 
-build_column('elig_creimp_jeunes', BoolCol(entity = "ind", label = u"Éligible au crédit d'impôt jeunes",
-                    start = date(2005, 1, 1),
-                    end = date(2008, 1, 1))) #Sert à savoir si son secteur d'activité permet au jeune de bénéficier du crédit impôts jeunes
+
+
+class f8uz(Variable):
+    cerfa_field = u"8UZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: Famille"
+
+
+
+class f8uw(Variable):
+    cerfa_field = u"8UW"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt compétitivité emploi (CICE), autres entreprises"
+    start_date = date(2013, 1, 1)
+
+
+
+class f8tz(Variable):
+    cerfa_field = u"8TZ"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: Apprentissage"
+
+
+
+class f8wa(Variable):
+    cerfa_field = u"8WA"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: Agriculture biologique"
+
+
+
+class f8wb(Variable):
+    cerfa_field = u"8WB"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: Prospection commerciale"
+
+
+
+class f8wc__2008(Variable):
+    cerfa_field = u"8WC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: Nouvelles technologies"
+    stop_date = date(2008, 12, 31)
+
+
+
+class f8wc(Variable):
+    cerfa_field = u"8WC"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: Prêts sans intérêt"
+    start_date = date(2012, 1, 1)
+
+
+
+class f8wd(Variable):
+    cerfa_field = u"8WD"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: Formation des chefs d'entreprise"
+    start_date = date(2006, 1, 1)
+
+
+
+class f8we(Variable):
+    cerfa_field = u"8WE"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: Intéressement"
+    start_date = date(2008, 1, 1)
+
+
+
+class f8wr(Variable):
+    cerfa_field = u"8WR"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: Métiers d'art"
+    start_date = date(2006, 1, 1)
+
+
+
+class f8ws(Variable):
+    cerfa_field = u"8WS"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: Emploi de salariés réservistes"
+    start_date = date(2006, 1, 1)
+    stop_date = date(2009, 12, 31)
+
+  # verif<=2012
+
+class f8wt(Variable):
+    cerfa_field = u"8WT"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: Remplacement pour congé des agriculteurs"
+    start_date = date(2006, 1, 1)
+
+
+
+class f8wu(Variable):
+    cerfa_field = u"8WU"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: Maître restaurateur"
+    start_date = date(2006, 1, 1)
+
+
+
+class f8wv(Variable):
+    cerfa_field = u"8WV"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: Débitants de tabac"
+    start_date = date(2007, 1, 1)
+    stop_date = date(2012, 12, 31)
+
+  # verif<=2012
+
+class f8wx(Variable):
+    cerfa_field = u"8WX"
+    column = IntCol(val_type = "monetary")
+    entity_class = FoyersFiscaux
+    label = u"Crédit d'impôt en faveur des entreprises: Formation des salariés à l'économie d'entreprise"
+    start_date = date(2007, 1, 1)
+    stop_date = date(2009, 12, 31)
+
+  # verif<=2012
+
+class elig_creimp_exc_2008(Variable):
+    column = IntCol(
+        default = 1,
+        val_type = "monetary",
+        )
+    entity_class = FoyersFiscaux
+    label = u"Éligibilité au crédit d'impôt exceptionnel sur les revenus 2008"
+    start_date = date(2008, 1, 1)
+    stop_date = date(2008, 12, 31)
+
+
+
+class elig_creimp_jeunes(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Éligible au crédit d'impôt jeunes"
+    start_date = date(2005, 1, 1)
+    stop_date = date(2008, 1, 1)
+
+ #Sert à savoir si son secteur d'activité permet au jeune de bénéficier du crédit impôts jeunes

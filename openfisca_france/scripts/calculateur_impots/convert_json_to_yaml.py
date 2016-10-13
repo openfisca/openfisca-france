@@ -1,29 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 import argparse
 import collections
 import cStringIO
@@ -37,7 +14,7 @@ from lxml import etree
 from openfisca_core import conv
 import yaml
 
-from openfisca_france import init_country
+from openfisca_france import FranceTaxBenefitSystem
 from openfisca_france.scripts.calculateur_impots.base import (
     call_tax_calculator,
     openfisca_variable_name_by_tax_calculator_code,
@@ -51,8 +28,7 @@ income_taxes_test_cases_dir = os.path.normpath(os.path.join(os.path.dirname(__fi
     'french-income-taxes-test-cases', 'test_cases'))
 json_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..', 'tests', 'json'))
 log = logging.getLogger(app_name)
-TaxBenefitSystem = init_country()
-tax_benefit_system = TaxBenefitSystem()
+tax_benefit_system = FranceTaxBenefitSystem()
 tests_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', '..', 'tests', 'calculateur_impots'))
 variables_name_file_path = os.path.normpath(os.path.join(income_taxes_test_cases_dir, '..',
     'output_variables_names.yaml'))

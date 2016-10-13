@@ -1,37 +1,13 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-
 from __future__ import division
 
 from numpy import logical_not as not_, maximum as max_, minimum as min_
 
-from ..base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-@reference_formula
-class exonere_taxe_habitation(SimpleFormulaColumn):
+class exonere_taxe_habitation(Variable):
     column = BoolCol(default = True)
     entity_class = Menages
     label = u"Exonération de la taxe d'habitation"
@@ -50,14 +26,14 @@ class exonere_taxe_habitation(SimpleFormulaColumn):
         atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
         """
         period = period.start.offset('first-of', 'month').period('year')
-        aah_holder = simulation.compute('aah', period)
+        aah_holder = simulation.compute_add('aah', period)
         age_holder = simulation.compute('age', period)
         asi_holder = simulation.compute_add('asi', period)
         aspa_holder = simulation.compute_add('aspa', period)
         isf_tot_holder = simulation.compute('isf_tot', period)
         nbptr_holder = simulation.compute('nbptr', period)
         rfr_holder = simulation.compute('rfr', period)
-        statmarit_holder = simulation.compute('statmarit', period)
+        statut_marital_holder = simulation.compute('statut_marital', period)
         _P = simulation.legislation_at(period.start)
 
         aah = self.sum_by_entity(aah_holder)
@@ -72,17 +48,16 @@ class exonere_taxe_habitation(SimpleFormulaColumn):
         nbptr = self.sum_by_entity(nbptr)  # TODO: Beurk
         rfr = self.cast_from_entity_to_role(rfr_holder, role = VOUS)
         rfr = self.sum_by_entity(rfr)
-        statmarit = self.filter_role(statmarit_holder, role = PREF)
+        statut_marital = self.filter_role(statut_marital_holder, role = PREF)
 
         P = _P.cotsoc.gen
 
         seuil_th = P.plaf_th_1 + P.plaf_th_supp * (max_(0, (nbptr - 1) / 2))
-        elig = ((age >= 60) + (statmarit == 4)) * (isf_tot <= 0) * (rfr < seuil_th) + (asi > 0) + (aspa > 0) + (aah > 0)
+        elig = ((age >= 60) + (statut_marital == 4)) * (isf_tot <= 0) * (rfr < seuil_th) + (asi > 0) + (aspa > 0) + (aah > 0)
         return period, not_(elig)
 
 
-@reference_formula
-class taxe_habitation(SimpleFormulaColumn):
+class taxe_habitation(Variable):
     column = FloatCol(default = 0)
     entity_class = Menages
     label = u"Taxe d'habitation"
@@ -90,20 +65,21 @@ class taxe_habitation(SimpleFormulaColumn):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
+        last_year= period.last_year
         exonere_taxe_habitation = simulation.calculate('exonere_taxe_habitation', period)
-        nombre_enfants_a_charge_menage = simulation.calculate('nombre_enfants_a_charge_menage', period)
+        nombre_enfants_a_charge_menage = self.sum_by_entity(simulation.calculate('enfant_a_charge', period))
         nombre_enfants_majeurs_celibataires_sans_enfant = simulation.calculate('nombre_enfants_majeurs_celibataires_sans_enfant', period)
-        rfr_n_1_holder = simulation.compute('rfr_n_1', period)
+        rfr_holder = simulation.compute('rfr', last_year)
 
-        rfr_n_1 = self.cast_from_entity_to_role(rfr_n_1_holder, role = VOUS)
-        rfr_n_1 = self.sum_by_entity(rfr_n_1)
+        rfr = self.cast_from_entity_to_role(rfr_holder, role = VOUS)
+        rfr = self.sum_by_entity(rfr)
 
 
         # Variables TODO: à inclure dans la fonction
         valeur_locative_brute = 0
         valeur_locative_moyenne = 0  # déped de la collectivité)
 
-        # Paramètres: à inclure dans param.xml
+        # Paramètres: à inclure dans parameters.xml
         taux_minimal_2_premiers = .1  # minimun depusi 2011
         majoration_2_premiers = 0
         taux_minimal_3_et_plus = .15
@@ -160,7 +136,7 @@ class taxe_habitation(SimpleFormulaColumn):
         # Pour bénéficier de cet abattement, les contribuables doivent remplir deux conditions :
 
         abattement_special_modeste = (valeur_locative_brute <= ((seuil_elig_special_modeste + seuil_elig_special_modeste_add * (pac_enf + pac_asc)) * valeur_locative_moyenne)
-     #       ) * (rfr_n_1 <= 100  # TODO
+     #       ) * (rfr <= 100  # TODO
             ) * taux_special_modeste * valeur_locative_moyenne
 
         #     abattement facultatif en faveur des personnes handicapées ou invalides.

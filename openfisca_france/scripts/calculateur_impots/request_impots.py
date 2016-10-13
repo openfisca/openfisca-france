@@ -1,29 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 ########### DESCRIPTION ############
 ## Ce script affiche le résultat de la simulation officielle (DGFiP) en renseignant les champs CERFA_FIELDS
 ## On peut choisir d'afficher seulement certaines variables en décommentant la ligne 254
@@ -115,7 +92,7 @@ def main():
                 'IAVF2': u'?',#TODO (f8th)
                 'IPROP': u'Impôt proportionnel',
                 'RFOR': u'?',#TODO (f7up)
-                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
+                'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, maries_ou_pacses)
                 'RHEBE': u'?',#TODO (7ce)
                 'RAA': u'?',#TODO (7ud)
                 'RAH': u'?',#TODO (7ce)

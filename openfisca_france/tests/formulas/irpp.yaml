@@ -95,7 +95,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    rst: 20000
+    retraite_imposable: 20000
   output_variables:
     irpp: -1181
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €"
@@ -106,7 +106,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    rst: 50000
+    retraite_imposable: 50000
   output_variables:
     irpp: -8336
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €"
@@ -117,7 +117,7 @@
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
-    rst: 150000
+    retraite_imposable: 150000
   output_variables:
     irpp: -46642
 
@@ -129,7 +129,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    rst: 20000
+    retraite_imposable: 20000
   output_variables:
     irpp: -1181
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €"
@@ -140,7 +140,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    rst: 50000
+    retraite_imposable: 50000
   output_variables:
     irpp: -8336
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €"
@@ -151,7 +151,7 @@
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
-    rst: 150000
+    retraite_imposable: 150000
   output_variables:
     irpp: -46642
 
@@ -163,7 +163,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    rst: 20000
+    retraite_imposable: 20000
   output_variables:
     irpp: -1181
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €"
@@ -174,7 +174,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    rst: 50000
+    retraite_imposable: 50000
   output_variables:
     irpp: -8336
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €"
@@ -185,7 +185,7 @@
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
-    rst: 150000
+    retraite_imposable: 150000
   output_variables:
     irpp: -46642
 
@@ -197,7 +197,7 @@
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
-    rst: 20000
+    retraite_imposable: 20000
   output_variables:
     irpp: -1170
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €"
@@ -208,7 +208,7 @@
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
-    rst: 50000
+    retraite_imposable: 50000
   output_variables:
     irpp: -8283
 - name: "IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €"
@@ -219,7 +219,7 @@
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
-    rst: 150000
+    retraite_imposable: 150000
   output_variables:
     irpp: -46523
 
@@ -952,3 +952,56 @@
     f4ba: 150000
   output_variables:
     irpp: -48036
+- name: "IRPP - Célibataire ayant des 	Revenu net imposable de 16000 € (teste la décote)"
+  period: 2014
+  absolute_error_margin: 0.9 #TODO : check why the error margin is so large, is there bottom round made by dgfip ?
+  input_variables:
+    salaire_imposable: 16000
+  output_variables:
+    irpp: -183
+    decote: 476
+- name: "IRPP - Célibataire ayant des 	Revenu net imposable de 150000 €"
+  period: 2014
+  absolute_error_margin: 0.5
+  input_variables:
+    salaire_imposable: 150000
+  output_variables:
+    irpp: -42984
+    decote_gain_fiscal: 0
+- name: "IRPP - Célibataire ayant des 	Revenu net imposable de 15000 € (teste la décote)"
+  period: 2014
+  absolute_error_margin: 0.9 #TODO : check why the error margin is so large, is there bottom round made by dgfip ?
+  input_variables:
+    salaire_imposable: 15000
+  output_variables:
+    irpp: 0
+    decote_gain_fiscal: 533
+- name: "IRPP - Célibataire ayant des 	Revenu net imposable de 18000 € (teste la décote)"
+  period: 2014
+  absolute_error_margin: 0.9 #TODO : check why the error margin is so large, is there bottom round made by dgfip ?
+  input_variables:
+    salaire_imposable: 18000
+  output_variables:
+    irpp: -687
+    decote_gain_fiscal: 224
+- name: "IRPP - Célibataire ayant des 	Revenu net imposable de 10000 € (teste la décote)"
+  period: 2014
+  absolute_error_margin: 0.9 #TODO : check why the error margin is so large, is there bottom round made by dgfip ?
+  input_variables:
+    salaire_imposable: 10000
+  output_variables:
+    irpp: -0
+    decote_gain_fiscal: 0
+- period: "2014"
+  absolute_error_margin: 0.5
+  name: "IRPP Couple, salaire_net = [30000, 0]"
+  input_variables:
+    date_naissance: ["1985-01-01", "1985-01-01"]  # 29 ans
+    idfoy: [0, 0]
+    quifoy: [VOUS, CONJ]
+    salaire_imposable:
+      2014: [30000, 0]
+    statut_marital: [5,5] #pacsés
+  output_variables:
+    decote_gain_fiscal: 803
+    irpp: -264

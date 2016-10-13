@@ -1,0 +1,140 @@
+- name: "Détection de status de TNS pour une micro entreprise"
+  description: Revenus TNS aides
+  period: 2015-02
+  input_variables:
+    tns_micro_entreprise_chiffre_affaires:
+      2014: 12000
+
+  output_variables:
+    travailleur_non_salarie:
+      2015-02: true
+
+- name: "Détection de status de TNS pour une micro entreprise (activité cette année)"
+  description: Revenus TNS aides
+  period: 2015-02
+  input_variables:
+    tns_micro_entreprise_chiffre_affaires:
+      2015: 12000
+
+  output_variables:
+    travailleur_non_salarie:
+      2015-02: true
+
+- name: "Détection de status de TNS pour un auto entrepreneur"
+  description: Revenus TNS aides
+  period: 2015-02
+  input_variables:
+    tns_auto_entrepreneur_chiffre_affaires:
+      2015-02: 1000
+
+  output_variables:
+    travailleur_non_salarie:
+      2015-02: true
+
+- name: "Détection de status de TNS pour un exploitant agricole"
+  description: Revenus TNS aides
+  period: 2015-02
+  input_variables:
+    tns_benefice_exploitant_agricole:
+      2014: 12000
+
+  output_variables:
+    travailleur_non_salarie:
+      2015-02: true
+
+- name: "Détection de status de TNS pour un exploitant agricole (activité cette année)"
+  description: Revenus TNS aides
+  period: 2015-02
+  input_variables:
+    tns_benefice_exploitant_agricole:
+      2015: 12000
+
+  output_variables:
+    travailleur_non_salarie:
+      2015-02: true
+
+- name: "Détection de status de TNS pour un indépendant autre (entrepreneur, profession libérale)"
+  description: Revenus TNS aides
+  period: 2015-02
+  input_variables:
+    tns_autres_revenus:
+      2014: 12000
+
+  output_variables:
+    travailleur_non_salarie:
+      2015-02: true
+
+- name: "Prise en compte des revenus TNS pour un exploitant agricole"
+  description: Revenus TNS aides
+  period: 2015-02
+  input_variables:
+    tns_benefice_exploitant_agricole:
+      2014: 12000
+
+  output_variables:
+    asi_aspa_base_ressources:
+      2015-01: 1000 # Mensuel
+    cmu_base_ressources:
+      2015-01: 12000 # Annuel
+    ass_base_ressources:
+      2015-01: 12000 # Annuel
+
+- name: "Prise en compte des revenus TNS pour une micro entreprise BIC"
+  description: Revenus TNS aides
+  period: 2015-02
+  input_variables:
+    tns_micro_entreprise_chiffre_affaires:
+      2014: 12000
+    tns_micro_entreprise_type_activite:
+      2014: 1 # BIC
+
+  output_variables:
+    asi_aspa_base_ressources:
+      2015-01: 1000 * (1 - 0.5) # Mensuel
+    cmu_base_ressources:
+      2015-01: 12000 * (1 - 0.5) # Annuel
+    ass_base_ressources:
+      2015-01: 12000 * (1 - 0.5) # Annuel
+
+- name: "Prise en compte des revenus TNS pour un auto-entrepreneur BNC"
+  description: Revenus TNS aides
+  period: 2015-02
+  input_variables:
+    tns_auto_entrepreneur_chiffre_affaires:
+      2015-01: 1000
+      2014-12: 1000
+      2014-11: 1000
+      2014-10: 1000
+      2014-09: 1000
+      2014-08: 1000
+      2014-07: 1000
+      2014-06: 1000
+      2014-05: 1000
+      2014-04: 1000
+      2014-03: 1000
+      2014-02: 1000
+    tns_auto_entrepreneur_type_activite:
+      2014: 2 # BNC
+
+  output_variables:
+    asi_aspa_base_ressources:
+      2015-02: 1000 * (1 - 0.34) # Mensuel
+    cmu_base_ressources:
+      2015-02: 12000 * (1 - 0.34) # Annuel
+    ass_base_ressources:
+      2015-02: 12000 * (1 - 0.34) # Annuel
+
+- name: "Prise en compte des revenus TNS pour un indépendant autre (entrepreneur, profession libérale)"
+  description: Revenus TNS aides
+  period: 2015-02
+  input_variables:
+    tns_autres_revenus:
+      2014: 12000
+
+  output_variables:
+    asi_aspa_base_ressources:
+      2015-01: 1000 # Mensuel
+    cmu_base_ressources:
+      2015-01: 12000 # Annuel
+    ass_base_ressources:
+      2015-01: 12000 # Annuel

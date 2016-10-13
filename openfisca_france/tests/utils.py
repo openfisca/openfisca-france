@@ -1,28 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 import datetime
 
 from openfisca_core import periods
@@ -46,12 +23,12 @@ def process_tests_list(tests_list, monthly_amount = False, default_error_margin 
 
 def simulation_from_test(test, monthly_amount = False, default_error_margin = 1, forced_error_margin = None):
     year = test["year"]
-    parent1 = dict(birth = datetime.date(year - 40, 1, 1))
+    parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1))
     menage = dict()
     foyer_fiscal = dict()
     for variable, value in test['input_vars'].iteritems():
         if variable == "age":
-            parent1['birth'] = datetime.date(year - value, 1, 1)
+            parent1['date_naissance'] = datetime.date(year - value, 1, 1)
         elif base.tax_benefit_system.column_by_name[variable].entity == 'men':
             menage[variable] = value
         elif base.tax_benefit_system.column_by_name[variable].entity == 'ind':
@@ -65,7 +42,7 @@ def simulation_from_test(test, monthly_amount = False, default_error_margin = 1,
         parent1 = parent1,
         menage = menage,
         foyer_fiscal = foyer_fiscal,
-        ).new_simulation(debug = True)
+        ).new_simulation()
 
     return simulation
 

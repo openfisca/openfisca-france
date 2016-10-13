@@ -1,28 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 import collections
 
 
@@ -32,24 +9,24 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
-                    'birth',  # Date de naissance
-                    'statmarit',  # Statut marital
-                    'salaire_de_base',  # Revenus d'activité imposables
-                    'choi',  # Autres revenus imposables (chômage, préretraite)
-                    'rsti',  # Pensions, retraites, rentes connues imposables
+                    'date_naissance',  # Date de naissance
+                    'statut_marital',  # Statut marital
+                    'salaire_de_base',  # Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie
+                    'chomage_imposable',  # Autres revenus imposables (chômage, préretraite)
+                    'retraite_imposable',  # Pensions, retraites, rentes connues imposables
                     ]),
                 ]),
             collections.OrderedDict([
                 ('label', u"""Traitements, salaires, primes pour l'emploi et rentes"""),
                 ('children', [
                     'activite',  # Activité
-                    'fra',  # Frais réels
+                    'frais_reels',  # Frais réels
                     'hsup',  # Heures supplémentaires : revenus exonérés connus
                     'ppe_tp_sa',  # Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière
                     'ppe_tp_ns',  # Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière
                     'ppe_du_sa',  # Prime pour l'emploi des salariés: nombre d'heures payées dans l'année
                     'ppe_du_ns',  # Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année
-                    'cho_ld',  # Demandeur d'emploi inscrit depuis plus d'un an
+                    'chomeur_longue_duree',  # Demandeur d'emploi inscrit depuis plus d'un an
                     'taux_csg_remplacement',  # Taux retenu sur la CSG des revenus de remplacment
                     'pensions_alimentaires_percues',  # Pensions alimentaires perçues
                     'pensions_alimentaires_percues_decl',  # Pension déclarée
@@ -161,9 +138,9 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
                     u"""adoption""",  # Enfant adopté
-                    u"""alt""",  # Enfant en garde alternée
+                    u"""garde_alternee""",  # Enfant en garde alternée
                     u"""enceinte""",  # Est enceinte
-                    u"""invalide""",  # Invalide
+                    u"""handicap""",  # handicap
                     u"""rempli_obligation_scolaire""",  # Rempli l'obligation scolaire
                     u"""coloc""",  # Vie en colocation
                     u"""logement_chambre""",  # Le logement est considéré comme une chambre
@@ -173,15 +150,16 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f6ss""",  # Rachat de cotisations PERP, PREFON, COREM et C.G.O.S
                     u"""f7ac""",  # Cotisations syndicales des salariées et pensionnés
                     u"""elig_creimp_jeunes""",  # Éligible au crédit d'impôt jeunes
+                    u"""jei_date_demande""",  # Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)
+                    u"""stage_duree_heures""",  # Nombre d'heures effectuées en stage
+                    u"""stage_gratification_taux""",  # Taux de gratification (en plafond de la Sécurité sociale)
                     u"""scolarite""",  # Scolarité de l'enfant : collège, lycée...
                     u"""boursier""",  # Élève ou étudiant boursier
-                    u"""aah""",  # Allocation de l'adulte handicapé
-                    u"""caah""",  # Complément de l'allocation de l'adulte handicapé
                     u"""inapte_travail""",  # Reconnu inapte au travail
-                    u"""taux_invalidite""",  # Taux d'invalidité
+                    u"""taux_incapacite""",  # Taux d'incapacité
                     u"""ass_precondition_remplie""",  # Éligible à l'ASS
                     u"""categ_inv""",  # Catégorie de handicap (AEEH)
-                    u"""pensions_alimentaires_percues""",  # Pensions alimentaires perçues
+                    u"""pensions_alimentaires_versees_individu""",  # Pensions alimentaires versées pour un individu
                     u"""gains_exceptionnels""",  # Gains exceptionnels
                     u"""allocation_aide_retour_emploi""",  # Allocation d'aide au retour à l'emploi
                     u"""allocation_securisation_professionnelle""",  # Allocation de sécurisation professionnelle
@@ -217,10 +195,15 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""pveximpres""",  # Plus-values à long terme exonérées en cas de départ à la retraite à imposer aux prélèvements sociaux
                     u"""pvtaimpres""",  # Plus-values à long terme taxables à 16% à la retraite à imposer aux prélèvements sociaux
                     u"""f5sq""",
-                    u"""tns_chiffre_affaires_micro_entreprise""",  # Chiffre d'affaires de micro-entreprise ou assimilée
+                    u"""tns_auto_entrepreneur_chiffre_affaires""",  # Chiffre d'affaires en tant qu'auto-entrepreneur
+                    u"""tns_micro_entreprise_chiffre_affaires""",  # Chiffre d'affaires en de micro-entreprise
+                    u"""tns_auto_entrepreneur_type_activite""",  # Type d'activité de l'auto-entrepreneur
+                    u"""tns_micro_entreprise_type_activite""",  # Type d'activité de la micro-entreprise
                     u"""tns_autres_revenus""",  # Autres revenus non salariés
-                    u"""tns_type_structure""",  # Type de structure associée au travailleur non salarié
-                    u"""tns_type_activite""",  # Valeur locative des biens immobiliés possédés et non loués
+                    u"""tns_autres_revenus_chiffre_affaires""",  # Chiffre d'affaire pour les TNS non agricoles autres que les AE et ME
+                    u"""tns_autres_revenus_type_activite""",  # Type d'activité de l'entreprise non AE ni ME
+                    u"""tns_avec_employe""",  # Le TNS a au moins un employé. Ne s'applique pas pour les agricoles ni auto-entrepreneurs ni micro entreprise
+                    u"""tns_benefice_exploitant_agricole""",  # Dernier bénéfice agricole
                     u"""indemnites_stage""",  # Indemnités de stage
                     u"""revenus_stage_formation_pro""",  # Revenus de stage de formation professionnelle
                     u"""bourse_recherche""",  # Bourse de recherche
@@ -229,11 +212,12 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""tva_ent""",  # L'entreprise employant le salarié paye de la TVA
                     u"""exposition_accident""",  # Exposition au risque pour les accidents du travail
                     u"""allegement_fillon_mode_recouvrement""",  # Mode de recouvrement des allègements Fillon
+                    u"""allegement_cotisation_allocations_familiales_mode_recouvrement""",  # Mode de recouvrement de l'allègement de la cotisation d'allocations familiales
                     u"""apprentissage_contrat_debut""",  # Date de début du contrat d'apprentissage
                     u"""arrco_tranche_a_taux_employeur""",  # Taux ARRCO tranche A employeur) propre à l'entreprise
                     u"""arrco_tranche_a_taux_salarie""",  # Taux ARRCO tranche A salarié) propre à l'entreprise
                     u"""assujettie_taxe_salaires""",  # Entreprise assujettie à la taxe sur les salaires
-                    u"""avantages_en_nature_valeur_reelle""",  # Avantages en nature (Valeur réelle)
+                    u"""avantage_en_nature_valeur_reelle""",  # Avantages en nature (Valeur réelle)
                     u"""indemnites_compensatrices_conges_payes""",
                     u"""contrat_de_travail""",  # Type contrat de travail
                     u"""contrat_de_travail_debut""",  # Date d'arrivée dans l'entreprise
@@ -262,12 +246,11 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""redevable_taxe_apprentissage""",  # Entreprise redevable de la taxe d'apprentissage
                     u"""remboursement_transport_base""",  # Base pour le calcul du remboursement des frais de transport
                     u"""indemnites_forfaitaires""",  # Indemnités forfaitaires (transport, nourriture)
-                    u"""salaire_de_base""",  # Salaire de base
                     u"""titre_restaurant_taux_employeur""",  # Taux de participation de l'employeur au titre restaurant
                     u"""titre_restaurant_valeur_unitaire""",  # Valeur faciale unitaire du titre restaurant
                     u"""titre_restaurant_volume""",  # Volume des titres restaurant
                     u"""traitement_indiciaire_brut""",  # Traitement indiciaire brut (TIB)
-                    u"""type_sal""",  # Catégorie de salarié
+                    u"""categorie_salarie""",  # Catégorie de salarié
                     u"""heures_duree_collective_entreprise""",  # Durée mensuelle collective dans l'entreprise (heures, temps plein)
                     u"""heures_non_remunerees_volume""",  # Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)
                     u"""heures_remunerees_volume""",  # Volume des heures rémunérées contractuellement (heures/mois, temps partiel)
@@ -288,9 +271,9 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f3vi""",  # Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %
                     u"""f3vj""",  # Gains imposables sur option dans la catégorie des salaires
                     u"""f3va""",  # Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values
-                    u"""chobrut""",  # Chômage brut
+                    u"""chomage_brut""",  # Chômage brut
                     u"""indemnites_chomage_partiel""",  # Indemnités de chômage partiel
-                    u"""rstbrut""",  # Retraite brute
+                    u"""retraite_brute""",  # Retraite brute
                     u"""aer""",  # Allocation équivalent retraite (AER)
                     u"""retraite_combattant""",  # Retraite du combattant
                     u"""indemnites_journalieres_maternite""",  # Indemnités journalières de maternité
@@ -321,6 +304,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                 ('label', u"""Autres"""),
                 ('children', [
                     u"""proprietaire_proche_famille""",  # Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint
+                    u"""paje_prepare""",  # Prestation Partagée d’éducation de l’Enfant (PreParE)
                     ]),
                 ]),
             ]),
@@ -349,7 +333,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'nbN',  # Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille
                     'nbR',  # Nombre de titulaires (autres que les enfants) de la carte invalidité d'au moins 80 %
                     'caseT',  # Vous êtes parent isolé au 1er janvier de l'année de perception des revenus
-                    'rfr_n_2',  # Revenu fiscal de référence année n - 2
                     'nbptr_n_2',  # Nombre de parts année n - 2
                     ]),
                 ]),
@@ -665,7 +648,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f6hk""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     u"""f6hl""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     u"""f6hm""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
-                    u"""rfr_n_1""",  # Revenu fiscal de référence année n - 1
                     u"""f7va""",  # Dons à des organismes d'aides aux personnes établis dans un Etat européen
                     u"""f7vc""",  # Dons à des autres organismes établis dans un Etat européen
                     u"""f7uh_2007""",  # Intérêts payés la première année de remboursement du prêt pour l'habitation principale
@@ -747,7 +729,7 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f7rv""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %
                     u"""f7rw""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise
                     u"""f7rx""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée
-                    u"""f7ry""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la r��duction d'impôt dont vous demandez l'imputation en 2012
+                    u"""f7ry""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012
                     u"""f7nu""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %
                     u"""f7nv""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %
                     u"""f7nw""",  # Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise
@@ -1020,8 +1002,8 @@ columns_name_tree_by_entity = collections.OrderedDict([
             collections.OrderedDict([
                 ('label', u"""Principal"""),
                 ('children', [
-                    'loyer',  # Loyer mensuel
-                    'statut_occupation',  # Statut d'occupation
+                    'loyer',  # Loyer
+                    'statut_occupation_logement',  # Statut d'occupation
                     'depcom',  # Code INSEE (depcom) du lieu de résidence
                     ]),
                 ]),

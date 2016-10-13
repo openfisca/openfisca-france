@@ -4,7 +4,7 @@ ignore: true
 input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: True
-  avantages_en_nature_valeur_reelle: 0
+  avantage_en_nature_valeur_reelle: 0
   code_postal_entreprise: "75014"
   depcom_entreprise: "75114"
   contrat_de_travail: 0  # temps plein
@@ -31,11 +31,11 @@ input_variables:
   taux_accident_travail: 0
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  type_sal: 1  # non cadre
+  categorie_salarie: 1  # cadre
   volume_jours_ijss: 0
 output_variables:
 
-  # salsuperbrut: 0
+  # salaire_super_brut: 0
   # cotisations_employeur: 0
   remboursement_transport: 33.55
 

@@ -1,31 +1,54 @@
 # OpenFisca France
 
-[![Build Status via Travis CI](https://travis-ci.org/openfisca/openfisca-france.svg?branch=master)](https://travis-ci.org/openfisca/openfisca-france)
+[![Join the chat at https://gitter.im/openfisca/openfisca-france](https://badges.gitter.im/openfisca/openfisca-france.svg)](https://gitter.im/openfisca/openfisca-france?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/openfisca/openfisca-france.svg?branch=master)](https://travis-ci.org/openfisca/openfisca-france)
 
-## Presentation
+[More build statuses](http://www.openfisca.fr/build-status)
 
 [OpenFisca](http://www.openfisca.fr/) is a versatile microsimulation free software.
 This is the source code of the France module.
 
-Please consult http://www.openfisca.fr/presentation
+The documentation of the project is hosted at http://doc.openfisca.fr/
 
-## Documentation
+## Contributors
 
-Please consult http://www.openfisca.fr/documentation
+Initial developers: Clément Schaff and Mahdi Ben Jelloul.
 
-## Installation
+OpenFisca Team:
+  - Mahdi Ben Jelloul
+  - Christophe Benz
+  - Claire Bernard
+  - Léo Bouloc
+  - Laurence Bouvard
+  - Grégory Cornu
+  - Sophie Cottet
+  - Pierre-Yves Cusset
+  - Félix Defrance
+  - Jérôme Desbœufs
+  - Sarah Dijols
+  - Thomas Douenne
+  - Alexis Eidelman
+  - Adrien Fabre
+  - Emmanuel Gratuze
+  - Malka Guillot
+  - Arnaud Kleinpeter
+  - Victor Le Breton
+  - Marion Monnet
+  - Adrien Pacifico
+  - Florian Pagnoux
+  - Louise Paul-Delvaux
+  - Emmanuel Raviart
+  - Lucile Romanello
+  - Stanislas Rybak
+  - Jérôme Santoul
+  - Clément Schaff
+  - Matti Schneider
+  - Romain Soufflet
+  - Maël Thomas
+  - Suzanne Vergnolle
 
-Please consult http://www.openfisca.fr/installation if you want to develop with OpenFisca on your computer.
-
-## Tests
-
-To download tests from [Ludwig](https://mes-aides.gouv.fr/tests/), see [OpenFiscaFrance.jl](https://github.com/openfisca/OpenFiscaFrance.jl)
-
-## Contribute
-
-OpenFisca is a free software project.
-Its source code is distributed under the [GNU Affero General Public Licence](http://www.gnu.org/licenses/agpl.html)
-version 3 or later (see COPYING).
-
-Feel free to join the OpenFisca development team on [GitHub](https://github.com/openfisca) or contact us by email at
-contact@openfisca.fr
+Special thanks to:
+  - Antoine Bozio
+  - Fabien Dell
+  - Pierre Pezziardi
+  - Alain Trannoy

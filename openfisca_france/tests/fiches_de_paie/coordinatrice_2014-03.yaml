@@ -3,7 +3,7 @@ period: "2014-03"
 input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: True
-  avantages_en_nature_valeur_reelle: 0
+  avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: 0  # temps plein
   contrat_de_travail_debut: "2013-07-02"
   contrat_de_travail_fin: "2014-12-31"
@@ -25,11 +25,11 @@ input_variables:
   taux_versement_transport: .02
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  type_sal: 0  # non cadre
+  categorie_salarie: 0  # non cadre
   volume_jours_ijss: 0
 output_variables:
 
-  # salsuperbrut: 0
+  # salaire_super_brut: 0
   IGNORE_cotisations_employeur: -737.96 - 222.12 - 72
 
   # cotisations_employeur_contributives: 0
@@ -55,18 +55,18 @@ output_variables:
 
   # cotisations_employeur_main_d_oeuvre
   conge_individuel_formation_cdd: 0
-  contribution_developpement_apprentissage: -3.24 # avec la taxe d'apprentissage
   contribution_solidarite_autonomie: -5.4
   IGNORE_contribution_supplementaire_apprentissage: 0 #  pas dans la fiche
   IGNORE_fnal: 0  # check
   formation_professionnelle: -28.8
   participation_effort_construction: -8.1
   prevoyance_obligatoire_cadre: 0
-  taxe_apprentissage: -9
+  taxe_apprentissage: -12.24 # taux relevé de 0.5% à 0.68% au 2014-01-01 (aspiration de la contrib. au dév)
+  contribution_developpement_apprentissage: 0
   versement_transport: -36
 
   allegement_fillon: 222.12
-  credit_impot_competitivite_emploi: 72 # pas sur la fiche de paie
+  credit_impot_competitivite_emploi: 108 # pas sur la fiche de paie
   tehr: {'2014': 0}
   salaire_de_base: 1800
   cotisations_salariales: -394.38 + 51.29 + 90.19

@@ -1,29 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 """Measure performances of formulas calculations to compare to other OpenFisca implementations."""
 
 
@@ -35,7 +12,7 @@ import time
 import numpy as np
 from openfisca_core import periods, simulations
 from openfisca_core.tools import assert_near
-from openfisca_france import init_country
+from openfisca_france import FranceTaxBenefitSystem
 
 
 args = None
@@ -75,7 +52,7 @@ def add_member(entity, **variables_value_by_name):
 
     # Set arguments in variables.
     for variable_name, value in value_by_name.iteritems():
-        variable_holder = entity.get_or_new_holder(variable_name)
+        variable_holder = simulation.get_or_new_holder(variable_name)
         column = variable_holder.column
         if isinstance(value, dict):
             for period, period_value in value.iteritems():
@@ -83,7 +60,7 @@ def add_member(entity, **variables_value_by_name):
                 if array is None:
                     array = np.empty(entity.count, dtype = column.dtype)
                     array.fill(column.default)
-                    variable_holder.set_array(period, array)
+                    variable_holder.put_in_cache(array, period)
                 array[member_index] = period_value
         else:
             period = simulation.period
@@ -91,7 +68,7 @@ def add_member(entity, **variables_value_by_name):
             if array is None:
                 array = np.empty(entity.count, dtype = column.dtype)
                 array.fill(column.default)
-                variable_holder.set_array(period, array)
+                variable_holder.put_in_cache(array, period)
             array[member_index] = value
 
     return member_index
@@ -108,8 +85,7 @@ def timeit(method):
     return timed
 
 
-TaxBenefitSystem = init_country()
-tax_benefit_system = TaxBenefitSystem()
+tax_benefit_system = FranceTaxBenefitSystem()
 
 
 @timeit
@@ -157,20 +133,20 @@ def main():
     test_irpp(2013, -7889, salaire_imposable =  50000)
     test_irpp(2013, -43076, salaire_imposable =  150000)
 
-    print 'rst'
+    print 'retraite_imposable'
 
-    test_irpp(2010, -1181, rst = 20000)
-    test_irpp(2010, -8336, rst = 50000)
-    test_irpp(2010, -46642, rst = 150000)
-    test_irpp(2011, -1181, rst = 20000)
-    test_irpp(2011, -8336, rst = 50000)
-    test_irpp(2011, -46642, rst = 150000)
-    test_irpp(2012, -1181, rst = 20000)
-    test_irpp(2012, -8336, rst = 50000)
-    test_irpp(2012, -46642, rst = 150000)
-    test_irpp(2013, -1170, rst = 20000)
-    test_irpp(2013, -8283, rst = 50000)
-    test_irpp(2013, -46523, rst = 150000)
+    test_irpp(2010, -1181, retraite_imposable = 20000)
+    test_irpp(2010, -8336, retraite_imposable = 50000)
+    test_irpp(2010, -46642, retraite_imposable = 150000)
+    test_irpp(2011, -1181, retraite_imposable = 20000)
+    test_irpp(2011, -8336, retraite_imposable = 50000)
+    test_irpp(2011, -46642, retraite_imposable = 150000)
+    test_irpp(2012, -1181, retraite_imposable = 20000)
+    test_irpp(2012, -8336, retraite_imposable = 50000)
+    test_irpp(2012, -46642, retraite_imposable = 150000)
+    test_irpp(2013, -1170, retraite_imposable = 20000)
+    test_irpp(2013, -8283, retraite_imposable = 50000)
+    test_irpp(2013, -46523, retraite_imposable = 150000)
 
     print 'f2da'
 

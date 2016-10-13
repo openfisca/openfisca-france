@@ -1,28 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-
 import collections
 import datetime
 import itertools
@@ -631,10 +608,11 @@ class Scenario(scenarios.AbstractScenario):
                                     enfants = conv.uniform_sequence(
                                         conv.test(
                                             lambda individu_id:
-                                                find_age(individu_by_id[individu_id], period.start.date,
+                                                individu_by_id[individu_id].get('handicap', False)
+                                                or find_age(individu_by_id[individu_id], period.start.date,
                                                     default = 0) <= 25,
                                             error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
-                                                u" 25 ans ou être invalide",
+                                                    u" 25 ans ou être handicapée",
                                             ),
                                         ),
                                     parents = conv.pipe(
@@ -678,11 +656,11 @@ class Scenario(scenarios.AbstractScenario):
                                     personnes_a_charge = conv.uniform_sequence(
                                         conv.test(
                                             lambda individu_id:
-                                                individu_by_id[individu_id].get('invalide', False)
+                                                individu_by_id[individu_id].get('handicap', False)
                                                 or find_age(individu_by_id[individu_id], period.start.date,
-                                                    default = 0) < 25,
+                                                    default = 0) <= 25,
                                             error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
-                                                    u" 25 ans ou être invalide",
+                                                    u" 25 ans ou être handicapée",
                                             ),
                                         ),
                                     ),
@@ -695,8 +673,9 @@ class Scenario(scenarios.AbstractScenario):
                     # individus = conv.uniform_sequence(
                     #     conv.struct(
                     #         dict(
-                    #             birth = conv.test(
-                    #                 lambda birth: period.start.date - birth >= datetime.timedelta(0),
+                    #             date_naissance = conv.test(
+                    #                 lambda date_naissance:
+                    #                     period.start.date - date_naissance >= datetime.timedelta(0),
                     #                 error = u"L'individu doit être né au plus tard le jour de la simulation",
                     #                 ),
                     #             ),
@@ -725,6 +704,7 @@ class Scenario(scenarios.AbstractScenario):
         return json_or_python_to_test_case
 
     def suggest(self):
+        """Returns a dict of suggestions and modifies self.test_case applying those suggestions."""
         test_case = self.test_case
         if test_case is None:
             return None
@@ -735,14 +715,14 @@ class Scenario(scenarios.AbstractScenario):
 
         for individu in test_case['individus']:
             individu_id = individu['id']
-            if individu.get('age') is None and individu.get('age_en_mois') is None and individu.get('birth') is None:
-                # Add missing birth date to person (a parent is 40 years old and a child is 10 years old.
+            if individu.get('age') is None and individu.get('age_en_mois') is None and individu.get('date_naissance') is None:
+                # Add missing date_naissance date to person (a parent is 40 years old and a child is 10 years old.
                 is_parent = any(individu_id in famille['parents'] for famille in test_case['familles'])
                 birth_year = period_start_year - 40 if is_parent else period_start_year - 10
-                birth = datetime.date(birth_year, 1, 1)
-                individu['birth'] = birth
+                date_naissance = datetime.date(birth_year, 1, 1)
+                individu['date_naissance'] = date_naissance
                 suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
-                    'birth'] = birth.isoformat()
+                    'date_naissance'] = date_naissance.isoformat()
             if individu.get('activite') is None:
                 if find_age(individu, period_start_date) < 16:
                     individu['activite'] = 2  # Étudiant, élève
@@ -762,18 +742,18 @@ class Scenario(scenarios.AbstractScenario):
                         foyer_fiscal['id'], {})['caseT'] = foyer_fiscal['caseT'] = True
             elif len(foyer_fiscal['declarants']) == 2:
                 # Suggest "PACSé" or "Marié" instead of "Célibataire" when foyer_fiscal contains 2 "declarants" without
-                # "statmarit".
-                statmarit = 5  # PACSé
+                # "statut_marital".
+                statut_marital = 5  # PACSé
                 for individu_id in foyer_fiscal['declarants']:
                     individu = individu_by_id[individu_id]
-                    if individu.get('statmarit') == 1:  # Marié
-                        statmarit = 1
+                    if individu.get('statut_marital') == 1:  # Marié
+                        statut_marital = 1
                 for individu_id in foyer_fiscal['declarants']:
                     individu = individu_by_id[individu_id]
-                    if individu.get('statmarit') is None:
-                        individu['statmarit'] = statmarit
+                    if individu.get('statut_marital') is None:
+                        individu['statut_marital'] = statut_marital
                         suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
-                            'statmarit'] = unicode(statmarit)
+                            'statut_marital'] = unicode(statut_marital)
 
         return suggestions or None
 
@@ -877,12 +857,12 @@ class Scenario(scenarios.AbstractScenario):
 
 
 def find_age(individu, date, default = None):
-    birth = individu.get('birth')
-    if isinstance(birth, dict):
-        birth = birth.values()[0] if birth else None
-    if birth is not None:
-        age = date.year - birth.year
-        if date.month < birth.month or date.month == birth.month and date.day < birth.day:
+    date_naissance = individu.get('date_naissance')
+    if isinstance(date_naissance, dict):
+        date_naissance = date_naissance.values()[0] if date_naissance else None
+    if date_naissance is not None:
+        age = date.year - date_naissance.year
+        if date.month < date_naissance.month or date.month == date_naissance.month and date.day < date_naissance.day:
             age -= 1
         return age
 

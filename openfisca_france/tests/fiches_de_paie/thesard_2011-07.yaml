@@ -3,8 +3,8 @@ period: "2011-07"
 input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: False
-  avantages_en_nature_valeur_reelle: 0
-  contrat_de_travail: 1  # temps plein
+  avantage_en_nature_valeur_reelle: 0
+  contrat_de_travail: 0  # temps plein
   contrat_de_travail_debut: "2011-01-01"
   contrat_de_travail_fin: "2011-12-31"
   contrat_de_travail_duree: 1  # CDD
@@ -25,11 +25,11 @@ input_variables:
   taux_versement_transport: .026
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  type_sal: 6  # contractuel FP
+  categorie_salarie: 6  # contractuel FP
   volume_jours_ijss: 0
 output_variables:
 
-  # salsuperbrut: 0
+  # salaire_super_brut: 0
   IGNORE_cotisations_employeur: -767.75
 
   # cotisations_employeur_contributives

@@ -2,78 +2,59 @@
 # -*- coding: utf-8 -*-
 
 
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
-"""France specific model for OpenFisca -- a versatile microsimulation free software"""
-
-
 from setuptools import setup, find_packages
-
-
-classifiers = """\
-Development Status :: 2 - Pre-Alpha
-License :: OSI Approved :: GNU Affero General Public License v3
-Operating System :: POSIX
-Programming Language :: Python
-Topic :: Scientific/Engineering :: Information Analysis
-"""
-
-doc_lines = __doc__.split('\n')
 
 
 setup(
     name = 'OpenFisca-France',
-    version = '0.5.dev0',
-
+    version = '4.1.12',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
-    classifiers = [classifier for classifier in classifiers.split('\n') if classifier],
-    description = doc_lines[0],
+    classifiers = [
+        "Development Status :: 2 - Pre-Alpha",
+        "License :: OSI Approved :: GNU Affero General Public License v3",
+        "Operating System :: POSIX",
+        "Programming Language :: Python",
+        "Topic :: Scientific/Engineering :: Information Analysis",
+        ],
+    description = u'French tax and benefit system for OpenFisca',
     keywords = 'benefit france microsimulation social tax',
     license = 'http://www.fsf.org/licensing/licenses/agpl-3.0.html',
-    long_description = '\n'.join(doc_lines[2:]),
     url = 'https://github.com/openfisca/openfisca-france',
 
     data_files = [
         ('share/locale/fr/LC_MESSAGES', ['openfisca_france/i18n/fr/LC_MESSAGES/openfisca-france.mo']),
+        ('share/openfisca/openfisca-france', ['CHANGELOG.md', 'LICENSE', 'README.md']),
         ],
-    extras_require = dict(
-        tests = [
-            'Biryani >= 0.10.1',
-            # 'pandas >= 0.13',  # Only for taxipp_utils.py which is ignored in Makefile
-            'PyYAML',
+    entry_points = {
+        'console_scripts': ['openfisca-run-test=openfisca_france.tests.test_yaml:main'],
+        },
+    extras_require = {
+        'inversion_revenus': [
+            'scipy >= 0.17',
             ],
-        ),
+        'de_net_a_brut': [
+            'scipy >= 0.17',
+            ],
+        'taxipp': [
+            'pandas >= 0.13',
+            ],
+        'test': [
+            'nose',
+            ],
+        },
+    include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
         'Babel >= 0.9.4',
-        'numpy',
-        'OpenFisca-Core >= 0.5dev',
-        'scipy >= 0.12',
+        'Biryani[datetimeconv] >= 0.10.4',
+        'numpy >= 1.11',
+        'OpenFisca-Core >= 3.0.0, < 4.0',
+        'PyYAML >= 3.10',
+        'requests >= 2.8',
         ],
     message_extractors = {'openfisca_france': [
         ('**.py', 'python', None),
         ]},
-    packages = find_packages(),
+    packages = find_packages(exclude=['openfisca_france.tests*']),
     test_suite = 'nose.collector',
-    zip_safe = False,
     )

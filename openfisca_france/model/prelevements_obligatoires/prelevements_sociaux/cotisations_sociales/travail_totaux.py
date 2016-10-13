@@ -1,42 +1,18 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 from __future__ import division
 
 
 import logging
 
 
-from ....base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 log = logging.getLogger(__name__)
 
 
-@reference_formula
-class cotisations_employeur(SimpleFormulaColumn):
+class cotisations_employeur(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -57,8 +33,7 @@ class cotisations_employeur(SimpleFormulaColumn):
             )
 
 
-@reference_formula
-class cotisations_employeur_contributives(SimpleFormulaColumn):
+class cotisations_employeur_contributives(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -69,6 +44,8 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
         period = period
         ags = simulation.calculate('ags', period)
         agff_employeur = simulation.calculate_add('agff_employeur', period)
+        agirc_employeur = simulation.calculate_add('agirc_employeur', period)
+        agirc_gmp_employeur = simulation.calculate_add('agirc_gmp_employeur', period)
         apec_employeur = simulation.calculate('apec_employeur', period)
         arrco_employeur = simulation.calculate('arrco_employeur', period)
         chomage_employeur = simulation.calculate('chomage_employeur', period)
@@ -81,10 +58,12 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
         vieillesse_deplafonnee_employeur = simulation.calculate_add('vieillesse_deplafonnee_employeur', period)
         vieillesse_plafonnee_employeur = simulation.calculate_add('vieillesse_plafonnee_employeur', period)
 
-        cotisations_employeur_contributives = (
+        cotisations = (
             # prive
             ags +
             agff_employeur +
+            agirc_employeur +
+            agirc_gmp_employeur +
             apec_employeur +
             arrco_employeur +
             chomage_employeur +
@@ -97,11 +76,10 @@ class cotisations_employeur_contributives(SimpleFormulaColumn):
             pension_civile_employeur +
             rafp_employeur
             )
-        return period, cotisations_employeur_contributives
+        return period, cotisations
 
 
-@reference_formula
-class cotisations_employeur_non_contributives(SimpleFormulaColumn):
+class cotisations_employeur_non_contributives(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -112,22 +90,25 @@ class cotisations_employeur_non_contributives(SimpleFormulaColumn):
         period = period
         accident_du_travail = simulation.calculate_add('accident_du_travail', period)
         allocations_temporaires_invalidite = simulation.calculate_add('allocations_temporaires_invalidite', period)
+        contribution_solidarite_autonomie = simulation.calculate('contribution_solidarite_autonomie', period)
         famille = simulation.calculate('famille', period)
         mmid_employeur = simulation.calculate_add('mmid_employeur', period)
         taxe_salaires = simulation.calculate_add('taxe_salaires', period)
+        forfait_social = simulation.calculate_add('forfait_social', period)
 
         cotisations_employeur_non_contributives = (
             allocations_temporaires_invalidite +
             accident_du_travail +
+            contribution_solidarite_autonomie +
             famille +
             mmid_employeur +
-            taxe_salaires
+            taxe_salaires +
+            forfait_social
             )
         return period, cotisations_employeur_non_contributives
 
 
-@reference_formula
-class cotisations_salariales_contributives(SimpleFormulaColumn):
+class cotisations_salariales_contributives(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -138,6 +119,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
         period = period
         agff_salarie = simulation.calculate_add('agff_salarie', period)
         agirc_salarie = simulation.calculate_add('agirc_salarie', period)
+        agirc_gmp_salarie = simulation.calculate_add('agirc_gmp_salarie', period)
         apec_salarie = simulation.calculate_add('apec_salarie', period)
         arrco_salarie = simulation.calculate_add('arrco_salarie', period)
         chomage_salarie = simulation.calculate_add('chomage_salarie', period)
@@ -153,6 +135,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
             # prive
             agff_salarie +
             agirc_salarie +
+            agirc_gmp_salarie +
             apec_salarie +
             arrco_salarie +
             chomage_salarie +
@@ -168,8 +151,7 @@ class cotisations_salariales_contributives(SimpleFormulaColumn):
         return period, cotisations_salariales_contributives
 
 
-@reference_formula
-class cotisations_salariales_non_contributives(SimpleFormulaColumn):
+class cotisations_salariales_non_contributives(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus
@@ -192,8 +174,7 @@ class cotisations_salariales_non_contributives(SimpleFormulaColumn):
         return period, cotisations_salariales_non_contributives
 
 
-@reference_formula
-class cotisations_salariales(SimpleFormulaColumn):
+class cotisations_salariales(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity_class = Individus

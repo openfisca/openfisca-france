@@ -1,29 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 # ########## DESCRIPTION ############
 # Ce programme contient export_json, utilisé par d'autres scripts pour écrire un fichier .json contenant un scenario
 # et le résultat de la simulation officielle (DGFiP) correspondant si le fichier n'existe pas déjà, et qui compare
@@ -46,18 +23,18 @@ def define_scenario(year = 2013):
         period = year,
         parent1 = dict(
             activite = u'Actif occupé',
-            birth = 1970,
-            sali = 24000,
-            statmarit = u'Célibataire',
+            date_naissance = 1970,
+            salaire_imposable = 24000,
+            statut_marital = u'Célibataire',
             ),
         enfants = [
             dict(
                 activite = u'Étudiant, élève',
-                birth = '2002-02-01',
+                date_naissance = '2002-02-01',
                 ),
             dict(
                 activite = u'Étudiant, élève',
-                birth = '2000-04-17',
+                date_naissance = '2000-04-17',
                 ),
             ],
         foyer_fiscal = dict(

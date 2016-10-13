@@ -1,28 +1,5 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 #TODO: reduce margin error from 2 to 0 by coding the floor and round rules
 
 """Compare income taxes computed by finances.gouv.fr web simulator with OpenFisca results."""
@@ -46,13 +23,12 @@ from lxml import etree
 import numpy as np
 
 import openfisca_france
-from .base import transform_scenario_to_tax_calculator_inputs
+from openfisca_france.model.base import transform_scenario_to_tax_calculator_inputs
 
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
 
 
 def define_scenario(year):
@@ -61,23 +37,23 @@ def define_scenario(year):
         period = year,
         parent1 = dict(
             activite = u'Actif occupé',
-            birth = 1973,
-            sali = 48000,
-            statmarit = u'Marié',
+            date_naissance = 1973,
+            salaire_imposable = 48000,
+            statut_marital = u'Marié',
             ),
         parent2 = dict(
             activite = u'Actif occupé',
-            birth = 1973,
-            statmarit = u'Marié',
+            date_naissance = 1973,
+            statut_marital = u'Marié',
             ),
         enfants = [
             dict(
                 activite = u'Étudiant, élève',
-                birth = '1993-02-01',
+                date_naissance = '1993-02-01',
                 ),
 #            dict(
 #                activite = u'Étudiant, élève',
-#                birth = '2000-04-17',
+#                date_naissance = '2000-04-17',
 #                ),
             ],
         foyer_fiscal = dict(  #TODO: pb avec f2ck
@@ -169,7 +145,7 @@ def compare(scenario, tested = False):
         'IPROP': u'Impôt proportionnel',
         'RFOR': u'?',#TODO (f7up)
         'PERPPLAFTP': u'?',
-        'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, marpac)
+        'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, maries_ou_pacses)
         'RHEBE': u'?',#TODO (7ce)
         'RAA': u'?',#TODO (7ud)
         'RAH': u'?',#TODO (7ce)

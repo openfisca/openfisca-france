@@ -1,0 +1,35 @@
+- period: "2016-06"
+  description:
+    Taxe d'apprentissage / Contribution supplémentaire à l'apprentissage
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1467
+    # nécessaire pour des requêtes sur un mois de salaire :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 89
+    categorie_salarie: 0 # non cadre
+    contrat_de_travail_duree: 0
+    entreprise_est_association_non_lucrative: 0
+    ratio_alternants: 0.015
+  output_variables:
+    taxe_apprentissage: -.0068 * 1467
+    contribution_supplementaire_apprentissage: -.002 * 1467
+
+- period: "2016-06"
+  description:
+    Taxe d'apprentissage / Contribution supplémentaire à l'apprentissage
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1467
+    # nécessaire pour des requêtes sur un mois de salaire :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 89
+    categorie_salarie: 0 # non cadre
+    contrat_de_travail_duree: 0
+    entreprise_est_association_non_lucrative: 1
+    ratio_alternants: 0.015
+  output_variables:
+    taxe_apprentissage: 0
+    contribution_supplementaire_apprentissage: 0
+
+

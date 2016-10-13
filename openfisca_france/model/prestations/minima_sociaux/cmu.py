@@ -1,54 +1,48 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 from __future__ import division
 
 from functools import partial
-from numpy import (apply_along_axis, array, int32, logical_not as not_, maximum as max_, minimum as min_, zeros,
-    logical_or as or_)
 
-from ...base import *  # noqa analysis:ignore
+from numpy import (absolute as abs_, apply_along_axis, array, int32, logical_not as not_, logical_or as or_,
+                   maximum as max_, minimum as min_, select)
+
+from openfisca_france.model.base import *  # noqa analysis:ignore
+
+class cmu_acs_eligibilite(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Pré-éligibilité à la CMU, avant prise en compte des ressources"
+
+    def function(self, simulation, period):
+        period = period.this_month
+        previous_year = period.start.period('year').offset(-1)
+        age_min = simulation.legislation_at(period.start).cmu.age_limite_pac
+        nb_enfants = simulation.calculate('cmu_nb_pac', period)
+
+        # Une personne de 25 ans ne doit pas être à charge fiscale, ni hébergée par ses parents, ni recevoir de pensions alimentaires pour pouvoir bénéficier de la CMU individuellement.
+        a_charge_des_parents = simulation.calculate('enfant_a_charge', period)
+        habite_chez_parents = simulation.calculate('habite_chez_parents', period)
+        recoit_pension = simulation.calculate_add('pensions_alimentaires_percues', previous_year) > 0
+        condition_independance = not_(a_charge_des_parents + habite_chez_parents + recoit_pension)
+
+        age = simulation.calculate('age', period)
+        condition_age = (age >= age_min)
 
 
-@reference_formula
-class acs_montant(DatedFormulaColumn):
-    column = FloatCol
+        eligibilite_famille = (nb_enfants > 0) + self.any_by_roles(condition_age) + not_(self.any_by_roles(not_(condition_independance)))
+
+        return period, eligibilite_famille
+
+
+class acs_montant(Variable):
+    column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Montant de l'ACS en cas d'éligibilité"
+    start_date = date(2009, 8, 1)
 
-    @dated_function(date(2000, 1, 1), date(2009, 7, 31))
-    def function_2000(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        age_holder = simulation.compute('age', period)
-
-        ages = self.filter_role(age_holder, role = CHEF)
-        return period, 0 * ages
-
-    @dated_function(date(2009, 8, 1))
-    def function_2009(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+    def function(self, simulation, period):
+        period = period.this_month
         age_holder = simulation.compute('age', period)
         P = simulation.legislation_at(period.start).cmu
 
@@ -61,57 +55,54 @@ class acs_montant(DatedFormulaColumn):
             nb_par_age(ages_couple, 60, 200) * P.acs_plus_60_ans)
 
 
-@reference_formula
-class cmu_forfait_logement_base(SimpleFormulaColumn):
+class cmu_forfait_logement_base(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
         P = simulation.legislation_at(period.start).cmu.forfait_logement
-        law_rsa = simulation.legislation_at(period.start).minim.rmi
+        law_rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
 
         return period, forfait_logement(cmu_nbp_foyer, P, law_rsa)
 
 
-@reference_formula
-class cmu_forfait_logement_al(SimpleFormulaColumn):
+class cmu_forfait_logement_al(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Forfait logement applicable en cas d'aide au logement"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
+        period = period.this_month
+        nb_personnes_foyer = simulation.calculate('cmu_nbp_foyer', period)
+        aide_logement = simulation.calculate_add('aide_logement', period)
         P = simulation.legislation_at(period.start).cmu.forfait_logement_al
-        law_rsa = simulation.legislation_at(period.start).minim.rmi
+        law_rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
 
-        return period, forfait_logement(cmu_nbp_foyer, P, law_rsa)
+        return period, (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rsa))
 
 
-@reference_formula
-class cmu_nbp_foyer(SimpleFormulaColumn):
+class cmu_nbp_foyer(Variable):
     column = PeriodSizeIndependentIntCol
     entity_class = Familles
     label = u"Nombre de personnes dans le foyer CMU"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        nb_par = simulation.calculate('nb_par', period)
+        period = period.this_month
+        nb_parents = simulation.calculate('nb_parents', period)
         cmu_nb_pac = simulation.calculate('cmu_nb_pac', period)
 
-        return period, nb_par + cmu_nb_pac
+        return period, nb_parents + cmu_nb_pac
 
 
-@reference_formula
-class cmu_eligible_majoration_dom(SimpleFormulaColumn):
+class cmu_eligible_majoration_dom(Variable):
     column = BoolCol
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         residence_guadeloupe = simulation.calculate('residence_guadeloupe', period)
         residence_martinique = simulation.calculate('residence_martinique', period)
         residence_guyane = simulation.calculate('residence_guyane', period)
@@ -120,16 +111,15 @@ class cmu_eligible_majoration_dom(SimpleFormulaColumn):
         return period, residence_guadeloupe | residence_martinique | residence_guyane | residence_reunion
 
 
-@reference_formula
-class cmu_c_plafond(SimpleFormulaColumn):
+class cmu_c_plafond(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age_holder = simulation.compute('age', period)
-        alt_holder = simulation.compute('alt', period)
+        alt_holder = simulation.compute('garde_alternee', period)
         cmu_eligible_majoration_dom = simulation.calculate('cmu_eligible_majoration_dom', period)
         # cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
         P = simulation.legislation_at(period.start).cmu
@@ -172,110 +162,136 @@ class cmu_c_plafond(SimpleFormulaColumn):
             )
 
 
-@reference_formula
-class acs_plafond(SimpleFormulaColumn):
+class acs_plafond(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Plafond annuel de ressources pour l'éligibilité à l'ACS"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         cmu_c_plafond = simulation.calculate('cmu_c_plafond', period)
         P = simulation.legislation_at(period.start).cmu
 
         return period, cmu_c_plafond * (1 + P.majoration_plafond_acs)
 
 
-@reference_formula
-class cmu_base_ressources_i(SimpleFormulaColumn):
+class cmu_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
+        # Rolling year
         previous_year = period.start.period('year').offset(-1)
-        last_month = period.start.period('month').offset(-1)
+        # N-1
+        last_month = period.last_month
 
-        activite = simulation.calculate('activite', period)
-        salaire_net = simulation.calculate('salaire_net', previous_year)
-        chonet = simulation.calculate('chonet', previous_year)
-        rstnet = simulation.calculate('rstnet', previous_year)
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
-        pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', previous_year)
-        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', previous_year)
-        aah = simulation.calculate('aah', previous_year)
-        indemnites_journalieres_maternite = simulation.calculate('indemnites_journalieres_maternite', previous_year)
-        indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', previous_year)
-        indemnites_journalieres_maladie_professionnelle = simulation.calculate('indemnites_journalieres_maladie_professionnelle', previous_year)
-        indemnites_journalieres_accident_travail = simulation.calculate('indemnites_journalieres_accident_travail', previous_year)
-        indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
-        revenus_stage_formation_pro_annee = simulation.calculate('revenus_stage_formation_pro', previous_year)
-        revenus_stage_formation_pro_dernier_mois = simulation.calculate('revenus_stage_formation_pro', last_month)
-        allocation_securisation_professionnelle = simulation.calculate('allocation_securisation_professionnelle', previous_year)
-        prime_forfaitaire_mensuelle_reprise_activite = simulation.calculate('prime_forfaitaire_mensuelle_reprise_activite', previous_year)
-        dedommagement_victime_amiante = simulation.calculate('dedommagement_victime_amiante', previous_year)
-        prestation_compensatoire = simulation.calculate('prestation_compensatoire', previous_year)
-        retraite_combattant = simulation.calculate('retraite_combattant', previous_year)
-        pensions_invalidite = simulation.calculate('pensions_invalidite', previous_year)
-        indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', previous_year)
-        bourse_enseignement_sup = simulation.calculate('bourse_enseignement_sup', previous_year)
-        bourse_recherche = simulation.calculate('bourse_recherche', previous_year)
-        gains_exceptionnels = simulation.calculate('gains_exceptionnels', previous_year)
-        tns_total_revenus_net = simulation.calculate_add('tns_total_revenus_net', previous_year)
         P = simulation.legislation_at(period.start).cmu
 
-        # Revenus de stage de formation professionnelle exclus si plus perçus depuis 1 mois
-        revenus_stage_formation_pro = revenus_stage_formation_pro_annee * (revenus_stage_formation_pro_dernier_mois > 0)
+        ressources_a_inclure = [
+            'aah',
+            'allocation_securisation_professionnelle',
+            'bourse_enseignement_sup',
+            'bourse_recherche',
+            'chomage_net',
+            'dedommagement_victime_amiante',
+            'gains_exceptionnels',
+            'indemnites_chomage_partiel',
+            'indemnites_journalieres',
+            'indemnites_stage',
+            'pensions_alimentaires_percues',
+            'pensions_invalidite',
+            'prestation_compensatoire',
+            'prime_forfaitaire_mensuelle_reprise_activite',
+            'retraite_combattant',
+            'retraite_nette',
+            'revenus_stage_formation_pro',
+            'rsa_base_ressources_patrimoine_individu',
+            'salaire_net',
+        ]
+
+        ressources = sum(
+            [simulation.calculate_add(ressource, previous_year) for ressource in ressources_a_inclure]
+            )
+
+        pensions_alim_versees = abs_(simulation.calculate_add('pensions_alimentaires_versees_individu', previous_year))
+
+        revenus_stage_formation_pro_last_month = simulation.calculate('revenus_stage_formation_pro', last_month)
 
         # Abattement sur revenus d'activité si chômage ou formation professionnelle
-        abattement_chomage_fp = or_(activite == 1, revenus_stage_formation_pro_dernier_mois > 0)
+        def abbattement_chomage():
+            indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', previous_year)
+            salaire_net = simulation.calculate_add('salaire_net', previous_year)
+            chomage_last_month = simulation.calculate('chomage_net', last_month)
+            condition = or_(chomage_last_month > 0, revenus_stage_formation_pro_last_month > 0)
+            assiette = indemnites_chomage_partiel + salaire_net
+            return condition * assiette * P.abattement_chomage
 
-        return period, ((salaire_net + indemnites_chomage_partiel) * (1 - abattement_chomage_fp * P.abattement_chomage) +
-            indemnites_stage + aah + chonet + rstnet + pensions_alimentaires_percues -abs(pensions_alimentaires_versees_individu) + rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
-            indemnites_journalieres_maternite + indemnites_journalieres_accident_travail + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
-            prime_forfaitaire_mensuelle_reprise_activite + dedommagement_victime_amiante + prestation_compensatoire +
-            retraite_combattant + pensions_invalidite + bourse_enseignement_sup + bourse_recherche + gains_exceptionnels +
-            tns_total_revenus_net + revenus_stage_formation_pro)
+
+        # Revenus de stage de formation professionnelle exclus si plus perçus depuis 1 mois
+        def neutralisation_stage_formation_pro():
+            revenus_stage_formation_pro_annee = simulation.calculate_add('revenus_stage_formation_pro', previous_year)
+            return (revenus_stage_formation_pro_last_month == 0) * revenus_stage_formation_pro_annee
 
 
-@reference_formula
-class cmu_base_ressources(SimpleFormulaColumn):
+        def revenus_tns():
+            last_year = period.last_year
+
+            revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
+
+            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year)
+            tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year)
+            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year)
+
+            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+
+
+        return period, ressources + revenus_tns() - pensions_alim_versees - abbattement_chomage() - neutralisation_stage_formation_pro()
+
+
+class cmu_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        aspa = simulation.calculate('aspa', period)
-        ass = simulation.calculate('ass', period)
-        asi = simulation.calculate('asi', period)
-        af = simulation.calculate('af', period)
-        cf = simulation.calculate_divide('cf', period)
-        asf = simulation.calculate_divide('asf', period)
-        paje_clca = simulation.calculate_divide('paje_clca', period)
-        statut_occupation_holder = simulation.compute('statut_occupation', period)
-        aide_logement = simulation.calculate('aide_logement', period)
+        period = period.this_month
+        previous_year = period.start.period('year').offset(-1)
+
+        ressources_a_inclure = [
+            'af',
+            'asf',
+            'asi',
+            'aspa',
+            'ass',
+            'cf',
+            'paje_clca',
+            'paje_prepare',
+        ]
+
+        ressources = sum(
+            [simulation.calculate_add(ressource, previous_year) for ressource in ressources_a_inclure]
+            )
+
+
+        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
         cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
         cmu_forfait_logement_al = simulation.calculate('cmu_forfait_logement_al', period)
         age_holder = simulation.compute('age', period)
-        cmu_base_ressources_i_holder = simulation.compute('cmu_base_ressources_i', period)
+        cmu_base_ressources_i_holder = simulation.compute('cmu_base_ressources_individu', period)
         P = simulation.legislation_at(period.start).cmu
-
-        statut_occupation = self.cast_from_entity_to_roles(statut_occupation_holder)
-        statut_occupation = self.filter_role(statut_occupation, role = CHEF)
 
         cmu_br_i_par = self.split_by_roles(cmu_base_ressources_i_holder, roles = [CHEF, PART])
         cmu_br_i_pac = self.split_by_roles(cmu_base_ressources_i_holder, roles = ENFS)
 
         age_pac = self.split_by_roles(age_holder, roles = ENFS)
 
-        forfait_logement = (((statut_occupation == 2) + (statut_occupation == 6)) * cmu_forfait_logement_base +
-            (aide_logement > 0) * min_(cmu_forfait_logement_al, aide_logement * 12))
+        forfait_logement = (((statut_occupation_logement == 2) + (statut_occupation_logement == 6)) * cmu_forfait_logement_base +
+            cmu_forfait_logement_al)
 
-        res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement
-
-        res += 12 * (aspa + ass + asi + af + cf + asf + paje_clca)
+        res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement + ressources
 
         for key, age in age_pac.iteritems():
             res += (0 <= age) * (age <= P.age_limite_pac) * cmu_br_i_pac[key]
@@ -283,14 +299,13 @@ class cmu_base_ressources(SimpleFormulaColumn):
         return period, res
 
 
-@reference_formula
-class cmu_nb_pac(SimpleFormulaColumn):
+class cmu_nb_pac(Variable):
     column = PeriodSizeIndependentIntCol
     entity_class = Familles
     label = u"Nombre de personnes à charge au titre de la CMU"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age_holder = simulation.compute('age', period)
         P = simulation.legislation_at(period.start).cmu
 
@@ -298,8 +313,7 @@ class cmu_nb_pac(SimpleFormulaColumn):
         return period, nb_par_age(ages, 0, P.age_limite_pac)
 
 
-@reference_formula
-class cmu_c(SimpleFormulaColumn):
+class cmu_c(Variable):
     '''
     Détermine si le foyer a droit à la CMU complémentaire
     '''
@@ -310,7 +324,7 @@ class cmu_c(SimpleFormulaColumn):
     def function(self, simulation, period):
         # Note : Cette variable est calculée pour un an, mais si elle est demandée pour une période plus petite, elle
         # répond pour la période demandée.
-        this_month = period.start.period('month').offset('first-of')
+        this_month = period.this_month
         this_rolling_year = this_month.start.period('year')
         if period.stop > this_rolling_year.stop:
             period = this_rolling_year
@@ -320,38 +334,42 @@ class cmu_c(SimpleFormulaColumn):
         cmu_c_plafond = simulation.calculate('cmu_c_plafond', this_month)
         cmu_base_ressources = simulation.calculate('cmu_base_ressources', this_month)
         residence_mayotte = simulation.calculate('residence_mayotte', this_month)
+        cmu_acs_eligibilite = simulation.calculate('cmu_acs_eligibilite', period)
 
         rsa_socle = simulation.calculate('rsa_socle', this_month)
         rsa_socle_majore = simulation.calculate('rsa_socle_majore', this_month)
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', this_month)
-        br_rmi = simulation.calculate('br_rmi', this_month)
+        rsa_base_ressources = simulation.calculate('rsa_base_ressources', this_month)
         socle = max_(rsa_socle, rsa_socle_majore)
+        rsa = simulation.calculate('rsa', this_month)
 
         eligibilite_basique = cmu_base_ressources <= cmu_c_plafond
-        eligibilite_rsa = (socle > 0) * (br_rmi < socle - rsa_forfait_logement)
-
-        return period, not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
+        eligibilite_rsa = (rsa > 0) * (rsa_base_ressources < socle - rsa_forfait_logement)
 
 
-@reference_formula
-class acs(SimpleFormulaColumn):
-    '''
-    Calcule le montant de l'ACS auquel le foyer a droit
-    '''
+        return period, cmu_acs_eligibilite * not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
+
+
+class acs(Variable):
     column = FloatCol
-    label = u"Éligibilité à l'ACS"
+    label = u"Montant (mensuel) de l'ACS"
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.period('month').offset('first-of')
+        period = period.this_month
 
         cmu_c = simulation.calculate('cmu_c', period)
         cmu_base_ressources = simulation.calculate('cmu_base_ressources', period)
         acs_plafond = simulation.calculate('acs_plafond', period)
         acs_montant = simulation.calculate('acs_montant', period)
         residence_mayotte = simulation.calculate('residence_mayotte', period)
+        cmu_acs_eligibilite = simulation.calculate('cmu_acs_eligibilite', period)
 
-        return period, not_(residence_mayotte) * not_(cmu_c) * (cmu_base_ressources <= acs_plafond) * acs_montant / 12
+        return period, (
+            cmu_acs_eligibilite *
+            not_(residence_mayotte) * not_(cmu_c) *
+            (cmu_base_ressources <= acs_plafond) *
+            acs_montant / 12)
 
 
 ############################################################################
@@ -363,24 +381,21 @@ def forfait_logement(nbp_foyer, P, law_rsa):
     '''
     Calcule le forfait logement en fonction du nombre de personnes dans le "foyer CMU" et d'un jeu de taux
     '''
-    return (12 * rsa_socle_base(nbp_foyer, law_rsa) *
-        ((nbp_foyer == 1) * P.taux_1p + (nbp_foyer == 2) * P.taux_2p + (nbp_foyer > 2) * P.taux_3p_plus))
+    montant_rsa_socle = law_rsa.rmi * (1 +
+        law_rsa.txp2 * (nbp_foyer >= 2) +
+        law_rsa.txp3 * (nbp_foyer >= 3)
+        )
 
+    return 12 * montant_rsa_socle * select(
+            [nbp_foyer == 1, nbp_foyer == 2, nbp_foyer > 2],
+            [P.taux_1p, P.taux_2p, P.taux_3p_plus]
+            )
 
-def nb_par_age(ages, min, max):
+def nb_par_age(age_by_role, min, max):
     '''
     Calcule le nombre d'individus ayant un âge compris entre min et max
     '''
-    res = None
-    for key, age in ages.iteritems():
-        if res is None:
-            res = zeros(len(age), dtype = int32)
-        res += (min <= age) & (age <= max)
-    return res
-
-
-def rsa_socle_base(nbp, P):
-    '''
-    Calcule le RSA socle du foyer pour nombre de personnes donné
-    '''
-    return P.rmi * (1 + P.txp2 * (nbp >= 2) + P.txp3 * (nbp >= 3) + P.txps * max_(0, nbp - 3))
+    return sum(
+        (min <= age) & (age <= max)
+        for age in age_by_role.itervalues()
+        )

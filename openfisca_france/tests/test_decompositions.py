@@ -1,28 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 import json
 import os
 import xml.etree.ElementTree
@@ -79,6 +56,14 @@ def test_decomposition_xml_files():
         yield check_decomposition_xml_file, file_path
 
 
-if __name__ == '__main__':
-    import nose
-    nose.core.runmodule(argv = [__file__, '-v', 'test_decompositions:test_decomposition_xml_files'])
+def test_decomposition_calculate():
+    decompositions_directory = base.tax_benefit_system.DECOMP_DIR
+    xml_file_path = os.path.join(decompositions_directory, base.tax_benefit_system.DEFAULT_DECOMP_FILE)
+    decomposition_json = decompositions.get_decomposition_json(base.tax_benefit_system, xml_file_path)
+    year = 2013
+    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+        period = year,
+        parent1 = {},
+        ).new_simulation()
+    decomposition = decompositions.calculate([simulation], decomposition_json)
+    assert isinstance(decomposition, dict)

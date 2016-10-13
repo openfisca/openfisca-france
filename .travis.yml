@@ -1,14 +1,27 @@
+sudo: false # Use new Travis container-based infrastructure
 language: python
-python: "2.7"
-virtualenv:
-  system_site_packages: true
-before_install:
-  # - sudo add-apt-repository ppa:pythonxy/pythonxy-devel -y  # For Pandas, needed only for taxipp_utils.py which is ignored in Makefile
-  - sudo add-apt-repository ppa:pylab/stable -y  # For SciPY
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq python-numpy python-scipy python-yaml
+python: 2.7
+cache: pip
 install:
-  - pip install flake8  # Not yet available in Debian stable
+  - pip install --upgrade pip wheel  # pip >= 8.0 needed to be compatible with "manylinux" wheels, used by numpy >= 1.11
+  - pip install flake8
   - pip install -r requirements.txt
-  # - pip install -e git+https://github.com/openfisca/openfisca-france-data.git#egg=OpenFisca-France-Data  # For test_from_taxipp which is ignored in Makefile
-script: make test-ci
+  - ./travis-change-other-repos-branches.sh
+  - pip install --editable .[inversion_revenus]
+script: ./travis-run-tests.sh
+before_deploy:
+  - python setup.py compile_catalog
+  - openssl aes-256-cbc -K $encrypted_f6aff9134f80_key -iv $encrypted_f6aff9134f80_iv -in openfisca_bot.enc -out openfisca_bot -d
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: ./travis-release-tag.sh
+    on:
+      branch: master
+  - provider: pypi
+    user: openfisca-bot
+    password:
+      secure: TysRV2ljC0p1LaWwHiBuFNBz7hjAFK7LDV0OL/7L31TZebxKi2a5MGg42ugqNxjeW30+6mL/g5FbeSDkskpFGC4W0vE+xvSORDPhas+NWbt/7Mb97vHjGguawguUuCCOgmX705BZxJyxGdv8MpaJmELZxV4stJ51Qw3Y1iLmz7M=
+    distributions: "bdist_wheel"
+    on:
+      tags: true

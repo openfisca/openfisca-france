@@ -1,0 +1,48 @@
+- name: "Avant le 1er avril 2014, le montant de la PAJE est proprotionnel à la BMAF"
+  period: 2012-11
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1"]
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "parent2"
+      age: 40
+    - id: "enfant1"
+      age: 2
+  output_variables:
+    # BMAF 2012 = 399
+    paje_base: 0.45950 * 399
+
+- name: "PAJE - À partir du 1er avril 2013, le montant est gelé"
+  period: 2014-11
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1"]
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "parent2"
+      age: 40
+    - id: "enfant1"
+      age: 2
+  output_variables:
+    # BMAF 2013 = 403.79
+    # BMAF 2016 = 406.62
+    paje_base: 0.4595 * 403.79
+
+

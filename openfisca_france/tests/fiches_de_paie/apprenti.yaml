@@ -4,8 +4,8 @@ input_variables:
   apprentissage_contrat_debut: "2013-01-01"
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: False
-  avantages_en_nature_valeur_reelle: 0
-  birth: "1996-01-01"
+  avantage_en_nature_valeur_reelle: 0
+  date_naissance: "1996-01-01"
   contrat_de_travail: 0  # temps plein
   # contrat_de_travail_debut:
   # contrat_de_travail_fin:
@@ -32,16 +32,17 @@ input_variables:
   taux_versement_transport: 0
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  type_sal: 0  # non cadre
+  categorie_salarie: 0  # non cadre
   volume_jours_ijss: 0
 output_variables:
-  IGNORE_salsuperbrut: 0
+  IGNORE_salaire_super_brut: 0
   remboursement_transport: 0
 
   # # cotisations_employeur_contributives: 0
   ags: -2.14
   agff_employeur: -8.57
   agirc_employeur: 0
+  agirc_gmp_employeur: 0
   apec_employeur: 0
   arrco_employeur: -33.21
   chomage_employeur: -28.57
@@ -68,7 +69,7 @@ output_variables:
   financement_organisations_syndicales: -.11  # -35 * 52 * 9.61 * .49 / 12 * 0.00016
   formation_professionnelle: -3.93
   fnal: -.71
-  participation_effort_construction: -3.21
+  participation_effort_construction: 0 # was incorrectly : -3.21
   prevoyance_obligatoire_cadre: 0
   taxe_apprentissage: 0
   versement_transport: 0
@@ -80,17 +81,19 @@ output_variables:
   assiette_cotisations_sociales: 35 * 52 * 9.61 * .49 / 12
 
   cotisations_employeur: -284.96 - 10.71 -.11
-  cotisations_employeur: -2.14 -8.57 -33.21 -28.57 -12.86 -60.71 -10.71 -37.49 -91.42 -2.14 -3.93 -.71 -3.21 -.11
-  exoneration_cotisations_employeur_apprenti: 285.07
+  cotisations_employeur: -2.14 -8.57 -33.21 -28.57 -12.86 -60.71 -10.71 -37.49 -91.42 -2.14 -3.93 -.71 -.11
+  exoneration_cotisations_employeur_apprenti: 281.86
 
   #
   cotisations_salariales: 0  #-5.71 -22.14 -17.14 -2.14 -48.92 -5.36
-  exoneration_cotisations_salariales_apprenti: -(-5.71 -22.14 -17.14 -2.14 -48.92 -5.36)
   #
   cotisations_salariales_contributives: -5.71 -22.14 -17.14 -2.14 -48.92
   cotisations_salariales_non_contributives: -5.36
+  exoneration_cotisations_salariales_apprenti: -(-5.71 -22.14 -17.14 -2.14 -48.92 -5.36)
+
   agff_salarie: -5.71
   agirc_salarie: 0
+  agirc_gmp_salarie: 0
   apec_salarie: 0
   arrco_salarie: -22.14
   chomage_salarie: -17.14

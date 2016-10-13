@@ -1,29 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 """Generate the columns tree from flat dictionary of columns.
 
 When tree already exists, don't change location of columns that have already been placed in tree.
@@ -39,7 +16,7 @@ import sys
 
 from openfisca_core import formulas
 
-from openfisca_france import init_country, model
+from openfisca_france import FranceTaxBenefitSystem, model
 try:
     from openfisca_france.model.datatrees import columns_name_tree_by_entity
 except ImportError:
@@ -48,8 +25,7 @@ except ImportError:
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
-TaxBenefitSystem = init_country()
-tax_benefit_system = TaxBenefitSystem()
+tax_benefit_system = FranceTaxBenefitSystem()
 
 
 class PrettyPrinter(pprint.PrettyPrinter):
@@ -141,29 +117,6 @@ def main():
     with open(datatrees_module_path, 'w') as datatree_file:
         datatree_file.write('''\
 # -*- coding: utf-8 -*-
-
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 
 import collections
 

@@ -3,8 +3,8 @@ period: "2014-07"
 input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: False
-  avantages_en_nature_valeur_reelle: 0
-  birth: "1974-01-01"
+  avantage_en_nature_valeur_reelle: 0
+  date_naissance: "1974-01-01"
   contrat_de_travail: 0  # temps plein
   contrat_de_travail_debut: "2014-01-01"
   contrat_de_travail_fin: "2014-12-31"
@@ -29,10 +29,10 @@ input_variables:
   taux_accident_travail: 0.011
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  type_sal: 1  # non cadre
+  categorie_salarie: 1  # non cadre
   volume_jours_ijss: 0
 output_variables:
-  # salsuperbrut: 0
+  # salaire_super_brut: 0
   # cotisations_employeur: 0
   remboursement_transport: 0
   ircantec_employeur: 0
@@ -46,7 +46,6 @@ output_variables:
   mmid_employeur: -3000 * .128  # est aggrégé avec vieillesse deplaf et csa
   taxe_salaires: 0
   conge_individuel_formation_cdd: 0
-  contribution_developpement_apprentissage: -3000 * 0.0018  # aggrégé avec taxe apprentissage
   contribution_solidarite_autonomie: -3000 * 0.003  #  est aggrégé avec vieillesse deplaf et maladie
   contribution_supplementaire_apprentissage: 0
   fnal: -15
@@ -55,7 +54,7 @@ output_variables:
   ags: -9
   agff_employeur: -36.00
   agirc_gmp_employeur: -41.17
-  agirc_employeur: -41.17
+  agirc_employeur: 0
   apec_employeur: -1.08
   arrco_employeur: -137.4
   chomage_employeur: -120
@@ -66,12 +65,12 @@ output_variables:
   formation_professionnelle: -48
   participation_effort_construction: -13.5
   prevoyance_obligatoire_cadre: -59.02
-  taxe_apprentissage: -3000 * 0.005  # aggrégé avec contribution supplémentaire apprentissage
+  taxe_apprentissage: -3000 * 0.0068  # aggrégé avec contribution supplémentaire apprentissage
   taux_versement_transport: .027
   versement_transport: -81
 
   allegement_fillon: 0
-  credit_impot_competitivite_emploi: 120
+  credit_impot_competitivite_emploi: 180
   forfait_social: -4.72
   tehr:
     2014: 0
@@ -82,7 +81,7 @@ output_variables:
   # cotisations_salariales_contributives: 0
   agff_salarie: -24
   agirc_gmp_salarie: -25.17 # erreur dans la fiche de paie
-  agirc_salarie: -25.17  # agirc_gmp_salarie
+  agirc_salarie: 0  # agirc_gmp_salarie
   apec_salarie: -0.72
   arrco_salarie: -91.5
   chomage_salarie: -72

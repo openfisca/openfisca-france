@@ -1,28 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 from __future__ import division
 
 import collections
@@ -30,7 +7,7 @@ import copy
 import logging
 
 
-from ....base import *  # noqa
+from openfisca_france.model.base import *  # noqa
 
 
 DEBUG_SAL_TYPE = 'public_titulaire_etat'
@@ -67,7 +44,7 @@ def build_pat(node_json):
 
     # Rework commun to deal with public employees
     for var in ["apprentissage", "apprentissage_add", "assedic", "chomfg", "construction", "maladie", "formprof_09",
-                "formprof_1019", "formprof_20", "vieillessedeplaf", "vieillesseplaf"]:
+                "formprof_1019", "formprof_20", "vieillesse_deplafonnee", "vieillesse_plafonnee"]:
         del commun['children'][var]
 
     for var in ["apprentissage", "apprentissage_add", "formprof_09", "formprof_1019", "formprof_20", "chomfg",
@@ -133,7 +110,6 @@ def build_sal(node_json):
             'commun']['children']['solidarite']
 
     sal['children']['public_non_titulaire']['children'].update(sal['children']['commun']['children'])
-    del sal['children']['public_non_titulaire']['children']['arrco']
     del sal['children']['public_non_titulaire']['children']['assedic']
 
     # Cleaning
@@ -149,7 +125,7 @@ def preprocess_legislation(legislation_json):
     '''
     Preprocess the legislation parameters to build the cotisations sociales taxscales (barèmes)
     '''
-    sal =  build_sal(legislation_json)
+    sal = build_sal(legislation_json)
     pat = build_pat(legislation_json)
 
     cotsoc = legislation_json["children"]["cotsoc"]
@@ -169,3 +145,5 @@ def preprocess_legislation(legislation_json):
         for category, bareme in baremes.iteritems():
             if category in CAT._nums:
                 cotsoc['children'][cotisation_name]['children'][category] = bareme
+
+    return legislation_json

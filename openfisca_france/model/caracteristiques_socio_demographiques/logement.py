@@ -1,59 +1,61 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 from numpy import logical_not as not_, logical_or as or_
 from numpy.core.defchararray import startswith
 
 
-from ..base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-build_column('coloc', BoolCol(label = u"Vie en colocation"))
+class coloc(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Vie en colocation"
 
-build_column('depcom', FixedStrCol(label = u"Code INSEE (depcom) du lieu de résidence", entity = 'men', max_length = 5))
+class logement_chambre(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Le logement est considéré comme une chambre"
 
 
-build_column('logement_chambre', BoolCol(label = u"Le logement est considéré comme une chambre"))
+class loyer(Variable):
+    column = FloatCol()
+    entity_class = Menages
+    set_input = set_input_divide_by_period
+    label = u"Loyer ou mensualité d'emprunt pour un primo-accédant"
 
-reference_input_variable(
-    column = IntCol(),
-    entity_class = Menages,
-    label = u'Loyer',
-    name = 'loyer',
-    set_input = set_input_divide_by_period,
-    )
+class loyer_individu(EntityToPersonColumn):
+    entity_class = Individus
+    label = u"Zone apl de la personne"
+    variable = loyer
+class depcom(Variable):
+    column = FixedStrCol(max_length = 5)
+    entity_class = Menages
+    label = u"Code INSEE (depcom) du lieu de résidence"
 
-build_column(
-    'proprietaire_proche_famille',
-    BoolCol(
-        entity = "fam",
-        label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint",
-        ),
-    )
+class loyer_famille(PersonToEntityColumn):
+    entity_class = Familles
+    label = u"Zone apl de la famille"
+    role = CHEF
+    variable = loyer_individu
 
-reference_input_variable(
+class charges_locatives(Variable):
+    column = FloatCol()
+    entity_class = Menages
+    set_input = set_input_divide_by_period
+    label = u'Charges locatives'
+
+class proprietaire_proche_famille(Variable):
+    column = BoolCol
+    entity_class = Familles
+    label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
+
+class habite_chez_parents(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"L'individu habite chez ses parents"
+
+class statut_occupation_logement(Variable):
     column = EnumCol(
         enum = Enum([
             u"Non renseigné",
@@ -62,17 +64,16 @@ reference_input_variable(
             u"Locataire d'un logement HLM",
             u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
             u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
-            u"Logé gratuitement par des parents, des amis ou l'employeur"])
-        ),
-    entity_class = Menages,
-    label = u"Statut d'occupation",
-    name = 'statut_occupation',
-    set_input = set_input_dispatch_by_period,
+            u"Logé gratuitement par des parents, des amis ou l'employeur",
+            u"Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)",
+            u"Sans domicile stable"])
     )
+    entity_class = Menages
+    label = u"Statut d'occupation du logement"
+    set_input = set_input_dispatch_by_period
 
 
-@reference_formula
-class residence_dom(SimpleFormulaColumn):
+class residence_dom(Variable):
     column = BoolCol
     entity_class = Familles
 
@@ -85,8 +86,7 @@ class residence_dom(SimpleFormulaColumn):
         return period, or_(or_(residence_guadeloupe, residence_martinique), or_(or_(residence_reunion, residence_guyane), residence_mayotte))
 
 
-@reference_formula
-class residence_guadeloupe(SimpleFormulaColumn):
+class residence_guadeloupe(Variable):
     column = BoolCol
     entity_class = Familles
 
@@ -98,8 +98,7 @@ class residence_guadeloupe(SimpleFormulaColumn):
         return period, startswith(depcom, '971')
 
 
-@reference_formula
-class residence_martinique(SimpleFormulaColumn):
+class residence_martinique(Variable):
     column = BoolCol
     entity_class = Familles
 
@@ -111,8 +110,7 @@ class residence_martinique(SimpleFormulaColumn):
         return period, startswith(depcom, '972')
 
 
-@reference_formula
-class residence_guyane(SimpleFormulaColumn):
+class residence_guyane(Variable):
     column = BoolCol
     entity_class = Familles
 
@@ -124,8 +122,7 @@ class residence_guyane(SimpleFormulaColumn):
         return period, startswith(depcom, '973')
 
 
-@reference_formula
-class residence_reunion(SimpleFormulaColumn):
+class residence_reunion(Variable):
     column = BoolCol
     entity_class = Familles
 
@@ -137,8 +134,7 @@ class residence_reunion(SimpleFormulaColumn):
         return period, startswith(depcom, '974')
 
 
-@reference_formula
-class residence_mayotte(SimpleFormulaColumn):
+class residence_mayotte(Variable):
     column = BoolCol
     entity_class = Familles
 

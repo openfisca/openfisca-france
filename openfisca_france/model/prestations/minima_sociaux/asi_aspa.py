@@ -1,203 +1,209 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-
 from __future__ import division
 
-from numpy import maximum as max_, logical_not as not_
+from numpy import abs as abs_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, where
 
-from ...base import *  # noqa analysis:ignore
-
-
-reference_input_variable(
-    column = BoolCol,
-    entity_class = Individus,
-    label = u"Reconnu inapte au travail",
-    name = "inapte_travail",
-    )
-
-reference_input_variable(
-    column = IntCol,
-    entity_class = Individus,
-    label = u"Taux d'invalidité",
-    name = "taux_invalidite",
-    )
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-@reference_formula
-class br_mv_i(SimpleFormulaColumn):
+class inapte_travail(Variable):
+    column = BoolCol
+    entity_class = Individus
+    label = u"Reconnu inapte au travail"
+
+
+class taux_incapacite(Variable):
+    column = FloatCol
+    entity_class = Individus
+    label = u"Taux d'incapacité"
+
+
+class asi_aspa_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base ressources individuelle du minimum vieillesse/ASPA"
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        three_previous_months = period.start.period('month', 3).offset(-3)
-        aspa_elig = simulation.calculate('aspa_elig', period)
-        aspa_couple_holder = simulation.compute('aspa_couple', period)
-        salaire_de_base = simulation.calculate_add('salaire_de_base', three_previous_months)
-        chonet = simulation.calculate_add('chonet', three_previous_months)
-        rstbrut = simulation.calculate_add('rstbrut', three_previous_months)
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', three_previous_months)
-        pensions_alimentaires_versees_individu = simulation.calculate('pensions_alimentaires_versees_individu', three_previous_months)
-        rto_declarant1 = simulation.calculate_add('rto_declarant1', three_previous_months)
-        rpns = simulation.calculate_add_divide('rpns', three_previous_months)
-        rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
-        rev_cap_lib_holder = simulation.compute_add_divide('rev_cap_lib', three_previous_months)
-        rfon_ms = simulation.calculate_add_divide('rfon_ms', three_previous_months)
-        div_ms = simulation.calculate_add_divide('div_ms', three_previous_months)
-        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', three_previous_months)
-        allocation_securisation_professionnelle = simulation.calculate('allocation_securisation_professionnelle', three_previous_months)
-        prime_forfaitaire_mensuelle_reprise_activite = simulation.calculate('prime_forfaitaire_mensuelle_reprise_activite', three_previous_months)
-        dedommagement_victime_amiante = simulation.calculate('dedommagement_victime_amiante', three_previous_months)
-        prestation_compensatoire = simulation.calculate('prestation_compensatoire', three_previous_months)
-        pensions_invalidite = simulation.calculate('pensions_invalidite', three_previous_months)
-        gains_exceptionnels = simulation.calculate('gains_exceptionnels', three_previous_months)
-        indemnites_journalieres_maternite = simulation.calculate('indemnites_journalieres_maternite', three_previous_months)
-        indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', three_previous_months)
-        indemnites_journalieres_maladie_professionnelle = simulation.calculate('indemnites_journalieres_maladie_professionnelle', three_previous_months)
-        indemnites_journalieres_accident_travail = simulation.calculate('indemnites_journalieres_accident_travail', three_previous_months)
-        indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', three_previous_months)
-        indemnites_volontariat = simulation.calculate('indemnites_volontariat', three_previous_months)
-        tns_total_revenus_net = simulation.calculate_add('tns_total_revenus_net', three_previous_months)
-        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_i', three_previous_months)
-        aah = simulation.calculate('aah', three_previous_months)
-
+        period = period.this_month
+        last_year = period.last_year
+        three_previous_months = period.last_3_months
         legislation = simulation.legislation_at(period.start)
         leg_1er_janvier = simulation.legislation_at(period.start.offset('first-of', 'year'))
 
-        aspa_couple = self.cast_from_entity_to_role(aspa_couple_holder, role = VOUS)
-        rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
-        rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+        ressources_incluses = [
+            'allocation_securisation_professionnelle',
+            'chomage_net',
+            'dedommagement_victime_amiante',
+            'div_ms',
+            'gains_exceptionnels',
+            'indemnites_chomage_partiel',
+            'indemnites_journalieres',
+            'indemnites_volontariat',
+            'pensions_alimentaires_percues',
+            'pensions_invalidite',
+            'prestation_compensatoire',
+            'prime_forfaitaire_mensuelle_reprise_activite',
+            'retraite_brute',
+            'retraite_titre_onereux_declarant1',
+            'revenus_fonciers_minima_sociaux',
+            'revenus_stage_formation_pro',
+            'rsa_base_ressources_patrimoine_individu',
+            'salaire_de_base',
+            ]
 
-        # Inclus l'AAH si conjoint non pensionné ASPA, retraite et pension invalidité
-        aah = aah * not_(aspa_elig)
+        def revenus_capitaux():
+            rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
+            rev_cap_lib_holder = simulation.compute_add_divide('rev_cap_lib', three_previous_months)
+            rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
+            rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+            return max_(0, rev_cap_bar) + max_(0, rev_cap_lib)
 
-        # Abattement sur les salaires (appliqué sur une base trimestrielle)
-        abattement_forfaitaire_base = leg_1er_janvier.cotsoc.gen.smic_h_b * legislation.minim.aspa.abattement_forfaitaire_nb_h
-        abattement_forfaitaire_taux = (aspa_couple * legislation.minim.aspa.abattement_forfaitaire_tx_couple +
-            not_(aspa_couple) * legislation.minim.aspa.abattement_forfaitaire_tx_seul
+        def revenus_tns():
+            revenus_auto_entrepreneur = simulation.calculate_add(
+                'tns_auto_entrepreneur_benefice', three_previous_months)
+
+            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year) * (3 / 12)
+            tns_benefice_exploitant_agricole = simulation.calculate(
+                'tns_benefice_exploitant_agricole', last_year) * (3 / 12)
+            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year) * (3 / 12)
+
+            return (
+                revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole +
+                tns_autres_revenus
+                )
+
+        pension_invalidite = (simulation.calculate('pensions_invalidite', period) > 0)
+        aspa_eligibilite = simulation.calculate('aspa_eligibilite', period)
+        asi_eligibilite = simulation.calculate('asi_eligibilite', period)
+
+        # Inclus l'AAH si conjoint non éligible ASPA, retraite et pension invalidité
+        aah = simulation.calculate_add('aah', three_previous_months)
+        aah = aah * not_(aspa_eligibilite) * not_(asi_eligibilite) * not_(pension_invalidite)
+
+        pensions_alimentaires_versees = simulation.calculate_add(
+            'pensions_alimentaires_versees_individu', three_previous_months
             )
-        abattement_forfaitaire = abattement_forfaitaire_base * abattement_forfaitaire_taux
-        salaire_de_base = max_(0, salaire_de_base - abattement_forfaitaire)
+
+        def abattement_salaire():
+            aspa_couple_holder = simulation.compute('aspa_couple', period)
+            aspa_couple = self.cast_from_entity_to_roles(aspa_couple_holder)
+
+            # Abattement sur les salaires (appliqué sur une base trimestrielle)
+            abattement_forfaitaire_base = (
+                leg_1er_janvier.cotsoc.gen.smic_h_b * legislation.cotsoc.gen.nb_heure_travail_mensuel
+                )
+
+            taux_abattement_forfaitaire = where(
+                aspa_couple,
+                legislation.prestations.minima_sociaux.aspa.abattement_forfaitaire_tx_couple,
+                legislation.prestations.minima_sociaux.aspa.abattement_forfaitaire_tx_seul
+                )
+
+            abattement_forfaitaire = abattement_forfaitaire_base * taux_abattement_forfaitaire
+            salaire_de_base = simulation.calculate_add('salaire_de_base', three_previous_months)
+
+            return min_(salaire_de_base, abattement_forfaitaire)
+
+        base_ressources_3_mois = sum(
+            max_(0, simulation.calculate_add(ressource_type, three_previous_months))
+            for ressource_type in ressources_incluses
+            ) + aah + revenus_capitaux() + revenus_tns() - abs_(pensions_alimentaires_versees) - abattement_salaire()
+
+        return period, base_ressources_3_mois / 3
 
 
-        return period, (salaire_de_base + chonet + rstbrut + pensions_alimentaires_percues - abs(pensions_alimentaires_versees_individu) + rto_declarant1 + rpns +
-
-               max_(0, rev_cap_bar) + max_(0, rev_cap_lib) + max_(0, rfon_ms) + max_(0, div_ms) +
-               # max_(0,etr) +
-               revenus_stage_formation_pro + allocation_securisation_professionnelle + prime_forfaitaire_mensuelle_reprise_activite +
-               dedommagement_victime_amiante + prestation_compensatoire + pensions_invalidite + gains_exceptionnels +
-               indemnites_journalieres_maternite + indemnites_journalieres_maladie + indemnites_journalieres_maladie_professionnelle +
-               indemnites_journalieres_accident_travail + indemnites_chomage_partiel + indemnites_volontariat + tns_total_revenus_net +
-               rsa_base_ressources_patrimoine_i + aah
-               ) / 3
-
-
-@reference_formula
-class br_mv(SimpleFormulaColumn):
+class asi_aspa_base_ressources(Variable):
     column = FloatCol
     label = u"Base ressource du minimum vieillesse et assimilés (ASPA)"
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        br_mv_i_holder = simulation.compute('br_mv_i', period)
-        ass = simulation.calculate_divide('ass', period)
+        period = period.this_month
+        asi_aspa_base_ressources_i_holder = simulation.compute('asi_aspa_base_ressources_individu', period)
+        ass = simulation.calculate('ass', period)
 
-        br_mv_i = self.split_by_roles(br_mv_i_holder, roles = [CHEF, PART])
-        return period, ass + br_mv_i[CHEF] + br_mv_i[PART]
+        asi_aspa_base_ressources_i = self.split_by_roles(asi_aspa_base_ressources_i_holder, roles = [CHEF, PART])
+        return period, ass + asi_aspa_base_ressources_i[CHEF] + asi_aspa_base_ressources_i[PART]
 
 
-@reference_formula
-class aspa_elig(SimpleFormulaColumn):
+class aspa_eligibilite(Variable):
     column = BoolCol
     label = u"Indicatrice individuelle d'éligibilité à l'allocation de solidarité aux personnes agées"
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        last_month = period.start.period('month').offset(-1)
+        period = period.this_month
 
         age = simulation.calculate('age', period)
-        invalide = simulation.calculate('invalide', period)
-        taux_invalidite = simulation.calculate('taux_invalidite', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
-        rstbrut = simulation.calculate('rstbrut', last_month)
-        pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
-
-        P = simulation.legislation_at(period.start).minim
-
+        taux_incapacite = simulation.calculate('taux_incapacite', period)
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux
+        condition_invalidite = (taux_incapacite > P.aspa.taux_incapacite_aspa_anticipe) + inapte_travail
         condition_age_base = (age >= P.aspa.age_min)
-        condition_age_anticipe_inaptitude = (age >= P.aah.age_legal_retraite) & inapte_travail
-        condition_age_anticipe_handicap = (age >= P.aah.age_legal_retraite) & invalide # & (taux_invalidite >= 50)
+        condition_age_anticipe = (age >= P.aah.age_legal_retraite) * condition_invalidite
+        condition_age = condition_age_base + condition_age_anticipe
+        condition_nationalite = simulation.calculate('asi_aspa_condition_nationalite', period)
 
-        condition_age = condition_age_base | condition_age_anticipe_inaptitude | condition_age_anticipe_handicap
-        condition_pensionnement = (rstbrut + pensions_invalidite) > 0
-        return period, condition_age * condition_pensionnement
+        return period, condition_age * condition_nationalite
 
 
-@reference_formula
-class asi_elig(SimpleFormulaColumn):
+class asi_eligibilite(Variable):
     column = BoolCol
     label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
     entity_class = Individus
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         last_month = period.start.period('month').offset(-1)
 
-        aspa_elig = simulation.calculate('aspa_elig', period)
-        invalide = simulation.calculate('invalide', period)
-        rstbrut = simulation.calculate('rstbrut', last_month)
-        pensions_invalidite = simulation.calculate('pensions_invalidite', last_month)
+        non_eligible_aspa = not_(simulation.calculate('aspa_eligibilite', period))
+        touche_pension_invalidite = simulation.calculate('pensions_invalidite', period) > 0
+        handicap = simulation.calculate('handicap', period)
+        touche_retraite = simulation.calculate('retraite_nette', last_month) > 0
+        condition_nationalite = simulation.calculate('asi_aspa_condition_nationalite', period)
 
-        condition_situation = invalide & not_(aspa_elig)
-        condition_pensionnement = (rstbrut + pensions_invalidite) > 0
+        eligible = (
+            non_eligible_aspa *
+            condition_nationalite *
+            (handicap * touche_retraite + touche_pension_invalidite)
+            )
 
-        return period, condition_situation * condition_pensionnement
+        return period, eligible
 
 
-@reference_formula
-class asi_aspa_nb_alloc(SimpleFormulaColumn):
+class asi_aspa_condition_nationalite(Variable):
+    column = BoolCol
+    label = u"Condition de nationnalité et de titre de séjour pour bénéficier de l'ASPA ou l'ASI"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        ressortissant_eee = simulation.calculate('ressortissant_eee', period)
+        duree_possession_titre_sejour= simulation.calculate('duree_possession_titre_sejour', period)
+        duree_min_titre_sejour = simulation.legislation_at(period.start).prestations.minima_sociaux.aspa.duree_min_titre_sejour
+
+        return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
+
+
+class asi_aspa_nb_alloc(Variable):
     column = IntCol
     label = u"Nombre d'allocataires ASI/ASPA"
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        aspa_elig_holder = simulation.compute('aspa_elig', period)
-        asi_elig_holder = simulation.compute('asi_elig', period)
+        period = period.this_month
+        aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
+        asi_elig_holder = simulation.compute('asi_eligibilite', period)
 
-        asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-        aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
+        asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
+        aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
-        return period, (1 * aspa_elig[CHEF] + 1 * aspa_elig[PART] + 1 * asi_elig[CHEF] + 1 * asi_elig[PART])
+        return period, (1 * aspa_eligibilite[CHEF] + 1 * aspa_eligibilite[PART] + 1 * asi_eligibilite[CHEF] + 1 * asi_eligibilite[PART])
 
 
-@reference_formula
-class asi(SimpleFormulaColumn):
+class asi(Variable):
+    calculate_output = calculate_output_add
     column = FloatCol
     label = u"Allocation supplémentaire d'invalidité"
     start_date = date(2007, 1, 1)
@@ -205,62 +211,61 @@ class asi(SimpleFormulaColumn):
     entity_class = Familles
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        asi_elig_holder = simulation.compute('asi_elig', period)
-        aspa_elig_holder = simulation.compute('aspa_elig', period)
+        period = period.this_month
+        asi_elig_holder = simulation.compute('asi_eligibilite', period)
+        aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
         maries = simulation.calculate('maries', period)
-        concub = simulation.calculate('concub', period)
+        en_couple = simulation.calculate('en_couple', period)
         asi_aspa_nb_alloc = simulation.calculate('asi_aspa_nb_alloc', period)
-        br_mv = simulation.calculate('br_mv', period)
-        P = simulation.legislation_at(period.start).minim
+        base_ressources = simulation.calculate('asi_aspa_base_ressources', period)
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux
 
-        asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-        aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
+        asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
+        aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
         # Un seul éligible
-        elig1 = ((asi_aspa_nb_alloc == 1) & (asi_elig[CHEF] | asi_elig[PART]))
+        elig1 = ((asi_aspa_nb_alloc == 1) & (asi_eligibilite[CHEF] | asi_eligibilite[PART]))
         # Couple d'éligibles mariés
-        elig2 = asi_elig[CHEF] & asi_elig[PART] & maries
+        elig2 = asi_eligibilite[CHEF] & asi_eligibilite[PART] & maries
         # Couple d'éligibles non mariés
-        elig3 = asi_elig[CHEF] & asi_elig[PART] & not_(maries)
+        elig3 = asi_eligibilite[CHEF] & asi_eligibilite[PART] & not_(maries)
         # Un seul éligible et époux éligible ASPA
-        elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) & maries
+        elig4 = ((asi_eligibilite[CHEF] & aspa_eligibilite[PART]) | (asi_eligibilite[PART] & aspa_eligibilite[CHEF])) & maries
         # Un seul éligible et conjoint non marié éligible ASPA
-        elig5 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) & not_(maries)
+        elig5 = ((asi_eligibilite[CHEF] & aspa_eligibilite[PART]) | (asi_eligibilite[PART] & aspa_eligibilite[CHEF])) & not_(maries)
 
         elig = elig1 | elig2 | elig3 | elig4 | elig5
 
-        montant_max = (elig1 * P.asi.montant_seul
-            + elig2 * P.asi.montant_couple
-            + elig3 * 2 * P.asi.montant_seul
-            + elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
-            + elig5 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 12
+        montant_max = (elig1 * P.asi.montant_seul +
+            elig2 * P.asi.montant_couple +
+            elig3 * 2 * P.asi.montant_seul +
+            elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_annuel_couple / 2) +
+            elig5 * (P.asi.montant_seul + P.aspa.montant_annuel_couple / 2)) / 12
 
-        ressources = br_mv + montant_max
+        ressources = base_ressources + montant_max
 
-        plafond_ressources = (elig1 * (P.asi.plaf_seul * not_(concub) + P.asi.plaf_couple * concub)
-            + elig2 * P.asi.plaf_couple
-            + elig3 * P.asi.plaf_couple
-            + elig4 * P.aspa.plaf_couple
-            + elig5 * P.aspa.plaf_couple) / 12
+        plafond_ressources = (elig1 * (P.asi.plafond_ressource_seul * not_(en_couple) + P.asi.plafond_ressource_couple * en_couple) +
+            elig2 * P.asi.plafond_ressource_couple +
+            elig3 * P.asi.plafond_ressource_couple +
+            elig4 * P.aspa.plafond_ressources_couple +
+            elig5 * P.aspa.plafond_ressources_couple) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
-        diff = ((elig1 | elig2 | elig3) * (montant_max - depassement)
-            + elig4 * (P.asi.montant_couple / 12 / 2 - depassement / 2)
-            + elig5 * (P.asi.montant_seul / 12 - depassement / 2))
+        diff = ((elig1 | elig2 | elig3) * (montant_max - depassement) +
+            elig4 * (P.asi.montant_couple / 12 / 2 - depassement / 2) +
+            elig5 * (P.asi.montant_seul / 12 - depassement / 2))
 
         # Montant mensuel servi (sous réserve d'éligibilité)
         montant_servi_asi = max_(diff, 0)
 
         # TODO: Faute de mieux, on verse l'asi à la famille plutôt qu'aux individus
-        # asi[CHEF] = asi_elig[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
-        # asi[PART] = asi_elig[PART]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
+        # asi[CHEF] = asi_eligibilite[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
+        # asi[PART] = asi_eligibilite[PART]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
         return period, elig * montant_servi_asi
 
 
-@reference_formula
-class aspa_couple(DatedFormulaColumn):
+class aspa_couple(DatedVariable):
     column = BoolCol
     label = u"Couple au sens de l'ASPA"
     entity_class = Familles
@@ -275,61 +280,63 @@ class aspa_couple(DatedFormulaColumn):
     @dated_function(date(2007, 1, 1))
     def function_2007(self, simulation, period):
         period = period
-        concub = simulation.calculate('concub', period)
+        en_couple = simulation.calculate('en_couple', period)
 
-        return period, concub
+        return period, en_couple
 
 
-@reference_formula
-class aspa(SimpleFormulaColumn):
+class aspa(Variable):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity_class = Familles
     label = u"Allocation de solidarité aux personnes agées"
     url = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        asi_elig_holder = simulation.compute('asi_elig', period)
-        aspa_elig_holder = simulation.compute('aspa_elig', period)
+        period = period.this_month
+        asi_elig_holder = simulation.compute('asi_eligibilite', period)
+        aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
         maries = simulation.calculate('maries', period)
-        concub = simulation.calculate('concub', period)
+        en_couple = simulation.calculate('en_couple', period)
         asi_aspa_nb_alloc = simulation.calculate('asi_aspa_nb_alloc', period)
-        br_mv = simulation.calculate('br_mv', period)
-        P = simulation.legislation_at(period.start).minim
+        base_ressources = simulation.calculate('asi_aspa_base_ressources', period)
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux
 
-        asi_elig = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-        aspa_elig = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
+        asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
+        aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
         # Un seul éligible
-        elig1 = ((asi_aspa_nb_alloc == 1) & (aspa_elig[CHEF] | aspa_elig[PART]))
+        elig1 = ((asi_aspa_nb_alloc == 1) & (aspa_eligibilite[CHEF] | aspa_eligibilite[PART]))
         # Couple d'éligibles
-        elig2 = (aspa_elig[CHEF] & aspa_elig[PART])
+        elig2 = (aspa_eligibilite[CHEF] & aspa_eligibilite[PART])
         # Un seul éligible et époux éligible ASI
-        elig3 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) & maries
+        elig3 = ((asi_eligibilite[CHEF] & aspa_eligibilite[PART]) | (asi_eligibilite[PART] & aspa_eligibilite[CHEF])) & maries
         # Un seul éligible et conjoint non marié éligible ASI
-        elig4 = ((asi_elig[CHEF] & aspa_elig[PART]) | (asi_elig[PART] & aspa_elig[CHEF])) & not_(maries)
+        elig4 = ((asi_eligibilite[CHEF] & aspa_eligibilite[PART]) | (asi_eligibilite[PART] & aspa_eligibilite[CHEF])) & not_(maries)
 
         elig = elig1 | elig2 | elig3 | elig4
 
-        montant_max = (elig1 * P.aspa.montant_seul
-            + elig2 * P.aspa.montant_couple
-            + elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2)
-            + elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 12
+        montant_max = (
+            elig1 * P.aspa.montant_annuel_seul +
+            elig2 * P.aspa.montant_annuel_couple +
+            elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_annuel_couple / 2) +
+            elig4 * (P.asi.montant_seul + P.aspa.montant_annuel_couple / 2)
+            ) / 12
 
-        ressources = br_mv + montant_max
+        ressources = base_ressources + montant_max
 
-        plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(concub) + P.aspa.plaf_couple * concub)
-            + (elig2 | elig3 | elig4) * P.aspa.plaf_couple) / 12
+        plafond_ressources = (elig1 * (P.aspa.plafond_ressources_seul * not_(en_couple) + P.aspa.plafond_ressources_couple * en_couple) +
+            (elig2 | elig3 | elig4) * P.aspa.plafond_ressources_couple) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
-        diff = ((elig1 | elig2) * (montant_max - depassement)
-            + (elig3 | elig4) * (P.aspa.montant_couple / 12 / 2 - depassement / 2))
+        diff = ((elig1 | elig2) * (montant_max - depassement) +
+            (elig3 | elig4) * (P.aspa.montant_annuel_couple / 12 / 2 - depassement / 2))
 
         # Montant mensuel servi (sous réserve d'éligibilité)
         montant_servi_aspa = max_(diff, 0)
 
         # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
-        # aspa[CHEF] = aspa_elig[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
-        # aspa[PART] = aspa_elig[PART]*montant_servi_aspa*(elig1 + elig2/2)
+        # aspa[CHEF] = aspa_eligibilite[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
+        # aspa[PART] = aspa_eligibilite[PART]*montant_servi_aspa*(elig1 + elig2/2)
         return period, elig * montant_servi_aspa

@@ -1,100 +1,62 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-
 from __future__ import division
 
 from numpy import logical_not as not_
 
-from ...base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
-# from .base_ressource import nb_enf
+from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
 
-@reference_formula
-class asf_elig_i(SimpleFormulaColumn):
+class asf_elig_enfant(Variable):
     column = BoolCol(default = False)
     entity_class = Individus
-    label = u"Éligibilité à l'ASF (individuelle)"
+    label = u"Enfant pouvant ouvrir droit à l'ASF"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
         age = simulation.calculate('age', period)
-        smic55 = simulation.calculate('smic55', period)
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
+        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         eligibilite = (
-            (age >= pfam.af.age1) * (age <= pfam.af.age3) *  # Âge compatible avec les prestations familiales
-            not_(smic55) *  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
-            (pensions_alimentaires_percues == 0))  # Ne perçoit pas de pension alimentaire
+            (age >= pfam.af.age1) * (age < pfam.af.age3) *  # Âge compatible avec les prestations familiales
+            not_(autonomie_financiere))  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
 
         return period, eligibilite
 
-@reference_formula
-class asf_i(SimpleFormulaColumn):
-    column = FloatCol(default = 0)
-    entity_class = Individus
-    label = u"Montant à verser à l'individu pour l'ASF"
 
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-
-        asf_elig_i = simulation.calculate('asf_elig_i', period)
-        pfam = simulation.legislation_at(period.start).fam
-
-        return period, asf_elig_i * pfam.af.bmaf * pfam.asf.taux1
-
-
-@reference_formula
-class asf_elig(SimpleFormulaColumn):
+class asf_elig(Variable):
     column = BoolCol(default = False)
     entity_class = Familles
     label = u"Éligibilité à l'ASF"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
+        pensions_alimentaires_percues_holder = simulation.compute('pensions_alimentaires_percues', period)
+        pensions_alimentaires_percues = self.sum_by_entity(pensions_alimentaires_percues_holder)
 
-        isol = simulation.calculate('isol', period)
+        isole = not_(simulation.calculate('en_couple', period))
         residence_mayotte = simulation.calculate('residence_mayotte', period)
 
-        return period, not_(residence_mayotte) * isol # Parent isolé et ne résident pas à Mayotte
+        return period, not_(residence_mayotte) * isole * not_(pensions_alimentaires_percues)  # Parent isolé et ne résident pas à Mayotte
 
 
-@reference_formula
-class asf(SimpleFormulaColumn):
+class asf(Variable):
+    calculate_output = calculate_output_add
     column = FloatCol(default = 0)
     entity_class = Familles
     label = u"Allocation de soutien familial (ASF)"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
 
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
         asf_elig = simulation.calculate('asf_elig', period)
-        asf_i_holder = simulation.compute('asf_i', period)
-        montant = self.sum_by_entity(asf_i_holder, roles = ENFS)
+        asf_par_enfant = simulation.calculate('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux_1_parent
+        montant = self.sum_by_entity(asf_par_enfant, roles = ENFS)
 
         return period, asf_elig * montant

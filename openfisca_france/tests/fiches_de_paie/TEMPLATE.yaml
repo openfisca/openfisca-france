@@ -4,7 +4,7 @@ ignore: true  # TODO: Enlever cette ligne pour tester la fiche de paie.
 input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: False
-  avantages_en_nature_valeur_reelle: 0
+  avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: 0  # temps plein
   contrat_de_travail_debut: "2014-01-01"
   contrat_de_travail_fin: "2014-12-31"
@@ -32,13 +32,13 @@ input_variables:
   taux_versement_transport: 0
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  type_sal: 0  # non cadre
+  categorie_salarie: 0  # non cadre
   volume_jours_ijss: 0
 output_variables:
   # TODO à inclure dans la décomposition et à finir de coder forfait_social: -3.8 # 47.49 de base
   # TODO à coder taxe_handicapes: 18.40
 
-  # salsuperbrut: 0
+  # salaire_super_brut: 0
   # cotisations_employeur: 0
   remboursement_transport: 0
 

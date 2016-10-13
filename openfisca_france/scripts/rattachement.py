@@ -1,29 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 ########### DESCRIPTION ############
 ## Ce script (qui n'est pas utilisé par l'UI) sert à calculer les impôts dûs par les différentes combinaisons
 ## de foyers fiscaux quand les jeunes adultes ont le choix d'être rattachés au foyer fiscal de leurs parents
@@ -47,8 +24,7 @@ import openfisca_france
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
-TaxBenefitSystem = openfisca_france.init_country()
-tax_benefit_system = TaxBenefitSystem()
+tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
 
 
 def split(scenario):
@@ -65,7 +41,7 @@ def split(scenario):
 
     for pac_index, pac_id in enumerate(foyer_fiscal.pop('personnes_a_charge')):
         pac = individus[pac_id].copy()
-        age = year - pac.pop('birth').year - 1
+        age = year - pac.pop('date_naissance').year - 1
         if 18 <= age < (21 + 4 * (pac['activite'] == 2)): # Exprime la condition de rattachement au foyer pour les majeurs
             rattachements_possibles.append(pac_id)
         else:
@@ -119,19 +95,19 @@ def define_scenario(year):
     scenario.init_single_entity(
         parent1 = dict(
             activite = u'Actif occupé',
-            birth = 1973,
+            date_naissance = 1973,
 #            cadre = True,
-            sali = 90000,
-            statmarit = u'Célibataire',
+            salaire_imposable = 90000,
+            statut_marital = u'Célibataire',
             ),
         enfants = [
             dict(
                 activite = u'Étudiant, élève',
-                birth = '1992-02-01',
+                date_naissance = '1992-02-01',
                 ),
             dict(
                 activite = u'Étudiant, élève',
-                birth = '2000-04-17',
+                date_naissance = '2000-04-17',
                 ),
             ],
         foyer_fiscal = dict(  #TODO: pb avec f2ck

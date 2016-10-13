@@ -1,47 +1,32 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 from datetime import date
-import functools
 
-from openfisca_core.accessors import law
-from openfisca_core.columns import (AgeCol, BoolCol, build_column, DateCol, EnumCol, FixedStrCol, FloatCol, IntCol,
+from openfisca_core.columns import (AgeCol, BoolCol, DateCol, EnumCol, FixedStrCol, FloatCol, IntCol,
     PeriodSizeIndependentIntCol, StrCol)
 from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import (dated_function, DatedFormulaColumn, EntityToPersonColumn, last_duration_last_value,
-    make_reference_formula_decorator, missing_value, PersonToEntityColumn, reference_input_variable,
-    requested_period_added_value, requested_period_default_value, requested_period_last_value,
-    set_input_dispatch_by_period, set_input_divide_by_period, SimpleFormulaColumn)
+from openfisca_core.formulas import (calculate_output_add, calculate_output_add_divide, calculate_output_divide,
+    dated_function, missing_value, set_input_dispatch_by_period, set_input_divide_by_period)
+from openfisca_core.variables import DatedVariable, EntityToPersonColumn, PersonToEntityColumn, Variable
+from openfisca_core.base_functions import (
+    last_duration_last_value,
+    requested_period_added_value,
+    requested_period_default_value,
+    requested_period_last_or_next_value,
+    requested_period_last_value,
+    )
+from openfisca_core.formula_helpers import apply_thresholds, switch
 
-from ..entities import entity_class_by_symbol, Familles, FoyersFiscaux, Individus, Menages
+from openfisca_france.entities import Familles, FoyersFiscaux, Individus, Menages
 
 
 __all__ = [
     'AgeCol',
-    'build_column',
+    'apply_thresholds',
     'BoolCol',
+    'calculate_output_add',
+    'calculate_output_add_divide',
+    'calculate_output_divide',
     'CAT',
     'CHEF',
     'CONJ',
@@ -49,7 +34,7 @@ __all__ = [
     'date',
     'DateCol',
     'dated_function',
-    'DatedFormulaColumn',
+    'DatedVariable',
     'ENFS',
     'EntityToPersonColumn',
     'Enum',
@@ -61,7 +46,6 @@ __all__ = [
     'Individus',
     'IntCol',
     'last_duration_last_value',
-    'law',
     'Menages',
     'missing_value',
     'PAC1',
@@ -74,14 +58,14 @@ __all__ = [
     'QUIFAM',
     'QUIFOY',
     'QUIMEN',
-    'reference_formula',
-    'reference_input_variable',
     'requested_period_added_value',
     'requested_period_default_value',
+    'requested_period_last_or_next_value',
     'requested_period_last_value',
     'set_input_dispatch_by_period',
     'set_input_divide_by_period',
-    'SimpleFormulaColumn',
+    'switch',
+    'Variable',
     'StrCol',
     'TAUX_DE_PRIME',
     'VOUS',
@@ -116,14 +100,3 @@ PAC3 = QUIFOY['pac3']
 PART = QUIFAM['part']
 PREF = QUIMEN['pref']
 VOUS = QUIFOY['vous']
-
-
-# Functions and decorators
-
-
-build_column = functools.partial(
-    build_column,
-    entity_class_by_symbol = entity_class_by_symbol,
-    )
-
-reference_formula = make_reference_formula_decorator(entity_class_by_symbol = entity_class_by_symbol)

@@ -1,28 +1,22 @@
-IGNORE_OPT=--ignore-files='(test_from_taxipp.py|test_jsons.py|taxipp_utils.py|test_plf2015.py)'
-TESTS_DIR=openfisca_france/tests
+all: test
 
-all: flake8 test
+check-no-prints:
+	@test -z "`git grep -w print openfisca_france/model`"
 
 check-syntax-errors:
-	@# This is a hack around flake8 not displaying E910 errors with the select option.
-	@# Do not analyse .gitignored files.
-	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
-	test -z "`flake8 --first $(shell git ls-files | grep "\.py$$") | grep E901`"
+	python -m compileall -q .
 
-clean-pyc:
+clean:
+	rm -rf build dist
+	find . -name '*.mo' -exec rm \{\} \;
 	find . -name '*.pyc' -exec rm \{\} \;
 
-ctags:
-	ctags --recurse=yes .
+flake8:
+	@# Do not analyse .gitignored files.
+	@# `make` needs `$$` to output `$`. Ref: http://stackoverflow.com/questions/2382764.
+	flake8 `git ls-files | grep "\.py$$"`
 
-flake8: clean-pyc
-	flake8
-
-test: check-syntax-errors
-	nosetests $(TESTS_DIR) $(IGNORE_OPT) --exe --stop --with-doctest
-
-test-ci: check-syntax-errors
-	nosetests $(TESTS_DIR) $(IGNORE_OPT) --exe --with-doctest
-
-test-with-coverage:
-	nosetests $(TESTS_DIR) $(IGNORE_OPT) --exe --stop --with-coverage --cover-package=openfisca_france --cover-erase --cover-branches --cover-html
+test: check-syntax-errors check-no-prints
+	@# Launch tests from openfisca_france/tests directory (and not .) because TaxBenefitSystem must be initialized
+	@# before parsing source files containing formulas.
+	nosetests openfisca_france/tests --exe --with-doctest

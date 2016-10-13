@@ -1,50 +1,26 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-
 from __future__ import division
 
 
 from numpy import datetime64, timedelta64
 
 
-from ....base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-@reference_formula
-class professionnalisation(SimpleFormulaColumn):
+class professionnalisation(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"L'individu est en contrat de professionnalisation"
     url = "http://www.apce.com/pid879/contrat-de-professionnalisation.html?espace=1&tp=1"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age = simulation.calculate('age', period)
         ass = simulation.calculate_add('ass', period)
         rsa = simulation.calculate('rsa', period)
-        aah = simulation.calculate('rsa', period)
+        aah = simulation.calculate('aah', period)
 
         age_condition = (16 <= age) * (age < 25)
         dummy_ass = ass > 0
@@ -54,8 +30,7 @@ class professionnalisation(SimpleFormulaColumn):
         return period, (age_condition + dummy_ass + dummy_aah + dummy_rmi) > 0
 
 
-@reference_formula
-class remuneration_professionnalisation(SimpleFormulaColumn):
+class remuneration_professionnalisation(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Rémunération de l'apprenti"
@@ -80,7 +55,7 @@ class remuneration_professionnalisation(SimpleFormulaColumn):
     #  l'entreprise.
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age = simulation.calculate('age', period)
         smic = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
         professionnalisation = simulation.calculate('professionnalisation', period)
@@ -120,8 +95,7 @@ class remuneration_professionnalisation(SimpleFormulaColumn):
         return period, taux_smic * smic * professionnalisation
 
 
-@reference_formula
-class exoneration_cotisations_employeur_apprenti(SimpleFormulaColumn):
+class exoneration_cotisations_employeur_professionnalisation(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Exonération de cotisations patronales pour l'emploi d'un apprenti"
@@ -143,25 +117,16 @@ class exoneration_cotisations_employeur_apprenti(SimpleFormulaColumn):
     #  aux groupements d'employeurs qui organisent dans le cadre des contrats de professionnalisation
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
+        period = period.this_month
         age = simulation.calculate('age', period)
         mmid_employeur = simulation.calculate('mmid_employeur', period)
         famille = simulation.calculate('famille', period)
-        vieillesse_plafonnee_employeur = simulation.calculate('vieillesse_plafonnee_employeur', period)  # correspond à
-        # vieillesse de base?
+        vieillesse_plafonnee_employeur = simulation.calculate('vieillesse_plafonnee_employeur', period)
+        # FIXME: correspond bien à vieillesse de base ?
         cotisations_exonerees = mmid_employeur + famille + vieillesse_plafonnee_employeur
 
-        return period, cotisations_exonerees * (age > 45)  # On est bien d'accord qu'il y a les exos uniquement pour les
+        return period, cotisations_exonerees * (age > 45)
+        # FIXME: On est bien d'accord qu'il y a les exos uniquement pour les
         # plus de 45 ans?
 
-# O est d'accord aucun avantage pour l'employé ??
-#  @reference_formula
-#  class exoneration_cotisations_salariales_apprenti(SimpleFormulaColumn):
-#    column = FloatCol
-#    entity_class = Individus
-#    label = u"Exonération de cotisations salariales pour l'emploi d'un apprenti"
-#    url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
-#
-#    def function(self, simulation, period):
-#        cotisations_salariales = simulation.calculate('cotisations_salariales', period)
-#        return period, - cotisations_salariales
+# TODO: vérifier aucun avantage pour l'employé ??

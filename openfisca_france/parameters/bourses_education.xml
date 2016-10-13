@@ -1,0 +1,111 @@
+<NODE code="bourses_education" description="Bourses de l'Éducation nationale" origin="openfisca">
+  <NODE code="bourse_college" description="Bourse des collèges" origin="openfisca">
+    <CODE code="coeff_enfant_supplementaire" description="Coefficient à rajouter aux plafonds pour chaque enfant à charge" format="percent" origin="openfisca">
+      <VALUE deb="2016-07-01" fuzzy="true" valeur="0.3" />
+      <VALUE deb="2014-01-01" fin="2016-06-30" valeur="0.3" />
+    </CODE>
+    <CODE code="montant_taux_1" description="Montant taux 1" format="float" origin="openfisca" type="monetary">
+      <VALUE deb="2016-07-01" fuzzy="true" valeur="84" />
+      <VALUE deb="2014-01-01" fin="2016-06-30" valeur="84" />
+    </CODE>
+    <CODE code="montant_taux_2" description="Montant taux 2" format="float" origin="openfisca" type="monetary">
+      <VALUE deb="2016-07-01" fuzzy="true" valeur="231" />
+      <VALUE deb="2015-07-01" fin="2016-06-30" valeur="231" />
+      <VALUE deb="2014-01-01" fin="2015-06-30" valeur="228" />
+    </CODE>
+    <CODE code="montant_taux_3" description="Montant taux 3" format="float" origin="openfisca" type="monetary">
+      <VALUE deb="2016-07-01" fuzzy="true" valeur="360" />
+      <VALUE deb="2015-07-01" fin="2016-06-30" valeur="360" />
+      <VALUE deb="2014-01-01" fin="2015-06-30" valeur="357" />
+    </CODE>
+    <CODE code="plafond_taux_1" description="Plafond de référence pour le taux 1" format="float" origin="openfisca" type="monetary">
+      <VALUE deb="2016-07-01" fuzzy="true" valeur="11288" />
+      <VALUE deb="2015-07-01" fin="2016-06-30" valeur="11288" />
+      <VALUE deb="2014-01-01" fin="2015-06-30" valeur="11252" />
+    </CODE>
+    <CODE code="plafond_taux_2" description="Plafond de référence pour le taux 2" format="float" origin="openfisca" type="monetary">
+      <VALUE deb="2016-07-01" fuzzy="true" valeur="6102" />
+      <VALUE deb="2015-07-01" fin="2016-06-30" valeur="6102" />
+      <VALUE deb="2014-01-01" fin="2015-06-30" valeur="6083" />
+    </CODE>
+    <CODE code="plafond_taux_3" description="Plafond de référence pour le taux 3" format="float" origin="openfisca" type="monetary">
+      <VALUE deb="2016-07-01" fuzzy="true" valeur="2153" />
+      <VALUE deb="2015-07-01" fin="2016-06-30" valeur="2153" />
+      <VALUE deb="2014-01-01" fin="2015-06-30" valeur="2146" />
+    </CODE>
+  </NODE>
+  <NODE code="bourse_lycee" description="Bourse de lycée" origin="openfisca">
+    <NODE code="increments_par_point_de_charge" description="Incrément à ajouter au plafond par point de charge supplémentaire" origin="openfisca">
+      <CODE code="10_parts" description="Incrément pour 10 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="654.39" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="654.39" />
+      </CODE>
+      <CODE code="3_parts" description="Incrément pour 3 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="1344.26" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="1344.26" />
+      </CODE>
+      <CODE code="4_parts" description="Incrément pour 4 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="1257.82" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="1257.82" />
+      </CODE>
+      <CODE code="5_parts" description="Incrément pour 5 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="1169.47" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="1169.47" />
+      </CODE>
+      <CODE code="6_parts" description="Incrément pour 6 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="1068.15" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="1068.15" />
+      </CODE>
+      <CODE code="7_parts" description="Incrément pour 7 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="945.92" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="945.92" />
+      </CODE>
+      <CODE code="8_parts" description="Incrément pour 8 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="861.49" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="861.49" />
+      </CODE>
+      <CODE code="9_parts" description="Incrément pour 9 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="728.27" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="728.27" />
+      </CODE>
+    </NODE>
+    <NODE code="plafonds_reference" description="Plafonds de référence pour chaque nombre de parts avec 9 points de charge" origin="openfisca">
+      <CODE code="10_parts" description="Plafond de référence pour 10 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="5889" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="5889" />
+      </CODE>
+      <CODE code="3_parts" description="Plafond de référence pour 3 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="12098" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="12098" />
+      </CODE>
+      <CODE code="4_parts" description="Plafond de référence pour 4 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="11319" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="11319" />
+      </CODE>
+      <CODE code="5_parts" description="Plafond de référence pour 5 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="10525" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="10525" />
+      </CODE>
+      <CODE code="6_parts" description="Plafond de référence pour 6 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="9612" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="9612" />
+      </CODE>
+      <CODE code="7_parts" description="Plafond de référence pour 7 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="8513" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="8513" />
+      </CODE>
+      <CODE code="8_parts" description="Plafond de référence pour 8 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="7753" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="7753" />
+      </CODE>
+      <CODE code="9_parts" description="Plafond de référence pour 9 parts" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2016-01-02" fuzzy="true" valeur="6554" />
+        <VALUE deb="2014-01-01" fin="2016-01-01" valeur="6554" />
+      </CODE>
+    </NODE>
+    <CODE code="valeur_part" description="Valeur de la part" format="float" origin="openfisca" type="monetary">
+      <VALUE deb="2016-01-02" fuzzy="true" valeur="45.3" />
+      <VALUE deb="2014-01-01" fin="2016-01-01" valeur="45.3" />
+    </CODE>
+  </NODE>
+</NODE>

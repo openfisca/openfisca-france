@@ -1,0 +1,28 @@
+- period: "2016-01"
+  name: Temps partiel
+  relative_error_margin: 0.001
+  input_variables:
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 1
+    salaire_de_base: 3428.6 # supérieur en équivalent temps plein (4000) au plafond_securite_sociale
+    heures_remunerees_volume: 130 # 130 heures par mois = 30h par semaine = 6/7
+    contrat_de_travail: 1 # temps partiel
+  output_variables:
+    # le plafond_securite_sociale est proratisé
+    # le FNAL (effectif < 20) est donc plafonné à un montant < plafond_securite_sociale
+    plafond_securite_sociale: 3218 * (6 / 7)
+    vieillesse_plafonnee_employeur: -3218 * (6 / 7) * 0.0855
+    vieillesse_deplafonnee_employeur: -3428.6 * 0.0185
+
+- period: "2016-01"
+  name: Temps plein
+  relative_error_margin: 0.001
+  input_variables:
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 1
+    salaire_de_base: 3428.6
+    contrat_de_travail: 0 # temps plein
+  output_variables:
+    plafond_securite_sociale: 3218 * 1
+    vieillesse_plafonnee_employeur: -3218 * 1 * 0.0855
+    vieillesse_deplafonnee_employeur: -3428.6 * 0.0185

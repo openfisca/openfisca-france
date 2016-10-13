@@ -5,7 +5,7 @@ input_variables:
   arrco_tranche_a_taux_employeur: .04539
   arrco_tranche_a_taux_salarie: .03024
   assujettie_taxe_salaires: False
-  avantages_en_nature_valeur_reelle: 0
+  avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: 0  # temps plein
   contrat_de_travail_debut: "2013-01-01"
   contrat_de_travail_fin: "2013-12-31"
@@ -28,13 +28,13 @@ input_variables:
   taux_versement_transport: 0.015  # Codé en dur car le taux a changé depuis et on ne dispose pas d'historique
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  type_sal: {"2013-08": 1}  # cadre
+  categorie_salarie: {"2013-08": 1}  # cadre
   volume_jours_ijss: 0
 output_variables:
   # TODO à inclure dans la décomposition et à finir de coder forfait_social: -3.8 # 47.49 de base
   # TODO à coder taxe_handicapes: 18.40
 
-  # salsuperbrut: 0
+  # salaire_super_brut: 0
   # cotisations_employeur: 0
 
   # cotisations_employeur_contributives: 0
@@ -42,7 +42,8 @@ output_variables:
   agff_employeur: -30.15
   apec_employeur: -0.9
   arrco_employeur: -114.06
-  agirc_employeur: -41.13
+  agirc_employeur: 0
+  agirc_gmp_employeur: -41.13
   chomage_employeur: -100.52
   cotisation_exceptionnelle_temporaire_employeur: -5.53
   vieillesse_deplafonnee_employeur: -40.21
@@ -80,7 +81,8 @@ output_variables:
 
   # cotisations_salariales_contributives: 0
   agff_salarie: -20.10
-  agirc_salarie: -25.13
+  agirc_salarie: 0
+  agirc_gmp_salarie: -25.13
   apec_salarie: -0.6
   arrco_salarie: -75.99
   chomage_salarie: -60.31

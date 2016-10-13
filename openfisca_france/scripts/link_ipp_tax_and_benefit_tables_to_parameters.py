@@ -1,29 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 """Create a YAML file associating the fields in IPP tax and benefit tables to their matching parameters in OpenFisca."""
 
 
@@ -38,7 +15,7 @@ import sys
 import yaml
 
 
-from openfisca_france import init_country
+from openfisca_france import FranceTaxBenefitSystem
 
 
 date_names = (
@@ -204,8 +181,7 @@ def main():
 
 #    print yaml.dump(ipp_infos_by_value, allow_unicode = True, default_flow_style = False, indent = 2, width = 120)
 
-    TaxBenefitSystem = init_country()
-    tax_benefit_system = TaxBenefitSystem()
+    tax_benefit_system = FranceTaxBenefitSystem()
 
     # print yaml.dump(tax_benefit_system.legislation_json, allow_unicode = True, default_flow_style = False, indent = 2,
     #     width = 120)

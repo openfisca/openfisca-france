@@ -1,42 +1,18 @@
 # -*- coding: utf-8 -*-
 
-
-# OpenFisca -- A versatile microsimulation software
-# By: OpenFisca Team <contact@openfisca.fr>
-#
-# Copyright (C) 2011, 2012, 2013, 2014, 2015 OpenFisca Team
-# https://github.com/openfisca
-#
-# This file is part of OpenFisca.
-#
-# OpenFisca is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# OpenFisca is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 from __future__ import division
 
 import logging
 
 from numpy import minimum as min_, maximum as max_, logical_not as not_, around
 
-from ...base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 log = logging.getLogger(__name__)
 
 
-@reference_formula
-class reductions(DatedFormulaColumn):
+class reductions(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"reductions"
@@ -46,7 +22,7 @@ class reductions(DatedFormulaColumn):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2002
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         adhcga = simulation.calculate('adhcga', period)
         assvie = simulation.calculate('assvie', period)
         cappme = simulation.calculate('cappme', period)
@@ -76,7 +52,7 @@ class reductions(DatedFormulaColumn):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2003 et 2004
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         adhcga = simulation.calculate('adhcga', period)
         assvie = simulation.calculate('assvie', period)
         cappme = simulation.calculate('cappme', period)
@@ -107,7 +83,7 @@ class reductions(DatedFormulaColumn):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2005
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         cotsyn = simulation.calculate('cotsyn', period)
@@ -137,7 +113,7 @@ class reductions(DatedFormulaColumn):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2006
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         cotsyn = simulation.calculate('cotsyn', period)
@@ -169,7 +145,7 @@ class reductions(DatedFormulaColumn):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2007
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         cotsyn = simulation.calculate('cotsyn', period)
@@ -202,7 +178,7 @@ class reductions(DatedFormulaColumn):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2008
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         cotsyn = simulation.calculate('cotsyn', period)
@@ -235,7 +211,7 @@ class reductions(DatedFormulaColumn):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2009
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         cotsyn = simulation.calculate('cotsyn', period)
@@ -275,7 +251,7 @@ class reductions(DatedFormulaColumn):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2010
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         cotsyn = simulation.calculate('cotsyn', period)
@@ -315,7 +291,7 @@ class reductions(DatedFormulaColumn):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2011
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         cotsyn = simulation.calculate('cotsyn', period)
@@ -355,7 +331,7 @@ class reductions(DatedFormulaColumn):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2012
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         creaen = simulation.calculate('creaen', period)
@@ -393,7 +369,7 @@ class reductions(DatedFormulaColumn):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2013
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         accult = simulation.calculate('accult', period)
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
@@ -416,6 +392,7 @@ class reductions(DatedFormulaColumn):
         mohist = simulation.calculate('mohist', period)
         patnat = simulation.calculate('patnat', period)
         prcomp = simulation.calculate('prcomp', period)
+        reduction_impot_exceptionnelle = simulation.calculate('reduction_impot_exceptionnelle', period)
         repsoc = simulation.calculate('repsoc', period)
         resimm = simulation.calculate('resimm', period)
         rsceha = simulation.calculate('rsceha', period)
@@ -426,17 +403,60 @@ class reductions(DatedFormulaColumn):
 
         total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist +
-        patnat + prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi)
+        patnat + prcomp + reduction_impot_exceptionnelle + repsoc + resimm + rsceha + saldom + scelli + sofica +
+        spfcpi)
+        return period, min_(ip_net, total_reductions)
+
+    @dated_function(start = date(2014, 1, 1))  # Not checked
+    def function_2014__(self, simulation, period):
+        '''
+        Renvoie la somme des réductions d'impôt à intégrer pour l'année 2014 et + (non vérifiée)
+        '''
+        period = period.this_year
+        accult = simulation.calculate('accult', period)
+        adhcga = simulation.calculate('adhcga', period)
+        cappme = simulation.calculate('cappme', period)
+        creaen = simulation.calculate('creaen', period)
+        daepad = simulation.calculate('daepad', period)
+        deffor = simulation.calculate('deffor', period)
+        dfppce = simulation.calculate('dfppce', period)
+        doment = simulation.calculate('doment', period)
+        domlog = simulation.calculate('domlog', period)
+        donapd = simulation.calculate('donapd', period)
+        duflot = simulation.calculate('duflot', period)
+        ecpess = simulation.calculate('ecpess', period)
+        garext = simulation.calculate('garext', period)
+        intagr = simulation.calculate('intagr', period)
+        invfor = simulation.calculate('invfor', period)
+        invlst = simulation.calculate('invlst', period)
+        ip_net = simulation.calculate('ip_net', period)
+        locmeu = simulation.calculate('locmeu', period)
+        mecena = simulation.calculate('mecena', period)
+        mohist = simulation.calculate('mohist', period)
+        patnat = simulation.calculate('patnat', period)
+        prcomp = simulation.calculate('prcomp', period)
+        reduction_impot_exceptionnelle = simulation.calculate('reduction_impot_exceptionnelle', period)
+        repsoc = simulation.calculate('repsoc', period)
+        resimm = simulation.calculate('resimm', period)
+        rsceha = simulation.calculate('rsceha', period)
+        saldom = simulation.calculate('saldom', period)
+        scelli = simulation.calculate('scelli', period)
+        sofica = simulation.calculate('sofica', period)
+        spfcpi = simulation.calculate('spfcpi', period)
+
+        total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
+        duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist +
+        patnat + prcomp + reduction_impot_exceptionnelle + repsoc + resimm + rsceha + saldom + scelli + sofica +
+        spfcpi)
         return period, min_(ip_net, total_reductions)
 
 
-#pour tous les dfppce:
-    # : note de bas de page
-    # TODO: plafonnement pour parti politiques depuis 2012 P.ir.reductions_impots.dfppce.max_niv
+        # pour tous les dfppce:
+        # : note de bas de page
+        # TODO: plafonnement pour parti politiques depuis 2012 P.impot_revenu.reductions_impots.dons.max_niv
 
 
-@reference_formula
-class adhcga(SimpleFormulaColumn):
+class adhcga(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"adhcga"
@@ -446,16 +466,15 @@ class adhcga(SimpleFormulaColumn):
         Frais de comptabilité et d'adhésion à un CGA ou AA
         2002-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ff = simulation.calculate('f7ff', period)
         f7fg = simulation.calculate('f7fg', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.adhcga
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.adhcga
 
         return period, min_(f7ff, P.max * f7fg)
 
 
-@reference_formula
-class assvie(SimpleFormulaColumn):
+class assvie(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"assvie"
@@ -467,19 +486,18 @@ class assvie(SimpleFormulaColumn):
         Assurance-vie (cases GW, GX et GY de la 2042)
         2002-2004
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         nb_pac = simulation.calculate('nb_pac', period)
         f7gw = simulation.calculate('f7gw', period)
         f7gx = simulation.calculate('f7gx', period)
         f7gy = simulation.calculate('f7gy', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.assvie
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.assvie
 
         max1 = P.max + nb_pac * P.pac
         return period, P.taux * min_(f7gw + f7gx + f7gy, max1)
 
 
-@reference_formula
-class cappme(DatedFormulaColumn):
+class cappme(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cappme"
@@ -490,14 +508,14 @@ class cappme(DatedFormulaColumn):
         Souscriptions au capital des PME
         2002
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.cappme
 
         base = f7cf
-        seuil = P.seuil * (marpac + 1)
+        seuil = P.seuil * (maries_ou_pacses + 1)
         return period, P.taux * min_(base, seuil)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2003, 12, 31))
@@ -506,15 +524,15 @@ class cappme(DatedFormulaColumn):
         Souscriptions au capital des PME
         2003
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.cappme
 
         base = f7cf + f7cl
-        seuil = P.seuil * (marpac + 1)
+        seuil = P.seuil * (maries_ou_pacses + 1)
         return period, P.taux * min_(base, seuil)
 
     @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
@@ -523,16 +541,16 @@ class cappme(DatedFormulaColumn):
         Souscriptions au capital des PME
         2004
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
         f7cm = simulation.calculate('f7cm', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.cappme
 
         base = f7cf + f7cl + f7cm
-        seuil = P.seuil * (marpac + 1)
+        seuil = P.seuil * (maries_ou_pacses + 1)
         return period, P.taux * min_(base, seuil)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2008, 12, 31))
@@ -541,17 +559,17 @@ class cappme(DatedFormulaColumn):
         Souscriptions au capital des PME
         2005-2008
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
         f7cm = simulation.calculate('f7cm', period)
         f7cn = simulation.calculate('f7cn', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.cappme
 
         base = f7cf + f7cl + f7cm + f7cn
-        seuil = P.seuil * (marpac + 1)
+        seuil = P.seuil * (maries_ou_pacses + 1)
         return period, P.taux * min_(base, seuil)
 
     @dated_function(start = date(2009, 1, 1), stop = date(2010, 12, 31))
@@ -560,19 +578,19 @@ class cappme(DatedFormulaColumn):
         Souscriptions au capital des PME
         2009-2010
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
         f7cm = simulation.calculate('f7cm', period)
         f7cn = simulation.calculate('f7cn', period)
         f7cu = simulation.calculate('f7cu', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.cappme
 
         base = f7cf + f7cl + f7cm + f7cn + f7cu
-        seuil = P.seuil * (marpac + 1)
-        seuil = P.seuil_tpe * (marpac + 1) * (f7cu > 0) + P.seuil * (marpac + 1) * (f7cu <= 0)
+        seuil = P.seuil * (maries_ou_pacses + 1)
+        seuil = P.seuil_tpe * (maries_ou_pacses + 1) * (f7cu > 0) + P.seuil * (maries_ou_pacses + 1) * (f7cu <= 0)
         return period, P.taux * min_(base, seuil)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
@@ -581,8 +599,8 @@ class cappme(DatedFormulaColumn):
         Souscriptions au capital des PME
         2011
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
         f7cm = simulation.calculate('f7cm', period)
@@ -590,10 +608,10 @@ class cappme(DatedFormulaColumn):
         f7cq = simulation.calculate('f7cq', period)
         f7cu = simulation.calculate('f7cu', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.cappme
 
         base = f7cl + f7cm + f7cn + f7cq
-        seuil = P.seuil_tpe * (marpac + 1) * (f7cu > 0) + P.seuil * (marpac + 1) * (f7cu <= 0)
+        seuil = P.seuil_tpe * (maries_ou_pacses + 1) * (f7cu > 0) + P.seuil * (maries_ou_pacses + 1) * (f7cu <= 0)
         max0 = max_(seuil - base, 0)
         return period, max_(P.taux25 * min_(base, seuil), P.taux * min_(max0, f7cf + f7cu))
 
@@ -603,8 +621,8 @@ class cappme(DatedFormulaColumn):
         Souscriptions au capital des PME
         2012 cf. 2041 GR
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
         f7cm = simulation.calculate('f7cm', period)
@@ -612,13 +630,13 @@ class cappme(DatedFormulaColumn):
         f7cq = simulation.calculate('f7cq', period)
         f7cu = simulation.calculate('f7cu', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.cappme
 
         #TODO: gérer les changements de situation familiale
         base = f7cl + f7cm + f7cn
-        seuil1 = P.seuil * (marpac + 1)
-        seuil2 = max_(0, P.seuil_tpe * (marpac + 1) - min_(base, seuil1) - min_(f7cq, seuil1) - min_(f7cu, seuil1))
-        seuil3 = min_(P.seuil_tpe * (marpac + 1) - min_(base, seuil1) - min_(f7cq, seuil1), seuil1)
+        seuil1 = P.seuil * (maries_ou_pacses + 1)
+        seuil2 = max_(0, P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cq, seuil1) - min_(f7cu, seuil1))
+        seuil3 = min_(P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cq, seuil1), seuil1)
         return period, P.taux25 * min_(base, seuil1) + P.taux * min_(f7cq, seuil1) + P.taux18 * (min_(f7cf, seuil3) +
                 mini(f7cu, seuil2, seuil1))
 
@@ -628,8 +646,8 @@ class cappme(DatedFormulaColumn):
         Souscriptions au capital des PME
         2013
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7cc = simulation.calculate('f7cc', period)
         f7cf = simulation.calculate('f7cf', period)
         f7cl = simulation.calculate('f7cl', period)
@@ -638,21 +656,17 @@ class cappme(DatedFormulaColumn):
         f7cq = simulation.calculate('f7cq', period)
         f7cu = simulation.calculate('f7cu', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.cappme
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.cappme
 
         base = f7cl + f7cm
-        seuil1 = P.seuil * (marpac + 1)
-        seuil2 = max_(0, P.seuil_tpe * (marpac + 1) - min_(base, seuil1) - min_(f7cn, seuil1) - min_(f7cu, seuil1))
-        seuil3 = min_(P.seuil_tpe * (marpac + 1) - min_(base, seuil1) - min_(f7cq, seuil1), seuil1)
+        seuil1 = P.seuil * (maries_ou_pacses + 1)
+        seuil2 = max_(0, P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cn, seuil1) - min_(f7cu, seuil1))
+        seuil3 = min_(P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cq, seuil1), seuil1)
         return period, P.taux25 * min_(base, seuil1) + P.taux22 * min_(f7cn, seuil1) + P.taux18 * (min_(f7cf + f7cc, seuil3) +
                 min_(f7cu + f7cq, seuil2))
 
 
-#TODO: vérifier l'existence du "max_"
-
-
-@reference_formula
-class cotsyn(SimpleFormulaColumn):
+class cotsyn(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"cotsyn"
@@ -661,26 +675,26 @@ class cotsyn(SimpleFormulaColumn):
         '''
         Cotisations syndicales (2002-20131
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ac_holder = simulation.compute('f7ac', period)
-        salaire_imposable_holder = simulation.compute('salaire_imposable', period)
-        cho_holder = simulation.compute('cho', period)
-        rst_holder = simulation.compute('rst', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.cotsyn
+        salaire_imposable_holder = simulation.compute_add('salaire_imposable', period)
+        cho_holder = simulation.compute('chomage_imposable', period)
+        rst_holder = simulation.compute('retraite_imposable', period)
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.cotsyn
 
         f7ac = self.filter_role(f7ac_holder, role = VOUS)
         f7ae = self.filter_role(f7ac_holder, role = CONJ)
         f7ag = self.filter_role(f7ac_holder, role = PAC1)
 
-        cho = self.split_by_roles(cho_holder)
-        rst = self.split_by_roles(rst_holder)
+        chomage_imposable = self.split_by_roles(cho_holder)
+        retraite_imposable = self.split_by_roles(rst_holder)
         salaire_imposable = self.split_by_roles(salaire_imposable_holder)
 
         tx = P.seuil
 
         salv, salc, salp = salaire_imposable[VOUS], salaire_imposable[CONJ], salaire_imposable[PAC1]
-        chov, choc, chop = cho[VOUS], cho[CONJ], cho[PAC1]
-        rstv, rstc, rstp = rst[VOUS], rst[CONJ], rst[PAC1]
+        chov, choc, chop = chomage_imposable[VOUS], chomage_imposable[CONJ], chomage_imposable[PAC1]
+        rstv, rstc, rstp = retraite_imposable[VOUS], retraite_imposable[CONJ], retraite_imposable[PAC1]
         maxv = (salv + chov + rstv) * tx
         maxc = (salc + choc + rstc) * tx
         maxp = (salp + chop + rstp) * tx
@@ -688,8 +702,7 @@ class cotsyn(SimpleFormulaColumn):
         return period, P.taux * (min_(f7ac, maxv) + min_(f7ae, maxc) + min_(f7ag, maxp))
 
 
-@reference_formula
-class creaen(DatedFormulaColumn):
+class creaen(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"creaen"
@@ -700,11 +713,11 @@ class creaen(DatedFormulaColumn):
         Aide aux créateurs et repreneurs d'entreprises
         2006-2008
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7fy = simulation.calculate('f7fy', period)
         f7gy = simulation.calculate('f7gy', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.creaen
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.creaen
 
         return period, (P.base * f7fy + P.hand * f7gy)
 
@@ -714,7 +727,7 @@ class creaen(DatedFormulaColumn):
         Aide aux créateurs et repreneurs d'entreprises
         2009
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7fy = simulation.calculate('f7fy', period)
         f7gy = simulation.calculate('f7gy', period)
         f7jy = simulation.calculate('f7jy', period)
@@ -722,7 +735,7 @@ class creaen(DatedFormulaColumn):
         f7ky = simulation.calculate('f7ky', period)
         f7iy = simulation.calculate('f7iy', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.creaen
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.creaen
 
         return period, (P.base * ((f7jy + f7fy) + f7hy / 2) +
                     P.hand * ((f7ky + f7gy) + f7iy / 2))
@@ -733,7 +746,7 @@ class creaen(DatedFormulaColumn):
         Aide aux créateurs et repreneurs d'entreprises
         2010-2011
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7fy = simulation.calculate('f7fy', period)
         f7gy = simulation.calculate('f7gy', period)
         f7jy = simulation.calculate('f7jy', period)
@@ -743,7 +756,7 @@ class creaen(DatedFormulaColumn):
         f7ly = simulation.calculate('f7ly', period)
         f7my = simulation.calculate('f7my', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.creaen
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.creaen
 
         return period, (P.base * ((f7jy + f7fy) + (f7hy + f7ly) / 2) +
                     P.hand * ((f7ky + f7gy) + (f7iy + f7my) / 2))
@@ -754,18 +767,17 @@ class creaen(DatedFormulaColumn):
         Aide aux créateurs et repreneurs d'entreprises
         2012-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ly = simulation.calculate('f7ly', period)
         f7my = simulation.calculate('f7my', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.creaen
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.creaen
 
         return period, (P.base * (f7ly / 2) +
                     P.hand * (f7my / 2))
 
 
-@reference_formula
-class deffor(SimpleFormulaColumn):
+class deffor(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"deffor"
@@ -776,15 +788,14 @@ class deffor(SimpleFormulaColumn):
         Défense des forêts contre l'incendie
         2006-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7uc = simulation.calculate('f7uc', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.deffor
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.deffor
 
         return period, P.taux * min_(f7uc, P.max)
 
 
-@reference_formula
-class daepad(SimpleFormulaColumn):
+class daepad(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"daepad"
@@ -794,16 +805,15 @@ class daepad(SimpleFormulaColumn):
         Dépenses d'accueil dans un établissement pour personnes âgées dépendantes
         ?-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7cd = simulation.calculate('f7cd', period)
         f7ce = simulation.calculate('f7ce', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.daepad
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.daepad
 
         return period, P.taux * (min_(f7cd, P.max) + min_(f7ce, P.max))
 
 
-@reference_formula
-class dfppce(DatedFormulaColumn):
+class dfppce(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"dfppce"
@@ -814,15 +824,15 @@ class dfppce(DatedFormulaColumn):
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rbg_int = simulation.calculate('rbg_int', period)
         f7uf = simulation.calculate('f7uf', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = f7uf
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
     def function_20040101_20041231(self, simulation, period):
@@ -830,16 +840,16 @@ class dfppce(DatedFormulaColumn):
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rbg_int = simulation.calculate('rbg_int', period)
         f7uf = simulation.calculate('f7uf', period)
         f7xs = simulation.calculate('f7xs', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
     def function_20050101_20051231(self, simulation, period):
@@ -847,17 +857,17 @@ class dfppce(DatedFormulaColumn):
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rbg_int = simulation.calculate('rbg_int', period)
         f7uf = simulation.calculate('f7uf', period)
         f7xs = simulation.calculate('f7xs', period)
         f7xt = simulation.calculate('f7xt', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
     def function_20060101_20061231(self, simulation, period):
@@ -865,18 +875,18 @@ class dfppce(DatedFormulaColumn):
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rbg_int = simulation.calculate('rbg_int', period)
         f7uf = simulation.calculate('f7uf', period)
         f7xs = simulation.calculate('f7xs', period)
         f7xt = simulation.calculate('f7xt', period)
         f7xu = simulation.calculate('f7xu', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
     def function_20070101_20071231(self, simulation, period):
@@ -884,7 +894,7 @@ class dfppce(DatedFormulaColumn):
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rbg_int = simulation.calculate('rbg_int', period)
         f7uf = simulation.calculate('f7uf', period)
         f7xs = simulation.calculate('f7xs', period)
@@ -892,11 +902,11 @@ class dfppce(DatedFormulaColumn):
         f7xu = simulation.calculate('f7xu', period)
         f7xw = simulation.calculate('f7xw', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu + f7xw
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2008, 1, 1), stop = date(2010, 12, 31))
     def function_20080101_20101231(self, simulation, period):
@@ -904,7 +914,7 @@ class dfppce(DatedFormulaColumn):
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rbg_int = simulation.calculate('rbg_int', period)
         f7uf = simulation.calculate('f7uf', period)
         f7xs = simulation.calculate('f7xs', period)
@@ -913,11 +923,11 @@ class dfppce(DatedFormulaColumn):
         f7xw = simulation.calculate('f7xw', period)
         f7xy = simulation.calculate('f7xy', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu + f7xw + f7xy
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_20110101_20111231(self, simulation, period):
@@ -925,7 +935,7 @@ class dfppce(DatedFormulaColumn):
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales (2011-2013)
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rbg_int = simulation.calculate('rbg_int', period)
         f7uf = simulation.calculate('f7uf', period)
         f7xs = simulation.calculate('f7xs', period)
@@ -934,11 +944,11 @@ class dfppce(DatedFormulaColumn):
         f7xw = simulation.calculate('f7xw', period)
         f7xy = simulation.calculate('f7xy', period)
         f7vc = simulation.calculate('f7vc', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
@@ -946,7 +956,7 @@ class dfppce(DatedFormulaColumn):
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales (2011-2013)
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rbg_int = simulation.calculate('rbg_int', period)
         f7uf = simulation.calculate('f7uf', period)
         f7xs = simulation.calculate('f7xs', period)
@@ -955,11 +965,11 @@ class dfppce(DatedFormulaColumn):
         f7xw = simulation.calculate('f7xw', period)
         f7xy = simulation.calculate('f7xy', period)
         f7vc = simulation.calculate('f7vc', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = min_(P.max_niv, f7uf) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):
@@ -967,7 +977,7 @@ class dfppce(DatedFormulaColumn):
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales (2011-2013)
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         rbg_int = simulation.calculate('rbg_int', period)
         f7uf = simulation.calculate('f7uf', period)
         f7uh = simulation.calculate('f7uh', period)
@@ -977,11 +987,11 @@ class dfppce(DatedFormulaColumn):
         f7xw = simulation.calculate('f7xw', period)
         f7xy = simulation.calculate('f7xy', period)
         f7vc = simulation.calculate('f7vc', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.dfppce
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.dons
 
         base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
-        max1 = P.max * rbg_int
-        return period, P.taux * min_(base, max1)
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return period, P.taux_dons_oeuvres * min_(base, max1)
 
 
     # TODO: note de bas de page
@@ -990,8 +1000,7 @@ class dfppce(DatedFormulaColumn):
 
 
 # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
-@reference_formula
-class doment(DatedFormulaColumn):
+class doment(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"doment"
@@ -1001,7 +1010,7 @@ class doment(DatedFormulaColumn):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ur = simulation.calculate('f7ur', period)
         f7oz = simulation.calculate('f7oz', period)
         f7pz = simulation.calculate('f7pz', period)
@@ -1015,7 +1024,7 @@ class doment(DatedFormulaColumn):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ur = simulation.calculate('f7ur', period)
         f7oz = simulation.calculate('f7oz', period)
         f7pz = simulation.calculate('f7pz', period)
@@ -1030,7 +1039,7 @@ class doment(DatedFormulaColumn):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7oz = simulation.calculate('f7oz', period)
         f7pz = simulation.calculate('f7pz', period)
         f7qz = simulation.calculate('f7qz', period)
@@ -1050,7 +1059,7 @@ class doment(DatedFormulaColumn):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7oz = simulation.calculate('f7oz', period)
         f7pz = simulation.calculate('f7pz', period)
         f7qz = simulation.calculate('f7qz', period)
@@ -1080,7 +1089,7 @@ class doment(DatedFormulaColumn):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ks = simulation.calculate('f7ks', period)
         f7kt = simulation.calculate('f7kt', period)
         f7ku = simulation.calculate('f7ku', period)
@@ -1124,7 +1133,7 @@ class doment(DatedFormulaColumn):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ks = simulation.calculate('f7ks', period)
         f7kt = simulation.calculate('f7kt', period)
         f7ku = simulation.calculate('f7ku', period)
@@ -1197,7 +1206,7 @@ class doment(DatedFormulaColumn):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         fhsa = simulation.calculate('fhsa', period)
         fhsb = simulation.calculate('fhsb', period)
         fhsf = simulation.calculate('fhsf', period)
@@ -1288,17 +1297,15 @@ class doment(DatedFormulaColumn):
                     f7qg + f7qi + f7qo + f7qp + f7qr + f7qv + f7qz + f7rg + f7ri + f7rj + f7rk + f7rl + f7rm + f7ro + f7rp +
                     f7rq + f7rr + f7rt + f7ru + f7rv + f7rw)
 
+        # TODO: vérifier pour 2002
+        # TODO: pb 7ul 2005-2009 (ITRED = 0 au lieu de 20€ (forfaitaire), dû à ça : Cochez [7UL] si vous déclarez en ligne pour
+        # la première fois vos revenus 2008 et si vous utilisez un moyen automatique de paiement (prélèvement mensuel ou à
+        # l'échéance ou paiement par voie électronique))
 
-#TODO: vérifier pour 2002
-#TODO: pb 7ul 2005-2009 (ITRED = 0 au lieu de 20€ (forfaitaire), dû à ça : Cochez [7UL] si vous déclarez en ligne pour
-#la première fois vos revenus 2008 et si vous utilisez un moyen automatique de paiement (prélèvement mensuel ou à
-#l'échéance ou paiement par voie électronique))
 
+        # TODO: vérifier les dates des variables de doment et domsoc (y sont-elles encore en 2013 par ex ?)
 
-#TODO: vérifier les dates des variables de doment et domsoc (y sont-elles encore en 2013 par ex ?)
-
-@reference_formula
-class domlog(DatedFormulaColumn):
+class domlog(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"domlog"
@@ -1309,13 +1316,13 @@ class domlog(DatedFormulaColumn):
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2002
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ua = simulation.calculate('f7ua', period)
         f7ub = simulation.calculate('f7ub', period)
         f7uc = simulation.calculate('f7uc', period)
         f7uj = simulation.calculate('f7uj', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.domlog
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.domlog
 
         return period, P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc)
 
@@ -1325,14 +1332,14 @@ class domlog(DatedFormulaColumn):
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2003-2004
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ua = simulation.calculate('f7ua', period)
         f7ub = simulation.calculate('f7ub', period)
         f7uc = simulation.calculate('f7uc', period)
         f7ui = simulation.calculate('f7ui', period)
         f7uj = simulation.calculate('f7uj', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.domlog
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.domlog
 
         return period, P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc) + f7ui
 
@@ -1342,14 +1349,14 @@ class domlog(DatedFormulaColumn):
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2005-2007
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ua = simulation.calculate('f7ua', period)
         f7ub = simulation.calculate('f7ub', period)
         f7uc = simulation.calculate('f7uc', period)
         f7ui = simulation.calculate('f7ui', period)
         f7uj = simulation.calculate('f7uj', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.domlog
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.domlog
 
         return period, P.taux1 * f7uj + P.taux2 * (f7ua + f7ub) + f7ui
 
@@ -1359,7 +1366,7 @@ class domlog(DatedFormulaColumn):
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2008
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ui = simulation.calculate('f7ui', period)
 
         return period, f7ui
@@ -1370,7 +1377,7 @@ class domlog(DatedFormulaColumn):
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2009
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7qb = simulation.calculate('f7qb', period)
         f7qc = simulation.calculate('f7qc', period)
         f7qd = simulation.calculate('f7qd', period)
@@ -1385,7 +1392,7 @@ class domlog(DatedFormulaColumn):
         2010
         TODO: Plafonnement sur la notice
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7qb = simulation.calculate('f7qb', period)
         f7qc = simulation.calculate('f7qc', period)
         f7qd = simulation.calculate('f7qd', period)
@@ -1402,7 +1409,7 @@ class domlog(DatedFormulaColumn):
         2011
         TODO: Plafonnement sur la notice
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7qb = simulation.calculate('f7qb', period)
         f7qc = simulation.calculate('f7qc', period)
         f7qd = simulation.calculate('f7qd', period)
@@ -1426,7 +1433,7 @@ class domlog(DatedFormulaColumn):
         2012
         TODO: Plafonnement sur la notice
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7qb = simulation.calculate('f7qb', period)
         f7qc = simulation.calculate('f7qc', period)
         f7qd = simulation.calculate('f7qd', period)
@@ -1463,7 +1470,7 @@ class domlog(DatedFormulaColumn):
         2013
         TODO: Plafonnement sur la notice
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         fhod = simulation.calculate('fhod', period)
         fhoe = simulation.calculate('fhoe', period)
         fhof = simulation.calculate('fhof', period)
@@ -1505,8 +1512,7 @@ class domlog(DatedFormulaColumn):
 #En accord avec la DGFiP mais pas de 7ub et 7uj dans la notice
 
 
-@reference_formula
-class domsoc(DatedFormulaColumn):
+class domsoc(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"domsoc"
@@ -1518,7 +1524,7 @@ class domsoc(DatedFormulaColumn):
         2010-
         TODO plafonnement à 15% f7qa / liens avec autres investissments ?
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7qn = simulation.calculate('f7qn', period)
         f7qk = simulation.calculate('f7qk', period)
         f7qu = simulation.calculate('f7qu', period)
@@ -1539,7 +1545,7 @@ class domsoc(DatedFormulaColumn):
         2013
         TODO plafonnement à 15% f7qa / liens avec autres investissments ?
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         fhra = simulation.calculate('fhra', period)
         fhrb = simulation.calculate('fhrb', period)
         fhrc = simulation.calculate('fhrc', period)
@@ -1558,8 +1564,7 @@ class domsoc(DatedFormulaColumn):
         return period,  fhra + fhrb + fhrc + fhrd + f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw + f7qx
 
 
-@reference_formula
-class donapd(DatedFormulaColumn):
+class donapd(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"donapd"
@@ -1569,9 +1574,9 @@ class donapd(DatedFormulaColumn):
         '''
         Dons effectués à  des organises d'aide aux personnes en difficulté (2002-2010)
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ud = simulation.calculate('f7ud', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.donapd
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.donapd
 
         return period, P.taux * min_(f7ud, P.max)
 
@@ -1580,16 +1585,15 @@ class donapd(DatedFormulaColumn):
         '''
         Dons effectués à  des organises d'aide aux personnes en difficulté (2011-2013)
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ud = simulation.calculate('f7ud', period)
         f7va = simulation.calculate('f7va', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.donapd
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.donapd
 
         return period, P.taux * min_(f7ud + f7va, P.max)
 
 
-@reference_formula
-class duflot(SimpleFormulaColumn):
+class duflot(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"duflot"
@@ -1600,18 +1604,17 @@ class duflot(SimpleFormulaColumn):
         Investissements locatifs interméiaires (loi Duflot)
         2013-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7gh = simulation.calculate('f7gh', period)
         f7gi = simulation.calculate('f7gi', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.duflot
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.duflot
 
         return period, min_(P.plafond, P.taux_m * f7gh + P.taux_om * f7gi) / 9
 
 
 #TODO: / 5 dans trois TOM
 
-@reference_formula
-class ecodev(SimpleFormulaColumn):
+class ecodev(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ecodev"
@@ -1623,16 +1626,15 @@ class ecodev(SimpleFormulaColumn):
         Sommes versées sur un compte épargne codéveloppement (case 7UH)
         2009
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7uh = simulation.calculate('f7uh', period)
         rbg_int = simulation.calculate('rbg_int', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.ecodev
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.ecodev
 
-        return period, min_(f7uh * P.taux, min_(P.base * rbg_int, P.max))  # page3 ligne 18
+        return period, min_(f7uh * P.taux, min_(P.taux_plafond * rbg_int, P.plafond_par_personne))  # page3 ligne 18
 
 
-@reference_formula
-class ecpess(SimpleFormulaColumn):
+class ecpess(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"ecpess"
@@ -1641,22 +1643,21 @@ class ecpess(SimpleFormulaColumn):
         '''
         Réduction d'impôt au titre des enfants à charge poursuivant leurs études secondaires ou supérieures
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ea = simulation.calculate('f7ea', period)
         f7eb = simulation.calculate('f7eb', period)
         f7ec = simulation.calculate('f7ec', period)
         f7ed = simulation.calculate('f7ed', period)
         f7ef = simulation.calculate('f7ef', period)
         f7eg = simulation.calculate('f7eg', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.ecpess
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.ecpess
 
         return period, (P.col * (f7ea + f7eb / 2) +
                 P.lyc * (f7ec + f7ed / 2) +
                 P.sup * (f7ef + f7eg / 2))
 
 
-@reference_formula
-class garext(DatedFormulaColumn):
+class garext(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"garext"
@@ -1668,14 +1669,14 @@ class garext(DatedFormulaColumn):
         et GE, GF, GG
         2002
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ga = simulation.calculate('f7ga', period)
         f7gb = simulation.calculate('f7gb', period)
         f7gc = simulation.calculate('f7gc', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.garext
+        P = simulation.legislation_at(period.start).impot_revenu.credits_impot.garext
 
-        max1 = P.max
+        max1 = P.plafond
         return period, P.taux * (min_(f7ga, max1) + min_(f7gb, max1) + min_(f7gc, max1))
 
     @dated_function(start = date(2003, 1, 1), stop = date(2005, 12, 31))
@@ -1685,7 +1686,7 @@ class garext(DatedFormulaColumn):
         et GE, GF, GG
         2003-2005
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ga = simulation.calculate('f7ga', period)
         f7gb = simulation.calculate('f7gb', period)
         f7gc = simulation.calculate('f7gc', period)
@@ -1693,10 +1694,10 @@ class garext(DatedFormulaColumn):
         f7gf = simulation.calculate('f7gf', period)
         f7gg = simulation.calculate('f7gg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.garext
+        P = simulation.legislation_at(period.start).impot_revenu.credits_impot.garext
 
-        max1 = P.max
-        max2 = P.max / 2
+        max1 = P.plafond
+        max2 = P.plafond / 2
         return period, P.taux * (min_(f7ga, max1) +
                            min_(f7gb, max1) +
                            min_(f7gc, max1) +
@@ -1705,8 +1706,7 @@ class garext(DatedFormulaColumn):
                            min_(f7gg, max2))
 
 
-@reference_formula
-class intagr(SimpleFormulaColumn):
+class intagr(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"intagr"
@@ -1717,17 +1717,16 @@ class intagr(SimpleFormulaColumn):
         Intérêts pour paiement différé accordé aux agriculteurs
         2005-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7um = simulation.calculate('f7um', period)
-        marpac = simulation.calculate('marpac', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.intagr
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.intagr
 
-        max1 = P.max * (1 + marpac)
+        max1 = P.max * (1 + maries_ou_pacses)
         return period, P.taux * min_(f7um, max1)
 
 
-@reference_formula
-class intcon(SimpleFormulaColumn):
+class intcon(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"intcon"
@@ -1739,16 +1738,15 @@ class intcon(SimpleFormulaColumn):
         Intérêts des prêts à la consommation (case UH)
         2004-2005
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7uh = simulation.calculate('f7uh', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.intcon
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.intcon
 
         max1 = P.max
         return period, P.taux * min_(f7uh, max1)
 
 
-@reference_formula
-class intemp(SimpleFormulaColumn):
+class intemp(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"intemp"
@@ -1760,17 +1758,16 @@ class intemp(SimpleFormulaColumn):
         Intérêts d'emprunts
         2002-2003
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         nb_pac = simulation.calculate('nb_pac', period)
         f7wg = simulation.calculate('f7wg', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.intemp
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.intemp
 
         max1 = P.max + P.pac * nb_pac
         return period, P.taux * min_(f7wg, max1)
 
 
-@reference_formula
-class invfor(DatedFormulaColumn):
+class invfor(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"invfor"
@@ -1780,13 +1777,13 @@ class invfor(DatedFormulaColumn):
         '''
         Investissements forestiers pour 2002-2005
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7un = simulation.calculate('f7un', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.invfor
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invfor
 
-        seuil = P.seuil * (marpac + 1)
+        seuil = P.seuil * (maries_ou_pacses + 1)
         return period, P.taux * min_(f7un, seuil)
 
     @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
@@ -1794,10 +1791,10 @@ class invfor(DatedFormulaColumn):
         '''
         Investissements forestiers pour 2006-2008
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7un = simulation.calculate('f7un', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.invfor
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invfor
 
         return period, P.taux * f7un
 
@@ -1806,44 +1803,44 @@ class invfor(DatedFormulaColumn):
         '''
         Investissements forestiers pour 2009
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7un = simulation.calculate('f7un', period)
         f7up = simulation.calculate('f7up', period)
         f7uq = simulation.calculate('f7uq', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.invfor
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invfor
 
-        return period, P.taux * (min_(f7un, P.seuil * (marpac + 1)) + min_(f7up, P.ifortra_seuil * (marpac + 1)) +
-                min_(f7uq, P.iforges_seuil * (marpac + 1)))
+        return period, P.taux * (min_(f7un, P.seuil * (maries_ou_pacses + 1)) + min_(f7up, P.ifortra_seuil * (maries_ou_pacses + 1)) +
+                min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1)))
 
     @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
     def function_20100101_20101231(self, simulation, period):
         '''
         Investissements forestiers pour 2010
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7te = simulation.calculate('f7te', period)
         f7un = simulation.calculate('f7un', period)
         f7up = simulation.calculate('f7up', period)
         f7uq = simulation.calculate('f7uq', period)
         f7uu = simulation.calculate('f7uu', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.invfor
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invfor
 
         return period, (P.taux * (
-            min_(f7un, P.seuil * (marpac + 1)) +
-            min_(f7up + f7uu + f7te, P.ifortra_seuil * (marpac + 1)) +
-            min_(f7uq, P.iforges_seuil * (marpac + 1))))
+            min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
+            min_(f7up + f7uu + f7te, P.ifortra_seuil * (maries_ou_pacses + 1)) +
+            min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))))
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_20110101_20111231(self, simulation, period):
         '''
         Investissements forestiers pour 2011 cf. 2041 GK
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7te = simulation.calculate('f7te', period)
         f7tf = simulation.calculate('f7tf', period)
         f7ul = simulation.calculate('f7ul', period)
@@ -1853,24 +1850,24 @@ class invfor(DatedFormulaColumn):
         f7uu = simulation.calculate('f7uu', period)
         f7uv = simulation.calculate('f7uv', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.invfor
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invfor
 
-        max0 = max_(0, P.ifortra_seuil * (marpac + 1) - f7ul)
+        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu + f7te + f7uv + f7tf)
         return period, (P.taux * (
-            min_(f7un, P.seuil * (marpac + 1)) +
+            min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
             min_(f7up, max1) +
-            min_(f7uq, P.iforges_seuil * (marpac + 1))) +
+            min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))) +
             P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0) +
-            P.taux_ass * min_(f7ul, P.ifortra_seuil * (marpac + 1)))
+            P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1)))
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
         '''
         Investissements forestiers pour 2012 cf. 2041 GK
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7te = simulation.calculate('f7te', period)
         f7tf = simulation.calculate('f7tf', period)
         f7tg = simulation.calculate('f7tg', period)
@@ -1882,26 +1879,26 @@ class invfor(DatedFormulaColumn):
         f7uv = simulation.calculate('f7uv', period)
         f7uw = simulation.calculate('f7uw', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.invfor
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invfor
 
-        max0 = max_(0, P.ifortra_seuil * (marpac + 1) - f7ul)
+        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu + f7te + f7uv + f7tf)
         max2 = max_(0, max1 - f7tg - f7uw)
         return period, (P.taux * (
-            min_(f7un, P.seuil * (marpac + 1)) +
+            min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
             min_(f7up, max2) +
-            min_(f7uq, P.iforges_seuil * (marpac + 1))) +
+            min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))) +
             P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0) +
             P.report11 * min_(f7tg + f7uw, max1) +
-            P.taux_ass * min_(f7ul, P.ifortra_seuil * (marpac + 1)))
+            P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1)))
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):
         '''
         Investissements forestiers pour 2013 cf. 2041 GK
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7te = simulation.calculate('f7te', period)
         f7tf = simulation.calculate('f7tf', period)
         f7tg = simulation.calculate('f7tg', period)
@@ -1915,24 +1912,23 @@ class invfor(DatedFormulaColumn):
         f7uw = simulation.calculate('f7uw', period)
         f7ux = simulation.calculate('f7ux', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.invfor
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invfor
 
-        max0 = max_(0, P.ifortra_seuil * (marpac + 1) - f7ul)
+        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu + f7te + f7uv + f7tf)
         max2 = max_(0, max1 - f7tg - f7uw)
         max3 = max_(0, max2 - f7th - f7ux)
         return period, (P.taux * (
-            min_(f7un, P.seuil * (marpac + 1)) +
+            min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
             min_(f7up, max3) +
-            min_(f7uq, P.iforges_seuil * (marpac + 1))) +
+            min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))) +
             P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0) +
             P.report11 * min_(f7tg + f7uw, max1) +
             P.report12 * min_(f7th + f7ux, max2) +
-            P.taux_ass * min_(f7ul, P.ifortra_seuil * (marpac + 1)))
+            P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1)))
 
 
-@reference_formula
-class invlst(DatedFormulaColumn):
+class invlst(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"invlst"
@@ -1943,8 +1939,8 @@ class invlst(DatedFormulaColumn):
         Investissements locatifs dans le secteur touristique
         2004
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7xc = simulation.calculate('f7xc', period)
         f7xd = simulation.calculate('f7xd', period)
         f7xe = simulation.calculate('f7xe', period)
@@ -1959,11 +1955,11 @@ class invlst(DatedFormulaColumn):
         f7xn = simulation.calculate('f7xn', period)
         f7xo = simulation.calculate('f7xo', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.invlst
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invlst
 
-        seuil1 = P.seuil1 * (1 + marpac)
-        seuil2 = P.seuil2 * (1 + marpac)
-        seuil3 = P.seuil3 * (1 + marpac)
+        seuil1 = P.seuil1 * (1 + maries_ou_pacses)
+        seuil2 = P.seuil2 * (1 + maries_ou_pacses)
+        seuil3 = P.seuil3 * (1 + maries_ou_pacses)
 
         xc = P.taux_xc * min_(f7xc, seuil1 / 4)
         xd = P.taux_xd * f7xd
@@ -1987,8 +1983,8 @@ class invlst(DatedFormulaColumn):
         Investissements locatifs dans le secteur touristique
         2005-2010
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7xc = simulation.calculate('f7xc', period)
         f7xd = simulation.calculate('f7xd', period)
         f7xe = simulation.calculate('f7xe', period)
@@ -2003,11 +1999,11 @@ class invlst(DatedFormulaColumn):
         f7xn = simulation.calculate('f7xn', period)
         f7xo = simulation.calculate('f7xo', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.invlst
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invlst
 
-        seuil1 = P.seuil1 * (1 + marpac)
-        seuil2 = P.seuil2 * (1 + marpac)
-        seuil3 = P.seuil3 * (1 + marpac)
+        seuil1 = P.seuil1 * (1 + maries_ou_pacses)
+        seuil2 = P.seuil2 * (1 + maries_ou_pacses)
+        seuil3 = P.seuil3 * (1 + maries_ou_pacses)
 
         xc = P.taux_xc * min_(f7xc, seuil1 / 6)
         xd = P.taux_xd * f7xd
@@ -2031,8 +2027,8 @@ class invlst(DatedFormulaColumn):
         Investissements locatifs dans le secteur touristique
         2011
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7xa = simulation.calculate('f7xa', period)
         f7xb = simulation.calculate('f7xb', period)
         f7xc = simulation.calculate('f7xc', period)
@@ -2052,11 +2048,11 @@ class invlst(DatedFormulaColumn):
         f7xq = simulation.calculate('f7xq', period)
         f7xr = simulation.calculate('f7xr', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.invlst
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invlst
 
-        seuil1 = P.seuil1 * (1 + marpac)
-        seuil2 = P.seuil2 * (1 + marpac)
-        seuil3 = P.seuil3 * (1 + marpac)
+        seuil1 = P.seuil1 * (1 + maries_ou_pacses)
+        seuil2 = P.seuil2 * (1 + maries_ou_pacses)
+        seuil3 = P.seuil3 * (1 + maries_ou_pacses)
 
         xc = P.taux_xc * min_(f7xc, seuil1 / 6)
         xa = P.taux_xa * min_(f7xa, seuil2)
@@ -2076,8 +2072,8 @@ class invlst(DatedFormulaColumn):
         Investissements locatifs dans le secteur touristique
         2012
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7xa = simulation.calculate('f7xa', period)
         f7xb = simulation.calculate('f7xb', period)
         f7xc = simulation.calculate('f7xc', period)
@@ -2100,11 +2096,11 @@ class invlst(DatedFormulaColumn):
         f7xx = simulation.calculate('f7xx', period)
         f7xz = simulation.calculate('f7xz', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.invlst
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invlst
 
-        seuil1 = P.seuil1 * (1 + marpac)
-        seuil2 = P.seuil2 * (1 + marpac)
-        seuil3 = P.seuil3 * (1 + marpac)
+        seuil1 = P.seuil1 * (1 + maries_ou_pacses)
+        seuil2 = P.seuil2 * (1 + maries_ou_pacses)
+        seuil3 = P.seuil3 * (1 + maries_ou_pacses)
 
         xc = P.taux_xc * min_(f7xc, seuil1 / 6)
         xa = P.taux_xa * min_(f7xa, seuil2)
@@ -2126,8 +2122,8 @@ class invlst(DatedFormulaColumn):
         Investissements locatifs dans le secteur touristique
         2013
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7uy = simulation.calculate('f7uy', period)
         f7uz = simulation.calculate('f7uz', period)
         f7xf = simulation.calculate('f7xf', period)
@@ -2142,7 +2138,7 @@ class invlst(DatedFormulaColumn):
         f7xr = simulation.calculate('f7xr', period)
         f7xv = simulation.calculate('f7xv', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.invlst
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invlst
 
         xi = P.taux_xi * (f7xf + f7xi + f7xp + f7xn + f7uy)
         xj = P.taux_xj * (f7xm + f7xj + f7xq + f7xv + f7uz)
@@ -2151,8 +2147,7 @@ class invlst(DatedFormulaColumn):
         return period, around(xi + xj + xo)
 
 
-@reference_formula
-class invrev(SimpleFormulaColumn):
+class invrev(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"invrev"
@@ -2166,23 +2161,22 @@ class invrev(SimpleFormulaColumn):
         2002-2003
         TODO 1/4 codé en dur
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7gs = simulation.calculate('f7gs', period)
         f7gt = simulation.calculate('f7gt', period)
         f7xg = simulation.calculate('f7xg', period)
         f7gu = simulation.calculate('f7gu', period)
         f7gv = simulation.calculate('f7gv', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.invrev
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invrev
 
-        return period, (P.taux_gs * min_(f7gs, P.seuil_gs * (1 + marpac)) / 4 +
-                 P.taux_gu * min_(f7gu, P.seuil_gu * (1 + marpac)) / 4 +
-                 P.taux_xg * min_(f7xg, P.seuil_xg * (1 + marpac)) / 4 +
+        return period, (P.taux_gs * min_(f7gs, P.seuil_gs * (1 + maries_ou_pacses)) / 4 +
+                 P.taux_gu * min_(f7gu, P.seuil_gu * (1 + maries_ou_pacses)) / 4 +
+                 P.taux_xg * min_(f7xg, P.seuil_xg * (1 + maries_ou_pacses)) / 4 +
                  P.taux_gt * f7gt + P.taux_gt * f7gv)
 
 
-@reference_formula
-class locmeu(DatedFormulaColumn):
+class locmeu(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"locmeu"
@@ -2193,9 +2187,9 @@ class locmeu(DatedFormulaColumn):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2009
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ij = simulation.calculate('f7ij', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.locmeu
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.locmeu
 
         return period, P.taux * min_(P.max, f7ij) / 9
 
@@ -2205,13 +2199,13 @@ class locmeu(DatedFormulaColumn):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2010
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ij = simulation.calculate('f7ij', period)
         f7ik = simulation.calculate('f7ik', period)
         f7il = simulation.calculate('f7il', period)
         f7im = simulation.calculate('f7im', period)
         f7is = simulation.calculate('f7is', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.locmeu
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.locmeu
 
         return period, ((min_(P.max, max_(f7ij, f7il)) + min_(P.max, f7im)) / 9 + f7ik) * P.taux + f7is
 
@@ -2221,7 +2215,7 @@ class locmeu(DatedFormulaColumn):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2011
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ij = simulation.calculate('f7ij', period)
         f7ik = simulation.calculate('f7ik', period)
         f7il = simulation.calculate('f7il', period)
@@ -2236,7 +2230,7 @@ class locmeu(DatedFormulaColumn):
         f7iu = simulation.calculate('f7iu', period)
         f7iv = simulation.calculate('f7iv', period)
         f7iw = simulation.calculate('f7iw', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.locmeu
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.locmeu
 
         m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
         return period, ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
@@ -2250,7 +2244,7 @@ class locmeu(DatedFormulaColumn):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2012
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ia = simulation.calculate('f7ia', period)
         f7ib = simulation.calculate('f7ib', period)
         f7ic = simulation.calculate('f7ic', period)
@@ -2275,7 +2269,7 @@ class locmeu(DatedFormulaColumn):
         f7iw = simulation.calculate('f7iw', period)
         f7ix = simulation.calculate('f7ix', period)
         f7iz = simulation.calculate('f7iz', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.locmeu
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.locmeu
 
         m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
         m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
@@ -2291,7 +2285,7 @@ class locmeu(DatedFormulaColumn):
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2013
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ia = simulation.calculate('f7ia', period)
         f7ib = simulation.calculate('f7ib', period)
         f7ic = simulation.calculate('f7ic', period)
@@ -2326,7 +2320,7 @@ class locmeu(DatedFormulaColumn):
         f7jw = simulation.calculate('f7jw', period)
         f7jx = simulation.calculate('f7jx', period)
         f7jy = simulation.calculate('f7jy', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.locmeu
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.locmeu
 
         m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
         m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
@@ -2339,8 +2333,7 @@ class locmeu(DatedFormulaColumn):
                 f7ji + f7js)
 
 
-@reference_formula
-class mohist(SimpleFormulaColumn):
+class mohist(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"mohist"
@@ -2351,15 +2344,14 @@ class mohist(SimpleFormulaColumn):
         Travaux de conservation et de restauration d’objets classés monuments historiques (case NZ)
         2008-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7nz = simulation.calculate('f7nz', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.mohist
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.mohist
 
         return period, P.taux * min_(f7nz, P.max)
 
 
-@reference_formula
-class patnat(DatedFormulaColumn):
+class patnat(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"patnat"
@@ -2370,9 +2362,9 @@ class patnat(DatedFormulaColumn):
         Dépenses de protections du patrimoine naturel (case 7KA)
         2010
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ka = simulation.calculate('f7ka', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.patnat
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.patnat
 
         max1 = P.max
         return period, P.taux * min_(f7ka, max1)
@@ -2383,10 +2375,10 @@ class patnat(DatedFormulaColumn):
         Dépenses de protections du patrimoine naturel (case 7KA, 7KB)
         2011
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ka = simulation.calculate('f7ka', period)
         f7kb = simulation.calculate('f7kb', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.patnat
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.patnat
 
         max1 = P.max
         return period, P.taux * min_(f7ka, max1) + f7kb
@@ -2397,11 +2389,11 @@ class patnat(DatedFormulaColumn):
         Dépenses de protections du patrimoine naturel (case 7KA, 7KB, 7KC)
         2012
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ka = simulation.calculate('f7ka', period)
         f7kb = simulation.calculate('f7kb', period)
         f7kc = simulation.calculate('f7kc', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.patnat
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.patnat
 
         max1 = P.max
         return period, P.taux * min_(f7ka, max1) + f7kb + f7kc
@@ -2412,49 +2404,70 @@ class patnat(DatedFormulaColumn):
         Dépenses de protections du patrimoine naturel (case 7KA, 7KB, 7KC)
         2013
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ka = simulation.calculate('f7ka', period)
         f7kb = simulation.calculate('f7kb', period)
         f7kc = simulation.calculate('f7kc', period)
         f7kd = simulation.calculate('f7kd', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.patnat
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.patnat
 
         max1 = P.max
         return period, P.taux * min_(f7ka, max1) + f7kb + f7kc + f7kd
 
 
-@reference_formula
-class prcomp(SimpleFormulaColumn):
+class prcomp(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"prcomp"
+    label = u"Prestations compensatoires"
 
     def function(self, simulation, period):
         '''
         Prestations compensatoires
-        2002-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7wm = simulation.calculate('f7wm', period)
         f7wn = simulation.calculate('f7wn', period)
         f7wo = simulation.calculate('f7wo', period)
         f7wp = simulation.calculate('f7wp', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.prcomp
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.prcomp
 
         div = (f7wo == 0) * 1 + f7wo  # Pour éviter les divisions par zéro
 
-        return period, ((f7wm == 0) * ((f7wn == f7wo) * P.taux * min_(f7wn, P.seuil) +
-                                  (f7wn < f7wo) * (f7wo <= P.seuil) * P.taux * f7wn +
-                                  max_(0, (f7wn < f7wo) * (f7wo > P.seuil) * P.taux * P.seuil * f7wn / div)) +
-                (f7wm != 0) * ((f7wn == f7wm) * (f7wo <= P.seuil) * P.taux * f7wm +
-                                  max_(0, (f7wn == f7wm) * (f7wo >= P.seuil) * P.taux * f7wm / div) +
-                                  (f7wn > f7wm) * (f7wo <= P.seuil) * P.taux * f7wn +
-                                  max_(0, (f7wn > f7wm) * (f7wo >= P.seuil) * P.taux * f7wn / div)) +
-                 P.taux * f7wp)
+        return period, (
+            (f7wm == 0) * (
+                (f7wn == f7wo) * P.taux * min_(f7wn, P.seuil) +
+                (f7wn < f7wo) * (f7wo <= P.seuil) * P.taux * f7wn +
+                max_(0, (f7wn < f7wo) * (f7wo > P.seuil) * P.taux * P.seuil * f7wn / div)
+                ) +
+            (f7wm != 0) * (
+                (f7wn == f7wm) * (f7wo <= P.seuil) * P.taux * f7wm +
+                max_(0, (f7wn == f7wm) * (f7wo >= P.seuil) * P.taux * f7wm / div) +
+                (f7wn > f7wm) * (f7wo <= P.seuil) * P.taux * f7wn +
+                max_(0, (f7wn > f7wm) * (f7wo >= P.seuil) * P.taux * f7wn / div)
+                ) +
+            P.taux * f7wp
+            )
 
 
-@reference_formula
-class repsoc(SimpleFormulaColumn):
+class reduction_impot_exceptionnelle(Variable):
+    column = FloatCol(default = 0)
+    entity_class = FoyersFiscaux
+    label = u"Réduction d'impôt exceptionnelle"
+    start_date = date(2013, 1, 1)
+    stop_date = date(2013, 12, 31)
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'year').period('year')
+        nb_adult = simulation.calculate('nb_adult', period)
+        nbptr = simulation.calculate('nbptr', period)
+        rfr = simulation.calculate('rfr', period)
+        params = simulation.legislation_at(period.start).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
+        plafond = params.seuil * nb_adult + (nbptr - nb_adult) * 2 * params.majoration_seuil
+        montant = params.montant_plafond * nb_adult
+        return period, min_(max_(plafond + montant - rfr, 0), montant)
+
+
+class repsoc(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"repsoc"
@@ -2465,17 +2478,16 @@ class repsoc(SimpleFormulaColumn):
         Intérèts d'emprunts pour reprises de société
         2003-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7fh = simulation.calculate('f7fh', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.repsoc
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.repsoc
 
-        seuil = P.seuil * (marpac + 1)
+        seuil = P.seuil * (maries_ou_pacses + 1)
         return period, P.taux * min_(f7fh, seuil)
 
 
-@reference_formula
-class resimm(DatedFormulaColumn):
+class resimm(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"resimm"
@@ -2486,10 +2498,10 @@ class resimm(DatedFormulaColumn):
         Travaux de restauration immobilière (cases 7RA et 7RB)
         2009-2010
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ra = simulation.calculate('f7ra', period)
         f7rb = simulation.calculate('f7rb', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.resimm
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7rb, 0)
@@ -2501,12 +2513,12 @@ class resimm(DatedFormulaColumn):
         Travaux de restauration immobilière (cases 7RA, 7RB, 7RC, 7RD)
         2011
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ra = simulation.calculate('f7ra', period)
         f7rb = simulation.calculate('f7rb', period)
         f7rc = simulation.calculate('f7rc', period)
         f7rd = simulation.calculate('f7rd', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.resimm
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7rd, 0)
@@ -2521,14 +2533,14 @@ class resimm(DatedFormulaColumn):
         Travaux de restauration immobilière (cases 7RA, 7RB, 7RC, 7RD, 7RE, 7RF)
         2012
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ra = simulation.calculate('f7ra', period)
         f7rb = simulation.calculate('f7rb', period)
         f7rc = simulation.calculate('f7rc', period)
         f7rd = simulation.calculate('f7rd', period)
         f7re = simulation.calculate('f7re', period)
         f7rf = simulation.calculate('f7rf', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.resimm
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7rd, 0)
@@ -2544,7 +2556,7 @@ class resimm(DatedFormulaColumn):
         Travaux de restauration immobilière (cases 7RA, 7RB, 7RC, 7RD, 7RE, 7RF, 7SX, 7SY)
         2012
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ra = simulation.calculate('f7ra', period)
         f7rb = simulation.calculate('f7rb', period)
         f7rc = simulation.calculate('f7rc', period)
@@ -2553,7 +2565,7 @@ class resimm(DatedFormulaColumn):
         f7rf = simulation.calculate('f7rf', period)
         f7sx = simulation.calculate('f7sx', period)
         f7sy = simulation.calculate('f7sy', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.resimm
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7rd, 0)
@@ -2564,8 +2576,7 @@ class resimm(DatedFormulaColumn):
                 P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re + f7sx, max5))
 
 
-@reference_formula
-class rsceha(SimpleFormulaColumn):
+class rsceha(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"rsceha"
@@ -2575,18 +2586,17 @@ class rsceha(SimpleFormulaColumn):
         Rentes de survie et contrats d'épargne handicap
         2002-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         nb_pac2 = simulation.calculate('nb_pac2', period)
         nbR = simulation.calculate('nbR', period)
         f7gz = simulation.calculate('f7gz', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.rsceha
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.rsceha
 
         max1 = P.seuil1 + (nb_pac2 - nbR) * P.seuil2
         return period, P.taux * min_(f7gz, max1)
 
 
-@reference_formula
-class saldom(DatedFormulaColumn):
+class saldom(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"saldom"
@@ -2597,11 +2607,11 @@ class saldom(DatedFormulaColumn):
         Sommes versées pour l'emploi d'un salariés à  domicile
         2002-2004
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7df = simulation.calculate('f7df', period)
         f7dg = simulation.calculate('f7dg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.saldom
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
         max1 = P.max1 * not_(isinvalid) + P.max3 * isinvalid
@@ -2613,13 +2623,13 @@ class saldom(DatedFormulaColumn):
         Sommes versées pour l'emploi d'un salariés à  domicile
         2005-2006
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7df = simulation.calculate('f7df', period)
         f7dl = simulation.calculate('f7dl', period)
         f7dg = simulation.calculate('f7dg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.saldom
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
         nbpacmin = nb_pac2 + f7dl
@@ -2635,14 +2645,14 @@ class saldom(DatedFormulaColumn):
         Sommes versées pour l'emploi d'un salariés à  domicile
         2007-2008
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7db = simulation.calculate('f7db', period)
         f7df = simulation.calculate('f7df', period)
         f7dl = simulation.calculate('f7dl', period)
         f7dg = simulation.calculate('f7dg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.saldom
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
         nbpacmin = nb_pac2 + f7dl
@@ -2659,7 +2669,7 @@ class saldom(DatedFormulaColumn):
         Sommes versées pour l'emploi d'un salariés à  domicile
         2009-2013
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         nb_pac2 = simulation.calculate('nb_pac2', period)
         f7db = simulation.calculate('f7db', period)
         f7df = simulation.calculate('f7df', period)
@@ -2667,7 +2677,7 @@ class saldom(DatedFormulaColumn):
         f7dq = simulation.calculate('f7dq', period)
         f7dg = simulation.calculate('f7dg', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.saldom
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
         annee1 = f7dq
@@ -2680,8 +2690,7 @@ class saldom(DatedFormulaColumn):
         return period, P.taux * min_(f7df, max1)
 
 
-@reference_formula
-class scelli(DatedFormulaColumn):
+class scelli(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"scelli"
@@ -2692,10 +2701,10 @@ class scelli(DatedFormulaColumn):
         Investissements locatif neufs : Dispositif Scellier (cases 7HJ et 7HK)
         2009
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7hj = simulation.calculate('f7hj', period)
         f7hk = simulation.calculate('f7hk', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.scelli
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.scelli
 
         return period, max_(P.taux1 * min_(P.max, f7hj), P.taux2 * min_(P.max, f7hk)) / 9
 
@@ -2705,7 +2714,7 @@ class scelli(DatedFormulaColumn):
         Investissements locatif neufs : Dispositif Scellier
         2010
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7hj = simulation.calculate('f7hj', period)
         f7hk = simulation.calculate('f7hk', period)
         f7hn = simulation.calculate('f7hn', period)
@@ -2715,7 +2724,7 @@ class scelli(DatedFormulaColumn):
         f7hr = simulation.calculate('f7hr', period)
         f7hs = simulation.calculate('f7hs', period)
         f7la = simulation.calculate('f7la', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.scelli
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.scelli
 
         return period, (max_(
                     max_(P.taux1 * min_(P.max, f7hj),
@@ -2734,7 +2743,7 @@ class scelli(DatedFormulaColumn):
         Investissements locatif neufs : Dispositif Scellier
         2011
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7hj = simulation.calculate('f7hj', period)
         f7hk = simulation.calculate('f7hk', period)
         f7hl = simulation.calculate('f7hl', period)
@@ -2772,7 +2781,7 @@ class scelli(DatedFormulaColumn):
         f7nr = simulation.calculate('f7nr', period)
         f7ns = simulation.calculate('f7ns', period)
         f7nt = simulation.calculate('f7nt', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.scelli
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.scelli
 
         return period, (min_(P.max, maxi(
                     P.taux13 * max_(f7nf, f7nj) / 9,
@@ -2797,7 +2806,7 @@ class scelli(DatedFormulaColumn):
         Investissements locatif neufs : Dispositif Scellier
         2012
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7ha = simulation.calculate('f7ha', period)
         f7hb = simulation.calculate('f7hb', period)
         f7hg = simulation.calculate('f7hg', period)
@@ -2861,7 +2870,7 @@ class scelli(DatedFormulaColumn):
         f7nr = simulation.calculate('f7nr', period)
         f7ns = simulation.calculate('f7ns', period)
         f7nt = simulation.calculate('f7nt', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.scelli
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.scelli
 
         return period, (min_(P.max, maxi(
                     P.taux13 * max_(f7nf, f7nj) / 9,
@@ -2893,7 +2902,7 @@ class scelli(DatedFormulaColumn):
         Investissements locatif neufs : Dispositif Scellier
         2013
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7fa = simulation.calculate('f7fa', period)
         f7fb = simulation.calculate('f7fb', period)
         f7fc = simulation.calculate('f7fc', period)
@@ -2975,7 +2984,7 @@ class scelli(DatedFormulaColumn):
         f7nr = simulation.calculate('f7nr', period)
         f7ns = simulation.calculate('f7ns', period)
         f7nt = simulation.calculate('f7nt', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.scelli
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.scelli
 
         return period, (min_(P.max, maxi(
                     P.taux13 * max_(f7nf, f7nj) / 9,
@@ -3003,8 +3012,7 @@ class scelli(DatedFormulaColumn):
                 )
 
 
-@reference_formula
-class sofica(SimpleFormulaColumn):
+class sofica(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"sofica"
@@ -3015,19 +3023,18 @@ class sofica(SimpleFormulaColumn):
         Souscriptions au capital de SOFICA
         2006-
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7gn = simulation.calculate('f7gn', period)
         f7fn = simulation.calculate('f7fn', period)
         rng = simulation.calculate('rng', period)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.sofica
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.sofica
 
         max0 = min_(P.taux1 * max_(rng, 0), P.max)
         max1 = max_(0, max0 - f7gn)
         return period, P.taux2 * min_(f7gn, max0) + P.taux3 * min_(f7fn, max1)
 
 
-@reference_formula
-class sofipe(SimpleFormulaColumn):
+class sofipe(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"sofipe"
@@ -3039,19 +3046,18 @@ class sofipe(SimpleFormulaColumn):
         Souscription au capital d’une SOFIPECHE (case 7GS)
         2009-2011
         """
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         rbg_int = simulation.calculate('rbg_int', period)
         f7gs = simulation.calculate('f7gs', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.sofipe
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.sofipe
 
-        max1 = min_(P.max * (marpac + 1), P.base * rbg_int)  # page3 ligne 18
+        max1 = min_(P.max * (maries_ou_pacses + 1), P.base * rbg_int)  # page3 ligne 18
         return period, P.taux * min_(f7gs, max1)
 
 
-@reference_formula
-class spfcpi(DatedFormulaColumn):
+class spfcpi(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"spfcpi"
@@ -3063,13 +3069,13 @@ class spfcpi(DatedFormulaColumn):
         de fonds d'investissement de proximité
         2002
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7gq = simulation.calculate('f7gq', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.spfcpi
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.spfcpi
 
-        max1 = P.max * (marpac + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
         return period, P.taux1 * min_(f7gq, max1)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
@@ -3079,14 +3085,14 @@ class spfcpi(DatedFormulaColumn):
         de fonds d'investissement de proximité
         2003-2006
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7gq = simulation.calculate('f7gq', period)
         f7fq = simulation.calculate('f7fq', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.spfcpi
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.spfcpi
 
-        max1 = P.max * (marpac + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
         return period, (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1))
 
     @dated_function(start = date(2007, 1, 1), stop = date(2010, 12, 31))
@@ -3096,15 +3102,15 @@ class spfcpi(DatedFormulaColumn):
         de fonds d'investissement de proximité
         2007-2010
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7gq = simulation.calculate('f7gq', period)
         f7fq = simulation.calculate('f7fq', period)
         f7fm = simulation.calculate('f7fm', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.spfcpi
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.spfcpi
 
-        max1 = P.max * (marpac + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
         return period, (P.taux1 * min_(f7gq, max1) +
                     P.taux1 * min_(f7fq, max1) +
                     P.taux2 * min_(f7fm, max1))
@@ -3116,16 +3122,16 @@ class spfcpi(DatedFormulaColumn):
         de fonds d'investissement de proximité
         2011-2013
         '''
-        period = period.start.offset('first-of', 'year').period('year')
-        marpac = simulation.calculate('marpac', period)
+        period = period.this_year
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7gq = simulation.calculate('f7gq', period)
         f7fq = simulation.calculate('f7fq', period)
         f7fm = simulation.calculate('f7fm', period)
         f7fl = simulation.calculate('f7fl', period)
         _P = simulation.legislation_at(period.start)
-        P = simulation.legislation_at(period.start).ir.reductions_impots.spfcpi
+        P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.spfcpi
 
-        max1 = P.max * (marpac + 1)
+        max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
         return period, (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1) + P.taux2 * min_(f7fm, max1) +
                 P.taux3 * min_(f7fl, max1))
 
@@ -3136,7 +3142,7 @@ class spfcpi(DatedFormulaColumn):
         de fonds d'investissement de proximité
         2014
         '''
-        period = period.start.offset('first-of', 'year').period('year')
+        period = period.this_year
         f7gq = simulation.calculate('f7gq', period)
 
         return period, f7gq * 0

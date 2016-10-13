@@ -6,9 +6,9 @@ description: |
   Ce test vérifie que les cases "autres montants imposables" (préretraite, chômage), "pensions, retraites, rentes" et "pensions alimentaires reçues", sont bien prises en compte de la même manière que les revenus d'activité (abattement de 10% pour frais professionnels).
   Ici, somme des revenus = 2738 * 4 = 10952
   R = 10952 * 0.9 ~= 9900
-  
+
   Zone 3
-  
+
   L	371,45
   C	77,35
   E	448,8
@@ -29,20 +29,20 @@ relative_error_margin: 0.02
 individus:
   - age: 46
     age_en_mois: 555
-    birth: "1968-11-25"
-    cho:
+    date_naissance: "1968-11-25"
+    chomage_imposable:
       2013: 2738
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54edcd5028793d0972ec4dc2
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     pensions_alimentaires_percues:
       2013: 2738
-    rst:
+    retraite_imposable:
       2013: 2738
     salaire_imposable:
       2013: 2738
@@ -52,15 +52,15 @@ individus:
       2012-01: 0
   - age: 18
     age_en_mois: 225
-    birth: "1996-05-03"
+    date_naissance: "1996-05-03"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54edcd5028793d0972ec4dc1
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -68,26 +68,265 @@ individus:
       2012-01: 0
   - age: 15
     age_en_mois: 181
-    birth: "2000-01-09"
+    date_naissance: "2000-01-09"
     epargne_non_remuneree:
       2012-01: 0
-    etu: 0
+    etudiant: 0
     id: 54edcd5028793d0972ec4dc0
     inapte_travail: 0
     interets_epargne_sur_livrets:
       2012-01: 0
-    invalide: 0
+    handicap: 0
     scolarite: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
 familles:
+  acs:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  af:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  aide_logement:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  alf:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  als:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  apl:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  asf:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  asi:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  aspa:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  ass:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  bourse_college:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  bourse_lycee:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  cf:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   enfants:
     - 54edcd5028793d0972ec4dc1
     - 54edcd5028793d0972ec4dc0
+  paje_base:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
   parents: 54edcd5028793d0972ec4dc2
   proprietaire_proche_famille: false
+  rsa:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  rsa_isolement_recent: true
+  rsa_majore:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
+  rsa_non_majore:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    year:2014-02: 0
 foyers_fiscaux:
   declarants: 54edcd5028793d0972ec4dc2
   pensions_alimentaires_versees:
@@ -104,6 +343,6 @@ menages:
     - 54edcd5028793d0972ec4dc0
   loyer: 585
   personne_de_reference: 54edcd5028793d0972ec4dc2
-  statut_occupation: 4
+  statut_occupation_logement: 4
 output_variables:
   aide_logement: 359.63
