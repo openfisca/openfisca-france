@@ -5330,7 +5330,9 @@
       </NODE>
       <NODE code="donapd" description="Dons effectués à des organises d'aide aux personnes en difficulté">
         <CODE code="max" description="Plafond des dépenses" format="integer" type="monetary">
-          <VALUE deb="2014-01-01" fuzzy="true" valeur="521" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="530" />          
+          <VALUE deb="2015-01-01" fin="2015-12-31" valeur="530" />
+          <VALUE deb="2014-01-01" fin="2014-12-31" valeur="529" />          
           <VALUE deb="2011-01-01" fin="2013-12-31" valeur="521" />
           <VALUE deb="2010-01-01" fin="2010-12-31" valeur="513" />
           <VALUE deb="2009-01-01" fin="2009-12-31" valeur="510" />
