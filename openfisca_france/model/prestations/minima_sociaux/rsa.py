@@ -227,14 +227,16 @@ class div_ms(Variable):
         f3vg_holder = simulation.compute('f3vg', period_declaration)
         f3vl_holder = simulation.compute('f3vl', period_declaration)
         f3vm_holder = simulation.compute('f3vm', period_declaration)
+        f3vt_holder = simulation.compute('f3vt', period_declaration)
 
         f3vc = self.cast_from_entity_to_role(f3vc_holder, role = VOUS)
         f3ve = self.cast_from_entity_to_role(f3ve_holder, role = VOUS)
         f3vg = self.cast_from_entity_to_role(f3vg_holder, role = VOUS)
         f3vl = self.cast_from_entity_to_role(f3vl_holder, role = VOUS)
         f3vm = self.cast_from_entity_to_role(f3vm_holder, role = VOUS)
+        f3vt = self.cast_from_entity_to_role(f3vt_holder, role = VOUS)
 
-        return period, (f3vc + f3ve + f3vg + f3vl + f3vm) / 12
+        return period, (f3vc + f3ve + f3vg + f3vl + f3vm + f3vt) / 12
 
 class enceinte_fam(Variable):
     column = BoolCol
