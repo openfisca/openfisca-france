@@ -1602,7 +1602,7 @@ class donapd(DatedVariable):
 
         return period, P.taux * min_(f7ud, P.max)
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2013, 12, 31))
+    @dated_function(start = date(2011, 1, 1))
     def function_20110101_20131231(self, simulation, period):
         '''
         Dons effectués à  des organises d'aide aux personnes en difficulté (2011-2013)
