@@ -616,7 +616,7 @@
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
-    date_naissance: '1998-01-01' # age < 18 sur le trimestre de référence
+    date_naissance: '1980-01-01'
     indemnites_journalieres_maladie:
       2015-12: 500
       2015-11: 500
@@ -638,61 +638,121 @@
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
-    date_naissance: '1998-01-01' # age < 18 sur le trimestre de référence
+    date_naissance: '1980-01-01'
     indemnites_journalieres_maladie:
-      2015-12: 500
-      2015-11: 500
-      2015-10: 500
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
     indemnites_journalieres_accident_travail:
-      2015-12: 500
-      2015-11: 500
-      2015-10: 500
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
     indemnites_journalieres_maladie_professionnelle:
-      2015-12: 500
-      2015-11: 500
-      2015-10: 500
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
     date_arret_de_travail: 2015-08-01
   output_variables:
     ppa: 0
     ppa_revenu_activite:
       2015-12: 0
       2015-11: 0
-      2015-10: 1500
+      2015-10: 3000
+
+- name: "PPA - Si aucune date n'est déclarée et qu'il y a des IJSS à M-3, on considère les IJSS comme un revenu de remplacement "
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1980-01-01'
+    indemnites_journalieres_maladie:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+      2015-09: 1000
+    indemnites_journalieres_accident_travail:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+      2015-09: 1000
+    indemnites_journalieres_maladie_professionnelle:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+      2015-09: 1000
+  output_variables:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 0
+
+- name: "PPA - Si aucune date n'est déclarée et qu'il n'y a pas d'IJSS à M-3, on considère les IJSS comme un revenu d'activité "
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1980-01-01'
+    indemnites_journalieres_maladie:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+      2015-09: 0
+    indemnites_journalieres_accident_travail:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+      2015-09: 0
+    indemnites_journalieres_maladie_professionnelle:
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
+      2015-09: 0
+  output_variables:
+    ppa: 0
+    ppa_revenu_activite:
+      2015-12: 3000
+      2015-11: 3000
+      2015-10: 3000
+    ppa_fictive:
+      2015-12: 0
+      2015-11: 0
+      2015-10: 0
 
 - name: "PPA - Les IJSS maternité/paternité/adoptions sont toujours considérés comme un revenu d'activité"
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
-    date_naissance: '1998-01-01' # age < 18 sur le trimestre de référence
+    date_naissance: '1980-01-01' # age < 18 sur le trimestre de référence
     indemnites_journalieres_maternite:
-      2015-12: 500
-      2015-11: 500
-      2015-10: 500
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
     indemnites_journalieres_paternite:
-      2015-12: 500
-      2015-11: 500
-      2015-10: 500
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
     indemnites_journalieres_adoption:
-      2015-12: 500
-      2015-11: 500
-      2015-10: 500
+      2015-12: 1000
+      2015-11: 1000
+      2015-10: 1000
     date_arret_de_travail: 2015-01-01
   output_variables:
     ppa: 0
     ppa_revenu_activite:
-      2015-12: 1500
-      2015-11: 1500
-      2015-10: 1500
+      2015-12: 3000
+      2015-11: 3000
+      2015-10: 3000
+    ppa_fictive:
+      2015-12: 0
+      2015-11: 0
+      2015-10: 0
 
 - name: "PPA - Les IJSS sont toujours considérés comme un revenu d'activité quand un autre revenu d'activité est perçu"
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
-    date_naissance: '1998-01-01' # age < 18 sur le trimestre de référence
+    date_naissance: '1980-01-01'
     indemnites_journalieres_maladie:
-      2015-12: 500
-      2015-11: 500
-      2015-10: 500
+      2015-12: 2000
+      2015-11: 2000
+      2015-10: 2000
     salaire_net:
       2015-12: 300
       2015-11: 300
@@ -701,6 +761,6 @@
   output_variables:
     ppa: 0
     ppa_revenu_activite:
-      2015-12: 800
-      2015-11: 800
-      2015-10: 800
+      2015-12: 2300
+      2015-11: 2300
+      2015-10: 2300

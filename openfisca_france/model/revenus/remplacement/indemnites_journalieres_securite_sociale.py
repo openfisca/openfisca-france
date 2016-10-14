@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
+from numpy import nan
 
 class indemnites_journalieres_maternite(Variable):
     column = FloatCol
@@ -74,7 +75,7 @@ class indemnites_journalieres_imposables(Variable):
         return period, result
 
 class date_arret_de_travail(Variable):
-    column = DateCol
+    column = DateCol(default = nan)
     entity_class = Individus
     is_permanent = True
     label = u"Date depuis laquelle la personne est en arrêt de travail"

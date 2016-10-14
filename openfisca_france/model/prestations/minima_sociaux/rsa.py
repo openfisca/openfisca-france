@@ -330,24 +330,34 @@ class rsa_indemnites_journalieres_activite(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
+        m_3 = period.offset(-3,'month')
+
+        def ijss_activite_sous_condition(period):
+            return sum(simulation.calculate(ressource, period) for ressource in [
+                # IJSS prises en compte comme un revenu d'activité seulement les 3 premiers mois qui suivent l'arrêt de travail
+                'indemnites_journalieres_maladie',
+                'indemnites_journalieres_accident_travail',
+                'indemnites_journalieres_maladie_professionnelle',
+            ])
+
+
         date_arret_de_travail = simulation.calculate('date_arret_de_travail')
-        three_months_ago = datetime64(period.start.offset(-3,'month'))
-        condition_date_arret_travail =  date_arret_de_travail > three_months_ago
+        three_months_ago = datetime64(m_3.start)
+        condition_date_arret_travail = date_arret_de_travail > three_months_ago
+
+        # Si la date d'arrêt de travail n'est pas définie, mais qu'il n'y a pas d'IJSS à M-3, on estime que l'arrêt est récent.
+        is_date_arret_de_travail_undefined = (date_arret_de_travail == datetime64('NaT'))
+        condition_arret_recent = is_date_arret_de_travail_undefined * (ijss_activite_sous_condition(m_3) == 0)
+
         condition_activite = simulation.calculate('salaire_net', period) > 0
 
-        # IJSS prises en compte comme un revenu d'activité seulement les 3 premiers mois qui suivent l'arrêt de travail
-        ijss_activite_sous_condition = sum(simulation.calculate(ressource, period) for ressource in [
-            'indemnites_journalieres_maladie',
-            'indemnites_journalieres_accident_travail',
-            'indemnites_journalieres_maladie_professionnelle',
-        ])
 
         ijss_activite = sum(simulation.calculate(ressource, period) for ressource in [
             # IJSS toujours prises en compte comme un revenu d'activité
             'indemnites_journalieres_maternite',
             'indemnites_journalieres_paternite',
             'indemnites_journalieres_adoption',
-        ]) + (condition_date_arret_travail + condition_activite) * ijss_activite_sous_condition
+        ]) + (condition_date_arret_travail + condition_activite + condition_arret_recent) * ijss_activite_sous_condition(period)
 
         return period, ijss_activite
 
