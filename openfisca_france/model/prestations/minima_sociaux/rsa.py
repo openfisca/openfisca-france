@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select, where)
+from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select, where, datetime64)
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf, age_en_mois_benjamin
@@ -93,6 +93,7 @@ class rsa_base_ressources_individu(Variable):
             'retraite_titre_onereux_declarant1',
             'revenus_fonciers_minima_sociaux',
             'rsa_base_ressources_patrimoine_individu',
+            'rsa_indemnites_journalieres_hors_activite',
             ]
 
         # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
@@ -322,6 +323,53 @@ class rsa_revenu_activite(Variable):
             (not_(enfant_i) + rsa_enfant_a_charge_i)  * rsa_revenu_activite_i
             )
 
+class rsa_indemnites_journalieres_activite(Variable):
+    column = FloatCol
+    label = u"Indemnités journalières prises en compte comme revenu d'activité"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.this_month
+        m_3 = period.offset(-3,'month')
+
+        def ijss_activite_sous_condition(period):
+            return sum(simulation.calculate(ressource, period) for ressource in [
+                # IJSS prises en compte comme un revenu d'activité seulement les 3 premiers mois qui suivent l'arrêt de travail
+                'indemnites_journalieres_maladie',
+                'indemnites_journalieres_accident_travail',
+                'indemnites_journalieres_maladie_professionnelle',
+            ])
+
+
+        date_arret_de_travail = simulation.calculate('date_arret_de_travail')
+        three_months_ago = datetime64(m_3.start)
+        condition_date_arret_travail = date_arret_de_travail > three_months_ago
+
+        # Si la date d'arrêt de travail n'est pas définie, mais qu'il n'y a pas d'IJSS à M-3, on estime que l'arrêt est récent.
+        is_date_arret_de_travail_undefined = (date_arret_de_travail == datetime64('NaT'))
+        condition_arret_recent = is_date_arret_de_travail_undefined * (ijss_activite_sous_condition(m_3) == 0)
+
+        condition_activite = simulation.calculate('salaire_net', period) > 0
+
+
+        ijss_activite = sum(simulation.calculate(ressource, period) for ressource in [
+            # IJSS toujours prises en compte comme un revenu d'activité
+            'indemnites_journalieres_maternite',
+            'indemnites_journalieres_paternite',
+            'indemnites_journalieres_adoption',
+        ]) + (condition_date_arret_travail + condition_activite + condition_arret_recent) * ijss_activite_sous_condition(period)
+
+        return period, ijss_activite
+
+class rsa_indemnites_journalieres_hors_activite(Variable):
+    column = FloatCol
+    label = u"Indemnités journalières prises en compte comme revenu de remplacement"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.this_month
+        return period, simulation.calculate('indemnites_journalieres', period) - simulation.calculate('rsa_indemnites_journalieres_activite', period)
+
 class rsa_revenu_activite_individu(Variable):
     column = FloatCol
     label = u"Revenus d'activité du Rsa - Individuel"
@@ -339,7 +387,6 @@ class rsa_revenu_activite_individu(Variable):
 
         types_revenus_activite = [
             'salaire_net',
-            'indemnites_journalieres',
             'indemnites_chomage_partiel',
             'indemnites_volontariat',
             'revenus_stage_formation_pro',
@@ -347,6 +394,7 @@ class rsa_revenu_activite_individu(Variable):
             'hsup',
             'etr',
             'tns_auto_entrepreneur_benefice',
+            'rsa_indemnites_journalieres_activite',
         ]
 
         has_ressources_substitution = simulation.calculate('rsa_has_ressources_substitution', period)
