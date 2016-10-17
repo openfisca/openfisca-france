@@ -160,6 +160,7 @@ class aide_premier_salarie(DatedVariable):
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
+        exoneration_cotisations_employeur_jei = simulation.calculate('exoneration_cotisations_employeur_jei', period)
 
         # Cette aide est temporaire.
         # TODO : Si toutefois elle est reconduite et modifiée pour 2017, les dates et le montant seront à
@@ -191,6 +192,10 @@ class aide_premier_salarie(DatedVariable):
         # somme sur 24 mois, à raison de 500 € maximum par trimestre
         montant_max = 4000
 
+        # non cumul avec le dispositif Jeune Entreprise Innovante (JEI)
+        non_cumulee = not_(exoneration_cotisations_employeur_jei)
+
+
         # TODO comment implémenter la condition "premier employé" ? L'effectif est insuffisant en cas de rupture
         # d'un premier contrat
         # Condition : l’entreprise n’a pas conclu de contrat de travail avec un salarié,
@@ -201,7 +206,7 @@ class aide_premier_salarie(DatedVariable):
         # l’aide est proratisée en fonction de sa durée de travail.
         # TODO cette multiplication par le coefficient de proratisation suffit-elle pour le cas du temps partiel ?
         # A tester
-        return period, eligible * (montant_max / 24) * coefficient_proratisation
+        return period, eligible * (montant_max / 24) * coefficient_proratisation * non_cumulee
 
 
 class aide_embauche_pme(DatedVariable):
@@ -221,6 +226,7 @@ class aide_embauche_pme(DatedVariable):
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
         smic_proratise = simulation.calculate('smic_proratise', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
+        exoneration_cotisations_employeur_jei = simulation.calculate('exoneration_cotisations_employeur_jei', period)
 
         # Cette aide est temporaire.
         # Si toutefois elle est reconduite et modifiée pour 2017, les dates et le montant seront à implémenter comme
@@ -232,9 +238,14 @@ class aide_embauche_pme(DatedVariable):
         # pour les PME
         eligible_effectif = effectif_entreprise < 250
 
-        # non cumulable avec l'aide pour la première embauche
-        # qui est identique, si ce n'est qu'elle couvre tous les salaires
-        non_cumulee = effectif_entreprise > 1
+        non_cumulee = and_(
+            # non cumulable avec l'aide pour la première embauche
+            # qui est identique, si ce n'est qu'elle couvre tous les salaires
+            effectif_entreprise > 1,
+            # non cumul avec le dispositif Jeune Entreprise Innovante (JEI)
+            not_(exoneration_cotisations_employeur_jei)
+            )
+
 
         eligible_contrat = and_(
             contrat_de_travail_debut >= datetime64("2016-01-18"),
@@ -298,6 +309,9 @@ class allegement_fillon(DatedVariable):
         stagiaire = simulation.calculate('stagiaire', period)
         apprenti = simulation.calculate('apprenti', period)
         allegement_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
+        exoneration_cotisations_employeur_jei = simulation.calculate('exoneration_cotisations_employeur_jei', period)
+
+        non_cumulee = not_(exoneration_cotisations_employeur_jei)
 
         # switch on 3 possible payment options
         allegement = switch_on_allegement_mode(
@@ -306,7 +320,7 @@ class allegement_fillon(DatedVariable):
             self.__class__.__name__,
         )
 
-        return period, allegement * not_(stagiaire) * not_(apprenti)
+        return period, allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
 
 
 def compute_allegement_fillon(simulation, period):
@@ -353,6 +367,9 @@ class allegement_cotisation_allocations_familiales(DatedVariable):
         apprenti = simulation.calculate('apprenti', period)
         allegement_mode_recouvrement = \
             simulation.calculate('allegement_cotisation_allocations_familiales_mode_recouvrement', period)
+        exoneration_cotisations_employeur_jei = simulation.calculate('exoneration_cotisations_employeur_jei', period)
+
+        non_cumulee = not_(exoneration_cotisations_employeur_jei)
 
         # switch on 3 possible payment options
         allegement = switch_on_allegement_mode(
@@ -361,7 +378,7 @@ class allegement_cotisation_allocations_familiales(DatedVariable):
             self.__class__.__name__,
         )
 
-        return period, allegement * not_(stagiaire) * not_(apprenti)
+        return period, allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
 
 
 def compute_allegement_cotisation_allocations_familiales(simulation, period):
