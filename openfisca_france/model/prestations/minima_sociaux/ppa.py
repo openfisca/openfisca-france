@@ -108,8 +108,8 @@ class ppa_revenu_activite_individu(Variable):
             'revenus_stage_formation_pro',
             'bourse_recherche',
             'indemnites_chomage_partiel',
-            'indemnites_journalieres',
             'tns_auto_entrepreneur_benefice',
+            'rsa_indemnites_journalieres_activite'
             ]
 
         revenus_mensualises = sum(
@@ -171,6 +171,7 @@ class ppa_ressources_hors_activite_individu(Variable):
             'prestation_compensatoire',
             'revenus_locatifs',
             'prime_forfaitaire_mensuelle_reprise_activite',
+            'rsa_indemnites_journalieres_hors_activite',
             ]
 
         ressources_hors_activite_i = sum(

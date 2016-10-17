@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.1.15
+
+* Consider some indemnités journalieres as revenus de remplacement in PPA (and RSA), according to the date of the arret de travail.
+* Introduce
+	* `rsa_indemnites_journalieres_hors_activite`
+	* `rsa_indemnites_journalieres_activite`
+	* `date_arret_de_travail`
+
 ## 4.1.14
 
 * Add cerfa boxe : 3vt (PEA)
