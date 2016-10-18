@@ -13,7 +13,7 @@
     salaire_super_brut: 1664 # fillon
 
 - period: "2015-04"
-  name: JEI
+  name: JEI -> plus d'allègement général base salaire (fillon)
   relative_error_margin: 0.01
   input_variables:
     salaire_de_base: 1457.52
@@ -23,8 +23,8 @@
     jeune_entreprise_innovante: 1
   output_variables:
     cotisations_employeur: -607
-    allegement_fillon: 407
+    allegement_fillon: 0
     exoneration_cotisations_employeur_jei: 413
-    exonerations_et_allegements: 820.6 # fillon + JEI
+    exonerations_et_allegements: 413 # fillon + JEI
     salaire_super_brut_hors_allegements: 2071
-    salaire_super_brut: 1251
+    salaire_super_brut: 1658

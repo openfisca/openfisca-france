@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.1.16
+
+* Correct wrong behaviour in the combination of exemptions with the dispositif Jeune Entreprise Innovante (JEI)
+
+
 ## 4.1.15
 
 * Consider some indemnités journalieres as revenus de remplacement in PPA (and RSA), according to the date of the arret de travail.
