@@ -9,6 +9,10 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 # TODO: fill the parameters file. May be should use the majoration pour tierce personne as parameter
+apa_age_min = 65
+apa_seuil_1 = .67
+apa_seuil_2 = 2.67
+majoration_tierce_personne = 1103.08
 montant_mensuel_maximum_by_gir = {
     1: 1312.67,
     2: 1125.14,
@@ -16,23 +20,22 @@ montant_mensuel_maximum_by_gir = {
     4: 562.57,
     }
 seuil_non_versement = 28.83
-apa_seuil_1 = .67
-apa_seuil_2 = 2.67
-majoration_tierce_personne = 1103.08
 taux_max_participation = .9
 
 
 class apa_domicile(Variable):
     column = FloatCol
     label = u"Allocation personalisée d'autonomie"
-    entity_class = Familles
+    entity_class = Individus
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
-        gir = simulation.calculate('gir', period)
+        age = simulation.calculate('age', period)
         base_ressources_apa = simulation.calculate('base_ressources_apa', period)
         dependance_plan_aide_domicile = simulation.calculate('dependance_plan_aide_domicile', period)
         dependance_plan_aide_domicile_accepte = zeros(self.holder.entity.count)
+        gir = simulation.calculate('gir', period)
+
         for target_gir in range(1, 5):
             dependance_plan_aide_domicile_accepte = (
                 dependance_plan_aide_domicile_accepte +
@@ -55,7 +58,7 @@ class apa_domicile(Variable):
                 )
             )
         apa = dependance_plan_aide_domicile_accepte - participation_beneficiaire
-        return period, apa * (apa >= seuil_non_versement)
+        return period, apa * (apa >= seuil_non_versement) * (age >= apa_age_min)
 
 
 class apa_etablissement(Variable):

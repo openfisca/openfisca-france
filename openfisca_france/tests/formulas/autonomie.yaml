@@ -1,7 +1,7 @@
 - name: "base ressources APA domicile celibataire sans ressources GIR 1"
   description: Montant base ressources
   period: 2014-01
-  absolute_error_margin: 0.03
+  absolute_error_margin: 0.01
   input_variables:
     age: 70 
     gir: "Gir 1"
@@ -40,6 +40,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 60 
+    gir: "Gir 1"
     dependance_plan_aide_domicile: 2000
   output_variables:
     apa_domicile: 0
