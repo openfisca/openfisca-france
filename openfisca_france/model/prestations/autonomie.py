@@ -9,7 +9,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 # TODO: fill the parameters file. May be should use the majoration pour tierce personne as parameter
-apa_age_min = 65
+apa_age_min = 60
 apa_seuil_1 = .67
 apa_seuil_2 = 2.67
 majoration_tierce_personne = 1103.08
