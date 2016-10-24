@@ -3,7 +3,7 @@
 
 from __future__ import division
 
-from numpy import maximum as max_, minimum as min_, zeros, ones
+from numpy import maximum as max_, minimum as min_, zeros, ones, select
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -21,6 +21,7 @@ montant_mensuel_maximum_by_gir = {
     3: 843.86,
     4: 562.57,
     }
+reste_a_vivre = 96
 seuil_non_versement = 28.83
 taux_max_participation = .9
 
@@ -52,7 +53,7 @@ class apa_domicile(Variable):
             taux_max_participation * (
                 min_(
                     max_(
-                        (base_ressources_apa c - apa_seuil_dom_1) / (apa_seuil_dom_2 - apa_seuil_dom_1),
+                        (base_ressources_apa - apa_seuil_dom_1) / (apa_seuil_dom_2 - apa_seuil_dom_1),
                         0,
                         ),
                     1,
@@ -70,31 +71,30 @@ class apa_etablissement(Variable):
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
+        age = simulation.calculate('age', period)
         gir = simulation.calculate('gir', period)
         base_ressources_apa = simulation.calculate('base_ressources_apa', period)
         dependance_tarif_etablissement_gir_5_6 = simulation.calculate('dependance_tarif_etablissement_gir_5_6', period)
         dependance_tarif_etablissement_gir_dependant = simulation.calculate(
             'dependance_tarif_etablissement_gir_dependant', period)
-        condlist = [
-                base_ressources_apa<=2.21*majoration_tierce_personne,
-                2.21*majoration_tierce_personne<base_ressources_apa<=3.40*majoration_tierce_personne,
-                base_ressources_apa>3.40*majoration_tierce_personne
+        conditions_ressources = [
+                base_ressources_apa <= 2.21 * majoration_tierce_personne,
+                2.21 * majoration_tierce_personne < base_ressources_apa <= 3.40 * majoration_tierce_personne,
+                base_ressources_apa > 3.40 * majoration_tierce_personne
                     ]
-        choicelist = [
-                dependance_tarif_etablissement_gir_5_6,
-                dependance_tarif_etablissement_gir_5_6 + (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6)*
-                                ((base_ressources_apa-2.21*majoration_tierce_personne)/1.19*majoration_tierce_personne)*0.80,
-                dependance_tarif_etablissement_gir_5_6 + (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6)*0.80
-                        ]
-        participation_beneficiaire =np.select(condlist,choicelist)
-        
-        apa = zeros(self.holder.entity.count)
-        for target_gir in range(1, 5):
-            apa = apa + (gir == target_gir) * max_(
-                dependance_tarif_etablissement_gir_5_6 +
-                dependance_tarif_etablissement_gir_dependant - participation_beneficiaire,
-                montant_mensuel_maximum_by_gir[target_gir]
-                )
+        participations = [
+            dependance_tarif_etablissement_gir_5_6,
+            (
+                dependance_tarif_etablissement_gir_5_6 + 
+                (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6) * (
+                    (base_ressources_apa - 2.21 * majoration_tierce_personne) / (1.19 * majoration_tierce_personne) * 0.80
+                    )
+                ),
+            dependance_tarif_etablissement_gir_5_6 + (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6) * 0.80        
+            ]
+        participation_beneficiaire = select(conditions_ressources, participations)
+        participation_beneficiaire = min_(participation_beneficiaire, max_(base_ressources_apa - reste_a_vivre, 0))
+        apa = dependance_tarif_etablissement_gir_dependant - participation_beneficiaire
 
         eligibilite_etablissement = (
             (dependance_tarif_etablissement_gir_5_6 > 0) *
