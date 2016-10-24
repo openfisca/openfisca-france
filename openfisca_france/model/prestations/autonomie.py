@@ -52,7 +52,7 @@ class apa_domicile(Variable):
             taux_max_participation * (
                 min_(
                     max_(
-                        (base_ressources_apa / majoration_tierce_personne - apa_seuil_dom_1) / (apa_seuil_dom_2 - apa_seuil_dom_1),
+                        (base_ressources_apa c - apa_seuil_dom_1) / (apa_seuil_dom_2 - apa_seuil_dom_1),
                         0,
                         ),
                     1,
@@ -78,11 +78,10 @@ class apa_etablissement(Variable):
 
         participation_beneficiaire = (
             dependance_tarif_etablissement_gir_5_6 +
-            dependance_tarif_etablissement_gir_dependant * (
-                (base_ressources_apa <= apa_seuil_etab_1) +
+            (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6) *
                 .8 * min_(
                     max_(
-                        (base_ressources_apa - apa_seuil_etab_1) / (apa_seuil_etab_2 - apa_seuil_etab_1),
+                        (base_ressources_apa/ majoration_tierce_personne - apa_seuil_etab_1) / (apa_seuil_etab_2 - apa_seuil_etab_1),
                         0,
                         ),
                     1,
