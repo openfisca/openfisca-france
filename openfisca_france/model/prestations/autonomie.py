@@ -75,19 +75,19 @@ class apa_etablissement(Variable):
         dependance_tarif_etablissement_gir_5_6 = simulation.calculate('dependance_tarif_etablissement_gir_5_6', period)
         dependance_tarif_etablissement_gir_dependant = simulation.calculate(
             'dependance_tarif_etablissement_gir_dependant', period)
-
-        participation_beneficiaire = (
-            dependance_tarif_etablissement_gir_5_6 +
-            (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6) *
-                .8 * min_(
-                    max_(
-                        (base_ressources_apa/ majoration_tierce_personne - apa_seuil_etab_1) / (apa_seuil_etab_2 - apa_seuil_etab_1),
-                        0,
-                        ),
-                    1,
-                    )
-                )
-            )
+        condlist = [
+                base_ressources_apa<=2.21*majoration_tierce_personne,
+                2.21*majoration_tierce_personne<base_ressources_apa<=3.40*majoration_tierce_personne,
+                base_ressources_apa>3.40*majoration_tierce_personne
+                    ]
+        choicelist = [
+                dependance_tarif_etablissement_gir_5_6,
+                dependance_tarif_etablissement_gir_5_6 + (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6)*
+                                ((base_ressources_apa-2.21*majoration_tierce_personne)/1.19*majoration_tierce_personne)*0.80,
+                dependance_tarif_etablissement_gir_5_6 + (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6)*0.80
+                        ]
+        participation_beneficiaire =np.select(condlist,choicelist)
+        
         apa = zeros(self.holder.entity.count)
         for target_gir in range(1, 5):
             apa = apa + (gir == target_gir) * max_(
@@ -101,7 +101,7 @@ class apa_etablissement(Variable):
             (dependance_tarif_etablissement_gir_dependant > 0)
             )
 
-        return period, apa * (apa >= seuil_non_versement) * eligibilite_etablissement
+        return period, apa * (apa >= seuil_non_versement) * eligibilite_etablissement  * (age >= apa_age_min)
 
 
 class base_ressources_apa(Variable):
