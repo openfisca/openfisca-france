@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.17
+
+* Reimplement `rsa_indemnites_journalieres_activite` and `date_arret_de_travail` using `datetime.date.max`.
+
 ## 4.1.16
 
 * Correct wrong behaviour in the combination of exemptions with the dispositif Jeune Entreprise Innovante (JEI)
