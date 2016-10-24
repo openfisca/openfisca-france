@@ -129,12 +129,15 @@ class revenu_net_individu(Variable):
         return period, pen + rev_cap + rev_trav
 
 
-class revnet(PersonToEntityColumn):
+class revnet(Variable):
     entity_class = Menages
     label = u"Revenu net du ménage"
-    operation = 'add'
+    column = FloatCol
     url = u"http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php",
-    variable = revenu_net_individu
+
+    def function(menage, period):
+        revenu_net_individus = menage.members.calculate('revenu_net_individu', period)
+        return period, menage.sum(revenu_net_individus)
 
 
 class nivvie_net(Variable):
@@ -171,11 +174,14 @@ class revenu_initial_individu(Variable):
             cotisations_salariales_contributives)
 
 
-class revini(PersonToEntityColumn):
+class revini(Variable):
     entity_class = Menages
     label = u"Revenu initial du ménage"
-    operation = 'add'
-    variable = revenu_initial_individu
+    column = FloatCol
+
+    def function(menage, period):
+        revenu_initial_individus = menage.members.calculate('revenu_initial_individu', period)
+        return period, simulation.menage.sum(revenu_initial_individus)
 
 
 class nivvie_ini(Variable):
@@ -230,26 +236,27 @@ class pen(Variable):
     label = u"Pensions et revenus de remplacement"
     url = "http://fr.wikipedia.org/wiki/Rente"
 
-    def function(self, simulation, period):
+    def function(individu, period):
         '''
         Pensions
         '''
         period = period.start.period('year').offset('first-of')
-        chomage_net = simulation.calculate('chomage_net', period)
-        retraite_nette = simulation.calculate('retraite_nette', period)
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', period)
-        pensions_alimentaires_versees_declarant1 = simulation.calculate(
-            'pensions_alimentaires_versees_declarant1', period
-            )
-        retraite_titre_onereux_declarant1 = simulation.calculate_add('retraite_titre_onereux_declarant1', period)
+        chomage_net = individu.calculate('chomage_net', period)
+        retraite_nette = individu.calculate('retraite_nette', period)
+        pensions_alimentaires_percues = individu.calculate('pensions_alimentaires_percues', period)
 
-        return period, (chomage_net + retraite_nette + pensions_alimentaires_percues + pensions_alimentaires_versees_declarant1 +
-                    retraite_titre_onereux_declarant1)
+        # Revenus du foyer fiscal
+        pensions_alimentaires_versees = individu.foyer_fiscal.calculate('pensions_alimentaires_versees', period)
+        retraite_titre_onereux = individu.foyer_fiscal.calculate_add('retraite_titre_onereux', period)
+        pen_foyer_fiscal = pensions_alimentaires_versees + retraite_titre_onereux
+        pen_foyer_fiscal_projetees = individu.foyer_fiscal.project_on_first_person(pen_foyer_fiscal)
+
+        return period, (chomage_net + retraite_nette + pensions_alimentaires_percues + pen_foyer_fiscal_projetees)
 
 
-class cotsoc_bar_declarant1(Variable):
+class cotsoc_bar(Variable):
     column = FloatCol(default = 0)
-    entity_class = Individus
+    entity_class = FoyersFiscaux
     label = u"Cotisations sociales sur les revenus du capital imposés au barème"
 
     def function(self, simulation, period):
@@ -257,16 +264,16 @@ class cotsoc_bar_declarant1(Variable):
         Cotisations sociales sur les revenus du capital imposés au barème
         '''
         period = period.start.period('year').offset('first-of')
-        csg_cap_bar_declarant1 = simulation.calculate('csg_cap_bar_declarant1', period)
-        prelsoc_cap_bar_declarant1 = simulation.calculate('prelsoc_cap_bar_declarant1', period)
-        crds_cap_bar_declarant1 = simulation.calculate('crds_cap_bar_declarant1', period)
+        csg_cap_bar = simulation.calculate('csg_cap_bar', period)
+        prelsoc_cap_bar = simulation.calculate('prelsoc_cap_bar', period)
+        crds_cap_bar = simulation.calculate('crds_cap_bar', period)
 
-        return period, csg_cap_bar_declarant1 + prelsoc_cap_bar_declarant1 + crds_cap_bar_declarant1
+        return period, csg_cap_bar + prelsoc_cap_bar + crds_cap_bar
 
 
-class cotsoc_lib_declarant1(Variable):
-    column = FloatCol(default = 0)
-    entity_class = Individus
+class cotsoc_lib(Variable):
+    column = FloatCol
+    entity_class = FoyersFiscaux
     label = u"Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire"
 
     def function(self, simulation, period):
@@ -274,11 +281,11 @@ class cotsoc_lib_declarant1(Variable):
         Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire
         '''
         period = period.this_year
-        csg_cap_lib_declarant1 = simulation.calculate('csg_cap_lib_declarant1', period)
-        prelsoc_cap_lib_declarant1 = simulation.calculate('prelsoc_cap_lib_declarant1', period)
-        crds_cap_lib_declarant1 = simulation.calculate('crds_cap_lib_declarant1', period)
+        csg_cap_lib = simulation.calculate('csg_cap_lib', period)
+        prelsoc_cap_lib = simulation.calculate('prelsoc_cap_lib', period)
+        crds_cap_lib = simulation.calculate('crds_cap_lib', period)
 
-        return period, csg_cap_lib_declarant1 + prelsoc_cap_lib_declarant1 + crds_cap_lib_declarant1
+        return period, csg_cap_lib + prelsoc_cap_lib + crds_cap_lib
 
 
 class rev_cap(Variable):
@@ -292,20 +299,21 @@ class rev_cap(Variable):
         Revenus du patrimoine
         '''
         period = period.this_year
-        fon_holder = simulation.compute('fon', period)
-        rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', period)
-        cotsoc_bar_declarant1 = simulation.calculate('cotsoc_bar_declarant1', period)
-        rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', period)
-        cotsoc_lib_declarant1 = simulation.calculate('cotsoc_lib_declarant1', period)
-        imp_lib_holder = simulation.compute('imp_lib', period)
+
+        # Revenus du foyer fiscal
+        fon = simulation.calculate('fon', period)
+        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
+        cotsoc_lib = simulation.calculate('cotsoc_lib', period)
+        rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
+        imp_lib = simulation.calculate('imp_lib', period)
+        cotsoc_bar = simulation.calculate('cotsoc_bar', period)
+
+        revenus_foyer_fiscal = fon + rev_cap_bar + cotsoc_lib + rev_cap_lib + imp_lib + cotsoc_bar
+        revenus_foyer_fiscal_i = simulation.foyer_fiscal.project_on_first_person(revenus_foyer_fiscal)
+
         rac = simulation.calculate('rac', period)
 
-        fon = self.cast_from_entity_to_role(fon_holder, role = VOUS)
-        imp_lib = self.cast_from_entity_to_role(imp_lib_holder, role = VOUS)
-        rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
-        rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
-
-        return period, fon + rev_cap_bar + cotsoc_bar_declarant1 + rev_cap_lib + cotsoc_lib_declarant1 + imp_lib + rac
+        return period, revenus_foyer_fiscal_i + rac
 
 
 class psoc(Variable):
@@ -373,7 +381,7 @@ class mini(Variable):
         aah = self.sum_by_entity(aah_holder)
         caah = self.sum_by_entity(caah_holder)
 
-        return period, aspa + aah + caah + asi + rsa + aefa + api + ass + psa + ppa 
+        return period, aspa + aah + caah + asi + rsa + aefa + api + ass + psa + ppa
 
 
 class aides_logement(Variable):
@@ -423,28 +431,31 @@ class crds(Variable):
     def function(self, simulation, period):
         """Contribution au remboursement de la dette sociale"""
         period = period.this_year
+
+        # CRDS sur revenus individuels
         crds_salaire = simulation.calculate_add('crds_salaire', period)
         crds_retraite = simulation.calculate_add('crds_retraite', period)
         crds_chomage = simulation.calculate_add('crds_chomage', period)
-        crds_fon_holder = simulation.compute('crds_fon', period)
-        crds_cap_bar_declarant1 = simulation.calculate('crds_cap_bar_declarant1', period)
-        crds_cap_lib_declarant1 = simulation.calculate('crds_cap_lib_declarant1', period)
-        crds_pfam_holder = simulation.compute('crds_pfam', period)
-        crds_logement_holder = simulation.compute_add('crds_logement', period)
-        crds_mini_holder = simulation.compute_add('crds_mini', period)
-        crds_pv_mo_holder = simulation.compute('crds_pv_mo', period)
-        crds_pv_immo_holder = simulation.compute('crds_pv_immo', period)
+        crds_individu = crds_salaire + crds_retraite + crds_chomage
 
-        crds_fon = self.cast_from_entity_to_role(crds_fon_holder, role = VOUS)
-        crds_logement = self.cast_from_entity_to_role(crds_logement_holder, role = CHEF)
-        crds_mini = self.cast_from_entity_to_role(crds_mini_holder, role = CHEF)
-        crds_pfam = self.cast_from_entity_to_role(crds_pfam_holder, role = CHEF)
-        crds_pv_immo = self.cast_from_entity_to_role(crds_pv_immo_holder, role = VOUS)
-        crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo_holder, role = VOUS)
 
-        return period, (crds_salaire + crds_retraite + crds_chomage +
-                crds_fon + crds_cap_bar_declarant1 + crds_cap_lib_declarant1 + crds_pv_mo + crds_pv_immo +
-                crds_pfam + crds_logement + crds_mini)
+        # CRDS sur revenus de la famille
+        crds_pfam = simulation.calculate('crds_pfam', period)
+        crds_logement = simulation.calculate_add('crds_logement', period)
+        crds_mini = simulation.calculate_add('crds_mini', period)
+        crds_famille =  crds_pfam + crds_logement + crds_mini
+        crds_famille_projetes = simulation.famille.project_on_first_person(crds_famille)
+
+        # CRDS sur revenus du foyer fiscal
+        crds_fon = simulation.calculate('crds_fon', period)
+        crds_pv_mo = simulation.calculate('crds_pv_mo', period)
+        crds_pv_immo = simulation.calculate('crds_pv_immo', period)
+        crds_cap_bar = simulation.calculate('crds_cap_bar', period)
+        crds_cap_lib = simulation.calculate('crds_cap_lib', period)
+        crds_foyer_fiscal = crds_fon + crds_pv_mo + crds_pv_immo + crds_cap_bar + crds_cap_lib
+        crds_foyer_fiscal_projetee = simulation.foyer_fiscal.project_on_first_person(crds_foyer_fiscal)
+
+        return period, crds_individu + crds_famille_projetes + crds_foyer_fiscal_projetee
 
 
 class csg(Variable):
@@ -461,19 +472,18 @@ class csg(Variable):
         csg_deductible_chomage = simulation.calculate_add('csg_deductible_chomage', period)
         csg_imposable_retraite = simulation.calculate_add('csg_imposable_retraite', period)
         csg_deductible_retraite = simulation.calculate_add('csg_deductible_retraite', period)
-        csg_fon_holder = simulation.compute('csg_fon', period)
-        csg_cap_lib_declarant1 = simulation.calculate('csg_cap_lib_declarant1', period)
-        csg_cap_bar_declarant1 = simulation.calculate('csg_cap_bar_declarant1', period)
-        csg_pv_mo_holder = simulation.compute('csg_pv_mo', period)
-        csg_pv_immo_holder = simulation.compute('csg_pv_immo', period)
 
-        csg_fon = self.cast_from_entity_to_role(csg_fon_holder, role = VOUS)
-        csg_pv_immo = self.cast_from_entity_to_role(csg_pv_immo_holder, role = VOUS)
-        csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo_holder, role = VOUS)
+        # CSG prélevée sur les revenus du foyer fiscal
+        csg_fon = simulation.calculate('csg_fon', period)
+        csg_cap_lib = simulation.calculate('csg_cap_lib', period)
+        csg_cap_bar = simulation.calculate('csg_cap_bar', period)
+        csg_pv_mo = simulation.calculate('csg_pv_mo', period)
+        csg_pv_immo = simulation.calculate('csg_pv_immo', period)
+        csg_foyer_fiscal = csg_fon + csg_cap_lib + csg_cap_bar + csg_pv_mo + csg_pv_immo
+        csg_foyer_fiscal_projetee = simulation.foyer_fiscal.project_on_first_person(csg_foyer_fiscal)
 
         return period, (csg_imposable_salaire + csg_deductible_salaire + csg_imposable_chomage +
-                csg_deductible_chomage + csg_imposable_retraite + csg_deductible_retraite + csg_fon +
-                csg_cap_lib_declarant1 + csg_pv_mo + csg_pv_immo + csg_cap_bar_declarant1)
+                csg_deductible_chomage + csg_imposable_retraite + csg_deductible_retraite + csg_foyer_fiscal_projetee)
 
 
 class cotsoc_noncontrib(Variable):
@@ -505,18 +515,16 @@ class prelsoc_cap(Variable):
         Prélèvements sociaux sur les revenus du capital
         """
         period = period.this_year
-        prelsoc_fon_holder = simulation.compute('prelsoc_fon', period)
-        prelsoc_cap_lib_declarant1 = simulation.calculate('prelsoc_cap_lib_declarant1', period)
-        prelsoc_cap_bar_declarant1 = simulation.calculate('prelsoc_cap_bar_declarant1', period)
-        prelsoc_pv_mo_holder = simulation.compute('prelsoc_pv_mo', period)
-        prelsoc_pv_immo_holder = simulation.compute('prelsoc_pv_immo', period)
 
-        prelsoc_fon = self.cast_from_entity_to_role(prelsoc_fon_holder, role = VOUS)
-        prelsoc_pv_immo = self.cast_from_entity_to_role(prelsoc_pv_immo_holder, role = VOUS)
-        prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo_holder, role = VOUS)
+        # Prélevements effectués sur les revenus du foyer fiscal
+        prelsoc_fon = simulation.calculate('prelsoc_fon', period)
+        prelsoc_cap_lib = simulation.calculate('prelsoc_cap_lib', period)
+        prelsoc_cap_bar = simulation.calculate('prelsoc_cap_bar', period)
+        prelsoc_pv_mo = simulation.calculate('prelsoc_pv_mo', period)
+        prelsoc_pv_immo = simulation.calculate('prelsoc_pv_immo', period)
+        prel_foyer_fiscal = prelsoc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
 
-        return period, (prelsoc_fon + prelsoc_cap_lib_declarant1 + prelsoc_cap_bar_declarant1 + prelsoc_pv_mo +
-                    prelsoc_pv_immo)
+        return period, simulation.foyer_fiscal.project_on_first_person(prel_foyer_fiscal)
 
 
 class check_csk(Variable):
@@ -526,17 +534,14 @@ class check_csk(Variable):
 
     def function(self, simulation, period):
         period = period.this_year
-        prelsoc_cap_bar_declarant1_holder = simulation.compute('prelsoc_cap_bar_declarant1', period)
-        prelsoc_pv_mo_holder = simulation.compute('prelsoc_pv_mo', period)
-        prelsoc_fon_holder = simulation.compute('prelsoc_fon', period)
 
-        prelsoc_cap_bar = self.sum_by_entity(prelsoc_cap_bar_declarant1_holder)
-        prelsoc_pv_mo = self.cast_from_entity_to_role(prelsoc_pv_mo_holder, role = CHEF)
-        prelsoc_pv_mo = self.sum_by_entity(prelsoc_pv_mo)
-        prelsoc_fon = self.cast_from_entity_to_role(prelsoc_fon_holder, role = CHEF)
-        prelsoc_fon = self.sum_by_entity(prelsoc_fon)
+        # Prélevements effectués sur les revenus du foyer fiscal
+        prelsoc_cap_bar = simulation.calculate('prelsoc_cap_bar', period)
+        prelsoc_pv_mo = simulation.calculate('prelsoc_pv_mo', period)
+        prelsoc_fon = simulation.calculate('prelsoc_fon', period)
+        prel_foyer_fiscal = prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
 
-        return period, prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
+        return period, simulation.menage.transpose(prel_foyer_fiscal, origin_entity = FoyersFiscaux)
 
 
 class check_csg(Variable):
@@ -546,17 +551,15 @@ class check_csg(Variable):
 
     def function(self, simulation, period):
         period = period.this_year
-        csg_cap_bar_declarant1_holder = simulation.compute('csg_cap_bar_declarant1', period)
-        csg_pv_mo_holder = simulation.compute('csg_pv_mo', period)
-        csg_fon_holder = simulation.compute('csg_fon', period)
 
-        csg_cap_bar = self.sum_by_entity(csg_cap_bar_declarant1_holder)
-        csg_pv_mo = self.cast_from_entity_to_role(csg_pv_mo_holder, role = CHEF)
-        csg_pv_mo = self.sum_by_entity(csg_pv_mo)
-        csg_fon = self.cast_from_entity_to_role(csg_fon_holder, role = CHEF)
-        csg_fon = self.sum_by_entity(csg_fon)
+        # CSG prélevée sur les revenus du foyer fiscal
+        csg_cap_bar = simulation.calculate('csg_cap_bar', periop)
+        csg_pv_mo = simulation.calculate('csg_pv_mo', periop)
+        csg_fon = simulation.calculate('csg_fon', periop)
 
-        return period, csg_cap_bar + csg_pv_mo + csg_fon
+        csg_foyer_fiscal = csg_cap_bar + csg_pv_mo + csg_fon
+
+        return period, simulation.menage.transpose(csg_foyer_fiscal, origin_entity = FoyersFiscaux)
 
 
 class check_crds(Variable):
@@ -566,14 +569,12 @@ class check_crds(Variable):
 
     def function(self, simulation, period):
         period = period.this_year
-        crds_cap_bar_declarant1_holder = simulation.compute('crds_cap_bar_declarant1', period)
-        crds_pv_mo_holder = simulation.compute('crds_pv_mo', period)
-        crds_fon_holder = simulation.compute('crds_fon', period)
 
-        crds_cap_bar = self.sum_by_entity(crds_cap_bar_declarant1_holder)
-        crds_pv_mo = self.cast_from_entity_to_role(crds_pv_mo_holder, role = CHEF)
-        crds_pv_mo = self.sum_by_entity(crds_pv_mo)
-        crds_fon = self.cast_from_entity_to_role(crds_fon_holder, role = CHEF)
-        crds_fon = self.sum_by_entity(crds_fon)
+        # CRDS prélevée sur les revenus du foyer fiscal
+        crds_pv_mo = simulation.calculate('crds_pv_mo', period)
+        crds_fon = simulation.calculate('crds_fon', period)
+        crds_cap_bar = simulation.calculate('crds_cap_bar', period)
 
-        return period, crds_cap_bar + crds_pv_mo + crds_fon
+        crds_foyer_fiscal = crds_pv_mo + crds_fon + crds_cap_bar
+
+        return period, simulation.menage.transpose(crds_foyer_fiscal, origin_entity = FoyersFiscaux)

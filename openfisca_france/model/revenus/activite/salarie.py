@@ -2,7 +2,7 @@
 
 from functools import partial
 from numpy import (
-    busday_count as original_busday_count, datetime64, maximum as max_, minimum as min_, timedelta64,
+    busday_count as original_busday_count, datetime64, maximum as max_, minimum as min_, timedelta64, logical_not as not_,
     )
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
@@ -623,7 +623,8 @@ class indemnite_residence(Variable):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        zone_apl_individu = simulation.calculate('zone_apl_individu', period)
+        zone_apl_menage = simulation.calculate('zone_apl')
+        zone_apl_individu = simulation.menage.project(zone_apl_menage, period)
         _P = simulation.legislation_at(period.start)
 
         zone_apl = zone_apl_individu  # TODO: ces zones ne correpondent pas aux zones APL
@@ -681,17 +682,16 @@ class af_nbenf_fonc(Variable):
     def function(self, simulation, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        age_holder = simulation.compute('age', period)
         salaire_de_base = simulation.calculate_add('salaire_de_base', period.start.period('month', 6).offset(-6))
         law = simulation.legislation_at(period.start)
         nbh_travaillees = 169
         smic_mensuel_brut = law.cotsoc.gen.smic_h_b * nbh_travaillees
-        autonomie_financiere_holder = (salaire_de_base / 6) >= (law.fam.af.seuil_rev_taux * smic_mensuel_brut)
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
-        af_nbenf = nb_enf(age, autonomie_financiere, law.fam.af.age1, law.fam.af.age2)
 
-        return period, af_nbenf
+        autonomie_financiere = (salaire_de_base / 6) >= (law.fam.af.seuil_rev_taux * smic_mensuel_brut)
+        age = simulation.calculate('age', period)
+        condition_enfant = (age >= law.fam.af.age1) * (age <= law.fam.af.age2) * not_(autonomie_financiere)
+
+        return period, simulation.famille.sum(condition_enfant, role = ENFANT)
 
 
 class supp_familial_traitement(Variable):
@@ -705,10 +705,11 @@ class supp_familial_traitement(Variable):
         period = period.start.period(u'month').offset('first-of')
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        af_nbenf_fonc_holder = simulation.compute('af_nbenf_fonc', period)
         _P = simulation.legislation_at(period.start)
 
-        fonc_nbenf = self.cast_from_entity_to_role(af_nbenf_fonc_holder, role = CHEF)
+        af_nbenf_fonc = simulation.calculate('af_nbenf_fonc', period)
+        fonc_nbenf = simulation.famille.project_on_first_person(af_nbenf_fonc)
+
         P = _P.fonc.supp_fam
         part_fixe_1 = P.fixe.enf1
         part_fixe_2 = P.fixe.enf2

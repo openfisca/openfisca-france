@@ -49,12 +49,8 @@ class af_allocation_forfaitaire_nb_enfants(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        age_holder = simulation.compute('age', period)
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        autonomie_financiere_holder = simulation.compute('autonomie_financiere', period)
-        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
         pfam = simulation.legislation_at(period.start).fam.af
-        af_forfaitaire_nbenf = nb_enf(age, autonomie_financiere, pfam.age3, pfam.age3)
+        af_forfaitaire_nbenf = nb_enf(simulation, period, pfam.age3, pfam.age3)
 
         return period, af_forfaitaire_nbenf
 
@@ -177,22 +173,16 @@ class af_age_aine(Variable):
     def function(self, simulation, period):
         period = period.this_month
 
-        age_holder = simulation.compute('age', period)
-        age_enfants = self.split_by_roles(age_holder, roles = ENFS)
-
-        pfam_enfant_a_charge_holder = simulation.compute('prestations_familiales_enfant_a_charge', period)
-        af_enfants_a_charge = self.split_by_roles(pfam_enfant_a_charge_holder, roles = ENFS)
-
         pfam = simulation.legislation_at(period.start).fam
 
-        # Calcul de l'âge de l'aîné
-        age_aine = -9999
-        for key, age in age_enfants.iteritems():
-            a_charge = af_enfants_a_charge[key] * (age <= pfam.af.age2)
-            aine_potentiel = a_charge * (age > age_aine)
-            age_aine = aine_potentiel * age + not_(aine_potentiel) * age_aine
+        age = simulation.calculate('age', period)
+        pfam_enfant_a_charge = simulation.calculate('prestations_familiales_enfant_a_charge', period)
 
-        return period, age_aine
+
+        condition_eligibilite = pfam_enfant_a_charge * (age <= pfam.af.age2)
+        age_enfants_eligiles = age * condition_eligibilite
+
+        return period, simulation.famille.max(age_enfants_eligiles, role = ENFANT)
 
 
 class af_majoration_enfant(Variable):
@@ -206,12 +196,15 @@ class af_majoration_enfant(Variable):
         pfam_enfant_a_charge = simulation.calculate('prestations_familiales_enfant_a_charge', period)
         age = simulation.calculate('age', period)
         garde_alternee = simulation.calculate('garde_alternee', period)
-        age_aine_holder = simulation.compute('af_age_aine', period)
-        age_aine = self.cast_from_entity_to_roles(age_aine_holder, roles = ENFS)
-        af_nbenf_holder = simulation.compute('af_nbenf', period)
-        af_nbenf = self.cast_from_entity_to_roles(af_nbenf_holder, roles = ENFS)
-        af_base_holder = simulation.compute('af_base', period)
-        af_base = self.cast_from_entity_to_roles(af_base_holder, roles = ENFS)
+
+        af_nbenf_par_famille = simulation.calculate('af_nbenf', period)
+        af_nbenf = simulation.famille.project(af_nbenf_par_famille)
+
+        af_base_par_famille = simulation.calculate('af_base', period)
+        af_base = simulation.famille.project(af_base_par_famille)
+
+        age_aine_par_famille = simulation.calculate('af_age_aine', period)
+        age_aine = simulation.famille.project(age_aine_par_famille)
 
         pfam = simulation.legislation_at(period.start).fam
 
@@ -242,8 +235,8 @@ class af_majoration(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        af_majoration_enfant_holder = simulation.compute('af_majoration_enfant', period)
-        af_majoration_enfants = self.sum_by_entity(af_majoration_enfant_holder, roles = ENFS)
+        af_majoration_enfant = simulation.calculate('af_majoration_enfant', period)
+        af_majoration_enfants = simulation.famille.sum(af_majoration_enfant, role = ENFANT)
 
         af_taux_modulation = simulation.calculate('af_taux_modulation', period)
         af_majoration_enfants_module = af_majoration_enfants * af_taux_modulation

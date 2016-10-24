@@ -217,7 +217,7 @@ class aah_base(Variable):
 
         # Le montant est à valeur pour une famille, il faut le caster pour l'individu
         # Pour le moment, on ne neutralise pas l'aah en cas de non calculabilité pour pouvoir tester
-        return period, aah_eligible * self.cast_from_entity_to_roles(montant_aah(), entity = 'famille') # * not_(aah_non_calculable)
+        return period, aah_eligible * simulation.famille.project(montant_aah())# * not_(aah_non_calculable)
 
 
 class aah(Variable):

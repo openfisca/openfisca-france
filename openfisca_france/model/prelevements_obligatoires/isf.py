@@ -625,13 +625,6 @@ class maj_cga_individu(Variable):
         return period, max_(0, P.cga_taux2 * (ntimp + frag_impo))
 
 
-class maj_cga(PersonToEntityColumn):
-    entity_class = FoyersFiscaux
-    label = u"Majoration pour non adhésion à un centre de gestion agréé"
-    operation = 'add'
-    variable = maj_cga_individu
-
-
 class bouclier_rev(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
@@ -645,7 +638,6 @@ class bouclier_rev(Variable):
         '''
         period = period.this_year
         rbg = simulation.calculate('rbg', period)
-        maj_cga = simulation.calculate('maj_cga', period)
         csg_deduc = simulation.calculate('csg_deduc', period)
         rvcm_plus_abat = simulation.calculate('rvcm_plus_abat', period)
         rev_cap_lib = simulation.calculate('rev_cap_lib', period)
@@ -654,6 +646,8 @@ class bouclier_rev(Variable):
         cd_penali = simulation.calculate('cd_penali', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
 
+        maj_cga_individu = simulation.calculate('maj_cga_individu', period)
+        maj_cga = simulation.foyer_fiscal.sum(maj_cga_individu)
 
         # TODO: réintégrer les déficits antérieur
         # TODO: intégrer les revenus soumis au prélèvement libératoire
@@ -705,8 +699,6 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         taxe_habitation_holder = simulation.compute('taxe_habitation', period)
         tax_fonc = simulation.calculate('tax_fonc', period)
         isf_tot = simulation.calculate('isf_tot', period)
-        cotsoc_lib_declarant1_holder = simulation.compute('cotsoc_lib_declarant1', period)
-        cotsoc_bar_declarant1_holder = simulation.compute('cotsoc_bar_declarant1', period)
         csg_deductible_salaire_holder = simulation.compute('csg_deductible_salaire', period)
         csg_imposable_salaire_holder = simulation.compute('csg_imposable_salaire', period)
         crds_salaire_holder = simulation.compute('crds_salaire', period)
@@ -716,8 +708,8 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         csg_imposable_retraite_holder = simulation.compute('csg_imposable_retraite', period)
         imp_lib = simulation.calculate('imp_lib', period)
 
-        cotsoc_bar = self.sum_by_entity(cotsoc_bar_declarant1_holder)
-        cotsoc_lib = self.sum_by_entity(cotsoc_lib_declarant1_holder)
+        cotsoc_bar = simulation.calculate('cotsoc_bar', period)
+        cotsoc_lib = simulation.calculate('cotsoc_lib', period)
         crds_salaire = self.sum_by_entity(crds_salaire_holder)
         csg_deductible_chomage = self.sum_by_entity(csg_deductible_chomage_holder)
         csg_imposable_chomage = self.sum_by_entity(csg_imposable_chomage_holder)

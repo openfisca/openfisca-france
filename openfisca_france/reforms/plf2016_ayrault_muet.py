@@ -73,11 +73,14 @@ class reduction_csg(DatedVariable):
         # Montant de l'allegment
         return period, taux_allegement_csg * assiette_csg_abattue
 
-class reduction_csg_foyer_fiscal(PersonToEntityColumn):
+class reduction_csg_foyer_fiscal(Variable):
     entity_class = FoyersFiscaux
     label = u"Réduction dégressive de CSG des memebres du foyer fiscal"
-    operation = 'add'
-    variable = reduction_csg
+    column = FloatCol
+
+    def function(self, simulation, period):
+        reduction_csg = simulation.calculate('reduction_csg', period)
+        return period, simulation.foyer_fiscal.sum(reduction_csg)
 
 class reduction_csg_nette(DatedVariable):
     column = FloatCol
@@ -114,9 +117,13 @@ class ppe_elig_bis(Variable):
             + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
         return period, (rfr * ppe_coef) <= (seuil * variator)
 
-class ppe_elig_bis_individu(EntityToPersonColumn):
+class ppe_elig_bis_individu(Variable):
     entity_class = Individus
-    variable = ppe_elig_bis
+    column = BoolCol
+
+    def function(self, simulation, period):
+        ppe_elig_bis = simulation.calculate('ppe_elig_bis', period)
+        return period, simulation.foyer_fiscal.project(ppe_elig_bis)
 
 class regularisation_reduction_csg(DatedVariable):
     column = FloatCol
