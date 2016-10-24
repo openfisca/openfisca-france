@@ -46,19 +46,18 @@ class asi_aspa_base_ressources_individu(Variable):
             'prestation_compensatoire',
             'prime_forfaitaire_mensuelle_reprise_activite',
             'retraite_brute',
-            'retraite_titre_onereux_declarant1',
             'revenus_fonciers_minima_sociaux',
             'revenus_stage_formation_pro',
             'rsa_base_ressources_patrimoine_individu',
             'salaire_de_base',
         ]
 
-        def revenus_capitaux():
-            rev_cap_bar_holder = simulation.compute_add_divide('rev_cap_bar', three_previous_months)
-            rev_cap_lib_holder = simulation.compute_add_divide('rev_cap_lib', three_previous_months)
-            rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
-            rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
-            return max_(0, rev_cap_bar) + max_(0, rev_cap_lib)
+        # Revenus du foyer fiscal que l'on projette sur le premier invidividus
+        rev_cap_bar_foyer_fiscal = max_(0, simulation.calculate_add('rev_cap_bar', three_previous_months))
+        rev_cap_lib_foyer_fiscal = max_(0, simulation.calculate_add('rev_cap_lib', three_previous_months))
+        retraite_titre_onereux_foyer_fiscal = simulation.calculate_add('retraite_titre_onereux', three_previous_months)
+        revenus_foyer_fiscal = rev_cap_bar_foyer_fiscal + rev_cap_lib_foyer_fiscal + retraite_titre_onereux_foyer_fiscal
+        revenus_foyer_fiscal_individu = simulation.foyer_fiscal.project_on_first_person(revenus_foyer_fiscal)
 
         def revenus_tns():
             revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', three_previous_months)
@@ -84,8 +83,8 @@ class asi_aspa_base_ressources_individu(Variable):
             )
 
         def abattement_salaire():
-            aspa_couple_holder = simulation.compute('aspa_couple', period)
-            aspa_couple = self.cast_from_entity_to_roles(aspa_couple_holder)
+            aspa_couple_famille = simulation.calculate('aspa_couple', period)
+            aspa_couple = simulation.famille.project(aspa_couple_famille)
 
             # Abattement sur les salaires (appliqué sur une base trimestrielle)
             abattement_forfaitaire_base = (
@@ -107,7 +106,7 @@ class asi_aspa_base_ressources_individu(Variable):
         base_ressources_3_mois = sum(
             max_(0, simulation.calculate_add(ressource_type, three_previous_months))
             for ressource_type in ressources_incluses
-            ) + aah + revenus_capitaux() + revenus_tns() - abs_(pensions_alimentaires_versees) - abattement_salaire()
+            ) + aah + revenus_foyer_fiscal_individu + revenus_tns() - abs_(pensions_alimentaires_versees) - abattement_salaire()
 
         return period, base_ressources_3_mois / 3
 

@@ -21,8 +21,6 @@ class api(DatedVariable):
         """
         period = period.this_month
         age_en_mois_holder = simulation.compute('age_en_mois', period)
-        age_holder = simulation.compute('age', period)
-        autonomie_financiere_holder = simulation.compute('autonomie_financiere', period)
         isole = not_(simulation.calculate('en_couple', period))
         rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
         rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
@@ -31,9 +29,8 @@ class api(DatedVariable):
         af = simulation.legislation_at(period.start).fam.af
         api = simulation.legislation_at(period.start).minim.api
 
-        age = self.split_by_roles(age_holder, roles = ENFS)
+
         age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
-        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
         # TODO:
         #    Majoration pour isolement
         #    Si vous êtes parent isolé, c’est-à-dire célibataire, divorcé(e), séparé(e) ou veuf(ve) avec des enfants
@@ -64,11 +61,11 @@ class api(DatedVariable):
         # # Calcul de l'année et mois de naissance du benjamin
 
         condition = (floor(benjamin / 12) <= api.age - 1)
-        eligib = isole * ((enceinte != 0) | (nb_enf(age, autonomie_financiere, 0, api.age - 1) > 0)) * condition
+        eligib = isole * ((enceinte != 0) | (nb_enf(simulation, period, 0, api.age - 1) > 0)) * condition
 
         # moins de 20 ans avant inclusion dans rsa
         # moins de 25 ans après inclusion dans rsa
-        api1 = eligib * af.bmaf * (api.base + api.enf_sup * nb_enf(age, autonomie_financiere, af.age1, api.age_pac - 1))
+        api1 = eligib * af.bmaf * (api.base + api.enf_sup * nb_enf(simulation, period, af.age1, api.age_pac - 1))
         rsa = (api.age_pac >= 25)  # dummy passage au rsa majoré
         br_api = rsa_base_ressources + af_majoration * not_(rsa)
         # On pourrait mensualiser RMI, BRrmi et forfait logement
@@ -156,17 +153,14 @@ class rsa_activite(DatedVariable):
     label = u"Revenu de solidarité active - activité"
     start_date = date(2009, 6, 1)
 
-    @dated_function(start = date(2009, 6, 1),)
+    @dated_function(start = date(2009, 6, 1), stop = date(2015, 12, 31))
     def function_2009(self, simulation, period):
-        '''
-        Calcule le montant du RSA activité
-        Note: le partage en moitié est un point de législation, pas un choix arbitraire
-        '''
         period = period
         rsa = simulation.calculate_add('rsa', period)
         rmi = simulation.calculate_add('rmi', period)
 
         return period, max_(rsa - rmi, 0)
+
 
 class rsa_activite_individu(DatedVariable):
     column = FloatCol
@@ -175,23 +169,18 @@ class rsa_activite_individu(DatedVariable):
     start_date = date(2009, 6, 1)
 
     @dated_function(start = date(2009, 6, 1), stop = date(2015, 12, 31))
-    def function_2009_(self, simulation, period):
+    def function_2009_(individu, period):
+        '''
+        Note: le partage en moitié est un point de législation, pas un choix arbitraire
+        '''
         period = period   # TODO: rentre dans le calcul de la PPE check period !!!
-        rsa_activite_holder = simulation.compute('rsa_activite', period)
-        en_couple_holder = simulation.compute('en_couple', period)
-        maries_holder = simulation.compute('maries', period)
-        quifam = simulation.calculate('quifam', period)
 
-        en_couple = self.cast_from_entity_to_roles(en_couple_holder)
-        maries = self.cast_from_entity_to_roles(maries_holder)
-        rsa_activite = self.cast_from_entity_to_roles(rsa_activite_holder)
+        rsa_activite_famille = individu.famille.calculate('rsa_activite', period)
+        rsa_activite_projete = individu.famille.project(rsa_activite_famille)
+        marie = individu.calculate('statut_marital', period) == 1
+        en_couple = individu.famille.calculate('en_couple', period)
 
-        conj = or_(en_couple, maries)
+        # On partage le rsa_activite entre les parents. Si la personne est mariée et qu'aucun conjoint n'a été déclaré, on divise par 2.
+        partage_rsa = or_(marie, individu.famille.project(en_couple))
 
-        rsa_activite_i = self.zeros()
-
-        chef_filter = quifam == 0
-        rsa_activite_i[chef_filter] = rsa_activite[chef_filter] / (1 + conj[chef_filter])
-        partenaire_filter = quifam == 1
-        rsa_activite_i[partenaire_filter] = rsa_activite[partenaire_filter] * conj[partenaire_filter] / 2
-        return period, rsa_activite_i
+        return period, where(partage_rsa, rsa_activite_projete / 2, rsa_activite_projete)

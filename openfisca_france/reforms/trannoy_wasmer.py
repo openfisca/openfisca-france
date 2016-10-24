@@ -7,9 +7,8 @@ from openfisca_core import columns
 from openfisca_core.reforms import Reform
 from openfisca_core.variables import Variable
 
-from .. import entities
-from ..model.base import PREF
 from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
+from ..model.base import *
 
 def modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_subtree = {
@@ -53,15 +52,14 @@ class charges_deduc(Variable):
 
 class charge_loyer(Variable):
     column = columns.FloatCol
-    entity_class = entities.FoyersFiscaux
+    entity_class = FoyersFiscaux
     label = u"Charge déductible pour paiement d'un loyer"
 
     def function(self, simulation, period):
         period = period.this_year
-        loyer_holder = simulation.calculate('loyer', period)
         nbptr = simulation.calculate('nbptr', period)
-        loyer = self.cast_from_entity_to_role(loyer_holder, entity = "menage", role = PREF)
-        loyer = self.sum_by_entity(loyer)
+        loyer_famille = simulation.calculate('loyer', period)
+        loyer = simulation.foyer_fiscal.transpose(loyer_famille, origin_entity = Familles)
         charge_loyer = simulation.legislation_at(period.start).charge_loyer
 
         plaf = charge_loyer.plaf

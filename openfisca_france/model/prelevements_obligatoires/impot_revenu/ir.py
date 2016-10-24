@@ -145,12 +145,12 @@ class enfant_a_charge(Variable):
     label = u"Enfant à charge non marié, de moins de 18 ans au 1er janvier de l'année de perception des" \
         u" revenus, ou né durant la même année, ou handicapés quel que soit son âge"
 
-    def function(self, simulation, period):
-        age = simulation.calculate('age', period)
-        handicap = simulation.calculate('handicap', period)
-        quifoy = simulation.calculate('quifoy', period)
+    def function(individu, period):
+        age = individu.calculate('age', period)
+        handicap = individu.calculate('handicap', period)
+        is_pac = individu.role_in(FoyersFiscaux) == PERSONNE_A_CHARGE
 
-        return period, (quifoy >= 2) * ((age < 18) + handicap)
+        return period, is_pac * ((age < 18) + handicap)
 
 
 class nbF(Variable):
@@ -214,28 +214,34 @@ class enfant_majeur_celibataire_sans_enfant(Variable):
     entity_class = Individus
     label = u"Enfant majeur célibataire sans enfant"
 
-    def function(self, simulation, period):
+    def function(individu, period):
         period = period.this_year
-        age = simulation.calculate('age', period)
-        handicap = simulation.calculate('handicap', period)
-        quifoy = simulation.calculate('quifoy', period)
+        age = individu.calculate('age', period)
+        handicap = individu.calculate('handicap', period)
+        is_pac = individu.role_in(FoyersFiscaux) == PERSONNE_A_CHARGE
 
-        return period, (quifoy >= 2) * (age >= 18) * not_(handicap)
+        return period, is_pac * (age >= 18) * not_(handicap)
 
 
-class nbJ(PersonToEntityColumn):
+class nbJ(Variable):
     cerfa_field = u'J'
     entity_class = FoyersFiscaux
     label = u"Nombre d'enfants majeurs célibataires sans enfant"
-    operation = 'add'
-    variable = enfant_majeur_celibataire_sans_enfant
+    column = IntCol
+
+    def function(foyer_fiscal, period):
+        enfant_majeur_celibataire_sans_enfant = foyer_fiscal.members.calculate('enfant_majeur_celibataire_sans_enfant', period)
+        return period, foyer_fiscal.sum(enfant_majeur_celibataire_sans_enfant)
 
 
-class nombre_enfants_majeurs_celibataires_sans_enfant(PersonToEntityColumn):
+class nombre_enfants_majeurs_celibataires_sans_enfant(Variable):
     entity_class = Menages
     label = u"Nombre d'enfants majeurs célibataires sans enfant"
-    operation = 'add'
-    variable = enfant_majeur_celibataire_sans_enfant
+    column = IntCol
+
+    def function(menage, period):
+        enfant_majeur_celibataire_sans_enfant = menage.members.calculate('enfant_majeur_celibataire_sans_enfant', period)
+        return period, menage.sum(enfant_majeur_celibataire_sans_enfant)
 
 
 class maries_ou_pacses(Variable):
@@ -243,55 +249,51 @@ class maries_ou_pacses(Variable):
     entity_class = FoyersFiscaux
     label = u"Déclarants mariés ou pacsés"
 
-    def function(self, simulation, period):
+    def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital_holder = simulation.compute('statut_marital', period)
+        statut_marital = foyer_fiscal.members.calculate('statut_marital', period)
+        individu_marie_ou_pacse = (statut_marital == 1) | (statut_marital == 5)
 
-        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
-
-        return period, (statut_marital == 1) | (statut_marital == 5)
+        return period, foyer_fiscal.value_from_person(individu_marie_ou_pacse, role = DECLARANT)
 
 
 class celibataire_ou_divorce(Variable):
-    column = BoolCol(default = False)
+    column = BoolCol
     entity_class = FoyersFiscaux
     label = u"Déclarant célibataire ou divorcé"
 
-    def function(self, simulation, period):
+    def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital_holder = simulation.compute('statut_marital', period)
+        statut_marital = foyer_fiscal.members.calculate('statut_marital', period)
+        individu_celibataire_ou_divorce = (statut_marital == 2) | (statut_marital == 3)
 
-        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
-
-        return period, (statut_marital == 2) | (statut_marital == 3)
+        return period, foyer_fiscal.value_from_person(individu_celibataire_ou_divorce, role = DECLARANT)
 
 
 class veuf(Variable):
-    column = BoolCol(default = False)
+    column = BoolCol
     entity_class = FoyersFiscaux
     label = u"Déclarant veuf"
 
-    def function(self, simulation, period):
+    def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital_holder = simulation.compute('statut_marital', period)
+        statut_marital = foyer_fiscal.members.calculate('statut_marital', period)
+        individu_veuf = (statut_marital == 4)
 
-        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
-
-        return period, statut_marital == 4
+        return period, foyer_fiscal.value_from_person(individu_veuf, role = DECLARANT)
 
 
 class jeune_veuf(Variable):
-    column = BoolCol(default = False)
+    column = BoolCol
     entity_class = FoyersFiscaux
     label = u"Déclarant jeune veuf"
 
-    def function(self, simulation, period):
+    def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital_holder = simulation.compute('statut_marital', period)
+        statut_marital = foyer_fiscal.members.calculate('statut_marital', period)
+        individu_jeune_veuf = (statut_marital == 6)
 
-        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
-
-        return period, statut_marital == 6
+        return period, foyer_fiscal.value_from_person(individu_jeune_veuf, role = DECLARANT)
 
 
 ###############################################################################
@@ -459,13 +461,6 @@ class retraite_titre_onereux(Variable):
         return period, (f1aw + f1bw + f1cw + f1dw) / 12
 
 
-class retraite_titre_onereux_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"Rentes viagères (rentes à titre onéreux) (pour le premier déclarant du foyer fiscal)"
-    role = VOUS
-    variable = retraite_titre_onereux
-
-
 class retraite_titre_onereux_net(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
@@ -483,13 +478,6 @@ class retraite_titre_onereux_net(Variable):
         return period, round(abatviag.taux1 * f1aw + abatviag.taux2 * f1bw + abatviag.taux3 * f1cw + abatviag.taux4 * f1dw)
 
 
-class retraite_titre_onereux_net_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"Rentes viagères après abattements (pour le premier déclarant du foyer fiscal)"
-    role = VOUS
-    variable = retraite_titre_onereux_net
-
-
 class traitements_salaires_pensions_rentes(Variable):
     column = FloatCol
     entity_class = Individus
@@ -502,9 +490,10 @@ class traitements_salaires_pensions_rentes(Variable):
         revenu_assimile_pension_apres_abattements = simulation.calculate('revenu_assimile_pension_apres_abattements', period)
         abattement_salaires_pensions = simulation.calculate('abattement_salaires_pensions', period)
 
-        # Quand tspr est calculé sur une année glissante, retraite_titre_onereux_net_declarant1 est calculé sur l'année légale
+        # Quand tspr est calculé sur une année glissante, retraite_titre_onereux_net est calculé sur l'année légale
         # correspondante.
-        retraite_titre_onereux_net_declarant1 = simulation.calculate('retraite_titre_onereux_net_declarant1', period.offset('first-of'))
+        retraite_titre_onereux_net = simulation.calculate('retraite_titre_onereux_net', period.offset('first-of'))
+        retraite_titre_onereux_net_declarant1 = simulation.foyer_fiscal.project_on_first_person(retraite_titre_onereux_net)
 
         return period, revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements - abattement_salaires_pensions + retraite_titre_onereux_net_declarant1
 
@@ -1630,13 +1619,6 @@ class pensions_alimentaires_versees(Variable):
         return period, -(f6gi + f6gj + f6el + f6em + f6gp + f6gu)
 
 
-class pensions_alimentaires_versees_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"Pensions alimentaires versées (pour le premier déclarant du foyer fiscal)"
-    role = VOUS
-    variable = pensions_alimentaires_versees
-
-
 class rfr(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
@@ -2506,16 +2488,16 @@ class abat_spe(Variable):
           pour un célibataire avec un jeune enfant en résidence alternée.
         """
         period = period.this_year
-        age_holder = simulation.compute('age', period)
         caseP = simulation.calculate('caseP', period)
         caseF = simulation.calculate('caseF', period)
         rng = simulation.calculate('rng', period)
         nbN = simulation.calculate('nbN', period)
         abattements_speciaux = simulation.legislation_at(period.start).ir.abattements_speciaux
 
-        age = self.split_by_roles(age_holder, roles = [VOUS, CONJ])
+        age = simulation.calculate('age', period)
+        ageV = simulation.foyer_fiscal.value_from_person(age, DECLARANT)
+        ageC = simulation.foyer_fiscal.value_from_person(age, CONJOINT)
 
-        ageV, ageC = age[VOUS], age[CONJ]
         invV, invC = caseP, caseF
         nb_elig_as = (1 * (((ageV >= 65) | invV) & (ageV > 0)) +
                       1 * (((ageC >= 65) | invC) & (ageC > 0))

@@ -174,11 +174,8 @@ class nb_parents(Variable):
     def function(self, simulation, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        quifam_holder = simulation.compute('quifam', period)
 
-        quifam = self.filter_role(quifam_holder, role = PART)
-
-        return period, 1 + 1 * (quifam == PART)
+        return period, simulation.famille.nb_persons(role = PARENT)
 
 
 class maries(Variable):
@@ -186,15 +183,14 @@ class maries(Variable):
     entity_class = Familles
     label = u"maries"
 
-    def function(self, simulation, period):
+    def function(famille, period):
         """couple = 1 si couple marié sinon 0 TODO: faire un choix avec couple ?"""
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        statut_marital_holder = simulation.compute('statut_marital', period)
+        statut_marital = famille.members.calculate('statut_marital', period)
+        individu_marie = (statut_marital == 1)
 
-        statut_marital = self.filter_role(statut_marital_holder, role = CHEF)
-
-        return period, statut_marital == 1
+        return period, famille.any(individu_marie, role = PARENT)
 
 
 class en_couple(Variable):
@@ -218,10 +214,8 @@ class est_enfant_dans_famille(Variable):
     entity_class = Individus
     label = u"Indique qe l'individu est un enfant dans une famille"
 
-    def function(self, simulation, period):
-        quifam = simulation.calculate('quifam', period)
-        return period, quifam > PART
-
+    def function(individu, period):
+        return period, individu.role_in(Familles) == ENFANT
 
 class etudiant(Variable):
     column = BoolCol(default = False)

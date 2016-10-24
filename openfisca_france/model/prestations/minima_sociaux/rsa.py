@@ -9,7 +9,6 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf, age_en_mois_benjamin
 
 
-
 class rsa_base_ressources(DatedVariable):
     column = FloatCol
     label = u"Base ressources du Rmi ou du Rsa"
@@ -61,7 +60,6 @@ class rsa_base_ressources_individu(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        last_3_months = period.last_3_months
 
         # Revenus professionels
         types_revenus_pros = [
@@ -73,7 +71,7 @@ class rsa_base_ressources_individu(Variable):
 
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
         revenus_pro = sum(
-            simulation.calculate_add(type_revenu, last_3_months) * not_(
+            simulation.calculate_add(type_revenu, period.last_3_months) * not_(
                 (simulation.calculate(type_revenu, period.this_month) == 0) *
                 (simulation.calculate(type_revenu, period.last_month) > 0) *
                 not_(has_ressources_substitution)
@@ -91,7 +89,6 @@ class rsa_base_ressources_individu(Variable):
             'pensions_invalidite',
             'prestation_compensatoire',
             'prime_forfaitaire_mensuelle_reprise_activite',
-            'retraite_titre_onereux_declarant1',
             'revenus_fonciers_minima_sociaux',
             'rsa_base_ressources_patrimoine_individu',
             'rsa_indemnites_journalieres_hors_activite',
@@ -101,19 +98,22 @@ class rsa_base_ressources_individu(Variable):
         # sans condition de revenu de substitution.
         neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).minim.rmi.rmi
         revenus_non_pros = sum(
-            max_(0, simulation.calculate_add(type_revenu, last_3_months) - neutral_max_forfaitaire * (
+            max_(0, simulation.calculate_add(type_revenu, period.last_3_months) - neutral_max_forfaitaire * (
                     (simulation.calculate(type_revenu, period.this_month) == 0) *
                     (simulation.calculate(type_revenu, period.last_month) > 0)
                 ))
             for type_revenu in types_revenus_non_pros
             )
 
-        rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', last_3_months)
-        rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', last_3_months)
-        rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
-        rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+        # Revenus du foyer fiscal que l'on projette sur le premier invidividus
+        rev_cap_bar_foyer_fiscal = max_(0, simulation.calculate_add('rev_cap_bar', period.last_3_months))
+        rev_cap_lib_foyer_fiscal = max_(0, simulation.calculate_add('rev_cap_lib', period.last_3_months))
+        retraite_titre_onereux_foyer_fiscal = simulation.calculate_add('retraite_titre_onereux', period.last_3_months)
+        revenus_foyer_fiscal = rev_cap_bar_foyer_fiscal + rev_cap_lib_foyer_fiscal + retraite_titre_onereux_foyer_fiscal
+        revenus_foyer_fiscal_individu = simulation.foyer_fiscal.project_on_first_person(revenus_foyer_fiscal)
 
-        return period, (revenus_pro + revenus_non_pros + rev_cap_bar + rev_cap_lib) / 3
+        return period, (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_individu) / 3
+
 
 class rsa_base_ressources_minima_sociaux(Variable):
     column = FloatCol
@@ -281,9 +281,9 @@ class rsa_enfant_a_charge(Variable):
             enceinte_fam = simulation.calculate('enceinte_fam', period)
             isole = not_(simulation.calculate('en_couple', period))
             isolement_recent = simulation.calculate('rsa_isolement_recent', period)
-            presence_autres_enfants = self.sum_by_entity(enfant * not_(autonomie_financiere) * (age <= P_rsa.age_pac), entity = "famille") > 1
+            presence_autres_enfants = simulation.famille.sum(enfant * not_(autonomie_financiere) * (age <= P_rsa.age_pac)) > 1
 
-            return self.cast_from_entity_to_roles(not_(enceinte_fam) * isole * isolement_recent * not_(presence_autres_enfants), entity = 'famille')
+            return simulation.famille.project(not_(enceinte_fam) * isole * isolement_recent * not_(presence_autres_enfants))
 
         return period, (
             enfant * not_(autonomie_financiere) *
@@ -606,9 +606,7 @@ class rsa_forfait_logement(Variable):
         participation_frais = self.cast_from_entity_to_roles(participation_frais_holder)
         participation_frais = self.filter_role(participation_frais, role = CHEF)
 
-        loyer_holder = simulation.compute('loyer', period)
-        loyer = self.cast_from_entity_to_roles(loyer_holder)
-        loyer = self.filter_role(loyer, role = CHEF)
+        loyer = simulation.calculate('loyer', period)
 
         avantage_nature = or_(
             (statut_occupation_logement == 2) * not_(loyer),
@@ -657,19 +655,10 @@ class rsa_majore_eligibilite(Variable):
 
     def function(self, simulation, period):
 
-        def has_enfant_moins_3_ans():
-            age_holder = simulation.compute('age', period)
-            autonomie_financiere_holder = simulation.compute('autonomie_financiere', period)
-            age_enf = self.split_by_roles(age_holder, roles = ENFS)
-            autonomie_financiere_enf = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
-            nbenf = nb_enf(age_enf, autonomie_financiere_enf, 0, 2)
-
-            return nbenf > 0
-
         period = period.this_month
         isole = not_(simulation.calculate('en_couple', period))
         isolement_recent = simulation.calculate('rsa_isolement_recent', period)
-        enfant_moins_3_ans = has_enfant_moins_3_ans()
+        enfant_moins_3_ans = nb_enf(simulation, period, 0, 2) > 0
         enceinte_fam = simulation.calculate('enceinte_fam', period)
         nbenf = simulation.calculate('rsa_nb_enfants', period)
         rsa_eligibilite_tns = simulation.calculate('rsa_eligibilite_tns', period)

@@ -54,12 +54,8 @@ class al_nb_personnes_a_charge(Variable):
         residence_dom = simulation.calculate('residence_dom', period)
 
         def al_nb_enfants():
-            autonomie_financiere_holder = simulation.compute('autonomie_financiere', period)
-            age = self.split_by_roles(age_holder, roles = ENFS)
-            autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
             age_min_enfant = simulation.legislation_at(period.start).fam.af.age1
-
-            return nb_enf(age, autonomie_financiere, age_min_enfant, age_max_enfant - 1)  # La limite sur l'age max est stricte.
+            return nb_enf(simulation, period, age_min_enfant, age_max_enfant - 1)  # La limite sur l'age max est stricte.
 
         def al_nb_adultes_handicapes():
 
@@ -141,7 +137,7 @@ class aide_logement_abattement_chomage_indemnise(Variable):
         period = period.this_month
         chomage_net_m_1 = simulation.calculate('chomage_net', period.offset(-1))
         chomage_net_m_2 = simulation.calculate('chomage_net', period.offset(-2))
-        revenus_activite_pro = simulation.calculate('salaire_imposable', period.n_2)
+        revenus_activite_pro = simulation.calculate_add('salaire_imposable', period.n_2)
         taux_abattement = simulation.legislation_at(period.start).al.ressources.abattement_chomage_indemnise
         taux_frais_pro = simulation.legislation_at(period.start).ir.tspr.abatpro.taux
 
@@ -195,8 +191,6 @@ class aide_logement_base_ressources_defaut(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        rev_coll_holder = simulation.compute('rev_coll', period.n_2)
-        rev_coll = self.sum_by_entity(rev_coll_holder)
         biactivite = simulation.calculate('biactivite', period)
         Pr = simulation.legislation_at(period.start).al.ressources
         base_ressources_holder = simulation.compute('prestations_familiales_base_ressources_individu', period)
@@ -209,8 +203,13 @@ class aide_logement_base_ressources_defaut(Variable):
         abattement_ressources_enfant = simulation.legislation_at(period.n_2.stop).minim.aspa.plaf_seul * 1.25
         br_enfants = self.sum_by_entity(
             max_(0, base_ressources_holder.array - abattement_ressources_enfant), roles = ENFS)
+
+        # Revenus du foyer fiscal
+        rev_coll = simulation.calculate('rev_coll', period.n_2)
+        rev_coll_famille = simulation.famille.transpose(rev_coll, origin_entity = FoyersFiscaux)
+
         ressources = (
-            base_ressources_parents + br_enfants + rev_coll -
+            base_ressources_parents + br_enfants + rev_coll_famille -
             (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
         )
 
@@ -626,25 +625,16 @@ class crds_logement(Variable):
         crds = simulation.legislation_at(period.start).fam.af.crds
         return period, -aide_logement_montant_brut * crds
 
-class statut_occupation_logement_individu(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"Statut d'occupation de l'individu"
-    variable = statut_occupation_logement
-
-class statut_occupation_logement_famille(PersonToEntityColumn):
-    entity_class = Familles
-    label = u"Statut d'occupation de la famille"
-    role = CHEF
-    variable = statut_occupation_logement_individu
-
-class zone_apl(Variable):
-    column = EnumCol(
-        enum = Enum([
+ZONE_APL_ENUM = Enum([
             u"Non renseigné",
             u"Zone 1",
             u"Zone 2",
             u"Zone 3",
-            ]),
+            ])
+
+class zone_apl(Variable):
+    column = EnumCol(
+        enum = ZONE_APL_ENUM,
         default = 2
         )
     entity_class = Menages
@@ -668,6 +658,18 @@ class zone_apl(Variable):
             dtype = int16,
             )
 
+class zone_apl_famille(Variable):
+    entity_class = Familles
+    column = EnumCol(
+        enum = ZONE_APL_ENUM,
+        default = 2
+        )
+    label = u"Zone apl de la famille"
+
+    def function(famille, period):
+        zone_apl_menage = famille.members.menage.calculate('zone_apl', period)
+        return period, famille.transpose(zone_apl_menage, origin_entity = Menages)
+
 def preload_zone_apl():
     global zone_apl_by_depcom
     if zone_apl_by_depcom is None:
@@ -690,13 +692,3 @@ def preload_zone_apl():
             for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.iteritems():
                 zone_apl_by_depcom[subcommune_depcom] = zone_apl_by_depcom[commune_depcom]
 
-class zone_apl_individu(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"Zone apl de la personne"
-    variable = zone_apl
-
-class zone_apl_famille(PersonToEntityColumn):
-    entity_class = Familles
-    label = u"Zone apl de la famille"
-    role = CHEF
-    variable = zone_apl_individu
