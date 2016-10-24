@@ -8,6 +8,7 @@ import re
 import uuid
 
 from openfisca_core import conv, scenarios
+from entities import Individus, Familles, FoyersFiscaux, Menages
 
 
 def N_(message):
@@ -19,6 +20,7 @@ year_or_month_or_day_re = re.compile(ur'(18|19|20)\d{2}(-(0[1-9]|1[0-2])(-([0-2]
 
 
 class Scenario(scenarios.AbstractScenario):
+
     def init_single_entity(self, axes = None, enfants = None, famille = None, foyer_fiscal = None, menage = None,
             parent1 = None, parent2 = None, period = None):
         if enfants is None:
@@ -113,7 +115,7 @@ class Scenario(scenarios.AbstractScenario):
                                         (
                                             (column.name, column.json_to_python)
                                             for column in column_by_name.itervalues()
-                                            if column.entity == 'fam'
+                                            if column.entity == Familles
                                             ),
                                         )),
                                     drop_none_values = True,
@@ -160,7 +162,7 @@ class Scenario(scenarios.AbstractScenario):
                                         (
                                             (column.name, column.json_to_python)
                                             for column in column_by_name.itervalues()
-                                            if column.entity == 'foy'
+                                            if column.entity == FoyersFiscaux
                                             ),
                                         )),
                                     drop_none_values = True,
@@ -189,8 +191,7 @@ class Scenario(scenarios.AbstractScenario):
                                         (
                                             (column.name, column.json_to_python)
                                             for column in column_by_name.itervalues()
-                                            if column.entity == 'ind' and column.name not in (
-                                                'idfam', 'idfoy', 'idmen', 'quifam', 'quifoy', 'quimen')
+                                            if column.entity == Individus
                                             ),
                                         )),
                                     drop_none_values = True,
@@ -243,7 +244,7 @@ class Scenario(scenarios.AbstractScenario):
                                         (
                                             (column.name, column.json_to_python)
                                             for column in column_by_name.itervalues()
-                                            if column.entity == 'men'
+                                            if column.entity == Menages
                                             ),
                                         )),
                                     drop_none_values = True,
@@ -645,12 +646,7 @@ class Scenario(scenarios.AbstractScenario):
                                             #         default = 100) >= 18,
                                             #     error = u"Un déclarant d'un foyer fiscal doit être agé d'au moins 18"
                                             #         u" ans",
-                                            #     ),
-                                            conv.test(
-                                                lambda individu_id: individu_id in parents_id,
-                                                error = u"Un déclarant ou un conjoint sur la déclaration d'impôt, doit"
-                                                        u" être un parent dans sa famille",
-                                                ),
+                                            #     )
                                             )),
                                         ),
                                     personnes_a_charge = conv.uniform_sequence(
@@ -780,7 +776,7 @@ class Scenario(scenarios.AbstractScenario):
                     famille_json['enfants'] = enfants
                 for column_name, variable_value in famille.iteritems():
                     column = column_by_name.get(column_name)
-                    if column is not None and column.entity == 'fam':
+                    if column is not None and column.entity == Familles:
                         variable_value_json = column.transform_value_to_json(variable_value)
                         if variable_value_json is not None:
                             famille_json[column_name] = variable_value_json
@@ -800,7 +796,7 @@ class Scenario(scenarios.AbstractScenario):
                     foyer_fiscal_json['personnes_a_charge'] = personnes_a_charge
                 for column_name, variable_value in foyer_fiscal.iteritems():
                     column = column_by_name.get(column_name)
-                    if column is not None and column.entity == 'foy':
+                    if column is not None and column.entity == FoyersFiscaux:
                         variable_value_json = column.transform_value_to_json(variable_value)
                         if variable_value_json is not None:
                             foyer_fiscal_json[column_name] = variable_value_json
@@ -814,7 +810,7 @@ class Scenario(scenarios.AbstractScenario):
                 individu_json['id'] = individu['id']
                 for column_name, variable_value in individu.iteritems():
                     column = column_by_name.get(column_name)
-                    if column is not None and column.entity == 'ind':
+                    if column is not None and column.entity == Individus:
                         variable_value_json = column.transform_value_to_json(variable_value)
                         if variable_value_json is not None:
                             individu_json[column_name] = variable_value_json
@@ -840,7 +836,7 @@ class Scenario(scenarios.AbstractScenario):
                     menage_json['autres'] = autres
                 for column_name, variable_value in menage.iteritems():
                     column = column_by_name.get(column_name)
-                    if column is not None and column.entity == 'men':
+                    if column is not None and column.entity == Menages:
                         variable_value_json = column.transform_value_to_json(variable_value)
                         if variable_value_json is not None:
                             menage_json[column_name] = variable_value_json
