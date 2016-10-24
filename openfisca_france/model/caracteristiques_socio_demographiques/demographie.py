@@ -2,63 +2,16 @@
 
 from openfisca_france.model.base import *  # noqa
 
-
-class idmen(Variable):
-    column = IntCol
-    entity_class = Individus
-    is_permanent = True
-    label = u"Identifiant du ménage"
-
-
-class idfoy(Variable):
-    column = IntCol
-    entity_class = Individus
-    is_permanent = True
-    label = u"Identifiant du foyer"
-
-
-class idfam(Variable):
-    column = IntCol
-    entity_class = Individus
-    is_permanent = True
-    label = u"Identifiant de la famille"
-
-
-
-class quimen(Variable):
-    column = EnumCol(enum = QUIMEN)
-    entity_class = Individus
-    is_permanent = True
-
-
-class quifoy(Variable):
-    column = EnumCol(enum = QUIFOY)
-    entity_class = Individus
-    is_permanent = True
-
-
-class quifam(Variable):
-    column = EnumCol(enum = QUIFAM)
-    entity_class = Individus
-    is_permanent = True
-
-
-
 class date_naissance(Variable):
     column = DateCol(default = date(1970, 1, 1))
     entity_class = Individus
     is_permanent = True
     label = u"Date de naissance"
 
-
-
-
 class adoption(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Enfant adopté"
-
-
 
 class garde_alternee(Variable):
     column = BoolCol
@@ -78,16 +31,10 @@ class activite(Variable):
     entity_class = Individus
     label = u"Activité"
 
-
-
-
 class enceinte(Variable):
     column = BoolCol
     entity_class = Individus
     label = u"Est enceinte"
-
-
-
 
 class statut_marital(Variable):
     column = EnumCol(
