@@ -10,8 +10,10 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 # TODO: fill the parameters file. May be should use the majoration pour tierce personne as parameter
 apa_age_min = 60
-apa_seuil_1 = .67
-apa_seuil_2 = 2.67
+apa_seuil_dom_1 = .67
+apa_seuil_dom_2 = 2.67
+apa_seuil_etab_1 = 2.21
+apa_seuil_etab_2 = 3.40
 majoration_tierce_personne = 1103.08
 montant_mensuel_maximum_by_gir = {
     1: 1312.67,
@@ -50,7 +52,7 @@ class apa_domicile(Variable):
             taux_max_participation * (
                 min_(
                     max_(
-                        (base_ressources_apa / majoration_tierce_personne - apa_seuil_1) / (apa_seuil_2 - apa_seuil_1),
+                        (base_ressources_apa / majoration_tierce_personne - apa_seuil_dom_1) / (apa_seuil_dom_2 - apa_seuil_dom_1),
                         0,
                         ),
                     1,
@@ -64,7 +66,7 @@ class apa_domicile(Variable):
 class apa_etablissement(Variable):
     column = FloatCol
     label = u"Allocation personalisée d'autonomie"
-    entity_class = Familles
+    entity_class = Individus
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('month')
@@ -77,10 +79,10 @@ class apa_etablissement(Variable):
         participation_beneficiaire = (
             dependance_tarif_etablissement_gir_5_6 +
             dependance_tarif_etablissement_gir_dependant * (
-                (base_ressources_apa <= apa_seuil_1) +
+                (base_ressources_apa <= apa_seuil_etab_1) +
                 .8 * min_(
                     max_(
-                        (base_ressources_apa - apa_seuil_1) / (apa_seuil_2 - apa_seuil_1),
+                        (base_ressources_apa - apa_seuil_etab_1) / (apa_seuil_etab_2 - apa_seuil_etab_1),
                         0,
                         ),
                     1,
