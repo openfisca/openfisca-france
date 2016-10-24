@@ -7,7 +7,7 @@ from openfisca_core.columns import (AgeCol, BoolCol, DateCol, EnumCol, FixedStrC
 from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import (calculate_output_add, calculate_output_add_divide, calculate_output_divide,
     dated_function, missing_value, set_input_dispatch_by_period, set_input_divide_by_period)
-from openfisca_core.variables import DatedVariable, EntityToPersonColumn, PersonToEntityColumn, Variable
+from openfisca_core.variables import DatedVariable, Variable
 from openfisca_core.base_functions import (
     last_duration_last_value,
     requested_period_added_value,
@@ -30,13 +30,15 @@ __all__ = [
     'CAT',
     'CHEF',
     'CONJ',
+    'CONJOINT',
     'CREF',
     'date',
     'DateCol',
     'dated_function',
     'DatedVariable',
+    'DECLARANT',
+    'ENFANT',
     'ENFS',
-    'EntityToPersonColumn',
     'Enum',
     'EnumCol',
     'Familles',
@@ -51,9 +53,10 @@ __all__ = [
     'PAC1',
     'PAC2',
     'PAC3',
+    'PARENT',
     'PART',
     'PeriodSizeIndependentIntCol',
-    'PersonToEntityColumn',
+    'PERSONNE_A_CHARGE',
     'PREF',
     'QUIFAM',
     'QUIFOY',
@@ -64,10 +67,10 @@ __all__ = [
     'requested_period_last_value',
     'set_input_dispatch_by_period',
     'set_input_divide_by_period',
-    'switch',
-    'Variable',
     'StrCol',
+    'switch',
     'TAUX_DE_PRIME',
+    'Variable',
     'VOUS',
     ]
 
@@ -83,6 +86,18 @@ CAT = Enum([
 
 TAUX_DE_PRIME = 1 / 4  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
 
+
+# New roles
+ROLES_DANS_FAMILLE = Familles.get_role_enum()
+ROLES_DANS_FOYER_FISCAL = FoyersFiscaux.get_role_enum()
+
+PARENT = ROLES_DANS_FAMILLE['parents']
+ENFANT = ROLES_DANS_FAMILLE['enfants']
+DECLARANT = ROLES_DANS_FOYER_FISCAL['declarant']
+CONJOINT = ROLES_DANS_FOYER_FISCAL['conjoint']
+PERSONNE_A_CHARGE = ROLES_DANS_FOYER_FISCAL['personnes_a_charge']
+
+# Legacy roles. To be removed when they are not used by formulas anymore.
 QUIFAM = Enum(['chef', 'part', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])
 QUIFOY = Enum(['vous', 'conj', 'pac1', 'pac2', 'pac3', 'pac4', 'pac5', 'pac6', 'pac7', 'pac8', 'pac9'])
 QUIMEN = Enum(['pref', 'cref', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])
