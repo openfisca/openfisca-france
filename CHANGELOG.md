@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.17
+
+* Add notebook handling periods in OF
+
 ## 4.1.16
 
 * Correct wrong behaviour in the combination of exemptions with the dispositif Jeune Entreprise Innovante (JEI)
