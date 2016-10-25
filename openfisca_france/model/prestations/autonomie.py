@@ -21,9 +21,9 @@ montant_mensuel_maximum_by_gir = {
     3: 843.86,
     4: 562.57,
     }
-reste_a_vivre = 96
 seuil_non_versement = 28.83
 taux_max_participation = .9
+taux_reste_a_vivre = 0.10
 
 
 class apa_domicile(Variable):
@@ -93,7 +93,7 @@ class apa_etablissement(Variable):
             dependance_tarif_etablissement_gir_5_6 + (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6) * 0.80        
             ]
         participation_beneficiaire = select(conditions_ressources, participations)
-        participation_beneficiaire = min_(participation_beneficiaire, max_(base_ressources_apa - reste_a_vivre, 0))
+        participation_beneficiaire = min_(participation_beneficiaire, max_(base_ressources_apa * (1 - taux_reste_a_vivre), 0))
         apa = dependance_tarif_etablissement_gir_dependant - participation_beneficiaire
 
         eligibilite_etablissement = (
