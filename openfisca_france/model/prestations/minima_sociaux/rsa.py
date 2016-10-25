@@ -346,8 +346,8 @@ class rsa_indemnites_journalieres_activite(Variable):
         three_months_ago = datetime64(m_3.start)
         condition_date_arret_travail = date_arret_de_travail > three_months_ago
 
-        # Si la date d'arrêt de travail n'est pas définie (et vaut donc par défaut date.max), mais qu'il n'y a pas d'IJSS à M-3, on estime que l'arrêt est récent.
-        is_date_arret_de_travail_undefined = (date_arret_de_travail == datetime.date.max)
+        # Si la date d'arrêt de travail n'est pas définie (et vaut donc par défaut date.min), mais qu'il n'y a pas d'IJSS à M-3, on estime que l'arrêt est récent.
+        is_date_arret_de_travail_undefined = (date_arret_de_travail == datetime.date.min)
         condition_arret_recent = is_date_arret_de_travail_undefined * (ijss_activite_sous_condition(m_3) == 0)
 
         condition_activite = simulation.calculate('salaire_net', period) > 0

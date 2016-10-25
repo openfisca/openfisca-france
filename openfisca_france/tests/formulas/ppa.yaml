@@ -669,16 +669,22 @@
       2015-11: 1000
       2015-10: 1000
       2015-09: 1000
+      2015-08: 1000
+      2015-07: 1000
     indemnites_journalieres_accident_travail:
       2015-12: 1000
       2015-11: 1000
       2015-10: 1000
       2015-09: 1000
+      2015-08: 1000
+      2015-07: 1000
     indemnites_journalieres_maladie_professionnelle:
       2015-12: 1000
       2015-11: 1000
       2015-10: 1000
       2015-09: 1000
+      2015-08: 1000
+      2015-07: 1000
   output_variables:
     ppa: 0
     ppa_revenu_activite:
