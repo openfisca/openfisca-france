@@ -187,7 +187,7 @@ class maries(Variable):
         """couple = 1 si couple marié sinon 0 TODO: faire un choix avec couple ?"""
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        statut_marital = famille.members.calculate('statut_marital', period)
+        statut_marital = famille.members['statut_marital'](period)
         individu_marie = (statut_marital == 1)
 
         return period, famille.any(individu_marie, role = PARENT)

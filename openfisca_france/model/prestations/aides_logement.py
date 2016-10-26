@@ -667,7 +667,7 @@ class zone_apl_famille(Variable):
     label = u"Zone apl de la famille"
 
     def function(famille, period):
-        zone_apl_menage = famille.members.menage.calculate('zone_apl', period)
+        zone_apl_menage = famille.members.menage['zone_apl'](period)
         return period, famille.transpose(zone_apl_menage, origin_entity = Menages)
 
 def preload_zone_apl():
