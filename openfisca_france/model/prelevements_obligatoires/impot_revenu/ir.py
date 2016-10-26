@@ -146,8 +146,8 @@ class enfant_a_charge(Variable):
         u" revenus, ou né durant la même année, ou handicapés quel que soit son âge"
 
     def function(individu, period):
-        age = individu.calculate('age', period)
-        handicap = individu.calculate('handicap', period)
+        age = individu['age'](period)
+        handicap = individu['handicap'](period)
         is_pac = individu.role_in(FoyersFiscaux) == PERSONNE_A_CHARGE
 
         return period, is_pac * ((age < 18) + handicap)
@@ -216,8 +216,8 @@ class enfant_majeur_celibataire_sans_enfant(Variable):
 
     def function(individu, period):
         period = period.this_year
-        age = individu.calculate('age', period)
-        handicap = individu.calculate('handicap', period)
+        age = individu['age'](period)
+        handicap = individu['handicap'](period)
         is_pac = individu.role_in(FoyersFiscaux) == PERSONNE_A_CHARGE
 
         return period, is_pac * (age >= 18) * not_(handicap)
@@ -230,7 +230,7 @@ class nbJ(Variable):
     column = IntCol
 
     def function(foyer_fiscal, period):
-        enfant_majeur_celibataire_sans_enfant = foyer_fiscal.members.calculate('enfant_majeur_celibataire_sans_enfant', period)
+        enfant_majeur_celibataire_sans_enfant = foyer_fiscal.members['enfant_majeur_celibataire_sans_enfant'](period)
         return period, foyer_fiscal.sum(enfant_majeur_celibataire_sans_enfant)
 
 
@@ -240,7 +240,7 @@ class nombre_enfants_majeurs_celibataires_sans_enfant(Variable):
     column = IntCol
 
     def function(menage, period):
-        enfant_majeur_celibataire_sans_enfant = menage.members.calculate('enfant_majeur_celibataire_sans_enfant', period)
+        enfant_majeur_celibataire_sans_enfant = menage.members['enfant_majeur_celibataire_sans_enfant'](period)
         return period, menage.sum(enfant_majeur_celibataire_sans_enfant)
 
 
@@ -251,7 +251,7 @@ class maries_ou_pacses(Variable):
 
     def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital = foyer_fiscal.members.calculate('statut_marital', period)
+        statut_marital = foyer_fiscal.members['statut_marital'](period)
         individu_marie_ou_pacse = (statut_marital == 1) | (statut_marital == 5)
 
         return period, foyer_fiscal.value_from_person(individu_marie_ou_pacse, role = DECLARANT)
@@ -264,7 +264,7 @@ class celibataire_ou_divorce(Variable):
 
     def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital = foyer_fiscal.members.calculate('statut_marital', period)
+        statut_marital = foyer_fiscal.members['statut_marital'](period)
         individu_celibataire_ou_divorce = (statut_marital == 2) | (statut_marital == 3)
 
         return period, foyer_fiscal.value_from_person(individu_celibataire_ou_divorce, role = DECLARANT)
@@ -277,7 +277,7 @@ class veuf(Variable):
 
     def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital = foyer_fiscal.members.calculate('statut_marital', period)
+        statut_marital = foyer_fiscal.members['statut_marital'](period)
         individu_veuf = (statut_marital == 4)
 
         return period, foyer_fiscal.value_from_person(individu_veuf, role = DECLARANT)
@@ -290,7 +290,7 @@ class jeune_veuf(Variable):
 
     def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital = foyer_fiscal.members.calculate('statut_marital', period)
+        statut_marital = foyer_fiscal.members['statut_marital'](period)
         individu_jeune_veuf = (statut_marital == 6)
 
         return period, foyer_fiscal.value_from_person(individu_jeune_veuf, role = DECLARANT)
