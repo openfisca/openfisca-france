@@ -24,7 +24,7 @@ zone_apl_by_depcom = None
 
 class al_nb_personnes_a_charge(Variable):
     column = IntCol
-    entity_class = Familles
+    entity = Familles
     label = u"Nombre de personne à charge au sens des allocations logement"
 
     def function(self, simulation, period):
@@ -84,7 +84,7 @@ class al_nb_personnes_a_charge(Variable):
 
 class al_couple(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Familles
     label = u'Situation de couple pour le calcul des AL'
 
     def function(self, simulation, period):
@@ -96,7 +96,7 @@ class al_couple(Variable):
 
 class aide_logement_base_ressources_eval_forfaitaire(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Base ressources en évaluation forfaitaire des aides au logement (R351-7 du CCH)"
 
     def function(self, simulation, period):
@@ -130,7 +130,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
 
 class aide_logement_abattement_chomage_indemnise(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
 
     def function(self, simulation, period):
@@ -148,7 +148,7 @@ class aide_logement_abattement_chomage_indemnise(Variable):
 
 class aide_logement_abattement_depart_retraite(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Montant de l'abattement sur les salaires en cas de départ en retraite"
 
     def function(self, simulation, period):
@@ -165,7 +165,7 @@ class aide_logement_abattement_depart_retraite(Variable):
 
 class aide_logement_neutralisation_rsa(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
 
     def function(self, simulation, period):
@@ -186,7 +186,7 @@ class aide_logement_neutralisation_rsa(Variable):
 
 class aide_logement_base_ressources_defaut(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Base ressource par défaut des allocations logement"
 
     def function(self, simulation, period):
@@ -223,7 +223,7 @@ class aide_logement_base_ressources_defaut(Variable):
 
 class aide_logement_base_ressources(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Base ressources des allocations logement"
 
     def function(self, simulation, period):
@@ -275,7 +275,7 @@ class aide_logement_base_ressources(Variable):
 
 class aide_logement_loyer_retenu(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Loyer retenu (hors charge) dans le calcul des aides au logement"
 
     def function(self, simulation, period):
@@ -318,7 +318,7 @@ class aide_logement_loyer_retenu(Variable):
 
 class aide_logement_charges(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Charges retenues dans le calcul des aides au logement"
 
     def function(self, simulation, period):
@@ -334,7 +334,7 @@ class aide_logement_charges(Variable):
 
 class aide_logement_R0(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Revenu de référence, basé sur la situation familiale, pris en compte dans le calcul des AL."
 
     def function(self, simulation, period):
@@ -364,7 +364,7 @@ class aide_logement_R0(Variable):
 
 class aide_logement_taux_famille(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Taux représentant la situation familiale, décroissant avec le nombre de personnes à charge"
 
     def function(self, simulation, period):
@@ -399,7 +399,7 @@ class aide_logement_taux_famille(Variable):
 
 class aide_logement_taux_loyer(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Taux obscur basé sur une comparaison du loyer retenu à un loyer de référence."
 
     def function(self, simulation, period):
@@ -430,7 +430,7 @@ class aide_logement_taux_loyer(Variable):
 
 class aide_logement_participation_personelle(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Participation personelle de la famille au loyer"
 
     def function(self, simulation, period):
@@ -455,7 +455,7 @@ class aide_logement_participation_personelle(Variable):
 
 class aide_logement_montant_brut(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Formule des aides aux logements en secteur locatif en montant brut avant CRDS"
 
     def function(self, simulation, period):
@@ -482,7 +482,7 @@ class aide_logement_montant_brut(Variable):
 
 class aide_logement_montant(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Montant des aides au logement net de CRDS"
 
     def function(self, simulation, period):
@@ -496,7 +496,7 @@ class aide_logement_montant(Variable):
 class alf(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Allocation logement familiale"
     url = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml"
 
@@ -512,7 +512,7 @@ class alf(Variable):
 
 class als_non_etudiant(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Allocation logement sociale (non étudiante)"
 
     def function(self, simulation, period):
@@ -532,7 +532,7 @@ class als_non_etudiant(Variable):
 class als_etudiant(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Allocation logement sociale (étudiante)"
     url = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement"
 
@@ -553,7 +553,7 @@ class als_etudiant(Variable):
 class als(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Allocation logement sociale"
     url = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml"
 
@@ -568,7 +568,7 @@ class als(Variable):
 class apl(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u" Aide personnalisée au logement"
     # (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
     url = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
@@ -589,7 +589,7 @@ class aide_logement_non_calculable(Variable):
         ]),
         default = 0
     )
-    entity_class = Familles
+    entity = Familles
     label = u"Aide au logement non calculable"
 
     def function(self, simulation, period):
@@ -601,7 +601,7 @@ class aide_logement_non_calculable(Variable):
 
 class aide_logement(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Aide au logement (tout type)"
 
     def function(self, simulation, period):
@@ -615,7 +615,7 @@ class aide_logement(Variable):
 class crds_logement(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"CRDS des allocations logement"
     url = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml"
 
@@ -637,7 +637,7 @@ class zone_apl(Variable):
         enum = ZONE_APL_ENUM,
         default = 2
         )
-    entity_class = Menages
+    entity = Menages
     label = u"Zone APL"
 
     def function(self, simulation, period):
@@ -659,7 +659,7 @@ class zone_apl(Variable):
             )
 
 class zone_apl_famille(Variable):
-    entity_class = Familles
+    entity = Familles
     column = EnumCol(
         enum = ZONE_APL_ENUM,
         default = 2

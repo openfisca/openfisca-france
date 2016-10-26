@@ -17,7 +17,7 @@ TAUX_DE_PRIME = .10
 
 class salaire_imposable_pour_inversion(Variable):
     column = columns.FloatCol
-    entity_class = entities.Individus
+    entity = entities.Individus
     label = u'Salaire imposable utilisé pour remonter au salaire brut'
 
 

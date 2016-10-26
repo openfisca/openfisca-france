@@ -8,7 +8,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class autonomie_financiere(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label = u"Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
 
     def function(self, simulation, period):
@@ -25,7 +25,7 @@ class autonomie_financiere(Variable):
 
 class prestations_familiales_enfant_a_charge(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label = u"Enfant considéré à charge au sens des prestations familiales"
 
     def function(self, simulation, period):
@@ -47,7 +47,7 @@ class prestations_familiales_enfant_a_charge(Variable):
 
 class prestations_familiales_base_ressources_individu(Variable):
     column = FloatCol(default = 0)
-    entity_class = Individus
+    entity = Individus
     label = u"Base ressource individuelle des prestations familiales"
 
     def function(self, simulation, period):
@@ -65,7 +65,7 @@ class prestations_familiales_base_ressources_individu(Variable):
 
 class biactivite(Variable):
     column = BoolCol(default = False)
-    entity_class = Familles
+    entity = Familles
     label = u"Indicatrice de biactivité"
 
     def function(self, simulation, period):
@@ -82,7 +82,7 @@ class biactivite(Variable):
 
 class div(Variable):
     column = FloatCol(default = 0)
-    entity_class = Individus
+    entity = Individus
     label = u"Dividendes imposés"
 
     def function(self, simulation, period):
@@ -112,7 +112,7 @@ class div(Variable):
 
 class rev_coll(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
 
     def function(self, simulation, period):
@@ -137,7 +137,7 @@ class rev_coll(Variable):
 
 class prestations_familiales_base_ressources(Variable):
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Familles
     label = u"Base ressource des prestations familiales"
 
     def function(self, simulation, period):

@@ -12,19 +12,19 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class af(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
 
 class salaire(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
 
 class age(Variable):
     column = IntCol
-    entity_class = Individus
+    entity = Individus
 
 class autonomie_financiere(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
 
 # This tests are more about core than france, but we need france entities to run some of them.
 # We use a dummy TBS to run the tests faster

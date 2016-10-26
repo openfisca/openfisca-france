@@ -46,12 +46,12 @@ def ayrault_muet_modify_legislation_json(reference_legislation_json_copy):
 
 class variator(Variable):
     column = FloatCol(default = 1)
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u'Multiplicateur du seuil de régularisation'
 
 class reduction_csg(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Réduction dégressive de CSG"
 
     @dated_function(start = date(2015, 1, 1))
@@ -74,7 +74,7 @@ class reduction_csg(DatedVariable):
         return period, taux_allegement_csg * assiette_csg_abattue
 
 class reduction_csg_foyer_fiscal(Variable):
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Réduction dégressive de CSG des memebres du foyer fiscal"
     column = FloatCol
 
@@ -84,7 +84,7 @@ class reduction_csg_foyer_fiscal(Variable):
 
 class reduction_csg_nette(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Réduction dégressive de CSG"
 
     @dated_function(start = date(2015, 1, 1))
@@ -96,7 +96,7 @@ class reduction_csg_nette(DatedVariable):
 
 class ppe_elig_bis(Variable):
     column = BoolCol(default = False)
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"ppe_elig_bis"
 
     def function(self, simulation, period):
@@ -118,7 +118,7 @@ class ppe_elig_bis(Variable):
         return period, (rfr * ppe_coef) <= (seuil * variator)
 
 class ppe_elig_bis_individu(Variable):
-    entity_class = Individus
+    entity = Individus
     column = BoolCol
 
     def function(self, simulation, period):
@@ -127,7 +127,7 @@ class ppe_elig_bis_individu(Variable):
 
 class regularisation_reduction_csg(DatedVariable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Régularisation complète réduction dégressive de CSG"
 
     @dated_function(start = date(2015, 1, 1))

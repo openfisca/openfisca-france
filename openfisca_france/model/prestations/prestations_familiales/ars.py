@@ -10,7 +10,7 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 
 class ars(Variable):
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Familles
     label = u"Allocation de rentrée scolaire"
     url = "http://vosdroits.service-public.fr/particuliers/F1878.xhtml"
 

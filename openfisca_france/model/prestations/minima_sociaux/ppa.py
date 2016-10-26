@@ -8,7 +8,7 @@ from numpy import maximum as max_, round as round_, minimum as min_, logical_not
 
 class ppa_eligibilite(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Familles
     label = u"Eligibilité à la PPA pour un mois"
 
     def function(self, simulation, period, reference_period):
@@ -23,7 +23,7 @@ class ppa_eligibilite(Variable):
 
 class ppa_eligibilite_etudiants(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Familles
     label = u"Eligibilité à la PPA (condition sur tout le trimestre)"
 
     def function(self, simulation, period):
@@ -48,7 +48,7 @@ class ppa_eligibilite_etudiants(Variable):
 
 class ppa_montant_forfaitaire_familial_non_majore(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Montant forfaitaire familial (sans majoration)"
 
     def function(self, simulation, period, reference_period):
@@ -71,7 +71,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
 
 class ppa_montant_forfaitaire_familial_majore(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Montant forfaitaire familial (avec majoration)"
 
     def function(self, simulation, period, reference_period):
@@ -83,7 +83,7 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
 
 class ppa_revenu_activite(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Revenu d'activité pris en compte pour la PPA"
 
     def function(self, simulation, period, reference_period):
@@ -95,7 +95,7 @@ class ppa_revenu_activite(Variable):
 
 class ppa_revenu_activite_individu(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Revenu d'activité pris en compte pour la PPA (Individus) pour un mois"
 
     def function(self, simulation, period, reference_period):
@@ -135,7 +135,7 @@ class ppa_revenu_activite_individu(Variable):
 
 class ppa_ressources_hors_activite(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Revenu hors activité pris en compte pour la PPA"
 
     def function(self, simulation, period, reference_period):
@@ -154,7 +154,7 @@ class ppa_ressources_hors_activite(Variable):
 
 class ppa_ressources_hors_activite_individu(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Revenu hors activité pris en compte pour la PPA (Individus) pour un mois"
 
     def function(self, simulation, period, reference_period):
@@ -186,7 +186,7 @@ class ppa_ressources_hors_activite_individu(Variable):
 
 class ppa_base_ressources_prestations_familiales(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Prestations familiales prises en compte dans le calcul de la PPA"
 
     def function(self, simulation, period, reference_period):
@@ -218,7 +218,7 @@ class ppa_base_ressources_prestations_familiales(Variable):
 
 class ppa_base_ressources(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Bases ressource prise en compte pour la PPA"
 
     def function(self, simulation, period, reference_period):
@@ -229,7 +229,7 @@ class ppa_base_ressources(Variable):
 
 class ppa_bonification(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Bonification de la PPA pour un individu"
 
     def function(self, simulation, period, reference_period):
@@ -250,7 +250,7 @@ class ppa_bonification(Variable):
 
 class ppa_fictive(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Prime pour l'activité fictive pour un mois"
 
     def function(self, simulation, period, reference_period):
@@ -287,7 +287,7 @@ class ppa_fictive(Variable):
 
 class ppa(DatedVariable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Prime Pour l'Activité"
 
     @dated_function(start = date(2016, 1, 1))

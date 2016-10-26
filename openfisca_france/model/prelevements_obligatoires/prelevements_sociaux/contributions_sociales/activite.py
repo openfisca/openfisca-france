@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
 class assiette_csg_abattue(Variable):
     column = FloatCol
     label = u"Assiette CSG - CRDS"
-    entity_class = Individus
+    entity = Individus
 
     def function(self, simulation, period):
         period = period.this_month
@@ -44,7 +44,7 @@ class assiette_csg_abattue(Variable):
 class assiette_csg_non_abattue(Variable):
     column = FloatCol
     label = u"Assiette CSG - CRDS"
-    entity_class = Individus
+    entity = Individus
 
     def function(self, simulation, period):
         period = period.this_month
@@ -64,7 +64,7 @@ class csg_deductible_salaire(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"CSG déductible sur les salaires"
-    entity_class = Individus
+    entity = Individus
 
     def function(self, simulation, period):
         period = period.this_month
@@ -86,7 +86,7 @@ class csg_imposable_salaire(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"CSG imposables sur les salaires"
-    entity_class = Individus
+    entity = Individus
 
     def function(self, simulation, period):
         period = period.this_month
@@ -109,7 +109,7 @@ class crds_salaire(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"CRDS sur les salaires"
-    entity_class = Individus
+    entity = Individus
 
     def function(self, simulation, period):
         period = period.this_month
@@ -131,7 +131,7 @@ class crds_salaire(Variable):
 
 class forfait_social(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Forfait social"
     start_date = date(2009, 1, 1)
 
@@ -181,7 +181,7 @@ class salaire_imposable(Variable):
             },  # (f1aj, f1bj, f1cj, f1dj, f1ej)
         val_type = "monetary",
         )
-    entity_class = Individus
+    entity = Individus
     label = u"Salaires imposables"
     set_input = set_input_divide_by_period
 
@@ -213,7 +213,7 @@ class salaire_imposable(Variable):
 class salaire_net(Variable):
     base_function = requested_period_added_value
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Salaires nets d'après définition INSEE"
     set_input = set_input_divide_by_period
 
@@ -236,7 +236,7 @@ class salaire_net(Variable):
 
 class tehr(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Taxe exceptionnelle de solidarité sur les très hautes rémunérations"
     url = u"http://vosdroits.service-public.fr/professionnels-entreprises/F32096.xhtml"
     calculate_output = calculate_output_divide
@@ -258,7 +258,7 @@ class tehr(Variable):
 class rev_microsocial(Variable):
     """Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)"""
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Revenu net des cotisations sociales pour le régime microsocial"
     start_date = date(2009, 1, 1)
     url = u"http://www.apce.com/pid6137/regime-micro-social.html"

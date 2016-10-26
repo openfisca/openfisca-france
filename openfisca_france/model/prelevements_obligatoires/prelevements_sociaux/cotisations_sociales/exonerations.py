@@ -10,13 +10,13 @@ from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotis
 
 class jei_date_demande(Variable):
     column = DateCol(default = date(2099, 12, 31))
-    entity_class = Individus
+    entity = Individus
     label = u"Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)"
 
 
 class exoneration_cotisations_employeur_geographiques(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Exonérations de cotisations employeur dépendant d'une zone géographique"
     url = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
 
@@ -36,7 +36,7 @@ class exoneration_cotisations_employeur_geographiques(Variable):
 
 class exoneration_cotisations_employeur_jei(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Exonrérations de cotisations employeur pour une jeune entreprise innovante"
     url = "http://www.apce.com/pid1653/jeune-entreprise-innovante.html?pid=1653&pagination=2"
 
@@ -84,7 +84,7 @@ class exoneration_cotisations_employeur_jei(Variable):
 
 class exoneration_cotisations_employeur_zfu(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Exonrérations de cotisations employeur pour l'embauche en zone franche urbaine (ZFU)"
     url = "http://www.apce.com/pid553/exoneration-dans-les-zfu.html?espace=1&tp=1&pagination=2"
 
@@ -235,7 +235,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
 
 class exoneration_cotisations_employeur_zrd(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Exonrérations de cotisations employeur pour l'embauche en zone de restructuration de la Défense (ZRD)"
     url = "http://www.apce.com/pid11668/exoneration-dans-les-zrd.html?espace=1&tp=1"
 
@@ -273,7 +273,7 @@ class exoneration_cotisations_employeur_zrd(Variable):
 
 class exoneration_cotisations_employeur_zrr(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Exonrérations de cotisations employeur pour l'embauche en zone de revitalisation rurale (ZRR)"
     url = "http://www.apce.com/pid538/embauches-en-zru-et-zrr.html?espace=1&tp=1"
 
@@ -329,7 +329,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
 # Aides à la création
 class exoneration_is_creation_zrr(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Exonrérations fiscales pour création d'une entreprise en zone de revitalisation rurale (ZRR)"
     url = 'http://www.apce.com/pid11690/exonerations-d-impots-zrr.html?espace=1&tp=1'
 
@@ -376,7 +376,7 @@ class exoneration_is_creation_zrr(Variable):
 
 # # class bassin_emploi_redynamiser(Variable):
 #     column = BoolCol
-#     entity_class = Individus
+#     entity = Individus
 #     label = u"L'entreprise est située danns un bassin d'emploi à redynamiser(BER)"
 #     # La liste des bassins d'emploi à redynamiser a été fixée par le décret n°2007-228 du 20 février 2007.
 #     # Actuellement, deux régions sont concernées : Champagne-Ardenne (zone d'emploi de la Vallée de la Meuse)
@@ -388,7 +388,7 @@ class exoneration_is_creation_zrr(Variable):
 
 class jeune_entreprise_innovante(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label = u"L'entreprise est une jeune entreprise innovante"
 
     def function(self, simulation, period):
@@ -449,7 +449,7 @@ class jeune_entreprise_innovante(Variable):
 
 class bassin_emploi_redynamiser(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label = u"L'entreprise est située danns un bassin d'emploi à redynamiser (BER)"
     # La liste des bassins d'emploi à redynamiser a été fixée par le décret n°2007-228 du 20 février 2007.
     # Actuellement, deux régions sont concernées : Champagne-Ardenne (zone d'emploi de la Vallée de la Meuse)
@@ -463,7 +463,7 @@ class bassin_emploi_redynamiser(Variable):
 
 class zone_restructuration_defense(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label = u"L'entreprise est située dans une zone de restructuration de la Défense (ZRD)"
 
     def function(self, simulation, period):
@@ -473,7 +473,7 @@ class zone_restructuration_defense(Variable):
 
 class zone_franche_urbaine(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label = u"L'entreprise est située danns une zone franche urbaine (ZFU)"
 
     def function(self, simulation, period):
@@ -483,7 +483,7 @@ class zone_franche_urbaine(Variable):
 
 class zone_revitalisation_rurale(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label = u"L'entreprise est située dans une zone de revitalisation rurale (ZRR)"
 
     def function(self, simulation, period):
