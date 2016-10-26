@@ -77,7 +77,7 @@ def test_transpose():
     simulation = new_simulation(test_case)
     foyer_fiscal = simulation.foyer_fiscal
 
-    af = foyer_fiscal.members.famille.calculate('af')
+    af = foyer_fiscal.members.famille('af')
     af_foyer_fiscal = foyer_fiscal.transpose(af, origin_entity = Menages)
 
     assert_near(af_foyer_fiscal, [20000, 10000, 0])
@@ -88,7 +88,7 @@ def test_value_from_person():
     simulation = new_simulation(test_case)
 
     foyer_fiscal = simulation.foyer_fiscal
-    age = foyer_fiscal.members.calculate('age')
+    age = foyer_fiscal.members('age')
 
     age_conjoint = foyer_fiscal.value_from_person(age, role = CONJOINT, default = -1)
 
