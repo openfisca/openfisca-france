@@ -136,7 +136,7 @@ class revnet(Variable):
     url = u"http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php",
 
     def function(menage, period):
-        revenu_net_individus = menage.members['revenu_net_individu'](period)
+        revenu_net_individus = menage.members('revenu_net_individu', period)
         return period, menage.sum(revenu_net_individus)
 
 
@@ -180,7 +180,7 @@ class revini(Variable):
     column = FloatCol
 
     def function(menage, period):
-        revenu_initial_individus = menage.members['revenu_initial_individu'](period)
+        revenu_initial_individus = menage.members('revenu_initial_individu', period)
         return period, simulation.menage.sum(revenu_initial_individus)
 
 
@@ -241,13 +241,13 @@ class pen(Variable):
         Pensions
         '''
         period = period.start.period('year').offset('first-of')
-        chomage_net = individu['chomage_net'](period)
-        retraite_nette = individu['retraite_nette'](period)
-        pensions_alimentaires_percues = individu['pensions_alimentaires_percues'](period)
+        chomage_net = individu('chomage_net', period)
+        retraite_nette = individu('retraite_nette', period)
+        pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period)
 
         # Revenus du foyer fiscal
-        pensions_alimentaires_versees = individu.foyer_fiscal['pensions_alimentaires_versees'](period)
-        retraite_titre_onereux = individu.foyer_fiscal['retraite_titre_onereux'](period, options = [ADD])
+        pensions_alimentaires_versees = individu.foyer_fiscal('pensions_alimentaires_versees', period)
+        retraite_titre_onereux = individu.foyer_fiscal('retraite_titre_onereux', period, options = [ADD])
         pen_foyer_fiscal = pensions_alimentaires_versees + retraite_titre_onereux
         pen_foyer_fiscal_projetees = individu.foyer_fiscal.project_on_first_person(pen_foyer_fiscal)
 

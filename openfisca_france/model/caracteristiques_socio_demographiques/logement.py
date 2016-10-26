@@ -44,7 +44,7 @@ class loyer_famille(Variable):
     label = u"Loyer de la famille"
 
     def function(famille, period):
-        loyer_menage = famille.members.menage['loyer'](period)
+        loyer_menage = famille.members.menage('loyer', period)
         return period, famille.transpose(loyer_menage, origin_entity = Menages)
 
 
@@ -80,7 +80,7 @@ class statut_occupation_logement_famille(Variable):
     )
 
     def function(famille, period):
-        statut_occupation_logement_menage = famille.members.menage['statut_occupation_logement'](period)
+        statut_occupation_logement_menage = famille.members.menage('statut_occupation_logement', period)
         return period, famille.transpose(statut_occupation_logement_menage, origin_entity = Menages)
 
 class residence_dom(Variable):
