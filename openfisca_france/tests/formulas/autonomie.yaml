@@ -29,12 +29,12 @@
     age: 70 
     gir: "Gir 1"
     dependance_plan_aide_domicile: 2000
-  output_variables:
     base_ressources_apa: 0
+  output_variables:
     apa_domicile: 1312.67  
     apa_etablissement: 0
 
-- name: "APA condition d'âge"
+- name: "APA condition d'âge - test l'âge d'ouverture à domicile"
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -46,35 +46,21 @@
     apa_domicile: 0
     apa_etablissement: 0
 
-- name: "APA établissement célibataire ressource inférieur seuil 1 GIR 1"
+- name: "APA condition d'âge - test l'âge d'ouverture en établissement"
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
   input_variables:
-    age: 75
+    age: 50 
     gir: "Gir 1"
-    dependance_tarif_etablissement_gir_dependant: 1500
-    dependance_tarif_etablissement_gir_5_6: 600
-    base_ressources_apa: 1500
+    dependance_tarif_etablissement_gir_5_6: 2000
+    dependance_tarif_etablissement_gir_dependant: 2000
+    base_ressources_apa: 5000
   output_variables:
     apa_domicile: 0
-    apa_etablissement: 900
+    apa_etablissement: 0
 
-- name: "APA établissement célibataire ressources entre seuil 1 et 2 GIR 1"
-  description: Montant APA
-  period: 2014-05
-  absolute_error_margin: 0.03
-  input_variables:
-    age: 75
-    gir: "Gir 1"
-    dependance_tarif_etablissement_gir_dependant: 1500
-    dependance_tarif_etablissement_gir_5_6: 600
-    base_ressources_apa: 2438.55
-  output_variables:
-    apa_domicile: 0
-    apa_etablissement: 899.59
-
-- name: "APA établissement célibataire ressources supérieures seuil 2 GIR 1"
+- name: "APA établissement célibataire ressources supérieures seuil 2 GIR 1 - test ressource seuil 2 établissement"
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -88,7 +74,21 @@
     apa_domicile: 0
     apa_etablissement: 180
 
-- name: "APA établissement célibataire ressources inférieures seuil 1 GIR 3"
+- name: "APA établissement célibataire ressources entre seuil 1 et 2 GIR 1 - test ressource entre seuil 1 et 2 établsisement"
+  description: Montant APA
+  period: 2014-05
+  absolute_error_margin: 0.03
+  input_variables:
+    age: 75
+    gir: "Gir 1"
+    dependance_tarif_etablissement_gir_dependant: 1500
+    dependance_tarif_etablissement_gir_5_6: 600
+    base_ressources_apa: 2438.55
+  output_variables:
+    apa_domicile: 0
+    apa_etablissement: 899.59
+
+- name: "APA établissement célibataire ressources inférieures seuil 1 GIR 3 - test ressource seuil 1 établissement"
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -102,7 +102,7 @@
     apa_domicile: 0
     apa_etablissement: 600
 
-- name: "APA domicile célibataire ressources inférieures seuil 1 GIR 3"
+- name: "APA domicile célibataire ressources inférieures seuil 1 GIR 3 - test ressource seuil 1 domicile"
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -115,7 +115,7 @@
     apa_domicile: 1800
     apa_etablissement: 0
 
-- name: "APA domicile célibataire ressources inférieures seuil 1 GIR 5"
+- name: "APA domicile célibataire ressources inférieures seuil 1 GIR 5 - test gir à domicile"
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -128,7 +128,7 @@
     apa_domicile: 0
     apa_etablissement: 0
 
-- name: "APA établissement célibataire ressources inférieures seuil 1 GIR 5 - "
+- name: "APA établissement célibataire ressources inférieures seuil 1 GIR 5 - test gir en établissement"
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -142,7 +142,7 @@
     apa_domicile: 0
     apa_etablissement: 0
 
-- name: "APA établissement célibataire ressources compris entre seuil 1 et GIR 3 - test année en établissement"
+- name: "APA établissement célibataire ressources inférieures seuil 1 et GIR 3 - test année en établissement"
   description: Montant APA
   period: 2013-05
   absolute_error_margin: 0.03

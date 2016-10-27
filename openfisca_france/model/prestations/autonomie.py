@@ -24,7 +24,8 @@ montant_mensuel_maximum_by_gir = {
 seuil_non_versement = 28.83
 taux_max_participation = .9
 taux_reste_a_vivre = 0.10
-
+seuil_fraction_plan_aide_1 = 0,3.17*majoration_tierce_personne
+seuil_fraction_plan_aide_2 = 0.498*majoration_tierce_personne
 
 class apa_domicile(Variable):
     column = FloatCol
@@ -60,6 +61,55 @@ class apa_domicile(Variable):
                     )
                 )
             )
+        apa = dependance_plan_aide_domicile_accepte - participation_beneficiaire
+        return period, apa * (apa >= seuil_non_versement) * (age >= apa_age_min)
+
+
+class apa_domicile_2016(Variable):
+    column = FloatCol
+    label = u"Allocation personalisée d'autonomie"
+    entity_class = Individus
+
+    def function(self, simulation, period):
+        period = period.start.offset('first-of', 'month').period('month')
+        age = simulation.calculate('age', period)
+        base_ressources_apa = simulation.calculate('base_ressources_apa', period)
+        dependance_plan_aide_domicile = simulation.calculate('dependance_plan_aide_domicile', period)
+        dependance_plan_aide_domicile_accepte = zeros(self.holder.entity.count)
+        gir = simulation.calculate('gir', period)
+
+        A_1 = max_(0,317*majoration_tierce_personne, dependance_plan_aide_domicile_accepte)
+        
+        condlist = [(dependance_plan_aide_domicile_accepte <= 0.317*majoration_tierce_personne),
+                           (0.317*majoration_tierce_personne <= dependance_plan_aide_domicile_accepte <= 0.498*majoration_tierce_personne),
+                            (dependance_plan_aide_domicile_accepte >= 0.498*majoration_tierce_personne)
+                            ]
+            choicelist_1 = [ dependance_plan_aide_domicile_accepte,
+                            (0.317*majoration_tierce_personne),
+                            (0.317*majoration_tierce_personne)
+                             ]
+             choicelist_2 = [ 0,
+                            (dependance_plan_aide_domicile_accepte - 0.317*majoration_tierce_personne),
+                            (0.498*majoration_tierce_personne)
+                             ]
+            choicelist_3 = [ 0,
+                            0,
+                            (dependance_plan_aide_domicile_accepte - 0.815*majoration_tierce_personne)
+                             ]
+        A_1 = select(condlist, choicelist_1)
+        A_2 = select(condlist, choicelist_2)
+        A_3 = select(condlist, choicelist_3)
+        
+
+
+        participation_beneficiaire = (
+            (0.9*((base_ressources_apa-0.725*majoration_tierce_personne)/(1.945*majoration_tierce_personne)))*
+            (
+            (A_1)
+                + (A_2*(((1-0.4)base_ressources_apa)/(1.945*majoration_tierce_personne))+((0.4*2.67*majoration_tierce_personne-0.725*majoration_tierce_personne)/(1.945*majoration_tierce_personne)))
+                + (A_3*(((1-0.2)base_ressources_apa)/(1.945*majoration_tierce_personne))+((0.2*2.67*majoration_tierce_personne-0.725*majoration_tierce_personne)/(1.945*majoration_tierce_personne))) 
+                )
+         )
         apa = dependance_plan_aide_domicile_accepte - participation_beneficiaire
         return period, apa * (apa >= seuil_non_versement) * (age >= apa_age_min)
 
