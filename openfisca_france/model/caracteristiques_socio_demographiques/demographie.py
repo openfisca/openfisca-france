@@ -215,7 +215,7 @@ class est_enfant_dans_famille(Variable):
     label = u"Indique qe l'individu est un enfant dans une famille"
 
     def function(individu, period):
-        return period, individu.role_in(Familles) == ENFANT
+        return period, individu.has_role(ENFANT, Familles)
 
 class etudiant(Variable):
     column = BoolCol(default = False)

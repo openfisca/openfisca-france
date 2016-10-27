@@ -245,11 +245,12 @@ class pen(Variable):
         retraite_nette = individu('retraite_nette', period)
         pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period)
 
-        # Revenus du foyer fiscal
-        pensions_alimentaires_versees = individu.foyer_fiscal('pensions_alimentaires_versees', period)
-        retraite_titre_onereux = individu.foyer_fiscal('retraite_titre_onereux', period, options = [ADD])
+        # Revenus du foyer fiscal, que l'on projette uniquement sur le 1er déclarant
+        foyer_fiscal = individu.foyer_fiscal
+        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
+        retraite_titre_onereux = foyer_fiscal('retraite_titre_onereux', period, options = [ADD])
         pen_foyer_fiscal = pensions_alimentaires_versees + retraite_titre_onereux
-        pen_foyer_fiscal_projetees = individu.foyer_fiscal.project_on_first_person(pen_foyer_fiscal)
+        pen_foyer_fiscal_projetees = pen_foyer_fiscal * (individu.has_role(DECLARANT, foyer_fiscal))
 
         return period, (chomage_net + retraite_nette + pensions_alimentaires_percues + pen_foyer_fiscal_projetees)
 
@@ -294,26 +295,27 @@ class rev_cap(Variable):
     label = u"Revenus du patrimoine"
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
 
-    def function(self, simulation, period):
+    def function(individu, period):
         '''
         Revenus du patrimoine
         '''
         period = period.this_year
 
-        # Revenus du foyer fiscal
-        fon = simulation.calculate('fon', period)
-        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        cotsoc_lib = simulation.calculate('cotsoc_lib', period)
-        rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
-        imp_lib = simulation.calculate('imp_lib', period)
-        cotsoc_bar = simulation.calculate('cotsoc_bar', period)
+        # Revenus du foyer fiscal, que l'on projette uniquement sur le 1er déclarant
+        foyer_fiscal = individu.foyer_fiscal
+        fon = foyer_fiscal('fon', period)
+        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options= [ADD])
+        cotsoc_lib = foyer_fiscal('cotsoc_lib', period)
+        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options= [ADD])
+        imp_lib = foyer_fiscal('imp_lib', period)
+        cotsoc_bar = foyer_fiscal('cotsoc_bar', period)
 
         revenus_foyer_fiscal = fon + rev_cap_bar + cotsoc_lib + rev_cap_lib + imp_lib + cotsoc_bar
-        revenus_foyer_fiscal_i = simulation.foyer_fiscal.project_on_first_person(revenus_foyer_fiscal)
+        revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(DECLARANT, foyer_fiscal)
 
-        rac = simulation.calculate('rac', period)
+        rac = individu('rac', period)
 
-        return period, revenus_foyer_fiscal_i + rac
+        return period, revenus_foyer_fiscal_projetes + rac
 
 
 class psoc(Variable):

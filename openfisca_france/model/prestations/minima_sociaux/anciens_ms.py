@@ -175,12 +175,11 @@ class rsa_activite_individu(DatedVariable):
         '''
         period = period   # TODO: rentre dans le calcul de la PPE check period !!!
 
-        rsa_activite_famille = individu.famille('rsa_activite', period)
-        rsa_activite_projete = individu.famille.project(rsa_activite_famille)
+        rsa_activite = individu.famille('rsa_activite', period)
         marie = individu('statut_marital', period) == 1
         en_couple = individu.famille('en_couple', period)
 
         # On partage le rsa_activite entre les parents. Si la personne est mariée et qu'aucun conjoint n'a été déclaré, on divise par 2.
-        partage_rsa = or_(marie, individu.famille.project(en_couple))
+        partage_rsa = or_(marie, en_couple)
 
-        return period, where(partage_rsa, rsa_activite_projete / 2, rsa_activite_projete)
+        return period, where(partage_rsa, rsa_activite / 2, rsa_activite)
