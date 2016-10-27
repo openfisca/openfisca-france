@@ -166,8 +166,8 @@
     base_ressources_apa: 3500
     dependance_plan_aide_domicile: 1200
   output_variables:
-    apa_domicile: 0
-    apa_etablissement: 120
+    apa_domicile: 120
+    apa_etablissement: 0
 
 - name: "APA établissement célibataire ressources inférieures seuil 1 et GIR 3 - test le reste-a-vivre"
   description: Montant APA
@@ -183,3 +183,41 @@
     apa_domicile: 0
     apa_etablissement: 900
 
+- name: "APA domicile célibataire ressources inférieures seuil 1 et GIR 3 - test plafond sup gir 3"
+  description: Montant APA
+  period: 2013-05
+  absolute_error_margin: 0.03
+  input_variables:
+    age: 75
+    gir: "Gir 3"
+    base_ressources_apa: 700
+    dependance_plan_aide_domicile: 3000
+  output_variables:
+    apa_domicile: 838.82
+    apa_etablissement: 0
+
+- name: "APA domicile célibataire ressources inférieur seuil 1 et GIR 1 - test plafond sup gir 1"
+  description: Montant APA
+  period: 2013-05
+  absolute_error_margin: 0.03
+  input_variables:
+    age: 75
+    gir: "Gir 1"
+    base_ressources_apa: 700
+    dependance_plan_aide_domicile: 3000
+  output_variables:
+    apa_domicile: 1304.84
+    apa_etablissement: 0
+
+- name: "APA domicile célibataire ressources inférieur seuil 1 et GIR 1 - test plafond inf gir 4"
+  description: Montant APA
+  period: 2013-05
+  absolute_error_margin: 0.03
+  input_variables:
+    age: 75
+    gir: "Gir 4"
+    base_ressources_apa: 4000
+    dependance_plan_aide_domicile: 100
+  output_variables:
+    apa_domicile: 0
+    apa_etablissement: 0
