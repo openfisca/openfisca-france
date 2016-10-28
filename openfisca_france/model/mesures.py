@@ -250,7 +250,7 @@ class pen(Variable):
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
         retraite_titre_onereux = foyer_fiscal('retraite_titre_onereux', period, options = [ADD])
         pen_foyer_fiscal = pensions_alimentaires_versees + retraite_titre_onereux
-        pen_foyer_fiscal_projetees = pen_foyer_fiscal * (individu.has_role(DECLARANT, foyer_fiscal))
+        pen_foyer_fiscal_projetees = pen_foyer_fiscal * (individu.has_role(foyer_fiscal.declarant, foyer_fiscal))
 
         return period, (chomage_net + retraite_nette + pensions_alimentaires_percues + pen_foyer_fiscal_projetees)
 
@@ -311,7 +311,7 @@ class rev_cap(Variable):
         cotsoc_bar = foyer_fiscal('cotsoc_bar', period)
 
         revenus_foyer_fiscal = fon + rev_cap_bar + cotsoc_lib + rev_cap_lib + imp_lib + cotsoc_bar
-        revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(DECLARANT, foyer_fiscal)
+        revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(foyer_fiscal.declarant, foyer_fiscal)
 
         rac = individu('rac', period)
 

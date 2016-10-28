@@ -182,7 +182,7 @@ class af_age_aine(Variable):
         condition_eligibilite = pfam_enfant_a_charge * (age <= pfam.af.age2)
         age_enfants_eligiles = age * condition_eligibilite
 
-        return period, simulation.famille.max(age_enfants_eligiles, role = ENFANT)
+        return period, simulation.famille.max(age_enfants_eligiles, role = Familles.enfant)
 
 
 class af_majoration_enfant(Variable):
@@ -236,7 +236,7 @@ class af_majoration(Variable):
     def function(self, simulation, period):
         period = period.this_month
         af_majoration_enfant = simulation.calculate('af_majoration_enfant', period)
-        af_majoration_enfants = simulation.famille.sum(af_majoration_enfant, role = ENFANT)
+        af_majoration_enfants = simulation.famille.sum(af_majoration_enfant, role = Familles.enfant)
 
         af_taux_modulation = simulation.calculate('af_taux_modulation', period)
         af_majoration_enfants_module = af_majoration_enfants * af_taux_modulation

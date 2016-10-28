@@ -12,12 +12,14 @@ class Familles(GroupEntity):
     label = u'Famille'
     roles = [
         {
-            'key': 'parents',
+            'key': 'parent',
+            'plural': 'parents',
             'label': u'Parents',
             'max': 2
             },
         {
-            'key': 'enfants',
+            'key': 'enfant',
+            'plural': 'enfants',
             'label': u'Enfants'
             }
         ]
@@ -46,7 +48,8 @@ class FoyersFiscaux(GroupEntity):
             'role_in_scenario': 'declarants'
             },
         {
-            'key': 'personnes_a_charge',
+            'key': 'personne_a_charge',
+            'plural': 'personnes_a_charge',
             'label': u'Personnes à charge'
             },
         ]
@@ -68,12 +71,14 @@ class Menages(GroupEntity):
             'max': 1
             },
         {
-            'key': 'enfants',
+            'key': 'enfant',
+            'plural': 'enfants',
             'label': u'Enfants',
             'max': 2
             },
         {
-            'key': 'autres',
+            'key': 'autre',
+            'plural': 'autres',
             'label': u'Autres'
             }
         ]

@@ -693,7 +693,7 @@ class af_nbenf_fonc(Variable):
         age = simulation.calculate('age', period)
         condition_enfant = (age >= law.fam.af.age1) * (age <= law.fam.af.age2) * not_(autonomie_financiere)
 
-        return period, simulation.famille.sum(condition_enfant, role = ENFANT)
+        return period, simulation.famille.sum(condition_enfant, role = Familles.enfant)
 
 
 class supp_familial_traitement(Variable):

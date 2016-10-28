@@ -31,15 +31,12 @@ __all__ = [
     'CAT',
     'CHEF',
     'CONJ',
-    'CONJOINT',
     'CREF',
     'date',
     'DateCol',
     'dated_function',
     'DatedVariable',
-    'DECLARANT',
     'DIVIDE',
-    'ENFANT',
     'ENFS',
     'Enum',
     'EnumCol',
@@ -55,10 +52,8 @@ __all__ = [
     'PAC1',
     'PAC2',
     'PAC3',
-    'PARENT',
     'PART',
     'PeriodSizeIndependentIntCol',
-    'PERSONNE_A_CHARGE',
     'PREF',
     'QUIFAM',
     'QUIFOY',
@@ -87,17 +82,6 @@ CAT = Enum([
     ])
 
 TAUX_DE_PRIME = 1 / 4  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
-
-
-# New roles
-ROLES_DANS_FAMILLE = Familles.get_role_enum()
-ROLES_DANS_FOYER_FISCAL = FoyersFiscaux.get_role_enum()
-
-PARENT = ROLES_DANS_FAMILLE['parents']
-ENFANT = ROLES_DANS_FAMILLE['enfants']
-DECLARANT = ROLES_DANS_FOYER_FISCAL['declarant']
-CONJOINT = ROLES_DANS_FOYER_FISCAL['conjoint']
-PERSONNE_A_CHARGE = ROLES_DANS_FOYER_FISCAL['personnes_a_charge']
 
 # Legacy roles. To be removed when they are not used by formulas anymore.
 QUIFAM = Enum(['chef', 'part', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])

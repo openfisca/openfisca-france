@@ -171,12 +171,11 @@ class nb_parents(Variable):
     entity_class = Familles
     label = u"Nombre d'adultes (parents) dans la famille"
 
-    def function(self, simulation, period):
+    def function(famille, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
 
-        return period, simulation.famille.nb_persons(role = PARENT)
-
+        return period, famille.nb_persons(role = famille.parent)
 
 class maries(Variable):
     column = BoolCol(default = False)
@@ -190,7 +189,7 @@ class maries(Variable):
         statut_marital = famille.members('statut_marital', period)
         individu_marie = (statut_marital == 1)
 
-        return period, famille.any(individu_marie, role = PARENT)
+        return period, famille.any(individu_marie, role = famille.parent)
 
 
 class en_couple(Variable):
@@ -215,7 +214,7 @@ class est_enfant_dans_famille(Variable):
     label = u"Indique qe l'individu est un enfant dans une famille"
 
     def function(individu, period):
-        return period, individu.has_role(ENFANT, Familles)
+        return period, individu.has_role(Familles.enfant, Familles)
 
 class etudiant(Variable):
     column = BoolCol(default = False)

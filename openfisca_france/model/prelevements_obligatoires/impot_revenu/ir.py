@@ -148,7 +148,7 @@ class enfant_a_charge(Variable):
     def function(individu, period):
         age = individu('age', period)
         handicap = individu('handicap', period)
-        is_pac = individu.has_role(PERSONNE_A_CHARGE, FoyersFiscaux)
+        is_pac = individu.has_role(FoyersFiscaux.personne_a_charge, FoyersFiscaux)
 
         return period, is_pac * ((age < 18) + handicap)
 
@@ -218,7 +218,7 @@ class enfant_majeur_celibataire_sans_enfant(Variable):
         period = period.this_year
         age = individu('age', period)
         handicap = individu('handicap', period)
-        is_pac = individu.has_role(PERSONNE_A_CHARGE, FoyersFiscaux)
+        is_pac = individu.has_role(FoyersFiscaux.personne_a_charge, FoyersFiscaux)
 
         return period, is_pac * (age >= 18) * not_(handicap)
 
@@ -254,7 +254,7 @@ class maries_ou_pacses(Variable):
         statut_marital = foyer_fiscal.members('statut_marital', period)
         individu_marie_ou_pacse = (statut_marital == 1) | (statut_marital == 5)
 
-        return period, foyer_fiscal.value_from_person(individu_marie_ou_pacse, role = DECLARANT)
+        return period, foyer_fiscal.value_from_person(individu_marie_ou_pacse, role = foyer_fiscal.declarant)
 
 
 class celibataire_ou_divorce(Variable):
@@ -267,7 +267,7 @@ class celibataire_ou_divorce(Variable):
         statut_marital = foyer_fiscal.members('statut_marital', period)
         individu_celibataire_ou_divorce = (statut_marital == 2) | (statut_marital == 3)
 
-        return period, foyer_fiscal.value_from_person(individu_celibataire_ou_divorce, role = DECLARANT)
+        return period, foyer_fiscal.value_from_person(individu_celibataire_ou_divorce, role = foyer_fiscal.declarant)
 
 
 class veuf(Variable):
@@ -280,7 +280,7 @@ class veuf(Variable):
         statut_marital = foyer_fiscal.members('statut_marital', period)
         individu_veuf = (statut_marital == 4)
 
-        return period, foyer_fiscal.value_from_person(individu_veuf, role = DECLARANT)
+        return period, foyer_fiscal.value_from_person(individu_veuf, role = foyer_fiscal.declarant)
 
 
 class jeune_veuf(Variable):
@@ -293,7 +293,7 @@ class jeune_veuf(Variable):
         statut_marital = foyer_fiscal.members('statut_marital', period)
         individu_jeune_veuf = (statut_marital == 6)
 
-        return period, foyer_fiscal.value_from_person(individu_jeune_veuf, role = DECLARANT)
+        return period, foyer_fiscal.value_from_person(individu_jeune_veuf, role = foyer_fiscal.declarant)
 
 
 ###############################################################################
@@ -2468,7 +2468,7 @@ class abat_spe(Variable):
     label = u"Abattements spéciaux"
     url = "http://bofip.impots.gouv.fr/bofip/2036-PGP"
 
-    def function(self, simulation, period):
+    def function(foyer_fiscal, period, legislation):
         """
         Abattements spéciaux
 
@@ -2488,15 +2488,15 @@ class abat_spe(Variable):
           pour un célibataire avec un jeune enfant en résidence alternée.
         """
         period = period.this_year
-        caseP = simulation.calculate('caseP', period)
-        caseF = simulation.calculate('caseF', period)
-        rng = simulation.calculate('rng', period)
-        nbN = simulation.calculate('nbN', period)
-        abattements_speciaux = simulation.legislation_at(period.start).ir.abattements_speciaux
+        caseP = foyer_fiscal('caseP', period)
+        caseF = foyer_fiscal('caseF', period)
+        rng = foyer_fiscal('rng', period)
+        nbN = foyer_fiscal('nbN', period)
+        abattements_speciaux = legislation(period).ir.abattements_speciaux
 
-        age = simulation.calculate('age', period)
-        ageV = simulation.foyer_fiscal.value_from_person(age, DECLARANT)
-        ageC = simulation.foyer_fiscal.value_from_person(age, CONJOINT)
+        age = foyer_fiscal.members('age', period)
+        ageV = foyer_fiscal.value_from_person(age, foyer_fiscal.declarant)
+        ageC = foyer_fiscal.value_from_person(age, foyer_fiscal.conjoint)
 
         invV, invC = caseP, caseF
         nb_elig_as = (1 * (((ageV >= 65) | invV) & (ageV > 0)) +

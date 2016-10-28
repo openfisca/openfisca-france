@@ -68,16 +68,16 @@ class biactivite(Variable):
     entity_class = Familles
     label = u"Indicatrice de biactivité"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
         annee_fiscale_n_2 = period.n_2
 
-        pfam = simulation.legislation_at(annee_fiscale_n_2.start).fam
+        pfam = legislation(annee_fiscale_n_2).fam
         seuil_rev = 12 * pfam.af.bmaf
 
-        base_ressources_i = simulation.calculate('prestations_familiales_base_ressources_individu', period)
+        base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
 
-        return period, simulation.famille.all(base_ressources_i >= seuil_rev, role = PARENT)
+        return period, famille.all(base_ressources_i >= seuil_rev, role = famille.parent)
 
 
 class div(Variable):
@@ -182,7 +182,7 @@ def nb_enf(simulation, period, age_min, age_max):
 #        le versement à lieu en début de mois suivant
     condition = (age >= age_min) * (age <= age_max) * not_(autonomie_financiere)
 
-    return simulation.famille.sum(condition, role = ENFANT)
+    return simulation.famille.sum(condition, role = Familles.enfant)
 
 
 
