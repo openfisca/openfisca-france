@@ -534,16 +534,17 @@ class check_csk(Variable):
     entity_class = Menages
     label = u"check_csk"
 
-    def function(self, simulation, period):
+    def function(menage, period):
         period = period.this_year
 
-        # Prélevements effectués sur les revenus du foyer fiscal
-        prelsoc_cap_bar = simulation.calculate('prelsoc_cap_bar', period)
-        prelsoc_pv_mo = simulation.calculate('prelsoc_pv_mo', period)
-        prelsoc_fon = simulation.calculate('prelsoc_fon', period)
-        prel_foyer_fiscal = prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
+        foyer_fiscal = menage.first_person.foyer_fiscal
 
-        return period, simulation.menage.transpose(prel_foyer_fiscal, origin_entity = FoyersFiscaux)
+        # Prélevements effectués sur les revenus du foyer fiscal
+        prelsoc_cap_bar = foyer_fiscal('prelsoc_cap_bar', period)
+        prelsoc_pv_mo = foyer_fiscal('prelsoc_pv_mo', period)
+        prelsoc_fon = foyer_fiscal('prelsoc_fon', period)
+
+        return period, prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
 
 
 class check_csg(Variable):
@@ -551,17 +552,17 @@ class check_csg(Variable):
     entity_class = Menages
     label = u"check_csg"
 
-    def function(self, simulation, period):
+    def function(menage, period):
         period = period.this_year
 
+        foyer_fiscal = menage.first_person.foyer_fiscal
+
         # CSG prélevée sur les revenus du foyer fiscal
-        csg_cap_bar = simulation.calculate('csg_cap_bar', periop)
-        csg_pv_mo = simulation.calculate('csg_pv_mo', periop)
-        csg_fon = simulation.calculate('csg_fon', periop)
+        csg_cap_bar = foyer_fiscal('csg_cap_bar', periop)
+        csg_pv_mo = foyer_fiscal('csg_pv_mo', periop)
+        csg_fon = foyer_fiscal('csg_fon', periop)
 
-        csg_foyer_fiscal = csg_cap_bar + csg_pv_mo + csg_fon
-
-        return period, simulation.menage.transpose(csg_foyer_fiscal, origin_entity = FoyersFiscaux)
+        return period, csg_cap_bar + csg_pv_mo + csg_fon
 
 
 class check_crds(Variable):
@@ -569,14 +570,14 @@ class check_crds(Variable):
     entity_class = Menages
     label = u"check_crds"
 
-    def function(self, simulation, period):
+    def function(menage, period):
         period = period.this_year
 
+        foyer_fiscal = menage.first_person.foyer_fiscal
+
         # CRDS prélevée sur les revenus du foyer fiscal
-        crds_pv_mo = simulation.calculate('crds_pv_mo', period)
-        crds_fon = simulation.calculate('crds_fon', period)
-        crds_cap_bar = simulation.calculate('crds_cap_bar', period)
+        crds_pv_mo = foyer_fiscal('crds_pv_mo', period)
+        crds_fon = foyer_fiscal('crds_fon', period)
+        crds_cap_bar = foyer_fiscal('crds_cap_bar', period)
 
-        crds_foyer_fiscal = crds_pv_mo + crds_fon + crds_cap_bar
-
-        return period, simulation.menage.transpose(crds_foyer_fiscal, origin_entity = FoyersFiscaux)
+        return period, crds_pv_mo + crds_fon + crds_cap_bar

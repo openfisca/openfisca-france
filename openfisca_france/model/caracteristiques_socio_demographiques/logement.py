@@ -44,8 +44,7 @@ class loyer_famille(Variable):
     label = u"Loyer de la famille"
 
     def function(famille, period):
-        loyer_menage = famille.members.menage('loyer', period)
-        return period, famille.transpose(loyer_menage, origin_entity = Menages)
+        return period, famille.first_person.menage('loyer', period)
 
 
 class charges_locatives(Variable):
@@ -80,8 +79,7 @@ class statut_occupation_logement_famille(Variable):
     )
 
     def function(famille, period):
-        statut_occupation_logement_menage = famille.members.menage('statut_occupation_logement', period)
-        return period, famille.transpose(statut_occupation_logement_menage, origin_entity = Menages)
+        return period, famille.first_person.menage('statut_occupation_logement', period)
 
 class residence_dom(Variable):
     column = BoolCol

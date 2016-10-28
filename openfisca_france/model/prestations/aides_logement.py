@@ -205,11 +205,10 @@ class aide_logement_base_ressources_defaut(Variable):
             max_(0, base_ressources_holder.array - abattement_ressources_enfant), roles = ENFS)
 
         # Revenus du foyer fiscal
-        rev_coll = simulation.calculate('rev_coll', period.n_2)
-        rev_coll_famille = simulation.famille.transpose(rev_coll, origin_entity = FoyersFiscaux)
+        rev_coll = simulation.famille.first_person.foyer_fiscal('rev_coll', period.n_2)
 
         ressources = (
-            base_ressources_parents + br_enfants + rev_coll_famille -
+            base_ressources_parents + br_enfants + rev_coll -
             (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
         )
 
@@ -667,8 +666,7 @@ class zone_apl_famille(Variable):
     label = u"Zone apl de la famille"
 
     def function(famille, period):
-        zone_apl_menage = famille.members.menage('zone_apl', period)
-        return period, famille.transpose(zone_apl_menage, origin_entity = Menages)
+        return period, famille.first_person.menage('zone_apl', period)
 
 def preload_zone_apl():
     global zone_apl_by_depcom

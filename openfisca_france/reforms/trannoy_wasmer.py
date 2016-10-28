@@ -58,8 +58,9 @@ class charge_loyer(Variable):
     def function(self, simulation, period):
         period = period.this_year
         nbptr = simulation.calculate('nbptr', period)
-        loyer_famille = simulation.calculate('loyer', period)
-        loyer = simulation.foyer_fiscal.transpose(loyer_famille, origin_entity = Familles)
+
+        loyer = simulation.foyer_fiscal.first_person.menage('loyer', period)
+
         charge_loyer = simulation.legislation_at(period.start).charge_loyer
 
         plaf = charge_loyer.plaf

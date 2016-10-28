@@ -156,10 +156,9 @@ class prestations_familiales_base_ressources(Variable):
         base_ressources_i_total = self.sum_by_entity(ressources_i)
 
         # Revenus du foyer fiscal
-        rev_coll = simulation.calculate('rev_coll', annee_fiscale_n_2)
-        rev_coll_famille = simulation.famille.transpose(rev_coll, origin_entity = FoyersFiscaux)
+        rev_coll = simulation.famille.first_person.foyer_fiscal('rev_coll', annee_fiscale_n_2)
 
-        base_ressources = base_ressources_i_total + rev_coll_famille
+        base_ressources = base_ressources_i_total + rev_coll
         return period, base_ressources
 
 

@@ -77,8 +77,7 @@ def test_transpose():
     simulation = new_simulation(test_case)
     foyer_fiscal = simulation.foyer_fiscal
 
-    af = foyer_fiscal.members.famille('af')
-    af_foyer_fiscal = foyer_fiscal.transpose(af, origin_entity = Menages)
+    af_foyer_fiscal = foyer_fiscal.first_person.famille('af')
 
     assert_near(af_foyer_fiscal, [20000, 10000, 0])
 
