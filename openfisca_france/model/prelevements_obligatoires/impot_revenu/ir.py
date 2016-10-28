@@ -254,7 +254,7 @@ class maries_ou_pacses(Variable):
         statut_marital = foyer_fiscal.members('statut_marital', period)
         individu_marie_ou_pacse = (statut_marital == 1) | (statut_marital == 5)
 
-        return period, foyer_fiscal.value_from_person(individu_marie_ou_pacse, role = foyer_fiscal.declarant)
+        return period, foyer_fiscal.value_from_person(individu_marie_ou_pacse, role = foyer_fiscal.declarant_principal)
 
 
 class celibataire_ou_divorce(Variable):
@@ -267,7 +267,7 @@ class celibataire_ou_divorce(Variable):
         statut_marital = foyer_fiscal.members('statut_marital', period)
         individu_celibataire_ou_divorce = (statut_marital == 2) | (statut_marital == 3)
 
-        return period, foyer_fiscal.value_from_person(individu_celibataire_ou_divorce, role = foyer_fiscal.declarant)
+        return period, foyer_fiscal.value_from_person(individu_celibataire_ou_divorce, role = foyer_fiscal.declarant_principal)
 
 
 class veuf(Variable):
@@ -280,7 +280,7 @@ class veuf(Variable):
         statut_marital = foyer_fiscal.members('statut_marital', period)
         individu_veuf = (statut_marital == 4)
 
-        return period, foyer_fiscal.value_from_person(individu_veuf, role = foyer_fiscal.declarant)
+        return period, foyer_fiscal.value_from_person(individu_veuf, role = foyer_fiscal.declarant_principal)
 
 
 class jeune_veuf(Variable):
@@ -293,7 +293,7 @@ class jeune_veuf(Variable):
         statut_marital = foyer_fiscal.members('statut_marital', period)
         individu_jeune_veuf = (statut_marital == 6)
 
-        return period, foyer_fiscal.value_from_person(individu_jeune_veuf, role = foyer_fiscal.declarant)
+        return period, foyer_fiscal.value_from_person(individu_jeune_veuf, role = foyer_fiscal.declarant_principal)
 
 
 ###############################################################################
@@ -2495,7 +2495,7 @@ class abat_spe(Variable):
         abattements_speciaux = legislation(period).ir.abattements_speciaux
 
         age = foyer_fiscal.members('age', period)
-        ageV = foyer_fiscal.value_from_person(age, foyer_fiscal.declarant)
+        ageV = foyer_fiscal.value_from_person(age, foyer_fiscal.declarant_principal)
         ageC = foyer_fiscal.value_from_person(age, foyer_fiscal.conjoint)
 
         invV, invC = caseP, caseF

@@ -3,19 +3,18 @@
 import collections
 import itertools
 
-from openfisca_core.entities import PersonEntity, GroupEntity
+from openfisca_core.entities import build_entity
 
-
-class Familles(GroupEntity):
-    key = "famille"
-    plural = "familles"
-    label = u'Famille'
+Familles = build_entity(
+    key = "famille",
+    plural = "familles",
+    label = u'Famille',
     roles = [
         {
             'key': 'parent',
             'plural': 'parents',
             'label': u'Parents',
-            'max': 2
+            'subroles': ['demandeur', 'conjoint']
             },
         {
             'key': 'enfant',
@@ -23,29 +22,25 @@ class Familles(GroupEntity):
             'label': u'Enfants'
             }
         ]
+    )
 
-class Individus(PersonEntity):
-    key = "individu"
-    plural = "individus"
-    label = u'Individu'
+Individus = build_entity(
+    key = "individu",
+    plural = "individus",
+    label = u'Individu',
+    is_person = True
+    )
 
-
-class FoyersFiscaux(GroupEntity):
-    key = "foyer_fiscal"
-    plural = "foyers_fiscaux"
-    label = u'Déclaration d’impôts'
+FoyersFiscaux = build_entity(
+    key = "foyer_fiscal",
+    plural = "foyers_fiscaux",
+    label = u'Déclaration d’impôts',
     roles = [
         {
             'key': 'declarant',
+            'plural': 'declarants',
             'label': u'Déclarants',
-            'max': 1,
-            'role_in_scenario': 'declarants'
-            },
-        {
-            'key': 'conjoint',
-            'label': u'Déclarants',
-            'max': 1,
-            'role_in_scenario': 'declarants'
+            'subroles': ['declarant_principal', 'conjoint']
             },
         {
             'key': 'personne_a_charge',
@@ -53,12 +48,12 @@ class FoyersFiscaux(GroupEntity):
             'label': u'Personnes à charge'
             },
         ]
+    )
 
-
-class Menages(GroupEntity):
-    key = "menage"
-    plural = "menages"
-    label = u'Logement principal'
+Menages = build_entity(
+    key = "menage",
+    plural = "menages",
+    label = u'Logement principal',
     roles = [
         {
             'key': 'personne_de_reference',
@@ -82,5 +77,6 @@ class Menages(GroupEntity):
             'label': u'Autres'
             }
         ]
+    )
 
 entities = [Individus, Familles, FoyersFiscaux, Menages]
