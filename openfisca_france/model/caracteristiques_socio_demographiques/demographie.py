@@ -175,7 +175,7 @@ class nb_parents(Variable):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
 
-        return period, famille.nb_persons(role = famille.parent)
+        return period, famille.nb_persons(role = famille.PARENT)
 
 class maries(Variable):
     column = BoolCol(default = False)
@@ -189,7 +189,7 @@ class maries(Variable):
         statut_marital = famille.members('statut_marital', period)
         individu_marie = (statut_marital == 1)
 
-        return period, famille.any(individu_marie, role = famille.parent)
+        return period, famille.any(individu_marie, role = famille.PARENT)
 
 
 class en_couple(Variable):
@@ -214,7 +214,7 @@ class est_enfant_dans_famille(Variable):
     label = u"Indique qe l'individu est un enfant dans une famille"
 
     def function(individu, period):
-        return period, individu.has_role(Familles.enfant)
+        return period, individu.has_role(Familles.ENFANT)
 
 class etudiant(Variable):
     column = BoolCol(default = False)

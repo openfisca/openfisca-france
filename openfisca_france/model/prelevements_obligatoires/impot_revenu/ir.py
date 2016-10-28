@@ -148,7 +148,7 @@ class enfant_a_charge(Variable):
     def function(individu, period):
         age = individu('age', period)
         handicap = individu('handicap', period)
-        is_pac = individu.has_role(FoyersFiscaux.personne_a_charge)
+        is_pac = individu.has_role(FoyersFiscaux.PERSONNE_A_CHARGE)
 
         return period, is_pac * ((age < 18) + handicap)
 
@@ -218,7 +218,7 @@ class enfant_majeur_celibataire_sans_enfant(Variable):
         period = period.this_year
         age = individu('age', period)
         handicap = individu('handicap', period)
-        is_pac = individu.has_role(FoyersFiscaux.personne_a_charge)
+        is_pac = individu.has_role(FoyersFiscaux.PERSONNE_A_CHARGE)
 
         return period, is_pac * (age >= 18) * not_(handicap)
 
@@ -251,10 +251,10 @@ class maries_ou_pacses(Variable):
 
     def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital = foyer_fiscal.members('statut_marital', period)
-        individu_marie_ou_pacse = (statut_marital == 1) | (statut_marital == 5)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        marie_ou_pacse = (statut_marital == 1) | (statut_marital == 5)
 
-        return period, foyer_fiscal.value_from_person(individu_marie_ou_pacse, role = foyer_fiscal.declarant_principal)
+        return period, marie_ou_pacse
 
 
 class celibataire_ou_divorce(Variable):
@@ -264,11 +264,10 @@ class celibataire_ou_divorce(Variable):
 
     def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital = foyer_fiscal.members('statut_marital', period)
-        individu_celibataire_ou_divorce = (statut_marital == 2) | (statut_marital == 3)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        celibataire_ou_divorce = (statut_marital == 2) | (statut_marital == 3)
 
-        return period, foyer_fiscal.value_from_person(individu_celibataire_ou_divorce, role = foyer_fiscal.declarant_principal)
-
+        return period, celibataire_ou_divorce
 
 class veuf(Variable):
     column = BoolCol
@@ -277,11 +276,10 @@ class veuf(Variable):
 
     def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital = foyer_fiscal.members('statut_marital', period)
-        individu_veuf = (statut_marital == 4)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        veuf = (statut_marital == 4)
 
-        return period, foyer_fiscal.value_from_person(individu_veuf, role = foyer_fiscal.declarant_principal)
-
+        return period, veuf
 
 class jeune_veuf(Variable):
     column = BoolCol
@@ -290,11 +288,10 @@ class jeune_veuf(Variable):
 
     def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital = foyer_fiscal.members('statut_marital', period)
-        individu_jeune_veuf = (statut_marital == 6)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        jeune_veuf = (statut_marital == 6)
 
-        return period, foyer_fiscal.value_from_person(individu_jeune_veuf, role = foyer_fiscal.declarant_principal)
-
+        return period, jeune_veuf
 
 ###############################################################################
 # # Revenus catégoriels
@@ -2494,9 +2491,8 @@ class abat_spe(Variable):
         nbN = foyer_fiscal('nbN', period)
         abattements_speciaux = legislation(period).ir.abattements_speciaux
 
-        age = foyer_fiscal.members('age', period)
-        ageV = foyer_fiscal.value_from_person(age, foyer_fiscal.declarant_principal)
-        ageC = foyer_fiscal.value_from_person(age, foyer_fiscal.conjoint)
+        ageV = foyer_fiscal.declarant_principal('age', period)
+        ageC = foyer_fiscal.conjoint('age', period)
 
         invV, invC = caseP, caseF
         nb_elig_as = (1 * (((ageV >= 65) | invV) & (ageV > 0)) +

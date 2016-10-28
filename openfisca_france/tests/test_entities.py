@@ -108,7 +108,6 @@ def test_value_from_person():
     foyer_fiscal = simulation.foyer_fiscal
     age = foyer_fiscal.members('age')
 
-    age_conjoint = foyer_fiscal.value_from_person(age, role = foyer_fiscal.conjoint, default = -1)
-
-    assert_near(age_conjoint, [37, -1])
+    age_conjoint = foyer_fiscal.conjoint('age')
+    assert_near(age_conjoint, [37, 0])
 

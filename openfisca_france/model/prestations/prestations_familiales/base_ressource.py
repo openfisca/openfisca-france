@@ -77,7 +77,7 @@ class biactivite(Variable):
 
         base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
 
-        return period, famille.all(base_ressources_i >= seuil_rev, role = famille.parent)
+        return period, famille.all(base_ressources_i >= seuil_rev, role = famille.PARENT)
 
 
 class div(Variable):
@@ -182,7 +182,7 @@ def nb_enf(simulation, period, age_min, age_max):
 #        le versement à lieu en début de mois suivant
     condition = (age >= age_min) * (age <= age_max) * not_(autonomie_financiere)
 
-    return simulation.famille.sum(condition, role = Familles.enfant)
+    return simulation.famille.sum(condition, role = Familles.ENFANT)
 
 
 
