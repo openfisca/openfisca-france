@@ -148,7 +148,7 @@ class enfant_a_charge(Variable):
     def function(individu, period):
         age = individu('age', period)
         handicap = individu('handicap', period)
-        is_pac = individu.has_role(FoyersFiscaux.personne_a_charge, FoyersFiscaux)
+        is_pac = individu.has_role(FoyersFiscaux.personne_a_charge)
 
         return period, is_pac * ((age < 18) + handicap)
 
@@ -218,7 +218,7 @@ class enfant_majeur_celibataire_sans_enfant(Variable):
         period = period.this_year
         age = individu('age', period)
         handicap = individu('handicap', period)
-        is_pac = individu.has_role(FoyersFiscaux.personne_a_charge, FoyersFiscaux)
+        is_pac = individu.has_role(FoyersFiscaux.personne_a_charge)
 
         return period, is_pac * (age >= 18) * not_(handicap)
 
