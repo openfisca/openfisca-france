@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from copy import deepcopy
 
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
@@ -26,13 +28,19 @@ class autonomie_financiere(Variable):
     column = BoolCol
     entity_class = Individus
 
+class depcom(Variable):
+    column = FixedStrCol(max_length = 5)
+    entity_class = Menages
+    is_permanent = True
+    label = u"""Code INSEE "depcom" de la commune de résidence de la famille"""
+
 # This tests are more about core than france, but we need france entities to run some of them.
 # We use a dummy TBS to run the tests faster
 class DummyTaxBenefitSystem(TaxBenefitSystem):
     def __init__(self):
         TaxBenefitSystem.__init__(self, entities)
         self.Scenario = Scenario
-        self.add_variables(af, salaire, age, autonomie_financiere)
+        self.add_variables(af, salaire, age, autonomie_financiere, depcom)
 
 tax_benefit_system = DummyTaxBenefitSystem()
 
@@ -79,8 +87,19 @@ def test_transpose():
 
     af_foyer_fiscal = foyer_fiscal.first_person.famille('af')
 
-    assert_near(af_foyer_fiscal, [20000, 10000, 0])
+    assert_near(af_foyer_fiscal, [20000, 10000, 10000])
 
+def test_transpose_string():
+    test_case = deepcopy(TEST_CASE)
+    test_case['menages'][0]['depcom'] = "93400"
+    test_case['menages'][1]['depcom'] = "89300"
+
+    simulation = new_simulation(test_case)
+    famille = simulation.famille
+
+    depcom_famille = famille.first_person.menage('depcom')
+
+    assert((depcom_famille == ["93400", "89300"]).all())
 
 def test_value_from_person():
     test_case = deepcopy(TEST_CASE_AGES)
@@ -92,3 +111,4 @@ def test_value_from_person():
     age_conjoint = foyer_fiscal.value_from_person(age, role = foyer_fiscal.conjoint, default = -1)
 
     assert_near(age_conjoint, [37, -1])
+
