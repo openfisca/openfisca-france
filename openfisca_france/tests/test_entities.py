@@ -111,3 +111,41 @@ def test_value_from_person():
     age_conjoint = foyer_fiscal.conjoint('age')
     assert_near(age_conjoint, [37, 0])
 
+def test_combination_projections():
+    test_case = deepcopy(TEST_CASE_AGES)
+    simulation = new_simulation(test_case)
+
+    individu = simulation.persons
+
+    age_parent1 = individu.famille.demandeur('age')
+
+    assert_near(age_parent1, [40, 40, 40, 40, 54, 54])
+
+def test_complex_chain_2():
+    test_case = {
+        'individus': [
+            {'id': 'ind0', 'age': 30}, {'id': 'ind1', 'age': 31}, {'id': 'ind2', 'age': 32}, {'id': 'ind3', 'age': 33}
+            ],
+        'familles': [
+            {'parents': ['ind0', 'ind1']},
+            {'parents': ['ind2']},
+            {'parents': ['ind3']},
+            ],
+        'foyers_fiscaux': [
+            {'declarants': ['ind0', 'ind1']},
+            {'declarants': ['ind2', 'ind3']},
+            ],
+        'menages': [
+            {'personne_de_reference': 'ind0'},
+            {'personne_de_reference': 'ind1', 'autres': 'ind2'},
+            {'personne_de_reference': 'ind3'},
+            ],
+        }
+
+
+    simulation = new_simulation(test_case)
+
+    assert_near(simulation.famille.demandeur.menage.personne_de_reference('age'), [30, 31, 33])
+    assert_near(simulation.famille.conjoint.menage.personne_de_reference('age'), [31, 0, 0])
+    assert_near(simulation.famille.demandeur.foyer_fiscal.declarant_principal('age'), [30, 32, 32])
+    assert_near(simulation.foyer_fiscal.conjoint.famille.demandeur('age'), [30, 33])
