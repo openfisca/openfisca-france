@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.18
+
+* Introduce PCH
+
 ## 4.1.17
 
 * Reimplement `rsa_indemnites_journalieres_activite` and `date_arret_de_travail` using `datetime.date.min`.

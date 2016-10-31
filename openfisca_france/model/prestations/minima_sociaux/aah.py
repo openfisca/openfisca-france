@@ -339,3 +339,8 @@ class caah(DatedVariable):
         # En fait le taux cpltx perdure jusqu'en 2008
 
         return period, ancien_caah
+
+class pch(Variable):
+    entity_class = Individus
+    column = FloatCol
+    label = u"Prestation de compensation du handicap"
