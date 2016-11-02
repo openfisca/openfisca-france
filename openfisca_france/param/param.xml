@@ -5072,6 +5072,9 @@
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.225" />
         <VALUE deb="1991-01-01" fin="2013-12-31" valeur="0.225" />
       </CODE>
+        <CODE code="pea2" description="Clôture PEA ou PEA-PME entre 2 ans et 5 ans (3VT)" format="percent">
+        <VALUE deb="2012-01-01" fuzzy="true" valeur="0.19" />
+     </CODE>
       <CODE code="pvce" description="Plus value de cession (RPNS) 16%" format="percent">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.16" />
         <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.16" />
