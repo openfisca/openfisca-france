@@ -1,5 +1,43 @@
 # Changelog
 
+## 4.1.19
+
+* Introduce MVA
+
+
+## 4.1.18
+
+* Introduce PCH
+
+## 4.1.17
+
+* Reimplement `rsa_indemnites_journalieres_activite` and `date_arret_de_travail` using `datetime.date.min`.
+
+## 4.1.16
+
+* Correct wrong behaviour in the combination of exemptions with the dispositif Jeune Entreprise Innovante (JEI)
+
+
+## 4.1.15
+
+* Consider some indemnités journalieres as revenus de remplacement in PPA (and RSA), according to the date of the arret de travail.
+* Introduce
+	* `rsa_indemnites_journalieres_hors_activite`
+	* `rsa_indemnites_journalieres_activite`
+	* `date_arret_de_travail`
+
+## 4.1.14
+
+* Add cerfa boxe : 3vt (PEA)
+
+## 4.1.13
+
+* Increase RSA base amount to 535.17 from September 2016
+
+## 4.1.12
+
+* Fix links in README
+
 ## 4.1.11
 
 * Remove end dates where not necessary
