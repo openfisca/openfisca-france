@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.0.1
+
+* Introduce echelon_bourse
+
 ## 8.0.0
 
 * Rename `paje_clmg` to `paje_cmg`
