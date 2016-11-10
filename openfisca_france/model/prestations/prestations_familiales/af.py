@@ -60,11 +60,11 @@ class af_eligibilite_base(Variable):
     entity_class = Familles
     label = u"Allocations familiales - Éligibilité pour la France métropolitaine sous condition de ressources"
 
-    def function(self, simulation, period):
+    def function(famille, period):
         period = period.this_month
 
-        residence_dom = simulation.calculate('residence_dom', period)
-        af_nbenf = simulation.calculate('af_nbenf', period)
+        residence_dom = famille.demandeur.menage('residence_dom', period)
+        af_nbenf = famille('af_nbenf', period)
 
         return period, not_(residence_dom) * (af_nbenf >= 2)
 
@@ -74,12 +74,12 @@ class af_eligibilite_dom(Variable):
     entity_class = Familles
     label = u"Allocations familiales - Éligibilité pour les DOM (hors Mayotte) sous condition de ressources"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
 
-        residence_dom = simulation.calculate('residence_dom', period)
-        residence_mayotte = simulation.calculate('residence_mayotte', period)
-        af_nbenf = simulation.calculate('af_nbenf', period)
+        residence_dom = famille.demandeur.menage('residence_dom', period)
+        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+        af_nbenf = famille('af_nbenf', period)
 
         return period, residence_dom * not_(residence_mayotte) * (af_nbenf >= 1)
 
@@ -190,23 +190,18 @@ class af_majoration_enfant(Variable):
     entity_class = Individus
     label = u"Allocations familiales - Majoration pour âge applicable à l'enfant"
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
 
-        pfam_enfant_a_charge = simulation.calculate('prestations_familiales_enfant_a_charge', period)
-        age = simulation.calculate('age', period)
-        garde_alternee = simulation.calculate('garde_alternee', period)
+        pfam_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
+        age = individu('age', period)
+        garde_alternee = individu('garde_alternee', period)
 
-        af_nbenf_par_famille = simulation.calculate('af_nbenf', period)
-        af_nbenf = simulation.famille.project(af_nbenf_par_famille)
+        af_nbenf = individu.famille('af_nbenf', period)
+        af_base = individu.famille('af_base', period)
+        age_aine = individu.famille('af_age_aine', period)
 
-        af_base_par_famille = simulation.calculate('af_base', period)
-        af_base = simulation.famille.project(af_base_par_famille)
-
-        age_aine_par_famille = simulation.calculate('af_age_aine', period)
-        age_aine = simulation.famille.project(age_aine_par_famille)
-
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = legislation(period).fam
 
         montant_enfant_seul = pfam.af.bmaf * (
             (pfam.af.maj_age_un_enfant.age1 <= age) * (age < pfam.af.maj_age_un_enfant.age2) * pfam.af.maj_age_un_enfant.taux1 +
@@ -233,13 +228,13 @@ class af_majoration(Variable):
     entity_class = Familles
     label = u"Allocations familiales - majoration pour âge"
 
-    def function(self, simulation, period):
+    def function(famille, period):
         period = period.this_month
-        af_majoration_enfant = simulation.calculate('af_majoration_enfant', period)
-        af_majoration_enfants = simulation.famille.sum(af_majoration_enfant, role = Familles.ENFANT)
+        af_majoration_enfant = famille.members('af_majoration_enfant', period)
+        af_majoration_enfants_famille = famille.sum(af_majoration_enfant, role = Familles.ENFANT)
 
-        af_taux_modulation = simulation.calculate('af_taux_modulation', period)
-        af_majoration_enfants_module = af_majoration_enfants * af_taux_modulation
+        af_taux_modulation = famille('af_taux_modulation', period)
+        af_majoration_enfants_module = af_majoration_enfants_famille * af_taux_modulation
 
         return period, af_majoration_enfants_module
 

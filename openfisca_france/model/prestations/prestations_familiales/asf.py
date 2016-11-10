@@ -14,13 +14,13 @@ class asf_elig_enfant(Variable):
     entity_class = Individus
     label = u"Enfant pouvant ouvrir droit à l'ASF"
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
 
-        age = simulation.calculate('age', period)
-        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
+        age = individu('age', period)
+        autonomie_financiere = individu('autonomie_financiere', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = legislation(period).fam
 
         eligibilite = (
             (age >= pfam.af.age1) * (age < pfam.af.age3) *  # Âge compatible avec les prestations familiales
@@ -34,15 +34,15 @@ class asf_elig(Variable):
     entity_class = Familles
     label = u"Éligibilité à l'ASF"
 
-    def function(self, simulation, period):
+    def function(famille, period):
         period = period.this_month
-        pensions_alimentaires_percues_holder = simulation.compute('pensions_alimentaires_percues', period)
-        pensions_alimentaires_percues = self.sum_by_entity(pensions_alimentaires_percues_holder)
+        pensions_alimentaires_percues = famille.members('pensions_alimentaires_percues', period)
+        pas_de_pensions = not_(famille.sum(pensions_alimentaires_percues))
 
-        isole = not_(simulation.calculate('en_couple', period))
-        residence_mayotte = simulation.calculate('residence_mayotte', period)
+        isole = not_(famille('en_couple', period))
+        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
 
-        return period, not_(residence_mayotte) * isole * not_(pensions_alimentaires_percues)  # Parent isolé et ne résident pas à Mayotte
+        return period, not_(residence_mayotte) * isole * pas_de_pensions  # Parent isolé et ne résident pas à Mayotte
 
 
 class asf(Variable):
@@ -51,12 +51,12 @@ class asf(Variable):
     entity_class = Familles
     label = u"Allocation de soutien familial (ASF)"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
 
-        pfam = simulation.legislation_at(period.start).fam
-        asf_elig = simulation.calculate('asf_elig', period)
-        asf_par_enfant = simulation.calculate('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux1
-        montant = self.sum_by_entity(asf_par_enfant, roles = ENFS)
+        pfam = legislation(period).fam
+        asf_elig = famille('asf_elig', period)
+        asf_par_enfant = famille.members('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux1
+        montant = famille.sum(asf_par_enfant, role = Familles.ENFANT)
 
         return period, asf_elig * montant

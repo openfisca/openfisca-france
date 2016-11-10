@@ -430,32 +430,32 @@ class crds(Variable):
     entity_class = Individus
     label = u"Contributions au remboursement de la dette sociale"
 
-    def function(self, simulation, period):
+    def function(individu, period):
         """Contribution au remboursement de la dette sociale"""
         period = period.this_year
 
         # CRDS sur revenus individuels
-        crds_salaire = simulation.calculate_add('crds_salaire', period)
-        crds_retraite = simulation.calculate_add('crds_retraite', period)
-        crds_chomage = simulation.calculate_add('crds_chomage', period)
+        crds_salaire = individu('crds_salaire', period, options = [ADD])
+        crds_retraite = individu('crds_retraite', period, options = [ADD])
+        crds_chomage = individu('crds_chomage', period, options = [ADD])
         crds_individu = crds_salaire + crds_retraite + crds_chomage
 
 
-        # CRDS sur revenus de la famille
-        crds_pfam = simulation.calculate('crds_pfam', period)
-        crds_logement = simulation.calculate_add('crds_logement', period)
-        crds_mini = simulation.calculate_add('crds_mini', period)
+        # CRDS sur revenus de la famille, projetés seulement sur la première personne
+        crds_pfam = individu.famille('crds_pfam', period)
+        crds_logement = individu.famille('crds_logement', period, options = [ADD])
+        crds_mini = individu.famille('crds_mini', period, options = [ADD])
         crds_famille =  crds_pfam + crds_logement + crds_mini
-        crds_famille_projetes = simulation.famille.project_on_first_person(crds_famille)
+        crds_famille_projetes = crds_famille * individu.has_role(Familles.DEMANDEUR)
 
-        # CRDS sur revenus du foyer fiscal
-        crds_fon = simulation.calculate('crds_fon', period)
-        crds_pv_mo = simulation.calculate('crds_pv_mo', period)
-        crds_pv_immo = simulation.calculate('crds_pv_immo', period)
-        crds_cap_bar = simulation.calculate('crds_cap_bar', period)
-        crds_cap_lib = simulation.calculate('crds_cap_lib', period)
+        # CRDS sur revenus du foyer fiscal, projetés seulement sur la première personne
+        crds_fon = individu.foyer_fiscal('crds_fon', period)
+        crds_pv_mo = individu.foyer_fiscal('crds_pv_mo', period)
+        crds_pv_immo = individu.foyer_fiscal('crds_pv_immo', period)
+        crds_cap_bar = individu.foyer_fiscal('crds_cap_bar', period)
+        crds_cap_lib = individu.foyer_fiscal('crds_cap_lib', period)
         crds_foyer_fiscal = crds_fon + crds_pv_mo + crds_pv_immo + crds_cap_bar + crds_cap_lib
-        crds_foyer_fiscal_projetee = simulation.foyer_fiscal.project_on_first_person(crds_foyer_fiscal)
+        crds_foyer_fiscal_projetee = crds_foyer_fiscal * individu.has_role(FoyersFiscaux.DECLARANT_PRINCIPAL)
 
         return period, crds_individu + crds_famille_projetes + crds_foyer_fiscal_projetee
 
@@ -465,24 +465,24 @@ class csg(Variable):
     entity_class = Individus
     label = u"Contributions sociales généralisées"
 
-    def function(self, simulation, period):
+    def function(individu, period):
         """Contribution sociale généralisée"""
         period = period.this_year
-        csg_imposable_salaire = simulation.calculate_add('csg_imposable_salaire', period)
-        csg_deductible_salaire = simulation.calculate_add('csg_deductible_salaire', period)
-        csg_imposable_chomage = simulation.calculate_add('csg_imposable_chomage', period)
-        csg_deductible_chomage = simulation.calculate_add('csg_deductible_chomage', period)
-        csg_imposable_retraite = simulation.calculate_add('csg_imposable_retraite', period)
-        csg_deductible_retraite = simulation.calculate_add('csg_deductible_retraite', period)
+        csg_imposable_salaire = individu('csg_imposable_salaire', period, options = [ADD])
+        csg_deductible_salaire = individu('csg_deductible_salaire', period, options = [ADD])
+        csg_imposable_chomage = individu('csg_imposable_chomage', period, options = [ADD])
+        csg_deductible_chomage = individu('csg_deductible_chomage', period, options = [ADD])
+        csg_imposable_retraite = individu('csg_imposable_retraite', period, options = [ADD])
+        csg_deductible_retraite = individu('csg_deductible_retraite', period, options = [ADD])
 
-        # CSG prélevée sur les revenus du foyer fiscal
-        csg_fon = simulation.calculate('csg_fon', period)
-        csg_cap_lib = simulation.calculate('csg_cap_lib', period)
-        csg_cap_bar = simulation.calculate('csg_cap_bar', period)
-        csg_pv_mo = simulation.calculate('csg_pv_mo', period)
-        csg_pv_immo = simulation.calculate('csg_pv_immo', period)
+        # CSG prélevée sur les revenus du foyer fiscal, projetés seulement sur la première personne
+        csg_fon = individu.foyer_fiscal('csg_fon', period)
+        csg_cap_lib = individu.foyer_fiscal('csg_cap_lib', period)
+        csg_cap_bar = individu.foyer_fiscal('csg_cap_bar', period)
+        csg_pv_mo = individu.foyer_fiscal('csg_pv_mo', period)
+        csg_pv_immo = individu.foyer_fiscal('csg_pv_immo', period)
         csg_foyer_fiscal = csg_fon + csg_cap_lib + csg_cap_bar + csg_pv_mo + csg_pv_immo
-        csg_foyer_fiscal_projetee = simulation.foyer_fiscal.project_on_first_person(csg_foyer_fiscal)
+        csg_foyer_fiscal_projetee = csg_foyer_fiscal * individu.has_role(FoyersFiscaux.DECLARANT_PRINCIPAL)
 
         return period, (csg_imposable_salaire + csg_deductible_salaire + csg_imposable_chomage +
                 csg_deductible_chomage + csg_imposable_retraite + csg_deductible_retraite + csg_foyer_fiscal_projetee)
@@ -512,21 +512,21 @@ class prelsoc_cap(Variable):
     label = u"Prélèvements sociaux sur les revenus du capital"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
 
-    def function(self, simulation, period):
+    def function(individu, period):
         """
         Prélèvements sociaux sur les revenus du capital
         """
         period = period.this_year
 
         # Prélevements effectués sur les revenus du foyer fiscal
-        prelsoc_fon = simulation.calculate('prelsoc_fon', period)
-        prelsoc_cap_lib = simulation.calculate('prelsoc_cap_lib', period)
-        prelsoc_cap_bar = simulation.calculate('prelsoc_cap_bar', period)
-        prelsoc_pv_mo = simulation.calculate('prelsoc_pv_mo', period)
-        prelsoc_pv_immo = simulation.calculate('prelsoc_pv_immo', period)
+        prelsoc_fon = individu.foyer_fiscal('prelsoc_fon', period)
+        prelsoc_cap_lib = individu.foyer_fiscal('prelsoc_cap_lib', period)
+        prelsoc_cap_bar = individu.foyer_fiscal('prelsoc_cap_bar', period)
+        prelsoc_pv_mo = individu.foyer_fiscal('prelsoc_pv_mo', period)
+        prelsoc_pv_immo = individu.foyer_fiscal('prelsoc_pv_immo', period)
         prel_foyer_fiscal = prelsoc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
 
-        return period, simulation.foyer_fiscal.project_on_first_person(prel_foyer_fiscal)
+        return period, prel_foyer_fiscal * individu.has_role(FoyersFiscaux.DECLARANT_PRINCIPAL)
 
 
 class check_csk(Variable):
@@ -537,7 +537,7 @@ class check_csk(Variable):
     def function(menage, period):
         period = period.this_year
 
-        foyer_fiscal = menage.first_person.foyer_fiscal
+        foyer_fiscal = menage.personne_de_reference.foyer_fiscal
 
         # Prélevements effectués sur les revenus du foyer fiscal
         prelsoc_cap_bar = foyer_fiscal('prelsoc_cap_bar', period)
@@ -555,7 +555,7 @@ class check_csg(Variable):
     def function(menage, period):
         period = period.this_year
 
-        foyer_fiscal = menage.first_person.foyer_fiscal
+        foyer_fiscal = menage.personne_de_reference.foyer_fiscal
 
         # CSG prélevée sur les revenus du foyer fiscal
         csg_cap_bar = foyer_fiscal('csg_cap_bar', periop)
@@ -573,7 +573,7 @@ class check_crds(Variable):
     def function(menage, period):
         period = period.this_year
 
-        foyer_fiscal = menage.first_person.foyer_fiscal
+        foyer_fiscal = menage.personne_de_reference.foyer_fiscal
 
         # CRDS prélevée sur les revenus du foyer fiscal
         crds_pv_mo = foyer_fiscal('crds_pv_mo', period)

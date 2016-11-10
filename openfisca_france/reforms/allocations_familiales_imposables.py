@@ -85,7 +85,7 @@ class allocations_familiales_imposables(Reform):
         def function(self, simulation, period):
             period = period.this_year
             imposition = simulation.legislation_at(period.start).allocations_familiales_imposables.imposition
-            af = simulation.foyer_fiscal.first_person.famille('af', period, options = [ADD])
+            af = simulation.foyer_fiscal.declarant_principal.famille('af', period, options = [ADD])
 
             return period, af * imposition
 

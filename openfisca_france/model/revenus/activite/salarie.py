@@ -620,16 +620,14 @@ class indemnite_residence(Variable):
     entity_class = Individus
     label = u"Indemnité de résidence des fonctionnaires"
 
-    def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
-        zone_apl_menage = simulation.calculate('zone_apl', period)
-        zone_apl_individu = simulation.menage.project(zone_apl_menage)
-        _P = simulation.legislation_at(period.start)
+    def function(individu, period, legislation):
+        period = period.this_month
+        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
+        salaire_de_base = individu('salaire_de_base', period)
+        categorie_salarie = individu('categorie_salarie', period)
+        zone_apl = individu.menage('zone_apl', period)
+        _P = legislation(period)
 
-        zone_apl = zone_apl_individu  # TODO: ces zones ne correpondent pas aux zones APL
         P = _P.fonc.indem_resid
         min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
         taux = P.taux.zone1 * (zone_apl == 1) + P.taux.zone2 * (zone_apl == 2) + P.taux.zone3 * (zone_apl == 3)
@@ -703,14 +701,13 @@ class supp_familial_traitement(Variable):
     # Attention : par hypothèse ne peut êre attribué qu'à la tête du ménage
     # TODO: gérer le cas encore problématique du conjoint fonctionnaire
 
-    def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
-        traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        _P = simulation.legislation_at(period.start)
+    def function(individu, period, legislation):
+        period = period.this_month
+        categorie_salarie = individu('categorie_salarie', period)
+        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
+        _P = legislation(period)
 
-        af_nbenf_fonc = simulation.calculate('af_nbenf_fonc', period)
-        fonc_nbenf = simulation.famille.project_on_first_person(af_nbenf_fonc)
+        fonc_nbenf = individu.famille('af_nbenf_fonc', period) * individu.has_role(Familles.DEMANDEUR)
 
         P = _P.fonc.supp_fam
         part_fixe_1 = P.fixe.enf1

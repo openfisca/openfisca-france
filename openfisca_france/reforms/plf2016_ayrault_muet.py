@@ -88,11 +88,11 @@ class reduction_csg_nette(DatedVariable):
     label = u"Réduction dégressive de CSG"
 
     @dated_function(start = date(2015, 1, 1))
-    def function_2015__(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
-        reduction_csg = simulation.calculate('reduction_csg', period)
-        ppe_elig_bis_individu = simulation.calculate('ppe_elig_bis_individu', period)
-        return period, reduction_csg * ppe_elig_bis_individu
+    def function_2015__(individu, period):
+        period = period.this_year
+        reduction_csg = individu('reduction_csg', period)
+        ppe_elig_bis = individu.foyer_fiscal('ppe_elig_bis', period)
+        return period, reduction_csg * ppe_elig_bis
 
 class ppe_elig_bis(Variable):
     column = BoolCol(default = False)
@@ -117,13 +117,6 @@ class ppe_elig_bis(Variable):
             + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
         return period, (rfr * ppe_coef) <= (seuil * variator)
 
-class ppe_elig_bis_individu(Variable):
-    entity_class = Individus
-    column = BoolCol
-
-    def function(self, simulation, period):
-        ppe_elig_bis = simulation.calculate('ppe_elig_bis', period)
-        return period, simulation.foyer_fiscal.project(ppe_elig_bis)
 
 class regularisation_reduction_csg(DatedVariable):
     column = FloatCol
@@ -150,7 +143,6 @@ class ayrault_muet(Reform):
             reduction_csg_foyer_fiscal,
             reduction_csg_nette,
             ppe_elig_bis,
-            ppe_elig_bis_individu,
             variator
             ]:
             self.update_variable(variable)

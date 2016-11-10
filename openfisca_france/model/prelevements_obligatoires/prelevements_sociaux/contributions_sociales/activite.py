@@ -185,23 +185,23 @@ class salaire_imposable(Variable):
     label = u"Salaires imposables"
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
-        primes_salaires = simulation.calculate('primes_salaires', period)
-        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        indemnite_residence = simulation.calculate('indemnite_residence', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
-        csg_deductible_salaire = simulation.calculate('csg_deductible_salaire', period)
-        cotisations_salariales = simulation.calculate('cotisations_salariales', period)
-        remuneration_principale = simulation.calculate('remuneration_principale', period)
-        hsup = simulation.calculate('hsup', period)
-        indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
-        complementaire_sante_salarie = simulation.calculate('complementaire_sante_salarie', period)
+    def function(individu, period):
+        period = period.this_month
+        salaire_de_base = individu('salaire_de_base', period)
+        primes_salaires = individu('primes_salaires', period)
+        primes_fonction_publique = individu('primes_fonction_publique', period)
+        indemnite_residence = individu('indemnite_residence', period)
+        supp_familial_traitement = individu('supp_familial_traitement', period)
+        csg_deductible_salaire = individu('csg_deductible_salaire', period)
+        cotisations_salariales = individu('cotisations_salariales', period)
+        remuneration_principale = individu('remuneration_principale', period)
+        hsup = individu('hsup', period)
+        indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
+        complementaire_sante_salarie = individu('complementaire_sante_salarie', period)
 
         # Revenu du foyer fiscal projeté sur le demandeur
-        rev_microsocial = simulation.calculate_divide('rev_microsocial', period)
-        rev_microsocial_declarant1 = simulation.foyer_fiscal.project_on_first_person(rev_microsocial)
+        rev_microsocial = individu.foyer_fiscal('rev_microsocial', period, options = [DIVIDE])
+        rev_microsocial_declarant1 = rev_microsocial * individu.has_role(FoyersFiscaux.DECLARANT_PRINCIPAL)
 
         return period, (
             salaire_de_base + primes_salaires + remuneration_principale +

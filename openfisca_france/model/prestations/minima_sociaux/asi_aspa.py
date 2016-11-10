@@ -23,13 +23,12 @@ class asi_aspa_base_ressources_individu(Variable):
     label = u"Base ressources individuelle du minimum vieillesse/ASPA"
     entity_class = Individus
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
         last_year = period.last_year
         three_previous_months = period.last_3_months
-        legislation = simulation.legislation_at(period.start)
-        leg_1er_janvier = simulation.legislation_at(period.start.offset('first-of', 'year'))
-
+        law = legislation(period)
+        leg_1er_janvier = legislation(period.start.offset('first-of', 'year'))
 
 
         ressources_incluses = [
@@ -53,58 +52,57 @@ class asi_aspa_base_ressources_individu(Variable):
         ]
 
         # Revenus du foyer fiscal que l'on projette sur le premier invidividus
-        rev_cap_bar_foyer_fiscal = max_(0, simulation.calculate_add('rev_cap_bar', three_previous_months))
-        rev_cap_lib_foyer_fiscal = max_(0, simulation.calculate_add('rev_cap_lib', three_previous_months))
-        retraite_titre_onereux_foyer_fiscal = simulation.calculate_add('retraite_titre_onereux', three_previous_months)
+        rev_cap_bar_foyer_fiscal = max_(0, individu.foyer_fiscal('rev_cap_bar', three_previous_months, options = [ADD, DIVIDE]))
+        rev_cap_lib_foyer_fiscal = max_(0, individu.foyer_fiscal('rev_cap_lib', three_previous_months, options = [ADD, DIVIDE]))
+        retraite_titre_onereux_foyer_fiscal = individu.foyer_fiscal('retraite_titre_onereux', three_previous_months, options = [ADD, DIVIDE])
         revenus_foyer_fiscal = rev_cap_bar_foyer_fiscal + rev_cap_lib_foyer_fiscal + retraite_titre_onereux_foyer_fiscal
-        revenus_foyer_fiscal_individu = simulation.foyer_fiscal.project_on_first_person(revenus_foyer_fiscal)
+        revenus_foyer_fiscal_individu = revenus_foyer_fiscal * individu.has_role(FoyersFiscaux.DECLARANT_PRINCIPAL)
 
         def revenus_tns():
-            revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', three_previous_months)
+            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', three_previous_months, options = [ADD])
 
            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
-            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year) * (3 / 12)
-            tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year) * (3 / 12)
-            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year) * (3 / 12)
+            tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year) * (3 / 12)
+            tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year) * (3 / 12)
+            tns_autres_revenus = individu('tns_autres_revenus', last_year) * (3 / 12)
 
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
 
-        pension_invalidite = (simulation.calculate('pensions_invalidite', period) > 0)
-        aspa_eligibilite = simulation.calculate('aspa_eligibilite', period)
-        asi_eligibilite = simulation.calculate('asi_eligibilite', period)
+        pension_invalidite = (individu('pensions_invalidite', period) > 0)
+        aspa_eligibilite = individu('aspa_eligibilite', period)
+        asi_eligibilite = individu('asi_eligibilite', period)
 
         # Inclus l'AAH si conjoint non éligible ASPA, retraite et pension invalidité
-        aah = simulation.calculate_add('aah', three_previous_months)
+        aah = individu('aah', three_previous_months, options = [ADD])
         aah = aah * not_(aspa_eligibilite) * not_(asi_eligibilite) * not_(pension_invalidite)
 
-        pensions_alimentaires_versees = simulation.calculate_add(
-            'pensions_alimentaires_versees_individu', three_previous_months
+        pensions_alimentaires_versees = individu(
+            'pensions_alimentaires_versees_individu', three_previous_months, options = [ADD]
             )
 
         def abattement_salaire():
-            aspa_couple_famille = simulation.calculate('aspa_couple', period)
-            aspa_couple = simulation.famille.project(aspa_couple_famille)
+            aspa_couple = individu.famille('aspa_couple', period)
 
             # Abattement sur les salaires (appliqué sur une base trimestrielle)
             abattement_forfaitaire_base = (
-                leg_1er_janvier.cotsoc.gen.smic_h_b * legislation.cotsoc.gen.nb_heure_travail_mensuel
+                leg_1er_janvier.cotsoc.gen.smic_h_b * law.cotsoc.gen.nb_heure_travail_mensuel
                 )
 
             taux_abattement_forfaitaire = where(
                 aspa_couple,
-                legislation.minim.aspa.abattement_forfaitaire_tx_couple,
-                legislation.minim.aspa.abattement_forfaitaire_tx_seul
+                law.minim.aspa.abattement_forfaitaire_tx_couple,
+                law.minim.aspa.abattement_forfaitaire_tx_seul
                 )
 
             abattement_forfaitaire = abattement_forfaitaire_base * taux_abattement_forfaitaire
-            salaire_de_base = simulation.calculate_add('salaire_de_base', three_previous_months)
+            salaire_de_base = individu('salaire_de_base', three_previous_months, options = [ADD])
 
             return min_(salaire_de_base, abattement_forfaitaire)
 
 
         base_ressources_3_mois = sum(
-            max_(0, simulation.calculate_add(ressource_type, three_previous_months))
+            max_(0, individu(ressource_type, three_previous_months, options = [ADD]))
             for ressource_type in ressources_incluses
             ) + aah + revenus_foyer_fiscal_individu + revenus_tns() - abs_(pensions_alimentaires_versees) - abattement_salaire()
 

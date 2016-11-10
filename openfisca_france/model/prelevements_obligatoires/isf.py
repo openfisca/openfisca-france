@@ -588,7 +588,7 @@ class rvcm_plus_abat(Variable):
         return period, rev_cat_rvcm + rfr_rvcm
 
 
-class maj_cga_individu(Variable):
+class maj_cga(Variable):
     column = FloatCol
     entity_class = Individus
     label = u"Majoration pour non adhésion à un centre de gestion agréé (pour chaque individu du foyer)"
@@ -646,8 +646,8 @@ class bouclier_rev(Variable):
         cd_penali = simulation.calculate('cd_penali', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
 
-        maj_cga_individu = simulation.calculate('maj_cga_individu', period)
-        maj_cga = simulation.foyer_fiscal.sum(maj_cga_individu)
+        maj_cga = simulation.calculate('maj_cga', period)
+        maj_cga = simulation.foyer_fiscal.sum(maj_cga)
 
         # TODO: réintégrer les déficits antérieur
         # TODO: intégrer les revenus soumis au prélèvement libératoire

@@ -170,13 +170,13 @@ class cf_eligibilite_base(Variable):
     entity_class = Familles
     label = u"Éligibilité au complément familial sous condition de ressources et avant cumul"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
 
-        residence_dom = simulation.calculate('residence_dom', period)
+        residence_dom = famille.demandeur.menage('residence_dom', period)
 
-        cf_enfant_eligible_holder = simulation.compute('cf_enfant_eligible', period)
-        cf_nbenf = self.sum_by_entity(cf_enfant_eligible_holder)
+        cf_enfant_eligible = famille.members('cf_enfant_eligible', period)
+        cf_nbenf = famille.sum(cf_enfant_eligible)
 
         return period, not_(residence_dom) * (cf_nbenf >= 3)
 
@@ -186,17 +186,17 @@ class cf_eligibilite_dom(Variable):
     label = u"Éligibilité au complément familial pour les DOM sous condition de ressources et avant cumul"
 
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
 
-        residence_dom = simulation.calculate('residence_dom', period)
-        residence_mayotte = simulation.calculate('residence_mayotte', period)
+        residence_dom = famille.demandeur.menage('residence_dom', period)
+        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
 
-        cf_dom_enfant_eligible_holder = simulation.compute('cf_dom_enfant_eligible', period)
-        cf_nbenf = self.sum_by_entity(cf_dom_enfant_eligible_holder)
+        cf_dom_enfant_eligible = famille.members('cf_dom_enfant_eligible', period)
+        cf_nbenf = famille.sum(cf_dom_enfant_eligible)
 
-        cf_dom_enfant_trop_jeune_holder = simulation.compute('cf_dom_enfant_trop_jeune', period)
-        cf_nbenf_trop_jeune = self.sum_by_entity(cf_dom_enfant_trop_jeune_holder)
+        cf_dom_enfant_trop_jeune = famille.members('cf_dom_enfant_trop_jeune', period)
+        cf_nbenf_trop_jeune = famille.sum(cf_dom_enfant_trop_jeune)
 
         condition_composition_famille = (cf_nbenf >= 1) * (cf_nbenf_trop_jeune == 0)
         condition_residence = residence_dom * not_(residence_mayotte)

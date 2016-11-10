@@ -480,17 +480,17 @@ class traitements_salaires_pensions_rentes(Variable):
     entity_class = Individus
     label = u"Traitements salaires pensions et rentes individuelles"
 
-    def function(self, simulation, period):
+    def function(individu, period):
         period = period.this_year
 
-        revenu_assimile_salaire_apres_abattements = simulation.calculate('revenu_assimile_salaire_apres_abattements', period)
-        revenu_assimile_pension_apres_abattements = simulation.calculate('revenu_assimile_pension_apres_abattements', period)
-        abattement_salaires_pensions = simulation.calculate('abattement_salaires_pensions', period)
+        revenu_assimile_salaire_apres_abattements = individu('revenu_assimile_salaire_apres_abattements', period)
+        revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period)
+        abattement_salaires_pensions = individu('abattement_salaires_pensions', period)
 
         # Quand tspr est calculé sur une année glissante, retraite_titre_onereux_net est calculé sur l'année légale
         # correspondante.
-        retraite_titre_onereux_net = simulation.calculate('retraite_titre_onereux_net', period.offset('first-of'))
-        retraite_titre_onereux_net_declarant1 = simulation.foyer_fiscal.project_on_first_person(retraite_titre_onereux_net)
+        retraite_titre_onereux_net = individu.foyer_fiscal('retraite_titre_onereux_net', period.offset('first-of'))
+        retraite_titre_onereux_net_declarant1 = retraite_titre_onereux_net * individu.has_role(FoyersFiscaux.DECLARANT_PRINCIPAL)
 
         return period, revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements - abattement_salaires_pensions + retraite_titre_onereux_net_declarant1
 

@@ -48,7 +48,7 @@ class aefa(DatedVariable):
         maj = 0  # TODO
         condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
         if hasattr(af, "age3"):
-            nbPAC = nb_enf(simulation, period, af.age1, af.age3)
+            nbPAC = nb_enf(simulation.famille, period, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
@@ -81,7 +81,7 @@ class aefa(DatedVariable):
         maj = 0  # TODO
         condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
         if hasattr(af, "age3"):
-            nbPAC = nb_enf(simulation, period, af.age1, af.age3)
+            nbPAC = nb_enf(simulation.famille, period, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
@@ -115,7 +115,7 @@ class aefa(DatedVariable):
         maj = 0  # TODO
         condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
         if hasattr(af, "age3"):
-            nbPAC = nb_enf(simulation, period, af.age1, af.age3)
+            nbPAC = nb_enf(simulation.famille, period, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille

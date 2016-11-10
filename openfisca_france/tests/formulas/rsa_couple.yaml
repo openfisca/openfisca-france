@@ -1,8 +1,9 @@
 - period: "2014"
   name: "RSA couple, salaire_net = [0, 0]"
-  familles:
-    parents: [1, 2]
-    statut_occupation_logement_famille:
+  menages:
+    personne_de_reference: 1
+    conjoint: 2
+    statut_occupation_logement:
       "2014-01": 2  # Propriétaire (non accédant) du logement
   individus:
     - id: 1

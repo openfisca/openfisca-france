@@ -58,7 +58,7 @@ class rsa_base_ressources_individu(Variable):
     label = u"Base ressource individuelle du RSA/RMI (hors revenus d'actvité)"
     entity_class = Individus
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
 
         # Revenus professionels
@@ -67,13 +67,13 @@ class rsa_base_ressources_individu(Variable):
             'retraite_nette',
             ]
 
-        has_ressources_substitution = simulation.calculate('rsa_has_ressources_substitution', period)
+        has_ressources_substitution = individu('rsa_has_ressources_substitution', period)
 
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
         revenus_pro = sum(
-            simulation.calculate_add(type_revenu, period.last_3_months) * not_(
-                (simulation.calculate(type_revenu, period.this_month) == 0) *
-                (simulation.calculate(type_revenu, period.last_month) > 0) *
+            individu(type_revenu, period.last_3_months, options = [ADD]) * not_(
+                (individu(type_revenu, period.this_month) == 0) *
+                (individu(type_revenu, period.last_month) > 0) *
                 not_(has_ressources_substitution)
                 )
             for type_revenu in types_revenus_pros
@@ -96,23 +96,23 @@ class rsa_base_ressources_individu(Variable):
 
         # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
         # sans condition de revenu de substitution.
-        neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).minim.rmi.rmi
+        neutral_max_forfaitaire = 3 * legislation(period).minim.rmi.rmi
         revenus_non_pros = sum(
-            max_(0, simulation.calculate_add(type_revenu, period.last_3_months) - neutral_max_forfaitaire * (
-                    (simulation.calculate(type_revenu, period.this_month) == 0) *
-                    (simulation.calculate(type_revenu, period.last_month) > 0)
+            max_(0, individu(type_revenu, period.last_3_months, options = [ADD]) - neutral_max_forfaitaire * (
+                    (individu(type_revenu, period.this_month) == 0) *
+                    (individu(type_revenu, period.last_month) > 0)
                 ))
             for type_revenu in types_revenus_non_pros
             )
 
         # Revenus du foyer fiscal que l'on projette sur le premier invidividus
-        rev_cap_bar_foyer_fiscal = max_(0, simulation.calculate_add('rev_cap_bar', period.last_3_months))
-        rev_cap_lib_foyer_fiscal = max_(0, simulation.calculate_add('rev_cap_lib', period.last_3_months))
-        retraite_titre_onereux_foyer_fiscal = simulation.calculate_add('retraite_titre_onereux', period.last_3_months)
-        revenus_foyer_fiscal = rev_cap_bar_foyer_fiscal + rev_cap_lib_foyer_fiscal + retraite_titre_onereux_foyer_fiscal
-        revenus_foyer_fiscal_individu = simulation.foyer_fiscal.project_on_first_person(revenus_foyer_fiscal)
+        rev_cap_bar = max_(0, individu.foyer_fiscal('rev_cap_bar', period.last_3_months, options = [ADD]))
+        rev_cap_lib = max_(0, individu.foyer_fiscal('rev_cap_lib', period.last_3_months, options = [ADD]))
+        retraite_titre_onereux = individu.foyer_fiscal('retraite_titre_onereux', period.last_3_months, options = [ADD])
+        revenus_foyer_fiscal = rev_cap_bar + rev_cap_lib + retraite_titre_onereux
+        revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(FoyersFiscaux.DECLARANT_PRINCIPAL)
 
-        return period, (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_individu) / 3
+        return period, (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
 
 
 class rsa_base_ressources_minima_sociaux(Variable):
@@ -261,15 +261,15 @@ class rsa_enfant_a_charge(Variable):
     entity_class = Individus
     label = u"Enfant pris en compte dans le calcul du RSA"
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
 
-        P_rsa = simulation.legislation_at(period.start).minim.rmi
+        P_rsa = legislation(period).minim.rmi
 
-        enfant = simulation.calculate('est_enfant_dans_famille', period)
-        age = simulation.calculate('age', period)
-        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
-        ressources = simulation.calculate('rsa_base_ressources_individu', period) + (1 - P_rsa.pente) * simulation.calculate('rsa_revenu_activite_individu', period)
+        enfant = individu('est_enfant_dans_famille', period)
+        age = individu('age', period)
+        autonomie_financiere = individu('autonomie_financiere', period)
+        ressources = individu('rsa_base_ressources_individu', period) + (1 - P_rsa.pente) * individu('rsa_revenu_activite_individu', period)
 
 
         # Règle CAF: Si un enfant touche des ressources, et que son impact global (augmentation du montant forfaitaire - ressources prises en compte) fait baisser le montant du RSA, alors il doit être exclu du calcul du RSA.
@@ -278,12 +278,14 @@ class rsa_enfant_a_charge(Variable):
         #       - Si la présence de l'enfant ouvre droit au RSA majoré, pris en compte si ressources <= majoration du RSA pour isolement avec un enfant.
 
         def ouvre_droit_majoration():
-            enceinte_fam = simulation.calculate('enceinte_fam', period)
-            isole = not_(simulation.calculate('en_couple', period))
-            isolement_recent = simulation.calculate('rsa_isolement_recent', period)
-            presence_autres_enfants = simulation.famille.sum(enfant * not_(autonomie_financiere) * (age <= P_rsa.age_pac)) > 1
+            famille = individu.famille
+            enceinte_fam = famille('enceinte_fam', period)
+            isole = not_(famille('en_couple', period))
+            isolement_recent = famille('rsa_isolement_recent', period)
+            presence_autres_enfants = famille.sum(enfant * not_(autonomie_financiere) * (age <= P_rsa.age_pac)) > 1
 
-            return simulation.famille.project(not_(enceinte_fam) * isole * isolement_recent * not_(presence_autres_enfants))
+            # individu.famille.sum retourne un résultat qui n'est pas implicitement projeté sur l'individu.
+            return not_(enceinte_fam) * isole * isolement_recent * not_(famille.project(presence_autres_enfants))
 
         return period, (
             enfant * not_(autonomie_financiere) *
@@ -591,22 +593,19 @@ class rsa_forfait_logement(Variable):
     entity_class = Familles
     label = u"Forfait logement intervenant dans le calcul du Rmi ou du Rsa"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
 
-        forf_logement = simulation.legislation_at(period.start).minim.rmi.forfait_logement
-        rmi = simulation.legislation_at(period.start).minim.rmi.rmi
+        forf_logement = legislation(period).minim.rmi.forfait_logement
+        rmi = legislation(period).minim.rmi.rmi
 
-        nb_pac = simulation.calculate('nb_parents', period) + simulation.calculate('rsa_nb_enfants', period)
-        aide_logement = simulation.calculate('aide_logement', period)
+        nb_pac = famille('nb_parents', period) + famille('rsa_nb_enfants', period)
+        aide_logement = famille('aide_logement', period)
 
-        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
 
-        participation_frais_holder = simulation.compute('participation_frais', period)
-        participation_frais = self.cast_from_entity_to_roles(participation_frais_holder)
-        participation_frais = self.filter_role(participation_frais, role = CHEF)
-
-        loyer = simulation.calculate('loyer', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        participation_frais = famille.demandeur.menage('participation_frais', period)
+        loyer = famille.demandeur.menage('loyer', period)
 
         avantage_nature = or_(
             (statut_occupation_logement == 2) * not_(loyer),

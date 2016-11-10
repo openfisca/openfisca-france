@@ -183,16 +183,16 @@ class aah_non_calculable(Variable):
         ]),
         default = 0
     )
-    entity_class = Familles
+    entity_class = Individus
     label = u"AAH non calculable"
 
-    def function(self, simulation, period):
+    def function(individu, period):
         period = period.this_month
-        taux_incapacite = simulation.calculate('taux_incapacite', period)
-        aah_eligible = simulation.calculate('aah_eligible', period)
+        taux_incapacite = individu('taux_incapacite', period)
+        aah_eligible = individu('aah_eligible', period)
 
         # Pour le moment résultat "pas assez fiable, donc on renvoit une non calculabilité tout le temps.
-        return period, self.any_by_roles(aah_eligible) # * (taux_incapacite < 0.8)
+        return period, aah_eligible # * (taux_incapacite < 0.8)
 
 
 class aah_base(Variable):
@@ -201,23 +201,22 @@ class aah_base(Variable):
     label = u"Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
     entity_class = Individus
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
-        law = simulation.legislation_at(period.start)
+        law = legislation(period)
 
-        aah_eligible = simulation.calculate('aah_eligible', period)
-        aah_non_calculable = simulation.calculate('aah_non_calculable', period)
+        aah_eligible = individu('aah_eligible', period)
+        aah_non_calculable = individu('aah_non_calculable', period)
 
-        def montant_aah():
-            aah_base_ressources = simulation.calculate('aah_base_ressources', period)
-            en_couple = simulation.calculate('en_couple', period)
-            af_nbenf = simulation.calculate('af_nbenf', period)
-            plaf_ress_aah = 12 * law.minim.aah.montant * (1 + en_couple + law.minim.aah.tx_plaf_supp * af_nbenf)
-            return max_(plaf_ress_aah - aah_base_ressources, 0) / 12
+        aah_base_ressources = individu.famille('aah_base_ressources', period)
+        en_couple = individu.famille('en_couple', period)
+        af_nbenf = individu.famille('af_nbenf', period)
+        plaf_ress_aah = 12 * law.minim.aah.montant * (1 + en_couple + law.minim.aah.tx_plaf_supp * af_nbenf)
+        montant_aah = max_(plaf_ress_aah - aah_base_ressources, 0) / 12
 
         # Le montant est à valeur pour une famille, il faut le caster pour l'individu
         # Pour le moment, on ne neutralise pas l'aah en cas de non calculabilité pour pouvoir tester
-        return period, aah_eligible * simulation.famille.project(montant_aah())# * not_(aah_non_calculable)
+        return period, aah_eligible *  montant_aah # * not_(aah_non_calculable)
 
 
 class aah(Variable):

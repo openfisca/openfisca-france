@@ -75,10 +75,10 @@ class biactivite(Variable):
         pfam = legislation(annee_fiscale_n_2).fam
         seuil_rev = 12 * pfam.af.bmaf
 
-        base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
+        condition_ressource = famille.members('prestations_familiales_base_ressources_individu', period) >= seuil_rev
+        deux_parents = famille.nb_persons(role = famille.PARENT) == 2
 
-        return period, famille.all(base_ressources_i >= seuil_rev, role = famille.PARENT)
-
+        return period, deux_parents * famille.all(condition_ressource, role = famille.PARENT)
 
 class div(Variable):
     column = FloatCol(default = 0)
@@ -156,7 +156,7 @@ class prestations_familiales_base_ressources(Variable):
         base_ressources_i_total = self.sum_by_entity(ressources_i)
 
         # Revenus du foyer fiscal
-        rev_coll = simulation.famille.first_person.foyer_fiscal('rev_coll', annee_fiscale_n_2)
+        rev_coll = simulation.famille.demandeur.foyer_fiscal('rev_coll', annee_fiscale_n_2)
 
         base_ressources = base_ressources_i_total + rev_coll
         return period, base_ressources
@@ -167,13 +167,19 @@ class prestations_familiales_base_ressources(Variable):
 ############################################################################
 
 
-def nb_enf(simulation, period, age_min, age_max):
+def nb_enf(famille, period, age_min, age_max):
     """
     Renvoie le nombre d'enfant au sens des allocations familiales dont l'âge est compris entre ag1 et ag2
     """
+
+    # Temporary retro-compatibility layer in case first argument is simulation instead of famille
+    if not famille.__class__ == Familles:
+        simulation = famille
+        famille = simulation.famille
+
     period = period.this_month
-    age = simulation.calculate('age', period)
-    autonomie_financiere = simulation.calculate('autonomie_financiere', period)
+    age = famille.members('age', period)
+    autonomie_financiere = famille.members('autonomie_financiere', period)
 
 #        Les allocations sont dues à compter du mois civil qui suit la naissance
 #        ag1==0 ou suivant les anniversaires ag1>0.
@@ -182,7 +188,7 @@ def nb_enf(simulation, period, age_min, age_max):
 #        le versement à lieu en début de mois suivant
     condition = (age >= age_min) * (age <= age_max) * not_(autonomie_financiere)
 
-    return simulation.famille.sum(condition, role = Familles.ENFANT)
+    return famille.sum(condition, role = Familles.ENFANT)
 
 
 
