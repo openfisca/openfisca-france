@@ -28,7 +28,7 @@ seuil_fraction_plan_aide_1 = 0.317 * majoration_tierce_personne
 seuil_fraction_plan_aide_2 = 0.498 * majoration_tierce_personne
 
 
-class apa_domicile_participation(Variable):
+class apa_domicile_participation(DatedVariable):
     column = FloatCol
     label = u"Participation du bénéficiaire de l'APA à domicile"
     entity_class = Individus
@@ -101,12 +101,12 @@ class apa_domicile_participation(Variable):
 
         apa_domicile_participation = (
             0.9 *
-            (base_ressources_apa - 0.725 * majoration_tierce_personne ) / (1.945 * majoration_tierce_personne) *
+            (base_ressources_apa - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne) *
             (
                 A_1 +
                 A_2 * (
                     (1 - 0.4) * base_ressources_apa / (1.945 * majoration_tierce_personne) +
-                    (0.4 * 2.67 * majoration_tierce_personne - 0.725*majoration_tierce_personne) / (1.945 * majoration_tierce_personne)
+                    (0.4 * 2.67 * majoration_tierce_personne - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne)
                     ) +
                 A_3 * (
                     (1 - 0.2) * base_ressources_apa / (1.945 * majoration_tierce_personne) +
