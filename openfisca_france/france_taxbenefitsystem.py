@@ -43,6 +43,7 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
             'bourses_education.xml',
             'cmu.xml',
             'cotsoc.xml',
+            'dependance.xml',
             'fonc.xml',
             'impot_revenu.xml',
             'prelevements_sociaux.xml',

@@ -1428,4 +1428,5 @@ def transform_ipp_tree(root):
     taxation_capital['prelevements_sociaux'].update(taxation_capital.pop('csg'))
 
     del root['baremes_ipp_taxation_indirecte']
-    del root['baremes_ipp_dependance']
+
+    root['dependance'] = root.pop('baremes_ipp_dependance')

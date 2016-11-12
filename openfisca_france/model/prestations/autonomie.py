@@ -3,7 +3,7 @@
 
 from __future__ import division
 
-from numpy import maximum as max_, minimum as min_, zeros, ones, select
+from numpy import maximum as max_, minimum as min_, zeros, select
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -24,8 +24,8 @@ montant_mensuel_maximum_by_gir = {
 seuil_non_versement = 28.83
 taux_max_participation = .9
 taux_reste_a_vivre = 0.10
-seuil_fraction_plan_aide_1 = 0,3.17*majoration_tierce_personne
-seuil_fraction_plan_aide_2 = 0.498*majoration_tierce_personne
+seuil_fraction_plan_aide_1 = 0.317 * majoration_tierce_personne
+seuil_fraction_plan_aide_2 = 0.498 * majoration_tierce_personne
 
 
 class apa_domicile_participation(Variable):
@@ -33,11 +33,12 @@ class apa_domicile_participation(Variable):
     label = u"Participation du bénéficiaire de l'APA à domicile"
     entity_class = Individus
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2016, 02, 29))
-    # Les départements doivent appliquer la nouvelle formule
-    # entre le 1er mars 2016 et le 28 février 2017
-    def function(self, simulation, period):
+    @dated_function(start = date(2002, 1, 1), stop = date(2016, 2, 29))
+    def function_2002_20160229(self, simulation, period):
+        # Les départements doivent appliquer la nouvelle formule
+        # entre le 1er mars 2016 et le 28 février 2017
         base_ressources_apa = simulation.calculate('base_ressources_apa', period)
+        dependance_plan_aide_domicile_accepte = zeros(self.holder.entity.count)
         apa_domicile_participation = (
             dependance_plan_aide_domicile_accepte *
             taux_max_participation * (
@@ -53,12 +54,15 @@ class apa_domicile_participation(Variable):
         return period, apa_domicile_participation
 
     @dated_function(start = date(2016, 3, 1))
-    # Les départements doivent appliquer la nouvelle formule
-    # entre le 1er mars 2016 et le 28 février 2017
-    def function(self, simulation, period):
+    def function_20160301(self, simulation, period):
+        # Les départements doivent appliquer la nouvelle formule
+        # entre le 1er mars 2016 et le 28 février 2017
+
         base_ressources_apa = simulation.calculate('base_ressources_apa', period)
         dependance_plan_aide_domicile = simulation.calculate('dependance_plan_aide_domicile', period)
         dependance_plan_aide_domicile_accepte = zeros(self.holder.entity.count)
+        majoration_tierce_personne = simulation.legislation_at(period.start).dependance.apa_domicile.mtp
+
         for target_gir in range(1, 5):  # TODO: might be factorized
             dependance_plan_aide_domicile_accepte = (
                 dependance_plan_aide_domicile_accepte +
@@ -68,7 +72,7 @@ class apa_domicile_participation(Variable):
                     )
                 )
 
-        A_1 = max_(0,317 * majoration_tierce_personne, dependance_plan_aide_domicile_accepte)
+        A_1 = max_(0.317 * majoration_tierce_personne, dependance_plan_aide_domicile_accepte)
 
         # TODO: use a marignal tax scale
         condlist = [
@@ -96,16 +100,16 @@ class apa_domicile_participation(Variable):
         A_3 = select(condlist, choicelist_3)
 
         apa_domicile_participation = (
-            0.9 * 
+            0.9 *
             (base_ressources_apa - 0.725 * majoration_tierce_personne ) / (1.945 * majoration_tierce_personne) *
             (
                 A_1 +
                 A_2 * (
-                    (1 - 0.4) * base_ressources_apa / (1.945 * majoration_tierce_personne) + 
+                    (1 - 0.4) * base_ressources_apa / (1.945 * majoration_tierce_personne) +
                     (0.4 * 2.67 * majoration_tierce_personne - 0.725*majoration_tierce_personne) / (1.945 * majoration_tierce_personne)
                     ) +
                 A_3 * (
-                    (1 - 0.2) * base_ressources_apa / (1.945 * majoration_tierce_personne) + 
+                    (1 - 0.2) * base_ressources_apa / (1.945 * majoration_tierce_personne) +
                     (0.2 * 2.67 * majoration_tierce_personne - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne)
                     )
                 )
@@ -171,22 +175,27 @@ class apa_etablissement(Variable):
         dependance_tarif_etablissement_gir_dependant = simulation.calculate(
             'dependance_tarif_etablissement_gir_dependant', period)
         conditions_ressources = [
-                base_ressources_apa <= 2.21 * majoration_tierce_personne,
-                2.21 * majoration_tierce_personne < base_ressources_apa <= 3.40 * majoration_tierce_personne,
-                base_ressources_apa > 3.40 * majoration_tierce_personne
-                    ]
+            base_ressources_apa <= 2.21 * majoration_tierce_personne,
+            2.21 * majoration_tierce_personne < base_ressources_apa <= 3.40 * majoration_tierce_personne,
+            base_ressources_apa > 3.40 * majoration_tierce_personne
+            ]
         participations = [
             dependance_tarif_etablissement_gir_5_6,
             (
                 dependance_tarif_etablissement_gir_5_6 +
                 (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6) * (
-                    (base_ressources_apa - 2.21 * majoration_tierce_personne) / (1.19 * majoration_tierce_personne) * 0.80
+                    (base_ressources_apa - 2.21 * majoration_tierce_personne) / 
+                    (1.19 * majoration_tierce_personne) * 0.80
                     )
                 ),
-            dependance_tarif_etablissement_gir_5_6 + (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6) * 0.80
+            dependance_tarif_etablissement_gir_5_6 + (
+                dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6) * 0.80
             ]
         participation_beneficiaire = select(conditions_ressources, participations)
-        participation_beneficiaire = min_(participation_beneficiaire, max_(base_ressources_apa * (1 - taux_reste_a_vivre), 0))
+        participation_beneficiaire = min_(
+            participation_beneficiaire, 
+            max_(base_ressources_apa * (1 - taux_reste_a_vivre), 0)
+            )
         apa = dependance_tarif_etablissement_gir_dependant - participation_beneficiaire
 
         eligibilite_etablissement = (
@@ -194,7 +203,7 @@ class apa_etablissement(Variable):
             (dependance_tarif_etablissement_gir_dependant > 0)
             )
 
-        return period, apa * (apa >= seuil_non_versement) * eligibilite_etablissement  * (age >= apa_age_min)
+        return period, apa * (apa >= seuil_non_versement) * eligibilite_etablissement * (age >= apa_age_min)
 
 
 class base_ressources_apa(Variable):
