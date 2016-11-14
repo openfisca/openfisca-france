@@ -72,6 +72,13 @@ class Scenario(scenarios.AbstractScenario):
 
             column_by_name = self.tax_benefit_system.column_by_name
 
+
+            # If there is a familly, auto-declare the first parent as menage person de ref
+            famille = value['familles'] and value['familles'][0]
+            menage = value['menages'] and value['menages'][0]
+            if menage is not None and famille is not None and not menage.get('personne_de_reference'):
+                menage['personne_de_reference'] = famille['parents'][0]
+
             # First validation and conversion step
             test_case, error = conv.pipe(
                 conv.test_isinstance(dict),
