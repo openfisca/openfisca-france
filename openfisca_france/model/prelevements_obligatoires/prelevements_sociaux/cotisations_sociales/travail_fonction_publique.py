@@ -12,7 +12,7 @@ from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotis
 
 class allocations_temporaires_invalidite(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Allocations temporaires d'invalidité (ATI, fonction publique et collectivités locales)"
     # patronale, non-contributive
 
@@ -44,7 +44,7 @@ class allocations_temporaires_invalidite(Variable):
 
 class assiette_cotisations_sociales_public(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Assiette des cotisations sociales des agents titulaires de la fonction publique"
     # TODO: gestion des heures supplémentaires
 
@@ -69,7 +69,7 @@ class assiette_cotisations_sociales_public(Variable):
 
 class contribution_exceptionnelle_solidarite(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
 
     def function(self, simulation, period):
@@ -119,7 +119,7 @@ class contribution_exceptionnelle_solidarite(Variable):
 
 class fonds_emploi_hospitalier(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Fonds pour l'emploi hospitalier (employeur)"
 
     def function(self, simulation, period):
@@ -141,7 +141,7 @@ class fonds_emploi_hospitalier(Variable):
 
 class ircantec_salarie(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Ircantec salarié"
 
     def function(self, simulation, period):
@@ -163,7 +163,7 @@ class ircantec_salarie(Variable):
 
 class ircantec_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Ircantec employeur"
 
     def function(self, simulation, period):
@@ -185,7 +185,7 @@ class ircantec_employeur(Variable):
 
 class pension_civile_salarie(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Pension civile salarié"
     url = u"http://www.ac-besancon.fr/spip.php?article2662",
 
@@ -208,7 +208,7 @@ class pension_civile_salarie(Variable):
 
 class pension_civile_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation patronale pension civile"
     url = u"http://www.ac-besancon.fr/spip.php?article2662"
 
@@ -233,7 +233,7 @@ class pension_civile_employeur(Variable):
 
 class rafp_salarie(DatedVariable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Part salariale de la retraite additionelle de la fonction publique"
     # Part salariale de la retraite additionelle de la fonction publique
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
@@ -262,7 +262,7 @@ class rafp_salarie(DatedVariable):
 
 class rafp_employeur(DatedVariable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Part patronale de la retraite additionnelle de la fonction publique"
 
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette

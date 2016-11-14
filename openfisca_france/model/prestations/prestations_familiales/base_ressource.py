@@ -8,7 +8,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class autonomie_financiere(Variable):
     column = BoolCol
-    entity = Individus
+    entity = Individu
     label = u"Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
 
     def function(self, simulation, period):
@@ -25,7 +25,7 @@ class autonomie_financiere(Variable):
 
 class prestations_familiales_enfant_a_charge(Variable):
     column = BoolCol
-    entity = Individus
+    entity = Individu
     label = u"Enfant considéré à charge au sens des prestations familiales"
 
     def function(self, simulation, period):
@@ -47,7 +47,7 @@ class prestations_familiales_enfant_a_charge(Variable):
 
 class prestations_familiales_base_ressources_individu(Variable):
     column = FloatCol(default = 0)
-    entity = Individus
+    entity = Individu
     label = u"Base ressource individuelle des prestations familiales"
 
     def function(self, simulation, period):
@@ -65,7 +65,7 @@ class prestations_familiales_base_ressources_individu(Variable):
 
 class biactivite(Variable):
     column = BoolCol(default = False)
-    entity = Familles
+    entity = Famille
     label = u"Indicatrice de biactivité"
 
     def function(famille, period, legislation):
@@ -82,7 +82,7 @@ class biactivite(Variable):
 
 class div(Variable):
     column = FloatCol(default = 0)
-    entity = Individus
+    entity = Individu
     label = u"Dividendes imposés"
 
     def function(self, simulation, period):
@@ -112,7 +112,7 @@ class div(Variable):
 
 class rev_coll(Variable):
     column = FloatCol(default = 0)
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
 
     def function(self, simulation, period):
@@ -137,7 +137,7 @@ class rev_coll(Variable):
 
 class prestations_familiales_base_ressources(Variable):
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"Base ressource des prestations familiales"
 
     def function(self, simulation, period):
@@ -173,7 +173,7 @@ def nb_enf(famille, period, age_min, age_max):
     """
 
     # Temporary retro-compatibility layer in case first argument is simulation instead of famille
-    if not famille.__class__ == Familles:
+    if not famille.__class__ == Famille:
         simulation = famille
         famille = simulation.famille
 
@@ -188,7 +188,7 @@ def nb_enf(famille, period, age_min, age_max):
 #        le versement à lieu en début de mois suivant
     condition = (age >= age_min) * (age <= age_max) * not_(autonomie_financiere)
 
-    return famille.sum(condition, role = Familles.ENFANT)
+    return famille.sum(condition, role = Famille.ENFANT)
 
 
 

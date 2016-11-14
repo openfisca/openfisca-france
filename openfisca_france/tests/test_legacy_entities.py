@@ -7,7 +7,7 @@ from openfisca_france.tests.test_entities import TEST_CASE, tax_benefit_system
 
 class salaire_famille(Variable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         salaire_holder = simulation.compute('salaire')
@@ -15,7 +15,7 @@ class salaire_famille(Variable):
 
 class salaire_enfants(Variable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         salaire_holder = simulation.compute('salaire')
@@ -23,7 +23,7 @@ class salaire_enfants(Variable):
 
 class salaire_enf1(Variable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         salaire_holder = simulation.compute('salaire')
@@ -33,7 +33,7 @@ class salaire_enf1(Variable):
 
 class salaire_conj(Variable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         salaire_holder = simulation.compute('salaire')
@@ -42,7 +42,7 @@ class salaire_conj(Variable):
 
 class af_chef(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         af_holder = simulation.compute('af')
@@ -50,7 +50,7 @@ class af_chef(Variable):
 
 class af_tous(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         af_holder = simulation.compute('af')
@@ -58,12 +58,12 @@ class af_tous(Variable):
 
 class has_enfant_autonome(Variable):
     column = BoolCol
-    entity = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         salaire = simulation.calculate('salaire')
         condition = salaire > 450
-        return period, self.any_by_roles(condition, roles = ENFS, entity = Familles)
+        return period, self.any_by_roles(condition, roles = ENFS, entity = Famille)
 
 
 tax_benefit_system.add_variables(salaire_famille, salaire_enfants, salaire_enf1, salaire_conj, af_chef, af_tous, has_enfant_autonome)

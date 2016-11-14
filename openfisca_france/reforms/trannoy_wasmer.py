@@ -52,7 +52,7 @@ class charges_deduc(Variable):
 
 class charge_loyer(Variable):
     column = columns.FloatCol
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Charge déductible pour paiement d'un loyer"
 
     def function(self, simulation, period):

@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 
 class assiette_cotisations_sociales(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Assiette des cotisations sociales des salaries"
 
     def function(self, simulation, period):
@@ -40,7 +40,7 @@ class assiette_cotisations_sociales(Variable):
 
 class assiette_cotisations_sociales_prive(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Assiette des cotisations sociales des salaries du prive"
 
     def function(self, simulation, period):
@@ -73,7 +73,7 @@ class assiette_cotisations_sociales_prive(Variable):
 
 class indemnite_fin_contrat(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Indemnité de fin de contrat"
     url = u"https://www.service-public.fr/particuliers/vosdroits/F40"
 
@@ -109,7 +109,7 @@ class indemnite_fin_contrat(Variable):
 
 class reintegration_titre_restaurant_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Prise en charge de l'employeur des dépenses de cantine et des titres restaurants non exonérés de charges sociales"  # noqa
 
     def function(self, simulation, period):
@@ -139,7 +139,7 @@ class reintegration_titre_restaurant_employeur(Variable):
 
 class accident_du_travail(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisations employeur accident du travail et maladie professionelle"
 
     def function(self, simulation, period):
@@ -154,7 +154,7 @@ class accident_du_travail(Variable):
 
 class agff_salarie(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation retraite AGFF tranche A (salarié)"
     # AGFF: Association pour la gestion du fonds de financement (sous-entendu des départs entre 60 et 65 ans)
 
@@ -172,7 +172,7 @@ class agff_salarie(Variable):
 
 class agff_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation retraite AGFF tranche A (employeur)"
     # TODO: améliorer pour gérer mensuel/annuel
 
@@ -205,7 +205,7 @@ class agff_employeur(Variable):
 
 class agirc_gmp_assiette(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Assiette de la cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)"
     # TODO: gestion annuel/mensuel
 
@@ -222,7 +222,7 @@ class agirc_gmp_assiette(Variable):
 
 class agirc_gmp_salarie(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)"
     # TODO: gestion annuel/mensuel
 
@@ -249,7 +249,7 @@ class agirc_gmp_salarie(Variable):
 
 class agirc_gmp_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation AGIRC pour la garantie minimale de points (GMP, employeur)"
     # TODO: gestion annuel/mensuel
 
@@ -277,7 +277,7 @@ class agirc_gmp_employeur(Variable):
 
 class agirc_salarie(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation AGIRC tranche B (salarié)"
 
     def function(self, simulation, period):
@@ -295,7 +295,7 @@ class agirc_salarie(Variable):
 
 class agirc_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation AGIRC tranche B (employeur)"
 
     def function(self, simulation, period):
@@ -311,7 +311,7 @@ class agirc_employeur(Variable):
 
 class ags(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)"  # noqa analysis:ignore
 
     def function(self, simulation, period):
@@ -326,7 +326,7 @@ class ags(Variable):
 
 class apec_salarie(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisations agence pour l'emploi des cadres (APEC,  salarié)"
 
     def function(self, simulation, period):
@@ -343,7 +343,7 @@ class apec_salarie(Variable):
 
 class apec_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisations Agenece pour l'emploi des cadres (APEC, employeur)"
 
     def function(self, simulation, period):
@@ -359,7 +359,7 @@ class apec_employeur(Variable):
 
 class arrco_salarie(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation ARRCO tranche 1 (salarié)"
     # TODO: check gestion mensuel/annuel
 
@@ -389,7 +389,7 @@ class arrco_salarie(Variable):
 
 class arrco_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation ARRCO tranche 1 (employeur)"
     # TODO: check gestion mensuel/annuel
 
@@ -418,7 +418,7 @@ class arrco_employeur(Variable):
 
 class chomage_salarie(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation chômage tranche A (salarié)"
 
     def function(self, simulation, period):
@@ -435,7 +435,7 @@ class chomage_salarie(Variable):
 
 class chomage_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation chômage tranche A (employeur)"
 
     def function(self, simulation, period):
@@ -451,7 +451,7 @@ class chomage_employeur(Variable):
 
 class contribution_solidarite_autonomie(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Contribution solidarité autonomie (employeur)"
 
     def function(self, simulation, period):
@@ -467,7 +467,7 @@ class contribution_solidarite_autonomie(Variable):
 
 class cotisation_exceptionnelle_temporaire_salarie(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation_exceptionnelle_temporaire (salarie)"
 
     def function(self, simulation, period):
@@ -483,7 +483,7 @@ class cotisation_exceptionnelle_temporaire_salarie(Variable):
 
 class cotisation_exceptionnelle_temporaire_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation exceptionnelle temporaire (employeur)"
 
     def function(self, simulation, period):
@@ -499,7 +499,7 @@ class cotisation_exceptionnelle_temporaire_employeur(Variable):
 
 class famille(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation famille (employeur)"
 
     def function(self, simulation, period):
@@ -515,7 +515,7 @@ class famille(Variable):
 
 class mmid_salarie(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation maladie (salarié)"
 
     def function(self, simulation, period):
@@ -532,7 +532,7 @@ class mmid_salarie(Variable):
 
 class mmid_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation maladie (employeur)"
 
     def function(self, simulation, period):
@@ -550,7 +550,7 @@ class mmid_employeur(Variable):
 # TODO: this formula is used only to check fiche_de_paie from memento
 class mmida_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation maladie (employeur)"
 
     def function(self, simulation, period):
@@ -569,7 +569,7 @@ class mmida_employeur(Variable):
 class mhsup(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Heures supplémentaires comptées négativement"
 
     def function(self, simulation, period):
@@ -581,7 +581,7 @@ class mhsup(Variable):
 
 class plafond_securite_sociale(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Plafond de la securite sociale"
     # TODO gérer les plafonds mensuel, trimestriel, annuel
 
@@ -628,7 +628,7 @@ class plafond_securite_sociale(Variable):
 
 class prevoyance_obligatoire_cadre(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation de prévoyance pour les cadres et assimilés"
     # TODO: gérer le mode de recouvrement et l'aspect mensuel/annuel
 
@@ -650,7 +650,7 @@ class prevoyance_obligatoire_cadre(Variable):
 
 class complementaire_sante_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Couverture complémentaire santé collective d'entreprise - part employeur"
 
     def function(self, simulation, period):
@@ -665,7 +665,7 @@ class complementaire_sante_employeur(Variable):
 
 class complementaire_sante_salarie(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Couverture complémentaire santé collective d'entreprise - part salarié"
 
     def function(self, simulation, period):
@@ -691,7 +691,7 @@ class taille_entreprise(Variable):
             ),
         default = 0,
         )
-    entity = Individus
+    entity = Individu
     label = u"Catégorie de taille d'entreprise"
     url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
 
@@ -710,7 +710,7 @@ class taille_entreprise(Variable):
 
 class taux_accident_travail(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Approximation du taux accident à partir de l'exposition au risque donnée"
     start_date = date(2012, 1, 1)
 
@@ -725,7 +725,7 @@ class taux_accident_travail(Variable):
 
 class vieillesse_deplafonnee_salarie(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation vieillesse déplafonnée (salarié)"
 
     def function(self, simulation, period):
@@ -742,7 +742,7 @@ class vieillesse_deplafonnee_salarie(Variable):
 
 class vieillesse_plafonnee_salarie(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation vieillesse plafonnée (salarié)"
 
     def function(self, simulation, period):
@@ -758,7 +758,7 @@ class vieillesse_plafonnee_salarie(Variable):
 
 class vieillesse_deplafonnee_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation vieillesse déplafonnée"
 
     def function(self, simulation, period):
@@ -774,7 +774,7 @@ class vieillesse_deplafonnee_employeur(Variable):
 
 class vieillesse_plafonnee_employeur(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation vieillesse plafonnée (employeur)"
 
     def function(self, simulation, period):

@@ -15,7 +15,7 @@ SCOLARITE_LYCEE = 2
 class bourse_college(Variable):
     column = FloatCol
     label = u"Montant mensuel de la bourse de collège"
-    entity = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         period = period.this_month
@@ -54,7 +54,7 @@ class bourse_college(Variable):
 class bourse_lycee_points_de_charge(Variable):
     column = FloatCol
     label = u"Nombre de points de charge pour la bourse de lycée"
-    entity = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         period = period.this_month
@@ -79,7 +79,7 @@ class bourse_lycee_points_de_charge(Variable):
 class bourse_lycee_nombre_parts(Variable):
     column = FloatCol
     label = u"Nombre de parts pour le calcul du montant de la bourse de lycée"
-    entity = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         period = period.this_month
@@ -107,7 +107,7 @@ class bourse_lycee_nombre_parts(Variable):
 class bourse_lycee(Variable):
     column = FloatCol
     label = u"Montant mensuel de la bourse de lycée"
-    entity = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         period = period.this_month
@@ -137,10 +137,10 @@ class scolarite(Variable):
             ),
         default = 0
         )
-    entity = Individus
+    entity = Individu
     label = u"Scolarité de l'enfant : collège, lycée..."
 
 class boursier(Variable):
     column = BoolCol
-    entity = Individus
+    entity = Individu
     label = u"Élève ou étudiant boursier"

@@ -79,7 +79,7 @@ class allocations_familiales_imposables(Reform):
 
     class allocations_familiales_imposables(Variable):
         column = columns.FloatCol
-        entity = FoyersFiscaux
+        entity = FoyerFiscal
         label = u"Allocations familiales imposables"
 
         def function(self, simulation, period):

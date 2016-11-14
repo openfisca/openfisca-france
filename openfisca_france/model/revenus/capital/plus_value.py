@@ -15,7 +15,7 @@ class f1tv(Variable):
         QUIFOY['conj']: u"1UV",
         }
     column = IntCol(val_type = "monetary")
-    entity = Individus
+    entity = Individu
     label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans"
 
   # (f1tv,f1uv))
@@ -25,7 +25,7 @@ class f1tw(Variable):
         QUIFOY['conj']: u"1UW",
         }
     column = IntCol(val_type = "monetary")
-    entity = Individus
+    entity = Individu
     label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans"
 
   # (f1tw,f1uw))
@@ -35,7 +35,7 @@ class f1tx(Variable):
         QUIFOY['conj']: u"1UX",
         }
     column = IntCol(val_type = "monetary")
-    entity = Individus
+    entity = Individu
     label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans"
 
   # (f1tx,f1ux))
@@ -44,7 +44,7 @@ class f1tx(Variable):
 
 class f3si(Variable):
     column = IntCol
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     start_date = date(2012, 1, 1)
 
   # TODO: parmi ces cas créer des valeurs individuelles
@@ -52,21 +52,21 @@ class f3si(Variable):
 
 class f3sa(Variable):
     column = IntCol
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     stop_date = date(2009, 12, 31)
 
   # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
 
 class f3sf(Variable):
     column = IntCol
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     start_date = date(2012, 1, 1)
 
   # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
 
 class f3sd(Variable):
     column = IntCol
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     start_date = date(2012, 1, 1)
 
   # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
@@ -74,7 +74,7 @@ class f3sd(Variable):
 class f3vc(Variable):
     cerfa_field = u"3VC"
     column = IntCol(val_type = "monetary")
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Produits et plus-values exonérés provenant de structure de capital-risque"
     start_date = date(2006, 1, 1)
 
@@ -85,7 +85,7 @@ class f3vd(Variable):
         QUIFOY['conj']: u"3SD",
         }
     column = IntCol(val_type = "monetary")
-    entity = Individus
+    entity = Individu
     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %"
     start_date = date(2008, 1, 1)
 
@@ -94,7 +94,7 @@ class f3vd(Variable):
 class f3ve(Variable):
     cerfa_field = u"3VE"
     column = IntCol(val_type = "monetary")
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Plus-values réalisées par les non-résidents pour lesquelles vous demandez le remboursement de l'excédent du prélèvement de 45 %"
 
 
@@ -114,7 +114,7 @@ class f3vf(Variable):
         QUIFOY['conj']: u"3SF",
         }
     column = IntCol(val_type = "monetary")
-    entity = Individus
+    entity = Individu
     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %"
 
   # (f3vf, f3sf)
@@ -135,7 +135,7 @@ class f3vf(Variable):
 class f3vl(Variable):
     cerfa_field = u"3VL"
     column = IntCol(val_type = "monetary")
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Distributions par des sociétés de capital-risque taxables à 19 %"
 
   # vérifier pour 2011 et 2010
@@ -145,7 +145,7 @@ class f3vi(Variable):
         QUIFOY['conj']: u"3SI",
         }
     column = IntCol(val_type = "monetary")
-    entity = Individus
+    entity = Individu
     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %"
 
   # (f3vi, f3si )
@@ -153,7 +153,7 @@ class f3vi(Variable):
 class f3vm(Variable):
     cerfa_field = u"3VM"
     column = IntCol(val_type = "monetary")
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Clôture du PEA avant l'expiration de la 2e année: gains taxables à 22.5 %"
 
 
@@ -161,7 +161,7 @@ class f3vm(Variable):
 class f3vt(Variable):
     cerfa_field = u"3VT"
     column = IntCol(val_type = "monetary")
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %"
     start_date = date(2012, 1, 1)
 
@@ -172,7 +172,7 @@ class f3vj(Variable):
         QUIFOY['conj']: u"3VK",
         }
     column = IntCol(val_type = "monetary")
-    entity = Individus
+    entity = Individu
     label = u"Gains imposables sur option dans la catégorie des salaires"
 
   # (f3vj, f3vk )
@@ -182,7 +182,7 @@ class f3va(Variable):
         QUIFOY['conj']: u"3VB",
         }
     column = IntCol(val_type = "monetary")
-    entity = Individus
+    entity = Individu
     label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values"
     start_date = date(2006, 1, 1)
 
@@ -193,7 +193,7 @@ class f3va(Variable):
 class f3vg(Variable):
     cerfa_field = u"3VG"
     column = IntCol(val_type = "monetary")
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés"
 
 
@@ -201,14 +201,14 @@ class f3vg(Variable):
 class f3vh(Variable):
     cerfa_field = u"3VH"
     column = IntCol(val_type = "monetary")
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Perte de l'année de perception des revenus"
 
 
 
 class f3vu(Variable):
     column = IntCol
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     stop_date = date(2009, 12, 31)
 
   # TODO: vérifier pour 2010 et 2011
@@ -216,7 +216,7 @@ class f3vu(Variable):
 class f3vv(Variable):
     cerfa_field = u"3VV"
     column = IntCol(val_type = "monetary")
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Plus-values réalisées par les non-résidents: montant du prélèvement de 45 % déjà versé"
     start_date = date(2013, 1, 1)
 
@@ -225,7 +225,7 @@ class f3vv(Variable):
 class f3vv_end_2010(Variable):
     cerfa_field = u"3VV"
     column = IntCol(val_type = "monetary")
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Pertes ouvrant droit au crédit d’impôt de 19 % "
     start_date = date(2010, 1, 1)
     stop_date = date(2010, 12, 31)
@@ -235,7 +235,7 @@ class f3vv_end_2010(Variable):
 class f3vz(Variable):
     cerfa_field = u"3VZ"
     column = IntCol(val_type = "monetary")
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Plus-values imposables sur cessions d’immeubles ou de biens meubles"
     start_date = date(2011, 1, 1)
 

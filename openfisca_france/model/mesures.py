@@ -9,7 +9,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class uc(Variable):
     column = FloatCol(default = 0)
-    entity = Menages
+    entity = Menage
     label = u"Unités de consommation"
 
     def function(self, simulation, period):
@@ -35,7 +35,7 @@ class uc(Variable):
 
 class typ_men(Variable):
     column = PeriodSizeIndependentIntCol(default = 0)
-    entity = Menages
+    entity = Menage
     label = u"Type de ménage"
 
     def function(self, simulation, period):
@@ -70,7 +70,7 @@ class typ_men(Variable):
 
 class revdisp(Variable):
     column = FloatCol(default = 0)
-    entity = Menages
+    entity = Menage
     label = u"Revenu disponible du ménage"
     url = "http://fr.wikipedia.org/wiki/Revenu_disponible"
 
@@ -100,7 +100,7 @@ class revdisp(Variable):
 
 class nivvie(Variable):
     column = FloatCol(default = 0)
-    entity = Menages
+    entity = Menage
     label = u"Niveau de vie du ménage"
 
     def function(self, simulation, period):
@@ -117,7 +117,7 @@ class nivvie(Variable):
 
 class revenu_net_individu(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Revenu net de l'individu"
 
     def function(self, simulation, period):
@@ -130,7 +130,7 @@ class revenu_net_individu(Variable):
 
 
 class revnet(Variable):
-    entity = Menages
+    entity = Menage
     label = u"Revenu net du ménage"
     column = FloatCol
     url = u"http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php",
@@ -142,7 +142,7 @@ class revnet(Variable):
 
 class nivvie_net(Variable):
     column = FloatCol(default = 0)
-    entity = Menages
+    entity = Menage
     label = u"Niveau de vie net du ménage"
 
     def function(self, simulation, period):
@@ -159,7 +159,7 @@ class nivvie_net(Variable):
 
 class revenu_initial_individu(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Revenu initial de l'individu"
 
     def function(self, simulation, period):
@@ -175,7 +175,7 @@ class revenu_initial_individu(Variable):
 
 
 class revini(Variable):
-    entity = Menages
+    entity = Menage
     label = u"Revenu initial du ménage"
     column = FloatCol
 
@@ -186,7 +186,7 @@ class revini(Variable):
 
 class nivvie_ini(Variable):
     column = FloatCol(default = 0)
-    entity = Menages
+    entity = Menage
     label = u"Niveau de vie initial du ménage"
 
     def function(self, simulation, period):
@@ -213,7 +213,7 @@ def _revprim(rev_trav, chomage_imposable, rev_cap, cotisations_employeur, cotisa
 
 class rev_trav(Variable):
     column = FloatCol(default = 0)
-    entity = Individus
+    entity = Individu
     label = u"Revenus du travail (salariés et non salariés)"
     url = "http://fr.wikipedia.org/wiki/Revenu_du_travail"
 
@@ -232,7 +232,7 @@ class rev_trav(Variable):
 
 class pen(Variable):
     column = FloatCol(default = 0)
-    entity = Individus
+    entity = Individu
     label = u"Pensions et revenus de remplacement"
     url = "http://fr.wikipedia.org/wiki/Rente"
 
@@ -257,7 +257,7 @@ class pen(Variable):
 
 class cotsoc_bar(Variable):
     column = FloatCol(default = 0)
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Cotisations sociales sur les revenus du capital imposés au barème"
 
     def function(self, simulation, period):
@@ -274,7 +274,7 @@ class cotsoc_bar(Variable):
 
 class cotsoc_lib(Variable):
     column = FloatCol
-    entity = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire"
 
     def function(self, simulation, period):
@@ -291,7 +291,7 @@ class cotsoc_lib(Variable):
 
 class rev_cap(Variable):
     column = FloatCol(default = 0)
-    entity = Individus
+    entity = Individu
     label = u"Revenus du patrimoine"
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
 
@@ -320,7 +320,7 @@ class rev_cap(Variable):
 
 class psoc(Variable):
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"Prestations sociales"
     url = "http://fr.wikipedia.org/wiki/Prestation_sociale"
 
@@ -338,7 +338,7 @@ class psoc(Variable):
 
 class pfam(Variable):
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"Prestations familiales"
     url = "http://www.social-sante.gouv.fr/informations-pratiques,89/fiches-pratiques,91/prestations-familiales,1885/les-prestations-familiales,12626.html"
 
@@ -360,7 +360,7 @@ class pfam(Variable):
 
 class mini(Variable):
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"Minima sociaux"
     url = "http://fr.wikipedia.org/wiki/Minima_sociaux"
 
@@ -388,7 +388,7 @@ class mini(Variable):
 
 class aides_logement(Variable):
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"Allocations logements"
     url = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
 
@@ -407,7 +407,7 @@ class aides_logement(Variable):
 
 class impo(Variable):
     column = FloatCol(default = 0)
-    entity = Menages
+    entity = Menage
     label = u"Impôts directs"
     url = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
 
@@ -427,7 +427,7 @@ class impo(Variable):
 
 class crds(Variable):
     column = FloatCol(default = 0)
-    entity = Individus
+    entity = Individu
     label = u"Contributions au remboursement de la dette sociale"
 
     def function(individu, period):
@@ -446,7 +446,7 @@ class crds(Variable):
         crds_logement = individu.famille('crds_logement', period, options = [ADD])
         crds_mini = individu.famille('crds_mini', period, options = [ADD])
         crds_famille =  crds_pfam + crds_logement + crds_mini
-        crds_famille_projetes = crds_famille * individu.has_role(Familles.DEMANDEUR)
+        crds_famille_projetes = crds_famille * individu.has_role(Famille.DEMANDEUR)
 
         # CRDS sur revenus du foyer fiscal, projetés seulement sur la première personne
         crds_fon = individu.foyer_fiscal('crds_fon', period)
@@ -455,14 +455,14 @@ class crds(Variable):
         crds_cap_bar = individu.foyer_fiscal('crds_cap_bar', period)
         crds_cap_lib = individu.foyer_fiscal('crds_cap_lib', period)
         crds_foyer_fiscal = crds_fon + crds_pv_mo + crds_pv_immo + crds_cap_bar + crds_cap_lib
-        crds_foyer_fiscal_projetee = crds_foyer_fiscal * individu.has_role(FoyersFiscaux.DECLARANT_PRINCIPAL)
+        crds_foyer_fiscal_projetee = crds_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return period, crds_individu + crds_famille_projetes + crds_foyer_fiscal_projetee
 
 
 class csg(Variable):
     column = FloatCol(default = 0)
-    entity = Individus
+    entity = Individu
     label = u"Contributions sociales généralisées"
 
     def function(individu, period):
@@ -482,7 +482,7 @@ class csg(Variable):
         csg_pv_mo = individu.foyer_fiscal('csg_pv_mo', period)
         csg_pv_immo = individu.foyer_fiscal('csg_pv_immo', period)
         csg_foyer_fiscal = csg_fon + csg_cap_lib + csg_cap_bar + csg_pv_mo + csg_pv_immo
-        csg_foyer_fiscal_projetee = csg_foyer_fiscal * individu.has_role(FoyersFiscaux.DECLARANT_PRINCIPAL)
+        csg_foyer_fiscal_projetee = csg_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return period, (csg_imposable_salaire + csg_deductible_salaire + csg_imposable_chomage +
                 csg_deductible_chomage + csg_imposable_retraite + csg_deductible_retraite + csg_foyer_fiscal_projetee)
@@ -490,7 +490,7 @@ class csg(Variable):
 
 class cotsoc_noncontrib(Variable):
     column = FloatCol(default = 0)
-    entity = Individus
+    entity = Individu
     label = u"Cotisations sociales non contributives"
 
     def function(self, simulation, period):
@@ -508,7 +508,7 @@ class cotsoc_noncontrib(Variable):
 
 class prelsoc_cap(Variable):
     column = FloatCol(default = 0)
-    entity = Individus
+    entity = Individu
     label = u"Prélèvements sociaux sur les revenus du capital"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
 
@@ -526,12 +526,12 @@ class prelsoc_cap(Variable):
         prelsoc_pv_immo = individu.foyer_fiscal('prelsoc_pv_immo', period)
         prel_foyer_fiscal = prelsoc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
 
-        return period, prel_foyer_fiscal * individu.has_role(FoyersFiscaux.DECLARANT_PRINCIPAL)
+        return period, prel_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
 
 class check_csk(Variable):
     column = FloatCol(default = 0)
-    entity = Menages
+    entity = Menage
     label = u"check_csk"
 
     def function(menage, period):
@@ -549,7 +549,7 @@ class check_csk(Variable):
 
 class check_csg(Variable):
     column = FloatCol(default = 0)
-    entity = Menages
+    entity = Menage
     label = u"check_csg"
 
     def function(menage, period):
@@ -567,7 +567,7 @@ class check_csg(Variable):
 
 class check_crds(Variable):
     column = FloatCol(default = 0)
-    entity = Menages
+    entity = Menage
     label = u"check_crds"
 
     def function(menage, period):

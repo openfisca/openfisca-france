@@ -37,7 +37,7 @@ def modify_legislation_json(reference_legislation_json_copy):
 
 class cesthra(Variable):
     column = columns.FloatCol
-    entity = entities.FoyersFiscaux
+    entity = entities.FoyerFiscal
     label = u"Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
     # PLF 2013 (rejeté) : 'taxe à 75%'
 

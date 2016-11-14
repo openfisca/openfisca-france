@@ -12,49 +12,49 @@ from openfisca_core.periods import Instant
 # Prestations familiales
 class inactif(Variable):
     column = BoolCol
-    entity = Familles
+    entity = Famille
     label = u"Parent inactif (PAJE-CLCA)"
 
 
 
 class partiel1(Variable):
     column = BoolCol
-    entity = Familles
+    entity = Famille
     label = u"Parent actif à moins de 50% (PAJE-CLCA)"
 
 
 
 class partiel2(Variable):
     column = BoolCol
-    entity = Familles
+    entity = Famille
     label = u"Parent actif entre 50% et 80% (PAJE-CLCA)"
 
 
 
 class opt_colca(Variable):
     column = BoolCol
-    entity = Familles
+    entity = Famille
     label = u"Opte pour le COLCA"
 
 
 
 class empl_dir(Variable):
     column = BoolCol
-    entity = Familles
+    entity = Famille
     label = u"Emploi direct (CLCMG)"
 
 
 
 class ass_mat(Variable):
     column = BoolCol
-    entity = Familles
+    entity = Famille
     label = u"Assistante maternelle (CLCMG)"
 
 
 
 class gar_dom(Variable):
     column = BoolCol
-    entity = Familles
+    entity = Famille
     label = u"Garde à domicile (CLCMG)"
 
 
@@ -62,7 +62,7 @@ class gar_dom(Variable):
 
 class paje(Variable):
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"PAJE - Ensemble des prestations"
     start_date = date(2004, 1, 1)
     url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje-0"  # noqa
@@ -85,7 +85,7 @@ class paje(Variable):
 class paje_base(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity = Familles
+    entity = Famille
     label = u"Allocation de base de la PAJE"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
@@ -171,7 +171,7 @@ class paje_base(Variable):
 
 class paje_base_enfant_eligible_avant_reforme_2014(Variable):
     column = BoolCol
-    entity = Individus
+    entity = Individu
     label = u"Enfant ouvrant droit à la PAJE de base né avant le 1er avril 2014"
 
     def function(self, simulation, period):
@@ -189,7 +189,7 @@ class paje_base_enfant_eligible_avant_reforme_2014(Variable):
 
 class paje_base_enfant_eligible_apres_reforme_2014(Variable):
     column = BoolCol
-    entity = Individus
+    entity = Individu
     label = u"Enfant ouvrant droit à la PAJE de base né après le 1er avril 2014"
 
     def function(self, simulation, period):
@@ -208,7 +208,7 @@ class paje_base_enfant_eligible_apres_reforme_2014(Variable):
 class paje_naissance(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"Allocation de naissance de la PAJE"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
@@ -253,7 +253,7 @@ class paje_naissance(Variable):
 class paje_clca(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"PAJE - Complément de libre choix d'activité"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
@@ -317,14 +317,14 @@ class paje_clca(Variable):
 
 class paje_prepare(Variable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
     set_input = set_input_divide_by_period
     label = u"Prestation Partagée d’éducation de l’Enfant (PreParE)"
 
 
 class paje_clca_taux_plein(Variable):
     column = BoolCol(default = False)
-    entity = Familles
+    entity = Famille
     label = u"Indicatrice Clca taux plein"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
@@ -339,7 +339,7 @@ class paje_clca_taux_plein(Variable):
 
 class paje_clca_taux_partiel(Variable):
     column = BoolCol(default = False)
-    entity = Familles
+    entity = Famille
     label = u"Indicatrice Clca taux partiel"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
@@ -357,7 +357,7 @@ class paje_clca_taux_partiel(Variable):
 class paje_clmg(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"PAJE - Complément de libre choix du mode de garde"
     start_date = date(2004, 1, 1)
     url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"  # noqa
@@ -467,7 +467,7 @@ class paje_clmg(Variable):
 class paje_colca(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"PAJE - Complément optionnel de libre choix d'activité"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
@@ -582,7 +582,7 @@ class paje_colca(Variable):
 
 class ape_avant_cumul(Variable):
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"Allocation parentale d'éducation, avant prise en compte de la non-cumulabilité avec le CF et l'APJE"
     stop_date = date(2004, 1, 1)
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
@@ -646,7 +646,7 @@ class ape_avant_cumul(Variable):
 
 class apje_avant_cumul(Variable):
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"Allocation pour le jeune enfant, avant prise en compte de la non-cumulabilité avec le CF et l'APE"
     stop_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
@@ -690,7 +690,7 @@ class apje_avant_cumul(Variable):
 
 class ape(Variable):
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"Allocation parentale d'éducation"
     stop_date = date(2004, 1, 1)
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
@@ -710,7 +710,7 @@ class ape(Variable):
 
 class apje(Variable):
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"Allocation pour le jeune enfant"
     stop_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"

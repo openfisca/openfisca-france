@@ -17,7 +17,7 @@ from openfisca_core.base_functions import (
     )
 from openfisca_core.formula_helpers import apply_thresholds, switch
 
-from openfisca_france.entities import Familles, FoyersFiscaux, Individus, Menages
+from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage
 
 
 __all__ = [
@@ -40,14 +40,14 @@ __all__ = [
     'ENFS',
     'Enum',
     'EnumCol',
-    'Familles',
+    'Famille',
     'FixedStrCol',
     'FloatCol',
-    'FoyersFiscaux',
-    'Individus',
+    'FoyerFiscal',
+    'Individu',
     'IntCol',
     'last_duration_last_value',
-    'Menages',
+    'Menage',
     'missing_value',
     'PAC1',
     'PAC2',

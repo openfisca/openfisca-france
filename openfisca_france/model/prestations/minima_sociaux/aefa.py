@@ -24,7 +24,7 @@ class aefa(DatedVariable):
     pour la Création ou la Reprise d'Entreprise (ACCRE-ASS) ou encore allocation chômage.
     '''
     column = FloatCol
-    entity = Familles
+    entity = Famille
     label = u"Aide exceptionelle de fin d'année (prime de Noël)"
     url = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"  # noqa
 

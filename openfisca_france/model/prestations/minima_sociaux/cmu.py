@@ -11,7 +11,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class cmu_acs_eligibilite(Variable):
     column = BoolCol
-    entity = Familles
+    entity = Famille
     label = u"Pré-éligibilité à la CMU, avant prise en compte des ressources"
 
     def function(self, simulation, period):
@@ -37,7 +37,7 @@ class cmu_acs_eligibilite(Variable):
 
 class acs_montant(Variable):
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"Montant de l'ACS en cas d'éligibilité"
     start_date = date(2009, 8, 1)
 
@@ -57,7 +57,7 @@ class acs_montant(Variable):
 
 class cmu_forfait_logement_base(Variable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
     label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
 
     def function(self, simulation, period):
@@ -71,7 +71,7 @@ class cmu_forfait_logement_base(Variable):
 
 class cmu_forfait_logement_al(Variable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
     label = u"Forfait logement applicable en cas d'aide au logement"
 
     def function(self, simulation, period):
@@ -86,7 +86,7 @@ class cmu_forfait_logement_al(Variable):
 
 class cmu_nbp_foyer(Variable):
     column = PeriodSizeIndependentIntCol
-    entity = Familles
+    entity = Famille
     label = u"Nombre de personnes dans le foyer CMU"
 
     def function(self, simulation, period):
@@ -99,7 +99,7 @@ class cmu_nbp_foyer(Variable):
 
 class cmu_eligible_majoration_dom(Variable):
     column = BoolCol
-    entity = Familles
+    entity = Famille
 
     def function(famille, period):
         period = period.this_month
@@ -114,7 +114,7 @@ class cmu_eligible_majoration_dom(Variable):
 
 class cmu_c_plafond(Variable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
     label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
 
     def function(self, simulation, period):
@@ -165,7 +165,7 @@ class cmu_c_plafond(Variable):
 
 class acs_plafond(Variable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
     label = u"Plafond annuel de ressources pour l'éligibilité à l'ACS"
 
     def function(self, simulation, period):
@@ -179,7 +179,7 @@ class acs_plafond(Variable):
 class cmu_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
-    entity = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month
@@ -255,7 +255,7 @@ class cmu_base_ressources_individu(Variable):
 class cmu_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
-    entity = Familles
+    entity = Famille
 
     def function(famille, period, legislation):
         period = period.this_month
@@ -288,18 +288,18 @@ class cmu_base_ressources(Variable):
             cmu_forfait_logement_al)
 
         ressources_individuelles = famille.members('cmu_base_ressources_individu', period)
-        ressources_parents = famille.sum(ressources_individuelles, role = Familles.PARENT)
+        ressources_parents = famille.sum(ressources_individuelles, role = Famille.PARENT)
 
         age = famille.members('age', period)
         condition_enfant_a_charge = (age >= 0) * (age <= P.age_limite_pac)
-        ressources_enfants = famille.sum(ressources_individuelles * condition_enfant_a_charge, role = Familles.ENFANT)
+        ressources_enfants = famille.sum(ressources_individuelles * condition_enfant_a_charge, role = Famille.ENFANT)
 
         return period, forfait_logement + ressources_famille + ressources_parents + ressources_enfants
 
 
 class cmu_nb_pac(Variable):
     column = PeriodSizeIndependentIntCol
-    entity = Familles
+    entity = Famille
     label = u"Nombre de personnes à charge au titre de la CMU"
 
     def function(self, simulation, period):
@@ -314,7 +314,7 @@ class cmu_nb_pac(Variable):
 class cmu_c(Variable):
     column = BoolCol
     label = u"Éligibilité à la CMU-C"
-    entity = Familles
+    entity = Famille
 
     def function(famille, period):
         # Note : Cette variable est calculée pour un an, mais si elle est demandée pour une période plus petite, elle
@@ -348,7 +348,7 @@ class cmu_c(Variable):
 class acs(Variable):
     column = FloatCol
     label = u"Montant (mensuel) de l'ACS"
-    entity = Familles
+    entity = Famille
 
     def function(famille, period):
         period = period.this_month

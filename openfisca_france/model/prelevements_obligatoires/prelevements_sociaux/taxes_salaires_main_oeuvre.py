@@ -29,7 +29,7 @@ from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotis
 
 class conge_individuel_formation_cdd(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Contribution au financement des congé individuel de formation (CIF) des salariées en CDD"
 
     # TODO: date de début
@@ -44,7 +44,7 @@ class conge_individuel_formation_cdd(Variable):
 
 class redevable_taxe_apprentissage(Variable):
     column = BoolCol
-    entity = Individus
+    entity = Individu
     label = u"Entreprise redevable de la taxe d'apprentissage"
 
     def function(self, simulation, period):
@@ -57,7 +57,7 @@ class redevable_taxe_apprentissage(Variable):
 
 class contribution_developpement_apprentissage(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Contribution additionnelle au développement de l'apprentissage"
 
     def function(self, simulation, period):
@@ -75,7 +75,7 @@ class contribution_developpement_apprentissage(Variable):
 
 class contribution_supplementaire_apprentissage(DatedVariable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Contribution supplémentaire à l'apprentissage"
 
     @dated_function(date(2010, 1, 1))
@@ -104,7 +104,7 @@ class contribution_supplementaire_apprentissage(DatedVariable):
 class cotisations_employeur_main_d_oeuvre(Variable):
     base_function = requested_period_added_value
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation sociales employeur main d'oeuvre"
 
     def function(self, simulation, period):
@@ -142,7 +142,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
 
 class fnal(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation fonds national action logement (FNAL)"
 
     def function(self, simulation, period):
@@ -153,7 +153,7 @@ class fnal(Variable):
 
 class fnal_tranche_a(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Cotisation fonds national action logement (FNAL tout employeur)"
 
     def function(self, simulation, period):
@@ -170,7 +170,7 @@ class fnal_tranche_a(Variable):
 
 class fnal_tranche_a_plus_20(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Fonds national action logement (FNAL, employeur avec plus de 20 salariés)"
 
     def function(self, simulation, period):
@@ -187,7 +187,7 @@ class fnal_tranche_a_plus_20(Variable):
 
 class financement_organisations_syndicales(DatedVariable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Contribution patronale au financement des organisations syndicales"
 
     @dated_function(date(2015, 1, 1))
@@ -205,7 +205,7 @@ class financement_organisations_syndicales(DatedVariable):
 
 class formation_professionnelle(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Formation professionnelle"
     url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
 
@@ -236,7 +236,7 @@ class formation_professionnelle(Variable):
 
 class participation_effort_construction(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Participation à l'effort de construction"
 
     def function(self, simulation, period):
@@ -263,7 +263,7 @@ class participation_effort_construction(Variable):
 
 class taxe_apprentissage(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Taxe d'apprentissage (employeur, entreprise redevable de la taxe d'apprentissage uniquement)"
     url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
 
@@ -283,7 +283,7 @@ class taxe_apprentissage(Variable):
 
 class taxe_salaires(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Taxe sur les salaires"
 # Voir
 # http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8920/fichedescriptiveformulaire_8920.pdf

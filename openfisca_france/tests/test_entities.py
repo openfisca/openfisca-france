@@ -8,29 +8,29 @@ from openfisca_core.columns import FloatCol, IntCol, BoolCol
 from openfisca_core.tools import assert_near
 
 from openfisca_france.scenarios import Scenario
-from openfisca_france.entities import entities, Individus, Familles, FoyersFiscaux, Menages
+from openfisca_france.entities import entities, Individu, Famille, FoyerFiscal, Menage
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class af(Variable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
 
 class salaire(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
 
 class age(Variable):
     column = IntCol
-    entity = Individus
+    entity = Individu
 
 class autonomie_financiere(Variable):
     column = BoolCol
-    entity = Individus
+    entity = Individu
 
 class depcom(Variable):
     column = FixedStrCol(max_length = 5)
-    entity = Menages
+    entity = Menage
     is_permanent = True
     label = u"""Code INSEE "depcom" de la commune de résidence de la famille"""
 

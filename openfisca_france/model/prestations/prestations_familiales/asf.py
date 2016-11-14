@@ -11,7 +11,7 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 
 class asf_elig_enfant(Variable):
     column = BoolCol(default = False)
-    entity = Individus
+    entity = Individu
     label = u"Enfant pouvant ouvrir droit à l'ASF"
 
     def function(individu, period, legislation):
@@ -31,7 +31,7 @@ class asf_elig_enfant(Variable):
 
 class asf_elig(Variable):
     column = BoolCol(default = False)
-    entity = Familles
+    entity = Famille
     label = u"Éligibilité à l'ASF"
 
     def function(famille, period):
@@ -48,7 +48,7 @@ class asf_elig(Variable):
 class asf(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"Allocation de soutien familial (ASF)"
 
     def function(famille, period, legislation):
@@ -57,6 +57,6 @@ class asf(Variable):
         pfam = legislation(period).fam
         asf_elig = famille('asf_elig', period)
         asf_par_enfant = famille.members('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux1
-        montant = famille.sum(asf_par_enfant, role = Familles.ENFANT)
+        montant = famille.sum(asf_par_enfant, role = Famille.ENFANT)
 
         return period, asf_elig * montant

@@ -9,7 +9,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class cf_enfant_a_charge(Variable):
     column = BoolCol
-    entity = Individus
+    entity = Individu
     label = u"Complément familial - Enfant considéré à charge"
 
     def function(self, simulation, period):
@@ -29,7 +29,7 @@ class cf_enfant_a_charge(Variable):
 
 class cf_enfant_eligible(Variable):
     column = BoolCol
-    entity = Individus
+    entity = Individu
     label = u"Complément familial - Enfant pris en compte pour l'éligibilité"
 
     def function(self, simulation, period):
@@ -50,7 +50,7 @@ class cf_enfant_eligible(Variable):
 
 class cf_dom_enfant_eligible(Variable):
     column = BoolCol
-    entity = Individus
+    entity = Individu
     label = u"Complément familial (DOM) - Enfant pris en compte pour l'éligibilité"
 
     def function(self, simulation, period):
@@ -70,7 +70,7 @@ class cf_dom_enfant_eligible(Variable):
 
 class cf_dom_enfant_trop_jeune(Variable):
     column = BoolCol
-    entity = Individus
+    entity = Individu
     label = u"Complément familial (DOM) - Enfant trop jeune pour ouvrir le droit"
 
     def function(self, simulation, period):
@@ -88,7 +88,7 @@ class cf_dom_enfant_trop_jeune(Variable):
 
 class cf_ressources_individu(Variable):
     column = FloatCol
-    entity = Individus
+    entity = Individu
     label = u"Complément familial - Ressources de l'individu prises en compte"
 
     def function(self, simulation, period):
@@ -103,7 +103,7 @@ class cf_ressources_individu(Variable):
 
 class cf_plafond(Variable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
     label = u"Plafond d'éligibilité au Complément Familial"
 
     def function(self, simulation, period):
@@ -142,7 +142,7 @@ class cf_plafond(Variable):
 
 class cf_majore_plafond(DatedVariable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
     label = u"Plafond d'éligibilité au Complément Familial majoré"
 
     @dated_function(date(2014, 4, 1))
@@ -155,7 +155,7 @@ class cf_majore_plafond(DatedVariable):
 
 class cf_ressources(Variable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
     label = u"Ressources prises en compte pour l'éligibilité au complément familial"
 
     def function(self, simulation, period):
@@ -167,7 +167,7 @@ class cf_ressources(Variable):
 
 class cf_eligibilite_base(Variable):
     column = BoolCol
-    entity = Familles
+    entity = Famille
     label = u"Éligibilité au complément familial sous condition de ressources et avant cumul"
 
     def function(famille, period, legislation):
@@ -182,7 +182,7 @@ class cf_eligibilite_base(Variable):
 
 class cf_eligibilite_dom(Variable):
     column = BoolCol
-    entity = Familles
+    entity = Famille
     label = u"Éligibilité au complément familial pour les DOM sous condition de ressources et avant cumul"
 
 
@@ -206,7 +206,7 @@ class cf_eligibilite_dom(Variable):
 
 class cf_non_majore_avant_cumul(Variable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
     label = u"Complément familial non majoré avant cumul"
 
     def function(self, simulation, period):
@@ -238,7 +238,7 @@ class cf_non_majore_avant_cumul(Variable):
 
 class cf_majore_avant_cumul(DatedVariable):
     column = FloatCol
-    entity = Familles
+    entity = Famille
     label = u"Complément familial majoré avant cumul"
 
     @dated_function(date(2014, 4, 1))
@@ -264,7 +264,7 @@ class cf_majore_avant_cumul(DatedVariable):
 
 class cf_montant(Variable):
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"Montant du complément familial, avant prise en compte d'éventuels cumuls"
 
     def function(self, simulation, period):
@@ -279,7 +279,7 @@ class cf_montant(Variable):
 class cf(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
-    entity = Familles
+    entity = Famille
     label = u"Complément familial"
     url = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"
 

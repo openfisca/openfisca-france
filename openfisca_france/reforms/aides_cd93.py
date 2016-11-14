@@ -10,13 +10,13 @@ from ..model.base import *
 
 class perte_autonomie(Variable):
     column = BoolCol
-    entity = Individus
+    entity = Individu
     label = u"Personne en perte d'autonomie"
 
 class resident_93(Variable):
     column = BoolCol
     label = u"Résident en Seine-Saint-Denis"
-    entity = Menages
+    entity = Menage
 
     def function(self, simulation, period):
         period = period.this_month
@@ -36,7 +36,7 @@ class resident_93(Variable):
 class adpa_eligibilite(Variable):
     column = BoolCol
     label = u"Eligibilité à l'ADPA"
-    entity = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month
@@ -51,7 +51,7 @@ class adpa_eligibilite(Variable):
 class adpa_base_ressources_i(Variable):
     column = FloatCol
     label = u"Base ressources ADPA pour un individu"
-    entity = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month
@@ -77,7 +77,7 @@ class adpa_base_ressources_i(Variable):
 class adpa_base_ressources(Variable):
     column = FloatCol
     label = u"Base ressources ADPA pour une famille"
-    entity = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         period = period.this_month
@@ -89,7 +89,7 @@ class adpa_base_ressources(Variable):
 class adpa(Variable):
     column = FloatCol
     label = u"ADPA"
-    entity = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         period = period.this_month
