@@ -1429,4 +1429,4 @@ def transform_ipp_tree(root):
 
     del root['baremes_ipp_taxation_indirecte']
 
-    root['dependance'] = root.pop('baremes_ipp_dependance')
+    root['autonomie'] = root.pop('baremes_ipp_autonomie_autonomy')
