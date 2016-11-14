@@ -8,39 +8,39 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class coloc(Variable):
     column = BoolCol
-    entity_class = Menages
+    entity = Menages
     label = u"Vie en colocation"
 
 class logement_chambre(Variable):
     column = BoolCol
-    entity_class = Menages
+    entity = Menages
     label = u"Le logement est considéré comme une chambre"
 
 class loyer(Variable):
     column = FloatCol
-    entity_class = Menages
+    entity = Menages
     set_input = set_input_divide_by_period
     label = u"Loyer ou mensualité d'emprunt pour un primo-accédant"
 
 class depcom(Variable):
     column = FixedStrCol(max_length = 5)
-    entity_class = Menages
+    entity = Menages
     label = u"Code INSEE (depcom) du lieu de résidence"
 
 class charges_locatives(Variable):
     column = FloatCol
-    entity_class = Menages
+    entity = Menages
     set_input = set_input_divide_by_period
     label = u'Charges locatives'
 
 class proprietaire_proche_famille(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Familles
     label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
 
 class habite_chez_parents(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label = u"L'individu habite chez ses parents"
 
 class statut_occupation_logement(Variable):
@@ -56,13 +56,13 @@ class statut_occupation_logement(Variable):
             u"Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)",
             u"Sans domicile stable"])
     )
-    entity_class = Menages
+    entity = Menages
     label = u"Statut d'occupation du logement"
     set_input = set_input_dispatch_by_period
 
 class residence_dom(Variable):
     column = BoolCol
-    entity_class = Menages
+    entity = Menages
 
     def function(menage, period):
         residence_guadeloupe = menage('residence_guadeloupe', period)
@@ -76,7 +76,7 @@ class residence_dom(Variable):
 
 class residence_guadeloupe(Variable):
     column = BoolCol
-    entity_class = Menages
+    entity = Menages
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
@@ -85,7 +85,7 @@ class residence_guadeloupe(Variable):
 
 class residence_martinique(Variable):
     column = BoolCol
-    entity_class = Menages
+    entity = Menages
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
@@ -94,7 +94,7 @@ class residence_martinique(Variable):
 
 class residence_guyane(Variable):
     column = BoolCol
-    entity_class = Menages
+    entity = Menages
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
@@ -103,7 +103,7 @@ class residence_guyane(Variable):
 
 class residence_reunion(Variable):
     column = BoolCol
-    entity_class = Menages
+    entity = Menages
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
@@ -112,7 +112,7 @@ class residence_reunion(Variable):
 
 class residence_mayotte(Variable):
     column = BoolCol
-    entity_class = Menages
+    entity = Menages
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)

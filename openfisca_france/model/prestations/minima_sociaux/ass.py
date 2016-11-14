@@ -10,7 +10,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class ass_precondition_remplie(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label = u"Éligible à l'ASS"
 
 
@@ -19,7 +19,7 @@ class ass_precondition_remplie(Variable):
 class ass(Variable):
     column = FloatCol
     label = u"Montant de l'ASS pour une famille"
-    entity_class = Familles
+    entity = Familles
 
     def function(self, simulation, period):
         period = period.this_month
@@ -48,7 +48,7 @@ class ass(Variable):
 class ass_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources de l'ASS"
-    entity_class = Familles
+    entity = Familles
 
     def function(self, simulation, period):
         period = period.this_month
@@ -64,7 +64,7 @@ class ass_base_ressources(Variable):
 class ass_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle de l'ASS"
-    entity_class = Individus
+    entity = Individus
 
     def function(self, simulation, period):
         period = period.this_month
@@ -108,7 +108,7 @@ class ass_base_ressources_individu(Variable):
 class ass_base_ressources_conjoint(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle pour le conjoint du demandeur de l'ASS"
-    entity_class = Individus
+    entity = Individus
 
     def function(self, simulation, period):
         period = period.this_month
@@ -176,7 +176,7 @@ class ass_base_ressources_conjoint(Variable):
 class ass_eligibilite_individu(Variable):
     column = BoolCol
     label = u"Éligibilité individuelle à l'ASS"
-    entity_class = Individus
+    entity = Individus
 
     def function(self, simulation, period):
         period = period.this_month

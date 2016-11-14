@@ -8,12 +8,12 @@ from numpy import logical_not as not_
 
 class aeeh_niveau_handicap(Variable):
     column = IntCol
-    entity_class = Individus
+    entity = Individus
     label = u"Catégorie de handicap prise en compte pour l'AEEH"
 
 class aeeh(DatedVariable):
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Familles
     label = u"Allocation d'éducation de l'enfant handicapé"
     url = "http://vosdroits.service-public.fr/particuliers/N14808.xhtml"
 

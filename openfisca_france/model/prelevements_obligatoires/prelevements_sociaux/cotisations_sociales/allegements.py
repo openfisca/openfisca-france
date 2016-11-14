@@ -22,7 +22,7 @@ log = logging.getLogger(__name__)
 class assiette_allegement(Variable):
     base_function = requested_period_added_value
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Assiette des allègements de cotisations sociales employeur"
 
     def function(self, simulation, period):
@@ -37,7 +37,7 @@ class assiette_allegement(Variable):
 
 class coefficient_proratisation(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Coefficient de proratisation du salaire notamment pour le calcul du SMIC"
 
     def function(self, simulation, period):
@@ -127,7 +127,7 @@ class coefficient_proratisation(Variable):
 
 class credit_impot_competitivite_emploi(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Crédit d'imôt pour la compétitivité et l'emploi"
 
     @dated_function(date(2013, 1, 1))
@@ -148,7 +148,7 @@ class credit_impot_competitivite_emploi(DatedVariable):
 
 class aide_premier_salarie(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Aide à l'embauche d'un premier salarié"
 
     @dated_function(start=date(2015, 6, 9))
@@ -211,7 +211,7 @@ class aide_premier_salarie(DatedVariable):
 
 class aide_embauche_pme(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Aide à l'embauche d'un salarié pour les PME"
     url = u"http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
 
@@ -284,7 +284,7 @@ class aide_embauche_pme(DatedVariable):
 
 class smic_proratise(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"SMIC proratisé (mensuel)"
 
     def function(self, simulation, period):
@@ -298,7 +298,7 @@ class smic_proratise(Variable):
 
 class allegement_fillon(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
 
     # Attention : cet allègement a des règles de cumul spécifiques
@@ -356,8 +356,8 @@ def compute_allegement_fillon(simulation, period):
 
 class allegement_cotisation_allocations_familiales(DatedVariable):
     column = FloatCol
-    entity_class = Individus
     label = u"Allègement de la cotisation d'allocations familiales sur les bas et moyens salaires"
+    entity = Individus
     url = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
 
     @dated_function(date(2015, 1, 1))

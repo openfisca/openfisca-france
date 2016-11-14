@@ -14,23 +14,23 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class af(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
 
 class salaire(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
 
 class age(Variable):
     column = IntCol
-    entity_class = Individus
+    entity = Individus
 
 class autonomie_financiere(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
 
 class depcom(Variable):
     column = FixedStrCol(max_length = 5)
-    entity_class = Menages
+    entity = Menages
     is_permanent = True
     label = u"""Code INSEE "depcom" de la commune de résidence de la famille"""
 

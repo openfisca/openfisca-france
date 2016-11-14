@@ -4,18 +4,18 @@ from openfisca_france.model.base import *  # noqa
 
 class date_naissance(Variable):
     column = DateCol(default = date(1970, 1, 1))
-    entity_class = Individus
+    entity = Individus
     is_permanent = True
     label = u"Date de naissance"
 
 class adoption(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label = u"Enfant adopté"
 
 class garde_alternee(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label = u'Enfant en garde alternée'
     base_function = requested_period_last_or_next_value
 
@@ -28,12 +28,12 @@ class activite(Variable):
             u'Retraité',
             u'Autre inactif']),
         )
-    entity_class = Individus
+    entity = Individus
     label = u"Activité"
 
 class enceinte(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label = u"Est enceinte"
 
 class statut_marital(Variable):
@@ -46,7 +46,7 @@ class statut_marital(Variable):
             u"Pacsé",
             u"Jeune veuf"], start = 1),
         )
-    entity_class = Individus
+    entity = Individus
     label = u"Statut marital"
 
 
@@ -54,14 +54,14 @@ class statut_marital(Variable):
 class nbN(Variable):
     cerfa_field = u"N"
     column = PeriodSizeIndependentIntCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille"
 
 
 class nbR(Variable):
     cerfa_field = u"R"
     column = PeriodSizeIndependentIntCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Nombre de titulaires (autres que les enfants) de la carte invalidité d'au moins 80 %"
 
 
@@ -69,7 +69,7 @@ class nbR(Variable):
 class caseE(Variable):
     cerfa_field = u"E"
     column = BoolCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul"
     stop_date = date(2012, 12, 31)
 
@@ -77,21 +77,21 @@ class caseE(Variable):
 class caseF(Variable):
     cerfa_field = u"F"
     column = BoolCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)"
 
 
 class caseG(Variable):
     cerfa_field = u"G"
     column = BoolCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Titulaire d'une pension de veuve de guerre"
 
   # attention, ne pas confondre caseG et nbG qui se rapportent toutes les 2 à une "case" G, l'une étant une vraie case que l'on remplt et l'autre une case que l'on coche
 class caseH(Variable):
     cerfa_field = u"H"
     column = PeriodSizeIndependentIntCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Année de naissance des enfants à charge en garde alternée"
 
 
@@ -104,7 +104,7 @@ class caseH(Variable):
 class caseK(Variable):
     cerfa_field = u"K"
     column = BoolCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre"
     stop_date = date(2011, 12, 31)
 
@@ -113,7 +113,7 @@ class caseK(Variable):
 class caseL(Variable):
     cerfa_field = u"L"
     column = BoolCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant au moins 5 ans durant la période où vous viviez seul"
 
 
@@ -121,21 +121,21 @@ class caseL(Variable):
 class caseN(Variable):
     cerfa_field = u"N"
     column = BoolCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Vous ne viviez pas seul au 1er janvier de l'année de perception des revenus"
 
 
 class caseP(Variable):
     cerfa_field = u"P"
     column = BoolCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%"
 
 
 class caseS(Variable):
     cerfa_field = u"S"
     column = BoolCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Vous êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre"
 
 
@@ -143,7 +143,7 @@ class caseS(Variable):
 class caseT(Variable):
     cerfa_field = u"T"
     column = BoolCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Vous êtes parent isolé au 1er janvier de l'année de perception des revenus"
 
 
@@ -151,24 +151,24 @@ class caseT(Variable):
 class caseW(Variable):
     cerfa_field = u"W"
     column = BoolCol
-    entity_class = FoyersFiscaux
+    entity = FoyersFiscaux
     label = u"Vous ou votre conjoint (même s'il est décédé), âgés de plus de 75 ans, êtes titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre"
 
 
 
 class handicap(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label= u"Individu en situation de handicap"
 
 class invalidite(Variable):
   column = BoolCol
-  entity_class = Individus
+  entity = Individus
   label=u"Individu titulaire d'une carte d'invalidité"
 
 class nb_parents(Variable):
     column = PeriodSizeIndependentIntCol(default = 0)
-    entity_class = Familles
+    entity = Familles
     label = u"Nombre d'adultes (parents) dans la famille"
 
     def function(famille, period):
@@ -179,7 +179,7 @@ class nb_parents(Variable):
 
 class maries(Variable):
     column = BoolCol(default = False)
-    entity_class = Familles
+    entity = Familles
     label = u"maries"
 
     def function(famille, period):
@@ -194,7 +194,7 @@ class maries(Variable):
 
 class en_couple(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Familles
     label = u"Indicatrice de vie en couple"
 
     def function(self, simulation, period):
@@ -210,7 +210,7 @@ class en_couple(Variable):
 
 class est_enfant_dans_famille(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label = u"Indique qe l'individu est un enfant dans une famille"
 
     def function(individu, period):
@@ -218,7 +218,7 @@ class est_enfant_dans_famille(Variable):
 
 class etudiant(Variable):
     column = BoolCol(default = False)
-    entity_class = Individus
+    entity = Individus
     label = u"Indicatrice individuelle étudiant"
 
     def function(self, simulation, period):
@@ -230,20 +230,20 @@ class etudiant(Variable):
 
 class rempli_obligation_scolaire(Variable):
     column = BoolCol(default = True)
-    entity_class = Individus
+    entity = Individus
     label = u"Rempli l'obligation scolaire"
 
 class ressortissant_eee(Variable):
     column = BoolCol(default = True)
-    entity_class = Individus
+    entity = Individus
     label = u"Ressortissant de l'EEE ou de la Suisse."
 
 class duree_possession_titre_sejour(Variable):
     column = IntCol
-    entity_class = Individus
+    entity = Individus
     label = u"Durée depuis laquelle l'individu possède un titre de séjour (en années)"
 
 class enfant_place(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individus
     label = u"Enfant placé en structure spécialisée ou famille d'accueil"

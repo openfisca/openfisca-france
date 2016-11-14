@@ -11,7 +11,7 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 
 class af_nbenf(Variable):
     column = IntCol
-    entity_class = Familles
+    entity = Familles
     label = u"Nombre d'enfants dans la famille au sens des allocations familiales"
 
     def function(self, simulation, period):
@@ -24,7 +24,7 @@ class af_nbenf(Variable):
 
 class af_coeff_garde_alternee(DatedVariable):
     column = FloatCol(default = 1)
-    entity_class = Familles
+    entity = Familles
     label = u"Coefficient à appliquer aux af pour tenir compte de la garde alternée"
 
     @dated_function(start = date(2007, 5, 1))
@@ -44,7 +44,7 @@ class af_coeff_garde_alternee(DatedVariable):
 
 class af_allocation_forfaitaire_nb_enfants(Variable):
     column = IntCol
-    entity_class = Familles
+    entity = Familles
     label = u"Nombre d'enfants ouvrant droit à l'allocation forfaitaire des AF"
 
     def function(self, simulation, period):
@@ -57,7 +57,7 @@ class af_allocation_forfaitaire_nb_enfants(Variable):
 
 class af_eligibilite_base(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Familles
     label = u"Allocations familiales - Éligibilité pour la France métropolitaine sous condition de ressources"
 
     def function(famille, period):
@@ -71,7 +71,7 @@ class af_eligibilite_base(Variable):
 
 class af_eligibilite_dom(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Familles
     label = u"Allocations familiales - Éligibilité pour les DOM (hors Mayotte) sous condition de ressources"
 
     def function(famille, period, legislation):
@@ -86,7 +86,7 @@ class af_eligibilite_dom(Variable):
 
 class af_base(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Allocations familiales - allocation de base"
     # prestations familiales (brutes de crds)
 
@@ -117,7 +117,7 @@ class af_base(Variable):
 
 class af_taux_modulation(DatedVariable):
     column = FloatCol(default = 1)
-    entity_class = Familles
+    entity = Familles
     label = u"Taux de modulation à appliquer au montant des AF depuis 2015"
 
     @dated_function(start = date(2015, 7, 1))
@@ -141,7 +141,7 @@ class af_taux_modulation(DatedVariable):
 
 class af_allocation_forfaitaire_taux_modulation(DatedVariable):
     column = FloatCol(default = 1)
-    entity_class = Familles
+    entity = Familles
     label = u"Taux de modulation à appliquer à l'allocation forfaitaire des AF depuis 2015"
 
     @dated_function(start = date(2015, 7, 1))
@@ -167,7 +167,7 @@ class af_allocation_forfaitaire_taux_modulation(DatedVariable):
 
 class af_age_aine(Variable):
     column = IntCol
-    entity_class = Familles
+    entity = Familles
     label = u"Allocations familiales - Âge de l'aîné des enfants éligibles"
 
     def function(self, simulation, period):
@@ -187,7 +187,7 @@ class af_age_aine(Variable):
 
 class af_majoration_enfant(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individus
     label = u"Allocations familiales - Majoration pour âge applicable à l'enfant"
 
     def function(individu, period, legislation):
@@ -225,7 +225,7 @@ class af_majoration_enfant(Variable):
 
 class af_majoration(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Allocations familiales - majoration pour âge"
 
     def function(famille, period):
@@ -241,7 +241,7 @@ class af_majoration(Variable):
 
 class af_complement_degressif(DatedVariable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"AF - Complément dégressif en cas de dépassement du plafond"
 
     @dated_function(start = date(2015, 7, 1))
@@ -270,7 +270,7 @@ class af_complement_degressif(DatedVariable):
 
 class af_allocation_forfaitaire_complement_degressif(DatedVariable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"AF - Complément dégressif pour l'allocation forfaitaire en cas de dépassement du plafond"
 
     @dated_function(start = date(2015, 7, 1))
@@ -299,7 +299,7 @@ class af_allocation_forfaitaire_complement_degressif(DatedVariable):
 
 class af_allocation_forfaitaire(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Allocations familiales - forfait"
 
     def function(self, simulation, period):
@@ -321,7 +321,7 @@ class af_allocation_forfaitaire(Variable):
 class af(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = Familles
+    entity = Familles
     label = u"Allocations familiales - total des allocations"
 
     def function(self, simulation, period):
