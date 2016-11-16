@@ -38,20 +38,33 @@ class apa_domicile_participation(DatedVariable):
         # Les départements doivent appliquer la nouvelle formule
         # entre le 1er mars 2016 et le 28 février 2017
         base_ressources_apa = simulation.calculate('base_ressources_apa', period)
+        dependance_plan_aide_domicile = simulation.calculate('dependance_plan_aide_domicile', period)
         dependance_plan_aide_domicile_accepte = zeros(self.holder.entity.count)
-        apa_domicile_participation = (
-            dependance_plan_aide_domicile_accepte *
-            taux_max_participation * (
-                min_(
-                    max_(
-                        (base_ressources_apa - apa_seuil_dom_1) / (apa_seuil_dom_2 - apa_seuil_dom_1),
-                        0,
-                        ),
-                    1,
-                    )
-                )
-            )
+        seuil_inferieur = simulation.legislation_at(period.start).apa_domicile.seuil_de_revenu_en_part_du_mtp.seuil_inferieur
+        seuil_superieur = simulation.legislation_at(period.start).apa_domicile.seuil_de_revenu_en_part_du_mtp.seuil_superieur
+
+        condition_ressources_domicile = [
+            base_ressources_apa <= seuil_inferieur * majoration_tierce_personne,
+            seuil_inferieur * majoration_tierce_personne < base_ressources_apa <= seuil_superieur * majoration_tierce_personne,
+            base_ressources_apa > seuil_superieur * majoration_tierce_personne,
+            ]
+        taux_participation = [
+            taux_min_participation,
+            ( base_ressources_apa - seuil_inferieur * majoration_tierce_personne ) / ( (seuil_superieur - seuil_inferieur) * majoration_tierce_personne) * taux_max_participation,
+            taux_max_participation,
+            ]
+        
+
+        apa_domicile_participation = select(condition_ressources_domicile, taux_participation) * dependance_plan_aide_domicile
+
+
         return period, apa_domicile_participation
+
+
+
+
+
+
 
     @dated_function(start = date(2016, 3, 1))
     def function_20160301(self, simulation, period):
@@ -63,16 +76,9 @@ class apa_domicile_participation(DatedVariable):
         dependance_plan_aide_domicile_accepte = zeros(self.holder.entity.count)
         majoration_tierce_personne = simulation.legislation_at(period.start).dependance.apa_domicile.mtp
 
-        for target_gir in range(1, 5):  # TODO: might be factorized
-            dependance_plan_aide_domicile_accepte = (
-                dependance_plan_aide_domicile_accepte +
-                (gir == target_gir) * min_(
-                    dependance_plan_aide_domicile,
-                    montant_mensuel_maximum_by_gir[target_gir]
-                    )
-                )
 
-        A_1 = max_(0.317 * majoration_tierce_personne, dependance_plan_aide_domicile_accepte)
+      
+
 
         # TODO: use a marignal tax scale
         condlist = [
@@ -141,23 +147,6 @@ class apa_domicile(Variable):
                 )
 
         apa = dependance_plan_aide_domicile_accepte - apa_domicile_participation
-        return period, apa * (apa >= seuil_non_versement) * (age >= apa_age_min)
-
-
-class apa_domicile_2016(Variable):
-    column = FloatCol
-    label = u"Allocation personalisée d'autonomie"
-    entity_class = Individus
-
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        age = simulation.calculate('age', period)
-        base_ressources_apa = simulation.calculate('base_ressources_apa', period)
-        dependance_plan_aide_domicile = simulation.calculate('dependance_plan_aide_domicile', period)
-        dependance_plan_aide_domicile_accepte = zeros(self.holder.entity.count)
-        gir = simulation.calculate('gir', period)
-
-        apa = dependance_plan_aide_domicile_accepte - participation_beneficiaire
         return period, apa * (apa >= seuil_non_versement) * (age >= apa_age_min)
 
 
