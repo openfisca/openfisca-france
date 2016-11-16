@@ -333,7 +333,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     'nbN',  # Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille
                     'nbR',  # Nombre de titulaires (autres que les enfants) de la carte invalidité d'au moins 80 %
                     'caseT',  # Vous êtes parent isolé au 1er janvier de l'année de perception des revenus
-                    'rfr_n_2',  # Revenu fiscal de référence année n - 2
                     'nbptr_n_2',  # Nombre de parts année n - 2
                     ]),
                 ]),
@@ -649,7 +648,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""f6hk""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     u"""f6hl""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
                     u"""f6hm""",  # Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures
-                    u"""rfr_n_1""",  # Revenu fiscal de référence année n - 1
                     u"""f7va""",  # Dons à des organismes d'aides aux personnes établis dans un Etat européen
                     u"""f7vc""",  # Dons à des autres organismes établis dans un Etat européen
                     u"""f7uh_2007""",  # Intérêts payés la première année de remboursement du prêt pour l'habitation principale

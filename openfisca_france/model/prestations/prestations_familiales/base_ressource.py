@@ -82,7 +82,7 @@ class biactivite(Variable):
 class div(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"div"
+    label = u"Dividendes imposés"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
@@ -96,6 +96,7 @@ class div(Variable):
         f3vh_holder = simulation.compute('f3vh', period)
         f3vl_holder = simulation.compute('f3vl', period)
         f3vm_holder = simulation.compute('f3vm', period)
+        f3vt_holder = simulation.compute('f3vt', period)
 
         f3vc = self.cast_from_entity_to_role(f3vc_holder, role = VOUS)
         f3ve = self.cast_from_entity_to_role(f3ve_holder, role = VOUS)
@@ -103,8 +104,9 @@ class div(Variable):
         f3vh = self.cast_from_entity_to_role(f3vh_holder, role = VOUS)
         f3vl = self.cast_from_entity_to_role(f3vl_holder, role = VOUS)
         f3vm = self.cast_from_entity_to_role(f3vm_holder, role = VOUS)
+        f3vt = self.cast_from_entity_to_role(f3vt_holder, role = VOUS)
 
-        return period, f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
+        return period, f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + f3vt + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
 
 class rev_coll(Variable):
@@ -119,7 +121,7 @@ class rev_coll(Variable):
         retraite_titre_onereux_net_declarant1 = simulation.calculate('retraite_titre_onereux_net_declarant1', period.offset('first-of'))
         rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', period)
         rev_cat_rvcm_holder = simulation.compute('rev_cat_rvcm', period)
-        # div = simulation.calculate('div', period)  # TODO why is this variable not used ?
+        div = simulation.calculate('div', period)
         abat_spe_holder = simulation.compute('abat_spe', period)
         glo = simulation.calculate('glo', period)
         fon_holder = simulation.compute('fon', period)
@@ -142,7 +144,7 @@ class rev_coll(Variable):
         f7gc = self.cast_from_entity_to_role(f7gc_holder, role = VOUS)
         rev_cat_pv = self.cast_from_entity_to_role(rev_cat_pv_holder, role = VOUS)
 
-        return period, (retraite_titre_onereux_net_declarant1 + rev_cap_lib + rev_cat_rvcm + fon + glo + pensions_alimentaires_versees_declarant1 - f7ga - f7gb
+        return period, (retraite_titre_onereux_net_declarant1 + rev_cap_lib + rev_cat_rvcm + div + fon + glo + pensions_alimentaires_versees_declarant1 - f7ga - f7gb
             - f7gc - abat_spe + rev_cat_pv)
 
 

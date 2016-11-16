@@ -55,7 +55,7 @@ class impot_revenu_lps(Variable):
         assiette_csg = simulation.calculate('assiette_csg')
         return period, -max_(0, lps.bareme.calc(max_(assiette_csg - ae - ac, 0)) - re - rc) + ce
 
-class revenu_disponible(Variable):
+class revdisp(Variable):
     column = columns.FloatCol(default = 0)
     entity_class = entities.Menages
     label = u"Revenu disponible du ménage"
@@ -74,7 +74,7 @@ class revenu_disponible(Variable):
         rev_cap = self.sum_by_entity(rev_cap_holder)
         rev_trav_holder = simulation.compute('rev_trav')
         rev_trav = self.sum_by_entity(rev_trav_holder)
-        return rev_trav + pen + rev_cap + impot_revenu_lps + psoc
+        return period, rev_trav + pen + rev_cap + impot_revenu_lps + psoc
 
 def modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_subtree = {
@@ -159,5 +159,6 @@ class landais_piketty_saez(Reform):
     name = u'Landais Piketty Saez'
 
     def apply(self):
-        self.add_variables(assiette_csg, impot_revenu_lps, revenu_disponible)
+        for variable in [assiette_csg, impot_revenu_lps, revdisp]:
+            self.update_variable(variable)
         self.modify_legislation_json(modifier_function = modify_legislation_json)

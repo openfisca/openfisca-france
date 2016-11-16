@@ -14,7 +14,7 @@ log = logging.getLogger(__name__)
 class credits_impot(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"credits_impot"
+    label = u"Crédits d'impôt pour l'impôt sur les revenus"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
     def function_20020101_20021231(self, simulation, period):
@@ -274,7 +274,7 @@ class nb_pac2(Variable):
 class accult(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"accult"
+    label = u"Acquisition de biens culturels"
     start_date = date(2002, 1, 1)
 
     def function(self, simulation, period):
@@ -293,7 +293,7 @@ class accult(Variable):
 class acqgpl(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"acqgpl"
+    label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte"
     start_date = date(2002, 1, 1)
     stop_date = date(2007, 12, 31)
 
@@ -313,7 +313,7 @@ class acqgpl(Variable):
 class aidmob(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"aidmob"
+    label = u"Crédit d'impôt aide à la mobilité"
     start_date = date(2005, 1, 1)
     stop_date = date(2008, 12, 31)
 
@@ -336,7 +336,7 @@ class aidmob(Variable):
 class aidper(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"aidper"
+    label = u"Crédits d’impôt pour dépenses en faveur de l’aide aux personnes"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2003, 12, 31))
     def function_20020101_20031231(self, simulation, period):
@@ -517,7 +517,7 @@ class aidper(DatedVariable):
 class assloy(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"assloy"
+    label = u"Crédit d’impôt primes d’assurance pour loyers impayés"
     start_date = date(2005, 1, 1)
 
     def function(self, simulation, period):
@@ -552,7 +552,7 @@ class autent(Variable):
 class ci_garext(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"ci_garext"
+    label = u"Frais de garde des enfants à l’extérieur du domicile"
     start_date = date(2005, 1, 1)
 
     def function(self, simulation, period):
@@ -582,7 +582,7 @@ class ci_garext(Variable):
 class creimp_exc_2008(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"creimp_exc_2008"
+    label = u"Crédit d'impôt exceptionnel sur les revenus 2008"
 
     def function(self, simulation, period):
         '''
@@ -605,11 +605,10 @@ class creimp_exc_2008(Variable):
 class creimp(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"creimp"
+    label = u"Avoirs fiscaux et crédits d'impôt"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
     def function_20020101_20021231(self, simulation, period):
-        '''Avoir fiscaux et crédits d'impôt 2002 '''
         period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
@@ -625,7 +624,6 @@ class creimp(DatedVariable):
 
     @dated_function(start = date(2003, 1, 1), stop = date(2003, 12, 31))
     def function_20030101_20031231(self, simulation, period):
-        '''Avoir fiscaux et crédits d'impôt 2003 '''
         period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
@@ -643,7 +641,6 @@ class creimp(DatedVariable):
 
     @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
     def function_20040101_20041231(self, simulation, period):
-        '''Avoir fiscaux et crédits d'impôt 2004 '''
         period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
@@ -663,7 +660,6 @@ class creimp(DatedVariable):
 
     @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
     def function_20050101_20051231(self, simulation, period):
-        '''Avoir fiscaux et crédits d'impôt 2005 '''
         period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
@@ -688,7 +684,6 @@ class creimp(DatedVariable):
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
     def function_20060101_20061231(self, simulation, period):
-        '''Avoir fiscaux et crédits d'impôt 2006 '''
         period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
@@ -717,7 +712,6 @@ class creimp(DatedVariable):
 
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
     def function_20070101_20071231(self, simulation, period):
-        '''Avoir fiscaux et crédits d'impôt 2007 '''
         period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
@@ -747,7 +741,6 @@ class creimp(DatedVariable):
 
     @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
     def function_20080101_20081231(self, simulation, period):
-        '''Avoir fiscaux et crédits d'impôt 2008'''
         period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
@@ -778,7 +771,6 @@ class creimp(DatedVariable):
 
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
     def function_20090101_20091231(self, simulation, period):
-        '''Avoir fiscaux et crédits d'impôt 2009'''
         period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
@@ -807,7 +799,6 @@ class creimp(DatedVariable):
 
     @dated_function(start = date(2010, 1, 1), stop = date(2011, 12, 31))
     def function_20100101_20111231(self, simulation, period):
-        '''Avoir fiscaux et crédits d'impôt 2010 et 2011 '''
         period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
@@ -835,7 +826,6 @@ class creimp(DatedVariable):
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
-        '''Avoir fiscaux et crédits d'impôt 2012 '''
         period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
@@ -864,7 +854,6 @@ class creimp(DatedVariable):
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):
-        '''Avoir fiscaux et crédits d'impôt 2013 '''
         period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
         f2ck = simulation.calculate('f2ck', period)
@@ -898,7 +887,7 @@ class creimp(DatedVariable):
 class direpa(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"direpa"
+    label = u"Crédit d’impôt directive « épargne »"
 
     def function(self, simulation, period):
         '''
@@ -914,7 +903,7 @@ class direpa(Variable):
 class divide(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"divide"
+    label = u"Crédit d'impôt dividendes"
     start_date = date(2005, 1, 1)
     stop_date = date(2009, 12, 31)
 
@@ -938,7 +927,7 @@ class divide(Variable):
 class drbail(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"drbail"
+    label = u"Crédit d’impôt représentatif de la taxe additionnelle au droit de bail"
 
     def function(self, simulation, period):
         '''
@@ -956,7 +945,7 @@ class drbail(Variable):
 class inthab(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"inthab"
+    label = u"Crédit d’impôt intérêts des emprunts pour l’habitation principale"
 
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
     def function_20070101_20071231(self, simulation, period):
@@ -1162,7 +1151,7 @@ class jeunes(Variable):
 class jeunes_ind(Variable):
     column = FloatCol(default = 0)
     entity_class = Individus
-    label = u"jeunes_ind"
+    label = u"Crédit d'impôt en faveur des jeunes"
     start_date = date(2005, 1, 1)
     stop_date = date(2008, 12, 31)
 
@@ -1206,7 +1195,7 @@ class jeunes_ind(Variable):
 class mecena(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"mecena"
+    label = u"Mécénat d'entreprise"
     start_date = date(2003, 1, 1)
 
     def function(self, simulation, period):
@@ -1223,7 +1212,7 @@ class mecena(Variable):
 class percvm(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"percvm"
+    label = u"Crédit d’impôt pertes sur cessions de valeurs mobilières"
     start_date = date(2010, 1, 1)
     stop_date = date(2010, 12, 31)
 
@@ -1242,7 +1231,7 @@ class percvm(Variable):
 class preetu(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"preetu"
+    label = u"Crédit d’impôt pour souscription de prêts étudiants"
 
     @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
     def function_20050101_20051231(self, simulation, period):
@@ -1274,7 +1263,7 @@ class preetu(DatedVariable):
         max1 = P.max * (1 + f7vo)
         return period, P.taux * min_(f7uk, max1)
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2008, 1, 1))
     def function_20080101_20151231(self, simulation, period):
         '''
         Crédit d’impôt pour souscription de prêts étudiants (cases 7UK, 7VO et 7TD)
@@ -1317,7 +1306,7 @@ class prlire(Variable):
 class quaenv(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"quaenv"
+    label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale"
 
     @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
     def function_20050101_20051231(self, simulation, period):
@@ -1661,7 +1650,7 @@ class quaenv_bouquet(Variable):
 class saldom2(DatedVariable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
-    label = u"saldom2"
+    label = u"Crédit d’impôt emploi d’un salarié à domicile"
 
     @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
     def function_20070101_20081231(self, simulation, period):

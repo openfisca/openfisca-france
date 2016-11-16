@@ -1,5 +1,119 @@
 # Changelog
 
+## 4.1.19
+
+* Introduce MVA
+
+
+## 4.1.18
+
+* Introduce PCH
+
+## 4.1.17
+
+* Reimplement `rsa_indemnites_journalieres_activite` and `date_arret_de_travail` using `datetime.date.min`.
+
+## 4.1.16
+
+* Correct wrong behaviour in the combination of exemptions with the dispositif Jeune Entreprise Innovante (JEI)
+
+
+## 4.1.15
+
+* Consider some indemnités journalieres as revenus de remplacement in PPA (and RSA), according to the date of the arret de travail.
+* Introduce
+	* `rsa_indemnites_journalieres_hors_activite`
+	* `rsa_indemnites_journalieres_activite`
+	* `date_arret_de_travail`
+
+## 4.1.14
+
+* Add cerfa boxe : 3vt (PEA)
+
+## 4.1.13
+
+* Increase RSA base amount to 535.17 from September 2016
+
+## 4.1.12
+
+* Fix links in README
+
+## 4.1.11
+
+* Remove end dates where not necessary
+
+## 4.1.10
+
+* Refactor asi_aspa.py
+* Fix abattement for conjoint salary
+* Adjust interaction with AAH
+* Small fix on RSA: don't use euclidian division because of rounding issues
+* Small fix on PPA: don't take into acccount more AF that it have been declared (see 4.1.8)
+
+## 4.1.9
+
+* Tighten CMU/ACS eligibility conditions when when person is less than 25
+* Introduce `cmu_acs_eligibilite`, `habite_chez_parents`
+
+## 4.1.8
+
+* Refactor rsa.py
+* Do not take stages gratification into account
+* Do not take into acccount more AF that it have been declared
+
+## 4.1.7
+
+* Fix bug in CMU forfait_logement
+* Refactor CMU computation
+
+## 4.1.6
+
+* Fix bugs in RSA:
+  * One need to be **strictly** more that 25 to benefit it.
+  * Apply rsa_forfait_asf accordingly to the asf actually being paid.
+* Deprecate rsa_forfait_asf_individu
+
+## 4.1.5
+
+* Follow OpenFisca-Core major release
+
+## 4.1.4
+
+* Update travis procedures
+
+## 4.1.3
+
+* Delete rfr_n_1
+
+## 4.1.2
+
+* Use "python -m compileall" to check for syntax errors, not flake8
+
+## 4.1.1
+
+* Add labels to several variables
+
+## 4.1.0
+
+* Run yaml tests from CLI
+	* Exemple: `openfisca-run-test my_test.yaml`
+
+## 4.0.11
+
+* Enhance and move getting-started notebook
+
+## 4.0.10 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.9..4.0.10)
+
+* Fix Landais, Piketty, Saez reform
+
+## 4.0.9 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.8..4.0.9)
+
+* Adapt plfr2014 reform to new Reform API
+
+## 4.0.8 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.7..4.0.8)
+
+* Adapt PPA to avoid antedating paramameters of 3 months.
+
 ## 4.0.7 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.6..4.0.7)
 
 * Include ppa in minimas sociaux (mini) and update decompositions accordingly

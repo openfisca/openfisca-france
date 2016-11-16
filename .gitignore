@@ -5,10 +5,12 @@
 *.pyo
 .pydevproject
 .spyderproject
+.ipynb_checkpoints
 /.coverage
 /.noseids
 /.project
 /.settings
+/.vscode
 /build
 /cover
 /dist

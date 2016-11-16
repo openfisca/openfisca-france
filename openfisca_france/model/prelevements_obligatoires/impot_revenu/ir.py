@@ -46,21 +46,6 @@ class jour_xyz(Variable):
     entity_class = FoyersFiscaux
     label = u"Jours décomptés au titre de cette déclaration"
 
-
-
-
-class rfr_n_1(Variable):
-    column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
-    label = u"Revenu fiscal de référence année n - 1"
-
-
-class rfr_n_2(Variable):
-    column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
-    label = u"Revenu fiscal de référence année n - 2"
-
-
 class nbptr_n_2(Variable):
     column = PeriodSizeIndependentIntCol(val_type = "monetary")
     entity_class = FoyersFiscaux
@@ -373,7 +358,7 @@ class revenu_activite_non_salariee(Variable):
 class revenu_activite(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"rev_act"
+    label = u"Revenus d'activités"
 
     def function(self, simulation, period):
         ''' Revenus d'activités '''
@@ -677,7 +662,7 @@ class rev_cat_rvcm(DatedVariable):
         DEF = deficit_rcm
         return period, max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2013, 1, 1))
     def function_20130101_20151231(self, simulation, period):
         """
         Revenus des valeurs et capitaux mobiliers
@@ -805,7 +790,7 @@ class rev_cat_rfon(Variable):
 class rev_cat_rpns(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"Revenu catégoriel - Rpns"
+    label = u"Revenu catégoriel - Revenus personnels non salariés"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
 
     def function(self, simulation, period):
@@ -986,7 +971,7 @@ class rni(Variable):
 class ir_brut(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"Impot sur le revenu brut avant non imposabilité et plafonnement du quotient"
+    label = u"Impôt sur le revenu brut avant non imposabilité et plafonnement du quotient"
 
     def function(self, simulation, period):
         period = period.start.offset('first-of', 'month').period('year')
@@ -1001,7 +986,7 @@ class ir_brut(Variable):
 class ir_ss_qf(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"ir_ss_qf"
+    label = u"Impôt sans quotient familial"
 
     def function(self, simulation, period):
         '''
@@ -1019,7 +1004,7 @@ class ir_ss_qf(Variable):
 class ir_plaf_qf(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"ir_plaf_qf"
+    label = u"Impôt après plafonnement du quotient familial et réduction complémentaire"
 
     def function(self, simulation, period):
         '''
@@ -1119,7 +1104,7 @@ class ir_plaf_qf(Variable):
 class avantage_qf(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"avantage_qf"
+    label = u"Avantage quotient familial"
 
     def function(self, simulation, period):
         period = period.this_year
@@ -1206,7 +1191,7 @@ class nat_imp(Variable):
 class ip_net(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"ip_net"
+    label = u"Impôt sur le revenu après décote"
 
     def function(self, simulation, period):
         '''
@@ -1224,7 +1209,7 @@ class ip_net(Variable):
 class iaidrdi(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"iaidrdi"
+    label = u"Impôt après imputation des réductions d'impôt"
 
     def function(self, simulation, period):
         '''
@@ -1240,7 +1225,7 @@ class iaidrdi(Variable):
 class cont_rev_loc(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"cont_rev_loc"
+    label = u"Contribution sur les revenus locatifs"
     start_date = date(2001, 1, 1)
 
     def function(self, simulation, period):
@@ -1257,7 +1242,7 @@ class cont_rev_loc(Variable):
 class teicaa(Variable):  # f5rm
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"teicaa"
+    label = u"Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance"
 
     def function(self, simulation, period):
         """
@@ -1276,7 +1261,7 @@ class teicaa(Variable):  # f5rm
 class assiette_vente(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"assiette_vente"
+    label = u"Assiette régime microsociale pour les ventes"
     start_date = date(2009, 1, 1)
 
     def function(self, simulation, period):
@@ -1292,7 +1277,7 @@ class assiette_vente(Variable):
 class assiette_service(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"assiette_service"
+    label = u"Assiette régime microsociale pour les prestations et services"
     start_date = date(2009, 1, 1)
 
     def function(self, simulation, period):
@@ -1311,7 +1296,7 @@ class assiette_service(Variable):
 class assiette_proflib(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"assiette_proflib"
+    label = u"Assiette régime microsociale pour les professions libérales"
     start_date = date(2009, 1, 1)
 
     def function(self, simulation, period):
@@ -1332,7 +1317,7 @@ class assiette_proflib(Variable):
 class microsocial(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"microsocial"
+    label = u"Assiette régime microsociale totale"
     start_date = date(2009, 1, 1)
     url = "http://fr.wikipedia.org/wiki/R%C3%A9gime_micro-social"
 
@@ -1373,13 +1358,13 @@ class microentreprise(Variable):
 class plus_values(DatedVariable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"plus_values"
+    label = u"Taxation des plus_values"
 
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
     def function_20070101_20071231(self, simulation, period):  # f3sd is in f3vd holder
         """
-        Taxation des plus value
-        TODO: f3vt, 2013 f3Vg au barème / tout refaire
+        Taxation des plus values
+        TODO: 2013 f3Vg au barème / tout refaire
         """
         period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
@@ -1416,7 +1401,7 @@ class plus_values(DatedVariable):
     def function_20080101_20111231(self, simulation, period):  # f3sd is in f3vd holder
         """
         Taxation des plus value
-        TODO: f3vt, 2013 f3Vg au barème / tout refaire
+        TODO:  2013 f3Vg au barème / tout refaire
         """
         period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
@@ -1455,12 +1440,13 @@ class plus_values(DatedVariable):
     def function_20120101_20121231(self, simulation, period):  # f3sd is in f3vd holder
         """
         Taxation des plus value
-        TODO: f3vt, 2013 f3Vg au barème / tout refaire
+        TODO: 2013 f3Vg au barème / tout refaire
         """
         period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
         f3vh = simulation.calculate('f3vh', period)
         f3vl = simulation.calculate('f3vl', period)
+        f3vt = simulation.calculate('f3vt', period)
         f3vm = simulation.calculate('f3vm', period)
         f3vi_holder = simulation.compute('f3vi', period)
         f3vf_holder = simulation.compute('f3vf', period)
@@ -1482,6 +1468,7 @@ class plus_values(DatedVariable):
                plus_values.taux1 * max_(0, f3vg - f3vh) +
                plus_values.caprisque * f3vl +
                plus_values.pea * f3vm +
+               plus_values.pea2 * f3vt +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
         # revenus taxés à un taux proportionnel
@@ -1494,17 +1481,18 @@ class plus_values(DatedVariable):
                 # TODO: chek this rpns missing ?
         return period, round(out)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2013, 1, 1))
     def function_20130101_20151231(self, simulation, period):  # f3sd is in f3vd holder
         """
         Taxation des plus value
-        TODO: f3vt, 2013 f3Vg au barème / tout refaire
+        TODO: 2013 f3Vg au barème / tout refaire
         """
         period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
         f3vh = simulation.calculate('f3vh', period)
         f3vl = simulation.calculate('f3vl', period)
         f3vm = simulation.calculate('f3vm', period)
+        f3vt = simulation.calculate('f3vt', period)
         f3vi_holder = simulation.compute('f3vi', period)
         f3vf_holder = simulation.compute('f3vf', period)
         f3vd_holder = simulation.compute('f3vd', period)
@@ -1527,6 +1515,7 @@ class plus_values(DatedVariable):
                plus_values.taux1 * max_(0, f3vg - f3vh) +
                plus_values.caprisque * f3vl +
                plus_values.pea * f3vm +
+               plus_values.pea2 * f3vt +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
 
@@ -1544,7 +1533,7 @@ class plus_values(DatedVariable):
 class iai(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"Impôt avant imputations"
+    label = u"Impôt avant imputations de l'impôt sur le revenu"
     url = "http://forum-juridique.net-iris.fr/finances-fiscalite-assurance/43963-declaration-impots.html"
 
     def function(self, simulation, period):
@@ -1707,7 +1696,7 @@ class rev_cap_bar(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"rev_cap_bar"
+    label = u"Revenus du capital imposés au barème"
     set_input = set_input_divide_by_period
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
 
@@ -1746,7 +1735,7 @@ class rev_cap_lib(DatedVariable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"rev_cap_lib"
+    label = u"Revenu du capital imposé au prélèvement libératoire"
     set_input = set_input_divide_by_period
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
 
@@ -1762,7 +1751,7 @@ class rev_cap_lib(DatedVariable):
         out = f2dh + f2ee
         return period, out * not_(finpfl) / 12
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2015, 12, 31))
+    @dated_function(start = date(2008, 1, 1))
     def function_20080101_20151231(self, simulation, period):
         period = period.this_month
         year = period.this_year
@@ -1779,7 +1768,7 @@ class rev_cap_lib(DatedVariable):
 class avf(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"avf"
+    label = u"Avoir fiscal et crédits d'impôt"
 
     def function(self, simulation, period):
         '''
@@ -1794,7 +1783,7 @@ class avf(Variable):
 class imp_lib(DatedVariable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"imp_lib"
+    label = u"Prelèvement libératoire sur les revenus du capital"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
@@ -1832,7 +1821,7 @@ class imp_lib(DatedVariable):
 class fon(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"fon"
+    label = u"Revenus fonciers"
     url = "http://impotsurlerevenu.org/definitions/220-revenu-foncier.php"
 
     def function(self, simulation, period):
@@ -1853,7 +1842,7 @@ class fon(Variable):
 class rpns_pvce(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"rpns_pvce"
+    label = u"Plus values de cession - Revenu des professions non salariées"
 
     def function(self, simulation, period):
         '''
@@ -1889,7 +1878,7 @@ class rpns_pvce(Variable):
 class rpns_exon(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"rpns_exon"
+    label = u"Plus values de cession exonérées -Revenu des professions non salariées"
 
     def function(self, simulation, period):
         '''
@@ -2059,7 +2048,7 @@ class defmeu(Variable):
 class rag(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"rag"
+    label = u"Revenus agricoles"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=BA&pageId=prof_ba&sfid=50"
 
     def function(self, simulation, period):
@@ -2161,7 +2150,7 @@ class ric(Variable):
 class rac(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"rac"
+    label = u"Revenus accessoires individuels"
     url = "http://vosdroits.service-public.fr/particuliers/F1225.xhtml"
 
     def function(self, simulation, period):
@@ -2222,7 +2211,7 @@ class rac(Variable):
 class rnc(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"rnc"
+    label = u"Revenus non commerciaux individuels"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
 
     def function(self, simulation, period):
@@ -2278,7 +2267,7 @@ class rpns(Variable):
 class rpns_pvct(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"rpns_pvct"
+    label = u"Plus values de court terme -Revenu des professions non salariées"
 
     def function(self, simulation, period):
         '''
@@ -2303,7 +2292,7 @@ class rpns_pvct(Variable):
 class rpns_mvct(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"rpns_mvct"
+    label = u"Moins values de court terme - Revenu des professions non salariées"
 
     def function(self, simulation, period):
         """Moins values de court terme
@@ -2326,7 +2315,7 @@ class rpns_mvct(Variable):
 class rpns_mvlt(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"rpns_mvlt"
+    label = u"Moins values de long terme - Revenu des professions non salariées"
 
     def function(self, simulation, period):
         '''
@@ -2349,7 +2338,7 @@ class rpns_mvlt(Variable):
 class rpns_individu(Variable):
     column = FloatCol
     entity_class = Individus
-    label = u"rpns_i"
+    label = u"Revenus des professions non salariées individuels"
 
     def function(self, simulation, period):
         '''
@@ -2696,7 +2685,7 @@ class nbptr(Variable):
 class ppe_coef(Variable):
     column = FloatCol
     entity_class = FoyersFiscaux
-    label = u"ppe_coef"
+    label = u"Coefficient - Prime pour l'emploi"
 
     def function(self, simulation, period):
         '''

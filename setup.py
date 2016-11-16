@@ -1,15 +1,13 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" -- a versatile microsimulation free software"""
-
 
 from setuptools import setup, find_packages
 
 
 setup(
     name = 'OpenFisca-France',
-    version = '4.0.7',
+    version = '4.1.19',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -28,6 +26,9 @@ setup(
         ('share/locale/fr/LC_MESSAGES', ['openfisca_france/i18n/fr/LC_MESSAGES/openfisca-france.mo']),
         ('share/openfisca/openfisca-france', ['CHANGELOG.md', 'LICENSE', 'README.md']),
         ],
+    entry_points = {
+        'console_scripts': ['openfisca-run-test=openfisca_france.tests.test_yaml:main'],
+        },
     extras_require = {
         'inversion_revenus': [
             'scipy >= 0.17',
@@ -47,7 +48,7 @@ setup(
         'Babel >= 0.9.4',
         'Biryani[datetimeconv] >= 0.10.4',
         'numpy >= 1.11',
-        'OpenFisca-Core ~= 2.0',
+        'OpenFisca-Core >= 3.0.0, < 4.0',
         'PyYAML >= 3.10',
         'requests >= 2.8',
         ],

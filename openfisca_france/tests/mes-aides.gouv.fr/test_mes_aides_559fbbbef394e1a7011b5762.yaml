@@ -2,6 +2,7 @@ name: personne seule sans activité 3 enfants
 keywords:
   - recette
   - rsa
+ignore: True # Application d'une sanction ASF non prise en compte par Openfisca car trop aléatoire.
 description: Test créé à partir d'un dossier de demande de RSA, APL
 period: "month:2015-07"
 relative_error_margin: 0.02

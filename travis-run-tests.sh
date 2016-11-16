@@ -1,8 +1,8 @@
 #! /usr/bin/env bash
 
 # This script is the entry point for the Travis tests platform.
-# It allows Travis to checkout on OpenFisca-Core the git branch with the same name than the tested branch,
-# so that the pull-request merge status remains valid.
+# It first checks that the package version has been updated ("bump" in the jargon),
+# then it runs tests via "make test".
 
 
 set -x
@@ -24,15 +24,5 @@ then
         exit 1
     fi
 fi
-
-
-if [[ "$TRAVIS_BRANCH" != "master" && -z "$TRAVIS_TAG" ]]
-then
-    OPENFISCA_CORE_DIR=`python -c "import pkg_resources; print pkg_resources.get_distribution('OpenFisca-Core').location"`
-    pushd "$OPENFISCA_CORE_DIR"
-    git checkout "$TRAVIS_BRANCH"
-    popd
-fi
-
 
 make test

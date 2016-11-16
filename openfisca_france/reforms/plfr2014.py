@@ -5,25 +5,21 @@ from __future__ import division
 from datetime import date
 
 from numpy import maximum as max_, minimum as min_
-from openfisca_core import columns, reforms
+from openfisca_core import columns
+from openfisca_core.reforms import Reform
 
 from .. import entities
-from ..model.base import dated_function
+from ..model.base import DatedVariable, dated_function, date
 from ..model.prelevements_obligatoires.impot_revenu import reductions_impot
 
 
 # TODO: les baisses de charges n'ont pas été codées car annulées (toute ou en partie ?)
 # par le Conseil constitutionnel
 
+class plfr2014(Reform):
+    name = u'Projet de Loi de Finances Rectificative 2014'
 
-def build_reform(tax_benefit_system):
-    Reform = reforms.make_reform(
-        key = u'plfr2014',
-        name = u'Projet de Loi de Finances Rectificative 2014',
-        reference = tax_benefit_system,
-        )
-
-    class reduction_impot_exceptionnelle(Reform.DatedVariable):
+    class reduction_impot_exceptionnelle(DatedVariable):
         reference = reductions_impot.reduction_impot_exceptionnelle
 
         @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
@@ -37,7 +33,7 @@ def build_reform(tax_benefit_system):
             montant = params.montant_plafond * nb_adult
             return period, min_(max_(plafond + montant - rfr, 0), montant)
 
-    class reductions(Reform.DatedVariable):
+    class reductions(DatedVariable):
         label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
         reference = reductions_impot.reductions
 
@@ -79,9 +75,10 @@ def build_reform(tax_benefit_system):
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
             return period, min_(ip_net, total_reductions)
 
-    reform = Reform()
-    reform.modify_legislation_json(modifier_function = modify_legislation_json)
-    return reform
+    def apply(self):
+        for variable in [self.reduction_impot_exceptionnelle, self.reductions]:
+            self.update_variable(variable)
+        self.modify_legislation_json(modifier_function = modify_legislation_json)
 
 
 def modify_legislation_json(reference_legislation_json_copy):
