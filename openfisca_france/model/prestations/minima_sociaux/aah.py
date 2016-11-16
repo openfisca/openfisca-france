@@ -338,6 +338,11 @@ class caah(DatedVariable):
 
         return period, ancien_caah
 
+class mva(Variable):
+    entity_class = Individus
+    column = FloatCol
+    label = u"Majoration pour la vie autonome"
+
 class pch(Variable):
     entity_class = Individus
     column = FloatCol
