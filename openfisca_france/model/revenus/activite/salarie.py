@@ -479,12 +479,14 @@ class heures_non_remunerees_volume(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)"
+    set_input = set_input_divide_by_period
 
 
 class heures_remunerees_volume(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Volume des heures rémunérées contractuellement (heures/mois, temps partiel)"
+    set_input = set_input_divide_by_period
 
 
 class forfait_heures_remunerees_volume(Variable):
