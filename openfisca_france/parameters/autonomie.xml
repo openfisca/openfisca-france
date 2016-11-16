@@ -1,4 +1,9 @@
 <NODE code="autonomie" origin="ipp">
+  <NODE code="age_ouverture_des_droits" origin="ipp">
+    <CODE code="age_d_ouverture_des_droits" origin="ipp">
+      <VALUE deb="2002-01-01" fuzzy="true" valeur="60" />
+    </CODE>
+  </NODE>
   <NODE code="apa_domicile" origin="ipp">
     <NODE code="apa_d_urgence" origin="ipp">
       <CODE code="part_du_plafond_de_l_apa_a_domicile" origin="ipp">
@@ -37,6 +42,13 @@
         <VALUE deb="2002-01-01" fin="2004-10-25" valeur="3.4" />
       </CODE>
     </NODE>
+    <CODE code="taux_de_participation_maximum" origin="ipp">
+      <VALUE deb="2004-10-26" fuzzy="true" valeur="0.9" />
+      <VALUE deb="2002-01-01" fin="2004-10-25" valeur="0.8" />
+    </CODE>
+    <CODE code="taux_de_participation_minimum" origin="ipp">
+      <VALUE deb="2002-01-01" fuzzy="true" valeur="0" />
+    </CODE>
   </NODE>
   <NODE code="apa_institution" origin="ipp">
     <NODE code="apa_d_urgence" origin="ipp">
@@ -73,6 +85,11 @@
       <VALUE deb="2004-01-01" fin="2004-12-31" valeur="945.87" />
       <VALUE deb="2003-01-01" fin="2003-12-31" valeur="930.05" />
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="916.31" />
+    </CODE>
+  </NODE>
+  <NODE code="seuil_de_non_versement_de_l_apa" origin="ipp">
+    <CODE code="age_d_ouverture_des_droits" origin="ipp">
+      <VALUE deb="2002-01-01" fuzzy="true" valeur="3" />
     </CODE>
   </NODE>
 </NODE>
