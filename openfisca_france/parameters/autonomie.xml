@@ -87,9 +87,11 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="916.31" />
     </CODE>
   </NODE>
-  <NODE code="seuil_de_non_versement_de_l_apa" origin="ipp">
-    <CODE code="age_d_ouverture_des_droits" origin="ipp">
-      <VALUE deb="2002-01-01" fuzzy="true" valeur="3" />
-    </CODE>
+  <NODE code="seuil_de_versement_de_l_apa" origin="ipp">
+    <NODE code="seuil_versement" origin="ipp">
+      <CODE code="seuil_de_versement_de_l_apa" origin="ipp">
+        <VALUE deb="2002-01-01" fuzzy="true" valeur="3" />
+      </CODE>
+    </NODE>
   </NODE>
 </NODE>
