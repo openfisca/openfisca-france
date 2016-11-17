@@ -1,5 +1,6 @@
 - name: "base ressources APA domicile celibataire sans ressources GIR 1"
   description: Montant base ressources
+  ignore: "true"
   period: 2014-05
   absolute_error_margin: 0.01
   input_variables:
@@ -10,6 +11,7 @@
 
 - name: "plan d'aide APA domicile celibataire sans ressources GIR 1"
   description: Montant base ressources
+  ignore: "true"
   period: 2014-05
   absolute_error_margin: 0.03
   input_variables:
@@ -23,6 +25,7 @@
 
 - name: "APA domicile celibataire sans ressources GIR 1"
   description: Montant APA
+  ignore: "true"
   period: 2014-05
   absolute_error_margin: 0.03
   input_variables:
@@ -36,6 +39,7 @@
 
 - name: "APA condition d'âge - test l'âge d'ouverture à domicile"
   description: Montant APA
+  ignore: "true"
   period: 2014-05
   absolute_error_margin: 0.03
   input_variables:
@@ -48,6 +52,7 @@
 
 - name: "APA condition d'âge - test l'âge d'ouverture en établissement"
   description: Montant APA
+  ignore: "true"
   period: 2014-05
   absolute_error_margin: 0.03
   input_variables:
@@ -62,6 +67,7 @@
 
 - name: "APA établissement célibataire ressources supérieures seuil 2 GIR 1 - test ressource seuil 2 établissement"
   description: Montant APA
+  ignore: "true"
   period: 2014-05
   absolute_error_margin: 0.03
   input_variables:
@@ -76,6 +82,7 @@
 
 - name: "APA établissement célibataire ressources entre seuil 1 et 2 GIR 1 - test ressource entre seuil 1 et 2 établsisement"
   description: Montant APA
+  ignore: "true"
   period: 2014-05
   absolute_error_margin: 0.03
   input_variables:
@@ -90,6 +97,7 @@
 
 - name: "APA établissement célibataire ressources inférieures seuil 1 GIR 3 - test ressource seuil 1 établissement"
   description: Montant APA
+  ignore: "true"
   period: 2014-05
   absolute_error_margin: 0.03
   input_variables:
@@ -104,6 +112,7 @@
 
 - name: "APA domicile célibataire ressources inférieures seuil 1 GIR 3 - test ressource seuil 1 domicile"
   description: Montant APA
+  ignore: "true"
   period: 2014-05
   absolute_error_margin: 0.03
   input_variables:
@@ -117,6 +126,7 @@
 
 - name: "APA domicile célibataire ressources inférieures seuil 1 GIR 5 - test gir à domicile"
   description: Montant APA
+  ignore: "true"
   period: 2014-05
   absolute_error_margin: 0.03
   input_variables:
@@ -130,6 +140,7 @@
 
 - name: "APA établissement célibataire ressources inférieures seuil 1 GIR 5 - test gir en établissement"
   description: Montant APA
+  ignore: "true"
   period: 2014-05
   absolute_error_margin: 0.03
   input_variables:
@@ -144,6 +155,7 @@
 
 - name: "APA établissement célibataire ressources inférieures seuil 1 et GIR 3 - test année en établissement"
   description: Montant APA
+  ignore: "true"
   period: 2013-05
   absolute_error_margin: 0.03
   input_variables:
@@ -158,6 +170,7 @@
 
 - name: "APA domicile célibataire ressources supérieures à seuil 2 et GIR 3 - test année à domicile"
   description: Montant APA
+  ignore: "true"
   period: 2013-05
   absolute_error_margin: 0.03
   input_variables:
@@ -171,6 +184,7 @@
 
 - name: "APA établissement célibataire ressources inférieures seuil 1 et GIR 3 - test le reste-a-vivre"
   description: Montant APA
+  ignore: "true"
   period: 2014-05
   absolute_error_margin: 0.03
   input_variables:
@@ -185,6 +199,7 @@
 
 - name: "APA domicile célibataire ressources inférieures seuil 1 et GIR 3 - test plafond sup gir 3"
   description: Montant APA
+  ignore: "true"
   period: 2013-05
   absolute_error_margin: 0.03
   input_variables:
@@ -198,6 +213,7 @@
 
 - name: "APA domicile célibataire ressources inférieur seuil 1 et GIR 1 - test plafond sup gir 1"
   description: Montant APA
+  ignore: "true"
   period: 2013-05
   absolute_error_margin: 0.03
   input_variables:
@@ -212,6 +228,7 @@
 - name: "APA domicile célibataire ressources inférieur seuil 1 et GIR 1 - test plafond inf gir 4"
   description: Montant APA
   period: 2013-05
+  ignore: "true"
   absolute_error_margin: 0.03
   input_variables:
     age: 75
