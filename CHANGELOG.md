@@ -14,6 +14,9 @@
 	* `place_hebergement`
 	* `ada`
 
+## 4.1.20
+
+ * Set `set_input` attribute to `set_input_divide_by_period` for variables `heures_remunerees_volume` et `heures_non_remunerees_volume`.
 
 ## 4.1.19
 

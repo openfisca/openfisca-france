@@ -479,12 +479,14 @@ class heures_non_remunerees_volume(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)"
+    set_input = set_input_divide_by_period
 
 
 class heures_remunerees_volume(Variable):
     column = FloatCol()
     entity_class = Individus
     label = u"Volume des heures rémunérées contractuellement (heures/mois, temps partiel)"
+    set_input = set_input_divide_by_period
 
 
 class forfait_heures_remunerees_volume(Variable):
@@ -675,7 +677,7 @@ class primes_fonction_publique(Variable):
 class af_nbenf_fonc(Variable):
     column = IntCol
     entity_class = Familles
-    label = u"Nombre d'enfants dans la famille au sens des allocations familiales pour le fonctionnaires"
+    label = u"Nombre d'enfants dans la famille au sens des allocations familiales pour les fonctionnaires"
     # Hack pour éviter une boucle infinie
 
     def function(self, simulation, period):
