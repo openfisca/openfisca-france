@@ -525,7 +525,7 @@ class avantage_en_nature_valeur_forfaitaire(Variable):
     entity_class = Individus
     label = u"Evaluation fofaitaire des avantages en nature "
 
-    # TODO: coplete this function
+    # TODO: complete this function
     def function(self, simulation, period):
         period = period
         avantage_en_nature_valeur_reelle = simulation.calculate('avantage_en_nature_valeur_reelle', period)
