@@ -373,7 +373,7 @@ class mini(Variable):
         aah = self.sum_by_entity(aah_holder)
         caah = self.sum_by_entity(caah_holder)
 
-        return period, aspa + aah + caah + asi + rsa + aefa + api + ass + psa + ppa 
+        return period, aspa + aah + caah + asi + rsa + aefa + api + ass + psa + ppa
 
 
 class aides_logement(Variable):
