@@ -153,6 +153,7 @@ def check(yaml_path, name, period_str, test, force, verbose = False):
     scenario.suggest()
     simulation = scenario.new_simulation(debug = verbose)
     output_variables = test.get(u'output_variables')
+    sum_over_period = test.get(u'sum_over_period') or False
     if output_variables is not None:
         output_variables_name_to_ignore = test.get(u'output_variables_name_to_ignore') or set()
         for variable_name, expected_value in output_variables.iteritems():
@@ -160,16 +161,26 @@ def check(yaml_path, name, period_str, test, force, verbose = False):
                 continue
             if isinstance(expected_value, dict):
                 for requested_period, expected_value_at_period in expected_value.iteritems():
+                    computed_value = (
+                        simulation.calculate(variable_name, requested_period)
+                        if not sum_over_period
+                        else simulation.calculate_add(variable_name, requested_period)
+                        )
                     assert_near(
-                        simulation.calculate(variable_name, requested_period),
+                        computed_value,
                         expected_value_at_period,
                         absolute_error_margin = test.get('absolute_error_margin'),
                         message = u'{}@{}: '.format(variable_name, requested_period),
                         relative_error_margin = test.get('relative_error_margin'),
                         )
             else:
+                computed_value = (
+                    simulation.calculate(variable_name, requested_period)
+                    if not sum_over_period
+                    else simulation.calculate_add(variable_name, requested_period)
+                    )
                 assert_near(
-                    simulation.calculate(variable_name),
+                    computed_value,
                     expected_value,
                     absolute_error_margin = test.get('absolute_error_margin'),
                     message = u'{}@{}: '.format(variable_name, period_str),
