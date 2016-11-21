@@ -30,7 +30,7 @@ class assiette_cotisations_sociales(Variable):
         # period = period.start.offset('first-of', 'month').period(u'month')
         assiette_cotisations_sociales_prive = simulation.calculate_add('assiette_cotisations_sociales_prive', period)
         assiette_cotisations_sociales_public = simulation.calculate_add('assiette_cotisations_sociales_public', period)
-        stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
+        stage_gratification_reintegration = simulation.calculate_add('stage_gratification_reintegration', period)
         return period, (
             assiette_cotisations_sociales_prive +
             assiette_cotisations_sociales_public +
@@ -639,7 +639,7 @@ class prevoyance_obligatoire_cadre(Variable):
         # period = period.start.period(u'month').offset('first-of')
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
-        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        plafond_securite_sociale = simulation.calculate_add('plafond_securite_sociale', period)
         prevoyance_obligatoire_cadre_taux_employeur = simulation.calculate(
             'prevoyance_obligatoire_cadre_taux_employeur', period)
 

@@ -28,10 +28,10 @@ class assiette_csg_abattue(Variable):
         # indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
         # TODO: mettre à part ?
         indemnite_residence = simulation.calculate('indemnite_residence', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
         hsup = simulation.calculate('hsup', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
-        stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
+        stage_gratification_reintegration = simulation.calculate_add('stage_gratification_reintegration', period)
         indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
 
         return period, (
@@ -191,12 +191,12 @@ class salaire_imposable(Variable):
         primes_salaires = simulation.calculate('primes_salaires', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         indemnite_residence = simulation.calculate('indemnite_residence', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
         csg_deductible_salaire = simulation.calculate('csg_deductible_salaire', period)
         cotisations_salariales = simulation.calculate('cotisations_salariales', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
         hsup = simulation.calculate('hsup', period)
-        rev_microsocial_declarant1 = simulation.calculate_divide('rev_microsocial_declarant1', period)
+        rev_microsocial_declarant1 = simulation.calculate('rev_microsocial_declarant1', period)
         indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
         complementaire_sante_salarie = simulation.calculate('complementaire_sante_salarie', period)
 
@@ -257,16 +257,21 @@ class rev_microsocial(Variable):
     url = u"http://www.apce.com/pid6137/regime-micro-social.html"
 
     def function(self, simulation, period):
-        period = period.this_year
-        assiette_service = simulation.calculate('assiette_service', period)
-        assiette_vente = simulation.calculate('assiette_vente', period)
-        assiette_proflib = simulation.calculate('assiette_proflib', period)
+        assiette_service = simulation.calculate('assiette_service', period.this_year)
+        assiette_vente = simulation.calculate('assiette_vente', period.this_year)
+        assiette_proflib = simulation.calculate('assiette_proflib', period.this_year)
         _P = simulation.legislation_at(period.start)
 
         P = _P.cotsoc.sal.microsocial
-        total = assiette_service + assiette_vente + assiette_proflib
-        prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
-        return period, total - prelsoc_ms
+        revenu_net = (
+            assiette_service * (1 - P.servi) +
+            assiette_vente * (1 - P.vente) +
+            assiette_proflib * (1 - P.rsi)
+            )
+        if period.unit == "month":
+            revenu_net = revenu_net / 12
+
+        return period, revenu_net
 
 
 class rev_microsocial_declarant1(EntityToPersonColumn):
