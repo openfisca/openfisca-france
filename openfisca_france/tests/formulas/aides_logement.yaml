@@ -168,3 +168,20 @@
     aide_logement_participation_personelle: 34.73 + (0.0283 + 0.00404) * 7407  # 274.27
     aide_logement_montant_brut: 292.62 + 53.23 - 274.27 # 71.58
 
+- name: "Personne isolée, degressivité"
+  period: 2016-09
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+    zone_apl_famille: 1
+    loyer_famille: 1054.26
+    aide_logement_base_ressources: 12000
+    statut_occupation_logement_famille: 4  # Locataire
+  individus:
+    - id: "parent1"
+      age: 40
+  output_variables:
+    aide_logement_montant_avant_degressivite: 79.08
+    aide_logement_loyer_degressivite: 995.69
+    aide_logement_loyer_suppression: 1171.40
+    aide_logement_montant: 52.72

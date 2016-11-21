@@ -183,6 +183,12 @@
         <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.75" />
       </CODE>
       <NODE code="zone1" description="Zone 1">
+        <CODE code="degressivite" description="Zone 1 - coeff degressivité" format="float">
+          <VALUE deb="2016-07-01" fuzzy="true" valeur="3.4" />
+        </CODE>
+        <CODE code="suppression" description="Zone 1 - coeff suppression" format="float">
+          <VALUE deb="2016-07-01" fuzzy="true" valeur="4.0" />
+        </CODE>
         <CODE code="L1" description="Zone 1 - 1 adulte" format="float" type="monetary">
           <VALUE deb="2015-10-01" fuzzy="true" valeur="292.62" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="292.62" />
@@ -245,6 +251,12 @@
         </CODE>
       </NODE>
       <NODE code="zone2" description="Zone 2">
+        <CODE code="degressivite" description="Zone 2 - coeff degressivité" format="float">
+          <VALUE deb="2016-07-01" fuzzy="true" valeur="2.5" />
+        </CODE>
+        <CODE code="suppression" description="Zone 2 - coeff suppression" format="float">
+          <VALUE deb="2016-07-01" fuzzy="true" valeur="3.1" />
+        </CODE>
         <CODE code="L1" description="Zone 2 - 1 adulte" format="float" type="monetary">
           <VALUE deb="2015-10-01" fuzzy="true" valeur="255.03" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="255.03" />
@@ -307,6 +319,12 @@
         </CODE>
       </NODE>
       <NODE code="zone3" description="Zone 3">
+        <CODE code="degressivite" description="Zone 3 - coeff degressivité" format="float">
+          <VALUE deb="2016-07-01" fuzzy="true" valeur="2.5" />
+        </CODE>
+        <CODE code="suppression" description="Zone 3 - coeff suppression" format="float">
+          <VALUE deb="2016-07-01" fuzzy="true" valeur="3.1" />
+        </CODE>
         <CODE code="L1" description="Zone 3 - 1 adulte" format="float" type="monetary">
           <VALUE deb="2015-10-01" fuzzy="true" valeur="239.02" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="239.02" />
