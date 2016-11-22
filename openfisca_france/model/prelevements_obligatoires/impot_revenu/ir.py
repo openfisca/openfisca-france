@@ -168,26 +168,6 @@ class nbF(Variable):
         return period, self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array))
 
 
-# class nombre_enfants_a_charge_menage(PersonToEntityColumn):
-#     entity_class = Menages
-#     label = u"Nombre d'enfants à charge  non mariés, de moins de 18 ans au 1er janvier de l'année de perception des" \
-#         u" revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
-#     operation = 'add'
-#     variable = enfant_a_charge
-#
-#
-# class enfant_a_charge_invalide(Variable):
-#     column = BoolCol
-#     entity_class = Individus
-#     label = u"Enfant à charge titulaire de la carte d'invalidité"
-#
-#     def function(self, simulation, period):
-#         period = period.this_year
-#         enfant_a_charge = simulation.compute('enfant_a_charge', period)
-#         garde_alternee = simulation.compute('garde_alternee', period)
-#         return period, self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array))
-
-
 class nbG(Variable):
     cerfa_field = u'G'
     entity_class = FoyersFiscaux
@@ -206,8 +186,7 @@ class nbH(Variable):
     cerfa_field = u'H'
     entity_class = FoyersFiscaux
     column = FloatCol
-    label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de" \
-        u" l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
+    label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
 
     def function(self, simulation, period):
         period = period.this_year
