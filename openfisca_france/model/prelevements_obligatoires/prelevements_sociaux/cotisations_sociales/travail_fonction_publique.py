@@ -19,7 +19,7 @@ class allocations_temporaires_invalidite(Variable):
     def function(self, simulation, period):
         # period = period.this_month
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
-        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        plafond_securite_sociale = simulation.calculate_add('plafond_securite_sociale', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         _P = simulation.legislation_at(period.start)
 
@@ -241,7 +241,7 @@ class rafp_salarie(DatedVariable):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         _P = simulation.legislation_at(period.start)
 
