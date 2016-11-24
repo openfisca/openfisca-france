@@ -295,10 +295,17 @@ class rsa_enfant_a_charge(Variable):
             (1 - P_rsa.pente) * individu('rsa_revenu_activite_individu', period)
             )
 
-        if period.start.date > date(2009, 5, 31):
+        # Les parametres ont changé de nom au moment où le RMI est devenu le RSA
+        if period.start.date >= date(2009, 6, 01):
             age_pac = P_rsa.age_pac
+            majo_rsa = P_rsa.majo_rsa
+            montant_base_rsa = P_rsa.montant_de_base_du_rsa
+            taux_personne_supp = P_rsa.majoration_rsa.taux_personne_supp
         else:
             age_pac = P_rmi.age_pac
+            majo_rsa = P_rmi.majo_rsa
+            montant_base_rsa = P_rmi.rmi
+            taux_personne_supp = P_rmi.txps
 
         # Règle CAF: Si un enfant touche des ressources, et que son impact global
         # (augmentation du montant forfaitaire - ressources prises en compte) fait baisser le montant du RSA, alors
@@ -319,18 +326,11 @@ class rsa_enfant_a_charge(Variable):
             # individu.famille.sum retourne un résultat qui n'est pas implicitement projeté sur l'individu.
             return not_(enceinte_fam) * isole * isolement_recent * not_(famille.project(presence_autres_enfants))
 
-        if period.start.date > date(2009, 5, 31):
-            rsa_enf_charge = enfant * not_(autonomie_financiere) * (age <= P_rsa.age_pac) * where(
-                ouvre_droit_majoration(),
-                ressources < (P_rsa.majo_rsa.pac0 - 1 + P_rsa.majo_rsa.pac_enf_sup) * P_rsa.montant_de_base_du_rsa,
-                ressources < P_rsa.majoration_rsa.taux_personne_supp * P_rsa.montant_de_base_du_rsa
-                )
-        else:
-            rsa_enf_charge = enfant * not_(autonomie_financiere) * (age <= P_rmi.age_pac) * where(
-                ouvre_droit_majoration(),
-                ressources < (P_rmi.majo_rsa.pac0 - 1 + P_rmi.majo_rsa.pac_enf_sup) * P_rmi.rmi,
-                ressources < P_rmi.txps * P_rmi.rmi
-                )
+        rsa_enf_charge = enfant * not_(autonomie_financiere) * (age <= age_pac) * where(
+            ouvre_droit_majoration(),
+            ressources < (majo_rsa.pac0 - 1 + majo_rsa.pac_enf_sup) * montant_base_rsa,
+            ressources < taux_personne_supp * montant_base_rsa
+            )
 
         return period, rsa_enf_charge
 
