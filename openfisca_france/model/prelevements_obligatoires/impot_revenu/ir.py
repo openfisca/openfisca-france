@@ -195,18 +195,6 @@ class nbH(Variable):
         return period, self.sum_by_entity(enfant_a_charge.array * garde_alternee.array)
 
 
-class enfant_a_charge_garde_alternee_invalide(Variable):
-    column = BoolCol
-    entity = Individu
-    label = u"Enfant à charge en résidence alternée titulaire de la carte d'invalidité"
-
-    def function(self, simulation, period):
-        period = period.this_year
-        enfant_a_charge = simulation.compute('enfant_a_charge', period)
-        garde_alternee = simulation.compute('garde_alternee', period)
-        return period, self.sum_by_entity(enfant_a_charge.array * garde_alternee.array)
-
-
 class nbI(Variable):
     cerfa_field = u'I'
     entity = FoyerFiscal
