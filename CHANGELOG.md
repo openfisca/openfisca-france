@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.1
+
+* Add set_input_divide_by_period for:
+	* `chomage_brut`
+	* `retraite_brute`
+
 ## 5.0.0
 
 * Adapt France to Openfisca-Core#v4

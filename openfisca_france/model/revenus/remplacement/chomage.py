@@ -20,6 +20,7 @@ class chomeur_longue_duree(Variable):
 class chomage_brut(Variable):
     column = FloatCol()
     entity = Individu
+    set_input = set_input_divide_by_period
     label = u"Chômage brut"
 
 
