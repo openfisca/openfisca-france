@@ -646,19 +646,9 @@ class rsa_forfait_logement(Variable):
 
     def function(famille, period, legislation):
         period = period.this_month
-        if period.start.date > date(2009, 5, 31):
-            forf_logement = legislation(period).prestations.minima_sociaux.rsa.forfait_logement
-            rsa = legislation(period).prestations.minima_sociaux.rsa.montant_de_base_du_rsa
-            rsa_socle = famille('rsa_socle', period)
-            major_rsa = legislation(period).prestations.minima_sociaux.rsa.majoration_rsa
-        else:
-            forf_logement = legislation(period).prestations.minima_sociaux.rmi.forfait_logement
-            rmi = legislation(period).prestations.minima_sociaux.rmi.rmi
 
-        nb_pac = famille('nb_parents', period) + famille('rsa_nb_enfants', period)
+        np_pers = famille('nb_parents', period) + famille('rsa_nb_enfants', period)
         aide_logement = famille('aide_logement', period)
-
-
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         participation_frais = famille.demandeur.menage('participation_frais', period)
         loyer = famille.demandeur.menage('loyer', period)
@@ -669,20 +659,30 @@ class rsa_forfait_logement(Variable):
             )
         avantage_al = aide_logement > 0
 
-        if period.start.date > date(2009, 5, 31):
-            montant_forfait = rsa * (
-                (nb_pac == 1) * forf_logement.taux_1_personne +
-                (nb_pac == 2) * forf_logement.taux_2_personnes * (1 + major_rsa.taux_deuxieme_personne) +
-                (nb_pac >= 3) * forf_logement.taux_3_personnes_ou_plus * (
-                    1 + major_rsa.taux_deuxieme_personne + major_rsa.taux_troisieme_personne
-                    )
-                )
+
+        # Les parametres ont changé de nom au moment où le RMI est devenu le RSA
+        # Pour le RSA, on utilise les taux des textes de lois, pour le RMI ils sont déjà aggrégés
+        # Il faudrait uniformiser, mais les taux légaux pour le RMI commencent par "1", et ne passent pas en python
+        if period.start.date >= date(2009, 6, 01):
+            params = legislation(period).prestations.minima_sociaux.rsa
+            montant_base = params.montant_de_base_du_rsa
+            taux_2p = 1 + params.majoration_rsa.taux_deuxieme_personne
+            taux_3p = taux_2p + params.majoration_rsa.taux_troisieme_personne
+            forf_logement_taux_1p = params.forfait_logement.taux_1_personne
+            forf_logement_taux_2p = params.forfait_logement.taux_2_personnes * taux_2p
+            forf_logement_taux_3p = params.forfait_logement.taux_3_personnes_ou_plus * taux_3p
         else:
-            montant_forfait = rmi * (
-                (nb_pac == 1) * forf_logement.taux1 +
-                (nb_pac == 2) * forf_logement.taux2 +
-                (nb_pac >= 3) * forf_logement.taux3
-                )
+            params = legislation(period).prestations.minima_sociaux.rmi
+            montant_base = params.rmi
+            forf_logement_taux_1p = params.forfait_logement.taux1
+            forf_logement_taux_2p = params.forfait_logement.taux2
+            forf_logement_taux_3p = params.forfait_logement.taux3
+
+        montant_forfait = montant_base * (
+            (np_pers == 1) * forf_logement_taux_1p +
+            (np_pers == 2) * forf_logement_taux_2p +
+            (np_pers >= 3) * forf_logement_taux_3p
+            )
 
         montant_al = avantage_al * min_(aide_logement, montant_forfait)
         montant_nature = avantage_nature * montant_forfait
