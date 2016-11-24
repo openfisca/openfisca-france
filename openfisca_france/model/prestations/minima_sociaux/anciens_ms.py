@@ -8,14 +8,15 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf, age_en_mois_benjamin
 
 
-class api(DatedVariable):
+class api(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation de parent isolé"
     url = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
+    stop_date = date(2009, 5, 31)
 
-    @dated_function(stop = date(2009, 5, 31))
-    def function__2009(self, simulation, period):
+
+    def function(self, simulation, period):
         """
         Allocation de parent isolé
         """
@@ -132,12 +133,13 @@ class psa(Variable):
         return period, psa
 
 
-class rmi(DatedVariable):
+class rmi(Variable):
     column = FloatCol
     entity = Famille
     label = u"Revenu Minimum d'Insertion"
+    start_date = date(1988, 12, 1)
+    stop_date = date(2009, 5, 31)
 
-    @dated_function(start = date(1988, 12, 1), stop = date(2009, 5, 31))
     def function(self, simulation, period):
         period = period.this_month
         activite = simulation.calculate('activite', period)
@@ -150,15 +152,15 @@ class rmi(DatedVariable):
         # TODO: Migré lors de la mensualisation. Probablement faux
 
 
-class rsa_activite(DatedVariable):
+class rsa_activite(Variable):
     base_function = requested_period_added_value
     column = FloatCol
     entity = Famille
     label = u"Revenu de solidarité active - activité"
     start_date = date(2009, 6, 1)
+    stop_date = date(2015, 12, 31)
 
-    @dated_function(start = date(2009, 6, 1), stop = date(2015, 12, 31))
-    def function_2009(self, simulation, period):
+    def function(self, simulation, period):
         period = period
         rsa = simulation.calculate_add('rsa', period)
         rmi = simulation.calculate_add('rmi', period)
@@ -166,14 +168,14 @@ class rsa_activite(DatedVariable):
         return period, max_(rsa - rmi, 0)
 
 
-class rsa_activite_individu(DatedVariable):
+class rsa_activite_individu(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenu de solidarité active - activité au niveau de l'individu"
     start_date = date(2009, 6, 1)
+    stop_date = date(2015, 12, 31)
 
-    @dated_function(start = date(2009, 6, 1))
-    def function_2009_(individu, period):
+    def function(individu, period):
         '''
         Note: le partage en moitié est un point de législation, pas un choix arbitraire
         '''
