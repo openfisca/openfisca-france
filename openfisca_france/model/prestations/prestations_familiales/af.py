@@ -23,13 +23,13 @@ class af_nbenf(Variable):
         return period, af_nbenf
 
 
-class af_coeff_garde_alternee(DatedVariable):
+class af_coeff_garde_alternee(Variable):
     column = FloatCol(default = 1)
     entity = Famille
     label = u"Coefficient à appliquer aux af pour tenir compte de la garde alternée"
+    start_date = date(2007, 5, 1)
 
-    @dated_function(start = date(2007, 5, 1))
-    def function_2007(self, simulation, period):
+    def function(self, simulation, period):
         period = period.this_month
         nb_enf = simulation.calculate('af_nbenf', period)
         garde_alternee = simulation.compute('garde_alternee', period)
@@ -117,13 +117,13 @@ class af_base(Variable):
         return period, montant_base_module
 
 
-class af_taux_modulation(DatedVariable):
+class af_taux_modulation(Variable):
     column = FloatCol(default = 1)
     entity = Famille
     label = u"Taux de modulation à appliquer au montant des AF depuis 2015"
+    start_date = date(2015, 7, 1)
 
-    @dated_function(start = date(2015, 7, 1))
-    def function_2015(self, simulation, period):
+    def function(self, simulation, period):
         period = period.this_month
         af_nbenf = simulation.calculate('af_nbenf', period)
         pfam = simulation.legislation_at(period.start).prestations.prestations_familiales.af
@@ -141,13 +141,13 @@ class af_taux_modulation(DatedVariable):
         return period, taux
 
 
-class af_allocation_forfaitaire_taux_modulation(DatedVariable):
+class af_allocation_forfaitaire_taux_modulation(Variable):
     column = FloatCol(default = 1)
     entity = Famille
     label = u"Taux de modulation à appliquer à l'allocation forfaitaire des AF depuis 2015"
+    start_date = date(2015, 7, 1)
 
-    @dated_function(start = date(2015, 7, 1))
-    def function_2015(self, simulation, period):
+    def function(self, simulation, period):
         period = period.this_month
         pfam = simulation.legislation_at(period.start).prestations.prestations_familiales.af
         af_nbenf = simulation.calculate('af_nbenf', period)
@@ -240,13 +240,13 @@ class af_majoration(Variable):
         return period, af_majoration_enfants_module
 
 
-class af_complement_degressif(DatedVariable):
+class af_complement_degressif(Variable):
     column = FloatCol
     entity = Famille
     label = u"AF - Complément dégressif en cas de dépassement du plafond"
+    start_date = date(2015, 7, 1)
 
-    @dated_function(start = date(2015, 7, 1))
-    def function_2015(self, simulation, period):
+    def function(self, simulation, period):
         period = period.this_month
         af_nbenf = simulation.calculate('af_nbenf', period)
         base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
@@ -269,13 +269,13 @@ class af_complement_degressif(DatedVariable):
         return period, max_(0, af - depassement_mensuel) * (depassement_mensuel > 0)
 
 
-class af_allocation_forfaitaire_complement_degressif(DatedVariable):
+class af_allocation_forfaitaire_complement_degressif(Variable):
     column = FloatCol
     entity = Famille
     label = u"AF - Complément dégressif pour l'allocation forfaitaire en cas de dépassement du plafond"
+    start_date =date(2015, 7, 1)
 
-    @dated_function(start = date(2015, 7, 1))
-    def function_2015(self, simulation, period):
+    def function(self, simulation, period):
         period = period.this_month
         af_nbenf = simulation.calculate('af_nbenf', period)
         af_forfaitaire_nbenf = simulation.calculate('af_allocation_forfaitaire_nb_enfants', period)
@@ -298,12 +298,12 @@ class af_allocation_forfaitaire_complement_degressif(DatedVariable):
         return period, max_(0, af_allocation_forfaitaire - depassement_mensuel) * (depassement_mensuel > 0)
 
 
-class af_allocation_forfaitaire(DatedVariable):
+class af_allocation_forfaitaire(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocations familiales - forfait"
+    start_date =date(2003, 7, 1)
 
-    @dated_function(start = date(2003, 7, 1))
     def function(self, simulation, period):
         period = period.this_month
         af_nbenf = simulation.calculate('af_nbenf', period)
