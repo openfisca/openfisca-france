@@ -11,16 +11,16 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 
 class asf_elig_enfant(Variable):
     column = BoolCol(default = False)
-    entity_class = Individus
+    entity = Individu
     label = u"Enfant pouvant ouvrir droit à l'ASF"
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
 
-        age = simulation.calculate('age', period)
-        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
+        age = individu('age', period)
+        autonomie_financiere = individu('autonomie_financiere', period)
 
-        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
+        pfam = legislation(period).prestations.prestations_familiales
 
         eligibilite = (
             (age >= pfam.af.age1) * (age < pfam.af.age3) *  # Âge compatible avec les prestations familiales
@@ -31,32 +31,32 @@ class asf_elig_enfant(Variable):
 
 class asf_elig(Variable):
     column = BoolCol(default = False)
-    entity_class = Familles
+    entity = Famille
     label = u"Éligibilité à l'ASF"
 
-    def function(self, simulation, period):
+    def function(famille, period):
         period = period.this_month
-        pensions_alimentaires_percues_holder = simulation.compute('pensions_alimentaires_percues', period)
-        pensions_alimentaires_percues = self.sum_by_entity(pensions_alimentaires_percues_holder)
+        pensions_alimentaires_percues = famille.members('pensions_alimentaires_percues', period)
+        pas_de_pensions = not_(famille.sum(pensions_alimentaires_percues))
 
-        isole = not_(simulation.calculate('en_couple', period))
-        residence_mayotte = simulation.calculate('residence_mayotte', period)
+        isole = not_(famille('en_couple', period))
+        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
 
-        return period, not_(residence_mayotte) * isole * not_(pensions_alimentaires_percues)  # Parent isolé et ne résident pas à Mayotte
+        return period, not_(residence_mayotte) * isole * pas_de_pensions  # Parent isolé et ne résident pas à Mayotte
 
 
 class asf(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"Allocation de soutien familial (ASF)"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
 
-        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
-        asf_elig = simulation.calculate('asf_elig', period)
-        asf_par_enfant = simulation.calculate('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux_1_parent
-        montant = self.sum_by_entity(asf_par_enfant, roles = ENFS)
+        pfam = legislation(period).prestations.prestations_familiales
+        asf_elig = famille('asf_elig', period)
+        asf_par_enfant = famille.members('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux_1_parent
+        montant = famille.sum(asf_par_enfant, role = Famille.ENFANT)
 
         return period, asf_elig * montant

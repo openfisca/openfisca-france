@@ -6,53 +6,41 @@ from numpy.core.defchararray import startswith
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-
 class coloc(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Menage
     label = u"Vie en colocation"
 
 class logement_chambre(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Menage
     label = u"Le logement est considéré comme une chambre"
 
-
 class loyer(Variable):
-    column = FloatCol()
-    entity_class = Menages
+    column = FloatCol
+    entity = Menage
     set_input = set_input_divide_by_period
     label = u"Loyer ou mensualité d'emprunt pour un primo-accédant"
 
-class loyer_individu(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"Zone apl de la personne"
-    variable = loyer
 class depcom(Variable):
     column = FixedStrCol(max_length = 5)
-    entity_class = Menages
+    entity = Menage
     label = u"Code INSEE (depcom) du lieu de résidence"
 
-class loyer_famille(PersonToEntityColumn):
-    entity_class = Familles
-    label = u"Zone apl de la famille"
-    role = CHEF
-    variable = loyer_individu
-
 class charges_locatives(Variable):
-    column = FloatCol()
-    entity_class = Menages
+    column = FloatCol
+    entity = Menage
     set_input = set_input_divide_by_period
     label = u'Charges locatives'
 
 class proprietaire_proche_famille(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
 
 class habite_chez_parents(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"L'individu habite chez ses parents"
 
 class statut_occupation_logement(Variable):
@@ -68,79 +56,64 @@ class statut_occupation_logement(Variable):
             u"Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)",
             u"Sans domicile stable"])
     )
-    entity_class = Menages
+    entity = Menage
     label = u"Statut d'occupation du logement"
     set_input = set_input_dispatch_by_period
 
-
 class residence_dom(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Menage
 
-    def function(self, simulation, period):
-        residence_guadeloupe = simulation.calculate('residence_guadeloupe', period)
-        residence_martinique = simulation.calculate('residence_martinique', period)
-        residence_guyane = simulation.calculate('residence_guyane', period)
-        residence_reunion = simulation.calculate('residence_reunion', period)
-        residence_mayotte = simulation.calculate('residence_mayotte', period)
-        return period, or_(or_(residence_guadeloupe, residence_martinique), or_(or_(residence_reunion, residence_guyane), residence_mayotte))
+    def function(menage, period):
+        residence_guadeloupe = menage('residence_guadeloupe', period)
+        residence_martinique = menage('residence_martinique', period)
+        residence_guyane = menage('residence_guyane', period)
+        residence_reunion = menage('residence_reunion', period)
+        residence_mayotte = menage('residence_mayotte', period)
+
+        return period, residence_guadeloupe + residence_martinique + residence_reunion +residence_guyane + residence_mayotte
 
 
 class residence_guadeloupe(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Menage
 
     def function(self, simulation, period):
-        depcom_holder = simulation.compute('depcom', period)
-
-        depcom = self.cast_from_entity_to_roles(depcom_holder)
-        depcom = self.filter_role(depcom, role = CHEF)
+        depcom = simulation.calculate('depcom', period)
         return period, startswith(depcom, '971')
 
 
 class residence_martinique(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Menage
 
     def function(self, simulation, period):
-        depcom_holder = simulation.compute('depcom', period)
-
-        depcom = self.cast_from_entity_to_roles(depcom_holder)
-        depcom = self.filter_role(depcom, role = CHEF)
+        depcom = simulation.calculate('depcom', period)
         return period, startswith(depcom, '972')
 
 
 class residence_guyane(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Menage
 
     def function(self, simulation, period):
-        depcom_holder = simulation.compute('depcom', period)
-
-        depcom = self.cast_from_entity_to_roles(depcom_holder)
-        depcom = self.filter_role(depcom, role = CHEF)
+        depcom = simulation.calculate('depcom', period)
         return period, startswith(depcom, '973')
 
 
 class residence_reunion(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Menage
 
     def function(self, simulation, period):
-        depcom_holder = simulation.compute('depcom', period)
-
-        depcom = self.cast_from_entity_to_roles(depcom_holder)
-        depcom = self.filter_role(depcom, role = CHEF)
+        depcom = simulation.calculate('depcom', period)
         return period, startswith(depcom, '974')
 
 
 class residence_mayotte(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Menage
 
     def function(self, simulation, period):
-        depcom_holder = simulation.compute('depcom', period)
-
-        depcom = self.cast_from_entity_to_roles(depcom_holder)
-        depcom = self.filter_role(depcom, role = CHEF)
+        depcom = simulation.calculate('depcom', period)
         return period, startswith(depcom, '976')

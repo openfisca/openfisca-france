@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
 class assiette_csg_abattue(Variable):
     column = FloatCol
     label = u"Assiette CSG - CRDS"
-    entity_class = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month
@@ -44,7 +44,7 @@ class assiette_csg_abattue(Variable):
 class assiette_csg_non_abattue(Variable):
     column = FloatCol
     label = u"Assiette CSG - CRDS"
-    entity_class = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month
@@ -64,7 +64,7 @@ class csg_deductible_salaire(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"CSG déductible sur les salaires"
-    entity_class = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month
@@ -86,7 +86,7 @@ class csg_imposable_salaire(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"CSG imposables sur les salaires"
-    entity_class = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month
@@ -109,7 +109,7 @@ class crds_salaire(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"CRDS sur les salaires"
-    entity_class = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month
@@ -131,7 +131,7 @@ class crds_salaire(Variable):
 
 class forfait_social(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Forfait social"
     start_date = date(2009, 1, 1)
 
@@ -183,24 +183,27 @@ class salaire_imposable(Variable):
             },  # (f1aj, f1bj, f1cj, f1dj, f1ej)
         val_type = "monetary",
         )
-    entity_class = Individus
+    entity = Individu
     label = u"Salaires imposables"
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
-        primes_salaires = simulation.calculate('primes_salaires', period)
-        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        indemnite_residence = simulation.calculate('indemnite_residence', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
-        csg_deductible_salaire = simulation.calculate('csg_deductible_salaire', period)
-        cotisations_salariales = simulation.calculate('cotisations_salariales', period)
-        remuneration_principale = simulation.calculate('remuneration_principale', period)
-        hsup = simulation.calculate('hsup', period)
-        rev_microsocial_declarant1 = simulation.calculate_divide('rev_microsocial_declarant1', period)
-        indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
-        complementaire_sante_salarie = simulation.calculate('complementaire_sante_salarie', period)
+    def function(individu, period):
+        period = period.this_month
+        salaire_de_base = individu('salaire_de_base', period)
+        primes_salaires = individu('primes_salaires', period)
+        primes_fonction_publique = individu('primes_fonction_publique', period)
+        indemnite_residence = individu('indemnite_residence', period)
+        supp_familial_traitement = individu('supp_familial_traitement', period)
+        csg_deductible_salaire = individu('csg_deductible_salaire', period)
+        cotisations_salariales = individu('cotisations_salariales', period)
+        remuneration_principale = individu('remuneration_principale', period)
+        hsup = individu('hsup', period)
+        indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
+        complementaire_sante_salarie = individu('complementaire_sante_salarie', period)
+
+        # Revenu du foyer fiscal projeté sur le demandeur
+        rev_microsocial = individu.foyer_fiscal('rev_microsocial', period, options = [DIVIDE])
+        rev_microsocial_declarant1 = rev_microsocial * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return period, (
             salaire_de_base + primes_salaires + remuneration_principale +
@@ -212,7 +215,7 @@ class salaire_imposable(Variable):
 class salaire_net(Variable):
     base_function = requested_period_added_value
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Salaires nets d'après définition INSEE"
     set_input = set_input_divide_by_period
 
@@ -235,7 +238,7 @@ class salaire_net(Variable):
 
 class tehr(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Taxe exceptionnelle de solidarité sur les très hautes rémunérations"
     url = u"http://vosdroits.service-public.fr/professionnels-entreprises/F32096.xhtml"
     calculate_output = calculate_output_divide
@@ -257,7 +260,7 @@ class tehr(Variable):
 class rev_microsocial(Variable):
     """Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)"""
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenu net des cotisations sociales pour le régime microsocial"
     start_date = date(2009, 1, 1)
     url = u"http://www.apce.com/pid6137/regime-micro-social.html"
@@ -273,10 +276,3 @@ class rev_microsocial(Variable):
         total = assiette_service + assiette_vente + assiette_proflib
         prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
         return period, total - prelsoc_ms
-
-
-class rev_microsocial_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur) (pour le premier déclarant du foyer fiscal)"  # noqa
-    role = VOUS
-    variable = rev_microsocial

@@ -25,15 +25,13 @@ class aefa(DatedVariable):
     pour la Création ou la Reprise d'Entreprise (ACCRE-ASS) ou encore allocation chômage.
     '''
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Aide exceptionelle de fin d'année (prime de Noël)"
     url = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"  # noqa
 
     @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
     def function_2009__(self, simulation, period):
         period = period.this_year
-        age_holder = simulation.compute('age', period)
-        autonomie_financiere_holder = simulation.compute('autonomie_financiere', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
         nb_parents = simulation.calculate('nb_parents', period)
         ass = simulation.calculate_add('ass', period)
@@ -43,9 +41,7 @@ class aefa(DatedVariable):
         P = simulation.legislation_at(period.start).prestations.minima_sociaux.aefa
         af = simulation.legislation_at(period.start).prestations.prestations_familiales.af
 
-        age = self.split_by_roles(age_holder, roles = ENFS)
         aer = self.sum_by_entity(aer_holder)
-        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
         dummy_ass = ass > 0
         dummy_aer = aer > 0
         dummy_api = api > 0
@@ -53,7 +49,7 @@ class aefa(DatedVariable):
         maj = 0  # TODO
         condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
         if hasattr(af, "age3"):
-            nbPAC = nb_enf(age, autonomie_financiere, af.age1, af.age3)
+            nbPAC = nb_enf(simulation.famille, period, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
@@ -69,8 +65,6 @@ class aefa(DatedVariable):
     @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
     def function_2008(self, simulation, period):
         period = period.this_year
-        age_holder = simulation.compute('age', period)
-        autonomie_financiere_holder = simulation.compute('autonomie_financiere', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
         nb_parents = simulation.calculate('nb_parents', period)
         ass = simulation.calculate_add('ass', period)
@@ -80,9 +74,7 @@ class aefa(DatedVariable):
         P = simulation.legislation_at(period.start).prestations.minima_sociaux.aefa
         af = simulation.legislation_at(period.start).prestations.prestations_familiales.af
 
-        age = self.split_by_roles(age_holder, roles = ENFS)
         aer = self.sum_by_entity(aer_holder)
-        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
         dummy_ass = ass > 0
         dummy_aer = aer > 0
         dummy_api = api > 0
@@ -90,7 +82,7 @@ class aefa(DatedVariable):
         maj = 0  # TODO
         condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
         if hasattr(af, "age3"):
-            nbPAC = nb_enf(age, autonomie_financiere, af.age1, af.age3)
+            nbPAC = nb_enf(simulation.famille, period, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
@@ -107,8 +99,6 @@ class aefa(DatedVariable):
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
     def function__2008_(self, simulation, period):
         period = period.this_year
-        age_holder = simulation.compute('age', period)
-        autonomie_financiere_holder = simulation.compute('autonomie_financiere', period, accept_other_period = True)
         af_nbenf = simulation.calculate('af_nbenf', period)
         nb_parents = simulation.calculate('nb_parents', period)
         ass = simulation.calculate_add('ass', period)
@@ -118,9 +108,7 @@ class aefa(DatedVariable):
         P = simulation.legislation_at(period.start).prestations.minima_sociaux.aefa
         af = simulation.legislation_at(period.start).prestations.prestations_familiales.af
 
-        age = self.split_by_roles(age_holder, roles = ENFS)
         aer = self.sum_by_entity(aer_holder)
-        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
         dummy_ass = ass > 0
         dummy_aer = aer > 0
         dummy_api = api > 0
@@ -128,7 +116,7 @@ class aefa(DatedVariable):
         maj = 0  # TODO
         condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
         if hasattr(af, "age3"):
-            nbPAC = nb_enf(age, autonomie_financiere, af.age1, af.age3)
+            nbPAC = nb_enf(simulation.famille, period, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
