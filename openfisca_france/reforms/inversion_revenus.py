@@ -32,22 +32,22 @@ def build_reform(tax_benefit_system):
 
     class salaire_imposable_pour_inversion(Reform.Variable):
         column = columns.FloatCol
-        entity_class = entities.Individus
+        entity = entities.Individu
         label = u'Salaire imposable utilisé pour remonter au salaire brut'
 
     class chomage_imposable_pour_inversion(Reform.Variable):
         column = columns.FloatCol
-        entity_class = entities.Individus
+        entity = entities.Individu
         label = u'Autres revenus imposables (chômage, préretraite), utilisé pour l’inversion'
 
     class retraite_imposable_pour_inversion(Reform.Variable):
         column = columns.FloatCol
-        entity_class = entities.Individus
+        entity = entities.Individu
         label = u'Pensions, retraites, rentes connues imposables, utilisé pour l’inversion'
 
     class salaire_de_base(Reform.Variable):
         column = columns.FloatCol
-        entity_class = entities.Individus
+        entity = entities.Individu
         label = u"Salaire brut ou traitement indiciaire brut"
         reference = tax_benefit_system.column_by_name["salaire_de_base"]
         url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
@@ -179,7 +179,7 @@ def build_reform(tax_benefit_system):
 
     class chomage_brut(Reform.Variable):
         column = columns.FloatCol
-        entity_class = entities.Individus
+        entity = entities.Individu
         label = u"Allocations chômage brutes"
         url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
 
@@ -229,7 +229,7 @@ def build_reform(tax_benefit_system):
 
     class retraite_brute(Reform.Variable):
         column = columns.FloatCol
-        entity_class = entities.Individus
+        entity = entities.Individu
         label = u"Pensions de retraite brutes"
         url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
 

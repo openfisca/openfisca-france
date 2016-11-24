@@ -1,5 +1,61 @@
 # Changelog
 
+## 5.0.0
+
+* Adapt France to Openfisca-Core#v4
+	* Declare entities in the new way
+
+* Deprecate all conversion variables:
+	* `cotsoc_bar_declarant1
+	* `cotsoc_lib_declarant1
+	* `crds_cap_bar_declarant1
+	* `crds_cap_lib_declarant1
+	* `csg_cap_bar_declarant1
+	* `csg_cap_lib_declarant1
+	* `loyer_famille
+	* `loyer_individu
+	* `maj_cga_individu
+	* `pensions_alimentaires_versees_declarant1
+	* `prelsoc_cap_bar_declarant1
+	* `prelsoc_cap_lib_declarant1
+	* `retraite_titre_onereux_declarant1
+	* `retraite_titre_onereux_net_declarant1
+	* `rev_microsocial_declarant1
+	* `statut_occupation_famille
+	* `statut_occupation_logement_individu
+	* `zone_apl_famille* `
+	* `zone_apl_individu* `
+
+* Deprecate entity structure variables:
+	* `idmen`
+	* `idfoy`
+	* `idfam`
+	* `quimen`
+	* `quifoy`
+	* `quifam`
+
+* Change some variables entity:
+	* `FoyersFiscaux` -> `Individus`
+		* `maj_cga`
+	* `Individus` -> `FoyersFiscaux
+		* `rev_coll`
+	* `Individus` -> `Menages`
+		* `coloc`
+		* `logement_chambre`
+	* `Familles` -> `Individus`
+		* `aah_non_calculable`
+	* `Familles` -> `Menages`
+		* `residence_dom`
+		* `residence_guadeloupe`
+		* `residence_martinique`
+		* `residence_guyane`
+		* `residence_reunion`
+		* `residence_mayotte`
+
+* Introduce:
+    * `cotsoc_bar`
+    * `cotsoc_lib`
+
 ## 4.1.20
 
  * Set `set_input` attribute to `set_input_divide_by_period` for variables `heures_remunerees_volume` et `heures_non_remunerees_volume`.

@@ -6,8 +6,7 @@ from numpy import maximum as max_
 from openfisca_core import columns
 from openfisca_core.reforms import Reform
 from openfisca_core.variables import Variable
-from .. import entities
-from ..model.base import QUIFOY
+from ..model.base import *
 
 
 def modify_legislation_json(reference_legislation_json_copy):
@@ -80,16 +79,14 @@ class allocations_familiales_imposables(Reform):
 
     class allocations_familiales_imposables(Variable):
         column = columns.FloatCol
-        entity_class = entities.FoyersFiscaux
+        entity = FoyerFiscal
         label = u"Allocations familiales imposables"
 
         def function(self, simulation, period):
             period = period.this_year
-            af_holder = simulation.calculate_add('af')
             imposition = simulation.legislation_at(period.start).allocations_familiales_imposables.imposition
+            af = simulation.foyer_fiscal.declarant_principal.famille('af', period, options = [ADD])
 
-            af = self.cast_from_entity_to_role(af_holder, entity= "famille", role = QUIFOY['vous'])
-            af = self.sum_by_entity(af)
             return period, af * imposition
 
     def apply(self):

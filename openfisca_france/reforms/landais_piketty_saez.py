@@ -18,7 +18,7 @@ from openfisca_france.model.base import QUIFAM, QUIFOY
 
 class assiette_csg(Variable):
     column = columns.FloatCol
-    entity_class = entities.Individus
+    entity = entities.Individu
     label = u"Assiette de la CSG"
 
     def function(self, simulation, period):
@@ -34,7 +34,7 @@ class assiette_csg(Variable):
 
 class impot_revenu_lps(Variable):
     column = columns.FloatCol
-    entity_class = entities.Individus
+    entity = entities.Individu
     label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
 
     def function(self, simulation, period):
@@ -57,7 +57,7 @@ class impot_revenu_lps(Variable):
 
 class revdisp(Variable):
     column = columns.FloatCol(default = 0)
-    entity_class = entities.Menages
+    entity = entities.Menage
     label = u"Revenu disponible du ménage"
     url = u"http://fr.wikipedia.org/wiki/Revenu_disponible"
 

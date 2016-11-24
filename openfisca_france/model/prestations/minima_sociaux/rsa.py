@@ -9,11 +9,10 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf, age_en_mois_benjamin
 
 
-
 class rsa_base_ressources(DatedVariable):
     column = FloatCol
     label = u"Base ressources du Rmi ou du Rsa"
-    entity_class = Familles
+    entity = Famille
 
     @dated_function(stop = date(2009, 5, 31))
     def function_rmi(self, simulation, period):
@@ -44,7 +43,7 @@ class rsa_base_ressources(DatedVariable):
 class rsa_has_ressources_substitution(Variable):
     column = FloatCol
     label = u"Présence de ressources de substitution au mois M, qui désactivent la neutralisation des revenus professionnels interrompus au moins M."
-    entity_class = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month
@@ -57,11 +56,10 @@ class rsa_has_ressources_substitution(Variable):
 class rsa_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base ressource individuelle du RSA/RMI (hors revenus d'actvité)"
-    entity_class = Individus
+    entity = Individu
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
-        last_3_months = period.last_3_months
 
         # Revenus professionels
         types_revenus_pros = [
@@ -69,13 +67,13 @@ class rsa_base_ressources_individu(Variable):
             'retraite_nette',
             ]
 
-        has_ressources_substitution = simulation.calculate('rsa_has_ressources_substitution', period)
+        has_ressources_substitution = individu('rsa_has_ressources_substitution', period)
 
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
         revenus_pro = sum(
-            simulation.calculate_add(type_revenu, last_3_months) * not_(
-                (simulation.calculate(type_revenu, period.this_month) == 0) *
-                (simulation.calculate(type_revenu, period.last_month) > 0) *
+            individu(type_revenu, period.last_3_months, options = [ADD]) * not_(
+                (individu(type_revenu, period.this_month) == 0) *
+                (individu(type_revenu, period.last_month) > 0) *
                 not_(has_ressources_substitution)
                 )
             for type_revenu in types_revenus_pros
@@ -91,7 +89,6 @@ class rsa_base_ressources_individu(Variable):
             'pensions_invalidite',
             'prestation_compensatoire',
             'prime_forfaitaire_mensuelle_reprise_activite',
-            'retraite_titre_onereux_declarant1',
             'revenus_fonciers_minima_sociaux',
             'rsa_base_ressources_patrimoine_individu',
             'rsa_indemnites_journalieres_hors_activite',
@@ -99,26 +96,29 @@ class rsa_base_ressources_individu(Variable):
 
         # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
         # sans condition de revenu de substitution.
-        neutral_max_forfaitaire = 3 * simulation.legislation_at(period.start).minim.rmi.rmi
+        neutral_max_forfaitaire = 3 * legislation(period).minim.rmi.rmi
         revenus_non_pros = sum(
-            max_(0, simulation.calculate_add(type_revenu, last_3_months) - neutral_max_forfaitaire * (
-                    (simulation.calculate(type_revenu, period.this_month) == 0) *
-                    (simulation.calculate(type_revenu, period.last_month) > 0)
+            max_(0, individu(type_revenu, period.last_3_months, options = [ADD]) - neutral_max_forfaitaire * (
+                    (individu(type_revenu, period.this_month) == 0) *
+                    (individu(type_revenu, period.last_month) > 0)
                 ))
             for type_revenu in types_revenus_non_pros
             )
 
-        rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', last_3_months)
-        rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', last_3_months)
-        rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = VOUS)
-        rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
+        # Revenus du foyer fiscal que l'on projette sur le premier invidividus
+        rev_cap_bar = max_(0, individu.foyer_fiscal('rev_cap_bar', period.last_3_months, options = [ADD]))
+        rev_cap_lib = max_(0, individu.foyer_fiscal('rev_cap_lib', period.last_3_months, options = [ADD]))
+        retraite_titre_onereux = individu.foyer_fiscal('retraite_titre_onereux', period.last_3_months, options = [ADD])
+        revenus_foyer_fiscal = rev_cap_bar + rev_cap_lib + retraite_titre_onereux
+        revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return period, (revenus_pro + revenus_non_pros + rev_cap_bar + rev_cap_lib) / 3
+        return period, (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
+
 
 class rsa_base_ressources_minima_sociaux(Variable):
     column = FloatCol
     label = u"Minima sociaux inclus dans la base ressource RSA/RMI"
-    entity_class = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         period = period.this_month
@@ -136,7 +136,7 @@ class rsa_base_ressources_minima_sociaux(Variable):
 
 class rsa_base_ressources_prestations_familiales(DatedVariable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Prestations familiales inclues dans la base ressource RSA/RMI"
 
     @dated_function(date(2002, 1, 1), date(2003, 12, 31))
@@ -202,7 +202,7 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
 
 class crds_mini(DatedVariable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"CRDS versée sur les minimas sociaux"
 
     @dated_function(start = date(2009, 6, 1))
@@ -218,7 +218,7 @@ class crds_mini(DatedVariable):
 
 class div_ms(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Dividende entrant en compte dans le calcul des minimas"
 
     def function(self, simulation, period):
@@ -242,7 +242,7 @@ class div_ms(Variable):
 
 class enceinte_fam(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         period = period
@@ -258,18 +258,18 @@ class enceinte_fam(Variable):
 
 class rsa_enfant_a_charge(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"Enfant pris en compte dans le calcul du RSA"
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
 
-        P_rsa = simulation.legislation_at(period.start).minim.rmi
+        P_rsa = legislation(period).minim.rmi
 
-        enfant = simulation.calculate('est_enfant_dans_famille', period)
-        age = simulation.calculate('age', period)
-        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
-        ressources = simulation.calculate('rsa_base_ressources_individu', period) + (1 - P_rsa.pente) * simulation.calculate('rsa_revenu_activite_individu', period)
+        enfant = individu('est_enfant_dans_famille', period)
+        age = individu('age', period)
+        autonomie_financiere = individu('autonomie_financiere', period)
+        ressources = individu('rsa_base_ressources_individu', period) + (1 - P_rsa.pente) * individu('rsa_revenu_activite_individu', period)
 
 
         # Règle CAF: Si un enfant touche des ressources, et que son impact global (augmentation du montant forfaitaire - ressources prises en compte) fait baisser le montant du RSA, alors il doit être exclu du calcul du RSA.
@@ -278,12 +278,14 @@ class rsa_enfant_a_charge(Variable):
         #       - Si la présence de l'enfant ouvre droit au RSA majoré, pris en compte si ressources <= majoration du RSA pour isolement avec un enfant.
 
         def ouvre_droit_majoration():
-            enceinte_fam = simulation.calculate('enceinte_fam', period)
-            isole = not_(simulation.calculate('en_couple', period))
-            isolement_recent = simulation.calculate('rsa_isolement_recent', period)
-            presence_autres_enfants = self.sum_by_entity(enfant * not_(autonomie_financiere) * (age <= P_rsa.age_pac), entity = "famille") > 1
+            famille = individu.famille
+            enceinte_fam = famille('enceinte_fam', period)
+            isole = not_(famille('en_couple', period))
+            isolement_recent = famille('rsa_isolement_recent', period)
+            presence_autres_enfants = famille.sum(enfant * not_(autonomie_financiere) * (age <= P_rsa.age_pac)) > 1
 
-            return self.cast_from_entity_to_roles(not_(enceinte_fam) * isole * isolement_recent * not_(presence_autres_enfants), entity = 'famille')
+            # individu.famille.sum retourne un résultat qui n'est pas implicitement projeté sur l'individu.
+            return not_(enceinte_fam) * isole * isolement_recent * not_(famille.project(presence_autres_enfants))
 
         return period, (
             enfant * not_(autonomie_financiere) *
@@ -296,7 +298,7 @@ class rsa_enfant_a_charge(Variable):
 
 class rsa_nb_enfants(Variable):
     column = IntCol
-    entity_class = Familles
+    entity = Famille
     label = u"Nombre d'enfants pris en compte pour le calcul du RSA"
 
     def function(self, simulation, period):
@@ -305,13 +307,13 @@ class rsa_nb_enfants(Variable):
 
 class participation_frais(Variable):
     column = BoolCol
-    entity_class = Menages
+    entity = Menage
     label = u"Partipation aux frais de logement pour un hebergé à titre gratuit"
 
 class rsa_revenu_activite(Variable):
     column = FloatCol
     label = u"Revenus d'activité du RSA"
-    entity_class = Familles
+    entity = Famille
     start_date = date(2009, 6, 1)
 
     def function(self, simulation, period):
@@ -327,7 +329,7 @@ class rsa_revenu_activite(Variable):
 class rsa_indemnites_journalieres_activite(Variable):
     column = FloatCol
     label = u"Indemnités journalières prises en compte comme revenu d'activité"
-    entity_class = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month
@@ -364,7 +366,7 @@ class rsa_indemnites_journalieres_activite(Variable):
 class rsa_indemnites_journalieres_hors_activite(Variable):
     column = FloatCol
     label = u"Indemnités journalières prises en compte comme revenu de remplacement"
-    entity_class = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month
@@ -373,7 +375,7 @@ class rsa_indemnites_journalieres_hors_activite(Variable):
 class rsa_revenu_activite_individu(Variable):
     column = FloatCol
     label = u"Revenus d'activité du Rsa - Individuel"
-    entity_class = Individus
+    entity = Individu
     start_date = date(2009, 6, 1)
 
     def function(self, simulation, period):
@@ -411,7 +413,7 @@ class rsa_revenu_activite_individu(Variable):
 
 class revenus_fonciers_minima_sociaux(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Revenus fonciers pour la base ressource du rmi/rsa"
 
     def function(self, simulation, period):
@@ -429,7 +431,7 @@ class rsa(DatedVariable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"Revenu de solidarité active"
-    entity_class = Familles
+    entity = Famille
 
     @dated_function(start = date(2009, 06, 1))
     def function(self, simulation, period):
@@ -445,7 +447,7 @@ class rsa(DatedVariable):
 class rsa_base_ressources_patrimoine_individu(DatedVariable):
     column = FloatCol
     label = u"Base de ressources des revenus du patrimoine du RSA"
-    entity_class = Individus
+    entity = Individu
     start_date = date(2009, 6, 1)
 
     @dated_function(start = date(2009, 6, 1))
@@ -470,7 +472,7 @@ class rsa_base_ressources_patrimoine_individu(DatedVariable):
 
 class rsa_condition_nationalite(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"Conditions de nationnalité et de titre de séjour pour bénéficier du RSA"
 
     def function(self, simulation, period):
@@ -483,7 +485,7 @@ class rsa_condition_nationalite(Variable):
 
 class rsa_eligibilite(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Eligibilité au RSA"
 
     def function(self, simulation, period):
@@ -512,7 +514,7 @@ class rsa_eligibilite(Variable):
 
 class rsa_eligibilite_tns(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Eligibilité au RSA pour un travailleur non salarié"
 
     def function(self, simulation, period):
@@ -568,7 +570,7 @@ class rsa_eligibilite_tns(Variable):
 
 class rsa_forfait_asf(Variable):
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"Allocation de soutien familial forfaitisée pour le RSA"
     start_date = date(2014, 4, 1)
 
@@ -588,27 +590,22 @@ class rsa_forfait_asf(Variable):
 
 class rsa_forfait_logement(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Forfait logement intervenant dans le calcul du Rmi ou du Rsa"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
 
-        forf_logement = simulation.legislation_at(period.start).minim.rmi.forfait_logement
-        rmi = simulation.legislation_at(period.start).minim.rmi.rmi
+        forf_logement = legislation(period).minim.rmi.forfait_logement
+        rmi = legislation(period).minim.rmi.rmi
 
-        nb_pac = simulation.calculate('nb_parents', period) + simulation.calculate('rsa_nb_enfants', period)
-        aide_logement = simulation.calculate('aide_logement', period)
+        nb_pac = famille('nb_parents', period) + famille('rsa_nb_enfants', period)
+        aide_logement = famille('aide_logement', period)
 
-        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
 
-        participation_frais_holder = simulation.compute('participation_frais', period)
-        participation_frais = self.cast_from_entity_to_roles(participation_frais_holder)
-        participation_frais = self.filter_role(participation_frais, role = CHEF)
-
-        loyer_holder = simulation.compute('loyer', period)
-        loyer = self.cast_from_entity_to_roles(loyer_holder)
-        loyer = self.filter_role(loyer, role = CHEF)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        participation_frais = famille.demandeur.menage('participation_frais', period)
+        loyer = famille.demandeur.menage('loyer', period)
 
         avantage_nature = or_(
             (statut_occupation_logement == 2) * not_(loyer),
@@ -630,13 +627,13 @@ class rsa_forfait_logement(Variable):
 
 class rsa_isolement_recent(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Situation d'isolement depuis moins de 18 mois"
 
 class rsa_majore(Variable):
     column = FloatCol
     label = u"Revenu de solidarité active - majoré"
-    entity_class = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         period = period.this_month
@@ -652,24 +649,15 @@ class rsa_majore(Variable):
 
 class rsa_majore_eligibilite(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Eligibilité au RSA majoré pour parent isolé"
 
     def function(self, simulation, period):
 
-        def has_enfant_moins_3_ans():
-            age_holder = simulation.compute('age', period)
-            autonomie_financiere_holder = simulation.compute('autonomie_financiere', period)
-            age_enf = self.split_by_roles(age_holder, roles = ENFS)
-            autonomie_financiere_enf = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
-            nbenf = nb_enf(age_enf, autonomie_financiere_enf, 0, 2)
-
-            return nbenf > 0
-
         period = period.this_month
         isole = not_(simulation.calculate('en_couple', period))
         isolement_recent = simulation.calculate('rsa_isolement_recent', period)
-        enfant_moins_3_ans = has_enfant_moins_3_ans()
+        enfant_moins_3_ans = nb_enf(simulation, period, 0, 2) > 0
         enceinte_fam = simulation.calculate('enceinte_fam', period)
         nbenf = simulation.calculate('rsa_nb_enfants', period)
         rsa_eligibilite_tns = simulation.calculate('rsa_eligibilite_tns', period)
@@ -691,7 +679,7 @@ class rsa_non_calculable(Variable):
         ]),
         default = 0
     )
-    entity_class = Familles
+    entity = Famille
     label = u"RSA non calculable"
 
     def function(self, simulation, period):
@@ -718,7 +706,7 @@ class rsa_non_calculable(Variable):
 
 class rsa_non_calculable_tns_individu(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"RSA non calculable du fait de la situation de l'individu. Dans le cas des TNS, l'utilisateur est renvoyé vers son PCG"
 
     def function(self, simulation, period):
@@ -736,7 +724,7 @@ class rsa_non_calculable_tns_individu(Variable):
 class rsa_non_majore(Variable):
     column = FloatCol
     label = u"Revenu de solidarité active - non majoré"
-    entity_class = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         period = period.this_month
@@ -752,7 +740,7 @@ class rsa_non_majore(Variable):
 
 class rsa_socle(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = "RSA socle"
 
     def function(self, simulation, period):
@@ -775,7 +763,7 @@ class rsa_socle(Variable):
 
 class rsa_socle_majore(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Majoration pour parent isolé du Revenu de solidarité active socle"
     start_date = date(2009, 6, 1)
 

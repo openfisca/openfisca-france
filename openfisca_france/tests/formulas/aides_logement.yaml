@@ -148,10 +148,12 @@
   relative_error_margin: 0.01
   familles:
     parents: ["parent1"]
-    zone_apl_famille: 1
-    loyer_famille: 800
     aide_logement_base_ressources: 12000
-    statut_occupation_logement_famille: 4  # Locataire
+  menages:
+    personne_de_reference: "parent1"
+    statut_occupation_logement: 4  # Locataire
+    zone_apl: 1
+    loyer: 800
   individus:
     - id: "parent1"
       age: 40

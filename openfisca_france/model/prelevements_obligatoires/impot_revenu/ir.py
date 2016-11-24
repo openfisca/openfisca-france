@@ -43,12 +43,12 @@ log = logging.getLogger(__name__)
 
 class jour_xyz(Variable):
     column = IntCol(default = 360)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Jours décomptés au titre de cette déclaration"
 
 class nbptr_n_2(Variable):
     column = PeriodSizeIndependentIntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Nombre de parts année n - 2"
 
 
@@ -62,7 +62,7 @@ class nbptr_n_2(Variable):
 class age(Variable):
     base_function = missing_value
     column = AgeCol(val_type = "age")
-    entity_class = Individus
+    entity = Individu
     label = u"Âge (en années)"
 
     def function(self, simulation, period):
@@ -89,7 +89,7 @@ class age(Variable):
 class age_en_mois(Variable):
     base_function = missing_value
     column = AgeCol(val_type = "months")
-    entity_class = Individus
+    entity = Individu
     label = u"Âge (en mois)"
 
     def function(self, simulation, period):
@@ -113,7 +113,7 @@ class age_en_mois(Variable):
 
 class nb_adult(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Nombre d'adulte(s) déclarants dans le foyer fiscal"
 
     def function(self, simulation, period):
@@ -127,7 +127,7 @@ class nb_adult(Variable):
 
 class nb_pac(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Nombre de personnes à charge dans le foyer fiscal"
 
     def function(self, simulation, period):
@@ -141,21 +141,21 @@ class nb_pac(Variable):
 
 class enfant_a_charge(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"Enfant à charge non marié, de moins de 18 ans au 1er janvier de l'année de perception des" \
         u" revenus, ou né durant la même année, ou handicapés quel que soit son âge"
 
-    def function(self, simulation, period):
-        age = simulation.calculate('age', period)
-        handicap = simulation.calculate('handicap', period)
-        quifoy = simulation.calculate('quifoy', period)
+    def function(individu, period):
+        age = individu('age', period)
+        handicap = individu('handicap', period)
+        is_pac = individu.has_role(FoyerFiscal.PERSONNE_A_CHARGE)
 
-        return period, (quifoy >= 2) * ((age < 18) + handicap)
+        return period, is_pac * ((age < 18) + handicap)
 
 
 class nbF(Variable):
     cerfa_field = u'F'
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     column = FloatCol
     label = u"Nombre d'enfants à charge non mariés, qui ne sont pas en résidence alternée, de moins de 18 ans au 1er janvier de l'année de perception des" \
         u" revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
@@ -169,7 +169,7 @@ class nbF(Variable):
 
 class nbG(Variable):
     cerfa_field = u'G'
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     column = FloatCol
     label = u"Nombre d'enfants qui ne sont pas en résidence alternée à charge titulaires de la carte d'invalidité."
 
@@ -183,7 +183,7 @@ class nbG(Variable):
 
 class nbH(Variable):
     cerfa_field = u'H'
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     column = FloatCol
     label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de" \
         u" l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
@@ -197,7 +197,7 @@ class nbH(Variable):
 
 class nbI(Variable):
     cerfa_field = u'I'
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     column = FloatCol
     label = u"Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité"
 
@@ -211,88 +211,87 @@ class nbI(Variable):
 
 class enfant_majeur_celibataire_sans_enfant(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"Enfant majeur célibataire sans enfant"
 
-    def function(self, simulation, period):
+    def function(individu, period):
         period = period.this_year
-        age = simulation.calculate('age', period)
-        handicap = simulation.calculate('handicap', period)
-        quifoy = simulation.calculate('quifoy', period)
+        age = individu('age', period)
+        handicap = individu('handicap', period)
+        is_pac = individu.has_role(FoyerFiscal.PERSONNE_A_CHARGE)
 
-        return period, (quifoy >= 2) * (age >= 18) * not_(handicap)
+        return period, is_pac * (age >= 18) * not_(handicap)
 
 
-class nbJ(PersonToEntityColumn):
+class nbJ(Variable):
     cerfa_field = u'J'
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Nombre d'enfants majeurs célibataires sans enfant"
-    operation = 'add'
-    variable = enfant_majeur_celibataire_sans_enfant
+    column = IntCol
+
+    def function(foyer_fiscal, period):
+        enfant_majeur_celibataire_sans_enfant = foyer_fiscal.members('enfant_majeur_celibataire_sans_enfant', period)
+        return period, foyer_fiscal.sum(enfant_majeur_celibataire_sans_enfant)
 
 
-class nombre_enfants_majeurs_celibataires_sans_enfant(PersonToEntityColumn):
-    entity_class = Menages
+class nombre_enfants_majeurs_celibataires_sans_enfant(Variable):
+    entity = Menage
     label = u"Nombre d'enfants majeurs célibataires sans enfant"
-    operation = 'add'
-    variable = enfant_majeur_celibataire_sans_enfant
+    column = IntCol
+
+    def function(menage, period):
+        enfant_majeur_celibataire_sans_enfant = menage.members('enfant_majeur_celibataire_sans_enfant', period)
+        return period, menage.sum(enfant_majeur_celibataire_sans_enfant)
 
 
 class maries_ou_pacses(Variable):
     column = BoolCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Déclarants mariés ou pacsés"
 
-    def function(self, simulation, period):
+    def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital_holder = simulation.compute('statut_marital', period)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        marie_ou_pacse = (statut_marital == 1) | (statut_marital == 5)
 
-        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
-
-        return period, (statut_marital == 1) | (statut_marital == 5)
+        return period, marie_ou_pacse
 
 
 class celibataire_ou_divorce(Variable):
-    column = BoolCol(default = False)
-    entity_class = FoyersFiscaux
+    column = BoolCol
+    entity = FoyerFiscal
     label = u"Déclarant célibataire ou divorcé"
 
-    def function(self, simulation, period):
+    def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital_holder = simulation.compute('statut_marital', period)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        celibataire_ou_divorce = (statut_marital == 2) | (statut_marital == 3)
 
-        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
-
-        return period, (statut_marital == 2) | (statut_marital == 3)
-
+        return period, celibataire_ou_divorce
 
 class veuf(Variable):
-    column = BoolCol(default = False)
-    entity_class = FoyersFiscaux
+    column = BoolCol
+    entity = FoyerFiscal
     label = u"Déclarant veuf"
 
-    def function(self, simulation, period):
+    def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital_holder = simulation.compute('statut_marital', period)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        veuf = (statut_marital == 4)
 
-        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
-
-        return period, statut_marital == 4
-
+        return period, veuf
 
 class jeune_veuf(Variable):
-    column = BoolCol(default = False)
-    entity_class = FoyersFiscaux
+    column = BoolCol
+    entity = FoyerFiscal
     label = u"Déclarant jeune veuf"
 
-    def function(self, simulation, period):
+    def function(foyer_fiscal, period):
         period = period.this_year
-        statut_marital_holder = simulation.compute('statut_marital', period)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        jeune_veuf = (statut_marital == 6)
 
-        statut_marital = self.filter_role(statut_marital_holder, role = VOUS)
-
-        return period, statut_marital == 6
-
+        return period, jeune_veuf
 
 ###############################################################################
 # # Revenus catégoriels
@@ -301,7 +300,7 @@ class jeune_veuf(Variable):
 
 class revenu_assimile_salaire(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Revenu imposé comme des salaires (salaires, mais aussi 3vj, 3vk)"
 
     def function(self, simulation, period):
@@ -314,7 +313,7 @@ class revenu_assimile_salaire(Variable):
 
 class revenu_assimile_salaire_apres_abattements(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Salaires et chômage imposables après abattements"
 
     def function(self, simulation, period):
@@ -333,7 +332,7 @@ class revenu_assimile_salaire_apres_abattements(Variable):
 
 class revenu_activite_salariee(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Revenu d'activité salariée"
 
     def function(self, simulation, period):
@@ -345,7 +344,7 @@ class revenu_activite_salariee(Variable):
 
 class revenu_activite_non_salariee(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Revenu d'activité non salariée"
 
     def function(self, simulation, period):
@@ -357,7 +356,7 @@ class revenu_activite_non_salariee(Variable):
 
 class revenu_activite(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Revenus d'activités"
 
     def function(self, simulation, period):
@@ -371,7 +370,7 @@ class revenu_activite(Variable):
 
 class revenu_assimile_pension(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)"
 
     def function(self, simulation, period):
@@ -385,7 +384,7 @@ class revenu_assimile_pension(Variable):
 
 class revenu_assimile_pension_apres_abattements(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Pensions après abattements"
 
     def function(self, simulation, period):
@@ -405,7 +404,7 @@ class revenu_assimile_pension_apres_abattements(Variable):
 
 class indu_plaf_abat_pen(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Plafonnement de l'abattement de 10% sur les pensions du foyer"
 
     def function(self, simulation, period):
@@ -423,7 +422,7 @@ class indu_plaf_abat_pen(Variable):
 
 class abattement_salaires_pensions(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Abattement de 20% sur les salaires et pensions, en vigueur jusqu'à 2006"
     stop_date = date(2005, 12, 31)
 
@@ -443,7 +442,7 @@ class retraite_titre_onereux(Variable):
     """
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Rentes viagères (rentes à titre onéreux)"
     set_input = set_input_divide_by_period
     url = u"http://fr.wikipedia.org/wiki/Rente_viagère"
@@ -459,16 +458,9 @@ class retraite_titre_onereux(Variable):
         return period, (f1aw + f1bw + f1cw + f1dw) / 12
 
 
-class retraite_titre_onereux_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"Rentes viagères (rentes à titre onéreux) (pour le premier déclarant du foyer fiscal)"
-    role = VOUS
-    variable = retraite_titre_onereux
-
-
 class retraite_titre_onereux_net(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Rentes viagères après abattements"
     url = u"http://www.lafinancepourtous.fr/Vie-professionnelle-et-retraite/Retraite/Epargne-retraite/La-rente-viagere/La-fiscalite-de-la-rente-viagere"  # noqa
 
@@ -483,35 +475,29 @@ class retraite_titre_onereux_net(Variable):
         return period, round(abatviag.taux1 * f1aw + abatviag.taux2 * f1bw + abatviag.taux3 * f1cw + abatviag.taux4 * f1dw)
 
 
-class retraite_titre_onereux_net_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"Rentes viagères après abattements (pour le premier déclarant du foyer fiscal)"
-    role = VOUS
-    variable = retraite_titre_onereux_net
-
-
 class traitements_salaires_pensions_rentes(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Traitements salaires pensions et rentes individuelles"
 
-    def function(self, simulation, period):
+    def function(individu, period):
         period = period.this_year
 
-        revenu_assimile_salaire_apres_abattements = simulation.calculate('revenu_assimile_salaire_apres_abattements', period)
-        revenu_assimile_pension_apres_abattements = simulation.calculate('revenu_assimile_pension_apres_abattements', period)
-        abattement_salaires_pensions = simulation.calculate('abattement_salaires_pensions', period)
+        revenu_assimile_salaire_apres_abattements = individu('revenu_assimile_salaire_apres_abattements', period)
+        revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period)
+        abattement_salaires_pensions = individu('abattement_salaires_pensions', period)
 
-        # Quand tspr est calculé sur une année glissante, retraite_titre_onereux_net_declarant1 est calculé sur l'année légale
+        # Quand tspr est calculé sur une année glissante, retraite_titre_onereux_net est calculé sur l'année légale
         # correspondante.
-        retraite_titre_onereux_net_declarant1 = simulation.calculate('retraite_titre_onereux_net_declarant1', period.offset('first-of'))
+        retraite_titre_onereux_net = individu.foyer_fiscal('retraite_titre_onereux_net', period.offset('first-of'))
+        retraite_titre_onereux_net_declarant1 = retraite_titre_onereux_net * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return period, revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements - abattement_salaires_pensions + retraite_titre_onereux_net_declarant1
 
 
 class rev_cat_pv(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenu catégoriel - Plus-values"
     start_date = date(2013, 1, 1)
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
@@ -526,7 +512,7 @@ class rev_cat_pv(Variable):
 
 class rev_cat_tspr(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenu catégoriel - Traitements, salaires, pensions et rentes"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
 
@@ -542,7 +528,7 @@ class rev_cat_tspr(Variable):
 
 class deficit_rcm(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Deficit capitaux mobiliers"
     start_date = date(2009, 1, 1)
     url = "http://www.lefigaro.fr/impots/2008/04/25/05003-20080425ARTFIG00254-les-subtilites-des-revenus-de-capitaux-mobiliers-.php"
@@ -562,7 +548,7 @@ class deficit_rcm(Variable):
 
 class rev_cat_rvcm(DatedVariable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenu catégoriel - Capitaux"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
 
@@ -715,7 +701,7 @@ class rev_cat_rvcm(DatedVariable):
 
 class rfr_rvcm(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"rfr_rvcm"
 
     def function(self, simulation, period):
@@ -755,7 +741,7 @@ class rfr_rvcm(Variable):
 
 class rev_cat_rfon(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenu catégoriel - Foncier"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
 
@@ -789,7 +775,7 @@ class rev_cat_rfon(Variable):
 
 class rev_cat_rpns(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenu catégoriel - Revenus personnels non salariés"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
 
@@ -815,7 +801,7 @@ class rev_cat_rpns(Variable):
 
 class rev_cat(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenus catégoriels"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
 
@@ -840,7 +826,7 @@ class rev_cat(Variable):
 
 class deficit_ante(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Déficit global antérieur"
     url = "http://impotsurlerevenu.org/declaration-de-revenus-fonciers-2044/796-deficits-anterieurs-restant-a-imputer-cadre-450.php"
 
@@ -861,7 +847,7 @@ class deficit_ante(Variable):
 
 class rbg(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenu brut global"
     url = "http://www.documentissime.fr/dossiers-droit-pratique/dossier-19-l-impot-sur-le-revenu-les-modalites-generales-d-imposition/la-determination-du-revenu-imposable/le-revenu-brut-global.html"
 
@@ -885,7 +871,7 @@ class rbg(Variable):
 
 class csg_deduc_patrimoine(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
 
@@ -902,7 +888,7 @@ class csg_deduc_patrimoine(Variable):
 
 class csg_deduc_patrimoine_simulated(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine simulée"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
 
@@ -923,7 +909,7 @@ class csg_deduc_patrimoine_simulated(Variable):
 
 class csg_deduc(Variable):  # f6de
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
 
@@ -939,7 +925,7 @@ class csg_deduc(Variable):  # f6de
 
 class rng(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenu net global"
     url = "http://impotsurlerevenu.org/definitions/114-revenu-net-global.php"
 
@@ -955,7 +941,7 @@ class rng(Variable):
 
 class rni(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenu net imposable"
     url = "http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php"
 
@@ -970,7 +956,7 @@ class rni(Variable):
 
 class ir_brut(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Impôt sur le revenu brut avant non imposabilité et plafonnement du quotient"
 
     def function(self, simulation, period):
@@ -985,7 +971,7 @@ class ir_brut(Variable):
 
 class ir_ss_qf(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Impôt sans quotient familial"
 
     def function(self, simulation, period):
@@ -1003,7 +989,7 @@ class ir_ss_qf(Variable):
 
 class ir_plaf_qf(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Impôt après plafonnement du quotient familial et réduction complémentaire"
 
     def function(self, simulation, period):
@@ -1103,7 +1089,7 @@ class ir_plaf_qf(Variable):
 
 class avantage_qf(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Avantage quotient familial"
 
     def function(self, simulation, period):
@@ -1116,7 +1102,7 @@ class avantage_qf(Variable):
 
 class decote(DatedVariable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"décote"
 
     @dated_function(start = date(2015, 1, 1))
@@ -1154,7 +1140,7 @@ class decote(DatedVariable):
 
 class decote_gain_fiscal(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Gain fiscal de la décote/Décote au sens Dgfip tel que sur la feuille d'impôt"
     start_date = date(1982, 1, 1)
 
@@ -1171,7 +1157,7 @@ class decote_gain_fiscal(Variable):
 
 class nat_imp(Variable):
     column = BoolCol(default = False)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"nat_imp"
 
     def function(self, simulation, period):
@@ -1190,7 +1176,7 @@ class nat_imp(Variable):
 
 class ip_net(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Impôt sur le revenu après décote"
 
     def function(self, simulation, period):
@@ -1208,7 +1194,7 @@ class ip_net(Variable):
 
 class iaidrdi(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Impôt après imputation des réductions d'impôt"
 
     def function(self, simulation, period):
@@ -1224,7 +1210,7 @@ class iaidrdi(Variable):
 
 class cont_rev_loc(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Contribution sur les revenus locatifs"
     start_date = date(2001, 1, 1)
 
@@ -1241,7 +1227,7 @@ class cont_rev_loc(Variable):
 
 class teicaa(Variable):  # f5rm
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance"
 
     def function(self, simulation, period):
@@ -1260,7 +1246,7 @@ class teicaa(Variable):  # f5rm
 
 class assiette_vente(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Assiette régime microsociale pour les ventes"
     start_date = date(2009, 1, 1)
 
@@ -1276,7 +1262,7 @@ class assiette_vente(Variable):
 
 class assiette_service(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Assiette régime microsociale pour les prestations et services"
     start_date = date(2009, 1, 1)
 
@@ -1295,7 +1281,7 @@ class assiette_service(Variable):
 
 class assiette_proflib(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Assiette régime microsociale pour les professions libérales"
     start_date = date(2009, 1, 1)
 
@@ -1316,7 +1302,7 @@ class assiette_proflib(Variable):
 
 class microsocial(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Assiette régime microsociale totale"
     start_date = date(2009, 1, 1)
     url = "http://fr.wikipedia.org/wiki/R%C3%A9gime_micro-social"
@@ -1336,7 +1322,7 @@ class microsocial(Variable):
 
 class microentreprise(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"microentreprise"
     start_date = date(2009, 1, 1)
 
@@ -1357,7 +1343,7 @@ class microentreprise(Variable):
 
 class plus_values(DatedVariable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Taxation des plus_values"
 
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
@@ -1532,7 +1518,7 @@ class plus_values(DatedVariable):
 
 class iai(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Impôt avant imputations de l'impôt sur le revenu"
     url = "http://forum-juridique.net-iris.fr/finances-fiscalite-assurance/43963-declaration-impots.html"
 
@@ -1551,7 +1537,7 @@ class iai(Variable):
 
 class cehr(DatedVariable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Contribution exceptionnelle sur les hauts revenus"
     url = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
 
@@ -1572,7 +1558,7 @@ class cehr(DatedVariable):
 
 class irpp(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Impôt sur le revenu des personnes physiques"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
 
@@ -1599,7 +1585,7 @@ class irpp(Variable):
 
 class foyer_impose(Variable):
     column = BoolCol(default = False)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Le foyer fiscal est imposé"
 
     def function(self, simulation, period):
@@ -1614,7 +1600,7 @@ class foyer_impose(Variable):
 
 class pensions_alimentaires_versees(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Pensions alimentaires versées"
     url = u"http://vosdroits.service-public.fr/particuliers/F2.xhtml"
 
@@ -1630,16 +1616,9 @@ class pensions_alimentaires_versees(Variable):
         return period, -(f6gi + f6gj + f6el + f6em + f6gp + f6gu)
 
 
-class pensions_alimentaires_versees_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"Pensions alimentaires versées (pour le premier déclarant du foyer fiscal)"
-    role = VOUS
-    variable = pensions_alimentaires_versees
-
-
 class rfr(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenu fiscal de référence"
 
     def function(self, simulation, period):
@@ -1669,7 +1648,7 @@ class rfr(Variable):
 
 class glo(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Gain de levée d'options"
     url = "http://www.officeo.fr/imposition-au-bareme-progressif-de-l-impot-sur-le-revenu-des-gains-de-levee-d-options-sur-actions-et-attributions-d-actions-gratuites"
 
@@ -1695,7 +1674,7 @@ class rev_cap_bar(Variable):
     """
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenus du capital imposés au barème"
     set_input = set_input_divide_by_period
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
@@ -1734,7 +1713,7 @@ class rev_cap_lib(DatedVariable):
     '''
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenu du capital imposé au prélèvement libératoire"
     set_input = set_input_divide_by_period
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
@@ -1767,7 +1746,7 @@ class rev_cap_lib(DatedVariable):
 
 class avf(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Avoir fiscal et crédits d'impôt"
 
     def function(self, simulation, period):
@@ -1782,7 +1761,7 @@ class avf(Variable):
 
 class imp_lib(DatedVariable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Prelèvement libératoire sur les revenus du capital"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
 
@@ -1820,7 +1799,7 @@ class imp_lib(DatedVariable):
 
 class fon(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenus fonciers"
     url = "http://impotsurlerevenu.org/definitions/220-revenu-foncier.php"
 
@@ -1841,7 +1820,7 @@ class fon(Variable):
 
 class rpns_pvce(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Plus values de cession - Revenu des professions non salariées"
 
     def function(self, simulation, period):
@@ -1877,7 +1856,7 @@ class rpns_pvce(Variable):
 
 class rpns_exon(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Plus values de cession exonérées -Revenu des professions non salariées"
 
     def function(self, simulation, period):
@@ -1928,7 +1907,7 @@ class rpns_exon(Variable):
 
 class defrag(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Déficit agricole des années antérieures"
 
     def function(self, simulation, period):
@@ -1957,7 +1936,7 @@ class defrag(Variable):
 
 class defacc(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Déficit industriels et commerciaux non professionnels des années antérieures"
 
     def function(self, simulation, period):
@@ -1992,7 +1971,7 @@ class defacc(Variable):
 
 class defncn(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Déficit non commerciaux non professionnels des années antérieures"
 
     def function(self, simulation, period):
@@ -2022,7 +2001,7 @@ class defncn(Variable):
 
 class defmeu(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Déficit des locations meublées non professionnelles des années antérieures"
 
     def function(self, simulation, period):
@@ -2047,7 +2026,7 @@ class defmeu(Variable):
 
 class rag(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Revenus agricoles"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=BA&pageId=prof_ba&sfid=50"
 
@@ -2084,7 +2063,7 @@ class rag(Variable):
 
 class ric(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Bénéfices industriels et commerciaux"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?pageId=prof_bic&espId=2&impot=BIC&sfid=50"
 
@@ -2149,7 +2128,7 @@ class ric(Variable):
 
 class rac(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Revenus accessoires individuels"
     url = "http://vosdroits.service-public.fr/particuliers/F1225.xhtml"
 
@@ -2210,7 +2189,7 @@ class rac(Variable):
 
 class rnc(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Revenus non commerciaux individuels"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
 
@@ -2251,7 +2230,7 @@ class rnc(Variable):
 
 class rpns(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Revenus individuels des professions non salariées"
 
     def function(self, simulation, period):
@@ -2266,7 +2245,7 @@ class rpns(Variable):
 
 class rpns_pvct(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Plus values de court terme -Revenu des professions non salariées"
 
     def function(self, simulation, period):
@@ -2291,7 +2270,7 @@ class rpns_pvct(Variable):
 
 class rpns_mvct(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Moins values de court terme - Revenu des professions non salariées"
 
     def function(self, simulation, period):
@@ -2314,7 +2293,7 @@ class rpns_mvct(Variable):
 
 class rpns_mvlt(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Moins values de long terme - Revenu des professions non salariées"
 
     def function(self, simulation, period):
@@ -2337,7 +2316,7 @@ class rpns_mvlt(Variable):
 
 class rpns_individu(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Revenus des professions non salariées individuels"
 
     def function(self, simulation, period):
@@ -2482,11 +2461,11 @@ class rpns_individu(Variable):
 
 class abat_spe(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Abattements spéciaux"
     url = "http://bofip.impots.gouv.fr/bofip/2036-PGP"
 
-    def function(self, simulation, period):
+    def function(foyer_fiscal, period, legislation):
         """
         Abattements spéciaux
 
@@ -2506,16 +2485,15 @@ class abat_spe(Variable):
           pour un célibataire avec un jeune enfant en résidence alternée.
         """
         period = period.this_year
-        age_holder = simulation.compute('age', period)
-        caseP = simulation.calculate('caseP', period)
-        caseF = simulation.calculate('caseF', period)
-        rng = simulation.calculate('rng', period)
-        nbN = simulation.calculate('nbN', period)
-        abattements_speciaux = simulation.legislation_at(period.start).ir.abattements_speciaux
+        caseP = foyer_fiscal('caseP', period)
+        caseF = foyer_fiscal('caseF', period)
+        rng = foyer_fiscal('rng', period)
+        nbN = foyer_fiscal('nbN', period)
+        abattements_speciaux = legislation(period).ir.abattements_speciaux
 
-        age = self.split_by_roles(age_holder, roles = [VOUS, CONJ])
+        ageV = foyer_fiscal.declarant_principal('age', period)
+        ageC = foyer_fiscal.conjoint('age', period)
 
-        ageV, ageC = age[VOUS], age[CONJ]
         invV, invC = caseP, caseF
         nb_elig_as = (1 * (((ageV >= 65) | invV) & (ageV > 0)) +
                       1 * (((ageC >= 65) | invC) & (ageC > 0))
@@ -2530,7 +2508,7 @@ class abat_spe(Variable):
 
 class taux_effectif(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"taux_effectif"
     start_date = date(2009, 1, 1)
 
@@ -2553,7 +2531,7 @@ class taux_effectif(Variable):
 
 class taux_moyen_imposition(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Taux moyen d'imposition"
 
     def function(self, simulation, period):
@@ -2572,7 +2550,7 @@ class taux_moyen_imposition(Variable):
 
 class nbptr(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Nombre de parts"
     url = "http://vosdroits.service-public.fr/particuliers/F2705.xhtml"
 
@@ -2684,7 +2662,7 @@ class nbptr(Variable):
 
 class ppe_coef(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Coefficient - Prime pour l'emploi"
 
     def function(self, simulation, period):
@@ -2700,7 +2678,7 @@ class ppe_coef(Variable):
 
 class ppe_elig(Variable):
     column = BoolCol(default = False)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"ppe_elig"
 
     def function(self, simulation, period):
@@ -2725,7 +2703,7 @@ class ppe_elig(Variable):
 
 class ppe_rev(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"ppe_rev"
 
     def function(self, simulation, period):
@@ -2749,7 +2727,7 @@ class ppe_rev(Variable):
 
 class ppe_coef_tp(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"ppe_coef_tp"
 
     def function(self, simulation, period):
@@ -2772,7 +2750,7 @@ class ppe_coef_tp(Variable):
 
 class ppe_base(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"ppe_base"
 
     def function(self, simulation, period):
@@ -2788,7 +2766,7 @@ class ppe_base(Variable):
 
 class ppe_elig_individu(Variable):
     column = BoolCol(default = False)
-    entity_class = Individus
+    entity = Individu
     label = u"ppe_elig_i"
 
     def function(self, simulation, period):
@@ -2807,7 +2785,7 @@ class ppe_elig_individu(Variable):
 
 class ppe_brute(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Prime pour l'emploi brute"
 
     def function(self, simulation, period):
@@ -2915,7 +2893,7 @@ class ppe_brute(Variable):
 
 class ppe(DatedVariable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Prime pour l'emploi"
     url = "http://vosdroits.service-public.fr/particuliers/F2882.xhtml"
 
