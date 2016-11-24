@@ -386,7 +386,7 @@ class cd2(DatedVariable):
         '''
         period = period.this_year
         cd_sofipe = simulation.calculate('cd_sofipe', period)
-        cinema = simulation.calculate('cinema', period)
+        cinema = simulation.calculate('souscriptions_cinema_audiovisuel', period)
 
         niches2 = cd_sofipe + cinema
         return period, niches2
@@ -606,7 +606,7 @@ class cd_sofipe(Variable):
         return period, min_(f6cc, plafond)
 
 
-class cinema(Variable):
+class souscriptions_cinema_audiovisuel(Variable):
     column = FloatCol(default = 0)
     entity_class = FoyersFiscaux
     label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel"

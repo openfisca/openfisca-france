@@ -5,7 +5,7 @@
 * Rename variables:
 	* `cd_penali` -> `pensions_alimentaires_deduites`
 	* `cd_percap` -> `pertes_capital_societes_nouvellespertes_capital_societes_nouvelles`
-	* `cd_cinema` -> `cinema`
+	* `cd_cinema` -> `souscriptions_cinema_audiovisuel`
 	* `cd_ecodev` -> `epargne_codeveloppement`
 	* `cd_grorep` -> `grosses_reparations`
 
