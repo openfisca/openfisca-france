@@ -641,12 +641,6 @@ class Scenario(scenarios.AbstractScenario):
                                             error = N_(u'A "foyer_fiscal" must have at most 2 "declarants"'),
                                             ),
                                         conv.uniform_sequence(conv.pipe(
-                                            # conv.test(lambda individu_id:
-                                            #     find_age(individu_by_id[individu_id], period.start.date,
-                                            #         default = 100) >= 18,
-                                            #     error = u"Un déclarant d'un foyer fiscal doit être agé d'au moins 18"
-                                            #         u" ans",
-                                            #     )
                                             )),
                                         ),
                                     personnes_a_charge = conv.uniform_sequence(
@@ -666,19 +660,6 @@ class Scenario(scenarios.AbstractScenario):
                         conv.empty_to_none,
                         conv.not_none,
                         ),
-                    # individus = conv.uniform_sequence(
-                    #     conv.struct(
-                    #         dict(
-                    #             date_naissance = conv.test(
-                    #                 lambda date_naissance:
-                    #                     period.start.date - date_naissance >= datetime.timedelta(0),
-                    #                 error = u"L'individu doit être né au plus tard le jour de la simulation",
-                    #                 ),
-                    #             ),
-                    #         default = conv.noop,
-                    #         drop_none_values = 'missing',
-                    #         ),
-                    #     ),
                     menages = conv.pipe(
                         conv.uniform_sequence(
                             conv.struct(
