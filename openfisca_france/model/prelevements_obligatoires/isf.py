@@ -339,6 +339,7 @@ class isf_reduc_pac(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"isf_reduc_pac"
+    stop_date = date(2012, 12, 31)
 
     def function(self, simulation, period):
         '''
@@ -349,10 +350,7 @@ class isf_reduc_pac(Variable):
         nbH = simulation.calculate('nbH', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.reduc_pac
 
-        if period.start.date >= date(2013, 1, 01):
-            return period, 0 * nb_pac + 0 * nbH
-        else:
-            return period, P.reduc_enf_garde * nb_pac + (P.reduc_enf_garde / 2) * nbH
+        return period, P.reduc_enf_garde * nb_pac + (P.reduc_enf_garde / 2) * nbH
 
 
 
@@ -389,16 +387,14 @@ class isf_org_int_gen(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"isf_org_int_gen"
+    start_date = date(2008, 1, 01)
 
     def function(self, simulation, period):
         period = period.this_year
         b2nc = simulation.calculate('b2nc', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.reduc_invest_don
 
-        if period.start.date >= date(2008, 1, 01):
-            return period, b2nc * P.taux_don_interet_general
-        else:
-            return period, b2nc * 0
+        return period, b2nc * P.taux_don_interet_general
 
 class isf_avant_plaf(Variable):
     column = FloatCol(default = 0)
