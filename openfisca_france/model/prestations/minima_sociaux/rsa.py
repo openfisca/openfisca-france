@@ -2,7 +2,6 @@
 
 from __future__ import division
 
-import datetime
 
 from numpy import (datetime64, floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select, where)
 
@@ -296,7 +295,7 @@ class rsa_enfant_a_charge(Variable):
             (1 - P_rsa.pente) * individu('rsa_revenu_activite_individu', period)
             )
 
-        if period.start.date > datetime.date(2009, 5, 31):
+        if period.start.date > date(2009, 5, 31):
             age_pac = P_rsa.age_pac
         else:
             age_pac = P_rmi.age_pac
@@ -320,7 +319,7 @@ class rsa_enfant_a_charge(Variable):
             # individu.famille.sum retourne un résultat qui n'est pas implicitement projeté sur l'individu.
             return not_(enceinte_fam) * isole * isolement_recent * not_(famille.project(presence_autres_enfants))
 
-        if period.start.date > datetime.date(2009, 5, 31):
+        if period.start.date > date(2009, 5, 31):
             rsa_enf_charge = enfant * not_(autonomie_financiere) * (age <= P_rsa.age_pac) * where(
                 ouvre_droit_majoration(),
                 ressources < (P_rsa.majo_rsa.pac0 - 1 + P_rsa.majo_rsa.pac_enf_sup) * P_rsa.montant_de_base_du_rsa,
@@ -390,7 +389,7 @@ class rsa_indemnites_journalieres_activite(Variable):
         condition_date_arret_travail = date_arret_de_travail > three_months_ago
 
         # Si la date d'arrêt de travail n'est pas définie (et vaut donc par défaut date.min), mais qu'il n'y a pas d'IJSS à M-3, on estime que l'arrêt est récent.
-        is_date_arret_de_travail_undefined = (date_arret_de_travail == datetime.date.min)
+        is_date_arret_de_travail_undefined = (date_arret_de_travail == date.min)
         condition_arret_recent = is_date_arret_de_travail_undefined * (ijss_activite_sous_condition(m_3) == 0)
 
         condition_activite = simulation.calculate('salaire_net', period) > 0
@@ -647,7 +646,7 @@ class rsa_forfait_logement(Variable):
 
     def function(famille, period, legislation):
         period = period.this_month
-        if period.start.date > datetime.date(2009, 5, 31):
+        if period.start.date > date(2009, 5, 31):
             forf_logement = legislation(period).prestations.minima_sociaux.rsa.forfait_logement
             rsa = legislation(period).prestations.minima_sociaux.rsa.montant_de_base_du_rsa
             rsa_socle = famille('rsa_socle', period)
@@ -670,7 +669,7 @@ class rsa_forfait_logement(Variable):
             )
         avantage_al = aide_logement > 0
 
-        if period.start.date > datetime.date(2009, 5, 31):
+        if period.start.date > date(2009, 5, 31):
             montant_forfait = rsa * (
                 (nb_pac == 1) * forf_logement.taux_1_personne +
                 (nb_pac == 2) * forf_logement.taux_2_personnes * (1 + major_rsa.taux_deuxieme_personne) +
@@ -828,8 +827,7 @@ class rsa_socle(Variable):
         rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa
 
         nb_personnes = nb_parents + rsa_nb_enfants
-        import datetime
-        if period.start.date > datetime.date(2009, 5, 31):
+        if period.start.date > date(2009, 5, 31):
             taux = (
                 1 +
                 (nb_personnes >= 2) * rsa.majoration_rsa.taux_deuxieme_personne +
@@ -867,8 +865,7 @@ class rsa_socle_majore(Variable):
         rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa
         eligib = simulation.calculate('rsa_majore_eligibilite', period)
         nbenf = simulation.calculate('rsa_nb_enfants', period)
-        import datetime
-        if period.start.date > datetime.date(2009, 5, 31):
+        if period.start.date > date(2009, 5, 31):
             taux = rsa.majo_rsa.pac0 + rsa.majo_rsa.pac_enf_sup * nbenf
             socle = rsa.montant_de_base_du_rsa
         else:

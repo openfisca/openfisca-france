@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import datetime
-
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
@@ -77,7 +75,7 @@ class indemnites_journalieres_imposables(Variable):
         return period, result
 
 class date_arret_de_travail(Variable):
-    column = DateCol(default = datetime.date.min)
+    column = DateCol(default = date.min)
     entity = Individu
     is_permanent = True
     label = u"Date depuis laquelle la personne est en arrêt de travail"

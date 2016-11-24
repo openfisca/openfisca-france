@@ -3,7 +3,6 @@
 from __future__ import division
 
 
-import datetime
 import logging
 
 from numpy import (datetime64, logical_and as and_, logical_not as not_, logical_or as or_, logical_xor as xor_,
@@ -638,7 +637,7 @@ class rev_cat_rvcm(DatedVariable):
         rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        if period.start.date >= datetime.date(2012, 1, 01):
+        if period.start.date >= date(2012, 1, 01):
             h12 = 0
         else:
             h12 = rvcm.abatmob * (1 + maries_ou_pacses)
@@ -738,7 +737,7 @@ class rfr_rvcm(Variable):
         rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        if period.start.date >= datetime.date(2012, 1, 01):
+        if period.start.date >= date(2012, 1, 01):
             h12 = 0
         else:
             h12 = rvcm.abatmob * (1 + maries_ou_pacses)

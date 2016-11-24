@@ -2,7 +2,6 @@
 
 from __future__ import division
 
-import datetime
 import logging
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
@@ -157,7 +156,7 @@ class forfait_social(Variable):
         # Les cotisations de prévoyance complémentaire qui rentrent en compte dans l'assiette du taux réduit
         # ne concernent que les entreprises de 10 ou 11 employés et plus
         # https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
-        if period.start.date >= datetime.date(2012, 8, 01):
+        if period.start.date >= date(2012, 8, 01):
             taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
             assiette_taux_reduit = (
                 - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire

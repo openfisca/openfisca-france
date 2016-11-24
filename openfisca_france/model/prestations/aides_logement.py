@@ -3,7 +3,6 @@
 from __future__ import division
 
 import csv
-import datetime
 import json
 import logging
 import pkg_resources
@@ -359,7 +358,7 @@ class aide_logement_R0(Variable):
         residence_dom = famille.demandeur.menage('residence_dom')
 
         n_2 = period.start.offset(-2, 'year')  # deux ans après la mise en place du rsa le 2009-06-01
-        if n_2.date >= datetime.date(2009, 6, 01):
+        if n_2.date >= date(2009, 6, 01):
             montant_de_base = minim_n_2.rsa.montant_de_base_du_rsa
         else:
             montant_de_base = minim_n_2.rmi.montant_de_base_du_rmi
