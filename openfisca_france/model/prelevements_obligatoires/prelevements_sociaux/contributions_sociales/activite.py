@@ -2,7 +2,6 @@
 
 from __future__ import division
 
-
 import logging
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
@@ -72,11 +71,11 @@ class csg_deductible_salaire(Variable):
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
 
-        law = simulation.legislation_at(period.start)
+        csg = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
-            law_node = law.csg.activite.deductible,
+            law_node = csg.activite.deductible,
             plafond_securite_sociale = plafond_securite_sociale,
             )
         return period, montant_csg
@@ -93,12 +92,12 @@ class csg_imposable_salaire(Variable):
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        law = simulation.legislation_at(period.start)
+        legislation = simulation.legislation_at(period.start)
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
-            law_node = law.csg.activite.imposable,
+            law_node = legislation.prelevements_sociaux.contributions.csg.activite.imposable,
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
@@ -120,7 +119,7 @@ class crds_salaire(Variable):
         law = simulation.legislation_at(period.start)
 
         montant_crds = montant_csg_crds(
-            law_node = law.crds.activite,
+            law_node = law.prelevements_sociaux.contributions.crds.activite,
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
             plafond_securite_sociale = plafond_securite_sociale,
@@ -129,7 +128,7 @@ class crds_salaire(Variable):
         return period, montant_crds
 
 
-class forfait_social(Variable):
+class forfait_social(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Forfait social"
@@ -139,26 +138,33 @@ class forfait_social(Variable):
     # au bénéfice de leurs salariés, anciens salariés et de leurs ayants droit (entreprises à partir de 10 salariés),
     # la réserve spéciale de participation dans les sociétés coopératives ouvrières de production (Scop).
 
-    def function(self, simulation, period):
-        prevoyance_obligatoire_cadre = simulation.calculate_add('prevoyance_obligatoire_cadre', period)
-        prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate_add(
-            'prise_en_charge_employeur_prevoyance_complementaire', period)
-        prise_en_charge_employeur_retraite_complementaire = simulation.calculate_add(
-            'prise_en_charge_employeur_retraite_complementaire', period)
-        complementaire_sante_employeur = simulation.calculate_add('complementaire_sante_employeur', period)
-        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
+    @dated_function(start = date(2009, 1, 1), stop = date(2012, 7, 31))
+    def function_1(individu, period, legislation):
+        prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options = [ADD])
 
-        parametres = simulation.legislation_at(period.start).forfait_social
+        parametres = legislation(period).prelevements_sociaux.forfait_social
         taux_plein = parametres.taux_plein
-        taux_reduit = parametres.taux_reduit
-        seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
+        assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
 
-        # TODO: complete this
+        return period, - assiette_taux_plein * taux_plein
+
+    @dated_function(start = date(2012, 8, 1))
+    def function_2(individu, period, legislation):
+        prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options = [ADD])
+
+        parametres = legislation(period).prelevements_sociaux.forfait_social
+        taux_plein = parametres.taux_plein
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
 
         # Les cotisations de prévoyance complémentaire qui rentrent en compte dans l'assiette du taux réduit
         # ne concernent que les entreprises de 10 ou 11 employés et plus
         # https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social/le-forfait-social-au-taux-de-8.html
+        seuil_effectif_taux_reduit = parametres.seuil_effectif_prevoyance_complementaire
+        prise_en_charge_employeur_prevoyance_complementaire = individu('prise_en_charge_employeur_prevoyance_complementaire', period, options = [ADD])
+        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
+        effectif_entreprise = individu('effectif_entreprise', period)
+        complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
+        taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
         assiette_taux_reduit = (
             - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
             - complementaire_sante_employeur
@@ -167,6 +173,7 @@ class forfait_social(Variable):
         return period, - (
             assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit
             )
+
 
 
 class salaire_imposable(Variable):

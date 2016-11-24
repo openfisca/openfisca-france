@@ -159,17 +159,15 @@ class aah_eligible(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-        law = simulation.legislation_at(period.start)
-
+        law = simulation.legislation_at(period.start).prestations
         taux_incapacite = simulation.calculate('taux_incapacite', period)
         age = simulation.calculate('age', period)
         autonomie_financiere = simulation.calculate('autonomie_financiere', period)
-
         eligible_aah = (
             (taux_incapacite >= 0.5) *
-            (age <= law.minim.aah.age_legal_retraite) *
-            ((age >= law.fam.aeeh.age) + ((age >= 16) * (autonomie_financiere)))
-        )
+            (age <= law.minima_sociaux.aah.age_legal_retraite) *
+            ((age >= law.minima_sociaux.aah.age_minimal) + ((age >= 16) * (autonomie_financiere)))
+            )
 
         return period, eligible_aah
     # TODO: dated_function : avant 2008, il fallait ne pas avoir travaillé pendant les 12 mois précédant la demande.
@@ -203,18 +201,16 @@ class aah_base(Variable):
 
     def function(individu, period, legislation):
         period = period.this_month
-        law = legislation(period)
+        law = legislation(period).prestations
 
         aah_eligible = individu('aah_eligible', period)
         aah_non_calculable = individu('aah_non_calculable', period)
-
         aah_base_ressources = individu.famille('aah_base_ressources', period)
         en_couple = individu.famille('en_couple', period)
         af_nbenf = individu.famille('af_nbenf', period)
-        plaf_ress_aah = 12 * law.minim.aah.montant * (1 + en_couple + law.minim.aah.tx_plaf_supp * af_nbenf)
+        plaf_ress_aah = 12 * law.minima_sociaux.aah.montant * (1 + en_couple + law.minima_sociaux.aah.tx_plaf_supp * af_nbenf)
         montant_aah = max_(plaf_ress_aah - aah_base_ressources, 0) / 12
 
-        # Le montant est à valeur pour une famille, il faut le caster pour l'individu
         # Pour le moment, on ne neutralise pas l'aah en cas de non calculabilité pour pouvoir tester
         return period, aah_eligible *  montant_aah # * not_(aah_non_calculable)
 
@@ -292,10 +288,10 @@ class caah(DatedVariable):
     @dated_function(start = date(2005, 7, 1))
     def function_2005_07_01(self, simulation, period):
         period = period.this_month
-        law = simulation.legislation_at(period.start)
+        law = simulation.legislation_at(period.start).prestations
 
-        grph = law.minim.caah.grph
-        aah_montant = law.minim.aah.montant
+        garantie_ressources = law.minima_sociaux.caah.garantie_ressources
+        aah_montant = law.minima_sociaux.aah.montant
 
         aah = simulation.calculate('aah', period)
         asi_eligibilite = simulation.calculate('asi_eligibilite', period)
@@ -308,7 +304,7 @@ class caah(DatedVariable):
         elig_cpl = ((aah > 0) | (benef_asi > 0))
         # TODO: & logement indépendant & inactif 12 derniers mois
         # & capa de travail < 5% & taux d'incapacité >= 80%
-        compl_ress = elig_cpl * max_(grph - aah_montant, 0)
+        compl_ress = elig_cpl * max_(garantie_ressources - aah_montant, 0)
 
         elig_mva = (al > 0) * ((aah > 0) | (benef_asi > 0))
         # TODO: & logement indépendant & pas de revenus professionnels
@@ -320,10 +316,10 @@ class caah(DatedVariable):
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 6, 30))  # TODO FIXME start date
     def function_2005_06_30(self, simulation, period):
         period = period.this_month
-        law = simulation.legislation_at(period.start)
+        law = simulation.legislation_at(period.start).prestations
 
-        cpltx = law.minim.caah.cpltx
-        aah_montant = law.minim.aah.montant
+        cpltx = law.minima_sociaux.caah.cpltx
+        aah_montant = law.minima_sociaux.aah.montant
 
         aah = simulation.calculate('aah', period)
         asi_eligibilite = simulation.calculate('asi_eligibilite', period)

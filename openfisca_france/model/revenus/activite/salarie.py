@@ -686,10 +686,9 @@ class af_nbenf_fonc(Variable):
         law = simulation.legislation_at(period.start)
         nbh_travaillees = 169
         smic_mensuel_brut = law.cotsoc.gen.smic_h_b * nbh_travaillees
-
-        autonomie_financiere = (salaire_de_base / 6) >= (law.fam.af.seuil_rev_taux * smic_mensuel_brut)
+        autonomie_financiere = (salaire_de_base / 6) >= (law.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
         age = simulation.calculate('age', period)
-        condition_enfant = (age >= law.fam.af.age1) * (age <= law.fam.af.age2) * not_(autonomie_financiere)
+        condition_enfant = (age >= law.prestations.prestations_familiales.af.age1) * (age <= law.prestations.prestations_familiales.af.age2) * not_(autonomie_financiere)
 
         return period, simulation.famille.sum(condition_enfant, role = Famille.ENFANT)
 

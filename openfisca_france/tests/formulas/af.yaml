@@ -1,5 +1,32 @@
 - name: "Allocations familiales - Couple, 2 enfants de moins de 11 ans"
   description: Montant AF brut de CRDS
+  period: 2012-01
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "parent2"
+      age: 40
+    - id: "enfant1"
+      age: 9
+    - id: "enfant2"
+      age: 9
+  output_variables:
+    af: 399 * .32  # Changement de BMAF en cours d'année
+
+
+- name: "Allocations familiales - Couple, 2 enfants de moins de 11 ans"
+  description: Montant AF brut de CRDS
   period: 2006-01
   absolute_error_margin: 0.03
   familles:
@@ -1703,4 +1730,3 @@
       date_naissance: "2001-01-01"
   output_variables:
     af_majoration: 60
-

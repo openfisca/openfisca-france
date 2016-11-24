@@ -1,30 +1,46 @@
 # Changelog
 
-## 5.0.0
+## 6.0.0
+
+* Use legislation parameters from IPP
+
+* Rename variables:
+	* `cd_penali` -> `pensions_alimentaires_deduites`
+	* `cd_percap` -> `pertes_capital_societes_nouvellespertes_capital_societes_nouvelles`
+	* `cd_cinema` -> `souscriptions_cinema_audiovisuel`
+	* `cd_ecodev` -> `epargne_codeveloppement`
+	* `cd_grorep` -> `grosses_reparations`
+
+* Add variables for allocation pour demandeur d'asile (ADA):
+	* `asile_demandeur`
+	* `place_hebergement`
+	* `ada`
+
+## 5.0.0b0
 
 * Adapt France to Openfisca-Core#v4
 	* Declare entities in the new way
 
 * Deprecate all conversion variables:
-	* `cotsoc_bar_declarant1
-	* `cotsoc_lib_declarant1
-	* `crds_cap_bar_declarant1
-	* `crds_cap_lib_declarant1
-	* `csg_cap_bar_declarant1
-	* `csg_cap_lib_declarant1
-	* `loyer_famille
-	* `loyer_individu
-	* `maj_cga_individu
-	* `pensions_alimentaires_versees_declarant1
-	* `prelsoc_cap_bar_declarant1
-	* `prelsoc_cap_lib_declarant1
-	* `retraite_titre_onereux_declarant1
-	* `retraite_titre_onereux_net_declarant1
-	* `rev_microsocial_declarant1
-	* `statut_occupation_famille
-	* `statut_occupation_logement_individu
-	* `zone_apl_famille* `
-	* `zone_apl_individu* `
+	* `cotsoc_bar_declarant1`
+	* `cotsoc_lib_declarant1`
+	* `crds_cap_bar_declarant1`
+	* `crds_cap_lib_declarant1`
+	* `csg_cap_bar_declarant1`
+	* `csg_cap_lib_declarant1`
+	* `loyer_famille`
+	* `loyer_individu`
+	* `maj_cga_individu`
+	* `pensions_alimentaires_versees_declarant1`
+	* `prelsoc_cap_bar_declarant1`
+	* `prelsoc_cap_lib_declarant1`
+	* `retraite_titre_onereux_declarant1`
+	* `retraite_titre_onereux_net_declarant1`
+	* `rev_microsocial_declarant1`
+	* `statut_occupation_famille`
+	* `statut_occupation_logement_individu`
+	* `zone_apl_famille`
+	* `zone_apl_individu`
 
 * Deprecate entity structure variables:
 	* `idmen`

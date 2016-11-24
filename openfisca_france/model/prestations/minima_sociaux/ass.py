@@ -27,7 +27,7 @@ class ass(Variable):
         ass_base_ressources = simulation.calculate('ass_base_ressources', period)
         ass_eligibilite_i_holder = simulation.compute('ass_eligibilite_individu', period)
         en_couple = simulation.calculate('en_couple', period)
-        ass_params = simulation.legislation_at(period.start).minim.ass
+        ass_params = simulation.legislation_at(period.start).prestations.minima_sociaux.ass
 
         ass_eligibilite_i = self.split_by_roles(ass_eligibilite_i_holder, roles = [CHEF, PART])
 
@@ -133,8 +133,8 @@ class ass_base_ressources_conjoint(Variable):
             # Les ressources interrompues sont abattues différement si elles sont substituées ou non.
             # http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000020398006&cidTexte=LEGITEXT000006072050
 
-            tx_abat_partiel = simulation.legislation_at(period.start).minim.ass.abat_rev_subst_conj
-            tx_abat_total = simulation.legislation_at(period.start).minim.ass.abat_rev_non_subst_conj
+            tx_abat_partiel = simulation.legislation_at(period.start).prestations.minima_sociaux.ass.abat_rev_subst_conj
+            tx_abat_total = simulation.legislation_at(period.start).prestations.minima_sociaux.ass.abat_rev_non_subst_conj
 
             abat_partiel = ressource_interrompue * has_ressources_substitution * (1 - neutral_totale)
             abat_total = ressource_interrompue * (1 - abat_partiel)

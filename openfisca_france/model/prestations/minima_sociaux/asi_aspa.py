@@ -12,6 +12,7 @@ class inapte_travail(Variable):
     entity = Individu
     label = u"Reconnu inapte au travail"
 
+
 class taux_incapacite(Variable):
     column = FloatCol
     entity = Individu
@@ -29,7 +30,6 @@ class asi_aspa_base_ressources_individu(Variable):
         three_previous_months = period.last_3_months
         law = legislation(period)
         leg_1er_janvier = legislation(period.start.offset('first-of', 'year'))
-
 
         ressources_incluses = [
             'allocation_securisation_professionnelle',
@@ -49,7 +49,7 @@ class asi_aspa_base_ressources_individu(Variable):
             'revenus_stage_formation_pro',
             'rsa_base_ressources_patrimoine_individu',
             'salaire_de_base',
-        ]
+            ]
 
         # Revenus du foyer fiscal que l'on projette sur le premier invidividus
         rev_cap_bar_foyer_fiscal = max_(0, individu.foyer_fiscal('rev_cap_bar', three_previous_months, options = [ADD, DIVIDE]))
@@ -60,14 +60,16 @@ class asi_aspa_base_ressources_individu(Variable):
 
         def revenus_tns():
             revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', three_previous_months, options = [ADD])
+            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
 
-           # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
             tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year) * (3 / 12)
             tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year) * (3 / 12)
             tns_autres_revenus = individu('tns_autres_revenus', last_year) * (3 / 12)
 
-            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
-
+            return (
+                revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole +
+                tns_autres_revenus
+                )
 
         pension_invalidite = (individu('pensions_invalidite', period) > 0)
         aspa_eligibilite = individu('aspa_eligibilite', period)
@@ -91,15 +93,14 @@ class asi_aspa_base_ressources_individu(Variable):
 
             taux_abattement_forfaitaire = where(
                 aspa_couple,
-                law.minim.aspa.abattement_forfaitaire_tx_couple,
-                law.minim.aspa.abattement_forfaitaire_tx_seul
+                law.prestations.minima_sociaux.aspa.abattement_forfaitaire_tx_couple,
+                law.prestations.minima_sociaux.aspa.abattement_forfaitaire_tx_seul
                 )
 
             abattement_forfaitaire = abattement_forfaitaire_base * taux_abattement_forfaitaire
             salaire_de_base = individu('salaire_de_base', three_previous_months, options = [ADD])
 
             return min_(salaire_de_base, abattement_forfaitaire)
-
 
         base_ressources_3_mois = sum(
             max_(0, individu(ressource_type, three_previous_months, options = [ADD]))
@@ -134,7 +135,7 @@ class aspa_eligibilite(Variable):
         age = simulation.calculate('age', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
         taux_incapacite = simulation.calculate('taux_incapacite', period)
-        P = simulation.legislation_at(period.start).minim
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux
         condition_invalidite = (taux_incapacite > P.aspa.taux_incapacite_aspa_anticipe) + inapte_travail
         condition_age_base = (age >= P.aspa.age_min)
         condition_age_anticipe = (age >= P.aah.age_legal_retraite) * condition_invalidite
@@ -176,7 +177,7 @@ class asi_aspa_condition_nationalite(Variable):
     def function(self, simulation, period):
         ressortissant_eee = simulation.calculate('ressortissant_eee', period)
         duree_possession_titre_sejour= simulation.calculate('duree_possession_titre_sejour', period)
-        duree_min_titre_sejour = simulation.legislation_at(period.start).minim.aspa.duree_min_titre_sejour
+        duree_min_titre_sejour = simulation.legislation_at(period.start).prestations.minima_sociaux.aspa.duree_min_titre_sejour
 
         return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
@@ -213,7 +214,7 @@ class asi(Variable):
         en_couple = simulation.calculate('en_couple', period)
         asi_aspa_nb_alloc = simulation.calculate('asi_aspa_nb_alloc', period)
         base_ressources = simulation.calculate('asi_aspa_base_ressources', period)
-        P = simulation.legislation_at(period.start).minim
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux
 
         asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
         aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
@@ -234,16 +235,16 @@ class asi(Variable):
         montant_max = (elig1 * P.asi.montant_seul +
             elig2 * P.asi.montant_couple +
             elig3 * 2 * P.asi.montant_seul +
-            elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2) +
-            elig5 * (P.asi.montant_seul + P.aspa.montant_couple / 2)) / 12
+            elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_annuel_couple / 2) +
+            elig5 * (P.asi.montant_seul + P.aspa.montant_annuel_couple / 2)) / 12
 
         ressources = base_ressources + montant_max
 
-        plafond_ressources = (elig1 * (P.asi.plaf_seul * not_(en_couple) + P.asi.plaf_couple * en_couple) +
-            elig2 * P.asi.plaf_couple +
-            elig3 * P.asi.plaf_couple +
-            elig4 * P.aspa.plaf_couple +
-            elig5 * P.aspa.plaf_couple) / 12
+        plafond_ressources = (elig1 * (P.asi.plafond_ressource_seul * not_(en_couple) + P.asi.plafond_ressource_couple * en_couple) +
+            elig2 * P.asi.plafond_ressource_couple +
+            elig3 * P.asi.plafond_ressource_couple +
+            elig4 * P.aspa.plafond_ressources_couple +
+            elig5 * P.aspa.plafond_ressources_couple) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
@@ -295,7 +296,7 @@ class aspa(Variable):
         en_couple = simulation.calculate('en_couple', period)
         asi_aspa_nb_alloc = simulation.calculate('asi_aspa_nb_alloc', period)
         base_ressources = simulation.calculate('asi_aspa_base_ressources', period)
-        P = simulation.legislation_at(period.start).minim
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux
 
         asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
         aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
@@ -312,21 +313,21 @@ class aspa(Variable):
         elig = elig1 | elig2 | elig3 | elig4
 
         montant_max = (
-            elig1 * P.aspa.montant_seul +
-            elig2 * P.aspa.montant_couple +
-            elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_couple / 2) +
-            elig4 * (P.asi.montant_seul + P.aspa.montant_couple / 2)
+            elig1 * P.aspa.montant_annuel_seul +
+            elig2 * P.aspa.montant_annuel_couple +
+            elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_annuel_couple / 2) +
+            elig4 * (P.asi.montant_seul + P.aspa.montant_annuel_couple / 2)
             ) / 12
 
         ressources = base_ressources + montant_max
 
-        plafond_ressources = (elig1 * (P.aspa.plaf_seul * not_(en_couple) + P.aspa.plaf_couple * en_couple) +
-            (elig2 | elig3 | elig4) * P.aspa.plaf_couple) / 12
+        plafond_ressources = (elig1 * (P.aspa.plafond_ressources_seul * not_(en_couple) + P.aspa.plafond_ressources_couple * en_couple) +
+            (elig2 | elig3 | elig4) * P.aspa.plafond_ressources_couple) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
         diff = ((elig1 | elig2) * (montant_max - depassement) +
-            (elig3 | elig4) * (P.aspa.montant_couple / 12 / 2 - depassement / 2))
+            (elig3 | elig4) * (P.aspa.montant_annuel_couple / 12 / 2 - depassement / 2))
 
         # Montant mensuel servi (sous réserve d'éligibilité)
         montant_servi_aspa = max_(diff, 0)

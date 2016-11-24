@@ -98,17 +98,6 @@ class f3ve(Variable):
     label = u"Plus-values réalisées par les non-résidents pour lesquelles vous demandez le remboursement de l'excédent du prélèvement de 45 %"
 
 
-# """
-# réutilisation case 3VE en 2013
-
-
-#    build_column('f3ve', IntCol(entity = 'foy',
-#                    label = u"Plus-values de cession de droits sociaux réalisées par des personnes domiciliées dans les DOM",
-#                    val_type = "monetary",
-#                    cerfa_field = u'3VE',
-#                    end =date.datetime (2012, 12, 31)))
-# """
-
 class f3vf(Variable):
     cerfa_field = {QUIFOY['vous']: u"3VF",
         QUIFOY['conj']: u"3SF",
@@ -125,12 +114,6 @@ class f3vf(Variable):
 # ça rendra le modéle un peu moins clair parce qu'il y aura le même nom de variable pour des choses différentes et dans des calculs ne se rapportant pas aux mêmes choses,
 # mais si les start-end fonctionne ça ne devrait pas avoir d'impact sur les calculs ? qu'en penses-tu ?
 
-# ## build_column('f3vl', IntCol(entity = 'foy',
-# ##                 label = u"Distributions par des sociétés de capital-risque taxables à 24 %",
-# ##                 val_type = "monetary",
-# ##                 cerfa_field = u'3VL'
-# ##                 start = date(2009, 1, 1),
-# ##                 end = date(2009, 12, 31)))#vérifier avant 2009
 
 class f3vl(Variable):
     cerfa_field = u"3VL"

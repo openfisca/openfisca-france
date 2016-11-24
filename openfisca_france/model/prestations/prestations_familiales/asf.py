@@ -20,7 +20,7 @@ class asf_elig_enfant(Variable):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
 
-        pfam = legislation(period).fam
+        pfam = legislation(period).prestations.prestations_familiales
 
         eligibilite = (
             (age >= pfam.af.age1) * (age < pfam.af.age3) *  # Âge compatible avec les prestations familiales
@@ -54,9 +54,9 @@ class asf(Variable):
     def function(famille, period, legislation):
         period = period.this_month
 
-        pfam = legislation(period).fam
+        pfam = legislation(period).prestations.prestations_familiales
         asf_elig = famille('asf_elig', period)
-        asf_par_enfant = famille.members('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux1
+        asf_par_enfant = famille.members('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux_1_parent
         montant = famille.sum(asf_par_enfant, role = Famille.ENFANT)
 
         return period, asf_elig * montant

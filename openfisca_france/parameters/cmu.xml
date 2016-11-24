@@ -1,0 +1,95 @@
+<NODE code="cmu" description="Couverture Maladie Universelle" origin="openfisca">
+  <CODE code="abattement_chomage" description="Abattement sur les revenus d'activité en cas de chômage" format="percent" origin="openfisca">
+    <VALUE deb="2015-01-01" fuzzy="true" valeur="0.3" />
+    <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.3" />
+  </CODE>
+  <CODE code="acs_16_49_ans" description="ACS pour une personne âgée de 16 à 49 ans" format="float" origin="openfisca" type="monetary">
+    <VALUE deb="2016-01-01" fuzzy="true" valeur="200" />
+    <VALUE deb="2009-08-01" fin="2015-12-31" valeur="200" />
+  </CODE>
+  <CODE code="acs_50_59_ans" description="ACS pour une personne âgée de 50 à 59 ans" format="float" origin="openfisca" type="monetary">
+    <VALUE deb="2016-01-01" fuzzy="true" valeur="350" />
+    <VALUE deb="2009-08-01" fin="2015-12-31" valeur="350" />
+  </CODE>
+  <CODE code="acs_moins_16_ans" description="ACS pour une personne âgée de moins de 16 ans" format="float" origin="openfisca" type="monetary">
+    <VALUE deb="2016-01-01" fuzzy="true" valeur="100" />
+    <VALUE deb="2009-08-01" fin="2015-12-31" valeur="100" />
+  </CODE>
+  <CODE code="acs_plus_60_ans" description="ACS pour une personne âgée de plus de 60 ans" format="float" origin="openfisca" type="monetary">
+    <VALUE deb="2016-01-01" fuzzy="true" valeur="550" />
+    <VALUE deb="2014-01-01" fin="2015-12-31" valeur="550" />
+    <VALUE deb="2009-08-01" fin="2013-12-31" valeur="500" />
+  </CODE>
+  <CODE code="age_limite_pac" description="Âge limite des personnes à charge" format="integer" origin="openfisca">
+    <VALUE deb="2015-01-01" fuzzy="true" valeur="25" />
+    <VALUE deb="2000-01-01" fin="2014-12-31" valeur="25" />
+  </CODE>
+  <CODE code="coeff_p2" description="Coefficient de majoration pour une deuxième personne" format="percent" origin="openfisca">
+    <VALUE deb="2015-01-01" fuzzy="true" valeur="0.5" />
+    <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.5" />
+  </CODE>
+  <CODE code="coeff_p3_p4" description="Coefficient de majoration pour une troisième ou quatrième personne" format="percent" origin="openfisca">
+    <VALUE deb="2015-01-01" fuzzy="true" valeur="0.3" />
+    <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.3" />
+  </CODE>
+  <CODE code="coeff_p5_plus" description="Coefficient de majoration par personne supplémentaire" format="percent" origin="openfisca">
+    <VALUE deb="2015-01-01" fuzzy="true" valeur="0.4" />
+    <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.4" />
+  </CODE>
+  <NODE code="forfait_logement" description="Forfait logement pour propriétaire ou occupant à titre gratuit" origin="openfisca">
+    <CODE code="taux_1p" description="Pourcentage du RSA socle pour une personne (pour une personne)" format="percent" origin="openfisca">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.12" />
+      <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.12" />
+    </CODE>
+    <CODE code="taux_2p" description="Pourcentage du RSA socle pour deux personnes (pour deux personnes)" format="percent" origin="openfisca">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.14" />
+      <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.14" />
+    </CODE>
+    <CODE code="taux_3p_plus" description="Pourcentage du RSA socle pour trois personnes (pour trois et plus personnes)" format="percent" origin="openfisca">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.14" />
+      <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.14" />
+    </CODE>
+  </NODE>
+  <NODE code="forfait_logement_al" description="Forfait logement pour bénéficiaire d'une aide au logement" origin="openfisca">
+    <CODE code="taux_1p" description="Pourcentage du RSA socle pour une personne (pour une personne)" format="percent" origin="openfisca">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.12" />
+      <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.12" />
+    </CODE>
+    <CODE code="taux_2p" description="Pourcentage du RSA socle pour deux personnes (pour deux personnes)" format="percent" origin="openfisca">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.16" />
+      <VALUE deb="2008-02-01" fin="2014-12-31" valeur="0.16" />
+      <VALUE deb="2000-01-01" fin="2008-01-31" valeur="0.14" />
+    </CODE>
+    <CODE code="taux_3p_plus" description="Pourcentage du RSA socle pour trois personnes (pour trois et plus personnes)" format="percent" origin="openfisca">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="0.165" />
+      <VALUE deb="2008-02-01" fin="2014-12-31" valeur="0.165" />
+      <VALUE deb="2000-01-01" fin="2008-01-31" valeur="0.14" />
+    </CODE>
+  </NODE>
+  <CODE code="majoration_dom" description="Coefficient de majoration du plafond CMU applicable aux DOM" format="percent" origin="openfisca">
+    <VALUE deb="2015-01-01" fuzzy="true" valeur="0.113" />
+    <VALUE deb="2000-01-01" fin="2014-12-31" valeur="0.113" />
+  </CODE>
+  <CODE code="majoration_plafond_acs" description="Majoration pour du plafond CMU pour l'ACS" format="percent" origin="openfisca">
+    <VALUE deb="2015-01-01" fuzzy="true" valeur="0.35" />
+    <VALUE deb="2012-01-01" fin="2014-12-31" valeur="0.35" />
+    <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.30" />
+    <VALUE deb="2007-01-01" fin="2010-12-31" valeur="0.20" />
+    <VALUE deb="2005-01-01" fin="2006-12-31" valeur="0.15" />
+  </CODE>
+  <CODE code="plafond_base" description="Plafond annuel pour une personne seule" format="float" origin="openfisca" type="monetary">
+    <VALUE deb="2015-07-01" fuzzy="true" valeur="8644.52" />
+    <VALUE deb="2014-07-01" fin="2015-06-30" valeur="8644.52" />
+    <VALUE deb="2013-07-01" fin="2014-06-30" valeur="8592.96" />
+    <VALUE deb="2012-07-01" fin="2013-06-30" valeur="7934.90" />
+    <VALUE deb="2011-07-01" fin="2012-06-30" valeur="7771.20" />
+    <VALUE deb="2010-07-01" fin="2011-06-30" valeur="7611.36" />
+    <VALUE deb="2009-07-01" fin="2010-06-30" valeur="7521.11" />
+    <VALUE deb="2008-07-01" fin="2009-06-30" valeur="7446.64" />
+    <VALUE deb="2007-07-01" fin="2008-06-30" valeur="7272.10" />
+    <VALUE deb="2006-07-01" fin="2007-06-30" valeur="7178.79" />
+    <VALUE deb="2005-07-01" fin="2006-06-30" valeur="7045.97" />
+    <VALUE deb="2004-07-01" fin="2005-06-30" valeur="6913.57" />
+    <VALUE deb="2003-07-01" fin="2004-06-30" valeur="6798.00" />
+  </CODE>
+</NODE>

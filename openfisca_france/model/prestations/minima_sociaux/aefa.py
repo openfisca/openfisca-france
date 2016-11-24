@@ -7,6 +7,7 @@ from numpy import maximum as max_
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
+
 class aefa(DatedVariable):
     '''
     Aide exceptionelle de fin d'année (prime de Noël)
@@ -37,8 +38,8 @@ class aefa(DatedVariable):
         aer_holder = simulation.compute('aer', period)
         api = simulation.calculate_add('api', period)
         rsa = simulation.calculate_add('rsa', period)
-        P = simulation.legislation_at(period.start).minim.aefa
-        af = simulation.legislation_at(period.start).fam.af
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux.aefa
+        af = simulation.legislation_at(period.start).prestations.prestations_familiales.af
 
         aer = self.sum_by_entity(aer_holder)
         dummy_ass = ass > 0
@@ -70,8 +71,8 @@ class aefa(DatedVariable):
         aer_holder = simulation.compute('aer', period)
         api = simulation.calculate_add('api', period)
         rsa = simulation.calculate('rsa', period)
-        P = simulation.legislation_at(period.start).minim.aefa
-        af = simulation.legislation_at(period.start).fam.af
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux.aefa
+        af = simulation.legislation_at(period.start).prestations.prestations_familiales.af
 
         aer = self.sum_by_entity(aer_holder)
         dummy_ass = ass > 0
@@ -104,8 +105,8 @@ class aefa(DatedVariable):
         aer_holder = simulation.compute('aer', period)
         api = simulation.calculate_add('api', period)
         rsa = simulation.calculate('rsa', period)
-        P = simulation.legislation_at(period.start).minim.aefa
-        af = simulation.legislation_at(period.start).fam.af
+        P = simulation.legislation_at(period.start).prestations.minima_sociaux.aefa
+        af = simulation.legislation_at(period.start).prestations.prestations_familiales.af
 
         aer = self.sum_by_entity(aer_holder)
         dummy_ass = ass > 0

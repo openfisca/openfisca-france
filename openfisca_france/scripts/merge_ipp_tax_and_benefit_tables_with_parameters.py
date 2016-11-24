@@ -1,12 +1,15 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
 """Merge YAML files of IPP tax and benefit tables with OpenFisca parameters to generate new parameters."""
 
 
 import argparse
 import collections
 import datetime
+import glob
+import itertools
 import logging
 import os
 import sys
@@ -15,7 +18,10 @@ import xml.etree.ElementTree as etree
 from biryani import strings
 import yaml
 
+from openfisca_france.param import ipp_tax_and_benefit_tables_to_parameters
 
+
+app_name = os.path.splitext(os.path.basename(__file__))[0]
 date_names = (
     # u"Age de départ (AAD=Age d'annulation de la décôte)",
     u"Date",
@@ -23,12 +29,13 @@ date_names = (
     u"Date de perception du salaire",
     u"Date ISF",
     )
-log = logging.getLogger(__name__)
+log = logging.getLogger(app_name)
 note_names = (
     u"Notes",
     u"Notes bis",
     )
-parameters_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'param'))
+package_dir = os.path.normpath(os.path.join(os.path.dirname(__file__), '..'))
+param_dir = os.path.join(package_dir, 'param')
 reference_names = (
     u"Parution au JO",
     u"Références BOI",
@@ -65,20 +72,22 @@ def iter_ipp_values(node):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--ipp-translations',
-        default = os.path.join(parameters_dir, 'ipp-tax-and-benefit-tables-to-parameters.yaml'),
+        default = os.path.join(param_dir, 'ipp-tax-and-benefit-tables-to-parameters.yaml'),
         help = 'path of YAML file containing the association between IPP fields and OpenFisca parameters')
-    parser.add_argument('-o', '--origin', default = os.path.join(parameters_dir, 'param.xml'),
+    parser.add_argument('-o', '--origin', default = os.path.join(param_dir, 'param.xml'),
         help = 'path of XML file containing the original OpenFisca parameters')
     parser.add_argument('-p', '--param-translations',
-        default = os.path.join(parameters_dir, 'param-to-parameters.yaml'),
+        default = os.path.join(param_dir, 'param-to-parameters.yaml'),
         help = 'path of YAML file containing the association between param elements and OpenFisca parameters')
     parser.add_argument('-s', '--source-dir', default = 'yaml-clean',
         help = 'path of source directory containing clean IPP YAML files')
-    parser.add_argument('-t', '--target', default = os.path.join(parameters_dir, 'parameters.xml'),
-        help = 'path of generated YAML file containing the association between IPP fields with OpenFisca parameters')
+    parser.add_argument('-t', '--target', default = os.path.join(package_dir, 'parameters'),
+        help = 'path of generated directory of XML files merging IPP fields with OpenFisca parameters')
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
+
+    assert os.path.isdir(args.source_dir), args.source_dir
 
     file_system_encoding = sys.getfilesystemencoding()
 
@@ -120,9 +129,7 @@ def main():
             element.set('code', name)
             parent_element.append(element)
 
-    with open(args.ipp_translations) as ipp_translations_file:
-        ipp_translations = yaml.load(ipp_translations_file)
-
+    # Build `tree` from IPP YAML files.
     tree = collections.OrderedDict()
     for source_dir_encoded, directories_name_encoded, filenames_encoded in os.walk(args.source_dir):
         directories_name_encoded.sort()
@@ -160,8 +167,8 @@ def main():
                 row_by_start[start] = row
             sorted_row_by_start = sorted(row_by_start.iteritems())
 
-            unsorted_relative_ipp_paths = set()
             relative_ipp_paths_by_start = {}
+            unsorted_relative_ipp_paths = set()
             for start, row in sorted_row_by_start:
                 relative_ipp_paths_by_start[start] = start_relative_ipp_paths = []
                 for name, child in row.iteritems():
@@ -189,6 +196,7 @@ def main():
                 return -1
 
             sorted_relative_ipp_paths = sorted(unsorted_relative_ipp_paths, cmp = compare_relative_ipp_paths)
+            # tax_rate_tree_by_bracket_type = {}
 
             for start, row in sorted_row_by_start:
                 for relative_ipp_path in sorted_relative_ipp_paths:
@@ -199,82 +207,23 @@ def main():
                             break
 
                     if value in (u'-', u'na', u'nc'):
-                        # Value is unknown. Previous value must  be propagated.
+                        # Value is unknown. Previous value must be propagated.
                         continue
-                    ipp_path = relative_file_path.split(os.sep)[:-1] + [sheet_name] + list(relative_ipp_path)
+                    ipp_path = [
+                        fragment if fragment in ('RENAME', 'TRANCHE', 'TYPE') else strings.slugify(fragment,
+                            separator = u'_')
+                        for fragment in itertools.chain(
+                            relative_file_path.split(os.sep)[:-1],
+                            [sheet_name],
+                            relative_ipp_path,
+                            )
+                        ]
 
-                    remaining_path = ipp_path[:]
-                    skip_ipp_path = False
                     sub_tree = tree
-                    translations = ipp_translations
-                    translated_path = []
-                    while remaining_path:
-                        fragment = remaining_path.pop(0)
-                        type = None
-                        if translations is not None:
-                            translations = translations.get(fragment, fragment)
-                            if translations is None:
-                                skip_ipp_path = True
-                                break
-                            elif isinstance(translations, dict):
-                                translation = translations.get('RENAME')
-                                if translation is not None:
-                                    fragment = translation
-                                type = translations.get('TYPE')
-                                assert type in (None, u'BAREME')
-                            else:
-                                fragment = translations
-                                translations = None
-                        sub_path = [fragment] if isinstance(fragment, basestring) else fragment[:]
-                        while sub_path:
-                            fragment = sub_path.pop(0)
-                            translated_path.append(fragment)
-                            if fragment == u'ASSIETTE':
-                                assert sub_tree.get('TYPE') == u'BAREME', str((translated_path, sub_path, sub_tree))
-                                assert not sub_path
-                                slice_name = remaining_path.pop(0)
-                                assert not remaining_path
-                                sub_tree = sub_tree.setdefault(u'ASSIETTE', collections.OrderedDict()).setdefault(
-                                    slice_name, [])
-                            elif fragment == u'BAREME':
-                                existing_type = sub_tree.get('TYPE')
-                                if existing_type is None:
-                                    sub_tree['TYPE'] = fragment
-                                else:
-                                    assert existing_type == fragment
-                            elif fragment == u'MONTANT':
-                                assert sub_tree.get('TYPE') == u'BAREME', str((translated_path, sub_path, sub_tree))
-                                assert not sub_path
-                                slice_name = remaining_path.pop(0)
-                                assert not remaining_path
-                                sub_tree = sub_tree.setdefault(u'MONTANT', collections.OrderedDict()).setdefault(
-                                    slice_name, [])
-                            elif fragment == u'SEUIL':
-                                assert sub_tree.get('TYPE') == u'BAREME', str((translated_path, sub_path, sub_tree))
-                                assert not sub_path
-                                slice_name = remaining_path.pop(0)
-                                assert not remaining_path
-                                sub_tree = sub_tree.setdefault(u'SEUIL', collections.OrderedDict()).setdefault(
-                                    slice_name, [])
-                            elif fragment == u'TAUX':
-                                assert sub_tree.get('TYPE') == u'BAREME', str((translated_path, sub_path, sub_tree))
-                                assert not sub_path
-                                slice_name = remaining_path.pop(0)
-                                assert not remaining_path
-                                sub_tree = sub_tree.setdefault(u'TAUX', collections.OrderedDict()).setdefault(
-                                    slice_name, [])
-                            elif sub_path or remaining_path:
-                                sub_tree = sub_tree.setdefault(fragment, collections.OrderedDict())
-                                if type is not None:
-                                    existing_type = sub_tree.get('TYPE')
-                                    if existing_type is None:
-                                        sub_tree['TYPE'] = type
-                                    else:
-                                        assert existing_type == type
-                            else:
-                                sub_tree = sub_tree.setdefault(fragment, [])
-                    if skip_ipp_path:
-                        continue
+                    for fragment in ipp_path[:-1]:
+                        sub_tree = sub_tree.setdefault(fragment, collections.OrderedDict())
+                    fragment = ipp_path[-1]
+                    sub_tree = sub_tree.setdefault(fragment, [])
                     if sub_tree:
                         last_leaf = sub_tree[-1]
                         if last_leaf['value'] == value:
@@ -285,54 +234,163 @@ def main():
                         value = value,
                         ))
 
-    root_element = transform_node_to_element(u'root', tree)
-    root_element.set('deb', original_root_element.get('deb'))
-    root_element.set('fin', original_root_element.get('fin'))
-    merge_elements(root_element, original_root_element)
-    sort_elements(root_element)
-    reindent(root_element)
+    ipp_tax_and_benefit_tables_to_parameters.transform_ipp_tree(tree)
 
+    root_element = transform_node_to_element(u'root', tree)
+    add_origin_openfisca_attrib(original_root_element)
+    merge_elements(root_element, original_root_element)
+    # Since now `original_root_element` is discarded.
+
+    if os.path.exists(args.target):
+        for xml_file_path in glob.glob(os.path.join(args.target, '*.xml')):
+            os.remove(xml_file_path)
+    else:
+        os.mkdir(args.target)
+    for child_element in root_element[:]:
+        root_element.remove(child_element)
+        element_tree = etree.ElementTree(child_element)
+        sort_elements(child_element)
+        reindent(child_element)
+        element_tree.write(os.path.join(args.target, '{}.xml'.format(child_element.attrib['code'])), encoding = 'utf-8')
     element_tree = etree.ElementTree(root_element)
-    element_tree.write(args.target, encoding = 'utf-8')
+    reindent(root_element)
+    element_tree.write(os.path.join(args.target, '__root__.xml'), encoding = 'utf-8')
 
     return 0
 
 
+def add_origin_openfisca_attrib(element):
+    element.attrib['origin'] = u'openfisca'
+    for child_element in element:
+        if child_element.tag in ('NODE', 'CODE', 'BAREME'):
+            add_origin_openfisca_attrib(child_element)
+
+
+def build_inclusion_conflict(original_value_element, element):
+    ipp_valeur_list = [
+        value_element.attrib['valeur']
+        for value_element in element
+        if value_element.attrib['deb'] == original_value_element.attrib['deb'] and
+        value_element.get('fin') == original_value_element.get('fin')
+        ]
+    ipp_valeur = ipp_valeur_list[0] if ipp_valeur_list else 'unknown'
+    return (
+        u'children:openfisca-not-fully-included-in-ipp('
+        'openfisca_deb={},openfisca_fin={},openfisca_valeur={},ipp_valeur={})'.format(
+            original_value_element.attrib['deb'],
+            original_value_element.get('fin'),
+            original_value_element.attrib['valeur'],
+            ipp_valeur,
+            ))
+
+
+def is_included_in_ipp_values(original_value_element, element):
+    return any(
+        original_value_element.attrib['deb'] >= value_element.attrib['deb'] and (
+            'fin' not in original_value_element.attrib and 'fin' not in value_element.attrib or (
+                'fin' in original_value_element.attrib and
+                'fin' in value_element.attrib and
+                original_value_element.attrib['fin'] <= value_element.attrib['fin']
+                ) or (
+                'fin' in original_value_element.attrib and
+                'fin' not in value_element.attrib and
+                'fuzzy' in value_element.attrib
+                ) or (
+                'fin' not in original_value_element.attrib and
+                'fin' in value_element.attrib and
+                'fuzzy' in original_value_element.attrib
+                )
+            ) and
+        float(original_value_element.attrib['valeur']) == float(value_element.attrib['valeur'])
+        for value_element in element
+        )
+
+
 def merge_elements(element, original_element, path = None):
+    assert element.attrib['code'] == original_element.attrib['code'], (element, original_element)
     if path is None:
         path = []
-    else:
-        path = path[:]
-    path.append(element.get('code'))
+    path = path + [element.get('code')]
     assert element.tag == original_element.tag, 'At {}, IPP element "{}"" differs from original element "{}"'.format(
         '.'.join(path), element.tag, original_element.tag)
+
+    # Only param.xml nodes have a `description` attribute.
+    description = original_element.get('description')
+    if description is not None:
+        assert element.get('description') is None, element.get('description')
+        # TODO Get description of element in YAML files.
+        element.attrib['description'] = description
+
     if element.tag == 'NODE':
-        for original_child in original_element:
-            for child in element:
-                if child.get('code') == original_child.get('code'):
-                    merge_elements(child, original_child)
+        for original_child_element in original_element:
+            for child_element in element:
+                if child_element.get('code') == original_child_element.get('code'):
+                    merge_elements(child_element, original_child_element, path)
                     break
             else:
-                # A child with the same code as the original child doesn't exist yet.
-                element.append(original_child)
+                # A `child_element` of `element` with the same code as the `original_child_element` was not found.
+                element.append(original_child_element)
+    elif element.tag == 'CODE':
+        conflicts = set()
+        # if element.attrib.get('format') != original_element.attrib.get('format'):
+        #     conflicts.add(u'attrib:format({})'.format(original_element.attrib.get('format')))
+        type_attrib = element.attrib.get('type')
+        original_type_attrib = original_element.attrib.get('type')
+        if type_attrib is not None and original_type_attrib is not None and type_attrib != original_type_attrib:
+            conflicts.add(u'attrib:type({})'.format(original_element.attrib.get('type')))
 
+        # Check that every `original_element` child (VALUE elements) is included in `element` children.
+        for original_value_element in original_element:
+            if not is_included_in_ipp_values(original_value_element=original_value_element, element=element):
+                conflicts.add(build_inclusion_conflict(original_value_element=original_value_element, element=element))
 
-def sort_elements(element):
-    if element.tag in ('BAREME', 'NODE', 'TRANCHE'):
-        if element.tag == 'NODE':
-            children = list(element)
-            for child in children:
-                element.remove(child)
-            children.sort(key = lambda child: child.get('code'))
-            element.extend(children)
-        for child in element:
-            sort_elements(child)
+        if conflicts:
+            element.attrib['conflicts'] = u','.join(conflicts)
+
+    elif element.tag == 'BAREME':
+        conflicts = set()
+        type_attrib = element.attrib.get('type')
+        original_type_attrib = original_element.attrib.get('type')
+        if type_attrib is not None and original_type_attrib is not None and type_attrib != original_type_attrib:
+            conflicts.add(u'attrib:type({})'.format(original_element.attrib.get('type')))
+
+        # Some BAREME in param.xml have a first TRANCHE with only zero values for TAUX and SEUIL.
+        # Skip it to ease conflict detection.
+        def only_zero_values(value_elements):
+            return all(
+                float(value_element.attrib['valeur']) == 0
+                for value_element in value_elements
+                )
+        first_tranche = original_element[0]
+        is_first_tranche_empty = only_zero_values(first_tranche.find('TAUX')) and \
+            only_zero_values(first_tranche.find('SEUIL'))
+        if is_first_tranche_empty:
+            original_element = original_element[1:]
+
+        # Check that every `original_element` child (VALUE elements) is included in `element` children
+        # for each TAUX and SEUIL of each TRANCHE.
+        if len(original_element) != len(element):
+            conflicts.add('children:different-number-of-TRANCHE')
+        else:
+            for tranche_index, original_tranche_element in enumerate(original_element):
+                def handle_child(tag):
+                    tag_element = tranche_element.find(tag)
+                    original_tag_element = original_tranche_element.find(tag)
+                    tag_conflicts = set()
+                    for original_value_element in original_tag_element:
+                        if not is_included_in_ipp_values(original_value_element, tag_element):
+                            tag_conflicts.add(build_inclusion_conflict(original_value_element, tag_element))
+                    if tag_conflicts:
+                        tag_element.attrib['conflicts'] = u','.join(tag_conflicts)
+
+                tranche_element = element[tranche_index]
+                handle_child('TAUX')
+                handle_child('SEUIL')
+
+        if conflicts:
+            element.attrib['conflicts'] = u','.join(conflicts)
     else:
-        children = list(element)
-        for child in children:
-            element.remove(child)
-        children.sort(key = lambda child: child.get('deb') or '', reverse = True)
-        element.extend(children)
+        raise NotImplementedError(element.tag)
 
 
 def prepare_xml_values(name, leafs):
@@ -408,11 +466,30 @@ def reindent(elem, depth = 0):
             elem.tail = indent
 
 
+def sort_elements(element):
+    if element.tag in ('BAREME', 'NODE', 'TRANCHE'):
+        if element.tag == 'NODE':
+            children = list(element)
+            for child in children:
+                element.remove(child)
+            children.sort(key = lambda child: child.get('code'))
+            element.extend(children)
+        for child in element:
+            sort_elements(child)
+    else:
+        children = list(element)
+        for child in children:
+            element.remove(child)
+        children.sort(key = lambda child: child.get('deb') or '', reverse = True)
+        element.extend(children)
+
+
 def transform_node_to_element(name, node):
     if isinstance(node, dict):
         if node.get('TYPE') == u'BAREME':
             scale_element = etree.Element('BAREME', attrib = dict(
                 code = strings.slugify(name, separator = u'_'),
+                origin = u'ipp',
                 ))
             for slice_name in node.get('SEUIL', {}).keys():
                 slice_element = etree.Element('TRANCHE', attrib = dict(
@@ -421,37 +498,25 @@ def transform_node_to_element(name, node):
 
                 threshold_element = etree.Element('SEUIL')
                 values, format, type = prepare_xml_values(name, node.get('SEUIL', {}).get(slice_name, []))
-                for value in values:
-                    value_element = transform_value_to_element(value)
-                    if value_element is not None:
-                        threshold_element.append(value_element)
+                transform_values_to_element_children(values, threshold_element)
                 if len(threshold_element) > 0:
                     slice_element.append(threshold_element)
 
                 amount_element = etree.Element('MONTANT')
                 values, format, type = prepare_xml_values(name, node.get('MONTANT', {}).get(slice_name, []))
-                for value in values:
-                    value_element = transform_value_to_element(value)
-                    if value_element is not None:
-                        amount_element.append(value_element)
+                transform_values_to_element_children(values, amount_element)
                 if len(amount_element) > 0:
                     slice_element.append(amount_element)
 
                 rate_element = etree.Element('TAUX')
                 values, format, type = prepare_xml_values(name, node.get('TAUX', {}).get(slice_name, []))
-                for value in values:
-                    value_element = transform_value_to_element(value)
-                    if value_element is not None:
-                        rate_element.append(value_element)
+                transform_values_to_element_children(values, rate_element)
                 if len(rate_element) > 0:
                     slice_element.append(rate_element)
 
                 base_element = etree.Element('ASSIETTE')
                 values, format, type = prepare_xml_values(name, node.get('ASSIETTE', {}).get(slice_name, []))
-                for value in values:
-                    value_element = transform_value_to_element(value)
-                    if value_element is not None:
-                        base_element.append(value_element)
+                transform_values_to_element_children(values, base_element)
                 if len(base_element) > 0:
                     slice_element.append(base_element)
 
@@ -461,6 +526,7 @@ def transform_node_to_element(name, node):
         else:
             node_element = etree.Element('NODE', attrib = dict(
                 code = strings.slugify(name, separator = u'_'),
+                origin = u'ipp',
                 ))
             for key, value in node.iteritems():
                 child_element = transform_node_to_element(key, value)
@@ -474,15 +540,13 @@ def transform_node_to_element(name, node):
             return None
         code_element = etree.Element('CODE', attrib = dict(
             code = strings.slugify(name, separator = u'_'),
+            origin = u'ipp',
             ))
         if format is not None:
             code_element.set('format', format)
         if type is not None:
             code_element.set('type', type)
-        for value in values:
-            value_element = transform_value_to_element(value)
-            if value_element is not None:
-                code_element.append(value_element)
+        transform_values_to_element_children(values, code_element)
         return code_element if len(code_element) > 0 else None
 
 
@@ -499,7 +563,27 @@ def transform_value_to_element(leaf):
     stop = leaf.get('stop')
     if stop is not None:
         value_element.set('fin', stop.isoformat())
+    if start is None or stop is None:
+        value_element.set('fuzzy', 'true')
     return value_element
+
+
+def transform_values_to_element_children(values, element):
+    j = 0
+    for i, value in enumerate(values[1:]):
+        next_value = values[j]
+        j += 1
+        if value['stop'] < next_value['start'] - datetime.timedelta(days = 1):
+            values.insert(j, dict(
+                start = value['stop'] + datetime.timedelta(days = 1),
+                stop = next_value['start'] - datetime.timedelta(days = 1),
+                value = 0,
+                ))
+            j += 1
+    for value in values:
+        value_element = transform_value_to_element(value)
+        if value_element is not None:
+            element.append(value_element)
 
 
 if __name__ == "__main__":

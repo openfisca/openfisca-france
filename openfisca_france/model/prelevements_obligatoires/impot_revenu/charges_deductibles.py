@@ -21,7 +21,6 @@ class f6de(Variable):
     label = u"CSG déductible calculée sur les revenus du patrimoine"
 
 
-
 # Pensions alimentaires
 class f6gi(Variable):
     cerfa_field = u"6GI"
@@ -30,13 +29,11 @@ class f6gi(Variable):
     label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 1er enfant"
 
 
-
 class f6gj(Variable):
     cerfa_field = u"6GJ"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 2eme enfant"
-
 
 
 class f6el(Variable):
@@ -47,7 +44,6 @@ class f6el(Variable):
     start_date = date(2006, 1, 1)
 
 
-
 class f6em(Variable):
     cerfa_field = u"6EM"
     column = IntCol(val_type = "monetary")
@@ -56,13 +52,11 @@ class f6em(Variable):
     start_date = date(2006, 1, 1)
 
 
-
 class f6gp(Variable):
     cerfa_field = u"6GP"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées décision de justice définitive avant 2006 (mineurs, ascendants)"
-
 
 
 class f6gu(Variable):
@@ -73,14 +67,12 @@ class f6gu(Variable):
     start_date = date(2006, 1, 1)
 
 
-
 # Frais d'accueil d'une personne de plus de 75 ans dans le besoin
 class f6eu(Variable):
     cerfa_field = u"6EU"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Frais d'accueil de personnes de plus de 75 ans dans le besoin"
-
 
 
 class f6ev(Variable):
@@ -90,14 +82,12 @@ class f6ev(Variable):
     label = u"Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit"
 
 
-
 # Déductions diverses
 class f6dd(Variable):
     cerfa_field = u"6DD"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déductions diverses"
-
 
 
 # Épargne retraite - PERP, PRÉFON, COREM et CGOS
@@ -110,7 +100,6 @@ class f6ps(Variable):
     entity = Individu
     label = u"Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)"
 
-  # (f6ps, f6pt, f6pu)
 
 class f6rs(Variable):
     cerfa_field = {QUIFOY['vous']: u"6RS",
@@ -121,7 +110,6 @@ class f6rs(Variable):
     entity = Individu
     label = u"Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S"
 
-  # (f6rs, f6rt, f6ru)))
 
 class f6ss(Variable):
     cerfa_field = {QUIFOY['vous']: u"6SS",
@@ -132,7 +120,6 @@ class f6ss(Variable):
     entity = Individu
     label = u"Rachat de cotisations PERP, PREFON, COREM et C.G.O.S"
 
-  # (f6ss, f6st, f6su)))
 
 # Souscriptions en faveur du cinéma ou de l’audiovisuel
 class f6aa(Variable):
@@ -165,11 +152,9 @@ class f6eh(Variable):
     entity = FoyerFiscal
     start_date = date(2005, 1, 1)
     stop_date = date(2005, 12, 31)
+# TODO: vérifier date de début et de fin de cette case (rien en 12 et 13)
 
-  # TODO: vérifier date de début et de fin de cette case (rien en 12 et 13)
 
-# Pertes en capital consécutives à la souscription au capital de sociétés
-# nouvelles ou de sociétés en difficulté
 class f6da(Variable):
     cerfa_field = u"DA"
     column = IntCol(val_type = "monetary")
@@ -177,8 +162,6 @@ class f6da(Variable):
     label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté"
     start_date = date(2005, 1, 1)
     stop_date = date(2005, 12, 31)
-
-
 
 
 # Dépenses de grosses réparations effectuées par les nus propriétaires
@@ -190,7 +173,7 @@ class f6cb(Variable):
     start_date = date(2009, 1, 1)
 
 
-                                       # TODO: before 2006 wasPertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration complémentaire)
+# TODO: before 2006 was Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration complémentaire)
 
 class f6hj(Variable):
     cerfa_field = u"6HJ"
@@ -198,7 +181,6 @@ class f6hj(Variable):
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
     start_date = date(2010, 1, 1)
-
 
 
 class f6hk(Variable):
@@ -209,14 +191,12 @@ class f6hk(Variable):
     start_date = date(2011, 1, 1)
 
 
-
 class f6hl(Variable):
     cerfa_field = u"6HL"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
     start_date = date(2012, 1, 1)
-
 
 
 class f6hm(Variable):
@@ -227,14 +207,12 @@ class f6hm(Variable):
     start_date = date(2013, 1, 1)
 
 
-
 # Sommes à rajouter au revenu imposable
 class f6gh(Variable):
     cerfa_field = u"6GH"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Sommes à ajouter au revenu imposable"
-
 
 
 # Deficits antérieurs
@@ -245,13 +223,11 @@ class f6fa(Variable):
     label = u"Deficits globaux des années antérieures non encore déduits les années précédentes: année de perception des revenus -6"
 
 
-
 class f6fb(Variable):
     cerfa_field = u"6FB"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -5"
-
 
 
 class f6fc(Variable):
@@ -261,13 +237,11 @@ class f6fc(Variable):
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -4"
 
 
-
 class f6fd(Variable):
     cerfa_field = u"6FD"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -3"
-
 
 
 class f6fe(Variable):
@@ -277,7 +251,6 @@ class f6fe(Variable):
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -2"
 
 
-
 class f6fl(Variable):
     cerfa_field = u"6FL"
     column = IntCol(val_type = "monetary")
@@ -285,10 +258,8 @@ class f6fl(Variable):
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -1"
 
 
-
-
 class rfr_cd(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"Charges déductibles entrant dans le revenus fiscal de référence"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
@@ -304,7 +275,7 @@ class rfr_cd(Variable):
 
 
 class cd1(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"Charges déductibles non plafonnées"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
@@ -315,13 +286,13 @@ class cd1(DatedVariable):
         Renvoie la liste des charges déductibles avant rbg_int pour 2002
         '''
         period = period.this_year
-        cd_penali = simulation.calculate('cd_penali', period)
+        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
-        cd_percap = simulation.calculate('cd_percap', period)
+        pertes_capital_societes_nouvelles = simulation.calculate('pertes_capital_societes_nouvelles', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_doment = simulation.calculate('cd_doment', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment
+        niches1 = pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles + cd_deddiv + cd_doment
         return period, niches1
 
     @dated_function(start = date(2004, 1, 1), stop = date(2005, 12, 31))
@@ -330,14 +301,15 @@ class cd1(DatedVariable):
         Renvoie la liste des charges déductibles avant rbg_int pour 2004
         '''
         period = period.this_year
-        cd_penali = simulation.calculate('cd_penali', period)
+        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
-        cd_percap = simulation.calculate('cd_percap', period)
+        pertes_capital_societes_nouvelles = simulation.calculate('pertes_capital_societes_nouvelles', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_doment = simulation.calculate('cd_doment', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_doment + cd_eparet
+        niches1 = (pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles +
+                   cd_deddiv + cd_doment + cd_eparet)
         return period, niches1
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
@@ -346,13 +318,13 @@ class cd1(DatedVariable):
         Renvoie la liste des charges déductibles avant rbg_int pour 2006
         '''
         period = period.this_year
-        cd_penali = simulation.calculate('cd_penali', period)
+        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
-        cd_percap = simulation.calculate('cd_percap', period)
+        pertes_capital_societes_nouvelles = simulation.calculate('pertes_capital_societes_nouvelles', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_percap + cd_deddiv + cd_eparet
+        niches1 = pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles + cd_deddiv + cd_eparet
         return period, niches1
 
     @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
@@ -361,12 +333,12 @@ class cd1(DatedVariable):
         Renvoie la liste des charges déductibles avant rbg_int pour 2007
         '''
         period = period.this_year
-        cd_penali = simulation.calculate('cd_penali', period)
+        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet
+        niches1 = pensions_alimentaires_deduites + cd_acc75a + cd_deddiv + cd_eparet
         return period, niches1
 
     @dated_function(start = date(2009, 1, 1), stop = date(2013, 12, 31))
@@ -375,13 +347,13 @@ class cd1(DatedVariable):
         Renvoie la liste des charges déductibles avant rbg_int pour 2009
         '''
         period = period.this_year
-        cd_penali = simulation.calculate('cd_penali', period)
+        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
-        cd_grorep = simulation.calculate('cd_grorep', period)
+        grosses_reparations = simulation.calculate('grosses_reparations', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
+        niches1 = pensions_alimentaires_deduites + cd_acc75a + cd_deddiv + cd_eparet + grosses_reparations
         return period, niches1
 
     @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
@@ -390,19 +362,19 @@ class cd1(DatedVariable):
         Renvoie la liste des charges déductibles avant rbg_int pour 2014
         '''
         period = period.this_year
-        cd_penali = simulation.calculate('cd_penali', period)
+        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_deddiv = simulation.calculate('cd_deddiv', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
-        cd_grorep = simulation.calculate('cd_grorep', period)
+        grosses_reparations = simulation.calculate('grosses_reparations', period)
 
-        niches1 = cd_penali + cd_acc75a + cd_deddiv + cd_eparet + cd_grorep
+        niches1 = pensions_alimentaires_deduites + cd_acc75a + cd_deddiv + cd_eparet + grosses_reparations
         # log.error("Charges déductibles to be checked because not defined for %s", 2014)
         return period, niches1
 
 
 class cd2(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"Charges déductibles plafonnées"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
@@ -414,9 +386,9 @@ class cd2(DatedVariable):
         '''
         period = period.this_year
         cd_sofipe = simulation.calculate('cd_sofipe', period)
-        cd_cinema = simulation.calculate('cd_cinema', period)
+        cinema = simulation.calculate('souscriptions_cinema_audiovisuel', period)
 
-        niches2 = cd_sofipe + cd_cinema
+        niches2 = cd_sofipe + cinema
         return period, niches2
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
@@ -436,14 +408,14 @@ class cd2(DatedVariable):
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
         period = period.this_year
-        cd_ecodev = simulation.calculate('cd_ecodev', period)
+        epargne_codeveloppement = simulation.calculate('epargne_codeveloppement', period)
 
-        niches2 = cd_ecodev
+        niches2 = epargne_codeveloppement
         return period, niches2
 
 
 class rbg_int(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu brut global intermédiaire"
 
@@ -456,7 +428,7 @@ class rbg_int(Variable):
 
 
 class charges_deduc(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"Charges déductibles"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
@@ -469,16 +441,13 @@ class charges_deduc(Variable):
         return period, cd1 + cd2
 
 
-class cd_penali(Variable):
-    column = FloatCol(default = 0)
+class pensions_alimentaires_deduites(Variable):
+    column = FloatCol
     entity = FoyerFiscal
-    label = u"cd_penali"
+    label = u"Pensions alimentaires"
     url = "http://frederic.anne.free.fr/Cours/ITV.htm"
 
     def function(self, simulation, period):
-        '''
-        Pensions alimentaires
-        '''
         period = period.this_year
         f6gi = simulation.calculate('f6gi', period)
         f6gj = simulation.calculate('f6gj', period)
@@ -486,9 +455,9 @@ class cd_penali(Variable):
         f6el = simulation.calculate('f6el', period)
         f6em = simulation.calculate('f6em', period)
         f6gu = simulation.calculate('f6gu', period)
-        penalim = simulation.legislation_at(period.start).ir.charges_deductibles.penalim
+        penalim = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.pensions_alimentaires
 
-        max1 = penalim.max
+        max1 = penalim.plafond
         taux_jgt_2006 = penalim.taux_jgt_2006
         # TODO: si vous subvenez seul(e) à l'entretien d'un enfant marié ou
         # pacsé ou chargé de famille, quel que soit le nmbre d'enfants du jeune
@@ -502,27 +471,23 @@ class cd_penali(Variable):
 
 
 class cd_acc75a(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
-    label = u"cd_acc75a"
+    label = u"Frais d’accueil sous votre toit d’une personne de plus de 75 ans"
 
     def function(self, simulation, period):
-        '''
-        Frais d’accueil sous votre toit d’une personne de plus de 75 ans
-        '''
         period = period.this_year
         f6eu = simulation.calculate('f6eu', period)
         f6ev = simulation.calculate('f6ev', period)
-        acc75a = simulation.legislation_at(period.start).ir.charges_deductibles.acc75a
-
-        amax = acc75a.max * max_(1, f6ev)
+        acc75a = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.accueil_personne_agee
+        amax = acc75a.plafond * max_(1, f6ev)
         return period, min_(f6eu, amax)
 
 
-class cd_percap(DatedVariable):
-    column = FloatCol(default = 0)
+class pertes_capital_societes_nouvelles(DatedVariable):
+    column = FloatCol
     entity = FoyerFiscal
-    label = u"cd_percap"
+    label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
     def function_20020101_20021231(self, simulation, period):
@@ -534,10 +499,9 @@ class cd_percap(DatedVariable):
         period = period.this_year
         f6cb = simulation.calculate('f6cb', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        percap = simulation.legislation_at(period.start).ir.charges_deductibles.percap
-
-        max_cb = percap.max_cb * (1 + maries_ou_pacses)
-        return period, min_(f6cb, max_cb)
+        percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
+        plafond_cb = percap.plafond_cb * (1 + maries_ou_pacses)
+        return period, min_(f6cb, plafond_cb)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
     def function_20030101_20061231(self, simulation, period):
@@ -550,22 +514,18 @@ class cd_percap(DatedVariable):
         f6cb = simulation.calculate('f6cb', period)
         f6da = simulation.calculate('f6da', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        percap = simulation.legislation_at(period.start).ir.charges_deductibles.percap
-
-        max_cb = percap.max_cb * (1 + maries_ou_pacses)
-        max_da = percap.max_da * (1 + maries_ou_pacses)
-        return period, min_(min_(f6cb, max_cb) + min_(f6da, max_da), max_da)
+        percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
+        plafond_cb = percap.plafond_cb * (1 + maries_ou_pacses)
+        plafond_da = percap.plafond_da * (1 + maries_ou_pacses)
+        return period, min_(min_(f6cb, plafond_cb) + min_(f6da, plafond_da), plafond_da)
 
 
 class cd_deddiv(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
-    label = u"cd_deddiv"
+    label = u"Déductions diverses"
 
     def function(self, simulation, period):
-        '''
-        Déductions diverses (case DD)
-        '''
         period = period.this_year
         f6dd = simulation.calculate('f6dd', period)
 
@@ -573,9 +533,9 @@ class cd_deddiv(Variable):
 
 
 class cd_doment(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
-    label = u"cd_doment"
+    label = u"Investissements DOM-TOM dans le cadre d’une entreprise"
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
 
@@ -583,7 +543,6 @@ class cd_doment(Variable):
         '''
         Investissements DOM-TOM dans le cadre d’une entreprise (case EH de la
         déclaration n° 2042 complémentaire)
-        2002-2005
         '''
         period = period.this_year
         f6eh = simulation.calculate('f6eh', period)
@@ -592,16 +551,12 @@ class cd_doment(Variable):
 
 
 class cd_eparet(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
-    label = u"cd_eparet"
+    label = u"Charge déductible au titre de l'épargne retraite (PERP, PRÉFON, COREM et CGOS)"
     start_date = date(2004, 1, 1)
 
     def function(self, simulation, period):
-        '''
-        Épargne retraite - PERP, PRÉFON, COREM et CGOS
-        2004-
-        '''
         period = period.this_year
         f6ps_holder = simulation.compute('f6ps', period)
         f6rs_holder = simulation.compute('f6rs', period)
@@ -630,9 +585,9 @@ class cd_eparet(Variable):
 
 
 class cd_sofipe(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
-    label = u"cd_sofipe"
+    label = u"Souscriptions au capital des SOFIPÊCHE"
     start_date = date(2002, 1, 1)
     stop_date = date(2006, 12, 31)
 
@@ -640,22 +595,21 @@ class cd_sofipe(Variable):
         '''
         Souscriptions au capital des SOFIPÊCHE (case CC de la déclaration
         complémentaire)
-        2002-2006
         '''
         period = period.this_year
         f6cc = simulation.calculate('f6cc', period)
         rbg_int = simulation.calculate('rbg_int', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        sofipe = simulation.legislation_at(period.start).ir.charges_deductibles.sofipe
+        sofipeche = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.sofipeche
 
-        max1 = min_(sofipe.taux * rbg_int, sofipe.max * (1 + maries_ou_pacses))
-        return period, min_(f6cc, max1)
+        plafond = min_(sofipeche.plafond_pct_rng * rbg_int, sofipeche.plafond * (1 + maries_ou_pacses))
+        return period, min_(f6cc, plafond)
 
 
-class cd_cinema(Variable):
-    column = FloatCol(default = 0)
+class souscriptions_cinema_audiovisuel(Variable):
+    column = FloatCol
     entity = FoyerFiscal
-    label = u"cd_cinema"
+    label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel"
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
 
@@ -663,21 +617,20 @@ class cd_cinema(Variable):
         '''
         Souscriptions en faveur du cinéma ou de l’audiovisuel (case AA de la
         déclaration n° 2042 complémentaire)
-        2002-2005
         '''
         period = period.this_year
         f6aa = simulation.calculate('f6aa', period)
         rbg_int = simulation.calculate('rbg_int', period)
-        cinema = simulation.legislation_at(period.start).ir.charges_deductibles.cinema
+        cinema = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.cinema
 
         max1 = min_(cinema.taux * rbg_int, cinema.max)
         return period, min_(f6aa, max1)
 
 
-class cd_ecodev(Variable):
-    column = FloatCol(default = 0)
+class epargne_codeveloppement(Variable):
+    column = FloatCol
     entity = FoyerFiscal
-    label = u"cd_ecodev"
+    label = u"Versements sur un compte épargne codéveloppement"
     start_date = date(2007, 1, 1)
     stop_date = date(2008, 12, 31)
 
@@ -685,33 +638,31 @@ class cd_ecodev(Variable):
         '''
         Versements sur un compte épargne codéveloppement (case EH de la déclaration
         complémentaire)
-        2007-2008
         '''
         period = period.this_year
         f6eh = simulation.calculate('f6eh', period)
         rbg_int = simulation.calculate('rbg_int', period)
-        ecodev = simulation.legislation_at(period.start).ir.charges_deductibles.ecodev
+        ecodev = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.compte_epargne_codev
 
-        max1 = min_(ecodev.taux * rbg_int, ecodev.max)
-        return period, min_(f6eh, max1)
+        plafond = min_(ecodev.plafond_pct_rng * rbg_int, ecodev.plafond)
+        return period, min_(f6eh, plafond)
 
 
-class cd_grorep(Variable):
-    column = FloatCol(default = 0)
+class grosses_reparations(Variable):
+    column = FloatCol
     entity = FoyerFiscal
-    label = u"cd_grorep"
+    label = u"Dépenses de grosses réparations des nus-propriétaires"
     start_date = date(2009, 1, 1)
 
     def function(self, simulation, period):
         '''
         Dépenses de grosses réparations des nus-propriétaires (case 6CB et 6HJ)
-        2009-
         '''
         period = period.this_year
         f6cb = simulation.calculate('f6cb', period)
         f6hj = simulation.calculate('f6hj', period)
         f6hk = simulation.calculate('f6hk', period)
         f6hl = simulation.calculate('f6hl', period)
-        grorep = simulation.legislation_at(period.start).ir.charges_deductibles.grorep
+        grorep = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.grosses_reparations
 
-        return period, min_(f6cb + f6hj + f6hk + f6hl, grorep.max)
+        return period, min_(f6cb + f6hj + f6hk + f6hl, grorep.plafond)

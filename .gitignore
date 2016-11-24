@@ -1,4 +1,5 @@
 *~
+.idea*
 .tags*
 *.egg-info
 *.pyc

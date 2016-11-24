@@ -20,7 +20,7 @@ class autonomie_financiere(Variable):
         smic_mensuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
 
         # Oui on compare du salaire net avec un bout du SMIC brut ...
-        return period, salaire_net / 6 >= (_P.fam.af.seuil_rev_taux * smic_mensuel_brut)
+        return period, salaire_net / 6 >= (_P.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
 
 
 class prestations_familiales_enfant_a_charge(Variable):
@@ -36,7 +36,7 @@ class prestations_familiales_enfant_a_charge(Variable):
         age = simulation.calculate('age', period)
         rempli_obligation_scolaire = simulation.calculate('rempli_obligation_scolaire', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         condition_enfant = ((age >= pfam.enfants.age_minimal) * (age < pfam.enfants.age_intermediaire) *
             rempli_obligation_scolaire)
@@ -72,7 +72,7 @@ class biactivite(Variable):
         period = period.this_month
         annee_fiscale_n_2 = period.n_2
 
-        pfam = legislation(annee_fiscale_n_2).fam
+        pfam = legislation(annee_fiscale_n_2).prestations.prestations_familiales
         seuil_rev = 12 * pfam.af.bmaf
 
         condition_ressource = famille.members('prestations_familiales_base_ressources_individu', period) >= seuil_rev

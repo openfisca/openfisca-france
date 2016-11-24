@@ -40,14 +40,16 @@ def ayrault_muet_modify_legislation_json(reference_legislation_json_copy):
             "values": [{'start': u'2015-01-01', 'stop': u'2015-12-31', 'value': round(4490 * inflator)}],
             },
         }
-    reference_legislation_json_copy['children']['ir']['children']['credits_impot']['children']['ppe']['children'].update(
+    reference_legislation_json_copy['children']['impot_revenu']['children']['credits_impot']['children']['ppe']['children'].update(
         reform_legislation_subtree)
     return reference_legislation_json_copy
+
 
 class variator(Variable):
     column = FloatCol(default = 1)
     entity = FoyerFiscal
     label = u'Multiplicateur du seuil de régularisation'
+
 
 class reduction_csg(DatedVariable):
     column = FloatCol
@@ -73,6 +75,7 @@ class reduction_csg(DatedVariable):
         # Montant de l'allegment
         return period, taux_allegement_csg * assiette_csg_abattue
 
+
 class reduction_csg_foyer_fiscal(Variable):
     entity = FoyerFiscal
     label = u"Réduction dégressive de CSG des memebres du foyer fiscal"
@@ -81,6 +84,7 @@ class reduction_csg_foyer_fiscal(Variable):
     def function(self, simulation, period):
         reduction_csg = simulation.calculate('reduction_csg', period)
         return period, simulation.foyer_fiscal.sum(reduction_csg)
+
 
 class reduction_csg_nette(DatedVariable):
     column = FloatCol
@@ -93,6 +97,7 @@ class reduction_csg_nette(DatedVariable):
         reduction_csg = individu('reduction_csg', period)
         ppe_elig_bis = individu.foyer_fiscal('ppe_elig_bis', period)
         return period, reduction_csg * ppe_elig_bis
+
 
 class ppe_elig_bis(Variable):
     column = BoolCol(default = False)
@@ -112,7 +117,7 @@ class ppe_elig_bis(Variable):
         celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         nbptr = simulation.calculate('nbptr', period)
         variator = simulation.calculate('variator', period)
-        ppe = simulation.legislation_at(period.start).ir.credits_impot.ppe
+        ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe
         seuil = (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
             + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
         return period, (rfr * ppe_coef) <= (seuil * variator)
@@ -135,7 +140,6 @@ class ayrault_muet(Reform):
     name = u'Amendement Ayrault-Muet au PLF2016'
     key = 'ayrault_muet'
 
-
     def apply(self):
         for variable in [
             reduction_csg,
@@ -143,7 +147,7 @@ class ayrault_muet(Reform):
             reduction_csg_foyer_fiscal,
             reduction_csg_nette,
             ppe_elig_bis,
-            variator
+            variator,
             ]:
             self.update_variable(variable)
         self.modify_legislation_json(modifier_function = ayrault_muet_modify_legislation_json)

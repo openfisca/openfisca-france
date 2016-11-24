@@ -1,0 +1,113 @@
+<NODE code="fonc" description="Traitement des fonctionnaires" origin="openfisca">
+  <CODE code="IM_100" description="Indice 100 majoré" format="float" origin="openfisca">
+    <VALUE deb="2015-01-01" fuzzy="true" valeur="5556.35" />
+    <VALUE deb="2010-07-01" fin="2014-12-31" valeur="5556.35" />
+    <VALUE deb="2009-10-01" fin="2010-06-30" valeur="5528.7" />
+    <VALUE deb="2009-07-01" fin="2009-09-30" valeur="5512.17" />
+    <VALUE deb="2008-10-01" fin="2009-06-30" valeur="5484.75" />
+    <VALUE deb="2008-03-01" fin="2008-09-30" valeur="5468.34" />
+    <VALUE deb="2007-02-01" fin="2008-02-29" valeur="5441.13" />
+    <VALUE deb="2006-07-01" fin="2007-01-31" valeur="5397.95" />
+    <VALUE deb="2005-11-01" fin="2006-06-30" valeur="5371.10" />
+    <VALUE deb="2005-07-01" fin="2005-10-31" valeur="5328.47" />
+    <VALUE deb="2005-02-01" fin="2005-06-30" valeur="5301.96" />
+    <VALUE deb="2004-01-01" fin="2005-01-31" valeur="5275.58" />
+    <VALUE deb="2002-12-01" fin="2003-12-31" valeur="5249.33" />
+    <VALUE deb="2002-03-01" fin="2002-11-30" valeur="5212.84" />
+    <VALUE deb="2001-11-01" fin="2002-02-28" valeur="5181.75" />
+    <VALUE deb="2001-05-01" fin="2001-10-31" valeur="5145.76" />
+    <VALUE deb="2000-12-01" fin="2001-04-30" valeur="5120.15" />
+    <VALUE deb="1999-12-01" fin="2000-11-30" valeur="5094.69" />
+    <VALUE deb="1999-04-01" fin="1999-11-30" valeur="5054.45" />
+    <VALUE deb="1998-11-01" fin="1999-03-31" valeur="5029.29" />
+  </CODE>
+  <CODE code="IM_min" description="Indice de traitement minimum" format="integer" origin="openfisca">
+    <VALUE deb="2015-01-01" fuzzy="true" valeur="309" />
+    <VALUE deb="2013-01-01" fin="2014-12-31" valeur="309" />
+    <VALUE deb="2012-07-07" fin="2012-12-31" valeur="308" />
+    <VALUE deb="2012-01-01" fin="2012-07-06" valeur="302" />
+    <VALUE deb="2011-01-01" fin="2011-12-31" valeur="295" />
+    <VALUE deb="2009-07-01" fin="2010-12-31" valeur="292" />
+    <VALUE deb="2008-07-01" fin="2009-06-30" valeur="290" />
+    <VALUE deb="2008-05-01" fin="2008-06-30" valeur="288" />
+    <VALUE deb="2007-07-01" fin="2008-04-30" valeur="283" />
+    <VALUE deb="2006-11-01" fin="2007-06-30" valeur="280" />
+    <VALUE deb="2006-07-01" fin="2006-10-31" valeur="279" />
+    <VALUE deb="2005-06-30" fin="2006-06-30" valeur="275" />
+    <VALUE deb="2004-07-01" fin="2005-06-29" valeur="263" />
+    <VALUE deb="2001-06-29" fin="2004-06-30" valeur="261" />
+    <VALUE deb="2001-05-01" fin="2001-06-28" valeur="258" />
+    <VALUE deb="1999-11-14" fin="2001-04-30" valeur="253" />
+    <VALUE deb="1999-06-13" fin="1999-11-13" valeur="252" />
+    <VALUE deb="1999-03-20" fin="1999-06-12" valeur="250" />
+    <VALUE deb="1998-06-14" fin="1999-03-19" valeur="249" />
+  </CODE>
+  <NODE code="indem_resid" description="Indemnité de résidence " origin="openfisca">
+    <CODE code="min" description="Indemnité de résidence : plancher (en indice majoré)" format="integer" origin="openfisca">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="313" />
+      <VALUE deb="2013-01-01" fin="2014-12-31" valeur="313" /> # TODO: check in july 2014 for "fin"
+      <VALUE deb="2012-07-07" fin="2012-12-31" valeur="312" />
+      <VALUE deb="2012-01-01" fin="2012-07-06" valeur="306" />
+      <VALUE deb="2011-01-01" fin="2011-12-31" valeur="299" />
+      <VALUE deb="2006-11-01" fin="2010-12-31" valeur="298" />
+      <VALUE deb="2001-05-01" fin="2006-10-31" valeur="297" />
+      <VALUE deb="1999-11-14" fin="2001-04-30" valeur="295" />
+      <VALUE deb="1999-06-13" fin="1999-11-13" valeur="294" />
+    </CODE>
+    <NODE code="taux" description="Indemnité de résidence : taux " origin="openfisca">
+      <CODE code="zone1" description="Indemnité de résidence zone 1 : taux " format="percent" origin="openfisca">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.03" />
+        <VALUE deb="1999-07-01" fin="2014-12-31" valeur="0.03" />
+      </CODE>
+      <CODE code="zone2" description="Indemnité de résidence zone 2 : taux " format="percent" origin="openfisca">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.01" />
+        <VALUE deb="1999-07-01" fin="2014-12-31" valeur="0.01" />
+      </CODE>
+      <CODE code="zone3" description="Indemnité de résidence zone 3 : taux " format="percent" origin="openfisca">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.00" />
+        <VALUE deb="1999-07-01" fin="2014-12-31" valeur="0.00" />
+      </CODE>
+    </NODE>
+  </NODE>
+  <NODE code="supp_fam" description="Supplément familial de traitement" origin="openfisca">
+    <CODE code="IM_max" description="Indice majoré plafond" format="integer" origin="openfisca">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="717" />
+      <VALUE deb="2006-01-01" fin="2014-12-31" valeur="717" />
+      <VALUE deb="1988-03-01" fin="2005-12-31" valeur="716" />
+    </CODE>
+    <CODE code="IM_min" description="Indice majoré plancher" format="integer" origin="openfisca">
+      <VALUE deb="2015-01-01" fuzzy="true" valeur="449" />
+      <VALUE deb="2006-11-01" fin="2014-12-31" valeur="449" /># TODO: check in july 2014 for "fin"
+      <VALUE deb="1999-11-14" fin="2006-10-31" valeur="448" />
+      <VALUE deb="1999-06-13" fin="1999-11-13" valeur="447" />
+    </CODE>
+    <NODE code="fixe" description="Part fixe" origin="openfisca">
+      <CODE code="enf1" description="1er enfant" format="float" origin="openfisca">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="2.29" />
+        <VALUE deb="1999-07-01" fin="2014-12-31" valeur="2.29" />
+      </CODE>
+      <CODE code="enf2" description="2 enfants" format="float" origin="openfisca">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="10.67" />
+        <VALUE deb="1999-07-01" fin="2014-12-31" valeur="10.67" />
+      </CODE>
+      <CODE code="enfsupp" description="Enfant supplémentaire " format="float" origin="openfisca">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="4.57" />
+        <VALUE deb="1999-07-01" fin="2014-12-31" valeur="4.57" />
+      </CODE>
+    </NODE>
+    <NODE code="prop" description="Part proportionnelle au traitement" origin="openfisca">
+      <CODE code="enf2" description="Pour 2 enfants" format="percent" origin="openfisca">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.03" />
+        <VALUE deb="1999-07-01" fin="2014-12-31" valeur="0.03" />
+      </CODE>
+      <CODE code="enf3" description="Pour 3 enfants" format="percent" origin="openfisca">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.08" />
+        <VALUE deb="1999-07-01" fin="2014-12-31" valeur="0.08" />
+      </CODE>
+      <CODE code="enfsupp" description="Par nfant supplémentaire " format="percent" origin="openfisca">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.06" />
+        <VALUE deb="1999-07-01" fin="2014-12-31" valeur="0.06" />
+      </CODE>
+    </NODE>
+  </NODE>
+</NODE>

@@ -64,7 +64,7 @@ class cmu_forfait_logement_base(Variable):
         period = period.this_month
         cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
         P = simulation.legislation_at(period.start).cmu.forfait_logement
-        law_rsa = simulation.legislation_at(period.start).minim.rmi
+        law_rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
 
         return period, forfait_logement(cmu_nbp_foyer, P, law_rsa)
 
@@ -79,7 +79,7 @@ class cmu_forfait_logement_al(Variable):
         nb_personnes_foyer = simulation.calculate('cmu_nbp_foyer', period)
         aide_logement = simulation.calculate_add('aide_logement', period)
         P = simulation.legislation_at(period.start).cmu.forfait_logement_al
-        law_rsa = simulation.legislation_at(period.start).minim.rmi
+        law_rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
 
         return period, (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rsa))
 
