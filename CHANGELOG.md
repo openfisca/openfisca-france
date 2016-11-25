@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.1
+
+* Fix packaging of 6.0.0
+
 ## 6.0.0
 
 * Use legislation parameters from IPP
