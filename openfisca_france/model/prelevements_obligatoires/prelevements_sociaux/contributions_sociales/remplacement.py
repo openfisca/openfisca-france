@@ -23,7 +23,7 @@ class taux_csg_remplacement(Variable):
             u"Taux plein",
             ]),
         )
-    entity_class = Individus
+    entity = Individu
     label = u"Taux retenu sur la CSG des revenus de remplacment"
 
 
@@ -37,7 +37,7 @@ class taux_csg_remplacement(Variable):
 class csg_deductible_chomage(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"CSG déductible sur les allocations chômage"
     url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
 
@@ -46,43 +46,48 @@ class csg_deductible_chomage(Variable):
         chomage_brut = simulation.calculate('chomage_brut', period)
         csg_imposable_chomage = simulation.calculate('csg_imposable_chomage', period)
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
-        law = simulation.legislation_at(period.start)
+        legislation = simulation.legislation_at(period.start)
         montant_csg = montant_csg_crds(
             base_avec_abattement = chomage_brut,
             indicatrice_taux_plein = (taux_csg_remplacement == 3),
             indicatrice_taux_reduit = (taux_csg_remplacement == 2),
-            law_node = law.csg.chomage.deductible,
-            plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
+            law_node = legislation.prelevements_sociaux.contributions.csg.chomage.deductible,
+            plafond_securite_sociale = legislation.cotsoc.gen.plafond_securite_sociale,
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
-        cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
+        cho_seuil_exo = (
+            legislation.prelevements_sociaux.contributions.csg.chomage.min_exo * nbh_travail *
+            legislation.cotsoc.gen.smic_h_b
+            )
         csg_deductible_chomage = max_(
             - montant_csg - max_(cho_seuil_exo - (chomage_brut + csg_imposable_chomage + montant_csg), 0),
             0,
             )
-
         return period, - csg_deductible_chomage
 
 
 class csg_imposable_chomage(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"CSG imposable sur les allocations chômage"
     url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
 
     def function(self, simulation, period):
         period = period.this_month
         chomage_brut = simulation.calculate('chomage_brut', period)
-        law = simulation.legislation_at(period.start)
+        legislation = simulation.legislation_at(period.start)
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = chomage_brut,
-            law_node = law.csg.chomage.imposable,
-            plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
+            law_node = legislation.prelevements_sociaux.contributions.csg.chomage.imposable,
+            plafond_securite_sociale = legislation.cotsoc.gen.plafond_securite_sociale,
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
-        cho_seuil_exo = law.csg.chomage.min_exo * nbh_travail * law.cotsoc.gen.smic_h_b
+        cho_seuil_exo = (
+            legislation.prelevements_sociaux.contributions.csg.chomage.min_exo * nbh_travail *
+            legislation.cotsoc.gen.smic_h_b
+            )
         csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chomage_brut + montant_csg), 0), 0)
         return period, - csg_imposable_chomage
 
@@ -90,7 +95,7 @@ class csg_imposable_chomage(Variable):
 class crds_chomage(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"CRDS sur les allocations chômage"
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm"
 
@@ -106,11 +111,11 @@ class crds_chomage(Variable):
         # salaire_mensuel_reference = chomage_brut / .7
         # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
         heures_mensuelles = 35 * 52 / 12
-        cho_seuil_exo = law.csg.chomage.min_exo * heures_mensuelles * smic_h_b
+        cho_seuil_exo = law.prelevements_sociaux.contributions.csg.chomage.min_exo * heures_mensuelles * smic_h_b
 
         montant_crds = montant_csg_crds(
             base_avec_abattement = chomage_brut,
-            law_node = law.crds.activite,
+            law_node = law.prelevements_sociaux.contributions.crds.activite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * (2 <= taux_csg_remplacement)
 
@@ -132,7 +137,7 @@ class chomage_imposable(Variable):
                    QUIFOY['pac2']: u"1DP",
                    QUIFOY['pac3']: u"1EP",
                    })  # (f1ap, f1bp, f1cp, f1dp, f1ep)
-    entity_class = Individus
+    entity = Individu
     label = u"Allocations chômage imposables"
     set_input = set_input_divide_by_period
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm"
@@ -148,7 +153,7 @@ class chomage_imposable(Variable):
 class chomage_net(Variable):
     base_function = requested_period_added_value
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Allocations chômage nettes"
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
@@ -169,7 +174,7 @@ class chomage_net(Variable):
 class csg_deductible_retraite(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"CSG déductible sur les pensions de retraite"
     url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
 
@@ -183,7 +188,7 @@ class csg_deductible_retraite(Variable):
             base_sans_abattement = retraite_brute,
             indicatrice_taux_plein = (taux_csg_remplacement == 3),
             indicatrice_taux_reduit = (taux_csg_remplacement == 2),
-            law_node = law.csg.retraite.deductible,
+            law_node = law.prelevements_sociaux.contributions.csg.retraite.deductible,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         return period, montant_csg
@@ -192,7 +197,7 @@ class csg_deductible_retraite(Variable):
 class csg_imposable_retraite(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"CSG imposable sur les pensions de retraite"
     url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
 
@@ -203,7 +208,7 @@ class csg_imposable_retraite(Variable):
 
         montant_csg = montant_csg_crds(
             base_sans_abattement = retraite_brute,
-            law_node = law.csg.retraite.imposable,
+            law_node = law.prelevements_sociaux.contributions.csg.retraite.imposable,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         return period, montant_csg
@@ -212,7 +217,7 @@ class csg_imposable_retraite(Variable):
 class crds_retraite(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"CRDS sur les pensions de retraite"
     url = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"  # noqa
 
@@ -224,7 +229,7 @@ class crds_retraite(Variable):
 
         montant_crds = montant_csg_crds(
             base_sans_abattement = retraite_brute,
-            law_node = law.crds.retraite,
+            law_node = law.prelevements_sociaux.contributions.crds.retraite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * (taux_csg_remplacement == 1)
         return period, montant_crds
@@ -232,7 +237,7 @@ class crds_retraite(Variable):
 
 class casa(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Contribution additionnelle de solidarité et d'autonomie"
     url = u"http://www.service-public.fr/actualites/002691.html"
 
@@ -262,7 +267,7 @@ class retraite_imposable(Variable):
                            QUIFOY['pac2']: u"1DS",
                            QUIFOY['pac3']: u"1ES",
                             })  # (f1as, f1bs, f1cs, f1ds, f1es)
-    entity_class = Individus
+    entity = Individu
     label = u"Retraites au sens strict imposables (rentes à titre onéreux exclues)"
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
@@ -278,7 +283,7 @@ class retraite_imposable(Variable):
 class retraite_nette(Variable):
     base_function = requested_period_added_value
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Pensions de retraite nettes"
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
@@ -296,7 +301,7 @@ class retraite_nette(Variable):
 
 class crds_pfam(Variable):
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"CRDS sur les prestations familiales)"
     url = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"
 
@@ -312,6 +317,6 @@ class crds_pfam(Variable):
         paje = simulation.calculate_add('paje', period)
         ape = simulation.calculate_add('ape', period)
         apje = simulation.calculate_add('apje', period)
-        _P = simulation.legislation_at(period.start)
+        taux_crds = simulation.legislation_at(period.start).prelevements_sociaux.contributions.crds.taux
 
-        return period, -(af + cf + asf + ars + paje + ape + apje) * _P.fam.af.crds
+        return period, -(af + cf + asf + ars + paje + ape + apje) * taux_crds

@@ -9,7 +9,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class cf_enfant_a_charge(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"Complément familial - Enfant considéré à charge"
 
     def function(self, simulation, period):
@@ -19,9 +19,9 @@ class cf_enfant_a_charge(Variable):
         autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         age = simulation.calculate('age', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
-        condition_age = (age >= 0) * (age < pfam.cf.age2)
+        condition_age = (age >= 0) * (age < pfam.cf.age_max)
         condition_situation = est_enfant_dans_famille * not_(autonomie_financiere)
 
         return period, condition_age * condition_situation
@@ -29,7 +29,7 @@ class cf_enfant_a_charge(Variable):
 
 class cf_enfant_eligible(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"Complément familial - Enfant pris en compte pour l'éligibilité"
 
     def function(self, simulation, period):
@@ -39,18 +39,18 @@ class cf_enfant_eligible(Variable):
         age = simulation.calculate('age', period)
         rempli_obligation_scolaire = simulation.calculate('rempli_obligation_scolaire', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
-        condition_enfant = ((age >= pfam.cf.age1) * (age < pfam.enfants.age_intermediaire) *
+        condition_enfant = ((age >= pfam.cf.age_min) * (age < pfam.enfants.age_intermediaire) *
             rempli_obligation_scolaire)
-        condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.cf.age2)
+        condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.cf.age_max)
 
         return period, or_(condition_enfant, condition_jeune) * cf_enfant_a_charge
 
 
 class cf_dom_enfant_eligible(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"Complément familial (DOM) - Enfant pris en compte pour l'éligibilité"
 
     def function(self, simulation, period):
@@ -60,9 +60,9 @@ class cf_dom_enfant_eligible(Variable):
         age = simulation.calculate('age', period)
         rempli_obligation_scolaire = simulation.calculate('rempli_obligation_scolaire', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
-        condition_age = (age >= pfam.cf.age1) * (age < pfam.cf.age_limite_dom)
+        condition_age = (age >= pfam.cf.age_minimal_dom) * (age < pfam.cf.age_maximal_dom)
         condition_situation = cf_enfant_a_charge * rempli_obligation_scolaire
 
         return period, condition_age * condition_situation
@@ -70,7 +70,7 @@ class cf_dom_enfant_eligible(Variable):
 
 class cf_dom_enfant_trop_jeune(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"Complément familial (DOM) - Enfant trop jeune pour ouvrir le droit"
 
     def function(self, simulation, period):
@@ -79,16 +79,16 @@ class cf_dom_enfant_trop_jeune(Variable):
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
         age = simulation.calculate('age', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
-        condition_age = (age >= 0) * (age < pfam.cf.age1)
+        condition_age = (age >= 0) * (age < pfam.cf.age_min)
 
         return period, condition_age * est_enfant_dans_famille
 
 
 class cf_ressources_individu(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Complément familial - Ressources de l'individu prises en compte"
 
     def function(self, simulation, period):
@@ -103,13 +103,13 @@ class cf_ressources_individu(Variable):
 
 class cf_plafond(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Plafond d'éligibilité au Complément Familial"
 
     def function(self, simulation, period):
         period = period.this_month
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         eligibilite_base = simulation.calculate('cf_eligibilite_base', period)
         eligibilite_dom = simulation.calculate('cf_eligibilite_dom', period)
@@ -121,19 +121,19 @@ class cf_plafond(Variable):
         cf_nbenf = self.sum_by_entity(cf_enfant_a_charge_holder)
 
         # Calcul du taux à appliquer au plafond de base pour la France métropolitaine
-        taux_plafond_metropole = 1 + pfam.cf.majoration_plafond_tx1 * min_(cf_nbenf, 2) + pfam.cf.majoration_plafond_tx2 * max_(cf_nbenf - 2, 0)
+        taux_plafond_metropole = 1 + pfam.cf.majoration_plafond_2_premiers_enf * min_(cf_nbenf, 2) + pfam.cf.majoration_plafond_3eme_enf_et_plus * max_(cf_nbenf - 2, 0)
 
         # Majoration du plafond pour biactivité ou isolement (France métropolitaine)
         majoration_plafond = (isole | biactivite)
 
         # Calcul du plafond pour la France métropolitaine
-        plafond_metropole = pfam.cf.plafond * taux_plafond_metropole + pfam.cf.majoration_plafond_biact_isole * majoration_plafond
+        plafond_metropole = pfam.cf.plafond_de_ressources_0_enfant * taux_plafond_metropole + pfam.cf.majoration_plafond_biact_isole * majoration_plafond
 
         # Calcul du taux à appliquer au plafond de base pour les DOM
-        taux_plafond_dom = 1 + cf_nbenf * pfam.ars.plaf_enf_supp
+        taux_plafond_dom = 1 + cf_nbenf * pfam.ars.majoration_par_enf_supp
 
         # Calcul du plafond pour les DOM
-        plafond_dom = pfam.ars.plaf * taux_plafond_dom
+        plafond_dom = pfam.ars.plafond_ressources * taux_plafond_dom
 
         plafond = (eligibilite_base * plafond_metropole + eligibilite_dom * plafond_dom)
 
@@ -142,20 +142,20 @@ class cf_plafond(Variable):
 
 class cf_majore_plafond(DatedVariable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Plafond d'éligibilité au Complément Familial majoré"
 
     @dated_function(date(2014, 4, 1))
     def function(self, simulation, period):
         period = period.this_month
         plafond_base = simulation.calculate('cf_plafond', period)
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
         return period, plafond_base * pfam.cf.plafond_cf_majore
 
 
 class cf_ressources(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Ressources prises en compte pour l'éligibilité au complément familial"
 
     def function(self, simulation, period):
@@ -167,36 +167,36 @@ class cf_ressources(Variable):
 
 class cf_eligibilite_base(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Éligibilité au complément familial sous condition de ressources et avant cumul"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
 
-        residence_dom = simulation.calculate('residence_dom', period)
+        residence_dom = famille.demandeur.menage('residence_dom', period)
 
-        cf_enfant_eligible_holder = simulation.compute('cf_enfant_eligible', period)
-        cf_nbenf = self.sum_by_entity(cf_enfant_eligible_holder)
+        cf_enfant_eligible = famille.members('cf_enfant_eligible', period)
+        cf_nbenf = famille.sum(cf_enfant_eligible)
 
         return period, not_(residence_dom) * (cf_nbenf >= 3)
 
 class cf_eligibilite_dom(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Éligibilité au complément familial pour les DOM sous condition de ressources et avant cumul"
 
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
 
-        residence_dom = simulation.calculate('residence_dom', period)
-        residence_mayotte = simulation.calculate('residence_mayotte', period)
+        residence_dom = famille.demandeur.menage('residence_dom', period)
+        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
 
-        cf_dom_enfant_eligible_holder = simulation.compute('cf_dom_enfant_eligible', period)
-        cf_nbenf = self.sum_by_entity(cf_dom_enfant_eligible_holder)
+        cf_dom_enfant_eligible = famille.members('cf_dom_enfant_eligible', period)
+        cf_nbenf = famille.sum(cf_dom_enfant_eligible)
 
-        cf_dom_enfant_trop_jeune_holder = simulation.compute('cf_dom_enfant_trop_jeune', period)
-        cf_nbenf_trop_jeune = self.sum_by_entity(cf_dom_enfant_trop_jeune_holder)
+        cf_dom_enfant_trop_jeune = famille.members('cf_dom_enfant_trop_jeune', period)
+        cf_nbenf_trop_jeune = famille.sum(cf_dom_enfant_trop_jeune)
 
         condition_composition_famille = (cf_nbenf >= 1) * (cf_nbenf_trop_jeune == 0)
         condition_residence = residence_dom * not_(residence_mayotte)
@@ -206,7 +206,7 @@ class cf_eligibilite_dom(Variable):
 
 class cf_non_majore_avant_cumul(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Complément familial non majoré avant cumul"
 
     def function(self, simulation, period):
@@ -217,12 +217,12 @@ class cf_non_majore_avant_cumul(Variable):
         ressources = simulation.calculate('cf_ressources', period)
         plafond = simulation.calculate('cf_plafond', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 
         # Montant
-        montant = pfam.af.bmaf * (pfam.cf.tx * eligibilite_base + pfam.cf.tx_dom * eligibilite_dom)
+        montant = pfam.af.bmaf * (pfam.cf.taux_cf_base * eligibilite_base + pfam.cf.taux_base_dom * eligibilite_dom)
 
         # Complément familial
         eligibilite = eligibilite_sous_condition * (ressources <= plafond)
@@ -238,7 +238,7 @@ class cf_non_majore_avant_cumul(Variable):
 
 class cf_majore_avant_cumul(DatedVariable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Complément familial majoré avant cumul"
 
     @dated_function(date(2014, 4, 1))
@@ -250,12 +250,12 @@ class cf_majore_avant_cumul(DatedVariable):
         ressources = simulation.calculate('cf_ressources', period)
         plafond_majore = simulation.calculate('cf_majore_plafond', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 
         # Montant
-        montant = pfam.af.bmaf * (pfam.cf.tx_majore * eligibilite_base + pfam.cf.tx_majore_dom * eligibilite_dom)
+        montant = pfam.af.bmaf * (pfam.cf.taux_cf_majore * eligibilite_base + pfam.cf.taux_majore_dom * eligibilite_dom)
 
         eligibilite = eligibilite_sous_condition * (ressources <= plafond_majore)
 
@@ -264,7 +264,7 @@ class cf_majore_avant_cumul(DatedVariable):
 
 class cf_montant(Variable):
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"Montant du complément familial, avant prise en compte d'éventuels cumuls"
 
     def function(self, simulation, period):
@@ -279,7 +279,7 @@ class cf_montant(Variable):
 class cf(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"Complément familial"
     url = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"
 

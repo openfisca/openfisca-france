@@ -12,7 +12,7 @@ from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotis
 
 class allocations_temporaires_invalidite(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Allocations temporaires d'invalidité (ATI, fonction publique et collectivités locales)"
     # patronale, non-contributive
 
@@ -43,7 +43,7 @@ class allocations_temporaires_invalidite(Variable):
 
 class assiette_cotisations_sociales_public(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Assiette des cotisations sociales des agents titulaires de la fonction publique"
     # TODO: gestion des heures supplémentaires
 
@@ -68,7 +68,7 @@ class assiette_cotisations_sociales_public(Variable):
 
 class contribution_exceptionnelle_solidarite(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
 
     def function(self, simulation, period):
@@ -108,7 +108,7 @@ class contribution_exceptionnelle_solidarite(Variable):
                     primes_fonction_publique +
                     (categorie_salarie == CAT['public_non_titulaire']) * cotisations_salariales_contributives
                     ),
-                _P.cotsoc.sal.fonc.commun.plafond_base_solidarite,
+                _P.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
                 ),
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
@@ -118,7 +118,7 @@ class contribution_exceptionnelle_solidarite(Variable):
 
 class fonds_emploi_hospitalier(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Fonds pour l'emploi hospitalier (employeur)"
 
     def function(self, simulation, period):
@@ -138,7 +138,7 @@ class fonds_emploi_hospitalier(Variable):
 
 class ircantec_salarie(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Ircantec salarié"
 
     def function(self, simulation, period):
@@ -160,7 +160,7 @@ class ircantec_salarie(Variable):
 
 class ircantec_employeur(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Ircantec employeur"
 
     def function(self, simulation, period):
@@ -182,7 +182,7 @@ class ircantec_employeur(Variable):
 
 class pension_civile_salarie(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Pension civile salarié"
     url = u"http://www.ac-besancon.fr/spip.php?article2662",
 
@@ -192,7 +192,7 @@ class pension_civile_salarie(Variable):
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         _P = simulation.legislation_at(period.start)
 
-        sal =  _P.cotsoc.cotisations_salarie
+        sal = _P.cotsoc.cotisations_salarie
         terr_or_hosp = (
             categorie_salarie == CAT['public_titulaire_territoriale']) | (categorie_salarie == CAT['public_titulaire_hospitaliere'])
         pension_civile_salarie = (
@@ -205,7 +205,7 @@ class pension_civile_salarie(Variable):
 
 class pension_civile_employeur(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Cotisation patronale pension civile"
     url = u"http://www.ac-besancon.fr/spip.php?article2662"
 
@@ -230,7 +230,7 @@ class pension_civile_employeur(Variable):
 
 class rafp_salarie(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Part salariale de la retraite additionelle de la fonction publique"
     # Part salariale de la retraite additionelle de la fonction publique
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
@@ -259,7 +259,7 @@ class rafp_salarie(DatedVariable):
 
 class rafp_employeur(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Part patronale de la retraite additionnelle de la fonction publique"
 
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
@@ -290,7 +290,7 @@ def seuil_fds(law):
     '''
     Calcul du seuil mensuel d'assujetissement à la contribution au fond de solidarité
     '''
-    ind_maj_ref = law.cotsoc.sal.fonc.commun.ind_maj_ref
+    fds = law.prelevements_sociaux.cotisations_sociales.fds
     pt_ind_mensuel = law.cotsoc.sal.fonc.commun.pt_ind / 12
-    seuil_mensuel = math.floor((pt_ind_mensuel * ind_maj_ref))
+    seuil_mensuel = math.floor((pt_ind_mensuel * fds.indice_majore_de_reference))  # TODO improve
     return seuil_mensuel

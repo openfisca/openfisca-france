@@ -11,7 +11,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class cmu_acs_eligibilite(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Pré-éligibilité à la CMU, avant prise en compte des ressources"
 
     def function(self, simulation, period):
@@ -37,7 +37,7 @@ class cmu_acs_eligibilite(Variable):
 
 class acs_montant(Variable):
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"Montant de l'ACS en cas d'éligibilité"
     start_date = date(2009, 8, 1)
 
@@ -57,21 +57,21 @@ class acs_montant(Variable):
 
 class cmu_forfait_logement_base(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
 
     def function(self, simulation, period):
         period = period.this_month
         cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
         P = simulation.legislation_at(period.start).cmu.forfait_logement
-        law_rsa = simulation.legislation_at(period.start).minim.rmi
+        law_rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
 
         return period, forfait_logement(cmu_nbp_foyer, P, law_rsa)
 
 
 class cmu_forfait_logement_al(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Forfait logement applicable en cas d'aide au logement"
 
     def function(self, simulation, period):
@@ -79,14 +79,14 @@ class cmu_forfait_logement_al(Variable):
         nb_personnes_foyer = simulation.calculate('cmu_nbp_foyer', period)
         aide_logement = simulation.calculate_add('aide_logement', period)
         P = simulation.legislation_at(period.start).cmu.forfait_logement_al
-        law_rsa = simulation.legislation_at(period.start).minim.rmi
+        law_rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
 
         return period, (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rsa))
 
 
 class cmu_nbp_foyer(Variable):
     column = PeriodSizeIndependentIntCol
-    entity_class = Familles
+    entity = Famille
     label = u"Nombre de personnes dans le foyer CMU"
 
     def function(self, simulation, period):
@@ -99,21 +99,22 @@ class cmu_nbp_foyer(Variable):
 
 class cmu_eligible_majoration_dom(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
 
-    def function(self, simulation, period):
+    def function(famille, period):
         period = period.this_month
-        residence_guadeloupe = simulation.calculate('residence_guadeloupe', period)
-        residence_martinique = simulation.calculate('residence_martinique', period)
-        residence_guyane = simulation.calculate('residence_guyane', period)
-        residence_reunion = simulation.calculate('residence_reunion', period)
+        menage = famille.demandeur.menage
+        residence_guadeloupe = menage('residence_guadeloupe', period)
+        residence_martinique = menage('residence_martinique', period)
+        residence_guyane = menage('residence_guyane', period)
+        residence_reunion = menage('residence_reunion', period)
 
         return period, residence_guadeloupe | residence_martinique | residence_guyane | residence_reunion
 
 
 class cmu_c_plafond(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
 
     def function(self, simulation, period):
@@ -164,7 +165,7 @@ class cmu_c_plafond(Variable):
 
 class acs_plafond(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Plafond annuel de ressources pour l'éligibilité à l'ACS"
 
     def function(self, simulation, period):
@@ -178,7 +179,7 @@ class acs_plafond(Variable):
 class cmu_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
-    entity_class = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month
@@ -254,9 +255,9 @@ class cmu_base_ressources_individu(Variable):
 class cmu_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
-    entity_class = Familles
+    entity = Famille
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
         previous_year = period.start.period('year').offset(-1)
 
@@ -271,37 +272,34 @@ class cmu_base_ressources(Variable):
             'paje_prepare',
         ]
 
-        ressources = sum(
-            [simulation.calculate_add(ressource, previous_year) for ressource in ressources_a_inclure]
+        ressources_famille = sum(
+            [famille(ressource, previous_year, options = [ADD]) for ressource in ressources_a_inclure]
             )
 
 
-        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
-        cmu_forfait_logement_base = simulation.calculate('cmu_forfait_logement_base', period)
-        cmu_forfait_logement_al = simulation.calculate('cmu_forfait_logement_al', period)
-        age_holder = simulation.compute('age', period)
-        cmu_base_ressources_i_holder = simulation.compute('cmu_base_ressources_individu', period)
-        P = simulation.legislation_at(period.start).cmu
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        cmu_forfait_logement_base = famille('cmu_forfait_logement_base', period)
+        cmu_forfait_logement_al = famille('cmu_forfait_logement_al', period)
 
-        cmu_br_i_par = self.split_by_roles(cmu_base_ressources_i_holder, roles = [CHEF, PART])
-        cmu_br_i_pac = self.split_by_roles(cmu_base_ressources_i_holder, roles = ENFS)
+        P = legislation(period).cmu
 
-        age_pac = self.split_by_roles(age_holder, roles = ENFS)
 
         forfait_logement = (((statut_occupation_logement == 2) + (statut_occupation_logement == 6)) * cmu_forfait_logement_base +
             cmu_forfait_logement_al)
 
-        res = cmu_br_i_par[CHEF] + cmu_br_i_par[PART] + forfait_logement + ressources
+        ressources_individuelles = famille.members('cmu_base_ressources_individu', period)
+        ressources_parents = famille.sum(ressources_individuelles, role = Famille.PARENT)
 
-        for key, age in age_pac.iteritems():
-            res += (0 <= age) * (age <= P.age_limite_pac) * cmu_br_i_pac[key]
+        age = famille.members('age', period)
+        condition_enfant_a_charge = (age >= 0) * (age <= P.age_limite_pac)
+        ressources_enfants = famille.sum(ressources_individuelles * condition_enfant_a_charge, role = Famille.ENFANT)
 
-        return period, res
+        return period, forfait_logement + ressources_famille + ressources_parents + ressources_enfants
 
 
 class cmu_nb_pac(Variable):
     column = PeriodSizeIndependentIntCol
-    entity_class = Familles
+    entity = Famille
     label = u"Nombre de personnes à charge au titre de la CMU"
 
     def function(self, simulation, period):
@@ -314,14 +312,11 @@ class cmu_nb_pac(Variable):
 
 
 class cmu_c(Variable):
-    '''
-    Détermine si le foyer a droit à la CMU complémentaire
-    '''
     column = BoolCol
     label = u"Éligibilité à la CMU-C"
-    entity_class = Familles
+    entity = Famille
 
-    def function(self, simulation, period):
+    def function(famille, period):
         # Note : Cette variable est calculée pour un an, mais si elle est demandée pour une période plus petite, elle
         # répond pour la période demandée.
         this_month = period.this_month
@@ -331,17 +326,17 @@ class cmu_c(Variable):
         else:
             period = this_month
 
-        cmu_c_plafond = simulation.calculate('cmu_c_plafond', this_month)
-        cmu_base_ressources = simulation.calculate('cmu_base_ressources', this_month)
-        residence_mayotte = simulation.calculate('residence_mayotte', this_month)
-        cmu_acs_eligibilite = simulation.calculate('cmu_acs_eligibilite', period)
+        cmu_c_plafond = famille('cmu_c_plafond', this_month)
+        cmu_base_ressources = famille('cmu_base_ressources', this_month)
+        residence_mayotte = famille.demandeur.menage('residence_mayotte', this_month)
+        cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
 
-        rsa_socle = simulation.calculate('rsa_socle', this_month)
-        rsa_socle_majore = simulation.calculate('rsa_socle_majore', this_month)
-        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', this_month)
-        rsa_base_ressources = simulation.calculate('rsa_base_ressources', this_month)
+        rsa_socle = famille('rsa_socle', this_month)
+        rsa_socle_majore = famille('rsa_socle_majore', this_month)
+        rsa_forfait_logement = famille('rsa_forfait_logement', this_month)
+        rsa_base_ressources = famille('rsa_base_ressources', this_month)
         socle = max_(rsa_socle, rsa_socle_majore)
-        rsa = simulation.calculate('rsa', this_month)
+        rsa = famille('rsa', this_month)
 
         eligibilite_basique = cmu_base_ressources <= cmu_c_plafond
         eligibilite_rsa = (rsa > 0) * (rsa_base_ressources < socle - rsa_forfait_logement)
@@ -353,17 +348,17 @@ class cmu_c(Variable):
 class acs(Variable):
     column = FloatCol
     label = u"Montant (mensuel) de l'ACS"
-    entity_class = Familles
+    entity = Famille
 
-    def function(self, simulation, period):
+    def function(famille, period):
         period = period.this_month
 
-        cmu_c = simulation.calculate('cmu_c', period)
-        cmu_base_ressources = simulation.calculate('cmu_base_ressources', period)
-        acs_plafond = simulation.calculate('acs_plafond', period)
-        acs_montant = simulation.calculate('acs_montant', period)
-        residence_mayotte = simulation.calculate('residence_mayotte', period)
-        cmu_acs_eligibilite = simulation.calculate('cmu_acs_eligibilite', period)
+        cmu_c = famille('cmu_c', period)
+        cmu_base_ressources = famille('cmu_base_ressources', period)
+        acs_plafond = famille('acs_plafond', period)
+        acs_montant = famille('acs_montant', period)
+        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+        cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
 
         return period, (
             cmu_acs_eligibilite *

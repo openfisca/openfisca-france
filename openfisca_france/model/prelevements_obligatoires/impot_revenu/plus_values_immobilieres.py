@@ -41,7 +41,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 #     return prix_cess_corr-valeur_venale
 #
 #
-# def _plus_value_nette(period, plus_value_brute, dur_det_immo, pv_immo = law.ir.pv_immo):
+# def _plus_value_nette(period, plus_value_brute, dur_det_immo, pv_immo = law.impot_revenu.pv_immo):
 #     """
 #     Calcul de la plus value immobilière nette
 #     """
@@ -74,7 +74,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class ir_pv_immo(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Impôt sur le revenu afférent à la plus-value immobilière"
     url = "http://www.impots.gouv.fr/portal/dgi/public/popup?espId=1&typePage=cpr02&docOid=documentstandard_2157"
 
@@ -84,7 +84,7 @@ class ir_pv_immo(Variable):
         """
         period = period.this_year
         f3vz = simulation.calculate('f3vz', period)
-        pv_immo = simulation.legislation_at(period.start).ir.pv_immo
+        pv_immo = simulation.legislation_at(period.start).impot_revenu.pv_immo
 
         # 61. MONTANT DU PAR LES PERSONNES PHYSIQUES RESIDENTES DE FRANCE OU D’UN AUTRE ETAT MEMBRE DE L’EEE(1)
         # (VOIR TABLEAU PAGE 3).

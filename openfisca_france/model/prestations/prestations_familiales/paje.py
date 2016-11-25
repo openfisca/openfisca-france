@@ -12,49 +12,49 @@ from openfisca_core.periods import Instant
 # Prestations familiales
 class inactif(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Parent inactif (PAJE-CLCA)"
 
 
 
 class partiel1(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Parent actif à moins de 50% (PAJE-CLCA)"
 
 
 
 class partiel2(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Parent actif entre 50% et 80% (PAJE-CLCA)"
 
 
 
 class opt_colca(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Opte pour le COLCA"
 
 
 
 class empl_dir(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Emploi direct (CLCMG)"
 
 
 
 class ass_mat(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Assistante maternelle (CLCMG)"
 
 
 
 class gar_dom(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Garde à domicile (CLCMG)"
 
 
@@ -62,7 +62,7 @@ class gar_dom(Variable):
 
 class paje(Variable):
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"PAJE - Ensemble des prestations"
     start_date = date(2004, 1, 1)
     url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje-0"  # noqa
@@ -85,7 +85,7 @@ class paje(Variable):
 class paje_base(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Allocation de base de la PAJE"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
@@ -95,17 +95,17 @@ class paje_base(Variable):
         couple_biactif = simulation.calculate('biactivite', period)
         parent_isole = not_(simulation.calculate('en_couple', period))
         nombre_enfants = simulation.calculate('af_nbenf', period)
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         date_gel_paje = Instant((2013, 04, 01)) # Le montant de la PAJE est gelé depuis avril 2013.
-        bmaf = pfam.af.bmaf if period.start < date_gel_paje else simulation.legislation_at(date_gel_paje).fam.af.bmaf
-        montant_taux_plein = bmaf * pfam.paje.base.taux
+        bmaf = pfam.af.bmaf if period.start < date_gel_paje else simulation.legislation_at(date_gel_paje).prestations.prestations_familiales.af.bmaf
+        montant_taux_plein = bmaf * pfam.paje.base.taux_allocation_base
 
         def plafond_avant_avril_2014():
-            plafond_de_base = pfam.paje.base.avant_2014.plaf
-            maj_plafond_2_premiers_enfants = pfam.paje.base.avant_2014.plaf_tx1 * plafond_de_base
-            maj_plafond_par_enfant_sup = pfam.paje.base.avant_2014.plaf_tx2 * plafond_de_base
-            maj_plafond_seul_biactif = pfam.paje.base.avant_2014.plaf_maj
+            plafond_de_base = pfam.paje.base.avant_2014.plafond_ressources_0_enf
+            maj_plafond_2_premiers_enfants = pfam.paje.base.avant_2014.taux_majoration_2_premiers_enf * plafond_de_base
+            maj_plafond_par_enfant_sup = pfam.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * plafond_de_base
+            maj_plafond_seul_biactif = pfam.paje.base.avant_2014.majoration_biact_parent_isoles
 
             plafond = (
                 plafond_de_base +
@@ -118,7 +118,10 @@ class paje_base(Variable):
         def plafond_taux_plein():
             plafond_de_base = pfam.paje.base.apres_2014.taux_plein.plaf
             maj_plafond_seul_biactif = pfam.paje.base.apres_2014.taux_plein.plaf_maj
-            maj_plafond_par_enfant = pfam.paje.base.apres_2014.plaf_tx_par_enf * plafond_de_base
+            if period.start.date >= date(2014, 4, 01):
+                maj_plafond_par_enfant = plafond_de_base * pfam.paje.base.apres_2014.plaf_tx_par_enf
+            else:
+                maj_plafond_par_enfant = 0
 
             plafond = (
                 plafond_de_base +
@@ -130,7 +133,10 @@ class paje_base(Variable):
         def plafond_taux_partiel():
             plafond_de_base = pfam.paje.base.apres_2014.taux_partiel.plaf
             maj_plafond_seul_biactif = pfam.paje.base.apres_2014.taux_partiel.plaf_maj
-            maj_plafond_par_enfant = pfam.paje.base.apres_2014.plaf_tx_par_enf * plafond_de_base
+            if period.start.date >= date(2014, 4, 01):
+                maj_plafond_par_enfant = plafond_de_base * pfam.paje.base.apres_2014.plaf_tx_par_enf
+            else:
+                maj_plafond_par_enfant = 0
 
             plafond = (
                 plafond_de_base +
@@ -171,7 +177,7 @@ class paje_base(Variable):
 
 class paje_base_enfant_eligible_avant_reforme_2014(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"Enfant ouvrant droit à la PAJE de base né avant le 1er avril 2014"
 
     def function(self, simulation, period):
@@ -180,7 +186,7 @@ class paje_base_enfant_eligible_avant_reforme_2014(Variable):
         autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         date_naissance = simulation.calculate('date_naissance', period)
         ne_avant_2014 = datetime64('2014-04-01') > date_naissance
-        age_limite = simulation.legislation_at(period.start).fam.paje.base.age
+        age_limite = simulation.legislation_at(period.start).prestations.prestations_familiales.paje.base.age_max_enfant
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
@@ -189,7 +195,7 @@ class paje_base_enfant_eligible_avant_reforme_2014(Variable):
 
 class paje_base_enfant_eligible_apres_reforme_2014(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"Enfant ouvrant droit à la PAJE de base né après le 1er avril 2014"
 
     def function(self, simulation, period):
@@ -198,7 +204,7 @@ class paje_base_enfant_eligible_apres_reforme_2014(Variable):
         autonomie_financiere = simulation.calculate('autonomie_financiere', period)
         date_naissance = simulation.calculate('date_naissance', period)
         ne_avant_2014 = datetime64('2014-04-01') > date_naissance
-        age_limite = simulation.legislation_at(period.start).fam.paje.base.age
+        age_limite = simulation.legislation_at(period.start).prestations.prestations_familiales.paje.base.age_max_enfant
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
@@ -208,7 +214,7 @@ class paje_base_enfant_eligible_apres_reforme_2014(Variable):
 class paje_naissance(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"Allocation de naissance de la PAJE"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
@@ -224,14 +230,14 @@ class paje_naissance(Variable):
         base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
         isole = not_(simulation.calculate('en_couple', period))
         biactivite = simulation.calculate('biactivite', period)
-        P = simulation.legislation_at(period.start).fam
+        P = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         # age = self.split_by_roles(age_holder, roles = ENFS)
         age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
 
         date_gel_paje = Instant((2013, 04, 01)) # Le montant de la PAJE est gelé depuis avril 2013.
-        bmaf = P.af.bmaf if period.start < date_gel_paje else simulation.legislation_at(date_gel_paje).fam.af.bmaf
-        nais_prime = round(100 * P.paje.nais.prime_tx * bmaf) / 100
+        bmaf = P.af.bmaf if period.start < date_gel_paje else simulation.legislation_at(date_gel_paje).prestations.prestations_familiales.af.bmaf
+        nais_prime = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
         # Versée au 7e mois de grossesse dans l'année
         # donc les enfants concernés sont les enfants qui ont -2 mois
         nbnais = 0
@@ -242,9 +248,9 @@ class paje_naissance(Variable):
         nbenf = af_nbenf + nbnais  # On ajoute l'enfant à  naître;
 
         # Est-ce que ces taux n'ont pas été mis à jour en avril 2014 ?
-        plaf_tx = (nbenf > 0) + P.paje.base.avant_2014.plaf_tx1 * min_(nbenf, 2) + P.paje.base.avant_2014.plaf_tx2 * max_(nbenf - 2, 0)
+        plaf_tx = (nbenf > 0) + P.paje.base.avant_2014.taux_majoration_2_premiers_enf * min_(nbenf, 2) + P.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
         majo = isole | biactivite
-        plaf = P.paje.base.avant_2014.plaf * plaf_tx + (plaf_tx > 0) * P.paje.base.avant_2014.plaf_maj * majo
+        plaf = P.paje.base.avant_2014.plafond_ressources_0_enf * plaf_tx + (plaf_tx > 0) * P.paje.base.avant_2014.majoration_biact_parent_isoles * majo
         elig = (base_ressources <= plaf) * (nbnais != 0)
         nais_brut = nais_prime * elig * (nbnais)
         return period, nais_brut
@@ -253,7 +259,7 @@ class paje_naissance(Variable):
 class paje_clca(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"PAJE - Complément de libre choix d'activité"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
@@ -288,7 +294,7 @@ class paje_clca(Variable):
         partiel1 = simulation.calculate('partiel1', period)
         partiel2 = simulation.calculate('partiel2', period)
 
-        P = simulation.legislation_at(period.start).fam
+        P = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
 
@@ -304,7 +310,7 @@ class paje_clca(Variable):
         age_m_benjamin = age_en_mois_benjamin(age_en_mois)
         condition1 = (af_nbenf == 1) * (age_m_benjamin >= 0) * (age_m_benjamin < P.paje.clca.duree1)
         age_benjamin = floor(age_m_benjamin / 12)
-        condition2 = (age_benjamin <= (P.paje.base.age - 1))
+        condition2 = (age_benjamin <= (P.paje.base.age_max_enfant - 1))
         condition = (af_nbenf >= 2) * condition2 + condition1
         paje_clca = (condition * P.af.bmaf) * (
                     (not_(paje)) * (inactif * P.paje.clca.sansab_tx_inactif +
@@ -317,14 +323,14 @@ class paje_clca(Variable):
 
 class paje_prepare(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     set_input = set_input_divide_by_period
     label = u"Prestation Partagée d’éducation de l’Enfant (PreParE)"
 
 
 class paje_clca_taux_plein(Variable):
     column = BoolCol(default = False)
-    entity_class = Familles
+    entity = Famille
     label = u"Indicatrice Clca taux plein"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
@@ -339,7 +345,7 @@ class paje_clca_taux_plein(Variable):
 
 class paje_clca_taux_partiel(Variable):
     column = BoolCol(default = False)
-    entity_class = Familles
+    entity = Famille
     label = u"Indicatrice Clca taux partiel"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
@@ -357,7 +363,7 @@ class paje_clca_taux_partiel(Variable):
 class paje_clmg(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"PAJE - Complément de libre choix du mode de garde"
     start_date = date(2004, 1, 1)
     url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"  # noqa
@@ -393,8 +399,6 @@ class paje_clmg(Variable):
         '''
         period = period.this_month
         aah_holder = simulation.compute('aah', period)
-        age_holder = simulation.compute('age', period)
-        autonomie_financiere_holder = simulation.compute('autonomie_financiere', period, accept_other_period = True)
         etu_holder = simulation.compute('etudiant', period)
         salaire_imposable_holder = simulation.compute('salaire_imposable', period)
         hsup_holder = simulation.compute('hsup', period)
@@ -406,20 +410,19 @@ class paje_clmg(Variable):
         gar_dom = simulation.calculate('gar_dom', period)
         paje_clca_taux_partiel = simulation.calculate('paje_clca_taux_partiel', period)
         paje_clca_taux_plein = simulation.calculate('paje_clca_taux_plein', period)
-        P = simulation.legislation_at(period.start).fam
-        P_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
+        P = simulation.legislation_at(period.start).prestations.prestations_familiales
+        P_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).prestations.prestations_familiales
 
-        age = self.split_by_roles(age_holder, roles = ENFS)
+
         etudiant = self.split_by_roles(etu_holder, roles = [CHEF, PART])
         hsup = self.split_by_roles(hsup_holder, roles = [CHEF, PART])
         salaire_imposable = self.split_by_roles(salaire_imposable_holder, roles = [CHEF, PART])
-        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
         aah = self.sum_by_entity(aah_holder)
 
         # condition de revenu minimal
 
         bmaf_n_2 = P_n_2.af.bmaf
-        cond_age_enf = (nb_enf(age, autonomie_financiere, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
+        cond_age_enf = (nb_enf(simulation, period, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
         cond_sal = (
             salaire_imposable[CHEF] + salaire_imposable[PART] + hsup[CHEF] + hsup[PART] >
             12 * bmaf_n_2 * (1 + en_couple)
@@ -443,13 +446,13 @@ class paje_clmg(Variable):
         seuil1 = seuil1 * (1 - .5 * paje_clca_taux_partiel)
         seuil2 = seuil2 * (1 - .5 * paje_clca_taux_partiel)
 
-        clmg = P.af.bmaf * ((nb_enf(age, autonomie_financiere, 0, P.paje.clmg.age1 - 1) > 0) +
-                            0.5 * (nb_enf(age, autonomie_financiere, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
+        clmg = P.af.bmaf * ((nb_enf(simulation, period, 0, P.paje.clmg.age1 - 1) > 0) +
+                            0.5 * (nb_enf(simulation, period, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
                             ) * (
             empl_dir * (
-                (base_ressources < seuil1) * P.paje.clmg.empl_dir1 +
-                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.empl_dir2 +
-                (base_ressources >= seuil2) * P.paje.clmg.empl_dir3) +
+                (base_ressources < seuil1) * P.paje.clmg.taux_recours_emploi_1er_plafond +
+                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.taux_recours_emploi_2e_plafond +
+                (base_ressources >= seuil2) * P.paje.clmg.taux_recours_emploi_supp_2e_plafond) +
             ass_mat * (
                 (base_ressources < seuil1) * P.paje.clmg.ass_mat1 +
                 ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.ass_mat2 +
@@ -470,7 +473,7 @@ class paje_clmg(Variable):
 class paje_colca(Variable):
     calculate_output = calculate_output_add
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"PAJE - Complément optionnel de libre choix d'activité"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
@@ -486,7 +489,7 @@ class paje_colca(Variable):
         opt_colca = simulation.calculate('opt_colca', period)
         paje_base = simulation.calculate('paje_base', period)
 
-        P = simulation.legislation_at(period.start).fam
+        P = simulation.legislation_at(period.start).prestations.prestations_familiales
 
         age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
         age_m_benjamin = age_en_mois_benjamin(age_en_mois)
@@ -501,12 +504,10 @@ class paje_colca(Variable):
 # TODO: cumul avec clca self.colca_tot_m
 
 
-# def _afeama(self, age_holder, autonomie_financiere_holder, ape, af_nbenf, base_ressources, P = law.fam):
+# def _afeama(self, simulation, period, ape, af_nbenf, base_ressources, P = law.prestations.prestations_familiales):
 #     '''
 #     Aide à la famille pour l'emploi d'une assistante maternelle agréée
 #     '''
-#     age = self.split_by_roles(age_holder, roles = ENFS)
-#     autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
 #
 #     # TODO http://web.archive.org/web/20080205163300/http://www.caf.fr/wps/portal/particuliers/catalogue/metropole/afeama
 #     # Les seuils sont de 80 et 110 % de l'ARS
@@ -524,7 +525,7 @@ class paje_colca(Variable):
 #
 #     # TODO calcul des cotisations urssaf
 #     #
-#     nbenf_afeama = nb_enf(age, autonomie_financiere, P.af.age1, P.afeama.age - 1)
+#     nbenf_afeama = nb_enf(simulation, period, P.af.age1, P.afeama.age - 1)
 #     nbenf = elig * af_nbenf * (nbenf_afeama > 0)
 #
 #     nb_par_ars = (nbenf == 1 + max_(nbenf - 1, 0) * (1 + P.ars.plaf_enf_supp))
@@ -558,7 +559,7 @@ class paje_colca(Variable):
 #     # Montant base ressources 2006, au 1er juillet 2007
 #
 #
-# def _aged(self, age_holder, autonomie_financiere_holder, base_ressources, ape_taux_partiel, dep_trim, P = law.fam):
+# def _aged(self, simulation, period, base_ressources, ape_taux_partiel, dep_trim, P = law.prestations.prestations_familiales):
 #     '''
 #     Allocation garde d'enfant à domicile
 #
@@ -573,11 +574,9 @@ class paje_colca(Variable):
 #     la CAF prend en charge 50% des charges sociales (plafonné à 553 € par trimestre)
 #     '''
 #     # TODO: trimestrialiser
-#     age = self.split_by_roles(age_holder, roles = ENFS)
-#     autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
 #
-#     nbenf = nb_enf(age, autonomie_financiere, 0, P.aged.age1 - 1)
-#     nbenf2 = nb_enf(age, autonomie_financiere, 0, P.aged.age2 - 1)
+#     nbenf = nb_enf(simulation, period, 0, P.aged.age1 - 1)
+#     nbenf2 = nb_enf(simulation, period, 0, P.aged.age2 - 1)
 #     elig1 = (nbenf > 0)
 #     elig2 = not_(elig1) * (nbenf2 > 0) * ape_taux_partiel
 #     depenses = 4 * dep_trim  # gérer les dépenses trimestrielles
@@ -589,7 +588,7 @@ class paje_colca(Variable):
 
 class ape_avant_cumul(Variable):
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"Allocation parentale d'éducation, avant prise en compte de la non-cumulabilité avec le CF et l'APJE"
     stop_date = date(2004, 1, 1)
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
@@ -625,18 +624,12 @@ class ape_avant_cumul(Variable):
         les professions non salariées.
         '''
         period = period.this_month
-        age_holder = simulation.compute('age', period)
-        autonomie_financiere_holder = simulation.compute('autonomie_financiere', accept_other_period = True)
         inactif = simulation.calculate('inactif', period)
         partiel1 = simulation.calculate('partiel1', period)
         partiel2 = simulation.calculate('partiel2', period)
-        P = simulation.legislation_at(period.start).fam
+        P = simulation.legislation_at(period.start).prestations.prestations_familiales
 
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
-
-        elig = (nb_enf(age, autonomie_financiere, 0, P.ape.age - 1) >= 1) & (nb_enf(age, autonomie_financiere, 0, P.af.age2) >= 2)
-        # Inactif
+        elig = (nb_enf(simulation, period, 0, P.ape.age_max_enfant - 1) >= 1) & (nb_enf(simulation, period, 0, P.af.age2) >= 2)        # Inactif
         # Temps partiel 1
         # Salarié:
         # Temps de travail ne dépassant pas 50 % de la durée du travail fixée dans l'entreprise
@@ -650,14 +643,14 @@ class ape_avant_cumul(Variable):
         # Salarié: Temps de travail compris entre 50 et 80 % de la durée du travail fixée dans l'entreprise.
         # Temps de travail compris entre 77 et 122 heures par mois et un revenu professionnel mensuel ne dépassant pas
         #  (smic_8.27*169*136 %)
-        ape = elig * (inactif * P.ape.tx_inactif + partiel1 * P.ape.tx_50 + partiel2 * P.ape.tx_80)
+        ape = elig * (inactif * P.ape.taux_inactivite + partiel1 * P.ape.taux_activite_sup_50 + partiel2 * P.ape.taux_activite_sup_80)
         # Cummul APE APJE CF
         return period, ape  # annualisé
 
 
 class apje_avant_cumul(Variable):
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"Allocation pour le jeune enfant, avant prise en compte de la non-cumulabilité avec le CF et l'APE"
     stop_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
@@ -668,24 +661,19 @@ class apje_avant_cumul(Variable):
         '''
         period = period.this_month
         base_ressources = simulation.calculate('prestations_familFiales_base_ressources', period.this_month)
-        age_holder = simulation.compute('age', period)
-        autonomie_financiere_holder = simulation.compute('autonomie_financiere', period.this_month)
         biactivite = simulation.calculate_add('biactivite', period)
         isole = not_(simulation.calculate('en_couple', period))
-        P = simulation.legislation_at(period.start).fam
-        P_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).fam
-
-        age = self.split_by_roles(age_holder, roles = ENFS)
-        autonomie_financiere = self.split_by_roles(autonomie_financiere_holder, roles = ENFS)
+        P = simulation.legislation_at(period.start).prestations.prestations_familiales
+        P_n_2 = simulation.legislation_at(period.start.offset(-2, 'year')).prestations.prestations_familiales
 
         # TODO: APJE courte voir doc ERF 2006
-        nbenf = nb_enf(age, autonomie_financiere, 0, P.apje.age - 1)
+        nbenf = nb_enf(simulation, period, 0, P.apje.age_max_dernier_enf - 1)
         bmaf = P.af.bmaf
         bmaf_n_2 = P_n_2.af.bmaf
         base = round(P.apje.taux * bmaf, 2)
         base2 = round(P.apje.taux * bmaf_n_2, 2)
 
-        plaf_tx = (nbenf > 0) + P.apje.plaf_tx1 * min_(nbenf, 2) + P.apje.plaf_tx2 * max_(nbenf - 2, 0)
+        plaf_tx = (nbenf > 0) + P.apje.taux_enfant_1_et_2 * min_(nbenf, 2) + P.apje.taux_enfant_3_et_plus * max_(nbenf - 2, 0)
         majo = isole | biactivite
         plaf = P.apje.plaf * plaf_tx + P.apje.plaf_maj * majo
         plaf2 = plaf + 12 * base2
@@ -706,7 +694,7 @@ class apje_avant_cumul(Variable):
 
 class ape(Variable):
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"Allocation parentale d'éducation"
     stop_date = date(2004, 1, 1)
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
@@ -726,7 +714,7 @@ class ape(Variable):
 
 class apje(Variable):
     column = FloatCol(default = 0)
-    entity_class = Familles
+    entity = Famille
     label = u"Allocation pour le jeune enfant"
     stop_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"

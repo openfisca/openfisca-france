@@ -17,11 +17,14 @@ scenarios_arguments = [
             effectif_entreprise = 25,
             categorie_salarie = CAT['prive_non_cadre'],
             ),
+        parent2 = dict(
+            date_naissance = datetime.date(1972, 1, 1),
+            ),
         menage = dict(
             zone_apl = 1,
             ),
         )
-    for year in range(2006, 2016)
+    for year in range(2006, 2017)
     ]
 
 

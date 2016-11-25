@@ -10,7 +10,7 @@ from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
 
 class taux_versement_transport(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u""
 
     def function(self, simulation, period):
@@ -37,7 +37,7 @@ class taux_versement_transport(Variable):
 
 class versement_transport(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Versement transport"
 
     def function(self, simulation, period):
