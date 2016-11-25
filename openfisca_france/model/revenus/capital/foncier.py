@@ -33,15 +33,12 @@ class f1dw(Variable):
     label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans"
 
 
-
-
 # Revenus fonciers
 class f4ba(Variable):
     cerfa_field = u"4BA"
     column = IntCol(val_type = "monetary")
     entity_class = FoyersFiscaux
     label = u"Revenus fonciers imposables"
-
 
 
 class f4bb(Variable):
