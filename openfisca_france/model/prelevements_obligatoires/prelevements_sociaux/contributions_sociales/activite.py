@@ -20,7 +20,7 @@ class assiette_csg_abattue(Variable):
     entity = Individu
 
     def function(self, simulation, period):
-        # period = period.this_month
+        # period = period.this_month
         primes_salaires = simulation.calculate('primes_salaires', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
@@ -46,7 +46,7 @@ class assiette_csg_non_abattue(Variable):
     entity = Individu
 
     def function(self, simulation, period):
-        # period = period.this_month
+        # period = period.this_month
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
         complementaire_sante_employeur = simulation.calculate_add('complementaire_sante_employeur', period)
         prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate_add(
@@ -273,15 +273,7 @@ class rev_microsocial(Variable):
         _P = simulation.legislation_at(period.start)
 
         P = _P.cotsoc.sal.microsocial
-==== BASE ====
         total = assiette_service + assiette_vente + assiette_proflib
         prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
         return period, total - prelsoc_ms
 
-
-class rev_microsocial_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur) (pour le premier déclarant du foyer fiscal)"  # noqa
-    role = VOUS
-    variable = rev_microsocial
-==== BASE ====

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import os, itertools, glob
+import glob
+import os
 
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 
@@ -15,6 +16,7 @@ COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 EXTENSIONS_PATH = os.path.join(COUNTRY_DIR, 'extensions')
 EXTENSIONS_DIRECTORIES = glob.glob(os.path.join(EXTENSIONS_PATH, '*/'))
 
+
 class FranceTaxBenefitSystem(TaxBenefitSystem):
     """French tax benefit system"""
     CURRENCY = u"€"
@@ -27,11 +29,16 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
     REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
     REV_TYP = None  # utils.REV_TYP  # Not defined for France
     REVENUES_CATEGORIES = {
-    'brut': ['salaire_brut', 'chomage_brut', 'retraite_brute', 'pensions_alimentaires_percues', 'pensions_alimentaires_versees', 'rev_cap_brut', 'fon'],
-    'imposable': ['salaire_imposable', 'chomage_imposable', 'retraite_imposable', 'pensions_alimentaires_percues', 'pensions_alimentaires_versees', 'rev_cap_brut', 'fon', 'cotsoc_cap'],
-    'net': ['salaire_net', 'chomage_net', 'retraite_nette', 'pensions_alimentaires_percues', 'pensions_alimentaires_versees', 'rev_cap_net', 'fon'],
-    'superbrut': ['salaire_super_brut', 'chomage_brut', 'retraite_brute', 'pensions_alimentaires_percues', 'pensions_alimentaires_versees', 'rev_cap_brut', 'fon'],
-    }
+        'brut': [
+            'salaire_brut', 'chomage_brut', 'retraite_brute', 'pensions_alimentaires_percues',
+            'pensions_alimentaires_versees', 'rev_cap_brut', 'fon'],
+        'imposable': ['salaire_imposable', 'chomage_imposable', 'retraite_imposable', 'pensions_alimentaires_percues',
+            'pensions_alimentaires_versees', 'rev_cap_brut', 'fon', 'cotsoc_cap'],
+        'net': ['salaire_net', 'chomage_net', 'retraite_nette', 'pensions_alimentaires_percues',
+            'pensions_alimentaires_versees', 'rev_cap_net', 'fon'],
+        'superbrut': ['salaire_super_brut', 'chomage_brut', 'retraite_brute', 'pensions_alimentaires_percues',
+            'pensions_alimentaires_versees', 'rev_cap_brut', 'fon'],
+        }
 
     def __init__(self):
         TaxBenefitSystem.__init__(self, entities.entities)
@@ -59,7 +66,6 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
         self.cache_blacklist = conf_cache_blacklist
         for extension_dir in EXTENSIONS_DIRECTORIES:
             self.load_extension(extension_dir)
-
 
     def prefill_cache(self):
         # Compute one "zone APL" variable, to pre-load CSV of "code INSEE commune" to "Zone APL".
