@@ -210,14 +210,15 @@ class agirc_gmp_assiette(Variable):
     # TODO: gestion annuel/mensuel
 
     def function(self, simulation, period):
-        # period = period.start.period(u'month').offset('first-of')
+        # period = period.start.period(u'month').offset('first-of')
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
-        salaire_charniere = simulation.legislation_at(period.start).prelevements_sociaux.agirc_gmp.salaire_charniere  # annuel
+        gmp = simulation.legislation_at(period.start).prelevements_sociaux.gmp
+        salaire_charniere = gmp.salaire_charniere_annuel
         if period.unit == 'month':
             salaire_charniere = salaire_charniere / 12
 
         assiette = max_(
-            (gmp.salaire_charniere_annuel / 12 - assiette_cotisations_sociales) * (assiette_cotisations_sociales > 0),
+            (salaire_charniere - assiette_cotisations_sociales) * (assiette_cotisations_sociales > 0),
             0,
             )
 
@@ -231,14 +232,13 @@ class agirc_gmp_salarie(Variable):
     # TODO: gestion annuel/mensuel
 
     def function(self, simulation, period):
-        # period = period.start.period(u'month').offset('first-of')
+        # period = period.start.period(u'month').offset('first-of')
         agirc_gmp_assiette = simulation.calculate('agirc_gmp_assiette', period)
         agirc_salarie = simulation.calculate('agirc_salarie', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-
-        law = simulation.legislation_at(period.start).prelevements_sociaux.agirc_gmp
-        cotisation_forfaitaire = law.cotisation_salarie
+        gmp = simulation.legislation_at(period.start).prelevements_sociaux.gmp
+        cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale
         if period.unit == "year":
             cotisation_forfaitaire = cotisation_forfaitaire * 12
 
@@ -260,14 +260,14 @@ class agirc_gmp_employeur(Variable):
     # TODO: gestion annuel/mensuel
 
     def function(self, simulation, period):
-        # period = period.start.period(u'month').offset('first-of')
+        # period = period.start.period(u'month').offset('first-of')
         agirc_employeur = simulation.calculate('agirc_employeur', period)
         agirc_gmp_assiette = simulation.calculate('agirc_gmp_assiette', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
 
-        law = simulation.legislation_at(period.start).prelevements_sociaux.agirc_gmp
-        cotisation_forfaitaire = law.cotisation_employeur
+        gmp = simulation.legislation_at(period.start).prelevements_sociaux.gmp
+        cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_patronale
         if period.unit == 'year':
             cotisation_forfaitaire = 12 * cotisation_forfaitaire
         taux = simulation.legislation_at(period.start).cotsoc.cotisations_employeur['prive_cadre']['agirc'].rates[1]
