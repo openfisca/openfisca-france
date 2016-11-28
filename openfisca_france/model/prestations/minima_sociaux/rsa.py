@@ -561,25 +561,24 @@ class rsa_eligibilite(Variable):
 class rsa_eligibilite_tns(Variable):
     column = BoolCol
     entity = Famille
-    label = u"Eligibilité au RSA pour un travailleur non salarié"
+    label = u"Condition de chiffres d'affaires pour qu'un travailleur non salarié soit éligible au RSA"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
         last_year = period.last_year
 
-        tns_benefice_exploitant_agricole_holder = simulation.compute('tns_benefice_exploitant_agricole', last_year)
-        tns_benefice_exploitant_agricole = self.sum_by_entity(tns_benefice_exploitant_agricole_holder)
-        tns_employe_holder = simulation.compute('tns_avec_employe', period)
-        tns_avec_employe = self.any_by_roles(tns_employe_holder)
-        tns_autres_revenus_chiffre_affaires_holder = simulation.compute(
-            'tns_autres_revenus_chiffre_affaires', last_year)
-        tns_autres_revenus_chiffre_affaires = self.split_by_roles(tns_autres_revenus_chiffre_affaires_holder)
-        tns_autres_revenus_type_activite_holder = simulation.compute('tns_autres_revenus_type_activite', period)
-        tns_autres_revenus_type_activite = self.split_by_roles(tns_autres_revenus_type_activite_holder)
+        tns_benefice_exploitant_agricole_i = famille.members('tns_benefice_exploitant_agricole', last_year)
+        tns_benefice_exploitant_agricole = famille.sum(tns_benefice_exploitant_agricole_i)
 
-        has_conjoint = simulation.calculate('nb_parents', period) > 1
-        rsa_nb_enfants = simulation.calculate('rsa_nb_enfants', period)
-        P = simulation.legislation_at(period.start)
+        tns_employe_i = famille.members('tns_avec_employe', period)
+        tns_avec_employe = famille.any(tns_employe_i)
+
+        tns_autres_revenus_chiffre_affaires = famille.members('tns_autres_revenus_chiffre_affaires', last_year)
+        tns_autres_revenus_type_activite = famille.members('tns_autres_revenus_type_activite', period)
+
+        has_conjoint = famille('nb_parents', period) > 1
+        rsa_nb_enfants = famille('rsa_nb_enfants', period)
+        P = legislation(period)
         P_agr = P.tns.exploitant_agricole
         P_micro = P.impot_revenu.rpns.micro
         maj_2p = P_agr.maj_2p
@@ -606,16 +605,13 @@ class rsa_eligibilite_tns(Variable):
         eligibilite_agricole = eligibilite_agricole(
             has_conjoint, rsa_nb_enfants, tns_benefice_exploitant_agricole, P_agr
             )
-        eligibilite_chiffre_affaire = (
-            eligibilite_chiffre_affaire(
-                tns_autres_revenus_chiffre_affaires[CHEF], tns_autres_revenus_type_activite[CHEF], P_micro
-                ) *
-            eligibilite_chiffre_affaire(
-                tns_autres_revenus_chiffre_affaires[PART], tns_autres_revenus_type_activite[PART], P_micro
-                )
+
+        eligibilite_chiffre_affaire = famille.all(
+            eligibilite_chiffre_affaire(tns_autres_revenus_chiffre_affaires, tns_autres_revenus_type_activite, P_micro),
+            role = Famille.PARENT
             )
 
-        return period, eligibilite_agricole * (1 - tns_avec_employe) * eligibilite_chiffre_affaire
+        return period, eligibilite_agricole * not_(tns_avec_employe) * eligibilite_chiffre_affaire
 
 
 class rsa_forfait_asf(Variable):
