@@ -6,6 +6,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 class retraite_brute(Variable):
     column = FloatCol()
     entity = Individu
+    set_input = set_input_divide_by_period
     label = u"Retraite brute"
 
 # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).

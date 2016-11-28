@@ -1,5 +1,10 @@
 # Changelog
 
+## 6.0.2
+* Add set_input_divide_by_period for:
+	* `chomage_brut`
+	* `retraite_brute`
+	
 ## 6.0.1
 
 * Fix packaging of 6.0.0
