@@ -552,9 +552,10 @@ class rsa_eligibilite(Variable):
 
 
 class rsa_eligibilite_tns(Variable):
-    column = BoolCol
+    column = BoolCol(default = True)
     entity = Famille
-    label = u"Eligibilité au RSA pour un travailleur non salarié"
+    label = u"Condition de chiffres d'affaires pour qu'un travailleur non salarié soit éligible au RSA"
+    stop_date = date(2016, 12, 31)
 
     def function(famille, period, legislation):
         period = period.this_month
