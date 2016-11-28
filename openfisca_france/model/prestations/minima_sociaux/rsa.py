@@ -469,7 +469,7 @@ class rsa(Variable):
         rsa_non_majore = famille('rsa_non_majore', period)
         rsa_non_calculable = famille('rsa_non_calculable', period)
 
-        rsa = (1 - rsa_non_calculable) * max_(rsa_majore, rsa_non_majore)
+        rsa = not_(rsa_non_calculable) * max_(rsa_majore, rsa_non_majore)
 
         return period, rsa
 
@@ -573,7 +573,7 @@ class rsa_eligibilite_tns(Variable):
 
         has_conjoint = famille('nb_parents', period) > 1
         rsa_nb_enfants = famille('rsa_nb_enfants', period)
-        P = legislation(period.start)
+        P = legislation(period)
         P_agr = P.tns.exploitant_agricole
         P_micro = P.impot_revenu.rpns.micro
         maj_2p = P_agr.maj_2p
@@ -605,7 +605,7 @@ class rsa_eligibilite_tns(Variable):
             role = Famille.PARENT
             )
 
-        return period, eligibilite_agricole * (1 - tns_avec_employe) * eligibilite_chiffre_affaire
+        return period, eligibilite_agricole * not_(tns_avec_employe) * eligibilite_chiffre_affaire
 
 
 class rsa_forfait_asf(Variable):
@@ -645,7 +645,7 @@ class rsa_forfait_logement(Variable):
 
         avantage_nature = or_(
             (statut_occupation_logement == 2) * not_(loyer),
-            (statut_occupation_logement == 6) * (1 - participation_frais)
+            (statut_occupation_logement == 6) * not_(participation_frais)
             )
         avantage_al = aide_logement > 0
 
