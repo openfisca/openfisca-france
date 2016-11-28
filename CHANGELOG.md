@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.2
+
+* From 2017, for RSA, remove CA and number of employees conditions.
+
 ## 6.0.1
 
 * Fix packaging of 6.0.0

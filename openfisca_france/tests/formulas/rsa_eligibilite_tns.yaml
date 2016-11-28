@@ -171,3 +171,20 @@
     rsa_non_majore: 500
   output_variables:
     rsa: 0
+
+- name: "Les conditions de CA et de nombre d'employés sont désactivés à partir de 2017"
+  period: "month:2017-01"
+  familles:
+    parents: ["parent1"]
+  individus:
+    - id: "parent1"
+      tns_benefice_exploitant_agricole:
+        2014: 100000
+      tns_autres_revenus_chiffre_affaires:
+        2014: 100000
+      tns_micro_entreprise_chiffre_affaires:
+        2014: 100000
+      age: 40
+      tns_avec_employe: True
+  output_variables:
+    rsa_eligibilite: True
