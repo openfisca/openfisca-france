@@ -180,15 +180,3 @@ def nb_enf(famille, period, age_min, age_max):
     condition = (age >= age_min) * (age <= age_max) * not_(autonomie_financiere)
 
     return famille.sum(condition, role = Famille.ENFANT)
-
-
-
-def age_en_mois_benjamin(ages_en_mois):
-    '''
-    Renvoie un vecteur (une entree pour chaque famille) avec l'age du benjamin.  # TODO check age_en_mois > 0
-    '''
-    age_en_mois_benjamin = 12 * 9999
-    for age_en_mois in ages_en_mois.itervalues():
-        isbenjamin = (age_en_mois < age_en_mois_benjamin) & (age_en_mois != -9999)
-        age_en_mois_benjamin = isbenjamin * age_en_mois + not_(isbenjamin) * age_en_mois_benjamin
-    return age_en_mois_benjamin
