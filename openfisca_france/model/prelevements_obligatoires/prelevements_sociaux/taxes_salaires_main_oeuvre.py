@@ -77,6 +77,7 @@ class contribution_supplementaire_apprentissage(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Contribution supplémentaire à l'apprentissage"
+    url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
 
     @dated_function(date(2010, 1, 1))
     def function(self, simulation, period):
