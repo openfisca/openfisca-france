@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.5
+
+* Add effectif_entreprise exclusion condition to Contribution Supplémentaire Apprentissage
+
 ## 6.0.4
 
 * Fix some regressions in parameters introcduced by 6.0.0
