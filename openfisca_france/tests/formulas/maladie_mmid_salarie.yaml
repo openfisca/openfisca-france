@@ -1,0 +1,19 @@
+- period: "2016-12"
+  name:
+    Cotisation maladie MMID salarié
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1467
+  output_variables:
+    mmid_salarie: -.0075 * 1467
+
+- period: "2016-12"
+  name:
+    Cotisation maladie MMID salarié Alsace-Moselle
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1467
+    salarie_regime_alsace_moselle: true
+  output_variables:
+    mmid_salarie: -( .0075 + .011 ) * 1467
+
