@@ -513,24 +513,32 @@ class rsa_base_ressources_patrimoine_individu(DatedVariable):
             )
 
 
-class rsa_condition_nationalite(Variable):
+class rsa_condition_nationalite(DatedVariable):
     column = BoolCol
     entity = Individu
     label = u"Conditions de nationnalité et de titre de séjour pour bénéficier du RSA"
 
-    def function(self, simulation, period):
+    @dated_function(start = date(2009, 6, 1))
+    def function_rsa(self, simulation, period):
         period = period.this_month
         ressortissant_eee = simulation.calculate('ressortissant_eee', period)
         duree_possession_titre_sejour = simulation.calculate('duree_possession_titre_sejour', period)
         duree_min_titre_sejour = simulation.legislation_at(period.start).prestations.minima_sociaux.rsa.duree_min_titre_sejour
+        return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
+    @dated_function(stop = date(2009, 5, 31))
+    def function_rmi(self, simulation, period):
+        period = period.this_month
+        ressortissant_eee = simulation.calculate('ressortissant_eee', period)
+        duree_possession_titre_sejour = simulation.calculate('duree_possession_titre_sejour', period)
+        duree_min_titre_sejour = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi.duree_min_titre_sejour
         return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
 
 class rsa_eligibilite(Variable):
     column = BoolCol
     entity = Famille
-    label = u"Eligibilité au RSA"
+    label = u"Eligibilité au RSA et au RMI"
 
     def function(self, simulation, period):
         period = period.this_month
