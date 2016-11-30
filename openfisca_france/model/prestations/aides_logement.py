@@ -307,17 +307,19 @@ class aide_logement_loyer_plafond(Variable):
 
         return period, round_(plafond * coeff_coloc * coeff_chambre, 2)
 
-class aide_logement_loyer_degressivite(Variable):
+class aide_logement_loyer_seuil_degressivite(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Seuil de degressivité dans le calcul des aides au logement"
+    start_date = date(2016, 7, 1)
 
-    @dated_function(start = date(2016, 7, 1))
     def function(self, simulation, period):
         period = period.this_month
         al = simulation.legislation_at(period.start).al
         zone_apl = simulation.calculate('zone_apl_famille', period)
         loyer_plafond = simulation.calculate('aide_logement_loyer_plafond', period)
+        logement_chambre_holder = simulation.compute('logement_chambre', period)
+        chambre = self.any_by_roles(logement_chambre_holder)
 
         coeff_degressivite_by_zone = [0] + [al.loyers_plafond['zone' + str(zone)]['degressivite'] for zone in range(1, 4)]
         coeff_degressivite = take(coeff_degressivite_by_zone, zone_apl)
@@ -325,22 +327,25 @@ class aide_logement_loyer_degressivite(Variable):
         coloc_holder = simulation.compute('coloc', period)
         coloc = self.any_by_roles(coloc_holder)
         loyer_degressivite = loyer_plafond * coeff_degressivite
-        loyer_degressivite = loyer_degressivite * (1 - 0.25 * coloc)
-        # TODO : minoration de 10% pour les chambres chez l'habitant
+        minoration_coloc = loyer_degressivite * 0.25 * coloc
+        minoration_chambre = loyer_degressivite * 0.1 * chambre
+        loyer_degressivite -= minoration_coloc + minoration_chambre
 
         return period, round_(loyer_degressivite, 2)
 
-class aide_logement_loyer_suppression(Variable):
+class aide_logement_loyer_seuil_suppression(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Seuil de suppression dans le calcul des aides au logement"
+    start_date = date(2016, 7, 1)
 
-    @dated_function(start = date(2016, 7, 1))
     def function(self, simulation, period):
         period = period.this_month
         al = simulation.legislation_at(period.start).al
         zone_apl = simulation.calculate('zone_apl_famille', period)
         loyer_plafond = simulation.calculate('aide_logement_loyer_plafond', period)
+        logement_chambre_holder = simulation.compute('logement_chambre', period)
+        chambre = self.any_by_roles(logement_chambre_holder)
 
         coeff_suppression_by_zone = [0] + [al.loyers_plafond['zone' + str(zone)]['suppression'] for zone in range(1, 4)]
         coeff_suppression = take(coeff_suppression_by_zone, zone_apl)
@@ -348,8 +353,9 @@ class aide_logement_loyer_suppression(Variable):
         coloc_holder = simulation.compute('coloc', period)
         coloc = self.any_by_roles(coloc_holder)
         loyer_suppression = loyer_plafond * coeff_suppression
-        loyer_suppression = loyer_suppression * (1 - 0.25 * coloc)
-        # TODO : minoration de 10% pour les chambres chez l'habitant
+        minoration_coloc = loyer_suppression * 0.25 * coloc
+        minoration_chambre = loyer_suppression * 0.1 * chambre
+        loyer_suppression -= minoration_coloc + minoration_chambre
 
         return period, round_(loyer_suppression, 2)
 
@@ -516,11 +522,10 @@ class aide_logement_participation_personelle(Variable):
 
         return period, P0 + Tp * Rp
 
-
-class aide_logement_montant_brut(Variable):
+class aide_logement_montant_brut_avant_degressivite(Variable):
     column = FloatCol
     entity_class = Familles
-    label = u"Formule des aides aux logements en secteur locatif en montant brut avant CRDS"
+    label = u"Montant des aides aux logements en secteur locatif avant degressivité et brut de CRDS"
 
     def function(self, simulation, period):
         period = period.this_month
@@ -544,7 +549,40 @@ class aide_logement_montant_brut(Variable):
 
         return period, montant
 
-class aide_logement_montant_avant_degressivite(Variable):
+class aide_logement_montant_brut(DatedVariable):
+    column = FloatCol
+    entity_class = Familles
+    label = u"Montant des aides au logement après degressivité, avant CRDS"
+
+    @dated_function(stop = date(2016, 6, 30))
+    def function_avant_degression(self, simulation, period):
+        montant_avant_degressivite = simulation.calculate('aide_logement_montant_brut_avant_degressivite', period)
+        return period, montant_avant_degressivite
+
+    @dated_function(start = date(2016, 7, 1))
+    def function_apres_degression(self, simulation, period):
+        period = period.this_month
+        montant_avant_degressivite = simulation.calculate('aide_logement_montant_brut_avant_degressivite', period)
+        loyer_reel = simulation.calculate('aide_logement_loyer_reel', period)
+        loyer_degressivite = simulation.calculate('aide_logement_loyer_seuil_degressivite', period)
+        loyer_suppression = simulation.calculate('aide_logement_loyer_seuil_suppression', period)
+        handicap_holder = simulation.compute('handicap', period)
+        handicap = self.any_by_roles(handicap_holder)
+
+
+        coeff = max_(0, min_(1, 1-((loyer_reel-loyer_degressivite)/(loyer_suppression-loyer_degressivite))))
+
+        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
+        accedant = (statut_occupation_logement == 1)
+        locataire_foyer = (statut_occupation_logement == 7)
+        exception = accedant + locataire_foyer + handicap
+        coeff = where(exception, 1, coeff)
+
+        montant = round_(montant_avant_degressivite * coeff, 2)
+
+        return period, montant
+
+class aide_logement_montant(Variable):
     column = FloatCol
     entity_class = Familles
     label = u"Montant des aides au logement net de CRDS"
@@ -554,37 +592,6 @@ class aide_logement_montant_avant_degressivite(Variable):
         aide_logement_montant_brut = simulation.calculate('aide_logement_montant_brut', period)
         crds_logement = simulation.calculate('crds_logement', period)
         montant = round_(aide_logement_montant_brut + crds_logement, 2)
-
-        return period, montant
-
-class aide_logement_montant(DatedVariable):
-    column = FloatCol
-    entity_class = Familles
-    label = u"Montant des aides au logement après degressivité"
-
-    @dated_function(stop = date(2016, 6, 30))
-    def function_avant_degression(self, simulation, period):
-        montant_avant_degressivite = simulation.calculate('aide_logement_montant_avant_degressivite', period)
-        return period, montant_avant_degressivite
-
-    @dated_function(start = date(2016, 7, 1))
-    def function_apres_degression(self, simulation, period):
-        period = period.this_month
-        montant_avant_degressivite = simulation.calculate('aide_logement_montant_avant_degressivite', period)
-        loyer_reel = simulation.calculate('aide_logement_loyer_reel', period)
-        loyer_degressivite = simulation.calculate('aide_logement_loyer_degressivite', period)
-        loyer_suppression = simulation.calculate('aide_logement_loyer_suppression', period)
-
-        coeff = max_(0, min_(1, 1-((loyer_reel-loyer_degressivite)/(loyer_suppression-loyer_degressivite))))
-
-        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
-        accedant = (statut_occupation_logement == 1)
-        locataire_foyer = (statut_occupation_logement == 7)
-        # TODO : situation de handicap
-        exception = accedant + locataire_foyer
-        coeff = exception + (1-exception) * coeff
-
-        montant = round_(montant_avant_degressivite * coeff, 2)
 
         return period, montant
 
