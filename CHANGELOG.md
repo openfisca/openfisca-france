@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.3
+
+* Refactor TaxBenefitSystem decomposition attributes
+
 ## 6.0.2
 
 * Fix legislation parameter call for RMI-RSA transition
