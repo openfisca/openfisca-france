@@ -13,7 +13,7 @@
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1467
-    salarie_regime_alsace_moselle: true
+    salarie_regime_alsace_moselle: 1
   output_variables:
-    mmid_salarie: -( .0075 + .011 ) * 1467
+    mmid_salarie: -( .0075 + .015 ) * 1467
 

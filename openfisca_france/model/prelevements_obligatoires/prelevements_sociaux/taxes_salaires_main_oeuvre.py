@@ -85,7 +85,13 @@ class contribution_supplementaire_apprentissage(DatedVariable):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         ratio_alternants = simulation.calculate('ratio_alternants', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        taux = simulation.legislation_at(period.start).cotsoc.contribution_supplementaire_apprentissage
+        salarie_regime_alsace_moselle = simulation.calculate('salarie_regime_alsace_moselle', period)
+
+        if salarie_regime_alsace_moselle:
+            taux = simulation.legislation_at(period.start).cotsoc.contribution_supplementaire_apprentissage_alsace_moselle
+        else:
+            taux = simulation.legislation_at(period.start).cotsoc.contribution_supplementaire_apprentissage
+
 
         if period.start.year > 2012:
             taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .05)
@@ -273,14 +279,32 @@ class taxe_apprentissage(Variable):
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
+        salarie_regime_alsace_moselle = simulation.calculate('salarie_regime_alsace_moselle', period)
 
-        cotisation = apply_bareme(
+        cotisation_regime_alsace_moselle = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'employeur',
+            bareme_name = 'apprentissage_alsace_moselle',
+            variable_name = self.__class__.__name__,
+            )
+
+        cotisation_regime_general = apply_bareme(
             simulation,
             period,
             cotisation_type = 'employeur',
             bareme_name = 'apprentissage',
             variable_name = self.__class__.__name__,
             )
+
+        cotisation = np.where(
+            salarie_regime_alsace_moselle,
+            cotisation_regime_alsace_moselle,
+            cotisation_regime_general,
+        )
+
+        # cotisation = salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle + (1 - salarie_regime_alsace_moselle) * cotisation_regime_general
+
         return period, cotisation * redevable_taxe_apprentissage
 
 

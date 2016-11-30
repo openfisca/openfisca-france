@@ -286,6 +286,14 @@ class code_postal_entreprise(Variable):
     label = u"Localisation entreprise (Code postal)"
 
 
+class salarie_regime_alsace_moselle(Variable):
+    entity = Individu
+    column = BoolCol(default = False)
+    label = u"Le salarié cotise au régime de l'Alsace-Moselle"
+    # Attention : ce n'est pas équivalent au fait de travailler en Alsace-Moselle !
+    # http://regime-local.fr/salaries/
+
+
 class effectif_entreprise(Variable):
     entity = Individu
     column = IntCol()
