@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import os, itertools, glob
+import os
+import glob
 
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 
@@ -15,12 +16,13 @@ COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 EXTENSIONS_PATH = os.path.join(COUNTRY_DIR, 'extensions')
 EXTENSIONS_DIRECTORIES = glob.glob(os.path.join(EXTENSIONS_PATH, '*/'))
 
+
 class FranceTaxBenefitSystem(TaxBenefitSystem):
     """French tax benefit system"""
     CURRENCY = u"€"
     DATA_SOURCES_DIR = os.path.join(COUNTRY_DIR, 'data', 'sources')
-    DECOMP_DIR = os.path.dirname(os.path.abspath(decompositions.__file__))
-    DEFAULT_DECOMP_FILE = decompositions.DEFAULT_DECOMP_FILE
+    decomposition_file_path = os.path.join(
+        os.path.dirname(os.path.abspath(decompositions.__file__)), 'decomp.xml')
     preprocess_legislation = staticmethod(preprocessing.preprocess_legislation)
     columns_name_tree_by_entity = datatrees.columns_name_tree_by_entity
 

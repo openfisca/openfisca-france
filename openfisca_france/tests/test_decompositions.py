@@ -9,6 +9,9 @@ from openfisca_core import conv, decompositions, decompositionsxml
 from openfisca_france.tests import base
 
 
+decompositions_directory = os.path.dirname(base.tax_benefit_system.decomposition_file_path)
+
+
 def check_decomposition_xml_file(file_path):
     decomposition_tree = xml.etree.ElementTree.parse(os.path.join(file_path))
     decomposition_xml_json = conv.check(decompositionsxml.xml_decomposition_to_json)(decomposition_tree.getroot(),
@@ -41,12 +44,8 @@ def check_decomposition_xml_file(file_path):
 
 
 def test_decomposition_xml_files():
-    decompositions_directory = base.tax_benefit_system.DECOMP_DIR
     files_path = [
-        os.path.join(
-            decompositions_directory,
-            base.tax_benefit_system.DEFAULT_DECOMP_FILE,
-            ),
+        base.tax_benefit_system.decomposition_file_path,
         os.path.join(
             decompositions_directory,
             'fiche_de_paie_decomposition.xml',
@@ -57,8 +56,7 @@ def test_decomposition_xml_files():
 
 
 def test_decomposition_calculate():
-    decompositions_directory = base.tax_benefit_system.DECOMP_DIR
-    xml_file_path = os.path.join(decompositions_directory, base.tax_benefit_system.DEFAULT_DECOMP_FILE)
+    xml_file_path = base.tax_benefit_system.decomposition_file_path
     decomposition_json = decompositions.get_decomposition_json(base.tax_benefit_system, xml_file_path)
     year = 2013
     simulation = base.tax_benefit_system.new_scenario().init_single_entity(
