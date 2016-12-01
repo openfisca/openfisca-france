@@ -168,11 +168,6 @@ def nb_enf(famille, period, age_min, age_max):
     Renvoie le nombre d'enfant au sens des allocations familiales dont l'âge est compris entre ag1 et ag2
     """
 
-    # Temporary retro-compatibility layer in case first argument is simulation instead of famille
-    if not famille.__class__ == Famille:
-        simulation = famille
-        famille = simulation.famille
-
     period = period.this_month
     age = famille.members('age', period)
     autonomie_financiere = famille.members('autonomie_financiere', period)
