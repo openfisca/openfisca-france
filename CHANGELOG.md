@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.3
+
+* Remove wrong max numbers of enfants in entities
+
 ## 6.0.2
 
 * Fix legislation parameter call for RMI-RSA transition
