@@ -87,25 +87,26 @@ class contribution_supplementaire_apprentissage(DatedVariable):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         salarie_regime_alsace_moselle = simulation.calculate('salarie_regime_alsace_moselle', period)
 
-        if salarie_regime_alsace_moselle:
-            taux = simulation.legislation_at(period.start).cotsoc.contribution_supplementaire_apprentissage_alsace_moselle
-        else:
-            taux = simulation.legislation_at(period.start).cotsoc.contribution_supplementaire_apprentissage
+        cotsoc_params = simulation.legislation_at(period.start).cotsoc
 
+        resolve_rate = lambda rate_name: (switch(salarie_regime_alsace_moselle, {
+                1: cotsoc_params.contribution_supplementaire_apprentissage_alsace_moselle[rate_name],
+                0: cotsoc_params.contribution_supplementaire_apprentissage[rate_name]
+            }) + self.zeros())
 
         if period.start.year > 2012:
             taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .05)
             taux_conditionnel = (
-                    (effectif_entreprise < 2000) * (ratio_alternants < .01) * taux.moins_2000_moins_1pc_alternants +
-                    (effectif_entreprise >= 2000) * (ratio_alternants < .01) * taux.plus_2000_moins_1pc_alternants +
-                    (.01 <= ratio_alternants) * (ratio_alternants < .02) * taux.entre_1_2_pc_alternants +
-                    (.02 <= ratio_alternants) * (ratio_alternants < .03) * taux.entre_2_3_pc_alternants +
-                    (.03 <= ratio_alternants) * (ratio_alternants < .04) * taux.entre_3_4_pc_alternants +
-                    (.04 <= ratio_alternants) * (ratio_alternants < .05) * taux.entre_4_5_pc_alternants
-                    )
+                (effectif_entreprise < 2000) * (ratio_alternants < .01) * resolve_rate("moins_2000_moins_1pc_alternants") +
+                (effectif_entreprise >= 2000) * (ratio_alternants < .01) * resolve_rate("plus_2000_moins_1pc_alternants") +
+                (.01 <= ratio_alternants) * (ratio_alternants < .02) * resolve_rate("entre_1_2_pc_alternants") +
+                (.02 <= ratio_alternants) * (ratio_alternants < .03) * resolve_rate("entre_2_3_pc_alternants") +
+                (.03 <= ratio_alternants) * (ratio_alternants < .04) * resolve_rate("entre_3_4_pc_alternants") +
+                (.04 <= ratio_alternants) * (ratio_alternants < .05) * resolve_rate("entre_4_5_pc_alternants")
+                )
             taux_contribution = taxe_due * taux_conditionnel
         else:
-            taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250
+            taux_contribution = (effectif_entreprise >= 250) * cotsoc_params.contribution_supplementaire_apprentissage.plus_de_250
             # TODO: gestion de la place dans le XML pb avec l'arbre des paramètres / preprocessing
         return period, - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
 
