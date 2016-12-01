@@ -9,20 +9,20 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 
 
 class ars(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = Famille
     label = u"Allocation de rentrée scolaire"
     url = "http://vosdroits.service-public.fr/particuliers/F1878.xhtml"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         '''
         Allocation de rentrée scolaire brute de CRDS
         '''
         period_br = period.this_year
         period = period.start.offset('first-of', 'year').offset(9, 'month').period('month')
-        af_nbenf = simulation.calculate('af_nbenf', period)
-        base_ressources = simulation.calculate('prestations_familiales_base_ressources', period_br.this_month)
-        P = simulation.legislation_at(period.start).prestations.prestations_familiales
+        af_nbenf = famille('af_nbenf', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period_br.this_month)
+        P = legislation(period).prestations.prestations_familiales
         # TODO: convention sur la mensualisation
         # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
         # (appelée allocation différentielle), calculée en fonction des revenus, peut être versée.
@@ -30,15 +30,15 @@ class ars(Variable):
 
         bmaf = P.af.bmaf
         # On doit prendre l'âge en septembre
-        enf_05 = nb_enf(simulation, period, P.ars.age_entree_primaire - 1, P.ars.age_entree_primaire - 1)  # 5 ans et 6 ans avant le 31 décembre
+        enf_05 = nb_enf(famille, period, P.ars.age_entree_primaire - 1, P.ars.age_entree_primaire - 1)  # 5 ans et 6 ans avant le 31 décembre
         # enf_05 = 0
         # Un enfant scolarisé qui n'a pas encore atteint l'âge de 6 ans
         # avant le 1er février 2012 peut donner droit à l'ARS à condition qu'il
         # soit inscrit à l'école primaire. Il faudra alors présenter un
         # certificat de scolarité.
-        enf_primaire = enf_05 + nb_enf(simulation, period, P.ars.age_entree_primaire, P.ars.age_entree_college - 1)
-        enf_college = nb_enf(simulation, period, P.ars.age_entree_college, P.ars.age_entree_lycee - 1)
-        enf_lycee = nb_enf(simulation, period, P.ars.age_entree_lycee, P.ars.age_sortie_lycee)
+        enf_primaire = enf_05 + nb_enf(famille, period, P.ars.age_entree_primaire, P.ars.age_entree_college - 1)
+        enf_college = nb_enf(famille, period, P.ars.age_entree_college, P.ars.age_entree_lycee - 1)
+        enf_lycee = nb_enf(famille, period, P.ars.age_entree_lycee, P.ars.age_sortie_lycee)
 
         arsnbenf = enf_primaire + enf_college + enf_lycee
 
