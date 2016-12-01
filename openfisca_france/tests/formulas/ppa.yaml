@@ -2,6 +2,47 @@
 # Some variables tested here (ppa_fictive, ppa_ressources_hors_activite) need extra parameters to be computed. The mechanism to inject these extra params from a yaml file is not implemented yet. Directly testing these variables would thus throw an error.
 # The workaround is to always compute ppa before these variables. This way, ppa will call their formulas with the appriate extra params, and store the result in the cache. Then we can test them, as we will get the cached value.
 
+- name: "PPA ayant bien le même montant sur les trois mois de la demande" #ici une demande en avril
+  period: 2016-04
+  input_variables:
+    age: 40
+    salaire_net:
+      2016-01: 500
+      2016-02: 500
+      2016-03: 500
+      2016-04: 500
+      2016-05: 500
+      2016-06: 500
+  output_variables:
+    ppa: 
+      2016-01: 0
+      2016-04: 524.16 - 0.38*500 - (524.16 - 500) # Le second terme de la différence n'est pas nul
+      2016-05: 524.16 - 0.38*500 - (524.16 - 500) # Le second terme de la différence n'est pas nul
+      2016-06: 524.16 - 0.38*500 - (524.16 - 500) # Le second terme de la différence n'est pas nul
+      2016-07: 524.16 - 0.38*500 - (524.16 - 500) # Le second terme de la différence n'est pas nul 
+      2016-08: 524.16 - 0.38*500 - (524.16 - 500) # Le second terme de la différence n'est pas nul
+      2016-09: 524.16 - 0.38*500 - (524.16 - 500) # Le second terme de la différence n'est pas nul
+      
+- name: "PPA ayant bien le même montant sur les trois mois de la demande"
+  period: 2016-04
+  input_variables:
+    age: 40
+    salaire_net:
+      2016-01: 500
+      2016-02: 500
+      2016-03: 500
+      2016-04: 0
+      2016-05: 0
+      2016-06: 0
+  output_variables:
+    ppa: 
+      2016-04: 524.16 - 0.38*500 - (524.16 - 500) # Le second terme de la différence n'est pas nul
+      2016-05: 524.16 - 0.38*500 - (524.16 - 500) # Le second terme de la différence n'est pas nul
+      2016-06: 524.16 - 0.38*500 - (524.16 - 500) # Le second terme de la différence n'est pas nul
+      2016-07: 0 
+      2016-08: 0
+      2016-09: 0
+
 - name: "PPA - Pas d'éligibilité si moins de 18 ans"
   period: 2016-01
   relative_error_margin: 0.05
