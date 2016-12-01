@@ -40,7 +40,7 @@ FoyerFiscal = build_entity(
             'key': 'declarant',
             'plural': 'declarants',
             'label': u'Déclarants',
-            'subroles': ['declarant_principal', 'conjoint']
+            'subroles': ['declarant_principal', 'conjoint'],
             },
         {
             'key': 'personne_a_charge',
@@ -69,7 +69,6 @@ Menage = build_entity(
             'key': 'enfant',
             'plural': 'enfants',
             'label': u'Enfants',
-            'max': 2
             },
         {
             'key': 'autre',
