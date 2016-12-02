@@ -17,10 +17,9 @@ class allocations_temporaires_invalidite(Variable):
     # patronale, non-contributive
 
     def function(self, simulation, period):
-        period = period.this_month
-
+        # period = period.this_month
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
-        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        plafond_securite_sociale = simulation.calculate_add('plafond_securite_sociale', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         _P = simulation.legislation_at(period.start)
 
@@ -73,7 +72,7 @@ class contribution_exceptionnelle_solidarite(Variable):
     label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
 
     def function(self, simulation, period):
-        period = period.this_month
+        # period = period.this_month
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         hsup = simulation.calculate('hsup', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
@@ -123,8 +122,6 @@ class fonds_emploi_hospitalier(Variable):
     label = u"Fonds pour l'emploi hospitalier (employeur)"
 
     def function(self, simulation, period):
-        period = period.this_month
-
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
@@ -145,7 +142,7 @@ class ircantec_salarie(Variable):
     label = u"Ircantec salarié"
 
     def function(self, simulation, period):
-        period = period.this_month
+        # period = period.this_month
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
@@ -167,9 +164,9 @@ class ircantec_employeur(Variable):
     label = u"Ircantec employeur"
 
     def function(self, simulation, period):
-        period = period.this_month
+        # period = period.this_month
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
-        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+        plafond_securite_sociale = simulation.calculate_add('plafond_securite_sociale', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         _P = simulation.legislation_at(period.start)
 
@@ -190,7 +187,7 @@ class pension_civile_salarie(Variable):
     url = u"http://www.ac-besancon.fr/spip.php?article2662",
 
     def function(self, simulation, period):
-        period = period.this_month
+        # period = period.this_month
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)  # TODO: check nbi
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         _P = simulation.legislation_at(period.start)
@@ -213,7 +210,7 @@ class pension_civile_employeur(Variable):
     url = u"http://www.ac-besancon.fr/spip.php?article2662"
 
     def function(self, simulation, period):
-        period = period.this_month
+        # period = period.this_month
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         # plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
@@ -240,11 +237,11 @@ class rafp_salarie(DatedVariable):
 
     @dated_function(start = date(2005, 1, 1))
     def function(self, simulation, period):
-        period = period.this_month
+        # period = period.this_month
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         _P = simulation.legislation_at(period.start)
 
@@ -268,11 +265,11 @@ class rafp_employeur(DatedVariable):
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
     @dated_function(start = date(2005, 1, 1))
     def function(self, simulation, period):
-        period = period.this_month
+        # period = period.this_month
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
+        supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         _P = simulation.legislation_at(period.start)
 

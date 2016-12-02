@@ -21,7 +21,7 @@ class chomage_brut(Variable):
     column = FloatCol()
     entity = Individu
     label = u"Chômage brut"
-
+    set_input = set_input_divide_by_period
 
 class indemnites_chomage_partiel(Variable):
     column = FloatCol

@@ -527,7 +527,7 @@ class avantage_en_nature_valeur_forfaitaire(Variable):
     entity = Individu
     label = u"Evaluation fofaitaire des avantages en nature "
 
-    # TODO: coplete this function
+    # TODO: complete this function
     def function(self, simulation, period):
         period = period
         avantage_en_nature_valeur_reelle = simulation.calculate('avantage_en_nature_valeur_reelle', period)
@@ -621,7 +621,7 @@ class indemnite_residence(Variable):
     label = u"Indemnité de résidence des fonctionnaires"
 
     def function(individu, period, legislation):
-        period = period.this_month
+        # period = period.this_month
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         salaire_de_base = individu('salaire_de_base', period)
         categorie_salarie = individu('categorie_salarie', period)
@@ -661,7 +661,7 @@ class primes_fonction_publique(Variable):
     url = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
+        # period = period.start.period(u'month').offset('first-of')
         categorie_salarie = simulation.calculate('categorie_salarie', period)
 
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
@@ -803,7 +803,7 @@ class salaire_net_a_payer(Variable):
         depense_cantine_titre_restaurant_employe = simulation.calculate(
             'depense_cantine_titre_restaurant_employe')
         indemnites_forfaitaires = simulation.calculate('indemnites_forfaitaires', period)
-        remuneration_apprenti = simulation.calculate('remuneration_apprenti', period)
+        remuneration_apprenti = simulation.calculate_add('remuneration_apprenti', period)
         stage_gratification = simulation.calculate('stage_gratification', period)
         salaire_net_a_payer = (
             salaire_net +

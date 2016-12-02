@@ -80,9 +80,9 @@ def compute_cotisation(simulation, period, cotisation_type = None, bareme_name =
 
 
 def compute_cotisation_annuelle(simulation, period, cotisation_type = None, bareme_name = None):
-    if period.start.month < 12:
+    if (period.unit == 'month') and (period.start.month < 12):
         return 0
-    if period.start.month == 12:
+    if (period.start.month == 12) or (period.unit == 'year'):
         return compute_cotisation(
             simulation,
             period.this_year,

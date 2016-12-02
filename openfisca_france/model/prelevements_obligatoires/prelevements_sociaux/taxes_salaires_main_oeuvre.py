@@ -240,7 +240,6 @@ class participation_effort_construction(Variable):
     label = u"Participation à l'effort de construction"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 
         bareme = apply_bareme(
@@ -268,7 +267,6 @@ class taxe_apprentissage(Variable):
     url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
 
         cotisation = apply_bareme(
@@ -289,7 +287,7 @@ class taxe_salaires(Variable):
 # http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8920/fichedescriptiveformulaire_8920.pdf
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
+        # period = period.start.period(u'month').offset('first-of')
         assujettie_taxe_salaires = simulation.calculate('assujettie_taxe_salaires', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
