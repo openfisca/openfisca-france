@@ -112,7 +112,8 @@
 
 - name: "Ingénieur d'étude (annuel)"
   period: "2014"
-  sum_over_period: true
+  ignore: true
+  # sum_over_period: true
   absolute_error_margin: 2
   input_variables:
     allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
