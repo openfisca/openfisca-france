@@ -1,5 +1,17 @@
 # Changelog
 
+## 6.0.3
+
+* Migrate some formulas to new syntax
+    * `aefa.py`
+    * `af.py`
+    * `anciens_ms.py`
+    * `ars.py`
+    * `base_ressource.py`
+    * `cf.py`
+    * `paje.py`
+    * `rsa.py`
+
 ## 6.0.2
 
 * Fix legislation parameter call for RMI-RSA transition

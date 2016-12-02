@@ -5,7 +5,7 @@ from __future__ import division
 from numpy import (floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select, where)
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
-from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf, age_en_mois_benjamin
+from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
 
 class api(Variable):
@@ -16,22 +16,20 @@ class api(Variable):
     stop_date = date(2009, 5, 31)
 
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         """
         Allocation de parent isolé
         """
         period = period.this_month
-        age_en_mois_holder = simulation.compute('age_en_mois', period)
-        isole = not_(simulation.calculate('en_couple', period))
-        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
-        rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
-        af_majoration = simulation.calculate('af_majoration', period)
-        rsa = simulation.calculate('rsa', period)
-        af = simulation.legislation_at(period.start).prestations.prestations_familiales.af
-        api = simulation.legislation_at(period.start).prestations.minima_sociaux.api
+        isole = not_(famille('en_couple', period))
+        rsa_forfait_logement = famille('rsa_forfait_logement', period)
+        rsa_base_ressources = famille('rsa_base_ressources', period)
+        af_majoration = famille('af_majoration', period)
+        rsa = famille('rsa', period)
+        af = legislation(period).prestations.prestations_familiales.af
+        api = legislation(period).prestations.minima_sociaux.api
 
 
-        age_en_mois = self.split_by_roles(age_en_mois_holder, roles = ENFS)
         # TODO:
         #    Majoration pour isolement
         #    Si vous êtes parent isolé, c’est-à-dire célibataire, divorcé(e), séparé(e) ou veuf(ve) avec des enfants
@@ -48,8 +46,9 @@ class api(Variable):
         #    d’une période de 18 mois suivant l’événement.
         #    Si votre plus jeune enfant à charge a moins de 3 ans, le montant forfaitaire majoré vous est accordé
         #    jusqu'à ses 3 ans.
-        benjamin = age_en_mois_benjamin(age_en_mois)
-        enceinte = (benjamin < 0) * (benjamin > -6)
+        age_en_mois_i = famille.members('age_en_mois', period)
+        age_en_mois_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
+        enceinte = (age_en_mois_benjamin < 0) * (age_en_mois_benjamin > -6)
         # TODO: quel mois mettre ?
         # TODO: pas complètement exact
         # L'allocataire perçoit l'API :
@@ -61,12 +60,12 @@ class api(Variable):
         # Le droit à l'allocation est réétudié tous les 3 mois.
         # # Calcul de l'année et mois de naissance du benjamin
 
-        condition = (floor(benjamin / 12) <= api.age_limite - 1)
-        eligib = isole * ((enceinte != 0) | (nb_enf(simulation, period, 0, api.age_limite - 1) > 0)) * condition
+        condition = (floor(age_en_mois_benjamin / 12) <= api.age_limite - 1)
+        eligib = isole * ((enceinte != 0) | (nb_enf(famille, period, 0, api.age_limite - 1) > 0)) * condition
 
         # moins de 20 ans avant inclusion dans rsa
         # moins de 25 ans après inclusion dans rsa
-        api1 = eligib * af.bmaf * (api.base + api.supplement_par_enfant * nb_enf(simulation, period, af.age1, api.age_pac - 1))
+        api1 = eligib * af.bmaf * (api.base + api.supplement_par_enfant * nb_enf(famille, period, af.age1, api.age_pac - 1))
         rsa = (api.age_pac >= 25)  # dummy passage au rsa majoré
         br_api = rsa_base_ressources + af_majoration * not_(rsa)
         # On pourrait mensualiser RMI, BRrmi et forfait logement
@@ -105,7 +104,7 @@ class psa(Variable):
     stop_date = date(2009, 4, 30)
     url = u"http://www.service-public.fr/actualites/001077.html"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         '''
         Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
         Versement en avril 2009 d’une prime de solidarité active (Psa) aux familles modestes qui ont bénéficié
@@ -115,19 +114,19 @@ class psa(Variable):
         d’être âgé de plus de 25 ans ou d’avoir au moins un enfant à charge).
         La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.
         '''
+        P = legislation(period).prestations.minima_sociaux.rmi
         period = period.this_month
-        api = simulation.calculate('api', period)
-        rsa = simulation.calculate('rsa', period)
-        activite_holder = simulation.compute('activite', period)
-        af_nbenf = simulation.calculate('af_nbenf', period)
+        api = famille('api', period)
+        rsa = famille('rsa', period)
+        af_nbenf = famille('af_nbenf', period)
+        aide_logement = famille('aide_logement', period)
 
-        aide_logement = simulation.calculate('aide_logement', period)
-        P = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
+        personne_en_activite_i = (famille.members('activite', period) == 0)
+        parent_en_activite = famille.any(personne_en_activite_i, role = Famille.PARENT)
 
-        activite = self.split_by_roles(activite_holder, roles = [CHEF, PART])
         dummy_api = api > 0
         dummy_rmi = rsa > 0
-        dummy_al = and_(aide_logement > 0, or_(af_nbenf > 0, or_(activite[CHEF] == 0, activite[PART] == 0)))
+        dummy_al = and_(aide_logement > 0, or_(af_nbenf > 0, parent_en_activite))
         condition = (dummy_api + dummy_rmi + dummy_al > 0)
         psa = condition * P.psa
         return period, psa
@@ -140,15 +139,17 @@ class rmi(Variable):
     start_date = date(1988, 12, 1)
     stop_date = date(2009, 5, 31)
 
-    def function(self, simulation, period):
+    def function(famille, period):
         period = period.this_month
-        activite = simulation.calculate('activite', period)
-        rsa_base_ressources = simulation.calculate('rsa_base_ressources', period)
-        rsa_socle = simulation.calculate('rsa_socle', period)
-        rsa_forfait_logement = simulation.calculate('rsa_forfait_logement', period)
+        activite_i = famille.members('activite', period)
+        condition_activite_i = (activite != 0) * (activite != 2) * (activite != 3)
+        condition_activite = famille.any(condition_activite_i)
 
-        return period, (activite != 0) * (activite != 2) * (activite != 3) * (
-            max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources))
+        rsa_base_ressources = famille('rsa_base_ressources', period)
+        rsa_socle = famille('rsa_socle', period)
+        rsa_forfait_logement = famille('rsa_forfait_logement', period)
+
+        return period, condition_activite * max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
         # TODO: Migré lors de la mensualisation. Probablement faux
 
 
@@ -160,10 +161,10 @@ class rsa_activite(Variable):
     start_date = date(2009, 6, 1)
     stop_date = date(2015, 12, 31)
 
-    def function(self, simulation, period):
+    def function(famille, period):
         period = period
-        rsa = simulation.calculate_add('rsa', period)
-        rmi = simulation.calculate_add('rmi', period)
+        rsa = famille('rsa', period, options = [ADD])
+        rmi = famille('rmi', period, options = [ADD])
 
         return period, max_(rsa - rmi, 0)
 
