@@ -14,11 +14,11 @@ class af_nbenf(Variable):
     entity = Famille
     label = u"Nombre d'enfants dans la famille au sens des allocations familiales"
 
-    def function(self, simulation, period):
-        period_mois = period.this_month
+    def function(famille, period):
+        period_month = period.this_month
 
-        pfam_enfant_a_charge_holder = simulation.compute('prestations_familiales_enfant_a_charge', period_mois)
-        af_nbenf = self.sum_by_entity(pfam_enfant_a_charge_holder)
+        prestations_familiales_enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', period_month)
+        af_nbenf = famille.sum(prestations_familiales_enfant_a_charge_i)
 
         return period, af_nbenf
 
@@ -29,14 +29,14 @@ class af_coeff_garde_alternee(Variable):
     label = u"Coefficient à appliquer aux af pour tenir compte de la garde alternée"
     start_date = date(2007, 5, 1)
 
-    def function(self, simulation, period):
+    def function(famille, period):
         period = period.this_month
-        nb_enf = simulation.calculate('af_nbenf', period)
-        garde_alternee = simulation.compute('garde_alternee', period)
-        pfam_enfant_a_charge = simulation.compute('prestations_familiales_enfant_a_charge', period)
+        nb_enf = famille('af_nbenf', period)
+        garde_alternee = famille.members('garde_alternee', period)
+        pfam_enfant_a_charge = famille.members('prestations_familiales_enfant_a_charge', period)
 
         # Le nombre d'enfants à charge en garde alternée, qui vérifient donc pfam_enfant_a_charge = true et garde_alternee = true
-        nb_enf_garde_alternee = self.sum_by_entity(garde_alternee.array * pfam_enfant_a_charge.array)
+        nb_enf_garde_alternee = famille.sum(garde_alternee * pfam_enfant_a_charge)
 
         # Avoid division by zero. If nb_enf == 0, necessarily nb_enf_garde_alternee = 0 so coeff = 1
         coeff = 1 - (nb_enf_garde_alternee / (nb_enf + (nb_enf == 0))) * 0.5
@@ -49,10 +49,10 @@ class af_allocation_forfaitaire_nb_enfants(Variable):
     entity = Famille
     label = u"Nombre d'enfants ouvrant droit à l'allocation forfaitaire des AF"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
-        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales.af
-        af_forfaitaire_nbenf = nb_enf(simulation, period, pfam.age3, pfam.age3)
+        pfam = legislation(period).prestations.prestations_familiales.af
+        af_forfaitaire_nbenf = nb_enf(famille, period, pfam.age3, pfam.age3)
 
         return period, af_forfaitaire_nbenf
 
@@ -76,7 +76,7 @@ class af_eligibilite_dom(Variable):
     entity = Famille
     label = u"Allocations familiales - Éligibilité pour les DOM (hors Mayotte) sous condition de ressources"
 
-    def function(famille, period, legislation):
+    def function(famille, period):
         period = period.this_month
 
         residence_dom = famille.demandeur.menage('residence_dom', period)
@@ -92,14 +92,14 @@ class af_base(Variable):
     label = u"Allocations familiales - allocation de base"
     # prestations familiales (brutes de crds)
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
 
-        eligibilite_base = simulation.calculate('af_eligibilite_base', period)
-        eligibilite_dom = simulation.calculate('af_eligibilite_dom', period)
-        af_nbenf = simulation.calculate('af_nbenf', period)
+        eligibilite_base = famille('af_eligibilite_base', period)
+        eligibilite_dom = famille('af_eligibilite_dom', period)
+        af_nbenf = famille('af_nbenf', period)
 
-        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales.af
+        pfam = legislation(period).prestations.prestations_familiales.af
 
         eligibilite = or_(eligibilite_base, eligibilite_dom)
 
@@ -108,10 +108,10 @@ class af_base(Variable):
         plus_de_trois_enfants = max_(af_nbenf - 2, 0) * pfam.taux.enf3
         taux_total = un_seul_enfant + plus_de_deux_enfants + plus_de_trois_enfants
         montant_base = eligibilite * round(pfam.bmaf * taux_total, 2)
-        coeff_garde_alternee = simulation.calculate('af_coeff_garde_alternee', period)
+        coeff_garde_alternee = famille('af_coeff_garde_alternee', period)
         montant_base = montant_base * coeff_garde_alternee
 
-        af_taux_modulation = simulation.calculate('af_taux_modulation', period)
+        af_taux_modulation = famille('af_taux_modulation', period)
         montant_base_module = montant_base * af_taux_modulation
 
         return period, montant_base_module
@@ -123,11 +123,11 @@ class af_taux_modulation(Variable):
     label = u"Taux de modulation à appliquer au montant des AF depuis 2015"
     start_date = date(2015, 7, 1)
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
-        af_nbenf = simulation.calculate('af_nbenf', period)
-        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales.af
-        base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
+        af_nbenf = famille('af_nbenf', period)
+        pfam = legislation(period).prestations.prestations_familiales.af
+        base_ressources = famille('prestations_familiales_base_ressources', period)
         modulation = pfam.modulation
         plafond1 = modulation.plafond_tranche_1 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
         plafond2 = modulation.plafond_tranche_2 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
@@ -147,13 +147,13 @@ class af_allocation_forfaitaire_taux_modulation(Variable):
     label = u"Taux de modulation à appliquer à l'allocation forfaitaire des AF depuis 2015"
     start_date = date(2015, 7, 1)
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
-        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales.af
-        af_nbenf = simulation.calculate('af_nbenf', period)
-        af_forfaitaire_nbenf = simulation.calculate('af_allocation_forfaitaire_nb_enfants', period)
+        pfam = legislation(period).prestations.prestations_familiales.af
+        af_nbenf = famille('af_nbenf', period)
+        af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
         nb_enf_tot = af_nbenf + af_forfaitaire_nbenf
-        base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period)
         modulation = pfam.modulation
         plafond1 = modulation.plafond_tranche_1 + max_(nb_enf_tot - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
         plafond2 = modulation.plafond_tranche_2 + max_(nb_enf_tot - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
@@ -172,18 +172,18 @@ class af_age_aine(Variable):
     entity = Famille
     label = u"Allocations familiales - Âge de l'aîné des enfants éligibles"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
 
-        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales
+        pfam = legislation(period).prestations.prestations_familiales
 
-        age = simulation.calculate('age', period)
-        pfam_enfant_a_charge = simulation.calculate('prestations_familiales_enfant_a_charge', period)
+        age = famille.members('age', period)
+        pfam_enfant_a_charge = famille.members('prestations_familiales_enfant_a_charge', period)
 
         condition_eligibilite = pfam_enfant_a_charge * (age <= pfam.af.age2)
         age_enfants_eligiles = age * condition_eligibilite
 
-        return period, simulation.famille.max(age_enfants_eligiles, role = Famille.ENFANT)
+        return period, famille.max(age_enfants_eligiles, role = Famille.ENFANT)
 
 
 class af_majoration_enfant(Variable):
@@ -246,13 +246,13 @@ class af_complement_degressif(Variable):
     label = u"AF - Complément dégressif en cas de dépassement du plafond"
     start_date = date(2015, 7, 1)
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
-        af_nbenf = simulation.calculate('af_nbenf', period)
-        base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
-        af_base = simulation.calculate('af_base', period)
-        af_majoration = simulation.calculate('af_majoration', period)
-        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales.af
+        af_nbenf = famille('af_nbenf', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period)
+        af_base = famille('af_base', period)
+        af_majoration = famille('af_majoration', period)
+        pfam = legislation(period).prestations.prestations_familiales.af
         modulation = pfam.modulation
         plafond1 = modulation.plafond_tranche_1 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
         plafond2 = modulation.plafond_tranche_2 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
@@ -275,14 +275,14 @@ class af_allocation_forfaitaire_complement_degressif(Variable):
     label = u"AF - Complément dégressif pour l'allocation forfaitaire en cas de dépassement du plafond"
     start_date =date(2015, 7, 1)
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
-        af_nbenf = simulation.calculate('af_nbenf', period)
-        af_forfaitaire_nbenf = simulation.calculate('af_allocation_forfaitaire_nb_enfants', period)
-        pfam = simulation.legislation_at(period.start).prestations.prestations_familiales.af
+        af_nbenf = famille('af_nbenf', period)
+        af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
+        pfam = legislation(period).prestations.prestations_familiales.af
         nb_enf_tot = af_nbenf + af_forfaitaire_nbenf
-        base_ressources = simulation.calculate('prestations_familiales_base_ressources', period)
-        af_allocation_forfaitaire = simulation.calculate('af_allocation_forfaitaire', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period)
+        af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)
         modulation = pfam.modulation
         plafond1 = modulation.plafond_tranche_1 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
         plafond2 = modulation.plafond_tranche_2 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
@@ -304,16 +304,16 @@ class af_allocation_forfaitaire(Variable):
     label = u"Allocations familiales - forfait"
     start_date =date(2003, 7, 1)
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
-        af_nbenf = simulation.calculate('af_nbenf', period)
-        af_forfaitaire_nbenf = simulation.calculate('af_allocation_forfaitaire_nb_enfants', period)
-        P = simulation.legislation_at(period.start).prestations.prestations_familiales.af
+        af_nbenf = famille('af_nbenf', period)
+        af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
+        P = legislation(period).prestations.prestations_familiales.af
         bmaf = P.bmaf
         af_forfait = round(bmaf * P.majoration_enfants.taux_allocation_forfaitaire, 2)
         af_allocation_forfaitaire = ((af_nbenf >= 2) * af_forfaitaire_nbenf) * af_forfait
 
-        af_forfaitaire_taux_modulation = simulation.calculate('af_allocation_forfaitaire_taux_modulation', period)
+        af_forfaitaire_taux_modulation = famille('af_allocation_forfaitaire_taux_modulation', period)
         af_forfaitaire_module = af_allocation_forfaitaire * af_forfaitaire_taux_modulation
 
         return period, af_forfaitaire_module
@@ -325,12 +325,12 @@ class af(Variable):
     entity = Famille
     label = u"Allocations familiales - total des allocations"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
-        af_base = simulation.calculate('af_base', period)
-        af_majoration = simulation.calculate('af_majoration', period)
-        af_allocation_forfaitaire = simulation.calculate('af_allocation_forfaitaire', period)
-        af_complement_degressif = simulation.calculate('af_complement_degressif', period)
-        af_forfaitaire_complement_degressif = simulation.calculate('af_allocation_forfaitaire_complement_degressif', period)
+        af_base = famille('af_base', period)
+        af_majoration = famille('af_majoration', period)
+        af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)
+        af_complement_degressif = famille('af_complement_degressif', period)
+        af_forfaitaire_complement_degressif = famille('af_allocation_forfaitaire_complement_degressif', period)
 
         return period, af_base + af_majoration + af_allocation_forfaitaire + af_complement_degressif + af_forfaitaire_complement_degressif
