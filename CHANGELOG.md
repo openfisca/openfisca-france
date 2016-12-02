@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.0.4
+
+* Fix some regressions in parameters introcduced by 6.0.0
+    * Re-apply RSA revalorisation from september
+    * Correct bonification rate for PPA
+
 ## 6.0.3
 
 * Migrate some formulas to new syntax
