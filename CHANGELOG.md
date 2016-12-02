@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.4
+
+* TODO
+
 ## 6.0.3
 
 * Migrate some formulas to new syntax
