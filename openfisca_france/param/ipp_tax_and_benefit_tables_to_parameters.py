@@ -191,7 +191,6 @@ def transform_ipp_tree(root):
     reductions_impots['spfcpi'].update(spfcpi.pop('reduction_d_impot_pour_souscriptions_de_parts_de_fcpi_ou_fip'))
     spfcpi['taux1'] = taux1 = spfcpi.pop('taux')
 
-
     impot_revenu['credits_impot'] = credits_impot = dict()
     credits_impot['ppe'] = ppe = impot_revenu.pop('ppe')
     credits_impot['ppe'].update(ppe.pop('seuil_de_rfr_pour_etre_eligibilite_a_la_ppe'))
@@ -220,7 +219,7 @@ def transform_ipp_tree(root):
     plafond_qf['celib_enf'] = plafond_qf.pop('part_pour_le_1er_enfant_des_parents_isoles')
     plafond_qf['reduc_postplafond'] = plafond_qf.pop('invalidite_ancien_combattant')
 
-    #garde Enfant
+    # garde enfant
     credits_impot['garext'] = garext = impot_revenu.pop('gardenf')
     credit_d_impot_pour_frais_de_garde_d_enfants = garext['credit_d_impot_pour_frais_de_garde_d_enfants']
     credits_impot['garext'].update(garext.pop('credit_d_impot_pour_frais_de_garde_d_enfants'))
@@ -1428,4 +1427,4 @@ def transform_ipp_tree(root):
     taxation_capital['prelevements_sociaux'].update(taxation_capital.pop('csg'))
 
     del root['baremes_ipp_taxation_indirecte']
-    del root['baremes_ipp_dependance']
+    del root['baremes_ipp_autonomie_autonomy']

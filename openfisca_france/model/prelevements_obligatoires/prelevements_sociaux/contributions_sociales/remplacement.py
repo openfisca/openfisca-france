@@ -247,13 +247,15 @@ class casa(DatedVariable):
         retraite_brute = simulation.calculate('retraite_brute', period)
         rfr_holder = simulation.compute('rfr', period.start.offset('first-of', 'year').offset(-2, 'year').period('year'))
         taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
-        law = simulation.legislation_at(period.start)
-
+        legislation = simulation.legislation_at(period.start)
         rfr = self.cast_from_entity_to_roles(rfr_holder)
-
-        casa = (taux_csg_remplacement == 3) * law.prelsoc.add_ret * retraite_brute * (rfr > 13900)
-        # TODO: insert in parameters file and deal with nombre de part fiscales
-
+        casa = (
+            (taux_csg_remplacement == 3) *
+            (rfr > legislation.pensions_de_retraite_et_d_invalidite.seuil_de_rfr_2) *
+            legislation.prelevements_sociaux.casa *
+            retraite_brute
+            )
+        # TODO: and deal with nombre de part fiscales
         return period, - casa
 
 

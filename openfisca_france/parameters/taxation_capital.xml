@@ -478,7 +478,7 @@
     </NODE>
   </NODE>
   <NODE code="prelevements_sociaux" description="Prélèvement social et contributions additionnelles" origin="ipp">
-    <CODE code="add_ret" description="Contribution additionnelle solidarité autonomie (pensions de retraites, pré-retraites et invalidité)" format="percent" origin="openfisca">
+    <CODE code="casa" description="Contribution additionnelle solidarité autonomie (pensions de retraites, pré-retraites et invalidité)" format="percent" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur=".003" />
       <VALUE deb="2013-04-01" fin="2013-12-31" valeur=".003" />
     </CODE>
