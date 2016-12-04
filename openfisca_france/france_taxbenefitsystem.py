@@ -39,7 +39,6 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
 
         param_files = [
             '__root__.xml',
-            'autonomie.xml',
             'bouclier_fiscal.xml',
             'bourses_education.xml',
             'cmu.xml',
