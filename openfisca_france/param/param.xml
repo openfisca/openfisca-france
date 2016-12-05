@@ -190,7 +190,7 @@
           <VALUE deb="2016-07-01" fuzzy="true" valeur="4.0" />
         </CODE>
         <CODE code="L1" description="Zone 1 - 1 adulte" format="float" type="monetary">
-          <VALUE deb="2015-10-01" fuzzy="true" valeur="292.62" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="292.85" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="292.62" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="290.96" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="284.84" />
@@ -205,7 +205,7 @@
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="243.31" />
         </CODE>
         <CODE code="L2" description="Zone 1 - 2 adultes" format="float" type="monetary">
-          <VALUE deb="2015-10-01" fuzzy="true" valeur="352.92" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="353.20" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="352.92" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="350.92" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="343.53" />
@@ -220,7 +220,7 @@
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="293.46" />
         </CODE>
         <CODE code="L3" description="Zone 1 - 1 enfant" format="float" type="monetary">
-          <VALUE deb="2015-10-01" fuzzy="true" valeur="398.87" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="399.19" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="398.87" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="396.61" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="388.26" />
@@ -235,7 +235,7 @@
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="330.05" />
         </CODE>
         <CODE code="L4" description="Zone 1 - enfants supplémentaires" format="float" type="monetary">
-          <VALUE deb="2015-10-01" fuzzy="true" valeur="57.86" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="57.91" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="57.86" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="57.53" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="56.32" />
@@ -258,7 +258,7 @@
           <VALUE deb="2016-07-01" fuzzy="true" valeur="3.1" />
         </CODE>
         <CODE code="L1" description="Zone 2 - 1 adulte" format="float" type="monetary">
-          <VALUE deb="2015-10-01" fuzzy="true" valeur="255.03" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="255.23" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="255.03" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="253.58" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="248.24" />
@@ -273,7 +273,7 @@
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="213.73" />
         </CODE>
         <CODE code="L2" description="Zone 2 - 2 adultes" format="float" type="monetary">
-          <VALUE deb="2015-10-01" fuzzy="true" valeur="312.15" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="312.40" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="312.15" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="310.38" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="303.85" />
@@ -288,7 +288,7 @@
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="261.6" />
         </CODE>
         <CODE code="L3" description="Zone 2 - 1 enfant" format="float" type="monetary">
-          <VALUE deb="2015-10-01" fuzzy="true" valeur="351.25" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="351.53" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="351.25" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="349.26" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="341.91" />
@@ -303,7 +303,7 @@
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="294.38" />
         </CODE>
         <CODE code="L4" description="Zone 2 - enfants supplémentaires" format="float" type="monetary">
-          <VALUE deb="2015-10-01" fuzzy="true" valeur="51.12" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="51.16" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="51.12" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="50.83" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="49.76" />
@@ -326,7 +326,7 @@
           <VALUE deb="2016-07-01" fuzzy="true" valeur="3.1" />
         </CODE>
         <CODE code="L1" description="Zone 3 - 1 adulte" format="float" type="monetary">
-          <VALUE deb="2015-10-01" fuzzy="true" valeur="239.02" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="239.21" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="239.02" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="237.67" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="232.67" />
@@ -341,7 +341,7 @@
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="200.32" />
         </CODE>
         <CODE code="L2" description="Zone 3 - 2 adultes" format="float" type="monetary">
-          <VALUE deb="2015-10-01" fuzzy="true" valeur="289.76" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="289.99" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="289.76" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="288.12" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="282.06" />
@@ -356,7 +356,7 @@
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="242.85" />
         </CODE>
         <CODE code="L3" description="Zone 3 - 1 enfant" format="float" type="monetary">
-          <VALUE deb="2015-10-01" fuzzy="true" valeur="324.89" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="325.15" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="324.89" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="323.05" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="316.25" />
@@ -371,7 +371,7 @@
           <VALUE deb="2002-01-01" fin="2002-06-30" valeur="272.27" />
         </CODE>
         <CODE code="L4" description="Zone 3 - enfants supplémentaires" format="float" type="monetary">
-          <VALUE deb="2015-10-01" fuzzy="true" valeur="46.56" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="46.60" />
           <VALUE deb="2014-10-01" fin="2015-09-30" valeur="46.56" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="46.30" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="45.33" />
