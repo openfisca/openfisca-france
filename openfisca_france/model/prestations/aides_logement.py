@@ -438,6 +438,8 @@ class aide_logement_R0(Variable):
     def function(self, simulation, period):
         period = period.this_month
         al = simulation.legislation_at(period.start).al
+        couple = simulation.calculate('al_couple', period)
+        al_nb_pac = simulation.calculate('al_nb_personnes_a_charge', period)
 
         R0 = (
             al.R0.taux_seul * not_(couple) * (al_nb_pac == 0) +
