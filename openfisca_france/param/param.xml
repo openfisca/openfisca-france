@@ -143,7 +143,7 @@
     </NODE>
     <NODE code="forfait_charges" description="Forfait de charge">
       <CODE code="fc1" description="Cas général - isolé ou couple" format="float" type="monetary">
-        <VALUE deb="2015-10-01" fuzzy="true" valeur="53.23" />
+        <VALUE deb="2015-10-01" fuzzy="true" valeur="53.27" />
         <VALUE deb="2014-10-01" fin="2015-09-30" valeur="53.23" />
         <VALUE deb="2013-01-01" fin="2014-09-30" valeur="52.93" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="51.82" />
@@ -156,7 +156,7 @@
         <VALUE deb="2002-01-01" fin="2002-06-30" valeur="46.5" />
       </CODE>
       <CODE code="fc2" description="Cas général - par personne à charge supplémentaire" format="float" type="monetary">
-        <VALUE deb="2015-10-01" fuzzy="true" valeur="12.06" />
+        <VALUE deb="2015-10-01" fuzzy="true" valeur="12.07" />
         <VALUE deb="2014-10-01" fin="2015-09-30" valeur="12.06" />
         <VALUE deb="2013-01-01" fin="2014-09-30" valeur="11.99" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="11.74" />
