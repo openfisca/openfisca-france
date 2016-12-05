@@ -407,6 +407,7 @@ class aide_logement_R0(Variable):
     entity_class = Familles
     label = u"Revenu de référence, basé sur la situation familiale, pris en compte dans le calcul des AL."
 
+    @dated_function(stop = date(2014, 12, 31))
     def function(self, simulation, period):
         period = period.this_month
         al = simulation.legislation_at(period.start).al
@@ -429,6 +430,26 @@ class aide_logement_R0(Variable):
             )
 
         R0 = round_(12 * (R1 - R2) * (1 - al.autres.abat_sal))
+
+        return period, R0
+
+    # cf Décret n° 2014-1739 du 29 décembre 2014 relatif au calcul des aides personnelles au logement
+    @dated_function(start = date(2015, 1, 1))
+    def function(self, simulation, period):
+        period = period.this_month
+        al = simulation.legislation_at(period.start).al
+
+        R0 = (
+            al.R0.taux_seul * not_(couple) * (al_nb_pac == 0) +
+            al.R0.taux_couple * couple * (al_nb_pac == 0) +
+            al.R0.taux1pac * (al_nb_pac == 1) +
+            al.R0.taux2pac * (al_nb_pac == 2) +
+            al.R0.taux3pac * (al_nb_pac == 3) +
+            al.R0.taux4pac * (al_nb_pac == 4) +
+            al.R0.taux5pac * (al_nb_pac == 5) +
+            al.R0.taux6pac * (al_nb_pac == 6) +
+            al.R0.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
+            )
 
         return period, R0
 
