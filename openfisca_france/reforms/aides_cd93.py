@@ -3,7 +3,7 @@
 from __future__ import division
 
 from openfisca_core.reforms import Reform
-from numpy import vectorize, maximum as max_, logical_not as not_, logical_or as or_, absolute as abs_
+from numpy import vectorize, logical_or as or_, absolute as abs_
 
 from ..model.base import *
 

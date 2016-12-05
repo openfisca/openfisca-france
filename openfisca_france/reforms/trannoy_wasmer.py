@@ -2,7 +2,6 @@
 
 from __future__ import division
 
-from numpy import logical_not as not_, minimum as min_
 from openfisca_core import columns
 from openfisca_core.reforms import Reform
 from openfisca_core.variables import Variable

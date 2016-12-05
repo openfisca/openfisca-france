@@ -4,7 +4,7 @@ from __future__ import division
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-from numpy import maximum as max_, round as round_, minimum as min_, logical_not as not_, where, select
+from numpy import round as round_
 
 
 class ppa_eligibilite(Variable):

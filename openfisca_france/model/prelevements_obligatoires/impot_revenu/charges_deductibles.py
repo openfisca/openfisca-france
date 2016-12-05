@@ -4,9 +4,6 @@ from __future__ import division
 
 import logging
 
-from numpy import minimum as min_, maximum as max_
-
-
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 

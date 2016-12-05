@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import round, maximum as max_, logical_not as not_, logical_or as or_, vectorize, where
+from numpy import round, logical_or as or_
 
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
