@@ -3254,7 +3254,7 @@
           <VALUE deb="2016-01-01" fuzzy="true" valeur="95" />
         </CODE>
         <CODE code="taux_bonification_max" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2016-01-01,openfisca_fin=2016-12-31,openfisca_valeur=0.12782,ipp_valeur=unknown)" description="Bonification maximale, en pourcentage du montant de base du RSA" format="percent" origin="ipp">
-          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.122782" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.12782" />
         </CODE>
       </NODE>
       <CODE code="majoration_isolement_enf_charge" format="percent" origin="ipp">

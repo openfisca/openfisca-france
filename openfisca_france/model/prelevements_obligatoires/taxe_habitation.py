@@ -9,7 +9,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class exonere_taxe_habitation(Variable):
     column = BoolCol(default = True)
-    entity_class = Menages
+    entity = Menage
     label = u"Exonération de la taxe d'habitation"
     url = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
 
@@ -59,7 +59,7 @@ class exonere_taxe_habitation(Variable):
 
 class taxe_habitation(Variable):
     column = FloatCol(default = 0)
-    entity_class = Menages
+    entity = Menage
     label = u"Taxe d'habitation"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
 

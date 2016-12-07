@@ -30,7 +30,6 @@ individus:
     date_naissance: "1980-08-12"
     chomage_imposable:
       2013: 0
-    coloc: 1
     epargne_non_remuneree:
       2012-01: 0
     etudiant: 0
@@ -326,6 +325,7 @@ foyers_fiscaux:
   personnes_a_charge:
   rfr:
 menages:
+  coloc: 1
   conjoint: 54d8e0041fe4e8cf448e2bf1
   depcom: 75111
   enfants:

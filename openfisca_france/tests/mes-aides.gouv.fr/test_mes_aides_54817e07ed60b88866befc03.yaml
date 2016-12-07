@@ -13,6 +13,7 @@ individus:
   etudiant: 0
   id: 54817dd876be8a87669fc438
   inapte_travail: 0
+  date_arret_de_travail: 2014-09-01
   indemnites_chomage_partiel:
     2012: 600
     2013-12: 50

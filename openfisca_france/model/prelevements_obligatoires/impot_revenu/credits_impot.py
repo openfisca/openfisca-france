@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 
 class credits_impot(DatedVariable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Crédits d'impôt pour l'impôt sur les revenus"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
@@ -256,7 +256,7 @@ class credits_impot(DatedVariable):
 
 class nb_pac2(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"nb_pac2"
 
     def function(self, simulation, period):
@@ -271,7 +271,7 @@ class nb_pac2(Variable):
 
 class accult(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Acquisition de biens culturels"
     start_date = date(2002, 1, 1)
 
@@ -290,7 +290,7 @@ class accult(Variable):
 
 class acqgpl(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte"
     start_date = date(2002, 1, 1)
     stop_date = date(2007, 12, 31)
@@ -310,7 +310,7 @@ class acqgpl(Variable):
 
 class aidmob(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Crédit d'impôt aide à la mobilité"
     start_date = date(2005, 1, 1)
     stop_date = date(2008, 12, 31)
@@ -333,7 +333,7 @@ class aidmob(Variable):
 
 class aidper(DatedVariable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Crédits d’impôt pour dépenses en faveur de l’aide aux personnes"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2003, 12, 31))
@@ -517,7 +517,7 @@ class aidper(DatedVariable):
 
 class assloy(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Crédit d’impôt primes d’assurance pour loyers impayés"
     start_date = date(2005, 1, 1)
 
@@ -535,7 +535,7 @@ class assloy(Variable):
 
 class autent(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"autent"
     start_date = date(2009, 1, 1)
 
@@ -552,7 +552,7 @@ class autent(Variable):
 
 class ci_garext(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Frais de garde des enfants à l’extérieur du domicile"
     start_date = date(2005, 1, 1)
 
@@ -582,7 +582,7 @@ class ci_garext(Variable):
 
 class creimp_exc_2008(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Crédit d'impôt exceptionnel sur les revenus 2008"
 
     def function(self, simulation, period):
@@ -605,7 +605,7 @@ class creimp_exc_2008(Variable):
 
 class creimp(DatedVariable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Avoirs fiscaux et crédits d'impôt"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
@@ -887,7 +887,7 @@ class creimp(DatedVariable):
 
 class direpa(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Crédit d’impôt directive « épargne »"
 
     def function(self, simulation, period):
@@ -903,7 +903,7 @@ class direpa(Variable):
 
 class divide(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Crédit d'impôt dividendes"
     start_date = date(2005, 1, 1)
     stop_date = date(2009, 12, 31)
@@ -927,7 +927,7 @@ class divide(Variable):
 
 class drbail(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Crédit d’impôt représentatif de la taxe additionnelle au droit de bail"
 
     def function(self, simulation, period):
@@ -945,7 +945,7 @@ class drbail(Variable):
 
 class inthab(DatedVariable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Crédit d’impôt intérêts des emprunts pour l’habitation principale"
 
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
@@ -1137,7 +1137,7 @@ class inthab(DatedVariable):
 
 class jeunes(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"jeunes"
     start_date = date(2005, 1, 1)
     stop_date = date(2008, 12, 31)
@@ -1151,7 +1151,7 @@ class jeunes(Variable):
 
 class jeunes_ind(Variable):
     column = FloatCol(default = 0)
-    entity_class = Individus
+    entity = Individu
     label = u"Crédit d'impôt en faveur des jeunes"
     start_date = date(2005, 1, 1)
     stop_date = date(2008, 12, 31)
@@ -1195,7 +1195,7 @@ class jeunes_ind(Variable):
 
 class mecena(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Mécénat d'entreprise"
     start_date = date(2003, 1, 1)
 
@@ -1212,7 +1212,7 @@ class mecena(Variable):
 
 class percvm(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Crédit d’impôt pertes sur cessions de valeurs mobilières"
     start_date = date(2010, 1, 1)
     stop_date = date(2010, 12, 31)
@@ -1231,7 +1231,7 @@ class percvm(Variable):
 
 class preetu(DatedVariable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Crédit d’impôt pour souscription de prêts étudiants"
 
     @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
@@ -1284,7 +1284,7 @@ class preetu(DatedVariable):
 
 class prlire(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Prélèvement libératoire à restituer (case 2DH)"
     stop_date = date(2013, 12, 31)
 
@@ -1306,7 +1306,7 @@ class prlire(Variable):
 
 class quaenv(DatedVariable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale"
 
     @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
@@ -1608,7 +1608,7 @@ class quaenv(DatedVariable):
 
 class quaenv_bouquet(Variable):
     column = BoolCol(default = False)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"quaenv_bouquet"
     start_date = date(2013, 1, 1)
 
@@ -1651,7 +1651,7 @@ class quaenv_bouquet(Variable):
 
 class saldom2(DatedVariable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Crédit d’impôt emploi d’un salarié à domicile"
 
     @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))

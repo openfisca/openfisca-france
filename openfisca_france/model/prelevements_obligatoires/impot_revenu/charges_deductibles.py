@@ -17,7 +17,7 @@ log = logging.getLogger(__name__)
 class f6de(Variable):
     cerfa_field = u"6DE"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"CSG déductible calculée sur les revenus du patrimoine"
 
 
@@ -25,21 +25,21 @@ class f6de(Variable):
 class f6gi(Variable):
     cerfa_field = u"6GI"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 1er enfant"
 
 
 class f6gj(Variable):
     cerfa_field = u"6GJ"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 2eme enfant"
 
 
 class f6el(Variable):
     cerfa_field = u"6EL"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées à des enfants majeurs: 1er enfant"
     start_date = date(2006, 1, 1)
 
@@ -47,7 +47,7 @@ class f6el(Variable):
 class f6em(Variable):
     cerfa_field = u"6EM"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées à des enfants majeurs: 2eme enfant"
     start_date = date(2006, 1, 1)
 
@@ -55,14 +55,14 @@ class f6em(Variable):
 class f6gp(Variable):
     cerfa_field = u"6GP"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées décision de justice définitive avant 2006 (mineurs, ascendants)"
 
 
 class f6gu(Variable):
     cerfa_field = u"6GU"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées (mineurs, ascendants)"
     start_date = date(2006, 1, 1)
 
@@ -71,14 +71,14 @@ class f6gu(Variable):
 class f6eu(Variable):
     cerfa_field = u"6EU"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Frais d'accueil de personnes de plus de 75 ans dans le besoin"
 
 
 class f6ev(Variable):
     cerfa_field = u"6EV"
     column = PeriodSizeIndependentIntCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit"
 
 
@@ -86,7 +86,7 @@ class f6ev(Variable):
 class f6dd(Variable):
     cerfa_field = u"6DD"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Déductions diverses"
 
 
@@ -97,7 +97,7 @@ class f6ps(Variable):
         QUIFOY['pac1']: u"6PU",
         }
     column = IntCol(val_type = "monetary")
-    entity_class = Individus
+    entity = Individu
     label = u"Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)"
 
 
@@ -107,7 +107,7 @@ class f6rs(Variable):
         QUIFOY['pac1']: u"6RU",
         }
     column = IntCol(val_type = "monetary")
-    entity_class = Individus
+    entity = Individu
     label = u"Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S"
 
 
@@ -117,7 +117,7 @@ class f6ss(Variable):
         QUIFOY['pac1']: u"6SU",
         }
     column = IntCol(val_type = "monetary")
-    entity_class = Individus
+    entity = Individu
     label = u"Rachat de cotisations PERP, PREFON, COREM et C.G.O.S"
 
 
@@ -125,7 +125,7 @@ class f6ss(Variable):
 class f6aa(Variable):
     cerfa_field = u"6AA"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel"
     start_date = date(2005, 1, 1)
     stop_date = date(2006, 12, 31)
@@ -136,7 +136,7 @@ class f6aa(Variable):
 class f6cc(Variable):
     cerfa_field = u"CC"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Souscriptions au capital des SOFIPÊCHE"
     start_date = date(2005, 1, 1)
     stop_date = date(2005, 12, 31)
@@ -149,7 +149,7 @@ class f6cc(Variable):
 class f6eh(Variable):
     cerfa_field = u"EH"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     start_date = date(2005, 1, 1)
     stop_date = date(2005, 12, 31)
 # TODO: vérifier date de début et de fin de cette case (rien en 12 et 13)
@@ -158,7 +158,7 @@ class f6eh(Variable):
 class f6da(Variable):
     cerfa_field = u"DA"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté"
     start_date = date(2005, 1, 1)
     stop_date = date(2005, 12, 31)
@@ -168,7 +168,7 @@ class f6da(Variable):
 class f6cb(Variable):
     cerfa_field = u"6CB"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)"
     start_date = date(2009, 1, 1)
 
@@ -178,7 +178,7 @@ class f6cb(Variable):
 class f6hj(Variable):
     cerfa_field = u"6HJ"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
     start_date = date(2010, 1, 1)
 
@@ -186,7 +186,7 @@ class f6hj(Variable):
 class f6hk(Variable):
     cerfa_field = u"6HK"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
     start_date = date(2011, 1, 1)
 
@@ -194,7 +194,7 @@ class f6hk(Variable):
 class f6hl(Variable):
     cerfa_field = u"6HL"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
     start_date = date(2012, 1, 1)
 
@@ -202,7 +202,7 @@ class f6hl(Variable):
 class f6hm(Variable):
     cerfa_field = u"6HM"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
     start_date = date(2013, 1, 1)
 
@@ -211,7 +211,7 @@ class f6hm(Variable):
 class f6gh(Variable):
     cerfa_field = u"6GH"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Sommes à ajouter au revenu imposable"
 
 
@@ -219,48 +219,48 @@ class f6gh(Variable):
 class f6fa(Variable):
     cerfa_field = u"6FA"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits les années précédentes: année de perception des revenus -6"
 
 
 class f6fb(Variable):
     cerfa_field = u"6FB"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -5"
 
 
 class f6fc(Variable):
     cerfa_field = u"6FC"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -4"
 
 
 class f6fd(Variable):
     cerfa_field = u"6FD"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -3"
 
 
 class f6fe(Variable):
     cerfa_field = u"6FE"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -2"
 
 
 class f6fl(Variable):
     cerfa_field = u"6FL"
     column = IntCol(val_type = "monetary")
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -1"
 
 
 class rfr_cd(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Charges déductibles entrant dans le revenus fiscal de référence"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
 
@@ -276,7 +276,7 @@ class rfr_cd(Variable):
 
 class cd1(DatedVariable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Charges déductibles non plafonnées"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
 
@@ -375,7 +375,7 @@ class cd1(DatedVariable):
 
 class cd2(DatedVariable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Charges déductibles plafonnées"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
 
@@ -386,7 +386,7 @@ class cd2(DatedVariable):
         '''
         period = period.this_year
         cd_sofipe = simulation.calculate('cd_sofipe', period)
-        cinema = simulation.calculate('cinema', period)
+        cinema = simulation.calculate('souscriptions_cinema_audiovisuel', period)
 
         niches2 = cd_sofipe + cinema
         return period, niches2
@@ -416,7 +416,7 @@ class cd2(DatedVariable):
 
 class rbg_int(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Revenu brut global intermédiaire"
 
     def function(self, simulation, period):
@@ -429,7 +429,7 @@ class rbg_int(Variable):
 
 class charges_deduc(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Charges déductibles"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
 
@@ -443,7 +443,7 @@ class charges_deduc(Variable):
 
 class pensions_alimentaires_deduites(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Pensions alimentaires"
     url = "http://frederic.anne.free.fr/Cours/ITV.htm"
 
@@ -472,7 +472,7 @@ class pensions_alimentaires_deduites(Variable):
 
 class cd_acc75a(Variable):
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Frais d’accueil sous votre toit d’une personne de plus de 75 ans"
 
     def function(self, simulation, period):
@@ -485,8 +485,8 @@ class cd_acc75a(Variable):
 
 
 class pertes_capital_societes_nouvelles(DatedVariable):
-    column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    column = FloatCol
+    entity = FoyerFiscal
     label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté"
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
@@ -521,8 +521,8 @@ class pertes_capital_societes_nouvelles(DatedVariable):
 
 
 class cd_deddiv(Variable):
-    column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    column = FloatCol
+    entity = FoyerFiscal
     label = u"Déductions diverses"
 
     def function(self, simulation, period):
@@ -533,8 +533,8 @@ class cd_deddiv(Variable):
 
 
 class cd_doment(Variable):
-    column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    column = FloatCol
+    entity = FoyerFiscal
     label = u"Investissements DOM-TOM dans le cadre d’une entreprise"
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
@@ -551,8 +551,8 @@ class cd_doment(Variable):
 
 
 class cd_eparet(Variable):
-    column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    column = FloatCol
+    entity = FoyerFiscal
     label = u"Charge déductible au titre de l'épargne retraite (PERP, PRÉFON, COREM et CGOS)"
     start_date = date(2004, 1, 1)
 
@@ -585,8 +585,8 @@ class cd_eparet(Variable):
 
 
 class cd_sofipe(Variable):
-    column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    column = FloatCol
+    entity = FoyerFiscal
     label = u"Souscriptions au capital des SOFIPÊCHE"
     start_date = date(2002, 1, 1)
     stop_date = date(2006, 12, 31)
@@ -606,9 +606,9 @@ class cd_sofipe(Variable):
         return period, min_(f6cc, plafond)
 
 
-class cinema(Variable):
-    column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+class souscriptions_cinema_audiovisuel(Variable):
+    column = FloatCol
+    entity = FoyerFiscal
     label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel"
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
@@ -628,8 +628,8 @@ class cinema(Variable):
 
 
 class epargne_codeveloppement(Variable):
-    column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    column = FloatCol
+    entity = FoyerFiscal
     label = u"Versements sur un compte épargne codéveloppement"
     start_date = date(2007, 1, 1)
     stop_date = date(2008, 12, 31)
@@ -649,8 +649,8 @@ class epargne_codeveloppement(Variable):
 
 
 class grosses_reparations(Variable):
-    column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    column = FloatCol
+    entity = FoyerFiscal
     label = u"Dépenses de grosses réparations des nus-propriétaires"
     start_date = date(2009, 1, 1)
 

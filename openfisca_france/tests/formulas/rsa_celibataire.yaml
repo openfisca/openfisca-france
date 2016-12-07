@@ -274,3 +274,12 @@
       age: 8
   output_variables:
     rsa_forfait_asf: 91.38
+
+- name: "Revalorisation septembre 2016"
+  period: 2016-10
+  relative_error_margin: 0.01
+  input_variables:
+    age: 40
+  output_variables:
+    rsa: 535.17
+

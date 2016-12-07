@@ -32,7 +32,7 @@ def _mhsup(hsup):
 class csg_cap_bar(Variable):
     """Calcule la CSG sur les revenus du capital soumis au barème."""
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"CSG sur les revenus du capital soumis au barème"
     url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
 
@@ -44,17 +44,10 @@ class csg_cap_bar(Variable):
         return period, -rev_cap_bar * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
-class csg_cap_bar_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"CSG sur les revenus du capital soumis au barème (pour le premier déclarant du foyer fiscal)"
-    role = VOUS
-    variable = csg_cap_bar
-
-
 class crds_cap_bar(Variable):
     """Calcule la CRDS sur les revenus du capital soumis au barème."""
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"CRDS sur les revenus du capital soumis au barème"
     url = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
 
@@ -66,17 +59,10 @@ class crds_cap_bar(Variable):
         return period, -rev_cap_bar * _P.crds.revenus_du_patrimoine
 
 
-class crds_cap_bar_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"CRDS sur les revenus du capital soumis au barème (pour le premier déclarant du foyer fiscal)"
-    role = VOUS
-    variable = crds_cap_bar
-
-
 class prelsoc_cap_bar(DatedVariable):
     """Calcule le prélèvement social sur les revenus du capital soumis au barème"""
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus du capital soumis au barème"
     url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
 
@@ -132,18 +118,9 @@ class prelsoc_cap_bar(DatedVariable):
         return period, -rev_cap_bar * total
 
 
-class prelsoc_cap_bar_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"Prélèvements sociaux sur les revenus du capital soumis au barème (pour le premier déclarant du foyer fiscal)"  # noqa
-    role = VOUS
-    variable = prelsoc_cap_bar
-
-
-# Plus-values de valeurs mobilières
-
 class csg_pv_mo(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"CSG sur les plus-values de cession de valeurs mobilières"
     url = "http://vosdroits.service-public.fr/particuliers/F21618.xhtml"
 
@@ -160,7 +137,7 @@ class csg_pv_mo(Variable):
 
 class crds_pv_mo(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"CRDS sur les plus-values de cession de valeurs mobilières"
     url = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
 
@@ -177,7 +154,7 @@ class crds_pv_mo(Variable):
 
 class prelsoc_pv_mo(DatedVariable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les plus-values de cession de valeurs mobilières"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
 
@@ -240,7 +217,7 @@ class prelsoc_pv_mo(DatedVariable):
 
 class csg_pv_immo(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"CSG sur les plus-values immobilières"
     url = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
 
@@ -257,7 +234,7 @@ class csg_pv_immo(Variable):
 
 class crds_pv_immo(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"CRDS sur les plus-values immobilières"
     url = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
 
@@ -274,7 +251,7 @@ class crds_pv_immo(Variable):
 
 class prelsoc_pv_immo(DatedVariable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les plus-values immobilières"
     url = "http://www.pap.fr/argent/impots/les-plus-values-immobilieres/a1314/l-imposition-de-la-plus-value-immobiliere"
 
@@ -337,7 +314,7 @@ class prelsoc_pv_immo(DatedVariable):
 
 class csg_fon(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"CSG sur les revenus fonciers"
     url = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
 
@@ -355,7 +332,7 @@ class csg_fon(Variable):
 
 class crds_fon(Variable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"CRDS sur les revenus fonciers"
     url = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
 
@@ -373,7 +350,7 @@ class crds_fon(Variable):
 
 class prelsoc_fon(DatedVariable):
     column = FloatCol(default = 0)
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus fonciers"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
 
@@ -442,7 +419,7 @@ class prelsoc_fon(DatedVariable):
 class csg_cap_lib(Variable):
     """Calcule la CSG sur les revenus du capital soumis au prélèvement libératoire."""
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"CSG sur les revenus du capital soumis au prélèvement libératoire"
     url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
 
@@ -453,18 +430,10 @@ class csg_cap_lib(Variable):
 
         return period, -rev_cap_lib * _P.prelevements_sociaux.contributions.csg.capital.glob
 
-
-class csg_cap_lib_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"CSG sur les revenus du capital soumis au prélèvement libératoire (pour le premier déclarant du foyer fiscal)"  # noqa
-    role = VOUS
-    variable = csg_cap_lib
-
-
 class crds_cap_lib(Variable):
     """Calcule la CRDS sur les revenus du capital soumis au prélèvement libératoire."""
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"CRDS sur les revenus du capital soumis au prélèvement libératoire"
     url = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
 
@@ -476,17 +445,10 @@ class crds_cap_lib(Variable):
         return period, -rev_cap_lib * _P.crds.revenus_du_patrimoine
 
 
-class crds_cap_lib_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"CRDS sur les revenus du capital soumis au prélèvement libératoire (pour le premier déclarant du foyer fiscal)"  # noqa
-    role = VOUS
-    variable = crds_cap_lib
-
-
 class prelsoc_cap_lib(Variable):
     """Calcule le prélèvement social sur les revenus du capital soumis au prélèvement libératoire."""
     column = FloatCol
-    entity_class = FoyersFiscaux
+    entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire"
     url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
 
@@ -515,14 +477,6 @@ class prelsoc_cap_lib(Variable):
                 prelsoc.prelevements_solidarite.revenus_du_patrimoine
                 )
         return period, -rev_cap_lib * total
-
-
-class prelsoc_cap_lib_declarant1(EntityToPersonColumn):
-    entity_class = Individus
-    label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire (pour le premier déclarant du foyer fiscal)"  # noqa
-    role = VOUS
-    variable = prelsoc_cap_lib
-
 
 # TODO: non_imposabilité pour les revenus au barème
 #        verse = (-csgcap_bar - crdscap_bar - prelsoccap_bar) > bareme.prelevements_sociaux.contributions.csg.capital.nonimp

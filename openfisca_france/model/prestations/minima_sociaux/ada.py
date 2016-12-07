@@ -5,7 +5,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class ada(Variable):
     column = FloatCol
-    entity_class = Familles
+    entity = Famille
     label = u"Montant mensuel  de l'aide pour demandeur d'asile"
     start_date = date(2015, 11, 1)
 
@@ -29,11 +29,11 @@ class ada(Variable):
 
 class asile_demandeur(Variable):
     column = BoolCol
-    entity_class = Familles
+    entity = Famille
     label = u"Famille demandant l'asile"
 
 
 class place_hebergement(Variable):
     column = BoolCol(default = True)
-    entity_class = Familles
+    entity = Famille
     label = u"Bénéficie d'une place dans un centre d'hébergement"
