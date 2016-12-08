@@ -31,22 +31,24 @@ seuil_fraction_plan_aide_2 = 0.498 * majoration_tierce_personne
 class apa_domicile_participation(DatedVariable):
     column = FloatCol
     label = u"Participation du bénéficiaire de l'APA à domicile"
-    entity_class = Individus
+    entity = Individu
 
     @dated_function(start = date(2002, 1, 1), stop = date(2016, 2, 29))
-    def function_2002_20160229(self, simulation, period):
+    def function_2002_20160229(individu, period, legislation):
         # Les départements doivent appliquer la nouvelle formule
         # entre le 1er mars 2016 et le 28 février 2017
-        base_ressources_apa = simulation.calculate('base_ressources_apa', period)
-        dependance_plan_aide_domicile = simulation.calculate('dependance_plan_aide_domicile', period)
-        legislation = simulation.legislation_at(period.start).autonomie
+        base_ressources_apa = individu.famille('base_ressources_apa', period)
+        legislation = legislation(period.start).autonomie
         seuil_inf = legislation.apa_domicile.seuil_de_revenu_en_part_du_mtp.seuil_inferieur
         seuil_sup = legislation.apa_domicile.seuil_de_revenu_en_part_du_mtp.seuil_superieur
         majoration_tierce_personne = legislation.mtp.mtp
         taux_min_participation = legislation.apa_domicile.taux_de_participation_minimum
         taux_max_participation = legislation.apa_domicile.taux_de_participation_maximum
-
-        dependance_plan_aide_domicile_accepte = zeros(self.holder.entity.count)
+        dependance_plan_aide_domicile_accepte = compute_dependance_plan_aide_domicile_accepte(
+            legislation_autonomie = legislation,
+            gir = gir,
+            dependance_plan_aide_domicile = dependance_plan_aide_domicile
+            )
 
         condition_ressources_domicile = [
             base_ressources_apa <= (seuil_inf * majoration_tierce_personne),
@@ -55,25 +57,24 @@ class apa_domicile_participation(DatedVariable):
             ]
         taux_participation = [
             taux_min_participation,
-            (base_ressources_apa - seuil_inf * majoration_tierce_personne) / ((seuil_superieur - seuil_inferieur) * majoration_tierce_personne) * taux_max_participation,
+            (base_ressources_apa - seuil_inf * majoration_tierce_personne) / ((seuil_sup - seuil_inf) * majoration_tierce_personne) * taux_max_participation,
             taux_max_participation,
             ]
-        apa_domicile_participation = select(condition_ressources_domicile, taux_participation) * dependance_plan_aide_domicile
+        apa_domicile_participation = select(condition_ressources_domicile, taux_participation) * dependance_plan_aide_domicile_accepte
         return period, apa_domicile_participation
 
     @dated_function(start = date(2016, 3, 1))
-    def function_20160301(self, simulation, period):
+    def function_20160301(individu, period, legislation):
         # Les départements doivent appliquer la nouvelle formule
         # entre le 1er mars 2016 et le 28 février 2017
-        base_ressources_apa = simulation.calculate('base_ressources_apa', period)
-        dependance_plan_aide_domicile = simulation.calculate('dependance_plan_aide_domicile', period)
-        dependance_plan_aide_domicile_accepte = zeros(self.holder.entity.count)
-        legislation = simulation.legislation_at(period.start).autonomie
-        seuil_inferieur = legislation.apa_domicile.seuil_de_revenu_en_part_du_mtp.seuil_inferieur
-        seuil_superieur = legislation.apa_domicile.seuil_de_revenu_en_part_du_mtp.seuil_superieur
+        base_ressources_apa = individu.famille('base_ressources_apa', period)
+        dependance_plan_aide_domicile_accepte = compute_dependance_plan_aide_domicile_accepte(
+            legislation_autonomie = legislation,
+            gir = gir,
+            dependance_plan_aide_domicile = dependance_plan_aide_domicile
+            )
+        legislation = legislation(period.start).autonomie
         majoration_tierce_personne = legislation.mtp.mtp
-        taux_min_participation = legislation.apa_domicile.taux_de_participation_minimum
-        taux_max_participation = legislation.apa_domicile.taux_de_participation_maximum
 
         # TODO: use a marignal tax scale
         condlist = [
@@ -122,62 +123,39 @@ class apa_domicile_participation(DatedVariable):
 class apa_domicile(Variable):
     column = FloatCol
     label = u"Allocation personalisée d'autonomie"
-    entity_class = Individus
+    entity = Individu
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.start.offset('first-of', 'month').period('month')
-        age = simulation.calculate('age', period)
-        dependance_plan_aide_domicile = simulation.calculate('dependance_plan_aide_domicile', period)
-        gir = simulation.calculate('gir', period)
-        legislation_autonomie = simulation.legislation_at(period.start).autonomie
-
-
-        apa_domicile_participation = simulation.calculate('apa_domicile_participation', period)
-
-        apa = (
-            dependance_plan_aide_domicile_accepte(gir, dependance_plan_aide_domicile, legislation_autonomie) -
-            apa_domicile_participation
+        age = individu('age', period)
+        dependance_plan_aide_domicile = individu('dependance_plan_aide_domicile', period)
+        gir = individu('gir', period)
+        legislation = legislation(period.start).autonomie
+        dependance_plan_aide_domicile= compute_dependance_plan_aide_domicile_accepte(
+            legislation_autonomie = legislation,
+            gir = gir,
+            dependance_plan_aide_domicile = dependance_plan_aide_domicile
             )
+
+        apa_domicile_participation = individu('apa_domicile_participation', period)
+
+        apa = dependance_plan_aide_domicile - apa_domicile_participation
         return period, apa * (apa >= seuil_non_versement) * (age >= apa_age_min)
-
-
-def dependance_plan_aide_domicile_accepte(gir, dependance_plan_aide_domicile, legislation_autonomie):
-
-        plafond_gir1 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_1
-        plafond_gir2 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_2
-        plafond_gir3 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_3
-        plafond_gir4 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_4
-
-        condition_plafond_par_gir = [
-            gir = 1,
-            gir = 2,
-            gir = 3,
-            gir = 4,
-            ]
-        valeur_plafond_par_gir = [
-            plafond_gir1 * majoration_tierce_personne,
-            plafond_gir2 * majoration_tierce_personne,
-            plafond_gir3 * majoration_tierce_personne,
-            plafond_gir4 * majoration_tierce_personne,
-            ]
-        plafond_par_gir = select(condition_plafond_par_gir, valeur_plafond_par_gir)
-
-        return min_(plafond_par_gir, dependance_plan_aide_domicile)
 
 
 class apa_etablissement(Variable):
     column = FloatCol
     label = u"Allocation personalisée d'autonomie en institution"
-    entity_class = Individus
+    entity = Individu
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.start.offset('first-of', 'month').period('month')
-        age = simulation.calculate('age', period)
-        gir = simulation.calculate('gir', period)
-        base_ressources_apa = simulation.calculate('base_ressources_apa', period)
-        dependance_tarif_etablissement_gir_5_6 = simulation.calculate('dependance_tarif_etablissement_gir_5_6', period)
-        dependance_tarif_etablissement_gir_dependant = simulation.calculate(
-            'dependance_tarif_etablissement_gir_dependant', period)
+        age = individu('age', period)
+        gir = individu('gir', period)
+        base_ressources_apa = individu.famille('base_ressources_apa', period)
+        dependance_tarif_etablissement_gir_5_6 = individu('dependance_tarif_etablissement_gir_5_6', period)
+        dependance_tarif_etablissement_gir_dependant = individu('dependance_tarif_etablissement_gir_dependant', period)
+
         conditions_ressources = [
             base_ressources_apa <= 2.21 * majoration_tierce_personne,
             2.21 * majoration_tierce_personne < base_ressources_apa <= 3.40 * majoration_tierce_personne,
@@ -203,17 +181,18 @@ class apa_etablissement(Variable):
         apa = dependance_tarif_etablissement_gir_dependant - participation_beneficiaire
 
         eligibilite_etablissement = (
-            (dependance_tarif_etablissement_gir_5_6 > 0) *
-            (dependance_tarif_etablissement_gir_dependant > 0)
+            (dependance_tarif_etablissement_gir_5_6 > 0) * (dependance_tarif_etablissement_gir_dependant > 0)
+            )  # permet de sélectionner les individus vivant en établissement éligible.
+        eligibilite_gir = (0 < gir) & (gir <= 4)
+        return period, (
+            apa * (apa >= seuil_non_versement) * eligibilite_etablissement * (age >= apa_age_min) * eligibilite_gir
             )
-
-        return period, apa * (apa >= seuil_non_versement) * eligibilite_etablissement * (age >= apa_age_min)
 
 
 class base_ressources_apa(Variable):
     column = FloatCol
     label = u"Base ressources de l'allocation personalisée d'autonomie"
-    entity_class = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         return period, zeros(self.holder.entity.count)
@@ -234,50 +213,75 @@ class gir(Variable):
             ),
         default = 0,
         )
-    entity_class = Individus
+    entity = Individu
     label = u"Groupe iso-ressources de l'individu"
 
 
 class dependance_plan_aide_domicile(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Plan d'aide à domicile pour une personne dépendate"
 
 
 class dependance_tarif_etablissement_gir_5_6(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Tarif dépendance de l'établissement pour les GIR 5 et 6"
 
 
 class dependance_tarif_etablissement_gir_dependant(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Tarif dépendance de l'établissement pour le GIR de la personne dépendante"
 
 
 class apa_urgence_domicile(Variable):
     column = FloatCol
     label = u"Allocation personalisée d'autonomie en institution"
-    entity_class = Individus
+    entity = Individu
 
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('month')
-        majoration_tierce_personne = legislation.mtp.mtp
-        plafond_gir1 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_1
-        apa_urgence_domicile =
-            0.5 * plafond_gir1 * majoration_tierce_personne
-    return period, apa_urgence_domicile
+    def function(individu, period, legislation):
+        period = period.this_month
+        legislation = legislation(period.start).autonomie
+        majoration_tierce_personne = autonomie.mtp.mtp
+        plafond_gir1 = legislation.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_1
+        apa_urgence_domicile = 0.5 * plafond_gir1 * majoration_tierce_personne
+
+        return period, apa_urgence_domicile
 
 
 class apa_urgence_institution(Variable):
     column = FloatCol
     label = u"Allocation personalisée d'autonomie en institution"
-    entity_class = Individus
+    entity = Individu
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.start.offset('first-of', 'month').period('month')
-        dependance_tarif_etablissement_gir_1_2 = simulation.calculate('dependance_tarif_etablissement_gir_5_6', period)
-
+        dependance_tarif_etablissement_gir_1_2 = individu('dependance_tarif_etablissement_gir_5_6', period)
         apa_urgence_institution = 0.5 * dependance_tarif_etablissement_gir_1_2
-    return period, apa_urgence_institution
+        return period, apa_urgence_institution
+
+
+# Helpers
+
+def compute_dependance_plan_aide_domicile_accepte(legislation_autonomie = None, gir = None,
+            dependance_plan_aide_domicile = None):
+        plafond_gir1 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_1
+        plafond_gir2 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_2
+        plafond_gir3 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_3
+        plafond_gir4 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_4
+
+        condition_plafond_par_gir = [
+            gir == 1,
+            gir == 2,
+            gir == 3,
+            gir == 4,
+            ]
+        valeur_plafond_par_gir = [
+            plafond_gir1 * majoration_tierce_personne,
+            plafond_gir2 * majoration_tierce_personne,
+            plafond_gir3 * majoration_tierce_personne,
+            plafond_gir4 * majoration_tierce_personne,
+            ]
+        plafond_par_gir = select(condition_plafond_par_gir, valeur_plafond_par_gir)
+        return min_(plafond_par_gir, dependance_plan_aide_domicile)
