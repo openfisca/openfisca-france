@@ -1,5 +1,5 @@
 - period: "2016-06"
-  description:
+  name:
     Taxe d'apprentissage / Contribution supplémentaire à l'apprentissage
   relative_error_margin: 0.001
   input_variables:
@@ -13,11 +13,64 @@
     ratio_alternants: 0.015
   output_variables:
     taxe_apprentissage: -.0068 * 1467
-    contribution_supplementaire_apprentissage: -.002 * 1467
+    contribution_supplementaire_apprentissage: 0 # parce que < 250 employés -> non applicable
 
 - period: "2016-06"
-  description:
-    Taxe d'apprentissage / Contribution supplémentaire à l'apprentissage
+  name:
+    Taxe d'apprentissage / CSA non applicable car ratio 0.05
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1467
+    # nécessaire pour des requêtes sur un mois de salaire :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 250
+    categorie_salarie: 0 # non cadre
+    contrat_de_travail_duree: 0
+    entreprise_est_association_non_lucrative: 0
+    ratio_alternants: 0.05
+  output_variables:
+    taxe_apprentissage: -.0068 * 1467
+    contribution_supplementaire_apprentissage: 0 # parce que ratio alternants >= 0.05 -> non applicable
+
+
+- period: "2016-06"
+  name:
+    Taxe d'apprentissage / CSA ratio 0.036
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1467
+    # nécessaire pour des requêtes sur un mois de salaire :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 250
+    categorie_salarie: 0 # non cadre
+    contrat_de_travail_duree: 0
+    entreprise_est_association_non_lucrative: 0
+    ratio_alternants: 0.036
+  output_variables:
+    taxe_apprentissage: -.0068 * 1467
+    contribution_supplementaire_apprentissage: -.0005 * 1467
+
+
+- period: "2016-06"
+  name:
+    Taxe d'apprentissage / CSA. Grosse entreprise, faible ratio alternants
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1467
+    # nécessaire pour des requêtes sur un mois de salaire :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 2000
+    categorie_salarie: 0 # non cadre
+    contrat_de_travail_duree: 0
+    entreprise_est_association_non_lucrative: 0
+    ratio_alternants: 0.0008
+  output_variables:
+    contribution_supplementaire_apprentissage: -.006 * 1467
+
+
+- period: "2016-06"
+  name:
+    Taxe d'apprentissage / CSA pour une association
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1467
