@@ -306,12 +306,6 @@ class entreprise_assujettie_is(Variable):
     label = u"Entreprise assujettie à l'impôt sur les sociétés (IS)"
 
 
-class entreprise_assujettie_tva(Variable):
-    column = BoolCol()
-    entity = Individu
-    label = u"Entreprise assujettie à la TVA"
-
-
 class entreprise_benefice(Variable):
     column = FloatCol()
     entity = Individu

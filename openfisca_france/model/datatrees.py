@@ -229,7 +229,6 @@ columns_name_tree_by_entity = collections.OrderedDict([
                     u"""effectif_entreprise""",  # Effectif de l'entreprise
                     u"""entreprise_assujettie_cet""",  # Entreprise assujettie à la contribution économique territoriale
                     u"""entreprise_assujettie_is""",  # Entreprise assujettie à l'impôt sur les sociétés (IS)
-                    u"""entreprise_assujettie_tva""",  # Entreprise assujettie à la TVA
                     u"""entreprise_benefice""",  # Bénéfice de l'entreprise
                     u"""entreprise_bilan""",  # Bilan de l'entreprise
                     u"""entreprise_chiffre_affaire""",  # Chiffre d'affaire de l'entreprise
