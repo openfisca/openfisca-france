@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.7
+
+* Remove wrong max numbers of enfants in entities
+
 ## 6.0.6
 
 * Deprecate `entreprise_assujettie_tva`
