@@ -1,8 +1,34 @@
 # Changelog
 
-## 6.0.3
+## 6.0.7
 
 * Remove wrong max numbers of enfants in entities
+
+## 6.0.6
+
+* Deprecate `entreprise_assujettie_tva`
+
+## 6.0.5
+
+* Add effectif_entreprise exclusion condition to Contribution Supplémentaire Apprentissage
+
+## 6.0.4
+
+* Fix some regressions in parameters introcduced by 6.0.0
+    * Re-apply RSA revalorisation from september
+    * Correct bonification rate for PPA
+
+## 6.0.3
+
+* Migrate some formulas to new syntax
+    * `aefa.py`
+    * `af.py`
+    * `anciens_ms.py`
+    * `ars.py`
+    * `base_ressource.py`
+    * `cf.py`
+    * `paje.py`
+    * `rsa.py`
 
 ## 6.0.2
 

@@ -3254,7 +3254,7 @@
           <VALUE deb="2016-01-01" fuzzy="true" valeur="95" />
         </CODE>
         <CODE code="taux_bonification_max" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2016-01-01,openfisca_fin=2016-12-31,openfisca_valeur=0.12782,ipp_valeur=unknown)" description="Bonification maximale, en pourcentage du montant de base du RSA" format="percent" origin="ipp">
-          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.122782" />
+          <VALUE deb="2016-01-01" fuzzy="true" valeur="0.12782" />
         </CODE>
       </NODE>
       <CODE code="majoration_isolement_enf_charge" format="percent" origin="ipp">
@@ -3435,7 +3435,8 @@
         <VALUE deb="2009-01-01" fin="2009-12-31" valeur="200" />
       </CODE>
       <CODE code="rmi" description="Rsa socle" format="float" origin="openfisca" type="monetary">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="524.68" />
+        <VALUE deb="2016-09-01" fuzzy="true" valeur="535.17" />
+        <VALUE deb="2016-04-01" fin="2016-08-31" valeur="524.68" />
         <VALUE deb="2016-01-01" fin="2016-03-31" valeur="524.16" />
         <VALUE deb="2015-09-01" fin="2015-12-31" valeur="524.16" />
         <VALUE deb="2015-01-01" fin="2015-08-31" valeur="513.88" />
@@ -3576,7 +3577,8 @@
         </CODE>
       </NODE>
       <CODE code="montant_de_base_du_rsa" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2001-01-01,openfisca_fin=2001-12-31,openfisca_valeur=397.6,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2005-01-01,openfisca_fin=2005-12-31,openfisca_valeur=425.4,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2002-12-31,openfisca_valeur=405.62,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2003-01-01,openfisca_fin=2003-12-31,openfisca_valeur=411.7,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2009-01-01,openfisca_fin=2009-12-31,openfisca_valeur=454.63,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2007-01-01,openfisca_fin=2007-12-31,openfisca_valeur=440.86,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2006-01-01,openfisca_fin=2006-12-31,openfisca_valeur=433.06,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2008-01-01,openfisca_fin=2008-12-31,openfisca_valeur=447.91,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2004-01-01,openfisca_fin=2004-12-31,openfisca_valeur=417.88,ipp_valeur=unknown)" description="Rsa socle" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="524.68" />
+        <VALUE deb="2016-09-01" fuzzy="true" valeur="535.17" />
+        <VALUE deb="2016-04-01" fin="2016-08-31" valeur="524.68" />
         <VALUE deb="2015-09-01" fin="2016-03-31" valeur="524.16" />
         <VALUE deb="2015-01-01" fin="2015-08-31" valeur="513.88" />
         <VALUE deb="2014-09-01" fin="2014-12-31" valeur="509.3" />

@@ -77,6 +77,7 @@ class contribution_supplementaire_apprentissage(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Contribution supplémentaire à l'apprentissage"
+    url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
 
     @dated_function(date(2010, 1, 1))
     def function(self, simulation, period):
@@ -87,14 +88,16 @@ class contribution_supplementaire_apprentissage(DatedVariable):
         taux = simulation.legislation_at(period.start).cotsoc.contribution_supplementaire_apprentissage
 
         if period.start.year > 2012:
-            taux_contribution = (
-                (effectif_entreprise < 2000) * (ratio_alternants < .01) * taux.moins_2000_moins_1pc_alternants +
-                (effectif_entreprise >= 2000) * (ratio_alternants < .01) * taux.plus_2000_moins_1pc_alternants +
-                (.01 <= ratio_alternants) * (ratio_alternants < .02) * taux.entre_1_2_pc_alternants +
-                (.02 <= ratio_alternants) * (ratio_alternants < .03) * taux.entre_2_3_pc_alternants +
-                (.03 <= ratio_alternants) * (ratio_alternants < .04) * taux.entre_3_4_pc_alternants +
-                (.04 <= ratio_alternants) * (ratio_alternants < .05) * taux.entre_4_5_pc_alternants
-                )
+            taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .05)
+            taux_conditionnel = (
+                    (effectif_entreprise < 2000) * (ratio_alternants < .01) * taux.moins_2000_moins_1pc_alternants +
+                    (effectif_entreprise >= 2000) * (ratio_alternants < .01) * taux.plus_2000_moins_1pc_alternants +
+                    (.01 <= ratio_alternants) * (ratio_alternants < .02) * taux.entre_1_2_pc_alternants +
+                    (.02 <= ratio_alternants) * (ratio_alternants < .03) * taux.entre_2_3_pc_alternants +
+                    (.03 <= ratio_alternants) * (ratio_alternants < .04) * taux.entre_3_4_pc_alternants +
+                    (.04 <= ratio_alternants) * (ratio_alternants < .05) * taux.entre_4_5_pc_alternants
+                    )
+            taux_contribution = taxe_due * taux_conditionnel
         else:
             taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250
             # TODO: gestion de la place dans le XML pb avec l'arbre des paramètres / preprocessing

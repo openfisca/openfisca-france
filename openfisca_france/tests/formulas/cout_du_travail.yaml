@@ -14,11 +14,11 @@
     effectif_entreprise: 1
     contrat_de_travail_debut: 2015-07-01
   output_variables:
-    salaire_super_brut: 1630.4
-    cout_du_travail: 1376.4
-    salaire_super_brut_hors_allegements: 2064.4
+    salaire_super_brut: 1625.1
+    cout_du_travail: 1370.16
+    salaire_super_brut_hors_allegements: 2058.56
     salaire_net: 1136
-    cotisations_employeur: -606.9
+    cotisations_employeur: -601.06
     allegement_fillon: 407
     aide_premier_salarie: 166.7
     credit_impot_competitivite_emploi: 87.5
@@ -34,8 +34,8 @@
     effectif_entreprise: 2
     contrat_de_travail_debut: 2015-07-01
   output_variables:
-    salaire_super_brut: 1630.4
-    cout_du_travail: 1543.4
+    salaire_super_brut: 1625.1
+    cout_du_travail: 1537.56
 
 - period: "2016-02"
   name: Cout du travail 2016, pas d'aide 1er sal. mais aide PME
@@ -48,5 +48,5 @@
     effectif_entreprise: 249
     contrat_de_travail_debut: 2016-01-25
   output_variables:
-    salaire_super_brut: 1655
-    cout_du_travail: 1401
+    salaire_super_brut: 1649.4
+    cout_du_travail: 1394.8
