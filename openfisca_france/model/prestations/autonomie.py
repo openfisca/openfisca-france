@@ -3,6 +3,7 @@
 
 from __future__ import division
 
+import numpy as np
 from numpy import maximum as max_, minimum as min_, zeros, select
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
@@ -24,6 +25,8 @@ class apa_domicile_participation(DatedVariable):
         # Les départements doivent appliquer la nouvelle formule
         # entre le 1er mars 2016 et le 28 février 2017
         base_ressources_apa = individu.famille('base_ressources_apa', period)
+        dependance_plan_aide_domicile = individu('dependance_plan_aide_domicile', period)
+        gir = individu('gir', period)
         legislation = legislation(period.start).autonomie
         seuil_inf = legislation.apa_domicile.seuil_de_revenu_en_part_du_mtp.seuil_inferieur
         seuil_sup = legislation.apa_domicile.seuil_de_revenu_en_part_du_mtp.seuil_superieur
@@ -35,7 +38,8 @@ class apa_domicile_participation(DatedVariable):
             gir = gir,
             dependance_plan_aide_domicile = dependance_plan_aide_domicile
             )
-
+        print 'apa_domicile participation plan d aide', dependance_plan_aide_domicile
+        print 'apa_domicile participation plan d aide accept', dependance_plan_aide_domicile_accepte
         condition_ressources_domicile = [
             base_ressources_apa <= (seuil_inf * majoration_tierce_personne),
             (seuil_inf * majoration_tierce_personne) < base_ressources_apa <= (seuil_sup * majoration_tierce_personne),
@@ -54,6 +58,7 @@ class apa_domicile_participation(DatedVariable):
         # Les départements doivent appliquer la nouvelle formule
         # entre le 1er mars 2016 et le 28 février 2017
         base_ressources_apa = individu.famille('base_ressources_apa', period)
+        dependance_plan_aide_domicile = individu('dependance_plan_aide_domicile', period)
         dependance_plan_aide_domicile_accepte = compute_dependance_plan_aide_domicile_accepte(
             legislation_autonomie = legislation,
             gir = gir,
@@ -118,7 +123,7 @@ class apa_domicile(Variable):
         apa_age_min = legislation.age_ouverture_des_droits.age_d_ouverture_des_droits
         dependance_plan_aide_domicile = individu('dependance_plan_aide_domicile', period)
         gir = individu('gir', period)
-        dependance_plan_aide_domicile = compute_dependance_plan_aide_domicile_accepte(
+        dependance_plan_aide_domicile_accepte = compute_dependance_plan_aide_domicile_accepte(
             legislation_autonomie = legislation,
             gir = gir,
             dependance_plan_aide_domicile = dependance_plan_aide_domicile
@@ -126,7 +131,10 @@ class apa_domicile(Variable):
 
         apa_domicile_participation = individu('apa_domicile_participation', period)
 
-        apa = dependance_plan_aide_domicile - apa_domicile_participation
+        print 'apa_domicile plan d aide', dependance_plan_aide_domicile
+        print 'apa_domicile plan d aide accept', dependance_plan_aide_domicile_accepte
+
+        apa = dependance_plan_aide_domicile_accepte - apa_domicile_participation
         return period, apa * (apa >= seuil_non_versement) * (age >= apa_age_min)
 
 
@@ -260,6 +268,8 @@ class apa_urgence_institution(Variable):
 
 def compute_dependance_plan_aide_domicile_accepte(legislation_autonomie = None, gir = None,
             dependance_plan_aide_domicile = None):
+        assert isinstance(gir, np.ndarray)
+        assert isinstance(dependance_plan_aide_domicile, np.ndarray)
         plafond_gir1 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_1
         plafond_gir2 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_2
         plafond_gir3 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_3
