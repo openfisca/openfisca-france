@@ -165,7 +165,7 @@
     base_ressources_apa: 3500
     dependance_plan_aide_domicile: 1200
   output_variables:
-    apa_domicile: 120
+    dependance_plan_aide_domicile_accepte: 1200
     apa_etablissement: 0
 
 - name: "APA domicile célibataire ressources supérieures à seuil 2 et GIR 3 - test participation"

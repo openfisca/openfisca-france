@@ -9,23 +9,9 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 # TODO: fill the parameters file. May be should use the majoration pour tierce personne as parameter
-apa_age_min = 60
-apa_seuil_dom_1 = .67
-apa_seuil_dom_2 = 2.67
-apa_seuil_etab_1 = 2.21
-apa_seuil_etab_2 = 3.40
-majoration_tierce_personne = 1103.08
-montant_mensuel_maximum_by_gir = {
-    1: 1312.67,
-    2: 1125.14,
-    3: 843.86,
-    4: 562.57,
-    }
+
 seuil_non_versement = 28.83
-taux_max_participation = .9
 taux_reste_a_vivre = 0.10
-seuil_fraction_plan_aide_1 = 0.317 * majoration_tierce_personne
-seuil_fraction_plan_aide_2 = 0.498 * majoration_tierce_personne
 
 
 class apa_domicile_participation(DatedVariable):
@@ -127,11 +113,12 @@ class apa_domicile(Variable):
 
     def function(individu, period, legislation):
         period = period.start.offset('first-of', 'month').period('month')
+        legislation = legislation(period.start).autonomie
         age = individu('age', period)
+        apa_age_min = legislation.age_ouverture_des_droits.age_d_ouverture_des_droits
         dependance_plan_aide_domicile = individu('dependance_plan_aide_domicile', period)
         gir = individu('gir', period)
-        legislation = legislation(period.start).autonomie
-        dependance_plan_aide_domicile= compute_dependance_plan_aide_domicile_accepte(
+        dependance_plan_aide_domicile = compute_dependance_plan_aide_domicile_accepte(
             legislation_autonomie = legislation,
             gir = gir,
             dependance_plan_aide_domicile = dependance_plan_aide_domicile
@@ -150,24 +137,29 @@ class apa_etablissement(Variable):
 
     def function(individu, period, legislation):
         period = period.start.offset('first-of', 'month').period('month')
+        legislation = legislation(period.start).autonomie
         age = individu('age', period)
+        apa_age_min = legislation.age_ouverture_des_droits.age_d_ouverture_des_droits
         gir = individu('gir', period)
         base_ressources_apa = individu.famille('base_ressources_apa', period)
         dependance_tarif_etablissement_gir_5_6 = individu('dependance_tarif_etablissement_gir_5_6', period)
         dependance_tarif_etablissement_gir_dependant = individu('dependance_tarif_etablissement_gir_dependant', period)
+        seuil_inf_inst = legislation.apa_institution.seuil_de_revenu_en_part_du_mtp.seuil_inferieur
+        seuil_sup_inst = legislation.apa_institution.seuil_de_revenu_en_part_du_mtp.seuil_superieur
+        majoration_tierce_personne = legislation.mtp.mtp
 
         conditions_ressources = [
-            base_ressources_apa <= 2.21 * majoration_tierce_personne,
-            2.21 * majoration_tierce_personne < base_ressources_apa <= 3.40 * majoration_tierce_personne,
-            base_ressources_apa > 3.40 * majoration_tierce_personne
+            base_ressources_apa <= seuil_inf_inst * majoration_tierce_personne,
+            seuil_inf_inst * majoration_tierce_personne < base_ressources_apa <= seuil_sup_inst * majoration_tierce_personne,
+            base_ressources_apa > seuil_sup_inst * majoration_tierce_personne
             ]
         participations = [
             dependance_tarif_etablissement_gir_5_6,
             (
                 dependance_tarif_etablissement_gir_5_6 +
                 (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6) * (
-                    (base_ressources_apa - 2.21 * majoration_tierce_personne) /
-                    (1.19 * majoration_tierce_personne) * 0.80
+                    (base_ressources_apa - seuil_inf_inst * majoration_tierce_personne) /
+                    ((seuil_sup_inst - seuil_inf_inst) * majoration_tierce_personne) * 0.80
                     )
                 ),
             dependance_tarif_etablissement_gir_5_6 + (
@@ -245,7 +237,8 @@ class apa_urgence_domicile(Variable):
         legislation = legislation(period.start).autonomie
         majoration_tierce_personne = autonomie.mtp.mtp
         plafond_gir1 = legislation.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_1
-        apa_urgence_domicile = 0.5 * plafond_gir1 * majoration_tierce_personne
+        part_urgence_domicile = legislation.apa_domicile.apa_d_urgence.part_du_plafond_de_l_apa_a_domicile
+        apa_urgence_domicile = part_urgence_domicile * plafond_gir1 * majoration_tierce_personne
 
         return period, apa_urgence_domicile
 
@@ -258,7 +251,8 @@ class apa_urgence_institution(Variable):
     def function(individu, period, legislation):
         period = period.start.offset('first-of', 'month').period('month')
         dependance_tarif_etablissement_gir_1_2 = individu('dependance_tarif_etablissement_gir_5_6', period)
-        apa_urgence_institution = 0.5 * dependance_tarif_etablissement_gir_1_2
+        part_urgence_institution = legislation.apa_institution.apa_d_urgence.part_du_tarif_dependance_gir_1_2_de_l_etablissement_d_accueil
+        apa_urgence_institution = part_urgence_institution * dependance_tarif_etablissement_gir_1_2
         return period, apa_urgence_institution
 
 
@@ -270,6 +264,7 @@ def compute_dependance_plan_aide_domicile_accepte(legislation_autonomie = None, 
         plafond_gir2 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_2
         plafond_gir3 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_3
         plafond_gir4 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_4
+        majoration_tierce_personne = legislation_autonomie.mtp.mtp
 
         condition_plafond_par_gir = [
             gir == 1,
