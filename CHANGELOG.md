@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.6
+
+* Deprecate `entreprise_assujettie_tva`
+
 ## 6.0.5
 
 * Add effectif_entreprise exclusion condition to Contribution Supplémentaire Apprentissage
