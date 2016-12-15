@@ -331,15 +331,19 @@ class cmu_c(Variable):
         residence_mayotte = famille.demandeur.menage('residence_mayotte', this_month)
         cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
 
-        rsa_socle = famille('rsa_socle', this_month)
-        rsa_socle_majore = famille('rsa_socle_majore', this_month)
-        rsa_forfait_logement = famille('rsa_forfait_logement', this_month)
-        rsa_base_ressources = famille('rsa_base_ressources', this_month)
-        socle = max_(rsa_socle, rsa_socle_majore)
-        rsa = famille('rsa', this_month)
+        if period.start.date >= date(2016, 01, 01):
+            eligibilite_rsa = famille('rsa', this_month) > 0
+        else:
+            # Avant 2016, seules les bénéficiaires du RSA socle avait le droit d'office à la CMU.
+            rsa_socle = famille('rsa_socle', this_month)
+            rsa_socle_majore = famille('rsa_socle_majore', this_month)
+            rsa_forfait_logement = famille('rsa_forfait_logement', this_month)
+            rsa_base_ressources = famille('rsa_base_ressources', this_month)
+            socle = max_(rsa_socle, rsa_socle_majore)
+            rsa = famille('rsa', this_month)
+            eligibilite_rsa = (rsa > 0) * (rsa_base_ressources < socle - rsa_forfait_logement)
 
         eligibilite_basique = cmu_base_ressources <= cmu_c_plafond
-        eligibilite_rsa = (rsa > 0) * (rsa_base_ressources < socle - rsa_forfait_logement)
 
 
         return period, cmu_acs_eligibilite * not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
