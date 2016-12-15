@@ -267,3 +267,53 @@
   output_variables:
     rsa: 535.17
 
+- name: "Effets figés introduits en 2017 (exemple tiré du suivi législatif)"
+  period: 2017-01
+  relative_error_margin: 0.01
+  individus:
+    - id: 1
+      salaire_net:
+        2017-01: 1000
+        2016-12: 1000
+        2016-11: 500
+        2016-10: 0
+    - id: 2
+    - id: 3
+  familles:
+    parents: [1]
+    enfants: [2, 3]
+    rsa_isolement_recent: True
+    rsa_nb_enfants:
+      2016-12: 2
+      2016-11: 2
+      2016-10: 1
+    paje_prepare:
+      2017-01: 130
+      2016-12: 130
+      2016-11: 0
+      2016-10: 0
+    af:
+      2017-01: 0
+      2016-12: 0
+      2016-11: 0
+      2016-10: 0
+    asf:
+      2017-01: 0
+      2016-12: 0
+      2016-11: 0
+      2016-10: 0
+    aide_logement:
+      2017-01: 250
+      2016-12: 250
+      2016-11: 250
+      2016-10: 250
+  output_variables:
+    rsa: 380
+    rsa_socle_majore:
+      2016-12: 1145
+      2016-11: 1145
+      2016-10: 916
+    rsa_fictif:
+      2016-12: 360
+      2016-11: 490
+      2016-10: 288
