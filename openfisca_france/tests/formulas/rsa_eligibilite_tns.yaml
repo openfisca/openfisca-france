@@ -167,8 +167,7 @@
   period: "month:2015-04"
   input_variables:
     rsa_non_calculable: True
-    rsa_majore: 0
-    rsa_non_majore: 500
+    rsa_montant: 500
   output_variables:
     rsa: 0
 

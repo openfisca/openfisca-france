@@ -456,6 +456,33 @@ class revenus_fonciers_minima_sociaux(Variable):
         return period, (f4ba + f4be) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
 
 
+class rsa_montant(Variable):
+    column = FloatCol
+    label = u"Revenu de solidarité active, avant prise en compte de la non-calculabilité."
+    entity = Famille
+    start_date = date(2009, 06, 1)
+
+    def function(famille, period, legislation):
+        period = period.this_month
+
+        rsa_socle_non_majore = famille('rsa_socle', period)
+        rsa_socle_majore = famille('rsa_socle_majore', period)
+        rsa_socle = max_(rsa_socle_non_majore, rsa_socle_majore)
+
+        rsa_revenu_activite = famille('rsa_revenu_activite', period)
+        rsa_forfait_logement = famille('rsa_forfait_logement', period)
+        rsa_base_ressources = famille('rsa_base_ressources', period)
+
+        P = legislation(period).prestations.minima_sociaux.rsa
+        seuil_non_versement = P.rsa_nv
+
+        montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite
+        montant = max_(montant, 0)
+        montant = montant * (montant >= seuil_non_versement)
+
+        return period, montant
+
+
 class rsa(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
@@ -465,13 +492,10 @@ class rsa(Variable):
 
     def function(famille, period):
         period = period.this_month
-        rsa_majore = famille('rsa_majore', period)
-        rsa_non_majore = famille('rsa_non_majore', period)
-        rsa_non_calculable = famille('rsa_non_calculable', period)
+        montant = famille('rsa_montant', period)
+        non_calculable = famille('rsa_non_calculable', period)
 
-        rsa = not_(rsa_non_calculable) * max_(rsa_majore, rsa_non_majore)
-
-        return period, rsa
+        return period, not_(non_calculable) * montant
 
 
 class rsa_base_ressources_patrimoine_individu(Variable):
@@ -686,25 +710,6 @@ class rsa_isolement_recent(Variable):
     label = u"Situation d'isolement depuis moins de 18 mois"
 
 
-class rsa_majore(Variable):
-    column = FloatCol
-    label = u"Revenu de solidarité active - majoré"
-    entity = Famille
-
-    def function(famille, period, legislation):
-        period = period.this_month
-        rsa_socle_majore = famille('rsa_socle_majore', period)
-        rsa_revenu_activite = famille('rsa_revenu_activite', period)
-        rsa_forfait_logement = famille('rsa_forfait_logement', period)
-        rsa_base_ressources = famille('rsa_base_ressources', period)
-        P = legislation(period).prestations.minima_sociaux.rsa
-
-        base_normalise = max_(
-            rsa_socle_majore - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite, 0)
-
-        return period, base_normalise * (base_normalise >= P.rsa_nv)
-
-
 class rsa_majore_eligibilite(Variable):
     column = BoolCol
     entity = Famille
@@ -749,10 +754,7 @@ class rsa_non_calculable(Variable):
         # les autres revenus sont trop importants), alors a fortiori
         # la famille ne sera pas éligible au RSA en tenant compte de
         # ces ressources. Il n'y a donc pas non calculabilité.
-        eligible_rsa = (
-            famille('rsa_majore', period) +
-            famille('rsa_non_majore', period)
-            ) > 0
+        eligible_rsa = famille('rsa_montant', period) > 0
 
 
         non_calculable_tns_parent1 = famille.demandeur('rsa_non_calculable_tns_individu', period)
@@ -787,23 +789,6 @@ class rsa_non_calculable_tns_individu(Variable):
             (tns_autres_revenus > 0)
             )
 
-
-class rsa_non_majore(Variable):
-    column = FloatCol
-    label = u"Revenu de solidarité active - non majoré"
-    entity = Famille
-
-    def function(famille, period, legislation):
-        period = period.this_month
-        rsa_socle = famille('rsa_socle', period)
-        rsa_revenu_activite = famille('rsa_revenu_activite', period)
-        rsa_forfait_logement = famille('rsa_forfait_logement', period)
-        rsa_base_ressources = famille('rsa_base_ressources', period)
-        P = legislation(period).prestations.minima_sociaux.rsa
-
-        base_normalise = max_(rsa_socle - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite, 0)
-
-        return period, base_normalise * (base_normalise >= P.rsa_nv)
 
 
 class rsa_socle(DatedVariable):
@@ -859,7 +844,7 @@ class rsa_socle(DatedVariable):
 class rsa_socle_majore(Variable):
     column = FloatCol
     entity = Famille
-    label = u"Majoration pour parent isolé du Revenu de solidarité active socle"
+    label = u"Montant majoré pour parent isolé du Revenu de solidarité active socle"
     start_date = date(2009, 6, 1)
 
     def function(famille, period, legislation):

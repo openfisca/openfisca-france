@@ -20,10 +20,8 @@
       "2014-01": 59.92
     rsa_socle:
       "2014-01": 499.31
-    rsa_majore:
-      "2014-01": 0
-    rsa_non_majore:
-      "2014-01": 439.39
+    rsa_majore_eligibilite:
+      "2014-01": False
     rsa:
       "2014-01": 439.39
 
@@ -52,10 +50,8 @@
       "2014-01": 59.92
     rsa_socle:
       "2014-01": 499.31
-    rsa_majore:
-      "2014-01": 0
-    rsa_non_majore:
-      "2014-01": 281.06
+    rsa_majore_eligibilite:
+      "2014-01": False
     rsa:
       "2014-01": 281.06
 
@@ -84,10 +80,8 @@
       "2014-01": 59.92
     rsa_socle:
       "2014-01": 499.31
-    rsa_majore:
-      "2014-01": 0
-    rsa_non_majore:
-      "2014-01": 122.73
+    rsa_majore_eligibilite:
+      "2014-01": False
     rsa:
       "2014-01": 122.73
 
@@ -116,10 +110,8 @@
       "2014-01": 59.92
     rsa_socle:
       "2014-01": 499.31
-    rsa_majore:
-      "2014-01": 0
-    rsa_non_majore:
-      "2014-01": 59.39
+    rsa_majore_eligibilite:
+      "2014-01": False
     rsa:
       "2014-01": 59.39
 
@@ -148,10 +140,8 @@
       "2014-01": 59.92
     rsa_socle:
       "2014-01": 499.31
-    rsa_majore:
-      "2014-01": 0
-    rsa_non_majore:
-      "2014-01": 27.73
+    rsa_majore_eligibilite:
+      "2014-01": False
     rsa:
       "2014-01": 27.73
 
@@ -180,10 +170,8 @@
       "2014-01": 59.92
     rsa_socle:
       "2014-01": 499.31
-    rsa_majore:
-      "2014-01": 0
-    rsa_non_majore:
-      "2014-01": 0
+    rsa_majore_eligibilite:
+      "2014-01": False
     rsa:
       "2014-01": 0
 
@@ -212,10 +200,8 @@
       "2014-01": 59.92
     rsa_socle:
       "2014-01": 499.31
-    rsa_majore:
-      "2014-01": 0
-    rsa_non_majore:
-      "2014-01": 0
+    rsa_majore_eligibilite:
+      "2014-01": False
     rsa:
       "2014-01": 0
 
@@ -244,10 +230,8 @@
       "2014-01": 59.92
     rsa_socle:
       "2014-01": 499.31
-    rsa_majore:
-      "2014-01": 0
-    rsa_non_majore:
-      "2014-01": 0
+    rsa_majore_eligibilite:
+      "2014-01": False
     rsa:
       "2014-01": 0
 
