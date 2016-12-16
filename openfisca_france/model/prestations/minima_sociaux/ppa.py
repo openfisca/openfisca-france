@@ -328,13 +328,7 @@ class ppa(DatedVariable):
         # éligibilité étudiants
 
         ppa_eligibilite_etudiants = famille('ppa_eligibilite_etudiants', period)
-        m_1 = period.last_month
-        m_2 = m_1.last_month
-        m_3 = m_2.last_month
-        ppa = sum(
-            famille('ppa_fictive', period2, extra_params = [period])
-            for period2 in [m_1, m_2, m_3]
-            ) / 3
+        ppa = famille('ppa_fictive', period.last_3_months, extra_params = [period], options = [ADD]) / 3
         ppa = ppa * ppa_eligibilite_etudiants * (ppa >= seuil_non_versement)
 
         return period, ppa
