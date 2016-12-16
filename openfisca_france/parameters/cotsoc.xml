@@ -74,28 +74,11 @@
       <VALUE deb="2016-01-01" fuzzy="true" valeur=".001" />
       <VALUE deb="2013-01-01" fin="2015-12-31" valeur=".001" /> # TODO check and check for coherence with previous taux
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur=".001" /> # TODO check and check for coherence with previous taux
-      </CODE>
+    </CODE>
+    <CODE code="multiplicateur_alsace_moselle" description="Multiplicateur CSA Alsace-Moselle" format="percent">
+      <VALUE deb="2010-01-01" fuzzy="true" valeur=".52" />
+    </CODE>
   </NODE>
-  <NODE code="contribution_supplementaire_apprentissage_alsace_moselle" description="Contribution supplémentaire d'apprentissage pour les salariés d'Alsace-Moselle"> # TODO: find a better place
-      <CODE code="entre_1_2_pc_alternants" description="Taux pour les entreprises comprenant 1%  à 2% d'atlernants" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur=".00104" />
-      </CODE>
-      <CODE code="entre_2_3_pc_alternants" description="Taux pour les entreprises comprenant 2%  à 3% d'atlernants" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur=".00052" />
-      </CODE>
-      <CODE code="entre_3_4_pc_alternants" description="Taux pour les entreprises comprenant 3%  à 4% d'atlernants" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur=".00026" />
-      </CODE>
-      <CODE code="entre_4_5_pc_alternants" description="Taux pour les entreprises comprenant 4%  à 5% d'atlernants" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur=".00026" />
-      </CODE>
-      <CODE code="moins_2000_moins_1pc_alternants" description="Taux pour les entreprises de moins de 2000 salariés et avec moins de 1% d'atlernants" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur=".00208" />
-      </CODE>
-      <CODE code="plus_2000_moins_1pc_alternants" description="Taux pour les entreprises de plus de 2000 salariés et avec moins de 1% d'atlernants" format="percent">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur=".00312" />
-      </CODE>
-    </NODE>
 
   <NODE code="gen" description="Paramètres généraux" origin="openfisca">
     <CODE code="nb_heure_travail_mensuel" description="Nombre d'heures travaillées forfaitaires" format="float" origin="openfisca">
