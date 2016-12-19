@@ -416,12 +416,11 @@ class crds(Variable):
         crds_chomage = individu('crds_chomage', period, options = [ADD])
         crds_individu = crds_salaire + crds_retraite + crds_chomage
 
-
         # CRDS sur revenus de la famille, projetés seulement sur la première personne
         crds_pfam = individu.famille('crds_pfam', period)
         crds_logement = individu.famille('crds_logement', period, options = [ADD])
         crds_mini = individu.famille('crds_mini', period, options = [ADD])
-        crds_famille =  crds_pfam + crds_logement + crds_mini
+        crds_famille = crds_pfam + crds_logement + crds_mini
         crds_famille_projetes = crds_famille * individu.has_role(Famille.DEMANDEUR)
 
         # CRDS sur revenus du foyer fiscal, projetés seulement sur la première personne
