@@ -346,4 +346,4 @@ class minimum_vieillesse(Variable):
     url = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
 
     def function(famille, period):
-        return period, famille('asi', period) + famille('aspa', period)
+        return period, famille('asi', period, options = [ADD]) + famille('aspa', period, options = [ADD])
