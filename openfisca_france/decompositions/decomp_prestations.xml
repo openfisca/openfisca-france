@@ -1,5 +1,5 @@
-<NODE code="psoc" color="255,102,63" desc="Prestations sociales" shortname="Prest. soc." typevar="2">
-  <NODE code="pfam" color="83,170,49" desc="Prestations familiales" shortname="Prest. fam.">
+<NODE code="prestations_sociales" color="255,102,63" desc="Prestations sociales" shortname="Prest. soc." typevar="2">
+  <NODE code="prestations_familiales" color="83,170,49" desc="Prestations familiales" shortname="Prest. fam.">
     <NODE code="af" color="181,213,154" desc="Allocations familiales" shortname="Alloc. fam." />
     <NODE code="cf" color="125,185,86" desc="Complément familial" shortname="Compl. fam." />
     <NODE code="ars" color="91,172,38" desc="Allocation de rentrée scolaire" shortname="ARS" />
@@ -14,7 +14,7 @@
     <NODE code="asf" color="77,144,34" desc="Allocation de soutien familial" shortname="ASF" />
     <NODE code="crds_pfam" color="229,48,56" desc="CRDS (prestations familiales)" shortname="CRDS fam." />
   </NODE>
-  <NODE code="mini" color="240,138,76" desc="Minima sociaux" shortname="Min. sociaux">
+  <NODE code="minima_sociaux" color="240,138,76" desc="Minima sociaux" shortname="Min. sociaux">
     <NODE code="aspa" color="249,193,148" desc="Minimum vieillesse" shortname="Min. viellesse" />
     <NODE code="aah" color="244,160,80" desc="Allocation adulte handicapé" shortname="AAH" />
     <NODE code="caah" color="244,160,80" desc="Complément de l'allocation adulte handicapé" shortname="CAAH" />

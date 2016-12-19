@@ -1,5 +1,23 @@
 # Changelog
 
+## 6.1.0
+
+* Rename `mini` to `minima_sociaux`
+* Rename `nivvie` to `niveau_de_vie`
+* Rename `nivvie_net` to `niveau_de_vie_net`
+* Rename `nivvie_ini` to `niveau_de_vie_initial`
+* Rename `pfam` to `prestations_familiales`
+* Rename `psoc` to `prestations_sociales`
+* Rename `pen` to `pensions`
+* Rename `rev_cap` to `reveunus_du_capital`
+* Rename `rev_trav` to `revenus_du_travail`
+* Rename `revdisp` to `revenu_disponible`
+* Rename `typ_men` to `type_menage`
+* Cleaning:
+   * remove superfluous `default = 0` in `FloatCol` and `IntCol`
+   * remove superfluous comments
+   * migrate some formulas
+
 ## 6.0.7
 
 * Remove wrong max numbers of enfants in entities
@@ -358,7 +376,7 @@ It is included in the bases of the following variables.
 
 * Add tests yaml for cotisations sociales
 * Introduction of `invalidite`
-* Depreciation of `af_enfant_a_charge`, `asf_enfant`, `isol`, `pfam_ressources_i`, `rmi_nbp`, `sal_pen_net`.
+* Depreciation of `af_enfant_a_charge`, `asf_enfant`, `isol`, `prestations_familiales_ressources_i`, `rmi_nbp`, `sal_pen_net`.
 * Massive renaming:
 	* `abat_sal_pen` -> `abattement_salaires_pensions`
 	* `af_forf_complement_degressif` -> `af_allocation_forfaitaire_complement_degressif`
@@ -391,7 +409,7 @@ It is included in the bases of the following variables.
 	* `nb_enfant_rsa` -> `rsa_nb_enfants`
 	* `nb_par` -> `nb_parents`
 	* `pen_net` -> `revenu_assimile_pension_apres_abattements`
-	* `pfam_enfant_a_charge` -> `prestations_familiales_enfant_a_charge`
+	* `prestations_familiales_enfant_a_charge` -> `prestations_familiales_enfant_a_charge`
 	* `ppa_ressources_hors_activite_i` -> `ppa_ressources_hors_activite_individu`
 	* `ppa_revenu_activite_i` -> `ppa_revenu_activite_individu`
 	* `ppe_elig_i` -> `ppe_elig_individu`

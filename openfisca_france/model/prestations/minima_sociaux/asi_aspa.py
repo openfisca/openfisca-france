@@ -176,7 +176,7 @@ class asi_aspa_condition_nationalite(Variable):
 
     def function(self, simulation, period):
         ressortissant_eee = simulation.calculate('ressortissant_eee', period)
-        duree_possession_titre_sejour= simulation.calculate('duree_possession_titre_sejour', period)
+        duree_possession_titre_sejour = simulation.calculate('duree_possession_titre_sejour', period)
         duree_min_titre_sejour = simulation.legislation_at(period.start).prestations.minima_sociaux.aspa.duree_min_titre_sejour
 
         return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
@@ -336,3 +336,14 @@ class aspa(Variable):
         # aspa[CHEF] = aspa_eligibilite[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
         # aspa[PART] = aspa_eligibilite[PART]*montant_servi_aspa*(elig1 + elig2/2)
         return period, elig * montant_servi_aspa
+
+
+class minimum_vieillesse(Variable):
+    calculate_output = calculate_output_add
+    column = FloatCol
+    entity = Famille
+    label = u"Allocation de solidarité aux personnes agées"
+    url = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
+
+    def function(famille, period):
+        return period, famille('asi', period, options = [ADD]) + famille('aspa', period, options = [ADD])
