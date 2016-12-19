@@ -3,9 +3,9 @@
 ## 6.1.0
 
 * Rename `mini` to `minima_sociaux`
-* rename `nivvie` to `niveau_de_vie`
-* rename `nivvie_net` to `niveau_de_vie_net`
-* rename `nivvie_ini` to `niveau_de_vie_initial`
+* Rename `nivvie` to `niveau_de_vie`
+* Rename `nivvie_net` to `niveau_de_vie_net`
+* Rename `nivvie_ini` to `niveau_de_vie_initial`
 * Rename `pfam` to `prestations_familiales`
 * Rename `psoc` to `prestations_sociales`
 * Rename `pen` to `pensions`
