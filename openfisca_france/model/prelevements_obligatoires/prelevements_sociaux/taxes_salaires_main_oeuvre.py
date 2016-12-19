@@ -88,19 +88,21 @@ class contribution_supplementaire_apprentissage(DatedVariable):
         salarie_regime_alsace_moselle = simulation.calculate('salarie_regime_alsace_moselle', period)
 
         cotsoc_params = simulation.legislation_at(period.start).cotsoc
-        csa_rate = cotsoc_params.contribution_supplementaire_apprentissage
-
-        multiplier = (salarie_regime_alsace_moselle * csa_rate.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
+        csa_params = cotsoc_params.contribution_supplementaire_apprentissage
 
         if period.start.year > 2012:
+            # Exception Alsace-Moselle : CGI Article 1609 quinvicies IV
+            # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=36F88516571C1CA136D91A7A84A2D65B.tpdila09v_1?idSectionTA=LEGISCTA000029038088&cidTexte=LEGITEXT000006069577&dateTexte=20161219
+            multiplier = (salarie_regime_alsace_moselle * csa_params.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
+
             taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .05)
             taux_conditionnel = (
-                (effectif_entreprise < 2000) * (ratio_alternants < .01) * csa_rate.moins_2000_moins_1pc_alternants +
-                (effectif_entreprise >= 2000) * (ratio_alternants < .01) * csa_rate.plus_2000_moins_1pc_alternants +
-                (.01 <= ratio_alternants) * (ratio_alternants < .02) * csa_rate.entre_1_2_pc_alternants +
-                (.02 <= ratio_alternants) * (ratio_alternants < .03) * csa_rate.entre_2_3_pc_alternants +
-                (.03 <= ratio_alternants) * (ratio_alternants < .04) * csa_rate.entre_3_4_pc_alternants +
-                (.04 <= ratio_alternants) * (ratio_alternants < .05) * csa_rate.entre_4_5_pc_alternants
+                (effectif_entreprise < 2000) * (ratio_alternants < .01) * csa_params.moins_2000_moins_1pc_alternants +
+                (effectif_entreprise >= 2000) * (ratio_alternants < .01) * csa_params.plus_2000_moins_1pc_alternants +
+                (.01 <= ratio_alternants) * (ratio_alternants < .02) * csa_params.entre_1_2_pc_alternants +
+                (.02 <= ratio_alternants) * (ratio_alternants < .03) * csa_params.entre_2_3_pc_alternants +
+                (.03 <= ratio_alternants) * (ratio_alternants < .04) * csa_params.entre_3_4_pc_alternants +
+                (.04 <= ratio_alternants) * (ratio_alternants < .05) * csa_params.entre_4_5_pc_alternants
                 )
             taux_contribution = taxe_due * taux_conditionnel * multiplier
         else:
