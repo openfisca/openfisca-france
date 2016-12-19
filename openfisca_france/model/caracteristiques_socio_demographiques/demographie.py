@@ -167,7 +167,7 @@ class invalidite(Variable):
   label=u"Individu titulaire d'une carte d'invalidité"
 
 class nb_parents(Variable):
-    column = PeriodSizeIndependentIntCol(default = 0)
+    column = PeriodSizeIndependentIntCol
     entity = Famille
     label = u"Nombre d'adultes (parents) dans la famille"
 

@@ -492,7 +492,7 @@ class paje_colca(Variable):
 
 
 class ape_avant_cumul(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = Famille
     label = u"Allocation parentale d'éducation, avant prise en compte de la non-cumulabilité avec le CF et l'APJE"
     stop_date = date(2004, 1, 1)
@@ -598,7 +598,7 @@ class apje_avant_cumul(Variable):
 
 
 class ape(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = Famille
     label = u"Allocation parentale d'éducation"
     stop_date = date(2004, 1, 1)
@@ -618,7 +618,7 @@ class ape(Variable):
 
 
 class apje(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = Famille
     label = u"Allocation pour le jeune enfant"
     stop_date = date(2004, 1, 1)
