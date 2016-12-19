@@ -336,3 +336,14 @@ class aspa(Variable):
         # aspa[CHEF] = aspa_eligibilite[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
         # aspa[PART] = aspa_eligibilite[PART]*montant_servi_aspa*(elig1 + elig2/2)
         return period, elig * montant_servi_aspa
+
+
+class minimum_vieillesse(Variable):
+    calculate_output = calculate_output_add
+    column = FloatCol
+    entity = Famille
+    label = u"Allocation de solidarité aux personnes agées"
+    url = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
+
+    def function(famille, peiord):
+        return period, famille('asi', period) + famille('aspa', period)

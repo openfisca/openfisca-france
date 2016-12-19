@@ -346,21 +346,20 @@ class minima_sociaux(Variable):
 
     def function(self, simulation, period):
         period = period.this_year
-        aspa = simulation.calculate_add('aspa', period)
         aah_holder = simulation.compute_add('aah', period)
         caah_holder = simulation.compute_add('caah', period)
-        asi = simulation.calculate_add('asi', period)
-        rsa = simulation.calculate_add('rsa', period)
         aefa = simulation.calculate('aefa', period)
         api = simulation.calculate('api', period)
         ass = simulation.calculate_add('ass', period)
+        minimum_vieillesse = simulation.calculate_add('minimum_vieillesse', period)
         ppa = simulation.calculate_add('ppa', period)
         psa = simulation.calculate_add('psa', period)
+        rsa = simulation.calculate_add('rsa', period)
 
         aah = self.sum_by_entity(aah_holder)
         caah = self.sum_by_entity(caah_holder)
 
-        return period, aspa + aah + caah + asi + rsa + aefa + api + ass + psa + ppa
+        return period, aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa
 
 
 class aides_logement(Variable):
