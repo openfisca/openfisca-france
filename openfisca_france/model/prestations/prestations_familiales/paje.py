@@ -88,8 +88,7 @@ class paje_base(Variable):
         parent_isole = not_(famille('en_couple', period))
         nombre_enfants = famille('af_nbenf', period)
         pfam = legislation(period).prestations.prestations_familiales
-
-        date_gel_paje = Instant((2013, 04, 01)) # Le montant de la PAJE est gelé depuis avril 2013.
+        date_gel_paje = Instant((2013, 04, 01))   # Le montant de la PAJE est gelé depuis avril 2013.
         bmaf = pfam.af.bmaf if period.start < date_gel_paje else legislation(date_gel_paje).prestations.prestations_familiales.af.bmaf
         montant_taux_plein = bmaf * pfam.paje.base.taux_allocation_base
 
