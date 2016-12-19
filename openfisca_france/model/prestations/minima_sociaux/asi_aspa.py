@@ -342,7 +342,7 @@ class minimum_vieillesse(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity = Famille
-    label = u"Allocation de solidarité aux personnes agées"
+    label = u"Minimum vieillesse (ASI + ASPA)"
     url = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
 
     def function(famille, period):
