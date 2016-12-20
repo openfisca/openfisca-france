@@ -338,6 +338,16 @@ class prestations_familiales(Variable):
         return period, af + cf + ars + aeeh + paje + asf + crds_pfam
 
 
+class minimum_vieillesse(Variable):
+    calculate_output = calculate_output_add
+    column = FloatCol
+    entity = Famille
+    label = u"Minimum vieillesse (ASI + ASPA)"
+
+    def function(famille, period):
+        return period, famille('asi', period, options = [ADD]) + famille('aspa', period, options = [ADD])
+
+
 class minima_sociaux(Variable):
     column = FloatCol
     entity = Famille
