@@ -297,12 +297,12 @@ class paje_clca(Variable):
         condition2 = (age_benjamin <= (P.paje.base.age_max_enfant - 1))
         condition = (af_nbenf >= 2) * condition2 + condition1
         paje_clca = (condition * P.af.bmaf) * (
-            (not_(paje)) * (
+            not_(paje) * (
                 inactif * P.paje.clca.sansab_tx_inactif +
                 partiel1 * P.paje.clca.sansab_tx_partiel1 +
                 partiel2 * P.paje.clca.sansab_tx_partiel2
                 ) +
-            (paje) * (
+            paje * (
                 inactif * P.paje.clca.avecab_tx_inactif +
                 partiel1 * P.paje.clca.avecab_tx_partiel1 +
                 partiel2 * P.paje.clca.avecab_tx_partiel2

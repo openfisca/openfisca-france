@@ -376,7 +376,7 @@ It is included in the bases of the following variables.
 
 * Add tests yaml for cotisations sociales
 * Introduction of `invalidite`
-* Depreciation of `af_enfant_a_charge`, `asf_enfant`, `isol`, `prestations_familiales_ressources_i`, `rmi_nbp`, `sal_pen_net`.
+* Depreciation of `af_enfant_a_charge`, `asf_enfant`, `isol`, `pfam_ressources_i`, `rmi_nbp`, `sal_pen_net`.
 * Massive renaming:
 	* `abat_sal_pen` -> `abattement_salaires_pensions`
 	* `af_forf_complement_degressif` -> `af_allocation_forfaitaire_complement_degressif`
@@ -409,7 +409,7 @@ It is included in the bases of the following variables.
 	* `nb_enfant_rsa` -> `rsa_nb_enfants`
 	* `nb_par` -> `nb_parents`
 	* `pen_net` -> `revenu_assimile_pension_apres_abattements`
-	* `prestations_familiales_enfant_a_charge` -> `prestations_familiales_enfant_a_charge`
+	* `pfam_enfant_a_charge` -> `prestations_familiales_enfant_a_charge`
 	* `ppa_ressources_hors_activite_i` -> `ppa_ressources_hors_activite_individu`
 	* `ppa_revenu_activite_i` -> `ppa_revenu_activite_individu`
 	* `ppe_elig_i` -> `ppe_elig_individu`
