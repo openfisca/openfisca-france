@@ -38,8 +38,7 @@ class apa_domicile_participation(DatedVariable):
             gir = gir,
             dependance_plan_aide_domicile = dependance_plan_aide_domicile
             )
-        print 'apa_domicile participation plan d aide', dependance_plan_aide_domicile
-        print 'apa_domicile participation plan d aide accept', dependance_plan_aide_domicile_accepte
+
         condition_ressources_domicile = [
             base_ressources_apa <= (seuil_inf * majoration_tierce_personne),
             (seuil_inf * majoration_tierce_personne) < base_ressources_apa <= (seuil_sup * majoration_tierce_personne),
@@ -130,9 +129,6 @@ class apa_domicile(Variable):
             )
 
         apa_domicile_participation = individu('apa_domicile_participation', period)
-
-        print 'apa_domicile plan d aide', dependance_plan_aide_domicile
-        print 'apa_domicile plan d aide accept', dependance_plan_aide_domicile_accepte
 
         apa = dependance_plan_aide_domicile_accepte - apa_domicile_participation
         return period, apa * (apa >= seuil_non_versement) * (age >= apa_age_min)
