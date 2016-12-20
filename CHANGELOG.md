@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.1.0
+## 7.0.0
 
 * Introduce minimum_vieillesse
 * Rename `mini` to `minima_sociaux`
