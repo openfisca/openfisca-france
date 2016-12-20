@@ -2,6 +2,7 @@
 
 ## 6.1.0
 
+* Introduce minimum_vieillesse
 * Rename `mini` to `minima_sociaux`
 * Rename `nivvie` to `niveau_de_vie`
 * Rename `nivvie_net` to `niveau_de_vie_net`
