@@ -40,12 +40,12 @@ class csg_deductible_chomage(Variable):
     label = u"CSG déductible sur les allocations chômage"
     url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
-        chomage_brut = simulation.calculate('chomage_brut', period)
-        csg_imposable_chomage = simulation.calculate('csg_imposable_chomage', period)
-        taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
-        legislation = simulation.legislation_at(period.start)
+        chomage_brut = individu('chomage_brut', period)
+        csg_imposable_chomage = individu('csg_imposable_chomage', period)
+        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        legislation = legislation(period.start)
         montant_csg = montant_csg_crds(
             base_avec_abattement = chomage_brut,
             indicatrice_taux_plein = (taux_csg_remplacement == 3),
@@ -239,18 +239,17 @@ class casa(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Contribution additionnelle de solidarité et d'autonomie"
+    start = date(2013, 4, 1)
     url = u"http://www.service-public.fr/actualites/002691.html"
 
-    @dated_function(date(2013, 4, 1))
-    def function_2013(self, simulation, period):
+    def function_2013(individu, period, legislation):
         period = period.this_month
-        retraite_brute = simulation.calculate('retraite_brute', period)
-        rfr_holder = simulation.compute('rfr', period.start.offset('first-of', 'year').offset(-2, 'year').period('year'))
-        taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
-        law = simulation.legislation_at(period.start)
+        retraite_brute = individu('retraite_brute', period = period)
+        rfr = individu.foyer_fiscal('rfr', period = period.n_2)
+        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        taux = legislation(period.start).prelevements_sociaux.add_ret
 
-        rfr = self.cast_from_entity_to_roles(rfr_holder)
-        casa = (taux_csg_remplacement == 3) * law.prelsoc.add_ret * retraite_brute * (rfr > 13900)
+        casa = (taux_csg_remplacement == 3) * taux * retraite_brute * (rfr > 13900)
 
         return period, - casa
 
