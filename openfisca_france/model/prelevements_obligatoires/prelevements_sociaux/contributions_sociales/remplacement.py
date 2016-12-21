@@ -239,7 +239,7 @@ class casa(Variable):
     column = FloatCol
     entity = Individu
     label = u"Contribution additionnelle de solidarité et d'autonomine"
-    start = date(2013, 4, 1)
+    start_date = date(2013, 4, 1)
     url = u"http://www.service-public.fr/actualites/002691.html"
 
     def function(individu, period, legislation):
