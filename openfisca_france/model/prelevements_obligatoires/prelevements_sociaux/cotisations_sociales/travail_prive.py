@@ -520,13 +520,27 @@ class mmid_salarie(Variable):
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
-        cotisation = apply_bareme(
+        salarie_regime_alsace_moselle = simulation.calculate('salarie_regime_alsace_moselle', period)
+
+        cotisation_regime_general = apply_bareme(
             simulation,
             period,
             cotisation_type = 'salarie',
             bareme_name = 'maladie',
             variable_name = self.__class__.__name__,
             )
+
+        cotisation_regime_alsace_moselle = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'salarie',
+            bareme_name = 'maladie_alsace_moselle',
+            variable_name = self.__class__.__name__,
+            )
+
+        cotisation = cotisation_regime_general + salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle
+
+
         return period, cotisation
 
 
