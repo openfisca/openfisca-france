@@ -288,15 +288,14 @@ class retraite_nette(Variable):
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
 
-    # def function(self, retraite_imposable, csg_imposable_retraite, crds_retraite, casa):
-    # return retraite_imposable + csg_imposable_retraite + crds_retraite + casa
     def function(self, simulation, period):
         period = period
         retraite_imposable = simulation.calculate('retraite_imposable', period)
+        casa = simulation.calculate_add('casa', period)
         csg_imposable_retraite = simulation.calculate_add('csg_imposable_retraite', period)
         crds_retraite = simulation.calculate_add('crds_retraite', period)
 
-        return period, retraite_imposable + csg_imposable_retraite + crds_retraite
+        return period, retraite_imposable + csg_imposable_retraite + crds_retraite + casa
 
 
 class crds_pfam(Variable):
