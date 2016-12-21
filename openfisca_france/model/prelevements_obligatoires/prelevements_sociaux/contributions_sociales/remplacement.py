@@ -235,14 +235,14 @@ class crds_retraite(Variable):
         return period, montant_crds
 
 
-class casa(DatedVariable):
+class casa(Variable):
     column = FloatCol
     entity = Individu
-    label = u"Contribution additionnelle de solidarité et d'autonomie"
+    label = u"Contribution additionnelle de solidarité et d'autonomine"
     start = date(2013, 4, 1)
     url = u"http://www.service-public.fr/actualites/002691.html"
 
-    def function_2013(individu, period, legislation):
+    def function(individu, period, legislation):
         period = period.this_month
         retraite_brute = individu('retraite_brute', period = period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
