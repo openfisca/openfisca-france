@@ -4,12 +4,13 @@ from __future__ import division
 
 import logging
 
-from numpy import maximum as max_, minimum as min_
+from numpy import maximum as max_
 
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
-from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds
-
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import (
+    montant_csg_crds
+    )
 log = logging.getLogger(__name__)
 
 
@@ -25,8 +26,6 @@ class taux_csg_remplacement(Variable):
         )
     entity = Individu
     label = u"Taux retenu sur la CSG des revenus de remplacment"
-
-
 
 
 ############################################################################
@@ -131,12 +130,13 @@ class chomage_imposable(Variable):
     base_function = requested_period_added_value
     column = FloatCol(
         val_type = "monetary",
-        cerfa_field = {QUIFOY['vous']: u"1AP",
-                   QUIFOY['conj']: u"1BP",
-                   QUIFOY['pac1']: u"1CP",
-                   QUIFOY['pac2']: u"1DP",
-                   QUIFOY['pac3']: u"1EP",
-                   })  # (f1ap, f1bp, f1cp, f1dp, f1ep)
+        cerfa_field = {
+            QUIFOY['vous']: u"1AP",
+            QUIFOY['conj']: u"1BP",
+            QUIFOY['pac1']: u"1CP",
+            QUIFOY['pac2']: u"1DP",
+            QUIFOY['pac3']: u"1EP",
+            })  # (f1ap, f1bp, f1cp, f1dp, f1ep)
     entity = Individu
     label = u"Allocations chômage imposables"
     set_input = set_input_divide_by_period
@@ -258,13 +258,14 @@ class casa(DatedVariable):
 class retraite_imposable(Variable):
     base_function = requested_period_added_value
     column = FloatCol(
-            val_type = "monetary",
-            cerfa_field = {QUIFOY['vous']: u"1AS",
-                           QUIFOY['conj']: u"1BS",
-                           QUIFOY['pac1']: u"1CS",
-                           QUIFOY['pac2']: u"1DS",
-                           QUIFOY['pac3']: u"1ES",
-                            })  # (f1as, f1bs, f1cs, f1ds, f1es)
+        val_type = "monetary",
+        cerfa_field = {
+            QUIFOY['vous']: u"1AS",
+            QUIFOY['conj']: u"1BS",
+            QUIFOY['pac1']: u"1CS",
+            QUIFOY['pac2']: u"1DS",
+            QUIFOY['pac3']: u"1ES",
+            })  # (f1as, f1bs, f1cs, f1ds, f1es)
     entity = Individu
     label = u"Retraites au sens strict imposables (rentes à titre onéreux exclues)"
     set_input = set_input_divide_by_period
