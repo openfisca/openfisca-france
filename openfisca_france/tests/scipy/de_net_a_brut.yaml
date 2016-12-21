@@ -53,5 +53,5 @@
     fnal: -2.299999952316284
     ags: -5.75
     vieillesse_deplafonnee_employeur: -42.54999923706055
-    contribution_supplementaire_apprentissage: -9.199999809265137
+    contribution_supplementaire_apprentissage: 0 # -9.199999809265137 pour effectif > 250
     chomage_salarie: -55.20000076293945

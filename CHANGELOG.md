@@ -1,5 +1,25 @@
 # Changelog
 
+## 6.1.0
+
+* Add the local regime Alsace-Moselle through the boolean variable `salarie_regime_alsace_moselle`.
+* Impacts the cotisations :
+	* Maladie (MMID)
+	* Taxe apprentissage
+	* Contribution supplémentaire à l'apprentissage.
+
+## 6.0.7
+
+* Remove wrong max numbers of enfants in entities
+
+## 6.0.6
+
+* Deprecate `entreprise_assujettie_tva`
+
+## 6.0.5
+
+* Add effectif_entreprise exclusion condition to Contribution Supplémentaire Apprentissage
+
 ## 6.0.4
 
 * Fix some regressions in parameters introcduced by 6.0.0

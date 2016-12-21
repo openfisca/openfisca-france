@@ -77,6 +77,7 @@ class contribution_supplementaire_apprentissage(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Contribution supplémentaire à l'apprentissage"
+    url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
 
     @dated_function(date(2010, 1, 1))
     def function(self, simulation, period):
@@ -84,19 +85,28 @@ class contribution_supplementaire_apprentissage(DatedVariable):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         ratio_alternants = simulation.calculate('ratio_alternants', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        taux = simulation.legislation_at(period.start).cotsoc.contribution_supplementaire_apprentissage
+        salarie_regime_alsace_moselle = simulation.calculate('salarie_regime_alsace_moselle', period)
+
+        cotsoc_params = simulation.legislation_at(period.start).cotsoc
+        csa_params = cotsoc_params.contribution_supplementaire_apprentissage
 
         if period.start.year > 2012:
-            taux_contribution = (
-                (effectif_entreprise < 2000) * (ratio_alternants < .01) * taux.moins_2000_moins_1pc_alternants +
-                (effectif_entreprise >= 2000) * (ratio_alternants < .01) * taux.plus_2000_moins_1pc_alternants +
-                (.01 <= ratio_alternants) * (ratio_alternants < .02) * taux.entre_1_2_pc_alternants +
-                (.02 <= ratio_alternants) * (ratio_alternants < .03) * taux.entre_2_3_pc_alternants +
-                (.03 <= ratio_alternants) * (ratio_alternants < .04) * taux.entre_3_4_pc_alternants +
-                (.04 <= ratio_alternants) * (ratio_alternants < .05) * taux.entre_4_5_pc_alternants
+            # Exception Alsace-Moselle : CGI Article 1609 quinvicies IV
+            # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=36F88516571C1CA136D91A7A84A2D65B.tpdila09v_1?idSectionTA=LEGISCTA000029038088&cidTexte=LEGITEXT000006069577&dateTexte=20161219
+            multiplier = (salarie_regime_alsace_moselle * csa_params.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
+
+            taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .05)
+            taux_conditionnel = (
+                (effectif_entreprise < 2000) * (ratio_alternants < .01) * csa_params.moins_2000_moins_1pc_alternants +
+                (effectif_entreprise >= 2000) * (ratio_alternants < .01) * csa_params.plus_2000_moins_1pc_alternants +
+                (.01 <= ratio_alternants) * (ratio_alternants < .02) * csa_params.entre_1_2_pc_alternants +
+                (.02 <= ratio_alternants) * (ratio_alternants < .03) * csa_params.entre_2_3_pc_alternants +
+                (.03 <= ratio_alternants) * (ratio_alternants < .04) * csa_params.entre_3_4_pc_alternants +
+                (.04 <= ratio_alternants) * (ratio_alternants < .05) * csa_params.entre_4_5_pc_alternants
                 )
+            taux_contribution = taxe_due * taux_conditionnel * multiplier
         else:
-            taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250
+            taux_contribution = (effectif_entreprise >= 250) * cotsoc_params.contribution_supplementaire_apprentissage.plus_de_250
             # TODO: gestion de la place dans le XML pb avec l'arbre des paramètres / preprocessing
         return period, - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
 
@@ -270,14 +280,32 @@ class taxe_apprentissage(Variable):
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
+        salarie_regime_alsace_moselle = simulation.calculate('salarie_regime_alsace_moselle', period)
 
-        cotisation = apply_bareme(
+        cotisation_regime_alsace_moselle = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'employeur',
+            bareme_name = 'apprentissage_alsace_moselle',
+            variable_name = self.__class__.__name__,
+            )
+
+        cotisation_regime_general = apply_bareme(
             simulation,
             period,
             cotisation_type = 'employeur',
             bareme_name = 'apprentissage',
             variable_name = self.__class__.__name__,
             )
+
+        cotisation = np.where(
+            salarie_regime_alsace_moselle,
+            cotisation_regime_alsace_moselle,
+            cotisation_regime_general,
+        )
+
+        # cotisation = salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle + (1 - salarie_regime_alsace_moselle) * cotisation_regime_general
+
         return period, cotisation * redevable_taxe_apprentissage
 
 
