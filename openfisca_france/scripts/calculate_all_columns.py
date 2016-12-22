@@ -22,7 +22,7 @@ def check_1_parent(year = 2013):
         period = year,
         parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
         ).new_simulation(debug = True)
-    simulation.calculate('revdisp')
+    simulation.calculate('revenu_disponible')
     salaire_imposable = simulation.get_holder('salaire_imposable').new_test_case_array(simulation.period)
     assert (salaire_imposable - np.linspace(0, 100000, 3) == 0).all(), 'salaire_imposable: {}'.format(salaire_imposable)
 
@@ -61,7 +61,7 @@ def check_1_parent_2_enfants(year):
         ).new_simulation(debug = True)
     salaire_imposable = simulation.get_holder('salaire_imposable').new_test_case_array(simulation.period)
     assert (salaire_imposable - np.linspace(0, 24000, 3) == 0).all(), 'salaire_imposable: {}'.format(salaire_imposable)
-    simulation.calculate('revdisp')
+    simulation.calculate('revenu_disponible')
 
 
 def test_1_parent_2_enfants():

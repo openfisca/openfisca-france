@@ -47,7 +47,7 @@ class asf_elig(Variable):
 
 class asf(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = Famille
     label = u"Allocation de soutien familial (ASF)"
 

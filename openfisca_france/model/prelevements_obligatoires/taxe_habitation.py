@@ -58,7 +58,7 @@ class exonere_taxe_habitation(Variable):
 
 
 class taxe_habitation(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = Menage
     label = u"Taxe d'habitation"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"

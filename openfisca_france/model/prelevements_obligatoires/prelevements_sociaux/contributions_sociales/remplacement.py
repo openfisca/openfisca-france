@@ -300,7 +300,7 @@ class retraite_nette(Variable):
 
 
 class crds_pfam(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = Famille
     label = u"CRDS sur les prestations familiales)"
     url = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"

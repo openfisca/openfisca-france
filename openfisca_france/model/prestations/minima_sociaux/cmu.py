@@ -36,7 +36,7 @@ class cmu_acs_eligibilite(Variable):
 
 
 class acs_montant(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = Famille
     label = u"Montant de l'ACS en cas d'éligibilité"
     start_date = date(2009, 8, 1)

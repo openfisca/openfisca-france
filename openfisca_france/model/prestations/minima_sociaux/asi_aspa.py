@@ -176,7 +176,7 @@ class asi_aspa_condition_nationalite(Variable):
 
     def function(self, simulation, period):
         ressortissant_eee = simulation.calculate('ressortissant_eee', period)
-        duree_possession_titre_sejour= simulation.calculate('duree_possession_titre_sejour', period)
+        duree_possession_titre_sejour = simulation.calculate('duree_possession_titre_sejour', period)
         duree_min_titre_sejour = simulation.legislation_at(period.start).prestations.minima_sociaux.aspa.duree_min_titre_sejour
 
         return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
