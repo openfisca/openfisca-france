@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.0.1
+
+* Improving CASA
+
 ## 7.0.0
 
 * Introduce minimum_vieillesse
