@@ -235,13 +235,28 @@ class crds_retraite(Variable):
         return period, montant_crds
 
 
-class casa(Variable):
+class casa(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Contribution additionnelle de solidarité et d'autonomine"
     start_date = date(2013, 4, 1)
     url = u"http://www.service-public.fr/actualites/002691.html"
 
+    @dated_function(start = date(2013, 4, 1), stop = date(2004, 12, 31))
+    def function(individu, period, legislation):
+        period = period.this_month
+        retraite_brute = individu('retraite_brute', period = period)
+        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        legislation = legislation(period.start).prelevements_sociaux
+        casa = (
+            (taux_csg_remplacement == 3) *
+            legislation.casa *
+            retraite_brute
+            )
+        return period, - casa
+
+
+    @dated_function(start = date(2015, 1, 1))
     def function(individu, period, legislation):
         period = period.this_month
         retraite_brute = individu('retraite_brute', period = period)
