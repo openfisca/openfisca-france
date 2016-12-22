@@ -269,7 +269,6 @@ class casa(DatedVariable):
         return period, - casa
 
 
-
 class retraite_imposable(Variable):
     base_function = requested_period_added_value
     column = FloatCol(
