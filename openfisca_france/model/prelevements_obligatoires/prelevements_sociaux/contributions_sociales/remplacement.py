@@ -247,9 +247,7 @@ class casa(Variable):
         retraite_brute = individu('retraite_brute', period = period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
-        taux = legislation(period.start)
-
-        rfr = self.cast_from_entity_to_roles(rfr_holder)
+        legislation = legislation(period.start)
         casa = (
             (taux_csg_remplacement == 3) *
             (rfr > legislation.pensions_de_retraite_et_d_invalidite.seuil_de_rfr_2) *
