@@ -247,7 +247,7 @@ class casa(Variable):
         retraite_brute = individu('retraite_brute', period = period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
-        taux = legislation(period.start).prelevements_sociaux.add_ret
+        taux = legislation(period.start).taxation_capital.prelevements_sociaux.add_ret
 
         casa = (taux_csg_remplacement == 3) * taux * retraite_brute * (rfr > 13900)
 
