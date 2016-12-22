@@ -251,7 +251,7 @@ class casa(DatedVariable):
         legislation = legislation(period.start).prelevements_sociaux
         casa = (
             (taux_csg_remplacement == 3) *
-            (rfr > legislation.pensions_de_retraite_et_d_invalidite.seuil_de_rfr_2) *
+            (rfr > legislation.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite.seuil_de_rfr_2) *
             legislation.contributions.casa.calc(retraite_brute)
             )
         return period, - casa
