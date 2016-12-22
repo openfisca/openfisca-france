@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.2.0
+
+* Rename `paje_clmg` to `paje_cmg`
+
 ## 6.1.0
 
 * Add the local regime Alsace-Moselle through the boolean variable `salarie_regime_alsace_moselle`.
