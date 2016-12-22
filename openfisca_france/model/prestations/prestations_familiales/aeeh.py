@@ -14,7 +14,7 @@ class aeeh_niveau_handicap(Variable):
 
 
 class aeeh(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = Famille
     label = u"Allocation d'éducation de l'enfant handicapé"
     url = "http://vosdroits.service-public.fr/particuliers/N14808.xhtml"
