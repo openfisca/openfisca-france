@@ -200,6 +200,16 @@
     </NODE>
   </NODE>
   <NODE code="contributions" origin="ipp">
+    <BAREME code="casa" origin="ipp">
+      <TRANCHE code="tranche_unique">
+        <SEUIL>
+          <VALUE deb="2013-04-01" fuzzy="true" valeur="0" />
+        </SEUIL>
+        <TAUX>
+          <VALUE deb="2013-04-01" fuzzy="true" valeur="0.003" />
+        </TAUX>
+      </TRANCHE>
+    </BAREME>
     <NODE code="crds" description="Contribution au remboursement de la dette sociale (CRDS)" origin="ipp">
       <NODE code="activite" description="Revenus d'activité" origin="openfisca">
         <BAREME code="abattement" description="Abattement sur les revenus d'activité, du chômage et des préretraites" origin="openfisca">
@@ -1318,25 +1328,6 @@
           </CODE>
         </NODE>
       </NODE>
-    </NODE>
-    <NODE code="casa" origin="ipp">
-      <BAREME code="pension" origin="ipp">
-        <TRANCHE code="tranche_unique">
-          <SEUIL>
-            <VALUE deb="2013-04-01" fuzzy="true" valeur="0" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="2013-04-01" fuzzy="true" valeur="0.003" />
-          </TAUX>
-        </TRANCHE>
-      </BAREME>
-      <CODE code="seuil_d_exoneration_rfr_pour_1_part_de_qf_en_n_2" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="13956" />
-        <VALUE deb="2015-01-01" fin="2016-03-31" valeur="13900" />
-      </CODE>
-      <CODE code="seuil_d_exoneration_sur_l_irpp_paye_en_n_1" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2013-04-01" fuzzy="true" valeur="61" />
-      </CODE>
     </NODE>
     <NODE code="cet" origin="ipp">
       <BAREME code="employeur" origin="ipp">

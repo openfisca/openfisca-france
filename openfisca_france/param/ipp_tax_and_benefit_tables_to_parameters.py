@@ -514,8 +514,9 @@ def transform_ipp_tree(root):
     # TODO aubry
     # TODO auto_entrepreneur
     #
-    cotisations_sociales['casa'] = casa = prelevements_sociaux.pop('casa')
-    casa['pension'] = fixed_bases_tax_scale(
+    prelevements_sociaux['contributions'] = contributions = dict()
+    contributions['casa'] = casa = prelevements_sociaux.pop('casa')
+    contributions['casa'] = fixed_bases_tax_scale(
         base_by_slice_name = dict(
             tranche_unique = 0,
             ),
@@ -681,7 +682,6 @@ def transform_ipp_tree(root):
         )
     assert not construction_employeur_sur_tout_salaire
     #
-    prelevements_sociaux['contributions'] = contributions = dict()
     contributions['csg'] = csg = prelevements_sociaux.pop('csg_activite')
     csg['activite'] = csg_activite = csg.pop('revenus_d_activite')
     csg_activite['deductible'] = csg_activite_deductible = dict()
