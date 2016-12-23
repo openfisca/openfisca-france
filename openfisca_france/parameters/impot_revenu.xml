@@ -2003,9 +2003,9 @@
       <VALUE deb="1986-01-01" fin="1986-12-31" valeur="13770" />
     </CODE>
     <NODE code="decote" origin="ipp">
-      <CODE code="parametres_de_calcul" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="1920" />
-        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1870" />
+      <CODE code="seuil1" format="float" origin="ipp" type="monetary">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="1165" />
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1135" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="508" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="480" />
         <VALUE deb="2010-01-01" fin="2011-12-31" valeur="439" />
@@ -2038,6 +2038,19 @@
         <VALUE deb="1982-01-01" fin="1982-12-31" valeur="3200" />
         <VALUE deb="1981-01-01" fin="1981-12-31" valeur="2600" />
         <VALUE deb="1973-01-01" fin="1980-12-31" valeur="0" />
+        <VALUE deb="1969-01-01" fin="1972-12-31" valeur="100" />
+        <VALUE deb="1962-01-01" fin="1968-12-31" valeur="80" />
+        <VALUE deb="1961-01-01" fin="1961-12-31" valeur="70" />
+        <VALUE deb="1959-01-01" fin="1960-12-31" valeur="7000" />
+        <VALUE deb="1958-01-01" fin="1958-12-31" valeur="8000" />
+        <VALUE deb="1957-01-01" fin="1957-12-31" valeur="5000" />
+        <VALUE deb="1953-01-01" fin="1956-12-31" valeur="0" />
+        <VALUE deb="1951-01-01" fin="1952-12-31" valeur="4000" />
+      </CODE>
+      <CODE code="seuil2" format="float" origin="ipp" type="monetary">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="1920" />
+        <VALUE deb="2014-01-01" fin="2014-12-31" valeur="1870" />
+        <VALUE deb="1973-01-01" fin="2013-12-31" valeur="0" />
         <VALUE deb="1969-01-01" fin="1972-12-31" valeur="300" />
         <VALUE deb="1962-01-01" fin="1968-12-31" valeur="240" />
         <VALUE deb="1961-01-01" fin="1961-12-31" valeur="210" />
@@ -2169,6 +2182,9 @@
         <VALUE deb="1978-01-01" fin="1983-12-31" valeur="0.15" />
       </CODE>
     </NODE>
+    <CODE code="pea2" description="Clôture PEA ou PEA-PME entre 2 ans et 5 ans (3VT)" format="percent" origin="openfisca">
+      <VALUE deb="2012-01-01" fuzzy="true" valeur="0.19" />
+    </CODE>
     <CODE code="pvce" description="Plus value de cession (RPNS) 16%" format="percent" origin="openfisca">
       <VALUE deb="2014-01-01" fuzzy="true" valeur="0.16" />
       <VALUE deb="2002-01-01" fin="2013-12-31" valeur="0.16" />
