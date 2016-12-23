@@ -369,7 +369,7 @@ class prevoyance_obligatoire_cadre_taux_employeur(Variable):
 class primes_salaires(Variable):
     column = FloatCol
     entity = Individu
-    label = u"Indemnités, primes et avantages en argent"
+    label = u"Indemnités, primes et avantages en argent (brut)"
 
 
 class complementaire_sante_montant(Variable):
