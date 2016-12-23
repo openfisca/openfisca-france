@@ -68,10 +68,10 @@ class paje(Variable):
         paje_base = famille('paje_base', period)
         paje_naissance = famille('paje_naissance', period)
         paje_clca = famille('paje_clca', period)
-        paje_clmg = famille('paje_clmg', period)
+        paje_cmg = famille('paje_cmg', period)
         paje_colca = famille('paje_colca', period)
 
-        return period, paje_base + (paje_naissance + paje_clca + paje_clmg + paje_colca) / 12
+        return period, paje_base + (paje_naissance + paje_clca + paje_cmg + paje_colca) / 12
 
 
 class paje_base(Variable):
@@ -350,7 +350,7 @@ class paje_clca_taux_partiel(Variable):
     # TODO gérer les cumuls avec autres revenus et colca voir site caf
 
 
-class paje_clmg(Variable):
+class paje_cmg(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity = Famille
@@ -457,9 +457,9 @@ class paje_clmg(Variable):
         # Si vous bénéficiez du Clca taux plein
         # (= vous ne travaillez plus ou interrompez votre activité professionnelle),
         # vous ne pouvez pas bénéficier du Cmg.
-        paje_clmg = elig * not_(paje_clca_taux_plein) * clmg
+        paje_cmg = elig * not_(paje_clca_taux_plein) * clmg
         # TODO vérfiez les règles de cumul
-        return period, paje_clmg
+        return period, paje_cmg
 
 
 class paje_colca(Variable):

@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.0.0
+
+* Rename `paje_clmg` to `paje_cmg`
+
 ## 7.0.1
 
 * Improving CASA
