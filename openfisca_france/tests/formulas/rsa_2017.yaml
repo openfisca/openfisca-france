@@ -1,0 +1,38 @@
+- name: "Les primes sur un mois ne sont pas moyennées"
+  period: 2017-01
+  relative_error_margin: 0.01
+  individus:
+    - id: 1
+      salaire_net:
+        2017-01: 200
+        2016-12: 700
+        2016-11: 200
+        2016-10: 200
+      primes_salaires_net:
+        2016-12: 500
+        2016-11: 0
+        2016-10: 0
+  output_variables:
+    rsa:
+      2017-01: 223
+    rsa_fictif:
+        2016-12: 0
+        2016-11: 535.17 - 200
+        2016-10: 535.17 - 200
+
+- name: "Les derniers benefices agricoles sont pris en compte dans la BR du RSA"
+  period: 2017-01
+  relative_error_margin: 0.01
+  individus:
+    - id: 1
+      tns_benefice_exploitant_agricole:
+        2016: 2400
+  output_variables:
+    rsa:
+      2017-01: 535.17 - 200
+    rsa_montant:
+      2017-01: 535.17 - 200
+    rsa_fictif:
+        2016-12: 535.17 - 200
+        2016-11: 535.17 - 200
+        2016-10: 535.17 - 200

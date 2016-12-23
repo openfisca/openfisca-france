@@ -24,6 +24,7 @@ class rsa_base_ressources(DatedVariable):
         rsa_enfant_a_charge_i = famille.members('rsa_enfant_a_charge', mois_courant)
 
         # Les ressources hors PF sont moyennées, à partir de mois_demande.last_3_months
+
         ressources_individuelles_i = (
             famille.members('rsa_base_ressources_individu', mois_demande) +
             famille.members('rsa_revenu_activite_individu', mois_demande, extra_params = [mois_courant])
@@ -73,6 +74,7 @@ class rsa_base_ressources(DatedVariable):
             rsa_base_ressources_minima_sociaux +
             rsa_base_ressources_i_total
             )
+
 
 
 class rsa_has_ressources_substitution(Variable):
@@ -485,6 +487,23 @@ class rsa_indemnites_journalieres_hors_activite(Variable):
         period = period.this_month
         return period, individu('indemnites_journalieres', period) - individu('rsa_indemnites_journalieres_activite', period)
 
+class primes_salaires_net(Variable):
+    column = FloatCol
+    entity = Individu
+    label = u"Indemnités, primes et avantages en argent (net)"
+
+class salaire_net_hors_revenus_exceptionnels(Variable):
+    column = FloatCol
+    label = u"Salaire net hors prime, indemnites de licenciement, prime de précarité..."
+    entity = Individu
+
+    def function(individu, period):
+        period = period.this_month
+        return period, (
+            individu('salaire_net', period) -
+            individu('primes_salaires_net', period) -
+            individu('indemnite_fin_contrat_net', period)
+            )
 
 class rsa_revenu_activite_individu(DatedVariable):
     column = FloatCol
@@ -493,20 +512,13 @@ class rsa_revenu_activite_individu(DatedVariable):
     start_date = date(2009, 6, 1)
 
     @dated_function(start = date(2017, 01, 01))
-    def function_2017(individu, mois_demande, legislation, mois_courant = None):
-
-        if mois_courant == None:
-            mois_courant = mois_demande
+    def function_2017(individu, mois_demande, legislation, mois_courant):
 
         mois_demande = mois_demande.this_month
         last_3_months = mois_demande.last_3_months
 
-        # Note Auto-entrepreneurs:
-        # D'après les caisses, le revenu pris en compte pour les AE pour le RSA ne prend en compte que
-        # l'abattement standard sur le CA, mais pas les cotisations pour charges sociales.
-
         types_revenus_activite = [
-            'salaire_net',
+            'salaire_net_hors_revenus_exceptionnels',
             'indemnites_chomage_partiel',
             'indemnites_volontariat',
             'revenus_stage_formation_pro',
@@ -517,10 +529,12 @@ class rsa_revenu_activite_individu(DatedVariable):
             'rsa_indemnites_journalieres_activite',
             ]
 
+
         has_ressources_substitution = individu('rsa_has_ressources_substitution', mois_demande)
 
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
-        return mois_demande, sum(
+
+        revenus_moyennes = sum(
             individu(type_revenu, last_3_months, options = [ADD]) * not_(
                 (individu(type_revenu, mois_demande) == 0) *
                 (individu(type_revenu, mois_demande.last_month) > 0) *
@@ -528,6 +542,15 @@ class rsa_revenu_activite_individu(DatedVariable):
                 )
             for type_revenu in types_revenus_activite
             ) / 3
+
+        revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', mois_demande)
+
+        revenus_non_moyennes = (
+            individu('primes_salaires_net', mois_courant) +
+            individu('indemnite_fin_contrat_net', mois_courant)
+            )
+
+        return mois_demande, revenus_moyennes + revenus_tns_annualises + revenus_non_moyennes
 
     @dated_function(stop = date(2016, 12, 31))
     def function_2016(individu, period):
@@ -904,6 +927,7 @@ class rsa_non_calculable(Variable):
         )
     entity = Famille
     label = u"RSA non calculable"
+    stop_date = date(2016, 12, 31)
 
     def function(famille, period):
         period = period.this_month
