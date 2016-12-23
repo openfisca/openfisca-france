@@ -108,6 +108,13 @@ class indemnite_fin_contrat(Variable):
             )
         return period, result
 
+
+class indemnite_fin_contrat_net(Variable):
+    column = FloatCol
+    entity = Individu
+    label = u"Indemnités de fin de contrat (licenciement, rupture conventionelle, prime de précarité) nettes"
+
+
 class reintegration_titre_restaurant_employeur(Variable):
     column = FloatCol
     entity = Individu
