@@ -131,6 +131,24 @@ class ppa_revenu_activite_individu(Variable):
         revenus_mensualises = sum(
             individu(ressource, period) for ressource in ressources)
 
+        revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', mois_demande)
+
+        revenus_activites = revenus_mensualises + revenus_tns_annualises
+
+        # L'aah est pris en compte comme revenu d'activité si revenu d'activité hors aah > 29 * smic horaire brut
+        seuil_aah_activite = P.prestations.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
+        aah_activite = (revenus_activites >= seuil_aah_activite) * individu('aah', period)
+
+        return period, revenus_activites + aah_activite
+
+
+class ppa_rsa_derniers_revenus_tns_annuels_connus(Variable):
+    column = FloatCol
+    entity = Individu
+    label = u"Derniers revenus non salariés annualisés connus"
+
+    def function(individu, period):
+
         def get_last_known(variable_name):
             valeur_n = individu(variable_name, period.this_year)
             valeur_n_1 = individu(variable_name, period.last_year)
@@ -139,19 +157,12 @@ class ppa_revenu_activite_individu(Variable):
                 [valeur_n > 0, valeur_n_1 > 0, valeur_n_2 > 0],
                 [valeur_n, valeur_n_1, valeur_n_2]
                 ) / 12l
-        revenus_annualises = (
+
+        return period, (
             get_last_known('tns_benefice_exploitant_agricole') +
             get_last_known('tns_autres_revenus') +
             get_last_known('tns_micro_entreprise_benefice')
             )
-
-        revenus_activites = revenus_mensualises + revenus_annualises
-
-        # L'aah est pris en compte comme revenu d'activité si revenu d'activité hors aah > 29 * smic horaire brut
-        seuil_aah_activite = P.prestations.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
-        aah_activite = (revenus_activites >= seuil_aah_activite) * individu('aah', period)
-
-        return period, revenus_activites + aah_activite
 
 
 class ppa_ressources_hors_activite(Variable):
