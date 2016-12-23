@@ -88,8 +88,7 @@ class paje_base(Variable):
         parent_isole = not_(famille('en_couple', period))
         nombre_enfants = famille('af_nbenf', period)
         pfam = legislation(period).prestations.prestations_familiales
-
-        date_gel_paje = Instant((2013, 04, 01)) # Le montant de la PAJE est gelé depuis avril 2013.
+        date_gel_paje = Instant((2013, 04, 01))   # Le montant de la PAJE est gelé depuis avril 2013.
         bmaf = pfam.af.bmaf if period.start < date_gel_paje else legislation(date_gel_paje).prestations.prestations_familiales.af.bmaf
         montant_taux_plein = bmaf * pfam.paje.base.taux_allocation_base
 
@@ -104,7 +103,7 @@ class paje_base(Variable):
                 min_(nombre_enfants, 2) * maj_plafond_2_premiers_enfants +
                 max_(nombre_enfants - 2, 0) * maj_plafond_par_enfant_sup +
                 (couple_biactif + parent_isole) * maj_plafond_seul_biactif
-            )
+                )
             return plafond
 
         def plafond_taux_plein():
@@ -119,7 +118,7 @@ class paje_base(Variable):
                 plafond_de_base +
                 nombre_enfants * maj_plafond_par_enfant +
                 (couple_biactif + parent_isole) * maj_plafond_seul_biactif
-            )
+                )
             return plafond
 
         def plafond_taux_partiel():
@@ -134,7 +133,7 @@ class paje_base(Variable):
                 plafond_de_base +
                 nombre_enfants * maj_plafond_par_enfant +
                 (couple_biactif + parent_isole) * maj_plafond_seul_biactif
-            )
+                )
             return plafond
 
         def enfant_eligible_ne_avant_avril_2014():
@@ -156,13 +155,13 @@ class paje_base(Variable):
             montant = (
                 (ressources <= plafond_taux_plein()) * montant_taux_plein +
                 (ressources <= plafond_taux_partiel()) * (ressources > plafond_taux_plein()) * montant_taux_partiel
-            )
+                )
             return montant
 
         montant = (
             enfant_eligible_ne_avant_avril_2014() * montant_enfant_ne_avant_avril_2014() +
             not_(enfant_eligible_ne_avant_avril_2014()) * enfant_eligible_ne_apres_avril_2014() * montant_enfant_ne_apres_avril_2014()
-        )
+            )
 
         return period, montant
 
@@ -222,7 +221,7 @@ class paje_naissance(Variable):
         biactivite = famille('biactivite', period)
         P = legislation(period).prestations.prestations_familiales
 
-        date_gel_paje = Instant((2013, 04, 01)) # Le montant de la PAJE est gelé depuis avril 2013.
+        date_gel_paje = Instant((2013, 04, 01))  # Le montant de la PAJE est gelé depuis avril 2013.
         bmaf = P.af.bmaf if period.start < date_gel_paje else legislation(date_gel_paje).prestations.prestations_familiales.af.bmaf
         nais_prime = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
 
@@ -280,7 +279,6 @@ class paje_clca(Variable):
 
         P = legislation(period).prestations.prestations_familiales
 
-
         paje = paje_base >= 0
         # durée de versement :
         # Pour un seul enfant à charge, le CLCA est versé pendant une période de 6 mois (P.paje.clca.duree1)
@@ -299,12 +297,17 @@ class paje_clca(Variable):
         condition2 = (age_benjamin <= (P.paje.base.age_max_enfant - 1))
         condition = (af_nbenf >= 2) * condition2 + condition1
         paje_clca = (condition * P.af.bmaf) * (
-                    (not_(paje)) * (inactif * P.paje.clca.sansab_tx_inactif +
-                                partiel1 * P.paje.clca.sansab_tx_partiel1 +
-                                partiel2 * P.paje.clca.sansab_tx_partiel2) +
-                    (paje) * (inactif * P.paje.clca.avecab_tx_inactif +
-                                partiel1 * P.paje.clca.avecab_tx_partiel1 +
-                                partiel2 * P.paje.clca.avecab_tx_partiel2))
+            not_(paje) * (
+                inactif * P.paje.clca.sansab_tx_inactif +
+                partiel1 * P.paje.clca.sansab_tx_partiel1 +
+                partiel2 * P.paje.clca.sansab_tx_partiel2
+                ) +
+            paje * (
+                inactif * P.paje.clca.avecab_tx_inactif +
+                partiel1 * P.paje.clca.avecab_tx_partiel1 +
+                partiel2 * P.paje.clca.avecab_tx_partiel2
+                )
+            )
         return period, paje_clca
 
 
@@ -395,7 +398,6 @@ class paje_cmg(Variable):
         paje_clca_taux_plein = famille('paje_clca_taux_plein', period)
         P = legislation(period).prestations.prestations_familiales
         P_n_2 = legislation(period.offset(-2, 'year')).prestations.prestations_familiales
-
 
         aah_i = famille.members('aah', period)
         aah = famille.sum(aah_i)
@@ -492,16 +494,15 @@ class paje_colca(Variable):
 
 
 class ape_avant_cumul(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = Famille
     label = u"Allocation parentale d'éducation, avant prise en compte de la non-cumulabilité avec le CF et l'APJE"
-    stop_date = date(2004, 1, 1)
+    stop_date = date(2003, 12, 31)
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
 
     def function(famille, period, legislation):
         '''
         Allocation parentale d'éducation
-        'fam'
 
         L’allocation parentale d’éducation s’adresse aux parents qui souhaitent arrêter ou
         réduire leur activité pour s’occuper de leurs jeunes enfants, à condition que ceux-ci
@@ -557,7 +558,7 @@ class apje_avant_cumul(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation pour le jeune enfant, avant prise en compte de la non-cumulabilité avec le CF et l'APE"
-    stop_date = date(2004, 1, 1)
+    stop_date = date(2003, 12, 31)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
 
     def function(famille, period, legislation):
@@ -565,7 +566,7 @@ class apje_avant_cumul(Variable):
         Allocation pour jeune enfant
         '''
         period = period.this_month
-        base_ressources = famille('prestations_familFiales_base_ressources', period.this_month)
+        base_ressources = famille('prestations_familiales_base_ressources', period.this_month)
         biactivite = famille('biactivite', period, options = [ADD])
         isole = not_(famille('en_couple', period))
         P = legislation(period).prestations.prestations_familiales
@@ -587,7 +588,7 @@ class apje_avant_cumul(Variable):
 
         # Pour bénéficier de cette allocation, il faut que tous les enfants du foyer soient nés, adoptés, ou recueillis
         # en vue d’une adoption avant le 1er janvier 2004, et qu’au moins l’un d’entre eux ait moins de 3 ans.
-        # Cette allocation est verséE du 5��me mois de grossesse jusqu���au mois précédant le 3ème anniversaire de
+        # Cette allocation est versée du 5ème mois de grossesse jusqu'au mois précédant le 3ème anniversaire de
         # l’enfant.
 
         # Non cumul APE APJE CF
@@ -598,10 +599,10 @@ class apje_avant_cumul(Variable):
 
 
 class ape(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = Famille
     label = u"Allocation parentale d'éducation"
-    stop_date = date(2004, 1, 1)
+    stop_date = date(2003, 12, 31)
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
 
     def function(famille, period):
@@ -618,10 +619,10 @@ class ape(Variable):
 
 
 class apje(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = Famille
     label = u"Allocation pour le jeune enfant"
-    stop_date = date(2004, 1, 1)
+    stop_date = date(2003, 12, 31)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
 
     def function(famille, period):

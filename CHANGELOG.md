@@ -1,8 +1,31 @@
 # Changelog
 
-## 6.2.0
+## 8.0.0
 
 * Rename `paje_clmg` to `paje_cmg`
+
+## 7.0.1
+
+* Improving CASA
+
+## 7.0.0
+
+* Introduce minimum_vieillesse
+* Rename `mini` to `minima_sociaux`
+* Rename `nivvie` to `niveau_de_vie`
+* Rename `nivvie_net` to `niveau_de_vie_net`
+* Rename `nivvie_ini` to `niveau_de_vie_initial`
+* Rename `pfam` to `prestations_familiales`
+* Rename `psoc` to `prestations_sociales`
+* Rename `pen` to `pensions`
+* Rename `rev_cap` to `reveunus_du_capital`
+* Rename `rev_trav` to `revenus_du_travail`
+* Rename `revdisp` to `revenu_disponible`
+* Rename `typ_men` to `type_menage`
+* Cleaning:
+   * remove superfluous `default = 0` in `FloatCol` and `IntCol`
+   * remove superfluous comments
+   * migrate some formulas
 
 ## 6.1.0
 
