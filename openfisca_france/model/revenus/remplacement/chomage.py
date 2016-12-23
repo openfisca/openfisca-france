@@ -27,5 +27,3 @@ class indemnites_chomage_partiel(Variable):
     column = FloatCol
     entity = Individu
     label = u"Indemnités de chômage partiel"
-
-
