@@ -7023,7 +7023,7 @@
         <VALUE deb="2016-01-01" fin="2016-12-31" valeur="18" />
       </CODE>
       <CODE code="seuil_aah_activite" description="Revenu d'activité minimal perçu pour que l'AAH d'un individu soit considéré comme un revenu d'activité, en multiple du smic horaire brut" format="integer">
-        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="29" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="29" />
       </CODE>
       <CODE code="txp2" description="Taux pour une 2nde personne" format="percent">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.5" />
