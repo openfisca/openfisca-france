@@ -43,8 +43,8 @@ def run(reform_key, year):
     reform_simulation = scenario.new_simulation()
 #    error_margin = 1
 
-    impo = reference_simulation.calculate('impo')
-    reform_impo = reform_simulation.calculate('impo')
+    impo = reference_simulation.calculate(impots_directs)
+    reform_impo = reform_simulation.calculate(impots_directs)
 
 if __name__ == '__main__':
     import logging

@@ -1,5 +1,13 @@
 # Changelog
 
+## 9.0.0
+
+* Continue mesures migration
+* Complete remplacement migration
+* Rename impo to impots_directs
+* Rename revnet to revenu_net
+* Rename revini to revenu_initial
+
 ## 8.0.1
 
 * Introduce echelon_bourse
