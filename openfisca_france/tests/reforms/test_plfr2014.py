@@ -36,7 +36,6 @@ def test(year = 2013):
 
     reference_simulation = scenario.new_simulation(reference = True)
     reform_simulation = scenario.new_simulation()
-#    error_margin = 1
-
-    impo = reference_simulation.calculate(impots_directs)
-    reform_impo = reform_simulation.calculate(impots_directs)
+    # error_margin = 1
+    impo = reference_simulation.calculate('impots_directs')
+    reform_impo = reform_simulation.calculate('impots_directs')
