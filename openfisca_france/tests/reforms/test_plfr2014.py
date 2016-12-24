@@ -2,8 +2,6 @@
 
 import datetime
 
-from nose.tools import assert_less
-
 from openfisca_core import periods
 from openfisca_france.tests import base
 
@@ -37,5 +35,5 @@ def test(year = 2013):
     reference_simulation = scenario.new_simulation(reference = True)
     reform_simulation = scenario.new_simulation()
     # error_margin = 1
-    impo = reference_simulation.calculate('impots_directs')
-    reform_impo = reform_simulation.calculate('impots_directs')
+    impots_directs = reference_simulation.calculate('impots_directs')
+    reform_impots_directs = reform_simulation.calculate('impots_directs')

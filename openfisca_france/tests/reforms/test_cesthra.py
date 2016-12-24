@@ -39,8 +39,8 @@ def test_cesthra_invalidee():
     assert reference_revenu_disponible is not None
 
     reform_simulation = scenario.new_simulation()
-    reform_impo = reform_simulation.calculate('impots_directs')
-    assert reform_impo is not None
+    reform_impots_directs = reform_simulation.calculate('impots_directs')
+    assert reform_impots_directs is not None
     reform_revenu_disponible = reform_simulation.calculate('revenu_disponible', period = period)
     assert reform_revenu_disponible is not None
 

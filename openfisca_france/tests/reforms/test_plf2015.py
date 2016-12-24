@@ -38,14 +38,14 @@ def test(year = 2013):
     reform_simulation = scenario.new_simulation()
     error_margin = 1
 
-    impo = reference_simulation.calculate('impots_directs')
-    reform_impo = reform_simulation.calculate('impots_directs')
+    impots_directs = reference_simulation.calculate('impots_directs')
+    reform_impots_directs = reform_simulation.calculate('impots_directs')
     ir_plaf_qf = reference_simulation.calculate('ir_plaf_qf')
     reform_ir_plaf_qf = reform_simulation.calculate('ir_plaf_qf')
     assert_less(max(abs([0, 918] - ir_plaf_qf)), error_margin)
     assert_less(max(abs([0, 911.4] - reform_ir_plaf_qf)), error_margin)
-    assert_less(max(abs([0, -869] - impo)), error_margin)
-    assert_less(max(abs([0, -911.4 + (1135 - 911.4)] - reform_impo)), error_margin)
+    assert_less(max(abs([0, -869] - impots_directs)), error_margin)
+    assert_less(max(abs([0, -911.4 + (1135 - 911.4)] - reform_impots_directs)), error_margin)
 
 
 if __name__ == '__main__':
