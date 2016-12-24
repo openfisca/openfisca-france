@@ -278,4 +278,4 @@ menages:
   statut_occupation_logement: 6
 output_variables:
   rsa: 556.09
-  rsa_non_majore: 556.09
+  rsa_majore_eligibilite: false

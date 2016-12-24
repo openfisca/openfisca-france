@@ -2,7 +2,7 @@ name: Chômeur, 1 enfant, locataire
 keywords:
 - majoration
 - rsa
-description: 'Réponse : affiche le RSA majoré (pas suffisamment d''infos pour trancher)'
+description: 'Réponse : affiche le RSA majoré (pas suffisamment d’infos pour trancher)'
 period: month:2014-07
 individus:
 - age: 34
@@ -282,4 +282,5 @@ menages:
   personne_de_reference: 53d79969f6aa390200a6cd01
   statut_occupation_logement: 4
 output_variables:
-  rsa_majore: 535.06
+  rsa_majore_eligibilite: true
+  rsa: 535.06

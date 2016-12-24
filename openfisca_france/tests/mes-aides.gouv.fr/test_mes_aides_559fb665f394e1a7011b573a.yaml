@@ -281,4 +281,4 @@ menages:
   statut_occupation_logement: 4
 output_variables:
   aide_logement: 422.59
-  rsa_non_majore: 0
+  rsa: 0

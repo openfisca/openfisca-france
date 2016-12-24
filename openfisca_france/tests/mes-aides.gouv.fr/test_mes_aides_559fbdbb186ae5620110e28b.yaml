@@ -326,5 +326,5 @@ menages:
   personne_de_reference: 559fbd84f394e1a7011b5779
   statut_occupation_logement: 4
 output_variables:
-  rsa: 57.76
-  rsa_non_majore: 57.76
+  rsa_majore_eligibilite: false
+  rsa: 57.7

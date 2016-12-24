@@ -286,4 +286,5 @@ menages:
 output_variables:
   asf: 0
   cmu_c: true
-  rsa_majore: 649.77
+  rsa_majore_eligibilite: true
+  rsa: 649.77
