@@ -72,10 +72,10 @@ class csg_imposable_chomage(Variable):
     label = u"CSG imposable sur les allocations chômage"
     url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
-        chomage_brut = simulation.calculate('chomage_brut', period)
-        legislation = simulation.legislation_at(period.start)
+        chomage_brut = individu('chomage_brut', period)
+        legislation = legislation(period.start)
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = chomage_brut,
@@ -98,14 +98,13 @@ class crds_chomage(Variable):
     label = u"CRDS sur les allocations chômage"
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm"
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
-        chomage_brut = simulation.calculate('chomage_brut', period)
-        csg_deductible_chomage = simulation.calculate('csg_deductible_chomage', period)
-        csg_imposable_chomage = simulation.calculate('csg_imposable_chomage', period)
-        taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
-        law = simulation.legislation_at(period.start)
-
+        chomage_brut = individu('chomage_brut', period)
+        csg_deductible_chomage = individu('csg_deductible_chomage', period)
+        csg_imposable_chomage = individu('csg_imposable_chomage', period)
+        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        law = legislation(period.start)
         smic_h_b = law.cotsoc.gen.smic_h_b
         # salaire_mensuel_reference = chomage_brut / .7
         # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
@@ -136,16 +135,15 @@ class chomage_imposable(Variable):
             QUIFOY['pac1']: u"1CP",
             QUIFOY['pac2']: u"1DP",
             QUIFOY['pac3']: u"1EP",
-            })  # (f1ap, f1bp, f1cp, f1dp, f1ep)
+            })
     entity = Individu
     label = u"Allocations chômage imposables"
     set_input = set_input_divide_by_period
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm"
 
-    def function(self, simulation, period):
-        period = period
-        chomage_brut = simulation.calculate('chomage_brut', period)
-        csg_deductible_chomage = simulation.calculate_add('csg_deductible_chomage', period)
+    def function(individu, period):
+        chomage_brut = individu('chomage_brut', period)
+        csg_deductible_chomage = individu('csg_deductible_chomage', period, options = [ADD])
 
         return period, chomage_brut + csg_deductible_chomage
 
@@ -158,11 +156,10 @@ class chomage_net(Variable):
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
 
-    def function(self, simulation, period):
-        period = period
-        chomage_imposable = simulation.calculate('chomage_imposable', period)
-        csg_imposable_chomage = simulation.calculate_add('csg_imposable_chomage', period)
-        crds_chomage = simulation.calculate_add('crds_chomage', period)
+    def function(individu, period):
+        chomage_imposable = individu('chomage_imposable', period)
+        csg_imposable_chomage = individu('csg_imposable_chomage', period, options = [ADD])
+        crds_chomage = individu('crds_chomage', period, options = [ADD])
 
         return period, chomage_imposable + csg_imposable_chomage + crds_chomage
 
@@ -178,11 +175,11 @@ class csg_deductible_retraite(Variable):
     label = u"CSG déductible sur les pensions de retraite"
     url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
-        retraite_brute = simulation.calculate('retraite_brute', period)
-        taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
-        law = simulation.legislation_at(period.start)
+        retraite_brute = individu('retraite_brute', period)
+        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        law = legislation(period.start)
 
         montant_csg = montant_csg_crds(
             base_sans_abattement = retraite_brute,
@@ -201,10 +198,10 @@ class csg_imposable_retraite(Variable):
     label = u"CSG imposable sur les pensions de retraite"
     url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
-        retraite_brute = simulation.calculate('retraite_brute', period)
-        law = simulation.legislation_at(period.start)
+        retraite_brute = individu('retraite_brute', period)
+        law = legislation(period.start)
 
         montant_csg = montant_csg_crds(
             base_sans_abattement = retraite_brute,
@@ -221,11 +218,11 @@ class crds_retraite(Variable):
     label = u"CRDS sur les pensions de retraite"
     url = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"  # noqa
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
-        retraite_brute = simulation.calculate('retraite_brute', period)
-        taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
-        law = simulation.legislation_at(period.start)
+        retraite_brute = individu('retraite_brute', period)
+        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        law = legislation(period.start)
 
         montant_crds = montant_csg_crds(
             base_sans_abattement = retraite_brute,
@@ -248,11 +245,11 @@ class casa(DatedVariable):
         retraite_brute = individu('retraite_brute', period = period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
-        legislation = legislation(period.start).prelevements_sociaux
+        contributions = legislation(period.start).prelevements_sociaux.contributions
         casa = (
             (taux_csg_remplacement == 3) *
-            (rfr > legislation.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite.seuil_de_rfr_2) *
-            legislation.contributions.casa.calc(retraite_brute)
+            (rfr > contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite.seuil_de_rfr_2) *
+            contributions.casa.calc(retraite_brute)
             )
         return period, - casa
 
@@ -261,10 +258,10 @@ class casa(DatedVariable):
         period = period.this_month
         retraite_brute = individu('retraite_brute', period = period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
-        legislation = legislation(period.start).prelevements_sociaux
+        contributions = legislation(period.start).prelevements_sociaux.contributions
         casa = (
             (taux_csg_remplacement == 3) *
-            legislation.contributions.casa.calc(retraite_brute)
+            contributions.casa.calc(retraite_brute)
             )
         return period, - casa
 
@@ -279,16 +276,15 @@ class retraite_imposable(Variable):
             QUIFOY['pac1']: u"1CS",
             QUIFOY['pac2']: u"1DS",
             QUIFOY['pac3']: u"1ES",
-            })  # (f1as, f1bs, f1cs, f1ds, f1es)
+            })
     entity = Individu
     label = u"Retraites au sens strict imposables (rentes à titre onéreux exclues)"
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
 
-    def function(self, simulation, period):
-        period = period
-        retraite_brute = simulation.calculate_add('retraite_brute', period)
-        csg_deductible_retraite = simulation.calculate_add('csg_deductible_retraite', period)
+    def function(individu, period):
+        retraite_brute = individu('retraite_brute', period, options = [ADD])
+        csg_deductible_retraite = individu('csg_deductible_retraite', period, options = [ADD])
 
         return period, retraite_brute + csg_deductible_retraite
 
@@ -301,12 +297,11 @@ class retraite_nette(Variable):
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
 
-    def function(self, simulation, period):
-        period = period
-        retraite_imposable = simulation.calculate('retraite_imposable', period)
-        casa = simulation.calculate_add('casa', period)
-        csg_imposable_retraite = simulation.calculate_add('csg_imposable_retraite', period)
-        crds_retraite = simulation.calculate_add('crds_retraite', period)
+    def function(individu, period):
+        retraite_imposable = individu('retraite_imposable', period)
+        casa = individu('casa', period, options = [ADD])
+        csg_imposable_retraite = individu('csg_imposable_retraite', period, options = [ADD])
+        crds_retraite = individu('crds_retraite', period, options = [ADD])
 
         return period, retraite_imposable + csg_imposable_retraite + crds_retraite + casa
 
@@ -317,18 +312,15 @@ class crds_pfam(Variable):
     label = u"CRDS sur les prestations familiales)"
     url = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"
 
-    def function(self, simulation, period):
-        '''
-        Renvoie la CRDS des prestations familiales
-        '''
+    def function(famille, period, legislation):
         period = period
-        af = simulation.calculate_add('af', period)
-        cf = simulation.calculate_add('cf', period)
-        asf = simulation.calculate_add('asf', period)
-        ars = simulation.calculate('ars', period)
-        paje = simulation.calculate_add('paje', period)
-        ape = simulation.calculate_add('ape', period)
-        apje = simulation.calculate_add('apje', period)
-        taux_crds = simulation.legislation_at(period.start).prelevements_sociaux.contributions.crds.taux
+        af = famille('af', period, options = [ADD])
+        cf = famille('cf', period, options = [ADD])
+        asf = famille('asf', period, options = [ADD])
+        ars = famille('ars', period)
+        paje = famille('paje', period, options = [ADD])
+        ape = famille('ape', period, options = [ADD])
+        apje = famille('apje', period, options = [ADD])
+        taux_crds = legislation(period.start).prelevements_sociaux.contributions.crds.taux
 
         return period, -(af + cf + asf + ars + paje + ape + apje) * taux_crds
