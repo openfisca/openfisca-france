@@ -1,7 +1,7 @@
 <NODE code="root" color="0,0,255" desc="Racine" shortname="root" typevar="2">
-  <NODE code="revdisp" color="0,0,255" desc="Revenu disponible" shortname="Rev. disp."> # TODO: missing indemnite_residence and sft
+  <NODE code="revenu_disponible" color="0,0,255" desc="Revenu disponible" shortname="Rev. disp."> # TODO: missing indemnite_residence and sft
       <NODE code="rev_net" color="0,155,204" desc="Revenus nets" shortname="Rev. nets">  # TODO: change color
-        <NODE code="rev_trav" color="0,155,204" desc="Revenu du travail" shortname="Rev. travail">
+        <NODE code="revenus_du_travail" color="0,155,204" desc="Revenu du travail" shortname="Rev. travail">
         <NODE code="salaire_net" color="0,138,201" desc="Salaires nets" shortname="Sal. nets">
           <NODE code="salaire_imposable" color="0,115,170" desc="Salaires imposables" shortname="Sal. impos.">
             <NODE code="salaire_brut" color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
@@ -26,7 +26,7 @@
         <NODE code="ric" desc="Revenus industriels et commerciaux" shortname="R. ind. comm." />
         <NODE code="rnc" desc="Revenus non commerciaux" shortname="R. non comm." />
       </NODE>
-      <NODE code="pen" color="97,75,150" desc="Pensions" shortname="Pensions">
+      <NODE code="pensions" color="97,75,150" desc="Pensions" shortname="Pensions">
         <NODE code="chomage_net" color="136,120,178" desc="Chômage net" shortname="Chômage net">
           <NODE code="chomage_imposable" desc="Chômage" shortname="Chômage decl.">
             <NODE code="chomage_brut" desc="Chômage brut" shortname="Chômage brut" />
@@ -83,8 +83,8 @@
       </NODE>
     </NODE>
     <NODE code="ir_lps" color="232,79,95" desc="Impôt sur le revenu (Landais, Piketty, Saez)" shortname="IR (LPS)" />
-    <NODE code="psoc" color="255,102,63" desc="Prestations sociales" shortname="Prest. soc.">
-      <NODE code="pfam" color="83,170,49" desc="Prestations familiales" shortname="Prest. fam.">
+    <NODE code="prestations_sociales" color="255,102,63" desc="Prestations sociales" shortname="Prest. soc.">
+      <NODE code="prestations_familiales" color="83,170,49" desc="Prestations familiales" shortname="Prest. fam.">
         <NODE code="af" color="181,213,154" desc="Allocations familiales" shortname="Alloc. fam." />
         <NODE code="cf" color="125,185,86" desc="Complément familial" shortname="Compl. fam." />
         <NODE code="ars" color="91,172,38" desc="Allocation de rentrée scolaire" shortname="ARS" />
@@ -94,12 +94,12 @@
           <NODE code="paje_naissance" desc="Paje - Prime de naissance" shortname="Prime naiss." />
           <NODE code="paje_clca" desc="Paje - Complément de libre choix d'activité" shortname="CLCA" />
           <NODE code="paje_colca" desc="Paje - Complément optionnel de libre choix d'activité" shortname="COLCA" />
-          <NODE code="paje_clmg" desc="Paje - Complément de libre choix du mode de garde" shortname="CLCMG" />
+          <NODE code="paje_cmg" desc="Paje - Complément de libre choix du mode de garde" shortname="CLCMG" />
         </NODE>
         <NODE code="asf" color="77,144,34" desc="Allocation de soutien familial" shortname="ASF" />
         <NODE code="crds_pfam" color="229,48,56" desc="CRDS (prestations familiales)" shortname="CRDS fam." />
       </NODE>
-      <NODE code="mini" color="240,138,76" desc="Minima sociaux" shortname="Min. sociaux">
+      <NODE code="minima_sociaux" color="240,138,76" desc="Minima sociaux" shortname="Min. sociaux">
         <NODE code="aspa" color="249,193,148" desc="Minimum vieillesse" shortname="Min. viellesse" />
         <NODE code="aah" color="244,160,80" desc="Allocation adulte handicapé" shortname="AAH" />
         <NODE code="caah" color="244,160,80" desc="Complément de l'allocation adulte handicapé" shortname="CAAH" />
@@ -129,8 +129,8 @@
       <NODE code="taxe_habitation" color="232,79,95" desc="Taxe d'habitation" shortname="TH" />
     </NODE>
   </NODE>
-  <NODE code="psoc" color="255,102,63" desc="Prestations sociales" shortname="Prest. soc.">
-    <NODE code="pfam" color="83,170,49" desc="Prestations familiales" shortname="Prest. fam.">
+  <NODE code="prestations_sociales" color="255,102,63" desc="Prestations sociales" shortname="Prest. soc.">
+    <NODE code="prestations_familiales" color="83,170,49" desc="Prestations familiales" shortname="Prest. fam.">
       <NODE code="af" color="181,213,154" desc="Allocations familiales" shortname="Alloc. fam." />
       <NODE code="cf" color="125,185,86" desc="Complément familial" shortname="Compl. fam." />
       <NODE code="ars" color="91,172,38" desc="Allocation de rentrée scolaire" shortname="ARS" />
@@ -140,12 +140,12 @@
         <NODE code="paje_naissance" desc="Paje - Prime de naissance" shortname="Prime naiss." />
         <NODE code="paje_clca" desc="Paje - Complément de libre choix d'activité" shortname="CLCA" />
         <NODE code="paje_colca" desc="Paje - Complément optionnel de libre choix d'activité" shortname="COLCA" />
-        <NODE code="paje_clmg" desc="Paje - Complément de libre choix du mode de garde" shortname="CLCMG" />
+        <NODE code="paje_cmg" desc="Paje - Complément de libre choix du mode de garde" shortname="CLCMG" />
       </NODE>
       <NODE code="asf" color="77,144,34" desc="Allocation de soutien familial" shortname="ASF" />
       <NODE code="crds_pfam" color="229,48,56" desc="CRDS (prestations familiales)" shortname="CRDS fam." />
     </NODE>
-    <NODE code="mini" color="240,138,76" desc="Minima sociaux" shortname="Min. sociaux">
+    <NODE code="minima_sociaux" color="240,138,76" desc="Minima sociaux" shortname="Min. sociaux">
       <NODE code="aspa" color="249,193,148" desc="Minimum vieillesse" shortname="Min. viellesse" />
       <NODE code="aah" color="244,160,80" desc="Allocation adulte handicapé" shortname="AAH" />
       <NODE code="caah" color="244,160,80" desc="Complément de l'allocation adulte handicapé" shortname="CAAH" />
@@ -164,7 +164,7 @@
     </NODE>
   </NODE>
   <NODE code="rev_net" color="0,155,204" desc="Revenus nets" shortname="Rev. nets">  # TODO: change color
-        <NODE code="rev_trav" color="0,155,204" desc="Revenu du travail" shortname="Rev. travail">
+        <NODE code="revenus_du_travail" color="0,155,204" desc="Revenu du travail" shortname="Rev. travail">
       <NODE code="salaire_net" color="0,138,201" desc="Salaires nets" shortname="Sal. nets">
         <NODE code="salaire_imposable" color="0,115,170" desc="Salaires imposables" shortname="Sal. impos.">
           <NODE code="salaire_brut" color="0,99,143" desc="Salaires bruts" shortname="Sal. bruts">
@@ -187,7 +187,7 @@
       <NODE code="ric" desc="Revenus industriels et commerciaux" shortname="R. ind. comm." />
       <NODE code="rnc" desc="Revenus non commerciaux" shortname="R. non comm." />
     </NODE>
-    <NODE code="pen" color="97,75,150" desc="Pensions" shortname="Pensions">
+    <NODE code="pensions" color="97,75,150" desc="Pensions" shortname="Pensions">
       <NODE code="chomage_net" color="136,120,178" desc="Chômage net" shortname="Chômage net">
         <NODE code="chomage_imposable" desc="Chômage" shortname="Chômage decl.">
           <NODE code="chomage_brut" desc="Chômage brut" shortname="Chômage brut" />

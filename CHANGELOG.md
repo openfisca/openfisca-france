@@ -1,8 +1,85 @@
 # Changelog
 
-## 6.0.3
+## 9.0.1
 
 * Refactor TaxBenefitSystem decomposition attributes
+
+## 9.0.0
+
+* Continue mesures migration
+* Complete remplacement migration
+* Rename impo to impots_directs
+* Rename revnet to revenu_net
+* Rename revini to revenu_initial
+
+## 8.0.1
+
+* Introduce echelon_bourse
+
+## 8.0.0
+
+* Rename `paje_clmg` to `paje_cmg`
+
+## 7.0.1
+
+* Improving CASA
+
+## 7.0.0
+
+* Introduce minimum_vieillesse
+* Rename `mini` to `minima_sociaux`
+* Rename `nivvie` to `niveau_de_vie`
+* Rename `nivvie_net` to `niveau_de_vie_net`
+* Rename `nivvie_ini` to `niveau_de_vie_initial`
+* Rename `pfam` to `prestations_familiales`
+* Rename `psoc` to `prestations_sociales`
+* Rename `pen` to `pensions`
+* Rename `rev_cap` to `reveunus_du_capital`
+* Rename `rev_trav` to `revenus_du_travail`
+* Rename `revdisp` to `revenu_disponible`
+* Rename `typ_men` to `type_menage`
+* Cleaning:
+   * remove superfluous `default = 0` in `FloatCol` and `IntCol`
+   * remove superfluous comments
+   * migrate some formulas
+
+## 6.1.0
+
+* Add the local regime Alsace-Moselle through the boolean variable `salarie_regime_alsace_moselle`.
+* Impacts the cotisations :
+	* Maladie (MMID)
+	* Taxe apprentissage
+	* Contribution supplémentaire à l'apprentissage.
+
+## 6.0.7
+
+* Remove wrong max numbers of enfants in entities
+
+## 6.0.6
+
+* Deprecate `entreprise_assujettie_tva`
+
+## 6.0.5
+
+* Add effectif_entreprise exclusion condition to Contribution Supplémentaire Apprentissage
+
+## 6.0.4
+
+* Fix some regressions in parameters introcduced by 6.0.0
+    * Re-apply RSA revalorisation from september
+    * Correct bonification rate for PPA
+
+## 6.0.3
+
+* Migrate some formulas to new syntax
+    * `aefa.py`
+    * `af.py`
+    * `anciens_ms.py`
+    * `ars.py`
+    * `base_ressource.py`
+    * `cf.py`
+    * `paje.py`
+    * `rsa.py`
 
 ## 6.0.2
 
