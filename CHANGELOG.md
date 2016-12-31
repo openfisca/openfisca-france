@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.1
+
+* Add `fuzzy` in some `ppa` parameters, needed to run calculations in 2017
+
 ## 9.0.0
 
 * Continue mesures migration
