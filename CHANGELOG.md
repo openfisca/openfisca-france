@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.2
+
+* Make `frais_reels` a `FloatCol`
+
 ## 9.0.1
 
 * Add `fuzzy` in some `ppa` parameters, needed to run calculations in 2017
