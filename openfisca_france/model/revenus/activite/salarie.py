@@ -26,8 +26,6 @@ class bourse_recherche(Variable):
     label = u"Bourse de recherche"
 
 
-
-
 class sal_pen_exo_etr(Variable):
     cerfa_field = {
         QUIFOY['vous']: u"1AC",
@@ -41,8 +39,6 @@ class sal_pen_exo_etr(Variable):
     start_date = date(2013, 1, 1)
 
 
-
-
 class frais_reels(Variable):
     cerfa_field = {QUIFOY['vous']: u"1AK",
         QUIFOY['conj']: u"1BK",
@@ -50,7 +46,7 @@ class frais_reels(Variable):
         QUIFOY['pac2']: u"1DK",
         QUIFOY['pac3']: u"1EK",
         }
-    column = IntCol(val_type = "monetary")
+    column = FloatCol(val_type = "monetary")
     entity = Individu
     label = u"Frais réels"
 
