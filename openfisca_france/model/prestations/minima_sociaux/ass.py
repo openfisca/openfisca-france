@@ -10,7 +10,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class ass_precondition_remplie(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"Éligible à l'ASS"
 
 
@@ -19,7 +19,7 @@ class ass_precondition_remplie(Variable):
 class ass(Variable):
     column = FloatCol
     label = u"Montant de l'ASS pour une famille"
-    entity_class = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         period = period.this_month
@@ -27,7 +27,7 @@ class ass(Variable):
         ass_base_ressources = simulation.calculate('ass_base_ressources', period)
         ass_eligibilite_i_holder = simulation.compute('ass_eligibilite_individu', period)
         en_couple = simulation.calculate('en_couple', period)
-        ass_params = simulation.legislation_at(period.start).minim.ass
+        ass_params = simulation.legislation_at(period.start).prestations.minima_sociaux.ass
 
         ass_eligibilite_i = self.split_by_roles(ass_eligibilite_i_holder, roles = [CHEF, PART])
 
@@ -48,7 +48,7 @@ class ass(Variable):
 class ass_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources de l'ASS"
-    entity_class = Familles
+    entity = Famille
 
     def function(self, simulation, period):
         period = period.this_month
@@ -64,7 +64,7 @@ class ass_base_ressources(Variable):
 class ass_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle de l'ASS"
-    entity_class = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month
@@ -108,7 +108,7 @@ class ass_base_ressources_individu(Variable):
 class ass_base_ressources_conjoint(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle pour le conjoint du demandeur de l'ASS"
-    entity_class = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month
@@ -133,8 +133,8 @@ class ass_base_ressources_conjoint(Variable):
             # Les ressources interrompues sont abattues différement si elles sont substituées ou non.
             # http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000020398006&cidTexte=LEGITEXT000006072050
 
-            tx_abat_partiel = simulation.legislation_at(period.start).minim.ass.abat_rev_subst_conj
-            tx_abat_total = simulation.legislation_at(period.start).minim.ass.abat_rev_non_subst_conj
+            tx_abat_partiel = simulation.legislation_at(period.start).prestations.minima_sociaux.ass.abat_rev_subst_conj
+            tx_abat_total = simulation.legislation_at(period.start).prestations.minima_sociaux.ass.abat_rev_non_subst_conj
 
             abat_partiel = ressource_interrompue * has_ressources_substitution * (1 - neutral_totale)
             abat_total = ressource_interrompue * (1 - abat_partiel)
@@ -176,7 +176,7 @@ class ass_base_ressources_conjoint(Variable):
 class ass_eligibilite_individu(Variable):
     column = BoolCol
     label = u"Éligibilité individuelle à l'ASS"
-    entity_class = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         period = period.this_month

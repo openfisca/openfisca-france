@@ -148,10 +148,11 @@
   relative_error_margin: 0.01
   familles:
     parents: ["parent1"]
-    zone_apl_famille: 1
-    loyer_famille: 800
     aide_logement_base_ressources: 12000
-    statut_occupation_logement_famille: 4  # Locataire
+  menages:
+    zone_apl: 1
+    loyer: 800
+    statut_occupation_logement: 4  # Locataire
   individus:
     - id: "parent1"
       age: 40
@@ -174,10 +175,12 @@
   relative_error_margin: 0.01
   familles:
     parents: ["parent1"]
-    zone_apl_famille: 1
-    loyer_famille: 800
     aide_logement_base_ressources: 12000
-    statut_occupation_logement_famille: 4  # Locataire
+  menages:
+    personne_de_reference: "parent1"
+    statut_occupation_logement: 4  # Locataire
+    zone_apl: 1
+    loyer: 800
   individus:
     - id: "parent1"
       age: 40
@@ -200,10 +203,11 @@
   relative_error_margin: 0.01
   familles:
     parents: ["parent1"]
-    zone_apl_famille: 1
-    loyer_famille: 1054.26
     aide_logement_base_ressources: 12000
-    statut_occupation_logement_famille: 4  # Locataire
+  menages:
+    zone_apl: 1
+    loyer: 1054.26
+    statut_occupation_logement: 4  # Locataire
   individus:
     - id: "parent1"
       age: 40
@@ -215,10 +219,11 @@
   relative_error_margin: 0.025
   familles:
     parents: ["parent1"]
-    zone_apl_famille: 1
-    loyer_famille: 1054.26
     aide_logement_base_ressources: 12000
-    statut_occupation_logement_famille: 4  # Locataire
+  menages:
+    zone_apl: 1
+    loyer: 1054.26
+    statut_occupation_logement: 4  # Locataire
   individus:
     - id: "parent1"
       age: 40
@@ -232,10 +237,11 @@
   relative_error_margin: 0.01
   familles:
     parents: ["parent1"]
-    zone_apl_famille: 1
-    loyer_famille: 1172
     aide_logement_base_ressources: 12000
-    statut_occupation_logement_famille: 4  # Locataire
+  menages:
+    zone_apl: 1
+    loyer: 1172
+    statut_occupation_logement: 4  # Locataire
   individus:
     - id: "parent1"
       age: 40
@@ -250,10 +256,11 @@
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
-    zone_apl_famille: 1
-    loyer_famille: 1650
     aide_logement_base_ressources: 13500
-    statut_occupation_logement_famille: 4  # Locataire
+  menages:
+    zone_apl: 1
+    loyer: 1650
+    statut_occupation_logement: 4  # Locataire
   individus:
     - id: "parent1"
       age: 40

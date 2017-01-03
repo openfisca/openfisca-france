@@ -1,8 +1,169 @@
 # Changelog
 
-## 4.1.21
+## 9.1.0
 
  * "Aides au logement" decreasing with rent.
+
+## 9.0.1
+
+* Add `fuzzy` in some `ppa` parameters, needed to run calculations in 2017
+
+## 9.0.0
+
+* Continue mesures migration
+* Complete remplacement migration
+* Rename impo to impots_directs
+* Rename revnet to revenu_net
+* Rename revini to revenu_initial
+
+## 8.0.1
+
+* Introduce echelon_bourse
+
+## 8.0.0
+
+* Rename `paje_clmg` to `paje_cmg`
+
+## 7.0.1
+
+* Improving CASA
+
+## 7.0.0
+
+* Introduce minimum_vieillesse
+* Rename `mini` to `minima_sociaux`
+* Rename `nivvie` to `niveau_de_vie`
+* Rename `nivvie_net` to `niveau_de_vie_net`
+* Rename `nivvie_ini` to `niveau_de_vie_initial`
+* Rename `pfam` to `prestations_familiales`
+* Rename `psoc` to `prestations_sociales`
+* Rename `pen` to `pensions`
+* Rename `rev_cap` to `reveunus_du_capital`
+* Rename `rev_trav` to `revenus_du_travail`
+* Rename `revdisp` to `revenu_disponible`
+* Rename `typ_men` to `type_menage`
+* Cleaning:
+   * remove superfluous `default = 0` in `FloatCol` and `IntCol`
+   * remove superfluous comments
+   * migrate some formulas
+
+## 6.1.0
+
+* Add the local regime Alsace-Moselle through the boolean variable `salarie_regime_alsace_moselle`.
+* Impacts the cotisations :
+	* Maladie (MMID)
+	* Taxe apprentissage
+	* Contribution supplémentaire à l'apprentissage.
+
+## 6.0.7
+
+* Remove wrong max numbers of enfants in entities
+
+## 6.0.6
+
+* Deprecate `entreprise_assujettie_tva`
+
+## 6.0.5
+
+* Add effectif_entreprise exclusion condition to Contribution Supplémentaire Apprentissage
+
+## 6.0.4
+
+* Fix some regressions in parameters introcduced by 6.0.0
+    * Re-apply RSA revalorisation from september
+    * Correct bonification rate for PPA
+
+## 6.0.3
+
+* Migrate some formulas to new syntax
+    * `aefa.py`
+    * `af.py`
+    * `anciens_ms.py`
+    * `ars.py`
+    * `base_ressource.py`
+    * `cf.py`
+    * `paje.py`
+    * `rsa.py`
+
+## 6.0.2
+
+* Fix legislation parameter call for RMI-RSA transition
+
+## 6.0.1
+
+* Fix packaging of 6.0.0
+
+## 6.0.0
+
+* Use legislation parameters from IPP
+
+* Rename variables:
+	* `cd_penali` -> `pensions_alimentaires_deduites`
+	* `cd_percap` -> `pertes_capital_societes_nouvellespertes_capital_societes_nouvelles`
+	* `cd_cinema` -> `souscriptions_cinema_audiovisuel`
+	* `cd_ecodev` -> `epargne_codeveloppement`
+	* `cd_grorep` -> `grosses_reparations`
+
+* Add variables for allocation pour demandeur d'asile (ADA):
+	* `asile_demandeur`
+	* `place_hebergement`
+	* `ada`
+
+## 5.0.0b0
+
+* Adapt France to Openfisca-Core#v4
+	* Declare entities in the new way
+
+* Deprecate all conversion variables:
+	* `cotsoc_bar_declarant1`
+	* `cotsoc_lib_declarant1`
+	* `crds_cap_bar_declarant1`
+	* `crds_cap_lib_declarant1`
+	* `csg_cap_bar_declarant1`
+	* `csg_cap_lib_declarant1`
+	* `loyer_famille`
+	* `loyer_individu`
+	* `maj_cga_individu`
+	* `pensions_alimentaires_versees_declarant1`
+	* `prelsoc_cap_bar_declarant1`
+	* `prelsoc_cap_lib_declarant1`
+	* `retraite_titre_onereux_declarant1`
+	* `retraite_titre_onereux_net_declarant1`
+	* `rev_microsocial_declarant1`
+	* `statut_occupation_famille`
+	* `statut_occupation_logement_individu`
+	* `zone_apl_famille`
+	* `zone_apl_individu`
+
+* Deprecate entity structure variables:
+	* `idmen`
+	* `idfoy`
+	* `idfam`
+	* `quimen`
+	* `quifoy`
+	* `quifam`
+
+* Change some variables entity:
+	* `FoyersFiscaux` -> `Individus`
+		* `maj_cga`
+	* `Individus` -> `FoyersFiscaux
+		* `rev_coll`
+	* `Individus` -> `Menages`
+		* `coloc`
+		* `logement_chambre`
+	* `Familles` -> `Individus`
+		* `aah_non_calculable`
+	* `Familles` -> `Menages`
+		* `residence_dom`
+		* `residence_guadeloupe`
+		* `residence_martinique`
+		* `residence_guyane`
+		* `residence_reunion`
+		* `residence_mayotte`
+
+* Introduce:
+    * `cotsoc_bar`
+    * `cotsoc_lib`
 
 ## 4.1.20
 

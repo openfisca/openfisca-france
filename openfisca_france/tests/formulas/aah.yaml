@@ -1,4 +1,4 @@
-- name: "AAH niveau Individus - Eligible, célibataire, sans enfants"
+- name: "AAH niveau Individu - Eligible, célibataire, sans enfants"
   description: Montant AAH au niveau de l individu
   period: 2014-11
   absolute_error_margin: 1
@@ -11,7 +11,7 @@
   output_variables:
     aah: 9100 / 12  # (9605,40 - 500)  / 12
 
-- name: "AAH niveau Individus - Eligible, en concubinage, sans enfants, ressources supérieures au plafond"
+- name: "AAH niveau Individu - Eligible, en concubinage, sans enfants, ressources supérieures au plafond"
   description: Montant AAH au niveau de l individu
   period: 2012-03
   absolute_error_margin: 1

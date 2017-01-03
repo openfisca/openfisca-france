@@ -8,35 +8,35 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class autonomie_financiere(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
-        salaire_net = simulation.calculate_add('salaire_net', period.start.period('month', 6).offset(-6))
-        _P = simulation.legislation_at(period.start)
+        salaire_net = individu('salaire_net', period.start.period('month', 6).offset(-6), options = [ADD])
+        _P = legislation(period)
 
         nbh_travaillees = 169
         smic_mensuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
 
         # Oui on compare du salaire net avec un bout du SMIC brut ...
-        return period, salaire_net / 6 >= (_P.fam.af.seuil_rev_taux * smic_mensuel_brut)
+        return period, salaire_net / 6 >= (_P.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
 
 
 class prestations_familiales_enfant_a_charge(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"Enfant considéré à charge au sens des prestations familiales"
 
-    def function(self, simulation, period):
+    def function(individu, period, legislation):
         period = period.this_month
 
-        est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
-        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
-        age = simulation.calculate('age', period)
-        rempli_obligation_scolaire = simulation.calculate('rempli_obligation_scolaire', period)
+        est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
+        autonomie_financiere = individu('autonomie_financiere', period)
+        age = individu('age', period)
+        rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
 
-        pfam = simulation.legislation_at(period.start).fam
+        pfam = legislation(period).prestations.prestations_familiales
 
         condition_enfant = ((age >= pfam.enfants.age_minimal) * (age < pfam.enfants.age_intermediaire) *
             rempli_obligation_scolaire)
@@ -46,114 +46,97 @@ class prestations_familiales_enfant_a_charge(Variable):
 
 
 class prestations_familiales_base_ressources_individu(Variable):
-    column = FloatCol(default = 0)
-    entity_class = Individus
+    column = FloatCol
+    entity = Individu
     label = u"Base ressource individuelle des prestations familiales"
 
-    def function(self, simulation, period):
+    def function(individu, period):
         period = period.this_month
         annee_fiscale_n_2 = period.n_2
 
-        traitements_salaires_pensions_rentes = simulation.calculate('traitements_salaires_pensions_rentes', annee_fiscale_n_2)
-        hsup = simulation.calculate('hsup', annee_fiscale_n_2)
-        rpns = simulation.calculate('rpns', annee_fiscale_n_2)
+        traitements_salaires_pensions_rentes = individu('traitements_salaires_pensions_rentes', annee_fiscale_n_2)
+        hsup = individu('hsup', annee_fiscale_n_2)
+        rpns = individu('rpns', annee_fiscale_n_2)
+        glo = individu('glo', annee_fiscale_n_2)
+        div = individu('div', annee_fiscale_n_2)
 
-        return period, traitements_salaires_pensions_rentes + hsup + rpns
+        return period, traitements_salaires_pensions_rentes + hsup + rpns + glo + div
 
 
 class biactivite(Variable):
-    column = BoolCol(default = False)
-    entity_class = Familles
+    column = BoolCol
+    entity = Famille
     label = u"Indicatrice de biactivité"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
         annee_fiscale_n_2 = period.n_2
 
-        base_ressources_i_holder = simulation.compute('prestations_familiales_base_ressources_individu', period)
-        base_ressources_i = self.split_by_roles(base_ressources_i_holder, roles = [CHEF, PART])
-
-        pfam = simulation.legislation_at(annee_fiscale_n_2.start).fam
+        pfam = legislation(annee_fiscale_n_2).prestations.prestations_familiales
         seuil_rev = 12 * pfam.af.bmaf
 
-        return period, (base_ressources_i[CHEF] >= seuil_rev) & (base_ressources_i[PART] >= seuil_rev)
+        condition_ressource = famille.members('prestations_familiales_base_ressources_individu', period) >= seuil_rev
+        deux_parents = famille.nb_persons(role = famille.PARENT) == 2
+
+        return period, deux_parents * famille.all(condition_ressource, role = famille.PARENT)
 
 
 class div(Variable):
-    column = FloatCol(default = 0)
-    entity_class = Individus
+    column = FloatCol
+    entity = Individu
     label = u"Dividendes imposés"
 
-    def function(self, simulation, period):
+    def function(individu, period):
         period = period.start.offset('first-of', 'month').period('year')
-        rpns_pvce = simulation.calculate('rpns_pvce', period)
-        rpns_pvct = simulation.calculate('rpns_pvct', period)
-        rpns_mvct = simulation.calculate('rpns_mvct', period)
-        rpns_mvlt = simulation.calculate('rpns_mvlt', period)
-        f3vc_holder = simulation.compute('f3vc', period)
-        f3ve_holder = simulation.compute('f3ve', period)
-        f3vg_holder = simulation.compute('f3vg', period)
-        f3vh_holder = simulation.compute('f3vh', period)
-        f3vl_holder = simulation.compute('f3vl', period)
-        f3vm_holder = simulation.compute('f3vm', period)
-        f3vt_holder = simulation.compute('f3vt', period)
+        rpns_pvce = individu('rpns_pvce', period)
+        rpns_pvct = individu('rpns_pvct', period)
+        rpns_mvct = individu('rpns_mvct', period)
+        rpns_mvlt = individu('rpns_mvlt', period)
+        f3vc = individu.foyer_fiscal('f3vc', period)
+        f3ve = individu.foyer_fiscal('f3ve', period)
+        f3vg = individu.foyer_fiscal('f3vg', period)
+        f3vh = individu.foyer_fiscal('f3vh', period)
+        f3vl = individu.foyer_fiscal('f3vl', period)
+        f3vm = individu.foyer_fiscal('f3vm', period)
+        f3vt = individu.foyer_fiscal('f3vt', period)
 
-        f3vc = self.cast_from_entity_to_role(f3vc_holder, role = VOUS)
-        f3ve = self.cast_from_entity_to_role(f3ve_holder, role = VOUS)
-        f3vg = self.cast_from_entity_to_role(f3vg_holder, role = VOUS)
-        f3vh = self.cast_from_entity_to_role(f3vh_holder, role = VOUS)
-        f3vl = self.cast_from_entity_to_role(f3vl_holder, role = VOUS)
-        f3vm = self.cast_from_entity_to_role(f3vm_holder, role = VOUS)
-        f3vt = self.cast_from_entity_to_role(f3vt_holder, role = VOUS)
+        # Revenus du foyer fiscal, projetés seulement sur la première personne
+        revenus_foyer_fiscal = (f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + f3vt) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return period, f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + f3vt + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
+        return period,  revenus_foyer_fiscal + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
 
 class rev_coll(Variable):
-    column = FloatCol(default = 0)
-    entity_class = Individus
-    label = u"Revenus collectifs"
+    column = FloatCol
+    entity = FoyerFiscal
+    label = u"Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
 
-    def function(self, simulation, period):
+    def function(foyer_fiscal, period):
         period = period.start.offset('first-of', 'month').period('year')
-        # Quand rev_coll est calculé sur une année glissante, retraite_titre_onereux_net_declarant1 est calculé sur l'année légale
-        # correspondante.
-        retraite_titre_onereux_net_declarant1 = simulation.calculate('retraite_titre_onereux_net_declarant1', period.offset('first-of'))
-        rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', period)
-        rev_cat_rvcm_holder = simulation.compute('rev_cat_rvcm', period)
-        div = simulation.calculate('div', period)
-        abat_spe_holder = simulation.compute('abat_spe', period)
-        glo = simulation.calculate('glo', period)
-        fon_holder = simulation.compute('fon', period)
-        # Quand rev_coll est calculé sur une année glissante, pensions_alimentaires_versees_declarant1 est calculé sur l'année légale
-        # correspondante.
-        pensions_alimentaires_versees_declarant1 = simulation.calculate('pensions_alimentaires_versees_declarant1', period.offset('first-of'))
-        f7ga_holder = simulation.compute('f7ga', period)
-        f7gb_holder = simulation.compute('f7gb', period)
-        f7gc_holder = simulation.compute('f7gc', period)
-        rev_cat_pv_holder = simulation.compute('rev_cat_pv', period)
+
+        # Quand rev_coll est calculé sur une année glissante, retraite_titre_onereux_net et pensions_alimentaires_versees sont calculés sur l'année légale correspondante.
+        retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period.offset('first-of'))
+        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period.offset('first-of'))
+        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
+        abat_spe = foyer_fiscal('abat_spe', period)
+        fon = foyer_fiscal('fon', period)
+        f7ga = foyer_fiscal('f7ga', period)
+        f7gb = foyer_fiscal('f7gb', period)
+        f7gc = foyer_fiscal('f7gc', period)
+        rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
 
         # TODO: ajouter les revenus de l'étranger etr*0.9
-        # pensions_alimentaires_versees_declarant1 is negative since it is paid by the declaree
-        rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = VOUS)
-        rev_cat_rvcm = self.cast_from_entity_to_role(rev_cat_rvcm_holder, role = VOUS)
-        abat_spe = self.cast_from_entity_to_role(abat_spe_holder, role = VOUS)
-        fon = self.cast_from_entity_to_role(fon_holder, role = VOUS)
-        f7ga = self.cast_from_entity_to_role(f7ga_holder, role = VOUS)
-        f7gb = self.cast_from_entity_to_role(f7gb_holder, role = VOUS)
-        f7gc = self.cast_from_entity_to_role(f7gc_holder, role = VOUS)
-        rev_cat_pv = self.cast_from_entity_to_role(rev_cat_pv_holder, role = VOUS)
-
-        return period, (retraite_titre_onereux_net_declarant1 + rev_cap_lib + rev_cat_rvcm + div + fon + glo + pensions_alimentaires_versees_declarant1 - f7ga - f7gb
-            - f7gc - abat_spe + rev_cat_pv)
+        # pensions_alimentaires_versees is negative since it is paid by the declaree
+        return period, (retraite_titre_onereux_net + rev_cap_lib + rev_cat_rvcm + fon + pensions_alimentaires_versees - f7ga - f7gb - f7gc - abat_spe + rev_cat_pv)
 
 
 class prestations_familiales_base_ressources(Variable):
-    column = FloatCol(default = 0)
-    entity_class = Familles
+    column = FloatCol
+    entity = Famille
     label = u"Base ressource des prestations familiales"
 
-    def function(self, simulation, period):
+    def function(famille, period):
         '''
         Base ressource des prestations familiales de la famille
         'fam'
@@ -162,17 +145,16 @@ class prestations_familiales_base_ressources(Variable):
         # period_legacy = period.start.offset('first-of', 'month').period('year')
         annee_fiscale_n_2 = period.n_2
 
-        base_ressources_i = simulation.calculate('prestations_familiales_base_ressources_individu', period)
-        enfant_i = simulation.calculate('est_enfant_dans_famille', period)
-        enfant_a_charge_i = simulation.calculate('prestations_familiales_enfant_a_charge', period)
+        base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
+        enfant_i = famille.members('est_enfant_dans_famille', period)
+        enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', period)
         ressources_i = (not_(enfant_i) + enfant_a_charge_i) * base_ressources_i
-        base_ressources_i_total = self.sum_by_entity(ressources_i)
+        base_ressources_i_total = famille.sum(ressources_i)
 
-        rev_coll_holder = simulation.compute('rev_coll', annee_fiscale_n_2)
+        # Revenus du foyer fiscal
+        rev_coll = famille.demandeur.foyer_fiscal('rev_coll', annee_fiscale_n_2)
 
-        rev_coll = self.split_by_roles(rev_coll_holder, roles = [CHEF, PART])
-
-        base_ressources = base_ressources_i_total + rev_coll[CHEF] + rev_coll[PART]
+        base_ressources = base_ressources_i_total + rev_coll
         return period, base_ressources
 
 
@@ -181,26 +163,20 @@ class prestations_familiales_base_ressources(Variable):
 ############################################################################
 
 
-def nb_enf(ages, autonomie_financiere, ag1, ag2):
+def nb_enf(famille, period, age_min, age_max):
     """
     Renvoie le nombre d'enfant au sens des allocations familiales dont l'âge est compris entre ag1 et ag2
     """
+
+    period = period.this_month
+    age = famille.members('age', period)
+    autonomie_financiere = famille.members('autonomie_financiere', period)
+
 #        Les allocations sont dues à compter du mois civil qui suit la naissance
 #        ag1==0 ou suivant les anniversaires ag1>0.
 #        Un enfant est reconnu à charge pour le versement des prestations
 #        jusqu'au mois précédant son age limite supérieur (ag2 + 1) mais
 #        le versement à lieu en début de mois suivant
-    return sum(
-        (age >= ag1) & (age <= ag2) & not_(autonomie_financiere[key]) for key, age in ages.iteritems()
-    )
+    condition = (age >= age_min) * (age <= age_max) * not_(autonomie_financiere)
 
-
-def age_en_mois_benjamin(ages_en_mois):
-    '''
-    Renvoie un vecteur (une entree pour chaque famille) avec l'age du benjamin.  # TODO check age_en_mois > 0
-    '''
-    age_en_mois_benjamin = 12 * 9999
-    for age_en_mois in ages_en_mois.itervalues():
-        isbenjamin = (age_en_mois < age_en_mois_benjamin) & (age_en_mois != -9999)
-        age_en_mois_benjamin = isbenjamin * age_en_mois + not_(isbenjamin) * age_en_mois_benjamin
-    return age_en_mois_benjamin
+    return famille.sum(condition, role = Famille.ENFANT)

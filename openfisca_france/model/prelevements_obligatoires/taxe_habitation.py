@@ -9,7 +9,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class exonere_taxe_habitation(Variable):
     column = BoolCol(default = True)
-    entity_class = Menages
+    entity = Menage
     label = u"Exonération de la taxe d'habitation"
     url = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
 
@@ -58,8 +58,8 @@ class exonere_taxe_habitation(Variable):
 
 
 class taxe_habitation(Variable):
-    column = FloatCol(default = 0)
-    entity_class = Menages
+    column = FloatCol
+    entity = Menage
     label = u"Taxe d'habitation"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
 
@@ -79,7 +79,7 @@ class taxe_habitation(Variable):
         valeur_locative_brute = 0
         valeur_locative_moyenne = 0  # déped de la collectivité)
 
-        # Paramètres: à inclure dans param.xml
+        # Paramètres: à inclure dans parameters.xml
         taux_minimal_2_premiers = .1  # minimun depusi 2011
         majoration_2_premiers = 0
         taux_minimal_3_et_plus = .15

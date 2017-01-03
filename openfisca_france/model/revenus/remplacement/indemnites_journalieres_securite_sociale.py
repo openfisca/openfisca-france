@@ -1,50 +1,48 @@
 # -*- coding: utf-8 -*-
 
-import datetime
-
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class indemnites_journalieres_maternite(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Indemnités journalières de maternité"
 
 
 class indemnites_journalieres_paternite(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Indemnités journalières de paternité"
 
 
 class indemnites_journalieres_adoption(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Indemnités journalières d'adoption"
 
 
 class indemnites_journalieres_maladie(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Indemnités journalières de maladie"
 
 
 class indemnites_journalieres_accident_travail(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Indemnités journalières d'accident du travail"
 
 
 class indemnites_journalieres_maladie_professionnelle(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Indemnités journalières de maladie professionnelle"
 
 
 class indemnites_journalieres(Variable):
     column = FloatCol
     label = u"Total des indemnités journalières"
-    entity_class = Individus
+    entity = Individu
 
     def function(self, simulation, period):
         ressources = [
@@ -63,7 +61,7 @@ class indemnites_journalieres(Variable):
 class indemnites_journalieres_imposables(Variable):
     column = FloatCol
     label = u"Total des indemnités journalières imposables"
-    entity_class = Individus
+    entity = Individu
     url = "http://vosdroits.service-public.fr/particuliers/F3152.xhtml"
 
     def function(self, simulation, period):
@@ -77,7 +75,7 @@ class indemnites_journalieres_imposables(Variable):
         return period, result
 
 class date_arret_de_travail(Variable):
-    column = DateCol(default = datetime.date.min)
-    entity_class = Individus
+    column = DateCol(default = date.min)
+    entity = Individu
     is_permanent = True
     label = u"Date depuis laquelle la personne est en arrêt de travail"

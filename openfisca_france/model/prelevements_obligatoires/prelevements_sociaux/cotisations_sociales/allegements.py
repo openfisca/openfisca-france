@@ -8,13 +8,13 @@ import logging
 from numpy import (
     busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, logical_and as and_,
     maximum as max_, minimum as min_, round as round_, timedelta64
-)
-from datetime import datetime
+    )
 
 from openfisca_core import periods
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.assets.holidays import holidays
+
 
 log = logging.getLogger(__name__)
 
@@ -22,7 +22,7 @@ log = logging.getLogger(__name__)
 class assiette_allegement(Variable):
     base_function = requested_period_added_value
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Assiette des allègements de cotisations sociales employeur"
 
     def function(self, simulation, period):
@@ -37,7 +37,7 @@ class assiette_allegement(Variable):
 
 class coefficient_proratisation(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Coefficient de proratisation du salaire notamment pour le calcul du SMIC"
 
     def function(self, simulation, period):
@@ -127,7 +127,7 @@ class coefficient_proratisation(Variable):
 
 class credit_impot_competitivite_emploi(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Crédit d'imôt pour la compétitivité et l'emploi"
 
     @dated_function(date(2013, 1, 1))
@@ -137,8 +137,8 @@ class credit_impot_competitivite_emploi(DatedVariable):
         jeune_entreprise_innovante = simulation.calculate('jeune_entreprise_innovante', period)
         smic_proratise = simulation.calculate('smic_proratise', period)
         stagiaire = simulation.calculate('stagiaire', period)
-        cotsoc = simulation.legislation_at(period.start).cotsoc
-        taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, cotsoc)
+        legislation = simulation.legislation_at(period.start)
+        taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, legislation)
         credit_impot_competitivite_emploi = taux_cice * assiette_allegement
         non_cumul = not_(stagiaire)
         association = simulation.calculate('entreprise_est_association_non_lucrative', period)
@@ -148,7 +148,7 @@ class credit_impot_competitivite_emploi(DatedVariable):
 
 class aide_premier_salarie(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Aide à l'embauche d'un premier salarié"
 
     @dated_function(start=date(2015, 6, 9))
@@ -169,8 +169,7 @@ class aide_premier_salarie(DatedVariable):
         eligible_contrat = and_(
             contrat_de_travail_debut >= datetime64("2015-06-09"),
             contrat_de_travail_debut <= datetime64("2016-12-31")
-        )
-
+            )
         # Si CDD, durée du contrat doit être > 1 an
         eligible_duree = or_(
             # durée indéterminée
@@ -211,7 +210,7 @@ class aide_premier_salarie(DatedVariable):
 
 class aide_embauche_pme(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Aide à l'embauche d'un salarié pour les PME"
     url = u"http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
 
@@ -262,8 +261,8 @@ class aide_embauche_pme(DatedVariable):
                 contrat_de_travail_duree == 1,
                 # > 6 mois
                 (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
+                )
             )
-        )
 
         # Valable 2 ans seulement
         eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
@@ -279,12 +278,13 @@ class aide_embauche_pme(DatedVariable):
         # l’aide est proratisée en fonction de sa durée de travail.
         # TODO cette multiplication par le coefficient de proratisation suffit-elle pour le cas du temps partiel ?
         # A tester
+
         return period, eligible * (montant_max / 24) * coefficient_proratisation
 
 
 class smic_proratise(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"SMIC proratisé (mensuel)"
 
     def function(self, simulation, period):
@@ -298,7 +298,7 @@ class smic_proratise(Variable):
 
 class allegement_fillon(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
 
     # Attention : cet allègement a des règles de cumul spécifiques
@@ -318,7 +318,7 @@ class allegement_fillon(DatedVariable):
             simulation, period,
             allegement_mode_recouvrement,
             self.__class__.__name__,
-        )
+            )
 
         return period, allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
 
@@ -341,9 +341,20 @@ def compute_allegement_fillon(simulation, period):
     # Ce montant est majoré de 10 % pour les entreprises de travail temporaire
     # au titre des salariés temporaires pour lesquels elle est tenue à
     # l’obligation d’indemnisation compensatrice de congés payés.
-    Pf = simulation.legislation_at(period.start).cotsoc.exo_bas_sal.fillon
-    seuil = Pf.seuil
-    tx_max = (Pf.tx_max * not_(majoration) + Pf.tx_max2 * majoration)
+
+    fillon = simulation.legislation_at(period.start).prelevements_sociaux.fillon
+
+    # Du 2003-07-01 au 2005-06-30
+    if date(2003, 7, 1) <= period.start.date <= date(2005, 6, 30):
+        seuil = fillon.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
+        tx_max = fillon.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
+    # Après le 2005-07-01
+    else:
+        seuil = fillon.ensemble_des_entreprises.plafond
+        tx_max = (
+            fillon.ensemble_des_entreprises.reduction_maximale.entreprises_de_20_salaries_et_plus * not_(majoration) +
+            fillon.ensemble_des_entreprises.reduction_maximale.entreprises_de_moins_de_20_salaries * majoration
+            )
     if seuil <= 1:
         return 0
     ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
@@ -356,8 +367,8 @@ def compute_allegement_fillon(simulation, period):
 
 class allegement_cotisation_allocations_familiales(DatedVariable):
     column = FloatCol
-    entity_class = Individus
     label = u"Allègement de la cotisation d'allocations familiales sur les bas et moyens salaires"
+    entity = Individu
     url = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
 
     @dated_function(date(2015, 1, 1))
@@ -376,7 +387,7 @@ class allegement_cotisation_allocations_familiales(DatedVariable):
             simulation, period,
             allegement_mode_recouvrement,
             self.__class__.__name__,
-        )
+            )
 
         return period, allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
 
@@ -387,14 +398,13 @@ def compute_allegement_cotisation_allocations_familiales(simulation, period):
     """
     assiette = simulation.calculate_add('assiette_allegement', period)
     smic_proratise = simulation.calculate_add('smic_proratise', period)
-    taille_entreprise = simulation.calculate('taille_entreprise', period)
-
-    law = simulation.legislation_at(period.start).cotsoc.exo_bas_sal.allegement_cotisation_allocations_familiales
-
+    # TODO: Ne semble pas dépendre de la taille de l'entreprise mais à vérifier
+    # taille_entreprise = simulation.calculate('taille_entreprise', period)
+    law = simulation.legislation_at(period.start).prelevements_sociaux.allegement_cotisation_allocations_familiales
     ratio_smic_salaire = assiette / smic_proratise
 
     # Montant de l'allegment
-    return (ratio_smic_salaire < law.seuil) * law.taux * assiette
+    return (ratio_smic_salaire < law.plafond_en_nombre_de_smic) * law.reduction * assiette
 
 
 ###############################
@@ -420,6 +430,7 @@ def switch_on_allegement_mode(simulation, period, mode_recouvrement, variable_na
     )
 
 
+
 def compute_allegement_annuel(simulation, period, variable_name, compute_function):
     if period.start.month < 12:
         return 0
@@ -436,7 +447,7 @@ def compute_allegement_anticipe(simulation, period, variable_name, compute_funct
             period.start.offset('first-of', 'year').period('month', 11), max_nb_cycles=1)
         return compute_function(
             simulation, period.this_year
-        ) - cumul
+            ) - cumul
 
 
 def compute_allegement_progressif(simulation, period, variable_name, compute_function):
@@ -450,7 +461,7 @@ def compute_allegement_progressif(simulation, period, variable_name, compute_fun
         return compute_function(simulation, up_to_this_month) - cumul
 
 
-def taux_exo_cice(assiette_allegement, smic_proratise, P):
-    Pc = P.exo_bas_sal.cice
-    taux_cice = ((assiette_allegement / (smic_proratise + 1e-16)) <= Pc.max) * Pc.taux
+def taux_exo_cice(assiette_allegement, smic_proratise, legislation):
+    cice = legislation.prelevements_sociaux.cice
+    taux_cice = ((assiette_allegement / (smic_proratise + 1e-16)) <= cice.plafond_smic) * cice.taux
     return taux_cice
