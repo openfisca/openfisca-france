@@ -611,8 +611,10 @@ class aide_logement_montant_brut(DatedVariable):
         handicap_i = famille.members('handicap', period)
         handicap = famille.any(handicap_i)
 
-
-        coeff = max_(0, min_(1, 1-((loyer_reel-loyer_degressivite)/(loyer_suppression-loyer_degressivite))))
+        coeff = select(
+            [loyer_reel <= loyer_degressivite, loyer_reel <= loyer_suppression, loyer_reel > loyer_suppression],
+            [1, 1 - ((loyer_reel - loyer_degressivite) / (loyer_suppression - loyer_degressivite)), 0]
+            )
 
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         accedant = (statut_occupation_logement == 1)
