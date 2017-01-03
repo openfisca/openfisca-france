@@ -23,10 +23,8 @@
       "2014-01": 119.83
     rsa_socle:
       "2014-01": 748.97
-    rsa_majore:
-      "2014-01": 0
-    rsa_non_majore:
-      "2014-01": 629.13
+    rsa_majore_eligibilite:
+      "2014-01": False
     rsa:
       "2014-01": 629.13
 

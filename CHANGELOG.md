@@ -1,5 +1,17 @@
 # Changelog
 
+## 10.0.0
+
+* From 2017, for RSA, remove CA and number of employees conditions.
+* Calculate RSA for Travailleurs Non Salariés
+* Introduce RSA fictif mechanism
+* Deprecate:
+	- `rsa_majore`
+	- `rsa_non_majore`
+* Introduce inputs:
+	- `primes_salaires_net`
+	- `indemnite_fin_contrat_net`
+
 ## 9.0.1
 
 * Add `fuzzy` in some `ppa` parameters, needed to run calculations in 2017
@@ -8,9 +20,9 @@
 
 * Continue mesures migration
 * Complete remplacement migration
-* Rename impo to impots_directs
-* Rename revnet to revenu_net
-* Rename revini to revenu_initial
+* Rename `impo` to `impots_directs`
+* Rename `revnet` to `revenu_net`
+* Rename `revini` to `revenu_initial`
 
 ## 8.0.1
 
