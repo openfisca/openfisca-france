@@ -2,7 +2,7 @@
 
 ## 9.1.0
 
- * "Aides au logement" decreasing with rent.
+ * Implement "Aides au logement" degression when rent is above a threshold.
 
 ## 9.0.1
 
