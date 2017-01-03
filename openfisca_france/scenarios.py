@@ -74,8 +74,8 @@ class Scenario(scenarios.AbstractScenario):
 
 
             # If there is a familly, auto-declare the first parent as menage person de ref
-            famille = value['familles'] and value['familles'][0]
-            menage = value['menages'] and value['menages'][0]
+            famille = value.get('familles') and value['familles'][0]
+            menage = value.get('menages') and value['menages'][0]
             if menage is not None and famille is not None and not menage.get('personne_de_reference'):
                 menage['personne_de_reference'] = famille['parents'][0]
 
