@@ -425,7 +425,7 @@ class aide_logement_R0(DatedVariable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         residence_dom = famille.demandeur.menage('residence_dom')
 
-        n_2 = period.start.offset(-2, 'year')  # deux ans après la mise en place du rsa le 2009-06-01
+        n_2 = period.start.offset(-2, 'year')
         if n_2.date >= date(2009, 6, 01):
             montant_de_base = minim_n_2.rsa.montant_de_base_du_rsa
         else:
