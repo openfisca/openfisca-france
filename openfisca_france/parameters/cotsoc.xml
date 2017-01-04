@@ -173,7 +173,8 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="2359" />
     </CODE>
     <CODE code="plafond_securite_sociale" description="Plafond mensuel de la sécurité sociale" format="integer" origin="openfisca" type="monetary">
-      <VALUE deb="2017-01-01" fuzzy="true" valeur="3218" />
+      <!-- http://www.ameli.fr/employeurs/vos-demarches/chiffres-utiles/plafond-de-la-securite-sociale.php -->
+      <VALUE deb="2017-01-01" fuzzy="true" valeur="3269" />
       <VALUE deb="2016-01-01" fin="2016-12-31" valeur="3218" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="3170" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3129" />
