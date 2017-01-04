@@ -74,8 +74,15 @@
       <VALUE deb="2016-01-01" fuzzy="true" valeur=".001" />
       <VALUE deb="2013-01-01" fin="2015-12-31" valeur=".001" /> # TODO check and check for coherence with previous taux
         <VALUE deb="2010-01-01" fin="2012-12-31" valeur=".001" /> # TODO check and check for coherence with previous taux
-      </CODE>
+    </CODE>
+    <CODE code="multiplicateur_alsace_moselle" description="Multiplicateur CSA Alsace-Moselle" format="percent">
+      <!-- CGI Article 1609 quinvicies IV
+      Instauration :  LOI n° 2011-1977 du 28 décembre 2011 de finances pour 2012
+     -->
+      <VALUE deb="2012-01-01" fuzzy="true" valeur=".52" />
+    </CODE>
   </NODE>
+
   <NODE code="gen" description="Paramètres généraux" origin="openfisca">
     <CODE code="nb_heure_travail_mensuel" description="Nombre d'heures travaillées forfaitaires" format="float" origin="openfisca">
       <VALUE deb="2016-01-01" fuzzy="true" valeur="151.67" />
@@ -441,6 +448,18 @@
             </TAUX>
           </TRANCHE>
         </BAREME>
+        <BAREME code="apprentissage_alsace_moselle" description="Taxe d'apprentissage pour les salariés du régime d'Alsace-Moselle" option="main-d-oeuvre">
+            <TRANCHE code="tranche0">
+              <SEUIL>
+                <VALUE deb="2017-01-01" fuzzy="true" valeur="0" />
+                <VALUE deb="1993-07-01" fin="2016-12-31" valeur="0" />
+              </SEUIL>
+              <TAUX>
+                <VALUE deb="2014-01-01" fuzzy="true" valeur="0.0044" />
+                <VALUE deb="1993-07-01" fin="2013-12-31" valeur="0.005" /> <!-- La valeur est vérifiée, pas la date de début (calquée aujourd'hui sur le barème régime général) -->
+              </TAUX>
+            </TRANCHE>
+          </BAREME>
         <BAREME code="apprentissage_250" description="Taxe d'apprentissage (plus de 250 salariés)" option="main-d-oeuvre" origin="openfisca">
           <TRANCHE code="tranche0">
             <SEUIL>
@@ -1573,6 +1592,24 @@
           </TAUX>
         </TRANCHE>
       </BAREME>
+      <BAREME code="maladie_alsace_moselle" description="Assurance maladie, maternité, invalidité, décès pour les salariés du régime Alsace-Moselle" option="noncontrib">
+          <TRANCHE code="tranche0">
+            <SEUIL>
+              <VALUE deb="1989-09-01" fuzzy="true" valeur="0" />
+            </SEUIL>
+            <TAUX>
+              <VALUE deb="2012-01-01" fuzzy="true" valeur="0.015" />
+              <VALUE deb="2008-01-01" fin="2011-12-31" valeur="0.016" />
+              <VALUE deb="2007-07-01" fin="2007-12-31" valeur="0.017" />
+              <VALUE deb="2006-01-01" fin="2007-06-30" valeur="0.018" />
+              <VALUE deb="2003-01-01" fin="2005-12-31" valeur="0.017" />
+              <VALUE deb="1999-07-01" fin="2002-12-31" valeur="0.015" />
+              <VALUE deb="1998-07-01" fin="1999-06-30" valeur="0.0125" />
+              <VALUE deb="1994-01-01" fin="1998-06-30" valeur="0.01" />
+              <VALUE deb="1989-09-01" fin="1993-12-31" valeur="0.0075" />
+            </TAUX>
+          </TRANCHE>
+        </BAREME>
       <BAREME code="vieillesse" description="Vieillesse (régime de base de la retraite CNAV)" option="contrib" origin="openfisca">
         <TRANCHE code="tranche0">
           <SEUIL>

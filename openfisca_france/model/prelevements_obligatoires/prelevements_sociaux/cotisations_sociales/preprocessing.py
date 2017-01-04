@@ -22,7 +22,7 @@ def build_pat(node_json):
     pat = copy.deepcopy(node_json['children']['cotsoc']['children']['pat'])
     commun = pat['children'].pop('commun')
 
-    for bareme in ['apprentissage', 'apprentissage_add']:
+    for bareme in ['apprentissage', 'apprentissage_add', 'apprentissage_alsace_moselle']:
         commun['children'][bareme] = commun['children']['apprentissage_node']['children'][bareme]
     del commun['children']['apprentissage_node']
 
@@ -43,11 +43,11 @@ def build_pat(node_json):
     pat['children']['prive_cadre'] = pat['children'].pop('cadre')
 
     # Rework commun to deal with public employees
-    for var in ["apprentissage", "apprentissage_add", "assedic", "chomfg", "construction", "maladie", "formprof_09",
+    for var in ["apprentissage", "apprentissage_add", "apprentissage_alsace_moselle", "assedic", "chomfg", "construction", "maladie", "formprof_09",
                 "formprof_1019", "formprof_20", "vieillesse_deplafonnee", "vieillesse_plafonnee"]:
         del commun['children'][var]
 
-    for var in ["apprentissage", "apprentissage_add", "formprof_09", "formprof_1019", "formprof_20", "chomfg",
+    for var in ["apprentissage", "apprentissage_add", "apprentissage_alsace_moselle", "formprof_09", "formprof_1019", "formprof_20", "chomfg",
                 "construction", "assedic"]:
         del pat['children']['fonc']['children']['contract']['children'][var]
 

@@ -68,10 +68,10 @@ class paje(Variable):
         paje_base = famille('paje_base', period)
         paje_naissance = famille('paje_naissance', period)
         paje_clca = famille('paje_clca', period)
-        paje_clmg = famille('paje_clmg', period)
+        paje_cmg = famille('paje_cmg', period)
         paje_colca = famille('paje_colca', period)
 
-        return period, paje_base + (paje_naissance + paje_clca + paje_clmg + paje_colca) / 12
+        return period, paje_base + (paje_naissance + paje_clca + paje_cmg + paje_colca) / 12
 
 
 class paje_base(Variable):
@@ -350,7 +350,7 @@ class paje_clca_taux_partiel(Variable):
     # TODO gérer les cumuls avec autres revenus et colca voir site caf
 
 
-class paje_clmg(Variable):
+class paje_cmg(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity = Famille
@@ -457,9 +457,9 @@ class paje_clmg(Variable):
         # Si vous bénéficiez du Clca taux plein
         # (= vous ne travaillez plus ou interrompez votre activité professionnelle),
         # vous ne pouvez pas bénéficier du Cmg.
-        paje_clmg = elig * not_(paje_clca_taux_plein) * clmg
+        paje_cmg = elig * not_(paje_clca_taux_plein) * clmg
         # TODO vérfiez les règles de cumul
-        return period, paje_clmg
+        return period, paje_cmg
 
 
 class paje_colca(Variable):
@@ -497,13 +497,12 @@ class ape_avant_cumul(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation parentale d'éducation, avant prise en compte de la non-cumulabilité avec le CF et l'APJE"
-    stop_date = date(2004, 1, 1)
+    stop_date = date(2003, 12, 31)
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
 
     def function(famille, period, legislation):
         '''
         Allocation parentale d'éducation
-        'fam'
 
         L’allocation parentale d’éducation s’adresse aux parents qui souhaitent arrêter ou
         réduire leur activité pour s’occuper de leurs jeunes enfants, à condition que ceux-ci
@@ -559,7 +558,7 @@ class apje_avant_cumul(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation pour le jeune enfant, avant prise en compte de la non-cumulabilité avec le CF et l'APE"
-    stop_date = date(2004, 1, 1)
+    stop_date = date(2003, 12, 31)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
 
     def function(famille, period, legislation):
@@ -567,7 +566,7 @@ class apje_avant_cumul(Variable):
         Allocation pour jeune enfant
         '''
         period = period.this_month
-        base_ressources = famille('prestations_familFiales_base_ressources', period.this_month)
+        base_ressources = famille('prestations_familiales_base_ressources', period.this_month)
         biactivite = famille('biactivite', period, options = [ADD])
         isole = not_(famille('en_couple', period))
         P = legislation(period).prestations.prestations_familiales
@@ -589,7 +588,7 @@ class apje_avant_cumul(Variable):
 
         # Pour bénéficier de cette allocation, il faut que tous les enfants du foyer soient nés, adoptés, ou recueillis
         # en vue d’une adoption avant le 1er janvier 2004, et qu’au moins l’un d’entre eux ait moins de 3 ans.
-        # Cette allocation est verséE du 5��me mois de grossesse jusqu���au mois précédant le 3ème anniversaire de
+        # Cette allocation est versée du 5ème mois de grossesse jusqu'au mois précédant le 3ème anniversaire de
         # l’enfant.
 
         # Non cumul APE APJE CF
@@ -603,7 +602,7 @@ class ape(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation parentale d'éducation"
-    stop_date = date(2004, 1, 1)
+    stop_date = date(2003, 12, 31)
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
 
     def function(famille, period):
@@ -623,7 +622,7 @@ class apje(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation pour le jeune enfant"
-    stop_date = date(2004, 1, 1)
+    stop_date = date(2003, 12, 31)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
 
     def function(famille, period):

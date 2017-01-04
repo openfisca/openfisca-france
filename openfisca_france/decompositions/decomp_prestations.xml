@@ -9,7 +9,7 @@
       <NODE code="paje_naissance" desc="Paje - Prime de naissance" shortname="Prime naiss." />
       <NODE code="paje_clca" desc="Paje - Complément de libre choix d'activité" shortname="CLCA" />
       <NODE code="paje_colca" desc="Paje - Complément optionnel de libre choix d'activité" shortname="COLCA" />
-      <NODE code="paje_clmg" desc="Paje - Complément de libre choix du mode de garde" shortname="CLCMG" />
+      <NODE code="paje_cmg" desc="Paje - Complément de libre choix du mode de garde" shortname="CLCMG" />
     </NODE>
     <NODE code="asf" color="77,144,34" desc="Allocation de soutien familial" shortname="ASF" />
     <NODE code="crds_pfam" color="229,48,56" desc="CRDS (prestations familiales)" shortname="CRDS fam." />

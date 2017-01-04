@@ -86,3 +86,20 @@
     contribution_supplementaire_apprentissage: 0
 
 
+
+- period: "2016-06"
+  description:
+    Taxe d'apprentissage / CSA A-M
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1467
+    # nécessaire pour des requêtes sur un mois de salaire :
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 250
+    categorie_salarie: 0 # non cadre
+    contrat_de_travail_duree: 0
+    ratio_alternants: 0.0178
+    salarie_regime_alsace_moselle: 1
+  output_variables:
+    taxe_apprentissage: -.0044 * 1467
+    contribution_supplementaire_apprentissage: -.00104 * 1467
