@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.0.1
+
+* Fix csg legislation link in `inversion_directe_salaires` reform.
+
 ## 10.0.0
 
 * From 2017, for RSA, remove CA and number of employees conditions.
