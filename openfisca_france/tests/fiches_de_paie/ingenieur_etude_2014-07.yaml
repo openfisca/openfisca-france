@@ -70,7 +70,7 @@ output_variables:
   versement_transport: -81
 
   allegement_fillon: 0
-  credit_impot_competitivite_emploi: 120
+  credit_impot_competitivite_emploi: 180
   forfait_social: -4.72
   tehr:
     2014: 0

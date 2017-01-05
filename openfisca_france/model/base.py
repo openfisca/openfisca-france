@@ -5,9 +5,9 @@ from datetime import date
 from openfisca_core.columns import (AgeCol, BoolCol, DateCol, EnumCol, FixedStrCol, FloatCol, IntCol,
     PeriodSizeIndependentIntCol, StrCol)
 from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import (calculate_output_add, calculate_output_add_divide, calculate_output_divide,
-    dated_function, missing_value, set_input_dispatch_by_period, set_input_divide_by_period)
-from openfisca_core.variables import DatedVariable, EntityToPersonColumn, PersonToEntityColumn, Variable
+from openfisca_core.formulas import (ADD, calculate_output_add, calculate_output_add_divide, calculate_output_divide,
+    dated_function, DIVIDE, missing_value, set_input_dispatch_by_period, set_input_divide_by_period)
+from openfisca_core.variables import DatedVariable, Variable
 from openfisca_core.base_functions import (
     last_duration_last_value,
     requested_period_added_value,
@@ -17,10 +17,11 @@ from openfisca_core.base_functions import (
     )
 from openfisca_core.formula_helpers import apply_thresholds, switch
 
-from openfisca_france.entities import Familles, FoyersFiscaux, Individus, Menages
+from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage
 
 
 __all__ = [
+    'ADD',
     'AgeCol',
     'apply_thresholds',
     'BoolCol',
@@ -35,25 +36,24 @@ __all__ = [
     'DateCol',
     'dated_function',
     'DatedVariable',
+    'DIVIDE',
     'ENFS',
-    'EntityToPersonColumn',
     'Enum',
     'EnumCol',
-    'Familles',
+    'Famille',
     'FixedStrCol',
     'FloatCol',
-    'FoyersFiscaux',
-    'Individus',
+    'FoyerFiscal',
+    'Individu',
     'IntCol',
     'last_duration_last_value',
-    'Menages',
+    'Menage',
     'missing_value',
     'PAC1',
     'PAC2',
     'PAC3',
     'PART',
     'PeriodSizeIndependentIntCol',
-    'PersonToEntityColumn',
     'PREF',
     'QUIFAM',
     'QUIFOY',
@@ -64,10 +64,10 @@ __all__ = [
     'requested_period_last_value',
     'set_input_dispatch_by_period',
     'set_input_divide_by_period',
-    'switch',
-    'Variable',
     'StrCol',
+    'switch',
     'TAUX_DE_PRIME',
+    'Variable',
     'VOUS',
     ]
 
@@ -83,6 +83,7 @@ CAT = Enum([
 
 TAUX_DE_PRIME = 1 / 4  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
 
+# Legacy roles. To be removed when they are not used by formulas anymore.
 QUIFAM = Enum(['chef', 'part', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])
 QUIFOY = Enum(['vous', 'conj', 'pac1', 'pac2', 'pac3', 'pac4', 'pac5', 'pac6', 'pac7', 'pac8', 'pac9'])
 QUIMEN = Enum(['pref', 'cref', 'enf1', 'enf2', 'enf3', 'enf4', 'enf5', 'enf6', 'enf7', 'enf8', 'enf9'])

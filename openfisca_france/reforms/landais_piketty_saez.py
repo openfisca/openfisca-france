@@ -18,7 +18,7 @@ from openfisca_france.model.base import QUIFAM, QUIFOY
 
 class assiette_csg(Variable):
     column = columns.FloatCol
-    entity_class = entities.Individus
+    entity = entities.Individu
     label = u"Assiette de la CSG"
 
     def function(self, simulation, period):
@@ -34,7 +34,7 @@ class assiette_csg(Variable):
 
 class impot_revenu_lps(Variable):
     column = columns.FloatCol
-    entity_class = entities.Individus
+    entity = entities.Individu
     label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
 
     def function(self, simulation, period):
@@ -55,9 +55,10 @@ class impot_revenu_lps(Variable):
         assiette_csg = simulation.calculate('assiette_csg')
         return period, -max_(0, lps.bareme.calc(max_(assiette_csg - ae - ac, 0)) - re - rc) + ce
 
-class revdisp(Variable):
-    column = columns.FloatCol(default = 0)
-    entity_class = entities.Menages
+
+class revenu_disponible(Variable):
+    column = columns.FloatCol
+    entity = entities.Menage
     label = u"Revenu disponible du ménage"
     url = u"http://fr.wikipedia.org/wiki/Revenu_disponible"
 
@@ -65,16 +66,17 @@ class revdisp(Variable):
         period = period.start.offset('first-of', 'month').period('year')
         impot_revenu_lps_holder = simulation.compute('impot_revenu_lps')
         impot_revenu_lps = self.sum_by_entity(impot_revenu_lps_holder)
-        pen_holder = simulation.compute('pen')
+        pen_holder = simulation.compute('pensions')
         pen = self.sum_by_entity(pen_holder)
-        psoc_holder = simulation.compute('psoc')
-        psoc = self.cast_from_entity_to_role(psoc_holder, role = QUIFAM['chef'])
-        psoc = self.sum_by_entity(psoc)
-        rev_cap_holder = simulation.compute('rev_cap')
-        rev_cap = self.sum_by_entity(rev_cap_holder)
-        rev_trav_holder = simulation.compute('rev_trav')
-        rev_trav = self.sum_by_entity(rev_trav_holder)
-        return period, rev_trav + pen + rev_cap + impot_revenu_lps + psoc
+        prestations_sociales_holder = simulation.compute('prestations_sociales')
+        prestations_sociales = self.cast_from_entity_to_role(prestations_sociales_holder, role = QUIFAM['chef'])
+        prestations_sociales = self.sum_by_entity(prestations_sociales)
+        revenus_du_capital_holder = simulation.compute('revenus_du_capital')
+        revenus_du_capital = self.sum_by_entity(revenus_du_capital_holder)
+        revenus_du_travail_holder = simulation.compute('revenus_du_travail')
+        revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
+        return period, revenus_du_travail + pen + revenus_du_capital + impot_revenu_lps + prestations_sociales
+
 
 def modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_subtree = {
@@ -159,6 +161,6 @@ class landais_piketty_saez(Reform):
     name = u'Landais Piketty Saez'
 
     def apply(self):
-        for variable in [assiette_csg, impot_revenu_lps, revdisp]:
+        for variable in [assiette_csg, impot_revenu_lps, revenu_disponible]:
             self.update_variable(variable)
         self.modify_legislation_json(modifier_function = modify_legislation_json)

@@ -29,7 +29,7 @@ from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotis
 
 class conge_individuel_formation_cdd(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Contribution au financement des congé individuel de formation (CIF) des salariées en CDD"
 
     # TODO: date de début
@@ -44,7 +44,7 @@ class conge_individuel_formation_cdd(Variable):
 
 class redevable_taxe_apprentissage(Variable):
     column = BoolCol
-    entity_class = Individus
+    entity = Individu
     label = u"Entreprise redevable de la taxe d'apprentissage"
 
     def function(self, simulation, period):
@@ -57,7 +57,7 @@ class redevable_taxe_apprentissage(Variable):
 
 class contribution_developpement_apprentissage(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Contribution additionnelle au développement de l'apprentissage"
 
     def function(self, simulation, period):
@@ -75,8 +75,9 @@ class contribution_developpement_apprentissage(Variable):
 
 class contribution_supplementaire_apprentissage(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Contribution supplémentaire à l'apprentissage"
+    url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
 
     @dated_function(date(2010, 1, 1))
     def function(self, simulation, period):
@@ -84,19 +85,28 @@ class contribution_supplementaire_apprentissage(DatedVariable):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         ratio_alternants = simulation.calculate('ratio_alternants', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        taux = simulation.legislation_at(period.start).cotsoc.contribution_supplementaire_apprentissage
+        salarie_regime_alsace_moselle = simulation.calculate('salarie_regime_alsace_moselle', period)
+
+        cotsoc_params = simulation.legislation_at(period.start).cotsoc
+        csa_params = cotsoc_params.contribution_supplementaire_apprentissage
 
         if period.start.year > 2012:
-            taux_contribution = (
-                (effectif_entreprise < 2000) * (ratio_alternants < .01) * taux.moins_2000_moins_1pc_alternants +
-                (effectif_entreprise >= 2000) * (ratio_alternants < .01) * taux.plus_2000_moins_1pc_alternants +
-                (.01 <= ratio_alternants) * (ratio_alternants < .02) * taux.entre_1_2_pc_alternants +
-                (.02 <= ratio_alternants) * (ratio_alternants < .03) * taux.entre_2_3_pc_alternants +
-                (.03 <= ratio_alternants) * (ratio_alternants < .04) * taux.entre_3_4_pc_alternants +
-                (.04 <= ratio_alternants) * (ratio_alternants < .05) * taux.entre_4_5_pc_alternants
+            # Exception Alsace-Moselle : CGI Article 1609 quinvicies IV
+            # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=36F88516571C1CA136D91A7A84A2D65B.tpdila09v_1?idSectionTA=LEGISCTA000029038088&cidTexte=LEGITEXT000006069577&dateTexte=20161219
+            multiplier = (salarie_regime_alsace_moselle * csa_params.multiplicateur_alsace_moselle) + (1 - salarie_regime_alsace_moselle)
+
+            taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .05)
+            taux_conditionnel = (
+                (effectif_entreprise < 2000) * (ratio_alternants < .01) * csa_params.moins_2000_moins_1pc_alternants +
+                (effectif_entreprise >= 2000) * (ratio_alternants < .01) * csa_params.plus_2000_moins_1pc_alternants +
+                (.01 <= ratio_alternants) * (ratio_alternants < .02) * csa_params.entre_1_2_pc_alternants +
+                (.02 <= ratio_alternants) * (ratio_alternants < .03) * csa_params.entre_2_3_pc_alternants +
+                (.03 <= ratio_alternants) * (ratio_alternants < .04) * csa_params.entre_3_4_pc_alternants +
+                (.04 <= ratio_alternants) * (ratio_alternants < .05) * csa_params.entre_4_5_pc_alternants
                 )
+            taux_contribution = taxe_due * taux_conditionnel * multiplier
         else:
-            taux_contribution = (effectif_entreprise >= 250) * taux.plus_de_250
+            taux_contribution = (effectif_entreprise >= 250) * cotsoc_params.contribution_supplementaire_apprentissage.plus_de_250
             # TODO: gestion de la place dans le XML pb avec l'arbre des paramètres / preprocessing
         return period, - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
 
@@ -104,7 +114,7 @@ class contribution_supplementaire_apprentissage(DatedVariable):
 class cotisations_employeur_main_d_oeuvre(Variable):
     base_function = requested_period_added_value
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Cotisation sociales employeur main d'oeuvre"
 
     def function(self, simulation, period):
@@ -142,7 +152,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
 
 class fnal(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Cotisation fonds national action logement (FNAL)"
 
     def function(self, simulation, period):
@@ -153,7 +163,7 @@ class fnal(Variable):
 
 class fnal_tranche_a(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Cotisation fonds national action logement (FNAL tout employeur)"
 
     def function(self, simulation, period):
@@ -170,7 +180,7 @@ class fnal_tranche_a(Variable):
 
 class fnal_tranche_a_plus_20(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Fonds national action logement (FNAL, employeur avec plus de 20 salariés)"
 
     def function(self, simulation, period):
@@ -187,7 +197,7 @@ class fnal_tranche_a_plus_20(Variable):
 
 class financement_organisations_syndicales(DatedVariable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Contribution patronale au financement des organisations syndicales"
 
     @dated_function(date(2015, 1, 1))
@@ -205,7 +215,7 @@ class financement_organisations_syndicales(DatedVariable):
 
 class formation_professionnelle(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Formation professionnelle"
     url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
 
@@ -236,7 +246,7 @@ class formation_professionnelle(Variable):
 
 class participation_effort_construction(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Participation à l'effort de construction"
 
     def function(self, simulation, period):
@@ -263,27 +273,45 @@ class participation_effort_construction(Variable):
 
 class taxe_apprentissage(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Taxe d'apprentissage (employeur, entreprise redevable de la taxe d'apprentissage uniquement)"
     url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
+        salarie_regime_alsace_moselle = simulation.calculate('salarie_regime_alsace_moselle', period)
 
-        cotisation = apply_bareme(
+        cotisation_regime_alsace_moselle = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'employeur',
+            bareme_name = 'apprentissage_alsace_moselle',
+            variable_name = self.__class__.__name__,
+            )
+
+        cotisation_regime_general = apply_bareme(
             simulation,
             period,
             cotisation_type = 'employeur',
             bareme_name = 'apprentissage',
             variable_name = self.__class__.__name__,
             )
+
+        cotisation = np.where(
+            salarie_regime_alsace_moselle,
+            cotisation_regime_alsace_moselle,
+            cotisation_regime_general,
+        )
+
+        # cotisation = salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle + (1 - salarie_regime_alsace_moselle) * cotisation_regime_general
+
         return period, cotisation * redevable_taxe_apprentissage
 
 
 class taxe_salaires(Variable):
     column = FloatCol
-    entity_class = Individus
+    entity = Individu
     label = u"Taxe sur les salaires"
 # Voir
 # http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8920/fichedescriptiveformulaire_8920.pdf
