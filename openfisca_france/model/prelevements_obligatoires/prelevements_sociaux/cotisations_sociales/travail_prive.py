@@ -150,6 +150,7 @@ class penibilite(Variable):
     column = FloatCol
     entity = Individu
     label = u"Les dépenses liées à l'utilisation du compte pénibilité par le salarié sont prises en charge par un fonds financé par l'employeur"
+    start_date = date(2015, 1, 1)
 
     def function(self, simulation, period):
         exposition_penibilite = simulation.calculate('exposition_penibilite', period)
