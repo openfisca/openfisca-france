@@ -229,7 +229,7 @@ class aide_embauche_pme(DatedVariable):
         exoneration_cotisations_employeur_jei = simulation.calculate('exoneration_cotisations_employeur_jei', period)
 
         # Cette aide est temporaire.
-        # Si toutefois elle est reconduite et modifiée pour 2017, les dates et le montant seront à implémenter comme
+        # Si toutefois elle est reconduite et modifiée, les dates et le montant seront à implémenter comme
         # des params xml.
 
         # jusqu’à 1,3 fois le Smic
@@ -248,7 +248,7 @@ class aide_embauche_pme(DatedVariable):
 
         eligible_contrat = and_(
             contrat_de_travail_debut >= datetime64("2016-01-18"),
-            contrat_de_travail_debut <= datetime64("2016-12-31")
+            contrat_de_travail_debut <= datetime64("2017-06-30")
             )
 
         # Si CDD, durée du contrat doit être > 1 an

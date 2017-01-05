@@ -1,8 +1,17 @@
 # Changelog
 
-## 10.0.1
+## 10.0.2
 
 * Fix csg legislation link in `inversion_directe_salaires` reform.
+
+## 10.0.1
+
+* Update the following rates that changed on the first of january 2017:
+	- SMIC
+	- Plafond de la sécurité sociale
+	- Taux AGIRC-GMP
+	- Taux AGS
+	- Prolongation Aide embauche PME 2017
 
 ## 10.0.0
 
