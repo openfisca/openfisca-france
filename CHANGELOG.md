@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.1.0
+
+* Add cotisation pénibilité
+
 ## 10.0.2
 
 * Fix csg legislation link in `inversion_directe_salaires` reform.
