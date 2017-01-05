@@ -4,6 +4,15 @@
 
 * Rename `cotsoc_noncontrib` to `cotisations_non_contibutives`
 
+## 10.0.1
+
+* Update the following rates that changed on the first of january 2017:
+	- SMIC
+	- Plafond de la sécurité sociale
+	- Taux AGIRC-GMP
+	- Taux AGS
+	- Prolongation Aide embauche PME 2017
+
 ## 10.0.0
 
 * From 2017, for RSA, remove CA and number of employees conditions.
