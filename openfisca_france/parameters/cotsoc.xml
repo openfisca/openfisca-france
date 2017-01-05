@@ -173,7 +173,8 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="2359" />
     </CODE>
     <CODE code="plafond_securite_sociale" description="Plafond mensuel de la sécurité sociale" format="integer" origin="openfisca" type="monetary">
-      <VALUE deb="2017-01-01" fuzzy="true" valeur="3218" />
+      <!-- http://www.ameli.fr/employeurs/vos-demarches/chiffres-utiles/plafond-de-la-securite-sociale.php -->
+      <VALUE deb="2017-01-01" fuzzy="true" valeur="3269" />
       <VALUE deb="2016-01-01" fin="2016-12-31" valeur="3218" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="3170" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3129" />
@@ -200,7 +201,9 @@
       <VALUE deb="2009-01-01" fin="2009-12-31" valeur="21" />
     </CODE>
     <CODE code="smic_h_b" description="SMIC horaire brut" format="float" origin="openfisca" type="monetary">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="9.67" />
+      <!-- Décret n° 2016-1818 du 22 décembre 2016 portant relèvement du salaire minimum de croissance - Article 1 -->
+      <VALUE deb="2017-01-01" fuzzy="true" valeur="9.76" />
+      <VALUE deb="2016-01-01" fin="2016-12-31" valeur="9.67" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="9.61" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="9.53" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="9.43" />
