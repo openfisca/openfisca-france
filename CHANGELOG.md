@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.0.2
+
+* Fix csg legislation link in `inversion_directe_salaires` reform.
+
 ## 10.0.1
 
 * Update the following rates that changed on the first of january 2017:
