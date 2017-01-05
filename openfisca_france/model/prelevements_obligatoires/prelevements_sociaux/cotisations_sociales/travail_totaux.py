@@ -88,6 +88,7 @@ class cotisations_employeur_non_contributives(Variable):
 
     def function(self, simulation, period):
         period = period
+        penibilite = simulation.calculate_add('penibilite', period)
         accident_du_travail = simulation.calculate_add('accident_du_travail', period)
         allocations_temporaires_invalidite = simulation.calculate_add('allocations_temporaires_invalidite', period)
         contribution_solidarite_autonomie = simulation.calculate('contribution_solidarite_autonomie', period)
@@ -98,6 +99,7 @@ class cotisations_employeur_non_contributives(Variable):
 
         cotisations_employeur_non_contributives = (
             allocations_temporaires_invalidite +
+            penibilite +
             accident_du_travail +
             contribution_solidarite_autonomie +
             famille +
