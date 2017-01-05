@@ -2,22 +2,18 @@
 
 from __future__ import division
 
-# import logging
 
-from openfisca_core import columns, reforms
-from openfisca_core.variables import Variable
-from openfisca_france.model.base import CAT
+from openfisca_france.model.base import *  # noqa analysis:ignore
+
 from openfisca_core.taxscales import MarginalRateTaxScale
-
-from .. import entities
 
 
 TAUX_DE_PRIME = .10
 
 
 class salaire_imposable_pour_inversion(Variable):
-    column = columns.FloatCol
-    entity = entities.Individu
+    column = FloatCol
+    entity = Individu
     label = u'Salaire imposable utilisé pour remonter au salaire brut'
 
 
