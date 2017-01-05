@@ -1,5 +1,9 @@
 # Changelog
 
+## 11.0.0
+
+* Rename `cotsoc_noncontrib` to `cotisations_non_contibutives`
+
 ## 10.0.0
 
 * From 2017, for RSA, remove CA and number of employees conditions.
