@@ -4,7 +4,7 @@
 from __future__ import division
 
 import numpy as np
-from numpy import maximum as max_, minimum as min_, zeros, select
+from numpy import maximum as max_, minimum as min_, select
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -13,6 +13,24 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 seuil_non_versement = 28.83
 taux_reste_a_vivre = 0.10
+
+
+class base_ressources_apa(Variable):
+    column = FloatCol
+    label = u"Ressources considérées dans le calcul de l'APA"
+    entity = Individu
+
+    def function(individu, period):
+        period = period.this_month
+        revenu_fiscal_de_reference = individu.foyer_fiscal('rfr', period.n_2) / 12
+        aide_logement_montant = individu.famille('aide_logement_montant', period)
+        valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', period)
+        valeur_locative_terrains_non_loue = individu('valeur_locative_terrains_non_loue', period)
+
+        base_ressources_apa = revenu_fiscal_de_reference - (
+            valeur_locative_immo_non_loue + valeur_locative_terrains_non_loue + aide_logement_montant
+            )
+        return period, base_ressources_apa
 
 
 class apa_domicile_participation(DatedVariable):
@@ -24,8 +42,9 @@ class apa_domicile_participation(DatedVariable):
     def function_2002_20160229(individu, period, legislation):
         # Les départements doivent appliquer la nouvelle formule
         # entre le 1er mars 2016 et le 28 février 2017
-        base_ressources_apa = individu.famille('base_ressources_apa', period)
+        base_ressources_apa = individu('base_ressources_apa', period)
         dependance_plan_aide_domicile = individu('dependance_plan_aide_domicile', period)
+        en_couple = individu.famille('en_couple', period)
         gir = individu('gir', period)
         legislation = legislation(period.start).autonomie
         seuil_inf = legislation.apa_domicile.seuil_de_revenu_en_part_du_mtp.seuil_inferieur
@@ -33,20 +52,25 @@ class apa_domicile_participation(DatedVariable):
         majoration_tierce_personne = legislation.mtp.mtp
         taux_min_participation = legislation.apa_domicile.taux_de_participation_minimum
         taux_max_participation = legislation.apa_domicile.taux_de_participation_maximum
+        proratisation_couple = (
+            1 +
+            en_couple * (legislation.apa_domicile.divison_des_ressources_du_menage_pour_les_couples - 1)
+            )
         dependance_plan_aide_domicile_accepte = compute_dependance_plan_aide_domicile_accepte(
             legislation_autonomie = legislation,
             gir = gir,
             dependance_plan_aide_domicile = dependance_plan_aide_domicile
             )
+        base_ressources_apa_domicile = base_ressources_apa / proratisation_couple
 
         condition_ressources_domicile = [
-            base_ressources_apa <= (seuil_inf * majoration_tierce_personne),
-            (seuil_inf * majoration_tierce_personne) < base_ressources_apa <= (seuil_sup * majoration_tierce_personne),
-            base_ressources_apa > (seuil_sup * majoration_tierce_personne),
+            base_ressources_apa_domicile <= (seuil_inf * majoration_tierce_personne),
+            (seuil_inf * majoration_tierce_personne) < base_ressources_apa_domicile <= (seuil_sup * majoration_tierce_personne),
+            base_ressources_apa_domicile > (seuil_sup * majoration_tierce_personne),
             ]
         taux_participation = [
             taux_min_participation,
-            (base_ressources_apa - seuil_inf * majoration_tierce_personne) / ((seuil_sup - seuil_inf) * majoration_tierce_personne) * taux_max_participation,
+            (base_ressources_apa_domicile - seuil_inf * majoration_tierce_personne) / ((seuil_sup - seuil_inf) * majoration_tierce_personne) * taux_max_participation,
             taux_max_participation,
             ]
         apa_domicile_participation = select(condition_ressources_domicile, taux_participation) * dependance_plan_aide_domicile_accepte
@@ -56,7 +80,8 @@ class apa_domicile_participation(DatedVariable):
     def function_20160301(individu, period, legislation):
         # Les départements doivent appliquer la nouvelle formule
         # entre le 1er mars 2016 et le 28 février 2017
-        base_ressources_apa = individu.famille('base_ressources_apa', period)
+        base_ressources_apa = individu('base_ressources_apa', period)
+        en_couple = individu.famille('en_couple', period)
         dependance_plan_aide_domicile = individu('dependance_plan_aide_domicile', period)
         dependance_plan_aide_domicile_accepte = compute_dependance_plan_aide_domicile_accepte(
             legislation_autonomie = legislation,
@@ -65,7 +90,11 @@ class apa_domicile_participation(DatedVariable):
             )
         legislation = legislation(period.start).autonomie
         majoration_tierce_personne = legislation.mtp.mtp
-
+        proratisation_couple = (
+            1 +
+            en_couple * (legislation.apa_domicile.divison_des_ressources_du_menage_pour_les_couples - 1)
+            )
+        base_ressources_apa_domicile = base_ressources_apa / proratisation_couple
         # TODO: use a marignal tax scale
         condlist = [
             dependance_plan_aide_domicile_accepte <= (0.317 * majoration_tierce_personne),
@@ -93,15 +122,15 @@ class apa_domicile_participation(DatedVariable):
 
         apa_domicile_participation = (
             0.9 *
-            (base_ressources_apa - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne) *
+            (base_ressources_apa_domicile - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne) *
             (
                 A_1 +
                 A_2 * (
-                    (1 - 0.4) * base_ressources_apa / (1.945 * majoration_tierce_personne) +
+                    (1 - 0.4) * base_ressources_apa_domicile / (1.945 * majoration_tierce_personne) +
                     (0.4 * 2.67 * majoration_tierce_personne - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne)
                     ) +
                 A_3 * (
-                    (1 - 0.2) * base_ressources_apa / (1.945 * majoration_tierce_personne) +
+                    (1 - 0.2) * base_ressources_apa_domicile / (1.945 * majoration_tierce_personne) +
                     (0.2 * 2.67 * majoration_tierce_personne - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne)
                     )
                 )
@@ -142,10 +171,16 @@ class apa_etablissement(Variable):
     def function(individu, period, legislation):
         period = period.start.offset('first-of', 'month').period('month')
         legislation = legislation(period.start).autonomie
+        en_couple = individu.famille('en_couple', period)
         age = individu('age', period)
         apa_age_min = legislation.age_ouverture_des_droits.age_d_ouverture_des_droits
         gir = individu('gir', period)
-        base_ressources_apa = individu.famille('base_ressources_apa', period)
+        base_ressources_apa = individu('base_ressources_apa', period)
+        proratisation_couple_etablissement = (
+            1 +
+            en_couple * (legislation.apa_institution.divison_des_ressources_du_menage_pour_les_couples - 1)
+            )
+        base_ressources_apa_etablissement = base_ressources_apa / proratisation_couple_etablissement
         dependance_tarif_etablissement_gir_5_6 = individu('dependance_tarif_etablissement_gir_5_6', period)
         dependance_tarif_etablissement_gir_dependant = individu('dependance_tarif_etablissement_gir_dependant', period)
         seuil_inf_inst = legislation.apa_institution.seuil_de_revenu_en_part_du_mtp.seuil_inferieur
@@ -153,8 +188,8 @@ class apa_etablissement(Variable):
         majoration_tierce_personne = legislation.mtp.mtp
 
         conditions_ressources = [
-            base_ressources_apa <= seuil_inf_inst * majoration_tierce_personne,
-            seuil_inf_inst * majoration_tierce_personne < base_ressources_apa <= seuil_sup_inst * majoration_tierce_personne,
+            base_ressources_apa_etablissement <= seuil_inf_inst * majoration_tierce_personne,
+            seuil_inf_inst * majoration_tierce_personne < base_ressources_apa_etablissement <= seuil_sup_inst * majoration_tierce_personne,
             base_ressources_apa > seuil_sup_inst * majoration_tierce_personne
             ]
         participations = [
@@ -172,7 +207,7 @@ class apa_etablissement(Variable):
         participation_beneficiaire = select(conditions_ressources, participations)
         participation_beneficiaire = min_(
             participation_beneficiaire,
-            max_(base_ressources_apa * (1 - taux_reste_a_vivre), 0)
+            max_(base_ressources_apa_etablissement * (1 - taux_reste_a_vivre), 0)
             )
         apa = dependance_tarif_etablissement_gir_dependant - participation_beneficiaire
 
@@ -183,15 +218,6 @@ class apa_etablissement(Variable):
         return period, (
             apa * (apa >= seuil_non_versement) * eligibilite_etablissement * (age >= apa_age_min) * eligibilite_gir
             )
-
-
-class base_ressources_apa(Variable):
-    column = FloatCol
-    label = u"Base ressources de l'allocation personalisée d'autonomie"
-    entity = Famille
-
-    def function(self, simulation, period):
-        return period, zeros(self.holder.entity.count)
 
 
 class gir(Variable):

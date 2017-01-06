@@ -233,3 +233,45 @@
   output_variables:
     apa_domicile: 0
     apa_etablissement: 0
+
+- name: "APA domicile couple ressources inférieur seuil 1 et GIR 1 - test couple"
+  description: Montant APA
+  period: 2013-05
+  absolute_error_margin: 0.03
+  input_variables:
+    age: 75
+    en_couple: 1
+    gir: "Gir 4"
+    base_ressources_apa: 1000
+    dependance_plan_aide_domicile: 100
+  output_variables:
+    apa_domicile: 100
+    apa_etablissement: 0
+
+- name: "APA établissement couple ressources inférieur seuil 1 et GIR 1 - test couple"
+  description: Montant APA
+  period: 2013-05
+  absolute_error_margin: 0.03
+  input_variables:
+    age: 75
+    en_couple: 1
+    gir: "Gir 4"
+    base_ressources_apa: 4000
+    dependance_tarif_etablissement_gir_5_6: 1200
+    dependance_tarif_etablissement_gir_dependant: 1800
+  output_variables:
+    apa_domicile: 0
+    apa_etablissement: 600
+
+- name: "Test base ressource APA"
+  description: Montant APA
+  period: 2013-05
+  absolute_error_margin: 0.03
+  input_variables:
+    rfr:
+      2011: 60000
+    valeur_locative_immo_non_loue: 250
+    valeur_locative_terrains_non_loue: 250
+    aide_logement_montant: 500
+  output_variables:
+   base_ressources_apa: 4000
