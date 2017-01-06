@@ -175,7 +175,6 @@ class forfait_social(DatedVariable):
             )
 
 
-
 class salaire_imposable(Variable):
     base_function = requested_period_added_value
     column = FloatCol(
