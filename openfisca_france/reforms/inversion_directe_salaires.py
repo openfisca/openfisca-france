@@ -38,9 +38,15 @@ class salaire_de_base(Variable):
 
         salarie = P.cotsoc.cotisations_salarie
         plafond_securite_sociale_annuel = P.cotsoc.gen.plafond_securite_sociale * 12
-        taux_csg = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible.taux * (1 - .0175)
+        csg_deductible = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible
+        taux_csg = csg_deductible.taux
+        taux_abattement = csg_deductible.abattement.rates[0]
+        seuil_abattement = csg_deductible.abattement.thresholds[1]
+        print taux_abattement
+        print seuil_abattement
         csg = MarginalRateTaxScale(name = 'csg')
-        csg.add_bracket(0, taux_csg)
+        csg.add_bracket(0, taux_csg * (1 - taux_abattement))
+        csg.add_bracket(seuil_abattement, taux_csg)
 
         target = dict()
         target['prive_non_cadre'] = set(['maladie', 'arrco', 'vieillesse_deplafonnee', 'vieillesse', 'agff', 'assedic'])
