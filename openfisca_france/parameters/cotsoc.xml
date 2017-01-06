@@ -437,6 +437,36 @@
       </BAREME>
     </NODE>
     <NODE code="commun" description="Communes aux cadres et non cadres" origin="openfisca">
+      <!-- Cotisations patronales au titre de la pénibilité
+        - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33777
+        - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/les-cotisations-patronales-au-ti/cotisations-dues.html
+        - Code du travail - Article L4162-19
+     -->
+      <BAREME code="penibilite_base" description="Cotisations patronale de base au titre de la pénibilité" option="contrib" origin="openfisca">
+        <TRANCHE code="tranche0">
+          <SEUIL>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0001" />
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+      <BAREME code="penibilite_additionnelle" description="Cotisation patronale additionnelle au titre de la pénibilité" option="contrib" origin="openfisca">
+        <TRANCHE code="tranche0">
+          <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.002" />
+            <VALUE deb="2015-01-01" fin="2016-12-31" valeur="0.001" />
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+      <CODE code="penibilite_multiplicateur_exposition_multiple" origin="openfisca">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="2" />
+      </CODE>
+      <!-- FIN Cotisations patronales au titre de la pénibilité -->
       <NODE code="apprentissage_node" description="Taxes d'apprentissages" origin="openfisca">
         <BAREME code="apprentissage" description="Taxe d'apprentissage (toutes entreprises)" option="main-d-oeuvre" origin="openfisca">
           <TRANCHE code="tranche0">
