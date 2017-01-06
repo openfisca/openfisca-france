@@ -2,22 +2,19 @@
 
 from __future__ import division
 
-# import logging
 
-from openfisca_core import columns, formulas, reforms
-from openfisca_core.variables import Variable
-from openfisca_france.model.base import CAT
+from openfisca_france.model.base import *  # noqa analysis:ignore
+
+from openfisca_core.reforms import Reform
 from openfisca_core.taxscales import MarginalRateTaxScale
-
-from .. import entities
 
 
 TAUX_DE_PRIME = .10
 
 
 class salaire_imposable_pour_inversion(Variable):
-    column = columns.FloatCol
-    entity = entities.Individu
+    column = FloatCol
+    entity = Individu
     label = u'Salaire imposable utilisé pour remonter au salaire brut'
 
 
@@ -33,11 +30,6 @@ class salaire_de_base(Variable):
         salaire_imposable_pour_inversion = simulation.calculate('salaire_imposable_pour_inversion',
             period.start.offset('first-of', 'year').period('year'))
 
-        # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
-#            if salaire_imposable_pour_inversion == 0 or (salaire_imposable_pour_inversion == 0).all():
-#                # Quick path to avoid fsolve when using default value of input variables.
-#                return period, salaire_imposable_pour_inversion
-
         # Calcule le salaire brut à partir du salaire imposable.
         # Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
         # Note : le supplément familial de traitement est imposable.
@@ -48,7 +40,7 @@ class salaire_de_base(Variable):
 
         salarie = P.cotsoc.cotisations_salarie
         plafond_securite_sociale_annuel = P.cotsoc.gen.plafond_securite_sociale * 12
-        taux_csg = P.csg.activite.deductible.taux * (1 - .0175)
+        taux_csg = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible.taux * (1 - .0175)
         csg = MarginalRateTaxScale(name = 'csg')
         csg.add_bracket(0, taux_csg)
 
@@ -96,7 +88,7 @@ class traitement_indiciaire_brut(Variable):
         # Note : le supplément familial de traitement est imposable.
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         P = simulation.legislation_at(period.start)
-        taux_csg = P.csg.activite.deductible.taux * (1 - .0175)
+        taux_csg = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible.taux * (1 - .0175)
         csg = MarginalRateTaxScale(name = 'csg')
         csg.add_bracket(0, taux_csg)
 
@@ -152,7 +144,7 @@ class primes_fonction_publique(Variable):
         return period, TAUX_DE_PRIME * traitement_indiciaire_brut
 
 
-class inversion_directe_salaires(reforms.Reform):
+class inversion_directe_salaires(Reform):
     key = 'inversion_directe_salaires'
     name = u'Inversion des revenus'
 

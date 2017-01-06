@@ -3244,7 +3244,7 @@
     </NODE>
     <NODE code="ppa" description="Prime Pour l'Activité" origin="ipp">
       <CODE code="age_min" description="Âge minimal pour bénéficier de la PPA" format="integer" origin="openfisca" type="age">
-        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="18" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="18" />
       </CODE>
       <NODE code="bonification" origin="ipp">
         <CODE code="seuil_bonification" description="Seuil de salaire minimum pour bénéficier de la bonification, en multiple du smic horaire brut." origin="ipp">
@@ -3267,7 +3267,7 @@
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.62" />
       </CODE>
       <CODE code="seuil_aah_activite" description="Revenu d'activité minimal perçu pour que l'AAH d'un individu soit considéré comme un revenu d'activité, en multiple du smic horaire brut" format="integer" origin="openfisca">
-        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="29" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="29" />
       </CODE>
       <CODE code="seuil_non_versement" description="Seuil de non versement de la PPA" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="15" />

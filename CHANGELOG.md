@@ -1,16 +1,57 @@
 # Changelog
 
-## 9.0.1
+## 11.0.1
 
 * Refactor TaxBenefitSystem decomposition attributes
+
+## 11.0.0
+
+* Rename `cotsoc_noncontrib` to `cotisations_non_contibutives`
+
+## 10.1.1
+
+* Fix combination rule for aide 1er salarié / aide PME
+
+## 10.1.0
+
+* Add cotisation pénibilité
+
+## 10.0.2
+
+* Fix csg legislation link in `inversion_directe_salaires` reform.
+
+## 10.0.1
+
+* Update the following rates that changed on the first of january 2017:
+	- SMIC
+	- Plafond de la sécurité sociale
+	- Taux AGIRC-GMP
+	- Taux AGS
+	- Prolongation Aide embauche PME 2017
+
+## 10.0.0
+
+* From 2017, for RSA, remove CA and number of employees conditions.
+* Calculate RSA for Travailleurs Non Salariés
+* Introduce RSA fictif mechanism
+* Deprecate:
+	- `rsa_majore`
+	- `rsa_non_majore`
+* Introduce inputs:
+	- `primes_salaires_net`
+	- `indemnite_fin_contrat_net`
+
+## 9.0.1
+
+* Add `fuzzy` in some `ppa` parameters, needed to run calculations in 2017
 
 ## 9.0.0
 
 * Continue mesures migration
 * Complete remplacement migration
-* Rename impo to impots_directs
-* Rename revnet to revenu_net
-* Rename revini to revenu_initial
+* Rename `impo` to `impots_directs`
+* Rename `revnet` to `revenu_net`
+* Rename `revini` to `revenu_initial`
 
 ## 8.0.1
 

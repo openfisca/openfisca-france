@@ -2,15 +2,10 @@
 
 from __future__ import division
 
-# import logging
 
 from openfisca_core import columns, reforms
-# from openfisca_core.taxscales import MarginalRateTaxScale
 
 from .. import entities
-
-
-# log = logging.getLogger(__name__)
 
 
 def brut_to_target(target_name = None, period = None, simulation = None, **input_array_by_name):

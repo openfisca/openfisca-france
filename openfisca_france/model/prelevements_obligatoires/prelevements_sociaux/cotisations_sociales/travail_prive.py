@@ -108,6 +108,13 @@ class indemnite_fin_contrat(Variable):
             )
         return period, result
 
+
+class indemnite_fin_contrat_net(Variable):
+    column = FloatCol
+    entity = Individu
+    label = u"Indemnités de fin de contrat (licenciement, rupture conventionelle, prime de précarité) nettes"
+
+
 class reintegration_titre_restaurant_employeur(Variable):
     column = FloatCol
     entity = Individu
@@ -136,6 +143,41 @@ class reintegration_titre_restaurant_employeur(Variable):
 
 
 # Cotisations proprement dites
+
+
+
+class penibilite(Variable):
+    column = FloatCol
+    entity = Individu
+    label = u"Les dépenses liées à l'utilisation du compte pénibilité par le salarié sont prises en charge par un fonds financé par l'employeur"
+    start_date = date(2015, 1, 1)
+
+    def function(self, simulation, period):
+        exposition_penibilite = simulation.calculate('exposition_penibilite', period)
+        multiplicateur =  simulation.legislation_at(period.start).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
+
+        cotisation_base = apply_bareme(
+            simulation, period,
+            cotisation_type = "employeur",
+            bareme_name = "penibilite_base",
+            variable_name = self.__class__.__name__,
+            )
+        cotisation_additionnelle = apply_bareme(
+            simulation, period,
+            cotisation_type = "employeur",
+            bareme_name = "penibilite_additionnelle",
+            variable_name = self.__class__.__name__,
+            )
+
+        cotisation = switch(
+            exposition_penibilite,
+             {
+                0: cotisation_base,
+                1: cotisation_base + cotisation_additionnelle,
+                2: cotisation_base + cotisation_additionnelle * multiplicateur,
+             })
+
+        return period, cotisation
 
 
 class accident_du_travail(Variable):

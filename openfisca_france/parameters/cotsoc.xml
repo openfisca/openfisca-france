@@ -173,7 +173,8 @@
       <VALUE deb="2002-01-01" fin="2002-12-31" valeur="2359" />
     </CODE>
     <CODE code="plafond_securite_sociale" description="Plafond mensuel de la sécurité sociale" format="integer" origin="openfisca" type="monetary">
-      <VALUE deb="2017-01-01" fuzzy="true" valeur="3218" />
+      <!-- http://www.ameli.fr/employeurs/vos-demarches/chiffres-utiles/plafond-de-la-securite-sociale.php -->
+      <VALUE deb="2017-01-01" fuzzy="true" valeur="3269" />
       <VALUE deb="2016-01-01" fin="2016-12-31" valeur="3218" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="3170" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="3129" />
@@ -200,7 +201,9 @@
       <VALUE deb="2009-01-01" fin="2009-12-31" valeur="21" />
     </CODE>
     <CODE code="smic_h_b" description="SMIC horaire brut" format="float" origin="openfisca" type="monetary">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="9.67" />
+      <!-- Décret n° 2016-1818 du 22 décembre 2016 portant relèvement du salaire minimum de croissance - Article 1 -->
+      <VALUE deb="2017-01-01" fuzzy="true" valeur="9.76" />
+      <VALUE deb="2016-01-01" fin="2016-12-31" valeur="9.67" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="9.61" />
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="9.53" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="9.43" />
@@ -434,6 +437,36 @@
       </BAREME>
     </NODE>
     <NODE code="commun" description="Communes aux cadres et non cadres" origin="openfisca">
+      <!-- Cotisations patronales au titre de la pénibilité
+        - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33777
+        - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/les-cotisations-patronales-au-ti/cotisations-dues.html
+        - Code du travail - Article L4162-19
+     -->
+      <BAREME code="penibilite_base" description="Cotisations patronale de base au titre de la pénibilité" option="contrib" origin="openfisca">
+        <TRANCHE code="tranche0">
+          <SEUIL>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0001" />
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+      <BAREME code="penibilite_additionnelle" description="Cotisation patronale additionnelle au titre de la pénibilité" option="contrib" origin="openfisca">
+        <TRANCHE code="tranche0">
+          <SEUIL>
+            <VALUE deb="2015-01-01" fuzzy="true" valeur="0" />
+          </SEUIL>
+          <TAUX>
+            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.002" />
+            <VALUE deb="2015-01-01" fin="2016-12-31" valeur="0.001" />
+          </TAUX>
+        </TRANCHE>
+      </BAREME>
+      <CODE code="penibilite_multiplicateur_exposition_multiple" origin="openfisca">
+        <VALUE deb="2015-01-01" fuzzy="true" valeur="2" />
+      </CODE>
+      <!-- FIN Cotisations patronales au titre de la pénibilité -->
       <NODE code="apprentissage_node" description="Taxes d'apprentissages" origin="openfisca">
         <BAREME code="apprentissage" description="Taxe d'apprentissage (toutes entreprises)" option="main-d-oeuvre" origin="openfisca">
           <TRANCHE code="tranche0">

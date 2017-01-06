@@ -4,7 +4,7 @@ keywords:
   - majoration
   - rsa
 description: |
-  femme seule, française, sans ressources, 1 enfant né en 07/2012 : le droit Rsa affiché  = 470 soit 763 - 122(FL)  - 180 (PAJE)
+  femme seule, française, sans ressources, 1 enfant né en 07/2012 : le droit Rsa (majoré) affiché  = 470 soit 870 - 122(FL)  - 180 (PAJE) - 91 (ASF)
   anomalie: le droit Asf est affiché en résultat mais pas déduit du Rsa alors que la PAje est déduite du montant Rsa affiché
 period: "month:2014-11"
 relative_error_margin: 0.02
@@ -253,34 +253,6 @@ familles:
     2014-10: 0
     year:2013-11: 0
   rsa_isolement_recent: true
-  rsa_majore:
-    2013-11: 0
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    year:2013-11: 0
-  rsa_non_majore:
-    2013-11: 0
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    year:2013-11: 0
 foyers_fiscaux:
   declarants: 546b080afc9936ff63f8565f
   personnes_a_charge: 546b080afc9936ff63f8565e
@@ -293,4 +265,4 @@ output_variables:
   asf: 95.99
   cmu_c: true
   paje_base: 184.09
-  rsa_non_majore: 366
+  rsa: 477
