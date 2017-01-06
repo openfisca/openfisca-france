@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.1.1
+
+* Fix combination rule for aide 1er salarié / aide PME
+
 ## 10.1.0
 
 * Add cotisation pénibilité
