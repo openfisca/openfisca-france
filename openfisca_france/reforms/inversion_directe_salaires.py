@@ -2,22 +2,19 @@
 
 from __future__ import division
 
-# import logging
 
-from openfisca_core import columns, formulas, reforms
-from openfisca_core.variables import Variable
-from openfisca_france.model.base import CAT
+from openfisca_france.model.base import *  # noqa analysis:ignore
+
+from openfisca_core.reforms import Reform
 from openfisca_core.taxscales import MarginalRateTaxScale
-
-from .. import entities
 
 
 TAUX_DE_PRIME = .10
 
 
 class salaire_imposable_pour_inversion(Variable):
-    column = columns.FloatCol
-    entity = entities.Individu
+    column = FloatCol
+    entity = Individu
     label = u'Salaire imposable utilisé pour remonter au salaire brut'
 
 
@@ -33,14 +30,7 @@ class salaire_de_base(Variable):
         salaire_imposable_pour_inversion = simulation.calculate('salaire_imposable_pour_inversion',
             period.start.offset('first-of', 'year').period('year'))
 
-        # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
-#            if salaire_imposable_pour_inversion == 0 or (salaire_imposable_pour_inversion == 0).all():
-#                # Quick path to avoid fsolve when using default value of input variables.
-#                return period, salaire_imposable_pour_inversion
-
-        # Calcule le salaire brut à partir du salaire imposable.
-        # Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
-        # Note : le supplément familial de traitement est imposable.
+        # Calcule le salaire brut (salaire de base) à partir du salaire imposable.
 
         hsup = simulation.calculate('hsup', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
@@ -48,32 +38,44 @@ class salaire_de_base(Variable):
 
         salarie = P.cotsoc.cotisations_salarie
         plafond_securite_sociale_annuel = P.cotsoc.gen.plafond_securite_sociale * 12
-        taux_csg = P.csg.activite.deductible.taux * (1 - .0175)
+        csg_deductible = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible
+        taux_csg = csg_deductible.taux
+        taux_abattement = csg_deductible.abattement.rates[0]
+        seuil_abattement = csg_deductible.abattement.thresholds[1]
         csg = MarginalRateTaxScale(name = 'csg')
-        csg.add_bracket(0, taux_csg)
-
-#            cat = None
-#            if (categorie_salarie == 0).all():
-#                cat = 'prive_non_cadre'
-#            elif (categorie_salarie == 1).all():
-#                cat = 'prive_cadre'
-#            elif (categorie_salarie == 2).all():
-#                cat = 'public_titulaire_etat'
-#            if cat is not None:
-#                for name, bareme in salarie[cat].iteritems():
-#                    print name, bareme
-
-        prive_non_cadre = salarie['prive_non_cadre'].combine_tax_scales().scale_tax_scales(
-            plafond_securite_sociale_annuel)
-        prive_cadre = salarie['prive_cadre'].combine_tax_scales().scale_tax_scales(plafond_securite_sociale_annuel)
-        # On ajoute la CSG deductible
-        prive_non_cadre.add_tax_scale(csg)
-        prive_cadre.add_tax_scale(csg)
-        salaire_de_base = (
-            (categorie_salarie == CAT['prive_non_cadre']) *
-            prive_non_cadre.inverse().calc(salaire_imposable_pour_inversion) +
-            (categorie_salarie == CAT['prive_cadre']) * prive_cadre.inverse().calc(salaire_imposable_pour_inversion)
+        csg.add_bracket(0, taux_csg * (1 - taux_abattement))
+        csg.add_bracket(seuil_abattement, taux_csg)
+        target = dict()
+        target['prive_non_cadre'] = set(['maladie', 'arrco', 'vieillesse_deplafonnee', 'vieillesse', 'agff', 'assedic'])
+        target['prive_cadre'] = set(
+            ['maladie', 'arrco', 'vieillesse_deplafonnee', 'agirc', 'cet', 'apec', 'vieillesse', 'agff', 'assedic']
             )
+
+        for categorie in ['prive_non_cadre', 'prive_cadre']:
+            baremes_collection = salarie[categorie]
+            baremes_to_remove = list()
+            for name, bareme in baremes_collection.iteritems():
+                if name.endswith('alsace_moselle'):
+                    baremes_to_remove.append(name)
+            for name in baremes_to_remove:
+                del baremes_collection[name]
+
+        for categorie in ['prive_non_cadre', 'prive_cadre']:
+            test = set(
+                name for name, bareme in salarie[categorie].iteritems()
+                if isinstance(bareme, MarginalRateTaxScale)
+                )
+            assert target[categorie] == test, 'target: {} \n test {}'.format(target[categorie], test)
+
+        # On ajoute la CSG deductible et on multiplie par le plafond de la sécurité sociale
+        salaire_de_base = 0
+        for categorie in ['prive_non_cadre', 'prive_cadre']:
+            bareme = salarie[categorie].combine_tax_scales()
+            bareme.add_tax_scale(csg)
+            bareme = bareme.scale_tax_scales(plafond_securite_sociale_annuel)
+            salaire_de_base += (
+                (categorie_salarie == CAT[categorie]) * bareme.inverse().calc(salaire_imposable_pour_inversion)
+                )
         return period, salaire_de_base + hsup
 
 
@@ -86,17 +88,12 @@ class traitement_indiciaire_brut(Variable):
         salaire_imposable_pour_inversion = simulation.calculate('salaire_imposable_pour_inversion',
             period.start.offset('first-of', 'year').period('year'))
 
-        # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
-#            if salaire_imposable_pour_inversion == 0 or (salaire_imposable_pour_inversion == 0).all():
-#                # Quick path to avoid fsolve when using default value of input variables.
-#                return period, salaire_imposable_pour_inversion
-
         # Calcule le salaire brut à partir du salaire imposable.
         # Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
         # Note : le supplément familial de traitement est imposable.
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         P = simulation.legislation_at(period.start)
-        taux_csg = P.csg.activite.deductible.taux * (1 - .0175)
+        taux_csg = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible.taux * (1 - .0175)
         csg = MarginalRateTaxScale(name = 'csg')
         csg.add_bracket(0, taux_csg)
 
@@ -114,7 +111,7 @@ class traitement_indiciaire_brut(Variable):
         # et en tenant compte des éléments de l'assiette
         # salarie['fonc']['etat']['excep_solidarite'] = salarie['fonc']['commun']['solidarite']
 
-        public_titulaire_etat = salarie['public_titulaire_etat'] #.copy()
+        public_titulaire_etat = salarie['public_titulaire_etat']  # .copy()
         public_titulaire_etat['rafp'].multiply_rates(TAUX_DE_PRIME, inplace = True)
         public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
 
@@ -152,7 +149,7 @@ class primes_fonction_publique(Variable):
         return period, TAUX_DE_PRIME * traitement_indiciaire_brut
 
 
-class inversion_directe_salaires(reforms.Reform):
+class inversion_directe_salaires(Reform):
     key = 'inversion_directe_salaires'
     name = u'Inversion des revenus'
 

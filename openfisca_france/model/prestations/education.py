@@ -139,8 +139,3 @@ class scolarite(Variable):
         )
     entity = Individu
     label = u"Scolarité de l'enfant : collège, lycée..."
-
-class boursier(Variable):
-    column = BoolCol
-    entity = Individu
-    label = u"Élève ou étudiant boursier"

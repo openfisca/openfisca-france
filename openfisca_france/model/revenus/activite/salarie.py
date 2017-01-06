@@ -145,7 +145,17 @@ class exposition_accident(Variable):
     entity = Individu
     label = u"Exposition au risque pour les accidents du travail"
 
-
+class exposition_penibilite(Variable):
+    column = EnumCol(
+        enum = Enum([
+            u"Nulle", # Pas d'exposition de l'employé à un facteur de pénibilité
+            u"Simple", # Exposition à un seul facteur de pénibilité
+            u"Multiple", # Exposition à plusieurs facteurs de pénibilité
+            ])
+            ,
+        )
+    entity = Individu
+    label = u"Exposition à un ou plusieurs facteurs de pénibilité"
 
 
 class allegement_fillon_mode_recouvrement(Variable):
@@ -177,43 +187,43 @@ class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
 
 
 class apprentissage_contrat_debut(Variable):
-    column = DateCol()
+    column = DateCol
     entity = Individu
     label = u"Date de début du contrat d'apprentissage"
 
 
 class arrco_tranche_a_taux_employeur(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Taux ARRCO tranche A employeur) propre à l'entreprise"
 
 
 class arrco_tranche_a_taux_salarie(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Taux ARRCO tranche A salarié) propre à l'entreprise"
 
 
 class assujettie_taxe_salaires(Variable):
-    column = BoolCol()
+    column = BoolCol
     entity = Individu
     label = u"Entreprise assujettie à la taxe sur les salaires"
 
 
 class avantage_en_nature_valeur_reelle(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Avantages en nature (Valeur réelle)"
 
 
 class indemnites_compensatrices_conges_payes(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"indemnites_compensatrices_conges_payes"
 
 
 class indemnite_fin_contrat_due(Variable):
-    column = BoolCol()
+    column = BoolCol
     entity = Individu
     label = u"indemnite_fin_contrat_due"
 
@@ -286,66 +296,68 @@ class code_postal_entreprise(Variable):
     label = u"Localisation entreprise (Code postal)"
 
 
+class salarie_regime_alsace_moselle(Variable):
+    entity = Individu
+    column = BoolCol(default = False)
+    label = u"Le salarié cotise au régime de l'Alsace-Moselle"
+    # Attention : ce n'est pas équivalent au fait de travailler en Alsace-Moselle !
+    # http://regime-local.fr/salaries/
+
+
 class effectif_entreprise(Variable):
     entity = Individu
-    column = IntCol()
+    column = IntCol
     base_function = requested_period_last_value
     label = u"Effectif de l'entreprise"
     set_input = set_input_dispatch_by_period
 
 
 class entreprise_assujettie_cet(Variable):
-    column = BoolCol()
+    column = BoolCol
     entity = Individu
     label = u"Entreprise assujettie à la contribution économique territoriale"
 
 
 class entreprise_assujettie_is(Variable):
-    column = BoolCol()
+    column = BoolCol
     entity = Individu
     label = u"Entreprise assujettie à l'impôt sur les sociétés (IS)"
 
 
-class entreprise_assujettie_tva(Variable):
-    column = BoolCol()
-    entity = Individu
-    label = u"Entreprise assujettie à la TVA"
-
-
 class entreprise_benefice(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     set_input = set_input_divide_by_period
     label = u"Bénéfice de l'entreprise"
 
 
 class entreprise_bilan(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Bilan de l'entreprise"
 
 
 class entreprise_chiffre_affaire(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Chiffre d'affaire de l'entreprise"
 
 
 class entreprise_creation(Variable):
-    column = DateCol()
+    column = DateCol
     entity = Individu
     label = u"Date de création de l'entreprise"
 
 
 class nombre_tickets_restaurant(Variable):
-    column = IntCol()
+    column = IntCol
     entity = Individu
     base_function = requested_period_last_value
     label = u"Nombre de tickets restaurant"
 
 
 class nouvelle_bonification_indiciaire(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Nouvelle bonification indicaire"
 
@@ -365,13 +377,13 @@ class prevoyance_obligatoire_cadre_taux_employeur(Variable):
 
 
 class primes_salaires(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
-    label = u"Indemnités, primes et avantages en argent"
+    label = u"Indemnités, primes et avantages en argent (brut)"
 
 
 class complementaire_sante_montant(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Montant de la complémentaire santé obligatoire retenue par l'employeur"
 
@@ -384,43 +396,43 @@ class complementaire_sante_taux_employeur(Variable):
 
 
 class prise_en_charge_employeur_prevoyance_complementaire(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Part salariale des cotisations de prévoyance complémentaire prise en charge par l'employeur"
 
 
 class prise_en_charge_employeur_retraite_complementaire(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Part salariale des cotisations de retraite complémentaire prise en charge par l'employeur"
 
 
 class prise_en_charge_employeur_retraite_supplementaire(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Part salariale des cotisations de retraite supplémentaire prise en charge par l'employeur"
 
 
 class ratio_alternants(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Ratio d'alternants dans l'effectif moyen"
 
 
 class remboursement_transport_base(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Base pour le calcul du remboursement des frais de transport"
 
 
 class indemnites_forfaitaires(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Indemnités forfaitaires (transport, nourriture)"
 
 
 class salaire_de_base(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie"
     set_input = set_input_divide_by_period
@@ -434,19 +446,19 @@ class titre_restaurant_taux_employeur(Variable):
 
 
 class titre_restaurant_valeur_unitaire(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Valeur faciale unitaire du titre restaurant"
 
 
 class titre_restaurant_volume(Variable):
-    column = IntCol()
+    column = IntCol
     entity = Individu
     label = u"Volume des titres restaurant"
 
 
 class traitement_indiciaire_brut(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Traitement indiciaire brut (TIB)"
 
@@ -470,39 +482,39 @@ class categorie_salarie(Variable):
 
 
 class heures_duree_collective_entreprise(Variable):
-    column = IntCol()  # TODO default la valeur de la durée légale ?
+    column = IntCol  # TODO default la valeur de la durée légale ?
     entity = Individu
     label = u"Durée mensuelle collective dans l'entreprise (heures, temps plein)"
 
 
 class heures_non_remunerees_volume(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)"
     set_input = set_input_divide_by_period
 
 
 class heures_remunerees_volume(Variable):
-    column = FloatCol()
+    column = FloatCol
     entity = Individu
     label = u"Volume des heures rémunérées contractuellement (heures/mois, temps partiel)"
     set_input = set_input_divide_by_period
 
 
 class forfait_heures_remunerees_volume(Variable):
-    column = IntCol()
+    column = IntCol
     entity = Individu
     label = u"Volume des heures rémunérées à un forfait heures"
 
 
 class forfait_jours_remuneres_volume(Variable):
-    column = IntCol()
+    column = IntCol
     entity = Individu
     label = u"Volume des heures rémunérées à forfait jours"
 
 
 class volume_jours_ijss(Variable):
-    column = IntCol()
+    column = IntCol
     entity = Individu
     label = u"Volume des jours pour lesquels sont versés une idemnité journalière par la sécurité sociale"
 

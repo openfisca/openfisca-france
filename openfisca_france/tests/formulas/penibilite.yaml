@@ -1,0 +1,28 @@
+- period: "2017-02"
+  name:
+    Cotisation pénibilité de base
+  relative_error_margin: 0.02
+  input_variables:
+    salaire_de_base: 1480
+  output_variables:
+    penibilite: -0.148
+
+- period: "2017-02"
+  name:
+    Cotisation pénibilité additionnelle
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1480
+    exposition_penibilite: 1
+  output_variables:
+    penibilite: -3.108
+
+- period: "2017-02"
+  name:
+    Cotisation pénibilité additionnelle à multiples facteurs
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1480
+    exposition_penibilite: 2
+  output_variables:
+    penibilite: -6.068

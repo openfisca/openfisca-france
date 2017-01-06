@@ -279,7 +279,7 @@ class cf_montant(Variable):
 
 class cf(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = Famille
     label = u"Complément familial"
     url = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"

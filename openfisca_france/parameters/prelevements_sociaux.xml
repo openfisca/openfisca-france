@@ -200,6 +200,16 @@
     </NODE>
   </NODE>
   <NODE code="contributions" origin="ipp">
+    <BAREME code="casa" origin="ipp">
+      <TRANCHE code="tranche_unique">
+        <SEUIL>
+          <VALUE deb="2013-04-01" fuzzy="true" valeur="0" />
+        </SEUIL>
+        <TAUX>
+          <VALUE deb="2013-04-01" fuzzy="true" valeur="0.003" />
+        </TAUX>
+      </TRANCHE>
+    </BAREME>
     <NODE code="crds" description="Contribution au remboursement de la dette sociale (CRDS)" origin="ipp">
       <NODE code="activite" description="Revenus d'activité" origin="openfisca">
         <BAREME code="abattement" description="Abattement sur les revenus d'activité, du chômage et des préretraites" origin="openfisca">
@@ -489,11 +499,19 @@
             <VALUE deb="1997-01-01" fin="1997-12-31" valeur="0.034" />
           </CODE>
         </NODE>
-        <NODE code="pensions_de_retraite_d_invalidite" origin="ipp">
+        <NODE code="pensions_de_retraite_et_d_invalidite" origin="ipp">
+          <CODE code="demi_part_suppl" format="float" origin="ipp" type="monetary">
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="3726" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="3711" />
+          </CODE>
           <CODE code="seuil_d_ir" format="float" origin="ipp" type="monetary">
             <VALUE deb="1991-02-01" fin="2014-12-31" valeur="61" />
           </CODE>
-          <CODE code="seuil_de_rfr" format="float" origin="ipp" type="monetary">
+          <CODE code="seuil_de_rfr_1" format="float" origin="ipp" type="monetary">
+            <VALUE deb="2016-01-01" fuzzy="true" valeur="10676" />
+            <VALUE deb="2015-01-01" fin="2015-12-31" valeur="10633" />
+          </CODE>
+          <CODE code="seuil_de_rfr_2" format="float" origin="ipp" type="monetary">
             <VALUE deb="2016-01-01" fuzzy="true" valeur="13956" />
             <VALUE deb="2015-01-01" fin="2015-12-31" valeur="13900" />
           </CODE>
@@ -896,7 +914,9 @@
             <VALUE deb="1974-01-01" fuzzy="true" valeur="0" />
           </SEUIL>
           <TAUX>
-            <VALUE deb="2016-01-01" fuzzy="true" valeur="0.0025" />
+            <!-- http://www.ags-garantie-salaires.org/actualites/items/taux-de-cotisation-89.html -->
+            <VALUE deb="2017-01-01" fuzzy="true"     valeur="0.0020" />
+            <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0025" />
             <VALUE deb="2011-04-01" fin="2015-12-31" valeur="0.003" />
             <VALUE deb="2009-10-01" fin="2011-03-31" valeur="0.004" />
             <VALUE deb="2009-07-01" fin="2009-09-30" valeur="0.003" />
@@ -1163,9 +1183,7 @@
             <VALUE deb="1962-01-01" fuzzy="true" valeur="1" />
           </SEUIL>
           <TAUX>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.1215" />
-            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.12075" />
-            <VALUE deb="2000-01-01" fin="2013-12-31" valeur="0.12" />
+            <VALUE deb="2000-01-01" fuzzy="true" valeur="0.12" />
             <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.1125" />
             <VALUE deb="1997-01-01" fin="1998-12-31" valeur="0.105" />
             <VALUE deb="1962-01-01" fin="1996-12-31" valeur="0" />
@@ -1210,9 +1228,7 @@
             <VALUE deb="1962-01-01" fuzzy="true" valeur="1" />
           </SEUIL>
           <TAUX>
-            <VALUE deb="2015-01-01" fuzzy="true" valeur="0.081" />
-            <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0805" />
-            <VALUE deb="2000-01-01" fin="2013-12-31" valeur="0.08" />
+            <VALUE deb="2000-01-01" fuzzy="true" valeur="0.08" />
             <VALUE deb="1999-01-01" fin="1999-12-31" valeur="0.075" />
             <VALUE deb="1997-01-01" fin="1998-12-31" valeur="0.07" />
             <VALUE deb="1962-01-01" fin="1996-12-31" valeur="0" />
@@ -1314,25 +1330,6 @@
           </CODE>
         </NODE>
       </NODE>
-    </NODE>
-    <NODE code="casa" origin="ipp">
-      <BAREME code="pension" origin="ipp">
-        <TRANCHE code="tranche_unique">
-          <SEUIL>
-            <VALUE deb="2013-04-01" fuzzy="true" valeur="0" />
-          </SEUIL>
-          <TAUX>
-            <VALUE deb="2013-04-01" fuzzy="true" valeur="0.003" />
-          </TAUX>
-        </TRANCHE>
-      </BAREME>
-      <CODE code="seuil_d_exoneration_rfr_pour_1_part_de_qf_en_n_2" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2016-04-01" fuzzy="true" valeur="13956" />
-        <VALUE deb="2015-01-01" fin="2016-03-31" valeur="13900" />
-      </CODE>
-      <CODE code="seuil_d_exoneration_sur_l_irpp_paye_en_n_1" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2013-04-01" fuzzy="true" valeur="61" />
-      </CODE>
     </NODE>
     <NODE code="cet" origin="ipp">
       <BAREME code="employeur" origin="ipp">
@@ -2614,8 +2611,10 @@
     </NODE>
   </NODE>
   <NODE code="gmp" origin="ipp">
+    <!-- http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/ -->
     <CODE code="cotisation_forfaitaire_annuelle_en_euros" format="float" origin="ipp" type="monetary">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="816.84" />
+      <VALUE deb="2017-01-01" fuzzy="true" valeur="844.56" />
+      <VALUE deb="2016-01-01" fin="2016-12-31" valeur="816.84" />
       <VALUE deb="2014-01-01" fin="2015-12-31" valeur="796.08" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="795.12" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="787.68" />
@@ -2645,7 +2644,8 @@
     </CODE>
     <NODE code="cotisation_forfaitaire_mensuelle_en_euros" origin="ipp">
       <CODE code="cotisation_totale" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="68.07" />
+        <VALUE deb="2017-01-01" fuzzy="true" valeur="70.38" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="68.07" />
         <VALUE deb="2014-01-01" fin="2015-12-31" valeur="66.34" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="66.26" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="65.64" />
@@ -2674,7 +2674,8 @@
         <VALUE deb="1989-01-01" fin="1989-12-31" valeur="236.916666667" />
       </CODE>
       <CODE code="part_patronale" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="42.23" />
+        <VALUE deb="2017-01-01" fuzzy="true" valeur="43.67" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="42.23" />
         <VALUE deb="2014-01-01" fin="2015-12-31" valeur="41.17" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="41.13" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="40.74" />
@@ -2703,7 +2704,8 @@
         <VALUE deb="1989-01-01" fin="1989-12-31" valeur="177.6875" />
       </CODE>
       <CODE code="part_salariale" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="25.84" />
+        <VALUE deb="2017-01-01" fuzzy="true" valeur="26.71" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="25.84" />
         <VALUE deb="2014-01-01" fin="2015-12-31" valeur="25.17" />
         <VALUE deb="2013-01-01" fin="2013-12-31" valeur="25.13" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="24.9" />
@@ -3585,7 +3587,8 @@
     </NODE>
     <NODE code="tous_independants" origin="ipp">
       <CODE code="tout_salaire" format="percent" origin="ipp">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.006" />
+        <VALUE deb="2017-01-01" fuzzy="true" valeur="0.006" />
+        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.005" />
         <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0035" />
         <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.002" />
       </CODE>

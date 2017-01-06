@@ -82,7 +82,7 @@ class biactivite(Variable):
 
 
 class div(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = Individu
     label = u"Dividendes imposés"
 
