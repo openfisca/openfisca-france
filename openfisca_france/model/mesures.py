@@ -447,7 +447,7 @@ class csg(Variable):
                 csg_deductible_chomage + csg_imposable_retraite + csg_deductible_retraite + csg_foyer_fiscal_projetee)
 
 
-class cotsoc_noncontrib(Variable):
+class cotisations_non_contributives(Variable):
     column = FloatCol
     entity = Individu
     label = u"Cotisations sociales non contributives"

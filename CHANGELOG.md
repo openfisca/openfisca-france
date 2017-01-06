@@ -1,5 +1,9 @@
 # Changelog
 
+## 11.0.0
+
+* Rename `cotsoc_noncontrib` to `cotisations_non_contibutives`
+
 ## 10.1.1
 
 * Fix combination rule for aide 1er salarié / aide PME
