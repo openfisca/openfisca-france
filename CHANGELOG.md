@@ -1,5 +1,9 @@
 # Changelog
 
+## 11.0.1
+
+* Add a `sans_objet` level to variable `contrat_de_travail`
+
 ## 11.0.0
 
 * Rename `cotsoc_noncontrib` to `cotisations_non_contibutives`
