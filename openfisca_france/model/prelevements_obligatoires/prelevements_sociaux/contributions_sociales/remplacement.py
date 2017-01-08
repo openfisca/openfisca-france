@@ -235,7 +235,7 @@ class crds_retraite(Variable):
 class casa(DatedVariable):
     column = FloatCol
     entity = Individu
-    label = u"Contribution additionnelle de solidarité et d'autonomine"
+    label = u"Contribution additionnelle de solidarité et d'autonomie"
     start_date = date(2013, 4, 1)
     url = u"http://www.service-public.fr/actualites/002691.html"
 
