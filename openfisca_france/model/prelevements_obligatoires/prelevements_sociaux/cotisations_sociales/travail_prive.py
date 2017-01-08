@@ -582,7 +582,6 @@ class mmid_salarie(Variable):
 
         cotisation = cotisation_regime_general + salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle
 
-
         return period, cotisation
 
 
