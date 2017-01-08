@@ -1,5 +1,9 @@
 # Changelog
 
+## 11.0.2
+
+* Fix typo in `casa` variable label
+
 ## 11.0.1
 
 * Add a `sans_objet` level to variable `contrat_de_travail`
