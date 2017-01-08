@@ -238,6 +238,7 @@ class contrat_de_travail(Variable):
                 u"forfait_heures_mois",
                 u"forfait_heures_annee",
                 u"forfait_jours_annee",
+                u"sans_objet",
                 ],
             ),
         )

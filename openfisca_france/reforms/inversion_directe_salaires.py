@@ -21,10 +21,8 @@ class salaire_imposable_pour_inversion(Variable):
 class salaire_de_base(Variable):
 
     def function(self, simulation, period):
-        """Calcule le salaire brut à partir du salaire imposable ou sinon du salaire net.
-
-        Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
-        Note : le supplément familial de traitement est imposable.
+        """Calcule le salaire brut à partir du salaire imposable par inversion du barème
+        de cotisations sociales correspondant à la catégorie à laquelle appartient le salarié.
         """
         # Get value for year and divide below.
         salaire_imposable_pour_inversion = simulation.calculate('salaire_imposable_pour_inversion',
