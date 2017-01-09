@@ -39,10 +39,15 @@ class salaire_de_base(Variable):
         csg_deductible = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible
         taux_csg = csg_deductible.taux
         taux_abattement = csg_deductible.abattement.rates[0]
-        seuil_abattement = csg_deductible.abattement.thresholds[1]
+        try:
+            seuil_abattement = csg_deductible.abattement.thresholds[1]
+        except IndexError:  # Pour gérer le fait que l'abattement n'a pas toujours était limité à 4 PSS
+            seuil_abattement = None
         csg = MarginalRateTaxScale(name = 'csg')
         csg.add_bracket(0, taux_csg * (1 - taux_abattement))
-        csg.add_bracket(seuil_abattement, taux_csg)
+        if seuil_abattement is not None:
+            csg.add_bracket(seuil_abattement, taux_csg)
+
         target = dict()
         target['prive_non_cadre'] = set(['maladie', 'arrco', 'vieillesse_deplafonnee', 'vieillesse', 'agff', 'assedic'])
         target['prive_cadre'] = set(
