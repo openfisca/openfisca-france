@@ -145,7 +145,17 @@ class exposition_accident(Variable):
     entity = Individu
     label = u"Exposition au risque pour les accidents du travail"
 
-
+class exposition_penibilite(Variable):
+    column = EnumCol(
+        enum = Enum([
+            u"Nulle", # Pas d'exposition de l'employé à un facteur de pénibilité
+            u"Simple", # Exposition à un seul facteur de pénibilité
+            u"Multiple", # Exposition à plusieurs facteurs de pénibilité
+            ])
+            ,
+        )
+    entity = Individu
+    label = u"Exposition à un ou plusieurs facteurs de pénibilité"
 
 
 class allegement_fillon_mode_recouvrement(Variable):
@@ -228,6 +238,7 @@ class contrat_de_travail(Variable):
                 u"forfait_heures_mois",
                 u"forfait_heures_annee",
                 u"forfait_jours_annee",
+                u"sans_objet",
                 ],
             ),
         )
