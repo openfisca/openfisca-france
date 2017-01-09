@@ -1,6 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import logging
+import numpy as np
+
+
 from openfisca_france.model.base import CAT
+
+
+log = logging.getLogger(__name__)
+
 
 def apply_bareme_for_relevant_type_sal(
         bareme_by_type_sal_name,
@@ -21,11 +29,19 @@ def apply_bareme_for_relevant_type_sal(
                 continue
             bareme = bareme_by_type_sal_name[type_sal_name].get(bareme_name)  # TODO; should have better warnings
             if bareme is not None:
-                yield bareme.calc(
+                cotisation = bareme.calc(
                     base * (categorie_salarie == type_sal_index),
                     factor = plafond_securite_sociale,
                     round_base_decimals = round_base_decimals,
                     )
+                if np.isnan(np.sum(cotisation)):
+                    log.info("NaN are present in {} ({})".format(
+                        bareme.name,
+                        type_sal_name,
+                        ))
+                    cotisation = np.nan_to_num(cotisation)
+                yield cotisation
+
     return - sum(iter_cotisations())
 
 
