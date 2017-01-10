@@ -193,7 +193,6 @@ class salaire_imposable(Variable):
 
     def function(individu, period):
         # period = period.this_month
-        print 'period salaire imposable', period
         salaire_de_base = individu('salaire_de_base', period)
         primes_salaires = individu('primes_salaires', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)

@@ -8,6 +8,9 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_core.reforms import Reform
 from openfisca_core.taxscales import MarginalRateTaxScale
 
+import logging
+
+log = logging.getLogger(__name__)
 
 TAUX_DE_PRIME = .10
 
@@ -25,13 +28,14 @@ class salaire_de_base(Variable):
         de cotisations sociales correspondant à la catégorie à laquelle appartient le salarié.
         """
         # Get value for year and divide below.
+        this_year = period.this_year
         salaire_imposable_pour_inversion = simulation.calculate('salaire_imposable_pour_inversion',
-            period.start.offset('first-of', 'year').period('year'))
+            period = this_year)
 
         # Calcule le salaire brut (salaire de base) à partir du salaire imposable.
 
-        hsup = simulation.calculate('hsup', period)
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
+        hsup = simulation.calculate('hsup', period = this_year)
+        categorie_salarie = simulation.calculate('categorie_salarie', period = this_year)
         P = simulation.legislation_at(period.start)
 
         salarie = P.cotsoc.cotisations_salarie
@@ -81,16 +85,18 @@ class salaire_de_base(Variable):
                 )
 
         # agirc_gmp
-        gmp = P.prelevements_sociaux.gmp
-        salaire_charniere = gmp.salaire_charniere_annuel
-        cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale * 12
-        salaire_de_base += (
-            (categorie_salarie == CAT['prive_cadre']) *
-            (salaire_de_base <= salaire_charniere) *
-            cotisation_forfaitaire
-            )
-        simulation.legislation_at(period.start).prelevements_sociaux
-        return period, salaire_de_base + hsup
+        # gmp = P.prelevements_sociaux.gmp
+        # salaire_charniere = gmp.salaire_charniere_annuel
+        # cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale * 12
+        # salaire_de_base += (
+        #     (categorie_salarie == CAT['prive_cadre']) *
+        #     (salaire_de_base <= salaire_charniere) *
+        #     cotisation_forfaitaire
+        #     )
+        if period.unit == 'month':
+            return period, (salaire_de_base + hsup) / 12
+        else:
+            return period, salaire_de_base + hsup
 
 
 class traitement_indiciaire_brut(Variable):
@@ -112,12 +118,6 @@ class traitement_indiciaire_brut(Variable):
         csg.add_bracket(0, taux_csg)
 
         salarie = P.cotsoc.cotisations_salarie
-#            cat = None
-#            if (categorie_salarie == 2).all():
-#                cat = 'public_titulaire_etat'
-#            if cat is not None:
-#                for name, bareme in salarie[cat].iteritems():
-#                    print name, bareme
 
         # public etat
         # TODO: modifier la contribution exceptionelle de solidarité
@@ -133,7 +133,7 @@ class traitement_indiciaire_brut(Variable):
         # public_titulaire_hospitaliere = salarie['public_titulaire_hospitaliere'].combine_tax_scales()
         # public_non_titulaire = salarie['public_non_titulaire'].combine_tax_scales()
 
-        # Pour a fonction publique la csg est calculée sur l'ensemble salbrut(=TIB) + primes
+        # Pour a fonction publique la csg est calculée sur l'ensemble TIB + primes
         # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
         bareme_csg_public_titulaire_etat = csg.multiply_rates(
             1 + TAUX_DE_PRIME, inplace = False, new_name = "csg deduc titutaire etat")
@@ -168,6 +168,19 @@ class inversion_directe_salaires(Reform):
     name = u'Inversion des revenus'
 
     def apply(self):
+        neutralized_variables = [
+            'exoneration_cotisations_employeur_apprenti',
+            'exoneration_cotisations_salariales_apprenti',
+            'exoneration_cotisations_employeur_stagiaire',
+            'exoneration_cotisations_salarie_stagiaire',
+            'agirc_gmp_salarie',
+            ]
+        for neutralized_variable in neutralized_variables:
+            log.info("Neutralizing {}".format(neutralized_variable))
+            self.neutralize_column(neutralized_variable)
+
         self.add_variable(salaire_imposable_pour_inversion)
+
         for variable in [traitement_indiciaire_brut, primes_fonction_publique, salaire_de_base]:
             self.update_variable(variable)
+

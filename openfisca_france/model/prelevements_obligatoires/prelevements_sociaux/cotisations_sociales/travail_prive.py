@@ -658,6 +658,7 @@ class plafond_securite_sociale(Variable):
         # 1) Proratisation pour temps partiel
         if period.unit == 'month':
             duree_legale_mensuelle = 35 * 52 / 12  # ~151,67
+            plafond_temps_plein = plafond_temps_plein
         elif period.unit == 'year':
             duree_legale_mensuelle = 35 * 52
             plafond_temps_plein = plafond_temps_plein * 12
@@ -683,11 +684,11 @@ class plafond_securite_sociale(Variable):
         # Pour les salariés entrés ou sortis en cours de mois,
         # le plafond applicable est égal à autant de trentièmes du plafond mensuel
         # que le salarié a été présent de jours calendaires. Source urssaf.fr "L’assiette maximale"
-        if period.unit == 'month':
-            # calcul du nombre de jours calendaires de présence du salarié
-            nombre_jours_calendaires = simulation.calculate('nombre_jours_calendaires', period)
+        # if period.unit == 'month':
+        #     # calcul du nombre de jours calendaires de présence du salarié
+        #     nombre_jours_calendaires = simulation.calculate('nombre_jours_calendaires', period)
 
-            plafond = plafond * (min_(nombre_jours_calendaires, 30) / 30)
+        #     plafond = plafond * (min_(nombre_jours_calendaires, 30) / 30)
 
         return period, plafond
 

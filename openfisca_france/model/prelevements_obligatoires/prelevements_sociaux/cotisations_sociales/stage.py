@@ -97,7 +97,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
                 round_base_decimals = 2,
                 )
             for bareme_name in ['agffnc', 'agffc', 'chomfg', 'assedic']
-        )
+            )
         exoneration += agirc_employeur + agirc_gmp_employeur + arrco_employeur
         return period, - exoneration * stagiaire
 
