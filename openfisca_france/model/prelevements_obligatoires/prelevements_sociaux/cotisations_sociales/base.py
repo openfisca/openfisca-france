@@ -10,13 +10,16 @@ from openfisca_france.model.base import CAT
 log = logging.getLogger(__name__)
 
 
+DEFAULT_ROUND_BASE_DECIMALS = 2
+
+
 def apply_bareme_for_relevant_type_sal(
         bareme_by_type_sal_name,
         bareme_name,
         categorie_salarie,
         base,
         plafond_securite_sociale,
-        round_base_decimals = 2,
+        round_base_decimals = DEFAULT_ROUND_BASE_DECIMALS,
         ):
     assert bareme_by_type_sal_name is not None
     assert bareme_name is not None

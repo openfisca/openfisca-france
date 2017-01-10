@@ -119,6 +119,7 @@ class cotisations_salariales_contributives(Variable):
 
     def function(self, simulation, period):
         period = period
+        print 'period cotisations_salariales_contributives', period
         agff_salarie = simulation.calculate_add('agff_salarie', period)
         agirc_salarie = simulation.calculate_add('agirc_salarie', period)
         agirc_gmp_salarie = simulation.calculate_add('agirc_gmp_salarie', period)
@@ -185,6 +186,7 @@ class cotisations_salariales(Variable):
 
     def function(self, simulation, period):
         period = period
+        print 'period cotisations_salariales:', period
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         cotisations_salariales_non_contributives = simulation.calculate(
             'cotisations_salariales_non_contributives', period)
