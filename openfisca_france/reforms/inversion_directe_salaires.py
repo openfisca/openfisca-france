@@ -79,6 +79,17 @@ class salaire_de_base(Variable):
             salaire_de_base += (
                 (categorie_salarie == CAT[categorie]) * bareme.inverse().calc(salaire_imposable_pour_inversion)
                 )
+
+        # agirc_gmp
+        gmp = P.prelevements_sociaux.gmp
+        salaire_charniere = gmp.salaire_charniere_annuel
+        cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale * 12
+        salaire_de_base += (
+            (categorie_salarie == CAT['prive_cadre']) *
+            (salaire_de_base <= salaire_charniere) *
+            cotisation_forfaitaire
+            )
+        simulation.legislation_at(period.start).prelevements_sociaux
         return period, salaire_de_base + hsup
 
 
