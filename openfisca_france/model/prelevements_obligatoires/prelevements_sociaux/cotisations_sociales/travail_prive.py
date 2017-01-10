@@ -645,9 +645,9 @@ class plafond_securite_sociale(Variable):
     # TODO gérer les plafonds mensuel, trimestriel, annuel
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
+        assert period.unit in ['month', 'year'], 'period should be month or year for variable plafond_securite_sociale'
+        # period = period.start.period(u'month').offset('first-of')
         plafond_temps_plein = simulation.legislation_at(period.start).cotsoc.gen.plafond_securite_sociale
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
         heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period)
         forfait_jours_remuneres_volume = simulation.calculate('forfait_jours_remuneres_volume', period)
@@ -656,30 +656,38 @@ class plafond_securite_sociale(Variable):
         # TODO : handle contrat_de_travail > 1
 
         # 1) Proratisation pour temps partiel
+        if period.unit == 'month':
+            duree_legale_mensuelle = 35 * 52 / 12  # ~151,67
+        elif period.unit == 'year':
+            duree_legale_mensuelle = 35 * 52
+            plafond_temps_plein = plafond_temps_plein * 12
 
-        duree_legale_mensuelle = 35 * 52 / 12  # ~151,67
-        heures_temps_plein = switch(heures_duree_collective_entreprise, {0: duree_legale_mensuelle, 1: heures_duree_collective_entreprise})
+        heures_temps_plein = switch(
+            heures_duree_collective_entreprise,
+            {0: duree_legale_mensuelle, 1: heures_duree_collective_entreprise}
+            )
 
         plafond = switch(
             contrat_de_travail,
-             {  # temps plein
+            {
+                # temps plein
                 0: plafond_temps_plein,
                 # temps partiel
                 1: plafond_temps_plein * (heures_remunerees_volume / heures_temps_plein),
                 # forfait jour
                 5: plafond_temps_plein * (forfait_jours_remuneres_volume / 218)
-             })
+                })
 
         # 2) Proratisation pour mois incomplet selon la méthode des 30èmes
-
-        # calcul du nombre de jours calendaires de présence du salarié
-        nombre_jours_calendaires = simulation.calculate('nombre_jours_calendaires', period)
 
         # Pour les salariés entrés ou sortis en cours de mois,
         # le plafond applicable est égal à autant de trentièmes du plafond mensuel
         # que le salarié a été présent de jours calendaires. Source urssaf.fr "L’assiette maximale"
+        if period.unit == 'month':
+            # calcul du nombre de jours calendaires de présence du salarié
+            nombre_jours_calendaires = simulation.calculate('nombre_jours_calendaires', period)
 
-        plafond = plafond * (min_(nombre_jours_calendaires, 30) / 30)
+            plafond = plafond * (min_(nombre_jours_calendaires, 30) / 30)
 
         return period, plafond
 
