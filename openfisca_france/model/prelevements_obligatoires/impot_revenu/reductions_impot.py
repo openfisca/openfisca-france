@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 
 
 class reductions(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"reductions"
 
@@ -457,7 +457,7 @@ class reductions(DatedVariable):
 
 
 class adhcga(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"adhcga"
 
@@ -475,7 +475,7 @@ class adhcga(Variable):
 
 
 class assvie(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"assvie"
     start_date = date(2002, 1, 1)
@@ -498,7 +498,7 @@ class assvie(Variable):
 
 
 class cappme(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"cappme"
 
@@ -667,7 +667,7 @@ class cappme(DatedVariable):
 
 
 class cotsyn(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"cotsyn"
 
@@ -703,7 +703,7 @@ class cotsyn(Variable):
 
 
 class creaen(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"creaen"
 
@@ -778,7 +778,7 @@ class creaen(DatedVariable):
 
 
 class deffor(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"deffor"
     start_date = date(2006, 1, 1)
@@ -796,7 +796,7 @@ class deffor(Variable):
 
 
 class daepad(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"daepad"
 
@@ -814,7 +814,7 @@ class daepad(Variable):
 
 
 class dfppce(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"dfppce"
 
@@ -1001,7 +1001,7 @@ class dfppce(DatedVariable):
 
 # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
 class doment(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"doment"
 
@@ -1306,7 +1306,7 @@ class doment(DatedVariable):
         # TODO: vérifier les dates des variables de doment et domsoc (y sont-elles encore en 2013 par ex ?)
 
 class domlog(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"domlog"
 
@@ -1513,7 +1513,7 @@ class domlog(DatedVariable):
 
 
 class domsoc(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"domsoc"
 
@@ -1565,7 +1565,7 @@ class domsoc(DatedVariable):
 
 
 class donapd(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"donapd"
 
@@ -1594,7 +1594,7 @@ class donapd(DatedVariable):
 
 
 class duflot(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"duflot"
     start_date = date(2013, 1, 1)
@@ -1615,7 +1615,7 @@ class duflot(Variable):
 #TODO: / 5 dans trois TOM
 
 class ecodev(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"ecodev"
     start_date = date(2009, 1, 1)
@@ -1635,7 +1635,7 @@ class ecodev(Variable):
 
 
 class ecpess(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"ecpess"
 
@@ -1658,7 +1658,7 @@ class ecpess(Variable):
 
 
 class garext(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"garext"
 
@@ -1707,7 +1707,7 @@ class garext(DatedVariable):
 
 
 class intagr(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"intagr"
     start_date = date(2005, 1, 1)
@@ -1727,7 +1727,7 @@ class intagr(Variable):
 
 
 class intcon(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"intcon"
     start_date = date(2004, 1, 1)
@@ -1747,7 +1747,7 @@ class intcon(Variable):
 
 
 class intemp(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"intemp"
     start_date = date(2002, 1, 1)
@@ -1768,7 +1768,7 @@ class intemp(Variable):
 
 
 class invfor(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"invfor"
 
@@ -1929,7 +1929,7 @@ class invfor(DatedVariable):
 
 
 class invlst(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"invlst"
 
@@ -2148,7 +2148,7 @@ class invlst(DatedVariable):
 
 
 class invrev(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"invrev"
     start_date = date(2002, 1, 1)
@@ -2177,7 +2177,7 @@ class invrev(Variable):
 
 
 class locmeu(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"locmeu"
 
@@ -2334,7 +2334,7 @@ class locmeu(DatedVariable):
 
 
 class mohist(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"mohist"
     start_date = date(2008, 1, 1)
@@ -2352,7 +2352,7 @@ class mohist(Variable):
 
 
 class patnat(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"patnat"
 
@@ -2416,7 +2416,7 @@ class patnat(DatedVariable):
 
 
 class prcomp(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"Prestations compensatoires"
 
@@ -2450,7 +2450,7 @@ class prcomp(Variable):
 
 
 class reduction_impot_exceptionnelle(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"Réduction d'impôt exceptionnelle"
     start_date = date(2013, 1, 1)
@@ -2468,7 +2468,7 @@ class reduction_impot_exceptionnelle(Variable):
 
 
 class repsoc(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"repsoc"
     start_date = date(2003, 1, 1)
@@ -2488,7 +2488,7 @@ class repsoc(Variable):
 
 
 class resimm(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"resimm"
 
@@ -2577,7 +2577,7 @@ class resimm(DatedVariable):
 
 
 class rsceha(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"rsceha"
 
@@ -2597,7 +2597,7 @@ class rsceha(Variable):
 
 
 class saldom(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"saldom"
 
@@ -2691,7 +2691,7 @@ class saldom(DatedVariable):
 
 
 class scelli(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"scelli"
 
@@ -3013,7 +3013,7 @@ class scelli(DatedVariable):
 
 
 class sofica(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"sofica"
     start_date = date(2006, 1, 1)
@@ -3035,7 +3035,7 @@ class sofica(Variable):
 
 
 class sofipe(Variable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"sofipe"
     start_date = date(2009, 1, 1)
@@ -3058,7 +3058,7 @@ class sofipe(Variable):
 
 
 class spfcpi(DatedVariable):
-    column = FloatCol(default = 0)
+    column = FloatCol
     entity = FoyerFiscal
     label = u"spfcpi"
 

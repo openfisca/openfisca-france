@@ -28,7 +28,7 @@ description: |
 
   Résultat caf.fr en mettant 1200/0.971=1236 comme salaire imposable : 24,51€
 period: "month:2015-01"
-relative_error_margin: 0.02
+absolute_error_margin: 2
 individus:
   age: 27
   age_en_mois: 331
@@ -301,34 +301,6 @@ familles:
   parents: 54b95373955a42106c94b338
   proprietaire_proche_famille: false
   rsa:
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    year:2014-01: 0
-  rsa_majore:
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    year:2014-01: 0
-  rsa_non_majore:
     2014-01: 0
     2014-02: 0
     2014-03: 0

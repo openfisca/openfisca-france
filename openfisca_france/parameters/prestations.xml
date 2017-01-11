@@ -130,9 +130,8 @@
       </NODE>
     </NODE>
     <NODE code="autres" description="Autres dispositions communes" origin="openfisca">
-      <CODE code="abat_sal" description="Abattement salarié" format="percent" origin="openfisca">
-        <VALUE deb="2016-01-01" fuzzy="true" valeur="0.10" />
-        <VALUE deb="2006-01-01" fin="2015-12-31" valeur="0.10" />
+      <CODE code="abat_sal" description="Abattement salarié (calcul de R0 avant 2015)" format="percent" origin="openfisca">
+        <VALUE deb="2006-01-01" fin="2014-12-31" valeur="0.10" />
         <VALUE deb="2002-01-01" fin="2005-12-31" valeur="0.28" />
       </CODE>
       <CODE code="nr_seuil" description="Seuil de non recouvrement" format="integer" origin="openfisca" type="monetary">
@@ -143,7 +142,7 @@
     </NODE>
     <NODE code="forfait_charges" description="Forfait de charge" origin="ipp">
       <CODE code="cas_general" description="Cas général - isolé ou couple" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="53.23" />
+        <VALUE deb="2014-10-01" fuzzy="true" valeur="53.27" />
         <VALUE deb="2013-01-01" fin="2014-09-30" valeur="52.93" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="51.82" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="51.31" />
@@ -160,7 +159,7 @@
         <VALUE deb="1994-07-01" fin="1997-06-30" valeur="282" />
       </CODE>
       <CODE code="majoration_par_enfant" description="Cas général - par personne à charge supplémentaire" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2014-10-01" fuzzy="true" valeur="12.06" />
+        <VALUE deb="2014-10-01" fuzzy="true" valeur="12.07" />
         <VALUE deb="2013-01-01" fin="2014-09-30" valeur="11.99" />
         <VALUE deb="2012-01-01" fin="2012-12-31" valeur="11.74" />
         <VALUE deb="2011-01-01" fin="2011-12-31" valeur="11.62" />
@@ -191,8 +190,15 @@
         <VALUE deb="2002-01-01" fin="2015-12-31" valeur="0.75" />
       </CODE>
       <NODE code="zone1" description="Zone 1" origin="ipp">
+        <CODE code="degressivite" description="Zone 1 - coeff degressivité" format="float">
+          <VALUE deb="2016-07-01" fuzzy="true" valeur="3.4" />
+        </CODE>
+        <CODE code="suppression" description="Zone 1 - coeff suppression" format="float">
+          <VALUE deb="2016-07-01" fuzzy="true" valeur="4.0" />
+        </CODE>
         <CODE code="couples" description="Zone 1 - 2 adultes" format="float" origin="ipp" type="monetary">
-          <VALUE deb="2014-10-01" fuzzy="true" valeur="352.92" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="353.20" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="352.92" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="350.92" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="343.53" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="340.13" />
@@ -208,7 +214,8 @@
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1902" />
         </CODE>
         <CODE code="majoration_par_enf_supp" description="Zone 1 - enfants supplémentaires" format="float" origin="ipp" type="monetary">
-          <VALUE deb="2014-10-01" fuzzy="true" valeur="57.86" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="57.91" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="57.86" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="57.53" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="56.32" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="55.76" />
@@ -224,7 +231,8 @@
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="310" />
         </CODE>
         <CODE code="personnes_seules" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-07-01,openfisca_fin=2003-06-30,openfisca_valeur=248.1,ipp_valeur=248.18)" description="Zone 1 - 1 adulte" format="float" origin="ipp" type="monetary">
-          <VALUE deb="2014-10-01" fuzzy="true" valeur="292.62" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="292.85" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="292.62" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="290.96" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="284.84" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="282.02" />
@@ -240,7 +248,8 @@
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1577" />
         </CODE>
         <CODE code="un_enfant" description="Zone 1 - 1 enfant" format="float" origin="ipp" type="monetary">
-          <VALUE deb="2014-10-01" fuzzy="true" valeur="398.87" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="399.19" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="398.87" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="396.61" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="388.26" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="384.42" />
@@ -257,8 +266,15 @@
         </CODE>
       </NODE>
       <NODE code="zone2" description="Zone 2" origin="ipp">
+        <CODE code="degressivite" description="Zone 2 - coeff degressivité" format="float">
+          <VALUE deb="2016-07-01" fuzzy="true" valeur="2.5" />
+        </CODE>
+        <CODE code="suppression" description="Zone 2 - coeff suppression" format="float">
+          <VALUE deb="2016-07-01" fuzzy="true" valeur="3.1" />
+        </CODE>
         <CODE code="couples" description="Zone 2 - 2 adultes" format="float" origin="ipp" type="monetary">
-          <VALUE deb="2014-10-01" fuzzy="true" valeur="312.15" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="312.40" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="312.15" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="310.38" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="303.85" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="300.84" />
@@ -274,7 +290,8 @@
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1696" />
         </CODE>
         <CODE code="majoration_par_enf_supp" description="Zone 2 - enfants supplémentaires" format="float" origin="ipp" type="monetary">
-          <VALUE deb="2014-10-01" fuzzy="true" valeur="51.12" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="51.16" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="51.12" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="50.83" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="49.76" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="49.27" />
@@ -290,7 +307,8 @@
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="278" />
         </CODE>
         <CODE code="personnes_seules" description="Zone 2 - 1 adulte" format="float" origin="ipp" type="monetary">
-          <VALUE deb="2014-10-01" fuzzy="true" valeur="255.03" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="255.23" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="255.03" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="253.58" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="248.24" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="245.78" />
@@ -306,7 +324,8 @@
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1385" />
         </CODE>
         <CODE code="un_enfant" description="Zone 2 - 1 enfant" format="float" origin="ipp" type="monetary">
-          <VALUE deb="2014-10-01" fuzzy="true" valeur="351.25" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="351.53" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="351.25" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="349.26" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="341.91" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="338.52" />
@@ -323,8 +342,15 @@
         </CODE>
       </NODE>
       <NODE code="zone3" description="Zone 3" origin="ipp">
+        <CODE code="degressivite" description="Zone 3 - coeff degressivité" format="float">
+          <VALUE deb="2016-07-01" fuzzy="true" valeur="2.5" />
+        </CODE>
+        <CODE code="suppression" description="Zone 3 - coeff suppression" format="float">
+          <VALUE deb="2016-07-01" fuzzy="true" valeur="3.1" />
+        </CODE>
         <CODE code="couples" description="Zone 3 - 2 adultes" format="float" origin="ipp" type="monetary">
-          <VALUE deb="2014-10-01" fuzzy="true" valeur="289.76" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="289.99" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="289.76" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="288.12" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="282.06" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="279.27" />
@@ -340,7 +366,8 @@
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1574" />
         </CODE>
         <CODE code="majoration_par_enf_supp" description="Zone 3 - enfants supplémentaires" format="float" origin="ipp" type="monetary">
-          <VALUE deb="2014-10-01" fuzzy="true" valeur="46.56" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="46.60" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="46.56" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="46.3" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="45.33" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="44.88" />
@@ -356,7 +383,8 @@
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="253" />
         </CODE>
         <CODE code="personnes_seules" description="Zone 3 - 1 adulte" format="float" origin="ipp" type="monetary">
-          <VALUE deb="2014-10-01" fuzzy="true" valeur="239.02" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="239.21" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="239.02" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="237.67" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="232.67" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="230.37" />
@@ -372,7 +400,8 @@
           <VALUE deb="2001-01-01" fin="2001-06-30" valeur="1298" />
         </CODE>
         <CODE code="un_enfant" description="Zone 3 - 1 enfant" format="float" origin="ipp" type="monetary">
-          <VALUE deb="2014-10-01" fuzzy="true" valeur="324.89" />
+          <VALUE deb="2015-10-01" fuzzy="true" valeur="325.15" />
+          <VALUE deb="2014-10-01" fin="2015-09-30" valeur="324.89" />
           <VALUE deb="2013-01-01" fin="2014-09-30" valeur="323.05" />
           <VALUE deb="2012-01-01" fin="2012-12-31" valeur="316.25" />
           <VALUE deb="2011-01-01" fin="2011-12-31" valeur="313.12" />
@@ -408,36 +437,72 @@
         <VALUE deb="2001-01-01" fuzzy="true" valeur="0.085" />
       </CODE>
     </NODE>
+    <NODE code="R0" description="Montant forfaitaire R0 (Article 2 ter de l'arrêté du 3 juillet 1978)">
+      <CODE code="taux_seul" description="Taux 1 adulte" format="integer" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="4562" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="4544" />
+      </CODE>
+      <CODE code="taux_couple" description="Taux couple" format="integer" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="6534" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="6508" />
+      </CODE>
+      <CODE code="taux1pac" description="Taux pour 1 pac" format="integer" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="7793" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="7762" />
+      </CODE>
+      <CODE code="taux2pac" description="Taux pour 2 pac" format="integer" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="7969" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="7938" />
+      </CODE>
+      <CODE code="taux3pac" description="Taux pour 3 pac" format="integer" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="8274" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8242" />
+      </CODE>
+      <CODE code="taux4pac" description="Taux pour 4 pac" format="integer" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="8581" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8547" />
+      </CODE>
+      <CODE code="taux5pac" description="Taux pour 5 pac" format="integer" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="8886" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="8851" />
+      </CODE>
+      <CODE code="taux6pac" description="Taux pour 6 pac" format="integer" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="9192" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="9156" />
+      </CODE>
+      <CODE code="taux_pac_supp" description="Taux par pac supplémentaire" format="integer" type="monetary">
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="305" />
+        <VALUE deb="2015-01-01" fin="2015-12-31" valeur="304" />
+      </CODE>
+    </NODE>
     <NODE code="r1" description="R1 (% du RMI)" origin="ipp">
       <CODE code="couple_sans_enf" description="Taux pour 2 adultes" format="percent" origin="ipp">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="1.26" />
+        <VALUE deb="2001-01-01" fin="2014-12-31" valeur="1.26" />
       </CODE>
       <CODE code="majoration_enfant_a_charge_supp" format="percent" origin="ipp">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="0.4" />
+        <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0.4" />
       </CODE>
       <CODE code="majoration_enfant_supp_a_charge_supp" description="Taux par enfants supplémentaires" format="percent" origin="openfisca">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.4" />
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.4" />
       </CODE>
       <CODE code="personne_isolee" description="Taux pour 1 adulte" format="percent" origin="ipp">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="0.88" />
+        <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0.88" />
       </CODE>
       <CODE code="personne_isolee_ou_couple_avec_1_enf" description="Taux pour 1 enfant" format="percent" origin="ipp">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="1.503" />
+        <VALUE deb="2001-01-01" fin="2014-12-31" valeur="1.503" />
       </CODE>
       <CODE code="personne_isolee_ou_couple_avec_2_enf" description="Taux pour 2 enfants" format="percent" origin="ipp">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="1.803" />
+        <VALUE deb="2001-01-01" fin="2014-12-31" valeur="1.803" />
       </CODE>
     </NODE>
     <NODE code="r2" description="R2 (% de la BMAF)" origin="ipp">
       <CODE code="majoration_par_enf_supp_a_charge" description="Taux par enfants supplémentaires" format="percent" origin="ipp">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="0.41" />
+        <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0.41" />
       </CODE>
       <CODE code="personnes_isolees_ou_couples_avec_2_enf" description="Taux pour 2 enfants" format="percent" origin="ipp">
-        <VALUE deb="2001-01-01" fuzzy="true" valeur="0.32" />
+        <VALUE deb="2001-01-01" fin="2014-12-31" valeur="0.32" />
       </CODE>
       <CODE code="taux3_dom" description="Taux pour 1 enfant (seulement pour les DOM)" format="percent" origin="openfisca">
-        <VALUE deb="2015-01-01" fuzzy="true" valeur="0.0588" />
         <VALUE deb="2002-01-01" fin="2014-12-31" valeur="0.0588" />
       </CODE>
     </NODE>
@@ -568,12 +633,7 @@
         </CODE>
       </NODE>
     </NODE>
-    <CODE code="rmi" description="Revenu minimum d'insertion puis rsa socle n-2" format="float" origin="openfisca" type="monetary">
-      <VALUE deb="2017-01-01" fuzzy="true" valeur="509.30" />
-      <VALUE deb="2016-09-01" fin="2016-12-31" valeur="509.30" />
-      <VALUE deb="2016-01-01" fin="2016-08-31" valeur="499.31" />
-      <VALUE deb="2015-09-01" fin="2015-12-31" valeur="492.90" />
-      <VALUE deb="2015-01-01" fin="2015-08-31" valeur="483.24" />
+    <CODE code="rmi" description="Revenu minimum d'insertion puis rsa socle n-2 pour le calcul de R0 (avant 2015)" format="float" origin="openfisca" type="monetary">
       <VALUE deb="2014-01-01" fin="2014-12-31" valeur="474.93" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="466.99" />
       <VALUE deb="2012-01-01" fin="2012-12-31" valeur="460.09" />
@@ -3244,7 +3304,7 @@
     </NODE>
     <NODE code="ppa" description="Prime Pour l'Activité" origin="ipp">
       <CODE code="age_min" description="Âge minimal pour bénéficier de la PPA" format="integer" origin="openfisca" type="age">
-        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="18" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="18" />
       </CODE>
       <NODE code="bonification" origin="ipp">
         <CODE code="seuil_bonification" description="Seuil de salaire minimum pour bénéficier de la bonification, en multiple du smic horaire brut." origin="ipp">
@@ -3253,7 +3313,7 @@
         <CODE code="seuil_max_bonification" description="Seuil de salaire pour bénéficier de la bonification maximale, en multiple du smic horaire brut." origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="95" />
         </CODE>
-        <CODE code="taux_bonification_max" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2016-01-01,openfisca_fin=2016-12-31,openfisca_valeur=0.12782,ipp_valeur=unknown)" description="Bonification maximale, en pourcentage du montant de base du RSA" format="percent" origin="ipp">
+        <CODE code="taux_bonification_max" description="Bonification maximale, en pourcentage du montant de base du RSA" format="percent" origin="ipp">
           <VALUE deb="2016-01-01" fuzzy="true" valeur="0.12782" />
         </CODE>
       </NODE>
@@ -3267,7 +3327,7 @@
         <VALUE deb="2016-01-01" fuzzy="true" valeur="0.62" />
       </CODE>
       <CODE code="seuil_aah_activite" description="Revenu d'activité minimal perçu pour que l'AAH d'un individu soit considéré comme un revenu d'activité, en multiple du smic horaire brut" format="integer" origin="openfisca">
-        <VALUE deb="2016-01-01" fin="2016-12-31" valeur="29" />
+        <VALUE deb="2016-01-01" fuzzy="true" valeur="29" />
       </CODE>
       <CODE code="seuil_non_versement" description="Seuil de non versement de la PPA" format="float" origin="ipp" type="monetary">
         <VALUE deb="2016-01-01" fuzzy="true" valeur="15" />
@@ -3936,6 +3996,10 @@
         <VALUE deb="1978-01-01" fin="1978-06-30" valeur="818" />
         <VALUE deb="1977-07-01" fin="1977-12-31" valeur="768" />
         <VALUE deb="1976-08-01" fin="1977-06-30" valeur="694.5" />
+        <VALUE deb="1975-08-01" fin="1976-07-31" valeur="632" />
+        <VALUE deb="1975-04-01" fin="1975-07-31" valeur="592" />
+        <VALUE deb="1961-08-01" fin="1975-03-31" valeur="234" />
+        <VALUE deb="1961-01-01" fin="1961-07-31" valeur="220.5" />
       </CODE>
       <CODE code="crds" description="Taux de crds" format="percent" origin="openfisca">
         <VALUE deb="2014-01-01" fuzzy="true" valeur="0.005" />

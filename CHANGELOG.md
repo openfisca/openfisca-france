@@ -7,6 +7,98 @@
 	* 'apa_urgence_domicile'
 	* 'apa_urgence_institution'
 
+## 11.1.0
+
+ * Implement "Aides au logement" degression when rent is above a threshold.
+
+## 11.0.2
+
+* Fix typo in `casa` variable label
+
+## 11.0.1
+
+* Add a `sans_objet` level to variable `contrat_de_travail`
+
+## 11.0.0
+
+* Rename `cotsoc_noncontrib` to `cotisations_non_contibutives`
+
+## 10.1.1
+
+* Fix combination rule for aide 1er salarié / aide PME
+
+## 10.1.0
+
+* Add cotisation pénibilité
+
+## 10.0.2
+
+* Fix csg legislation link in `inversion_directe_salaires` reform.
+
+## 10.0.1
+
+* Update the following rates that changed on the first of january 2017:
+	- SMIC
+	- Plafond de la sécurité sociale
+	- Taux AGIRC-GMP
+	- Taux AGS
+	- Prolongation Aide embauche PME 2017
+
+## 10.0.0
+
+* From 2017, for RSA, remove CA and number of employees conditions.
+* Calculate RSA for Travailleurs Non Salariés
+* Introduce RSA fictif mechanism
+* Deprecate:
+	- `rsa_majore`
+	- `rsa_non_majore`
+* Introduce inputs:
+	- `primes_salaires_net`
+	- `indemnite_fin_contrat_net`
+
+## 9.0.1
+
+* Add `fuzzy` in some `ppa` parameters, needed to run calculations in 2017
+
+## 9.0.0
+
+* Continue mesures migration
+* Complete remplacement migration
+* Rename `impo` to `impots_directs`
+* Rename `revnet` to `revenu_net`
+* Rename `revini` to `revenu_initial`
+
+## 8.0.1
+
+* Introduce echelon_bourse
+
+## 8.0.0
+
+* Rename `paje_clmg` to `paje_cmg`
+
+## 7.0.1
+
+* Improving CASA
+
+## 7.0.0
+
+* Introduce minimum_vieillesse
+* Rename `mini` to `minima_sociaux`
+* Rename `nivvie` to `niveau_de_vie`
+* Rename `nivvie_net` to `niveau_de_vie_net`
+* Rename `nivvie_ini` to `niveau_de_vie_initial`
+* Rename `pfam` to `prestations_familiales`
+* Rename `psoc` to `prestations_sociales`
+* Rename `pen` to `pensions`
+* Rename `rev_cap` to `reveunus_du_capital`
+* Rename `rev_trav` to `revenus_du_travail`
+* Rename `revdisp` to `revenu_disponible`
+* Rename `typ_men` to `type_menage`
+* Cleaning:
+   * remove superfluous `default = 0` in `FloatCol` and `IntCol`
+   * remove superfluous comments
+   * migrate some formulas
+
 ## 6.1.0
 
 * Add the local regime Alsace-Moselle through the boolean variable `salarie_regime_alsace_moselle`.

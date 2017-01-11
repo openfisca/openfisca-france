@@ -231,9 +231,6 @@ class salaire_net(Variable):
         '''
         period = period.start.period(u'month').offset('first-of')
 
-        # salaire_de_base = simulation.get_array('salaire_de_base', period)
-        # if salaire_de_base is None:
-        #     return period, self.zeros()
         salaire_imposable = simulation.calculate('salaire_imposable', period)
         crds_salaire = simulation.calculate('crds_salaire', period)
         csg_imposable_salaire = simulation.calculate('csg_imposable_salaire', period)

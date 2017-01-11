@@ -312,34 +312,6 @@ familles:
     2014-11: 0
     2014-12: 0
     year:2014-01: 0
-  rsa_majore:
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    year:2014-01: 0
-  rsa_non_majore:
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    year:2014-01: 0
 foyers_fiscaux:
   declarants: 54be835fd337b5d372377c19
   pensions_alimentaires_versees:
@@ -354,4 +326,4 @@ menages:
   personne_de_reference: 54be835fd337b5d372377c19
   statut_occupation_logement: 4
 output_variables:
-  aide_logement: 23.95
+  aide_logement: 22.53
