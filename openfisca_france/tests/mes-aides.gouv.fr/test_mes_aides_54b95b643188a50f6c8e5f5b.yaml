@@ -28,7 +28,7 @@ description: |
 
   Résultat caf.fr en mettant 1200/0.971=1236 comme salaire imposable : 24,51€
 period: "month:2015-01"
-relative_error_margin: 0.02
+absolute_error_margin: 2
 individus:
   age: 27
   age_en_mois: 331

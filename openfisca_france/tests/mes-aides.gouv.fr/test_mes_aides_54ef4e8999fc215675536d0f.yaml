@@ -27,6 +27,7 @@ description: |
 
   caf.fr : 101,24
 period: "month:2015-02"
+absolute_error_margin: 2
 individus:
   - age: 34
     age_en_mois: 414
@@ -347,4 +348,4 @@ menages:
   personne_de_reference: 54ef4df1d365765975419541
   statut_occupation_logement: 4
 output_variables:
-  aide_logement: 103.52
+  aide_logement: 101.24

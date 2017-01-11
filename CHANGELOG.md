@@ -1,5 +1,9 @@
 # Changelog
 
+## 11.1.0
+
+ * Implement "Aides au logement" degression when rent is above a threshold.
+
 ## 11.0.2
 
 * Fix typo in `casa` variable label

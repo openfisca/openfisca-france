@@ -23,6 +23,7 @@ description: |
   Pp	83,04
   AL	59,89
 period: "month:2015-01"
+absolute_error_margin: 2
 individus:
   age: 34
   age_en_mois: 413
