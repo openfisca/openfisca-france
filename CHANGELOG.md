@@ -1,4 +1,11 @@
 # Changelog
+## 6.2.0
+* Add variables for Allocation personnalisée d'autonomie
+	* 'apa_domicile'
+	* 'apa_domicile_participation'
+	* 'apa_etablissement'
+	* 'apa_urgence_domicile'
+	* 'apa_urgence_institution'
 
 ## 11.1.0
 

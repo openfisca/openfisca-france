@@ -1,0 +1,97 @@
+<NODE code="autonomie" origin="ipp">
+  <NODE code="age_ouverture_des_droits" origin="ipp">
+    <CODE code="age_d_ouverture_des_droits" origin="ipp">
+      <VALUE deb="2002-01-01" fuzzy="true" valeur="60" />
+    </CODE>
+  </NODE>
+  <NODE code="apa_domicile" origin="ipp">
+    <NODE code="apa_d_urgence" origin="ipp">
+      <CODE code="part_du_plafond_de_l_apa_a_domicile" origin="ipp">
+        <VALUE deb="2002-01-01" fuzzy="true" valeur="0.5" />
+      </CODE>
+    </NODE>
+    <CODE code="divison_des_ressources_du_menage_pour_les_couples" origin="ipp">
+      <VALUE deb="2002-01-01" fuzzy="true" valeur="1.7" />
+    </CODE>
+    <NODE code="plafond_de_l_apa_a_domicile_en_part_du_mtp" origin="ipp">
+      <CODE code="gir_1" origin="ipp">
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="1.553" />
+        <VALUE deb="2002-01-01" fin="2016-03-31" valeur="1.19" />
+      </CODE>
+      <CODE code="gir_2" origin="ipp">
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="1.247" />
+        <VALUE deb="2002-01-01" fin="2016-03-31" valeur="1.02" />
+      </CODE>
+      <CODE code="gir_3" origin="ipp">
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.901" />
+        <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.765" />
+      </CODE>
+      <CODE code="gir_4" origin="ipp">
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.601" />
+        <VALUE deb="2002-01-01" fin="2016-03-31" valeur="0.51" />
+      </CODE>
+    </NODE>
+    <NODE code="seuil_de_revenu_en_part_du_mtp" origin="ipp">
+      <CODE code="seuil_inferieur" origin="ipp">
+        <VALUE deb="2016-04-01" fuzzy="true" valeur="0.725" />
+        <VALUE deb="2004-10-26" fin="2016-03-31" valeur="0.67" />
+        <VALUE deb="2002-01-01" fin="2004-10-25" valeur="1.02" />
+      </CODE>
+      <CODE code="seuil_superieur" origin="ipp">
+        <VALUE deb="2004-10-26" fuzzy="true" valeur="2.67" />
+        <VALUE deb="2002-01-01" fin="2004-10-25" valeur="3.4" />
+      </CODE>
+    </NODE>
+    <CODE code="taux_de_participation_maximum" origin="ipp">
+      <VALUE deb="2004-10-26" fuzzy="true" valeur="0.9" />
+      <VALUE deb="2002-01-01" fin="2004-10-25" valeur="0.8" />
+    </CODE>
+    <CODE code="taux_de_participation_minimum" origin="ipp">
+      <VALUE deb="2002-01-01" fuzzy="true" valeur="0" />
+    </CODE>
+  </NODE>
+  <NODE code="apa_institution" origin="ipp">
+    <NODE code="apa_d_urgence" origin="ipp">
+      <CODE code="part_du_tarif_dependance_gir_1_2_de_l_etablissement_d_accueil" origin="ipp">
+        <VALUE deb="2002-01-01" fuzzy="true" valeur="0.5" />
+      </CODE>
+    </NODE>
+    <CODE code="divison_des_ressources_du_menage_pour_les_couples" origin="ipp">
+      <VALUE deb="2002-01-01" fuzzy="true" valeur="2" />
+    </CODE>
+    <NODE code="seuil_de_revenu_en_part_du_mtp" origin="ipp">
+      <CODE code="seuil_inferieur" origin="ipp">
+        <VALUE deb="2002-01-01" fuzzy="true" valeur="2.21" />
+      </CODE>
+      <CODE code="seuil_superieur" origin="ipp">
+        <VALUE deb="2002-01-01" fuzzy="true" valeur="3.4" />
+      </CODE>
+    </NODE>
+  </NODE>
+  <NODE code="mtp" origin="ipp">
+    <CODE code="mtp" format="float" origin="ipp" type="monetary">
+      <VALUE deb="2016-04-01" fuzzy="true" valeur="1104.18" />
+      <VALUE deb="2014-04-01" fin="2016-03-31" valeur="1103.08" />
+      <VALUE deb="2013-04-01" fin="2014-03-31" valeur="1096.5" />
+      <VALUE deb="2012-04-01" fin="2013-03-31" valeur="1082.43" />
+      <VALUE deb="2011-04-01" fin="2012-03-31" valeur="1060.16" />
+      <VALUE deb="2010-04-01" fin="2011-03-31" valeur="1038.36" />
+      <VALUE deb="2009-04-01" fin="2010-03-31" valeur="1029.1" />
+      <VALUE deb="2008-09-01" fin="2009-03-31" valeur="1018.91" />
+      <VALUE deb="2008-01-01" fin="2008-08-31" valeur="1010.82" />
+      <VALUE deb="2007-01-01" fin="2007-12-31" valeur="999.83" />
+      <VALUE deb="2006-01-01" fin="2006-12-31" valeur="982.15" />
+      <VALUE deb="2005-01-01" fin="2005-12-31" valeur="964.78" />
+      <VALUE deb="2004-01-01" fin="2004-12-31" valeur="945.87" />
+      <VALUE deb="2003-01-01" fin="2003-12-31" valeur="930.05" />
+      <VALUE deb="2002-01-01" fin="2002-12-31" valeur="916.31" />
+    </CODE>
+  </NODE>
+  <NODE code="seuil_de_versement_de_l_apa" origin="ipp">
+    <NODE code="seuil_versement" origin="ipp">
+      <CODE code="seuil_de_versement_de_l_apa" origin="ipp">
+        <VALUE deb="2002-01-01" fuzzy="true" valeur="3" />
+      </CODE>
+    </NODE>
+  </NODE>
+</NODE>

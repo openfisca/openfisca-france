@@ -1,5 +1,4 @@
 # Add Biryani extra requirement here because it is needed by OpenFisca-Core and installation from Git URL below
 # does not take extras_require of Core setup.py into account.
 Biryani[datetimeconv] >= 0.10.4
---editable git+https://github.com/openfisca/openfisca-core.git#egg=OpenFisca-Core
 --editable .
