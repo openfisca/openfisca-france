@@ -173,6 +173,8 @@ class inversion_directe_salaires(Reform):
             'exoneration_cotisations_salariales_apprenti',
             'exoneration_cotisations_employeur_stagiaire',
             'exoneration_cotisations_salarie_stagiaire',
+            'complementaire_sante_employeur',
+            'complementaire_sante_salarie',
             'agirc_gmp_salarie',
             ]
         for neutralized_variable in neutralized_variables:
