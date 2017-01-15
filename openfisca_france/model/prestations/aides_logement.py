@@ -598,6 +598,7 @@ class aide_logement_montant_brut(DatedVariable):
 
     @dated_function(stop = date(2016, 6, 30))
     def function_avant_degression(famille, period):
+        period = period.this_month
         montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
         return period, montant_avant_degressivite
 
