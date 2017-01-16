@@ -4,7 +4,7 @@ import os, itertools, glob
 
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 
-from . import entities
+from .entities import entities
 from . import decompositions, scenarios
 from .model import datatrees
 from .model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import preprocessing
@@ -34,7 +34,7 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
     }
 
     def __init__(self):
-        TaxBenefitSystem.__init__(self, entities.entities)
+        TaxBenefitSystem.__init__(self, entities)
         self.Scenario = scenarios.Scenario
 
         param_files = [
