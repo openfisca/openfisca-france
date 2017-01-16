@@ -21,7 +21,7 @@
       scolarite: 1 # Collège
   output_variables:
     bourse_college:
-      2015-09: 360 / 12 # Le montant testé est par mois
+      2015-09: 360
 
 - name: "Bourse collège taux 2, 2 enfants, rfr = 4000"
   period: 2015-09
@@ -46,7 +46,7 @@
       scolarite: 1 # Collège
   output_variables:
     bourse_college:
-      2015-09: 231 / 12 # Le montant testé est par mois
+      2015-09: 231
 
 - name: "Bourse collège taux 1, 2 enfants, rfr = 9800"
   period: 2015-09
@@ -71,7 +71,7 @@
       scolarite: 1 # Collège
   output_variables:
     bourse_college:
-      2015-09: 84 / 12 # Le montant testé est par mois
+      2015-09: 84
 
 - name: "Bourse collège refusée, 2 enfants, rfr = 18500"
   period: 2015-09
@@ -97,4 +97,4 @@
       scolarite: 1 # Collège
   output_variables:
     bourse_college:
-      2015-09: 0 # Le montant testé est par mois
+      2015-09: 0

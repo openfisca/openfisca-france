@@ -351,7 +351,7 @@ class cmu_c(Variable):
 
 class acs(Variable):
     column = FloatCol
-    label = u"Montant (mensuel) de l'ACS"
+    label = u"Montant (annuel) de l'ACS"
     entity = Famille
 
     def function(famille, period):
@@ -368,7 +368,7 @@ class acs(Variable):
             cmu_acs_eligibilite *
             not_(residence_mayotte) * not_(cmu_c) *
             (cmu_base_ressources <= acs_plafond) *
-            acs_montant / 12)
+            acs_montant)
 
 
 ############################################################################
