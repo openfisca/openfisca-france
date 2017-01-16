@@ -76,17 +76,21 @@ class salaire_de_base(Variable):
             assert target[categorie] == test, 'target: {} \n test {}'.format(target[categorie], test)
 
         # On ajoute la CSG deductible et on multiplie par le plafond de la sécurité sociale
-        salaire_de_base = 0
+        salaire_de_base = 0.0
         for categorie in ['prive_non_cadre', 'prive_cadre']:
             bareme = salarie[categorie].combine_tax_scales()
             bareme.add_tax_scale(csg)
+            print plafond_securite_sociale_annuel
+            print bareme
             bareme = bareme.scale_tax_scales(plafond_securite_sociale_annuel)
+            print bareme.inverse()
             inversed = bareme.inverse().calc(salaire_imposable_pour_inversion)
+            print inversed[:10]
+            print categorie_salarie[:10]
             assert np.isfinite(inversed).all()
             assert (inversed > -1e9).all()
             assert (inversed < 1e9).all()
-
-            salaire_de_base += (categorie_salarie == CAT[categorie]) * inversed
+            salaire_de_base = salaire_de_base + (categorie_salarie == CAT[categorie]) * inversed
 
         # agirc_gmp
         # gmp = P.prelevements_sociaux.gmp
@@ -97,6 +101,7 @@ class salaire_de_base(Variable):
         #     (salaire_de_base <= salaire_charniere) *
         #     cotisation_forfaitaire
         #     )
+        print period, salaire_de_base[:10]
         if period.unit == 'month':
             return period, (salaire_de_base + hsup) / 12
         else:
