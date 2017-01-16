@@ -76,5 +76,5 @@
     date_naissance: '1994-01-01' # 22 ans
     cmu_c: False
   output_variables:
-    acs: 200 / 12
+    acs: 200
 

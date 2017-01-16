@@ -1,5 +1,14 @@
 # Changelog
 
+## 12.0.1
+
+* Fix `aide_logement_montant_brut_avant_degressivite` returned `period` to month.
+
+## 12.0.0
+
+* Use core `test_runner` for yaml tests
+* Return yearly amount for `acs`, `bourse_college`, `bourse_lycee` instead of artificially divide it by 12 (breaking change).
+
 ## 11.1.0
 
  * Implement "Aides au logement" degression when rent is above a threshold.
