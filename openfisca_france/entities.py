@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import collections
-import itertools
-
 from openfisca_core.entities import build_entity
 
 Famille = build_entity(
