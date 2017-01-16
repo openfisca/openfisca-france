@@ -676,7 +676,6 @@ class primes_fonction_publique(Variable):
     def function(self, simulation, period):
         # period = period.start.period(u'month').offset('first-of')
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         public = (
             (categorie_salarie == CAT['public_titulaire_etat']) +

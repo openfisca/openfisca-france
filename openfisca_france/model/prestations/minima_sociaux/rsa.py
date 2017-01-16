@@ -447,7 +447,7 @@ class rsa_indemnites_journalieres_activite(Variable):
 
     def function(individu, period):
         period = period.this_month
-        m_3 = period.offset(-3,'month')
+        m_3 = period.offset(-3, 'month')
 
         def ijss_activite_sous_condition(period):
             return sum(individu(ressource, period) for ressource in [
@@ -456,7 +456,6 @@ class rsa_indemnites_journalieres_activite(Variable):
                 'indemnites_journalieres_accident_travail',
                 'indemnites_journalieres_maladie_professionnelle',
             ])
-
 
         date_arret_de_travail = individu('date_arret_de_travail')
         three_months_ago = datetime64(m_3.start)
@@ -473,7 +472,9 @@ class rsa_indemnites_journalieres_activite(Variable):
             'indemnites_journalieres_maternite',
             'indemnites_journalieres_paternite',
             'indemnites_journalieres_adoption',
-        ]) + (condition_date_arret_travail + condition_activite + condition_arret_recent) * ijss_activite_sous_condition(period)
+            ]) + (
+                condition_date_arret_travail + condition_activite + condition_arret_recent
+                ) * ijss_activite_sous_condition(period)
 
         return period, ijss_activite
 
@@ -485,12 +486,15 @@ class rsa_indemnites_journalieres_hors_activite(Variable):
 
     def function(individu, period):
         period = period.this_month
-        return period, individu('indemnites_journalieres', period) - individu('rsa_indemnites_journalieres_activite', period)
+        return period, (individu('indemnites_journalieres', period) -
+        individu('rsa_indemnites_journalieres_activite', period))
+
 
 class primes_salaires_net(Variable):
     column = FloatCol
     entity = Individu
     label = u"Indemnités, primes et avantages en argent (net)"
+
 
 class salaire_net_hors_revenus_exceptionnels(Variable):
     column = FloatCol
@@ -504,6 +508,7 @@ class salaire_net_hors_revenus_exceptionnels(Variable):
             individu('primes_salaires_net', period) -
             individu('indemnite_fin_contrat_net', period)
             )
+
 
 class rsa_revenu_activite_individu(DatedVariable):
     column = FloatCol
@@ -596,7 +601,6 @@ class revenus_fonciers_minima_sociaux(Variable):
         period_declaration = period.this_year
         f4ba = individu.foyer_fiscal('f4ba', period_declaration)
         f4be = individu.foyer_fiscal('f4be', period_declaration)
-
 
         # On projette les revenus du foyer fiscal seulement sur le déclarant principal
         return period, (f4ba + f4be) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12

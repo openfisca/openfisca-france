@@ -14,12 +14,12 @@ class pensions_alimentaires_percues(Variable):
     entity = Individu
     label = u"Pensions alimentaires perçues"
 
-  # (f1ao, f1bo, f1co, f1do, f1eo)
+
+# (f1ao, f1bo, f1co, f1do, f1eo)
 class pensions_alimentaires_percues_decl(Variable):
     column = BoolCol(default = True)
     entity = Individu
     label = u"Pension déclarée"
-
 
 
 class pensions_alimentaires_versees_individu(Variable):
@@ -28,12 +28,10 @@ class pensions_alimentaires_versees_individu(Variable):
     label = u"Pensions alimentaires versées pour un individu"
 
 
-
 class gains_exceptionnels(Variable):
     column = FloatCol
     entity = Individu
     label = u"Gains exceptionnels"
-
 
 
 class allocation_aide_retour_emploi(Variable):

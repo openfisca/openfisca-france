@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import division
 
-from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_)
+from numpy import (absolute as abs_, logical_not as not_, isfinite, maximum as max_, minimum as min_)
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -31,7 +31,7 @@ class aah_base_ressources(Variable):
             aah_base_ressources_eval_trimestrielle = simulation.compute('aah_base_ressources_eval_trimestrielle', period)
             base_ressource_demandeur = self.filter_role(aah_base_ressources_eval_trimestrielle, role = CHEF)
             base_ressource_conjoint = self.filter_role(aah_base_ressources_eval_trimestrielle, role = PART)
-
+            assert isfinite(base_ressource_demandeur).all()
             return assiette_demandeur(base_ressource_demandeur) + assiette_conjoint(base_ressource_conjoint)
 
         def base_ressource_eval_annuelle():
@@ -223,11 +223,9 @@ class aah(Variable):
 
     def function(self, simulation, period):
         period = period.this_month
-
         aah_base = simulation.calculate('aah_base', period)
         # caah
         # mva
-
         return period, aah_base
 
 

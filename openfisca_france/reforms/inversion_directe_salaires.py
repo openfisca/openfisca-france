@@ -2,6 +2,7 @@
 
 from __future__ import division
 
+import numpy as np
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -80,9 +81,12 @@ class salaire_de_base(Variable):
             bareme = salarie[categorie].combine_tax_scales()
             bareme.add_tax_scale(csg)
             bareme = bareme.scale_tax_scales(plafond_securite_sociale_annuel)
-            salaire_de_base += (
-                (categorie_salarie == CAT[categorie]) * bareme.inverse().calc(salaire_imposable_pour_inversion)
-                )
+            inversed = bareme.inverse().calc(salaire_imposable_pour_inversion)
+            assert np.isfinite(inversed).all()
+            assert (inversed > -1e9).all()
+            assert (inversed < 1e9).all()
+
+            salaire_de_base += (categorie_salarie == CAT[categorie]) * inversed
 
         # agirc_gmp
         # gmp = P.prelevements_sociaux.gmp
@@ -169,20 +173,40 @@ class inversion_directe_salaires(Reform):
 
     def apply(self):
         neutralized_variables = [
-            'exoneration_cotisations_employeur_apprenti',
-            'exoneration_cotisations_salariales_apprenti',
-            'exoneration_cotisations_employeur_stagiaire',
-            'exoneration_cotisations_salarie_stagiaire',
             'complementaire_sante_employeur',
             'complementaire_sante_salarie',
+            'exoneration_cotisations_employeur_apprenti',
+            'exoneration_cotisations_employeur_stagiaire',
+            'exoneration_cotisations_salariales_apprenti',
+            'exoneration_cotisations_salarie_stagiaire',
+            'reintegration_titre_restaurant_employeur',
+            'stage_gratification_reintegration',
+            'indemnite_fin_contrat',
+            # To reintegrate
             'agirc_gmp_salarie',
+            'aah',
+            'aah_base_ressources',
+            'caah',
+            'asi_aspa_base_ressources_individu',
+            'rsa_indemnites_journalieres_activite',
+            'rsa_base_ressources_individu',
+            'rsa_revenu_activite_individu',
+            'ass',
+            'cotisations_non_contributives',
+            'primes_fonction_publique',
+            'traitement_indiciaire_brut',
+            'remuneration_principale',
+            'hsup',
+            'indemnite_residence',
+            'supp_familial_traitement',
+            'primes_salaires',
+            'primes_fonction_publique',
             ]
         for neutralized_variable in neutralized_variables:
             log.info("Neutralizing {}".format(neutralized_variable))
             self.neutralize_column(neutralized_variable)
 
         self.add_variable(salaire_imposable_pour_inversion)
-
-        for variable in [traitement_indiciaire_brut, primes_fonction_publique, salaire_de_base]:
+        for variable in [salaire_de_base]:  # traitement_indiciaire_brut, primes_fonction_publique,
             self.update_variable(variable)
 

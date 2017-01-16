@@ -14,8 +14,6 @@ class ass_precondition_remplie(Variable):
     label = u"Éligible à l'ASS"
 
 
-
-
 class ass(Variable):
     column = FloatCol
     label = u"Montant de l'ASS pour une famille"
