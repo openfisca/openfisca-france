@@ -86,7 +86,7 @@ class assiette_cotisations_sociales_prive(Variable):
             hsup +
             indemnites_compensatrices_conges_payes +
             remuneration_apprenti +
-            (categorie_salarie == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
+            (categorie_salarie == CATEGORIE_SALARIE['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
             reintegration_titre_restaurant_employeur + indemnite_fin_contrat
             )
 
@@ -121,9 +121,7 @@ class indemnite_fin_contrat(Variable):
         # Pour l'instant, cette variable d'entrée peut les remplacer
         # Elle est cependant fixée à False par défaut
         indemnite_fin_contrat_due = simulation.calculate('indemnite_fin_contrat_due', period)
-
         taux = simulation.legislation_at(period.start).cotsoc.indemnite_fin_contrat.taux
-
         result = (
             # CDD
             (contrat_de_travail_duree == 1) *
@@ -131,7 +129,7 @@ class indemnite_fin_contrat(Variable):
             (
                 (categorie_salarie == 0) +
                 (categorie_salarie == 1)
-            ) *
+                ) *
             not_(apprenti) *
             indemnite_fin_contrat_due *
             # 10% du brut
@@ -751,7 +749,7 @@ class prevoyance_obligatoire_cadre(Variable):
             'prevoyance_obligatoire_cadre_taux_employeur', period)
 
         cotisation = - (
-            (categorie_salarie == CAT['prive_cadre']) *
+            (categorie_salarie == CATEGORIE_SALARIE['prive_cadre']) *
             min_(assiette_cotisations_sociales, plafond_securite_sociale) *
             prevoyance_obligatoire_cadre_taux_employeur
             )

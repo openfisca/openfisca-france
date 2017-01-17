@@ -107,6 +107,9 @@ class salaire_de_base(Variable):
         else:
             return period, salaire_de_base + hsup
 
+        public_titulaire_etat = salarie['public_titulaire_etat'] #.copy()
+        public_titulaire_etat['rafp'].multiply_rates(TAUX_DE_PRIME, inplace = True)
+        public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
 
 # class traitement_indiciaire_brut(Variable):
 

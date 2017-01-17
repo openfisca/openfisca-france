@@ -4,7 +4,7 @@ import logging
 import numpy as np
 
 
-from openfisca_france.model.base import CAT
+from openfisca_france.model.base import CATEGORIE_SALARIE
 
 
 log = logging.getLogger(__name__)

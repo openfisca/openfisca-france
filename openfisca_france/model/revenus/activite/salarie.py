@@ -475,6 +475,7 @@ class categorie_salarie(Variable):
                 u"public_titulaire_territoriale",
                 u"public_titulaire_hospitaliere",
                 u"public_non_titulaire",
+                u"non_pertinent",
                 ],
             ),
         )
@@ -678,9 +679,9 @@ class primes_fonction_publique(Variable):
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         public = (
-            (categorie_salarie == CAT['public_titulaire_etat']) +
-            (categorie_salarie == CAT['public_titulaire_territoriale']) +
-            (categorie_salarie == CAT['public_titulaire_hospitaliere'])
+            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat']) +
+            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_territoriale']) +
+            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_hospitaliere'])
             )
         return period, TAUX_DE_PRIME * traitement_indiciaire_brut * public
 
@@ -760,19 +761,21 @@ class supp_familial_traitement(Variable):
                    plafond_mensuel_3 * (fonc_nbenf == 3) +
                    plafond_mensuel_supp * max_(0, fonc_nbenf - 3))
 
-        sft = (categorie_salarie >= 2) * min_(
+        sft = (categorie_salarie >= 2) * (categorie_salarie < 7) * min_(
             max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher),
             plafond
             )
         # Nota Bene:
         # categorie_salarie is an EnumCol which enum is:
-        # CAT = Enum(['prive_non_cadre',
+        # CATEGORIE_SALARIE = Enum(['prive_non_cadre',
         #             'prive_cadre',
         #             'public_titulaire_etat',
         #             'public_titulaire_militaire',
         #             'public_titulaire_territoriale',
         #             'public_titulaire_hospitaliere',
-        #             'public_non_titulaire'])
+        #             'public_non_titulaire',
+        #             'non_pertinent',
+        #             ])
         return period, sft
 
 
