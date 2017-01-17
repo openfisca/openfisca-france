@@ -1,5 +1,9 @@
 # Changelog
 
+## 12.0.2
+
+* Don't consider handicaped demandeur/conjoint as personne à charge in aides logement.
+
 ## 12.0.1
 
 * Fix `aide_logement_montant_brut_avant_degressivite` returned `period` to month.
