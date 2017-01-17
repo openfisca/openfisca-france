@@ -34,9 +34,14 @@ class assiette_csg_abattue(Variable):
         indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
 
         return period, (
-            remuneration_principale + salaire_de_base + primes_salaires + primes_fonction_publique +
-            indemnite_residence + stage_gratification_reintegration + supp_familial_traitement - hsup +
-            indemnite_fin_contrat
+            indemnite_fin_contrat +
+            indemnite_residence +
+            primes_fonction_publique +
+            primes_salaires +
+            remuneration_principale +
+            salaire_de_base +
+            stage_gratification_reintegration +
+            supp_familial_traitement - hsup
             )
 
 
@@ -66,7 +71,7 @@ class csg_deductible_salaire(Variable):
     entity = Individu
 
     def function(self, simulation, period):
-        # period = period.this_month
+        # period = period.this_month
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
@@ -88,7 +93,7 @@ class csg_imposable_salaire(Variable):
     entity = Individu
 
     def function(self, simulation, period):
-        # period = period.this_month
+        # period = period.this_month
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
@@ -111,7 +116,7 @@ class crds_salaire(Variable):
     entity = Individu
 
     def function(self, simulation, period):
-        # period = period.this_month
+        # period = period.this_month
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
@@ -164,7 +169,7 @@ class forfait_social(DatedVariable):
         prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
         effectif_entreprise = individu('effectif_entreprise', period)
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
-        taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
+        taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
         assiette_taux_reduit = (
             - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
             - complementaire_sante_employeur

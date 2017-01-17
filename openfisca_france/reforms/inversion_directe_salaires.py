@@ -103,68 +103,68 @@ class salaire_de_base(Variable):
             return period, salaire_de_base + hsup
 
 
-class traitement_indiciaire_brut(Variable):
+# class traitement_indiciaire_brut(Variable):
 
-    def function(self, simulation, period):
-        """Calcule le tratement indiciaire brut à partir du salaire imposable.
-        """
-        # Get value for year and divide below.
-        salaire_imposable_pour_inversion = simulation.calculate('salaire_imposable_pour_inversion',
-            period.start.offset('first-of', 'year').period('year'))
+#     def function(self, simulation, period):
+#         """Calcule le tratement indiciaire brut à partir du salaire imposable.
+#         """
+#         # Get value for year and divide below.
+#         salaire_imposable_pour_inversion = simulation.calculate('salaire_imposable_pour_inversion',
+#             period.start.offset('first-of', 'year').period('year'))
 
-        # Calcule le salaire brut à partir du salaire imposable.
-        # Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
-        # Note : le supplément familial de traitement est imposable.
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
-        P = simulation.legislation_at(period.start)
-        taux_csg = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible.taux * (1 - .0175)
-        csg = MarginalRateTaxScale(name = 'csg')
-        csg.add_bracket(0, taux_csg)
+#         # Calcule le salaire brut à partir du salaire imposable.
+#         # Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
+#         # Note : le supplément familial de traitement est imposable.
+#         categorie_salarie = simulation.calculate('categorie_salarie', period)
+#         P = simulation.legislation_at(period.start)
+#         taux_csg = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible.taux * (1 - .0175)
+#         csg = MarginalRateTaxScale(name = 'csg')
+#         csg.add_bracket(0, taux_csg)
 
-        salarie = P.cotsoc.cotisations_salarie
+#         salarie = P.cotsoc.cotisations_salarie
 
-        # public etat
-        # TODO: modifier la contribution exceptionelle de solidarité
-        # en fixant son seuil de non imposition dans le barème (à corriger dans param.xml
-        # et en tenant compte des éléments de l'assiette
-        # salarie['fonc']['etat']['excep_solidarite'] = salarie['fonc']['commun']['solidarite']
+#         # public etat
+#         # TODO: modifier la contribution exceptionelle de solidarité
+#         # en fixant son seuil de non imposition dans le barème (à corriger dans param.xml
+#         # et en tenant compte des éléments de l'assiette
+#         # salarie['fonc']['etat']['excep_solidarite'] = salarie['fonc']['commun']['solidarite']
 
-        public_titulaire_etat = salarie['public_titulaire_etat']  # .copy()
-        public_titulaire_etat['rafp'].multiply_rates(TAUX_DE_PRIME, inplace = True)
-        public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
+#         public_titulaire_etat = salarie['public_titulaire_etat']  # .copy()
+#         public_titulaire_etat['rafp'].multiply_rates(TAUX_DE_PRIME, inplace = True)
+#         public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
 
-        # public_titulaire_territoriale = salarie['public_titulaire_territoriale'].combine_tax_scales()
-        # public_titulaire_hospitaliere = salarie['public_titulaire_hospitaliere'].combine_tax_scales()
-        # public_non_titulaire = salarie['public_non_titulaire'].combine_tax_scales()
+#         # public_titulaire_territoriale = salarie['public_titulaire_territoriale'].combine_tax_scales()
+#         # public_titulaire_hospitaliere = salarie['public_titulaire_hospitaliere'].combine_tax_scales()
+#         # public_non_titulaire = salarie['public_non_titulaire'].combine_tax_scales()
 
-        # Pour a fonction publique la csg est calculée sur l'ensemble TIB + primes
-        # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
-        bareme_csg_public_titulaire_etat = csg.multiply_rates(
-            1 + TAUX_DE_PRIME, inplace = False, new_name = "csg deduc titutaire etat")
-        public_titulaire_etat.add_tax_scale(bareme_csg_public_titulaire_etat)
-        bareme_prime = MarginalRateTaxScale(name = "taux de prime")
-        bareme_prime.add_bracket(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
-        public_titulaire_etat.add_tax_scale(bareme_prime)
-        traitement_indiciaire_brut = (
-            (categorie_salarie == CAT['public_titulaire_etat']) *
-            public_titulaire_etat.inverse().calc(salaire_imposable_pour_inversion)
-            )
-        # TODO: complete this to deal with the fonctionnaire
-        # supp_familial_traitement = 0  # TODO: dépend de salbrut
-        # indemnite_residence = 0  # TODO: fix bug
-        return period, traitement_indiciaire_brut
+#         # Pour a fonction publique la csg est calculée sur l'ensemble TIB + primes
+#         # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
+#         bareme_csg_public_titulaire_etat = csg.multiply_rates(
+#             1 + TAUX_DE_PRIME, inplace = False, new_name = "csg deduc titutaire etat")
+#         public_titulaire_etat.add_tax_scale(bareme_csg_public_titulaire_etat)
+#         bareme_prime = MarginalRateTaxScale(name = "taux de prime")
+#         bareme_prime.add_bracket(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
+#         public_titulaire_etat.add_tax_scale(bareme_prime)
+#         traitement_indiciaire_brut = (
+#             (categorie_salarie == CAT['public_titulaire_etat']) *
+#             public_titulaire_etat.inverse().calc(salaire_imposable_pour_inversion)
+#             )
+#         # TODO: complete this to deal with the fonctionnaire
+#         # supp_familial_traitement = 0  # TODO: dépend de salbrut
+#         # indemnite_residence = 0  # TODO: fix bug
+#         return period, traitement_indiciaire_brut
 
 
-class primes_fonction_publique(Variable):
+# class primes_fonction_publique(Variable):
 
-    def function(self, simulation, period):
-        """Calcule les primes.
-        """
-        # Get value for year and divide below.
-        traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut',
-            period.start.offset('first-of', 'year').period('year'))
+#     def function(self, simulation, period):
+#         """Calcule les primes.
+#         """
+#         # Get value for year and divide below.
+#         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut',
+#             period.start.offset('first-of', 'year').period('year'))
 
-        return period, TAUX_DE_PRIME * traitement_indiciaire_brut
+#         return period, TAUX_DE_PRIME * traitement_indiciaire_brut
 
 
 class inversion_directe_salaires(Reform):
@@ -182,25 +182,27 @@ class inversion_directe_salaires(Reform):
             'reintegration_titre_restaurant_employeur',
             'stage_gratification_reintegration',
             'indemnite_fin_contrat',
+            'nouvelle_bonification_indiciaire',
             # To reintegrate
+            # Revenus
             'agirc_gmp_salarie',
-            'aah',
-            'aah_base_ressources',
-            'caah',
-            'asi_aspa_base_ressources_individu',
-            'rsa_indemnites_journalieres_activite',
-            'rsa_base_ressources_individu',
-            'rsa_revenu_activite_individu',
-            'ass',
-            'cotisations_non_contributives',
-            'primes_fonction_publique',
+            # 'cotisations_non_contributives',
             'traitement_indiciaire_brut',
-            'remuneration_principale',
-            'hsup',
-            'indemnite_residence',
-            'supp_familial_traitement',
-            'primes_salaires',
-            'primes_fonction_publique',
+            # 'remuneration_principale',
+            # 'hsup',
+            # 'indemnite_residence',
+            # 'supp_familial_traitement',
+            # 'primes_salaires',
+            # 'primes_fonction_publique',
+            # Prestations
+            'aah',
+            # 'aah_base_ressources',
+            # 'caah',
+            # 'asi_aspa_base_ressources_individu',
+            # 'rsa_indemnites_journalieres_activite',
+            # 'rsa_base_ressources_individu',
+            # 'rsa_revenu_activite_individu',
+            # 'ass',
             ]
         for neutralized_variable in neutralized_variables:
             log.info("Neutralizing {}".format(neutralized_variable))

@@ -708,7 +708,7 @@ class plafond_securite_sociale(Variable):
         #     amax(heures_temps_plein),
         #     )
         heures_temps_plein = duree_legale_mensuelle
-        assert ((contrat_de_travail == 0) | (contrat_de_travail == 1)) | (contrat_de_travail == 5)
+        assert (((contrat_de_travail == 0) | (contrat_de_travail == 1)) | (contrat_de_travail == 5) | (contrat_de_travail == 6)).all()
         plafond = switch(
             contrat_de_travail,
             {
@@ -717,7 +717,9 @@ class plafond_securite_sociale(Variable):
                 # temps partiel
                 1: plafond_temps_plein * (heures_remunerees_volume / heures_temps_plein),
                 # forfait jour
-                5: plafond_temps_plein * (forfait_jours_remuneres_volume / 218)
+                5: plafond_temps_plein * (forfait_jours_remuneres_volume / 218),
+                # sans objet (non travailleur)
+                6: plafond_temps_plein
                 })
 
         # 2) Proratisation pour mois incomplet selon la méthode des 30èmes
