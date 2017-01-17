@@ -143,7 +143,7 @@ def preprocess_legislation(legislation_json):
             ('cotisations_salarie', sal['children']),
             ):
         for category, bareme in baremes.iteritems():
-            if category in CAT._nums:
+            if category in CATEGORIE_SALARIE._nums:
                 cotsoc['children'][cotisation_name]['children'][category] = bareme
 
     return legislation_json
