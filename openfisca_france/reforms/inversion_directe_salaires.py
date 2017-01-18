@@ -79,10 +79,10 @@ class salaire_de_base(Variable):
             assert target[categorie] == test, 'target: {} \n test {}'.format(target[categorie], test)
 
         # On ajoute la CSG deductible et on multiplie par le plafond de la sécurité sociale
-#        salaire_imposable_proratise = salaire_imposable_pour_inversion * (
-#            (contrat_de_travail == 0) +  # temps_plein
-#            (contrat_de_travail == 1) * heures_remunerees_volume / 35
-#            ) plafond_securite_sociale_annuel
+        # salaire_imposable_proratise = salaire_imposable_pour_inversion * (
+        #     (contrat_de_travail == 0) +  # temps_plein
+        #     (contrat_de_travail == 1) * heures_remunerees_volume / 35 / plafond_securite_sociale_annuel
+        #     ) / plafond_securite_sociale_annuel
         salaire_de_base = 0.0
         for categorie in ['prive_non_cadre', 'prive_cadre']:
             bareme = salarie[categorie].combine_tax_scales()
