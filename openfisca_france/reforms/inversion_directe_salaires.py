@@ -23,6 +23,7 @@ class salaire_imposable_pour_inversion(Variable):
 
 
 class salaire_de_base(Variable):
+    set_input = None
 
     def function(self, simulation, period):
         """Calcule le salaire brut à partir du salaire imposable par inversion du barème
@@ -37,6 +38,8 @@ class salaire_de_base(Variable):
 
         hsup = simulation.calculate('hsup', period = this_year)
         categorie_salarie = simulation.calculate('categorie_salarie', period = this_year)
+        contrat_de_travail = simulation.calculate('contrat_de_travail', period = this_year)
+
         P = simulation.legislation_at(period.start)
 
         salarie = P.cotsoc.cotisations_salarie
@@ -76,6 +79,10 @@ class salaire_de_base(Variable):
             assert target[categorie] == test, 'target: {} \n test {}'.format(target[categorie], test)
 
         # On ajoute la CSG deductible et on multiplie par le plafond de la sécurité sociale
+#        salaire_imposable_proratise = salaire_imposable_pour_inversion * (
+#            (contrat_de_travail == 0) +  # temps_plein
+#            (contrat_de_travail == 1) * heures_remunerees_volume / 35
+#            ) plafond_securite_sociale_annuel
         salaire_de_base = 0.0
         for categorie in ['prive_non_cadre', 'prive_cadre']:
             bareme = salarie[categorie].combine_tax_scales()
@@ -85,31 +92,39 @@ class salaire_de_base(Variable):
             bareme = bareme.scale_tax_scales(plafond_securite_sociale_annuel)
             print bareme.inverse()
             inversed = bareme.inverse().calc(salaire_imposable_pour_inversion)
-            print inversed[:10]
-            print categorie_salarie[:10]
+            print 'categorie_salarie', categorie_salarie[:10]
+            print 'contrat_de_travail', contrat_de_travail[:10]
+            print 'inversed', inversed[:10]
             assert np.isfinite(inversed).all()
             assert (inversed > -1e9).all()
             assert (inversed < 1e9).all()
-            salaire_de_base = salaire_de_base + (categorie_salarie == CAT[categorie]) * inversed
-
+            salaire_de_base = salaire_de_base + (
+                (categorie_salarie == CATEGORIE_SALARIE[categorie]) *
+                (contrat_de_travail == 0) *
+                inversed
+                )
+            print 'salaire_de_base', categorie, salaire_de_base[:10]
+            assert (salaire_de_base > -1e9).all()
+            assert (salaire_de_base < 1e9).all()
         # agirc_gmp
         # gmp = P.prelevements_sociaux.gmp
         # salaire_charniere = gmp.salaire_charniere_annuel
         # cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale * 12
         # salaire_de_base += (
-        #     (categorie_salarie == CAT['prive_cadre']) *
+        #     (categorie_salarie == CATEGORIE_SALARIE['prive_cadre']) *
         #     (salaire_de_base <= salaire_charniere) *
         #     cotisation_forfaitaire
         #     )
         print period, salaire_de_base[:10]
+        print period, hsup[:10]
         if period.unit == 'month':
             return period, (salaire_de_base + hsup) / 12
         else:
             return period, salaire_de_base + hsup
 
-        public_titulaire_etat = salarie['public_titulaire_etat'] #.copy()
-        public_titulaire_etat['rafp'].multiply_rates(TAUX_DE_PRIME, inplace = True)
-        public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
+        # public_titulaire_etat = salarie['public_titulaire_etat'] #.copy()
+        # public_titulaire_etat['rafp'].multiply_rates(TAUX_DE_PRIME, inplace = True)
+        # public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
 
 # class traitement_indiciaire_brut(Variable):
 
@@ -154,7 +169,7 @@ class salaire_de_base(Variable):
 #         bareme_prime.add_bracket(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
 #         public_titulaire_etat.add_tax_scale(bareme_prime)
 #         traitement_indiciaire_brut = (
-#             (categorie_salarie == CAT['public_titulaire_etat']) *
+#             (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat']) *
 #             public_titulaire_etat.inverse().calc(salaire_imposable_pour_inversion)
 #             )
 #         # TODO: complete this to deal with the fonctionnaire
@@ -192,7 +207,7 @@ class inversion_directe_salaires(Reform):
             'indemnite_fin_contrat',
             'nouvelle_bonification_indiciaire',
             # To reintegrate
-            # Revenus
+            # Revenus
             'agirc_gmp_salarie',
             # 'cotisations_non_contributives',
             'traitement_indiciaire_brut',

@@ -96,7 +96,7 @@ class assiette_cotisations_sociales_prive(Variable):
         assert isfinite(hsup).all()
         assert isfinite(indemnites_compensatrices_conges_payes).all()
         assert isfinite(remuneration_apprenti).all()
-        assert isfinite((categorie_salarie == CAT['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)).all()
+        assert isfinite((categorie_salarie == CATEGORIE_SALARIE['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)).all()
         assert isfinite(reintegration_titre_restaurant_employeur).all()
         assert isfinite(indemnite_fin_contrat).all()
         return period, assiette * (assiette > 0).all()
