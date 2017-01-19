@@ -1,8 +1,12 @@
 # Changelog
 
-## 12.0.3
+## 12.0.4
 
 * Change `aige_aine` column from IntCol to AgeCol.
+
+## 12.0.3
+
+* Rename CAT to CATEGORIE_SALARIE to be more explicit.
 
 ## 12.0.2
 

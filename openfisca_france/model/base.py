@@ -28,7 +28,7 @@ __all__ = [
     'calculate_output_add',
     'calculate_output_add_divide',
     'calculate_output_divide',
-    'CAT',
+    'CATEGORIE_SALARIE',
     'CHEF',
     'CONJ',
     'CREF',
@@ -71,7 +71,7 @@ __all__ = [
     'VOUS',
     ]
 
-CAT = Enum([
+CATEGORIE_SALARIE = Enum([
     'prive_non_cadre',
     'prive_cadre',
     'public_titulaire_etat',
@@ -79,6 +79,7 @@ CAT = Enum([
     'public_titulaire_territoriale',
     'public_titulaire_hospitaliere',
     'public_non_titulaire',
+    'non_pertinent',
     ])
 
 TAUX_DE_PRIME = 1 / 4  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute

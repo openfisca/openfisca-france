@@ -4,7 +4,7 @@ from __future__ import division
 
 import datetime
 
-from openfisca_france.model.base import CAT
+from openfisca_france.model.base import CATEGORIE_SALARIE
 from openfisca_france.tests import base
 
 
@@ -15,7 +15,7 @@ scenarios_arguments = [
             date_naissance = datetime.date(1972, 1, 1),
             salaire_de_base = 2000,
             effectif_entreprise = 25,
-            categorie_salarie = CAT['prive_non_cadre'],
+            categorie_salarie = CATEGORIE_SALARIE['prive_non_cadre'],
             ),
         parent2 = dict(
             date_naissance = datetime.date(1972, 1, 1),
