@@ -162,13 +162,13 @@ class af_allocation_forfaitaire_taux_modulation(Variable):
             (base_ressources <= plafond1) * 1 +
             (base_ressources > plafond1) * (base_ressources <= plafond2) * modulation.taux_tranche_2 +
             (base_ressources > plafond2) * modulation.taux_tranche_3
-        )
+            )
 
         return period, taux
 
 
 class af_age_aine(Variable):
-    column = IntCol
+    column = AgeCol
     entity = Famille
     label = u"Allocations familiales - Âge de l'aîné des enfants éligibles"
 
