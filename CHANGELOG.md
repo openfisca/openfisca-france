@@ -1,8 +1,12 @@
 # Changelog
 
-## 12.0.2
+## 12.0.3
 
 * Change `aige_aine` column from IntCol to AgeCol.
+
+## 12.0.2
+
+* Don't consider handicaped demandeur/conjoint as personne à charge in aides logement.
 
 ## 12.0.1
 
