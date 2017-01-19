@@ -215,7 +215,7 @@ class inversion_directe_salaires(Reform):
             # To reintegrate
             # Revenus
             'agirc_gmp_salarie',
-            # 'cotisations_non_contributives',
+            'ppe_base',
             'traitement_indiciaire_brut',
             # 'remuneration_principale',
             # 'hsup',
