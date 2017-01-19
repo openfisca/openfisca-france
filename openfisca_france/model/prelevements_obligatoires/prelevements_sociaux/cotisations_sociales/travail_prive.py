@@ -46,7 +46,8 @@ class assiette_cotisations_sociales_prive(Variable):
     label = u"Assiette des cotisations sociales des salaries du prive"
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period(u'month')
+        # Should be period independent
+        assert period.unit in ['month', 'year']
         avantage_en_nature = simulation.calculate('avantage_en_nature', period)
         hsup = simulation.calculate('hsup', period)
         indemnites_compensatrices_conges_payes = simulation.calculate('indemnites_compensatrices_conges_payes', period)
@@ -61,24 +62,6 @@ class assiette_cotisations_sociales_prive(Variable):
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
 
-        for variable in [
-            'salaire_de_base',
-            'primes_salaires',
-            'avantage_en_nature',
-            'hsup',
-            'indemnites_compensatrices_conges_payes',
-            'remuneration_apprenti',
-            'categorie_salarie',
-            'indemnite_residence',
-            'primes_fonction_publique',
-            'reintegration_titre_restaurant_employeur',
-            'indemnite_fin_contrat',
-            ]:
-
-                value = simulation.calculate(variable, period)
-                if not isfinite(value).all():
-                    print '{} not finite'.format(variable)
-                    bim
         assiette = (
             salaire_de_base +
             primes_salaires +
@@ -90,17 +73,7 @@ class assiette_cotisations_sociales_prive(Variable):
             reintegration_titre_restaurant_employeur + indemnite_fin_contrat
             )
 
-        assert isfinite(salaire_de_base).all()
-        assert isfinite(primes_salaires).all()
-        assert isfinite(avantage_en_nature).all()
-        assert isfinite(hsup).all()
-        assert isfinite(indemnites_compensatrices_conges_payes).all()
-        assert isfinite(remuneration_apprenti).all()
-        assert isfinite((categorie_salarie == CATEGORIE_SALARIE['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique)).all()
-        assert isfinite(reintegration_titre_restaurant_employeur).all()
-        assert isfinite(indemnite_fin_contrat).all()
-        return period, assiette * (assiette > 0).all()
-
+        return period, assiette
 
 
 class indemnite_fin_contrat(Variable):
@@ -675,7 +648,6 @@ class plafond_securite_sociale(Variable):
 
     def function(self, simulation, period):
         assert period.unit in ['month', 'year'], 'period should be month or year for variable plafond_securite_sociale'
-        # period = period.start.period(u'month').offset('first-of')
         plafond_temps_plein = simulation.legislation_at(period.start).cotsoc.gen.plafond_securite_sociale
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
         heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period)
@@ -692,19 +664,6 @@ class plafond_securite_sociale(Variable):
             duree_legale_mensuelle = 35 * 52
             plafond_temps_plein = plafond_temps_plein * 12
 
-        # heures_temps_plein = switch(
-        #     heures_duree_collective_entreprise,
-        #     {
-        #         0: duree_legale_mensuelle * (heures_duree_collective_entreprise == 0),
-        #         1: heures_duree_collective_entreprise
-        #         }
-        #     )
-        # assert (heures_temps_plein > 0).all(), 'dtype: {}, shape: {} min: {} max:'.format(
-        #     heures_temps_plein.dtype,
-        #     heures_temps_plein.shape,
-        #     amin(heures_temps_plein),
-        #     amax(heures_temps_plein),
-        #     )
         heures_temps_plein = duree_legale_mensuelle
         assert (((contrat_de_travail == 0) | (contrat_de_travail == 1)) | (contrat_de_travail == 5) | (contrat_de_travail == 6)).all()
         plafond = switch(

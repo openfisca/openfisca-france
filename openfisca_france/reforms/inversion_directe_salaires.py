@@ -23,7 +23,6 @@ class salaire_imposable_pour_inversion(Variable):
 
 
 class salaire_de_base(Variable):
-    set_input = None
 
     def function(self, simulation, period):
         """Calcule le salaire brut à partir du salaire imposable par inversion du barème
@@ -36,9 +35,10 @@ class salaire_de_base(Variable):
 
         # Calcule le salaire brut (salaire de base) à partir du salaire imposable.
 
-        hsup = simulation.calculate('hsup', period = this_year)
         categorie_salarie = simulation.calculate('categorie_salarie', period = this_year)
         contrat_de_travail = simulation.calculate('contrat_de_travail', period = this_year)
+        heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period = this_year)
+        hsup = simulation.calculate('hsup', period = this_year)
 
         P = simulation.legislation_at(period.start)
 
@@ -77,33 +77,39 @@ class salaire_de_base(Variable):
                 if isinstance(bareme, MarginalRateTaxScale)
                 )
             assert target[categorie] == test, 'target: {} \n test {}'.format(target[categorie], test)
-
-        # On ajoute la CSG deductible et on multiplie par le plafond de la sécurité sociale
-        # salaire_imposable_proratise = salaire_imposable_pour_inversion * (
-        #     (contrat_de_travail == 0) +  # temps_plein
-        #     (contrat_de_travail == 1) * heures_remunerees_volume / 35 / plafond_securite_sociale_annuel
-        #     ) / plafond_securite_sociale_annuel
+        del bareme
+        # On ajoute la CSG deductible et on proratise par le plafond de la sécurité sociale
+        # Pour éviter les divisions 0 /0 dans le switch
+        heures_remunerees_volume_avoid_warning = heures_remunerees_volume + (heures_remunerees_volume == 0) * 1e9
+        salaire_imposable_proratise = switch(
+            contrat_de_travail,
+            {
+                # temps plein
+                0: salaire_imposable_pour_inversion / plafond_securite_sociale_annuel,
+                # temps partiel
+                1: salaire_imposable_pour_inversion / (
+                    (heures_remunerees_volume_avoid_warning / (52 * 35)) * plafond_securite_sociale_annuel
+                    ),
+                }
+            )
         salaire_de_base = 0.0
         for categorie in ['prive_non_cadre', 'prive_cadre']:
             bareme = salarie[categorie].combine_tax_scales()
             bareme.add_tax_scale(csg)
-            print plafond_securite_sociale_annuel
-            print bareme
-            bareme = bareme.scale_tax_scales(plafond_securite_sociale_annuel)
-            print bareme.inverse()
-            inversed = bareme.inverse().calc(salaire_imposable_pour_inversion)
-            print 'categorie_salarie', categorie_salarie[:10]
-            print 'contrat_de_travail', contrat_de_travail[:10]
-            print 'inversed', inversed[:10]
-            assert np.isfinite(inversed).all()
-            assert (inversed > -1e9).all()
-            assert (inversed < 1e9).all()
-            salaire_de_base = salaire_de_base + (
-                (categorie_salarie == CATEGORIE_SALARIE[categorie]) *
-                (contrat_de_travail == 0) *
-                inversed
+            brut_proratise = bareme.inverse().calc(salaire_imposable_proratise)
+            assert np.isfinite(brut_proratise).all()
+            brut = plafond_securite_sociale_annuel * switch(
+                contrat_de_travail,
+                {
+                    # temps plein
+                    0: brut_proratise,
+                    # temps partiel
+                    1: brut_proratise * (heures_remunerees_volume / (52 * 35)),
+                    }
                 )
-            print 'salaire_de_base', categorie, salaire_de_base[:10]
+            salaire_de_base += (
+                (categorie_salarie == CATEGORIE_SALARIE[categorie]) * brut
+                )
             assert (salaire_de_base > -1e9).all()
             assert (salaire_de_base < 1e9).all()
         # agirc_gmp
@@ -115,12 +121,7 @@ class salaire_de_base(Variable):
         #     (salaire_de_base <= salaire_charniere) *
         #     cotisation_forfaitaire
         #     )
-        print period, salaire_de_base[:10]
-        print period, hsup[:10]
-        if period.unit == 'month':
-            return period, (salaire_de_base + hsup) / 12
-        else:
-            return period, salaire_de_base + hsup
+        return period, salaire_de_base + hsup
 
         # public_titulaire_etat = salarie['public_titulaire_etat'] #.copy()
         # public_titulaire_etat['rafp'].multiply_rates(TAUX_DE_PRIME, inplace = True)
@@ -196,16 +197,21 @@ class inversion_directe_salaires(Reform):
 
     def apply(self):
         neutralized_variables = [
+            'avantage_en_nature',
             'complementaire_sante_employeur',
             'complementaire_sante_salarie',
             'exoneration_cotisations_employeur_apprenti',
             'exoneration_cotisations_employeur_stagiaire',
             'exoneration_cotisations_salariales_apprenti',
             'exoneration_cotisations_salarie_stagiaire',
-            'reintegration_titre_restaurant_employeur',
-            'stage_gratification_reintegration',
             'indemnite_fin_contrat',
+            'indemnites_compensatrices_conges_payes',
             'nouvelle_bonification_indiciaire',
+            'primes_salaires',
+            'reintegration_titre_restaurant_employeur',
+            'reintegration_titre_restaurant_employeur',
+            'remuneration_apprenti',
+            'stage_gratification_reintegration',
             # To reintegrate
             # Revenus
             'agirc_gmp_salarie',
@@ -215,10 +221,9 @@ class inversion_directe_salaires(Reform):
             # 'hsup',
             # 'indemnite_residence',
             # 'supp_familial_traitement',
-            # 'primes_salaires',
             # 'primes_fonction_publique',
             # Prestations
-            'aah',
+            # 'aah',
             # 'aah_base_ressources',
             # 'caah',
             # 'asi_aspa_base_ressources_individu',

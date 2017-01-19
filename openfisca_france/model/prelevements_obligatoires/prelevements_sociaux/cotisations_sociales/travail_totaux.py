@@ -119,7 +119,6 @@ class cotisations_salariales_contributives(Variable):
 
     def function(self, simulation, period):
         period = period
-        print 'period cotisations_salariales_contributives', period
         agff_salarie = simulation.calculate_add('agff_salarie', period)
         agirc_salarie = simulation.calculate_add('agirc_salarie', period)
         agirc_gmp_salarie = simulation.calculate_add('agirc_gmp_salarie', period)
@@ -186,18 +185,17 @@ class cotisations_salariales(Variable):
 
     def function(self, simulation, period):
         period = period
-        print 'period cotisations_salariales:', period
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         cotisations_salariales_non_contributives = simulation.calculate(
             'cotisations_salariales_non_contributives', period)
-        # exoneration_cotisations_salariales_apprenti = simulation.calculate_add(
-            # 'exoneration_cotisations_salariales_apprenti', period)
-        # exoneration_cotisations_salarie_stagiaire = simulation.calculate_add(
-            # 'exoneration_cotisations_salarie_stagiaire', period)
+        exoneration_cotisations_salariales_apprenti = simulation.calculate_add(
+            'exoneration_cotisations_salariales_apprenti', period)
+        exoneration_cotisations_salarie_stagiaire = simulation.calculate_add(
+            'exoneration_cotisations_salarie_stagiaire', period)
 
         return period, (
             cotisations_salariales_contributives +
-            cotisations_salariales_non_contributives # +
-            # exoneration_cotisations_salariales_apprenti +
-            # exoneration_cotisations_salarie_stagiaire
+            cotisations_salariales_non_contributives +
+            exoneration_cotisations_salariales_apprenti +
+            exoneration_cotisations_salarie_stagiaire
             )

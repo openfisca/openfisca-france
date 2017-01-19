@@ -37,12 +37,7 @@ def apply_bareme_for_relevant_type_sal(
                     factor = plafond_securite_sociale,
                     round_base_decimals = round_base_decimals,
                     )
-                if np.isnan(np.sum(cotisation)):
-                     log.info("NaN are present in {} ({})".format(
-                         bareme.name,
-                         type_sal_name,
-                         ))
-                #     cotisation = np.nan_to_num(cotisation)
+
                 yield cotisation
 
     return - sum(iter_cotisations())
