@@ -74,7 +74,9 @@ class al_nb_personnes_a_charge(Variable):
                 (base_ressources_i <= plafond_ressource)
                 )
 
-            return famille.sum(adulte_handicape)
+            # Par convention les adultes handicapé à charge de la famille ont le role ENFANT dans la famille
+            # Le demandeur et son conjoint ne sont jamais considérés comme à charge
+            return famille.sum(adulte_handicape, role = Famille.ENFANT)
 
         nb_pac = al_nb_enfants() + al_nb_adultes_handicapes()
         nb_pac = where(residence_dom, min_(nb_pac, 6), nb_pac)
