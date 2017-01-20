@@ -187,7 +187,6 @@ class maries(Variable):
     label = u"maries"
 
     def function(famille, period):
-        """couple = 1 si couple marié sinon 0 TODO: faire un choix avec couple ?"""
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         statut_marital = famille.members('statut_marital', period)
@@ -202,9 +201,6 @@ class en_couple(Variable):
     label = u"Indicatrice de vie en couple"
 
     def function(self, simulation, period):
-        '''
-        en_couple = 1 si vie en couple TODO: pas très heureux
-        '''
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         nb_parents = simulation.calculate('nb_parents', period)
