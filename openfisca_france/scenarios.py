@@ -65,11 +65,6 @@ class Scenario(scenarios.AbstractScenario):
 
         def json_or_python_to_test_case(value, state = None):
 
-
-            # Commons
-            test_case, error = scenarios.AbstractScenario.make_json_or_python_to_test_case(self, period, repair)(value, state)
-
-
             # If there is a familly, auto-declare the first parent as menage person de ref
             famille = value.get('familles') and value['familles'][0]
             menage = value.get('menages') and value['menages'][0]
@@ -77,340 +72,18 @@ class Scenario(scenarios.AbstractScenario):
                 menage['personne_de_reference'] = famille['parents'][0]
 
 
-            # Second validation step
-            familles_individus_id = [individu['id'] for individu in test_case['individus']]
-            foyers_fiscaux_individus_id = [individu['id'] for individu in test_case['individus']]
-            menages_individus_id = [individu['id'] for individu in test_case['individus']]
-            test_case, error = conv.struct(
-                dict(
-                    familles = conv.uniform_sequence(
-                        conv.struct(
-                            dict(
-                                enfants = conv.uniform_sequence(conv.test_in_pop(familles_individus_id)),
-                                parents = conv.uniform_sequence(conv.test_in_pop(familles_individus_id)),
-                                ),
-                            default = conv.noop,
-                            ),
-                        ),
-                    foyers_fiscaux = conv.uniform_sequence(
-                        conv.struct(
-                            dict(
-                                declarants = conv.uniform_sequence(conv.test_in_pop(foyers_fiscaux_individus_id)),
-                                personnes_a_charge = conv.uniform_sequence(conv.test_in_pop(
-                                    foyers_fiscaux_individus_id)),
-                                ),
-                            default = conv.noop,
-                            ),
-                        ),
-                    menages = conv.uniform_sequence(
-                        conv.struct(
-                            dict(
-                                autres = conv.uniform_sequence(conv.test_in_pop(menages_individus_id)),
-                                conjoint = conv.test_in_pop(menages_individus_id),
-                                enfants = conv.uniform_sequence(conv.test_in_pop(menages_individus_id)),
-                                personne_de_reference = conv.test_in_pop(menages_individus_id),
-                                ),
-                            default = conv.noop,
-                            ),
-                        ),
-                    ),
-                default = conv.noop,
-                )(test_case, state = state)
+            # Commons
+            test_case, error = scenarios.AbstractScenario.make_json_or_python_to_test_case(self, period, repair)(value, state)
+
+            if error is not None:
+                return test_case, error
+
 
             individu_by_id = {
                 individu['id']: individu
                 for individu in test_case['individus']
                 }
 
-            if repair:
-                # Affecte à une famille chaque individu qui n'appartient à aucune d'entre elles.
-                new_famille = dict(
-                    enfants = [],
-                    parents = [],
-                    )
-                new_famille_id = None
-                for individu_id in familles_individus_id[:]:
-                    # Tente d'affecter l'individu à une famille d'après son foyer fiscal.
-                    foyer_fiscal, foyer_fiscal_role = find_foyer_fiscal_and_role(test_case, individu_id)
-                    if foyer_fiscal_role == u'declarants' and len(foyer_fiscal[u'declarants']) == 2:
-                        for declarant_id in foyer_fiscal[u'declarants']:
-                            if declarant_id != individu_id:
-                                famille, other_role = find_famille_and_role(test_case, declarant_id)
-                                if other_role == u'parents' and len(famille[u'parents']) == 1:
-                                    # Quand l'individu n'est pas encore dans une famille, mais qu'il est déclarant
-                                    # dans un foyer fiscal, qu'il y a un autre déclarant dans ce même foyer fiscal
-                                    # et que cet autre déclarant est seul parent dans sa famille, alors ajoute
-                                    # l'individu comme autre parent de cette famille.
-                                    famille[u'parents'].append(individu_id)
-                                    familles_individus_id.remove(individu_id)
-                                break
-                    elif foyer_fiscal_role == u'personnes_a_charge' and foyer_fiscal[u'declarants']:
-                        for declarant_id in foyer_fiscal[u'declarants']:
-                            famille, other_role = find_famille_and_role(test_case, declarant_id)
-                            if other_role == u'parents':
-                                # Quand l'individu n'est pas encore dans une famille, mais qu'il est personne à charge
-                                # dans un foyer fiscal, qu'il y a un déclarant dans ce foyer fiscal et que ce déclarant
-                                # est parent dans sa famille, alors ajoute l'individu comme enfant de cette famille.
-                                famille[u'enfants'].append(individu_id)
-                                familles_individus_id.remove(individu_id)
-                            break
-
-                    if individu_id in familles_individus_id:
-                        # L'individu n'est toujours pas affecté à une famille.
-                        # Tente d'affecter l'individu à une famille d'après son ménage.
-                        menage, menage_role = find_menage_and_role(test_case, individu_id)
-                        if menage_role == u'personne_de_reference':
-                            conjoint_id = menage[u'conjoint']
-                            if conjoint_id is not None:
-                                famille, other_role = find_famille_and_role(test_case, conjoint_id)
-                                if other_role == u'parents' and len(famille[u'parents']) == 1:
-                                    # Quand l'individu n'est pas encore dans une famille, mais qu'il est personne de
-                                    # référence dans un ménage, qu'il y a un conjoint dans ce ménage et que ce
-                                    # conjoint est seul parent dans sa famille, alors ajoute l'individu comme autre
-                                    # parent de cette famille.
-                                    famille[u'parents'].append(individu_id)
-                                    familles_individus_id.remove(individu_id)
-                        elif menage_role == u'conjoint':
-                            personne_de_reference_id = menage[u'personne_de_reference']
-                            if personne_de_reference_id is not None:
-                                famille, other_role = find_famille_and_role(test_case,
-                                    personne_de_reference_id)
-                                if other_role == u'parents' and len(famille[u'parents']) == 1:
-                                    # Quand l'individu n'est pas encore dans une famille, mais qu'il est conjoint
-                                    # dans un ménage, qu'il y a une personne de référence dans ce ménage et que
-                                    # cette personne est seul parent dans une famille, alors ajoute l'individu comme
-                                    # autre parent de cette famille.
-                                    famille[u'parents'].append(individu_id)
-                                    familles_individus_id.remove(individu_id)
-                        elif menage_role == u'enfants' and (menage['personne_de_reference'] is not None
-                                or menage[u'conjoint'] is not None):
-                            for other_id in (menage['personne_de_reference'], menage[u'conjoint']):
-                                if other_id is None:
-                                    continue
-                                famille, other_role = find_famille_and_role(test_case, other_id)
-                                if other_role == u'parents':
-                                    # Quand l'individu n'est pas encore dans une famille, mais qu'il est enfant dans un
-                                    # ménage, qu'il y a une personne à charge ou un conjoint dans ce ménage et que
-                                    # celui-ci est parent dans une famille, alors ajoute l'individu comme enfant de
-                                    # cette famille.
-                                    famille[u'enfants'].append(individu_id)
-                                    familles_individus_id.remove(individu_id)
-                                break
-
-                    if individu_id in familles_individus_id:
-                        # L'individu n'est toujours pas affecté à une famille.
-                        individu = individu_by_id[individu_id]
-                        age = find_age(individu, period.start.date)
-                        if len(new_famille[u'parents']) < 2 and (age is None or age >= 18):
-                            new_famille[u'parents'].append(individu_id)
-                        else:
-                            new_famille[u'enfants'].append(individu_id)
-                        if new_famille_id is None:
-                            new_famille[u'id'] = new_famille_id = unicode(uuid.uuid4())
-                            test_case[u'familles'].append(new_famille)
-                        familles_individus_id.remove(individu_id)
-
-                # Affecte à un foyer fiscal chaque individu qui n'appartient à aucun d'entre eux.
-                new_foyer_fiscal = dict(
-                    declarants = [],
-                    personnes_a_charge = [],
-                    )
-                new_foyer_fiscal_id = None
-                for individu_id in foyers_fiscaux_individus_id[:]:
-                    # Tente d'affecter l'individu à un foyer fiscal d'après sa famille.
-                    famille, famille_role = find_famille_and_role(test_case, individu_id)
-                    if famille_role == u'parents' and len(famille[u'parents']) == 2:
-                        for parent_id in famille[u'parents']:
-                            if parent_id != individu_id:
-                                foyer_fiscal, other_role = find_foyer_fiscal_and_role(test_case, parent_id)
-                                if other_role == u'declarants' and len(foyer_fiscal[u'declarants']) == 1:
-                                    # Quand l'individu n'est pas encore dans un foyer fiscal, mais qu'il est parent
-                                    # dans une famille, qu'il y a un autre parent dans cette famille et que cet autre
-                                    # parent est seul déclarant dans son foyer fiscal, alors ajoute l'individu comme
-                                    # autre déclarant de ce foyer fiscal.
-                                    foyer_fiscal[u'declarants'].append(individu_id)
-                                    foyers_fiscaux_individus_id.remove(individu_id)
-                                break
-                    elif famille_role == u'enfants' and famille[u'parents']:
-                        for parent_id in famille[u'parents']:
-                            foyer_fiscal, other_role = find_foyer_fiscal_and_role(test_case, parent_id)
-                            if other_role == u'declarants':
-                                # Quand l'individu n'est pas encore dans un foyer fiscal, mais qu'il est enfant dans une
-                                # famille, qu'il y a un parent dans cette famille et que ce parent est déclarant dans
-                                # son foyer fiscal, alors ajoute l'individu comme personne à charge de ce foyer fiscal.
-                                foyer_fiscal[u'personnes_a_charge'].append(individu_id)
-                                foyers_fiscaux_individus_id.remove(individu_id)
-                                break
-
-                    if individu_id in foyers_fiscaux_individus_id:
-                        # L'individu n'est toujours pas affecté à un foyer fiscal.
-                        # Tente d'affecter l'individu à un foyer fiscal d'après son ménage.
-                        menage, menage_role = find_menage_and_role(test_case, individu_id)
-                        if menage_role == u'personne_de_reference':
-                            conjoint_id = menage[u'conjoint']
-                            if conjoint_id is not None:
-                                foyer_fiscal, other_role = find_foyer_fiscal_and_role(test_case, conjoint_id)
-                                if other_role == u'declarants' and len(foyer_fiscal[u'declarants']) == 1:
-                                    # Quand l'individu n'est pas encore dans un foyer fiscal, mais qu'il est personne de
-                                    # référence dans un ménage, qu'il y a un conjoint dans ce ménage et que ce
-                                    # conjoint est seul déclarant dans un foyer fiscal, alors ajoute l'individu comme
-                                    # autre déclarant de ce foyer fiscal.
-                                    foyer_fiscal[u'declarants'].append(individu_id)
-                                    foyers_fiscaux_individus_id.remove(individu_id)
-                        elif menage_role == u'conjoint':
-                            personne_de_reference_id = menage[u'personne_de_reference']
-                            if personne_de_reference_id is not None:
-                                foyer_fiscal, other_role = find_foyer_fiscal_and_role(test_case,
-                                    personne_de_reference_id)
-                                if other_role == u'declarants' and len(foyer_fiscal[u'declarants']) == 1:
-                                    # Quand l'individu n'est pas encore dans un foyer fiscal, mais qu'il est conjoint
-                                    # dans un ménage, qu'il y a une personne de référence dans ce ménage et que
-                                    # cette personne est seul déclarant dans un foyer fiscal, alors ajoute l'individu
-                                    # comme autre déclarant de ce foyer fiscal.
-                                    foyer_fiscal[u'declarants'].append(individu_id)
-                                    foyers_fiscaux_individus_id.remove(individu_id)
-                        elif menage_role == u'enfants' and (menage['personne_de_reference'] is not None
-                                or menage[u'conjoint'] is not None):
-                            for other_id in (menage['personne_de_reference'], menage[u'conjoint']):
-                                if other_id is None:
-                                    continue
-                                foyer_fiscal, other_role = find_foyer_fiscal_and_role(test_case, other_id)
-                                if other_role == u'declarants':
-                                    # Quand l'individu n'est pas encore dans un foyer fiscal, mais qu'il est enfant dans
-                                    # un ménage, qu'il y a une personne à charge ou un conjoint dans ce ménage et que
-                                    # celui-ci est déclarant dans un foyer fiscal, alors ajoute l'individu comme
-                                    # personne à charge de ce foyer fiscal.
-                                    foyer_fiscal[u'declarants'].append(individu_id)
-                                    foyers_fiscaux_individus_id.remove(individu_id)
-                                    break
-
-                    if individu_id in foyers_fiscaux_individus_id:
-                        # L'individu n'est toujours pas affecté à un foyer fiscal.
-                        individu = individu_by_id[individu_id]
-                        age = find_age(individu, period.start.date)
-                        if len(new_foyer_fiscal[u'declarants']) < 2 and (age is None or age >= 18):
-                            new_foyer_fiscal[u'declarants'].append(individu_id)
-                        else:
-                            new_foyer_fiscal[u'personnes_a_charge'].append(individu_id)
-                        if new_foyer_fiscal_id is None:
-                            new_foyer_fiscal[u'id'] = new_foyer_fiscal_id = unicode(uuid.uuid4())
-                            test_case[u'foyers_fiscaux'].append(new_foyer_fiscal)
-                        foyers_fiscaux_individus_id.remove(individu_id)
-
-                # Affecte à un ménage chaque individu qui n'appartient à aucun d'entre eux.
-                new_menage = dict(
-                    autres = [],
-                    conjoint = None,
-                    enfants = [],
-                    personne_de_reference = None,
-                    )
-                new_menage_id = None
-                for individu_id in menages_individus_id[:]:
-                    # Tente d'affecter l'individu à un ménage d'après sa famille.
-                    famille, famille_role = find_famille_and_role(test_case, individu_id)
-                    if famille_role == u'parents' and len(famille[u'parents']) == 2:
-                        for parent_id in famille[u'parents']:
-                            if parent_id != individu_id:
-                                menage, other_role = find_menage_and_role(test_case, parent_id)
-                                if other_role == u'personne_de_reference' and menage[u'conjoint'] is None:
-                                    # Quand l'individu n'est pas encore dans un ménage, mais qu'il est parent
-                                    # dans une famille, qu'il y a un autre parent dans cette famille et que cet autre
-                                    # parent est personne de référence dans un ménage et qu'il n'y a pas de conjoint
-                                    # dans ce ménage, alors ajoute l'individu comme conjoint de ce ménage.
-                                    menage[u'conjoint'] = individu_id
-                                    menages_individus_id.remove(individu_id)
-                                elif other_role == u'conjoint' and menage[u'personne_de_reference'] is None:
-                                    # Quand l'individu n'est pas encore dans un ménage, mais qu'il est parent
-                                    # dans une famille, qu'il y a un autre parent dans cette famille et que cet autre
-                                    # parent est conjoint dans un ménage et qu'il n'y a pas de personne de référence
-                                    # dans ce ménage, alors ajoute l'individu comme personne de référence de ce ménage.
-                                    menage[u'personne_de_reference'] = individu_id
-                                    menages_individus_id.remove(individu_id)
-                                break
-                    elif famille_role == u'enfants' and famille[u'parents']:
-                        for parent_id in famille[u'parents']:
-                            menage, other_role = find_menage_and_role(test_case, parent_id)
-                            if other_role in (u'personne_de_reference', u'conjoint'):
-                                # Quand l'individu n'est pas encore dans un ménage, mais qu'il est enfant dans une
-                                # famille, qu'il y a un parent dans cette famille et que ce parent est personne de
-                                # référence ou conjoint dans un ménage, alors ajoute l'individu comme enfant de ce
-                                # ménage.
-                                menage[u'enfants'].append(individu_id)
-                                menages_individus_id.remove(individu_id)
-                                break
-
-                    if individu_id in menages_individus_id:
-                        # L'individu n'est toujours pas affecté à un ménage.
-                        # Tente d'affecter l'individu à un ménage d'après son foyer fiscal.
-                        foyer_fiscal, foyer_fiscal_role = find_foyer_fiscal_and_role(test_case, individu_id)
-                        if foyer_fiscal_role == u'declarants' and len(foyer_fiscal[u'declarants']) == 2:
-                            for declarant_id in foyer_fiscal[u'declarants']:
-                                if declarant_id != individu_id:
-                                    menage, other_role = find_menage_and_role(test_case, declarant_id)
-                                    if other_role == u'personne_de_reference' and menage[u'conjoint'] is None:
-                                        # Quand l'individu n'est pas encore dans un ménage, mais qu'il est déclarant
-                                        # dans un foyer fiscal, qu'il y a un autre déclarant dans ce foyer fiscal et que
-                                        # cet autre déclarant est personne de référence dans un ménage et qu'il n'y a
-                                        # pas de conjoint dans ce ménage, alors ajoute l'individu comme conjoint de ce
-                                        # ménage.
-                                        menage[u'conjoint'] = individu_id
-                                        menages_individus_id.remove(individu_id)
-                                    elif other_role == u'conjoint' and menage[u'personne_de_reference'] is None:
-                                        # Quand l'individu n'est pas encore dans un ménage, mais qu'il est déclarant
-                                        # dans une foyer fiscal, qu'il y a un autre déclarant dans ce foyer fiscal et
-                                        # que cet autre déclarant est conjoint dans un ménage et qu'il n'y a pas de
-                                        # personne de référence dans ce ménage, alors ajoute l'individu comme personne
-                                        # de référence de ce ménage.
-                                        menage[u'personne_de_reference'] = individu_id
-                                        menages_individus_id.remove(individu_id)
-                                    break
-                        elif foyer_fiscal_role == u'personnes_a_charge' and foyer_fiscal[u'declarants']:
-                            for declarant_id in foyer_fiscal[u'declarants']:
-                                menage, other_role = find_menage_and_role(test_case, declarant_id)
-                                if other_role in (u'personne_de_reference', u'conjoint'):
-                                    # Quand l'individu n'est pas encore dans un ménage, mais qu'il est personne à charge
-                                    # dans un foyer fiscal, qu'il y a un déclarant dans ce foyer fiscal et que ce
-                                    # déclarant est personne de référence ou conjoint dans un ménage, alors ajoute
-                                    # l'individu comme enfant de ce ménage.
-                                    menage[u'enfants'].append(individu_id)
-                                    menages_individus_id.remove(individu_id)
-                                    break
-
-                    if individu_id in menages_individus_id:
-                        # L'individu n'est toujours pas affecté à un ménage.
-                        if new_menage[u'personne_de_reference'] is None:
-                            new_menage[u'personne_de_reference'] = individu_id
-                        elif new_menage[u'conjoint'] is None:
-                            new_menage[u'conjoint'] = individu_id
-                        else:
-                            new_menage[u'enfants'].append(individu_id)
-                        if new_menage_id is None:
-                            new_menage[u'id'] = new_menage_id = unicode(uuid.uuid4())
-                            test_case[u'menages'].append(new_menage)
-                        menages_individus_id.remove(individu_id)
-
-            remaining_individus_id = set(familles_individus_id).union(foyers_fiscaux_individus_id, menages_individus_id)
-            if remaining_individus_id:
-                individu_index_by_id = {
-                    individu[u'id']: individu_index
-                    for individu_index, individu in enumerate(test_case[u'individus'])
-                    }
-                if error is None:
-                    error = {}
-                for individu_id in remaining_individus_id:
-                    error.setdefault('individus', {})[individu_index_by_id[individu_id]] = state._(
-                        u"Individual is missing from {}").format(
-                            state._(u' & ').join(
-                                word
-                                for word in [
-                                    u'familles' if individu_id in familles_individus_id else None,
-                                    u'foyers_fiscaux' if individu_id in foyers_fiscaux_individus_id else None,
-                                    u'menages' if individu_id in menages_individus_id else None,
-                                    ]
-                                if word is not None
-                                ))
-            if error is not None:
-                return test_case, error
 
             # Third validation step
             parents_id = set(
@@ -497,6 +170,287 @@ class Scenario(scenarios.AbstractScenario):
             return test_case, error
 
         return json_or_python_to_test_case
+
+
+    def attribute_groupless_persons_to_entities(self, test_case, period, groupless_individus):
+        individus_without_famille = groupless_individus['familles']
+        individus_without_menage = groupless_individus['menages']
+        individus_without_foyer_fiscal = groupless_individus['foyers_fiscaux']
+
+        individu_by_id = {
+            individu['id']: individu
+            for individu in test_case['individus']
+            }
+
+        # Affecte à une famille chaque individu qui n'appartient à aucune d'entre elles.
+        new_famille = dict(
+            enfants = [],
+            parents = [],
+            )
+        new_famille_id = None
+        for individu_id in individus_without_famille[:]:
+            # Tente d'affecter l'individu à une famille d'après son foyer fiscal.
+            foyer_fiscal, foyer_fiscal_role = find_foyer_fiscal_and_role(test_case, individu_id)
+            if foyer_fiscal_role == u'declarants' and len(foyer_fiscal[u'declarants']) == 2:
+                for declarant_id in foyer_fiscal[u'declarants']:
+                    if declarant_id != individu_id:
+                        famille, other_role = find_famille_and_role(test_case, declarant_id)
+                        if other_role == u'parents' and len(famille[u'parents']) == 1:
+                            # Quand l'individu n'est pas encore dans une famille, mais qu'il est déclarant
+                            # dans un foyer fiscal, qu'il y a un autre déclarant dans ce même foyer fiscal
+                            # et que cet autre déclarant est seul parent dans sa famille, alors ajoute
+                            # l'individu comme autre parent de cette famille.
+                            famille[u'parents'].append(individu_id)
+                            individus_without_famille.remove(individu_id)
+                        break
+            elif foyer_fiscal_role == u'personnes_a_charge' and foyer_fiscal[u'declarants']:
+                for declarant_id in foyer_fiscal[u'declarants']:
+                    famille, other_role = find_famille_and_role(test_case, declarant_id)
+                    if other_role == u'parents':
+                        # Quand l'individu n'est pas encore dans une famille, mais qu'il est personne à charge
+                        # dans un foyer fiscal, qu'il y a un déclarant dans ce foyer fiscal et que ce déclarant
+                        # est parent dans sa famille, alors ajoute l'individu comme enfant de cette famille.
+                        famille[u'enfants'].append(individu_id)
+                        individus_without_famille.remove(individu_id)
+                    break
+
+            if individu_id in individus_without_famille:
+                # L'individu n'est toujours pas affecté à une famille.
+                # Tente d'affecter l'individu à une famille d'après son ménage.
+                menage, menage_role = find_menage_and_role(test_case, individu_id)
+                if menage_role == u'personne_de_reference':
+                    conjoint_id = menage[u'conjoint']
+                    if conjoint_id is not None:
+                        famille, other_role = find_famille_and_role(test_case, conjoint_id)
+                        if other_role == u'parents' and len(famille[u'parents']) == 1:
+                            # Quand l'individu n'est pas encore dans une famille, mais qu'il est personne de
+                            # référence dans un ménage, qu'il y a un conjoint dans ce ménage et que ce
+                            # conjoint est seul parent dans sa famille, alors ajoute l'individu comme autre
+                            # parent de cette famille.
+                            famille[u'parents'].append(individu_id)
+                            individus_without_famille.remove(individu_id)
+                elif menage_role == u'conjoint':
+                    personne_de_reference_id = menage[u'personne_de_reference']
+                    if personne_de_reference_id is not None:
+                        famille, other_role = find_famille_and_role(test_case,
+                            personne_de_reference_id)
+                        if other_role == u'parents' and len(famille[u'parents']) == 1:
+                            # Quand l'individu n'est pas encore dans une famille, mais qu'il est conjoint
+                            # dans un ménage, qu'il y a une personne de référence dans ce ménage et que
+                            # cette personne est seul parent dans une famille, alors ajoute l'individu comme
+                            # autre parent de cette famille.
+                            famille[u'parents'].append(individu_id)
+                            individus_without_famille.remove(individu_id)
+                elif menage_role == u'enfants' and (menage['personne_de_reference'] is not None
+                        or menage[u'conjoint'] is not None):
+                    for other_id in (menage['personne_de_reference'], menage[u'conjoint']):
+                        if other_id is None:
+                            continue
+                        famille, other_role = find_famille_and_role(test_case, other_id)
+                        if other_role == u'parents':
+                            # Quand l'individu n'est pas encore dans une famille, mais qu'il est enfant dans un
+                            # ménage, qu'il y a une personne à charge ou un conjoint dans ce ménage et que
+                            # celui-ci est parent dans une famille, alors ajoute l'individu comme enfant de
+                            # cette famille.
+                            famille[u'enfants'].append(individu_id)
+                            individus_without_famille.remove(individu_id)
+                        break
+
+            if individu_id in individus_without_famille:
+                # L'individu n'est toujours pas affecté à une famille.
+                individu = individu_by_id[individu_id]
+                age = find_age(individu, period.start.date)
+                if len(new_famille[u'parents']) < 2 and (age is None or age >= 18):
+                    new_famille[u'parents'].append(individu_id)
+                else:
+                    new_famille[u'enfants'].append(individu_id)
+                if new_famille_id is None:
+                    new_famille[u'id'] = new_famille_id = unicode(uuid.uuid4())
+                    test_case[u'familles'].append(new_famille)
+                individus_without_famille.remove(individu_id)
+
+        # Affecte à un foyer fiscal chaque individu qui n'appartient à aucun d'entre eux.
+        new_foyer_fiscal = dict(
+            declarants = [],
+            personnes_a_charge = [],
+            )
+        new_foyer_fiscal_id = None
+        for individu_id in individus_without_foyer_fiscal[:]:
+            # Tente d'affecter l'individu à un foyer fiscal d'après sa famille.
+            famille, famille_role = find_famille_and_role(test_case, individu_id)
+            if famille_role == u'parents' and len(famille[u'parents']) == 2:
+                for parent_id in famille[u'parents']:
+                    if parent_id != individu_id:
+                        foyer_fiscal, other_role = find_foyer_fiscal_and_role(test_case, parent_id)
+                        if other_role == u'declarants' and len(foyer_fiscal[u'declarants']) == 1:
+                            # Quand l'individu n'est pas encore dans un foyer fiscal, mais qu'il est parent
+                            # dans une famille, qu'il y a un autre parent dans cette famille et que cet autre
+                            # parent est seul déclarant dans son foyer fiscal, alors ajoute l'individu comme
+                            # autre déclarant de ce foyer fiscal.
+                            foyer_fiscal[u'declarants'].append(individu_id)
+                            individus_without_foyer_fiscal.remove(individu_id)
+                        break
+            elif famille_role == u'enfants' and famille[u'parents']:
+                for parent_id in famille[u'parents']:
+                    foyer_fiscal, other_role = find_foyer_fiscal_and_role(test_case, parent_id)
+                    if other_role == u'declarants':
+                        # Quand l'individu n'est pas encore dans un foyer fiscal, mais qu'il est enfant dans une
+                        # famille, qu'il y a un parent dans cette famille et que ce parent est déclarant dans
+                        # son foyer fiscal, alors ajoute l'individu comme personne à charge de ce foyer fiscal.
+                        foyer_fiscal[u'personnes_a_charge'].append(individu_id)
+                        individus_without_foyer_fiscal.remove(individu_id)
+                        break
+
+            if individu_id in individus_without_foyer_fiscal:
+                # L'individu n'est toujours pas affecté à un foyer fiscal.
+                # Tente d'affecter l'individu à un foyer fiscal d'après son ménage.
+                menage, menage_role = find_menage_and_role(test_case, individu_id)
+                if menage_role == u'personne_de_reference':
+                    conjoint_id = menage[u'conjoint']
+                    if conjoint_id is not None:
+                        foyer_fiscal, other_role = find_foyer_fiscal_and_role(test_case, conjoint_id)
+                        if other_role == u'declarants' and len(foyer_fiscal[u'declarants']) == 1:
+                            # Quand l'individu n'est pas encore dans un foyer fiscal, mais qu'il est personne de
+                            # référence dans un ménage, qu'il y a un conjoint dans ce ménage et que ce
+                            # conjoint est seul déclarant dans un foyer fiscal, alors ajoute l'individu comme
+                            # autre déclarant de ce foyer fiscal.
+                            foyer_fiscal[u'declarants'].append(individu_id)
+                            individus_without_foyer_fiscal.remove(individu_id)
+                elif menage_role == u'conjoint':
+                    personne_de_reference_id = menage[u'personne_de_reference']
+                    if personne_de_reference_id is not None:
+                        foyer_fiscal, other_role = find_foyer_fiscal_and_role(test_case,
+                            personne_de_reference_id)
+                        if other_role == u'declarants' and len(foyer_fiscal[u'declarants']) == 1:
+                            # Quand l'individu n'est pas encore dans un foyer fiscal, mais qu'il est conjoint
+                            # dans un ménage, qu'il y a une personne de référence dans ce ménage et que
+                            # cette personne est seul déclarant dans un foyer fiscal, alors ajoute l'individu
+                            # comme autre déclarant de ce foyer fiscal.
+                            foyer_fiscal[u'declarants'].append(individu_id)
+                            individus_without_foyer_fiscal.remove(individu_id)
+                elif menage_role == u'enfants' and (menage['personne_de_reference'] is not None
+                        or menage[u'conjoint'] is not None):
+                    for other_id in (menage['personne_de_reference'], menage[u'conjoint']):
+                        if other_id is None:
+                            continue
+                        foyer_fiscal, other_role = find_foyer_fiscal_and_role(test_case, other_id)
+                        if other_role == u'declarants':
+                            # Quand l'individu n'est pas encore dans un foyer fiscal, mais qu'il est enfant dans
+                            # un ménage, qu'il y a une personne à charge ou un conjoint dans ce ménage et que
+                            # celui-ci est déclarant dans un foyer fiscal, alors ajoute l'individu comme
+                            # personne à charge de ce foyer fiscal.
+                            foyer_fiscal[u'declarants'].append(individu_id)
+                            individus_without_foyer_fiscal.remove(individu_id)
+                            break
+
+            if individu_id in individus_without_foyer_fiscal:
+                # L'individu n'est toujours pas affecté à un foyer fiscal.
+                individu = individu_by_id[individu_id]
+                age = find_age(individu, period.start.date)
+                if len(new_foyer_fiscal[u'declarants']) < 2 and (age is None or age >= 18):
+                    new_foyer_fiscal[u'declarants'].append(individu_id)
+                else:
+                    new_foyer_fiscal[u'personnes_a_charge'].append(individu_id)
+                if new_foyer_fiscal_id is None:
+                    new_foyer_fiscal[u'id'] = new_foyer_fiscal_id = unicode(uuid.uuid4())
+                    test_case[u'foyers_fiscaux'].append(new_foyer_fiscal)
+                individus_without_foyer_fiscal.remove(individu_id)
+
+        # Affecte à un ménage chaque individu qui n'appartient à aucun d'entre eux.
+
+        new_menage = dict(
+            autres = [],
+            conjoint = None,
+            enfants = [],
+            personne_de_reference = None,
+            )
+        new_menage_id = None
+        for individu_id in individus_without_menage[:]:
+            # Tente d'affecter l'individu à un ménage d'après sa famille.
+            famille, famille_role = find_famille_and_role(test_case, individu_id)
+            if famille_role == u'parents' and len(famille[u'parents']) == 2:
+                for parent_id in famille[u'parents']:
+                    if parent_id != individu_id:
+                        menage, other_role = find_menage_and_role(test_case, parent_id)
+                        if other_role == u'personne_de_reference' and menage[u'conjoint'] is None:
+                            # Quand l'individu n'est pas encore dans un ménage, mais qu'il est parent
+                            # dans une famille, qu'il y a un autre parent dans cette famille et que cet autre
+                            # parent est personne de référence dans un ménage et qu'il n'y a pas de conjoint
+                            # dans ce ménage, alors ajoute l'individu comme conjoint de ce ménage.
+                            menage[u'conjoint'] = individu_id
+                            individus_without_menage.remove(individu_id)
+                        elif other_role == u'conjoint' and menage[u'personne_de_reference'] is None:
+                            # Quand l'individu n'est pas encore dans un ménage, mais qu'il est parent
+                            # dans une famille, qu'il y a un autre parent dans cette famille et que cet autre
+                            # parent est conjoint dans un ménage et qu'il n'y a pas de personne de référence
+                            # dans ce ménage, alors ajoute l'individu comme personne de référence de ce ménage.
+                            menage[u'personne_de_reference'] = individu_id
+                            individus_without_menage.remove(individu_id)
+                        break
+            elif famille_role == u'enfants' and famille[u'parents']:
+                for parent_id in famille[u'parents']:
+                    menage, other_role = find_menage_and_role(test_case, parent_id)
+                    if other_role in (u'personne_de_reference', u'conjoint'):
+                        # Quand l'individu n'est pas encore dans un ménage, mais qu'il est enfant dans une
+                        # famille, qu'il y a un parent dans cette famille et que ce parent est personne de
+                        # référence ou conjoint dans un ménage, alors ajoute l'individu comme enfant de ce
+                        # ménage.
+                        menage[u'enfants'].append(individu_id)
+                        individus_without_menage.remove(individu_id)
+                        break
+
+            if individu_id in individus_without_menage:
+                # L'individu n'est toujours pas affecté à un ménage.
+                # Tente d'affecter l'individu à un ménage d'après son foyer fiscal.
+                foyer_fiscal, foyer_fiscal_role = find_foyer_fiscal_and_role(test_case, individu_id)
+                if foyer_fiscal_role == u'declarants' and len(foyer_fiscal[u'declarants']) == 2:
+                    for declarant_id in foyer_fiscal[u'declarants']:
+                        if declarant_id != individu_id:
+                            menage, other_role = find_menage_and_role(test_case, declarant_id)
+                            if other_role == u'personne_de_reference' and menage[u'conjoint'] is None:
+                                # Quand l'individu n'est pas encore dans un ménage, mais qu'il est déclarant
+                                # dans un foyer fiscal, qu'il y a un autre déclarant dans ce foyer fiscal et que
+                                # cet autre déclarant est personne de référence dans un ménage et qu'il n'y a
+                                # pas de conjoint dans ce ménage, alors ajoute l'individu comme conjoint de ce
+                                # ménage.
+                                menage[u'conjoint'] = individu_id
+                                individus_without_menage.remove(individu_id)
+                            elif other_role == u'conjoint' and menage[u'personne_de_reference'] is None:
+                                # Quand l'individu n'est pas encore dans un ménage, mais qu'il est déclarant
+                                # dans une foyer fiscal, qu'il y a un autre déclarant dans ce foyer fiscal et
+                                # que cet autre déclarant est conjoint dans un ménage et qu'il n'y a pas de
+                                # personne de référence dans ce ménage, alors ajoute l'individu comme personne
+                                # de référence de ce ménage.
+                                menage[u'personne_de_reference'] = individu_id
+                                individus_without_menage.remove(individu_id)
+                            break
+                elif foyer_fiscal_role == u'personnes_a_charge' and foyer_fiscal[u'declarants']:
+                    for declarant_id in foyer_fiscal[u'declarants']:
+                        menage, other_role = find_menage_and_role(test_case, declarant_id)
+                        if other_role in (u'personne_de_reference', u'conjoint'):
+                            # Quand l'individu n'est pas encore dans un ménage, mais qu'il est personne à charge
+                            # dans un foyer fiscal, qu'il y a un déclarant dans ce foyer fiscal et que ce
+                            # déclarant est personne de référence ou conjoint dans un ménage, alors ajoute
+                            # l'individu comme enfant de ce ménage.
+                            menage[u'enfants'].append(individu_id)
+                            individus_without_menage.remove(individu_id)
+                            break
+
+            if individu_id in individus_without_menage:
+                # L'individu n'est toujours pas affecté à un ménage.
+                if new_menage[u'personne_de_reference'] is None:
+                    new_menage[u'personne_de_reference'] = individu_id
+                elif new_menage[u'conjoint'] is None:
+                    new_menage[u'conjoint'] = individu_id
+                else:
+                    new_menage[u'enfants'].append(individu_id)
+                if new_menage_id is None:
+                    new_menage[u'id'] = new_menage_id = unicode(uuid.uuid4())
+                    test_case[u'menages'].append(new_menage)
+                individus_without_menage.remove(individu_id)
+
+        return test_case
+
 
     def suggest(self):
         """Returns a dict of suggestions and modifies self.test_case applying those suggestions."""
