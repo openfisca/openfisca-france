@@ -61,115 +61,96 @@ class Scenario(scenarios.AbstractScenario):
             ))
         return self
 
-    def make_json_or_python_to_test_case(self, period = None, repair = False):
 
-        def json_or_python_to_test_case(value, state = None):
+    def post_process_test_case(self, test_case, period, state):
 
-            # If there is a familly, auto-declare the first parent as menage person de ref
-            famille = value.get('familles') and value['familles'][0]
-            menage = value.get('menages') and value['menages'][0]
-            if menage is not None and famille is not None and not menage.get('personne_de_reference'):
-                menage['personne_de_reference'] = famille['parents'][0]
+        individu_by_id = {
+            individu['id']: individu
+            for individu in test_case['individus']
+            }
 
-
-            # Commons
-            test_case, error = scenarios.AbstractScenario.make_json_or_python_to_test_case(self, period, repair)(value, state)
-
-            if error is not None:
-                return test_case, error
-
-
-            individu_by_id = {
-                individu['id']: individu
-                for individu in test_case['individus']
-                }
-
-
-            # Third validation step
-            parents_id = set(
-                parent_id
-                for famille in test_case['familles']
-                for parent_id in famille['parents']
-                )
-            test_case, error = conv.struct(
-                dict(
-                    familles = conv.pipe(
-                        conv.uniform_sequence(
-                            conv.struct(
-                                dict(
-                                    enfants = conv.uniform_sequence(
-                                        conv.test(
-                                            lambda individu_id:
-                                                individu_by_id[individu_id].get('handicap', False)
-                                                or find_age(individu_by_id[individu_id], period.start.date,
-                                                    default = 0) <= 25,
-                                            error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
-                                                    u" 25 ans ou être handicapée",
-                                            ),
-                                        ),
-                                    parents = conv.pipe(
-                                        conv.empty_to_none,
-                                        conv.not_none,
-                                        conv.test(lambda parents: len(parents) <= 2,
-                                            error = N_(u'A "famille" must have at most 2 "parents"'))
+        parents_id = set(
+            parent_id
+            for famille in test_case['familles']
+            for parent_id in famille['parents']
+            )
+        test_case, error = conv.struct(
+            dict(
+                familles = conv.pipe(
+                    conv.uniform_sequence(
+                        conv.struct(
+                            dict(
+                                enfants = conv.uniform_sequence(
+                                    conv.test(
+                                        lambda individu_id:
+                                            individu_by_id[individu_id].get('handicap', False)
+                                            or find_age(individu_by_id[individu_id], period.start.date,
+                                                default = 0) <= 25,
+                                        error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
+                                                u" 25 ans ou être handicapée",
                                         ),
                                     ),
-                                default = conv.noop,
-                                ),
-                            ),
-                        conv.empty_to_none,
-                        conv.not_none,
-                        ),
-                    foyers_fiscaux = conv.pipe(
-                        conv.uniform_sequence(
-                            conv.struct(
-                                dict(
-                                    declarants = conv.pipe(
-                                        conv.empty_to_none,
-                                        conv.not_none,
-                                        conv.test(
-                                            lambda declarants: len(declarants) <= 2,
-                                            error = N_(u'A "foyer_fiscal" must have at most 2 "declarants"'),
-                                            ),
-                                        conv.uniform_sequence(conv.pipe(
-                                            )),
-                                        ),
-                                    personnes_a_charge = conv.uniform_sequence(
-                                        conv.test(
-                                            lambda individu_id:
-                                                individu_by_id[individu_id].get('handicap', False)
-                                                or find_age(individu_by_id[individu_id], period.start.date,
-                                                    default = 0) <= 25,
-                                            error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
-                                                    u" 25 ans ou être handicapée",
-                                            ),
-                                        ),
+                                parents = conv.pipe(
+                                    conv.empty_to_none,
+                                    conv.not_none,
+                                    conv.test(lambda parents: len(parents) <= 2,
+                                        error = N_(u'A "famille" must have at most 2 "parents"'))
                                     ),
-                                default = conv.noop,
                                 ),
+                            default = conv.noop,
                             ),
-                        conv.empty_to_none,
-                        conv.not_none,
                         ),
-                    menages = conv.pipe(
-                        conv.uniform_sequence(
-                            conv.struct(
-                                dict(
-                                    personne_de_reference = conv.not_none,
-                                    ),
-                                default = conv.noop,
-                                ),
-                            ),
-                        conv.empty_to_none,
-                        conv.not_none,
-                        ),
+                    conv.empty_to_none,
+                    conv.not_none,
                     ),
-                default = conv.noop,
-                )(test_case, state = state)
+                foyers_fiscaux = conv.pipe(
+                    conv.uniform_sequence(
+                        conv.struct(
+                            dict(
+                                declarants = conv.pipe(
+                                    conv.empty_to_none,
+                                    conv.not_none,
+                                    conv.test(
+                                        lambda declarants: len(declarants) <= 2,
+                                        error = N_(u'A "foyer_fiscal" must have at most 2 "declarants"'),
+                                        ),
+                                    conv.uniform_sequence(conv.pipe(
+                                        )),
+                                    ),
+                                personnes_a_charge = conv.uniform_sequence(
+                                    conv.test(
+                                        lambda individu_id:
+                                            individu_by_id[individu_id].get('handicap', False)
+                                            or find_age(individu_by_id[individu_id], period.start.date,
+                                                default = 0) <= 25,
+                                        error = u"Une personne à charge d'un foyer fiscal doit avoir moins de"
+                                                u" 25 ans ou être handicapée",
+                                        ),
+                                    ),
+                                ),
+                            default = conv.noop,
+                            ),
+                        ),
+                    conv.empty_to_none,
+                    conv.not_none,
+                    ),
+                menages = conv.pipe(
+                    conv.uniform_sequence(
+                        conv.struct(
+                            dict(
+                                personne_de_reference = conv.not_none,
+                                ),
+                            default = conv.noop,
+                            ),
+                        ),
+                    conv.empty_to_none,
+                    conv.not_none,
+                    ),
+                ),
+            default = conv.noop,
+            )(test_case, state = state)
 
-            return test_case, error
-
-        return json_or_python_to_test_case
+        return test_case, error
 
 
     def attribute_groupless_persons_to_entities(self, test_case, period, groupless_individus):
@@ -358,6 +339,15 @@ class Scenario(scenarios.AbstractScenario):
 
         # Affecte à un ménage chaque individu qui n'appartient à aucun d'entre eux.
 
+        # Si le ménage n'a pas de personne de référence, et que le premier parent n'a pas de ménage, on le déclare comme personne de référence.
+        famille = test_case.get('familles') and test_case['familles'][0]
+        menage = test_case.get('menages') and test_case['menages'][0]
+        if famille and menage:
+            parent_1 = famille['parents'][0]
+            if not menage.get('personne_de_reference') and parent_1 in individus_without_menage:
+                menage['personne_de_reference'] = parent_1
+                individus_without_menage.remove(parent_1)
+
         new_menage = dict(
             autres = [],
             conjoint = None,
@@ -505,6 +495,7 @@ class Scenario(scenarios.AbstractScenario):
                             'statut_marital'] = unicode(statut_marital)
 
         return suggestions or None
+
 
     def to_json(self):
         self_json = collections.OrderedDict()
