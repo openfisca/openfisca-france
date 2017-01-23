@@ -21,8 +21,7 @@ year_or_month_or_day_re = re.compile(ur'(18|19|20)\d{2}(-(0[1-9]|1[0-2])(-([0-2]
 
 class Scenario(scenarios.AbstractScenario):
 
-    def init_single_entity(self, axes = None, enfants = None, famille = None, foyer_fiscal = None, menage = None,
-            parent1 = None, parent2 = None, period = None):
+    def init_single_entity(self, axes = None, enfants = None, famille = None, foyer_fiscal = None, menage = None, parent1 = None, parent2 = None, period = None):
         if enfants is None:
             enfants = []
         assert parent1 is not None
@@ -495,102 +494,6 @@ class Scenario(scenarios.AbstractScenario):
                             'statut_marital'] = unicode(statut_marital)
 
         return suggestions or None
-
-
-    def to_json(self):
-        self_json = collections.OrderedDict()
-        if self.axes is not None:
-            self_json['axes'] = self.axes
-        if self.period is not None:
-            self_json['period'] = str(self.period)
-
-        test_case = self.test_case
-        if test_case is not None:
-            column_by_name = self.tax_benefit_system.column_by_name
-            test_case_json = collections.OrderedDict()
-
-            familles_json = []
-            for famille in (test_case.get('familles') or []):
-                famille_json = collections.OrderedDict()
-                famille_json['id'] = famille['id']
-                parents = famille.get('parents')
-                if parents:
-                    famille_json['parents'] = parents
-                enfants = famille.get('enfants')
-                if enfants:
-                    famille_json['enfants'] = enfants
-                for column_name, variable_value in famille.iteritems():
-                    column = column_by_name.get(column_name)
-                    if column is not None and column.entity == Famille:
-                        variable_value_json = column.transform_value_to_json(variable_value)
-                        if variable_value_json is not None:
-                            famille_json[column_name] = variable_value_json
-                familles_json.append(famille_json)
-            if familles_json:
-                test_case_json['familles'] = familles_json
-
-            foyers_fiscaux_json = []
-            for foyer_fiscal in (test_case.get('foyers_fiscaux') or []):
-                foyer_fiscal_json = collections.OrderedDict()
-                foyer_fiscal_json['id'] = foyer_fiscal['id']
-                declarants = foyer_fiscal.get('declarants')
-                if declarants:
-                    foyer_fiscal_json['declarants'] = declarants
-                personnes_a_charge = foyer_fiscal.get('personnes_a_charge')
-                if personnes_a_charge:
-                    foyer_fiscal_json['personnes_a_charge'] = personnes_a_charge
-                for column_name, variable_value in foyer_fiscal.iteritems():
-                    column = column_by_name.get(column_name)
-                    if column is not None and column.entity == FoyerFiscal:
-                        variable_value_json = column.transform_value_to_json(variable_value)
-                        if variable_value_json is not None:
-                            foyer_fiscal_json[column_name] = variable_value_json
-                foyers_fiscaux_json.append(foyer_fiscal_json)
-            if foyers_fiscaux_json:
-                test_case_json['foyers_fiscaux'] = foyers_fiscaux_json
-
-            individus_json = []
-            for individu in (test_case.get('individus') or []):
-                individu_json = collections.OrderedDict()
-                individu_json['id'] = individu['id']
-                for column_name, variable_value in individu.iteritems():
-                    column = column_by_name.get(column_name)
-                    if column is not None and column.entity == Individu:
-                        variable_value_json = column.transform_value_to_json(variable_value)
-                        if variable_value_json is not None:
-                            individu_json[column_name] = variable_value_json
-                individus_json.append(individu_json)
-            if individus_json:
-                test_case_json['individus'] = individus_json
-
-            menages_json = []
-            for menage in (test_case.get('menages') or []):
-                menage_json = collections.OrderedDict()
-                menage_json['id'] = menage['id']
-                personne_de_reference = menage.get('personne_de_reference')
-                if personne_de_reference is not None:
-                    menage_json['personne_de_reference'] = personne_de_reference
-                conjoint = menage.get('conjoint')
-                if conjoint is not None:
-                    menage_json['conjoint'] = conjoint
-                enfants = menage.get('enfants')
-                if enfants:
-                    menage_json['enfants'] = enfants
-                autres = menage.get('autres')
-                if autres:
-                    menage_json['autres'] = autres
-                for column_name, variable_value in menage.iteritems():
-                    column = column_by_name.get(column_name)
-                    if column is not None and column.entity == Menage:
-                        variable_value_json = column.transform_value_to_json(variable_value)
-                        if variable_value_json is not None:
-                            menage_json[column_name] = variable_value_json
-                menages_json.append(menage_json)
-            if menages_json:
-                test_case_json['menages'] = menages_json
-
-            self_json['test_case'] = test_case_json
-        return self_json
 
 
 # Finders
