@@ -695,11 +695,12 @@ class af_nbenf_fonc(Variable):
     def function(self, simulation, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        salaire_de_base = simulation.calculate_add('salaire_de_base', period.start.period('month', 6).offset(-6))
+        # period_salaire = period.start.period('month', 6).offset(-6)  # C'est la loi
+        salaire_de_base_mensualise = simulation.calculate_add('salaire_de_base', period.this_year) / 12
         law = simulation.legislation_at(period.start)
         nbh_travaillees = 169
         smic_mensuel_brut = law.cotsoc.gen.smic_h_b * nbh_travaillees
-        autonomie_financiere = (salaire_de_base / 6) >= (law.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
+        autonomie_financiere = salaire_de_base_mensualise >= (law.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
         age = simulation.calculate('age', period)
         condition_enfant = (age >= law.prestations.prestations_familiales.af.age1) * (age <= law.prestations.prestations_familiales.af.age2) * not_(autonomie_financiere)
 

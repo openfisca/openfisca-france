@@ -208,6 +208,7 @@ class inversion_directe_salaires(Reform):
             'indemnites_compensatrices_conges_payes',
             'nouvelle_bonification_indiciaire',
             'primes_salaires',
+            'prevoyance_obligatoire_cadre',
             'reintegration_titre_restaurant_employeur',
             'reintegration_titre_restaurant_employeur',
             'remuneration_apprenti',
@@ -216,21 +217,8 @@ class inversion_directe_salaires(Reform):
             # Revenus
             'agirc_gmp_salarie',
             'ppe_base',
+            'supp_familial_traitement',  # Problème de l'autonomie financière
             'traitement_indiciaire_brut',
-            # 'remuneration_principale',
-            # 'hsup',
-            # 'indemnite_residence',
-            # 'supp_familial_traitement',
-            # 'primes_fonction_publique',
-            # Prestations
-            # 'aah',
-            # 'aah_base_ressources',
-            # 'caah',
-            # 'asi_aspa_base_ressources_individu',
-            # 'rsa_indemnites_journalieres_activite',
-            # 'rsa_base_ressources_individu',
-            # 'rsa_revenu_activite_individu',
-            # 'ass',
             ]
         for neutralized_variable in neutralized_variables:
             log.info("Neutralizing {}".format(neutralized_variable))
