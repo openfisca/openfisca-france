@@ -212,11 +212,13 @@ class inversion_directe_salaires(Reform):
             'reintegration_titre_restaurant_employeur',
             'reintegration_titre_restaurant_employeur',
             'remuneration_apprenti',
+            'rsa_non_calculable',
             'stage_gratification_reintegration',
             # To reintegrate
             # Revenus
+            'aah_base_ressources',
+            'caah',
             'agirc_gmp_salarie',
-            'ppe_base',
             'supp_familial_traitement',  # Problème de l'autonomie financière
             'traitement_indiciaire_brut',
             ]

@@ -16,9 +16,12 @@ class autonomie_financiere(Variable):
 
     def function(individu, period, legislation):
         period = period.this_month
+        # salaire_net_mensualise = individu(
+        #     'salaire_net', period.start.period('month', 6).offset(-6), options = [ADD]
+        #     ) / 6
         salaire_net_mensualise = individu(
-            'salaire_net', period.start.period('month', 6).offset(-6), options = [ADD]
-            ) / 6
+            'salaire_net', period.this_year, options = [ADD]
+            ) / 12
         _P = legislation(period)
 
         nbh_travaillees = 169
@@ -51,7 +54,7 @@ class prestations_familiales_enfant_a_charge(Variable):
 
 
 class prestations_familiales_base_ressources_individu(Variable):
-    column = FloatCol
+    column = PeriodSizeIndependentFloatCol
     entity = Individu
     label = u"Base ressource individuelle des prestations familiales"
 

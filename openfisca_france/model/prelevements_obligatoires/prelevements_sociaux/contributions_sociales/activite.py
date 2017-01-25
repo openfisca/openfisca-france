@@ -200,6 +200,9 @@ class salaire_imposable(Variable):
     def function(individu, period):
         # Should_be period independent
         assert period.unit == 'month' or period.unit == 'year'
+        if period.unit == 'month':
+            return period, individu('salaire_imposable', period.this_year) / 12
+
         salaire_de_base = individu('salaire_de_base', period)
         primes_salaires = individu('primes_salaires', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)

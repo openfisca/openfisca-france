@@ -3,7 +3,7 @@
 from datetime import date
 
 from openfisca_core.columns import (AgeCol, BoolCol, DateCol, EnumCol, FixedStrCol, FloatCol, IntCol,
-    PeriodSizeIndependentIntCol, StrCol)
+    PeriodSizeIndependentFloatCol, PeriodSizeIndependentIntCol, StrCol)
 from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import (ADD, calculate_output_add, calculate_output_add_divide, calculate_output_divide,
     dated_function, DIVIDE, missing_value, set_input_dispatch_by_period, set_input_divide_by_period)
@@ -53,6 +53,7 @@ __all__ = [
     'PAC2',
     'PAC3',
     'PART',
+    'PeriodSizeIndependentFloatCol',
     'PeriodSizeIndependentIntCol',
     'PREF',
     'QUIFAM',
