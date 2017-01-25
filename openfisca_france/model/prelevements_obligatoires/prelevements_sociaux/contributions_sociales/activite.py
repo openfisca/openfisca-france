@@ -94,6 +94,7 @@ class csg_imposable_salaire(Variable):
 
     def function(self, simulation, period):
         # period = period.this_month
+        print 'csg', period
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)

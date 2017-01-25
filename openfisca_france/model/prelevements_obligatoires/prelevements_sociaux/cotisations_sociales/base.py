@@ -46,26 +46,38 @@ def apply_bareme_for_relevant_type_sal(
 def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None, variable_name = None):
 
     cotisation_mode_recouvrement = simulation.calculate('cotisation_sociale_mode_recouvrement', period)
-    cotisation = (
-        # en fin d'année
-        cotisation_mode_recouvrement == 1) * (
-            compute_cotisation_annuelle(
-                simulation,
-                period,
-                cotisation_type = cotisation_type,
-                bareme_name = bareme_name,
+    if (cotisation_mode_recouvrement == 1).all():
+        cotisation = (
+            # en fin d'année
+            cotisation_mode_recouvrement == 1) * (
+                compute_cotisation_annuelle(
+                    simulation,
+                    period,
+                    cotisation_type = cotisation_type,
+                    bareme_name = bareme_name,
+                    )
                 )
-            ) + (
-        # anticipé
-        cotisation_mode_recouvrement == 0) * (
-            compute_cotisation_anticipee(
-                simulation,
-                period,
-                cotisation_type = cotisation_type,
-                bareme_name = bareme_name,
-                variable_name = variable_name,
+    else:
+        cotisation = (
+            # en fin d'année
+            cotisation_mode_recouvrement == 1) * (
+                compute_cotisation_annuelle(
+                    simulation,
+                    period,
+                    cotisation_type = cotisation_type,
+                    bareme_name = bareme_name,
+                    )
+                ) + (
+            # anticipé
+            cotisation_mode_recouvrement == 0) * (
+                compute_cotisation_anticipee(
+                    simulation,
+                    period,
+                    cotisation_type = cotisation_type,
+                    bareme_name = bareme_name,
+                    variable_name = variable_name,
+                    )
                 )
-            )
     return cotisation
 
 

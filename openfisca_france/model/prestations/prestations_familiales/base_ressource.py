@@ -2,9 +2,12 @@
 
 from __future__ import division
 
+
 from numpy import int32, logical_not as not_, logical_or as or_
 
+
 from openfisca_france.model.base import *  # noqa analysis:ignore
+
 
 class autonomie_financiere(Variable):
     column = BoolCol
@@ -13,14 +16,16 @@ class autonomie_financiere(Variable):
 
     def function(individu, period, legislation):
         period = period.this_month
-        salaire_net = individu('salaire_net', period.start.period('month', 6).offset(-6), options = [ADD])
+        salaire_net_mensualise = individu(
+            'salaire_net', period.start.period('month', 6).offset(-6), options = [ADD]
+            ) / 6
         _P = legislation(period)
 
         nbh_travaillees = 169
         smic_mensuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
 
         # Oui on compare du salaire net avec un bout du SMIC brut ...
-        return period, salaire_net / 6 >= (_P.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
+        return period, salaire_net_mensualise >= (_P.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
 
 
 class prestations_familiales_enfant_a_charge(Variable):
