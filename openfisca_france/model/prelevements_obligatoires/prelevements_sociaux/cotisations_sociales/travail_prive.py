@@ -32,7 +32,7 @@ class assiette_cotisations_sociales(Variable):
         # period = period.start.offset('first-of', 'month').period(u'month')
         assert period.unit in ['month', 'year']
         if period.unit == 'month':
-            boum
+            log.info("WARNING: Using assiette_cotisations_sociales for month {}".format(period))
 
         assiette_cotisations_sociales_prive = simulation.calculate_add('assiette_cotisations_sociales_prive', period)
         assiette_cotisations_sociales_public = simulation.calculate_add('assiette_cotisations_sociales_public', period)
@@ -53,7 +53,7 @@ class assiette_cotisations_sociales_prive(Variable):
         # Should be period independent
         assert period.unit in ['month', 'year']
         if period.unit == 'month':
-            bim
+            log.info("WARNING: Using assiette_cotisations_sociales_prive for month {}".format(period))
         avantage_en_nature = simulation.calculate('avantage_en_nature', period)
         hsup = simulation.calculate('hsup', period)
         indemnites_compensatrices_conges_payes = simulation.calculate('indemnites_compensatrices_conges_payes', period)

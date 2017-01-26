@@ -210,7 +210,6 @@ class inversion_directe_salaires(Reform):
             'primes_salaires',
             'prevoyance_obligatoire_cadre',
             'reintegration_titre_restaurant_employeur',
-            'reintegration_titre_restaurant_employeur',
             'remuneration_apprenti',
             'rsa_non_calculable',
             'stage_gratification_reintegration',
