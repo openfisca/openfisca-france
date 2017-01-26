@@ -100,34 +100,6 @@ class ppe_tp_sa(Variable):
 
   # (f1ax, f1bx, f1cx, f1dx, f1qx)
 
-class nbsala(Variable):
-    column = EnumCol(
-        enum = Enum([
-            u"Sans objet",
-            u"Aucun salarié",
-            u"1 à 4 salariés",
-            u"5 à 9 salariés",
-            u"10 à 19 salariés",
-            u"20 à 49 salariés",
-            u"50 à 199 salariés",
-            u"200 à 499 salariés",
-            u"500 à 999 salariés",
-            u"1000 salariés ou plus",
-            u"Ne sait pas",
-            ])
-            ,
-        )
-    entity = Individu
-    label = u"Nombre de salariés dans l'établissement de l'emploi actuel"
-
-
-
-class tva_ent(Variable):
-    column = BoolCol(default = True)
-    entity = Individu
-    label = u"L'entreprise employant le salarié paye de la TVA"
-
-
 
 # build_column('code_risque', EnumCol(label = u"Code risque pour les accidents du travail"))
 # TODO: Complete label, add enum and relevant default.
@@ -144,6 +116,7 @@ class exposition_accident(Variable):
         )
     entity = Individu
     label = u"Exposition au risque pour les accidents du travail"
+
 
 class exposition_penibilite(Variable):
     column = EnumCol(
@@ -278,6 +251,7 @@ class cotisation_sociale_mode_recouvrement(Variable):
         )
     entity = Individu
     label = u"Mode de recouvrement des cotisations sociales"
+
 
 class entreprise_est_association_non_lucrative(Variable):
     column = BoolCol
