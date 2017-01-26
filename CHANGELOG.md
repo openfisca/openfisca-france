@@ -1,5 +1,11 @@
 # Changelog
 
+## 12.0.5
+
+* Minor version change because deprecating unused variables
+* Deprecate nbsala
+* Deprecate tva_ent
+
 ## 12.0.4
 
 * Change `aige_aine` column from IntCol to AgeCol.
