@@ -1,10 +1,10 @@
 # Changelog
 
-## 12.0.5
+## 13.0.0
 
-* Minor version change because deprecating unused variables
-* Deprecate nbsala
-* Deprecate tva_ent
+* Deprecate `nbsala`
+* Deprecate `tva_ent`
+* Low impact changes since deprecating unused variables
 
 ## 12.0.4
 
