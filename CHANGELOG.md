@@ -6,6 +6,10 @@
 * Deprecate `tva_ent`
 * Low impact changes since deprecating unused variables
 
+## 12.0.5
+
+* Change `af` to DatedVariable to take into account the introduction of degressivite
+
 ## 12.0.4
 
 * Change `aige_aine` column from IntCol to AgeCol.
