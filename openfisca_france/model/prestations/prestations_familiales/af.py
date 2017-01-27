@@ -339,8 +339,8 @@ class af(DatedVariable):
             af_forfaitaire_complement_degressif
             )
 
-    @dated_function_20150630(stop = date(2015, 6, 30))
-    def function(famille, period, legislation):
+    @dated_function(stop = date(2015, 6, 30))
+    def function_20150630(famille, period, legislation):
         period = period.this_month
         af_base = famille('af_base', period)
         af_majoration = famille('af_majoration', period)
