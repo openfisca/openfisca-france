@@ -213,6 +213,12 @@ class inversion_directe_salaires(Reform):
             'remuneration_apprenti',
             'rsa_non_calculable',
             'stage_gratification_reintegration',
+            'residence_dom',
+            'residence_guadeloupe',
+            'residence_guyane',
+            'residence_martinique',
+            'residence_mayotte',
+            'residence_reunion',
             # To reintegrate
             # Revenus
             'aah_base_ressources',
