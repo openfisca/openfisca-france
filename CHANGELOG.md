@@ -1,5 +1,9 @@
 # Changelog
 
+## 12.0.5
+
+* Fix `rsa_activite`
+
 ## 12.0.4
 
 * Change `aige_aine` column from IntCol to AgeCol.
