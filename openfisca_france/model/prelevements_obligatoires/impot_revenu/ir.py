@@ -2869,9 +2869,10 @@ class ppe_brute(Variable):
     #                           (cond2 & (base > ppe.seuil2) & (base <= ppe.seuil3)) * ((ppe.seuil3 - base) * ppe.taux2) +
     #                           (cond2 & (base > ppe.seuil4) & (base <= ppe.seuil5)) * (ppe.seuil5 - base) * ppe.taux3)
             return (1 / ppe_coef) * (
-                ((base <= ppe.seuil2)) * (base) * ppe.taux1
-                + ((base > ppe.seuil2) & (base <= ppe.seuil3)) * (ppe.seuil3 - base) * ppe.taux2
-                + ligne2 * ((base > ppe.seuil4) & (base <= ppe.seuil5)) * (ppe.seuil5 - base) * ppe.taux3)
+                (base <= ppe.seuil2) * (base) * ppe.taux1 +
+                (base > ppe.seuil2) * (base <= ppe.seuil3) * (ppe.seuil3 - base) * ppe.taux2 +
+                ligne2 * (base > ppe.seuil4) * (base <= ppe.seuil5) * (ppe.seuil5 - base) * ppe.taux3
+                )
 
         def ppe_bar2(base):
             return (1 / ppe_coef) * (
