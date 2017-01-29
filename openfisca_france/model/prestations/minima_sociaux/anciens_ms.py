@@ -182,13 +182,13 @@ class rsa_activite_individu(Variable):
         '''
         Note: le partage en moitié est un point de législation, pas un choix arbitraire
         '''
-        period = period   # TODO: rentre dans le calcul de la PPE check period !!!
-
-        rsa_activite = individu.famille('rsa_activite', period)
+        period = period.this_year   # TODO: rentre dans le calcul de la PPE check period !!!
+        rsa_activite = individu.famille('rsa_activite', period, options = [ADD])
         marie = individu('statut_marital', period) == 1
         en_couple = individu.famille('en_couple', period)
 
-        # On partage le rsa_activite entre les parents. Si la personne est mariée et qu'aucun conjoint n'a été déclaré, on divise par 2.
+        # On partage le rsa_activite entre les parents. Si la personne est mariée et qu'aucun conjoint n'a été déclaré,
+        # on divise par 2.
         partage_rsa = or_(marie, en_couple)
 
         return period, where(partage_rsa, rsa_activite / 2, rsa_activite)
