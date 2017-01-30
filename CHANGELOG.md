@@ -4,7 +4,8 @@
 
 * Deprecate `nbsala`
 * Deprecate `tva_ent`
-* Low impact changes since deprecating unused variables
+
+These changes are low impact since the two deprecated variables were not used.
 
 ## 12.0.4
 
