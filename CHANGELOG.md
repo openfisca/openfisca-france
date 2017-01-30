@@ -1,8 +1,12 @@
 # Changelog
 
-## 12.0.5
+## 12.0.6
 
 * Fix `rsa_activite`
+
+## 12.0.5
+
+* Change `af` to DatedVariable to take into account the introduction of degressivite
 
 ## 12.0.4
 
