@@ -7,6 +7,10 @@
 
 These changes are low impact since the two deprecated variables were not used.
 
+## 12.0.5
+
+* Change `af` to DatedVariable to take into account the introduction of degressivite
+
 ## 12.0.4
 
 * Change `aige_aine` column from IntCol to AgeCol.
