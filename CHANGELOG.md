@@ -1,5 +1,12 @@
 # Changelog
 
+## 13.0.0
+
+* Deprecate `nbsala`
+* Deprecate `tva_ent`
+
+These changes are low impact since the two deprecated variables were not used.
+
 ## 12.0.6
 
 * Fix `rsa_activite`
