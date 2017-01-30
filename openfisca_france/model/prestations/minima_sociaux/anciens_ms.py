@@ -162,10 +162,12 @@ class rsa_activite(Variable):
     stop_date = date(2015, 12, 31)
 
     def function(famille, period):
-        period = period
-        rsa = famille('rsa', period, options = [ADD])
-        rmi = famille('rmi', period, options = [ADD])
-
+        period = period.this_month
+        rsa = famille('rsa', period, period)
+        rsa_base_ressources = famille('rsa_base_ressources', period)
+        rsa_socle = famille('rsa_socle', period)
+        rsa_forfait_logement = famille('rsa_forfait_logement', period)
+        rmi = max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
         return period, max_(rsa - rmi, 0)
 
 

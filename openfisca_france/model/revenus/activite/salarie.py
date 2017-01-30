@@ -116,6 +116,7 @@ class exposition_accident(Variable):
     entity = Individu
     label = u"Exposition au risque pour les accidents du travail"
 
+
 class exposition_penibilite(Variable):
     column = EnumCol(
         enum = Enum([
@@ -248,6 +249,7 @@ class cotisation_sociale_mode_recouvrement(Variable):
         )
     entity = Individu
     label = u"Mode de recouvrement des cotisations sociales"
+
 
 class entreprise_est_association_non_lucrative(Variable):
     column = BoolCol
