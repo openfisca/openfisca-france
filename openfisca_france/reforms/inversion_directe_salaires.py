@@ -196,6 +196,67 @@ class inversion_directe_salaires(Reform):
     name = u'Inversion des revenus'
 
     def apply(self):
+        neutralized_reductions = [
+            'accult',
+            'adhcga',
+            'assvie',
+            'cappme',
+            'cotsyn',
+            'creaen',
+            'daepad',
+            'deffor',
+            'dfppce',
+            'doment',
+            'domlog',
+            'domsoc',
+            'donapd',
+            'duflot',
+            'ecodev',
+            'ecpess',
+            'garext',
+            'intagr',
+            'intcon',
+            'intemp',
+            'invfor',
+            'invlst',
+            'invrev',
+            'locmeu',
+            'mecena',
+            'mohist',
+            'patnat',
+            'prcomp',
+            'repsoc',
+            'resimm',
+            'rsceha',
+            'saldom',
+            'scelli',
+            'sofica',
+            'sofipe',
+            'spfcpi',
+            ]
+        neutralized_credits = [
+            'accult',
+            'acqgpl',
+            'aidmob',
+            'aidper',
+            'assloy',
+            'autent',
+            'ci_garext',
+            'cotsyn',
+            'creimp',
+            'creimp_exc_2008',
+            'direpa',
+            'divide',
+            'drbail',
+            'inthab',
+            'jeunes',
+            'mecena',
+            'percvm',
+            'preetu',
+            'quaenv',
+            'saldom2',
+            ]
+
         neutralized_variables = [
             'avantage_en_nature',
             'complementaire_sante_employeur',
@@ -224,9 +285,10 @@ class inversion_directe_salaires(Reform):
             'aah_base_ressources',
             'caah',
             'agirc_gmp_salarie',
-            'supp_familial_traitement',  # Problème de l'autonomie financière
+            'supp_familial_traitement',  # Problème de l'autonomie financière
             'traitement_indiciaire_brut',
             ]
+        neutralized_variables += list(set(neutralized_reductions + neutralized_credits))
         for neutralized_variable in neutralized_variables:
             log.info("Neutralizing {}".format(neutralized_variable))
             self.neutralize_column(neutralized_variable)
