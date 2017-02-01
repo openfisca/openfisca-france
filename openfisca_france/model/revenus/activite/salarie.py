@@ -405,6 +405,7 @@ class indemnites_forfaitaires(Variable):
 
 
 class salaire_de_base(Variable):
+    base_function = requested_period_added_value
     column = FloatCol
     entity = Individu
     label = u"Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie"

@@ -29,7 +29,7 @@ class assiette_cotisations_sociales(Variable):
     label = u"Assiette des cotisations sociales des salaries"
 
     def function(self, simulation, period):
-        # period = period.start.offset('first-of', 'month').period(u'month')
+        # Should be period independent
         assert period.unit in ['month', 'year']
         if period.unit == 'month':
             log.info("WARNING: Using assiette_cotisations_sociales for month {}".format(period))
@@ -153,7 +153,6 @@ class reintegration_titre_restaurant_employeur(Variable):
 # Cotisations proprement dites
 
 
-
 class penibilite(Variable):
     column = FloatCol
     entity = Individu
@@ -162,7 +161,7 @@ class penibilite(Variable):
 
     def function(self, simulation, period):
         exposition_penibilite = simulation.calculate('exposition_penibilite', period)
-        multiplicateur =  simulation.legislation_at(period.start).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
+        multiplicateur = simulation.legislation_at(period.start).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
 
         cotisation_base = apply_bareme(
             simulation, period,
@@ -179,11 +178,12 @@ class penibilite(Variable):
 
         cotisation = switch(
             exposition_penibilite,
-             {
+            {
                 0: cotisation_base,
                 1: cotisation_base + cotisation_additionnelle,
                 2: cotisation_base + cotisation_additionnelle * multiplicateur,
-             })
+                }
+            )
 
         return period, cotisation
 
