@@ -4,7 +4,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class pensions_alimentaires_percues(Variable):
-    base_funtion = requested_period_added_value
+    base_function = requested_period_added_value
     cerfa_field = {QUIFOY['vous']: u"1AO",
         QUIFOY['conj']: u"1BO",
         QUIFOY['pac1']: u"1CO",
