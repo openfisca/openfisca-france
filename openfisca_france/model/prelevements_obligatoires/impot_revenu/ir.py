@@ -2869,9 +2869,10 @@ class ppe_brute(Variable):
     #                           (cond2 & (base > ppe.seuil2) & (base <= ppe.seuil3)) * ((ppe.seuil3 - base) * ppe.taux2) +
     #                           (cond2 & (base > ppe.seuil4) & (base <= ppe.seuil5)) * (ppe.seuil5 - base) * ppe.taux3)
             return (1 / ppe_coef) * (
-                ((base <= ppe.seuil2)) * (base) * ppe.taux1
-                + ((base > ppe.seuil2) & (base <= ppe.seuil3)) * (ppe.seuil3 - base) * ppe.taux2
-                + ligne2 * ((base > ppe.seuil4) & (base <= ppe.seuil5)) * (ppe.seuil5 - base) * ppe.taux3)
+                (base <= ppe.seuil2) * (base) * ppe.taux1 +
+                (base > ppe.seuil2) * (base <= ppe.seuil3) * (ppe.seuil3 - base) * ppe.taux2 +
+                ligne2 * (base > ppe.seuil4) * (base <= ppe.seuil5) * (ppe.seuil5 - base) * ppe.taux3
+                )
 
         def ppe_bar2(base):
             return (1 / ppe_coef) * (
@@ -2933,7 +2934,7 @@ class ppe(Variable):
         """
         period = period.this_year
         ppe_brute = simulation.calculate('ppe_brute', period)
-        rsa_act_i_holder = simulation.compute('rsa_activite_individu', period)
+        rsa_act_i_holder = simulation.compute_add('rsa_activite_individu', period)
 
         # TODO: les foyers qui paient l'ISF n'ont pas le droit à la PPE
         rsa_act_i = self.split_by_roles(rsa_act_i_holder, roles = [VOUS, CONJ])

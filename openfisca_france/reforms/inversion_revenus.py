@@ -131,8 +131,8 @@ def build_reform(tax_benefit_system):
     #        cad = cadre.inverse()
     #        brut_nca = nca.calc(salaire_imposable_pour_inversion)
     #        brut_cad = cad.calc(salaire_imposable_pour_inversion)
-    #        salbrut = brut_nca * (categorie_salarie == CAT['prive_non_cadre'])
-    #        salbrut += brut_cad * (categorie_salarie == CAT['prive_cadre'])
+    #        salbrut = brut_nca * (categorie_salarie == CATEGORIE_SALARIE['prive_non_cadre'])
+    #        salbrut += brut_cad * (categorie_salarie == CATEGORIE_SALARIE['prive_cadre'])
     #
     #        # public etat
     #        # TODO: modifier la contribution exceptionelle de solidarité
@@ -166,7 +166,7 @@ def build_reform(tax_benefit_system):
     #        salbrut_etat = (brut_etat)
     #        # TODO: fonctionnaire
     #        # print 'salbrut_etat', salbrut_etat
-    #        salbrut += salbrut_etat * (categorie_salarie == CAT['public_titulaire_etat'])
+    #        salbrut += salbrut_etat * (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat'])
     #
     #        #<NODE desc= "Supplément familial de traitement " shortname="Supp. fam." code= "supp_familial_traitement"/>
     #        #<NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence"/>

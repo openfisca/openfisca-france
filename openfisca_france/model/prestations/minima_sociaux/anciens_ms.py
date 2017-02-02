@@ -142,7 +142,7 @@ class rmi(Variable):
     def function(famille, period):
         period = period.this_month
         activite_i = famille.members('activite', period)
-        condition_activite_i = (activite != 0) * (activite != 2) * (activite != 3)
+        condition_activite_i = (activite_i != 0) * (activite_i != 2) * (activite_i != 3)
         condition_activite = famille.any(condition_activite_i)
 
         rsa_base_ressources = famille('rsa_base_ressources', period)
@@ -162,10 +162,12 @@ class rsa_activite(Variable):
     stop_date = date(2015, 12, 31)
 
     def function(famille, period):
-        period = period
-        rsa = famille('rsa', period, options = [ADD])
-        rmi = famille('rmi', period, options = [ADD])
-
+        period = period.this_month
+        rsa = famille('rsa', period, period)
+        rsa_base_ressources = famille('rsa_base_ressources', period)
+        rsa_socle = famille('rsa_socle', period)
+        rsa_forfait_logement = famille('rsa_forfait_logement', period)
+        rmi = max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
         return period, max_(rsa - rmi, 0)
 
 
@@ -180,13 +182,13 @@ class rsa_activite_individu(Variable):
         '''
         Note: le partage en moitié est un point de législation, pas un choix arbitraire
         '''
-        period = period   # TODO: rentre dans le calcul de la PPE check period !!!
-
-        rsa_activite = individu.famille('rsa_activite', period)
+        period = period.this_year
+        rsa_activite = individu.famille('rsa_activite', period, options = [ADD])
         marie = individu('statut_marital', period) == 1
         en_couple = individu.famille('en_couple', period)
 
-        # On partage le rsa_activite entre les parents. Si la personne est mariée et qu'aucun conjoint n'a été déclaré, on divise par 2.
+        # On partage le rsa_activite entre les parents. Si la personne est mariée et qu'aucun conjoint n'a été déclaré,
+        # on divise par 2.
         partage_rsa = or_(marie, en_couple)
 
         return period, where(partage_rsa, rsa_activite / 2, rsa_activite)

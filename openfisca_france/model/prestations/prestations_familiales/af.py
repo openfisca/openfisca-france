@@ -162,13 +162,13 @@ class af_allocation_forfaitaire_taux_modulation(Variable):
             (base_ressources <= plafond1) * 1 +
             (base_ressources > plafond1) * (base_ressources <= plafond2) * modulation.taux_tranche_2 +
             (base_ressources > plafond2) * modulation.taux_tranche_3
-        )
+            )
 
         return period, taux
 
 
 class af_age_aine(Variable):
-    column = IntCol
+    column = AgeCol
     entity = Famille
     label = u"Allocations familiales - Âge de l'aîné des enfants éligibles"
 
@@ -273,7 +273,7 @@ class af_allocation_forfaitaire_complement_degressif(Variable):
     column = FloatCol
     entity = Famille
     label = u"AF - Complément dégressif pour l'allocation forfaitaire en cas de dépassement du plafond"
-    start_date =date(2015, 7, 1)
+    start_date = date(2015, 7, 1)
 
     def function(famille, period, legislation):
         period = period.this_month
@@ -302,7 +302,7 @@ class af_allocation_forfaitaire(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocations familiales - forfait"
-    start_date =date(2003, 7, 1)
+    start_date = date(2003, 7, 1)
 
     def function(famille, period, legislation):
         period = period.this_month
@@ -319,13 +319,14 @@ class af_allocation_forfaitaire(Variable):
         return period, af_forfaitaire_module
 
 
-class af(Variable):
+class af(DatedVariable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity = Famille
     label = u"Allocations familiales - total des allocations"
 
-    def function(famille, period, legislation):
+    @dated_function(start = date(2015, 7, 1))
+    def function_20150701(famille, period, legislation):
         period = period.this_month
         af_base = famille('af_base', period)
         af_majoration = famille('af_majoration', period)
@@ -333,4 +334,16 @@ class af(Variable):
         af_complement_degressif = famille('af_complement_degressif', period)
         af_forfaitaire_complement_degressif = famille('af_allocation_forfaitaire_complement_degressif', period)
 
-        return period, af_base + af_majoration + af_allocation_forfaitaire + af_complement_degressif + af_forfaitaire_complement_degressif
+        return period, (
+            af_base + af_majoration + af_allocation_forfaitaire + af_complement_degressif +
+            af_forfaitaire_complement_degressif
+            )
+
+    @dated_function(stop = date(2015, 6, 30))
+    def function_20150630(famille, period, legislation):
+        period = period.this_month
+        af_base = famille('af_base', period)
+        af_majoration = famille('af_majoration', period)
+        af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)
+
+        return period, af_base + af_majoration + af_allocation_forfaitaire

@@ -1,5 +1,36 @@
 # Changelog
 
+## 13.0.1
+
+* Fix ppe
+
+## 13.0.0
+
+* Deprecate `nbsala`
+* Deprecate `tva_ent`
+
+These changes are low impact since the two deprecated variables were not used.
+
+## 12.0.6
+
+* Fix `rsa_activite`
+
+## 12.0.5
+
+* Change `af` to DatedVariable to take into account the introduction of degressivite
+
+## 12.0.4
+
+* Change `aige_aine` column from IntCol to AgeCol.
+
+## 12.0.3
+
+* Rename CAT to CATEGORIE_SALARIE to be more explicit.
+
+## 12.0.2
+
+* Don't consider handicaped demandeur/conjoint as personne à charge in aides logement.
+
 ## 12.0.1
 
 * Fix `aide_logement_montant_brut_avant_degressivite` returned `period` to month.

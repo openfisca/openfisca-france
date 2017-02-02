@@ -31,7 +31,7 @@ class assiette_allegement(Variable):
         period = period
         # TODO vérifier changement d'assiette
         return period, assiette_cotisations_sociales * (
-            (categorie_salarie == CAT['prive_non_cadre']) | (categorie_salarie == CAT['prive_cadre'])
+            (categorie_salarie == CATEGORIE_SALARIE['prive_non_cadre']) | (categorie_salarie == CATEGORIE_SALARIE['prive_cadre'])
             )
 
 
