@@ -1,5 +1,9 @@
 # Changelog
 
+## 13.1.0
+
+* Use `individu` `revenus_locatifs` if any to compute `f4ba` (revenus fonciers imposables)
+
 ## 13.0.1
 
 * Fix ppe
