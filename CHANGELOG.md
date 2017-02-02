@@ -4,6 +4,8 @@
 
 * Use `individu` `revenus_locatifs` if any to compute `f4ba` (revenus fonciers imposables)
 
+This may change any variable related to impot sur le revenu if `revenus_locatifs` is not zero and f4ba is not initialized.
+
 ## 13.0.0
 
 * Deprecate `nbsala`
