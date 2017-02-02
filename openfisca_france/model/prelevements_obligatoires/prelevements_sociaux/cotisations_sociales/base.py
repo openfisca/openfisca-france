@@ -44,40 +44,28 @@ def apply_bareme_for_relevant_type_sal(
 
 
 def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None, variable_name = None):
-
+    period = period.this_month
     cotisation_mode_recouvrement = simulation.calculate('cotisation_sociale_mode_recouvrement', period)
-    if (cotisation_mode_recouvrement == 1).all():
-        cotisation = (
-            # en fin d'année
-            cotisation_mode_recouvrement == 1) * (
-                compute_cotisation_annuelle(
-                    simulation,
-                    period,
-                    cotisation_type = cotisation_type,
-                    bareme_name = bareme_name,
-                    )
+    cotisation = (
+        # en fin d'année
+        cotisation_mode_recouvrement == 1) * (
+            compute_cotisation_annuelle(
+                simulation,
+                period,
+                cotisation_type = cotisation_type,
+                bareme_name = bareme_name,
                 )
-    else:
-        cotisation = (
-            # en fin d'année
-            cotisation_mode_recouvrement == 1) * (
-                compute_cotisation_annuelle(
-                    simulation,
-                    period,
-                    cotisation_type = cotisation_type,
-                    bareme_name = bareme_name,
-                    )
-                ) + (
-            # anticipé
-            cotisation_mode_recouvrement == 0) * (
-                compute_cotisation_anticipee(
-                    simulation,
-                    period,
-                    cotisation_type = cotisation_type,
-                    bareme_name = bareme_name,
-                    variable_name = variable_name,
-                    )
+            ) + (
+        # anticipé
+        cotisation_mode_recouvrement == 0) * (
+            compute_cotisation_anticipee(
+                simulation,
+                period,
+                cotisation_type = cotisation_type,
+                bareme_name = bareme_name,
+                variable_name = variable_name,
                 )
+            )
     return cotisation
 
 
@@ -105,9 +93,9 @@ def compute_cotisation(simulation, period, cotisation_type = None, bareme_name =
 
 
 def compute_cotisation_annuelle(simulation, period, cotisation_type = None, bareme_name = None):
-    if (period.unit == 'month') and (period.start.month < 12):
+    if period.start.month < 12:
         return 0
-    if ((period.unit == 'month') and (period.start.month == 12)) or (period.unit == 'year'):
+    if period.start.month == 12:
         cotisation = compute_cotisation(
             simulation,
             period.this_year,
@@ -126,7 +114,6 @@ def compute_cotisation_anticipee(simulation, period, cotisation_type = None, bar
             bareme_name = bareme_name,
             )
     if period.start.month == 12:
-        assert variable_name is not None
         cumul = simulation.calculate_add(variable_name, period.start.offset('first-of', 'month').offset(
             -11, 'month').period('month', 11), max_nb_cycles = 1)
         # December variable_name depends on variable_name in the past 11 months.

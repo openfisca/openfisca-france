@@ -6,6 +6,7 @@ from openfisca_france.model.base import *  # noqa
 # RVCM
 # revenus au prélèvement libératoire
 class f2da(Variable):
+    base_function = requested_period_added_value
     cerfa_field = u"2DA"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
@@ -16,6 +17,7 @@ class f2da(Variable):
 
 
 class f2dh(Variable):
+    base_function = requested_period_added_value
     cerfa_field = u"2DH"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
@@ -23,6 +25,7 @@ class f2dh(Variable):
 
 
 class f2ee(Variable):
+    base_function = requested_period_added_value
     cerfa_field = u"2EE"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
@@ -31,6 +34,7 @@ class f2ee(Variable):
 
 # revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
 class f2dc(Variable):
+    base_function = requested_period_added_value
     cerfa_field = u"2DC"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
@@ -45,6 +49,7 @@ class f2fu(Variable):
 
 
 class f2ch(Variable):
+    base_function = requested_period_added_value
     cerfa_field = u"2CH"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
@@ -53,6 +58,7 @@ class f2ch(Variable):
 
 #  Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
 class f2ts(Variable):
+    base_function = requested_period_added_value
     cerfa_field = u"2TS"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
@@ -67,6 +73,7 @@ class f2go(Variable):
 
 
 class f2tr(Variable):
+    base_function = requested_period_added_value
     cerfa_field = u"2TR"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal

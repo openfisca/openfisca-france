@@ -470,6 +470,7 @@ class heures_non_remunerees_volume(Variable):
 
 
 class heures_remunerees_volume(Variable):
+    base_function = requested_period_added_value
     column = FloatCol
     entity = Individu
     label = u"Volume des heures rémunérées contractuellement (heures/mois, temps partiel)"

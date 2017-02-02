@@ -2195,6 +2195,7 @@ class rac(Variable):
 
 
 class rnc(Variable):
+    base_function = requested_period_added_value
     column = FloatCol
     entity = Individu
     label = u"Revenus non commerciaux individuels"
