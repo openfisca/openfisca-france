@@ -430,6 +430,7 @@ class csg_cap_lib(Variable):
 
         return period, -rev_cap_lib * _P.prelevements_sociaux.contributions.csg.capital.glob
 
+
 class crds_cap_lib(Variable):
     """Calcule la CRDS sur les revenus du capital soumis au prélèvement libératoire."""
     column = FloatCol
