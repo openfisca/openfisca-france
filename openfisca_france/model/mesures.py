@@ -220,6 +220,7 @@ class pensions(Variable):
         chomage_net = individu('chomage_net', period)
         retraite_nette = individu('retraite_nette', period)
         pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period)
+        pensions_invalidite = individu('pensions_invalidite', period)
 
         # Revenus du foyer fiscal, que l'on projette uniquement sur le 1er déclarant
         foyer_fiscal = individu.foyer_fiscal
@@ -228,7 +229,7 @@ class pensions(Variable):
         pen_foyer_fiscal = pensions_alimentaires_versees + retraite_titre_onereux
         pen_foyer_fiscal_projetees = pen_foyer_fiscal * (individu.has_role(foyer_fiscal.DECLARANT_PRINCIPAL))
 
-        return period, (chomage_net + retraite_nette + pensions_alimentaires_percues + pen_foyer_fiscal_projetees)
+        return period, (chomage_net + retraite_nette + pensions_alimentaires_percues + pensions_invalidite + pen_foyer_fiscal_projetees)
 
 
 class cotsoc_bar(Variable):

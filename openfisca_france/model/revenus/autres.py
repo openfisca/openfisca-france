@@ -76,6 +76,14 @@ class pensions_invalidite(Variable):
     column = FloatCol
     entity = Individu
     label = u"Pensions d'invalidité"
+    # Cette case est apparue dans la déclaration 2014
+    # Auparavant, les pensions d'invalidité étaient incluses dans la case 1AS
+    cerfa_field = {
+        QUIFOY['vous']: u"1AZ",
+        QUIFOY['conj']: u"1BZ",
+        QUIFOY['pac1']: u"1CZ",
+        QUIFOY['pac2']: u"1DZ",
+        }
 
 
 class bourse_enseignement_sup(Variable):
