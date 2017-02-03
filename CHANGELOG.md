@@ -6,9 +6,13 @@
 
 This may change any variable related to impot sur le revenu if `revenus_locatifs` is not zero and f4ba is not initialized.
 
+## 13.0.2
+
+* Add `pensions_invalidite` to pensions imposables
+
 ## 13.0.1
 
-* Fix ppe
+* Fix `ppe`
 
 ## 13.0.0
 
@@ -31,7 +35,7 @@ These changes are low impact since the two deprecated variables were not used.
 
 ## 12.0.3
 
-* Rename CAT to CATEGORIE_SALARIE to be more explicit.
+* Rename `CAT` to `CATEGORIE_SALARIE` to be more explicit.
 
 ## 12.0.2
 
