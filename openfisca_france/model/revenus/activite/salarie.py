@@ -643,13 +643,14 @@ class indice_majore(Variable):
 
 
 class primes_fonction_publique(Variable):
+    base_function = requested_period_added_value
     column = FloatCol
     entity = Individu
     label = u"Calcul des primes pour les fonctionnaries"
     url = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml"
 
     def function(self, simulation, period):
-        # period = period.this_month
+        period = period.this_month
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         public = (

@@ -315,7 +315,7 @@ class taxe_salaires(Variable):
 # http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8920/fichedescriptiveformulaire_8920.pdf
 
     def function(self, simulation, period):
-        # period = period.start.period(u'month').offset('first-of')
+        period = period.this_month
         assujettie_taxe_salaires = simulation.calculate('assujettie_taxe_salaires', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)

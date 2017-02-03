@@ -157,9 +157,10 @@ class chomage_net(Variable):
     url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
 
     def function(individu, period):
+        period = period.this_month
         chomage_imposable = individu('chomage_imposable', period)
-        csg_imposable_chomage = individu('csg_imposable_chomage', period, options = [ADD])
-        crds_chomage = individu('crds_chomage', period, options = [ADD])
+        csg_imposable_chomage = individu('csg_imposable_chomage', period)
+        crds_chomage = individu('crds_chomage', period)
 
         return period, chomage_imposable + csg_imposable_chomage + crds_chomage
 
@@ -169,7 +170,7 @@ class chomage_net(Variable):
 ############################################################################
 
 class csg_deductible_retraite(Variable):
-    calculate_output = calculate_output_add
+    base_function = requested_period_added_value
     column = FloatCol
     entity = Individu
     label = u"CSG déductible sur les pensions de retraite"
@@ -192,7 +193,7 @@ class csg_deductible_retraite(Variable):
 
 
 class csg_imposable_retraite(Variable):
-    calculate_output = calculate_output_add
+    base_function = requested_period_added_value
     column = FloatCol
     entity = Individu
     label = u"CSG imposable sur les pensions de retraite"
@@ -212,7 +213,7 @@ class csg_imposable_retraite(Variable):
 
 
 class crds_retraite(Variable):
-    calculate_output = calculate_output_add
+    base_function = requested_period_added_value
     column = FloatCol
     entity = Individu
     label = u"CRDS sur les pensions de retraite"
@@ -233,6 +234,7 @@ class crds_retraite(Variable):
 
 
 class casa(DatedVariable):
+    base_function = requested_period_added_value
     column = FloatCol
     entity = Individu
     label = u"Contribution additionnelle de solidarité et d'autonomie"
@@ -283,8 +285,9 @@ class retraite_imposable(Variable):
     url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
 
     def function(individu, period):
-        retraite_brute = individu('retraite_brute', period, options = [ADD])
-        csg_deductible_retraite = individu('csg_deductible_retraite', period, options = [ADD])
+        period = period.this_month
+        retraite_brute = individu('retraite_brute', period)
+        csg_deductible_retraite = individu('csg_deductible_retraite', period)
 
         return period, retraite_brute + csg_deductible_retraite
 
@@ -298,10 +301,11 @@ class retraite_nette(Variable):
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
 
     def function(individu, period):
+        period = period.this_month
         retraite_imposable = individu('retraite_imposable', period)
-        casa = individu('casa', period, options = [ADD])
-        csg_imposable_retraite = individu('csg_imposable_retraite', period, options = [ADD])
-        crds_retraite = individu('crds_retraite', period, options = [ADD])
+        casa = individu('casa', period)
+        csg_imposable_retraite = individu('csg_imposable_retraite')
+        crds_retraite = individu('crds_retraite')
 
         return period, retraite_imposable + csg_imposable_retraite + crds_retraite + casa
 

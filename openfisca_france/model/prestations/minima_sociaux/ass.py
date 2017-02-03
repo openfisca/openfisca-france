@@ -76,7 +76,7 @@ class ass_base_ressources_individu(Variable):
         salaire_imposable_interrompu = (salaire_imposable > 0) * (salaire_imposable_this_month == 0)
         # Le Salaire d'une activité partielle est neutralisé en cas d'interruption
         salaire_imposable = (1 - salaire_imposable_interrompu) * salaire_imposable
-        retraite_nette = simulation.calculate('retraite_nette', previous_year)
+        retraite_nette = simulation.calculate_add('retraite_nette', previous_year)
 
         def revenus_tns():
             revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)

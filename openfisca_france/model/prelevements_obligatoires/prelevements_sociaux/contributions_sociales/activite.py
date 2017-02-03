@@ -190,7 +190,7 @@ class salaire_imposable(Variable):
             QUIFOY['pac1']: u"1CJ",
             QUIFOY['pac2']: u"1DJ",
             QUIFOY['pac3']: u"1EJ",
-            },  # (f1aj, f1bj, f1cj, f1dj, f1ej)
+            },
         val_type = "monetary",
         )
     entity = Individu
@@ -198,6 +198,7 @@ class salaire_imposable(Variable):
     set_input = set_input_divide_by_period
 
     def function(individu, period):
+        period = period.this_month
         salaire_de_base = individu('salaire_de_base', period)
         primes_salaires = individu('primes_salaires', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
@@ -233,7 +234,7 @@ class salaire_net(Variable):
         Calcul du salaire net d'après définition INSEE
         net = net de csg et crds
         '''
-        # period = period.start.period(u'month').offset('first-of')
+        period = period.this_month
         salaire_imposable = simulation.calculate('salaire_imposable', period)
         crds_salaire = simulation.calculate('crds_salaire', period)
         csg_imposable_salaire = simulation.calculate('csg_imposable_salaire', period)
