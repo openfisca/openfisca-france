@@ -170,10 +170,13 @@
   </NODE>
   <NODE code="cice" origin="ipp">
     <CODE code="plafond_smic" origin="ipp">
+      <!-- Code général des impôts - Article 244 quater C - II -->
       <VALUE deb="2013-01-01" fuzzy="true" valeur="2.5" />
     </CODE>
     <CODE code="taux" format="percent" origin="ipp">
-      <VALUE deb="2014-01-01" fuzzy="true" valeur="0.06" />
+      <!-- Code général des impôts - Article 244 quater C - III  -->
+      <VALUE deb="2017-01-01" fuzzy="true" valeur="0.07" />
+      <VALUE deb="2014-01-01" fin="2016-12-31" valeur="0.06" />
       <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.04" />
     </CODE>
   </NODE>

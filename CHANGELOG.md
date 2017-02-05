@@ -1,5 +1,9 @@
 # Changelog
 
+## 13.1.1
+
+* Update taux CICE 2017 : from 6% to 7%
+
 ## 13.1.0
 
 * Use `individu` `revenus_locatifs` if any to compute `f4ba` (revenus fonciers imposables)
