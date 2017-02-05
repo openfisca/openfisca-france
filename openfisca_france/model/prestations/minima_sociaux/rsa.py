@@ -34,7 +34,6 @@ class rsa_base_ressources(DatedVariable):
             (not_(enfant_i) + rsa_enfant_a_charge_i) * ressources_individuelles_i
             )
 
-
         return mois_demande, (
             rsa_base_ressources_prestations_familiales + rsa_base_ressources_minima_sociaux + ressources_individuelles
             )
