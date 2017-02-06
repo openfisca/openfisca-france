@@ -304,8 +304,8 @@ class retraite_nette(Variable):
         period = period.this_month
         retraite_imposable = individu('retraite_imposable', period)
         casa = individu('casa', period)
-        csg_imposable_retraite = individu('csg_imposable_retraite')
-        crds_retraite = individu('crds_retraite')
+        csg_imposable_retraite = individu('csg_imposable_retraite', period)
+        crds_retraite = individu('crds_retraite', period)
 
         return period, retraite_imposable + csg_imposable_retraite + crds_retraite + casa
 
