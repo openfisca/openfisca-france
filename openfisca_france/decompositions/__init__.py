@@ -1,1 +1,0 @@
-DEFAULT_DECOMP_FILE = "decomp.xml"

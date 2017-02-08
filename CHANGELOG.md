@@ -1,5 +1,9 @@
 # Changelog
 
+## 13.1.2
+
+* Refactor TaxBenefitSystem decomposition attributes
+
 ## 13.1.1
 
 * Update taux CICE 2017 : from 6% to 7%
