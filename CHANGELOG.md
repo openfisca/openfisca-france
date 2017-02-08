@@ -1,8 +1,74 @@
 # Changelog
 
-## 11.0.1
+## 13.1.2
 
 * Refactor TaxBenefitSystem decomposition attributes
+
+## 13.1.1
+
+* Update taux CICE 2017 : from 6% to 7%
+
+## 13.1.0
+
+* Use `individu` `revenus_locatifs` if any to compute `f4ba` (revenus fonciers imposables)
+
+This may change any variable related to impot sur le revenu if `revenus_locatifs` is not zero and f4ba is not initialized.
+
+## 13.0.2
+
+* Add `pensions_invalidite` to pensions imposables
+
+## 13.0.1
+
+* Fix `ppe`
+
+## 13.0.0
+
+* Deprecate `nbsala`
+* Deprecate `tva_ent`
+
+These changes are low impact since the two deprecated variables were not used.
+
+## 12.0.6
+
+* Fix `rsa_activite`
+
+## 12.0.5
+
+* Change `af` to DatedVariable to take into account the introduction of degressivite
+
+## 12.0.4
+
+* Change `aige_aine` column from IntCol to AgeCol.
+
+## 12.0.3
+
+* Rename `CAT` to `CATEGORIE_SALARIE` to be more explicit.
+
+## 12.0.2
+
+* Don't consider handicaped demandeur/conjoint as personne à charge in aides logement.
+
+## 12.0.1
+
+* Fix `aide_logement_montant_brut_avant_degressivite` returned `period` to month.
+
+## 12.0.0
+
+* Use core `test_runner` for yaml tests
+* Return yearly amount for `acs`, `bourse_college`, `bourse_lycee` instead of artificially divide it by 12 (breaking change).
+
+## 11.1.0
+
+ * Implement "Aides au logement" degression when rent is above a threshold.
+
+## 11.0.2
+
+* Fix typo in `casa` variable label
+
+## 11.0.1
+
+* Add a `sans_objet` level to variable `contrat_de_travail`
 
 ## 11.0.0
 

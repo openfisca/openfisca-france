@@ -21,10 +21,8 @@ class salaire_imposable_pour_inversion(Variable):
 class salaire_de_base(Variable):
 
     def function(self, simulation, period):
-        """Calcule le salaire brut à partir du salaire imposable ou sinon du salaire net.
-
-        Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
-        Note : le supplément familial de traitement est imposable.
+        """Calcule le salaire brut à partir du salaire imposable par inversion du barème
+        de cotisations sociales correspondant à la catégorie à laquelle appartient le salarié.
         """
         # Get value for year and divide below.
         salaire_imposable_pour_inversion = simulation.calculate('salaire_imposable_pour_inversion',
@@ -62,9 +60,9 @@ class salaire_de_base(Variable):
         prive_non_cadre.add_tax_scale(csg)
         prive_cadre.add_tax_scale(csg)
         salaire_de_base = (
-            (categorie_salarie == CAT['prive_non_cadre']) *
+            (categorie_salarie == CATEGORIE_SALARIE['prive_non_cadre']) *
             prive_non_cadre.inverse().calc(salaire_imposable_pour_inversion) +
-            (categorie_salarie == CAT['prive_cadre']) * prive_cadre.inverse().calc(salaire_imposable_pour_inversion)
+            (categorie_salarie == CATEGORIE_SALARIE['prive_cadre']) * prive_cadre.inverse().calc(salaire_imposable_pour_inversion)
             )
         return period, salaire_de_base + hsup
 
@@ -123,7 +121,7 @@ class traitement_indiciaire_brut(Variable):
         bareme_prime.add_bracket(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
         public_titulaire_etat.add_tax_scale(bareme_prime)
         traitement_indiciaire_brut = (
-            (categorie_salarie == CAT['public_titulaire_etat']) *
+            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat']) *
             public_titulaire_etat.inverse().calc(salaire_imposable_pour_inversion)
             )
         # TODO: complete this to deal with the fonctionnaire

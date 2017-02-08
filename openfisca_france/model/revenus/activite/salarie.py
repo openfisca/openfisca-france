@@ -2,11 +2,11 @@
 
 from functools import partial
 from numpy import (
-    busday_count as original_busday_count, datetime64, maximum as max_, minimum as min_, timedelta64, logical_not as not_,
+    busday_count as original_busday_count, datetime64, logical_not as not_,
+    maximum as max_, minimum as min_, timedelta64,
     )
-
 from openfisca_france.model.base import *  # noqa analysis:ignore
-from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
+
 
 class indemnites_stage(Variable):
     column = FloatCol
@@ -26,8 +26,6 @@ class bourse_recherche(Variable):
     label = u"Bourse de recherche"
 
 
-
-
 class sal_pen_exo_etr(Variable):
     cerfa_field = {
         QUIFOY['vous']: u"1AC",
@@ -41,8 +39,6 @@ class sal_pen_exo_etr(Variable):
     start_date = date(2013, 1, 1)
 
 
-
-
 class frais_reels(Variable):
     cerfa_field = {QUIFOY['vous']: u"1AK",
         QUIFOY['conj']: u"1BK",
@@ -53,8 +49,6 @@ class frais_reels(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Frais réels"
-
-  # (f1ak, f1bk, f1ck, f1dk, f1ek)
 
 
 class hsup(Variable):
@@ -70,7 +64,6 @@ class hsup(Variable):
     start_date = date(2007, 1, 1)
     stop_date = date(2013, 12, 13)
 
-  # (f1au, f1bu, f1cu, f1du)
 
 class ppe_du_sa(Variable):
     cerfa_field = {QUIFOY['vous']: u"1AV",
@@ -83,7 +76,15 @@ class ppe_du_sa(Variable):
     entity = Individu
     label = u"Prime pour l'emploi des salariés: nombre d'heures payées dans l'année"
 
-  # (f1av, f1bv, f1cv, f1dv, f1qv)
+    def function(individu, period):
+        period = period.this_year
+        heures_remunerees_volume = individu('heures_remunerees_volume', period, options = [ADD])
+        travail_temps_decompte_en_heures = (
+            (individu('contrat_de_travail', period) > 0) *
+            (individu('contrat_de_travail', period) < 6)
+            )
+        return period, heures_remunerees_volume * travail_temps_decompte_en_heures
+
 
 class ppe_tp_sa(Variable):
     cerfa_field = {
@@ -98,39 +99,10 @@ class ppe_tp_sa(Variable):
     entity = Individu
     label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière"
 
-  # (f1ax, f1bx, f1cx, f1dx, f1qx)
+    def function(individu, period):
+        period = period.this_year
+        return period, individu('contrat_de_travail', period) > 0
 
-class nbsala(Variable):
-    column = EnumCol(
-        enum = Enum([
-            u"Sans objet",
-            u"Aucun salarié",
-            u"1 à 4 salariés",
-            u"5 à 9 salariés",
-            u"10 à 19 salariés",
-            u"20 à 49 salariés",
-            u"50 à 199 salariés",
-            u"200 à 499 salariés",
-            u"500 à 999 salariés",
-            u"1000 salariés ou plus",
-            u"Ne sait pas",
-            ])
-            ,
-        )
-    entity = Individu
-    label = u"Nombre de salariés dans l'établissement de l'emploi actuel"
-
-
-
-class tva_ent(Variable):
-    column = BoolCol(default = True)
-    entity = Individu
-    label = u"L'entreprise employant le salarié paye de la TVA"
-
-
-
-# build_column('code_risque', EnumCol(label = u"Code risque pour les accidents du travail"))
-# TODO: Complete label, add enum and relevant default.
 
 class exposition_accident(Variable):
     column = EnumCol(
@@ -139,20 +111,19 @@ class exposition_accident(Variable):
             u"Moyen",
             u"Élevé",
             u"Très élevé",
-            ])
-            ,
+            ]),
         )
     entity = Individu
     label = u"Exposition au risque pour les accidents du travail"
 
+
 class exposition_penibilite(Variable):
     column = EnumCol(
         enum = Enum([
-            u"Nulle", # Pas d'exposition de l'employé à un facteur de pénibilité
-            u"Simple", # Exposition à un seul facteur de pénibilité
-            u"Multiple", # Exposition à plusieurs facteurs de pénibilité
-            ])
-            ,
+            u"Nulle",  # Pas d'exposition de l'employé à un facteur de pénibilité
+            u"Simple",  # Exposition à un seul facteur de pénibilité
+            u"Multiple",  # Exposition à plusieurs facteurs de pénibilité
+            ]),
         )
     entity = Individu
     label = u"Exposition à un ou plusieurs facteurs de pénibilité"
@@ -238,6 +209,7 @@ class contrat_de_travail(Variable):
                 u"forfait_heures_mois",
                 u"forfait_heures_annee",
                 u"forfait_jours_annee",
+                u"sans_objet",
                 ],
             ),
         )
@@ -277,6 +249,7 @@ class cotisation_sociale_mode_recouvrement(Variable):
         )
     entity = Individu
     label = u"Mode de recouvrement des cotisations sociales"
+
 
 class entreprise_est_association_non_lucrative(Variable):
     column = BoolCol
@@ -474,6 +447,7 @@ class categorie_salarie(Variable):
                 u"public_titulaire_territoriale",
                 u"public_titulaire_hospitaliere",
                 u"public_non_titulaire",
+                u"non_pertinent",
                 ],
             ),
         )
@@ -673,14 +647,14 @@ class primes_fonction_publique(Variable):
     url = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml"
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
+        # period = period.this_month
         categorie_salarie = simulation.calculate('categorie_salarie', period)
 
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         public = (
-            (categorie_salarie == CAT['public_titulaire_etat']) +
-            (categorie_salarie == CAT['public_titulaire_territoriale']) +
-            (categorie_salarie == CAT['public_titulaire_hospitaliere'])
+            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat']) +
+            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_territoriale']) +
+            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_hospitaliere'])
             )
         return period, TAUX_DE_PRIME * traitement_indiciaire_brut * public
 
@@ -700,8 +674,11 @@ class af_nbenf_fonc(Variable):
         smic_mensuel_brut = law.cotsoc.gen.smic_h_b * nbh_travaillees
         autonomie_financiere = (salaire_de_base / 6) >= (law.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
         age = simulation.calculate('age', period)
-        condition_enfant = (age >= law.prestations.prestations_familiales.af.age1) * (age <= law.prestations.prestations_familiales.af.age2) * not_(autonomie_financiere)
-
+        condition_enfant = (
+            (age >= law.prestations.prestations_familiales.af.age1) *
+            (age <= law.prestations.prestations_familiales.af.age2) *
+            not_(autonomie_financiere)
+            )
         return period, simulation.famille.sum(condition_enfant, role = Famille.ENFANT)
 
 
@@ -760,19 +737,21 @@ class supp_familial_traitement(Variable):
                    plafond_mensuel_3 * (fonc_nbenf == 3) +
                    plafond_mensuel_supp * max_(0, fonc_nbenf - 3))
 
-        sft = (categorie_salarie >= 2) * min_(
+        sft = (categorie_salarie >= 2) * (categorie_salarie < 7) * min_(
             max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher),
             plafond
             )
         # Nota Bene:
         # categorie_salarie is an EnumCol which enum is:
-        # CAT = Enum(['prive_non_cadre',
+        # CATEGORIE_SALARIE = Enum(['prive_non_cadre',
         #             'prive_cadre',
         #             'public_titulaire_etat',
         #             'public_titulaire_militaire',
         #             'public_titulaire_territoriale',
         #             'public_titulaire_hospitaliere',
-        #             'public_non_titulaire'])
+        #             'public_non_titulaire',
+        #             'non_pertinent',
+        #             ])
         return period, sft
 
 
@@ -852,8 +831,8 @@ class salaire_super_brut_hors_allegements(Variable):
         salaire_super_brut_hors_allegements = (
             salaire_de_base + remuneration_principale + remuneration_apprenti +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement + indemnite_fin_contrat +
-            depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur
-            - cotisations_employeur
+            depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur -
+            cotisations_employeur
             )
 
         return period, salaire_super_brut_hors_allegements

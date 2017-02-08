@@ -74,7 +74,9 @@ class al_nb_personnes_a_charge(Variable):
                 (base_ressources_i <= plafond_ressource)
                 )
 
-            return famille.sum(adulte_handicape)
+            # Par convention les adultes handicapé à charge de la famille ont le role ENFANT dans la famille
+            # Le demandeur et son conjoint ne sont jamais considérés comme à charge
+            return famille.sum(adulte_handicape, role = Famille.ENFANT)
 
         nb_pac = al_nb_enfants() + al_nb_adultes_handicapes()
         nb_pac = where(residence_dom, min_(nb_pac, 6), nb_pac)
@@ -278,6 +280,106 @@ class aide_logement_base_ressources(Variable):
 
         return period, ressources
 
+class aide_logement_loyer_plafond(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Loyer plafond dans le calcul des aides au logement (L2)"
+
+    def function(famille, period, legislation):
+        period = period.this_month
+        al = legislation(period).prestations.aides_logement
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        couple = famille('al_couple', period)
+        coloc = famille.demandeur.menage('coloc', period)
+        chambre = famille.demandeur.menage('logement_chambre', period)
+        zone_apl = famille.demandeur.menage('zone_apl', period)
+
+
+        # Preprocessing pour pouvoir accéder aux paramètres dynamiquement par zone.
+        plafonds_by_zone = [
+            [0] +
+            [al.loyers_plafond['zone' + str(zone)][i]
+            for zone in range(1, 4)]
+            for i in ['personnes_seules', 'couples', 'un_enfant', 'majoration_par_enf_supp']
+            ]
+        plafond_personne_seule = take(plafonds_by_zone[0], zone_apl)
+        plafond_couple = take(plafonds_by_zone[1], zone_apl)
+        plafond_famille = take(plafonds_by_zone[2], zone_apl) + (al_nb_pac > 1) * (al_nb_pac - 1) * take(plafonds_by_zone[3], zone_apl)
+
+        plafond = select(
+            [not_(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
+            [plafond_personne_seule, plafond_famille],
+            default = plafond_couple
+            )
+
+        coeff_coloc = where(coloc, al.loyers_plafond.colocation, 1)
+        coeff_chambre = where(chambre, al.loyers_plafond.chambre, 1)
+
+        return period, round_(plafond * coeff_coloc * coeff_chambre, 2)
+
+
+class aide_logement_loyer_seuil_degressivite(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Seuil de degressivité dans le calcul des aides au logement"
+    start_date = date(2016, 7, 1)
+
+    def function(famille, period, legislation):
+        period = period.this_month
+        al = legislation(period).prestations.aides_logement
+        zone_apl = famille.demandeur.menage('zone_apl', period)
+        loyer_plafond = famille('aide_logement_loyer_plafond', period)
+        chambre = famille.demandeur.menage('logement_chambre', period)
+        coloc = famille.demandeur.menage('coloc', period)
+
+        coeff_degressivite_by_zone = [0] + [al.loyers_plafond['zone' + str(zone)]['degressivite'] for zone in range(1, 4)]
+        coeff_degressivite = take(coeff_degressivite_by_zone, zone_apl)
+
+        loyer_degressivite = loyer_plafond * coeff_degressivite
+        minoration_coloc = loyer_degressivite * 0.25 * coloc
+        minoration_chambre = loyer_degressivite * 0.1 * chambre
+        loyer_degressivite -= minoration_coloc + minoration_chambre
+
+        return period, round_(loyer_degressivite, 2)
+
+
+class aide_logement_loyer_seuil_suppression(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Seuil de suppression dans le calcul des aides au logement"
+    start_date = date(2016, 7, 1)
+
+    def function(famille, period, legislation):
+        period = period.this_month
+        al = legislation(period).prestations.aides_logement
+        zone_apl = famille.demandeur.menage('zone_apl', period)
+        loyer_plafond = famille('aide_logement_loyer_plafond', period)
+        chambre = famille.demandeur.menage('logement_chambre', period)
+        coloc = famille.demandeur.menage('coloc', period)
+
+        coeff_suppression_by_zone = [0] + [al.loyers_plafond['zone' + str(zone)]['suppression'] for zone in range(1, 4)]
+        coeff_suppression = take(coeff_suppression_by_zone, zone_apl)
+
+        loyer_suppression = loyer_plafond * coeff_suppression
+        minoration_coloc = loyer_suppression * 0.25 * coloc
+        minoration_chambre = loyer_suppression * 0.1 * chambre
+        loyer_suppression -= minoration_coloc + minoration_chambre
+
+        return period, round_(loyer_suppression, 2)
+
+
+class aide_logement_loyer_reel(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Loyer réel dans le calcul des aides au logement"
+
+    def function(famille, period):
+        period = period.this_month
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        loyer = famille.demandeur.menage('loyer', period)
+        coeff_meuble = where(statut_occupation_logement == 5, 2 / 3, 1)  # Coeff de 2/3 pour les meublés
+        return period, round_(loyer * coeff_meuble)
+
 
 class aide_logement_loyer_retenu(Variable):
     column = FloatCol
@@ -287,44 +389,11 @@ class aide_logement_loyer_retenu(Variable):
     def function(famille, period, legislation):
         period = period.this_month
         al = legislation(period).prestations.aides_logement
-        al_nb_pac = famille('al_nb_personnes_a_charge', period)
-        couple = famille('al_couple', period)
-
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        loyer = famille.demandeur.menage('loyer', period)
-        coloc = famille.demandeur.menage('coloc', period)
-        chambre = famille.demandeur.menage('logement_chambre', period)
-        zone_apl = famille.demandeur.menage('zone_apl', period)
-
-        def loyer_reel():  # personnes_seules L1
-            coeff_meuble = where(statut_occupation_logement == 5, 2 / 3, 1)  # Coeff de 2/3 pour les meublés
-            return round_(loyer * coeff_meuble)
-
-        def loyer_plafond():  # L2
-            # Preprocessing pour pouvoir accéder aux paramètres dynamiquement par zone.
-            plafonds_by_zone = [
-                [0] +
-                [al.loyers_plafond['zone' + str(zone)][i]
-                for zone in range(1, 4)]
-                for i in ['personnes_seules', 'couples', 'un_enfant', 'majoration_par_enf_supp']
-                ]
-            plafond_personne_seule = take(plafonds_by_zone[0], zone_apl)
-            plafond_couple = take(plafonds_by_zone[1], zone_apl)
-            plafond_famille = take(plafonds_by_zone[2], zone_apl) + (al_nb_pac > 1) * (al_nb_pac - 1) * take(plafonds_by_zone[3], zone_apl)
-
-            plafond = select(
-                [not_(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
-                [plafond_personne_seule, plafond_famille],
-                default = plafond_couple
-                )
-
-            coeff_coloc = where(coloc, al.loyers_plafond.colocation, 1)
-            coeff_chambre = where(chambre, al.loyers_plafond.chambre, 1)
-
-            return round_(plafond * coeff_coloc * coeff_chambre, 2)
+        loyer_plafond = famille('aide_logement_loyer_plafond', period)
+        loyer_reel = famille('aide_logement_loyer_reel', period)
 
         # loyer retenu
-        return period, min_(loyer_reel(), loyer_plafond())
+        return period, min_(loyer_reel, loyer_plafond)
 
 
 class aide_logement_charges(Variable):
@@ -343,12 +412,13 @@ class aide_logement_charges(Variable):
         return period, where(coloc, montant_coloc, montant_cas_general)
 
 
-class aide_logement_R0(Variable):
+class aide_logement_R0(DatedVariable):
     column = FloatCol
     entity = Famille
     label = u"Revenu de référence, basé sur la situation familiale, pris en compte dans le calcul des AL."
 
-    def function(famille, period, legislation):
+    @dated_function(stop = date(2014, 12, 31))
+    def function_2014(famille, period, legislation):
         period = period.this_month
         al = legislation(period).prestations.aides_logement
         pfam_n_2 = legislation(period.start.offset(-2, 'year')).prestations.prestations_familiales
@@ -357,7 +427,7 @@ class aide_logement_R0(Variable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         residence_dom = famille.demandeur.menage('residence_dom')
 
-        n_2 = period.start.offset(-2, 'year')  # deux ans après la mise en place du rsa le 2009-06-01
+        n_2 = period.start.offset(-2, 'year')
         if n_2.date >= date(2009, 6, 01):
             montant_de_base = minim_n_2.rsa.montant_de_base_du_rsa
         else:
@@ -378,6 +448,28 @@ class aide_logement_R0(Variable):
             )
 
         R0 = round_(12 * (R1 - R2) * (1 - al.autres.abat_sal))
+
+        return period, R0
+
+    # cf Décret n° 2014-1739 du 29 décembre 2014 relatif au calcul des aides personnelles au logement
+    @dated_function(start = date(2015, 1, 1))
+    def function_2015(famille, period, legislation):
+        period = period.this_month
+        al = legislation(period).prestations.aides_logement
+        couple = famille('al_couple', period)
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+
+        R0 = (
+            al.R0.taux_seul * not_(couple) * (al_nb_pac == 0) +
+            al.R0.taux_couple * couple * (al_nb_pac == 0) +
+            al.R0.taux1pac * (al_nb_pac == 1) +
+            al.R0.taux2pac * (al_nb_pac == 2) +
+            al.R0.taux3pac * (al_nb_pac == 3) +
+            al.R0.taux4pac * (al_nb_pac == 4) +
+            al.R0.taux5pac * (al_nb_pac == 5) +
+            al.R0.taux6pac * (al_nb_pac == 6) +
+            al.R0.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
+            )
 
         return period, R0
 
@@ -474,11 +566,10 @@ class aide_logement_participation_personelle(Variable):
 
         return period, P0 + Tp * Rp
 
-
-class aide_logement_montant_brut(Variable):
+class aide_logement_montant_brut_avant_degressivite(Variable):
     column = FloatCol
+    label = u"Montant des aides aux logements en secteur locatif avant degressivité et brut de CRDS"
     entity = Famille
-    label = u"Formule des aides aux logements en secteur locatif en montant brut avant CRDS"
 
     def function(famille, period, legislation):
         period = period.this_month
@@ -498,6 +589,43 @@ class aide_logement_montant_brut(Variable):
         montant = select([locataire, accedant], [montant_locataire, montant_accedants])
 
         montant = montant * (montant >= al.al_min.montant_min_mensuel.montant_min_apl_al)  # Montant minimal de versement
+
+        return period, montant
+
+
+class aide_logement_montant_brut(DatedVariable):
+    column = FloatCol
+    entity = Famille
+    label = u"Montant des aides au logement après degressivité, avant CRDS"
+
+    @dated_function(stop = date(2016, 6, 30))
+    def function_avant_degression(famille, period):
+        period = period.this_month
+        montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
+        return period, montant_avant_degressivite
+
+    @dated_function(start = date(2016, 7, 1))
+    def function_apres_degression(famille, period):
+        period = period.this_month
+        montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
+        loyer_reel = famille('aide_logement_loyer_reel', period)
+        loyer_degressivite = famille('aide_logement_loyer_seuil_degressivite', period)
+        loyer_suppression = famille('aide_logement_loyer_seuil_suppression', period)
+        handicap_i = famille.members('handicap', period)
+        handicap = famille.any(handicap_i)
+
+        coeff = select(
+            [loyer_reel <= loyer_degressivite, loyer_reel <= loyer_suppression, loyer_reel > loyer_suppression],
+            [1, 1 - ((loyer_reel - loyer_degressivite) / (loyer_suppression - loyer_degressivite)), 0]
+            )
+
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        accedant = (statut_occupation_logement == 1)
+        locataire_foyer = (statut_occupation_logement == 7)
+        exception = accedant + locataire_foyer + handicap
+        coeff = where(exception, 1, coeff)
+
+        montant = round_(montant_avant_degressivite * coeff, 2)
 
         return period, montant
 

@@ -373,13 +373,14 @@ class revenu_assimile_pension(Variable):
     entity = Individu
     label = u"Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)"
 
-    def function(self, simulation, period):
+    def function(individu, period):
         period = period.this_year
-        pensions_alimentaires_percues = simulation.calculate_add('pensions_alimentaires_percues', period)
-        pensions_alimentaires_percues_decl = simulation.calculate_add('pensions_alimentaires_percues_decl', period)
-        retraite_imposable = simulation.calculate_add('retraite_imposable', period)
+        pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period, options = [ADD])
+        pensions_alimentaires_percues_decl = individu('pensions_alimentaires_percues_decl', period, options = [ADD])
+        retraite_imposable = individu('retraite_imposable', period, options = [ADD])
+        pension_invalidite = individu('pensions_invalidite', period, options = [ADD])
 
-        return period, pensions_alimentaires_percues * pensions_alimentaires_percues_decl + retraite_imposable
+        return period, pensions_alimentaires_percues * pensions_alimentaires_percues_decl + retraite_imposable + pension_invalidite
 
 
 class revenu_assimile_pension_apres_abattements(Variable):
@@ -2869,9 +2870,10 @@ class ppe_brute(Variable):
     #                           (cond2 & (base > ppe.seuil2) & (base <= ppe.seuil3)) * ((ppe.seuil3 - base) * ppe.taux2) +
     #                           (cond2 & (base > ppe.seuil4) & (base <= ppe.seuil5)) * (ppe.seuil5 - base) * ppe.taux3)
             return (1 / ppe_coef) * (
-                ((base <= ppe.seuil2)) * (base) * ppe.taux1
-                + ((base > ppe.seuil2) & (base <= ppe.seuil3)) * (ppe.seuil3 - base) * ppe.taux2
-                + ligne2 * ((base > ppe.seuil4) & (base <= ppe.seuil5)) * (ppe.seuil5 - base) * ppe.taux3)
+                (base <= ppe.seuil2) * (base) * ppe.taux1 +
+                (base > ppe.seuil2) * (base <= ppe.seuil3) * (ppe.seuil3 - base) * ppe.taux2 +
+                ligne2 * (base > ppe.seuil4) * (base <= ppe.seuil5) * (ppe.seuil5 - base) * ppe.taux3
+                )
 
         def ppe_bar2(base):
             return (1 / ppe_coef) * (
@@ -2933,7 +2935,7 @@ class ppe(Variable):
         """
         period = period.this_year
         ppe_brute = simulation.calculate('ppe_brute', period)
-        rsa_act_i_holder = simulation.compute('rsa_activite_individu', period)
+        rsa_act_i_holder = simulation.compute_add('rsa_activite_individu', period)
 
         # TODO: les foyers qui paient l'ISF n'ont pas le droit à la PPE
         rsa_act_i = self.split_by_roles(rsa_act_i_holder, roles = [VOUS, CONJ])
