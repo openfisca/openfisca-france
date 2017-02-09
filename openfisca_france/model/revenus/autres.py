@@ -14,9 +14,9 @@ class pensions_alimentaires_percues(Variable):
     column = FloatCol(val_type = "monetary")
     entity = Individu
     label = u"Pensions alimentaires perçues"
+    set_input = set_input_divide_by_period
 
 
-# (f1ao, f1bo, f1co, f1do, f1eo)
 class pensions_alimentaires_percues_decl(Variable):
     column = BoolCol(default = True)
     entity = Individu

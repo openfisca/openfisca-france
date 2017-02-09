@@ -1,5 +1,9 @@
 # Changelog
 
+## 13.1.3
+
+* Change `base_function` and `set_input` t obe able to work o na monthly basis.
+
 ## 13.1.2
 
 * Refactor TaxBenefitSystem decomposition attributes
