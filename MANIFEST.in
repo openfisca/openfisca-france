@@ -7,3 +7,6 @@ recursive-include openfisca_france/scripts *
 include openfisca_france/tests/__init__.py
 include openfisca_france/tests/base.py
 include openfisca_france/tests/test_basics.py
+recursive-include openfisca_france/i18n *.mo
+include *.md
+include LICENSE
