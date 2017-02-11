@@ -75,9 +75,8 @@ class rsa_base_ressources(DatedVariable):
             )
 
 
-
 class rsa_has_ressources_substitution(Variable):
-    column = FloatCol
+    column = BoolCol
     label = u"Présence de ressources de substitution au mois M, qui désactivent la neutralisation des revenus professionnels interrompus au moins M."
     entity = Individu
 
@@ -86,7 +85,7 @@ class rsa_has_ressources_substitution(Variable):
         return period, (
             famille('chomage_net', period) +
             famille('indemnites_journalieres', period) +
-            famille('retraite_nette', period)  # +
+            famille('retraite_nette', period)
             ) > 0
 
 
@@ -282,7 +281,6 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
         af = famille('af', mois_demande)
 
         result = result + cf_non_majore + min_(af_base, af)  # Si des AF on été injectées et sont plus faibles que le cf
-
 
         return mois_demande, result
 
@@ -532,7 +530,6 @@ class rsa_revenu_activite_individu(DatedVariable):
             'tns_auto_entrepreneur_benefice',
             'rsa_indemnites_journalieres_activite',
             ]
-
 
         has_ressources_substitution = individu('rsa_has_ressources_substitution', mois_demande)
 
