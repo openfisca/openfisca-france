@@ -1,5 +1,9 @@
 # Changelog
 
+## 13.1.3
+
+* Fix `rsa_has_ressources_substitution` `Column` attribute
+
 ## 13.1.2
 
 * Refactor TaxBenefitSystem decomposition attributes
