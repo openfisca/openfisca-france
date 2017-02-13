@@ -1,8 +1,12 @@
 # Changelog
 
-## 13.1.3
+## 13.1.4
 
 * Change `base_function` and `set_input` t obe able to work o na monthly basis.
+
+## 13.1.3
+
+* Fix `rsa_has_ressources_substitution` `Column` attribute
 
 ## 13.1.2
 
