@@ -1,0 +1,17 @@
+- name: AGS does not return NaN
+  description:
+  period: 2016-01
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["parent1"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+  menages:
+    personne_de_reference: "parent1"
+  individus:
+    - id: "parent1"
+      contrat_de_travail: 1
+      heures_remunerees_volume: 20
+      salaire_de_base: 0
+  output_variables:
+    ags: 0
