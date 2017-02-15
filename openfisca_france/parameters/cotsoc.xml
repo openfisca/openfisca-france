@@ -560,7 +560,8 @@
             <VALUE deb="1993-07-01" fin="2014-03-31" valeur="0" />
           </SEUIL>
           <TAUX>
-            <VALUE deb="2017-01-01" fuzzy="true" valeur="0.0025" />
+            <!-- http://www.ags-garantie-salaires.org/actualites/items/taux-de-cotisation-89.html -->
+            <VALUE deb="2017-01-01" fuzzy="true"     valeur="0.0020" />
             <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0025" />
             <VALUE deb="2011-04-01" fin="2015-12-31" valeur="0.003" />
             <VALUE deb="2009-11-01" fin="2011-03-31" valeur="0.004" />
