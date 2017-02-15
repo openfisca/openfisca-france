@@ -20,7 +20,7 @@ class assiette_csg_abattue(Variable):
     entity = Individu
 
     def function(self, simulation, period):
-        # period = period.this_month
+        period = period.this_month
         primes_salaires = simulation.calculate('primes_salaires', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
@@ -51,7 +51,7 @@ class assiette_csg_non_abattue(Variable):
     entity = Individu
 
     def function(self, simulation, period):
-        # period = period.this_month
+        period = period.this_month
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
         complementaire_sante_employeur = simulation.calculate_add('complementaire_sante_employeur', period)
         prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate_add(
@@ -71,7 +71,7 @@ class csg_deductible_salaire(Variable):
     entity = Individu
 
     def function(self, simulation, period):
-        # period = period.this_month
+        period = period.this_month
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
@@ -93,7 +93,7 @@ class csg_imposable_salaire(Variable):
     entity = Individu
 
     def function(self, simulation, period):
-        # period = period.this_month
+        period = period.this_month
         print 'csg', period
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
@@ -117,7 +117,7 @@ class crds_salaire(Variable):
     entity = Individu
 
     def function(self, simulation, period):
-        # period = period.this_month
+        period = period.this_month
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
