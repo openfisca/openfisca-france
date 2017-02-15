@@ -1,5 +1,9 @@
 # Changelog
 
+## 13.1.4
+
+* Fix AGS value in cotsoc.xml. v10.0.1's fix was ineffective.
+
 ## 13.1.3
 
 * Fix `rsa_has_ressources_substitution` `Column` attribute
