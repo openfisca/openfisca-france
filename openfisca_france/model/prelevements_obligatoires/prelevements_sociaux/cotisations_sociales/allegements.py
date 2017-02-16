@@ -301,6 +301,7 @@ class allegement_fillon(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
+    url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542"
 
     # Attention : cet allègement a des règles de cumul spécifiques
 
@@ -327,7 +328,7 @@ class allegement_fillon(DatedVariable):
 def compute_allegement_fillon(simulation, period):
     """
         Exonération Fillon
-        http://www.securite-sociale.fr/comprendre/dossiers/exocotisations/exoenvigueur/fillon.htm
+        https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
     """
     assiette = simulation.calculate_add('assiette_allegement', period)
     smic_proratise = simulation.calculate_add('smic_proratise', period)

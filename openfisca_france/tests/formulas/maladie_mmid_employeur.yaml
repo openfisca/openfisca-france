@@ -1,0 +1,8 @@
+- period: "2017-02"
+  name:
+    Cotisation maladie MMID employeur
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 2300
+  output_variables:
+    mmid_employeur: -.1289 * 2300

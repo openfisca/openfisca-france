@@ -939,15 +939,15 @@
           <VALUE deb="2005-07-01" fin="2016-12-31" valeur="1.6" />
         </CODE>
         <CODE code="tx_max" description="Taux maximum (plus de 20 salariés)" format="percent">
-          <VALUE deb="2018-01-01" fuzzy="true" valeur=".2850" />
-          <VALUE deb="2017-01-01" fin="2017-12-31" valeur=".2850" />
+          <VALUE deb="2018-01-01" fuzzy="true" valeur=".2849" />
+          <VALUE deb="2017-01-01" fin="2017-12-31" valeur=".2849" />
           <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".2842" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".2835" />
           <VALUE deb="2005-07-01" fin="2014-12-31" valeur=".26" />
         </CODE>
         <CODE code="tx_max2" description="Taux maximum (moins de 20 salariés)" format="percent">
-          <VALUE deb="2018-01-01" fuzzy="true" valeur=".2810" />
-          <VALUE deb="2017-01-01" fin="2017-12-31" valeur=".2810" />
+          <VALUE deb="2018-01-01" fuzzy="true" valeur=".2809" />
+          <VALUE deb="2017-01-01" fin="2017-12-31" valeur=".2809" />
           <VALUE deb="2016-01-01" fin="2016-12-31" valeur=".2802" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur=".2795" />
           <VALUE deb="2007-07-01" fin="2014-12-31" valeur=".281" />
@@ -1579,7 +1579,7 @@
               <VALUE deb="1992-07-01" fin="2014-12-31" valeur="0" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2017-01-01" fuzzy="true" valeur="0.1284" />
+              <VALUE deb="2017-01-01" fuzzy="true" valeur="0.1289" />
               <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.1284" />
               <VALUE deb="1992-07-01" fin="2015-12-31" valeur="0.128" />
             </TAUX>

@@ -1,5 +1,12 @@
 # Changelog
 
+
+## 13.1.5
+
+* Fix 2017 rates and test them:
+  - réduction générale sur les bas salaires (fillon) had a minor difference (we used the 2016 provisionnal value)
+  - maladie MMID employeur had not been updated
+
 ## 13.1.4
 
 * Fix AGS value in cotsoc.xml. v10.0.1's fix was ineffective.
