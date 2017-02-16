@@ -8,9 +8,9 @@ class ada(Variable):
     entity = Famille
     label = u"Montant mensuel  de l'aide pour demandeur d'asile"
     start_date = date(2015, 11, 1)
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         nb_parents = simulation.calculate('nb_parents', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
         place_hebergement = simulation.calculate('place_hebergement', period)
@@ -31,9 +31,11 @@ class asile_demandeur(Variable):
     column = BoolCol
     entity = Famille
     label = u"Famille demandant l'asile"
+    period_behavior = MONTH
 
 
 class place_hebergement(Variable):
     column = BoolCol(default = True)
     entity = Famille
     label = u"Bénéficie d'une place dans un centre d'hébergement"
+    period_behavior = MONTH

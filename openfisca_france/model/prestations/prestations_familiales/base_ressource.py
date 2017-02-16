@@ -10,9 +10,9 @@ class autonomie_financiere(Variable):
     column = BoolCol
     entity = Individu
     label = u"Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
+    period_behavior = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
         salaire_net = individu('salaire_net', period.start.period('month', 6).offset(-6), options = [ADD])
         _P = legislation(period)
 
@@ -27,9 +27,9 @@ class prestations_familiales_enfant_a_charge(Variable):
     column = BoolCol
     entity = Individu
     label = u"Enfant considéré à charge au sens des prestations familiales"
+    period_behavior = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         age = individu('age', period)
@@ -48,9 +48,9 @@ class prestations_familiales_base_ressources_individu(Variable):
     column = FloatCol
     entity = Individu
     label = u"Base ressource individuelle des prestations familiales"
+    period_behavior = MONTH
 
     def function(individu, period):
-        period = period.this_month
         annee_fiscale_n_2 = period.n_2
 
         traitements_salaires_pensions_rentes = individu('traitements_salaires_pensions_rentes', annee_fiscale_n_2)
@@ -66,9 +66,9 @@ class biactivite(Variable):
     column = BoolCol
     entity = Famille
     label = u"Indicatrice de biactivité"
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         annee_fiscale_n_2 = period.n_2
 
         pfam = legislation(annee_fiscale_n_2).prestations.prestations_familiales
@@ -84,9 +84,9 @@ class div(Variable):
     column = FloatCol
     entity = Individu
     label = u"Dividendes imposés"
+    period_behavior = YEAR
 
     def function(individu, period):
-        period = period.start.offset('first-of', 'month').period('year')
         rpns_pvce = individu('rpns_pvce', period)
         rpns_pvct = individu('rpns_pvct', period)
         rpns_mvct = individu('rpns_mvct', period)
@@ -109,10 +109,9 @@ class rev_coll(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
+    period_behavior = YEAR
 
     def function(foyer_fiscal, period):
-        period = period.start.offset('first-of', 'month').period('year')
-
         # Quand rev_coll est calculé sur une année glissante, retraite_titre_onereux_net et pensions_alimentaires_versees sont calculés sur l'année légale correspondante.
         retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period.offset('first-of'))
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period.offset('first-of'))
@@ -134,13 +133,13 @@ class prestations_familiales_base_ressources(Variable):
     column = FloatCol
     entity = Famille
     label = u"Base ressource des prestations familiales"
+    period_behavior = MONTH
 
     def function(famille, period):
         '''
         Base ressource des prestations familiales de la famille
         'fam'
         '''
-        period = period.this_month
         # period_legacy = period.start.offset('first-of', 'month').period('year')
         annee_fiscale_n_2 = period.n_2
 
@@ -167,7 +166,9 @@ def nb_enf(famille, period, age_min, age_max):
     Renvoie le nombre d'enfant au sens des allocations familiales dont l'âge est compris entre ag1 et ag2
     """
 
-    period = period.this_month
+    assert period.unit == u'month'
+    assert period.size == 1
+
     age = famille.members('age', period)
     autonomie_financiere = famille.members('autonomie_financiere', period)
 

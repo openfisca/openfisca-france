@@ -14,13 +14,12 @@ class api(Variable):
     label = u"Allocation de parent isolé"
     url = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
     stop_date = date(2009, 5, 31)
-
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
         """
         Allocation de parent isolé
         """
-        period = period.this_month
         isole = not_(famille('en_couple', period))
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
         rsa_base_ressources = famille('rsa_base_ressources', period)
@@ -103,6 +102,7 @@ class psa(Variable):
     start_date = date(2009, 4, 1)
     stop_date = date(2009, 4, 30)
     url = u"http://www.service-public.fr/actualites/001077.html"
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
         '''
@@ -115,7 +115,6 @@ class psa(Variable):
         La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.
         '''
         P = legislation(period).prestations.minima_sociaux.rmi
-        period = period.this_month
         api = famille('api', period)
         rsa = famille('rsa', period)
         af_nbenf = famille('af_nbenf', period)
@@ -138,9 +137,9 @@ class rmi(Variable):
     label = u"Revenu Minimum d'Insertion"
     start_date = date(1988, 12, 1)
     stop_date = date(2009, 5, 31)
+    period_behavior = MONTH
 
     def function(famille, period):
-        period = period.this_month
         activite_i = famille.members('activite', period)
         condition_activite_i = (activite_i != 0) * (activite_i != 2) * (activite_i != 3)
         condition_activite = famille.any(condition_activite_i)
@@ -160,9 +159,9 @@ class rsa_activite(Variable):
     label = u"Revenu de solidarité active - activité"
     start_date = date(2009, 6, 1)
     stop_date = date(2015, 12, 31)
+    period_behavior = MONTH
 
     def function(famille, period):
-        period = period.this_month
         rsa = famille('rsa', period, period)
         rsa_base_ressources = famille('rsa_base_ressources', period)
         rsa_socle = famille('rsa_socle', period)
@@ -177,12 +176,12 @@ class rsa_activite_individu(Variable):
     label = u"Revenu de solidarité active - activité au niveau de l'individu"
     start_date = date(2009, 6, 1)
     stop_date = date(2015, 12, 31)
+    period_behavior = YEAR
 
     def function(individu, period):
         '''
         Note: le partage en moitié est un point de législation, pas un choix arbitraire
         '''
-        period = period.this_year
         rsa_activite = individu.famille('rsa_activite', period, options = [ADD])
         marie = individu('statut_marital', period) == 1
         en_couple = individu.famille('en_couple', period)

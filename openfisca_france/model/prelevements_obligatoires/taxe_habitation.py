@@ -12,6 +12,7 @@ class exonere_taxe_habitation(Variable):
     entity = Menage
     label = u"Exonération de la taxe d'habitation"
     url = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
+    period_behavior = YEAR
 
     def function(self, simulation, period):
         """Exonation de la taxe d'habitation
@@ -25,7 +26,6 @@ class exonere_taxe_habitation(Variable):
         bénéficiaire de l'allocation aux adultes handicapés (AAH),
         atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
         """
-        period = period.start.offset('first-of', 'month').period('year')
         aah_holder = simulation.compute_add('aah', period)
         age_holder = simulation.compute('age', period)
         asi_holder = simulation.compute_add('asi', period)
@@ -62,9 +62,9 @@ class taxe_habitation(Variable):
     entity = Menage
     label = u"Taxe d'habitation"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
+    period_behavior = YEAR
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
         last_year= period.last_year
         exonere_taxe_habitation = simulation.calculate('exonere_taxe_habitation', period)
         nombre_enfants_a_charge_menage = self.sum_by_entity(simulation.calculate('enfant_a_charge', period))

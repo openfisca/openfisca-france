@@ -11,21 +11,21 @@ class inapte_travail(Variable):
     column = BoolCol
     entity = Individu
     label = u"Reconnu inapte au travail"
-
+    period_behavior = MONTH
 
 class taux_incapacite(Variable):
     column = FloatCol
     entity = Individu
     label = u"Taux d'incapacité"
-
+    period_behavior = MONTH
 
 class asi_aspa_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base ressources individuelle du minimum vieillesse/ASPA"
     entity = Individu
+    period_behavior = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
         last_year = period.last_year
         three_previous_months = period.last_3_months
         law = legislation(period)
@@ -114,9 +114,9 @@ class asi_aspa_base_ressources(Variable):
     column = FloatCol
     label = u"Base ressource du minimum vieillesse et assimilés (ASPA)"
     entity = Famille
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         asi_aspa_base_ressources_i_holder = simulation.compute('asi_aspa_base_ressources_individu', period)
         ass = simulation.calculate('ass', period)
 
@@ -128,10 +128,9 @@ class aspa_eligibilite(Variable):
     column = BoolCol
     label = u"Indicatrice individuelle d'éligibilité à l'allocation de solidarité aux personnes agées"
     entity = Individu
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
-
         age = simulation.calculate('age', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
         taux_incapacite = simulation.calculate('taux_incapacite', period)
@@ -149,9 +148,9 @@ class asi_eligibilite(Variable):
     column = BoolCol
     label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
     entity = Individu
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         last_month = period.start.period('month').offset(-1)
 
         non_eligible_aspa = not_(simulation.calculate('aspa_eligibilite', period))
@@ -173,6 +172,7 @@ class asi_aspa_condition_nationalite(Variable):
     column = BoolCol
     label = u"Condition de nationnalité et de titre de séjour pour bénéficier de l'ASPA ou l'ASI"
     entity = Individu
+    period_behavior = MONTH
 
     def function(self, simulation, period):
         ressortissant_eee = simulation.calculate('ressortissant_eee', period)
@@ -186,9 +186,9 @@ class asi_aspa_nb_alloc(Variable):
     column = IntCol
     label = u"Nombre d'allocataires ASI/ASPA"
     entity = Famille
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
         asi_elig_holder = simulation.compute('asi_eligibilite', period)
 
@@ -205,9 +205,9 @@ class asi(Variable):
     start_date = date(2007, 1, 1)
     url = u"http://vosdroits.service-public.fr/particuliers/F16940.xhtml"
     entity = Famille
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         asi_elig_holder = simulation.compute('asi_eligibilite', period)
         aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
         maries = simulation.calculate('maries', period)
@@ -265,17 +265,16 @@ class aspa_couple(DatedVariable):
     column = BoolCol
     label = u"Couple au sens de l'ASPA"
     entity = Famille
+    period_behavior = MONTH
 
     @dated_function(date(2002, 1, 1), date(2006, 12, 31))
     def function_2002_2006(self, simulation, period):
-        period = period
         maries = simulation.calculate('maries', period)
 
         return period, maries
 
     @dated_function(date(2007, 1, 1))
     def function_2007(self, simulation, period):
-        period = period
         en_couple = simulation.calculate('en_couple', period)
 
         return period, en_couple
@@ -287,9 +286,9 @@ class aspa(Variable):
     entity = Famille
     label = u"Allocation de solidarité aux personnes agées"
     url = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         asi_elig_holder = simulation.compute('asi_eligibilite', period)
         aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
         maries = simulation.calculate('maries', period)

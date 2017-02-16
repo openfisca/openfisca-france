@@ -11,10 +11,9 @@ class cf_enfant_a_charge(Variable):
     column = BoolCol
     entity = Individu
     label = u"Complément familial - Enfant considéré à charge"
+    period_behavior = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
-
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         age = individu('age', period)
@@ -31,10 +30,9 @@ class cf_enfant_eligible(Variable):
     column = BoolCol
     entity = Individu
     label = u"Complément familial - Enfant pris en compte pour l'éligibilité"
+    period_behavior = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
-
         cf_enfant_a_charge = individu('cf_enfant_a_charge', period)
         age = individu('age', period)
         rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
@@ -52,10 +50,9 @@ class cf_dom_enfant_eligible(Variable):
     column = BoolCol
     entity = Individu
     label = u"Complément familial (DOM) - Enfant pris en compte pour l'éligibilité"
+    period_behavior = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
-
         cf_enfant_a_charge = individu('cf_enfant_a_charge', period)
         age = individu('age', period)
         rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
@@ -72,10 +69,9 @@ class cf_dom_enfant_trop_jeune(Variable):
     column = BoolCol
     entity = Individu
     label = u"Complément familial (DOM) - Enfant trop jeune pour ouvrir le droit"
+    period_behavior = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
-
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         age = individu('age', period)
 
@@ -90,10 +86,9 @@ class cf_ressources_individu(Variable):
     column = FloatCol
     entity = Individu
     label = u"Complément familial - Ressources de l'individu prises en compte"
+    period_behavior = MONTH
 
     def function(individu, period):
-        period = period.this_month
-
         base_ressources = individu('prestations_familiales_base_ressources_individu', period)
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         cf_enfant_a_charge = individu('cf_enfant_a_charge', period)
@@ -105,10 +100,9 @@ class cf_plafond(Variable):
     column = FloatCol
     entity = Famille
     label = u"Plafond d'éligibilité au Complément Familial"
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
-
         pfam = legislation(period).prestations.prestations_familiales
 
         eligibilite_base = famille('cf_eligibilite_base', period)
@@ -144,10 +138,10 @@ class cf_majore_plafond(DatedVariable):
     column = FloatCol
     entity = Famille
     label = u"Plafond d'éligibilité au Complément Familial majoré"
+    period_behavior = MONTH
 
     @dated_function(date(2014, 4, 1))
     def function(famille, period, legislation):
-        period = period.this_month
         plafond_base = famille('cf_plafond', period)
         pfam = legislation(period).prestations.prestations_familiales
         return period, plafond_base * pfam.cf.plafond_cf_majore
@@ -157,9 +151,9 @@ class cf_ressources(Variable):
     column = FloatCol
     entity = Famille
     label = u"Ressources prises en compte pour l'éligibilité au complément familial"
+    period_behavior = MONTH
 
     def function(famille, period):
-        period = period.this_month
         cf_ressources_individu_i = famille.members('cf_ressources_individu', period)
         ressources = famille.sum(cf_ressources_individu_i)
         return period, ressources
@@ -169,10 +163,9 @@ class cf_eligibilite_base(Variable):
     column = BoolCol
     entity = Famille
     label = u"Éligibilité au complément familial sous condition de ressources et avant cumul"
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
-
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
         cf_enfant_eligible = famille.members('cf_enfant_eligible', period)
@@ -185,11 +178,10 @@ class cf_eligibilite_dom(Variable):
     column = BoolCol
     entity = Famille
     label = u"Éligibilité au complément familial pour les DOM sous condition de ressources et avant cumul"
+    period_behavior = MONTH
 
 
     def function(famille, period, legislation):
-        period = period.this_month
-
         residence_dom = famille.demandeur.menage('residence_dom', period)
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
 
@@ -209,10 +201,9 @@ class cf_non_majore_avant_cumul(Variable):
     column = FloatCol
     entity = Famille
     label = u"Complément familial non majoré avant cumul"
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
-
         eligibilite_base = famille('cf_eligibilite_base', period)
         eligibilite_dom = famille('cf_eligibilite_dom', period)
         ressources = famille('cf_ressources', period)
@@ -241,11 +232,10 @@ class cf_majore_avant_cumul(DatedVariable):
     column = FloatCol
     entity = Famille
     label = u"Complément familial majoré avant cumul"
+    period_behavior = MONTH
 
     @dated_function(date(2014, 4, 1))
     def function(famille, period, legislation):
-        period = period.this_month
-
         eligibilite_base = famille('cf_eligibilite_base', period)
         eligibilite_dom = famille('cf_eligibilite_dom', period)
         ressources = famille('cf_ressources', period)
@@ -267,10 +257,9 @@ class cf_montant(Variable):
     column = FloatCol
     entity = Famille
     label = u"Montant du complément familial, avant prise en compte d'éventuels cumuls"
+    period_behavior = MONTH
 
     def function(famille, period):
-        period = period.this_month
-
         cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', period)
         cf_majore_avant_cumul = famille('cf_majore_avant_cumul', period)
 
@@ -283,12 +272,12 @@ class cf(Variable):
     entity = Famille
     label = u"Complément familial"
     url = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
         '''
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
-        period = period.this_month
         paje_base = famille('paje_base', period)
         apje_avant_cumul = famille('apje_avant_cumul', period)
         ape_avant_cumul = famille('ape_avant_cumul', period)

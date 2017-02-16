@@ -13,10 +13,9 @@ class asf_elig_enfant(Variable):
     column = BoolCol(default = False)
     entity = Individu
     label = u"Enfant pouvant ouvrir droit à l'ASF"
+    period_behavior = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
-
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
 
@@ -33,9 +32,9 @@ class asf_elig(Variable):
     column = BoolCol(default = False)
     entity = Famille
     label = u"Éligibilité à l'ASF"
+    period_behavior = MONTH
 
     def function(famille, period):
-        period = period.this_month
         pensions_alimentaires_percues = famille.members('pensions_alimentaires_percues', period)
         pas_de_pensions = not_(famille.sum(pensions_alimentaires_percues))
 
@@ -50,10 +49,9 @@ class asf(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation de soutien familial (ASF)"
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
-
         pfam = legislation(period).prestations.prestations_familiales
         asf_elig = famille('asf_elig', period)
         asf_par_enfant = famille.members('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux_1_parent

@@ -26,6 +26,7 @@ class al_nb_personnes_a_charge(Variable):
     column = IntCol
     entity = Famille
     label = u"Nombre de personne à charge au sens des allocations logement"
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
         '''
@@ -48,7 +49,6 @@ class al_nb_personnes_a_charge(Variable):
         tantes, neveux, nièces).
         '''
 
-        period = period.this_month
         age_max_enfant = legislation(period).prestations.prestations_familiales.cf.age_max
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
@@ -89,6 +89,7 @@ class al_couple(Variable):
     column = BoolCol
     entity = Famille
     label = u'Situation de couple pour le calcul des AL'
+    period_behavior = MONTH
 
     def function(self, simulation, period):
         en_couple = simulation.calculate('en_couple', period)
@@ -102,10 +103,9 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
     column = FloatCol
     entity = Famille
     label = u"Base ressources en évaluation forfaitaire des aides au logement (R351-7 du CCH)"
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
-
         def eval_forfaitaire_salaries():
             salaire_imposable_holder = simulation.compute('salaire_imposable', period.offset(-1))
             salaire_imposable = self.sum_by_entity(salaire_imposable_holder, roles = [CHEF, PART])
@@ -136,9 +136,9 @@ class aide_logement_abattement_chomage_indemnise(Variable):
     column = FloatCol
     entity = Individu
     label = u"Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         chomage_net_m_1 = simulation.calculate('chomage_net', period.offset(-1))
         chomage_net_m_2 = simulation.calculate('chomage_net', period.offset(-2))
         revenus_activite_pro = simulation.calculate_add('salaire_imposable', period.n_2)
@@ -155,9 +155,9 @@ class aide_logement_abattement_depart_retraite(Variable):
     column = FloatCol
     entity = Individu
     label = u"Montant de l'abattement sur les salaires en cas de départ en retraite"
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         retraite = simulation.calculate('activite', period) == 3
         activite_n_2 = simulation.calculate('salaire_imposable', period.n_2)
         retraite_n_2 = simulation.calculate('retraite_imposable', period.n_2)
@@ -173,9 +173,9 @@ class aide_logement_neutralisation_rsa(Variable):
     column = FloatCol
     entity = Famille
     label = u"Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         # Circular definition, as rsa depends on al.
         # We don't allow it, so default value of rsa will be returned if a recursion is detected.
         rsa_last_month = simulation.calculate('rsa', period.last_month, max_nb_cycles = 0)
@@ -195,9 +195,9 @@ class aide_logement_base_ressources_defaut(Variable):
     column = FloatCol
     entity = Famille
     label = u"Base ressource par défaut des allocations logement"
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         biactivite = simulation.calculate('biactivite', period)
         Pr = simulation.legislation_at(period.start).prestations.aides_logement.ressources
         base_ressources_holder = simulation.compute('prestations_familiales_base_ressources_individu', period)
@@ -232,9 +232,9 @@ class aide_logement_base_ressources(Variable):
     column = FloatCol
     entity = Famille
     label = u"Base ressources des allocations logement"
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         mois_precedent = period.offset(-1)
         last_day_reference_year = period.n_2.stop
         base_ressources_defaut = simulation.calculate('aide_logement_base_ressources_defaut', period)
@@ -284,9 +284,9 @@ class aide_logement_loyer_plafond(Variable):
     column = FloatCol
     entity = Famille
     label = u"Loyer plafond dans le calcul des aides au logement (L2)"
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         al = legislation(period).prestations.aides_logement
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
@@ -323,9 +323,9 @@ class aide_logement_loyer_seuil_degressivite(Variable):
     entity = Famille
     label = u"Seuil de degressivité dans le calcul des aides au logement"
     start_date = date(2016, 7, 1)
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         al = legislation(period).prestations.aides_logement
         zone_apl = famille.demandeur.menage('zone_apl', period)
         loyer_plafond = famille('aide_logement_loyer_plafond', period)
@@ -348,9 +348,9 @@ class aide_logement_loyer_seuil_suppression(Variable):
     entity = Famille
     label = u"Seuil de suppression dans le calcul des aides au logement"
     start_date = date(2016, 7, 1)
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         al = legislation(period).prestations.aides_logement
         zone_apl = famille.demandeur.menage('zone_apl', period)
         loyer_plafond = famille('aide_logement_loyer_plafond', period)
@@ -372,9 +372,9 @@ class aide_logement_loyer_reel(Variable):
     column = FloatCol
     entity = Famille
     label = u"Loyer réel dans le calcul des aides au logement"
+    period_behavior = MONTH
 
     def function(famille, period):
-        period = period.this_month
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         loyer = famille.demandeur.menage('loyer', period)
         coeff_meuble = where(statut_occupation_logement == 5, 2 / 3, 1)  # Coeff de 2/3 pour les meublés
@@ -385,9 +385,9 @@ class aide_logement_loyer_retenu(Variable):
     column = FloatCol
     entity = Famille
     label = u"Loyer retenu (hors charge) dans le calcul des aides au logement"
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         al = legislation(period).prestations.aides_logement
         loyer_plafond = famille('aide_logement_loyer_plafond', period)
         loyer_reel = famille('aide_logement_loyer_reel', period)
@@ -400,6 +400,7 @@ class aide_logement_charges(Variable):
     column = FloatCol
     entity = Famille
     label = u"Charges retenues dans le calcul des aides au logement"
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
         P = legislation(period).prestations.aides_logement.forfait_charges
@@ -416,10 +417,10 @@ class aide_logement_R0(DatedVariable):
     column = FloatCol
     entity = Famille
     label = u"Revenu de référence, basé sur la situation familiale, pris en compte dans le calcul des AL."
+    period_behavior = MONTH
 
     @dated_function(stop = date(2014, 12, 31))
     def function_2014(famille, period, legislation):
-        period = period.this_month
         al = legislation(period).prestations.aides_logement
         pfam_n_2 = legislation(period.start.offset(-2, 'year')).prestations.prestations_familiales
         minim_n_2 = legislation(period.start.offset(-2, 'year')).prestations.minima_sociaux
@@ -454,7 +455,6 @@ class aide_logement_R0(DatedVariable):
     # cf Décret n° 2014-1739 du 29 décembre 2014 relatif au calcul des aides personnelles au logement
     @dated_function(start = date(2015, 1, 1))
     def function_2015(famille, period, legislation):
-        period = period.this_month
         al = legislation(period).prestations.aides_logement
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
@@ -478,9 +478,9 @@ class aide_logement_taux_famille(Variable):
     column = FloatCol
     entity = Famille
     label = u"Taux représentant la situation familiale, décroissant avec le nombre de personnes à charge"
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         al = legislation(period).prestations.aides_logement
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
@@ -514,9 +514,9 @@ class aide_logement_taux_loyer(Variable):
     column = FloatCol
     entity = Famille
     label = u"Taux obscur basé sur une comparaison du loyer retenu à un loyer de référence."
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         al = simulation.legislation_at(period.start).prestations.aides_logement
         z2 = al.loyers_plafond.zone2
 
@@ -546,6 +546,7 @@ class aide_logement_participation_personelle(Variable):
     column = FloatCol
     entity = Famille
     label = u"Participation personelle de la famille au loyer"
+    period_behavior = MONTH
 
     def function(self, simulation, period):
 
@@ -570,10 +571,9 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
     column = FloatCol
     label = u"Montant des aides aux logements en secteur locatif avant degressivité et brut de CRDS"
     entity = Famille
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
-
         al = legislation(period).prestations.aides_logement
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         locataire = ((3 <= statut_occupation_logement) * (5 >= statut_occupation_logement)) + (statut_occupation_logement == 7)
@@ -597,16 +597,15 @@ class aide_logement_montant_brut(DatedVariable):
     column = FloatCol
     entity = Famille
     label = u"Montant des aides au logement après degressivité, avant CRDS"
+    period_behavior = MONTH
 
     @dated_function(stop = date(2016, 6, 30))
     def function_avant_degression(famille, period):
-        period = period.this_month
         montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
         return period, montant_avant_degressivite
 
     @dated_function(start = date(2016, 7, 1))
     def function_apres_degression(famille, period):
-        period = period.this_month
         montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
         loyer_reel = famille('aide_logement_loyer_reel', period)
         loyer_degressivite = famille('aide_logement_loyer_seuil_degressivite', period)
@@ -634,9 +633,9 @@ class aide_logement_montant(Variable):
     column = FloatCol
     entity = Famille
     label = u"Montant des aides au logement net de CRDS"
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         aide_logement_montant_brut = simulation.calculate('aide_logement_montant_brut', period)
         crds_logement = simulation.calculate('crds_logement', period)
         montant = round_(aide_logement_montant_brut + crds_logement, 2)
@@ -650,9 +649,9 @@ class alf(Variable):
     entity = Famille
     label = u"Allocation logement familiale"
     url = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml"
+    period_behavior = MONTH
 
     def function(famille, period):
-        period = period.this_month
         aide_logement_montant = famille('aide_logement_montant', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
@@ -666,9 +665,9 @@ class als_non_etudiant(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation logement sociale (non étudiante)"
+    period_behavior = MONTH
 
     def function(famille, period):
-        period = period.this_month
         aide_logement_montant = famille('aide_logement_montant', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
@@ -688,9 +687,9 @@ class als_etudiant(Variable):
     entity = Famille
     label = u"Allocation logement sociale (étudiante)"
     url = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement"
+    period_behavior = MONTH
 
     def function(famille, period):
-        period = period.this_month
         aide_logement_montant = famille('aide_logement_montant', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
@@ -710,9 +709,9 @@ class als(Variable):
     entity = Famille
     label = u"Allocation logement sociale"
     url = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml"
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         als_non_etudiant = simulation.calculate('als_non_etudiant', period)
         als_etudiant = simulation.calculate('als_etudiant', period)
         result = (als_non_etudiant + als_etudiant)
@@ -727,9 +726,9 @@ class apl(Variable):
     label = u" Aide personnalisée au logement"
     # (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
     url = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
+    period_behavior = MONTH
 
     def function(famille, period):
-        period = period.this_month
         aide_logement_montant = famille('aide_logement_montant', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
 
@@ -747,9 +746,9 @@ class aide_logement_non_calculable(Variable):
         )
     entity = Famille
     label = u"Aide au logement non calculable"
+    period_behavior = MONTH
 
     def function(famille, period):
-        period = period.this_month
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
 
         return period, (statut_occupation_logement == 1) * 1 + (statut_occupation_logement == 7) * 2
@@ -759,9 +758,9 @@ class aide_logement(Variable):
     column = FloatCol
     entity = Famille
     label = u"Aide au logement (tout type)"
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         apl = simulation.calculate('apl', period)
         als = simulation.calculate('als', period)
         alf = simulation.calculate('alf', period)
@@ -775,9 +774,9 @@ class crds_logement(Variable):
     entity = Famille
     label = u"CRDS des allocations logement"
     url = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml"
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         aide_logement_montant_brut = simulation.calculate('aide_logement_montant_brut', period)
         crds = simulation.legislation_at(period.start).prestations.prestations_familiales.af.crds
         return period, -aide_logement_montant_brut * crds
@@ -795,13 +794,14 @@ class zone_apl(Variable):
         )
     entity = Menage
     label = u"Zone APL"
+    period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
     def function(self, simulation, period):
         '''
         Retrouve la zone APL (aide personnalisée au logement) de la commune
         en fonction du depcom (code INSEE)
         '''
-        period = period
         depcom = simulation.calculate('depcom', period)
 
         preload_zone_apl()

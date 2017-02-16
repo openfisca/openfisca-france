@@ -18,9 +18,9 @@ class cotisations_employeur(Variable):
     entity = Individu
     label = u"Cotisations sociales employeur"
     set_input = set_input_divide_by_period
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period
         cotisations_employeur_contributives = simulation.calculate('cotisations_employeur_contributives', period)
         cotisations_employeur_non_contributives = simulation.calculate(
             'cotisations_employeur_non_contributives', period)
@@ -39,9 +39,9 @@ class cotisations_employeur_contributives(Variable):
     entity = Individu
     label = u"Cotisations sociales employeur contributives"
     set_input = set_input_divide_by_period
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period
         ags = simulation.calculate('ags', period)
         agff_employeur = simulation.calculate_add('agff_employeur', period)
         agirc_employeur = simulation.calculate_add('agirc_employeur', period)
@@ -85,9 +85,9 @@ class cotisations_employeur_non_contributives(Variable):
     entity = Individu
     label = u"Cotisations sociales employeur non-contributives"
     set_input = set_input_divide_by_period
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period
         penibilite = simulation.calculate_add('penibilite', period)
         accident_du_travail = simulation.calculate_add('accident_du_travail', period)
         allocations_temporaires_invalidite = simulation.calculate_add('allocations_temporaires_invalidite', period)
@@ -116,9 +116,9 @@ class cotisations_salariales_contributives(Variable):
     entity = Individu
     label = u"Cotisations sociales salariales contributives"
     set_input = set_input_divide_by_period
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period
         agff_salarie = simulation.calculate_add('agff_salarie', period)
         agirc_salarie = simulation.calculate_add('agirc_salarie', period)
         agirc_gmp_salarie = simulation.calculate_add('agirc_gmp_salarie', period)
@@ -159,9 +159,9 @@ class cotisations_salariales_non_contributives(Variable):
     entity = Individu
     label = u"Cotisations sociales salariales non-contributives"
     set_input = set_input_divide_by_period
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period
         contribution_exceptionnelle_solidarite = simulation.calculate_add(
             'contribution_exceptionnelle_solidarite', period)
         mmid_salarie = simulation.calculate_add('mmid_salarie', period)
@@ -182,9 +182,9 @@ class cotisations_salariales(Variable):
     entity = Individu
     label = u"Cotisations sociales salariales"
     set_input = set_input_divide_by_period
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         cotisations_salariales_non_contributives = simulation.calculate(
             'cotisations_salariales_non_contributives', period)

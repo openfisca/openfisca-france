@@ -13,6 +13,7 @@ class ars(Variable):
     entity = Famille
     label = u"Allocation de rentrée scolaire"
     url = "http://vosdroits.service-public.fr/particuliers/F1878.xhtml"
+    period_behavior = YEAR
 
     def function(famille, period, legislation):
         '''

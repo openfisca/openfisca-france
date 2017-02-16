@@ -12,18 +12,16 @@ class ass_precondition_remplie(Variable):
     column = BoolCol
     entity = Individu
     label = u"Éligible à l'ASS"
-
-
+    period_behavior = MONTH
 
 
 class ass(Variable):
     column = FloatCol
     label = u"Montant de l'ASS pour une famille"
     entity = Famille
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
-
         ass_base_ressources = simulation.calculate('ass_base_ressources', period)
         ass_eligibilite_i_holder = simulation.compute('ass_eligibilite_individu', period)
         en_couple = simulation.calculate('en_couple', period)
@@ -49,9 +47,9 @@ class ass_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources de l'ASS"
     entity = Famille
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         ass_base_ressources_i_holder = simulation.compute('ass_base_ressources_individu', period)
         ass_base_ressources_demandeur = self.filter_role(ass_base_ressources_i_holder, role = CHEF)
         ass_base_ressources_conjoint_holder = simulation.compute('ass_base_ressources_conjoint', period)
@@ -65,9 +63,9 @@ class ass_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle de l'ASS"
     entity = Individu
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
         # N-1
@@ -109,9 +107,9 @@ class ass_base_ressources_conjoint(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle pour le conjoint du demandeur de l'ASS"
     entity = Individu
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         last_month = period.start.period('month').offset(-1)
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
@@ -177,10 +175,9 @@ class ass_eligibilite_individu(Variable):
     column = BoolCol
     label = u"Éligibilité individuelle à l'ASS"
     entity = Individu
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
-
         # 1 si demandeur d'emploi
         activite = simulation.calculate('activite', period)
 

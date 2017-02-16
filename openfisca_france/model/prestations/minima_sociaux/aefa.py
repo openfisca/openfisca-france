@@ -28,10 +28,10 @@ class aefa(DatedVariable):
     entity = Famille
     label = u"Aide exceptionelle de fin d'année (prime de Noël)"
     url = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"  # noqa
+    period_behavior = YEAR
 
     @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
     def function_2009__(famille, period, legislation):
-        period = period.this_year
         af_nbenf = famille('af_nbenf', period)
         nb_parents = famille('nb_parents', period)
         ass = famille('ass', period, options = [ADD])
@@ -64,7 +64,6 @@ class aefa(DatedVariable):
 
     @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
     def function_2008(famille, period, legislation):
-        period = period.this_year
         af_nbenf = famille('af_nbenf', period)
         nb_parents = famille('nb_parents', period)
         ass = famille('ass', period, options = [ADD])
@@ -98,7 +97,6 @@ class aefa(DatedVariable):
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
     def function__2008_(famille, period, legislation):
-        period = period.this_year
         af_nbenf = famille('af_nbenf', period)
         nb_parents = famille('nb_parents', period)
         ass = famille('ass', period, options = [ADD])

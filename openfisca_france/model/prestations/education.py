@@ -16,9 +16,9 @@ class bourse_college(Variable):
     column = FloatCol
     label = u"Montant annuel de la bourse de collège"
     entity = Famille
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         rfr = simulation.calculate('rfr', period.n_2)
         age_holder = simulation.compute('age', period)
         scolarite_holder = simulation.compute('scolarite', period)
@@ -55,9 +55,9 @@ class bourse_lycee_points_de_charge(Variable):
     column = FloatCol
     label = u"Nombre de points de charge pour la bourse de lycée"
     entity = Famille
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         age_holder = simulation.compute('age', period)
         isole = not_(simulation.calculate('en_couple', period))
 
@@ -80,9 +80,9 @@ class bourse_lycee_nombre_parts(Variable):
     column = FloatCol
     label = u"Nombre de parts pour le calcul du montant de la bourse de lycée"
     entity = Famille
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         points_de_charge = simulation.calculate('bourse_lycee_points_de_charge', period)
         rfr = simulation.calculate('rfr', period.n_2)
         plafonds_reference = simulation.legislation_at(period.start).bourses_education.bourse_lycee.plafonds_reference
@@ -108,9 +108,9 @@ class bourse_lycee(Variable):
     column = FloatCol
     label = u"Montant annuel de la bourse de lycée"
     entity = Famille
+    period_behavior = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         nombre_parts = simulation.calculate('bourse_lycee_nombre_parts', period)
         scolarite_holder = simulation.compute('scolarite', period)
         valeur_part = simulation.legislation_at(period.start).bourses_education.bourse_lycee.valeur_part
@@ -139,3 +139,4 @@ class scolarite(Variable):
         )
     entity = Individu
     label = u"Scolarité de l'enfant : collège, lycée..."
+    period_behavior = MONTH

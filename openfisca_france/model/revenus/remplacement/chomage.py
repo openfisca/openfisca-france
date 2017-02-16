@@ -13,6 +13,7 @@ class chomeur_longue_duree(Variable):
     column = BoolCol
     entity = Individu
     label = u"Demandeur d'emploi inscrit depuis plus d'un an"
+    period_behavior = YEAR
 
   # Pour toutes les variables de ce type, les pac3 ne sont plus proposés après 2007
 
@@ -21,9 +22,11 @@ class chomage_brut(Variable):
     column = FloatCol()
     entity = Individu
     label = u"Chômage brut"
+    period_behavior = MONTH
 
 
 class indemnites_chomage_partiel(Variable):
     column = FloatCol
     entity = Individu
     label = u"Indemnités de chômage partiel"
+    period_behavior = MONTH

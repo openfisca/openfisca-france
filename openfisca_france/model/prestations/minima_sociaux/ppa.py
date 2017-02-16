@@ -11,9 +11,9 @@ class ppa_eligibilite(Variable):
     column = BoolCol
     entity = Famille
     label = u"Eligibilité à la PPA pour un mois"
+    period_behavior = MONTH
 
     def function(famille, period, legislation, mois_demande):
-        period = period.this_month
         P = legislation(mois_demande).prestations
         age_min = P.minima_sociaux.ppa.age_min
         condition_age_i = famille.members('age', period) >= age_min
@@ -26,10 +26,10 @@ class ppa_eligibilite_etudiants(Variable):
     column = BoolCol
     entity = Famille
     label = u"Eligibilité à la PPA (condition sur tout le trimestre)"
+    period_behavior = MONTH
 
     def function(famille, period, legislation):
         P = legislation(period)
-        period = period.this_month
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
 
         # Pour un individu
@@ -57,9 +57,9 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
     column = FloatCol
     entity = Famille
     label = u"Montant forfaitaire familial (sans majoration)"
+    period_behavior = MONTH
 
     def function(famille, period, legislation, mois_demande):
-        period = period.this_month
         nb_parents = famille('nb_parents', period)
         nb_enfants = famille('rsa_nb_enfants', period)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
@@ -84,6 +84,7 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
     column = FloatCol
     entity = Famille
     label = u"Montant forfaitaire familial (avec majoration)"
+    period_behavior = MONTH
 
     def function(famille, period, legislation, mois_demande):
         nb_enfants = famille('rsa_nb_enfants', period)
@@ -99,9 +100,9 @@ class ppa_revenu_activite(Variable):
     column = FloatCol
     entity = Famille
     label = u"Revenu d'activité pris en compte pour la PPA"
+    period_behavior = MONTH
 
     def function(famille, period, legislation, mois_demande):
-        period = period.this_month
         ppa_revenu_activite_i = famille.members(
             'ppa_revenu_activite_individu', period, extra_params = [mois_demande])
         ppa_revenu_activite = famille.sum(ppa_revenu_activite_i)
@@ -113,9 +114,9 @@ class ppa_revenu_activite_individu(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenu d'activité pris en compte pour la PPA (Individu) pour un mois"
+    period_behavior = MONTH
 
     def function(individu, period, legislation, mois_demande):
-        period = period.this_month
         P = legislation(mois_demande)
         smic_horaire = P.cotsoc.gen.smic_h_b
 
@@ -146,11 +147,12 @@ class ppa_rsa_derniers_revenus_tns_annuels_connus(Variable):
     column = FloatCol
     entity = Individu
     label = u"Derniers revenus non salariés annualisés connus"
+    period_behavior = YEAR
 
     def function(individu, period):
 
         def get_last_known(variable_name):
-            valeur_n = individu(variable_name, period.this_year)
+            valeur_n = individu(variable_name, period)
             valeur_n_1 = individu(variable_name, period.last_year)
             valeur_n_2 = individu(variable_name, period.n_2)
             return select(
@@ -169,6 +171,7 @@ class ppa_ressources_hors_activite(Variable):
     column = FloatCol
     entity = Famille
     label = u"Revenu hors activité pris en compte pour la PPA"
+    period_behavior = MONTH
 
     def function(famille, period, legislation, mois_demande):
         pf = famille(
@@ -191,9 +194,9 @@ class ppa_ressources_hors_activite_individu(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenu hors activité pris en compte pour la PPA (Individu) pour un mois"
+    period_behavior = MONTH
 
     def function(individu, period, legislation, mois_demande):
-        period = period.this_month
         P = legislation(mois_demande)
         smic_horaire = P.cotsoc.gen.smic_h_b
 
@@ -225,10 +228,9 @@ class ppa_base_ressources_prestations_familiales(Variable):
     column = FloatCol
     entity = Famille
     label = u"Prestations familiales prises en compte dans le calcul de la PPA"
+    period_behavior = MONTH
 
     def function(famille, period, legislation, mois_demande):
-        period = period.this_month
-
         prestations_calculees = [
             'rsa_forfait_asf',
             'paje_base',
@@ -258,9 +260,9 @@ class ppa_base_ressources(Variable):
     column = FloatCol
     entity = Famille
     label = u"Bases ressource prise en compte pour la PPA"
+    period_behavior = MONTH
 
     def function(famille, period, legislation, mois_demande):
-        period = period.this_month
         ppa_revenu_activite = famille(
             'ppa_revenu_activite', period, extra_params = [mois_demande])
         ppa_ressources_hors_activite = famille(
@@ -272,9 +274,9 @@ class ppa_bonification(Variable):
     column = FloatCol
     entity = Individu
     label = u"Bonification de la PPA pour un individu"
+    period_behavior = MONTH
 
     def function(individu, period, legislation, mois_demande):
-        period = period.this_month
         P = legislation(mois_demande)
         smic_horaire = P.cotsoc.gen.smic_h_b
         rsa_base = P.prestations.minima_sociaux.rmi.rmi
@@ -294,9 +296,9 @@ class ppa_fictive(Variable):
     column = FloatCol
     entity = Famille
     label = u"Prime pour l'activité fictive pour un mois"
+    period_behavior = MONTH
 
     def function(famille, period, legislation, mois_demande):
-        period = period.this_month
         forfait_logement = famille('rsa_forfait_logement', mois_demande)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', mois_demande)
 
@@ -331,10 +333,10 @@ class ppa(DatedVariable):
     column = FloatCol
     entity = Famille
     label = u"Prime Pour l'Activité"
+    period_behavior = MONTH
 
     @dated_function(start = date(2016, 1, 1))
     def function(famille, period, legislation):
-        period = period.this_month
         seuil_non_versement = legislation(period).prestations.minima_sociaux.ppa.seuil_non_versement
         # éligibilité étudiants
 
