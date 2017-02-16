@@ -2529,13 +2529,13 @@
       </CODE>
       <NODE code="reduction_maximale" origin="ipp">
         <CODE code="entreprises_de_20_salaries_et_plus" origin="ipp">
-          <VALUE deb="2017-01-01" fuzzy="true" valeur="0.2847" />
+          <VALUE deb="2017-01-01" fuzzy="true" valeur="0.2849" />
           <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.2842" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.2835" />
           <VALUE deb="2005-07-01" fin="2014-12-31" valeur="0.26" />
         </CODE>
         <CODE code="entreprises_de_moins_de_20_salaries" origin="ipp">
-          <VALUE deb="2017-01-01" fuzzy="true" valeur="0.2807" />
+          <VALUE deb="2017-01-01" fuzzy="true" valeur="0.2809" />
           <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.2802" />
           <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.2795" />
           <VALUE deb="2007-07-01" fin="2014-12-31" valeur="0.281" />
