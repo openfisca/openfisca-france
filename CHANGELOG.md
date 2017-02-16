@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 13.2.0
+
+* Déplace la transformation du JSON en test case du module `scenarios` de `france` vers `core`
+* Adapte `france` à  la version `5.0.0` de `core`
+
+Ces changements sont a priori transparents pour les utilisateurs.
+
 ## 13.1.5
 
 * Fix 2017 rates and test them:
