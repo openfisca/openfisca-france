@@ -1,5 +1,9 @@
 # Changelog
 
+## 13.1.5
+
+* Ignore scipy error import when scipy is missing
+
 ## 13.1.4
 
 * Fix AGS value in cotsoc.xml. v10.0.1's fix was ineffective.
