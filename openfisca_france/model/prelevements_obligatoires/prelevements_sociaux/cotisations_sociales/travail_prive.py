@@ -587,6 +587,7 @@ class mmid_employeur(Variable):
     column = FloatCol
     entity = Individu
     label = u"Cotisation maladie (employeur)"
+    url = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html"
 
     def function(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
