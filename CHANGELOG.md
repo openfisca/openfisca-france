@@ -1,8 +1,12 @@
 # Changelog
 
+## 13.1.5
+
+* Ignore scipy error import when scipy is missing
+
 ## 13.1.4
 
-* Change `base_function` and `set_input` t obe able to work o na monthly basis.
+* Fix AGS value in cotsoc.xml. v10.0.1's fix was ineffective.
 
 ## 13.1.3
 
