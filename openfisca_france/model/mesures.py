@@ -210,10 +210,10 @@ class pensions(Variable):
     period_behavior = YEAR
 
     def function(individu, period):
-        chomage_net = individu('chomage_net', period)
-        retraite_nette = individu('retraite_nette', period)
-        pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period)
-        pensions_invalidite = individu('pensions_invalidite', period)
+        chomage_net = individu('chomage_net', period, options = [ADD])
+        retraite_nette = individu('retraite_nette', period, options = [ADD])
+        pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period, options = [ADD])
+        pensions_invalidite = individu('pensions_invalidite', period, options = [ADD])
 
         # Revenus du foyer fiscal, que l'on projette uniquement sur le 1er déclarant
         foyer_fiscal = individu.foyer_fiscal
@@ -338,7 +338,7 @@ class minima_sociaux(Variable):
         aah_holder = simulation.compute_add('aah', period)
         caah_holder = simulation.compute_add('caah', period)
         aefa = simulation.calculate('aefa', period)
-        api = simulation.calculate('api', period)
+        api = simulation.calculate_add('api', period)
         ass = simulation.calculate_add('ass', period)
         minimum_vieillesse = simulation.calculate_add('minimum_vieillesse', period)
         ppa = simulation.calculate_add('ppa', period)

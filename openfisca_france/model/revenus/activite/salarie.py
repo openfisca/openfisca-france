@@ -86,7 +86,7 @@ class ppe_du_sa(Variable):
     set_input = set_input_divide_by_period
 
     def function(individu, period):
-        heures_remunerees_volume = individu('heures_remunerees_volume', period, options = [ADD])
+        heures_remunerees_volume = individu('heures_remunerees_volume', period)
         travail_temps_decompte_en_heures = (
             (individu('contrat_de_travail', period) > 0) *
             (individu('contrat_de_travail', period) < 6)

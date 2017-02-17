@@ -302,10 +302,10 @@ class retraite_nette(Variable):
     period_behavior = MONTH
 
     def function(individu, period):
-        retraite_imposable = individu('retraite_imposable', period)
-        casa = individu('casa', period, options = [ADD])
-        csg_imposable_retraite = individu('csg_imposable_retraite', period, options = [ADD])
-        crds_retraite = individu('crds_retraite', period, options = [ADD])
+        retraite_imposable = individu('retraite_imposable', period, options = [DIVIDE])
+        casa = individu('casa', period)
+        csg_imposable_retraite = individu('csg_imposable_retraite', period)
+        crds_retraite = individu('crds_retraite', period)
 
         return period, retraite_imposable + csg_imposable_retraite + crds_retraite + casa
 

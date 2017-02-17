@@ -132,7 +132,7 @@ class ppa_revenu_activite_individu(Variable):
         revenus_mensualises = sum(
             individu(ressource, period) for ressource in ressources)
 
-        revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', mois_demande)
+        revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', mois_demande.this_year)
 
         revenus_activites = revenus_mensualises + revenus_tns_annualises
 

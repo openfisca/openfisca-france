@@ -332,9 +332,12 @@ def compute_allegement_fillon(simulation, period):
         Exonération Fillon
         https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
     """
+    # Be careful ! Period is several months
+    first_month = period.this_month
+
     assiette = simulation.calculate_add('assiette_allegement', period)
     smic_proratise = simulation.calculate_add('smic_proratise', period)
-    taille_entreprise = simulation.calculate('taille_entreprise', period)
+    taille_entreprise = simulation.calculate('taille_entreprise', first_month)
     majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
     # Calcul du taux
     # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.

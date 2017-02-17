@@ -159,7 +159,7 @@ class aide_logement_abattement_depart_retraite(Variable):
 
     def function(self, simulation, period):
         retraite = simulation.calculate('activite', period) == 3
-        activite_n_2 = simulation.calculate('salaire_imposable', period.n_2)
+        activite_n_2 = simulation.calculate_add('salaire_imposable', period.n_2)
         retraite_n_2 = simulation.calculate('retraite_imposable', period.n_2)
         taux_frais_pro = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro.taux
 
@@ -179,8 +179,8 @@ class aide_logement_neutralisation_rsa(Variable):
         # Circular definition, as rsa depends on al.
         # We don't allow it, so default value of rsa will be returned if a recursion is detected.
         rsa_last_month = simulation.calculate('rsa', period.last_month, max_nb_cycles = 0)
-        activite = simulation.compute('salaire_imposable', period.n_2)
-        chomage = simulation.compute('chomage_imposable', period.n_2)
+        activite = simulation.compute_add('salaire_imposable', period.n_2)
+        chomage = simulation.compute_add('chomage_imposable', period.n_2)
         activite_n_2 = self.sum_by_entity(activite)
         chomage_n_2 = self.sum_by_entity(chomage)
         taux_frais_pro = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro.taux
@@ -426,7 +426,7 @@ class aide_logement_R0(DatedVariable):
         minim_n_2 = legislation(period.start.offset(-2, 'year')).prestations.minima_sociaux
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
-        residence_dom = famille.demandeur.menage('residence_dom')
+        residence_dom = famille.demandeur.menage('residence_dom', period)
 
         n_2 = period.start.offset(-2, 'year')
         if n_2.date >= date(2009, 6, 01):
@@ -484,7 +484,7 @@ class aide_logement_taux_famille(Variable):
         al = legislation(period).prestations.aides_logement
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
-        residence_dom = famille.demandeur.menage('residence_dom')
+        residence_dom = famille.demandeur.menage('residence_dom', period)
 
         TF_metropole = (
             al.taux_participation_fam.taux_1_adulte * (not_(couple)) * (al_nb_pac == 0) +

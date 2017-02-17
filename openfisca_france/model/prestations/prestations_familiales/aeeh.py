@@ -32,9 +32,10 @@ class aeeh(DatedVariable):
         Une majoration est versée au parent isolé bénéficiaire d'un complément d'Aeeh lorsqu'il cesse ou réduit
         son activité professionnelle ou lorsqu'il embauche une tierce personne rémunérée.
         '''
-        age_holder = simulation.compute('age', period)
-        handicap_holder = simulation.compute('handicap', period)
-        isole = not_(simulation.calculate('en_couple', period))
+        janvier = period.this_month
+        age_holder = simulation.compute('age', janvier)
+        handicap_holder = simulation.compute('handicap', janvier)
+        isole = not_(simulation.calculate('en_couple', janvier))
         niveau_handicap_holder = simulation.compute('aeeh_niveau_handicap', period)
         prestations_familiales = simulation.legislation_at(period.start).prestations.prestations_familiales
 

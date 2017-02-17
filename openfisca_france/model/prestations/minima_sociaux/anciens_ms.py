@@ -182,9 +182,11 @@ class rsa_activite_individu(Variable):
         '''
         Note: le partage en moitié est un point de législation, pas un choix arbitraire
         '''
+        janvier = period.this_month
+
         rsa_activite = individu.famille('rsa_activite', period, options = [ADD])
-        marie = individu('statut_marital', period) == 1
-        en_couple = individu.famille('en_couple', period)
+        marie = individu('statut_marital', janvier) == 1
+        en_couple = individu.famille('en_couple', janvier)
 
         # On partage le rsa_activite entre les parents. Si la personne est mariée et qu'aucun conjoint n'a été déclaré,
         # on divise par 2.

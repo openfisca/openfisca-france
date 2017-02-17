@@ -54,7 +54,7 @@ class prestations_familiales_base_ressources_individu(Variable):
         annee_fiscale_n_2 = period.n_2
 
         traitements_salaires_pensions_rentes = individu('traitements_salaires_pensions_rentes', annee_fiscale_n_2)
-        hsup = individu('hsup', annee_fiscale_n_2)
+        hsup = individu('hsup', annee_fiscale_n_2, options = [ADD])
         rpns = individu('rpns', annee_fiscale_n_2)
         glo = individu('glo', annee_fiscale_n_2)
         div = individu('div', annee_fiscale_n_2)

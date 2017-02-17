@@ -32,15 +32,17 @@ class aefa(DatedVariable):
 
     @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
     def function_2009__(famille, period, legislation):
-        af_nbenf = famille('af_nbenf', period)
-        nb_parents = famille('nb_parents', period)
+        janvier = period.this_month
+
+        af_nbenf = famille('af_nbenf', janvier)
+        nb_parents = famille('nb_parents', janvier)
         ass = famille('ass', period, options = [ADD])
         api = famille('api', period, options = [ADD])
         rsa = famille('rsa', period, options = [ADD])
         P = legislation(period).prestations.minima_sociaux.aefa
         af = legislation(period).prestations.prestations_familiales.af
 
-        aer_i = famille.members('aer', period)
+        aer_i = famille.members('aer', period, options = [ADD])
         aer = famille.sum(aer_i)
         dummy_ass = ass > 0
         dummy_aer = aer > 0
@@ -49,7 +51,7 @@ class aefa(DatedVariable):
         maj = 0  # TODO
         condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
         if hasattr(af, "age3"):
-            nbPAC = nb_enf(famille, period, af.age1, af.age3)
+            nbPAC = nb_enf(famille, janvier, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
@@ -64,15 +66,17 @@ class aefa(DatedVariable):
 
     @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
     def function_2008(famille, period, legislation):
-        af_nbenf = famille('af_nbenf', period)
-        nb_parents = famille('nb_parents', period)
+        janvier = period.this_month
+
+        af_nbenf = famille('af_nbenf', janvier)
+        nb_parents = famille('nb_parents', janvier)
         ass = famille('ass', period, options = [ADD])
         api = famille('api', period, options = [ADD])
-        rsa = famille('rsa', period)
+        rsa = famille('rsa', period, options = [ADD])
         P = legislation(period).prestations.minima_sociaux.aefa
         af = legislation(period).prestations.prestations_familiales.af
 
-        aer_i = famille.members('aer', period)
+        aer_i = famille.members('aer', period, options = [ADD])
         aer = famille.sum(aer_i)
         dummy_ass = ass > 0
         dummy_aer = aer > 0
@@ -81,7 +85,7 @@ class aefa(DatedVariable):
         maj = 0  # TODO
         condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
         if hasattr(af, "age3"):
-            nbPAC = nb_enf(famille, period, af.age1, af.age3)
+            nbPAC = nb_enf(famille, janvier, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
@@ -97,15 +101,17 @@ class aefa(DatedVariable):
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
     def function__2008_(famille, period, legislation):
-        af_nbenf = famille('af_nbenf', period)
-        nb_parents = famille('nb_parents', period)
+        janvier = period.this_month
+
+        af_nbenf = famille('af_nbenf', janvier)
+        nb_parents = famille('nb_parents', janvier)
         ass = famille('ass', period, options = [ADD])
         api = famille('api', period, options = [ADD])
-        rsa = famille('rsa', period)
+        rsa = famille('rsa', period, options = [ADD])
         P = legislation(period).prestations.minima_sociaux.aefa
         af = legislation(period).prestations.prestations_familiales.af
 
-        aer_i = famille.members('aer', period)
+        aer_i = famille.members('aer', period, options = [ADD])
         aer = famille.sum(aer_i)
         dummy_ass = ass > 0
         dummy_aer = aer > 0
@@ -114,7 +120,7 @@ class aefa(DatedVariable):
         maj = 0  # TODO
         condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
         if hasattr(af, "age3"):
-            nbPAC = nb_enf(famille, period, af.age1, af.age3)
+            nbPAC = nb_enf(famille, janvier, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille

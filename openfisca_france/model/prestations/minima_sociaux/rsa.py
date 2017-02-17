@@ -106,7 +106,7 @@ class rsa_base_ressources_individu(Variable):
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
         revenus_pro = sum(
             individu(type_revenu, period.last_3_months, options = [ADD]) * not_(
-                (individu(type_revenu, period.this_month) == 0) *
+                (individu(type_revenu, period) == 0) *
                 (individu(type_revenu, period.last_month) > 0) *
                 not_(has_ressources_substitution)
                 )
@@ -133,7 +133,7 @@ class rsa_base_ressources_individu(Variable):
         neutral_max_forfaitaire = 3 * legislation(period).prestations.minima_sociaux.rmi.rmi
         revenus_non_pros = sum(
             max_(0, individu(type_revenu, period.last_3_months, options = [ADD]) - neutral_max_forfaitaire * (
-                (individu(type_revenu, period.this_month) == 0) *
+                (individu(type_revenu, period) == 0) *
                 (individu(type_revenu, period.last_month) > 0)
                 ))
             for type_revenu in types_revenus_non_pros
@@ -447,7 +447,7 @@ class rsa_indemnites_journalieres_activite(Variable):
             ])
 
 
-        date_arret_de_travail = individu('date_arret_de_travail')
+        date_arret_de_travail = individu('date_arret_de_travail', period)
         three_months_ago = datetime64(m_3.start)
         condition_date_arret_travail = date_arret_de_travail > three_months_ago
 
@@ -673,12 +673,14 @@ class rsa_base_ressources_patrimoine_individu(Variable):
     period_behavior = MONTH
 
     def function(individu, period, legislation):
-        interets_epargne_sur_livrets = individu('interets_epargne_sur_livrets', period)
-        epargne_non_remuneree = individu('epargne_non_remuneree', period)
-        revenus_capital = individu('revenus_capital', period)
-        valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', period)
-        valeur_locative_terrains_non_loue = individu('valeur_locative_terrains_non_loue', period)
-        revenus_locatifs = individu('revenus_locatifs', period)
+        annee = period.this_year
+
+        interets_epargne_sur_livrets = individu('interets_epargne_sur_livrets', annee)
+        epargne_non_remuneree = individu('epargne_non_remuneree', annee)
+        revenus_capital = individu('revenus_capital', annee)
+        valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', annee)
+        valeur_locative_terrains_non_loue = individu('valeur_locative_terrains_non_loue', annee)
+        revenus_locatifs = individu('revenus_locatifs', annee)
         rsa = legislation(period).prestations.minima_sociaux.rsa
 
         return period, (
@@ -758,7 +760,7 @@ class rsa_eligibilite_tns(Variable):
         tns_avec_employe = famille.any(tns_employe_i)
 
         tns_autres_revenus_CA_i = famille.members(
-            'tns_autres_revenus_chiffre_affaires', last_year)
+            'tns_autres_revenus_chiffre_affaires', last_year, options = [ADD])
         tns_autres_revenus_type_activite_i = famille.members('tns_autres_revenus_type_activite', period)
 
         has_conjoint = famille('nb_parents', period) > 1

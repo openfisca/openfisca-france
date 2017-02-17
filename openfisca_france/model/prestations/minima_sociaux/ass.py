@@ -76,7 +76,7 @@ class ass_base_ressources_individu(Variable):
         salaire_imposable_interrompu = (salaire_imposable > 0) * (salaire_imposable_this_month == 0)
         # Le Salaire d'une activité partielle est neutralisé en cas d'interruption
         salaire_imposable = (1 - salaire_imposable_interrompu) * salaire_imposable
-        retraite_nette = simulation.calculate('retraite_nette', previous_year)
+        retraite_nette = simulation.calculate_add('retraite_nette', previous_year)
 
         def revenus_tns():
             revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
@@ -88,14 +88,14 @@ class ass_base_ressources_individu(Variable):
 
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
-        pensions_alimentaires_versees_individu = simulation.calculate(
+        pensions_alimentaires_percues = simulation.calculate_add('pensions_alimentaires_percues', previous_year)
+        pensions_alimentaires_versees_individu = simulation.calculate_add(
             'pensions_alimentaires_versees_individu', previous_year
             )
 
         aah = simulation.calculate_add('aah', previous_year)
-        indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
-        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
+        indemnites_stage = simulation.calculate_add('indemnites_stage', previous_year)
+        revenus_stage_formation_pro = simulation.calculate_add('revenus_stage_formation_pro', previous_year)
 
         return period, (
             salaire_imposable + retraite_nette + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
@@ -156,7 +156,7 @@ class ass_base_ressources_conjoint(Variable):
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
             tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year)
             tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year)
-            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year)
+            tns_autres_revenus = simulation.calculate_add('tns_autres_revenus', last_year)
 
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 

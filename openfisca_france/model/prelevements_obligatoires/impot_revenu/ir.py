@@ -160,8 +160,10 @@ class nbF(Variable):
     period_behavior = YEAR
 
     def function(self, simulation, period):
-        enfant_a_charge = simulation.compute('enfant_a_charge', period)
-        garde_alternee = simulation.compute('garde_alternee', period)
+        janvier = period.this_month
+
+        enfant_a_charge = simulation.compute('enfant_a_charge', janvier)
+        garde_alternee = simulation.compute('garde_alternee', janvier)
         return period, self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array))
 
 
@@ -173,9 +175,11 @@ class nbG(Variable):
     period_behavior = YEAR
 
     def function(self, simulation, period):
-        enfant_a_charge = simulation.compute('enfant_a_charge', period)
-        garde_alternee = simulation.compute('garde_alternee', period)
-        invalidite = simulation.compute('invalidite', period)
+        janvier = period.this_month
+
+        enfant_a_charge = simulation.compute('enfant_a_charge', janvier)
+        garde_alternee = simulation.compute('garde_alternee', janvier)
+        invalidite = simulation.compute('invalidite', janvier)
         return period, self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array) * invalidite.array)
 
 
@@ -187,8 +191,10 @@ class nbH(Variable):
     period_behavior = YEAR
 
     def function(self, simulation, period):
-        enfant_a_charge = simulation.compute('enfant_a_charge', period)
-        garde_alternee = simulation.compute('garde_alternee', period)
+        janvier = period.this_month
+
+        enfant_a_charge = simulation.compute('enfant_a_charge', janvier)
+        garde_alternee = simulation.compute('garde_alternee', janvier)
         return period, self.sum_by_entity(enfant_a_charge.array * garde_alternee.array)
 
 
@@ -200,9 +206,11 @@ class nbI(Variable):
     period_behavior = YEAR
 
     def function(self, simulation, period):
-        enfant_a_charge = simulation.compute('enfant_a_charge', period)
-        garde_alternee = simulation.compute('garde_alternee', period)
-        invalidite = simulation.compute('invalidite', period)
+        janvier = period.this_month
+
+        enfant_a_charge = simulation.compute('enfant_a_charge', janvier)
+        garde_alternee = simulation.compute('garde_alternee', janvier)
+        invalidite = simulation.compute('invalidite', janvier)
         return period, self.sum_by_entity(enfant_a_charge.array * garde_alternee.array * invalidite.array)
 
 
@@ -213,8 +221,10 @@ class enfant_majeur_celibataire_sans_enfant(Variable):
     period_behavior = YEAR
 
     def function(individu, period):
-        age = individu('age', period)
-        handicap = individu('handicap', period)
+        janvier = period.this_month
+
+        age = individu('age', janvier)
+        handicap = individu('handicap', janvier)
         is_pac = individu.has_role(FoyerFiscal.PERSONNE_A_CHARGE)
 
         return period, is_pac * (age >= 18) * not_(handicap)
@@ -250,7 +260,7 @@ class maries_ou_pacses(Variable):
     period_behavior = YEAR
 
     def function(foyer_fiscal, period):
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.this_month)
         marie_ou_pacse = (statut_marital == 1) | (statut_marital == 5)
 
         return period, marie_ou_pacse
@@ -263,7 +273,7 @@ class celibataire_ou_divorce(Variable):
     period_behavior = YEAR
 
     def function(foyer_fiscal, period):
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.this_month)
         celibataire_ou_divorce = (statut_marital == 2) | (statut_marital == 3)
 
         return period, celibataire_ou_divorce
@@ -276,7 +286,7 @@ class veuf(Variable):
     period_behavior = YEAR
 
     def function(foyer_fiscal, period):
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.this_month)
         veuf = (statut_marital == 4)
 
         return period, veuf
@@ -289,7 +299,7 @@ class jeune_veuf(Variable):
     period_behavior = YEAR
 
     def function(foyer_fiscal, period):
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.this_month)
         jeune_veuf = (statut_marital == 6)
 
         return period, jeune_veuf
@@ -2515,8 +2525,8 @@ class abat_spe(Variable):
         abattements_rni = legislation(period).impot_revenu.abattements_rni
         abattements_personne_agee_ou_invalide = abattements_rni.personne_agee_ou_invalide
 
-        ageV = foyer_fiscal.declarant_principal('age', period)
-        ageC = foyer_fiscal.conjoint('age', period)
+        ageV = foyer_fiscal.declarant_principal('age', period.this_month)
+        ageC = foyer_fiscal.conjoint('age', period.this_month)
 
         invV, invC = caseP, caseF
         nb_elig_as = (1 * (((ageV >= 65) | invV) & (ageV > 0)) +
@@ -2738,7 +2748,7 @@ class ppe_rev(Variable):
 
     def function(self, simulation, period):
         salaire_imposable = simulation.calculate_add('salaire_imposable', period)
-        hsup = simulation.calculate('hsup', period)
+        hsup = simulation.calculate_add('hsup', period)
         rpns = simulation.calculate('rpns', period)
         ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe
 
@@ -2758,7 +2768,7 @@ class ppe_coef_tp(Variable):
     period_behavior = YEAR
 
     def function(self, simulation, period):
-        ppe_du_sa = simulation.calculate('ppe_du_sa', period)
+        ppe_du_sa = simulation.calculate_add('ppe_du_sa', period)
         ppe_du_ns = simulation.calculate('ppe_du_ns', period)
         ppe_tp_sa = simulation.calculate('ppe_tp_sa', period)
         ppe_tp_ns = simulation.calculate('ppe_tp_ns', period)

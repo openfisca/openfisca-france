@@ -16,7 +16,7 @@ class af_nbenf(Variable):
     period_behavior = MONTH
 
     def function(famille, period):
-        prestations_familiales_enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', period_month)
+        prestations_familiales_enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', period)
         af_nbenf = famille.sum(prestations_familiales_enfant_a_charge_i)
 
         return period, af_nbenf

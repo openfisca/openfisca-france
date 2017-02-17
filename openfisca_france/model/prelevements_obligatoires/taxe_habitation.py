@@ -26,14 +26,16 @@ class exonere_taxe_habitation(Variable):
         bénéficiaire de l'allocation aux adultes handicapés (AAH),
         atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
         """
+        janvier = period.this_month
+
         aah_holder = simulation.compute_add('aah', period)
-        age_holder = simulation.compute('age', period)
+        age_holder = simulation.compute('age', janvier)
         asi_holder = simulation.compute_add('asi', period)
         aspa_holder = simulation.compute_add('aspa', period)
         isf_tot_holder = simulation.compute('isf_tot', period)
         nbptr_holder = simulation.compute('nbptr', period)
         rfr_holder = simulation.compute('rfr', period)
-        statut_marital_holder = simulation.compute('statut_marital', period)
+        statut_marital_holder = simulation.compute('statut_marital', janvier)
         _P = simulation.legislation_at(period.start)
 
         aah = self.sum_by_entity(aah_holder)
@@ -65,9 +67,11 @@ class taxe_habitation(Variable):
     period_behavior = YEAR
 
     def function(self, simulation, period):
-        last_year= period.last_year
+        last_year = period.last_year
+        janvier = period.this_month
+
         exonere_taxe_habitation = simulation.calculate('exonere_taxe_habitation', period)
-        nombre_enfants_a_charge_menage = self.sum_by_entity(simulation.calculate('enfant_a_charge', period))
+        nombre_enfants_a_charge_menage = self.sum_by_entity(simulation.calculate('enfant_a_charge', janvier))
         nombre_enfants_majeurs_celibataires_sans_enfant = simulation.calculate('nombre_enfants_majeurs_celibataires_sans_enfant', period)
         rfr_holder = simulation.compute('rfr', last_year)
 

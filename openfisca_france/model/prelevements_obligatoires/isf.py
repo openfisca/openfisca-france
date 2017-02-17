@@ -478,13 +478,13 @@ class revetproduits(Variable):
         salcho_imp_holder = simulation.compute('revenu_assimile_salaire_apres_abattements', period)
         pen_net_holder = simulation.compute('revenu_assimile_pension_apres_abattements', period)
         retraite_titre_onereux_net = simulation.calculate('retraite_titre_onereux_net', period)
-        rev_cap_bar = simulation.calculate('rev_cap_bar', period)
+        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         fon = simulation.calculate('fon', period)
         ric_holder = simulation.compute('ric', period)
         rag_holder = simulation.compute('rag', period)
         rpns_exon_holder = simulation.compute('rpns_exon', period)
         rpns_pvct_holder = simulation.compute('rpns_pvct', period)
-        rev_cap_lib = simulation.calculate('rev_cap_lib', period)
+        rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         imp_lib = simulation.calculate('imp_lib', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.plafonnement
 

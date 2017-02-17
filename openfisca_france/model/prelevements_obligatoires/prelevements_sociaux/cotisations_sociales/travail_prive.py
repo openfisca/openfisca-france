@@ -83,7 +83,7 @@ class indemnite_fin_contrat(Variable):
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        apprenti = simulation.calculate('apprenti', month)
+        apprenti = simulation.calculate('apprenti', period)
 
         # Un grand nombre de conditions peuvent invalider cette indemnité, voir le lien ci-dessus.
         # A ajouter au fur et à mesure
