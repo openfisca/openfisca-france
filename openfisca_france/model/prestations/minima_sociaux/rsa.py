@@ -686,7 +686,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
         return period, (
             interets_epargne_sur_livrets / 12 +
             epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere / 12 +
-            revenus_capital +
+            revenus_capital / 12 +
             valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue +
             valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue +
             revenus_locatifs
