@@ -5,7 +5,10 @@ from __future__ import division
 from openfisca_core import columns
 from openfisca_core.reforms import Reform
 from openfisca_core.variables import Variable
-from scipy.optimize import fsolve
+try:
+    from scipy.optimize import fsolve
+except ImportError:
+    fsolve = None
 
 from .. import entities
 
