@@ -207,13 +207,13 @@ class ppa_ressources_hors_activite_individu(Variable):
             'pensions_invalidite',
             'pensions_alimentaires_percues',
             'prestation_compensatoire',
-            'revenus_locatifs',
             'prime_forfaitaire_mensuelle_reprise_activite',
             'rsa_indemnites_journalieres_hors_activite',
             ]
 
-        ressources_hors_activite_i = sum(
+        ressources_hors_activite_mensuel_i = sum(
             individu(ressource, period) for ressource in ressources)
+        revenus_locatifs = individu('revenus_locatifs', period.this_year)
         revenus_activites = individu(
             'ppa_revenu_activite_individu', period, extra_params = [mois_demande])
 
@@ -221,7 +221,7 @@ class ppa_ressources_hors_activite_individu(Variable):
         seuil_aah_activite = P.prestations.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
         aah_hors_activite = (revenus_activites < seuil_aah_activite) * individu('aah', period)
 
-        return period, ressources_hors_activite_i + aah_hors_activite
+        return period, ressources_hors_activite_mensuel_i + revenus_locatifs / 12 + aah_hors_activite
 
 
 class ppa_base_ressources_prestations_familiales(Variable):
