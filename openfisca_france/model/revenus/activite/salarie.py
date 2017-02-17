@@ -102,7 +102,7 @@ class ppe_tp_sa(Variable):
         period = period.this_year
         mois = period.this_month
         indicateur = individu('contrat_de_travail', mois) == 0
-        while mois.month < 12:
+        while mois.start.month < 12:
             mois = mois.offset(1)
             indicateur = indicateur & (individu('contrat_de_travail', mois) == 0)
         return period, indicateur
