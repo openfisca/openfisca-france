@@ -103,6 +103,20 @@ class ppe_tp_sa(Variable):
         period = period.this_year
         return period, individu('contrat_de_travail', period) > 0
 
+class ppe_tp_sa(Variable):
+    column = BoolCol
+    entity = Individu
+    label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière"
+
+    def function(individu, period):
+        period = period.this.year
+        mois = period.this_month
+        indicateur = individu('contrat_de_travail', mois) == 0
+        while mois.month < 12:
+            mois = mois.offset(1)
+            indicateur = indicateur & (individu('contrat_de_travail', mois) == 0)
+        return period, indicateur
+
 
 class exposition_accident(Variable):
     column = EnumCol(
