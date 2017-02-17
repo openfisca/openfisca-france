@@ -130,7 +130,7 @@ class exposition_accident(Variable):
     entity = Individu
     label = u"Exposition au risque pour les accidents du travail"
     period_behavior = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
 
 
 class exposition_penibilite(Variable):
@@ -144,7 +144,7 @@ class exposition_penibilite(Variable):
     entity = Individu
     label = u"Exposition à un ou plusieurs facteurs de pénibilité"
     period_behavior = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
 
 
 class allegement_fillon_mode_recouvrement(Variable):
@@ -160,7 +160,7 @@ class allegement_fillon_mode_recouvrement(Variable):
     entity = Individu
     label = u"Mode de recouvrement des allègements Fillon"
     period_behavior = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
 
 
 class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
@@ -176,7 +176,7 @@ class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
     entity = Individu
     label = u"Mode de recouvrement de l'allègement de la cotisation d'allocations familiales"
     period_behavior = MONTH
-    set_input = set_input_divide_by_period
+    set_input = set_input_dispatch_by_period
 
 
 class apprentissage_contrat_debut(Variable):
@@ -191,6 +191,7 @@ class arrco_tranche_a_taux_employeur(Variable):
     entity = Individu
     label = u"Taux ARRCO tranche A employeur) propre à l'entreprise"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class arrco_tranche_a_taux_salarie(Variable):
@@ -198,6 +199,7 @@ class arrco_tranche_a_taux_salarie(Variable):
     entity = Individu
     label = u"Taux ARRCO tranche A salarié) propre à l'entreprise"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class assujettie_taxe_salaires(Variable):
@@ -205,6 +207,7 @@ class assujettie_taxe_salaires(Variable):
     entity = Individu
     label = u"Entreprise assujettie à la taxe sur les salaires"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class avantage_en_nature_valeur_reelle(Variable):
@@ -245,6 +248,7 @@ class contrat_de_travail(Variable):
     entity = Individu
     label = u"Type contrat de travail"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class contrat_de_travail_debut(Variable):
@@ -252,6 +256,7 @@ class contrat_de_travail_debut(Variable):
     entity = Individu
     label = u"Date d'arrivée dans l'entreprise"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class contrat_de_travail_fin(Variable):
@@ -259,6 +264,7 @@ class contrat_de_travail_fin(Variable):
     entity = Individu
     label = u"Date de départ de l'entreprise"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class contrat_de_travail_duree(Variable):
@@ -271,6 +277,7 @@ class contrat_de_travail_duree(Variable):
     entity = Individu
     label = u"Type (durée determinée ou indéterminée) du contrat de travail"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class cotisation_sociale_mode_recouvrement(Variable):
@@ -283,6 +290,7 @@ class cotisation_sociale_mode_recouvrement(Variable):
     entity = Individu
     label = u"Mode de recouvrement des cotisations sociales"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class entreprise_est_association_non_lucrative(Variable):
@@ -290,6 +298,7 @@ class entreprise_est_association_non_lucrative(Variable):
     entity = Individu
     label = u"L'entreprise est une association à but non lucratif, par exemple loi de 1901"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class depcom_entreprise(Variable):
@@ -297,6 +306,7 @@ class depcom_entreprise(Variable):
     entity = Individu
     label = u"Localisation entreprise (depcom)"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class code_postal_entreprise(Variable):
@@ -304,6 +314,7 @@ class code_postal_entreprise(Variable):
     entity = Individu
     label = u"Localisation entreprise (Code postal)"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class salarie_regime_alsace_moselle(Variable):
