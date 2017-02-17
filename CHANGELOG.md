@@ -1,5 +1,13 @@
 # Changelog
 
+## 13.2.1 — #687
+
+* Évolution du système socio-fiscal
+* Périodes concernées : Jusqu'au 31/12/2015.
+* Zones impactées :
+   `prelevements_obligatoires/impot_revenu/ppe`
+* Corrige la valeur erronnée retournée par `ppe_tp_sa`
+  - Le calcul de l'indicatrice de travail à temps plein `ppe_tp_sa` renvoyait une valeur érronée, provoquant des erreurs dans le calcul de la prime pour l'emploi `ppe`.
 
 ## 13.2.0 - [#676](https://github.com/openfisca/openfisca-france/pull/676)
 
