@@ -1,5 +1,8 @@
 # Changelog
 
+## 13.2.1
+
+* Corrige la valeur erronnée retournée par `ppe_tp_sa`ppe_tp_sa
 
 ## 13.2.0
 
