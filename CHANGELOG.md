@@ -1,8 +1,22 @@
 # Changelog
 
+
+## 13.2.0
+
+* Déplace la transformation du JSON en test case du module `scenarios` de `france` vers `core`
+* Adapte `france` à  la version `5.0.0` de `core`
+
+Ces changements sont a priori transparents pour les utilisateurs.
+
+## 13.1.5
+
+* Fix 2017 rates and test them:
+  - réduction générale sur les bas salaires (fillon) had a minor difference (we used the 2016 provisionnal value)
+  - maladie MMID employeur had not been updated
+
 ## 13.1.4
 
-* Change `base_function` and `set_input` t obe able to work o na monthly basis.
+* Fix AGS value in cotsoc.xml. v10.0.1's fix was ineffective.
 
 ## 13.1.3
 
