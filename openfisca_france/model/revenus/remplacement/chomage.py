@@ -30,3 +30,4 @@ class indemnites_chomage_partiel(Variable):
     entity = Individu
     label = u"Indemnités de chômage partiel"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period

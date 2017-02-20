@@ -481,6 +481,7 @@ class zone_franche_urbaine(Variable):
     entity = Individu
     label = u"L'entreprise est située danns une zone franche urbaine (ZFU)"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
@@ -492,6 +493,7 @@ class zone_revitalisation_rurale(Variable):
     entity = Individu
     label = u"L'entreprise est située dans une zone de revitalisation rurale (ZRR)"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)

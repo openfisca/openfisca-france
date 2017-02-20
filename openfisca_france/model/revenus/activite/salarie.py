@@ -376,6 +376,7 @@ class entreprise_creation(Variable):
     entity = Individu
     label = u"Date de création de l'entreprise"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class nombre_tickets_restaurant(Variable):

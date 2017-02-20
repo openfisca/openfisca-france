@@ -5,7 +5,7 @@ from datetime import date
 
 from openfisca_core import periods
 from openfisca_core.reforms import Reform, update_legislation
-from ..model.base import DatedVariable, dated_function
+from ..model.base import DatedVariable, dated_function, YEAR
 
 
 def modify_legislation_json(reference_legislation_json_copy):
@@ -51,10 +51,10 @@ def modify_legislation_json(reference_legislation_json_copy):
 
 class decote(DatedVariable):
     label = u"Décote IR 2015 appliquée sur IR 2014 (revenus 2013)"
+    period_behavior = YEAR
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_2013(self, simulation, period):
-        period = period.this_year
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         nb_adult = simulation.calculate('nb_adult', period)
         plf = simulation.legislation_at(period.start).plf2015

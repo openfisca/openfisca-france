@@ -29,16 +29,19 @@ def build_reform(tax_benefit_system):
         column = columns.FloatCol
         entity = entities.Individu
         label = u'Salaire imposable utilisé pour remonter au salaire brut'
+        period_behavior = YEAR
 
     class chomage_imposable_pour_inversion(Reform.Variable):
         column = columns.FloatCol
         entity = entities.Individu
         label = u'Autres revenus imposables (chômage, préretraite), utilisé pour l’inversion'
+        period_behavior = YEAR
 
     class retraite_imposable_pour_inversion(Reform.Variable):
         column = columns.FloatCol
         entity = entities.Individu
         label = u'Pensions, retraites, rentes connues imposables, utilisé pour l’inversion'
+        period_behavior = YEAR
 
     class salaire_de_base(Reform.Variable):
         column = columns.FloatCol

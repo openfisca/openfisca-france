@@ -8,7 +8,7 @@ from numpy import maximum as max_, minimum as min_
 
 from openfisca_core import periods
 from openfisca_core.reforms import Reform, update_legislation
-from ..model.base import DatedVariable, dated_function, date
+from ..model.base import DatedVariable, dated_function, date, YEAR
 
 
 # What if the reform was applied the year before it should
@@ -44,10 +44,10 @@ class plf2016(Reform):
 
     class decote(DatedVariable):
         label = u"Décote IR 2016 appliquée en 2015 sur revenus 2014"
+        period_behavior = YEAR
 
         @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
         def function_2014(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             nb_adult = simulation.calculate('nb_adult', period)
             plf = simulation.legislation_at(period.start).plf2016
@@ -115,10 +115,10 @@ class plf2016_counterfactual(Reform):
 
     class decote(DatedVariable):
         label = u"Décote IR 2015 appliquée sur revenus 2015 (contrefactuel)"
+        period_behavior = YEAR
 
         @dated_function(start = date(2015, 1, 1))
         def function_2015__(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             inflator = 1 + .001 + .005
             decote = simulation.legislation_at(period.start).impot_revenu.decote
@@ -126,10 +126,10 @@ class plf2016_counterfactual(Reform):
             return period, (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
     class reduction_impot_exceptionnelle(DatedVariable):
+        period_behavior = YEAR
 
         @dated_function(start = date(2015, 1, 1), stop = date(2015, 12, 31))
         def function_2015(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
             nb_adult = simulation.calculate('nb_adult')
             nb_parents = simulation.calculate('nb_parents')
             rfr = simulation.calculate('rfr')
@@ -144,10 +144,10 @@ class plf2016_counterfactual(Reform):
 
     class reductions(DatedVariable):
         label = u"Somme des réductions d'impôt"
+        period_behavior = YEAR
 
         @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
         def function_20130101_20131231(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
             accult = simulation.calculate('accult')
             adhcga = simulation.calculate('adhcga')
             cappme = simulation.calculate('cappme')
@@ -274,10 +274,10 @@ class plf2016_counterfactual_2014(Reform):
     key = 'plf2016_counterfactual_2014'
 
     class decote(DatedVariable):
+        period_behavior = YEAR
 
         @dated_function(start = date(2015, 1, 1))
         def function_2015(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             inflator = 1 + .001 + .005
             decote = simulation.legislation_at(period.start).impot_revenu.decote
@@ -285,10 +285,10 @@ class plf2016_counterfactual_2014(Reform):
             return period, (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
     class reduction_impot_exceptionnelle(DatedVariable):
+        period_behavior = YEAR
 
         @dated_function(start = date(2015, 1, 1), stop = date(2015, 12, 31))
         def function_2015(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
             nb_adult = simulation.calculate('nb_adult')
             nb_parents = simulation.calculate('nb_parents')
             rfr = simulation.calculate('rfr')
@@ -303,10 +303,10 @@ class plf2016_counterfactual_2014(Reform):
 
     class reductions(DatedVariable):
         label = u"Somme des réductions d'impôt"
+        period_behavior = YEAR
 
         @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
         def function_20130101_20131231(self, simulation, period):
-            period = period.start.offset('first-of', 'year').period('year')
             accult = simulation.calculate('accult')
             adhcga = simulation.calculate('adhcga')
             cappme = simulation.calculate('cappme')

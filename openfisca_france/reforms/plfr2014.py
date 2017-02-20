@@ -9,7 +9,7 @@ from openfisca_core import columns
 from openfisca_core.reforms import Reform
 
 from .. import entities
-from ..model.base import DatedVariable, dated_function, date
+from ..model.base import DatedVariable, dated_function, date, YEAR
 from ..model.prelevements_obligatoires.impot_revenu import reductions_impot
 
 
@@ -21,10 +21,12 @@ class plfr2014(Reform):
 
     class reduction_impot_exceptionnelle(DatedVariable):
         reference = reductions_impot.reduction_impot_exceptionnelle
+        period_behavior = YEAR
 
         @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
         def function(self, simulation, period):
-            period = period.this_year
+            janvier = period.this_month
+
             nb_adult = simulation.calculate('nb_adult')
             nb_parents = simulation.calculate('nb_parents')
             rfr = simulation.calculate('rfr')
@@ -36,10 +38,10 @@ class plfr2014(Reform):
     class reductions(DatedVariable):
         label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
         reference = reductions_impot.reductions
+        period_behavior = YEAR
 
         @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
         def function_20130101_20131231(self, simulation, period):
-            period = period.this_year
             accult = simulation.calculate('accult')
             adhcga = simulation.calculate('adhcga')
             cappme = simulation.calculate('cappme')

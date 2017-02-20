@@ -14,15 +14,15 @@ from openfisca_core import columns
 from openfisca_core.reforms import Reform
 from openfisca_core.variables import Variable
 from openfisca_france import entities
-from openfisca_france.model.base import QUIFAM, QUIFOY
+from openfisca_france.model.base import QUIFAM, QUIFOY, YEAR
 
 class assiette_csg(Variable):
     column = columns.FloatCol
     entity = entities.Individu
     label = u"Assiette de la CSG"
+    period_behavior = YEAR
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         chomage_brut = simulation.calculate('chomage_brut', period)
         retraite_brute = simulation.calculate('retraite_brute', period)
@@ -36,9 +36,9 @@ class impot_revenu_lps(Variable):
     column = columns.FloatCol
     entity = entities.Individu
     label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
+    period_behavior = YEAR
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
         nbF_holder = simulation.compute('nbF')
         nbF = self.cast_from_entity_to_role(nbF_holder, role = QUIFOY['vous'])
         nbH_holder = simulation.compute('nbH')
@@ -61,9 +61,9 @@ class revenu_disponible(Variable):
     entity = entities.Menage
     label = u"Revenu disponible du ménage"
     url = u"http://fr.wikipedia.org/wiki/Revenu_disponible"
+    period_behavior = YEAR
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
         impot_revenu_lps_holder = simulation.compute('impot_revenu_lps')
         impot_revenu_lps = self.sum_by_entity(impot_revenu_lps_holder)
         pen_holder = simulation.compute('pensions')

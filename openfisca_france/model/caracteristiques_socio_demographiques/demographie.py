@@ -24,6 +24,7 @@ class garde_alternee(Variable):
     label = u'Enfant en garde alternée'
     base_function = requested_period_last_or_next_value
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class activite(Variable):
@@ -167,7 +168,9 @@ class caseT(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Vous êtes parent isolé au 1er janvier de l'année de perception des revenus"
-    period_behavior = YEAR
+    period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
+    # TODO: Set period_behavior as YEAR and change the suggestion process (scenarios.py)
 
 
 class caseW(Variable):
@@ -190,6 +193,7 @@ class invalidite(Variable):
     entity = Individu
     label = u"Individu titulaire d'une carte d'invalidité"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class nb_parents(Variable):

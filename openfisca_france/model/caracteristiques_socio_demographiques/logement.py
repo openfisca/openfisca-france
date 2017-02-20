@@ -33,6 +33,7 @@ class depcom(Variable):
     entity = Menage
     label = u"Code INSEE (depcom) du lieu de résidence"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class charges_locatives(Variable):

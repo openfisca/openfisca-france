@@ -6,6 +6,7 @@ from numpy import maximum as max_
 from openfisca_core import columns
 from openfisca_core.reforms import Reform
 from openfisca_core.variables import Variable
+from openfisca_france.model.base import *
 
 from .. import entities
 from ..model.prelevements_obligatoires.impot_revenu import ir
@@ -40,11 +41,11 @@ class cesthra(Variable):
     column = columns.FloatCol
     entity = entities.FoyerFiscal
     label = u"Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
+    period_behavior = YEAR
     # PLF 2013 (rejeté) : 'taxe à 75%'
 
     def function(self, simulation, period):
-        period = period.this_year
-        salaire_imposable_holder = simulation.calculate("salaire_imposable", period)
+        salaire_imposable_holder = simulation.calculate_add("salaire_imposable", period)
         law_cesthra = simulation.legislation_at(period.start).cesthra
         salaire_imposable = self.split_by_roles(salaire_imposable_holder)
 
@@ -56,12 +57,12 @@ class cesthra(Variable):
 
 class irpp(Variable):
     label = u"Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)"
+    period_behavior = YEAR
 
     def function(self, simulation, period):
         '''
         Montant après seuil de recouvrement (hors ppe)
         '''
-        period = period.this_year
         iai = simulation.calculate('iai', period)
         credits_impot = simulation.calculate('credits_impot', period)
         cehr = simulation.calculate('cehr', period)
