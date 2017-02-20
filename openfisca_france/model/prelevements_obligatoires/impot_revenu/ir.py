@@ -1031,7 +1031,7 @@ class ir_plaf_qf(Variable):
         caseN = simulation.calculate('caseN', period)
         caseP = simulation.calculate('caseP', period)
         caseS = simulation.calculate('caseS', period)
-        caseT = simulation.calculate('caseT', period)
+        caseT = simulation.calculate('caseT', period.this_month)
         caseW = simulation.calculate('caseW', period)
         nbF = simulation.calculate('nbF', period)
         nbG = simulation.calculate('nbG', period)
@@ -2632,7 +2632,7 @@ class nbptr(Variable):
         caseF = simulation.calculate('caseF', period)
         caseS = simulation.calculate('caseS', period)
         caseL = simulation.calculate('caseL', period)
-        caseT = simulation.calculate('caseT', period)
+        caseT = simulation.calculate('caseT', period.this_month)
         quotient_familial = simulation.legislation_at(period.start).impot_revenu.quotient_familial
 
         no_pac = nb_pac == 0  # Aucune personne à charge en garde exclusive
@@ -2839,7 +2839,7 @@ class ppe_brute(Variable):
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         veuf = simulation.calculate('veuf', period)
-        caseT = simulation.calculate('caseT', period)
+        caseT = simulation.calculate('caseT', period.this_month)
         caseL = simulation.calculate('caseL', period)
         nbH = simulation.calculate('nbH', period)
         ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe
