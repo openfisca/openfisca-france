@@ -52,9 +52,9 @@ class asi_aspa_base_ressources_individu(Variable):
             ]
 
         # Revenus du foyer fiscal que l'on projette sur le premier invidividus
-        rev_cap_bar_foyer_fiscal = max_(0, individu.foyer_fiscal('rev_cap_bar', three_previous_months, options = [ADD, DIVIDE]))
-        rev_cap_lib_foyer_fiscal = max_(0, individu.foyer_fiscal('rev_cap_lib', three_previous_months, options = [ADD, DIVIDE]))
-        retraite_titre_onereux_foyer_fiscal = individu.foyer_fiscal('retraite_titre_onereux', three_previous_months, options = [ADD, DIVIDE])
+        rev_cap_bar_foyer_fiscal = max_(0, individu.foyer_fiscal('rev_cap_bar', three_previous_months, options = [ADD]))
+        rev_cap_lib_foyer_fiscal = max_(0, individu.foyer_fiscal('rev_cap_lib', three_previous_months, options = [ADD]))
+        retraite_titre_onereux_foyer_fiscal = individu.foyer_fiscal('retraite_titre_onereux', three_previous_months, options = [ADD])
         revenus_foyer_fiscal = rev_cap_bar_foyer_fiscal + rev_cap_lib_foyer_fiscal + retraite_titre_onereux_foyer_fiscal
         revenus_foyer_fiscal_individu = revenus_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
