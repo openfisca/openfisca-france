@@ -8,6 +8,8 @@ from openfisca_france.tests.test_entities import TEST_CASE, tax_benefit_system
 class salaire_famille(Variable):
     column = FloatCol
     entity = Famille
+    period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         salaire_holder = simulation.compute('salaire')
@@ -16,6 +18,8 @@ class salaire_famille(Variable):
 class salaire_enfants(Variable):
     column = FloatCol
     entity = Famille
+    period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         salaire_holder = simulation.compute('salaire')
@@ -24,6 +28,8 @@ class salaire_enfants(Variable):
 class salaire_enf1(Variable):
     column = FloatCol
     entity = Famille
+    period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         salaire_holder = simulation.compute('salaire')
@@ -34,6 +40,8 @@ class salaire_enf1(Variable):
 class salaire_conj(Variable):
     column = FloatCol
     entity = Famille
+    period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         salaire_holder = simulation.compute('salaire')
@@ -43,6 +51,8 @@ class salaire_conj(Variable):
 class af_chef(Variable):
     column = FloatCol
     entity = Individu
+    period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         af_holder = simulation.compute('af')
@@ -51,6 +61,8 @@ class af_chef(Variable):
 class af_tous(Variable):
     column = FloatCol
     entity = Individu
+    period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         af_holder = simulation.compute('af')
@@ -59,6 +71,8 @@ class af_tous(Variable):
 class has_enfant_autonome(Variable):
     column = BoolCol
     entity = Famille
+    period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
     def function(self, simulation, period):
         salaire = simulation.calculate('salaire')
