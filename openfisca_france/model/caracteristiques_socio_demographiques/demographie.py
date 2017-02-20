@@ -38,6 +38,7 @@ class activite(Variable):
     entity = Individu
     label = u"Activité"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class enceinte(Variable):
@@ -60,6 +61,7 @@ class statut_marital(Variable):
     entity = Individu
     label = u"Statut marital"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class nbN(Variable):
