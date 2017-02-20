@@ -1,7 +1,7 @@
 - period: "month:2015-03"
   input_variables:
     apprentissage_contrat_debut:
-      "2013-01-01": "2013-01-01"
+      "2013-01": "2013-01-01"
     date_naissance: "1996-01-01"
   output_variables:
     apprenti:
