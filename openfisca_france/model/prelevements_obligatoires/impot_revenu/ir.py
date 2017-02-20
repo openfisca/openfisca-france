@@ -60,6 +60,7 @@ class age(Variable):
     entity = Individu
     label = u"Âge (en années)"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
     def function(self, simulation, period):
         has_birth = simulation.get_or_new_holder('date_naissance')._array is not None
