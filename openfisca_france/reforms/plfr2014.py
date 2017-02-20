@@ -28,7 +28,7 @@ class plfr2014(Reform):
             janvier = period.this_month
 
             nb_adult = simulation.calculate('nb_adult')
-            nb_parents = simulation.calculate('nb_parents')
+            nb_parents = simulation.calculate('nb_parents', period = janvier)
             rfr = simulation.calculate('rfr')
             params = simulation.legislation_at(period.start).plfr2014.reduction_impot_exceptionnelle
             plafond = params.seuil * nb_adult + (nb_parents - nb_adult) * 2 * params.majoration_seuil

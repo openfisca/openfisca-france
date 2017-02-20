@@ -23,9 +23,9 @@ class assiette_csg(Variable):
     period_behavior = YEAR
 
     def function(self, simulation, period):
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
-        chomage_brut = simulation.calculate('chomage_brut', period)
-        retraite_brute = simulation.calculate('retraite_brute', period)
+        salaire_de_base = simulation.calculate_add('salaire_de_base', period)
+        chomage_brut = simulation.calculate_add('chomage_brut', period)
+        retraite_brute = simulation.calculate_add('retraite_brute', period)
         rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', period)
         rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', period)
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = QUIFOY['vous'])
@@ -39,6 +39,8 @@ class impot_revenu_lps(Variable):
     period_behavior = YEAR
 
     def function(self, simulation, period):
+        janvier = period.this_month
+
         nbF_holder = simulation.compute('nbF')
         nbF = self.cast_from_entity_to_role(nbF_holder, role = QUIFOY['vous'])
         nbH_holder = simulation.compute('nbH')
@@ -48,7 +50,7 @@ class impot_revenu_lps(Variable):
         ae = nbEnf * lps.abatt_enfant
         re = nbEnf * lps.reduc_enfant
         ce = nbEnf * lps.credit_enfant
-        statut_marital = simulation.calculate('statut_marital')
+        statut_marital = simulation.calculate('statut_marital', period = janvier)
         couple = (statut_marital == 1) | (statut_marital == 5)
         ac = couple * lps.abatt_conj
         rc = couple * lps.reduc_conj

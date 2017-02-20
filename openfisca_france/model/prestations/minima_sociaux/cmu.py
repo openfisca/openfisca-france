@@ -222,7 +222,7 @@ class cmu_base_ressources_individu(Variable):
 
         # Abattement sur revenus d'activité si chômage ou formation professionnelle
         def abbattement_chomage():
-            indemnites_chomage_partiel = simulation.calculate('indemnites_chomage_partiel', previous_year)
+            indemnites_chomage_partiel = simulation.calculate_add('indemnites_chomage_partiel', previous_year)
             salaire_net = simulation.calculate_add('salaire_net', previous_year)
             chomage_last_month = simulation.calculate('chomage_net', last_month)
             condition = or_(chomage_last_month > 0, revenus_stage_formation_pro_last_month > 0)
@@ -320,7 +320,7 @@ class cmu_c(Variable):
     def function(famille, period):
         # Note : Cette variable est calculée pour un an, mais si elle est demandée pour une période plus petite, elle
         # répond pour la période demandée.
-        this_rolling_year = this_month.start.period('year')
+        this_rolling_year = period.start.period('year')
         if period.stop > this_rolling_year.stop:
             period = this_rolling_year
         else:

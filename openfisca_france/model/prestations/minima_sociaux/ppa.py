@@ -213,7 +213,7 @@ class ppa_ressources_hors_activite_individu(Variable):
 
         ressources_hors_activite_mensuel_i = sum(
             individu(ressource, period) for ressource in ressources)
-        revenus_locatifs = individu('revenus_locatifs', period.this_year)
+        revenus_locatifs = individu('revenus_locatifs', period.this_year, options = [ADD])
         revenus_activites = individu(
             'ppa_revenu_activite_individu', period, extra_params = [mois_demande])
 

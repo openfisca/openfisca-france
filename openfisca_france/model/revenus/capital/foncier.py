@@ -45,7 +45,7 @@ class f4ba(Variable):
     period_behavior = YEAR
 
     def function(foyer_fiscal, period):
-        revenus_locatifs = foyer_fiscal.members('revenus_locatifs', period)
+        revenus_locatifs = foyer_fiscal.members('revenus_locatifs', period, options = [ADD])
         return period, foyer_fiscal.sum(revenus_locatifs)
 
 

@@ -533,7 +533,7 @@ class rsa_revenu_activite_individu(DatedVariable):
             for type_revenu in types_revenus_activite
             ) / 3
 
-        revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', mois_demande)
+        revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', mois_demande.this_year)
 
         revenus_non_moyennes = (
             individu('primes_salaires_net', mois_courant) +
@@ -675,12 +675,12 @@ class rsa_base_ressources_patrimoine_individu(Variable):
     def function(individu, period, legislation):
         annee = period.this_year
 
-        interets_epargne_sur_livrets = individu('interets_epargne_sur_livrets', annee)
-        epargne_non_remuneree = individu('epargne_non_remuneree', annee)
+        interets_epargne_sur_livrets = individu('interets_epargne_sur_livrets', annee, options = [ADD])
+        epargne_non_remuneree = individu('epargne_non_remuneree', annee, options = [ADD])
         revenus_capital = individu('revenus_capital', annee)
-        valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', annee)
-        valeur_locative_terrains_non_loue = individu('valeur_locative_terrains_non_loue', annee)
-        revenus_locatifs = individu('revenus_locatifs', annee)
+        valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', annee, options = [ADD])
+        valeur_locative_terrains_non_loue = individu('valeur_locative_terrains_non_loue', annee, options = [ADD])
+        revenus_locatifs = individu('revenus_locatifs', annee, options = [ADD])
         rsa = legislation(period).prestations.minima_sociaux.rsa
 
         return period, (

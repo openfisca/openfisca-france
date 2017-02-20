@@ -59,7 +59,7 @@ class charge_loyer(Variable):
     def function(self, simulation, period):
         nbptr = simulation.calculate('nbptr', period)
 
-        loyer = simulation.foyer_fiscal.declarant_principal.menage('loyer', period)
+        loyer = simulation.foyer_fiscal.declarant_principal.menage('loyer', period, options = [ADD])
 
         charge_loyer = simulation.legislation_at(period.start).charge_loyer
 

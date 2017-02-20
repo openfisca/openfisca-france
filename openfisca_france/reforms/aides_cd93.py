@@ -60,7 +60,7 @@ class adpa_base_ressources_i(Variable):
         retraite_imposable = simulation.calculate_add('retraite_imposable', period.n_2)
         chomage_imposable = simulation.calculate_add('chomage_imposable', period.n_2)
         revenus_capital = simulation.calculate_add('revenus_capital', previous_year)
-        revenus_locatifs = simulation.calculate_add('revenus_locatifs', previous_year)
+        revenus_locatifs = simulation.calculate_add('revenus_locatifs', previous_year, options = [ADD])
         # Prélevements libératoire forfaitaire à prendre en compte sans abattement
         valeur_locative_immo_non_loue = simulation.calculate_add('valeur_locative_immo_non_loue', previous_year)
         valeur_locative_terrains_non_loue = simulation.calculate_add('valeur_locative_terrains_non_loue', previous_year)
