@@ -16,6 +16,7 @@ from openfisca_core.variables import Variable
 from openfisca_france import entities
 from openfisca_france.model.base import QUIFAM, QUIFOY
 
+
 class assiette_csg(Variable):
     column = columns.FloatCol
     entity = entities.Individu
@@ -31,6 +32,7 @@ class assiette_csg(Variable):
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = QUIFOY['vous'])
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = QUIFOY['vous'])
         return period, salaire_de_base + chomage_brut + retraite_brute + rev_cap_bar + rev_cap_lib
+
 
 class impot_revenu_lps(Variable):
     column = columns.FloatCol

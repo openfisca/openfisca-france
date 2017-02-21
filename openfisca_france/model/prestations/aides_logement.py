@@ -724,7 +724,7 @@ class apl(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity = Famille
-    label = u" Aide personnalisée au logement"
+    label = u"Aide personnalisée au logement"
     # (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
     url = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
 

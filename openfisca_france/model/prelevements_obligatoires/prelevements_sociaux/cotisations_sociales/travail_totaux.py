@@ -118,7 +118,7 @@ class cotisations_salariales_contributives(Variable):
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
-        period = period
+        period = period.this_month
         agff_salarie = simulation.calculate_add('agff_salarie', period)
         agirc_salarie = simulation.calculate_add('agirc_salarie', period)
         agirc_gmp_salarie = simulation.calculate_add('agirc_gmp_salarie', period)

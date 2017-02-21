@@ -25,8 +25,8 @@ class exonere_taxe_habitation(Variable):
         period = period.this_year
         aah_holder = simulation.compute_add('aah', period)
         age_holder = simulation.compute('age', period)
-        asi_holder = simulation.calculate_add('asi', period)
-        aspa_holder = simulation.calculate_add('aspa', period)
+        asi_holder = simulation.compute_add('asi', period)
+        aspa_holder = simulation.compute_add('aspa', period)
         isf_tot_holder = simulation.compute('isf_tot', period)
         nbptr_holder = simulation.compute('nbptr', period)
         rfr_holder = simulation.compute('rfr', period)

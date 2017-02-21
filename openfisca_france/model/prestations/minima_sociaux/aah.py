@@ -204,15 +204,16 @@ class aah_base(Variable):
         law = legislation(period).prestations
 
         aah_eligible = individu('aah_eligible', period)
-        aah_non_calculable = individu('aah_non_calculable', period)
+        # aah_non_calculable = individu('aah_non_calculable', period)
         aah_base_ressources = individu.famille('aah_base_ressources', period)
         en_couple = individu.famille('en_couple', period)
         af_nbenf = individu.famille('af_nbenf', period)
-        plaf_ress_aah = 12 * law.minima_sociaux.aah.montant * (1 + en_couple + law.minima_sociaux.aah.tx_plaf_supp * af_nbenf)
+        plaf_ress_aah = 12 * law.minima_sociaux.aah.montant * (
+            1 + en_couple + law.minima_sociaux.aah.tx_plaf_supp * af_nbenf)
         montant_aah = max_(plaf_ress_aah - aah_base_ressources, 0) / 12
 
         # Pour le moment, on ne neutralise pas l'aah en cas de non calculabilité pour pouvoir tester
-        return period, aah_eligible *  montant_aah # * not_(aah_non_calculable)
+        return period, aah_eligible * montant_aah  # * not_(aah_non_calculable)
 
 
 class aah(Variable):
@@ -220,6 +221,7 @@ class aah(Variable):
     column = FloatCol
     label = u"Allocation adulte handicapé (Individu) mensualisée"
     entity = Individu
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         period = period.this_month

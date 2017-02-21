@@ -88,7 +88,7 @@ class paje_base(Variable):
         parent_isole = not_(famille('en_couple', period))
         nombre_enfants = famille('af_nbenf', period)
         pfam = legislation(period).prestations.prestations_familiales
-        date_gel_paje = Instant((2013, 04, 01))   # Le montant de la PAJE est gelé depuis avril 2013.
+        date_gel_paje = Instant((2013, 04, 01))  # Le montant de la PAJE est gelé depuis avril 2013.
         bmaf = pfam.af.bmaf if period.start < date_gel_paje else legislation(date_gel_paje).prestations.prestations_familiales.af.bmaf
         montant_taux_plein = bmaf * pfam.paje.base.taux_allocation_base
 
@@ -247,6 +247,7 @@ class paje_clca(Variable):
     label = u"PAJE - Complément de libre choix d'activité"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
+    set_input = set_input_divide_by_period
 
     def function(famille, period, legislation):
         """
@@ -286,7 +287,7 @@ class paje_clca(Variable):
         # A partir du 2ème enfant, il est versé jusqu’au mois précédant le 3ème anniversaire
         # de l’enfant.
 
-        # Calcul de l'année et mois de naisage_in_months( du cadet
+        # Calcul de l'année et mois de naissance du cadet
         # TODO: ajuster en fonction de la cessation des IJ etc
 
         age_en_mois_i = famille.members('age_en_mois', period)
@@ -356,6 +357,7 @@ class paje_cmg(Variable):
     entity = Famille
     label = u"PAJE - Complément de libre choix du mode de garde"
     start_date = date(2004, 1, 1)
+    set_input = set_input_divide_by_period
     url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"  # noqa
 
     def function(famille, period, legislation):
@@ -468,6 +470,7 @@ class paje_colca(Variable):
     entity = Famille
     label = u"PAJE - Complément optionnel de libre choix d'activité"
     start_date = date(2004, 1, 1)
+    set_input = set_input_divide_by_period
     url = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
 
     def function(famille, period, legislation):
