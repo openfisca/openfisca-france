@@ -1,0 +1,15 @@
+- period: "2017-01"
+  name: Base
+  relative_error_margin: 0.001
+  input_variables:
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 1
+    salaire_de_base: 1500
+  output_variables:
+    allegement_fillon: >
+      1500 *
+      (
+        (.2809 / .6)
+        *
+        (1.6 * ( 17763.20 / (1500 * 12)) - 1)
+      )

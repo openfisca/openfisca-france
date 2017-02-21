@@ -1,8 +1,18 @@
-# Changelog
+﻿# Changelog
+
+
+## 13.2.0
+
+* Déplace la transformation du JSON en test case du module `scenarios` de `france` vers `core`
+* Adapte `france` à  la version `5.0.0` de `core`
+
+Ces changements sont a priori transparents pour les utilisateurs.
 
 ## 13.1.5
 
-* Ignore scipy error import when scipy is missing
+* Fix 2017 rates and test them:
+  - réduction générale sur les bas salaires (fillon) had a minor difference (we used the 2016 provisionnal value)
+  - maladie MMID employeur had not been updated
 
 ## 13.1.4
 

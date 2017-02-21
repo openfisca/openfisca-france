@@ -360,12 +360,12 @@ class minima_sociaux(Variable):
 class aides_logement(Variable):
     column = FloatCol
     entity = Famille
-    label = u"Allocations logements"
+    label = u"Aides logement nets"
     url = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
 
     def function(famille, period):
         '''
-        Prestations logement
+        Aide au logement
         '''
         period = period.this_year
         apl = famille('apl', period, options = [ADD])
