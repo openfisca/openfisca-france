@@ -41,6 +41,7 @@ class versement_transport(Variable):
     label = u"Versement transport"
 
     def function(self, simulation, period):
+        period = period.this_month
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         taux_versement_transport = simulation.calculate('taux_versement_transport', period)
         cotisation = - taux_versement_transport * assiette_cotisations_sociales

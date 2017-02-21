@@ -597,6 +597,7 @@ class mmid_employeur(Variable):
     url = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html"
 
     def function(self, simulation, period):
+        period = period.this_month
         cotisation = apply_bareme(
             simulation,
             period,
