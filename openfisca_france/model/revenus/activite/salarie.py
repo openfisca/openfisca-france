@@ -898,7 +898,6 @@ class cout_du_travail(Variable):
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
-        period = period
         salaire_super_brut = simulation.calculate('salaire_super_brut', period)
         cout_differe = simulation.calculate('cout_differe', period)
 
@@ -914,6 +913,6 @@ class cout_differe(Variable):
         credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
         aide_premier_salarie = simulation.calculate_add('aide_premier_salarie', period)
         aide_embauche_pme = simulation.calculate_add('aide_embauche_pme', period)
-        tehr = simulation.calculate_divide('tehr', period)
+        tehr = simulation.calculate('tehr', period)
 
         return period, credit_impot_competitivite_emploi + aide_premier_salarie + aide_embauche_pme + tehr

@@ -111,6 +111,7 @@ class cotisations_employeur_non_contributives(Variable):
 
 
 class cotisations_salariales_contributives(Variable):
+    calculate_output = calculate_output_add
     base_function = requested_period_added_value
     column = FloatCol
     entity = Individu
@@ -155,13 +156,14 @@ class cotisations_salariales_contributives(Variable):
 
 class cotisations_salariales_non_contributives(Variable):
     base_function = requested_period_added_value
+    calculate_output = calculate_output_add
     column = FloatCol
     entity = Individu
     label = u"Cotisations sociales salariales non-contributives"
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
-        period = period
+        period = period.this_month
         contribution_exceptionnelle_solidarite = simulation.calculate_add(
             'contribution_exceptionnelle_solidarite', period)
         mmid_salarie = simulation.calculate_add('mmid_salarie', period)
@@ -178,13 +180,14 @@ class cotisations_salariales_non_contributives(Variable):
 
 class cotisations_salariales(Variable):
     base_function = requested_period_added_value
+    calculate_output = calculate_output_add
     column = FloatCol
     entity = Individu
     label = u"Cotisations sociales salariales"
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
-        period = period
+        period = period.this_month
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         cotisations_salariales_non_contributives = simulation.calculate(
             'cotisations_salariales_non_contributives', period)

@@ -135,6 +135,7 @@ class crds_salaire(Variable):
 
 
 class forfait_social(DatedVariable):
+    calculate_output = calculate_output_add
     column = FloatCol
     entity = Individu
     label = u"Forfait social"
@@ -147,7 +148,6 @@ class forfait_social(DatedVariable):
     @dated_function(start = date(2009, 1, 1), stop = date(2012, 7, 31))
     def function_1(individu, period, legislation):
         prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options = [ADD])
-
         parametres = legislation(period).prelevements_sociaux.forfait_social
         taux_plein = parametres.taux_plein
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
@@ -157,7 +157,6 @@ class forfait_social(DatedVariable):
     @dated_function(start = date(2012, 8, 1))
     def function_2(individu, period, legislation):
         prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options = [ADD])
-
         parametres = legislation(period).prelevements_sociaux.forfait_social
         taux_plein = parametres.taux_plein
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
@@ -250,7 +249,7 @@ class tehr(Variable):
     calculate_output = calculate_output_divide
 
     def function(self, simulation, period):
-        period = period.start.period(u'year').offset('first-of')
+        period = period.this_year
         salaire_de_base = simulation.calculate_add('salaire_de_base', period)  # TODO: check base
         law = simulation.legislation_at(period.start)
 

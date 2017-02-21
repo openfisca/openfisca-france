@@ -150,6 +150,7 @@ class chomage_imposable(Variable):
 
 class chomage_net(Variable):
     base_function = requested_period_added_value
+    calculate_output = calculate_output_add
     column = FloatCol
     entity = Individu
     label = u"Allocations chômage nettes"
@@ -171,6 +172,7 @@ class chomage_net(Variable):
 
 class csg_deductible_retraite(Variable):
     base_function = requested_period_added_value
+    calculate_output = calculate_output_add
     column = FloatCol
     entity = Individu
     label = u"CSG déductible sur les pensions de retraite"
@@ -194,6 +196,7 @@ class csg_deductible_retraite(Variable):
 
 class csg_imposable_retraite(Variable):
     base_function = requested_period_added_value
+    calculate_output = calculate_output_add
     column = FloatCol
     entity = Individu
     label = u"CSG imposable sur les pensions de retraite"
@@ -214,6 +217,7 @@ class csg_imposable_retraite(Variable):
 
 class crds_retraite(Variable):
     base_function = requested_period_added_value
+    calculate_output = calculate_output_add
     column = FloatCol
     entity = Individu
     label = u"CRDS sur les pensions de retraite"
@@ -235,6 +239,7 @@ class crds_retraite(Variable):
 
 class casa(DatedVariable):
     base_function = requested_period_added_value
+    calculate_output = calculate_output_add
     column = FloatCol
     entity = Individu
     label = u"Contribution additionnelle de solidarité et d'autonomie"
