@@ -318,29 +318,21 @@ class cmu_c(Variable):
     period_behavior = MONTH
 
     def function(famille, period):
-        # Note : Cette variable est calculée pour un an, mais si elle est demandée pour une période plus petite, elle
-        # répond pour la période demandée.
-        this_rolling_year = period.start.period('year')
-        if period.stop > this_rolling_year.stop:
-            period = this_rolling_year
-        else:
-            period = this_month
-
-        cmu_c_plafond = famille('cmu_c_plafond', this_month)
-        cmu_base_ressources = famille('cmu_base_ressources', this_month)
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', this_month)
+        cmu_c_plafond = famille('cmu_c_plafond', period)
+        cmu_base_ressources = famille('cmu_base_ressources', period)
+        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
         cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
 
         if period.start.date >= date(2016, 01, 01):
-            eligibilite_rsa = famille('rsa', this_month) > 0
+            eligibilite_rsa = famille('rsa', period) > 0
         else:
             # Avant 2016, seules les bénéficiaires du RSA socle avait le droit d'office à la CMU.
-            rsa_socle = famille('rsa_socle', this_month)
-            rsa_socle_majore = famille('rsa_socle_majore', this_month)
-            rsa_forfait_logement = famille('rsa_forfait_logement', this_month)
-            rsa_base_ressources = famille('rsa_base_ressources', this_month)
+            rsa_socle = famille('rsa_socle', period)
+            rsa_socle_majore = famille('rsa_socle_majore', period)
+            rsa_forfait_logement = famille('rsa_forfait_logement', period)
+            rsa_base_ressources = famille('rsa_base_ressources', period)
             socle = max_(rsa_socle, rsa_socle_majore)
-            rsa = famille('rsa', this_month)
+            rsa = famille('rsa', period)
             eligibilite_rsa = (rsa > 0) * (rsa_base_ressources < socle - rsa_forfait_logement)
 
         eligibilite_basique = cmu_base_ressources <= cmu_c_plafond
