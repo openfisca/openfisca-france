@@ -674,20 +674,18 @@ class rsa_base_ressources_patrimoine_individu(Variable):
     period_behavior = MONTH
 
     def function(individu, period, legislation):
-        annee = period.this_year
-
-        interets_epargne_sur_livrets = individu('interets_epargne_sur_livrets', annee, options = [ADD])
-        epargne_non_remuneree = individu('epargne_non_remuneree', annee, options = [ADD])
-        revenus_capital = individu('revenus_capital', annee, options = [ADD])
-        valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', annee, options = [ADD])
-        valeur_locative_terrains_non_loue = individu('valeur_locative_terrains_non_loue', annee, options = [ADD])
-        revenus_locatifs = individu('revenus_locatifs', annee, options = [ADD])
+        interets_epargne_sur_livrets = individu('interets_epargne_sur_livrets', period)
+        epargne_non_remuneree = individu('epargne_non_remuneree', period)
+        revenus_capital = individu('revenus_capital', period)
+        valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', period)
+        valeur_locative_terrains_non_loue = individu('valeur_locative_terrains_non_loue', period)
+        revenus_locatifs = individu('revenus_locatifs', period)
         rsa = legislation(period).prestations.minima_sociaux.rsa
 
         return period, (
             interets_epargne_sur_livrets / 12 +
             epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere / 12 +
-            revenus_capital / 12 +
+            revenus_capital +
             valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue +
             valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue +
             revenus_locatifs
