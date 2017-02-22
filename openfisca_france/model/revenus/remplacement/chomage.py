@@ -23,6 +23,7 @@ class chomage_brut(Variable):
     entity = Individu
     label = u"Chômage brut"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class indemnites_chomage_partiel(Variable):

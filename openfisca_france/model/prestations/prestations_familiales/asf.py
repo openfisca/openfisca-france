@@ -50,6 +50,7 @@ class asf(Variable):
     entity = Famille
     label = u"Allocation de soutien familial (ASF)"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(famille, period, legislation):
         pfam = legislation(period).prestations.prestations_familiales

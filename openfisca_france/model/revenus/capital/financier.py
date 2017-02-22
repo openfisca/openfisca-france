@@ -230,7 +230,8 @@ class epargne_non_remuneree(Variable):
     entity = Individu
     base_function = requested_period_last_value
     label = u"Épargne non rémunérée"
-    period_behavior = YEAR
+    period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class interets_epargne_sur_livrets(Variable):
@@ -238,11 +239,13 @@ class interets_epargne_sur_livrets(Variable):
     entity = Individu
     base_function = requested_period_last_value
     label = u"Intérêts versés pour l'épargne sur livret"
-    period_behavior = YEAR
+    period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class revenus_capital(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenus du capital"
-    period_behavior = YEAR
+    period_behavior = MONTH
+    set_input = set_input_divide_by_period

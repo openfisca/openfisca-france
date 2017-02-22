@@ -334,7 +334,7 @@ class exoneration_is_creation_zrr(Variable):
     entity = Individu
     label = u"Exonrérations fiscales pour création d'une entreprise en zone de revitalisation rurale (ZRR)"
     url = 'http://www.apce.com/pid11690/exonerations-d-impots-zrr.html?espace=1&tp=1'
-    period_behavior = YEAR
+    period_behavior = MONTH
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
@@ -470,6 +470,7 @@ class zone_restructuration_defense(Variable):
     entity = Individu
     label = u"L'entreprise est située dans une zone de restructuration de la Défense (ZRD)"
     period_behavior = MONTH
+    set_input = set_input_dispatch_by_period
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)

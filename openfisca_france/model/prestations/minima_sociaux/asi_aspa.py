@@ -206,6 +206,7 @@ class asi(Variable):
     url = u"http://vosdroits.service-public.fr/particuliers/F16940.xhtml"
     entity = Famille
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         asi_elig_holder = simulation.compute('asi_eligibilite', period)
@@ -287,6 +288,7 @@ class aspa(Variable):
     label = u"Allocation de solidarité aux personnes agées"
     url = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         asi_elig_holder = simulation.compute('asi_eligibilite', period)

@@ -88,6 +88,7 @@ class paje_base(Variable):
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(famille, period, legislation):
         couple_biactif = famille('biactivite', period)
@@ -254,6 +255,7 @@ class paje_clca(Variable):
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(famille, period, legislation):
         """

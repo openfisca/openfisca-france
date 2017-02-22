@@ -657,6 +657,7 @@ class rsa(Variable):
     entity = Famille
     start_date = date(2009, 06, 1)
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(famille, period):
         montant = famille('rsa_montant', period)

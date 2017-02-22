@@ -221,6 +221,7 @@ class aah(Variable):
     label = u"Allocation adulte handicapé (Individu) mensualisée"
     entity = Individu
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         aah_base = simulation.calculate('aah_base', period)

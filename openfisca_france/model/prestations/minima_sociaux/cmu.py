@@ -354,6 +354,7 @@ class acs(Variable):
     label = u"Montant (annuel) de l'ACS"
     entity = Famille
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(famille, period):
         cmu_c = famille('cmu_c', period)

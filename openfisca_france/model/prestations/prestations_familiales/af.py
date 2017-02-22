@@ -319,6 +319,7 @@ class af(DatedVariable):
     entity = Famille
     label = u"Allocations familiales - total des allocations"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     @dated_function(start = date(2015, 7, 1))
     def function_20150701(famille, period, legislation):

@@ -61,6 +61,7 @@ class age(Variable):
     label = u"Âge (en années)"
     period_behavior = MONTH
     set_input = set_input_dispatch_by_period
+    calculate_output = calculate_output_first_month
 
     def function(self, simulation, period):
         has_birth = simulation.get_or_new_holder('date_naissance')._array is not None
@@ -89,6 +90,7 @@ class age_en_mois(Variable):
     entity = Individu
     label = u"Âge (en mois)"
     period_behavior = MONTH
+    calculate_output = calculate_output_first_month
 
     def function(self, simulation, period):
         # If age_en_mois is known at the same day of another month, compute the new age_en_mois from it.
@@ -143,6 +145,7 @@ class enfant_a_charge(Variable):
     label = u"Enfant à charge non marié, de moins de 18 ans au 1er janvier de l'année de perception des" \
         u" revenus, ou né durant la même année, ou handicapés quel que soit son âge"
     period_behavior = MONTH
+    calculate_output = calculate_output_first_month
 
     def function(individu, period):
         age = individu('age', period)

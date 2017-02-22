@@ -20,6 +20,7 @@ class ass(Variable):
     label = u"Montant de l'ASS pour une famille"
     entity = Famille
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         ass_base_ressources = simulation.calculate('ass_base_ressources', period)

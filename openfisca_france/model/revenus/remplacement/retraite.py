@@ -8,6 +8,7 @@ class retraite_brute(Variable):
     entity = Individu
     label = u"Retraite brute"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
 class aer(Variable):
@@ -22,3 +23,4 @@ class retraite_combattant(Variable):
     entity = Individu
     label = u"Retraite du combattant"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period

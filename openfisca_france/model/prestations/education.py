@@ -17,6 +17,7 @@ class bourse_college(Variable):
     label = u"Montant annuel de la bourse de collège"
     entity = Famille
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         rfr = simulation.calculate('rfr', period.n_2)
@@ -109,6 +110,7 @@ class bourse_lycee(Variable):
     label = u"Montant annuel de la bourse de lycée"
     entity = Famille
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         nombre_parts = simulation.calculate('bourse_lycee_nombre_parts', period)

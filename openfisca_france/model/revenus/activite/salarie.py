@@ -13,6 +13,7 @@ class indemnites_stage(Variable):
     entity = Individu
     label = u"Indemnités de stage"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class revenus_stage_formation_pro(Variable):
@@ -20,6 +21,7 @@ class revenus_stage_formation_pro(Variable):
     entity = Individu
     label = u"Revenus de stage de formation professionnelle"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class bourse_recherche(Variable):
@@ -27,6 +29,7 @@ class bourse_recherche(Variable):
     entity = Individu
     label = u"Bourse de recherche"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class sal_pen_exo_etr(Variable):

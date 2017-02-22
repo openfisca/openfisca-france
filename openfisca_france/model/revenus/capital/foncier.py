@@ -104,7 +104,8 @@ class revenus_locatifs(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenus locatifs"
-    period_behavior = YEAR
+    period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class valeur_locative_immo_non_loue(Variable):
@@ -112,7 +113,8 @@ class valeur_locative_immo_non_loue(Variable):
     entity = Individu
     base_function = requested_period_last_value
     label = u"Valeur locative des biens immobiliers possédés et non loués"
-    period_behavior = YEAR
+    period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class valeur_locative_terrains_non_loue(Variable):
@@ -120,4 +122,5 @@ class valeur_locative_terrains_non_loue(Variable):
     entity = Individu
     base_function = requested_period_last_value
     label = u"Valeur locative des terrains possédés et non loués"
-    period_behavior = YEAR
+    period_behavior = MONTH
+    set_input = set_input_divide_by_period

@@ -650,6 +650,7 @@ class alf(Variable):
     label = u"Allocation logement familiale"
     url = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(famille, period):
         aide_logement_montant = famille('aide_logement_montant', period)
@@ -710,6 +711,7 @@ class als(Variable):
     label = u"Allocation logement sociale"
     url = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         als_non_etudiant = simulation.calculate('als_non_etudiant', period)
@@ -727,6 +729,7 @@ class apl(Variable):
     # (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
     url = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(famille, period):
         aide_logement_montant = famille('aide_logement_montant', period)
@@ -759,6 +762,7 @@ class aide_logement(Variable):
     entity = Famille
     label = u"Aide au logement (tout type)"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         apl = simulation.calculate('apl', period)

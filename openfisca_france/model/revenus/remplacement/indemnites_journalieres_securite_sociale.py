@@ -8,6 +8,7 @@ class indemnites_journalieres_maternite(Variable):
     entity = Individu
     label = u"Indemnités journalières de maternité"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class indemnites_journalieres_paternite(Variable):
@@ -15,6 +16,7 @@ class indemnites_journalieres_paternite(Variable):
     entity = Individu
     label = u"Indemnités journalières de paternité"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class indemnites_journalieres_adoption(Variable):
@@ -22,6 +24,7 @@ class indemnites_journalieres_adoption(Variable):
     entity = Individu
     label = u"Indemnités journalières d'adoption"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class indemnites_journalieres_maladie(Variable):
@@ -29,6 +32,7 @@ class indemnites_journalieres_maladie(Variable):
     entity = Individu
     label = u"Indemnités journalières de maladie"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class indemnites_journalieres_accident_travail(Variable):
@@ -36,6 +40,7 @@ class indemnites_journalieres_accident_travail(Variable):
     entity = Individu
     label = u"Indemnités journalières d'accident du travail"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class indemnites_journalieres_maladie_professionnelle(Variable):
@@ -43,6 +48,7 @@ class indemnites_journalieres_maladie_professionnelle(Variable):
     entity = Individu
     label = u"Indemnités journalières de maladie professionnelle"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class indemnites_journalieres(Variable):

@@ -46,6 +46,7 @@ class allocation_aide_retour_emploi(Variable):
     entity = Individu
     label = u"Allocation d'aide au retour à l'emploi"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class allocation_securisation_professionnelle(Variable):
@@ -53,6 +54,7 @@ class allocation_securisation_professionnelle(Variable):
     entity = Individu
     label = u"Allocation de sécurisation professionnelle"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class prime_forfaitaire_mensuelle_reprise_activite(Variable):
@@ -60,6 +62,7 @@ class prime_forfaitaire_mensuelle_reprise_activite(Variable):
     entity = Individu
     label = u"Prime forfaitaire mensuelle pour la reprise d'activité"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class indemnites_volontariat(Variable):
@@ -67,6 +70,7 @@ class indemnites_volontariat(Variable):
     entity = Individu
     label = u"Indemnités de volontariat"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class dedommagement_victime_amiante(Variable):
@@ -74,6 +78,7 @@ class dedommagement_victime_amiante(Variable):
     entity = Individu
     label = u"Dédommagement versé aux victimes de l'amiante"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class prestation_compensatoire(Variable):
@@ -81,6 +86,7 @@ class prestation_compensatoire(Variable):
     entity = Individu
     label = u"Prestation compensatoire"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 class pensions_invalidite(Variable):
@@ -103,7 +109,8 @@ class bourse_enseignement_sup(Variable):
     column = FloatCol
     entity = Individu
     label = u"Bourse de l'enseignement supérieur"
-    period_behavior = YEAR
+    period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
 
 # Avoir fiscaux et crédits d'impôt

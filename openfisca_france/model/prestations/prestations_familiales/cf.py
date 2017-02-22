@@ -273,6 +273,7 @@ class cf(Variable):
     label = u"Complément familial"
     url = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"
     period_behavior = MONTH
+    set_input = set_input_divide_by_period
 
     def function(famille, period, legislation):
         '''
