@@ -1,8 +1,9 @@
 name: Montant soustrait de la moyenne des revenus locatifs des 3 derniers mois
+ignore: True
 keywords:
   - patrimoine
   - rsa
-description:
+description: "test faux: ignore les revenus locatifs"
 period: "month:2014-09"
 individus:
   age: 34

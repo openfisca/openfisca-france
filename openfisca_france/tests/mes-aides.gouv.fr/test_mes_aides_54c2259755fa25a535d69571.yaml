@@ -1,9 +1,11 @@
 name: Cas RL < 45
+ignore: True
 keywords:
   - al
   - location
   - taux loyer
 description: |
+  Attention test peu robuste à cause d'un opérateur ceil (dans aide_logement_base_ressources)
   On veut rentrer dans ce test dans le cas où RL est inférieur à 45
   Dans l'exemple, personne seule en zone 1, loyer = 90 euros, salaires 2013 = 7000 euros
 

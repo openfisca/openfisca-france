@@ -1,8 +1,10 @@
 name: Couple dont un est retraité + 1 enfant
+ignore: true
 keywords:
   - "cmu-c/acs"
   - recette
 description: |
+  Attention ce test est faux. Dans le calcul de retraite_imposable la CSG n'est pas comptée.'
   L'ASPA n'est pas perçue
   Total ressources calculées par la CPAM: 14 500 < plafond CMUC 15 560
   Forfait logement 152eur/mois
