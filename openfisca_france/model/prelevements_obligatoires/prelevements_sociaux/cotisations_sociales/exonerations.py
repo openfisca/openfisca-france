@@ -339,7 +339,7 @@ class exoneration_is_creation_zrr(Variable):
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        entreprise_benefice = simulation.calculate('entreprise_benefice', period)
+        entreprise_benefice = simulation.calculate_add('entreprise_benefice', period)
         # TODO: MODIFIER avec création d'entreprise
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)  # 0: CDI, 1:CDD
 

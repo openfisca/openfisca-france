@@ -678,7 +678,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
 
         interets_epargne_sur_livrets = individu('interets_epargne_sur_livrets', annee, options = [ADD])
         epargne_non_remuneree = individu('epargne_non_remuneree', annee, options = [ADD])
-        revenus_capital = individu('revenus_capital', annee)
+        revenus_capital = individu('revenus_capital', annee, options = [ADD])
         valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', annee, options = [ADD])
         valeur_locative_terrains_non_loue = individu('valeur_locative_terrains_non_loue', annee, options = [ADD])
         revenus_locatifs = individu('revenus_locatifs', annee, options = [ADD])
