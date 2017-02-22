@@ -17,6 +17,7 @@ class chomeur_longue_duree(Variable):
 
 
 class chomage_brut(Variable):
+    base_function = requested_period_added_value
     column = FloatCol()
     entity = Individu
     label = u"Chômage brut"

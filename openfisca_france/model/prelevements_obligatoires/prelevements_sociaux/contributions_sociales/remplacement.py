@@ -127,6 +127,7 @@ class crds_chomage(Variable):
 
 class chomage_imposable(Variable):
     base_function = requested_period_added_value
+    calculate_output = calculate_output_add
     column = FloatCol(
         val_type = "monetary",
         cerfa_field = {
@@ -142,8 +143,9 @@ class chomage_imposable(Variable):
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm"
 
     def function(individu, period):
+        period = period.this_month
         chomage_brut = individu('chomage_brut', period)
-        csg_deductible_chomage = individu('csg_deductible_chomage', period, options = [ADD])
+        csg_deductible_chomage = individu('csg_deductible_chomage', period)
 
         return period, chomage_brut + csg_deductible_chomage
 
