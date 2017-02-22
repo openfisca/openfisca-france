@@ -758,6 +758,7 @@ class taille_entreprise(Variable):
     label = u"Catégorie de taille d'entreprise"
     url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
     period_behavior = MONTH
+    calculate_output = calculate_output_first_month
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)

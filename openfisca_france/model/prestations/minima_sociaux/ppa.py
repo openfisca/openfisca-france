@@ -334,6 +334,7 @@ class ppa(DatedVariable):
     entity = Famille
     label = u"Prime Pour l'Activité"
     period_behavior = MONTH
+    calculate_output = calculate_output_add
 
     @dated_function(start = date(2016, 1, 1))
     def function(famille, period, legislation):

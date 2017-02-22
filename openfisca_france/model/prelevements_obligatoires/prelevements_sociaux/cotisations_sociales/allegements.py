@@ -132,6 +132,7 @@ class credit_impot_competitivite_emploi(DatedVariable):
     entity = Individu
     label = u"Crédit d'imôt pour la compétitivité et l'emploi"
     period_behavior = MONTH
+    calculate_output = calculate_output_add
 
     @dated_function(date(2013, 1, 1))
     def function_2013_(self, simulation, period):
@@ -153,6 +154,7 @@ class aide_premier_salarie(DatedVariable):
     entity = Individu
     label = u"Aide à l'embauche d'un premier salarié"
     period_behavior = MONTH
+    calculate_output = calculate_output_add
 
     @dated_function(start=date(2015, 6, 9))
     def function(self, simulation, period):
@@ -216,6 +218,7 @@ class aide_embauche_pme(DatedVariable):
     label = u"Aide à l'embauche d'un salarié pour les PME"
     url = u"http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
     period_behavior = MONTH
+    calculate_output = calculate_output_add
 
     @dated_function(start=date(2016, 1, 18))
     def function(self, simulation, period):
@@ -305,6 +308,7 @@ class allegement_fillon(DatedVariable):
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
     url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542"
     period_behavior = MONTH
+    calculate_output = calculate_output_add
 
     # Attention : cet allègement a des règles de cumul spécifiques
 

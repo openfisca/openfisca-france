@@ -134,6 +134,7 @@ class forfait_social(DatedVariable):
     label = u"Forfait social"
     start_date = date(2009, 1, 1)
     period_behavior = MONTH
+    calculate_output = calculate_output_add
 
     # les contributions destinées au financement des prestations de prévoyance complémentaire versées
     # au bénéfice de leurs salariés, anciens salariés et de leurs ayants droit (entreprises à partir de 10 salariés),

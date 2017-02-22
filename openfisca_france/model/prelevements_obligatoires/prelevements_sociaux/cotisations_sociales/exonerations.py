@@ -335,6 +335,7 @@ class exoneration_is_creation_zrr(Variable):
     label = u"Exonrérations fiscales pour création d'une entreprise en zone de revitalisation rurale (ZRR)"
     url = 'http://www.apce.com/pid11690/exonerations-d-impots-zrr.html?espace=1&tp=1'
     period_behavior = MONTH
+    calculate_output = calculate_output_add
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)

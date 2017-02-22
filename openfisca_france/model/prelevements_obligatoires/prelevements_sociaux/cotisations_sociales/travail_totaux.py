@@ -19,6 +19,7 @@ class cotisations_employeur(Variable):
     label = u"Cotisations sociales employeur"
     set_input = set_input_divide_by_period
     period_behavior = MONTH
+    calculate_output = calculate_output_add
 
     def function(self, simulation, period):
         cotisations_employeur_contributives = simulation.calculate('cotisations_employeur_contributives', period)
@@ -183,6 +184,7 @@ class cotisations_salariales(Variable):
     label = u"Cotisations sociales salariales"
     set_input = set_input_divide_by_period
     period_behavior = MONTH
+    calculate_output = calculate_output_add
 
     def function(self, simulation, period):
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)

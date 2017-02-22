@@ -15,6 +15,7 @@ class api(Variable):
     url = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
     stop_date = date(2009, 5, 31)
     period_behavior = MONTH
+    calculate_output = calculate_output_add
 
     def function(famille, period, legislation):
         """
@@ -103,6 +104,7 @@ class psa(Variable):
     stop_date = date(2009, 4, 30)
     url = u"http://www.service-public.fr/actualites/001077.html"
     period_behavior = MONTH
+    calculate_output = calculate_output_add
 
     def function(famille, period, legislation):
         '''

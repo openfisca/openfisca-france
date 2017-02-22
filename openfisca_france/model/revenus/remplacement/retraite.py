@@ -9,6 +9,8 @@ class retraite_brute(Variable):
     label = u"Retraite brute"
     period_behavior = MONTH
     set_input = set_input_divide_by_period
+    calculate_output = calculate_output_add
+
 
 # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
 class aer(Variable):

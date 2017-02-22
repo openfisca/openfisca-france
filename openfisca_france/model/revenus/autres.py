@@ -15,6 +15,7 @@ class pensions_alimentaires_percues(Variable):
     label = u"Pensions alimentaires perçues"
     period_behavior = MONTH
     set_input = set_input_divide_by_period
+    calculate_output = calculate_output_add
 
 
 # (f1ao, f1bo, f1co, f1do, f1eo)

@@ -24,6 +24,7 @@ class chomage_brut(Variable):
     label = u"Chômage brut"
     period_behavior = MONTH
     set_input = set_input_divide_by_period
+    calculate_output = calculate_output_add
 
 
 class indemnites_chomage_partiel(Variable):

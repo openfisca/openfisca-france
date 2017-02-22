@@ -73,6 +73,7 @@ class hsup(Variable):
     stop_date = date(2013, 12, 13)
     period_behavior = MONTH
     set_input = set_input_divide_by_period
+    calculate_output = calculate_output_add
 
 
 class ppe_du_sa(Variable):
@@ -358,6 +359,7 @@ class entreprise_benefice(Variable):
     set_input = set_input_divide_by_period
     label = u"Bénéfice de l'entreprise"
     period_behavior = MONTH
+    calculate_output = calculate_output_add
 
 
 class entreprise_bilan(Variable):
@@ -986,6 +988,7 @@ class cout_du_travail(Variable):
     label = u"Coût du travail à long terme. Inclut les charges, aides et crédits différés"
     set_input = set_input_divide_by_period
     period_behavior = MONTH
+    calculate_output = calculate_output_add
 
     def function(self, simulation, period):
         period = period
