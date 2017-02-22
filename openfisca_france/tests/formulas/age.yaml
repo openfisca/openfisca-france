@@ -7,40 +7,40 @@
   output_variables:
     age: 44
 - name: "Âge (en années) d'après l'âge en mois"
-  period: "2013"
+  period: "2013-05"
   input_variables:
     age_en_mois: 40 * 12 + 6
   output_variables:
     age: 40
 - name: "Âge d'après la date de naissance"
-  period: "2013"
+  period: "2013-01"
   input_variables:
     date_naissance: "1973-01-01"
   output_variables:
     age: 40
     age_en_mois: 40 * 12
 - name: "Âge (en mois) d'après l'âge en années"
-  period: "2013"
+  period: "2013-01"
   input_variables:
     age: 40
   output_variables:
     age_en_mois: 40 * 12
 - name: "Âge (en années) d'après l'âge en années, le même jour d'une autre année"
-  period: "2013"
+  period: "2013-01"
   input_variables:
     age:
-      2010: 30
+      2010-01: 30
   output_variables:
     age: 33
 - name: "Âge (en mois) d'après l'âge en mois, le même jour d'un autre mois"
-  period: "2013"
+  period: "2013-01"
   input_variables:
     age_en_mois:
       2010-07: 31 * 12
   output_variables:
     age_en_mois: 33 * 12 + 6
 - name: "Âge (en mois) d'après un âge en mois donné sur une année"
-  period: "2013"
+  period: "2013-01"
   input_variables:
     age_en_mois: 33 * 12
   output_variables:
@@ -53,7 +53,7 @@
       2013-02: 33 * 12 + 1
       2014: (33 + 1) * 12
 - name: "Âge (en années) d'après l'âge en mois, après avoir calculé l'age 6 mois avant"
-  period: "2013"
+  period: "2013-01"
   input_variables:
     age_en_mois: 40 * 12 + 6
   output_variables:
@@ -61,7 +61,7 @@
       2012-06: 39
       2013-01: 40
 - name: "Utilisation de l'âge dans les réparations du scénario"
-  period: "2015"
+  period: "2015-01"
   absolute_error_margin: 0.005
   familles:
     parents: ["parent1", "parent2"]
