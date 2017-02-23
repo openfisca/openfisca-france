@@ -67,8 +67,6 @@ class type_menage(Variable):
             7 * (isole & _3_kid))  # Famille monoparentale trois enfants et plus
 
 
-
-
 class revenu_disponible(Variable):
     column = FloatCol
     entity = Menage
