@@ -120,7 +120,8 @@ def create_fusion_rsa_apl_progressive(socle = 600):
                         'children', 'prestations',
                         'children', 'minima_sociaux',
                         'children', 'rsa',
-                        'children', 'montant_de_base_du_rsa'
+                        'children', 'montant_de_base_du_rsa',
+                        'values'
                         ],
                     period = period,
                     # start = period.start,
