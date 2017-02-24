@@ -5,7 +5,7 @@ from datetime import date
 from openfisca_core.columns import (AgeCol, BoolCol, DateCol, EnumCol, FixedStrCol, FloatCol, IntCol,
     PeriodSizeIndependentIntCol, StrCol, MONTH, YEAR, PERMANENT)
 from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import (ADD, calculate_output_add, calculate_output_add_divide, calculate_output_divide,
+from openfisca_core.formulas import (ADD, calculate_output_add, calculate_output_divide,
     calculate_output_first_month,
     dated_function, DIVIDE, missing_value, set_input_dispatch_by_period, set_input_divide_by_period)
 from openfisca_core.variables import DatedVariable, Variable
@@ -27,7 +27,6 @@ __all__ = [
     'apply_thresholds',
     'BoolCol',
     'calculate_output_add',
-    'calculate_output_add_divide',
     'calculate_output_divide',
     'calculate_output_first_month',
     'CATEGORIE_SALARIE',
