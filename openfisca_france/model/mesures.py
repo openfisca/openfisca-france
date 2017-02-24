@@ -29,7 +29,7 @@ class uc(Variable):
             adt = (15 <= age) & (age <= 150)
             enf = (0 <= age) & (age <= 14)
             uc += adt * uc_adt + enf * uc_enf
-        return period, uc
+        return uc
 
 
 class type_menage(Variable):
@@ -46,7 +46,7 @@ class type_menage(Variable):
         af_nbenf = menage.personne_de_reference.famille('af_nbenf')
         isole = not_(menage.personne_de_reference.famille('en_couple'))
 
-        return period, (
+        return (
             0 * (isole * (af_nbenf == 0)) +  # Célibataire
             1 * (not_(isole) * (af_nbenf == 0)) +  # Couple sans enfants
             2 * (not_(isole) * (af_nbenf == 1)) +  # Couple un enfant
@@ -81,7 +81,7 @@ class revenu_disponible(Variable):
         rev_cap = self.sum_by_entity(rev_cap_holder)
         revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
 
-        return period, revenus_du_travail + pen + rev_cap + prestations_sociales + ppe + impots_directs
+        return revenus_du_travail + pen + rev_cap + prestations_sociales + ppe + impots_directs
 
 
 class niveau_de_vie(Variable):
@@ -93,7 +93,7 @@ class niveau_de_vie(Variable):
     def function(menage, period):
         revenu_disponible = menage('revenu_disponible', period)
         uc = menage('uc', period)
-        return period, revenu_disponible / uc
+        return revenu_disponible / uc
 
 
 class revenu_net_individu(Variable):
@@ -107,7 +107,7 @@ class revenu_net_individu(Variable):
         revenus_du_capital = individu('revenus_du_capital', period)
         revenus_du_travail = individu('revenus_du_travail', period)
 
-        return period, pensions + revenus_du_capital + revenus_du_travail
+        return pensions + revenus_du_capital + revenus_du_travail
 
 
 class revenu_net(Variable):
@@ -119,7 +119,7 @@ class revenu_net(Variable):
 
     def function(menage, period):
         revenu_net_individus = menage.members('revenu_net_individu', period)
-        return period, menage.sum(revenu_net_individus)
+        return menage.sum(revenu_net_individus)
 
 
 class niveau_de_vie_net(Variable):
@@ -132,7 +132,7 @@ class niveau_de_vie_net(Variable):
         revenu_net = menage('revenu_net', period)
         uc = menage('uc', period)
 
-        return period, revenu_net / uc
+        return revenu_net / uc
 
 
 class revenu_initial_individu(Variable):
@@ -148,7 +148,7 @@ class revenu_initial_individu(Variable):
         revenus_du_capital = individu('revenus_du_capital', period)
         revenus_du_travail = individu('revenus_du_travail', period)
 
-        return period, (revenus_du_travail + pensions + revenus_du_capital - cotisations_employeur_contributives -
+        return (revenus_du_travail + pensions + revenus_du_capital - cotisations_employeur_contributives -
             cotisations_salariales_contributives)
 
 
@@ -160,7 +160,7 @@ class revenu_initial(Variable):
 
     def function(menage, period):
         revenu_initial_individus = menage.members('revenu_initial_individu', period)
-        return period, menage.sum(revenu_initial_individus)
+        return menage.sum(revenu_initial_individus)
 
 
 class niveau_de_vie_initial(Variable):
@@ -173,7 +173,7 @@ class niveau_de_vie_initial(Variable):
         revenu_initial = menage('revenu_initial', period)
         uc = menage('uc', period)
 
-        return period, revenu_initial / uc
+        return revenu_initial / uc
 
 
 def _revprim(revenus_du_travail, chomage_imposable, rev_cap, cotisations_employeur, cotisations_salariales):
@@ -199,7 +199,7 @@ class revenus_du_travail(Variable):
         ric = individu('ric', period)
         rnc = individu('rnc', period)
 
-        return period, revenu_assimile_salaire + rag + ric + rnc
+        return revenu_assimile_salaire + rag + ric + rnc
 
 
 class pensions(Variable):
@@ -222,7 +222,7 @@ class pensions(Variable):
         pen_foyer_fiscal = pensions_alimentaires_versees + retraite_titre_onereux
         pen_foyer_fiscal_projetees = pen_foyer_fiscal * (individu.has_role(foyer_fiscal.DECLARANT_PRINCIPAL))
 
-        return period, (chomage_net + retraite_nette + pensions_alimentaires_percues + pensions_invalidite + pen_foyer_fiscal_projetees)
+        return (chomage_net + retraite_nette + pensions_alimentaires_percues + pensions_invalidite + pen_foyer_fiscal_projetees)
 
 
 class cotsoc_bar(Variable):
@@ -236,7 +236,7 @@ class cotsoc_bar(Variable):
         prelsoc_cap_bar = foyer_fiscal('prelsoc_cap_bar', period)
         crds_cap_bar = foyer_fiscal('crds_cap_bar', period)
 
-        return period, csg_cap_bar + prelsoc_cap_bar + crds_cap_bar
+        return csg_cap_bar + prelsoc_cap_bar + crds_cap_bar
 
 
 class cotsoc_lib(Variable):
@@ -250,7 +250,7 @@ class cotsoc_lib(Variable):
         prelsoc_cap_lib = foyer_fiscal('prelsoc_cap_lib', period)
         crds_cap_lib = foyer_fiscal('crds_cap_lib', period)
 
-        return period, csg_cap_lib + prelsoc_cap_lib + crds_cap_lib
+        return csg_cap_lib + prelsoc_cap_lib + crds_cap_lib
 
 
 class revenus_du_capital(Variable):
@@ -276,7 +276,7 @@ class revenus_du_capital(Variable):
 
         rac = individu('rac', period)
 
-        return period, revenus_foyer_fiscal_projetes + rac
+        return revenus_foyer_fiscal_projetes + rac
 
 
 class prestations_sociales(Variable):
@@ -294,7 +294,7 @@ class prestations_sociales(Variable):
         minima_sociaux = famille('minima_sociaux', period)
         aides_logement = famille('aides_logement', period)
 
-        return period, prestations_familiales + minima_sociaux + aides_logement
+        return prestations_familiales + minima_sociaux + aides_logement
 
 
 class prestations_familiales(Variable):
@@ -313,7 +313,7 @@ class prestations_familiales(Variable):
         asf = famille('asf', period, options = [ADD])
         crds_pfam = famille('crds_pfam', period)
 
-        return period, af + cf + ars + aeeh + paje + asf + crds_pfam
+        return af + cf + ars + aeeh + paje + asf + crds_pfam
 
 
 class minimum_vieillesse(Variable):
@@ -324,7 +324,7 @@ class minimum_vieillesse(Variable):
     period_behavior = YEAR
 
     def function(famille, period):
-        return period, famille('asi', period, options = [ADD]) + famille('aspa', period, options = [ADD])
+        return famille('asi', period, options = [ADD]) + famille('aspa', period, options = [ADD])
 
 
 class minima_sociaux(Variable):
@@ -348,7 +348,7 @@ class minima_sociaux(Variable):
         aah = self.sum_by_entity(aah_holder)
         caah = self.sum_by_entity(caah_holder)
 
-        return period, aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa
+        return aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa
 
 
 class aides_logement(Variable):
@@ -367,7 +367,7 @@ class aides_logement(Variable):
         alf = famille('alf', period, options = [ADD])
         crds_logement = famille('crds_logement', period, options = [ADD])
 
-        return period, apl + als + alf + crds_logement
+        return apl + als + alf + crds_logement
 
 
 class impots_directs(Variable):
@@ -384,7 +384,7 @@ class impots_directs(Variable):
         irpp = self.cast_from_entity_to_role(irpp_holder, role = VOUS)
         irpp = self.sum_by_entity(irpp)
 
-        return period, irpp + taxe_habitation
+        return irpp + taxe_habitation
 
 
 class crds(Variable):
@@ -413,7 +413,7 @@ class crds(Variable):
         crds_cap_lib = individu.foyer_fiscal('crds_cap_lib', period)
         crds_foyer_fiscal = crds_fon + crds_pv_mo + crds_pv_immo + crds_cap_bar + crds_cap_lib
         crds_foyer_fiscal_projetee = crds_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        return period, crds_individu + crds_famille_projetes + crds_foyer_fiscal_projetee
+        return crds_individu + crds_famille_projetes + crds_foyer_fiscal_projetee
 
 
 class csg(Variable):
@@ -438,7 +438,7 @@ class csg(Variable):
         csg_foyer_fiscal = csg_fon + csg_cap_lib + csg_cap_bar + csg_pv_mo + csg_pv_immo
         csg_foyer_fiscal_projetee = csg_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return period, (csg_imposable_salaire + csg_deductible_salaire + csg_imposable_chomage +
+        return (csg_imposable_salaire + csg_deductible_salaire + csg_imposable_chomage +
                 csg_deductible_chomage + csg_imposable_retraite + csg_deductible_retraite + csg_foyer_fiscal_projetee)
 
 
@@ -454,7 +454,7 @@ class cotisations_non_contributives(Variable):
         cotisations_salariales_non_contributives = individu('cotisations_salariales_non_contributives',
             period)
 
-        return period, cotisations_employeur_non_contributives + cotisations_salariales_non_contributives
+        return cotisations_employeur_non_contributives + cotisations_salariales_non_contributives
 
 
 class prelsoc_cap(Variable):
@@ -473,7 +473,7 @@ class prelsoc_cap(Variable):
         prelsoc_pv_immo = individu.foyer_fiscal('prelsoc_pv_immo', period)
         prel_foyer_fiscal = prelsoc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
 
-        return period, prel_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        return prel_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
 
 class check_csk(Variable):
@@ -490,7 +490,7 @@ class check_csk(Variable):
         prelsoc_pv_mo = foyer_fiscal('prelsoc_pv_mo', period)
         prelsoc_fon = foyer_fiscal('prelsoc_fon', period)
 
-        return period, prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
+        return prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
 
 
 class check_csg(Variable):
@@ -506,7 +506,7 @@ class check_csg(Variable):
         csg_pv_mo = foyer_fiscal('csg_pv_mo', periop)
         csg_fon = foyer_fiscal('csg_fon', periop)
 
-        return period, csg_cap_bar + csg_pv_mo + csg_fon
+        return csg_cap_bar + csg_pv_mo + csg_fon
 
 
 class check_crds(Variable):
@@ -522,4 +522,4 @@ class check_crds(Variable):
         crds_fon = foyer_fiscal('crds_fon', period)
         crds_cap_bar = foyer_fiscal('crds_cap_bar', period)
 
-        return period, crds_pv_mo + crds_fon + crds_cap_bar
+        return crds_pv_mo + crds_fon + crds_cap_bar

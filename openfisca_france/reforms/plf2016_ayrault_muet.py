@@ -74,7 +74,7 @@ class reduction_csg(DatedVariable):
         # règle d'arrondi: 4 décimales au dix-millième le plus proche
         taux_allegement_csg = tx_max * min_(1, max_(seuil - 1 / ratio_smic_salaire, 0) / (seuil - 1))
         # Montant de l'allegment
-        return period, taux_allegement_csg * assiette_csg_abattue
+        return taux_allegement_csg * assiette_csg_abattue
 
 
 class reduction_csg_foyer_fiscal(Variable):
@@ -85,7 +85,7 @@ class reduction_csg_foyer_fiscal(Variable):
 
     def function(self, simulation, period):
         reduction_csg = simulation.calculate('reduction_csg', period)
-        return period, simulation.foyer_fiscal.sum(reduction_csg)
+        return simulation.foyer_fiscal.sum(reduction_csg)
 
 
 class reduction_csg_nette(DatedVariable):
@@ -98,7 +98,7 @@ class reduction_csg_nette(DatedVariable):
     def function_2015__(individu, period):
         reduction_csg = individu('reduction_csg', period)
         ppe_elig_bis = individu.foyer_fiscal('ppe_elig_bis', period)
-        return period, reduction_csg * ppe_elig_bis
+        return reduction_csg * ppe_elig_bis
 
 
 class ppe_elig_bis(Variable):
@@ -122,7 +122,7 @@ class ppe_elig_bis(Variable):
         ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe
         seuil = (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
             + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
-        return period, (rfr * ppe_coef) <= (seuil * variator)
+        return (rfr * ppe_coef) <= (seuil * variator)
 
 
 class regularisation_reduction_csg(DatedVariable):
@@ -135,7 +135,7 @@ class regularisation_reduction_csg(DatedVariable):
     def function_2015__(self, simulation, period):
         reduction_csg = simulation.calculate('reduction_csg_foyer_fiscal', period)
         ppe_elig_bis = simulation.calculate('ppe_elig_bis', period)
-        return period, not_(ppe_elig_bis) * (reduction_csg > 1)
+        return not_(ppe_elig_bis) * (reduction_csg > 1)
 
 
 class ayrault_muet(Reform):

@@ -35,7 +35,7 @@ class rsa_base_ressources(DatedVariable):
             )
 
 
-        return mois_demande, (
+        return (
             rsa_base_ressources_prestations_familiales + rsa_base_ressources_minima_sociaux + ressources_individuelles
             )
 
@@ -55,7 +55,7 @@ class rsa_base_ressources(DatedVariable):
             (not_(enfant_i) + rsa_enfant_a_charge_i) * ressources_individuelles_i
             )
 
-        return period, (
+        return (
             rsa_base_ressources_prestations_familiales + rsa_base_ressources_minima_sociaux + ressources_individuelles
             )
 
@@ -67,7 +67,7 @@ class rsa_base_ressources(DatedVariable):
         rsa_base_ressources_i = famille.members('rsa_base_ressources_individu', period)
         rsa_base_ressources_i_total = famille.sum(rsa_base_ressources_i)
 
-        return period, (
+        return (
             rsa_base_ressources_prestations_familiales +
             rsa_base_ressources_minima_sociaux +
             rsa_base_ressources_i_total
@@ -81,7 +81,7 @@ class rsa_has_ressources_substitution(Variable):
     period_behavior = MONTH
 
     def function(famille, period):
-        return period, (
+        return (
             famille('chomage_net', period) +
             famille('indemnites_journalieres', period) +
             famille('retraite_nette', period)
@@ -146,7 +146,7 @@ class rsa_base_ressources_individu(Variable):
         revenus_foyer_fiscal = rev_cap_bar + rev_cap_lib + retraite_titre_onereux
         revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return period, (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
+        return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
 
 
 class rsa_base_ressources_minima_sociaux(DatedVariable):
@@ -165,7 +165,7 @@ class rsa_base_ressources_minima_sociaux(DatedVariable):
         aah_i = famille.members('aah', mois_courant)
         caah_i = famille.members('caah', mois_courant)
 
-        return mois_demande, aspa + asi + ass + famille.sum(aah_i + caah_i)
+        return aspa + asi + ass + famille.sum(aah_i + caah_i)
 
     @dated_function(stop = date(2016, 12, 31))
     def function(famille, period):
@@ -176,7 +176,7 @@ class rsa_base_ressources_minima_sociaux(DatedVariable):
         aah_i = famille.members('aah', three_previous_months, options = [ADD])
         caah_i = famille.members('caah', three_previous_months, options = [ADD])
 
-        return period, aspa + asi + ass + famille.sum(aah_i + caah_i)
+        return aspa + asi + ass + famille.sum(aah_i + caah_i)
 
 
 class rsa_base_ressources_prestations_familiales(DatedVariable):
@@ -196,7 +196,7 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
             ]
         result = sum(famille(prestation, period) for prestation in prestations)
 
-        return period, result
+        return result
 
     @dated_function(start = date(2004, 1, 1), stop = date(2014, 3, 31))
     def function_2003(famille, period):
@@ -212,7 +212,7 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
 
         result = sum(famille(prestation, period) for prestation in prestations)
 
-        return period, result
+        return result
 
     @dated_function(start = date(2014, 4, 1), stop = (2016, 12, 31))
     def function_2014(famille, period):
@@ -243,7 +243,7 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
 
         result = result + cf_non_majore + min_(af_base, af)  # Si des AF on été injectées et sont plus faibles que le cf
 
-        return period, result
+        return result
 
     @dated_function(start = date(2017, 01, 01))
     def function_2017(famille, mois_demande, legislation, mois_courant):
@@ -273,7 +273,7 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
 
         result = result + cf_non_majore + min_(af_base, af)  # Si des AF on été injectées et sont plus faibles que le cf
 
-        return mois_demande, result
+        return result
 
 
 class crds_mini(DatedVariable):
@@ -287,7 +287,7 @@ class crds_mini(DatedVariable):
         rsa_activite = famille('rsa_activite', period)
         taux_crds = legislation(period).prelevements_sociaux.contributions.crds.taux
 
-        return period, - taux_crds * rsa_activite
+        return - taux_crds * rsa_activite
 
 
 class div_ms(Variable):
@@ -306,7 +306,7 @@ class div_ms(Variable):
         f3vt = individu.foyer_fiscal('f3vt', period_declaration)
 
         # On projette les revenus du foyer fiscal seulement sur le déclarant principal
-        return period, (f3vc + f3ve + f3vg + f3vl + f3vm + f3vt) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
+        return (f3vc + f3ve + f3vg + f3vl + f3vm + f3vt) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
 
 
 class enceinte_fam(Variable):
@@ -322,7 +322,7 @@ class enceinte_fam(Variable):
         age_en_mois_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
 
         enceinte_compat = and_(age_en_mois_benjamin < 0, age_en_mois_benjamin > -6)
-        return period, parent_enceinte + enceinte_compat
+        return parent_enceinte + enceinte_compat
 
 
 class rsa_enfant_a_charge(Variable):
@@ -392,7 +392,7 @@ class rsa_enfant_a_charge(Variable):
             ressources < taux_personne_supp * montant_base_rsa
             )
 
-        return period, rsa_enf_charge
+        return rsa_enf_charge
 
 
 class rsa_nb_enfants(Variable):
@@ -402,7 +402,7 @@ class rsa_nb_enfants(Variable):
     period_behavior = MONTH
 
     def function(famille, period):
-        return period, famille.sum(famille.members('rsa_enfant_a_charge', period))
+        return famille.sum(famille.members('rsa_enfant_a_charge', period))
 
 
 class participation_frais(Variable):
@@ -424,7 +424,7 @@ class rsa_revenu_activite(Variable):
         rsa_enfant_a_charge_i = famille.members('rsa_enfant_a_charge', period)
         enfant_i = famille.members('est_enfant_dans_famille', period)
 
-        return period, famille.sum(
+        return famille.sum(
             or_(not_(enfant_i), rsa_enfant_a_charge_i) * rsa_revenu_activite_i
             )
 
@@ -464,7 +464,7 @@ class rsa_indemnites_journalieres_activite(Variable):
             'indemnites_journalieres_adoption',
         ]) + (condition_date_arret_travail + condition_activite + condition_arret_recent) * ijss_activite_sous_condition(period)
 
-        return period, ijss_activite
+        return ijss_activite
 
 
 class rsa_indemnites_journalieres_hors_activite(Variable):
@@ -474,7 +474,7 @@ class rsa_indemnites_journalieres_hors_activite(Variable):
     period_behavior = MONTH
 
     def function(individu, period):
-        return period, individu('indemnites_journalieres', period) - individu('rsa_indemnites_journalieres_activite', period)
+        return individu('indemnites_journalieres', period) - individu('rsa_indemnites_journalieres_activite', period)
 
 
 class primes_salaires_net(Variable):
@@ -491,7 +491,7 @@ class salaire_net_hors_revenus_exceptionnels(Variable):
     period_behavior = MONTH
 
     def function(individu, period):
-        return period, (
+        return (
             individu('salaire_net', period) -
             individu('primes_salaires_net', period) -
             individu('indemnite_fin_contrat_net', period)
@@ -540,7 +540,7 @@ class rsa_revenu_activite_individu(DatedVariable):
             individu('indemnite_fin_contrat_net', mois_courant)
             )
 
-        return mois_demande, revenus_moyennes + revenus_tns_annualises + revenus_non_moyennes
+        return revenus_moyennes + revenus_tns_annualises + revenus_non_moyennes
 
     @dated_function(stop = date(2016, 12, 31))
     def function_2016(individu, period):
@@ -565,7 +565,7 @@ class rsa_revenu_activite_individu(DatedVariable):
         has_ressources_substitution = individu('rsa_has_ressources_substitution', period)
 
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
-        return period, sum(
+        return sum(
             individu(type_revenu, last_3_months, options = [ADD]) * not_(
                 (individu(type_revenu, period.this_month) == 0) *
                 (individu(type_revenu, period.last_month) > 0) *
@@ -588,7 +588,7 @@ class revenus_fonciers_minima_sociaux(Variable):
 
 
         # On projette les revenus du foyer fiscal seulement sur le déclarant principal
-        return period, (f4ba + f4be) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
+        return (f4ba + f4be) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
 
 
 class rsa_fictif(Variable):
@@ -610,7 +610,7 @@ class rsa_fictif(Variable):
         montant = max_(montant, 0)
 
 
-        return mois_courant, montant
+        return montant
 
 
 class rsa_montant(DatedVariable):
@@ -627,7 +627,7 @@ class rsa_montant(DatedVariable):
         rsa = famille('rsa_fictif', period.last_3_months, extra_params = [period], options = [ADD]) / 3
         rsa = rsa * (rsa >= seuil_non_versement)
 
-        return period, rsa
+        return rsa
 
 
     @dated_function(stop = date(2016, 12, 31))
@@ -647,7 +647,7 @@ class rsa_montant(DatedVariable):
         montant = max_(montant, 0)
         montant = montant * (montant >= seuil_non_versement)
 
-        return period, montant
+        return montant
 
 
 class rsa(Variable):
@@ -663,7 +663,7 @@ class rsa(Variable):
         montant = famille('rsa_montant', period)
         non_calculable = famille('rsa_non_calculable', period)
 
-        return period, not_(non_calculable) * montant
+        return not_(non_calculable) * montant
 
 
 class rsa_base_ressources_patrimoine_individu(Variable):
@@ -682,7 +682,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
         revenus_locatifs = individu('revenus_locatifs', period)
         rsa = legislation(period).prestations.minima_sociaux.rsa
 
-        return period, (
+        return (
             interets_epargne_sur_livrets / 12 +
             epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere / 12 +
             revenus_capital +
@@ -703,14 +703,14 @@ class rsa_condition_nationalite(DatedVariable):
         ressortissant_eee = individu('ressortissant_eee', period)
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
         duree_min_titre_sejour = legislation(period).prestations.minima_sociaux.rsa.duree_min_titre_sejour
-        return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
+        return or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
     @dated_function(stop = date(2009, 5, 31))
     def function_rmi(individu, period, legislation):
         ressortissant_eee = individu('ressortissant_eee', period)
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
         duree_min_titre_sejour = legislation(period).prestations.minima_sociaux.rmi.duree_min_titre_sejour
-        return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
+        return or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
 
 class rsa_eligibilite(Variable):
@@ -739,7 +739,7 @@ class rsa_eligibilite(Variable):
             condition_age_i * not_(activite_i == 2),
             role = Famille.PARENT) * condition_nationalite * rsa_eligibilite_tns
 
-        return period, eligib
+        return eligib
 
 
 class rsa_eligibilite_tns(Variable):
@@ -796,7 +796,7 @@ class rsa_eligibilite_tns(Variable):
             role = Famille.PARENT
             )
 
-        return period, eligibilite_agricole * not_(tns_avec_employe) * eligibilite_chiffre_affaire
+        return eligibilite_agricole * not_(tns_avec_employe) * eligibilite_chiffre_affaire
 
 
 class rsa_forfait_asf(Variable):
@@ -817,7 +817,7 @@ class rsa_forfait_asf(Variable):
 
         asf_retenue = asf_verse * (montant_retenu_rsa_par_enfant / montant_verse_par_enfant)
 
-        return period, asf_retenue
+        return asf_retenue
 
 
 class rsa_forfait_logement(Variable):
@@ -867,7 +867,7 @@ class rsa_forfait_logement(Variable):
         montant_al = avantage_al * min_(aide_logement, montant_forfait)
         montant_nature = avantage_nature * montant_forfait
 
-        return period, max_(montant_al, montant_nature)
+        return max_(montant_al, montant_nature)
 
 
 class rsa_isolement_recent(Variable):
@@ -898,7 +898,7 @@ class rsa_majore_eligibilite(Variable):
             rsa_eligibilite_tns
             )
 
-        return period, eligib
+        return eligib
 
 
 class rsa_non_calculable(Variable):
@@ -933,7 +933,7 @@ class rsa_non_calculable(Variable):
             )
         non_calculable = eligible_rsa * non_calculable
 
-        return period, non_calculable
+        return non_calculable
 
 
 class rsa_non_calculable_tns_individu(Variable):
@@ -952,7 +952,7 @@ class rsa_non_calculable_tns_individu(Variable):
             'tns_micro_entreprise_chiffre_affaires', this_year_and_last_year, options = [ADD])
         tns_autres_revenus = individu('tns_autres_revenus', this_year_and_last_year, options = [ADD])
 
-        return period, (
+        return (
             (tns_benefice_exploitant_agricole > 0) +
             (tns_micro_entreprise_chiffre_affaires > 0) +
             (tns_autres_revenus > 0)
@@ -985,7 +985,7 @@ class rsa_socle(DatedVariable):
             )
         socle = rsa.montant_de_base_du_rsa
 
-        return period, eligib * socle * taux
+        return eligib * socle * taux
 
     @dated_function(stop = date(2009, 5, 31))
     def function_rmi(famille, period, legislation):
@@ -1005,7 +1005,7 @@ class rsa_socle(DatedVariable):
             )
         socle = rmi.rmi
 
-        return period, eligib * socle * taux
+        return eligib * socle * taux
 
 
 class rsa_socle_majore(Variable):
@@ -1023,4 +1023,4 @@ class rsa_socle_majore(Variable):
         taux = rsa.majo_rsa.pac0 + rsa.majo_rsa.pac_enf_sup * nbenf
         socle = rsa.montant_de_base_du_rsa
 
-        return period, eligib * socle * taux
+        return eligib * socle * taux

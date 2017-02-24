@@ -77,7 +77,7 @@ class paje(Variable):
         paje_cmg = famille('paje_cmg', period)
         paje_colca = famille('paje_colca', period)
 
-        return period, paje_base + (paje_naissance + paje_clca + paje_cmg + paje_colca) / 12
+        return paje_base + (paje_naissance + paje_clca + paje_cmg + paje_colca) / 12
 
 
 class paje_base(Variable):
@@ -170,7 +170,7 @@ class paje_base(Variable):
             not_(enfant_eligible_ne_avant_avril_2014()) * enfant_eligible_ne_apres_avril_2014() * montant_enfant_ne_apres_avril_2014()
             )
 
-        return period, montant
+        return montant
 
 
 class paje_base_enfant_eligible_avant_reforme_2014(Variable):
@@ -188,7 +188,7 @@ class paje_base_enfant_eligible_avant_reforme_2014(Variable):
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
-        return period, (age < age_limite) * not_(autonomie_financiere) * ne_avant_2014
+        return (age < age_limite) * not_(autonomie_financiere) * ne_avant_2014
 
 
 class paje_base_enfant_eligible_apres_reforme_2014(Variable):
@@ -206,7 +206,7 @@ class paje_base_enfant_eligible_apres_reforme_2014(Variable):
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
-        return period, (age < age_limite) * not_(autonomie_financiere) * not_(ne_avant_2014)
+        return (age < age_limite) * not_(autonomie_financiere) * not_(ne_avant_2014)
 
 
 class paje_naissance(Variable):
@@ -244,7 +244,7 @@ class paje_naissance(Variable):
         plaf = P.paje.base.avant_2014.plafond_ressources_0_enf * plaf_tx + (plaf_tx > 0) * P.paje.base.avant_2014.majoration_biact_parent_isoles * majo
         elig = (base_ressources <= plaf)
 
-        return period, nais_prime * elig * nb_enfants_7e_mois_grossese
+        return nais_prime * elig * nb_enfants_7e_mois_grossese
 
 
 class paje_clca(Variable):
@@ -315,7 +315,7 @@ class paje_clca(Variable):
                 partiel2 * P.paje.clca.avecab_tx_partiel2
                 )
             )
-        return period, paje_clca
+        return paje_clca
 
 
 class paje_prepare(Variable):
@@ -338,7 +338,7 @@ class paje_clca_taux_plein(Variable):
         paje_clca = famille('paje_clca', period)
         inactif = famille('inactif', period)
 
-        return period, (paje_clca > 0) * inactif
+        return (paje_clca > 0) * inactif
 
 
 class paje_clca_taux_partiel(Variable):
@@ -353,7 +353,7 @@ class paje_clca_taux_partiel(Variable):
         paje_clca = famille('paje_clca', period)
         partiel1 = famille('partiel1', period)
 
-        return period, (paje_clca > 0) * partiel1
+        return (paje_clca > 0) * partiel1
 
     # TODO gérer les cumuls avec autres revenus et colca voir site caf
 
@@ -467,7 +467,7 @@ class paje_cmg(Variable):
         # vous ne pouvez pas bénéficier du Cmg.
         paje_cmg = elig * not_(paje_clca_taux_plein) * clmg
         # TODO vérfiez les règles de cumul
-        return period, paje_cmg
+        return paje_cmg
 
 
 class paje_colca(Variable):
@@ -497,7 +497,7 @@ class paje_colca(Variable):
         paje = (paje_base > 0)
         paje_colca = opt_colca * condition * (nbenf >= 3) * P.af.bmaf * (
             (paje) * P.paje.colca.avecab + not_(paje) * P.paje.colca.sansab)
-        return period, paje_colca
+        return paje_colca
 
 
 class ape_avant_cumul(Variable):
@@ -558,7 +558,7 @@ class ape_avant_cumul(Variable):
         #  (smic_8.27*169*136 %)
         ape = elig * (inactif * P.ape.taux_inactivite + partiel1 * P.ape.taux_activite_sup_50 + partiel2 * P.ape.taux_activite_sup_80)
         # Cummul APE APJE CF
-        return period, ape  # annualisé
+        return ape  # annualisé
 
 
 class apje_avant_cumul(Variable):
@@ -602,7 +602,7 @@ class apje_avant_cumul(Variable):
         #  - L’allocation parentale d’éducation (APE), sauf pour les femmes enceintes.
         #    L’APJE est alors versée du 5ème mois de grossesse jusqu’à la naissance de l’enfant.
         #  - Le CF
-        return period, apje
+        return apje
 
 
 class ape(Variable):
@@ -622,7 +622,7 @@ class ape(Variable):
         cf_montant = famille('cf_montant', period)
 
         ape = (apje_avant_cumul < ape_avant_cumul) * (cf_montant < ape_avant_cumul) * ape_avant_cumul
-        return period, round(ape, 2)
+        return round(ape, 2)
 
 
 class apje(Variable):
@@ -640,4 +640,4 @@ class apje(Variable):
         cf_montant = famille('cf_montant', period)
 
         apje = (cf_montant < apje_avant_cumul) * (ape_avant_cumul < apje_avant_cumul) * apje_avant_cumul
-        return period, round(apje, 2)
+        return round(apje, 2)

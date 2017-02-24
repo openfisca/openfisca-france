@@ -19,7 +19,7 @@ class ppa_eligibilite(Variable):
         condition_age_i = famille.members('age', period) >= age_min
         condition_age = famille.any(condition_age_i)
 
-        return period, condition_age
+        return condition_age
 
 
 class ppa_eligibilite_etudiants(Variable):
@@ -50,7 +50,7 @@ class ppa_eligibilite_etudiants(Variable):
             not_(etudiant_i) + condition_etudiant_i,
             role = Famille.PARENT)
 
-        return period, ppa_majoree_eligibilite + condition_famille
+        return ppa_majoree_eligibilite + condition_famille
 
 
 class ppa_montant_forfaitaire_familial_non_majore(Variable):
@@ -77,7 +77,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
             max_(nb_personnes - 4, 0) * ppa.taux_personne_supp
             )
 
-        return period, rsa.montant_de_base_du_rsa * taux_non_majore
+        return rsa.montant_de_base_du_rsa * taux_non_majore
 
 
 class ppa_montant_forfaitaire_familial_majore(Variable):
@@ -93,7 +93,7 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
 
         taux_majore = ppa.majoration_isolement_femme_enceinte + ppa.majoration_isolement_enf_charge * nb_enfants
 
-        return period, rsa.montant_de_base_du_rsa * taux_majore
+        return rsa.montant_de_base_du_rsa * taux_majore
 
 
 class ppa_revenu_activite(Variable):
@@ -107,7 +107,7 @@ class ppa_revenu_activite(Variable):
             'ppa_revenu_activite_individu', period, extra_params = [mois_demande])
         ppa_revenu_activite = famille.sum(ppa_revenu_activite_i)
 
-        return period, ppa_revenu_activite
+        return ppa_revenu_activite
 
 
 class ppa_revenu_activite_individu(Variable):
@@ -140,7 +140,7 @@ class ppa_revenu_activite_individu(Variable):
         seuil_aah_activite = P.prestations.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
         aah_activite = (revenus_activites >= seuil_aah_activite) * individu('aah', period)
 
-        return period, revenus_activites + aah_activite
+        return revenus_activites + aah_activite
 
 
 class ppa_rsa_derniers_revenus_tns_annuels_connus(Variable):
@@ -160,7 +160,7 @@ class ppa_rsa_derniers_revenus_tns_annuels_connus(Variable):
                 [valeur_n, valeur_n_1, valeur_n_2]
                 ) / 12l
 
-        return period, (
+        return (
             get_last_known('tns_benefice_exploitant_agricole') +
             get_last_known('tns_autres_revenus') +
             get_last_known('tns_micro_entreprise_benefice')
@@ -187,7 +187,7 @@ class ppa_ressources_hors_activite(Variable):
         ressources_hors_activite = famille.sum(ressources_hors_activite_i) + pf + sum(
             famille(ressource, mois_demande) for ressource in ressources)
 
-        return period, ressources_hors_activite
+        return ressources_hors_activite
 
 
 class ppa_ressources_hors_activite_individu(Variable):
@@ -221,7 +221,7 @@ class ppa_ressources_hors_activite_individu(Variable):
         seuil_aah_activite = P.prestations.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
         aah_hors_activite = (revenus_activites < seuil_aah_activite) * individu('aah', period)
 
-        return period, ressources_hors_activite_mensuel_i + aah_hors_activite
+        return ressources_hors_activite_mensuel_i + aah_hors_activite
 
 
 class ppa_base_ressources_prestations_familiales(Variable):
@@ -253,7 +253,7 @@ class ppa_base_ressources_prestations_familiales(Variable):
 
         result = result + cf_non_majore + min_(af_base, af)
 
-        return period, result
+        return result
 
 
 class ppa_base_ressources(Variable):
@@ -267,7 +267,7 @@ class ppa_base_ressources(Variable):
             'ppa_revenu_activite', period, extra_params = [mois_demande])
         ppa_ressources_hors_activite = famille(
             'ppa_ressources_hors_activite', period, extra_params = [mois_demande])
-        return period, ppa_revenu_activite + ppa_ressources_hors_activite
+        return ppa_revenu_activite + ppa_ressources_hors_activite
 
 
 class ppa_bonification(Variable):
@@ -289,7 +289,7 @@ class ppa_bonification(Variable):
         bonification = max_(bonification, 0)
         bonification = min_(bonification, bonification_max)
 
-        return period, bonification
+        return bonification
 
 
 class ppa_fictive(Variable):
@@ -326,7 +326,7 @@ class ppa_fictive(Variable):
 
         ppa_fictive = ppa_montant_base - max_(ppa_deduction, 0)
         ppa_fictive = max_(ppa_fictive, 0)
-        return period, elig * ppa_fictive
+        return elig * ppa_fictive
 
 
 class ppa(DatedVariable):
@@ -345,4 +345,4 @@ class ppa(DatedVariable):
         ppa = famille('ppa_fictive', period.last_3_months, extra_params = [period], options = [ADD]) / 3
         ppa = ppa * ppa_eligibilite_etudiants * (ppa >= seuil_non_versement)
 
-        return period, ppa
+        return ppa

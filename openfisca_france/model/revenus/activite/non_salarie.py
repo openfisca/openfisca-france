@@ -1558,7 +1558,7 @@ class travailleur_non_salarie(Variable):
             tns_autres_revenus + tns_benefice_exploitant_agricole + tns_autres_revenus_chiffre_affaires
         )
 
-        return period, result
+        return result
 
 
 # Auxiliary function
@@ -1587,7 +1587,7 @@ class tns_auto_entrepreneur_benefice(DatedVariable):
 
         benefice = compute_benefice_auto_entrepreneur_micro_entreprise(
             bareme, tns_auto_entrepreneur_type_activite, tns_auto_entrepreneur_chiffre_affaires)
-        return period, benefice
+        return benefice
 
 
 class tns_micro_entreprise_benefice(DatedVariable):
@@ -1604,7 +1604,7 @@ class tns_micro_entreprise_benefice(DatedVariable):
 
         benefice = compute_benefice_auto_entrepreneur_micro_entreprise(
             bareme, tns_micro_entreprise_type_activite, tns_micro_entreprise_chiffre_affaires)
-        return period, benefice
+        return benefice
 
 # The following formulas take into account 'cotisation sociales'. However, it seems that for all prestations,
 # the 'base ressources' are only using the 'benefice', without deducting the 'cotisation sociales'.
@@ -1629,7 +1629,7 @@ class tns_auto_entrepreneur_revenus_net(DatedVariable) :
         tns_auto_entrepreneur_charges_sociales = taux_cotisations_sociales_sur_CA * tns_auto_entrepreneur_chiffre_affaires
         revenus = tns_auto_entrepreneur_benefice - tns_auto_entrepreneur_charges_sociales
 
-        return period, revenus
+        return revenus
 
 
 class tns_micro_entreprise_revenus_net(Variable) :
@@ -1644,4 +1644,4 @@ class tns_micro_entreprise_revenus_net(Variable) :
         tns_micro_entreprise_charges_sociales = tns_micro_entreprise_benefice * taux_cotisations_sociales
         revenus = tns_micro_entreprise_benefice - tns_micro_entreprise_charges_sociales
 
-        return period, revenus
+        return revenus

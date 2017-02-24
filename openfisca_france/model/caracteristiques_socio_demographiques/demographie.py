@@ -206,7 +206,7 @@ class nb_parents(Variable):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
 
-        return period, famille.nb_persons(role = famille.PARENT)
+        return famille.nb_persons(role = famille.PARENT)
 
 
 class maries(Variable):
@@ -221,7 +221,7 @@ class maries(Variable):
         statut_marital = famille.members('statut_marital', period)
         individu_marie = (statut_marital == 1)
 
-        return period, famille.any(individu_marie, role = famille.PARENT)
+        return famille.any(individu_marie, role = famille.PARENT)
 
 
 class en_couple(Variable):
@@ -235,7 +235,7 @@ class en_couple(Variable):
         # jour, sans changer la période.
         nb_parents = simulation.calculate('nb_parents', period)
 
-        return period, nb_parents == 2
+        return nb_parents == 2
 
 
 class est_enfant_dans_famille(Variable):
@@ -245,7 +245,7 @@ class est_enfant_dans_famille(Variable):
     period_behavior = PERMANENT
 
     def function(individu, period):
-        return period, individu.has_role(Famille.ENFANT)
+        return individu.has_role(Famille.ENFANT)
 
 
 class etudiant(Variable):
@@ -259,7 +259,7 @@ class etudiant(Variable):
         # jour, sans changer la période.
         activite = simulation.calculate('activite', period)
 
-        return period, activite == 2
+        return activite == 2
 
 
 class rempli_obligation_scolaire(Variable):

@@ -38,7 +38,7 @@ class allocations_temporaires_invalidite(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return period, cotisation_etat + cotisation_collectivites_locales
+        return cotisation_etat + cotisation_collectivites_locales
 
 
 class assiette_cotisations_sociales_public(Variable):
@@ -59,7 +59,7 @@ class assiette_cotisations_sociales_public(Variable):
             remuneration_principale
             # + not_(titulaire) * (indemnite_residence + primes_fonction_publique)
             )
-        return period, assiette
+        return assiette
 
 
 # sft dans assiette csg et RAFP et Cotisation exceptionnelle de solidarité et taxe sur les salaires
@@ -114,7 +114,7 @@ class contribution_exceptionnelle_solidarite(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return period, cotisation
+        return cotisation
 
 
 class fonds_emploi_hospitalier(Variable):
@@ -135,7 +135,7 @@ class fonds_emploi_hospitalier(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return period, cotisation
+        return cotisation
 
 
 class ircantec_salarie(Variable):
@@ -157,7 +157,7 @@ class ircantec_salarie(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return period, ircantec
+        return ircantec
 
 
 class ircantec_employeur(Variable):
@@ -179,7 +179,7 @@ class ircantec_employeur(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return period, ircantec
+        return ircantec
 
 
 class pension_civile_salarie(Variable):
@@ -202,7 +202,7 @@ class pension_civile_salarie(Variable):
             sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut) +
             terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
             )
-        return period, -pension_civile_salarie
+        return -pension_civile_salarie
 
 
 class pension_civile_employeur(Variable):
@@ -227,7 +227,7 @@ class pension_civile_employeur(Variable):
                 assiette_cotisations_sociales_public) +
             terr_or_hosp * pat['public_titulaire_territoriale']['cnracl'].calc(assiette_cotisations_sociales_public)
             )
-        return period, -cot_pat_pension_civile
+        return -cot_pat_pension_civile
 
 
 class rafp_salarie(DatedVariable):
@@ -256,7 +256,7 @@ class rafp_salarie(DatedVariable):
         assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
         # Même régime pour les fonctions publiques d'Etat et des collectivité locales
         rafp_salarie = eligible * _P.cotsoc.cotisations_salarie.public_titulaire_etat['rafp'].calc(assiette)
-        return period, -rafp_salarie
+        return -rafp_salarie
 
 
 class rafp_employeur(DatedVariable):
@@ -285,7 +285,7 @@ class rafp_employeur(DatedVariable):
         assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
         bareme_rafp = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']
         rafp_employeur = eligible * bareme_rafp.calc(assiette)
-        return period, - rafp_employeur
+        return - rafp_employeur
 
 
 def seuil_fds(law):

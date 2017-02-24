@@ -63,7 +63,7 @@ class csg_deductible_chomage(Variable):
             - montant_csg - max_(cho_seuil_exo - (chomage_brut + csg_imposable_chomage + montant_csg), 0),
             0,
             )
-        return period, - csg_deductible_chomage
+        return - csg_deductible_chomage
 
 
 class csg_imposable_chomage(Variable):
@@ -89,7 +89,7 @@ class csg_imposable_chomage(Variable):
             legislation.cotsoc.gen.smic_h_b
             )
         csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chomage_brut + montant_csg), 0), 0)
-        return period, - csg_imposable_chomage
+        return - csg_imposable_chomage
 
 
 class crds_chomage(Variable):
@@ -123,7 +123,7 @@ class crds_chomage(Variable):
                 cho_seuil_exo - (chomage_brut + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0
                 ), 0
             )
-        return period, -crds_chomage
+        return -crds_chomage
 
 
 class chomage_imposable(Variable):
@@ -147,7 +147,7 @@ class chomage_imposable(Variable):
         chomage_brut = individu('chomage_brut', period)
         csg_deductible_chomage = individu('csg_deductible_chomage', period, options = [ADD])
 
-        return period, chomage_brut + csg_deductible_chomage
+        return chomage_brut + csg_deductible_chomage
 
 
 class chomage_net(Variable):
@@ -164,7 +164,7 @@ class chomage_net(Variable):
         csg_imposable_chomage = individu('csg_imposable_chomage', period, options = [ADD])
         crds_chomage = individu('crds_chomage', period, options = [ADD])
 
-        return period, chomage_imposable + csg_imposable_chomage + crds_chomage
+        return chomage_imposable + csg_imposable_chomage + crds_chomage
 
 
 ############################################################################
@@ -191,7 +191,7 @@ class csg_deductible_retraite(Variable):
             law_node = law.prelevements_sociaux.contributions.csg.retraite.deductible,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
-        return period, montant_csg
+        return montant_csg
 
 
 class csg_imposable_retraite(Variable):
@@ -211,7 +211,7 @@ class csg_imposable_retraite(Variable):
             law_node = law.prelevements_sociaux.contributions.csg.retraite.imposable,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
-        return period, montant_csg
+        return montant_csg
 
 
 class crds_retraite(Variable):
@@ -232,7 +232,7 @@ class crds_retraite(Variable):
             law_node = law.prelevements_sociaux.contributions.crds.retraite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * (taux_csg_remplacement == 1)
-        return period, montant_crds
+        return montant_crds
 
 
 class casa(DatedVariable):
@@ -254,7 +254,7 @@ class casa(DatedVariable):
             (rfr > contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite.seuil_de_rfr_2) *
             contributions.casa.calc(retraite_brute)
             )
-        return period, - casa
+        return - casa
 
     @dated_function(start = date(2013, 4, 1), stop = date(2014, 12, 31))
     def function_2013_2014(individu, period, legislation):
@@ -265,7 +265,7 @@ class casa(DatedVariable):
             (taux_csg_remplacement == 3) *
             contributions.casa.calc(retraite_brute)
             )
-        return period, - casa
+        return - casa
 
 
 class retraite_imposable(Variable):
@@ -289,7 +289,7 @@ class retraite_imposable(Variable):
         retraite_brute = individu('retraite_brute', period, options = [ADD])
         csg_deductible_retraite = individu('csg_deductible_retraite', period, options = [ADD])
 
-        return period, retraite_brute + csg_deductible_retraite
+        return retraite_brute + csg_deductible_retraite
 
 
 class retraite_nette(Variable):
@@ -307,7 +307,7 @@ class retraite_nette(Variable):
         csg_imposable_retraite = individu('csg_imposable_retraite', period)
         crds_retraite = individu('crds_retraite', period)
 
-        return period, retraite_imposable + csg_imposable_retraite + crds_retraite + casa
+        return retraite_imposable + csg_imposable_retraite + crds_retraite + casa
 
 
 class crds_pfam(Variable):
@@ -327,4 +327,4 @@ class crds_pfam(Variable):
         apje = famille('apje', period, options = [ADD])
         taux_crds = legislation(period.start).prelevements_sociaux.contributions.crds.taux
 
-        return period, -(af + cf + asf + ars + paje + ape + apje) * taux_crds
+        return -(af + cf + asf + ars + paje + ape + apje) * taux_crds

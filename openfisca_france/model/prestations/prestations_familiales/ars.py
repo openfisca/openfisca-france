@@ -54,4 +54,4 @@ class ars(Variable):
         # ars_diff = (ars_plaf_res + arsbase - base_ressources) / arsnbenf
         ars = (arsnbenf > 0) * max_(0, arsbase - max_(0, (base_ressources - ars_plaf_res) / max_(1, arsnbenf)))
 
-        return period, ars * (ars >= P.ars.montant_seuil_non_versement)
+        return ars * (ars >= P.ars.montant_seuil_non_versement)

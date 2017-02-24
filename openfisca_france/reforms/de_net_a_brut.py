@@ -69,7 +69,7 @@ class salaire_de_base(Variable):
                 xtol = 1/10  # précision
                 )
 
-        return period, brut_calcule
+        return brut_calcule
 
 class de_net_a_brut(Reform):
     name = u'Inversion du calcul brut -> net'

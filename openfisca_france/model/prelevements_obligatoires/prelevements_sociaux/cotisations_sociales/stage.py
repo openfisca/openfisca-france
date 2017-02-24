@@ -39,7 +39,7 @@ class stage_gratification(Variable):
         # TODO: move to legislation parameters file
         stage_gratification_taux_min = .1375  # depuis le 1er décembre 2014
         # .15 à partir de 2015-09-01
-        return period, stagiaire * plafond_securite_sociale_horaire * stage_duree_heures * max_(
+        return stagiaire * plafond_securite_sociale_horaire * stage_duree_heures * max_(
             stage_gratification_taux, stage_gratification_taux_min)
 
 
@@ -58,7 +58,7 @@ class stage_gratification_reintegration(Variable):
         # TODO: move to legislation parameters file
         stage_gratification_taux_min = .1375  # .15 à partir de 2015-09-01  
         stage_gratification_min = plafond_securite_sociale_horaire * stage_duree_heures * stage_gratification_taux_min
-        return period, max_(stage_gratification - stage_gratification_min, 0)
+        return max_(stage_gratification - stage_gratification_min, 0)
 
 
 class stagiaire(Variable):
@@ -69,7 +69,7 @@ class stagiaire(Variable):
 
     def function(self, simulation, period):
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
-        return period, (stage_duree_heures > 0)
+        return (stage_duree_heures > 0)
 
 
 class exoneration_cotisations_employeur_stagiaire(Variable):
@@ -101,7 +101,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
             for bareme_name in ['agffnc', 'agffc', 'chomfg', 'assedic']
         )
         exoneration += agirc_employeur + agirc_gmp_employeur + arrco_employeur
-        return period, - exoneration * stagiaire
+        return - exoneration * stagiaire
 
 
 class exoneration_cotisations_salarie_stagiaire(Variable):
@@ -135,4 +135,4 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
                 )
         exoneration = exoneration + agirc_salarie + agirc_gmp_salarie + arrco_salarie
 
-        return period, - exoneration * stagiaire
+        return - exoneration * stagiaire

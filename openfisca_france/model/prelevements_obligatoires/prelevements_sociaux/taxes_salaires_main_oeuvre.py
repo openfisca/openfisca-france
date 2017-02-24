@@ -40,7 +40,7 @@ class conge_individuel_formation_cdd(Variable):
         law = simulation.legislation_at(period.start).cotsoc.conge_individuel_formation
 
         cotisation = - law.cdd * (contrat_de_travail_duree == 1) * assiette_cotisations_sociales
-        return period, cotisation
+        return cotisation
 
 
 class redevable_taxe_apprentissage(Variable):
@@ -54,7 +54,7 @@ class redevable_taxe_apprentissage(Variable):
         # -> pas de taxe d'apprentissage
         association = simulation.calculate('entreprise_est_association_non_lucrative', period)
 
-        return period, not_(association)
+        return not_(association)
 
 
 class contribution_developpement_apprentissage(Variable):
@@ -73,7 +73,7 @@ class contribution_developpement_apprentissage(Variable):
             bareme_name = "apprentissage_add",
             variable_name = self.__class__.__name__,
             )
-        return period, cotisation * redevable_taxe_apprentissage
+        return cotisation * redevable_taxe_apprentissage
 
 
 class contribution_supplementaire_apprentissage(DatedVariable):
@@ -112,7 +112,7 @@ class contribution_supplementaire_apprentissage(DatedVariable):
         else:
             taux_contribution = (effectif_entreprise >= 250) * cotsoc_params.contribution_supplementaire_apprentissage.plus_de_250
             # TODO: gestion de la place dans le XML pb avec l'arbre des paramètres / preprocessing
-        return period, - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
+        return - taux_contribution * assiette_cotisations_sociales * redevable_taxe_apprentissage
 
 
 class cotisations_employeur_main_d_oeuvre(Variable):
@@ -151,7 +151,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
             taxe_apprentissage +
             versement_transport
             )
-        return period, cotisations_employeur_main_d_oeuvre
+        return cotisations_employeur_main_d_oeuvre
 
 
 class fnal(Variable):
@@ -163,7 +163,7 @@ class fnal(Variable):
     def function(self, simulation, period):
         fnal_tranche_a = simulation.calculate('fnal_tranche_a', period)
         fnal_tranche_a_plus_20 = simulation.calculate('fnal_tranche_a_plus_20', period)
-        return period, fnal_tranche_a + fnal_tranche_a_plus_20
+        return fnal_tranche_a + fnal_tranche_a_plus_20
 
 
 class fnal_tranche_a(Variable):
@@ -181,7 +181,7 @@ class fnal_tranche_a(Variable):
             bareme_name = 'fnal1',
             variable_name = self.__class__.__name__,
             )
-        return period, cotisation * (taille_entreprise <= 2)
+        return cotisation * (taille_entreprise <= 2)
 
 
 class fnal_tranche_a_plus_20(Variable):
@@ -199,7 +199,7 @@ class fnal_tranche_a_plus_20(Variable):
             bareme_name = 'fnal2',
             variable_name = self.__class__.__name__,
             )
-        return period, cotisation * (taille_entreprise > 2)
+        return cotisation * (taille_entreprise > 2)
 
 
 class financement_organisations_syndicales(DatedVariable):
@@ -218,7 +218,7 @@ class financement_organisations_syndicales(DatedVariable):
             bareme_name = 'financement_organisations_syndicales',
             variable_name = self.__class__.__name__,
             )
-        return period, cotisation * or_(categorie_salarie <= 1, categorie_salarie == 6)
+        return cotisation * or_(categorie_salarie <= 1, categorie_salarie == 6)
 
 
 class formation_professionnelle(Variable):
@@ -250,7 +250,7 @@ class formation_professionnelle(Variable):
             bareme_name = 'formprof_20',
             variable_name = self.__class__.__name__,
             )
-        return period, cotisation_0_9 + cotisation_10_19 + cotisation_20
+        return cotisation_0_9 + cotisation_10_19 + cotisation_20
 
 
 class participation_effort_construction(Variable):
@@ -277,7 +277,7 @@ class participation_effort_construction(Variable):
             self.zeros() * (effectif_entreprise < 20)
             )
 
-        return period, cotisation
+        return cotisation
 
 
 class taxe_apprentissage(Variable):
@@ -315,7 +315,7 @@ class taxe_apprentissage(Variable):
 
         # cotisation = salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle + (1 - salarie_regime_alsace_moselle) * cotisation_regime_general
 
-        return period, cotisation * redevable_taxe_apprentissage
+        return cotisation * redevable_taxe_apprentissage
 
 
 class taxe_salaires(Variable):
@@ -391,4 +391,4 @@ class taxe_salaires(Variable):
                 False: estimation_abattue / effectif_entreprise / 12
                 })
 
-        return period, - cotisation * assujettissement
+        return - cotisation * assujettissement

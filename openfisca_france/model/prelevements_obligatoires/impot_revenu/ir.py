@@ -68,7 +68,7 @@ class age(Variable):
         if not has_birth:
             has_age_en_mois = bool(simulation.get_or_new_holder('age_en_mois')._array_by_period)
             if has_age_en_mois:
-                return period, simulation.calculate('age_en_mois', period) // 12
+                return simulation.calculate('age_en_mois', period) // 12
 
             # If age is known at the same day of another year, compute the new age from it.
             holder = self.holder
@@ -77,11 +77,11 @@ class age(Variable):
                 for last_period, last_array in sorted(holder._array_by_period.iteritems(), reverse = True):
                     last_start = last_period.start
                     if last_start.day == start.day:
-                        return period, last_array + int((start.year - last_start.year) +
+                        return last_array + int((start.year - last_start.year) +
                             (start.month - last_start.month) / 12)
 
         date_naissance = simulation.calculate('date_naissance', period)
-        return period, (datetime64(period.start) - date_naissance).astype('timedelta64[Y]')
+        return (datetime64(period.start) - date_naissance).astype('timedelta64[Y]')
 
 
 class age_en_mois(Variable):
@@ -100,15 +100,15 @@ class age_en_mois(Variable):
             for last_period, last_array in sorted(holder._array_by_period.iteritems(), reverse = True):
                 last_start = last_period.start
                 if last_start.day == start.day:
-                    return period, last_array + ((start.year - last_start.year) * 12 + (start.month - last_start.month))
+                    return last_array + ((start.year - last_start.year) * 12 + (start.month - last_start.month))
 
         has_birth = simulation.get_or_new_holder('date_naissance')._array is not None
         if not has_birth:
             has_age = bool(simulation.get_or_new_holder('age')._array_by_period)
             if has_age:
-                return period, simulation.calculate('age', period) * 12
+                return simulation.calculate('age', period) * 12
         date_naissance = simulation.calculate('date_naissance', period)
-        return period, (datetime64(period.start) - date_naissance).astype('timedelta64[M]')
+        return (datetime64(period.start) - date_naissance).astype('timedelta64[M]')
 
 
 class nb_adult(Variable):
@@ -122,7 +122,7 @@ class nb_adult(Variable):
         celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         veuf = simulation.calculate('veuf', period)
 
-        return period, 2 * maries_ou_pacses + 1 * (celibataire_ou_divorce | veuf)
+        return 2 * maries_ou_pacses + 1 * (celibataire_ou_divorce | veuf)
 
 
 class nb_pac(Variable):
@@ -136,7 +136,7 @@ class nb_pac(Variable):
         nbJ = simulation.calculate('nbJ', period)
         nbR = simulation.calculate('nbR', period)
 
-        return period, nbF + nbJ + nbR
+        return nbF + nbJ + nbR
 
 
 class enfant_a_charge(Variable):
@@ -152,7 +152,7 @@ class enfant_a_charge(Variable):
         handicap = individu('handicap', period)
         is_pac = individu.has_role(FoyerFiscal.PERSONNE_A_CHARGE)
 
-        return period, is_pac * ((age < 18) + handicap)
+        return is_pac * ((age < 18) + handicap)
 
 
 class nbF(Variable):
@@ -168,7 +168,7 @@ class nbF(Variable):
 
         enfant_a_charge = simulation.compute('enfant_a_charge', janvier)
         garde_alternee = simulation.compute('garde_alternee', janvier)
-        return period, self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array))
+        return self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array))
 
 
 class nbG(Variable):
@@ -184,7 +184,7 @@ class nbG(Variable):
         enfant_a_charge = simulation.compute('enfant_a_charge', janvier)
         garde_alternee = simulation.compute('garde_alternee', janvier)
         invalidite = simulation.compute('invalidite', janvier)
-        return period, self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array) * invalidite.array)
+        return self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array) * invalidite.array)
 
 
 class nbH(Variable):
@@ -199,7 +199,7 @@ class nbH(Variable):
 
         enfant_a_charge = simulation.compute('enfant_a_charge', janvier)
         garde_alternee = simulation.compute('garde_alternee', janvier)
-        return period, self.sum_by_entity(enfant_a_charge.array * garde_alternee.array)
+        return self.sum_by_entity(enfant_a_charge.array * garde_alternee.array)
 
 
 class nbI(Variable):
@@ -215,7 +215,7 @@ class nbI(Variable):
         enfant_a_charge = simulation.compute('enfant_a_charge', janvier)
         garde_alternee = simulation.compute('garde_alternee', janvier)
         invalidite = simulation.compute('invalidite', janvier)
-        return period, self.sum_by_entity(enfant_a_charge.array * garde_alternee.array * invalidite.array)
+        return self.sum_by_entity(enfant_a_charge.array * garde_alternee.array * invalidite.array)
 
 
 class enfant_majeur_celibataire_sans_enfant(Variable):
@@ -231,7 +231,7 @@ class enfant_majeur_celibataire_sans_enfant(Variable):
         handicap = individu('handicap', janvier)
         is_pac = individu.has_role(FoyerFiscal.PERSONNE_A_CHARGE)
 
-        return period, is_pac * (age >= 18) * not_(handicap)
+        return is_pac * (age >= 18) * not_(handicap)
 
 
 class nbJ(Variable):
@@ -243,7 +243,7 @@ class nbJ(Variable):
 
     def function(foyer_fiscal, period):
         enfant_majeur_celibataire_sans_enfant = foyer_fiscal.members('enfant_majeur_celibataire_sans_enfant', period)
-        return period, foyer_fiscal.sum(enfant_majeur_celibataire_sans_enfant)
+        return foyer_fiscal.sum(enfant_majeur_celibataire_sans_enfant)
 
 
 class nombre_enfants_majeurs_celibataires_sans_enfant(Variable):
@@ -254,7 +254,7 @@ class nombre_enfants_majeurs_celibataires_sans_enfant(Variable):
 
     def function(menage, period):
         enfant_majeur_celibataire_sans_enfant = menage.members('enfant_majeur_celibataire_sans_enfant', period)
-        return period, menage.sum(enfant_majeur_celibataire_sans_enfant)
+        return menage.sum(enfant_majeur_celibataire_sans_enfant)
 
 
 class maries_ou_pacses(Variable):
@@ -267,7 +267,7 @@ class maries_ou_pacses(Variable):
         statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.this_month)
         marie_ou_pacse = (statut_marital == 1) | (statut_marital == 5)
 
-        return period, marie_ou_pacse
+        return marie_ou_pacse
 
 
 class celibataire_ou_divorce(Variable):
@@ -280,7 +280,7 @@ class celibataire_ou_divorce(Variable):
         statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.this_month)
         celibataire_ou_divorce = (statut_marital == 2) | (statut_marital == 3)
 
-        return period, celibataire_ou_divorce
+        return celibataire_ou_divorce
 
 
 class veuf(Variable):
@@ -293,7 +293,7 @@ class veuf(Variable):
         statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.this_month)
         veuf = (statut_marital == 4)
 
-        return period, veuf
+        return veuf
 
 
 class jeune_veuf(Variable):
@@ -306,7 +306,7 @@ class jeune_veuf(Variable):
         statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.this_month)
         jeune_veuf = (statut_marital == 6)
 
-        return period, jeune_veuf
+        return jeune_veuf
 
 
 ###############################################################################
@@ -324,7 +324,7 @@ class revenu_assimile_salaire(Variable):
         salaire_imposable = simulation.calculate_add('salaire_imposable', period)
         chomage_imposable = simulation.calculate_add('chomage_imposable', period)
 
-        return period, salaire_imposable + chomage_imposable
+        return salaire_imposable + chomage_imposable
 
 
 class revenu_assimile_salaire_apres_abattements(Variable):
@@ -341,7 +341,7 @@ class revenu_assimile_salaire_apres_abattements(Variable):
 
         abattement_minimum = abatpro.min * not_(chomeur_longue_duree) + abatpro.min2 * chomeur_longue_duree
         abatfor = round(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
-        return period, (
+        return (
             (frais_reels > abatfor) * (revenu_assimile_salaire - frais_reels) +
             (frais_reels <= abatfor) * max_(0, revenu_assimile_salaire - abatfor)
             )
@@ -356,7 +356,7 @@ class revenu_activite_salariee(Variable):
     def function(self, simulation, period):
         salaire_imposable = simulation.calculate_add('salaire_imposable', period)
 
-        return period, salaire_imposable
+        return salaire_imposable
 
 
 class revenu_activite_non_salariee(Variable):
@@ -368,7 +368,7 @@ class revenu_activite_non_salariee(Variable):
     def function(self, simulation, period):
         rpns_i = simulation.calculate('rpns_individu', period)
 
-        return period, rpns_i  # TODO: vérifier cette définition
+        return rpns_i  # TODO: vérifier cette définition
 
 
 class revenu_activite(Variable):
@@ -382,7 +382,7 @@ class revenu_activite(Variable):
         revenu_activite_non_salariee = simulation.calculate('revenu_activite_non_salariee', period)
         revenu_activite_salariee = simulation.calculate('revenu_activite_salariee', period)
 
-        return period, revenu_activite_non_salariee + revenu_activite_salariee
+        return revenu_activite_non_salariee + revenu_activite_salariee
 
 
 class revenu_assimile_pension(Variable):
@@ -397,7 +397,7 @@ class revenu_assimile_pension(Variable):
         retraite_imposable = individu('retraite_imposable', period, options = [ADD])
         pension_invalidite = individu('pensions_invalidite', period, options = [ADD])
 
-        return period, pensions_alimentaires_percues * pensions_alimentaires_percues_decl + retraite_imposable + pension_invalidite
+        return pensions_alimentaires_percues * pensions_alimentaires_percues_decl + retraite_imposable + pension_invalidite
 
 
 class revenu_assimile_pension_apres_abattements(Variable):
@@ -415,7 +415,7 @@ class revenu_assimile_pension_apres_abattements(Variable):
     #            AO + BO + CO + DO + EO )
     #    penv2 = (d11-f11> abatpen.max)*(penv + (d11-f11-abatpen.max)) + (d11-f11<= abatpen.max)*penv
     #    Plus d'abatement de 20% en 2006
-        return period, max_(0, revenu_assimile_pension - round(max_(abatpen.taux * revenu_assimile_pension , abatpen.min)))
+        return max_(0, revenu_assimile_pension - round(max_(abatpen.taux * revenu_assimile_pension , abatpen.min)))
 
 
 #    return max_(0, revenu_assimile_pension - min_(round(max_(abatpen.taux*revenu_assimile_pension , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
@@ -435,7 +435,7 @@ class indu_plaf_abat_pen(Variable):
         revenu_assimile_pension = self.sum_by_entity(rev_pen_holder)
 
         abat = revenu_assimile_pension - revenu_assimile_pension_apres_abattements
-        return period, abat - min_(abat, abatpen.max)
+        return abat - min_(abat, abatpen.max)
 
 
 class abattement_salaires_pensions(Variable):
@@ -450,7 +450,7 @@ class abattement_salaires_pensions(Variable):
         revenu_assimile_pension_apres_abattements = simulation.calculate('revenu_assimile_pension_apres_abattements', period)
         abatsalpen = simulation.legislation_at(period.start).impot_revenu.tspr.abatsalpen
 
-        return period, min_(abatsalpen.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), abatsalpen.max)
+        return min_(abatsalpen.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), abatsalpen.max)
 
 
 class retraite_titre_onereux(Variable):
@@ -473,7 +473,7 @@ class retraite_titre_onereux(Variable):
         f1cw = simulation.calculate('f1cw', year)
         f1dw = simulation.calculate('f1dw', year)
 
-        return period, (f1aw + f1bw + f1cw + f1dw) / 12
+        return (f1aw + f1bw + f1cw + f1dw) / 12
 
 
 class retraite_titre_onereux_net(Variable):
@@ -490,7 +490,7 @@ class retraite_titre_onereux_net(Variable):
         f1dw = simulation.calculate('f1dw', period)
         abatviag = simulation.legislation_at(period.start).impot_revenu.tspr.abatviag
 
-        return period, round(abatviag.taux1 * f1aw + abatviag.taux2 * f1bw + abatviag.taux3 * f1cw + abatviag.taux4 * f1dw)
+        return round(abatviag.taux1 * f1aw + abatviag.taux2 * f1bw + abatviag.taux3 * f1cw + abatviag.taux4 * f1dw)
 
 
 class traitements_salaires_pensions_rentes(Variable):
@@ -509,7 +509,7 @@ class traitements_salaires_pensions_rentes(Variable):
         retraite_titre_onereux_net = individu.foyer_fiscal('retraite_titre_onereux_net', period.offset('first-of'))
         retraite_titre_onereux_net_declarant1 = retraite_titre_onereux_net * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return period, revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements - abattement_salaires_pensions + retraite_titre_onereux_net_declarant1
+        return revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements - abattement_salaires_pensions + retraite_titre_onereux_net_declarant1
 
 
 class rev_cat_pv(Variable):
@@ -524,7 +524,7 @@ class rev_cat_pv(Variable):
         f3vg = simulation.calculate('f3vg', period)
         f3vh = simulation.calculate('f3vh', period)
 
-        return period, f3vg - f3vh
+        return f3vg - f3vh
 
 
 class rev_cat_tspr(Variable):
@@ -540,7 +540,7 @@ class rev_cat_tspr(Variable):
 
         traitements_salaires_pensions_rentes = self.sum_by_entity(tspr_holder)
 
-        return period, traitements_salaires_pensions_rentes + indu_plaf_abat_pen
+        return traitements_salaires_pensions_rentes + indu_plaf_abat_pen
 
 
 class deficit_rcm(Variable):
@@ -560,7 +560,7 @@ class deficit_rcm(Variable):
         f2ar = simulation.calculate('f2ar', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, f2aa + f2al + f2am + f2an + f2aq + f2ar
+        return f2aa + f2al + f2am + f2an + f2aq + f2ar
 
 
 class rev_cat_rvcm(DatedVariable):
@@ -615,7 +615,7 @@ class rev_cat_rvcm(DatedVariable):
         TOT3 = (f2ts - F2) + f2go * rvcm.majGO + f2tr_bis - g12a
 
         DEF = deficit_rcm
-        return period, max_(TOT1 + TOT2 + TOT3 - DEF, 0)
+        return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2012, 12, 31))
     def function_20050101_20121231(self, simulation, period):
@@ -665,7 +665,7 @@ class rev_cat_rvcm(DatedVariable):
         TOT3 = (f2ts - F2) + f2go * rvcm.majGO + f2tr_bis - g12a
 
         DEF = deficit_rcm
-        return period, max_(TOT1 + TOT2 + TOT3 - DEF, 0)
+        return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
     @dated_function(start = date(2013, 1, 1))
     def function_20130101_20151231(self, simulation, period):
@@ -714,7 +714,7 @@ class rev_cat_rvcm(DatedVariable):
         TOT3 = (f2ts - F2) + f2go * rvcm.majGO + f2tr_bis - g12a
 
         DEF = deficit_rcm
-        return period, max_(TOT1 + TOT2 + TOT3 - DEF, 0)
+        return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
 
 class rfr_rvcm(Variable):
@@ -757,7 +757,7 @@ class rfr_rvcm(Variable):
         else:
             h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         i121 = - min_(0, rev - h12)
-        return period, max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc_bis + f2fu) - i121, 0)
+        return max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc_bis + f2fu) - i121, 0)
 
 
 class rev_cat_rfon(Variable):
@@ -790,7 +790,7 @@ class rev_cat_rfon(Variable):
         f13 = f4bd * (e13 >= 0)
         g13 = max_(0, e13 - f13)
         rev_cat_rfon = (c13 >= 0) * (g13 + e13 * (e13 < 0)) - (c13 < 0) * d13
-        return period, rev_cat_rfon
+        return rev_cat_rfon
 
 
 class rev_cat_rpns(Variable):
@@ -813,7 +813,7 @@ class rev_cat_rpns(Variable):
         defncn = simulation.calculate('defncn', period)
         defmeu = simulation.calculate('defmeu', period)
 
-        return period, (
+        return (
             self.sum_by_entity(rpns_i_holder) -
             self.sum_by_entity(nbnc_pvce_holder) - defrag - defncn - defacc - defmeu - mbic_mvct
             )
@@ -836,7 +836,7 @@ class rev_cat(Variable):
         rev_cat_rpns = simulation.calculate('rev_cat_rpns', period)
         rev_cat_pv = simulation.calculate('rev_cat_pv', period)
 
-        return period, rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
+        return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
 
 
 ###############################################################################
@@ -862,7 +862,7 @@ class deficit_ante(Variable):
         f6fe = simulation.calculate('f6fe', period)
         f6fl = simulation.calculate('f6fl', period)
 
-        return period, f6fa + f6fb + f6fc + f6fd + f6fe + f6fl
+        return f6fa + f6fb + f6fc + f6fd + f6fe + f6fl
 
 
 class rbg(Variable):
@@ -885,7 +885,7 @@ class rbg(Variable):
         # (Total 17)
         # sans les revenus au quotient
         nacc_pvce = self.sum_by_entity(nacc_pvce_holder)
-        return period, max_(0,
+        return max_(0,
                     rev_cat + f6gh + (self.sum_by_entity(nbic_impm_holder) + nacc_pvce) * (1 + cga) - deficit_ante)
 
 
@@ -903,7 +903,7 @@ class csg_deduc_patrimoine(Variable):
         '''
         f6de = simulation.calculate('f6de', period)
 
-        return period, max_(f6de, 0)
+        return max_(f6de, 0)
 
 
 class csg_deduc_patrimoine_simulated(Variable):
@@ -924,7 +924,7 @@ class csg_deduc_patrimoine_simulated(Variable):
         taux = simulation.legislation_at(period.start).csg.capital.deduc
 
         patrimoine_deduc = rev_cat_rfon + rev_cap_bar + retraite_titre_onereux
-        return period, taux * patrimoine_deduc
+        return taux * patrimoine_deduc
 
 
 class csg_deduc(Variable):  # f6de
@@ -940,7 +940,7 @@ class csg_deduc(Variable):  # f6de
         csg_deduc_patrimoine = simulation.calculate('csg_deduc_patrimoine', period)
 
         # min_(f6de, max_(rbg, 0))
-        return period, min_(csg_deduc_patrimoine, max_(rbg, 0))
+        return min_(csg_deduc_patrimoine, max_(rbg, 0))
 
 
 class rng(Variable):
@@ -956,7 +956,7 @@ class rng(Variable):
         csg_deduc = simulation.calculate('csg_deduc', period)
         charges_deduc = simulation.calculate('charges_deduc', period)
 
-        return period, max_(0, rbg - csg_deduc - charges_deduc)
+        return max_(0, rbg - csg_deduc - charges_deduc)
 
 
 class rni(Variable):
@@ -971,7 +971,7 @@ class rni(Variable):
         rng = simulation.calculate('rng', period)
         abat_spe = simulation.calculate('abat_spe', period)
 
-        return period, rng - abat_spe
+        return rng - abat_spe
 
 
 class ir_brut(Variable):
@@ -986,7 +986,7 @@ class ir_brut(Variable):
         rni = simulation.calculate('rni', period)
         bareme = simulation.legislation_at(period.start).impot_revenu.bareme
 
-        return period, (taux_effectif == 0) * nbptr * bareme.calc(rni / nbptr) + taux_effectif * rni
+        return (taux_effectif == 0) * nbptr * bareme.calc(rni / nbptr) + taux_effectif * rni
 
 
 class ir_ss_qf(Variable):
@@ -1004,7 +1004,7 @@ class ir_ss_qf(Variable):
         bareme = simulation.legislation_at(period.start).impot_revenu.bareme
 
         A = bareme.calc(rni / nb_adult)
-        return period, nb_adult * A
+        return nb_adult * A
 
 
 class ir_plaf_qf(Variable):
@@ -1104,7 +1104,7 @@ class ir_plaf_qf(Variable):
 
         # Récapitulatif
 
-        return period, condition62a * IP0 + condition62b * IP1  # IP2 si DOM
+        return condition62a * IP0 + condition62b * IP1  # IP2 si DOM
 
 
 class avantage_qf(Variable):
@@ -1117,7 +1117,7 @@ class avantage_qf(Variable):
         ir_ss_qf = simulation.calculate('ir_ss_qf', period)
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
 
-        return period, ir_ss_qf - ir_plaf_qf
+        return ir_ss_qf - ir_plaf_qf
 
 
 class decote(DatedVariable):
@@ -1135,7 +1135,7 @@ class decote(DatedVariable):
         decote_celib = (ir_plaf_qf < 4 / 3 * decote_seuil_celib) * (decote_seuil_celib - 3 / 4 * ir_plaf_qf)
         decote_couple = (ir_plaf_qf < 4 / 3 * decote_seuil_couple) * (decote_seuil_couple - 3 / 4 * ir_plaf_qf)
 
-        return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
+        return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
     @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
     def function_2014(self, simulation, period):
@@ -1146,14 +1146,14 @@ class decote(DatedVariable):
         decote_celib = (ir_plaf_qf < decote_seuil_celib) * (decote_seuil_celib - ir_plaf_qf)
         decote_couple = (ir_plaf_qf < decote_seuil_couple) * (decote_seuil_couple - ir_plaf_qf)
 
-        return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
+        return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
     @dated_function(start = date(2001, 1, 1), stop = date(2013, 12, 31))
     def function_2001_2013(self, simulation, period):
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         decote = simulation.legislation_at(period.start).impot_revenu.decote
 
-        return period, (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
+        return (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
 
 
 class decote_gain_fiscal(Variable):
@@ -1170,7 +1170,7 @@ class decote_gain_fiscal(Variable):
         decote = simulation.calculate('decote', period)
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
 
-        return period, min_(decote, ir_plaf_qf)
+        return min_(decote, ir_plaf_qf)
 
 
 class nat_imp(Variable):
@@ -1189,7 +1189,7 @@ class nat_imp(Variable):
 
         # def _nat_imp(rni, nbptr, non_imposable = law.impot_revenu.non_imposable):
         # seuil = non_imposable.seuil + (nbptr - 1)*non_imposable.supp
-        return period, (iai - credits_impot + cehr) > 0
+        return (iai - credits_impot + cehr) > 0
 
 
 class ip_net(Variable):
@@ -1207,7 +1207,7 @@ class ip_net(Variable):
         decote = simulation.calculate('decote', period)
         taux = simulation.legislation_at(period.start).impot_revenu.rpns.taux16
 
-        return period, max_(0, ir_plaf_qf + self.sum_by_entity(cncn_info_holder) * taux - decote)
+        return max_(0, ir_plaf_qf + self.sum_by_entity(cncn_info_holder) * taux - decote)
 
 
 class iaidrdi(Variable):
@@ -1223,7 +1223,7 @@ class iaidrdi(Variable):
         ip_net = simulation.calculate('ip_net', period)
         reductions = simulation.calculate('reductions', period)
 
-        return period, ip_net - reductions
+        return ip_net - reductions
 
 
 class cont_rev_loc(Variable):
@@ -1240,7 +1240,7 @@ class cont_rev_loc(Variable):
         f4bl = simulation.calculate('f4bl', period)
         crl = simulation.legislation_at(period.start).impot_revenu.crl
 
-        return period, round(crl.taux * (f4bl >= crl.seuil) * f4bl)
+        return round(crl.taux * (f4bl >= crl.seuil) * f4bl)
 
 
 class teicaa(Variable):  # f5rm
@@ -1259,7 +1259,7 @@ class teicaa(Variable):  # f5rm
         f5qm = self.filter_role(f5qm_holder, role = VOUS)
         f5rm = self.filter_role(f5qm_holder, role = CONJ)
 
-        return period, bareme.calc(f5qm) + bareme.calc(f5rm)
+        return bareme.calc(f5qm) + bareme.calc(f5rm)
 
 
 class assiette_vente(Variable):
@@ -1275,7 +1275,7 @@ class assiette_vente(Variable):
         '''
         ebic_impv_holder = simulation.compute('ebic_impv', period)
 
-        return period, self.sum_by_entity(ebic_impv_holder)
+        return self.sum_by_entity(ebic_impv_holder)
 
 
 class assiette_service(Variable):
@@ -1291,7 +1291,7 @@ class assiette_service(Variable):
         '''
         ebic_imps_holder = simulation.compute('ebic_imps', period)
 
-        return period, self.sum_by_entity(ebic_imps_holder)
+        return self.sum_by_entity(ebic_imps_holder)
 
     # P = _P.impot_revenu.rpns.micro.microentreprise
     # assert (ebic_imps <= P.servi.max)
@@ -1313,7 +1313,7 @@ class assiette_proflib(Variable):
 
         # TODO: distinction RSI/CIPAV (pour les cotisations sociales)
         # http://vosdroits.service-public.fr/professionnels-entreprises/F23267.xhtml
-        return period, self.sum_by_entity(ebnc_impo_holder)
+        return self.sum_by_entity(ebnc_impo_holder)
 
     # assert (ebnc_impo <= P.specialbnc.max)
 
@@ -1332,7 +1332,7 @@ class microsocial(Variable):
         assiette_proflib = simulation.calculate('assiette_proflib', period)
         microsocial = simulation.legislation_at(period.start).impot_revenu.rpns.microsocial
 
-        return period, (
+        return (
             assiette_service * microsocial.servi +
             assiette_vente * microsocial.vente + assiette_proflib * microsocial.bnc
             )
@@ -1353,7 +1353,7 @@ class microentreprise(Variable):
         ebnc_impo = self.sum_by_entity(ebnc_impo_holder)
         ebic_imps = self.sum_by_entity(ebic_imps_holder)
         ebic_impv = self.sum_by_entity(ebic_impv_holder)
-        return period, (
+        return (
             ebnc_impo * (1 - micro.specialbnc.taux) +
             ebic_imps * (1 - micro.microentreprise.taux_prestations_de_services) +
             ebic_impv * (1 - micro.microentreprise.taux_ventes_de_marchandises)
@@ -1400,7 +1400,7 @@ class plus_values(DatedVariable):
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
 
-        return period, round(out)
+        return round(out)
 
     @dated_function(start = date(2008, 1, 1), stop = date(2011, 12, 31))
     def function_20080101_20111231(self, simulation, period):  # f3sd is in f3vd holder
@@ -1438,7 +1438,7 @@ class plus_values(DatedVariable):
         rdp += f3vd
         out += plus_values.taux1 * f3vd
 
-        return period, round(out)
+        return round(out)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):  # f3sd is in f3vd holder
@@ -1481,7 +1481,7 @@ class plus_values(DatedVariable):
         out = (plus_values.taux2 * (f3vd + f3sd) + plus_values.taux3 * (f3vi + f3si) +
             plus_values.taux4 * (f3vf + f3sf) + plus_values.taux1 * max_(0, f3vg - f3vh) + plus_values.pvce * rpns_pvce)
                 # TODO: chek this rpns missing ?
-        return period, round(out)
+        return round(out)
 
     @dated_function(start = date(2013, 1, 1))
     def function_20130101_20151231(self, simulation, period):  # f3sd is in f3vd holder
@@ -1527,7 +1527,7 @@ class plus_values(DatedVariable):
         out = (plus_values.taux2 * (f3vd + f3sd) + plus_values.taux3 * (f3vi + f3si) +
             plus_values.taux4 * (f3vf + f3sf) + plus_values.taux1 * max_(0, - f3vh) + plus_values.pvce * (rpns_pvce + f3sa))
         # TODO: chek this 3VG
-        return period, round(out)
+        return round(out)
 
 
 class iai(Variable):
@@ -1546,7 +1546,7 @@ class iai(Variable):
         cont_rev_loc = simulation.calculate('cont_rev_loc', period)
         teicaa = simulation.calculate('teicaa', period)
 
-        return period, iaidrdi + plus_values + cont_rev_loc + teicaa
+        return iaidrdi + plus_values + cont_rev_loc + teicaa
 
 
 class cehr(Variable):
@@ -1566,7 +1566,7 @@ class cehr(Variable):
         nb_adult = simulation.calculate('nb_adult', period)
         bareme = simulation.legislation_at(period.start).impot_revenu.cehr
 
-        return period, bareme.calc(rfr / nb_adult) * nb_adult
+        return bareme.calc(rfr / nb_adult) * nb_adult
         # TODO: Gérer le II.-1 du lissage interannuel ? (problème de non recours)
 
 
@@ -1587,7 +1587,7 @@ class irpp(Variable):
         P = simulation.legislation_at(period.start).impot_revenu.recouvrement
 
         pre_result = iai - credits_impot + cehr
-        return period, (
+        return (
             (iai > P.seuil) * (
                 (pre_result < P.min) * (pre_result > 0) * iai * 0 +
                 ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)
@@ -1605,7 +1605,7 @@ class foyer_impose(Variable):
 
     def function(self, simulation, period):
         irpp = simulation.calculate('irpp', period)
-        return period, (irpp < 0)
+        return (irpp < 0)
 
 ###############################################################################
 # # Autres totaux utiles pour la suite
@@ -1627,7 +1627,7 @@ class pensions_alimentaires_versees(Variable):
         f6gp = simulation.calculate('f6gp', period)
         f6gu = simulation.calculate('f6gu', period)
 
-        return period, -(f6gi + f6gj + f6el + f6em + f6gp + f6gu)
+        return -(f6gi + f6gj + f6el + f6em + f6gp + f6gu)
 
 
 class rfr(Variable):
@@ -1656,7 +1656,7 @@ class rfr(Variable):
         f3vi = self.sum_by_entity(f3vi_holder)
         rpns_exon = self.sum_by_entity(rpns_exon_holder)
         rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
-        return period, (max_(0, rni) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va +
+        return (max_(0, rni) + rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va +
                 f3vz + microentreprise)
 
 
@@ -1678,7 +1678,7 @@ class glo(Variable):
         f3vi = simulation.calculate('f3vi', period)
         f3vj = simulation.calculate('f3vj', period)
 
-        return period, f1tv + f1tw + f1tx + f3vf + f3vi + f3vj
+        return f1tv + f1tw + f1tx + f3vf + f3vi + f3vj
 
 
 class rev_cap_bar(Variable):
@@ -1714,7 +1714,7 @@ class rev_cap_bar(Variable):
         #     return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf
         # elif year > 2011:
         #     return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf + (f2da + f2ee)
-        return period, (f2dc + f2gr + f2ch + f2ts + f2go * majGO + f2tr + f2fu - avf + (f2da + f2ee) * finpfl) / 12
+        return (f2dc + f2gr + f2ch + f2ts + f2go * majGO + f2tr + f2fu - avf + (f2da + f2ee) * finpfl) / 12
 
 
     # We add f2da an f2ee to allow for comparaison between years
@@ -1742,7 +1742,7 @@ class rev_cap_lib(DatedVariable):
         finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl
 
         out = f2dh + f2ee
-        return period, out * not_(finpfl) / 12
+        return out * not_(finpfl) / 12
 
     @dated_function(start = date(2008, 1, 1))
     def function_20080101_20151231(self, simulation, period):
@@ -1754,7 +1754,7 @@ class rev_cap_lib(DatedVariable):
         finpfl = simulation.legislation_at(period.start).impot_revenu.autre.finpfl
 
         out = f2da + f2dh + f2ee
-        return period, out * not_(finpfl) / 12
+        return out * not_(finpfl) / 12
 
 
 class avf(Variable):
@@ -1769,7 +1769,7 @@ class avf(Variable):
         '''
         f2ab = simulation.calculate('f2ab', period)
 
-        return period, f2ab
+        return f2ab
 
 
 class imp_lib(DatedVariable):
@@ -1790,7 +1790,7 @@ class imp_lib(DatedVariable):
         prelevement_liberatoire = simulation.legislation_at(period.start).impot_revenu.rvcm.prelevement_liberatoire
 
         out = -(prelevement_liberatoire.assvie * f2dh + prelevement_liberatoire.autre * f2ee)
-        return period, out
+        return out
 
     @dated_function(start = date(2008, 1, 1), stop = date(2012, 12, 31))
     def function_20080101_20121231(self, simulation, period):
@@ -1806,7 +1806,7 @@ class imp_lib(DatedVariable):
 
         out = -(prelevement_liberatoire.action * f2da + prelevement_liberatoire.autre * f2ee) * not_(finpfl) \
             - prelevement_liberatoire.assvie * f2dh
-        return period, out
+        return out
 
 
 class fon(Variable):
@@ -1827,7 +1827,7 @@ class fon(Variable):
         f4be = simulation.calculate('f4be', period)
         microfoncier = simulation.legislation_at(period.start).impot_revenu.rpns.micro.microfoncier
 
-        return period, f4ba - f4bb - f4bc + round(f4be * (1 - microfoncier.taux))
+        return f4ba - f4bb - f4bc + round(f4be * (1 - microfoncier.taux))
 
 
 class rpns_pvce(Variable):
@@ -1862,7 +1862,7 @@ class rpns_pvce(Variable):
         mncn_pvce = simulation.calculate('mncn_pvce', period)
         cncn_pvce = simulation.calculate('cncn_pvce', period)
 
-        return period, (frag_pvce + arag_pvce + mbic_pvce + abic_pvce + macc_pvce + aacc_pvce + mbnc_pvce +
+        return (frag_pvce + arag_pvce + mbic_pvce + abic_pvce + macc_pvce + aacc_pvce + mbnc_pvce +
                 abnc_pvce + mncn_pvce + cncn_pvce)
 
 
@@ -1912,7 +1912,7 @@ class rpns_exon(Variable):
         nbic_pvce = simulation.calculate('nbic_pvce', period)
         cga = simulation.legislation_at(period.start).impot_revenu.rpns.cga_taux2
 
-        return period, (frag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga) +
+        return (frag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga) +
                 nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc +
                 abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre + cncn_info + nbic_pvce + nrag_pvce)
 
@@ -1942,7 +1942,7 @@ class defrag(Variable):
         arag_impg = self.sum_by_entity(arag_impg_holder)
         nrag_impg = self.sum_by_entity(nrag_impg_holder)
         frag_pvct = self.sum_by_entity(frag_pvct_holder)
-        return period, min_(f5qf + f5qg + f5qn + f5qo + f5qp + f5qq, (1 + cga) * (frag_impo + nrag_impg + frag_pvct)
+        return min_(f5qf + f5qg + f5qn + f5qo + f5qp + f5qq, (1 + cga) * (frag_impo + nrag_impg + frag_pvct)
                     + arag_impg + frag_fore)
 
 
@@ -1976,7 +1976,7 @@ class defacc(Variable):
         macc_imps = self.sum_by_entity(macc_imps_holder)
         aacc_impn = self.sum_by_entity(aacc_impn_holder)
         macc_timp = abat_rpns(macc_impv, micro.specialbnc.marchandises) + abat_rpns(macc_imps, micro.specialbnc.services)
-        return period, (
+        return (
             min_(f5rn + f5ro + f5rp + f5rq + f5rr + f5rw, aacc_impn + macc_pvct + macc_timp + (1 + cga) * nacc_impn)
             )
 
@@ -2007,7 +2007,7 @@ class defncn(Variable):
         mncn_impo = self.sum_by_entity(mncn_impo_holder)
         mncn_pvct = self.sum_by_entity(mncn_pvct_holder)
         cncn_aimp = self.sum_by_entity(cncn_aimp_holder)
-        return period, min_(
+        return min_(
             f5ht + f5it + f5jt + f5kt + f5lt + f5mt,
             abat_rpns(mncn_impo, specialbnc.services) + mncn_pvct + cncn_aimp + (1 + cga) * cncn_bene
             )  # TODO check !
@@ -2035,7 +2035,7 @@ class defmeu(Variable):
 
         nacc_defs = self.sum_by_entity(nacc_defs_holder)
         alnp_imps = self.sum_by_entity(alnp_imps_holder)
-        return period, min_(f5ga + f5gb + f5gc + f5gd + f5ge + f5gf + f5gg + f5gh + f5gi + f5gj, alnp_imps + nacc_defs)
+        return min_(f5ga + f5gb + f5gc + f5gd + f5ge + f5gf + f5gg + f5gh + f5gi + f5gj, alnp_imps + nacc_defs)
 
 
 class rag(Variable):
@@ -2069,7 +2069,7 @@ class rag(Variable):
         nrag_defi = simulation.calculate('nrag_defi', period)
         nrag_ajag = simulation.calculate('nrag_ajag', period)
 
-        return period, (frag_exon + frag_impo +
+        return (frag_exon + frag_impo +
                 arag_exon + arag_impg - arag_defi +
                 nrag_exon + nrag_impg - nrag_defi +
                 nrag_ajag)
@@ -2138,7 +2138,7 @@ class ric(Variable):
                     )
                 )
             )
-        return period, zbic - cbic
+        return zbic - cbic
 
 
 class rac(Variable):
@@ -2199,7 +2199,7 @@ class rac(Variable):
             + macc_imps * micro.specialbnc.services.taux + macc_exon * taux
             + mncn_impo * micro.specialbnc.taux)))
 
-        return period, zacc - cacc
+        return zacc - cacc
 
 
 class rnc(Variable):
@@ -2247,7 +2247,7 @@ class rnc(Variable):
                 )
             )
 
-        return period, zbnc - cbnc
+        return zbnc - cbnc
 
 
 class rpns(Variable):
@@ -2262,7 +2262,7 @@ class rpns(Variable):
         rac = simulation.calculate('rac', period)
         rnc = simulation.calculate('rnc', period)
 
-        return period, rag + ric + rac + rnc
+        return rag + ric + rac + rnc
 
 
 class rpns_pvct(Variable):
@@ -2287,7 +2287,7 @@ class rpns_pvct(Variable):
         mbnc_pvct = simulation.calculate('mbnc_pvct', period)
         mncn_pvct = simulation.calculate('mncn_pvct', period)
 
-        return period, frag_pvct + macc_pvct + mbic_pvct + mbnc_pvct + mncn_pvct
+        return frag_pvct + macc_pvct + mbic_pvct + mbnc_pvct + mncn_pvct
 
 
 class rpns_mvct(Variable):
@@ -2310,7 +2310,7 @@ class rpns_mvct(Variable):
 
         macc_mvct = self.cast_from_entity_to_role(macc_mvct_holder, role = VOUS)
         mncn_mvct = self.cast_from_entity_to_role(mncn_mvct_holder, role = VOUS)
-        return period, mbnc_mvct + macc_mvct  # mncn_mvct ?
+        return mbnc_mvct + macc_mvct  # mncn_mvct ?
 
 
 class rpns_mvlt(Variable):
@@ -2333,7 +2333,7 @@ class rpns_mvlt(Variable):
         mbnc_mvlt = simulation.calculate('mbnc_mvlt', period)
         mncn_mvlt = simulation.calculate('mncn_mvlt', period)
 
-        return period, mbic_mvlt + macc_mvlt + mbnc_mvlt + mncn_mvlt
+        return mbic_mvlt + macc_mvlt + mbnc_mvlt + mncn_mvlt
 
 
 class rpns_individu(Variable):
@@ -2492,7 +2492,7 @@ class rpns_individu(Variable):
         rev_NS_mi = mbic_timp + max_(0, macc_timp) + mbnc_timp + mncn_timp
         exon = max_(0, macc_timp + nacc_timp - rpns_mvct) - macc_timp - nacc_timp  # ajout artificiel
         RPNS = (rev_NS + rev_NS_mi + rpns_pvct + exon + abic_impm - abic_defm + alnp_imps + cncn_aimp - nbic_mvct)
-        return period, RPNS
+        return RPNS
 
 
 class abat_spe(Variable):
@@ -2545,7 +2545,7 @@ class abat_spe(Variable):
 
         as_enf = nbN * abattements_rni.enfant_marie.montant
 
-        return period, min_(rng, as_inv + as_enf)
+        return min_(rng, as_inv + as_enf)
 
 
 class taux_effectif(Variable):
@@ -2567,7 +2567,7 @@ class taux_effectif(Variable):
         nbnc_proc = self.sum_by_entity(nbnc_proc_holder)
         base_fictive = rni + microentreprise + abnc_proc + nbnc_proc * (1 + cga)
         trigger = (microentreprise != 0) | (abnc_proc != 0) | (nbnc_proc != 0)
-        return period, trigger * nbptr * bareme.calc(base_fictive / nbptr) / max_(1, base_fictive)
+        return trigger * nbptr * bareme.calc(base_fictive / nbptr) / max_(1, base_fictive)
 
 
 class taux_moyen_imposition(Variable):
@@ -2579,7 +2579,7 @@ class taux_moyen_imposition(Variable):
     def function(self, simulation, period):
         rni = simulation.calculate('rni', period)
         irpp = simulation.calculate('irpp', period)
-        return period, (
+        return (
             (- irpp) / (rni + (rni == 0))
             ) * (rni > 0)
 
@@ -2693,7 +2693,7 @@ class nbptr(Variable):
         # # celib div
         c = 1 + enf + n2 + n3 + n6 + n7
 
-        return period, (maries_ou_pacses | jeune_veuf) * m + (veuf & not_(jeune_veuf)) * v + celibataire_ou_divorce * c
+        return (maries_ou_pacses | jeune_veuf) * m + (veuf & not_(jeune_veuf)) * v + celibataire_ou_divorce * c
 
 
 ###############################################################################
@@ -2715,7 +2715,7 @@ class ppe_coef(Variable):
         jour_xyz = simulation.calculate('jour_xyz', period)
 
         nb_jour = (jour_xyz == 0) + jour_xyz
-        return period, 360 / nb_jour
+        return 360 / nb_jour
 
 
 class ppe_elig(Variable):
@@ -2740,7 +2740,7 @@ class ppe_elig(Variable):
 
         seuil = (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
                 + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
-        return period, (rfr * ppe_coef) <= seuil
+        return (rfr * ppe_coef) <= seuil
 
 
 class ppe_rev(Variable):
@@ -2761,7 +2761,7 @@ class ppe_rev(Variable):
         # Revenu d'activité non salarié
         rev_ns = min_(0, rpns) / ppe.abatns + max_(0, rpns) * ppe.abatns
         # très bizarre la partie min(0, rpns) - après vérification c'est dans la loi
-        return period, rev_sa + rev_ns
+        return rev_sa + rev_ns
 
 
 class ppe_coef_tp(Variable):
@@ -2781,7 +2781,7 @@ class ppe_coef_tp(Variable):
         frac_sa = ppe_du_sa / ppe.TP_nbh
         frac_ns = ppe_du_ns / ppe.TP_nbj
         tp = ppe_tp_sa | ppe_tp_ns | (frac_sa + frac_ns >= 1)
-        return period, tp + not_(tp) * (frac_sa + frac_ns)
+        return tp + not_(tp) * (frac_sa + frac_ns)
 
 
 class ppe_base(Variable):
@@ -2798,7 +2798,7 @@ class ppe_base(Variable):
 
         ppe_coef = self.cast_from_entity_to_roles(ppe_coef_holder)
 
-        return period, ppe_rev / (ppe_coef_tp + (ppe_coef_tp == 0)) * ppe_coef
+        return ppe_rev / (ppe_coef_tp + (ppe_coef_tp == 0)) * ppe_coef
 
 
 class ppe_elig_individu(Variable):
@@ -2817,7 +2817,7 @@ class ppe_elig_individu(Variable):
         ppe_coef_tp = simulation.calculate('ppe_coef_tp', period)
         ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe
 
-        return period, (ppe_rev >= ppe.seuil1) & (ppe_coef_tp != 0)
+        return (ppe_rev >= ppe.seuil1) & (ppe_coef_tp != 0)
 
 
 class ppe_brute(Variable):
@@ -2926,7 +2926,7 @@ class ppe_brute(Variable):
 
         ppe_tot = (ppe_tot != 0) * max_(ppe.versmin, ppe_tot)
 
-        return period, ppe_tot
+        return ppe_tot
 
 
 class ppe(Variable):
@@ -2950,4 +2950,4 @@ class ppe(Variable):
         #   On retranche le RSA activité de la PPE
         #   Dans les agrégats officiels de la DGFP, c'est à la PPE brute qu'il faut comparer
         ppe = max_(ppe_brute - rsa_act_i[VOUS] - rsa_act_i[CONJ], 0)
-        return period, ppe
+        return ppe

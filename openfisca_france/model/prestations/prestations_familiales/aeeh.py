@@ -82,4 +82,4 @@ class aeeh(DatedVariable):
     # du complément d'AEEH et la PCH.
 
         # Ces allocations ne sont pas soumis à la CRDS
-        return period, 12 * aeeh # annualisé
+        return 12 * aeeh # annualisé

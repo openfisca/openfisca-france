@@ -32,7 +32,7 @@ class cmu_acs_eligibilite(Variable):
 
         eligibilite_famille = (nb_enfants > 0) + self.any_by_roles(condition_age) + not_(self.any_by_roles(not_(condition_independance)))
 
-        return period, eligibilite_famille
+        return eligibilite_famille
 
 
 class acs_montant(Variable):
@@ -49,7 +49,7 @@ class acs_montant(Variable):
         ages_couple = self.split_by_roles(age_holder, roles = [CHEF, PART])
         ages_pac = self.split_by_roles(age_holder, roles = ENFS)
 
-        return period, ((nb_par_age(ages_couple, 0, 15) + nb_par_age(ages_pac, 0, 15)) * P.acs_moins_16_ans +
+        return ((nb_par_age(ages_couple, 0, 15) + nb_par_age(ages_pac, 0, 15)) * P.acs_moins_16_ans +
             (nb_par_age(ages_couple, 16, 49) + nb_par_age(ages_pac, 16, 25)) * P.acs_16_49_ans +
             nb_par_age(ages_couple, 50, 59) * P.acs_50_59_ans +
             nb_par_age(ages_couple, 60, 200) * P.acs_plus_60_ans)
@@ -66,7 +66,7 @@ class cmu_forfait_logement_base(Variable):
         P = simulation.legislation_at(period.start).cmu.forfait_logement
         law_rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
 
-        return period, forfait_logement(cmu_nbp_foyer, P, law_rsa)
+        return forfait_logement(cmu_nbp_foyer, P, law_rsa)
 
 
 class cmu_forfait_logement_al(Variable):
@@ -81,7 +81,7 @@ class cmu_forfait_logement_al(Variable):
         P = simulation.legislation_at(period.start).cmu.forfait_logement_al
         law_rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
 
-        return period, (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rsa))
+        return (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rsa))
 
 
 class cmu_nbp_foyer(Variable):
@@ -94,7 +94,7 @@ class cmu_nbp_foyer(Variable):
         nb_parents = simulation.calculate('nb_parents', period)
         cmu_nb_pac = simulation.calculate('cmu_nb_pac', period)
 
-        return period, nb_parents + cmu_nb_pac
+        return nb_parents + cmu_nb_pac
 
 
 class cmu_eligible_majoration_dom(Variable):
@@ -109,7 +109,7 @@ class cmu_eligible_majoration_dom(Variable):
         residence_guyane = menage('residence_guyane', period)
         residence_reunion = menage('residence_reunion', period)
 
-        return period, residence_guadeloupe | residence_martinique | residence_guyane | residence_reunion
+        return residence_guadeloupe | residence_martinique | residence_guyane | residence_reunion
 
 
 class cmu_c_plafond(Variable):
@@ -157,7 +157,7 @@ class cmu_c_plafond(Variable):
         # Calcul final du coefficient
         coeff_pac = weighted_alt_matrix.dot(coefficients_array)
 
-        return period, (P.plafond_base *
+        return (P.plafond_base *
             (1 + cmu_eligible_majoration_dom * P.majoration_dom) *
             (1 + coeff_pac)
             )
@@ -173,7 +173,7 @@ class acs_plafond(Variable):
         cmu_c_plafond = simulation.calculate('cmu_c_plafond', period)
         P = simulation.legislation_at(period.start).cmu
 
-        return period, cmu_c_plafond * (1 + P.majoration_plafond_acs)
+        return cmu_c_plafond * (1 + P.majoration_plafond_acs)
 
 
 class cmu_base_ressources_individu(Variable):
@@ -249,7 +249,7 @@ class cmu_base_ressources_individu(Variable):
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
 
-        return period, ressources + revenus_tns() - pensions_alim_versees - abbattement_chomage() - neutralisation_stage_formation_pro()
+        return ressources + revenus_tns() - pensions_alim_versees - abbattement_chomage() - neutralisation_stage_formation_pro()
 
 
 class cmu_base_ressources(Variable):
@@ -294,7 +294,7 @@ class cmu_base_ressources(Variable):
         condition_enfant_a_charge = (age >= 0) * (age <= P.age_limite_pac)
         ressources_enfants = famille.sum(ressources_individuelles * condition_enfant_a_charge, role = Famille.ENFANT)
 
-        return period, forfait_logement + ressources_famille + ressources_parents + ressources_enfants
+        return forfait_logement + ressources_famille + ressources_parents + ressources_enfants
 
 
 class cmu_nb_pac(Variable):
@@ -308,7 +308,7 @@ class cmu_nb_pac(Variable):
         P = simulation.legislation_at(period.start).cmu
 
         ages = self.split_by_roles(age_holder, roles = ENFS)
-        return period, nb_par_age(ages, 0, P.age_limite_pac)
+        return nb_par_age(ages, 0, P.age_limite_pac)
 
 
 class cmu_c(Variable):
@@ -338,7 +338,7 @@ class cmu_c(Variable):
         eligibilite_basique = cmu_base_ressources <= cmu_c_plafond
 
 
-        return period, cmu_acs_eligibilite * not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
+        return cmu_acs_eligibilite * not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
 
 
 class acs(Variable):
@@ -356,7 +356,7 @@ class acs(Variable):
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
         cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
 
-        return period, (
+        return (
             cmu_acs_eligibilite *
             not_(residence_mayotte) * not_(cmu_c) *
             (cmu_base_ressources <= acs_plafond) *

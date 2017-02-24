@@ -33,7 +33,7 @@ class plfr2014(Reform):
             params = simulation.legislation_at(period.start).plfr2014.reduction_impot_exceptionnelle
             plafond = params.seuil * nb_adult + (nb_parents - nb_adult) * 2 * params.majoration_seuil
             montant = params.montant_plafond * nb_adult
-            return period, min_(max_(plafond + montant - rfr, 0), montant)
+            return min_(max_(plafond + montant - rfr, 0), montant)
 
     class reductions(DatedVariable):
         label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
@@ -75,7 +75,7 @@ class plfr2014(Reform):
             total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + \
                 donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + \
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
-            return period, min_(ip_net, total_reductions)
+            return min_(ip_net, total_reductions)
 
     def apply(self):
         for variable in [self.reduction_impot_exceptionnelle, self.reductions]:

@@ -20,7 +20,7 @@ class autonomie_financiere(Variable):
         smic_mensuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
 
         # Oui on compare du salaire net avec un bout du SMIC brut ...
-        return period, salaire_net / 6 >= (_P.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
+        return salaire_net / 6 >= (_P.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
 
 
 class prestations_familiales_enfant_a_charge(Variable):
@@ -41,7 +41,7 @@ class prestations_familiales_enfant_a_charge(Variable):
             rempli_obligation_scolaire)
         condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.enfants.age_limite) * not_(autonomie_financiere)
 
-        return period, or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
+        return or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
 
 
 class prestations_familiales_base_ressources_individu(Variable):
@@ -59,7 +59,7 @@ class prestations_familiales_base_ressources_individu(Variable):
         glo = individu('glo', annee_fiscale_n_2)
         div = individu('div', annee_fiscale_n_2)
 
-        return period, traitements_salaires_pensions_rentes + hsup + rpns + glo + div
+        return traitements_salaires_pensions_rentes + hsup + rpns + glo + div
 
 
 class biactivite(Variable):
@@ -77,7 +77,7 @@ class biactivite(Variable):
         condition_ressource = famille.members('prestations_familiales_base_ressources_individu', period) >= seuil_rev
         deux_parents = famille.nb_persons(role = famille.PARENT) == 2
 
-        return period, deux_parents * famille.all(condition_ressource, role = famille.PARENT)
+        return deux_parents * famille.all(condition_ressource, role = famille.PARENT)
 
 
 class div(Variable):
@@ -102,7 +102,7 @@ class div(Variable):
         # Revenus du foyer fiscal, projetés seulement sur la première personne
         revenus_foyer_fiscal = (f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + f3vt) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return period,  revenus_foyer_fiscal + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
+        return  revenus_foyer_fiscal + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
 
 class rev_coll(Variable):
@@ -126,7 +126,7 @@ class rev_coll(Variable):
 
         # TODO: ajouter les revenus de l'étranger etr*0.9
         # pensions_alimentaires_versees is negative since it is paid by the declaree
-        return period, (retraite_titre_onereux_net + rev_cap_lib + rev_cat_rvcm + fon + pensions_alimentaires_versees - f7ga - f7gb - f7gc - abat_spe + rev_cat_pv)
+        return (retraite_titre_onereux_net + rev_cap_lib + rev_cat_rvcm + fon + pensions_alimentaires_versees - f7ga - f7gb - f7gc - abat_spe + rev_cat_pv)
 
 
 class prestations_familiales_base_ressources(Variable):
@@ -153,7 +153,7 @@ class prestations_familiales_base_ressources(Variable):
         rev_coll = famille.demandeur.foyer_fiscal('rev_coll', annee_fiscale_n_2)
 
         base_ressources = base_ressources_i_total + rev_coll
-        return period, base_ressources
+        return base_ressources
 
 
 ############################################################################

@@ -23,7 +23,7 @@ class cf_enfant_a_charge(Variable):
         condition_age = (age >= 0) * (age < pfam.cf.age_max)
         condition_situation = est_enfant_dans_famille * not_(autonomie_financiere)
 
-        return period, condition_age * condition_situation
+        return condition_age * condition_situation
 
 
 class cf_enfant_eligible(Variable):
@@ -43,7 +43,7 @@ class cf_enfant_eligible(Variable):
             rempli_obligation_scolaire)
         condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.cf.age_max)
 
-        return period, or_(condition_enfant, condition_jeune) * cf_enfant_a_charge
+        return or_(condition_enfant, condition_jeune) * cf_enfant_a_charge
 
 
 class cf_dom_enfant_eligible(Variable):
@@ -62,7 +62,7 @@ class cf_dom_enfant_eligible(Variable):
         condition_age = (age >= pfam.cf.age_minimal_dom) * (age < pfam.cf.age_maximal_dom)
         condition_situation = cf_enfant_a_charge * rempli_obligation_scolaire
 
-        return period, condition_age * condition_situation
+        return condition_age * condition_situation
 
 
 class cf_dom_enfant_trop_jeune(Variable):
@@ -79,7 +79,7 @@ class cf_dom_enfant_trop_jeune(Variable):
 
         condition_age = (age >= 0) * (age < pfam.cf.age_min)
 
-        return period, condition_age * est_enfant_dans_famille
+        return condition_age * est_enfant_dans_famille
 
 
 class cf_ressources_individu(Variable):
@@ -93,7 +93,7 @@ class cf_ressources_individu(Variable):
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         cf_enfant_a_charge = individu('cf_enfant_a_charge', period)
 
-        return period, or_(not_(est_enfant_dans_famille), cf_enfant_a_charge) * base_ressources
+        return or_(not_(est_enfant_dans_famille), cf_enfant_a_charge) * base_ressources
 
 
 class cf_plafond(Variable):
@@ -131,7 +131,7 @@ class cf_plafond(Variable):
 
         plafond = (eligibilite_base * plafond_metropole + eligibilite_dom * plafond_dom)
 
-        return period, plafond
+        return plafond
 
 
 class cf_majore_plafond(DatedVariable):
@@ -144,7 +144,7 @@ class cf_majore_plafond(DatedVariable):
     def function(famille, period, legislation):
         plafond_base = famille('cf_plafond', period)
         pfam = legislation(period).prestations.prestations_familiales
-        return period, plafond_base * pfam.cf.plafond_cf_majore
+        return plafond_base * pfam.cf.plafond_cf_majore
 
 
 class cf_ressources(Variable):
@@ -156,7 +156,7 @@ class cf_ressources(Variable):
     def function(famille, period):
         cf_ressources_individu_i = famille.members('cf_ressources_individu', period)
         ressources = famille.sum(cf_ressources_individu_i)
-        return period, ressources
+        return ressources
 
 
 class cf_eligibilite_base(Variable):
@@ -171,7 +171,7 @@ class cf_eligibilite_base(Variable):
         cf_enfant_eligible = famille.members('cf_enfant_eligible', period)
         cf_nbenf = famille.sum(cf_enfant_eligible)
 
-        return period, not_(residence_dom) * (cf_nbenf >= 3)
+        return not_(residence_dom) * (cf_nbenf >= 3)
 
 
 class cf_eligibilite_dom(Variable):
@@ -194,7 +194,7 @@ class cf_eligibilite_dom(Variable):
         condition_composition_famille = (cf_nbenf >= 1) * (cf_nbenf_trop_jeune == 0)
         condition_residence = residence_dom * not_(residence_mayotte)
 
-        return period, condition_composition_famille * condition_residence
+        return condition_composition_famille * condition_residence
 
 
 class cf_non_majore_avant_cumul(Variable):
@@ -225,7 +225,7 @@ class cf_non_majore_avant_cumul(Variable):
             ressources <= plafond_diff)
         montant_diff = (plafond_diff - ressources) / 12
 
-        return period, max_(eligibilite * montant, eligibilite_diff * montant_diff)
+        return max_(eligibilite * montant, eligibilite_diff * montant_diff)
 
 
 class cf_majore_avant_cumul(DatedVariable):
@@ -250,7 +250,7 @@ class cf_majore_avant_cumul(DatedVariable):
 
         eligibilite = eligibilite_sous_condition * (ressources <= plafond_majore)
 
-        return period, eligibilite * montant
+        return eligibilite * montant
 
 
 class cf_montant(Variable):
@@ -263,7 +263,7 @@ class cf_montant(Variable):
         cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', period)
         cf_majore_avant_cumul = famille('cf_majore_avant_cumul', period)
 
-        return period, max_(cf_non_majore_avant_cumul, cf_majore_avant_cumul)
+        return max_(cf_non_majore_avant_cumul, cf_majore_avant_cumul)
 
 
 class cf(Variable):
@@ -286,4 +286,4 @@ class cf(Variable):
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
 
         cf_brut = not_(paje_base) * (apje_avant_cumul <= cf_montant) * (ape_avant_cumul <= cf_montant) * cf_montant
-        return period, not_(residence_mayotte) * round(cf_brut, 2)
+        return not_(residence_mayotte) * round(cf_brut, 2)

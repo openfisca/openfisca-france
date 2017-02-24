@@ -54,7 +54,7 @@ class plf2016(Reform):
 
             decote_celib = (ir_plaf_qf < plf.decote_seuil_celib) * (plf.decote_seuil_celib - .75 * ir_plaf_qf)
             decote_couple = (ir_plaf_qf < plf.decote_seuil_couple) * (plf.decote_seuil_couple - .75 * ir_plaf_qf)
-            return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
+            return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
     def apply(self):
         self.update_variable(self.decote)
@@ -123,7 +123,7 @@ class plf2016_counterfactual(Reform):
             inflator = 1 + .001 + .005
             decote = simulation.legislation_at(period.start).impot_revenu.decote
             assert decote.seuil == 1016
-            return period, (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
+            return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
     class reduction_impot_exceptionnelle(DatedVariable):
         period_behavior = YEAR
@@ -140,7 +140,7 @@ class plf2016_counterfactual(Reform):
             montant_plafond = 350 * inflator
             plafond = seuil * nb_adult + (nb_parents - nb_adult) * 2 * majoration_seuil
             montant = montant_plafond * nb_adult
-            return period, min_(max_(plafond + montant - rfr, 0), montant)
+            return min_(max_(plafond + montant - rfr, 0), montant)
 
     class reductions(DatedVariable):
         label = u"Somme des réductions d'impôt"
@@ -182,7 +182,7 @@ class plf2016_counterfactual(Reform):
                 donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + \
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
 
-            return period, min_(ip_net, total_reductions)
+            return min_(ip_net, total_reductions)
 
     def apply(self):
         for variable in [self.decote, self.reductions, self.reduction_impot_exceptionnelle]:
@@ -282,7 +282,7 @@ class plf2016_counterfactual_2014(Reform):
             inflator = 1 + .001 + .005
             decote = simulation.legislation_at(period.start).impot_revenu.decote
             assert decote.seuil == 1016
-            return period, (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
+            return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
     class reduction_impot_exceptionnelle(DatedVariable):
         period_behavior = YEAR
@@ -299,7 +299,7 @@ class plf2016_counterfactual_2014(Reform):
             montant_plafond = 350 * inflator
             plafond = seuil * nb_adult + (nb_parents - nb_adult) * 2 * majoration_seuil
             montant = montant_plafond * nb_adult
-            return period, min_(max_(plafond + montant - rfr, 0), montant)
+            return min_(max_(plafond + montant - rfr, 0), montant)
 
     class reductions(DatedVariable):
         label = u"Somme des réductions d'impôt"
@@ -341,7 +341,7 @@ class plf2016_counterfactual_2014(Reform):
                 donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + \
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
 
-            return period, min_(ip_net, total_reductions)
+            return min_(ip_net, total_reductions)
 
     def apply(self):
         for variable in [self.decote, self.reduction_impot_exceptionnelle, self.reductions]:

@@ -71,7 +71,7 @@ class api(Variable):
         # On pourrait mensualiser RMI, BRrmi et forfait logement
         api = max_(0, api1 - rsa_forfait_logement / 12 - br_api / 12 - rsa / 12)
         # L'API est exonérée de CRDS
-        return period, api  # annualisé
+        return api  # annualisé
         # TODO API: temps partiel qui modifie la base ressource
         # Cumul
         # Cumul avec un revenu
@@ -130,7 +130,7 @@ class psa(Variable):
         dummy_al = and_(aide_logement > 0, or_(af_nbenf > 0, parent_en_activite))
         condition = (dummy_api + dummy_rmi + dummy_al > 0)
         psa = condition * P.psa
-        return period, psa
+        return psa
 
 
 class rmi(Variable):
@@ -150,7 +150,7 @@ class rmi(Variable):
         rsa_socle = famille('rsa_socle', period)
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
 
-        return period, condition_activite * max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
+        return condition_activite * max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
         # TODO: Migré lors de la mensualisation. Probablement faux
 
 
@@ -169,7 +169,7 @@ class rsa_activite(Variable):
         rsa_socle = famille('rsa_socle', period)
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
         rmi = max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
-        return period, max_(rsa - rmi, 0)
+        return max_(rsa - rmi, 0)
 
 
 class rsa_activite_individu(Variable):
@@ -194,4 +194,4 @@ class rsa_activite_individu(Variable):
         # on divise par 2.
         partage_rsa = or_(marie, en_couple)
 
-        return period, where(partage_rsa, rsa_activite / 2, rsa_activite)
+        return where(partage_rsa, rsa_activite / 2, rsa_activite)

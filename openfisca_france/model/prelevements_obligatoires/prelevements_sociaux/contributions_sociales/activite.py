@@ -33,7 +33,7 @@ class assiette_csg_abattue(Variable):
         stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
         indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
 
-        return period, (
+        return (
             remuneration_principale + salaire_de_base + primes_salaires + primes_fonction_publique +
             indemnite_residence + stage_gratification_reintegration + supp_familial_traitement - hsup +
             indemnite_fin_contrat
@@ -53,7 +53,7 @@ class assiette_csg_non_abattue(Variable):
             'prise_en_charge_employeur_prevoyance_complementaire', period)
 
         # TODO + indemnites_journalieres_maladie,
-        return period, (
+        return (
             - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
             - complementaire_sante_employeur
             )
@@ -78,7 +78,7 @@ class csg_deductible_salaire(Variable):
             law_node = csg.activite.deductible,
             plafond_securite_sociale = plafond_securite_sociale,
             )
-        return period, montant_csg
+        return montant_csg
 
 
 class csg_imposable_salaire(Variable):
@@ -101,7 +101,7 @@ class csg_imposable_salaire(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
-        return period, montant_csg
+        return montant_csg
 
 
 class crds_salaire(Variable):
@@ -125,7 +125,7 @@ class crds_salaire(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
-        return period, montant_crds
+        return montant_crds
 
 
 class forfait_social(DatedVariable):
@@ -148,7 +148,7 @@ class forfait_social(DatedVariable):
         taux_plein = parametres.taux_plein
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
 
-        return period, - assiette_taux_plein * taux_plein
+        return - assiette_taux_plein * taux_plein
 
     @dated_function(start = date(2012, 8, 1))
     def function_2(individu, period, legislation):
@@ -172,7 +172,7 @@ class forfait_social(DatedVariable):
             - complementaire_sante_employeur
             ) * (effectif_entreprise >= seuil_effectif_taux_reduit)
 
-        return period, - (
+        return - (
             assiette_taux_plein * taux_plein + assiette_taux_reduit * taux_reduit
             )
 
@@ -212,7 +212,7 @@ class salaire_imposable(Variable):
         rev_microsocial = individu.foyer_fiscal('rev_microsocial', period, options = [DIVIDE])
         rev_microsocial_declarant1 = rev_microsocial * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return period, (
+        return (
             salaire_de_base + primes_salaires + remuneration_principale +
             primes_fonction_publique + indemnite_residence + supp_familial_traitement + csg_deductible_salaire +
             cotisations_salariales - hsup + rev_microsocial_declarant1 + indemnite_fin_contrat + complementaire_sante_salarie
@@ -236,7 +236,7 @@ class salaire_net(Variable):
         crds_salaire = simulation.calculate('crds_salaire', period)
         csg_imposable_salaire = simulation.calculate('csg_imposable_salaire', period)
 
-        return period, salaire_imposable + crds_salaire + csg_imposable_salaire
+        return salaire_imposable + crds_salaire + csg_imposable_salaire
 
 
 class tehr(Variable):
@@ -252,7 +252,7 @@ class tehr(Variable):
         law = simulation.legislation_at(period.start)
 
         bar = law.cotsoc.tehr
-        return period, -bar.calc(salaire_de_base)
+        return -bar.calc(salaire_de_base)
 
 
 ############################################################################
@@ -278,4 +278,4 @@ class rev_microsocial(Variable):
         P = _P.cotsoc.sal.microsocial
         total = assiette_service + assiette_vente + assiette_proflib
         prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
-        return period, total - prelsoc_ms
+        return total - prelsoc_ms

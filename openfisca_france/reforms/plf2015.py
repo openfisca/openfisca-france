@@ -61,7 +61,7 @@ class decote(DatedVariable):
 
         decote_celib = (ir_plaf_qf < plf.seuil_celib) * (plf.seuil_celib - ir_plaf_qf)
         decote_couple = (ir_plaf_qf < plf.seuil_couple) * (plf.seuil_couple - ir_plaf_qf)
-        return period, (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
+        return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
 
 class plf2015(Reform):

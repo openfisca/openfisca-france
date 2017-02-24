@@ -27,7 +27,7 @@ class cotisations_employeur(Variable):
             'cotisations_employeur_non_contributives', period)
         cotisations_employeur_main_d_oeuvre = simulation.calculate('cotisations_employeur_main_d_oeuvre', period)
 
-        return period, (
+        return (
             cotisations_employeur_contributives +
             cotisations_employeur_non_contributives +
             cotisations_employeur_main_d_oeuvre
@@ -77,7 +77,7 @@ class cotisations_employeur_contributives(Variable):
             pension_civile_employeur +
             rafp_employeur
             )
-        return period, cotisations
+        return cotisations
 
 
 class cotisations_employeur_non_contributives(Variable):
@@ -108,7 +108,7 @@ class cotisations_employeur_non_contributives(Variable):
             taxe_salaires +
             forfait_social
             )
-        return period, cotisations_employeur_non_contributives
+        return cotisations_employeur_non_contributives
 
 
 class cotisations_salariales_contributives(Variable):
@@ -151,7 +151,7 @@ class cotisations_salariales_contributives(Variable):
             rafp_salarie
             )
 
-        return period, cotisations_salariales_contributives
+        return cotisations_salariales_contributives
 
 
 class cotisations_salariales_non_contributives(Variable):
@@ -174,7 +174,7 @@ class cotisations_salariales_non_contributives(Variable):
             contribution_exceptionnelle_solidarite
             )
 
-        return period, cotisations_salariales_non_contributives
+        return cotisations_salariales_non_contributives
 
 
 class cotisations_salariales(Variable):
@@ -195,7 +195,7 @@ class cotisations_salariales(Variable):
         exoneration_cotisations_salarie_stagiaire = simulation.calculate_add(
             'exoneration_cotisations_salarie_stagiaire', period)
 
-        return period, (
+        return (
             cotisations_salariales_contributives +
             cotisations_salariales_non_contributives +
             exoneration_cotisations_salariales_apprenti +

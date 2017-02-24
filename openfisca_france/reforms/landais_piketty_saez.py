@@ -30,7 +30,7 @@ class assiette_csg(Variable):
         rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', period)
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = QUIFOY['vous'])
         rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = QUIFOY['vous'])
-        return period, salaire_de_base + chomage_brut + retraite_brute + rev_cap_bar + rev_cap_lib
+        return salaire_de_base + chomage_brut + retraite_brute + rev_cap_bar + rev_cap_lib
 
 class impot_revenu_lps(Variable):
     column = columns.FloatCol
@@ -55,7 +55,7 @@ class impot_revenu_lps(Variable):
         ac = couple * lps.abatt_conj
         rc = couple * lps.reduc_conj
         assiette_csg = simulation.calculate('assiette_csg')
-        return period, -max_(0, lps.bareme.calc(max_(assiette_csg - ae - ac, 0)) - re - rc) + ce
+        return -max_(0, lps.bareme.calc(max_(assiette_csg - ae - ac, 0)) - re - rc) + ce
 
 
 class revenu_disponible(Variable):
@@ -77,7 +77,7 @@ class revenu_disponible(Variable):
         revenus_du_capital = self.sum_by_entity(revenus_du_capital_holder)
         revenus_du_travail_holder = simulation.compute('revenus_du_travail')
         revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
-        return period, revenus_du_travail + pen + revenus_du_capital + impot_revenu_lps + prestations_sociales
+        return revenus_du_travail + pen + revenus_du_capital + impot_revenu_lps + prestations_sociales
 
 
 def modify_legislation_json(reference_legislation_json_copy):

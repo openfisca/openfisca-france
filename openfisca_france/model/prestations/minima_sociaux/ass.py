@@ -41,7 +41,7 @@ class ass(Variable):
         ass = ass * elig
         ass = ass * not_(ass < ass_params.montant_plein)  # pas d'ASS si montant mensuel < montant journalier de base
 
-        return period, ass
+        return ass
 
 
 class ass_base_ressources(Variable):
@@ -57,7 +57,7 @@ class ass_base_ressources(Variable):
         ass_base_ressources_conjoint = self.filter_role(ass_base_ressources_conjoint_holder, role = PART)
 
         result = ass_base_ressources_demandeur + ass_base_ressources_conjoint
-        return period, result
+        return result
 
 
 class ass_base_ressources_individu(Variable):
@@ -98,7 +98,7 @@ class ass_base_ressources_individu(Variable):
         indemnites_stage = simulation.calculate_add('indemnites_stage', previous_year)
         revenus_stage_formation_pro = simulation.calculate_add('revenus_stage_formation_pro', previous_year)
 
-        return period, (
+        return (
             salaire_imposable + retraite_nette + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
             aah + indemnites_stage + revenus_stage_formation_pro + revenus_tns()
         )
@@ -169,7 +169,7 @@ class ass_base_ressources_conjoint(Variable):
             indemnites_journalieres + revenus_tns()
         )
 
-        return period, result
+        return result
 
 
 class ass_eligibilite_individu(Variable):
@@ -187,4 +187,4 @@ class ass_eligibilite_individu(Variable):
 
         are_perceived_this_month = simulation.calculate('chomage_net', period)
 
-        return period, and_(and_(activite == 1, ass_precondition_remplie), are_perceived_this_month == 0)
+        return and_(and_(activite == 1, ass_precondition_remplie), are_perceived_this_month == 0)

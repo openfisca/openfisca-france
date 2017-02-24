@@ -24,7 +24,7 @@ class ada(Variable):
             )
 
         montant_ada = period.days * ada_par_jour * asile_demandeur
-        return period, montant_ada
+        return montant_ada
 
 
 class asile_demandeur(Variable):

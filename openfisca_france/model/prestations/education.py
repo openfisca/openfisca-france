@@ -49,7 +49,7 @@ class bourse_college(Variable):
 
         montant = nb_enfants_college * montant_par_enfant
 
-        return period, montant
+        return montant
 
 
 class bourse_lycee_points_de_charge(Variable):
@@ -74,7 +74,7 @@ class bourse_lycee_points_de_charge(Variable):
         points_de_charge += 3 * (nb_enfants >= 5) * (nb_enfants - 4) # 3 points de charge pour chaque enfant au-dessus de 4 enfants
         points_de_charge += 3 * isole # 3 points de charge en plus si parent isolé
 
-        return period, points_de_charge
+        return points_de_charge
 
 
 class bourse_lycee_nombre_parts(Variable):
@@ -102,7 +102,7 @@ class bourse_lycee_nombre_parts(Variable):
             choices = choices,
             )
 
-        return period, nombre_parts
+        return nombre_parts
 
 
 class bourse_lycee(Variable):
@@ -125,7 +125,7 @@ class bourse_lycee(Variable):
 
         montant = nombre_parts * valeur_part * nb_enfants_lycee
 
-        return period, montant
+        return montant
 
 
 class scolarite(Variable):

@@ -82,7 +82,7 @@ class al_nb_personnes_a_charge(Variable):
         nb_pac = where(residence_dom, min_(nb_pac, 6), nb_pac)
         # Dans les DOMs, le barème est fixe à partir de 6 enfants.
 
-        return period, nb_pac
+        return nb_pac
 
 
 class al_couple(Variable):
@@ -96,7 +96,7 @@ class al_couple(Variable):
         enceinte = simulation.calculate('enceinte_fam', period)
         couple = en_couple + enceinte  # le barème "couple" est utilisé pour les femmes enceintes isolées
 
-        return period, couple
+        return couple
 
 
 class aide_logement_base_ressources_eval_forfaitaire(Variable):
@@ -129,7 +129,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
             any_tns = self.any_by_roles(travailleur_non_salarie_holder)
             return any_tns * 1500 * smic_horaire_brut
 
-        return period, max_(eval_forfaitaire_salaries(), eval_forfaitaire_tns())
+        return max_(eval_forfaitaire_salaries(), eval_forfaitaire_tns())
 
 
 class aide_logement_abattement_chomage_indemnise(Variable):
@@ -148,7 +148,7 @@ class aide_logement_abattement_chomage_indemnise(Variable):
         abattement = and_(chomage_net_m_1 > 0, chomage_net_m_2 > 0) * taux_abattement * revenus_activite_pro
         abattement = round_((1 - taux_frais_pro) * abattement)
 
-        return period, abattement
+        return abattement
 
 
 class aide_logement_abattement_depart_retraite(Variable):
@@ -166,7 +166,7 @@ class aide_logement_abattement_depart_retraite(Variable):
         abattement = 0.3 * activite_n_2 * (retraite_n_2 == 0) * retraite
         abattement = round_((1 - taux_frais_pro) * abattement)
 
-        return period, abattement
+        return abattement
 
 
 class aide_logement_neutralisation_rsa(Variable):
@@ -188,7 +188,7 @@ class aide_logement_neutralisation_rsa(Variable):
         abattement = (activite_n_2 + chomage_n_2) * rsa_last_month
         abattement = round_((1 - taux_frais_pro) * abattement)
 
-        return period, abattement
+        return abattement
 
 
 class aide_logement_base_ressources_defaut(Variable):
@@ -225,7 +225,7 @@ class aide_logement_base_ressources_defaut(Variable):
         # Arrondi aux 100 euros supérieurs
         result = max_(ressources - abattement_double_activite, 0)
 
-        return period, result
+        return result
 
 
 class aide_logement_base_ressources(Variable):
@@ -278,7 +278,7 @@ class aide_logement_base_ressources(Variable):
         # Arrondi aux 100 euros supérieurs
         ressources = ceil(ressources / 100) * 100
 
-        return period, ressources
+        return ressources
 
 class aide_logement_loyer_plafond(Variable):
     column = FloatCol
@@ -315,7 +315,7 @@ class aide_logement_loyer_plafond(Variable):
         coeff_coloc = where(coloc, al.loyers_plafond.colocation, 1)
         coeff_chambre = where(chambre, al.loyers_plafond.chambre, 1)
 
-        return period, round_(plafond * coeff_coloc * coeff_chambre, 2)
+        return round_(plafond * coeff_coloc * coeff_chambre, 2)
 
 
 class aide_logement_loyer_seuil_degressivite(Variable):
@@ -340,7 +340,7 @@ class aide_logement_loyer_seuil_degressivite(Variable):
         minoration_chambre = loyer_degressivite * 0.1 * chambre
         loyer_degressivite -= minoration_coloc + minoration_chambre
 
-        return period, round_(loyer_degressivite, 2)
+        return round_(loyer_degressivite, 2)
 
 
 class aide_logement_loyer_seuil_suppression(Variable):
@@ -365,7 +365,7 @@ class aide_logement_loyer_seuil_suppression(Variable):
         minoration_chambre = loyer_suppression * 0.1 * chambre
         loyer_suppression -= minoration_coloc + minoration_chambre
 
-        return period, round_(loyer_suppression, 2)
+        return round_(loyer_suppression, 2)
 
 
 class aide_logement_loyer_reel(Variable):
@@ -378,7 +378,7 @@ class aide_logement_loyer_reel(Variable):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         loyer = famille.demandeur.menage('loyer', period)
         coeff_meuble = where(statut_occupation_logement == 5, 2 / 3, 1)  # Coeff de 2/3 pour les meublés
-        return period, round_(loyer * coeff_meuble)
+        return round_(loyer * coeff_meuble)
 
 
 class aide_logement_loyer_retenu(Variable):
@@ -393,7 +393,7 @@ class aide_logement_loyer_retenu(Variable):
         loyer_reel = famille('aide_logement_loyer_reel', period)
 
         # loyer retenu
-        return period, min_(loyer_reel, loyer_plafond)
+        return min_(loyer_reel, loyer_plafond)
 
 
 class aide_logement_charges(Variable):
@@ -410,7 +410,7 @@ class aide_logement_charges(Variable):
         montant_coloc = where(couple, 1, 0.5) * P.cas_general + al_nb_pac * P.majoration_par_enfant
         montant_cas_general = P.cas_general + al_nb_pac * P.majoration_par_enfant
 
-        return period, where(coloc, montant_coloc, montant_cas_general)
+        return where(coloc, montant_coloc, montant_cas_general)
 
 
 class aide_logement_R0(DatedVariable):
@@ -450,7 +450,7 @@ class aide_logement_R0(DatedVariable):
 
         R0 = round_(12 * (R1 - R2) * (1 - al.autres.abat_sal))
 
-        return period, R0
+        return R0
 
     # cf Décret n° 2014-1739 du 29 décembre 2014 relatif au calcul des aides personnelles au logement
     @dated_function(start = date(2015, 1, 1))
@@ -471,7 +471,7 @@ class aide_logement_R0(DatedVariable):
             al.R0.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
             )
 
-        return period, R0
+        return R0
 
 
 class aide_logement_taux_famille(Variable):
@@ -507,7 +507,7 @@ class aide_logement_taux_famille(Variable):
             al.taux_participation_fam.dom.taux8 * (al_nb_pac >= 6)
             )
 
-        return period, where(residence_dom, TF_dom, TF_metropole)
+        return where(residence_dom, TF_dom, TF_metropole)
 
 
 class aide_logement_taux_loyer(Variable):
@@ -539,7 +539,7 @@ class aide_logement_taux_loyer(Variable):
             max_(0, al.taux_participation_loyer.taux_tranche_2 * (RL - 0.45))
             )
 
-        return period, TL
+        return TL
 
 
 class aide_logement_participation_personelle(Variable):
@@ -565,7 +565,7 @@ class aide_logement_participation_personelle(Variable):
         Tl = simulation.calculate('aide_logement_taux_loyer', period)
         Tp = Tf + Tl  # Taux de participation
 
-        return period, P0 + Tp * Rp
+        return P0 + Tp * Rp
 
 class aide_logement_montant_brut_avant_degressivite(Variable):
     column = FloatCol
@@ -590,7 +590,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
 
         montant = montant * (montant >= al.al_min.montant_min_mensuel.montant_min_apl_al)  # Montant minimal de versement
 
-        return period, montant
+        return montant
 
 
 class aide_logement_montant_brut(DatedVariable):
@@ -602,7 +602,7 @@ class aide_logement_montant_brut(DatedVariable):
     @dated_function(stop = date(2016, 6, 30))
     def function_avant_degression(famille, period):
         montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
-        return period, montant_avant_degressivite
+        return montant_avant_degressivite
 
     @dated_function(start = date(2016, 7, 1))
     def function_apres_degression(famille, period):
@@ -626,7 +626,7 @@ class aide_logement_montant_brut(DatedVariable):
 
         montant = round_(montant_avant_degressivite * coeff, 2)
 
-        return period, montant
+        return montant
 
 
 class aide_logement_montant(Variable):
@@ -640,7 +640,7 @@ class aide_logement_montant(Variable):
         crds_logement = simulation.calculate('crds_logement', period)
         montant = round_(aide_logement_montant_brut + crds_logement, 2)
 
-        return period, montant
+        return montant
 
 
 class alf(Variable):
@@ -659,7 +659,7 @@ class alf(Variable):
         proprietaire_proche_famille = famille('proprietaire_proche_famille', period)
 
         result = (al_nb_pac >= 1) * (statut_occupation_logement != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
-        return period, result
+        return result
 
 
 class als_non_etudiant(Variable):
@@ -677,7 +677,7 @@ class als_non_etudiant(Variable):
         etudiant = famille.members('etudiant', period)
         no_parent_etudiant = not_(famille.any(etudiant, role = Famille.PARENT))
 
-        return period, (
+        return (
             (al_nb_pac == 0) * (statut_occupation_logement != 3) * not_(proprietaire_proche_famille) *
             no_parent_etudiant * aide_logement_montant
             )
@@ -699,7 +699,7 @@ class als_etudiant(Variable):
         etudiant = famille.members('etudiant', period)
         parent_etudiant = famille.any(etudiant, role = Famille.PARENT)
 
-        return period, (
+        return (
             (al_nb_pac == 0) * (statut_occupation_logement != 3) * not_(proprietaire_proche_famille) *
             parent_etudiant * aide_logement_montant
         )
@@ -718,7 +718,7 @@ class als(Variable):
         als_etudiant = simulation.calculate('als_etudiant', period)
         result = (als_non_etudiant + als_etudiant)
 
-        return period, result
+        return result
 
 
 class apl(Variable):
@@ -735,7 +735,7 @@ class apl(Variable):
         aide_logement_montant = famille('aide_logement_montant', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
 
-        return period, aide_logement_montant * (statut_occupation_logement == 3)
+        return aide_logement_montant * (statut_occupation_logement == 3)
 
 
 class aide_logement_non_calculable(Variable):
@@ -754,7 +754,7 @@ class aide_logement_non_calculable(Variable):
     def function(famille, period):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
 
-        return period, (statut_occupation_logement == 1) * 1 + (statut_occupation_logement == 7) * 2
+        return (statut_occupation_logement == 1) * 1 + (statut_occupation_logement == 7) * 2
 
 
 class aide_logement(Variable):
@@ -769,7 +769,7 @@ class aide_logement(Variable):
         als = simulation.calculate('als', period)
         alf = simulation.calculate('alf', period)
 
-        return period, max_(max_(apl, als), alf)
+        return max_(max_(apl, als), alf)
 
 
 class crds_logement(Variable):
@@ -783,7 +783,7 @@ class crds_logement(Variable):
     def function(self, simulation, period):
         aide_logement_montant_brut = simulation.calculate('aide_logement_montant_brut', period)
         crds = simulation.legislation_at(period.start).prestations.prestations_familiales.af.crds
-        return period, -aide_logement_montant_brut * crds
+        return -aide_logement_montant_brut * crds
 
 
 class zone_apl(Variable):
@@ -810,7 +810,7 @@ class zone_apl(Variable):
 
         preload_zone_apl()
         default_value = 2
-        return period, fromiter(
+        return fromiter(
             (
                 zone_apl_by_depcom.get(depcom_cell, default_value)
                 for depcom_cell in depcom

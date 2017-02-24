@@ -95,7 +95,7 @@ class ppe_du_sa(Variable):
             (individu('contrat_de_travail', period) > 0) *
             (individu('contrat_de_travail', period) < 6)
             )
-        return period, heures_remunerees_volume * travail_temps_decompte_en_heures
+        return heures_remunerees_volume * travail_temps_decompte_en_heures
 
 
 class ppe_tp_sa(Variable):
@@ -119,7 +119,7 @@ class ppe_tp_sa(Variable):
         while mois.start.month < 12:
             mois = mois.offset(1)
             indicateur = indicateur & (individu('contrat_de_travail', mois) == 0)
-        return period, indicateur
+        return indicateur
 
 
 class exposition_accident(Variable):
@@ -593,7 +593,7 @@ class avantage_en_nature(Variable):
         avantage_en_nature_valeur_reelle = simulation.calculate('avantage_en_nature_valeur_reelle', period)
         avantage_en_nature_valeur_forfaitaire = simulation.calculate('avantage_en_nature_valeur_forfaitaire', period)
 
-        return period, avantage_en_nature_valeur_reelle + avantage_en_nature_valeur_forfaitaire
+        return avantage_en_nature_valeur_reelle + avantage_en_nature_valeur_forfaitaire
 
 
 class avantage_en_nature_valeur_forfaitaire(Variable):
@@ -608,7 +608,7 @@ class avantage_en_nature_valeur_forfaitaire(Variable):
         period = period
         avantage_en_nature_valeur_reelle = simulation.calculate('avantage_en_nature_valeur_reelle', period)
 
-        return period, avantage_en_nature_valeur_reelle * 0
+        return avantage_en_nature_valeur_reelle * 0
 
 
 class depense_cantine_titre_restaurant_employe(Variable):
@@ -625,7 +625,7 @@ class depense_cantine_titre_restaurant_employe(Variable):
         volume = simulation.calculate("titre_restaurant_volume", period)
         taux_employeur = simulation.calculate('titre_restaurant_taux_employeur', period)
 
-        return period, - valeur_unitaire * volume * (1 - taux_employeur)
+        return - valeur_unitaire * volume * (1 - taux_employeur)
 
 
 class depense_cantine_titre_restaurant_employeur(Variable):
@@ -641,7 +641,7 @@ class depense_cantine_titre_restaurant_employeur(Variable):
         volume = simulation.calculate("titre_restaurant_volume", period)  # Compute with jours ouvrables ?
         taux_employeur = simulation.calculate('titre_restaurant_taux_employeur', period)
 
-        return period, valeur_unitaire * volume * taux_employeur
+        return valeur_unitaire * volume * taux_employeur
 
 
 class nombre_jours_calendaires(Variable):
@@ -665,7 +665,7 @@ class nombre_jours_calendaires(Variable):
             0,
             )
 
-        return period, jours_travailles
+        return jours_travailles
 
 
 class remboursement_transport(Variable):
@@ -678,7 +678,7 @@ class remboursement_transport(Variable):
 
         remboursement_transport_base = simulation.calculate('remboursement_transport_base', period)
         # TODO: paramètres en dur dans le code
-        return period, - .5 * remboursement_transport_base
+        return - .5 * remboursement_transport_base
 
 
 # Fonction publique
@@ -692,7 +692,7 @@ class gipa(Variable):
 
     def function(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
-        return period, self.zeros()
+        return self.zeros()
 
 
 class indemnite_residence(Variable):
@@ -714,7 +714,7 @@ class indemnite_residence(Variable):
         taux = P.taux.zone1 * (zone_apl == 1) + P.taux.zone2 * (zone_apl == 2) + P.taux.zone3 * (zone_apl == 3)
         plancher = min_zone_1 * (zone_apl == 1) + min_zone_2 * (zone_apl == 2) + min_zone_3 * (zone_apl == 3)
 
-        return period, max_(
+        return max_(
             plancher,
             taux * (traitement_indiciaire_brut + salaire_de_base)
             ) * (categorie_salarie >= 2)
@@ -733,7 +733,7 @@ class indice_majore(Variable):
         _P = simulation.legislation_at(period.start)
 
         traitement_annuel_brut = _P.fonc.IM_100
-        return period, (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * (categorie_salarie >= 2)
+        return (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * (categorie_salarie >= 2)
 
 
 class primes_fonction_publique(Variable):
@@ -753,7 +753,7 @@ class primes_fonction_publique(Variable):
             (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_territoriale']) +
             (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_hospitaliere'])
             )
-        return period, TAUX_DE_PRIME * traitement_indiciaire_brut * public
+        return TAUX_DE_PRIME * traitement_indiciaire_brut * public
 
 
 class af_nbenf_fonc(Variable):
@@ -777,7 +777,7 @@ class af_nbenf_fonc(Variable):
             (age <= law.prestations.prestations_familiales.af.age2) *
             not_(autonomie_financiere)
             )
-        return period, simulation.famille.sum(condition_enfant, role = Famille.ENFANT)
+        return simulation.famille.sum(condition_enfant, role = Famille.ENFANT)
 
 
 class supp_familial_traitement(Variable):
@@ -850,7 +850,7 @@ class supp_familial_traitement(Variable):
         #             'public_non_titulaire',
         #             'non_pertinent',
         #             ])
-        return period, sft
+        return sft
 
 
 def _traitement_brut_mensuel(indice_maj, law):
@@ -869,7 +869,7 @@ class remuneration_principale(Variable):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         nouvelle_bonification_indiciaire = simulation.calculate('nouvelle_bonification_indiciaire', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        return period, (
+        return (
             (categorie_salarie >= 2) * (categorie_salarie <= 5) * (
                 traitement_indiciaire_brut + nouvelle_bonification_indiciaire
                 )
@@ -902,7 +902,7 @@ class salaire_net_a_payer(Variable):
             depense_cantine_titre_restaurant_employe +
             indemnites_forfaitaires
             )
-        return period, salaire_net_a_payer
+        return salaire_net_a_payer
 
 
 class salaire_super_brut_hors_allegements(Variable):
@@ -935,7 +935,7 @@ class salaire_super_brut_hors_allegements(Variable):
             cotisations_employeur
             )
 
-        return period, salaire_super_brut_hors_allegements
+        return salaire_super_brut_hors_allegements
 
 
 class salaire_super_brut(Variable):
@@ -950,7 +950,7 @@ class salaire_super_brut(Variable):
         salaire_super_brut_hors_allegements = simulation.calculate('salaire_super_brut_hors_allegements', period)
         exonerations_et_allegements = simulation.calculate('exonerations_et_allegements', period)
 
-        return period, salaire_super_brut_hors_allegements - exonerations_et_allegements
+        return salaire_super_brut_hors_allegements - exonerations_et_allegements
 
 
 class exonerations_et_allegements(Variable):
@@ -972,7 +972,7 @@ class exonerations_et_allegements(Variable):
         allegement_fillon = simulation.calculate_add('allegement_fillon', period)
         allegement_cot_alloc_fam = simulation.calculate_add('allegement_cotisation_allocations_familiales', period)
 
-        return period, (
+        return (
             allegement_fillon +
             allegement_cot_alloc_fam +
             exoneration_cotisations_employeur_geographiques +
@@ -995,7 +995,7 @@ class cout_du_travail(Variable):
         salaire_super_brut = simulation.calculate('salaire_super_brut', period)
         cout_differe = simulation.calculate('cout_differe', period)
 
-        return period, salaire_super_brut - cout_differe
+        return salaire_super_brut - cout_differe
 
 
 class cout_differe(Variable):
@@ -1010,4 +1010,4 @@ class cout_differe(Variable):
         aide_embauche_pme = simulation.calculate_add('aide_embauche_pme', period)
         tehr = simulation.calculate_divide('tehr', period)
 
-        return period, credit_impot_competitivite_emploi + aide_premier_salarie + aide_embauche_pme + tehr
+        return credit_impot_competitivite_emploi + aide_premier_salarie + aide_embauche_pme + tehr

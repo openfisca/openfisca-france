@@ -68,7 +68,7 @@ class indemnites_journalieres(Variable):
             ]
         total = sum(simulation.calculate(ressource, period) for ressource in ressources)
 
-        return period, total
+        return total
 
 
 class indemnites_journalieres_imposables(Variable):
@@ -86,7 +86,7 @@ class indemnites_journalieres_imposables(Variable):
             indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle
         )
 
-        return period, result
+        return result
 
 class date_arret_de_travail(Variable):
     column = DateCol(default = date.min)

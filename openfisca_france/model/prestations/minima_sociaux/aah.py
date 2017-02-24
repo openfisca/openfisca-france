@@ -46,7 +46,7 @@ class aah_base_ressources(Variable):
             not_(demandeur_en_activite) * base_ressource_eval_annuelle()
         )
 
-        return period, aah_base_ressource
+        return aah_base_ressource
 
 
 class aah_base_ressources_eval_trimestrielle(Variable):
@@ -110,7 +110,7 @@ class aah_base_ressources_eval_trimestrielle(Variable):
             revenus_stage_formation_pro
         )
 
-        return period, result * 4
+        return result * 4
 
 
 class aah_base_ressources_eval_annuelle(Variable):
@@ -120,7 +120,7 @@ class aah_base_ressources_eval_annuelle(Variable):
     period_behavior = MONTH
 
     def function(self, simulation, period):
-        return period, simulation.calculate('revenu_activite', period.n_2) + simulation.calculate('revenu_assimile_pension', period.n_2)
+        return simulation.calculate('revenu_activite', period.n_2) + simulation.calculate('revenu_assimile_pension', period.n_2)
 
 
 class aah_eligible(Variable):
@@ -169,7 +169,7 @@ class aah_eligible(Variable):
             ((age >= law.minima_sociaux.aah.age_minimal) + ((age >= 16) * (autonomie_financiere)))
             )
 
-        return period, eligible_aah
+        return eligible_aah
     # TODO: dated_function : avant 2008, il fallait ne pas avoir travaillé pendant les 12 mois précédant la demande.
 
 
@@ -190,7 +190,7 @@ class aah_non_calculable(Variable):
         aah_eligible = individu('aah_eligible', period)
 
         # Pour le moment résultat "pas assez fiable, donc on renvoit une non calculabilité tout le temps.
-        return period, aah_eligible # * (taux_incapacite < 0.8)
+        return aah_eligible # * (taux_incapacite < 0.8)
 
 
 class aah_base(Variable):
@@ -212,7 +212,7 @@ class aah_base(Variable):
         montant_aah = max_(plaf_ress_aah - aah_base_ressources, 0) / 12
 
         # Pour le moment, on ne neutralise pas l'aah en cas de non calculabilité pour pouvoir tester
-        return period, aah_eligible *  montant_aah # * not_(aah_non_calculable)
+        return aah_eligible *  montant_aah # * not_(aah_non_calculable)
 
 
 class aah(Variable):
@@ -228,7 +228,7 @@ class aah(Variable):
         # caah
         # mva
 
-        return period, aah_base
+        return aah_base
 
 
 class caah(DatedVariable):
@@ -311,7 +311,7 @@ class caah(DatedVariable):
         # propres & capa de travail < 5% & taux d'incapacité >= 80%
         mva = 0.0 * elig_mva  # TODO: rentrer mva dans paramètres. mva (mensuelle) = 104,77 en 2015, était de 101,80 en 2006, et de 119,72 en 2007
 
-        return period, max_(compl_ress, mva)
+        return max_(compl_ress, mva)
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 6, 30))  # TODO FIXME start date
     def function_2005_06_30(self, simulation, period):
@@ -332,7 +332,7 @@ class caah(DatedVariable):
         ancien_caah = cpltx * aah_montant * elig_ancien_caah
         # En fait le taux cpltx perdure jusqu'en 2008
 
-        return period, ancien_caah
+        return ancien_caah
 
 
 class mva(Variable):

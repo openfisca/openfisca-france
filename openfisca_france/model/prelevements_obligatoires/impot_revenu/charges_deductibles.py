@@ -300,7 +300,7 @@ class rfr_cd(Variable):
         cd_eparet = simulation.calculate('cd_eparet', period)
         cd_sofipe = simulation.calculate('cd_sofipe', period)
 
-        return period, cd_acc75a + cd_doment + cd_eparet + cd_sofipe
+        return cd_acc75a + cd_doment + cd_eparet + cd_sofipe
 
 
 class cd1(DatedVariable):
@@ -322,7 +322,7 @@ class cd1(DatedVariable):
         cd_doment = simulation.calculate('cd_doment', period)
 
         niches1 = pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles + cd_deddiv + cd_doment
-        return period, niches1
+        return niches1
 
     @dated_function(start = date(2004, 1, 1), stop = date(2005, 12, 31))
     def function_20040101_20051231(self, simulation, period):
@@ -338,7 +338,7 @@ class cd1(DatedVariable):
 
         niches1 = (pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles +
                    cd_deddiv + cd_doment + cd_eparet)
-        return period, niches1
+        return niches1
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
     def function_20060101_20061231(self, simulation, period):
@@ -352,7 +352,7 @@ class cd1(DatedVariable):
         cd_eparet = simulation.calculate('cd_eparet', period)
 
         niches1 = pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles + cd_deddiv + cd_eparet
-        return period, niches1
+        return niches1
 
     @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
     def function_20070101_20081231(self, simulation, period):
@@ -365,7 +365,7 @@ class cd1(DatedVariable):
         cd_eparet = simulation.calculate('cd_eparet', period)
 
         niches1 = pensions_alimentaires_deduites + cd_acc75a + cd_deddiv + cd_eparet
-        return period, niches1
+        return niches1
 
     @dated_function(start = date(2009, 1, 1), stop = date(2013, 12, 31))
     def function_20090101_20131231(self, simulation, period):
@@ -379,7 +379,7 @@ class cd1(DatedVariable):
         grosses_reparations = simulation.calculate('grosses_reparations', period)
 
         niches1 = pensions_alimentaires_deduites + cd_acc75a + cd_deddiv + cd_eparet + grosses_reparations
-        return period, niches1
+        return niches1
 
     @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
     def function_20140101_20141231(self, simulation, period):
@@ -394,7 +394,7 @@ class cd1(DatedVariable):
 
         niches1 = pensions_alimentaires_deduites + cd_acc75a + cd_deddiv + cd_eparet + grosses_reparations
         # log.error("Charges déductibles to be checked because not defined for %s", 2014)
-        return period, niches1
+        return niches1
 
 
 class cd2(DatedVariable):
@@ -413,7 +413,7 @@ class cd2(DatedVariable):
         cinema = simulation.calculate('souscriptions_cinema_audiovisuel', period)
 
         niches2 = cd_sofipe + cinema
-        return period, niches2
+        return niches2
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
     def function_20060101_20061231(self, simulation, period):
@@ -423,7 +423,7 @@ class cd2(DatedVariable):
         cd_sofipe = simulation.calculate('cd_sofipe', period)
 
         niches2 = cd_sofipe
-        return period, niches2
+        return niches2
 
     @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
     def function_20070101_20081231(self, simulation, period):
@@ -433,7 +433,7 @@ class cd2(DatedVariable):
         epargne_codeveloppement = simulation.calculate('epargne_codeveloppement', period)
 
         niches2 = epargne_codeveloppement
-        return period, niches2
+        return niches2
 
 
 class rbg_int(Variable):
@@ -446,7 +446,7 @@ class rbg_int(Variable):
         rbg = simulation.calculate('rbg', period)
         cd1 = simulation.calculate('cd1', period)
 
-        return period, max_(rbg - cd1, 0)
+        return max_(rbg - cd1, 0)
 
 
 class charges_deduc(Variable):
@@ -460,7 +460,7 @@ class charges_deduc(Variable):
         cd1 = simulation.calculate('cd1', period)
         cd2 = simulation.calculate('cd2', period)
 
-        return period, cd1 + cd2
+        return cd1 + cd2
 
 
 class pensions_alimentaires_deduites(Variable):
@@ -485,7 +485,7 @@ class pensions_alimentaires_deduites(Variable):
         # pacsé ou chargé de famille, quel que soit le nmbre d'enfants du jeune
         # foyer, la déduction est limitée à 2*max
         # S'il habite chez ses parents, max 3359, sinon 5698
-        return period, (min_(f6gi * (1 + taux_jgt_2006), max1) +
+        return (min_(f6gi * (1 + taux_jgt_2006), max1) +
                     min_(f6gj * (1 + taux_jgt_2006), max1) +
                     min_(f6el, max1) +
                     min_(f6em, max1) +
@@ -503,7 +503,7 @@ class cd_acc75a(Variable):
         f6ev = simulation.calculate('f6ev', period)
         acc75a = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.accueil_personne_agee
         amax = acc75a.plafond * max_(1, f6ev)
-        return period, min_(f6eu, amax)
+        return min_(f6eu, amax)
 
 
 class pertes_capital_societes_nouvelles(DatedVariable):
@@ -523,7 +523,7 @@ class pertes_capital_societes_nouvelles(DatedVariable):
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
         plafond_cb = percap.plafond_cb * (1 + maries_ou_pacses)
-        return period, min_(f6cb, plafond_cb)
+        return min_(f6cb, plafond_cb)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
     def function_20030101_20061231(self, simulation, period):
@@ -538,7 +538,7 @@ class pertes_capital_societes_nouvelles(DatedVariable):
         percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
         plafond_cb = percap.plafond_cb * (1 + maries_ou_pacses)
         plafond_da = percap.plafond_da * (1 + maries_ou_pacses)
-        return period, min_(min_(f6cb, plafond_cb) + min_(f6da, plafond_da), plafond_da)
+        return min_(min_(f6cb, plafond_cb) + min_(f6da, plafond_da), plafond_da)
 
 
 class cd_deddiv(Variable):
@@ -550,7 +550,7 @@ class cd_deddiv(Variable):
     def function(self, simulation, period):
         f6dd = simulation.calculate('f6dd', period)
 
-        return period, f6dd
+        return f6dd
 
 
 class cd_doment(Variable):
@@ -568,7 +568,7 @@ class cd_doment(Variable):
         '''
         f6eh = simulation.calculate('f6eh', period)
 
-        return period, f6eh
+        return f6eh
 
 
 class cd_eparet(Variable):
@@ -597,7 +597,7 @@ class cd_eparet(Variable):
 
         # TODO: En théorie, les plafonds de déductions (ps, pt, pu) sont calculés sur
         # le formulaire 2041 GX
-        return period, ((f6ps == 0) * (f6rs + f6ss) +
+        return ((f6ps == 0) * (f6rs + f6ss) +
                 (f6ps != 0) * min_(f6rs + f6ss, f6ps) +
                 (f6pt == 0) * (f6rt + f6st) +
                 (f6pt != 0) * min_(f6rt + f6st, f6pt) +
@@ -624,7 +624,7 @@ class cd_sofipe(Variable):
         sofipeche = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.sofipeche
 
         plafond = min_(sofipeche.plafond_pct_rng * rbg_int, sofipeche.plafond * (1 + maries_ou_pacses))
-        return period, min_(f6cc, plafond)
+        return min_(f6cc, plafond)
 
 
 class souscriptions_cinema_audiovisuel(Variable):
@@ -645,7 +645,7 @@ class souscriptions_cinema_audiovisuel(Variable):
         cinema = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.cinema
 
         max1 = min_(cinema.taux * rbg_int, cinema.max)
-        return period, min_(f6aa, max1)
+        return min_(f6aa, max1)
 
 
 class epargne_codeveloppement(Variable):
@@ -666,7 +666,7 @@ class epargne_codeveloppement(Variable):
         ecodev = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.compte_epargne_codev
 
         plafond = min_(ecodev.plafond_pct_rng * rbg_int, ecodev.plafond)
-        return period, min_(f6eh, plafond)
+        return min_(f6eh, plafond)
 
 
 class grosses_reparations(Variable):
@@ -686,4 +686,4 @@ class grosses_reparations(Variable):
         f6hl = simulation.calculate('f6hl', period)
         grorep = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.grosses_reparations
 
-        return period, min_(f6cb + f6hj + f6hk + f6hl, grorep.plafond)
+        return min_(f6cb + f6hj + f6hk + f6hl, grorep.plafond)

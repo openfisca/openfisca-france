@@ -62,7 +62,7 @@ class aefa(DatedVariable):
             )
         aefa_maj = P.mon_seul * maj
         aefa = max_(aefa_maj, aefa)
-        return period, aefa
+        return aefa
 
     @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
     def function_2008(famille, period, legislation):
@@ -97,7 +97,7 @@ class aefa(DatedVariable):
         aefa += condition * P.forf2008
         aefa_maj = P.mon_seul * maj
         aefa = max_(aefa_maj, aefa)
-        return period, aefa
+        return aefa
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
     def function__2008_(famille, period, legislation):
@@ -131,4 +131,4 @@ class aefa(DatedVariable):
             )
         aefa_maj = P.mon_seul * maj
         aefa = max_(aefa_maj, aefa)
-        return period, aefa
+        return aefa

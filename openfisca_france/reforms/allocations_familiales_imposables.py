@@ -43,7 +43,7 @@ class allocations_familiales_imposables(Reform):
             cga = simulation.legislation_at(period.start).impot_revenu.rpns.cga_taux2
 
             nacc_pvce = self.sum_by_entity(nacc_pvce_holder)
-            return period, max_(
+            return max_(
                 0,
                 allocations_familiales_imposables + rev_cat + f6gh +
                 (self.sum_by_entity(nbic_impm_holder) + nacc_pvce) * (1 + cga) - deficit_ante
@@ -71,7 +71,7 @@ class allocations_familiales_imposables(Reform):
             rpns_exon = self.sum_by_entity(rpns_exon_holder)
             rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
 
-            return period, (
+            return (
                 max_(0, rni - allocations_familiales_imposables) +
                 rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vz + microentreprise
                 )
@@ -86,7 +86,7 @@ class allocations_familiales_imposables(Reform):
             imposition = simulation.legislation_at(period.start).allocations_familiales_imposables.imposition
             af = simulation.foyer_fiscal.declarant_principal.famille('af', period, options = [ADD])
 
-            return period, af * imposition
+            return af * imposition
 
     def apply(self):
         self.update_variable(self.rbg)

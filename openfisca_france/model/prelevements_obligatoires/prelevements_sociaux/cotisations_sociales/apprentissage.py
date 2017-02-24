@@ -24,7 +24,7 @@ class apprenti(Variable):
             ).astype('timedelta64[Y]')
         anciennete_contrat = (duree_contrat < timedelta64(3, 'Y'))
 
-        return period, age_condition * anciennete_contrat
+        return age_condition * anciennete_contrat
 
 
 class remuneration_apprenti(Variable):
@@ -87,7 +87,7 @@ class remuneration_apprenti(Variable):
                 (anciennete_contrat[age_condition] == timedelta64(anciennete, 'Y')) * part_de_smic
                 for anciennete, part_de_smic in age_interval['part_de_smic_by_anciennete'].iteritems()
                 ])
-        return period, output * smic * apprenti
+        return output * smic * apprenti
 
 
 class exoneration_cotisations_employeur_apprenti(Variable):
@@ -131,7 +131,7 @@ class exoneration_cotisations_employeur_apprenti(Variable):
             vieillesse_deplafonnee_employeur)
         exoneration_plus_11 = -cotisations_exonerees
 
-        return period, (
+        return (
             exoneration_plus_11 * (effectif_entreprise >= 11) +
             exoneration_moins_11 * (effectif_entreprise < 11)
             ) * apprenti
@@ -149,7 +149,7 @@ class exoneration_cotisations_salariales_apprenti(Variable):
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         cotisations_salariales_non_contributives = simulation.calculate(
             'cotisations_salariales_non_contributives', period)
-        return period, - (cotisations_salariales_contributives + cotisations_salariales_non_contributives) * apprenti
+        return - (cotisations_salariales_contributives + cotisations_salariales_non_contributives) * apprenti
 
 
 class prime_apprentissage(Variable):
@@ -177,7 +177,7 @@ class prime_apprentissage(Variable):
 
     def function(self, simulation, period):
         apprenti = simulation.calculate('apprenti', period)
-        return period, 1000 * apprenti
+        return 1000 * apprenti
 
 # # class credit_impot_emploi_apprenti(Variable):
 #     column = FloatCol

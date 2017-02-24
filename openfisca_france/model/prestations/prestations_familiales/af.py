@@ -19,7 +19,7 @@ class af_nbenf(Variable):
         prestations_familiales_enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', period)
         af_nbenf = famille.sum(prestations_familiales_enfant_a_charge_i)
 
-        return period, af_nbenf
+        return af_nbenf
 
 
 class af_coeff_garde_alternee(Variable):
@@ -40,7 +40,7 @@ class af_coeff_garde_alternee(Variable):
         # Avoid division by zero. If nb_enf == 0, necessarily nb_enf_garde_alternee = 0 so coeff = 1
         coeff = 1 - (nb_enf_garde_alternee / (nb_enf + (nb_enf == 0))) * 0.5
 
-        return period, coeff
+        return coeff
 
 
 class af_allocation_forfaitaire_nb_enfants(Variable):
@@ -53,7 +53,7 @@ class af_allocation_forfaitaire_nb_enfants(Variable):
         pfam = legislation(period).prestations.prestations_familiales.af
         af_forfaitaire_nbenf = nb_enf(famille, period, pfam.age3, pfam.age3)
 
-        return period, af_forfaitaire_nbenf
+        return af_forfaitaire_nbenf
 
 
 class af_eligibilite_base(Variable):
@@ -66,7 +66,7 @@ class af_eligibilite_base(Variable):
         residence_dom = famille.demandeur.menage('residence_dom', period)
         af_nbenf = famille('af_nbenf', period)
 
-        return period, not_(residence_dom) * (af_nbenf >= 2)
+        return not_(residence_dom) * (af_nbenf >= 2)
 
 
 class af_eligibilite_dom(Variable):
@@ -80,7 +80,7 @@ class af_eligibilite_dom(Variable):
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
         af_nbenf = famille('af_nbenf', period)
 
-        return period, residence_dom * not_(residence_mayotte) * (af_nbenf >= 1)
+        return residence_dom * not_(residence_mayotte) * (af_nbenf >= 1)
 
 
 class af_base(Variable):
@@ -110,7 +110,7 @@ class af_base(Variable):
         af_taux_modulation = famille('af_taux_modulation', period)
         montant_base_module = montant_base * af_taux_modulation
 
-        return period, montant_base_module
+        return montant_base_module
 
 
 class af_taux_modulation(Variable):
@@ -134,7 +134,7 @@ class af_taux_modulation(Variable):
             (base_ressources > plafond2) * modulation.taux_tranche_3
         )
 
-        return period, taux
+        return taux
 
 
 class af_allocation_forfaitaire_taux_modulation(Variable):
@@ -160,7 +160,7 @@ class af_allocation_forfaitaire_taux_modulation(Variable):
             (base_ressources > plafond2) * modulation.taux_tranche_3
             )
 
-        return period, taux
+        return taux
 
 
 class af_age_aine(Variable):
@@ -178,7 +178,7 @@ class af_age_aine(Variable):
         condition_eligibilite = pfam_enfant_a_charge * (age <= pfam.af.age2)
         age_enfants_eligiles = age * condition_eligibilite
 
-        return period, famille.max(age_enfants_eligiles, role = Famille.ENFANT)
+        return famille.max(age_enfants_eligiles, role = Famille.ENFANT)
 
 
 class af_majoration_enfant(Variable):
@@ -215,7 +215,7 @@ class af_majoration_enfant(Variable):
 
         coeff_garde_alternee = where(garde_alternee, pfam.af.facteur_garde_alternee, 1)
 
-        return period, pfam_enfant_a_charge * (af_base > 0) * pas_aine * montant * coeff_garde_alternee
+        return pfam_enfant_a_charge * (af_base > 0) * pas_aine * montant * coeff_garde_alternee
 
 
 class af_majoration(Variable):
@@ -231,7 +231,7 @@ class af_majoration(Variable):
         af_taux_modulation = famille('af_taux_modulation', period)
         af_majoration_enfants_module = af_majoration_enfants_famille * af_taux_modulation
 
-        return period, af_majoration_enfants_module
+        return af_majoration_enfants_module
 
 
 class af_complement_degressif(Variable):
@@ -260,7 +260,7 @@ class af_complement_degressif(Variable):
         ) / 12
 
         af = af_base + af_majoration
-        return period, max_(0, af - depassement_mensuel) * (depassement_mensuel > 0)
+        return max_(0, af - depassement_mensuel) * (depassement_mensuel > 0)
 
 
 class af_allocation_forfaitaire_complement_degressif(Variable):
@@ -289,7 +289,7 @@ class af_allocation_forfaitaire_complement_degressif(Variable):
             (depassement_plafond2 > 0) * depassement_plafond2
         ) / 12
 
-        return period, max_(0, af_allocation_forfaitaire - depassement_mensuel) * (depassement_mensuel > 0)
+        return max_(0, af_allocation_forfaitaire - depassement_mensuel) * (depassement_mensuel > 0)
 
 
 class af_allocation_forfaitaire(Variable):
@@ -310,7 +310,7 @@ class af_allocation_forfaitaire(Variable):
         af_forfaitaire_taux_modulation = famille('af_allocation_forfaitaire_taux_modulation', period)
         af_forfaitaire_module = af_allocation_forfaitaire * af_forfaitaire_taux_modulation
 
-        return period, af_forfaitaire_module
+        return af_forfaitaire_module
 
 
 class af(DatedVariable):
@@ -329,7 +329,7 @@ class af(DatedVariable):
         af_complement_degressif = famille('af_complement_degressif', period)
         af_forfaitaire_complement_degressif = famille('af_allocation_forfaitaire_complement_degressif', period)
 
-        return period, (
+        return (
             af_base + af_majoration + af_allocation_forfaitaire + af_complement_degressif +
             af_forfaitaire_complement_degressif
             )
@@ -340,4 +340,4 @@ class af(DatedVariable):
         af_majoration = famille('af_majoration', period)
         af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)
 
-        return period, af_base + af_majoration + af_allocation_forfaitaire
+        return af_base + af_majoration + af_allocation_forfaitaire

@@ -31,7 +31,7 @@ class assiette_allegement(Variable):
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         period = period
         # TODO vérifier changement d'assiette
-        return period, assiette_cotisations_sociales * (
+        return assiette_cotisations_sociales * (
             (categorie_salarie == CATEGORIE_SALARIE['prive_non_cadre']) | (categorie_salarie == CATEGORIE_SALARIE['prive_cadre'])
             )
 
@@ -124,7 +124,7 @@ class coefficient_proratisation(Variable):
         # coefficient = (contrat_de_travail >= 2) * (contrat_de_travail <= 3) * (
         #     forfait_heures_remunerees_volume / 45.7 * 52 / 12
         #     ) +
-        return period, coefficient
+        return coefficient
 
 
 class credit_impot_competitivite_emploi(DatedVariable):
@@ -146,7 +146,7 @@ class credit_impot_competitivite_emploi(DatedVariable):
         non_cumul = not_(stagiaire)
         association = simulation.calculate('entreprise_est_association_non_lucrative', period)
 
-        return period, credit_impot_competitivite_emploi * non_cumul * not_(association)
+        return credit_impot_competitivite_emploi * non_cumul * not_(association)
 
 
 class aide_premier_salarie(DatedVariable):
@@ -209,7 +209,7 @@ class aide_premier_salarie(DatedVariable):
         # l’aide est proratisée en fonction de sa durée de travail.
         # TODO cette multiplication par le coefficient de proratisation suffit-elle pour le cas du temps partiel ?
         # A tester
-        return period, eligible * (montant_max / 24) * coefficient_proratisation * non_cumulee
+        return eligible * (montant_max / 24) * coefficient_proratisation * non_cumulee
 
 
 class aide_embauche_pme(DatedVariable):
@@ -285,7 +285,7 @@ class aide_embauche_pme(DatedVariable):
         # TODO cette multiplication par le coefficient de proratisation suffit-elle pour le cas du temps partiel ?
         # A tester
 
-        return period, eligible * (montant_max / 24) * coefficient_proratisation
+        return eligible * (montant_max / 24) * coefficient_proratisation
 
 
 class smic_proratise(Variable):
@@ -299,7 +299,7 @@ class smic_proratise(Variable):
         smic_horaire_brut = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b
         smic_proratise = coefficient_proratisation * smic_horaire_brut * 35 * 52 / 12
 
-        return period, smic_proratise
+        return smic_proratise
 
 
 class allegement_fillon(DatedVariable):
@@ -328,7 +328,7 @@ class allegement_fillon(DatedVariable):
             self.__class__.__name__,
             )
 
-        return period, allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
+        return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
 
 
 def compute_allegement_fillon(simulation, period):
@@ -400,7 +400,7 @@ class allegement_cotisation_allocations_familiales(DatedVariable):
             self.__class__.__name__,
             )
 
-        return period, allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
+        return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
 
 
 def compute_allegement_cotisation_allocations_familiales(simulation, period):

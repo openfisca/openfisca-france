@@ -107,7 +107,7 @@ class asi_aspa_base_ressources_individu(Variable):
             for ressource_type in ressources_incluses
             ) + aah + revenus_foyer_fiscal_individu + revenus_tns() - abs_(pensions_alimentaires_versees) - abattement_salaire()
 
-        return period, base_ressources_3_mois / 3
+        return base_ressources_3_mois / 3
 
 
 class asi_aspa_base_ressources(Variable):
@@ -121,7 +121,7 @@ class asi_aspa_base_ressources(Variable):
         ass = simulation.calculate('ass', period)
 
         asi_aspa_base_ressources_i = self.split_by_roles(asi_aspa_base_ressources_i_holder, roles = [CHEF, PART])
-        return period, ass + asi_aspa_base_ressources_i[CHEF] + asi_aspa_base_ressources_i[PART]
+        return ass + asi_aspa_base_ressources_i[CHEF] + asi_aspa_base_ressources_i[PART]
 
 
 class aspa_eligibilite(Variable):
@@ -141,7 +141,7 @@ class aspa_eligibilite(Variable):
         condition_age = condition_age_base + condition_age_anticipe
         condition_nationalite = simulation.calculate('asi_aspa_condition_nationalite', period)
 
-        return period, condition_age * condition_nationalite
+        return condition_age * condition_nationalite
 
 
 class asi_eligibilite(Variable):
@@ -165,7 +165,7 @@ class asi_eligibilite(Variable):
             (handicap * touche_retraite + touche_pension_invalidite)
             )
 
-        return period, eligible
+        return eligible
 
 
 class asi_aspa_condition_nationalite(Variable):
@@ -179,7 +179,7 @@ class asi_aspa_condition_nationalite(Variable):
         duree_possession_titre_sejour = simulation.calculate('duree_possession_titre_sejour', period)
         duree_min_titre_sejour = simulation.legislation_at(period.start).prestations.minima_sociaux.aspa.duree_min_titre_sejour
 
-        return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
+        return or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
 
 class asi_aspa_nb_alloc(Variable):
@@ -195,7 +195,7 @@ class asi_aspa_nb_alloc(Variable):
         asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
         aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
-        return period, (1 * aspa_eligibilite[CHEF] + 1 * aspa_eligibilite[PART] + 1 * asi_eligibilite[CHEF] + 1 * asi_eligibilite[PART])
+        return (1 * aspa_eligibilite[CHEF] + 1 * aspa_eligibilite[PART] + 1 * asi_eligibilite[CHEF] + 1 * asi_eligibilite[PART])
 
 
 class asi(Variable):
@@ -259,7 +259,7 @@ class asi(Variable):
         # TODO: Faute de mieux, on verse l'asi à la famille plutôt qu'aux individus
         # asi[CHEF] = asi_eligibilite[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
         # asi[PART] = asi_eligibilite[PART]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
-        return period, elig * montant_servi_asi
+        return elig * montant_servi_asi
 
 
 class aspa_couple(DatedVariable):
@@ -272,13 +272,13 @@ class aspa_couple(DatedVariable):
     def function_2002_2006(self, simulation, period):
         maries = simulation.calculate('maries', period)
 
-        return period, maries
+        return maries
 
     @dated_function(date(2007, 1, 1))
     def function_2007(self, simulation, period):
         en_couple = simulation.calculate('en_couple', period)
 
-        return period, en_couple
+        return en_couple
 
 
 class aspa(Variable):
@@ -336,4 +336,4 @@ class aspa(Variable):
         # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
         # aspa[CHEF] = aspa_eligibilite[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
         # aspa[PART] = aspa_eligibilite[PART]*montant_servi_aspa*(elig1 + elig2/2)
-        return period, elig * montant_servi_aspa
+        return elig * montant_servi_aspa

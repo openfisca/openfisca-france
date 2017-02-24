@@ -25,7 +25,7 @@ class asf_elig_enfant(Variable):
             (age >= pfam.af.age1) * (age < pfam.af.age3) *  # Âge compatible avec les prestations familiales
             not_(autonomie_financiere))  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
 
-        return period, eligibilite
+        return eligibilite
 
 
 class asf_elig(Variable):
@@ -41,7 +41,7 @@ class asf_elig(Variable):
         isole = not_(famille('en_couple', period))
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
 
-        return period, not_(residence_mayotte) * isole * pas_de_pensions  # Parent isolé et ne résident pas à Mayotte
+        return not_(residence_mayotte) * isole * pas_de_pensions  # Parent isolé et ne résident pas à Mayotte
 
 
 class asf(Variable):
@@ -58,4 +58,4 @@ class asf(Variable):
         asf_par_enfant = famille.members('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux_1_parent
         montant = famille.sum(asf_par_enfant, role = Famille.ENFANT)
 
-        return period, asf_elig * montant
+        return asf_elig * montant

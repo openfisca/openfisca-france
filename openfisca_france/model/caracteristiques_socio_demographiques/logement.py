@@ -89,7 +89,7 @@ class residence_dom(Variable):
         residence_reunion = menage('residence_reunion', period)
         residence_mayotte = menage('residence_mayotte', period)
 
-        return period, residence_guadeloupe + residence_martinique + residence_reunion +residence_guyane + residence_mayotte
+        return residence_guadeloupe + residence_martinique + residence_reunion +residence_guyane + residence_mayotte
 
 
 class residence_guadeloupe(Variable):
@@ -99,7 +99,7 @@ class residence_guadeloupe(Variable):
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
-        return period, startswith(depcom, '971')
+        return startswith(depcom, '971')
 
 
 class residence_martinique(Variable):
@@ -109,7 +109,7 @@ class residence_martinique(Variable):
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
-        return period, startswith(depcom, '972')
+        return startswith(depcom, '972')
 
 
 class residence_guyane(Variable):
@@ -119,7 +119,7 @@ class residence_guyane(Variable):
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
-        return period, startswith(depcom, '973')
+        return startswith(depcom, '973')
 
 
 class residence_reunion(Variable):
@@ -129,7 +129,7 @@ class residence_reunion(Variable):
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
-        return period, startswith(depcom, '974')
+        return startswith(depcom, '974')
 
 
 class residence_mayotte(Variable):
@@ -139,4 +139,4 @@ class residence_mayotte(Variable):
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
-        return period, startswith(depcom, '976')
+        return startswith(depcom, '976')

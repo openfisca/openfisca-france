@@ -52,7 +52,7 @@ class cesthra(Variable):
         cesthra = 0
         for rev in salaire_imposable.itervalues():
             cesthra += max_(rev - law_cesthra.seuil, 0) * law_cesthra.taux
-        return period, cesthra
+        return cesthra
 
 
 class irpp(Variable):
@@ -70,7 +70,7 @@ class irpp(Variable):
         P = simulation.legislation_at(period.start).impot_revenu.recouvrement
 
         pre_result = iai - credits_impot + cehr + cesthra
-        return period, ((iai > P.seuil) *
+        return ((iai > P.seuil) *
             ((pre_result < P.min) * (pre_result > 0) * iai * 0 +
             ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)) +
             (iai <= P.seuil) * ((pre_result < 0) * (-pre_result) +
