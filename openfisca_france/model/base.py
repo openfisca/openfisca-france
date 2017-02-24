@@ -10,7 +10,6 @@ from openfisca_core.formulas import (ADD, calculate_output_add, calculate_output
     dated_function, DIVIDE, missing_value, set_input_dispatch_by_period, set_input_divide_by_period)
 from openfisca_core.variables import DatedVariable, Variable
 from openfisca_core.base_functions import (
-    last_duration_last_value,
     requested_period_added_value,
     requested_period_default_value,
     requested_period_last_or_next_value,
@@ -47,7 +46,6 @@ __all__ = [
     'FoyerFiscal',
     'Individu',
     'IntCol',
-    'last_duration_last_value',
     'Menage',
     'missing_value',
     'PAC1',
