@@ -4,6 +4,7 @@ from __future__ import division
 
 
 from openfisca_core import columns, reforms
+from openfisca_core.columns import MONTH, YEAR
 
 from .. import entities
 
@@ -49,6 +50,7 @@ def build_reform(tax_benefit_system):
         label = u"Salaire brut ou traitement indiciaire brut"
         reference = tax_benefit_system.column_by_name["salaire_de_base"]
         url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
+        period_behavior = MONTH
 
         def function(self, simulation, period):
             """Calcule le salaire brut à partir du salaire imposable ou sinon du salaire net.
@@ -56,8 +58,6 @@ def build_reform(tax_benefit_system):
             Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
             Note : le supplément familial de traitement est imposable.
             """
-    #        period = period.this_month
-
             # Get value for year and divide below.
             salaire_imposable_pour_inversion = simulation.get_array('salaire_imposable_pour_inversion',
                 period.this_year)
@@ -79,7 +79,7 @@ def build_reform(tax_benefit_system):
                             ) - salaire_net
                     return fsolve(solve_function, salaire_net)
 
-                salaire_imposable_pour_inversion = simulation.calculate_add_divide('salaire_imposable_pour_inversion',
+                salaire_imposable_pour_inversion = simulation.calculate_divide('salaire_imposable_pour_inversion',
                     period)
 
             # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
@@ -180,6 +180,7 @@ def build_reform(tax_benefit_system):
         entity = entities.Individu
         label = u"Allocations chômage brutes"
         url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
+        period_behavior = MONTH
 
         def function(self, simulation, period):
             """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
@@ -205,7 +206,7 @@ def build_reform(tax_benefit_system):
                             ) - chomage_net
                     return fsolve(solve_function, chomage_net)
 
-                chomage_imposable_pour_inversion = simulation.calculate_add_divide(
+                chomage_imposable_pour_inversion = simulation.calculate_divide(
                     'chomage_imposable_pour_inversion', period)
 
             # Calcule les allocations chômage brutes à partir des allocations imposables.
@@ -230,12 +231,11 @@ def build_reform(tax_benefit_system):
         entity = entities.Individu
         label = u"Pensions de retraite brutes"
         url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
+        period_behavior = MONTH
 
         def function(self, simulation, period):
             """"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
             """
-            # period = period.this_month
-
             # Get value for year and divide below.
             retraite_imposable_pour_inversion = simulation.get_array(
                 'retraite_imposable_pour_inversion', period.this_year)
@@ -257,7 +257,7 @@ def build_reform(tax_benefit_system):
                             ) - retraite_nette
                     return fsolve(solve_function, retraite_nette)
 
-                retraite_imposable_pour_inversion = simulation.calculate_add_divide(
+                retraite_imposable_pour_inversion = simulation.calculate_divide(
                     'retraite_imposable_pour_inversion', period)
 
             # Calcule les pensions de retraite brutes à partir des pensions imposables.
