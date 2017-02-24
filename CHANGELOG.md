@@ -1,6 +1,13 @@
 # Changelog
 
-## 14.0.0 [#690](https://github.com/openfisca/openfisca-france/pull/690)
+## 14.1.0
+
+* Amélioration technique
+* Adapte `france` à  la version `6.0.0` de `core`
+    - Évolution du format de retour des formules : `return result` à la place de `return period, result`
+    - Ajout d'un attribut `definition_period` pour toutes les variables
+
+# 14.0.0 [#690](https://github.com/openfisca/openfisca-france/pull/690)
 
 * Évolution du système socio-fiscal
   * Périodes concernées : toutes.
