@@ -2205,6 +2205,7 @@ class rnc(Variable):
     entity = Individu
     label = u"Revenus non commerciaux individuels"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         '''
