@@ -1,6 +1,5 @@
 # OpenFisca France
 
-[![Join the chat at https://gitter.im/openfisca/openfisca-france](https://badges.gitter.im/openfisca/openfisca-france.svg)](https://gitter.im/openfisca/openfisca-france?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/openfisca/openfisca-france.svg?branch=master)](https://travis-ci.org/openfisca/openfisca-france)
 
 [More build statuses](http://www.openfisca.fr/build-status)
