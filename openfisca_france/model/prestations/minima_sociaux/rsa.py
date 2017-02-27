@@ -572,6 +572,10 @@ class rsa_revenu_activite_individu(DatedVariable):
             'etr',
             'tns_auto_entrepreneur_benefice',
             'rsa_indemnites_journalieres_activite',
+            # TODO hack IPp pour gérer les tns !
+            'rnc',
+            # 'ric',
+            # 'rag',
             ]
 
         has_ressources_substitution = individu('rsa_has_ressources_substitution', period)
@@ -939,7 +943,6 @@ class rsa_non_calculable(Variable):
         # la famille ne sera pas éligible au RSA en tenant compte de
         # ces ressources. Il n'y a donc pas non calculabilité.
         eligible_rsa = famille('rsa_montant', period) > 0
-
 
         non_calculable_tns_parent1 = famille.demandeur('rsa_non_calculable_tns_individu', period)
         non_calculable_tns_parent2 = famille.conjoint('rsa_non_calculable_tns_individu', period)
