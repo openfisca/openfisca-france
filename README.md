@@ -12,43 +12,4 @@ The documentation of the project is hosted at http://doc.openfisca.fr/
 
 ## Contributors
 
-Initial developers: Clément Schaff and Mahdi Ben Jelloul.
-
-OpenFisca Team:
-  - Mahdi Ben Jelloul
-  - Christophe Benz
-  - Claire Bernard
-  - Léo Bouloc
-  - Laurence Bouvard
-  - Grégory Cornu
-  - Sophie Cottet
-  - Pierre-Yves Cusset
-  - Félix Defrance
-  - Jérôme Desbœufs
-  - Sarah Dijols
-  - Thomas Douenne
-  - Alexis Eidelman
-  - Adrien Fabre
-  - Emmanuel Gratuze
-  - Malka Guillot
-  - Arnaud Kleinpeter
-  - Victor Le Breton
-  - Marion Monnet
-  - Adrien Pacifico
-  - Florian Pagnoux
-  - Louise Paul-Delvaux
-  - Emmanuel Raviart
-  - Lucile Romanello
-  - Stanislas Rybak
-  - Jérôme Santoul
-  - Clément Schaff
-  - Matti Schneider
-  - Romain Soufflet
-  - Maël Thomas
-  - Suzanne Vergnolle
-
-Special thanks to:
-  - Antoine Bozio
-  - Fabien Dell
-  - Pierre Pezziardi
-  - Alain Trannoy
+See the [contributors to OpenFisca-France](https://github.com/openfisca/openfisca-france/graphs/contributors)
