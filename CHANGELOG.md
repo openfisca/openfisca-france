@@ -1,32 +1,39 @@
 # Changelog
 
 
-## 13.2.0
+## 13.2.0 - [#676](https://github.com/openfisca/openfisca-france/pull/676)
 
-* Déplace la transformation du JSON en test case du module `scenarios` de `france` vers `core`
-* Adapte `france` à  la version `5.0.0` de `core`
+* Amélioration technique
+  * Cette évolution est a priori transparente pour les utilisateurs.
+  * Déplace la transformation du JSON en test case du module `scenarios` de `france` vers `core`
+  * Adapte `france` à  la version `5.0.0` de `core`
 
-Ces changements sont a priori transparents pour les utilisateurs.
+### 13.1.5 - [#684](https://github.com/openfisca/openfisca-france/pull/684)
 
-## 13.1.5
+* Évolution du système socio-fiscal
+  * Périodes concernées : à partir de 2017.
+  * Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales`
+  * Corrige certains taux pour 2017 :
+    - la réduction générale sur les bas salaires (fillon) était légèrement différente de la valeur réelle   (on utilisait la valeur prévisionelle de 2016).
+    - la cotisation maladie MMID employeur n'avait pas été mise à jour.
 
-* Fix 2017 rates and test them:
-  - réduction générale sur les bas salaires (fillon) had a minor difference (we used the 2016 provisionnal value)
-  - maladie MMID employeur had not been updated
+### 13.1.4 - [#682](https://github.com/openfisca/openfisca-france/pull/682)
 
-## 13.1.4
+* Évolution du système socio-fiscal
+  * Périodes concernées : à partir de 2017.
+  * Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive` 
+  * Met à jour la valeur de l'AGS pour 2017
+    - La mise à jour de l'AGS de la version 10.0.1 n'a pas fonctionné, pour cause de duplication de paramètres.
 
-* Fix AGS value in cotsoc.xml. v10.0.1's fix was ineffective.
-
-## 13.1.3
+### 13.1.3
 
 * Fix `rsa_has_ressources_substitution` `Column` attribute
 
-## 13.1.2
+### 13.1.2
 
 * Refactor TaxBenefitSystem decomposition attributes
 
-## 13.1.1
+### 13.1.1
 
 * Update taux CICE 2017 : from 6% to 7%
 
@@ -36,15 +43,15 @@ Ces changements sont a priori transparents pour les utilisateurs.
 
 This may change any variable related to impot sur le revenu if `revenus_locatifs` is not zero and f4ba is not initialized.
 
-## 13.0.2
+### 13.0.2
 
 * Add `pensions_invalidite` to pensions imposables
 
-## 13.0.1
+### 13.0.1
 
 * Fix `ppe`
 
-## 13.0.0
+# 13.0.0
 
 * Deprecate `nbsala`
 * Deprecate `tva_ent`
