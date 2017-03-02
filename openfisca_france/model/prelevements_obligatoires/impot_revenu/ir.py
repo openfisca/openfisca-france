@@ -97,7 +97,6 @@ class age_en_mois(Variable):
     entity = Individu
     label = u"Âge (en mois)"
     definition_period = MONTH
-    calculate_output = calculate_output_first_month
 
     def function(self, simulation, period):
 

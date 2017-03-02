@@ -45,13 +45,10 @@
     age_en_mois: 33 * 12
   output_variables:
     age_en_mois:
-      2012: (33 - 1) * 12
       2012-01: (33 - 1) * 12
       2012-12: 33 * 12 - 1
-      2013: 33 * 12
       2013-01: 33 * 12
       2013-02: 33 * 12 + 1
-      2014: (33 + 1) * 12
 - name: "Âge (en années) d'après l'âge en mois, après avoir calculé l'age 6 mois avant"
   period: "2013-01"
   input_variables:
