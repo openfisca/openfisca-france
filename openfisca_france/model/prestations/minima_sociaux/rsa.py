@@ -572,7 +572,7 @@ class rsa_revenu_activite_individu(DatedVariable):
             'etr',
             'tns_auto_entrepreneur_benefice',
             'rsa_indemnites_journalieres_activite',
-            # TODO hack IPp pour gérer les tns !
+            # TODO hack IPP pour gérer les tns !
             'rnc',
             # 'ric',
             # 'rag',
@@ -624,7 +624,6 @@ class rsa_fictif(Variable):
 
         montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources
         montant = max_(montant, 0)
-
 
         return mois_courant, montant
 
