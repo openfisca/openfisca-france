@@ -18,7 +18,7 @@ class assiette_csg_abattue(Variable):
     column = FloatCol
     label = u"Assiette CSG - CRDS"
     entity = Individu
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         primes_salaires = simulation.calculate('primes_salaires', period)
@@ -44,7 +44,7 @@ class assiette_csg_non_abattue(Variable):
     column = FloatCol
     label = u"Assiette CSG - CRDS"
     entity = Individu
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
@@ -64,7 +64,7 @@ class csg_deductible_salaire(Variable):
     column = FloatCol
     label = u"CSG déductible sur les salaires"
     entity = Individu
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
@@ -86,7 +86,7 @@ class csg_imposable_salaire(Variable):
     column = FloatCol
     label = u"CSG imposables sur les salaires"
     entity = Individu
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
@@ -109,7 +109,7 @@ class crds_salaire(Variable):
     column = FloatCol
     label = u"CRDS sur les salaires"
     entity = Individu
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
@@ -133,7 +133,7 @@ class forfait_social(DatedVariable):
     entity = Individu
     label = u"Forfait social"
     start_date = date(2009, 1, 1)
-    period_unit = MONTH
+    definition_period = MONTH
     calculate_output = calculate_output_add
 
     # les contributions destinées au financement des prestations de prévoyance complémentaire versées
@@ -193,7 +193,7 @@ class salaire_imposable(Variable):
     entity = Individu
     label = u"Salaires imposables"
     set_input = set_input_divide_by_period
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(individu, period):
         salaire_de_base = individu('salaire_de_base', period)
@@ -225,7 +225,7 @@ class salaire_net(Variable):
     entity = Individu
     label = u"Salaires nets d'après définition INSEE"
     set_input = set_input_divide_by_period
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         '''
@@ -245,7 +245,7 @@ class tehr(Variable):
     label = u"Taxe exceptionnelle de solidarité sur les très hautes rémunérations"
     url = u"http://vosdroits.service-public.fr/professionnels-entreprises/F32096.xhtml"
     calculate_output = calculate_output_divide
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         salaire_de_base = simulation.calculate_add('salaire_de_base', period)  # TODO: check base
@@ -267,7 +267,7 @@ class rev_microsocial(Variable):
     label = u"Revenu net des cotisations sociales pour le régime microsocial"
     start_date = date(2009, 1, 1)
     url = u"http://www.apce.com/pid6137/regime-micro-social.html"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         assiette_service = simulation.calculate('assiette_service', period)

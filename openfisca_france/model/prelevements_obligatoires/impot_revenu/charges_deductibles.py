@@ -19,7 +19,7 @@ class f6de(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"CSG déductible calculée sur les revenus du patrimoine"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 # Pensions alimentaires
@@ -28,7 +28,7 @@ class f6gi(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 1er enfant"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6gj(Variable):
@@ -36,7 +36,7 @@ class f6gj(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 2eme enfant"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6el(Variable):
@@ -45,7 +45,7 @@ class f6el(Variable):
     entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées à des enfants majeurs: 1er enfant"
     start_date = date(2006, 1, 1)
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6em(Variable):
@@ -54,7 +54,7 @@ class f6em(Variable):
     entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées à des enfants majeurs: 2eme enfant"
     start_date = date(2006, 1, 1)
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6gp(Variable):
@@ -62,7 +62,7 @@ class f6gp(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées décision de justice définitive avant 2006 (mineurs, ascendants)"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6gu(Variable):
@@ -71,7 +71,7 @@ class f6gu(Variable):
     entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées (mineurs, ascendants)"
     start_date = date(2006, 1, 1)
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 # Frais d'accueil d'une personne de plus de 75 ans dans le besoin
@@ -80,7 +80,7 @@ class f6eu(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Frais d'accueil de personnes de plus de 75 ans dans le besoin"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6ev(Variable):
@@ -88,7 +88,7 @@ class f6ev(Variable):
     column = PeriodSizeIndependentIntCol
     entity = FoyerFiscal
     label = u"Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 # Déductions diverses
@@ -97,7 +97,7 @@ class f6dd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déductions diverses"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 # Épargne retraite - PERP, PRÉFON, COREM et CGOS
@@ -109,7 +109,7 @@ class f6ps(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6rs(Variable):
@@ -120,7 +120,7 @@ class f6rs(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6ss(Variable):
@@ -131,7 +131,7 @@ class f6ss(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Rachat de cotisations PERP, PREFON, COREM et C.G.O.S"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 # Souscriptions en faveur du cinéma ou de l’audiovisuel
@@ -142,7 +142,7 @@ class f6aa(Variable):
     label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel"
     start_date = date(2005, 1, 1)
     stop_date = date(2006, 12, 31)
-    period_unit = YEAR
+    definition_period = YEAR
 
   # TODO: ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
 
@@ -154,7 +154,7 @@ class f6cc(Variable):
     label = u"Souscriptions au capital des SOFIPÊCHE"
     start_date = date(2005, 1, 1)
     stop_date = date(2005, 12, 31)
-    period_unit = YEAR
+    definition_period = YEAR
 
   # ancien numéro de case, antérieur à 2008 ....au moins vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en  12 et13)
 
@@ -167,7 +167,7 @@ class f6eh(Variable):
     entity = FoyerFiscal
     start_date = date(2005, 1, 1)
     stop_date = date(2005, 12, 31)
-    period_unit = YEAR
+    definition_period = YEAR
 # TODO: vérifier date de début et de fin de cette case (rien en 12 et 13)
 
 
@@ -178,7 +178,7 @@ class f6da(Variable):
     label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté"
     start_date = date(2005, 1, 1)
     stop_date = date(2005, 12, 31)
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 # Dépenses de grosses réparations effectuées par les nus propriétaires
@@ -188,7 +188,7 @@ class f6cb(Variable):
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)"
     start_date = date(2009, 1, 1)
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 # TODO: before 2006 was Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration complémentaire)
@@ -199,7 +199,7 @@ class f6hj(Variable):
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
     start_date = date(2010, 1, 1)
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6hk(Variable):
@@ -208,7 +208,7 @@ class f6hk(Variable):
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
     start_date = date(2011, 1, 1)
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6hl(Variable):
@@ -217,7 +217,7 @@ class f6hl(Variable):
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
     start_date = date(2012, 1, 1)
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6hm(Variable):
@@ -226,7 +226,7 @@ class f6hm(Variable):
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
     start_date = date(2013, 1, 1)
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 # Sommes à rajouter au revenu imposable
@@ -235,7 +235,7 @@ class f6gh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Sommes à ajouter au revenu imposable"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 # Deficits antérieurs
@@ -244,7 +244,7 @@ class f6fa(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits les années précédentes: année de perception des revenus -6"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6fb(Variable):
@@ -252,7 +252,7 @@ class f6fb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -5"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6fc(Variable):
@@ -260,7 +260,7 @@ class f6fc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -4"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6fd(Variable):
@@ -268,7 +268,7 @@ class f6fd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -3"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6fe(Variable):
@@ -276,7 +276,7 @@ class f6fe(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -2"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f6fl(Variable):
@@ -284,7 +284,7 @@ class f6fl(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -1"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class rfr_cd(Variable):
@@ -292,7 +292,7 @@ class rfr_cd(Variable):
     entity = FoyerFiscal
     label = u"Charges déductibles entrant dans le revenus fiscal de référence"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         cd_acc75a = simulation.calculate('cd_acc75a', period)
@@ -308,7 +308,7 @@ class cd1(DatedVariable):
     entity = FoyerFiscal
     label = u"Charges déductibles non plafonnées"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
-    period_unit = YEAR
+    definition_period = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2003, 12, 31))
     def function_20020101_20031231(self, simulation, period):
@@ -402,7 +402,7 @@ class cd2(DatedVariable):
     entity = FoyerFiscal
     label = u"Charges déductibles plafonnées"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
-    period_unit = YEAR
+    definition_period = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
     def function_20020101_20051231(self, simulation, period):
@@ -440,7 +440,7 @@ class rbg_int(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu brut global intermédiaire"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         rbg = simulation.calculate('rbg', period)
@@ -454,7 +454,7 @@ class charges_deduc(Variable):
     entity = FoyerFiscal
     label = u"Charges déductibles"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         cd1 = simulation.calculate('cd1', period)
@@ -468,7 +468,7 @@ class pensions_alimentaires_deduites(Variable):
     entity = FoyerFiscal
     label = u"Pensions alimentaires"
     url = "http://frederic.anne.free.fr/Cours/ITV.htm"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         f6gi = simulation.calculate('f6gi', period)
@@ -496,7 +496,7 @@ class cd_acc75a(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Frais d’accueil sous votre toit d’une personne de plus de 75 ans"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         f6eu = simulation.calculate('f6eu', period)
@@ -510,7 +510,7 @@ class pertes_capital_societes_nouvelles(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté"
-    period_unit = YEAR
+    definition_period = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
     def function_20020101_20021231(self, simulation, period):
@@ -545,7 +545,7 @@ class cd_deddiv(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Déductions diverses"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         f6dd = simulation.calculate('f6dd', period)
@@ -559,7 +559,7 @@ class cd_doment(Variable):
     label = u"Investissements DOM-TOM dans le cadre d’une entreprise"
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -576,7 +576,7 @@ class cd_eparet(Variable):
     entity = FoyerFiscal
     label = u"Charge déductible au titre de l'épargne retraite (PERP, PRÉFON, COREM et CGOS)"
     start_date = date(2004, 1, 1)
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         f6ps_holder = simulation.compute('f6ps', period)
@@ -611,7 +611,7 @@ class cd_sofipe(Variable):
     label = u"Souscriptions au capital des SOFIPÊCHE"
     start_date = date(2002, 1, 1)
     stop_date = date(2006, 12, 31)
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -633,7 +633,7 @@ class souscriptions_cinema_audiovisuel(Variable):
     label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel"
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -654,7 +654,7 @@ class epargne_codeveloppement(Variable):
     label = u"Versements sur un compte épargne codéveloppement"
     start_date = date(2007, 1, 1)
     stop_date = date(2008, 12, 31)
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -674,7 +674,7 @@ class grosses_reparations(Variable):
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations des nus-propriétaires"
     start_date = date(2009, 1, 1)
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''

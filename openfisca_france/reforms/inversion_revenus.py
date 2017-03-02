@@ -30,19 +30,19 @@ def build_reform(tax_benefit_system):
         column = columns.FloatCol
         entity = entities.Individu
         label = u'Salaire imposable utilisé pour remonter au salaire brut'
-        period_unit = YEAR
+        definition_period = YEAR
 
     class chomage_imposable_pour_inversion(Reform.Variable):
         column = columns.FloatCol
         entity = entities.Individu
         label = u'Autres revenus imposables (chômage, préretraite), utilisé pour l’inversion'
-        period_unit = YEAR
+        definition_period = YEAR
 
     class retraite_imposable_pour_inversion(Reform.Variable):
         column = columns.FloatCol
         entity = entities.Individu
         label = u'Pensions, retraites, rentes connues imposables, utilisé pour l’inversion'
-        period_unit = YEAR
+        definition_period = YEAR
 
     class salaire_de_base(Reform.Variable):
         column = columns.FloatCol
@@ -50,7 +50,7 @@ def build_reform(tax_benefit_system):
         label = u"Salaire brut ou traitement indiciaire brut"
         reference = tax_benefit_system.column_by_name["salaire_de_base"]
         url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
-        period_unit = MONTH
+        definition_period = MONTH
 
         def function(self, simulation, period):
             """Calcule le salaire brut à partir du salaire imposable ou sinon du salaire net.
@@ -180,7 +180,7 @@ def build_reform(tax_benefit_system):
         entity = entities.Individu
         label = u"Allocations chômage brutes"
         url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
-        period_unit = MONTH
+        definition_period = MONTH
 
         def function(self, simulation, period):
             """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
@@ -231,7 +231,7 @@ def build_reform(tax_benefit_system):
         entity = entities.Individu
         label = u"Pensions de retraite brutes"
         url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
-        period_unit = MONTH
+        definition_period = MONTH
 
         def function(self, simulation, period):
             """"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.

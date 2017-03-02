@@ -14,14 +14,14 @@ class stage_duree_heures(Variable):
     column = IntCol()
     entity = Individu
     label = u"Nombre d'heures effectuées en stage"
-    period_unit = MONTH
+    definition_period = MONTH
 
 
 class stage_gratification_taux(Variable):
     column = FloatCol()
     entity = Individu
     label = u"Taux de gratification (en plafond de la Sécurité sociale)"
-    period_unit = MONTH
+    definition_period = MONTH
 
 
 class stage_gratification(Variable):
@@ -29,7 +29,7 @@ class stage_gratification(Variable):
     entity = Individu
     label = u"Gratification de stage"
     start_date = date(2014, 11, 1)  # TODO: remove when updating legislation backwards
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
@@ -48,7 +48,7 @@ class stage_gratification_reintegration(Variable):
     entity = Individu
     label = u"Part de la gratification de stage réintégrée à l'assiette des cotisations et contributions sociales"
     start_date = date(2014, 11, 1)  # TODO: remove when updating legislation backwards
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
@@ -65,7 +65,7 @@ class stagiaire(Variable):
     column = BoolCol
     entity = Individu
     label = u"L'individu est stagiaire"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
@@ -77,7 +77,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
     entity = Individu
     label = u"Exonrérations de cotisations employeur pour un stagaire"
     url = "http://www.apce.com/pid2798/stages.html?espace=3"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         agirc_employeur = simulation.calculate('agirc_employeur', period)
@@ -109,7 +109,7 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
     entity = Individu
     label = u"Exonrérations de cotisations salarié pour un stagiaire"
     url = "http://www.apce.com/pid2798/stages.html?espace=3"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         agirc_salarie = simulation.calculate('agirc_salarie', period)

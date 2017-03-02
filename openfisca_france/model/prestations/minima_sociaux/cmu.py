@@ -13,7 +13,7 @@ class cmu_acs_eligibilite(Variable):
     column = BoolCol
     entity = Famille
     label = u"Pré-éligibilité à la CMU, avant prise en compte des ressources"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         previous_year = period.start.period('year').offset(-1)
@@ -40,7 +40,7 @@ class acs_montant(Variable):
     entity = Famille
     label = u"Montant de l'ACS en cas d'éligibilité"
     start_date = date(2009, 8, 1)
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         age_holder = simulation.compute('age', period)
@@ -59,7 +59,7 @@ class cmu_forfait_logement_base(Variable):
     column = FloatCol
     entity = Famille
     label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
@@ -73,7 +73,7 @@ class cmu_forfait_logement_al(Variable):
     column = FloatCol
     entity = Famille
     label = u"Forfait logement applicable en cas d'aide au logement"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         nb_personnes_foyer = simulation.calculate('cmu_nbp_foyer', period)
@@ -88,7 +88,7 @@ class cmu_nbp_foyer(Variable):
     column = PeriodSizeIndependentIntCol
     entity = Famille
     label = u"Nombre de personnes dans le foyer CMU"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         nb_parents = simulation.calculate('nb_parents', period)
@@ -100,7 +100,7 @@ class cmu_nbp_foyer(Variable):
 class cmu_eligible_majoration_dom(Variable):
     column = BoolCol
     entity = Famille
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(famille, period):
         menage = famille.demandeur.menage
@@ -116,7 +116,7 @@ class cmu_c_plafond(Variable):
     column = FloatCol
     entity = Famille
     label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         age_holder = simulation.compute('age', period)
@@ -167,7 +167,7 @@ class acs_plafond(Variable):
     column = FloatCol
     entity = Famille
     label = u"Plafond annuel de ressources pour l'éligibilité à l'ACS"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         cmu_c_plafond = simulation.calculate('cmu_c_plafond', period)
@@ -180,7 +180,7 @@ class cmu_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity = Individu
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         # Rolling year
@@ -256,7 +256,7 @@ class cmu_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity = Famille
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(famille, period, legislation):
         previous_year = period.start.period('year').offset(-1)
@@ -301,7 +301,7 @@ class cmu_nb_pac(Variable):
     column = PeriodSizeIndependentIntCol
     entity = Famille
     label = u"Nombre de personnes à charge au titre de la CMU"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         age_holder = simulation.compute('age', period)
@@ -315,7 +315,7 @@ class cmu_c(Variable):
     column = BoolCol
     label = u"Éligibilité à la CMU-C"
     entity = Famille
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(famille, period):
         cmu_c_plafond = famille('cmu_c_plafond', period)
@@ -345,7 +345,7 @@ class acs(Variable):
     column = FloatCol
     label = u"Montant (annuel) de l'ACS"
     entity = Famille
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def function(famille, period):

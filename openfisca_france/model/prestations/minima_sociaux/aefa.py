@@ -28,7 +28,7 @@ class aefa(DatedVariable):
     entity = Famille
     label = u"Aide exceptionelle de fin d'année (prime de Noël)"
     url = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"  # noqa
-    period_unit = YEAR
+    definition_period = YEAR
 
     @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
     def function_2009__(famille, period, legislation):

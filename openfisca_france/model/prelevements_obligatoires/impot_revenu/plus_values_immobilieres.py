@@ -77,7 +77,7 @@ class ir_pv_immo(Variable):
     entity = FoyerFiscal
     label = u"Impôt sur le revenu afférent à la plus-value immobilière"
     url = "http://www.impots.gouv.fr/portal/dgi/public/popup?espId=1&typePage=cpr02&docOid=documentstandard_2157"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         """

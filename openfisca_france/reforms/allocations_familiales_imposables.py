@@ -31,7 +31,7 @@ class allocations_familiales_imposables(Reform):
 
     class rbg(Variable):
         label = u"Nouveau revenu brut global intégrant les allocations familiales"
-        period_unit = YEAR
+        definition_period = YEAR
 
         def function(self, simulation, period):
             allocations_familiales_imposables = simulation.calculate_add('allocations_familiales_imposables', period)
@@ -51,7 +51,7 @@ class allocations_familiales_imposables(Reform):
 
     class rfr(Variable):
         label = u"Nouveau revenu fiscal de référence intégrant les allocations familiales"
-        period_unit = YEAR
+        definition_period = YEAR
 
         def function(self, simulation, period):
             allocations_familiales_imposables = simulation.calculate('allocations_familiales_imposables')
@@ -80,7 +80,7 @@ class allocations_familiales_imposables(Reform):
         column = columns.FloatCol
         entity = FoyerFiscal
         label = u"Allocations familiales imposables"
-        period_unit = YEAR
+        definition_period = YEAR
 
         def function(self, simulation, period):
             imposition = simulation.legislation_at(period.start).allocations_familiales_imposables.imposition

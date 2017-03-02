@@ -21,7 +21,7 @@ class plfr2014(Reform):
 
     class reduction_impot_exceptionnelle(DatedVariable):
         reference = reductions_impot.reduction_impot_exceptionnelle
-        period_unit = YEAR
+        definition_period = YEAR
 
         @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
         def function(self, simulation, period):
@@ -38,7 +38,7 @@ class plfr2014(Reform):
     class reductions(DatedVariable):
         label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
         reference = reductions_impot.reductions
-        period_unit = YEAR
+        definition_period = YEAR
 
         @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
         def function_20130101_20131231(self, simulation, period):

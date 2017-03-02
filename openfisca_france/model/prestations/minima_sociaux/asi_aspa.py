@@ -11,19 +11,19 @@ class inapte_travail(Variable):
     column = BoolCol
     entity = Individu
     label = u"Reconnu inapte au travail"
-    period_unit = MONTH
+    definition_period = MONTH
 
 class taux_incapacite(Variable):
     column = FloatCol
     entity = Individu
     label = u"Taux d'incapacité"
-    period_unit = MONTH
+    definition_period = MONTH
 
 class asi_aspa_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base ressources individuelle du minimum vieillesse/ASPA"
     entity = Individu
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(individu, period, legislation):
         last_year = period.last_year
@@ -114,7 +114,7 @@ class asi_aspa_base_ressources(Variable):
     column = FloatCol
     label = u"Base ressource du minimum vieillesse et assimilés (ASPA)"
     entity = Famille
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         asi_aspa_base_ressources_i_holder = simulation.compute('asi_aspa_base_ressources_individu', period)
@@ -128,7 +128,7 @@ class aspa_eligibilite(Variable):
     column = BoolCol
     label = u"Indicatrice individuelle d'éligibilité à l'allocation de solidarité aux personnes agées"
     entity = Individu
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         age = simulation.calculate('age', period)
@@ -148,7 +148,7 @@ class asi_eligibilite(Variable):
     column = BoolCol
     label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
     entity = Individu
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         last_month = period.start.period('month').offset(-1)
@@ -172,7 +172,7 @@ class asi_aspa_condition_nationalite(Variable):
     column = BoolCol
     label = u"Condition de nationnalité et de titre de séjour pour bénéficier de l'ASPA ou l'ASI"
     entity = Individu
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         ressortissant_eee = simulation.calculate('ressortissant_eee', period)
@@ -186,7 +186,7 @@ class asi_aspa_nb_alloc(Variable):
     column = IntCol
     label = u"Nombre d'allocataires ASI/ASPA"
     entity = Famille
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
@@ -205,7 +205,7 @@ class asi(Variable):
     start_date = date(2007, 1, 1)
     url = u"http://vosdroits.service-public.fr/particuliers/F16940.xhtml"
     entity = Famille
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
@@ -266,7 +266,7 @@ class aspa_couple(DatedVariable):
     column = BoolCol
     label = u"Couple au sens de l'ASPA"
     entity = Famille
-    period_unit = MONTH
+    definition_period = MONTH
 
     @dated_function(date(2002, 1, 1), date(2006, 12, 31))
     def function_2002_2006(self, simulation, period):
@@ -287,7 +287,7 @@ class aspa(Variable):
     entity = Famille
     label = u"Allocation de solidarité aux personnes agées"
     url = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):

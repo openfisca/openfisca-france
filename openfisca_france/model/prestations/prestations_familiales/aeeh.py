@@ -11,7 +11,7 @@ class aeeh_niveau_handicap(Variable):
     column = IntCol
     entity = Individu
     label = u"Catégorie de handicap prise en compte pour l'AEEH"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class aeeh(DatedVariable):
@@ -19,7 +19,7 @@ class aeeh(DatedVariable):
     entity = Famille
     label = u"Allocation d'éducation de l'enfant handicapé"
     url = "http://vosdroits.service-public.fr/particuliers/N14808.xhtml"
-    period_unit = YEAR
+    definition_period = YEAR
 
     @dated_function(start = date(2003, 1, 1))
     def function_20030101(self, simulation, period):

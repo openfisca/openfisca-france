@@ -10,7 +10,7 @@ class autonomie_financiere(Variable):
     column = BoolCol
     entity = Individu
     label = u"Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(individu, period, legislation):
         salaire_net = individu('salaire_net', period.start.period('month', 6).offset(-6), options = [ADD])
@@ -27,7 +27,7 @@ class prestations_familiales_enfant_a_charge(Variable):
     column = BoolCol
     entity = Individu
     label = u"Enfant considéré à charge au sens des prestations familiales"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(individu, period, legislation):
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
@@ -48,7 +48,7 @@ class prestations_familiales_base_ressources_individu(Variable):
     column = FloatCol
     entity = Individu
     label = u"Base ressource individuelle des prestations familiales"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(individu, period):
         annee_fiscale_n_2 = period.n_2
@@ -66,7 +66,7 @@ class biactivite(Variable):
     column = BoolCol
     entity = Famille
     label = u"Indicatrice de biactivité"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(famille, period, legislation):
         annee_fiscale_n_2 = period.n_2
@@ -84,7 +84,7 @@ class div(Variable):
     column = FloatCol
     entity = Individu
     label = u"Dividendes imposés"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(individu, period):
         rpns_pvce = individu('rpns_pvce', period)
@@ -109,7 +109,7 @@ class rev_coll(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(foyer_fiscal, period):
         # Quand rev_coll est calculé sur une année glissante, retraite_titre_onereux_net et pensions_alimentaires_versees sont calculés sur l'année légale correspondante.
@@ -133,7 +133,7 @@ class prestations_familiales_base_ressources(Variable):
     column = FloatCol
     entity = Famille
     label = u"Base ressource des prestations familiales"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(famille, period):
         '''

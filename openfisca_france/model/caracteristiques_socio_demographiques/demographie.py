@@ -7,14 +7,14 @@ class date_naissance(Variable):
     column = DateCol(default = date(1970, 1, 1))
     entity = Individu
     label = u"Date de naissance"
-    period_unit = ETERNITY
+    definition_period = ETERNITY
 
 
 class adoption(Variable):
     column = BoolCol
     entity = Individu
     label = u"Enfant adopté"
-    period_unit = MONTH
+    definition_period = MONTH
 
 
 class garde_alternee(Variable):
@@ -22,7 +22,7 @@ class garde_alternee(Variable):
     entity = Individu
     label = u'Enfant en garde alternée'
     base_function = requested_period_last_or_next_value
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
 
@@ -37,7 +37,7 @@ class activite(Variable):
         )
     entity = Individu
     label = u"Activité"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
 
@@ -45,7 +45,7 @@ class enceinte(Variable):
     column = BoolCol
     entity = Individu
     label = u"Est enceinte"
-    period_unit = MONTH
+    definition_period = MONTH
 
 
 class statut_marital(Variable):
@@ -60,7 +60,7 @@ class statut_marital(Variable):
         )
     entity = Individu
     label = u"Statut marital"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
 
@@ -69,7 +69,7 @@ class nbN(Variable):
     column = PeriodSizeIndependentIntCol
     entity = FoyerFiscal
     label = u"Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class nbR(Variable):
@@ -77,7 +77,7 @@ class nbR(Variable):
     column = PeriodSizeIndependentIntCol
     entity = FoyerFiscal
     label = u"Nombre de titulaires (autres que les enfants) de la carte invalidité d'au moins 80 %"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class caseE(Variable):
@@ -86,7 +86,7 @@ class caseE(Variable):
     entity = FoyerFiscal
     label = u"Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul"
     stop_date = date(2012, 12, 31)
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class caseF(Variable):
@@ -94,7 +94,7 @@ class caseF(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class caseG(Variable):
@@ -102,7 +102,7 @@ class caseG(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Titulaire d'une pension de veuve de guerre"
-    period_unit = YEAR
+    definition_period = YEAR
     # attention, ne pas confondre caseG et nbG qui se rapportent toutes les 2 à une "case" G, l'une étant une vraie case
     # que l'on remplt et l'autre une case que l'on coche
 
@@ -112,7 +112,7 @@ class caseH(Variable):
     column = PeriodSizeIndependentIntCol
     entity = FoyerFiscal
     label = u"Année de naissance des enfants à charge en garde alternée"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 # il ne s'agit pas à proprement parlé de la case H, les cases permettant d'indiquer l'année de naissance
@@ -127,7 +127,7 @@ class caseK(Variable):
     entity = FoyerFiscal
     label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre"
     stop_date = date(2011, 12, 31)
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class caseL(Variable):
@@ -135,7 +135,7 @@ class caseL(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant au moins 5 ans durant la période où vous viviez seul"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class caseN(Variable):
@@ -143,7 +143,7 @@ class caseN(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Vous ne viviez pas seul au 1er janvier de l'année de perception des revenus"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class caseP(Variable):
@@ -151,7 +151,7 @@ class caseP(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class caseS(Variable):
@@ -159,7 +159,7 @@ class caseS(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Vous êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class caseT(Variable):
@@ -167,9 +167,9 @@ class caseT(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Vous êtes parent isolé au 1er janvier de l'année de perception des revenus"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    # TODO: Set period_unit as YEAR and change the suggestion process (scenarios.py)
+    # TODO: Set definition_period as YEAR and change the suggestion process (scenarios.py)
 
 
 class caseW(Variable):
@@ -177,21 +177,21 @@ class caseW(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Vous ou votre conjoint (même s'il est décédé), âgés de plus de 75 ans, êtes titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class handicap(Variable):
     column = BoolCol
     entity = Individu
     label = u"Individu en situation de handicap"
-    period_unit = MONTH
+    definition_period = MONTH
 
 
 class invalidite(Variable):
     column = BoolCol
     entity = Individu
     label = u"Individu titulaire d'une carte d'invalidité"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
 
@@ -199,7 +199,7 @@ class nb_parents(Variable):
     column = PeriodSizeIndependentIntCol
     entity = Famille
     label = u"Nombre d'adultes (parents) dans la famille"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(famille, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
@@ -212,7 +212,7 @@ class maries(Variable):
     column = BoolCol(default = False)
     entity = Famille
     label = u"maries"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(famille, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
@@ -227,7 +227,7 @@ class en_couple(Variable):
     column = BoolCol
     entity = Famille
     label = u"Indicatrice de vie en couple"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
@@ -241,7 +241,7 @@ class est_enfant_dans_famille(Variable):
     column = BoolCol
     entity = Individu
     label = u"Indique que l'individu est un enfant dans une famille"
-    period_unit = ETERNITY
+    definition_period = ETERNITY
 
     def function(individu, period):
         return individu.has_role(Famille.ENFANT)
@@ -251,7 +251,7 @@ class etudiant(Variable):
     column = BoolCol(default = False)
     entity = Individu
     label = u"Indicatrice individuelle étudiant"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
@@ -265,25 +265,25 @@ class rempli_obligation_scolaire(Variable):
     column = BoolCol(default = True)
     entity = Individu
     label = u"Rempli l'obligation scolaire"
-    period_unit = MONTH
+    definition_period = MONTH
 
 
 class ressortissant_eee(Variable):
     column = BoolCol(default = True)
     entity = Individu
     label = u"Ressortissant de l'EEE ou de la Suisse."
-    period_unit = MONTH
+    definition_period = MONTH
 
 
 class duree_possession_titre_sejour(Variable):
     column = IntCol
     entity = Individu
     label = u"Durée depuis laquelle l'individu possède un titre de séjour (en années)"
-    period_unit = MONTH
+    definition_period = MONTH
 
 
 class enfant_place(Variable):
     column = BoolCol
     entity = Individu
     label = u"Enfant placé en structure spécialisée ou famille d'accueil"
-    period_unit = MONTH
+    definition_period = MONTH

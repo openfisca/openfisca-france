@@ -14,7 +14,7 @@ class allocations_temporaires_invalidite(Variable):
     column = FloatCol
     entity = Individu
     label = u"Allocations temporaires d'invalidité (ATI, fonction publique et collectivités locales)"
-    period_unit = MONTH
+    definition_period = MONTH
     # patronale, non-contributive
 
     def function(self, simulation, period):
@@ -45,7 +45,7 @@ class assiette_cotisations_sociales_public(Variable):
     column = FloatCol
     entity = Individu
     label = u"Assiette des cotisations sociales des agents titulaires de la fonction publique"
-    period_unit = MONTH
+    definition_period = MONTH
     # TODO: gestion des heures supplémentaires
 
     def function(self, simulation, period):
@@ -71,7 +71,7 @@ class contribution_exceptionnelle_solidarite(Variable):
     column = FloatCol
     entity = Individu
     label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
@@ -121,7 +121,7 @@ class fonds_emploi_hospitalier(Variable):
     column = FloatCol
     entity = Individu
     label = u"Fonds pour l'emploi hospitalier (employeur)"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
@@ -142,7 +142,7 @@ class ircantec_salarie(Variable):
     column = FloatCol
     entity = Individu
     label = u"Ircantec salarié"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
@@ -164,7 +164,7 @@ class ircantec_employeur(Variable):
     column = FloatCol
     entity = Individu
     label = u"Ircantec employeur"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
@@ -187,7 +187,7 @@ class pension_civile_salarie(Variable):
     entity = Individu
     label = u"Pension civile salarié"
     url = u"http://www.ac-besancon.fr/spip.php?article2662",
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)  # TODO: check nbi
@@ -210,7 +210,7 @@ class pension_civile_employeur(Variable):
     entity = Individu
     label = u"Cotisation patronale pension civile"
     url = u"http://www.ac-besancon.fr/spip.php?article2662"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
@@ -234,7 +234,7 @@ class rafp_salarie(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Part salariale de la retraite additionelle de la fonction publique"
-    period_unit = MONTH
+    definition_period = MONTH
     # Part salariale de la retraite additionelle de la fonction publique
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
 
@@ -263,7 +263,7 @@ class rafp_employeur(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Part patronale de la retraite additionnelle de la fonction publique"
-    period_unit = MONTH
+    definition_period = MONTH
 
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
     @dated_function(start = date(2005, 1, 1))

@@ -13,7 +13,7 @@ class pensions_alimentaires_percues(Variable):
     column = FloatCol(val_type = "monetary")
     entity = Individu
     label = u"Pensions alimentaires perçues"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
@@ -23,14 +23,14 @@ class pensions_alimentaires_percues_decl(Variable):
     column = BoolCol(default = True)
     entity = Individu
     label = u"Pension déclarée"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class pensions_alimentaires_versees_individu(Variable):
     column = FloatCol
     entity = Individu
     label = u"Pensions alimentaires versées pour un individu"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -38,7 +38,7 @@ class gains_exceptionnels(Variable):
     column = FloatCol
     entity = Individu
     label = u"Gains exceptionnels"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -46,7 +46,7 @@ class allocation_aide_retour_emploi(Variable):
     column = FloatCol
     entity = Individu
     label = u"Allocation d'aide au retour à l'emploi"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -54,7 +54,7 @@ class allocation_securisation_professionnelle(Variable):
     column = FloatCol
     entity = Individu
     label = u"Allocation de sécurisation professionnelle"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -62,7 +62,7 @@ class prime_forfaitaire_mensuelle_reprise_activite(Variable):
     column = FloatCol
     entity = Individu
     label = u"Prime forfaitaire mensuelle pour la reprise d'activité"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -70,7 +70,7 @@ class indemnites_volontariat(Variable):
     column = FloatCol
     entity = Individu
     label = u"Indemnités de volontariat"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -78,7 +78,7 @@ class dedommagement_victime_amiante(Variable):
     column = FloatCol
     entity = Individu
     label = u"Dédommagement versé aux victimes de l'amiante"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -86,7 +86,7 @@ class prestation_compensatoire(Variable):
     column = FloatCol
     entity = Individu
     label = u"Prestation compensatoire"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -102,7 +102,7 @@ class pensions_invalidite(Variable):
         QUIFOY['pac1']: u"1CZ",
         QUIFOY['pac2']: u"1DZ",
         }
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -110,7 +110,7 @@ class bourse_enseignement_sup(Variable):
     column = FloatCol
     entity = Individu
     label = u"Bourse de l'enseignement supérieur"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -121,7 +121,7 @@ class f8ta(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Retenue à la source en France ou impôt payé à l'étranger"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f8th(Variable):
@@ -129,7 +129,7 @@ class f8th(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Retenue à la source élus locaux"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f8td_2002_2005(Variable):
@@ -139,7 +139,7 @@ class f8td_2002_2005(Variable):
     label = u"Contribution exceptionnelle sur les hauts revenus"
     start_date = date(2002, 1, 1)
     stop_date = date(2005, 12, 31)
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f8td(Variable):
@@ -149,7 +149,7 @@ class f8td(Variable):
     label = u"Revenus non imposables dépassent la moitié du RFR"
     start_date = date(2011, 1, 1)
     stop_date = date(2014, 12, 31)
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f8ti(Variable):
@@ -157,7 +157,7 @@ class f8ti(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Revenus de l'étranger exonérés d'impôt"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 class f8tk(Variable):
@@ -165,7 +165,7 @@ class f8tk(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Revenus de l'étranger imposables"
-    period_unit = YEAR
+    definition_period = YEAR
 
 
 # Auto-entrepreneur : versements libératoires d’impôt sur le revenu
@@ -175,4 +175,4 @@ class f8uy(Variable):
     entity = FoyerFiscal
     label = u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu dont le remboursement est demandé"
     start_date = date(2009, 1, 1)
-    period_unit = YEAR
+    definition_period = YEAR

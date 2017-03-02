@@ -12,7 +12,7 @@ class exonere_taxe_habitation(Variable):
     entity = Menage
     label = u"Exonération de la taxe d'habitation"
     url = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         """Exonation de la taxe d'habitation
@@ -64,7 +64,7 @@ class taxe_habitation(Variable):
     entity = Menage
     label = u"Taxe d'habitation"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         last_year = period.last_year

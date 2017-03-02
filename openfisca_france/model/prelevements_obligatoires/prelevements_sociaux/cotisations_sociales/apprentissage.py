@@ -13,7 +13,7 @@ class apprenti(Variable):
     entity = Individu
     label = u"L'individu est apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         age = simulation.calculate('age', period)
@@ -32,7 +32,7 @@ class remuneration_apprenti(Variable):
     entity = Individu
     label = u"Rémunération de l'apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
-    period_unit = MONTH
+    definition_period = MONTH
 
     # Aux jeunes de 16 à 25 ans (exceptionnellement 15 ans, s'ils ont effectué la scolarité du premier cycle de
     # l'enseignement secondaire, ou, s'ils suivent une "formation apprentissage junior").
@@ -95,7 +95,7 @@ class exoneration_cotisations_employeur_apprenti(Variable):
     entity = Individu
     label = u"Exonération de cotisations employeur pour l'emploi d'un apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
-    period_unit = MONTH
+    definition_period = MONTH
     # Artisans et employeurs de moins de 11 salariés
     #
     # - exonération totale (part patronale et salariale) des charges sociales,
@@ -142,7 +142,7 @@ class exoneration_cotisations_salariales_apprenti(Variable):
     entity = Individu
     label = u"Exonération de cotisations salariales pour l'emploi d'un apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         apprenti = simulation.calculate('apprenti', period)
@@ -157,7 +157,7 @@ class prime_apprentissage(Variable):
     entity = Individu
     label = u"Prime d'apprentissage pour les entreprise employant un apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
-    period_unit = YEAR
+    definition_period = YEAR
     # L'employeur peut également recevoir de la région dans laquelle est situé l'établissement du lieu de travail,
     # une prime d'apprentissage.
     #

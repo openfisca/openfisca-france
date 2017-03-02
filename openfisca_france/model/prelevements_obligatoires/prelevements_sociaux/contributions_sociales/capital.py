@@ -35,7 +35,7 @@ class csg_cap_bar(Variable):
     entity = FoyerFiscal
     label = u"CSG sur les revenus du capital soumis au barème"
     url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
@@ -50,7 +50,7 @@ class crds_cap_bar(Variable):
     entity = FoyerFiscal
     label = u"CRDS sur les revenus du capital soumis au barème"
     url = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
@@ -65,7 +65,7 @@ class prelsoc_cap_bar(DatedVariable):
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus du capital soumis au barème"
     url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
-    period_unit = YEAR
+    definition_period = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
     def function_2002_2005(self, simulation, period):
@@ -119,7 +119,7 @@ class csg_pv_mo(Variable):
     entity = FoyerFiscal
     label = u"CSG sur les plus-values de cession de valeurs mobilières"
     url = "http://vosdroits.service-public.fr/particuliers/F21618.xhtml"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         """
@@ -136,7 +136,7 @@ class crds_pv_mo(Variable):
     entity = FoyerFiscal
     label = u"CRDS sur les plus-values de cession de valeurs mobilières"
     url = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         """
@@ -153,7 +153,7 @@ class prelsoc_pv_mo(DatedVariable):
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les plus-values de cession de valeurs mobilières"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
-    period_unit = YEAR
+    definition_period = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
     def function_20020101_20051231(self, simulation, period):
@@ -213,7 +213,7 @@ class csg_pv_immo(Variable):
     entity = FoyerFiscal
     label = u"CSG sur les plus-values immobilières"
     url = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         """
@@ -230,7 +230,7 @@ class crds_pv_immo(Variable):
     entity = FoyerFiscal
     label = u"CRDS sur les plus-values immobilières"
     url = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         """
@@ -247,7 +247,7 @@ class prelsoc_pv_immo(DatedVariable):
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les plus-values immobilières"
     url = "http://www.pap.fr/argent/impots/les-plus-values-immobilieres/a1314/l-imposition-de-la-plus-value-immobiliere"
-    period_unit = YEAR
+    definition_period = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
     def function_20020101_20051231(self, simulation, period):
@@ -307,7 +307,7 @@ class csg_fon(Variable):
     entity = FoyerFiscal
     label = u"CSG sur les revenus fonciers"
     url = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -325,7 +325,7 @@ class crds_fon(Variable):
     entity = FoyerFiscal
     label = u"CRDS sur les revenus fonciers"
     url = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -343,7 +343,7 @@ class prelsoc_fon(DatedVariable):
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus fonciers"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
-    period_unit = YEAR
+    definition_period = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
     def function_20020101_20051231(self, simulation, period):
@@ -409,7 +409,7 @@ class csg_cap_lib(Variable):
     entity = FoyerFiscal
     label = u"CSG sur les revenus du capital soumis au prélèvement libératoire"
     url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
@@ -423,7 +423,7 @@ class crds_cap_lib(Variable):
     entity = FoyerFiscal
     label = u"CRDS sur les revenus du capital soumis au prélèvement libératoire"
     url = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
@@ -438,7 +438,7 @@ class prelsoc_cap_lib(Variable):
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire"
     url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
-    period_unit = YEAR
+    definition_period = YEAR
 
     def function(self, simulation, period):
         rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)

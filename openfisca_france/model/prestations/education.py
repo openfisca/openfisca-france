@@ -16,7 +16,7 @@ class bourse_college(Variable):
     column = FloatCol
     label = u"Montant annuel de la bourse de collège"
     entity = Famille
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
@@ -56,7 +56,7 @@ class bourse_lycee_points_de_charge(Variable):
     column = FloatCol
     label = u"Nombre de points de charge pour la bourse de lycée"
     entity = Famille
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         age_holder = simulation.compute('age', period)
@@ -81,7 +81,7 @@ class bourse_lycee_nombre_parts(Variable):
     column = FloatCol
     label = u"Nombre de parts pour le calcul du montant de la bourse de lycée"
     entity = Famille
-    period_unit = MONTH
+    definition_period = MONTH
 
     def function(self, simulation, period):
         points_de_charge = simulation.calculate('bourse_lycee_points_de_charge', period)
@@ -109,7 +109,7 @@ class bourse_lycee(Variable):
     column = FloatCol
     label = u"Montant annuel de la bourse de lycée"
     entity = Famille
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
@@ -141,4 +141,4 @@ class scolarite(Variable):
         )
     entity = Individu
     label = u"Scolarité de l'enfant : collège, lycée..."
-    period_unit = MONTH
+    definition_period = MONTH

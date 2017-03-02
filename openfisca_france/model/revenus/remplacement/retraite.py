@@ -7,7 +7,7 @@ class retraite_brute(Variable):
     column = FloatCol()
     entity = Individu
     label = u"Retraite brute"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
@@ -17,12 +17,12 @@ class aer(Variable):
     column = IntCol
     entity = Individu
     label = u"Allocation équivalent retraite (AER)"
-    period_unit = MONTH
+    definition_period = MONTH
 
 
 class retraite_combattant(Variable):
     column = FloatCol
     entity = Individu
     label = u"Retraite du combattant"
-    period_unit = MONTH
+    definition_period = MONTH
     set_input = set_input_divide_by_period
