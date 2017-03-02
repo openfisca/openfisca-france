@@ -543,12 +543,13 @@ class aide_logement_taux_loyer(Variable):
 
 
 class aide_logement_participation_personelle(Variable):
+    base_function = requested_period_added_value
     column = FloatCol
     entity = Famille
     label = u"Participation personelle de la famille au loyer"
 
     def function(self, simulation, period):
-
+        period = period.this_month
         al = simulation.legislation_at(period.start).prestations.aides_logement
 
         R = simulation.calculate('aide_logement_base_ressources', period)

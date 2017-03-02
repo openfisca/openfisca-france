@@ -551,6 +551,40 @@ class cotisations_non_contributives(Variable):
         return period, cotisations_employeur_non_contributives + cotisations_salariales_non_contributives
 
 
+class revenu_disponible_famille(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Revenu disponible du foyer social (famille)"
+
+    def function(self, simulation, period):
+            period = period.this_year
+
+        revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
+        revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
+
+        pensions_holder = simulation.compute('pensions', period)
+        pensions = self.sum_by_entity(pensions_holder)
+
+        revenus_du_capital_holder = simulation.compute('revenus_du_capital', period)
+        revenus_du_capital = self.sum_by_entity(revenus_du_capital_holder)
+
+        prestations_sociales = simulation.calculate('prestations_sociales', period)
+
+        ppe_holder = simulation.compute('ppe', period)
+        ppe = self.cast_from_entity_to_role(ppe_holder, role = VOUS)
+        ppe = self.sum_by_entity(ppe)
+
+        irpp_holder = simulation.compute('irpp', period)
+        irpp = self.cast_from_entity_to_role(irpp_holder, role = VOUS)  # Le déclarant paie tout l'IRPP
+        irpp = self.sum_by_entity(irpp)
+        taxe_habitation_holder = simulation.compute('taxe_habitation', period)
+        taxe_habitation = self.cast_from_entity_to_role(taxe_habitation_holder, role = PREF)  # La personne de référence du ménage paie la TH
+        taxe_habitation = self.sum_by_entity(taxe_habitation)
+        impots_directs = irpp + taxe_habitation
+
+        return period, revenus_du_travail + pensions + revenus_du_capital + prestations_sociales + ppe + impots_directs
+
+
 class prelsoc_cap(Variable):
     column = FloatCol
     entity = Individu

@@ -194,7 +194,6 @@ class aah_non_calculable(Variable):
 
 
 class aah_base(Variable):
-    calculate_output = calculate_output_add
     column = FloatCol
     label = u"Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
     entity = Individu
@@ -217,25 +216,24 @@ class aah_base(Variable):
 
 
 class aah(Variable):
-    calculate_output = calculate_output_add
     column = FloatCol
     label = u"Allocation adulte handicapé (Individu) mensualisée"
     entity = Individu
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
-        period = period.this_month
-        aah_base = simulation.calculate('aah_base', period)
-        # caah
-        # mva
-        return period, aah_base
+    # def function(self, simulation, period):
+    #     period = period.this_month
+    #     aah_base = simulation.calculate('aah_base', period)
+    #     # caah
+    #     # mva
+    #     return period, aah_base
 
 
 class caah(DatedVariable):
-    calculate_output = calculate_output_add
     column = FloatCol
     label = u"Complément d'allocation adulte handicapé (mensualisé)"
     entity = Individu
+    set_input = set_input_divide_by_period
     '''
         Complément d'allocation adulte handicapé : complément de ressources ou majoration vie autonome.
 
@@ -304,7 +302,7 @@ class caah(DatedVariable):
         elig_cpl = ((aah > 0) | (benef_asi > 0))
         # TODO: & logement indépendant & inactif 12 derniers mois
         # & capa de travail < 5% & taux d'incapacité >= 80%
-        compl_ress = elig_cpl * max_(garantie_ressources - aah_montant, 0)
+        compl_ress = elig_cpl * max_(garantie_ressources - aah_montant, 0) * 0
 
         elig_mva = (al > 0) * ((aah > 0) | (benef_asi > 0))
         # TODO: & logement indépendant & pas de revenus professionnels

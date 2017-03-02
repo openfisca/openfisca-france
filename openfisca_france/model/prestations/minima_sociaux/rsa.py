@@ -177,8 +177,8 @@ class rsa_base_ressources_minima_sociaux(DatedVariable):
         aspa = famille('aspa', period)
         asi = famille('asi', period)
         ass = famille('ass', period)
-        aah_i = famille.members('aah', three_previous_months, options = [ADD])
-        caah_i = famille.members('caah', three_previous_months, options = [ADD])
+        aah_i = famille.members('aah', three_previous_months, options = [ADD]) / 3
+        caah_i = famille.members('caah', three_previous_months, options = [ADD]) / 3
 
         return period, aspa + asi + ass + famille.sum(aah_i + caah_i)
 

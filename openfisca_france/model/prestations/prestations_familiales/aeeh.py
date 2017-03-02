@@ -18,6 +18,7 @@ class aeeh(DatedVariable):
     entity = Famille
     label = u"Allocation d'éducation de l'enfant handicapé"
     url = "http://vosdroits.service-public.fr/particuliers/N14808.xhtml"
+    set_input = set_input_divide_by_period
 
     @dated_function(start = date(2003, 1, 1))
     def function_20030101(self, simulation, period):
