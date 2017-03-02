@@ -3,7 +3,7 @@
 from datetime import date
 
 from openfisca_core.columns import (AgeCol, BoolCol, DateCol, EnumCol, FixedStrCol, FloatCol, IntCol,
-    PeriodSizeIndependentIntCol, StrCol, MONTH, YEAR, PERMANENT)
+    PeriodSizeIndependentIntCol, StrCol)
 from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import (ADD, calculate_output_add, calculate_output_divide,
     calculate_output_first_month,
@@ -16,6 +16,7 @@ from openfisca_core.base_functions import (
     requested_period_last_value,
     )
 from openfisca_core.formula_helpers import apply_thresholds, switch
+from openfisca_core.periods import MONTH, YEAR, ETERNITY
 
 from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage
 
@@ -70,7 +71,7 @@ __all__ = [
     'VOUS',
     'MONTH',
     'YEAR',
-    'PERMANENT',
+    'ETERNITY',
     ]
 
 CATEGORIE_SALARIE = Enum([
