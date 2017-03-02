@@ -1,9 +1,9 @@
 - name: "Âge (en années) par défaut"
-  period: "2013"
+  period: "2013-01"
   output_variables:
     age: 43
 - name: "Âge (en années) par défaut"
-  period: "2014"
+  period: "2014-01"
   output_variables:
     age: 44
 - name: "Âge (en années) d'après l'âge en mois"

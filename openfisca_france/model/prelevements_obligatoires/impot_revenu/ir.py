@@ -62,7 +62,6 @@ class age(Variable):
     label = u"Âge (en années)"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-    calculate_output = calculate_output_first_month
 
     def function(self, simulation, period):
         def compare_periods(x, y):
