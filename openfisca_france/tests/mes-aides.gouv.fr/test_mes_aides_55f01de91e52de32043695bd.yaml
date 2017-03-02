@@ -10,7 +10,8 @@ keywords:
 period: month:2015-09
 absolute_error_margin: 4
 individus:
-- enfant_a_charge: true
+- enfant_a_charge:
+    2015: true
   activite: 3
   age: 64
   age_en_mois: 775

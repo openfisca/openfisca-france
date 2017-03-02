@@ -7,7 +7,8 @@ description: |
 period: "month:2015-09"
 relative_error_margin: 0.02
 individus:
-  enfant_a_charge: true
+  enfant_a_charge:
+    2015: true
   activite: 1
   age: 30
   age_en_mois: 369

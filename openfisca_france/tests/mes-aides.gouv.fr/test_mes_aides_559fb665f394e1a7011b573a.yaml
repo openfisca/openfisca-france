@@ -9,7 +9,8 @@ keywords:
 period: month:2015-07
 relative_error_margin: 0.02
 individus:
-- enfant_a_charge: true
+- enfant_a_charge:
+    2015: true
   age: 65
   age_en_mois: 780
   date_naissance: '1950-06-27'
@@ -29,7 +30,8 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- enfant_a_charge: true
+- enfant_a_charge:
+    2015: true
   age: 33
   age_en_mois: 404
   date_naissance: '1981-10-11'

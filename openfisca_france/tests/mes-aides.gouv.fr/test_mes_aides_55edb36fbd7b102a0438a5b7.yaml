@@ -7,7 +7,8 @@ keywords:
 description: "Plafond Couple 1 revenu 1 enfant à charge né après le 1/4/14 : 35 729"
 period: "month:2015-09"
 individus:
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 55
     age_en_mois: 666
     date_naissance: "1960-03-02"
@@ -71,7 +72,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 54
     age_en_mois: 659
     date_naissance: "1960-09-08"
@@ -89,7 +91,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 0
     age_en_mois: 4
     date_naissance: "2015-04-08"

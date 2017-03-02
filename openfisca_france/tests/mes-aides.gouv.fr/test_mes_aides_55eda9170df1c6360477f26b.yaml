@@ -6,7 +6,8 @@ keywords:
 description: 'Couple 2 revenus 1 enfant à charge né avant le 1/4/14: 47217'
 period: month:2015-09
 individus:
-- enfant_a_charge: true
+- enfant_a_charge:
+    2015: true
   age: 55
   age_en_mois: 660
   date_naissance: '1960-08-09'
@@ -70,7 +71,8 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- enfant_a_charge: true
+- enfant_a_charge:
+    2015: true
   age: 54
   age_en_mois: 659
   date_naissance: '1960-09-08'
@@ -134,7 +136,8 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- enfant_a_charge: true
+- enfant_a_charge:
+    2015: true
   age: 2
   age_en_mois: 24
   date_naissance: '2013-08-09'

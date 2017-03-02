@@ -8,7 +8,8 @@ description: "Plafond Couple 1 revenu 2 enfants à charge dont 1 né après le 1
 period: "month:2015-09"
 relative_error_margin: 0.02
 individus:
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 55
     age_en_mois: 668
     date_naissance: "1960-01-01"
@@ -72,7 +73,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 54
     age_en_mois: 659
     date_naissance: "1960-09-08"
@@ -90,7 +92,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 4
     age_en_mois: 59
     date_naissance: "2010-09-09"
@@ -107,7 +110,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 0
     age_en_mois: 3
     date_naissance: "2015-05-09"

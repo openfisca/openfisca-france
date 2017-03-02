@@ -41,7 +41,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 3
     age_en_mois: 45
     date_naissance: "2011-08-09"

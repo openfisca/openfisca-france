@@ -9,7 +9,8 @@ description: |
 period: "month:2015-07"
 relative_error_margin: 0.02
 individus:
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 34
     age_en_mois: 408
     date_naissance: "1981-07-11"
@@ -50,7 +51,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     activite: 1
     age: 29
     age_en_mois: 356
@@ -155,7 +157,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 3
     age_en_mois: 43
     date_naissance: "2011-12-17"
@@ -172,7 +175,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 8
     age_en_mois: 97
     date_naissance: "2007-06-01"
@@ -189,7 +193,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 10
     age_en_mois: 120
     date_naissance: "2005-07-16"
@@ -207,7 +212,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 13
     age_en_mois: 156
     date_naissance: "2002-07-10"
@@ -225,7 +231,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 14
     age_en_mois: 179
     date_naissance: "2000-08-07"
