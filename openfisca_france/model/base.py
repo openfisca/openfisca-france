@@ -6,7 +6,6 @@ from openfisca_core.columns import (AgeCol, BoolCol, DateCol, EnumCol, FixedStrC
     PeriodSizeIndependentIntCol, StrCol)
 from openfisca_core.enumerations import Enum
 from openfisca_core.formulas import (ADD, calculate_output_add, calculate_output_divide,
-    calculate_output_first_month,
     dated_function, DIVIDE, missing_value, set_input_dispatch_by_period, set_input_divide_by_period)
 from openfisca_core.variables import DatedVariable, Variable
 from openfisca_core.base_functions import (
@@ -28,7 +27,6 @@ __all__ = [
     'BoolCol',
     'calculate_output_add',
     'calculate_output_divide',
-    'calculate_output_first_month',
     'CATEGORIE_SALARIE',
     'CHEF',
     'CONJ',
