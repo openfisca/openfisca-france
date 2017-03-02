@@ -557,7 +557,7 @@ class revenu_disponible_famille(Variable):
     label = u"Revenu disponible du foyer social (famille)"
 
     def function(self, simulation, period):
-            period = period.this_year
+        period = period.this_year
 
         revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
         revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
