@@ -17,11 +17,12 @@ class cmu_acs_eligibilite(Variable):
 
     def function(self, simulation, period):
         previous_year = period.start.period('year').offset(-1)
+        this_year = period.this_year
         age_min = simulation.legislation_at(period.start).cmu.age_limite_pac
         nb_enfants = simulation.calculate('cmu_nb_pac', period)
 
         # Une personne de 25 ans ne doit pas être à charge fiscale, ni hébergée par ses parents, ni recevoir de pensions alimentaires pour pouvoir bénéficier de la CMU individuellement.
-        a_charge_des_parents = simulation.calculate('enfant_a_charge', period)
+        a_charge_des_parents = simulation.calculate('enfant_a_charge', this_year)
         habite_chez_parents = simulation.calculate('habite_chez_parents', period)
         recoit_pension = simulation.calculate_add('pensions_alimentaires_percues', previous_year) > 0
         condition_independance = not_(a_charge_des_parents + habite_chez_parents + recoit_pension)

@@ -157,12 +157,13 @@ class enfant_a_charge(Variable):
     entity = Individu
     label = u"Enfant à charge non marié, de moins de 18 ans au 1er janvier de l'année de perception des" \
         u" revenus, ou né durant la même année, ou handicapés quel que soit son âge"
-    definition_period = MONTH
-    calculate_output = calculate_output_first_month
+    definition_period = YEAR
 
     def function(individu, period):
-        age = individu('age', period)
-        handicap = individu('handicap', period)
+        janvier = period.this_month
+        decembre = janvier.offset(11, 'month')
+        age = individu('age', janvier)
+        handicap = individu('handicap', decembre)
         is_pac = individu.has_role(FoyerFiscal.PERSONNE_A_CHARGE)
 
         return is_pac * ((age < 18) + handicap)
@@ -179,7 +180,7 @@ class nbF(Variable):
     def function(self, simulation, period):
         janvier = period.this_month
 
-        enfant_a_charge = simulation.compute('enfant_a_charge', janvier)
+        enfant_a_charge = simulation.compute('enfant_a_charge', period)
         garde_alternee = simulation.compute('garde_alternee', janvier)
         return self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array))
 
@@ -194,7 +195,7 @@ class nbG(Variable):
     def function(self, simulation, period):
         janvier = period.this_month
 
-        enfant_a_charge = simulation.compute('enfant_a_charge', janvier)
+        enfant_a_charge = simulation.compute('enfant_a_charge', period)
         garde_alternee = simulation.compute('garde_alternee', janvier)
         invalidite = simulation.compute('invalidite', janvier)
         return self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array) * invalidite.array)
@@ -210,7 +211,7 @@ class nbH(Variable):
     def function(self, simulation, period):
         janvier = period.this_month
 
-        enfant_a_charge = simulation.compute('enfant_a_charge', janvier)
+        enfant_a_charge = simulation.compute('enfant_a_charge', period)
         garde_alternee = simulation.compute('garde_alternee', janvier)
         return self.sum_by_entity(enfant_a_charge.array * garde_alternee.array)
 
@@ -225,7 +226,7 @@ class nbI(Variable):
     def function(self, simulation, period):
         janvier = period.this_month
 
-        enfant_a_charge = simulation.compute('enfant_a_charge', janvier)
+        enfant_a_charge = simulation.compute('enfant_a_charge', period)
         garde_alternee = simulation.compute('garde_alternee', janvier)
         invalidite = simulation.compute('invalidite', janvier)
         return self.sum_by_entity(enfant_a_charge.array * garde_alternee.array * invalidite.array)
