@@ -8,7 +8,7 @@ class date_naissance(Variable):
     entity = Individu
     is_permanent = True
     label = u"Date de naissance"
-    period_unit = PERMANENT
+    period_unit = ETERNITY
 
 
 class adoption(Variable):
@@ -242,7 +242,7 @@ class est_enfant_dans_famille(Variable):
     column = BoolCol
     entity = Individu
     label = u"Indique que l'individu est un enfant dans une famille"
-    period_unit = PERMANENT
+    period_unit = ETERNITY
 
     def function(individu, period):
         return individu.has_role(Famille.ENFANT)

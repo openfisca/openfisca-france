@@ -1484,7 +1484,7 @@ class tns_auto_entrepreneur_type_activite(Variable):
     entity = Individu
     is_permanent = True
     label = u"Type d'activité de l'auto-entrepreneur"
-    period_unit = PERMANENT
+    period_unit = ETERNITY
 
 
 # TODO remove this ugly is_permanent
@@ -1493,7 +1493,7 @@ class tns_micro_entreprise_type_activite(Variable):
     entity = Individu
     is_permanent = True
     label = u"Type d'activité de la micro-entreprise"
-    period_unit = PERMANENT
+    period_unit = ETERNITY
 
 
 # Input sur le dernier exercice. Par convention, sur l'année dernière.
