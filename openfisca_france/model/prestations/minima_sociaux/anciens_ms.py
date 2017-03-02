@@ -184,7 +184,7 @@ class rsa_activite_individu(Variable):
         '''
         Note: le partage en moitié est un point de législation, pas un choix arbitraire
         '''
-        janvier = period.this_month
+        janvier = period.first_month
 
         rsa_activite = individu.famille('rsa_activite', period, options = [ADD])
         marie = individu('statut_marital', janvier) == 1

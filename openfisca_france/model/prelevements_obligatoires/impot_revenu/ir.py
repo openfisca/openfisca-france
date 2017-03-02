@@ -159,7 +159,7 @@ class enfant_a_charge(Variable):
     definition_period = YEAR
 
     def function(individu, period):
-        janvier = period.this_month
+        janvier = period.first_month
         decembre = janvier.offset(11, 'month')
         age = individu('age', janvier)
         handicap = individu('handicap', decembre)
@@ -177,7 +177,7 @@ class nbF(Variable):
     definition_period = YEAR
 
     def function(self, simulation, period):
-        janvier = period.this_month
+        janvier = period.first_month
 
         enfant_a_charge = simulation.compute('enfant_a_charge', period)
         garde_alternee = simulation.compute('garde_alternee', janvier)
@@ -192,7 +192,7 @@ class nbG(Variable):
     definition_period = YEAR
 
     def function(self, simulation, period):
-        janvier = period.this_month
+        janvier = period.first_month
 
         enfant_a_charge = simulation.compute('enfant_a_charge', period)
         garde_alternee = simulation.compute('garde_alternee', janvier)
@@ -208,7 +208,7 @@ class nbH(Variable):
     definition_period = YEAR
 
     def function(self, simulation, period):
-        janvier = period.this_month
+        janvier = period.first_month
 
         enfant_a_charge = simulation.compute('enfant_a_charge', period)
         garde_alternee = simulation.compute('garde_alternee', janvier)
@@ -223,7 +223,7 @@ class nbI(Variable):
     definition_period = YEAR
 
     def function(self, simulation, period):
-        janvier = period.this_month
+        janvier = period.first_month
 
         enfant_a_charge = simulation.compute('enfant_a_charge', period)
         garde_alternee = simulation.compute('garde_alternee', janvier)
@@ -238,7 +238,7 @@ class enfant_majeur_celibataire_sans_enfant(Variable):
     definition_period = YEAR
 
     def function(individu, period):
-        janvier = period.this_month
+        janvier = period.first_month
 
         age = individu('age', janvier)
         handicap = individu('handicap', janvier)
@@ -277,7 +277,7 @@ class maries_ou_pacses(Variable):
     definition_period = YEAR
 
     def function(foyer_fiscal, period):
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.this_month)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
         marie_ou_pacse = (statut_marital == 1) | (statut_marital == 5)
 
         return marie_ou_pacse
@@ -290,7 +290,7 @@ class celibataire_ou_divorce(Variable):
     definition_period = YEAR
 
     def function(foyer_fiscal, period):
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.this_month)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
         celibataire_ou_divorce = (statut_marital == 2) | (statut_marital == 3)
 
         return celibataire_ou_divorce
@@ -303,7 +303,7 @@ class veuf(Variable):
     definition_period = YEAR
 
     def function(foyer_fiscal, period):
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.this_month)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
         veuf = (statut_marital == 4)
 
         return veuf
@@ -316,7 +316,7 @@ class jeune_veuf(Variable):
     definition_period = YEAR
 
     def function(foyer_fiscal, period):
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.this_month)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
         jeune_veuf = (statut_marital == 6)
 
         return jeune_veuf
@@ -1047,7 +1047,7 @@ class ir_plaf_qf(Variable):
         caseN = simulation.calculate('caseN', period)
         caseP = simulation.calculate('caseP', period)
         caseS = simulation.calculate('caseS', period)
-        caseT = simulation.calculate('caseT', period.this_month)
+        caseT = simulation.calculate('caseT', period.first_month)
         caseW = simulation.calculate('caseW', period)
         nbF = simulation.calculate('nbF', period)
         nbG = simulation.calculate('nbG', period)
@@ -2542,8 +2542,8 @@ class abat_spe(Variable):
         abattements_rni = legislation(period).impot_revenu.abattements_rni
         abattements_personne_agee_ou_invalide = abattements_rni.personne_agee_ou_invalide
 
-        ageV = foyer_fiscal.declarant_principal('age', period.this_month)
-        ageC = foyer_fiscal.conjoint('age', period.this_month)
+        ageV = foyer_fiscal.declarant_principal('age', period.first_month)
+        ageC = foyer_fiscal.conjoint('age', period.first_month)
 
         invV, invC = caseP, caseF
         nb_elig_as = (1 * (((ageV >= 65) | invV) & (ageV > 0)) +
@@ -2648,7 +2648,7 @@ class nbptr(Variable):
         caseF = simulation.calculate('caseF', period)
         caseS = simulation.calculate('caseS', period)
         caseL = simulation.calculate('caseL', period)
-        caseT = simulation.calculate('caseT', period.this_month)
+        caseT = simulation.calculate('caseT', period.first_month)
         quotient_familial = simulation.legislation_at(period.start).impot_revenu.quotient_familial
 
         no_pac = nb_pac == 0  # Aucune personne à charge en garde exclusive
@@ -2855,7 +2855,7 @@ class ppe_brute(Variable):
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         veuf = simulation.calculate('veuf', period)
-        caseT = simulation.calculate('caseT', period.this_month)
+        caseT = simulation.calculate('caseT', period.first_month)
         caseL = simulation.calculate('caseL', period)
         nbH = simulation.calculate('nbH', period)
         ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe

@@ -398,7 +398,7 @@ class paje_cmg(Variable):
         '''
         en_couple = famille('en_couple', period)
         af_nbenf = famille('af_nbenf', period)
-        base_ressources = famille('prestations_familiales_base_ressources', period.this_month)
+        base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
         empl_dir = famille('empl_dir', period)
         ass_mat = famille('ass_mat', period)
         gar_dom = famille('gar_dom', period)
@@ -573,7 +573,7 @@ class apje_avant_cumul(Variable):
         '''
         Allocation pour jeune enfant
         '''
-        base_ressources = famille('prestations_familiales_base_ressources', period.this_month)
+        base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
         biactivite = famille('biactivite', period, options = [ADD])
         isole = not_(famille('en_couple', period))
         P = legislation(period).prestations.prestations_familiales

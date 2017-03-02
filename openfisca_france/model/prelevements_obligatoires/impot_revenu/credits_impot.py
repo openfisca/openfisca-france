@@ -1135,7 +1135,7 @@ class jeunes_ind(Variable):
         cf. http://www3.finances.gouv.fr/calcul_impot/2009/pdf/form-2041-GY.pdf
         Attention seuls certains
         '''
-        janvier = period.this_month
+        janvier = period.first_month
 
         age = simulation.calculate('age', janvier)
         nbptr_holder = simulation.compute('nbptr', period)

@@ -338,7 +338,7 @@ class exoneration_is_creation_zrr(Variable):
     calculate_output = calculate_output_divide
 
     def function(self, simulation, period):
-        decembre = period.this_month.offset(11, 'month')
+        decembre = period.first_month.offset(11, 'month')
         effectif_entreprise = simulation.calculate('effectif_entreprise', decembre)
         entreprise_benefice = simulation.calculate_add('entreprise_benefice', period)
         # TODO: MODIFIER avec création d'entreprise

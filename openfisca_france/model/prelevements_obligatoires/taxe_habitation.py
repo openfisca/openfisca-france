@@ -26,7 +26,7 @@ class exonere_taxe_habitation(Variable):
         bénéficiaire de l'allocation aux adultes handicapés (AAH),
         atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
         """
-        janvier = period.this_month
+        janvier = period.first_month
 
         aah_holder = simulation.compute_add('aah', period)
         age_holder = simulation.compute('age', janvier)

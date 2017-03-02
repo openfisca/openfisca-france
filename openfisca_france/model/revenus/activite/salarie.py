@@ -112,7 +112,7 @@ class ppe_tp_sa(Variable):
     definition_period = YEAR
 
     def function(individu, period):
-        mois = period.this_month
+        mois = period.first_month
         indicateur = individu('contrat_de_travail', mois) == 0
         # On parcours tous les mois de l'année pour s'assurer que l'individu était employé à temps plein
         # durant toute l'année.
@@ -702,7 +702,7 @@ class indemnite_residence(Variable):
     definition_period = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
+        period = period.first_month
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         salaire_de_base = individu('salaire_de_base', period)
         categorie_salarie = individu('categorie_salarie', period)
@@ -744,7 +744,7 @@ class primes_fonction_publique(Variable):
     definition_period = MONTH
 
     def function(self, simulation, period):
-        # period = period.this_month
+        # period = period.first_month
         categorie_salarie = simulation.calculate('categorie_salarie', period)
 
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)

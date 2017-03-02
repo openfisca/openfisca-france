@@ -39,7 +39,7 @@ class impot_revenu_lps(Variable):
     definition_period = YEAR
 
     def function(self, simulation, period):
-        janvier = period.this_month
+        janvier = period.first_month
 
         nbF_holder = simulation.compute('nbF')
         nbF = self.cast_from_entity_to_role(nbF_holder, role = QUIFOY['vous'])

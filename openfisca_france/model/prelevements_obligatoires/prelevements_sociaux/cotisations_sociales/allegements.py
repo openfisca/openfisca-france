@@ -337,7 +337,7 @@ def compute_allegement_fillon(simulation, period):
         https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
     """
     # Be careful ! Period is several months
-    first_month = period.this_month
+    first_month = period.first_month
 
     assiette = simulation.calculate_add('assiette_allegement', period)
     smic_proratise = simulation.calculate_add('smic_proratise', period)
@@ -451,7 +451,7 @@ def compute_allegement_annuel(simulation, period, variable_name, compute_functio
 
 def compute_allegement_anticipe(simulation, period, variable_name, compute_function):
     if period.start.month < 12:
-        return compute_function(simulation, period.this_month)
+        return compute_function(simulation, period.first_month)
     if period.start.month == 12:
         cumul = simulation.calculate_add(
             variable_name,
@@ -463,7 +463,7 @@ def compute_allegement_anticipe(simulation, period, variable_name, compute_funct
 
 def compute_allegement_progressif(simulation, period, variable_name, compute_function):
     if period.start.month == 1:
-        return compute_function(simulation, period.this_month)
+        return compute_function(simulation, period.first_month)
 
     if period.start.month > 1:
         up_to_this_month = period.start.offset('first-of', 'year').period('month', period.start.month)

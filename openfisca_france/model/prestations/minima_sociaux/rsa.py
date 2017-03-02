@@ -567,7 +567,7 @@ class rsa_revenu_activite_individu(DatedVariable):
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
         return sum(
             individu(type_revenu, last_3_months, options = [ADD]) * not_(
-                (individu(type_revenu, period.this_month) == 0) *
+                (individu(type_revenu, period.first_month) == 0) *
                 (individu(type_revenu, period.last_month) > 0) *
                 not_(has_ressources_substitution)
                 )

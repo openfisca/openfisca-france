@@ -25,7 +25,7 @@ class plfr2014(Reform):
 
         @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
         def function(self, simulation, period):
-            janvier = period.this_month
+            janvier = period.first_month
 
             nb_adult = simulation.calculate('nb_adult')
             nb_parents = simulation.calculate('nb_parents', period = janvier)

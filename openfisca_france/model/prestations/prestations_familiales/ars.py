@@ -19,7 +19,7 @@ class ars(Variable):
         '''
         Allocation de rentrée scolaire brute de CRDS
         '''
-        janvier = period.this_month
+        janvier = period.first_month
         septembre = period.start.offset('first-of', 'year').offset(9, 'month').period('month')
         af_nbenf = famille('af_nbenf', septembre)
         base_ressources = famille('prestations_familiales_base_ressources', janvier)
