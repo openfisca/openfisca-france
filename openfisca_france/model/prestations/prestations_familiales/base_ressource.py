@@ -30,7 +30,6 @@ class prestations_familiales_enfant_a_charge(Variable):
 
     def function(individu, period, legislation):
         period = period.this_month
-
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         age = individu('age', period)
