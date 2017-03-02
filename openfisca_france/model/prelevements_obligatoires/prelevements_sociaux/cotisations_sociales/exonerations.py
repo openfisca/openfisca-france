@@ -334,24 +334,25 @@ class exoneration_is_creation_zrr(Variable):
     entity = Individu
     label = u"Exonrérations fiscales pour création d'une entreprise en zone de revitalisation rurale (ZRR)"
     url = 'http://www.apce.com/pid11690/exonerations-d-impots-zrr.html?espace=1&tp=1'
-    definition_period = MONTH
-    calculate_output = calculate_output_add
+    definition_period = YEAR
+    calculate_output = calculate_output_divide
 
     def function(self, simulation, period):
-        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
+        decembre = period.this_month.offset(11, 'month')
+        effectif_entreprise = simulation.calculate('effectif_entreprise', decembre)
         entreprise_benefice = simulation.calculate_add('entreprise_benefice', period)
         # TODO: MODIFIER avec création d'entreprise
-        contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)  # 0: CDI, 1:CDD
+        contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', decembre)  # 0: CDI, 1:CDD
 
-        contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
-        contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
+        contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', decembre)
+        contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', decembre)
         duree_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
         # TODO: move to legislation parameters file
         contrat_de_travail_eligible = (
             contrat_de_travail_duree == 0) + (
             (contrat_de_travail_duree == 1) * (duree_eligible)
             )
-        zone_revitalisation_rurale = simulation.calculate('zone_revitalisation_rurale', period)
+        zone_revitalisation_rurale = simulation.calculate('zone_revitalisation_rurale', decembre)
         eligible = (
             contrat_de_travail_eligible *
             (effectif_entreprise <= 50) *
