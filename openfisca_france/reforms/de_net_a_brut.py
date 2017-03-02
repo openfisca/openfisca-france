@@ -3,12 +3,11 @@
 from __future__ import division
 
 from openfisca_core import columns
-from openfisca_core.columns import MONTH
 from openfisca_core.reforms import Reform
-from openfisca_core.variables import Variable
 from scipy.optimize import fsolve
 
 from .. import entities
+from ..model.base import *
 
 def calculate_net_from(salaire_de_base, simulation, period, requested_variable_names):
 
