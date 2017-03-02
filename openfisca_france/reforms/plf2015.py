@@ -51,7 +51,7 @@ def modify_legislation_json(reference_legislation_json_copy):
 
 class decote(DatedVariable):
     label = u"Décote IR 2015 appliquée sur IR 2014 (revenus 2013)"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_2013(self, simulation, period):

@@ -18,7 +18,7 @@ class cotisations_employeur(Variable):
     entity = Individu
     label = u"Cotisations sociales employeur"
     set_input = set_input_divide_by_period
-    period_behavior = MONTH
+    period_unit = MONTH
     calculate_output = calculate_output_add
 
     def function(self, simulation, period):
@@ -40,7 +40,7 @@ class cotisations_employeur_contributives(Variable):
     entity = Individu
     label = u"Cotisations sociales employeur contributives"
     set_input = set_input_divide_by_period
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         ags = simulation.calculate('ags', period)
@@ -86,7 +86,7 @@ class cotisations_employeur_non_contributives(Variable):
     entity = Individu
     label = u"Cotisations sociales employeur non-contributives"
     set_input = set_input_divide_by_period
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         penibilite = simulation.calculate_add('penibilite', period)
@@ -117,7 +117,7 @@ class cotisations_salariales_contributives(Variable):
     entity = Individu
     label = u"Cotisations sociales salariales contributives"
     set_input = set_input_divide_by_period
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         agff_salarie = simulation.calculate_add('agff_salarie', period)
@@ -160,7 +160,7 @@ class cotisations_salariales_non_contributives(Variable):
     entity = Individu
     label = u"Cotisations sociales salariales non-contributives"
     set_input = set_input_divide_by_period
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         contribution_exceptionnelle_solidarite = simulation.calculate_add(
@@ -183,7 +183,7 @@ class cotisations_salariales(Variable):
     entity = Individu
     label = u"Cotisations sociales salariales"
     set_input = set_input_divide_by_period
-    period_behavior = MONTH
+    period_unit = MONTH
     calculate_output = calculate_output_add
 
     def function(self, simulation, period):

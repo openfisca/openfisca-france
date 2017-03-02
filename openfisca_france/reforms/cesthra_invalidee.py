@@ -41,7 +41,7 @@ class cesthra(Variable):
     column = columns.FloatCol
     entity = entities.FoyerFiscal
     label = u"Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
-    period_behavior = YEAR
+    period_unit = YEAR
     # PLF 2013 (rejeté) : 'taxe à 75%'
 
     def function(self, simulation, period):
@@ -57,7 +57,7 @@ class cesthra(Variable):
 
 class irpp(Variable):
     label = u"Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''

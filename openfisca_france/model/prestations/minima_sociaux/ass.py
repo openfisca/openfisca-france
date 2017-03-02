@@ -12,14 +12,14 @@ class ass_precondition_remplie(Variable):
     column = BoolCol
     entity = Individu
     label = u"Éligible à l'ASS"
-    period_behavior = MONTH
+    period_unit = MONTH
 
 
 class ass(Variable):
     column = FloatCol
     label = u"Montant de l'ASS pour une famille"
     entity = Famille
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
@@ -48,7 +48,7 @@ class ass_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources de l'ASS"
     entity = Famille
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         ass_base_ressources_i_holder = simulation.compute('ass_base_ressources_individu', period)
@@ -64,7 +64,7 @@ class ass_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle de l'ASS"
     entity = Individu
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         # Rolling year
@@ -108,7 +108,7 @@ class ass_base_ressources_conjoint(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle pour le conjoint du demandeur de l'ASS"
     entity = Individu
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         last_month = period.start.period('month').offset(-1)
@@ -176,7 +176,7 @@ class ass_eligibilite_individu(Variable):
     column = BoolCol
     label = u"Éligibilité individuelle à l'ASS"
     entity = Individu
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         # 1 si demandeur d'emploi

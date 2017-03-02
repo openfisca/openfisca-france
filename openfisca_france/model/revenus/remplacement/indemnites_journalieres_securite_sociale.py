@@ -7,7 +7,7 @@ class indemnites_journalieres_maternite(Variable):
     column = FloatCol
     entity = Individu
     label = u"Indemnités journalières de maternité"
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -15,7 +15,7 @@ class indemnites_journalieres_paternite(Variable):
     column = FloatCol
     entity = Individu
     label = u"Indemnités journalières de paternité"
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -23,7 +23,7 @@ class indemnites_journalieres_adoption(Variable):
     column = FloatCol
     entity = Individu
     label = u"Indemnités journalières d'adoption"
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -31,7 +31,7 @@ class indemnites_journalieres_maladie(Variable):
     column = FloatCol
     entity = Individu
     label = u"Indemnités journalières de maladie"
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -39,7 +39,7 @@ class indemnites_journalieres_accident_travail(Variable):
     column = FloatCol
     entity = Individu
     label = u"Indemnités journalières d'accident du travail"
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -47,7 +47,7 @@ class indemnites_journalieres_maladie_professionnelle(Variable):
     column = FloatCol
     entity = Individu
     label = u"Indemnités journalières de maladie professionnelle"
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -55,7 +55,7 @@ class indemnites_journalieres(Variable):
     column = FloatCol
     label = u"Total des indemnités journalières"
     entity = Individu
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         ressources = [
@@ -76,7 +76,7 @@ class indemnites_journalieres_imposables(Variable):
     label = u"Total des indemnités journalières imposables"
     entity = Individu
     url = "http://vosdroits.service-public.fr/particuliers/F3152.xhtml"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         indemnites_journalieres = simulation.calculate('indemnites_journalieres', period)
@@ -93,4 +93,4 @@ class date_arret_de_travail(Variable):
     entity = Individu
     is_permanent = True
     label = u"Date depuis laquelle la personne est en arrêt de travail"
-    period_behavior = MONTH
+    period_unit = MONTH

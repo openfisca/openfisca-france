@@ -20,7 +20,7 @@ class assiette_csg(Variable):
     column = columns.FloatCol
     entity = entities.Individu
     label = u"Assiette de la CSG"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         salaire_de_base = simulation.calculate_add('salaire_de_base', period)
@@ -36,7 +36,7 @@ class impot_revenu_lps(Variable):
     column = columns.FloatCol
     entity = entities.Individu
     label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         janvier = period.this_month
@@ -63,7 +63,7 @@ class revenu_disponible(Variable):
     entity = entities.Menage
     label = u"Revenu disponible du ménage"
     url = u"http://fr.wikipedia.org/wiki/Revenu_disponible"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         impot_revenu_lps_holder = simulation.compute('impot_revenu_lps')

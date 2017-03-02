@@ -24,7 +24,7 @@ class assiette_allegement(Variable):
     column = FloatCol
     entity = Individu
     label = u"Assiette des allègements de cotisations sociales employeur"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate_add('assiette_cotisations_sociales', period)
@@ -40,7 +40,7 @@ class coefficient_proratisation(Variable):
     column = FloatCol
     entity = Individu
     label = u"Coefficient de proratisation du salaire notamment pour le calcul du SMIC"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         #  * Tous les calculs sont faits sur le mois *
@@ -131,7 +131,7 @@ class credit_impot_competitivite_emploi(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Crédit d'imôt pour la compétitivité et l'emploi"
-    period_behavior = MONTH
+    period_unit = MONTH
     calculate_output = calculate_output_add
 
     @dated_function(date(2013, 1, 1))
@@ -153,7 +153,7 @@ class aide_premier_salarie(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Aide à l'embauche d'un premier salarié"
-    period_behavior = MONTH
+    period_unit = MONTH
     calculate_output = calculate_output_add
 
     @dated_function(start=date(2015, 6, 9))
@@ -217,7 +217,7 @@ class aide_embauche_pme(DatedVariable):
     entity = Individu
     label = u"Aide à l'embauche d'un salarié pour les PME"
     url = u"http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
-    period_behavior = MONTH
+    period_unit = MONTH
     calculate_output = calculate_output_add
 
     @dated_function(start=date(2016, 1, 18))
@@ -292,7 +292,7 @@ class smic_proratise(Variable):
     column = FloatCol
     entity = Individu
     label = u"SMIC proratisé (mensuel)"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
@@ -307,7 +307,7 @@ class allegement_fillon(DatedVariable):
     entity = Individu
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
     url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542"
-    period_behavior = MONTH
+    period_unit = MONTH
     calculate_output = calculate_output_add
 
     # Attention : cet allègement a des règles de cumul spécifiques
@@ -381,7 +381,7 @@ class allegement_cotisation_allocations_familiales(DatedVariable):
     label = u"Allègement de la cotisation d'allocations familiales sur les bas et moyens salaires"
     entity = Individu
     url = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     @dated_function(date(2015, 1, 1))
     def function(self, simulation, period):

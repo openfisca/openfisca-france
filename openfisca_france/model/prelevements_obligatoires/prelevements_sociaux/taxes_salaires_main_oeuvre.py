@@ -31,7 +31,7 @@ class conge_individuel_formation_cdd(Variable):
     column = FloatCol
     entity = Individu
     label = u"Contribution au financement des congé individuel de formation (CIF) des salariées en CDD"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     # TODO: date de début
     def function(self, simulation, period):
@@ -47,7 +47,7 @@ class redevable_taxe_apprentissage(Variable):
     column = BoolCol
     entity = Individu
     label = u"Entreprise redevable de la taxe d'apprentissage"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
@@ -61,7 +61,7 @@ class contribution_developpement_apprentissage(Variable):
     column = FloatCol
     entity = Individu
     label = u"Contribution additionnelle au développement de l'apprentissage"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
@@ -81,7 +81,7 @@ class contribution_supplementaire_apprentissage(DatedVariable):
     entity = Individu
     label = u"Contribution supplémentaire à l'apprentissage"
     url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     @dated_function(date(2010, 1, 1))
     def function(self, simulation, period):
@@ -120,7 +120,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
     column = FloatCol
     entity = Individu
     label = u"Cotisation sociales employeur main d'oeuvre"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         conge_individuel_formation_cdd = simulation.calculate('conge_individuel_formation_cdd', period)
@@ -158,7 +158,7 @@ class fnal(Variable):
     column = FloatCol
     entity = Individu
     label = u"Cotisation fonds national action logement (FNAL)"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         fnal_tranche_a = simulation.calculate('fnal_tranche_a', period)
@@ -170,7 +170,7 @@ class fnal_tranche_a(Variable):
     column = FloatCol
     entity = Individu
     label = u"Cotisation fonds national action logement (FNAL tout employeur)"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         taille_entreprise = simulation.calculate('taille_entreprise', period)
@@ -188,7 +188,7 @@ class fnal_tranche_a_plus_20(Variable):
     column = FloatCol
     entity = Individu
     label = u"Fonds national action logement (FNAL, employeur avec plus de 20 salariés)"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         taille_entreprise = simulation.calculate('taille_entreprise', period)
@@ -206,7 +206,7 @@ class financement_organisations_syndicales(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Contribution patronale au financement des organisations syndicales"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     @dated_function(date(2015, 1, 1))
     def function(self, simulation, period):
@@ -226,7 +226,7 @@ class formation_professionnelle(Variable):
     entity = Individu
     label = u"Formation professionnelle"
     url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         taille_entreprise = simulation.calculate('taille_entreprise', period)
@@ -257,7 +257,7 @@ class participation_effort_construction(Variable):
     column = FloatCol
     entity = Individu
     label = u"Participation à l'effort de construction"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
@@ -285,7 +285,7 @@ class taxe_apprentissage(Variable):
     entity = Individu
     label = u"Taxe d'apprentissage (employeur, entreprise redevable de la taxe d'apprentissage uniquement)"
     url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
@@ -322,7 +322,7 @@ class taxe_salaires(Variable):
     column = FloatCol
     entity = Individu
     label = u"Taxe sur les salaires"
-    period_behavior = MONTH
+    period_unit = MONTH
 # Voir
 # http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8920/fichedescriptiveformulaire_8920.pdf
 

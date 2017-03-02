@@ -37,7 +37,7 @@ class salaire_de_base(Variable):
     entity = entities.Individu
     label = u"Salaire brut ou traitement indiciaire brut"
     url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         # Calcule le salaire brut à partir du salaire net par inversion numérique.

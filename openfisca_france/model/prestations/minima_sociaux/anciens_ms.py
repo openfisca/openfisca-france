@@ -14,7 +14,7 @@ class api(Variable):
     label = u"Allocation de parent isolé"
     url = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
     stop_date = date(2009, 5, 31)
-    period_behavior = MONTH
+    period_unit = MONTH
     calculate_output = calculate_output_add
 
     def function(famille, period, legislation):
@@ -103,7 +103,7 @@ class psa(Variable):
     start_date = date(2009, 4, 1)
     stop_date = date(2009, 4, 30)
     url = u"http://www.service-public.fr/actualites/001077.html"
-    period_behavior = MONTH
+    period_unit = MONTH
     calculate_output = calculate_output_add
 
     def function(famille, period, legislation):
@@ -139,7 +139,7 @@ class rmi(Variable):
     label = u"Revenu Minimum d'Insertion"
     start_date = date(1988, 12, 1)
     stop_date = date(2009, 5, 31)
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(famille, period):
         activite_i = famille.members('activite', period)
@@ -161,7 +161,7 @@ class rsa_activite(Variable):
     label = u"Revenu de solidarité active - activité"
     start_date = date(2009, 6, 1)
     stop_date = date(2015, 12, 31)
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(famille, period):
         rsa = famille('rsa', period, period)
@@ -178,7 +178,7 @@ class rsa_activite_individu(Variable):
     label = u"Revenu de solidarité active - activité au niveau de l'individu"
     start_date = date(2009, 6, 1)
     stop_date = date(2015, 12, 31)
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(individu, period):
         '''

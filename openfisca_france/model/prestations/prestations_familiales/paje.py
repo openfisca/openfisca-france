@@ -14,49 +14,49 @@ class inactif(Variable):
     column = BoolCol
     entity = Famille
     label = u"Parent inactif (PAJE-CLCA)"
-    period_behavior = MONTH
+    period_unit = MONTH
 
 
 class partiel1(Variable):
     column = BoolCol
     entity = Famille
     label = u"Parent actif à moins de 50% (PAJE-CLCA)"
-    period_behavior = MONTH
+    period_unit = MONTH
 
 
 class partiel2(Variable):
     column = BoolCol
     entity = Famille
     label = u"Parent actif entre 50% et 80% (PAJE-CLCA)"
-    period_behavior = MONTH
+    period_unit = MONTH
 
 
 class opt_colca(Variable):
     column = BoolCol
     entity = Famille
     label = u"Opte pour le COLCA"
-    period_behavior = MONTH
+    period_unit = MONTH
 
 
 class empl_dir(Variable):
     column = BoolCol
     entity = Famille
     label = u"Emploi direct (CLCMG)"
-    period_behavior = MONTH
+    period_unit = MONTH
 
 
 class ass_mat(Variable):
     column = BoolCol
     entity = Famille
     label = u"Assistante maternelle (CLCMG)"
-    period_behavior = MONTH
+    period_unit = MONTH
 
 
 class gar_dom(Variable):
     column = BoolCol
     entity = Famille
     label = u"Garde à domicile (CLCMG)"
-    period_behavior = MONTH
+    period_unit = MONTH
 
 
 class paje(Variable):
@@ -65,7 +65,7 @@ class paje(Variable):
     label = u"PAJE - Ensemble des prestations"
     start_date = date(2004, 1, 1)
     url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje-0"  # noqa
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(famille, period):
         '''
@@ -87,7 +87,7 @@ class paje_base(Variable):
     label = u"Allocation de base de la PAJE"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_divide_by_period
 
     def function(famille, period, legislation):
@@ -177,7 +177,7 @@ class paje_base_enfant_eligible_avant_reforme_2014(Variable):
     column = BoolCol
     entity = Individu
     label = u"Enfant ouvrant droit à la PAJE de base né avant le 1er avril 2014"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(individu, period, legislation):
         age = individu('age', period)
@@ -195,7 +195,7 @@ class paje_base_enfant_eligible_apres_reforme_2014(Variable):
     column = BoolCol
     entity = Individu
     label = u"Enfant ouvrant droit à la PAJE de base né après le 1er avril 2014"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(individu, period, legislation):
         age = individu('age', period)
@@ -216,7 +216,7 @@ class paje_naissance(Variable):
     label = u"Allocation de naissance de la PAJE"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(famille, period, legislation):
         '''
@@ -254,7 +254,7 @@ class paje_clca(Variable):
     label = u"PAJE - Complément de libre choix d'activité"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_divide_by_period
 
     def function(famille, period, legislation):
@@ -323,7 +323,7 @@ class paje_prepare(Variable):
     entity = Famille
     set_input = set_input_divide_by_period
     label = u"Prestation Partagée d’éducation de l’Enfant (PreParE)"
-    period_behavior = MONTH
+    period_unit = MONTH
 
 
 class paje_clca_taux_plein(Variable):
@@ -332,7 +332,7 @@ class paje_clca_taux_plein(Variable):
     label = u"Indicatrice Clca taux plein"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(famille, period):
         paje_clca = famille('paje_clca', period)
@@ -347,7 +347,7 @@ class paje_clca_taux_partiel(Variable):
     label = u"Indicatrice Clca taux partiel"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(famille, period):
         paje_clca = famille('paje_clca', period)
@@ -365,7 +365,7 @@ class paje_cmg(Variable):
     label = u"PAJE - Complément de libre choix du mode de garde"
     start_date = date(2004, 1, 1)
     url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"  # noqa
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(famille, period, legislation):
         '''
@@ -477,7 +477,7 @@ class paje_colca(Variable):
     label = u"PAJE - Complément optionnel de libre choix d'activité"
     start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(famille, period, legislation):
         '''
@@ -506,7 +506,7 @@ class ape_avant_cumul(Variable):
     label = u"Allocation parentale d'éducation, avant prise en compte de la non-cumulabilité avec le CF et l'APJE"
     stop_date = date(2003, 12, 31)
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(famille, period, legislation):
         '''
@@ -567,7 +567,7 @@ class apje_avant_cumul(Variable):
     label = u"Allocation pour le jeune enfant, avant prise en compte de la non-cumulabilité avec le CF et l'APE"
     stop_date = date(2003, 12, 31)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(famille, period, legislation):
         '''
@@ -611,7 +611,7 @@ class ape(Variable):
     label = u"Allocation parentale d'éducation"
     stop_date = date(2003, 12, 31)
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(famille, period):
         '''
@@ -631,7 +631,7 @@ class apje(Variable):
     label = u"Allocation pour le jeune enfant"
     stop_date = date(2003, 12, 31)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(famille, period):
         # L'APJE n'est pas cumulable avec le complément familial et l'APE

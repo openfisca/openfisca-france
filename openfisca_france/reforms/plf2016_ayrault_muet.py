@@ -49,14 +49,14 @@ class variator(Variable):
     column = FloatCol(default = 1)
     entity = FoyerFiscal
     label = u'Multiplicateur du seuil de régularisation'
-    period_behavior = YEAR
+    period_unit = YEAR
 
 
 class reduction_csg(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Réduction dégressive de CSG"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2015, 1, 1))
     def function_2015__(self, simulation, period):
@@ -81,7 +81,7 @@ class reduction_csg_foyer_fiscal(Variable):
     entity = FoyerFiscal
     label = u"Réduction dégressive de CSG des memebres du foyer fiscal"
     column = FloatCol
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         reduction_csg = simulation.calculate('reduction_csg', period)
@@ -92,7 +92,7 @@ class reduction_csg_nette(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Réduction dégressive de CSG"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2015, 1, 1))
     def function_2015__(individu, period):
@@ -105,7 +105,7 @@ class ppe_elig_bis(Variable):
     column = BoolCol(default = False)
     entity = FoyerFiscal
     label = u"ppe_elig_bis"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -129,7 +129,7 @@ class regularisation_reduction_csg(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Régularisation complète réduction dégressive de CSG"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2015, 1, 1))
     def function_2015__(self, simulation, period):

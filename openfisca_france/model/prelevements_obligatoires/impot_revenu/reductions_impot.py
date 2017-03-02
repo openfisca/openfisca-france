@@ -16,7 +16,7 @@ class reductions(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"reductions"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
     def function_20020101_20021231(self, simulation, period):
@@ -449,7 +449,7 @@ class adhcga(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"adhcga"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -469,7 +469,7 @@ class assvie(Variable):
     label = u"assvie"
     start_date = date(2002, 1, 1)
     stop_date = date(2004, 12, 31)
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -490,7 +490,7 @@ class cappme(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"cappme"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
     def function_20020101_20021231(self, simulation, period):
@@ -652,7 +652,7 @@ class cotsyn(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"cotsyn"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -688,7 +688,7 @@ class creaen(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"creaen"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
     def function_20060101_20081231(self, simulation, period):
@@ -761,7 +761,7 @@ class deffor(Variable):
     entity = FoyerFiscal
     label = u"deffor"
     start_date = date(2006, 1, 1)
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -778,7 +778,7 @@ class daepad(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"daepad"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -796,7 +796,7 @@ class dfppce(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"dfppce"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2003, 12, 31))
     def function_20020101_20031231(self, simulation, period):
@@ -975,7 +975,7 @@ class doment(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"doment"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
     def function_20050101_20051231(self, simulation, period):
@@ -1274,7 +1274,7 @@ class domlog(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"domlog"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
     def function_20020101_20021231(self, simulation, period):
@@ -1473,7 +1473,7 @@ class domsoc(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"domsoc"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2010, 1, 1), stop = date(2012, 12, 31))
     def function_20100101_20121231(self, simulation, period):
@@ -1524,7 +1524,7 @@ class donapd(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"donapd"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2010, 12, 31))
     def function_20020101_20101231(self, simulation, period):
@@ -1553,7 +1553,7 @@ class duflot(Variable):
     entity = FoyerFiscal
     label = u"duflot"
     start_date = date(2013, 1, 1)
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -1575,7 +1575,7 @@ class ecodev(Variable):
     label = u"ecodev"
     start_date = date(2009, 1, 1)
     stop_date = date(2009, 12, 31)
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -1593,7 +1593,7 @@ class ecpess(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"ecpess"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -1616,7 +1616,7 @@ class garext(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"garext"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
     def function_20020101_20021231(self, simulation, period):
@@ -1665,7 +1665,7 @@ class intagr(Variable):
     entity = FoyerFiscal
     label = u"intagr"
     start_date = date(2005, 1, 1)
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -1686,7 +1686,7 @@ class intcon(Variable):
     label = u"intcon"
     start_date = date(2004, 1, 1)
     stop_date = date(2005, 12, 31)
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -1706,7 +1706,7 @@ class intemp(Variable):
     label = u"intemp"
     start_date = date(2002, 1, 1)
     stop_date = date(2003, 12, 31)
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -1725,7 +1725,7 @@ class invfor(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"invfor"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
     def function_20020101_20051231(self, simulation, period):
@@ -1880,7 +1880,7 @@ class invlst(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"invlst"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
     def function_20040101_20041231(self, simulation, period):
@@ -2097,7 +2097,7 @@ class invrev(Variable):
     label = u"invrev"
     start_date = date(2002, 1, 1)
     stop_date = date(2003, 12, 31)
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -2124,7 +2124,7 @@ class locmeu(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"locmeu"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
     def function_20090101_20091231(self, simulation, period):
@@ -2278,7 +2278,7 @@ class mohist(Variable):
     entity = FoyerFiscal
     label = u"mohist"
     start_date = date(2008, 1, 1)
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -2295,7 +2295,7 @@ class patnat(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"patnat"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
     def function_20100101_20101231(self, simulation, period):
@@ -2356,7 +2356,7 @@ class prcomp(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Prestations compensatoires"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -2392,7 +2392,7 @@ class reduction_impot_exceptionnelle(Variable):
     label = u"Réduction d'impôt exceptionnelle"
     start_date = date(2013, 1, 1)
     stop_date = date(2013, 12, 31)
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         nb_adult = simulation.calculate('nb_adult', period)
@@ -2409,7 +2409,7 @@ class repsoc(Variable):
     entity = FoyerFiscal
     label = u"repsoc"
     start_date = date(2003, 1, 1)
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -2428,7 +2428,7 @@ class resimm(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"resimm"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2009, 1, 1), stop = date(2010, 12, 31))
     def function_20090101_20101231(self, simulation, period):
@@ -2514,7 +2514,7 @@ class rsceha(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"rsceha"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -2534,7 +2534,7 @@ class saldom(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"saldom"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2004, 12, 31))
     def function_20020101_20041231(self, simulation, period):
@@ -2625,7 +2625,7 @@ class scelli(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"scelli"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
     def function_20090101_20091231(self, simulation, period):
@@ -2944,7 +2944,7 @@ class sofica(Variable):
     entity = FoyerFiscal
     label = u"sofica"
     start_date = date(2006, 1, 1)
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         '''
@@ -2967,7 +2967,7 @@ class sofipe(Variable):
     label = u"sofipe"
     start_date = date(2009, 1, 1)
     stop_date = date(2011, 1, 1)
-    period_behavior = YEAR
+    period_unit = YEAR
 
     def function(self, simulation, period):
         """
@@ -2988,7 +2988,7 @@ class spfcpi(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"spfcpi"
-    period_behavior = YEAR
+    period_unit = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
     def function_20020101_20021231(self, simulation, period):

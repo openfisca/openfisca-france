@@ -44,7 +44,7 @@ class plf2016(Reform):
 
     class decote(DatedVariable):
         label = u"Décote IR 2016 appliquée en 2015 sur revenus 2014"
-        period_behavior = YEAR
+        period_unit = YEAR
 
         @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
         def function_2014(self, simulation, period):
@@ -115,7 +115,7 @@ class plf2016_counterfactual(Reform):
 
     class decote(DatedVariable):
         label = u"Décote IR 2015 appliquée sur revenus 2015 (contrefactuel)"
-        period_behavior = YEAR
+        period_unit = YEAR
 
         @dated_function(start = date(2015, 1, 1))
         def function_2015__(self, simulation, period):
@@ -126,7 +126,7 @@ class plf2016_counterfactual(Reform):
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
     class reduction_impot_exceptionnelle(DatedVariable):
-        period_behavior = YEAR
+        period_unit = YEAR
 
         @dated_function(start = date(2015, 1, 1), stop = date(2015, 12, 31))
         def function_2015(self, simulation, period):
@@ -144,7 +144,7 @@ class plf2016_counterfactual(Reform):
 
     class reductions(DatedVariable):
         label = u"Somme des réductions d'impôt"
-        period_behavior = YEAR
+        period_unit = YEAR
 
         @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
         def function_20130101_20131231(self, simulation, period):
@@ -274,7 +274,7 @@ class plf2016_counterfactual_2014(Reform):
     key = 'plf2016_counterfactual_2014'
 
     class decote(DatedVariable):
-        period_behavior = YEAR
+        period_unit = YEAR
 
         @dated_function(start = date(2015, 1, 1))
         def function_2015(self, simulation, period):
@@ -285,7 +285,7 @@ class plf2016_counterfactual_2014(Reform):
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
     class reduction_impot_exceptionnelle(DatedVariable):
-        period_behavior = YEAR
+        period_unit = YEAR
 
         @dated_function(start = date(2015, 1, 1), stop = date(2015, 12, 31))
         def function_2015(self, simulation, period):
@@ -303,7 +303,7 @@ class plf2016_counterfactual_2014(Reform):
 
     class reductions(DatedVariable):
         label = u"Somme des réductions d'impôt"
-        period_behavior = YEAR
+        period_unit = YEAR
 
         @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
         def function_20130101_20131231(self, simulation, period):

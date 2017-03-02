@@ -12,7 +12,7 @@ class jei_date_demande(Variable):
     column = DateCol(default = date(2099, 12, 31))
     entity = Individu
     label = u"Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)"
-    period_behavior = MONTH
+    period_unit = MONTH
 
 
 class exoneration_cotisations_employeur_geographiques(Variable):
@@ -20,7 +20,7 @@ class exoneration_cotisations_employeur_geographiques(Variable):
     entity = Individu
     label = u"Exonérations de cotisations employeur dépendant d'une zone géographique"
     url = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         exoneration_cotisations_employeur_zfu = simulation.calculate_add('exoneration_cotisations_employeur_zfu',
@@ -41,7 +41,7 @@ class exoneration_cotisations_employeur_jei(Variable):
     entity = Individu
     label = u"Exonrérations de cotisations employeur pour une jeune entreprise innovante"
     url = "http://www.apce.com/pid1653/jeune-entreprise-innovante.html?pid=1653&pagination=2"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         assiette_allegement = simulation.calculate('assiette_allegement', period)
@@ -89,7 +89,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
     entity = Individu
     label = u"Exonrérations de cotisations employeur pour l'embauche en zone franche urbaine (ZFU)"
     url = "http://www.apce.com/pid553/exoneration-dans-les-zfu.html?espace=1&tp=1&pagination=2"
-    period_behavior = MONTH
+    period_unit = MONTH
 
 # TODO
 # Ce dispositif d'exonération sociale est fermé depuis le 1er janvier 2015 mais reste applicable aux entreprises qui
@@ -240,7 +240,7 @@ class exoneration_cotisations_employeur_zrd(Variable):
     entity = Individu
     label = u"Exonrérations de cotisations employeur pour l'embauche en zone de restructuration de la Défense (ZRD)"
     url = "http://www.apce.com/pid11668/exoneration-dans-les-zrd.html?espace=1&tp=1"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         assiette_allegement = simulation.calculate('assiette_allegement', period)
@@ -278,7 +278,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
     entity = Individu
     label = u"Exonrérations de cotisations employeur pour l'embauche en zone de revitalisation rurale (ZRR)"
     url = "http://www.apce.com/pid538/embauches-en-zru-et-zrr.html?espace=1&tp=1"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     # Les entreprises et groupements d'employeurs exerçant une activité industrielle, commerciale, artisanale, agricole
     # ou libérale et cotisant au régime d'assurance chômage.
@@ -334,7 +334,7 @@ class exoneration_is_creation_zrr(Variable):
     entity = Individu
     label = u"Exonrérations fiscales pour création d'une entreprise en zone de revitalisation rurale (ZRR)"
     url = 'http://www.apce.com/pid11690/exonerations-d-impots-zrr.html?espace=1&tp=1'
-    period_behavior = MONTH
+    period_unit = MONTH
     calculate_output = calculate_output_add
 
     def function(self, simulation, period):
@@ -393,7 +393,7 @@ class jeune_entreprise_innovante(Variable):
     column = BoolCol
     entity = Individu
     label = u"L'entreprise est une jeune entreprise innovante"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         # Toute entreprise existante au 1er janvier 2004 ou créée entre le 1er janvier 2004 et le 31 décembre 2016 à
@@ -458,7 +458,7 @@ class bassin_emploi_redynamiser(Variable):
     # La liste des bassins d'emploi à redynamiser a été fixée par le décret n°2007-228 du 20 février 2007.
     # Actuellement, deux régions sont concernées : Champagne-Ardenne (zone d'emploi de la Vallée de la Meuse)
     # et Midi-Pyrénées (zone d'emploi de Lavelanet).
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
@@ -470,7 +470,7 @@ class zone_restructuration_defense(Variable):
     column = BoolCol
     entity = Individu
     label = u"L'entreprise est située dans une zone de restructuration de la Défense (ZRD)"
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_dispatch_by_period
 
     def function(self, simulation, period):
@@ -482,7 +482,7 @@ class zone_franche_urbaine(Variable):
     column = BoolCol
     entity = Individu
     label = u"L'entreprise est située danns une zone franche urbaine (ZFU)"
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_dispatch_by_period
 
     def function(self, simulation, period):
@@ -494,7 +494,7 @@ class zone_revitalisation_rurale(Variable):
     column = BoolCol
     entity = Individu
     label = u"L'entreprise est située dans une zone de revitalisation rurale (ZRR)"
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_dispatch_by_period
 
     def function(self, simulation, period):

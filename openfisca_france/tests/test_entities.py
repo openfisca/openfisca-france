@@ -15,25 +15,25 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 class af(Variable):
     column = FloatCol
     entity = Famille
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_divide_by_period
 
 class salaire(Variable):
     column = FloatCol
     entity = Individu
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_divide_by_period
 
 class age(Variable):
     column = IntCol
     entity = Individu
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_dispatch_by_period
 
 class autonomie_financiere(Variable):
     column = BoolCol
     entity = Individu
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_divide_by_period
 
 
@@ -42,7 +42,7 @@ class depcom(Variable):
     entity = Menage
     is_permanent = True
     label = u"""Code INSEE "depcom" de la commune de résidence de la famille"""
-    period_behavior = PERMANENT
+    period_unit = PERMANENT
 
 # This tests are more about core than france, but we need france entities to run some of them.
 # We use a dummy TBS to run the tests faster

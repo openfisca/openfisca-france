@@ -13,7 +13,7 @@ class asf_elig_enfant(Variable):
     column = BoolCol(default = False)
     entity = Individu
     label = u"Enfant pouvant ouvrir droit à l'ASF"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(individu, period, legislation):
         age = individu('age', period)
@@ -32,7 +32,7 @@ class asf_elig(Variable):
     column = BoolCol(default = False)
     entity = Famille
     label = u"Éligibilité à l'ASF"
-    period_behavior = MONTH
+    period_unit = MONTH
 
     def function(famille, period):
         pensions_alimentaires_percues = famille.members('pensions_alimentaires_percues', period)
@@ -49,7 +49,7 @@ class asf(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation de soutien familial (ASF)"
-    period_behavior = MONTH
+    period_unit = MONTH
     set_input = set_input_divide_by_period
 
     def function(famille, period, legislation):
