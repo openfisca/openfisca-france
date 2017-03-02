@@ -6,7 +6,6 @@ from openfisca_france.model.base import *  # noqa
 class date_naissance(Variable):
     column = DateCol(default = date(1970, 1, 1))
     entity = Individu
-    is_permanent = True
     label = u"Date de naissance"
     period_unit = ETERNITY
 

@@ -40,7 +40,6 @@ class autonomie_financiere(Variable):
 class depcom(Variable):
     column = FixedStrCol(max_length = 5)
     entity = Menage
-    is_permanent = True
     label = u"""Code INSEE "depcom" de la commune de résidence de la famille"""
     period_unit = ETERNITY
 
