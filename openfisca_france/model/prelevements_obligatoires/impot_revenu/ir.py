@@ -8,6 +8,7 @@ import logging
 from numpy import (datetime64, logical_and as and_, logical_not as not_, logical_or as or_, logical_xor as xor_,
     maximum as max_, minimum as min_, round)
 
+from openfisca_core import periods
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
@@ -93,11 +94,18 @@ class age_en_mois(Variable):
     calculate_output = calculate_output_first_month
 
     def function(self, simulation, period):
+
+        def compare_periods(x, y):
+            a = x[0]
+            b = y[0]
+            
+            return periods.compare_period_start(a, b) or periods.compare_period_size(a, b)
+
         # If age_en_mois is known at the same day of another month, compute the new age_en_mois from it.
         holder = self.holder
         start = period.start
         if holder._array_by_period is not None:
-            for last_period, last_array in sorted(holder._array_by_period.iteritems(), reverse = True):
+            for last_period, last_array in sorted(holder._array_by_period.iteritems(), cmp = compare_periods, reverse = True):
                 last_start = last_period.start
                 if last_start.day == start.day:
                     return last_array + ((start.year - last_start.year) * 12 + (start.month - last_start.month))
