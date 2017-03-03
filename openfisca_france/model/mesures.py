@@ -37,34 +37,24 @@ class type_menage(Variable):
     entity = Menage
     label = u"Type de ménage"
 
-    def function(self, simulation, period):
+    def function(menage, period):
         '''
         Type de menage
         TODO: prendre les enfants du ménage et non ceux de la famille
         '''
         period = period.this_year
-        en_couple_holder = simulation.compute('en_couple', period)
-        af_nbenf_holder = simulation.compute('af_nbenf', period)
-
-        af_nbenf = self.cast_from_entity_to_role(af_nbenf_holder, role = CHEF)
-        af_nbenf = self.sum_by_entity(af_nbenf)
-        isole = not_(self.cast_from_entity_to_role(en_couple_holder, role = CHEF))
-        isole = self.sum_by_entity(isole)
-
-        _0_kid = af_nbenf == 0
-        _1_kid = af_nbenf == 1
-        _2_kid = af_nbenf == 2
-        _3_kid = af_nbenf >= 3
-
+        af_nbenf = menage.personne_de_reference.famille('af_nbenf')
+        isole = not_(menage.personne_de_reference.famille('en_couple'))
         return period, (
-            0 * (isole & _0_kid) +  # Célibataire
-            1 * (not_(isole) & _0_kid) +  # Couple sans enfants
-            2 * (not_(isole) & _1_kid) +  # Couple un enfant
-            3 * (not_(isole) & _2_kid) +  # Couple deux enfants
-            4 * (not_(isole) & _3_kid) +  # Couple trois enfants et plus
-            5 * (isole & _1_kid) +  # Famille monoparentale un enfant
-            6 * (isole & _2_kid) +  # Famille monoparentale deux enfants
-            7 * (isole & _3_kid))  # Famille monoparentale trois enfants et plus
+            0 * (isole * (af_nbenf == 0)) +  # Célibataire
+            1 * (not_(isole) * (af_nbenf == 0)) +  # Couple sans enfants
+            2 * (not_(isole) * (af_nbenf == 1)) +  # Couple un enfant
+            3 * (not_(isole) * (af_nbenf == 2)) +  # Couple deux enfants
+            4 * (not_(isole) * (af_nbenf == 3)) +  # Couple trois enfants et plus
+            5 * (isole * (af_nbenf == 1)) +  # Famille monoparentale un enfant
+            6 * (isole * (af_nbenf == 2)) +  # Famille monoparentale deux enfants
+            7 * (isole * (af_nbenf == 3))
+            )  # Famille monoparentale trois enfants et plus
 
 
 class revenu_disponible(Variable):
@@ -575,10 +565,10 @@ class revenu_disponible_famille(Variable):
         ppe = self.sum_by_entity(ppe)
 
         irpp_holder = simulation.compute('irpp', period)
-        irpp = self.cast_from_entity_to_role(irpp_holder, role = VOUS)  # Le déclarant paie tout l'IRPP
+        irpp = self.cast_from_entity_to_role(irpp_holder, role = VOUS)  # Le déclarant paie tout l'IRPP
         irpp = self.sum_by_entity(irpp)
         taxe_habitation_holder = simulation.compute('taxe_habitation', period)
-        taxe_habitation = self.cast_from_entity_to_role(taxe_habitation_holder, role = PREF)  # La personne de référence du ménage paie la TH
+        taxe_habitation = self.cast_from_entity_to_role(taxe_habitation_holder, role = PREF)  # La personne de référence du ménage paie la TH
         taxe_habitation = self.sum_by_entity(taxe_habitation)
         impots_directs = irpp + taxe_habitation
 
