@@ -19,6 +19,24 @@ class taux_incapacite(Variable):
     label = u"Taux d'incapacité"
     definition_period = MONTH
 
+
+# Cette formule se base sur les revenus imposables annuels. Est-ce vraiment le cas pour l'ASI et l'ASPA ?
+class revenus_fonciers_minima_sociaux(Variable):
+    column = FloatCol
+    entity = Individu
+    label = u"Revenus fonciers pour la base ressource du rmi/rsa"
+    definition_period = MONTH
+
+    def function(individu, period):
+        period_declaration = period.this_year
+        f4ba = individu.foyer_fiscal('f4ba', period_declaration)
+        f4be = individu.foyer_fiscal('f4be', period_declaration)
+
+
+        # On projette les revenus du foyer fiscal seulement sur le déclarant principal
+        return (f4ba + f4be) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
+
+
 class asi_aspa_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base ressources individuelle du minimum vieillesse/ASPA"

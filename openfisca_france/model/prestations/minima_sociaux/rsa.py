@@ -123,7 +123,6 @@ class rsa_base_ressources_individu(Variable):
             'pensions_invalidite',
             'prestation_compensatoire',
             'prime_forfaitaire_mensuelle_reprise_activite',
-            'revenus_fonciers_minima_sociaux',
             'rsa_base_ressources_patrimoine_individu',
             'rsa_indemnites_journalieres_hors_activite',
             ]
@@ -573,22 +572,6 @@ class rsa_revenu_activite_individu(DatedVariable):
                 )
             for type_revenu in types_revenus_activite
             ) / 3
-
-
-class revenus_fonciers_minima_sociaux(Variable):
-    column = FloatCol
-    entity = Individu
-    label = u"Revenus fonciers pour la base ressource du rmi/rsa"
-    definition_period = MONTH
-
-    def function(individu, period):
-        period_declaration = period.this_year
-        f4ba = individu.foyer_fiscal('f4ba', period_declaration)
-        f4be = individu.foyer_fiscal('f4be', period_declaration)
-
-
-        # On projette les revenus du foyer fiscal seulement sur le déclarant principal
-        return (f4ba + f4be) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
 
 
 class rsa_fictif(Variable):
