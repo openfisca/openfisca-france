@@ -1,5 +1,4 @@
 name: Pas d'eval forfaitaire si RNC > 1015 fois le SMIC
-ignore: True
 keywords:
   - al
   - base ressources

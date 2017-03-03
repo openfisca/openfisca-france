@@ -275,6 +275,10 @@ class aide_logement_base_ressources(Variable):
         montant_plancher_ressources = max_(0, etudiant[CHEF] * Pr.dar_4 - boursier[CHEF] * Pr.dar_5)
         ressources = max_(ressources, montant_plancher_ressources)
 
+        # Arrondi au centime, pour éviter qu'une petite imprécision liée à la recombinaison d'une valeur annuelle éclatée ne fasse monter d'un cran l'arrondi au 100€ supérieur.
+
+        ressources = round_(ressources * 100) / 100
+
         # Arrondi aux 100 euros supérieurs
         ressources = ceil(ressources / 100) * 100
 
