@@ -534,9 +534,9 @@ class cotisations_non_contributives(Variable):
     def function(individu, period):
         period = period.this_year
         cotisations_employeur_non_contributives = individu('cotisations_employeur_non_contributives',
-            period)
+            period, options = [ADD])
         cotisations_salariales_non_contributives = individu('cotisations_salariales_non_contributives',
-            period)
+            period, options = [ADD])
 
         return period, cotisations_employeur_non_contributives + cotisations_salariales_non_contributives
 
