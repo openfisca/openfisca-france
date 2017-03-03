@@ -1,10 +1,11 @@
 name: Couple dont un est retraité + 1 enfant
-ignore: true
+relative_error_margin: 0.05
 keywords:
   - "cmu-c/acs"
   - recette
 description: |
-  Attention ce test est faux. Dans le calcul de retraite_imposable la CSG n'est pas comptée.'
+  Imprécision de l'ordre de quelques % sur les AL: openfisca calcule une retraite_imposable de 985 à partir de la retraite_brute, ce qui semble trop faible et conduit à légèrement surestimer les AL.
+  La responsabilité incombe certainement à mes-aides pour fournir une retraite brute sous évaluée.
   L'ASPA n'est pas perçue
   Total ressources calculées par la CPAM: 14 500 < plafond CMUC 15 560
   Forfait logement 152eur/mois
