@@ -3,59 +3,64 @@
 ## 14.1.0 - [#685](https://github.com/openfisca/openfisca-france/pull/685)
 
 * Amélioration technique
-* Adapte `france` à  la version `6.0.0` de `core`
-    - Évolution du format de retour des formules : `return result` à la place de `return period, result`
-    - Ajout d'un attribut `definition_period` pour toutes les variables
+* Détails :
+  - Adapte `france` à  la version `6.0.0` de `core`.
+  - Évolution du format de retour des formules : `return result` à la place de `return period, result`.
+  - Ajout d'un attribut `definition_period` pour toutes les variables.
 
 # 14.0.0 - [#690](https://github.com/openfisca/openfisca-france/pull/690)
 
-* Évolution du système socio-fiscal
-  * Périodes concernées : toutes.
-  * Zones impactées : aucune.
-  * Retire la variable  `nbptr_n_2`. Elle est inutilisée et obsolète depuis l'introduction des `period`.
-    - Cette variable n'intervenant dans aucune formule, elle n'a donc aucun impact.
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : aucune.
+* Détails :
+  - Retire la variable  `nbptr_n_2`. Elle est inutilisée et obsolète depuis l'introduction des `period`.
+  - Cette variable n'intervenant dans aucune formule, elle n'a donc aucun impact.
 
 ### 13.2.2 - [#695](https://github.com/openfisca/openfisca-france/pull/695)
 
-* Évolution du système socio-fiscal
-  * Périodes concernées : toutes
-  * Zones impactées : `mesures`
-  * Correction du calcul de type_menage 
-    - Des erreurs peuvent subsister quand ménage et famille ne coincide pas (cas des ménages complexes) 
-    - Cette variable est utilisée à des fins statistiques et n'entre dans le calcul d'aucune prestation
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `mesures`.
+* Détails :
+  - Correction du calcul de `type_menage`.
+  - Des erreurs peuvent subsister quand ménage et famille ne coincide pas (cas des ménages complexes).
+  - Cette variable est utilisée à des fins statistiques et n'entre dans le calcul d'aucune prestation.
 
 ### 13.2.1 — [#687](https://github.com/openfisca/openfisca-france/pull/687)
 
-* Évolution du système socio-fiscal
+* Évolution du système socio-fiscal.
 * Périodes concernées : Jusqu'au 31/12/2015.
-* Zones impactées :
-   `prelevements_obligatoires/impot_revenu/ppe`
-* Corrige la valeur erronnée retournée par `ppe_tp_sa`
+* Zones impactées : `prelevements_obligatoires/impot_revenu/ppe`.
+* Détails :
+  - Corrige la valeur erronnée retournée par `ppe_tp_sa`.
   - Le calcul de l'indicatrice de travail à temps plein `ppe_tp_sa` renvoyait une valeur érronée, provoquant des erreurs dans le calcul de la prime pour l'emploi `ppe`.
 
 ## 13.2.0 - [#676](https://github.com/openfisca/openfisca-france/pull/676)
 
 * Amélioration technique
-  * Cette évolution est a priori transparente pour les utilisateurs.
-  * Déplace la transformation du JSON en test case du module `scenarios` de `france` vers `core`
-  * Adapte `france` à  la version `5.0.0` de `core`
+* Détails :
+  - Cette évolution est a priori transparente pour les utilisateurs.
+  - Déplace la transformation du JSON en test case du module `scenarios` de `france` vers `core`
+  - Adapte `france` à  la version `5.0.0` de `core`.
 
 ### 13.1.5 - [#684](https://github.com/openfisca/openfisca-france/pull/684)
 
 * Évolution du système socio-fiscal
-  * Périodes concernées : à partir de 2017.
-  * Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales`
-  * Corrige certains taux pour 2017 :
-    - la réduction générale sur les bas salaires (fillon) était légèrement différente de la valeur réelle   (on utilisait la valeur prévisionelle de 2016).
-    - la cotisation maladie MMID employeur n'avait pas été mise à jour.
+* Périodes concernées : à partir de 2017.
+* Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales`
+* Détails :
+  - Corrige le taux de la réduction générale sur les bas salaires (Fillon) pour 2017.
+  - Corrige le taux de la cotisation maladie MMID employeur pour 2017.
 
 ### 13.1.4 - [#682](https://github.com/openfisca/openfisca-france/pull/682)
 
 * Évolution du système socio-fiscal
-  * Périodes concernées : à partir de 2017.
-  * Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`
-  * Met à jour la valeur de l'AGS pour 2017
-    - La mise à jour de l'AGS de la version 10.0.1 n'a pas fonctionné, pour cause de duplication de paramètres.
+* Périodes concernées : à partir de 2017.
+* Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`
+* Détails :
+  - Met à jour la valeur de l'AGS pour 2017.
+  - La mise à jour de l'AGS de la version 10.0.1 n'a pas fonctionné, pour cause de duplication de paramètres.
 
 ### 13.1.3
 

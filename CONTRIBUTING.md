@@ -34,18 +34,21 @@ Chaque évolution sera documentée par les élements suivants :
 > - Périodes concernées : Jusqu'au 31/12/2015.
 > - Zones impactées : `prestations/minima_sociaux/cmu`
 
-- Enfin, dans tous les cas hors `Changement mineur`, les corrections apportées doivent être explicitées d'un point de vue fonctionnel : dans quel cas d'usage constatait-on un erreur / un problème ? Quelle nouvelle fonctionalité est disponible ? Quel nouveau comportement est adopté ?
+- Enfin, dans tous les cas hors `Changement mineur`, les corrections apportées doivent être explicitées de détails donnés d'un point de vue fonctionnel : dans quel cas d'usage constatait-on un erreur / un problème ? Quelle nouvelle fonctionalité est disponible ? Quel nouveau comportement est adopté ?
 
 > Par exemple:
-> - Ces variables renvoient désormais un montant annuel et non mensuel :
+>
+> * Détails :
+>   - Ces variables renvoient désormais un montant annuel et non mensuel :
 >     - `acs`
 >     - `bourse_college`
 >     - `bourse_lycee`
-> - _Les valeurs mensuelles précédentes étaient obtenues par une division par 12 et non par un calcul réel._
+>   - _Les valeurs mensuelles précédentes étaient obtenues par une division par 12 et non par un calcul réel._
 >
 > Ou :
 >
-> - Déplacement du test runner depuis `france` vers `core`.
-> - _Il devient possible d'exécuter `openfisca-run-test` sur un fichier YAML. [Plus d'informations](http://openfisca.readthedocs.io/en/latest/openfisca-run-test.html)._
+> * Détails :
+>   - Déplacement du test runner depuis `france` vers `core`.
+>   - _Il devient possible d'exécuter `openfisca-run-test` sur un fichier YAML. [Plus d'informations](http://openfisca.readthedocs.io/en/latest/openfisca-run-test.html)._
 
 Dans le cas où une Pull Request contient plusieurs évolutions distinctes, plusieurs paragraphes peuvent être ajoutés au Changelog.
