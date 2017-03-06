@@ -572,7 +572,7 @@ class rsa_revenu_activite_individu(DatedVariable):
             'etr',
             'tns_auto_entrepreneur_benefice',
             'rsa_indemnites_journalieres_activite',
-            # TODO hack IPp pour gérer les tns !
+            # TODO hack IPP pour gérer les tns !
             'rnc',
             # 'ric',
             # 'rag',
@@ -624,7 +624,6 @@ class rsa_fictif(Variable):
 
         montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources
         montant = max_(montant, 0)
-
 
         return mois_courant, montant
 
@@ -696,7 +695,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
         revenus_capital = individu('revenus_capital', period)
         valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', period)
         valeur_locative_terrains_non_loue = individu('valeur_locative_terrains_non_loue', period)
-        revenus_locatifs = individu('revenus_locatifs', period)
+        # revenus_locatifs = individu('revenus_locatifs', period)
         rsa = legislation(period).prestations.minima_sociaux.rsa
 
         return period, (
@@ -704,8 +703,8 @@ class rsa_base_ressources_patrimoine_individu(Variable):
             epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere / 12 +
             revenus_capital +
             valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue +
-            valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue +
-            revenus_locatifs
+            valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue
+            # + revenus_locatifs
             )
 
 
