@@ -28,7 +28,9 @@ Chaque évolution sera documentée par les élements suivants :
   - `Correction d'un crash` : Impacte tous les réutilisateurs.
   - `Changement mineur` : Refactoring, métadonnées… N'a aucun impact sur les réutilisateurs.
 
-- Dans le cas d'une `Évolution du système socio-fiscal`, il est ensuite précisé les périodes concernées par l'évolution, ainsi que les zones du modèle de calcul impactées. Ces zones correspondent à l'arborescence des fichiers dans le modèle.
+- Dans le cas d'une `Évolution du système socio-fiscal`, il est ensuite précisé :
+  - Les périodes concernées par l'évolution. Les dates doivent être données au jour près pour lever toute ambiguïté : on écrira `au 01/01/2017` et non `pour 2017` (qui garde une ambiguïté sur l'inclusion de l'année en question).
+  - Les zones du modèle de calcul impactées. Ces zones correspondent à l'arborescence des fichiers dans le modèle.
 
 > Par exemple :
 > - Périodes concernées : Jusqu'au 31/12/2015.

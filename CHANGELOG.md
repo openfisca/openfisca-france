@@ -47,19 +47,19 @@
 ### 13.1.5 - [#684](https://github.com/openfisca/openfisca-france/pull/684)
 
 * Évolution du système socio-fiscal
-* Périodes concernées : à partir de 2017.
+* Périodes concernées : à partir du 01/01/2017.
 * Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales`
 * Détails :
-  - Corrige le taux de la réduction générale sur les bas salaires (Fillon) pour 2017.
-  - Corrige le taux de la cotisation maladie MMID employeur pour 2017.
+  - Corrige le taux de la réduction générale sur les bas salaires (Fillon) au 01/01/2017.
+  - Corrige le taux de la cotisation maladie MMID employeur au 01/01/2017.
 
 ### 13.1.4 - [#682](https://github.com/openfisca/openfisca-france/pull/682)
 
 * Évolution du système socio-fiscal
-* Périodes concernées : à partir de 2017.
+* Périodes concernées : à partir du 01/01/2017.
 * Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`
 * Détails :
-  - Met à jour la valeur de l'AGS pour 2017.
+  - Met à jour la valeur de l'AGS au 01/01/2017.
   - La mise à jour de l'AGS de la version 10.0.1 n'a pas fonctionné, pour cause de duplication de paramètres.
 
 ### 13.1.3
