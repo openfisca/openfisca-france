@@ -43,8 +43,8 @@ class type_menage(Variable):
         Type de menage
         TODO: prendre les enfants du ménage et non ceux de la famille
         '''
-        af_nbenf = menage.personne_de_reference.famille('af_nbenf')
-        isole = not_(menage.personne_de_reference.famille('en_couple'))
+        af_nbenf = menage.personne_de_reference.famille('af_nbenf', period.first_month)
+        isole = not_(menage.personne_de_reference.famille('en_couple', period.first_month))
 
         return (
             0 * (isole * (af_nbenf == 0)) +  # Célibataire
