@@ -222,3 +222,13 @@ class revenus_capital(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenus du capital"
+
+    def function(individu, period):
+        period = period.this_month
+        types_revenus_capital = ['f2dc', 'f2ch', 'f2ts', 'f2tr', 'f2da', 'f2dh', 'f2ee']
+        return period, sum(
+            individu.foyer_fiscal(type_revenu, period.last_3_months, options = [ADD]) *
+            individu.has_role(individu.foyer_fiscal.DECLARANT_PRINCIPAL)
+            for type_revenu in types_revenus_capital
+            )
+
