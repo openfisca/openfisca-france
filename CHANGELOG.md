@@ -1,5 +1,13 @@
 # Changelog
 
+## 14.0.0 [#690](https://github.com/openfisca/openfisca-france/pull/690)
+
+* Évolution du système socio-fiscal
+  * Périodes concernées : toutes.
+  * Zones impactées : aucune.
+  * Retire la variable  `nbptr_n_2`. Elle est inutilisée et obsolète depuis l'introduction des `period`.
+    - Cette variable n'intervenant dans aucune formule, elle n'a donc aucun impact.
+
 ### 13.2.2 - [#695](https://github.com/openfisca/openfisca-france/pull/695)
 
 * Évolution du système socio-fiscal

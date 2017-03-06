@@ -48,12 +48,6 @@ class jour_xyz(Variable):
     label = u"Jours décomptés au titre de cette déclaration"
 
 
-class nbptr_n_2(Variable):
-    column = PeriodSizeIndependentIntCol(val_type = "monetary")
-    entity = FoyerFiscal
-    label = u"Nombre de parts année n - 2"
-
-
 ###############################################################################
 # # Initialisation de quelques variables utiles pour la suite
 ###############################################################################
