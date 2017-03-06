@@ -30,7 +30,7 @@ Chaque évolution sera documentée par les élements suivants :
 
 - Dans le cas d'une `Évolution du système socio-fiscal`, il est ensuite précisé :
   - Les périodes concernées par l'évolution. Les dates doivent être données au jour près pour lever toute ambiguïté : on écrira `au 01/01/2017` et non `pour 2017` (qui garde une ambiguïté sur l'inclusion de l'année en question).
-  - Les zones du modèle de calcul impactées. Ces zones correspondent à l'arborescence des fichiers dans le modèle.
+  - Les zones du modèle de calcul impactées. Ces zones correspondent à l'arborescence des fichiers dans le modèle, sans l'extension `.py`.
 
 > Par exemple :
 > - Périodes concernées : Jusqu'au 31/12/2015.
