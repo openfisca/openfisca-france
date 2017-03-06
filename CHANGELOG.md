@@ -1,5 +1,14 @@
 # Changelog
 
+### 13.2.2 - [#695](https://github.com/openfisca/openfisca-france/pull/695)
+
+* Évolution du système socio-fiscal
+  * Périodes concernées : toutes
+  * Zones impactées : `mesures`
+  * Correction du calcul de type_menage 
+    - Des erreurs peuvent subsister quand ménage et famille ne coincide pas (cas des ménages complexes) 
+    - Cette variable est utilisée à des fins statistiques et n'entre dans le calcul d'aucune prestation
+
 ### 13.2.1 — [#687](https://github.com/openfisca/openfisca-france/pull/687)
 
 * Évolution du système socio-fiscal
