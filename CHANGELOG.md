@@ -1,5 +1,13 @@
 # Changelog
 
+### 13.2.1 — [#687](https://github.com/openfisca/openfisca-france/pull/687)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : Jusqu'au 31/12/2015.
+* Zones impactées :
+   `prelevements_obligatoires/impot_revenu/ppe`
+* Corrige la valeur erronnée retournée par `ppe_tp_sa`
+  - Le calcul de l'indicatrice de travail à temps plein `ppe_tp_sa` renvoyait une valeur érronée, provoquant des erreurs dans le calcul de la prime pour l'emploi `ppe`.
 
 ## 13.2.0 - [#676](https://github.com/openfisca/openfisca-france/pull/676)
 
@@ -21,7 +29,7 @@
 
 * Évolution du système socio-fiscal
   * Périodes concernées : à partir de 2017.
-  * Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive` 
+  * Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`
   * Met à jour la valeur de l'AGS pour 2017
     - La mise à jour de l'AGS de la version 10.0.1 n'a pas fonctionné, pour cause de duplication de paramètres.
 
