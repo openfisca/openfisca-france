@@ -6,7 +6,8 @@ keywords:
 description: 'Plafond pour un couple avec 1 revenu et 3 enfants: 51450'
 period: month:2015-09
 individus:
-- enfant_a_charge: true
+- enfant_a_charge:
+    2015: true
   age: 55
   age_en_mois: 662
   date_naissance: '1960-06-08'
@@ -30,10 +31,8 @@ individus:
     2015-04: 7264.957264957265
     2015-05: 7264.957264957265
     2015-06: 0
-    2015-06:3: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 65384.61538461538
   salaire_imposable:
     '2013': 51000
     2014-09: 5873.663461538462
@@ -46,10 +45,8 @@ individus:
     2015-04: 5873.663461538462
     2015-05: 5873.663461538462
     2015-06: 0
-    2015-06:3: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 52862.971153846156
   salaire_net:
     2014-09: 5666.666666666667
     2014-10: 5666.666666666667
@@ -61,16 +58,15 @@ individus:
     2015-04: 5666.666666666667
     2015-05: 5666.666666666667
     2015-06: 0
-    2015-06:3: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 50999.99999999999
   statut_marital: 1
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- enfant_a_charge: true
+- enfant_a_charge:
+    2015: true
   age: 54
   age_en_mois: 659
   date_naissance: '1960-09-08'
@@ -88,7 +84,8 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- enfant_a_charge: true
+- enfant_a_charge:
+    2015: true
   age: 2
   age_en_mois: 24
   date_naissance: '2013-08-09'
@@ -105,7 +102,8 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- enfant_a_charge: true
+- enfant_a_charge:
+    2015: true
   age: 2
   age_en_mois: 24
   date_naissance: '2013-08-09'
@@ -122,7 +120,8 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
-- enfant_a_charge: true
+- enfant_a_charge:
+    2015: true
   age: 2
   age_en_mois: 24
   date_naissance: '2013-08-09'
@@ -153,7 +152,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
   af:
     2014-09: 0
     2014-10: 0
@@ -167,7 +165,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
   aide_logement:
     2014-09: 0
     2014-10: 0
@@ -181,7 +178,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
   alf:
     2014-09: 0
     2014-10: 0
@@ -195,7 +191,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
   als:
     2014-09: 0
     2014-10: 0
@@ -209,7 +204,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
   apl:
     2014-09: 0
     2014-10: 0
@@ -223,7 +217,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
   asf:
     2014-09: 0
     2014-10: 0
@@ -237,7 +230,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
   asi:
     2014-09: 0
     2014-10: 0
@@ -251,7 +243,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
   aspa:
     2014-09: 0
     2014-10: 0
@@ -265,7 +256,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
   ass:
     2014-09: 0
     2014-10: 0
@@ -279,7 +269,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
   bourse_college:
     2014-09: 0
     2014-10: 0
@@ -293,7 +282,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
   bourse_lycee:
     2014-09: 0
     2014-10: 0
@@ -307,7 +295,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
   cf:
     2014-09: 0
     2014-10: 0
@@ -321,7 +308,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
   enfants:
   - 55eda20abb8d0c3804776154
   - 55eda20abb8d0c3804776153
@@ -339,7 +325,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
   parents:
   - 55eda20abb8d0c3804776156
   - 55eda20abb8d0c3804776155
@@ -357,7 +342,6 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-    year:2014-09: 0
 foyers_fiscaux:
 - declarants:
   - 55eda20abb8d0c3804776156

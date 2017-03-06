@@ -14,13 +14,13 @@ class api(Variable):
     label = u"Allocation de parent isolé"
     url = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
     stop_date = date(2009, 5, 31)
-
+    definition_period = MONTH
+    calculate_output = calculate_output_add
 
     def function(famille, period, legislation):
         """
         Allocation de parent isolé
         """
-        period = period.this_month
         isole = not_(famille('en_couple', period))
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
         rsa_base_ressources = famille('rsa_base_ressources', period)
@@ -71,7 +71,7 @@ class api(Variable):
         # On pourrait mensualiser RMI, BRrmi et forfait logement
         api = max_(0, api1 - rsa_forfait_logement / 12 - br_api / 12 - rsa / 12)
         # L'API est exonérée de CRDS
-        return period, api  # annualisé
+        return api  # annualisé
         # TODO API: temps partiel qui modifie la base ressource
         # Cumul
         # Cumul avec un revenu
@@ -103,6 +103,8 @@ class psa(Variable):
     start_date = date(2009, 4, 1)
     stop_date = date(2009, 4, 30)
     url = u"http://www.service-public.fr/actualites/001077.html"
+    definition_period = MONTH
+    calculate_output = calculate_output_add
 
     def function(famille, period, legislation):
         '''
@@ -115,7 +117,6 @@ class psa(Variable):
         La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.
         '''
         P = legislation(period).prestations.minima_sociaux.rmi
-        period = period.this_month
         api = famille('api', period)
         rsa = famille('rsa', period)
         af_nbenf = famille('af_nbenf', period)
@@ -129,7 +130,7 @@ class psa(Variable):
         dummy_al = and_(aide_logement > 0, or_(af_nbenf > 0, parent_en_activite))
         condition = (dummy_api + dummy_rmi + dummy_al > 0)
         psa = condition * P.psa
-        return period, psa
+        return psa
 
 
 class rmi(Variable):
@@ -138,9 +139,9 @@ class rmi(Variable):
     label = u"Revenu Minimum d'Insertion"
     start_date = date(1988, 12, 1)
     stop_date = date(2009, 5, 31)
+    definition_period = MONTH
 
     def function(famille, period):
-        period = period.this_month
         activite_i = famille.members('activite', period)
         condition_activite_i = (activite_i != 0) * (activite_i != 2) * (activite_i != 3)
         condition_activite = famille.any(condition_activite_i)
@@ -149,7 +150,7 @@ class rmi(Variable):
         rsa_socle = famille('rsa_socle', period)
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
 
-        return period, condition_activite * max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
+        return condition_activite * max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
         # TODO: Migré lors de la mensualisation. Probablement faux
 
 
@@ -160,15 +161,15 @@ class rsa_activite(Variable):
     label = u"Revenu de solidarité active - activité"
     start_date = date(2009, 6, 1)
     stop_date = date(2015, 12, 31)
+    definition_period = MONTH
 
     def function(famille, period):
-        period = period.this_month
         rsa = famille('rsa', period, period)
         rsa_base_ressources = famille('rsa_base_ressources', period)
         rsa_socle = famille('rsa_socle', period)
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
         rmi = max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
-        return period, max_(rsa - rmi, 0)
+        return max_(rsa - rmi, 0)
 
 
 class rsa_activite_individu(Variable):
@@ -177,18 +178,20 @@ class rsa_activite_individu(Variable):
     label = u"Revenu de solidarité active - activité au niveau de l'individu"
     start_date = date(2009, 6, 1)
     stop_date = date(2015, 12, 31)
+    definition_period = YEAR
 
     def function(individu, period):
         '''
         Note: le partage en moitié est un point de législation, pas un choix arbitraire
         '''
-        period = period.this_year
+        janvier = period.first_month
+
         rsa_activite = individu.famille('rsa_activite', period, options = [ADD])
-        marie = individu('statut_marital', period) == 1
-        en_couple = individu.famille('en_couple', period)
+        marie = individu('statut_marital', janvier) == 1
+        en_couple = individu.famille('en_couple', janvier)
 
         # On partage le rsa_activite entre les parents. Si la personne est mariée et qu'aucun conjoint n'a été déclaré,
         # on divise par 2.
         partage_rsa = or_(marie, en_couple)
 
-        return period, where(partage_rsa, rsa_activite / 2, rsa_activite)
+        return where(partage_rsa, rsa_activite / 2, rsa_activite)

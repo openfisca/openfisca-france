@@ -41,25 +41,25 @@ def modify_legislation_json(reference_legislation_json_copy):
 
 class charges_deduc(Variable):
     label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         cd1 = simulation.calculate('cd1', period)
         cd2 = simulation.calculate('cd2', period)
         charge_loyer = simulation.calculate('charge_loyer', period)
 
-        return period, cd1 + cd2 + charge_loyer
+        return cd1 + cd2 + charge_loyer
 
 class charge_loyer(Variable):
     column = columns.FloatCol
     entity = FoyerFiscal
     label = u"Charge déductible pour paiement d'un loyer"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         nbptr = simulation.calculate('nbptr', period)
 
-        loyer = simulation.foyer_fiscal.declarant_principal.menage('loyer', period)
+        loyer = simulation.foyer_fiscal.declarant_principal.menage('loyer', period, options = [ADD])
 
         charge_loyer = simulation.legislation_at(period.start).charge_loyer
 
@@ -67,7 +67,7 @@ class charge_loyer(Variable):
         plaf_nbp = charge_loyer.plaf_nbp
         plafond = plaf * (not_(plaf_nbp) + plaf * nbptr * plaf_nbp)
 
-        return period, 12 * min_(loyer / 12, plafond)
+        return 12 * min_(loyer / 12, plafond)
 
 
 class trannoy_wasmer(Reform):

@@ -10,9 +10,9 @@ class aah_base_ressources(Variable):
     column = FloatCol
     label = u"Base ressources de l'allocation adulte handicapé"
     entity = Famille
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         law = simulation.legislation_at(period.start)
 
         salaire_this_month = simulation.compute('salaire_imposable', period)
@@ -46,13 +46,14 @@ class aah_base_ressources(Variable):
             not_(demandeur_en_activite) * base_ressource_eval_annuelle()
         )
 
-        return period, aah_base_ressource
+        return aah_base_ressource
 
 
 class aah_base_ressources_eval_trimestrielle(Variable):
     column = FloatCol
     label = u"Base de ressources de l'ASS pour un individu, évaluation trimestrielle"
     entity = Individu
+    definition_period = MONTH
 
     '''
         N'entrent pas en compte dans les ressources :
@@ -69,7 +70,6 @@ class aah_base_ressources_eval_trimestrielle(Variable):
     '''
 
     def function(self, simulation, period):
-        period = period.this_month
         three_previous_months = period.start.period('month', 3).offset(-3)
         last_year = period.last_year
 
@@ -110,23 +110,24 @@ class aah_base_ressources_eval_trimestrielle(Variable):
             revenus_stage_formation_pro
         )
 
-        return period, result * 4
+        return result * 4
 
 
 class aah_base_ressources_eval_annuelle(Variable):
     column = FloatCol
     label = u"Base de ressources de l'ASS pour un individu, évaluation annuelle"
     entity = Individu
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
-        return period, simulation.calculate('revenu_activite', period.n_2) + simulation.calculate('revenu_assimile_pension', period.n_2)
+        return simulation.calculate('revenu_activite', period.n_2) + simulation.calculate('revenu_assimile_pension', period.n_2)
 
 
 class aah_eligible(Variable):
     column = BoolCol
     label = u"Eligibilité à l'Allocation adulte handicapé"
     entity = Individu
+    definition_period = MONTH
 
     '''
         Allocation adulte handicapé
@@ -158,7 +159,6 @@ class aah_eligible(Variable):
     '''
 
     def function(self, simulation, period):
-        period = period.this_month
         law = simulation.legislation_at(period.start).prestations
         taux_incapacite = simulation.calculate('taux_incapacite', period)
         age = simulation.calculate('age', period)
@@ -169,7 +169,7 @@ class aah_eligible(Variable):
             ((age >= law.minima_sociaux.aah.age_minimal) + ((age >= 16) * (autonomie_financiere)))
             )
 
-        return period, eligible_aah
+        return eligible_aah
     # TODO: dated_function : avant 2008, il fallait ne pas avoir travaillé pendant les 12 mois précédant la demande.
 
 
@@ -183,14 +183,14 @@ class aah_non_calculable(Variable):
     )
     entity = Individu
     label = u"AAH non calculable"
+    definition_period = MONTH
 
     def function(individu, period):
-        period = period.this_month
         taux_incapacite = individu('taux_incapacite', period)
         aah_eligible = individu('aah_eligible', period)
 
         # Pour le moment résultat "pas assez fiable, donc on renvoit une non calculabilité tout le temps.
-        return period, aah_eligible # * (taux_incapacite < 0.8)
+        return aah_eligible # * (taux_incapacite < 0.8)
 
 
 class aah_base(Variable):
@@ -198,9 +198,9 @@ class aah_base(Variable):
     column = FloatCol
     label = u"Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
     entity = Individu
+    definition_period = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
         law = legislation(period).prestations
 
         aah_eligible = individu('aah_eligible', period)
@@ -212,7 +212,7 @@ class aah_base(Variable):
         montant_aah = max_(plaf_ress_aah - aah_base_ressources, 0) / 12
 
         # Pour le moment, on ne neutralise pas l'aah en cas de non calculabilité pour pouvoir tester
-        return period, aah_eligible *  montant_aah # * not_(aah_non_calculable)
+        return aah_eligible *  montant_aah # * not_(aah_non_calculable)
 
 
 class aah(Variable):
@@ -220,15 +220,15 @@ class aah(Variable):
     column = FloatCol
     label = u"Allocation adulte handicapé (Individu) mensualisée"
     entity = Individu
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
-        period = period.this_month
-
         aah_base = simulation.calculate('aah_base', period)
         # caah
         # mva
 
-        return period, aah_base
+        return aah_base
 
 
 class caah(DatedVariable):
@@ -236,6 +236,7 @@ class caah(DatedVariable):
     column = FloatCol
     label = u"Complément d'allocation adulte handicapé (mensualisé)"
     entity = Individu
+    definition_period = MONTH
     '''
         Complément d'allocation adulte handicapé : complément de ressources ou majoration vie autonome.
 
@@ -287,7 +288,6 @@ class caah(DatedVariable):
 
     @dated_function(start = date(2005, 7, 1))
     def function_2005_07_01(self, simulation, period):
-        period = period.this_month
         law = simulation.legislation_at(period.start).prestations
 
         garantie_ressources = law.minima_sociaux.caah.garantie_ressources
@@ -311,11 +311,10 @@ class caah(DatedVariable):
         # propres & capa de travail < 5% & taux d'incapacité >= 80%
         mva = 0.0 * elig_mva  # TODO: rentrer mva dans paramètres. mva (mensuelle) = 104,77 en 2015, était de 101,80 en 2006, et de 119,72 en 2007
 
-        return period, max_(compl_ress, mva)
+        return max_(compl_ress, mva)
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 6, 30))  # TODO FIXME start date
     def function_2005_06_30(self, simulation, period):
-        period = period.this_month
         law = simulation.legislation_at(period.start).prestations
 
         cpltx = law.minima_sociaux.caah.cpltx
@@ -333,14 +332,18 @@ class caah(DatedVariable):
         ancien_caah = cpltx * aah_montant * elig_ancien_caah
         # En fait le taux cpltx perdure jusqu'en 2008
 
-        return period, ancien_caah
+        return ancien_caah
+
 
 class mva(Variable):
     entity = Individu
     column = FloatCol
     label = u"Majoration pour la vie autonome"
+    definition_period = MONTH
+
 
 class pch(Variable):
     entity = Individu
     column = FloatCol
     label = u"Prestation de compensation du handicap"
+    definition_period = MONTH

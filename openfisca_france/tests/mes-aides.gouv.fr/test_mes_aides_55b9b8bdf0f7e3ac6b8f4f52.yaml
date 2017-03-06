@@ -9,7 +9,8 @@ description: |
 period: "month:2015-07"
 relative_error_margin: 0.02
 individus:
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 34
     age_en_mois: 408
     date_naissance: "1981-07-11"
@@ -36,11 +37,9 @@ individus:
       2015-02: 146
       2015-03: 146
       2015-04: 146
-      2015-04:3: 438
       2015-05: 146
       2015-06: 146
       2015-07: 146
-      year:2014-07: 1752
     retraite_imposable:
       2013: 1967
     salaire_imposable:
@@ -50,7 +49,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     activite: 1
     age: 29
     age_en_mois: 356
@@ -69,10 +69,8 @@ individus:
       2015-02: 120.28614860857066
       2015-03: 120.28614860857066
       2015-04: 360.85844582571195
-      2015-04:3: 360.85844582571195
       2015-05: 0
       2015-06: 0
-      year:2014-07: 1443.4337833028476
     chomage_net:
       2014-07: 109
       2014-08: 109
@@ -84,10 +82,8 @@ individus:
       2015-02: 109
       2015-03: 109
       2015-04: 327
-      2015-04:3: 327
       2015-05: 0
       2015-06: 0
-      year:2014-07: 1308
     enfant_place: false
     epargne_non_remuneree:
       2012-01: 0
@@ -112,11 +108,9 @@ individus:
       2015-02: 1588.4615384615383
       2015-03: 1588.4615384615383
       2015-04: 1588.4615384615383
-      2015-04:3: 4765.384615384615
       2015-05: 1588.4615384615383
       2015-06: 1588.4615384615383
       2015-07: 1588.4615384615383
-      year:2014-07: 19061.538461538465
     salaire_imposable:
       2013: 9683
       2014-07: 1284.2592403846154
@@ -129,11 +123,9 @@ individus:
       2015-02: 1284.2592403846154
       2015-03: 1284.2592403846154
       2015-04: 1284.2592403846154
-      2015-04:3: 3852.777721153846
       2015-05: 1284.2592403846154
       2015-06: 1284.2592403846154
       2015-07: 1284.2592403846154
-      year:2014-07: 15411.110884615386
     salaire_net:
       2014-07: 1239
       2014-08: 1239
@@ -145,17 +137,16 @@ individus:
       2015-02: 1239
       2015-03: 1239
       2015-04: 1239
-      2015-04:3: 3717
       2015-05: 1239
       2015-06: 1239
       2015-07: 1239
-      year:2014-07: 14868
     statut_marital: 1
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 3
     age_en_mois: 43
     date_naissance: "2011-12-17"
@@ -172,7 +163,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 8
     age_en_mois: 97
     date_naissance: "2007-06-01"
@@ -189,7 +181,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 10
     age_en_mois: 120
     date_naissance: "2005-07-16"
@@ -207,7 +200,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 13
     age_en_mois: 156
     date_naissance: "2002-07-10"
@@ -225,7 +219,8 @@ individus:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - enfant_a_charge: true
+  - enfant_a_charge:
+      2015: true
     age: 14
     age_en_mois: 179
     date_naissance: "2000-08-07"
@@ -257,7 +252,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
   af:
     2014-07: 0
     2014-08: 0
@@ -271,7 +265,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
   aide_logement:
     2014-07: 0
     2014-08: 0
@@ -285,7 +278,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
   alf:
     2014-07: 0
     2014-08: 0
@@ -299,7 +291,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
   als:
     2014-07: 0
     2014-08: 0
@@ -313,7 +304,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
   apl:
     2014-07: 0
     2014-08: 0
@@ -327,7 +317,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
   asf:
     2014-07: 0
     2014-08: 0
@@ -341,7 +330,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
   asi:
     2014-07: 0
     2014-08: 0
@@ -355,7 +343,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
   aspa:
     2014-07: 0
     2014-08: 0
@@ -369,7 +356,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
   ass:
     2014-07: 0
     2014-08: 0
@@ -383,7 +369,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
   bourse_college:
     2014-07: 0
     2014-08: 0
@@ -397,7 +382,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
   bourse_lycee:
     2014-07: 0
     2014-08: 0
@@ -411,7 +395,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
   cf:
     2014-07: 0
     2014-08: 0
@@ -425,7 +408,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
   enfants:
     - 55b9b7b4f0f7e3ac6b8f4f2a
     - 55b9b7b4f0f7e3ac6b8f4f29
@@ -445,7 +427,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
   parents:
     - 55b9b7b4f0f7e3ac6b8f4f45
     - 55b9b7b4f0f7e3ac6b8f4f2b
@@ -463,7 +444,6 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-    year:2014-07: 0
 foyers_fiscaux:
   declarants:
     - 55b9b7b4f0f7e3ac6b8f4f45

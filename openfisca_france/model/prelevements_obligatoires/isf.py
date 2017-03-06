@@ -13,13 +13,14 @@ class b1ab(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Valeur de la résidence principale avant abattement"
+    definition_period = YEAR
 
 
 class b1ac(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Valeur des autres immeubles avant abattement"
-
+    definition_period = YEAR
 
 
 ## non bâtis
@@ -27,25 +28,28 @@ class b1bc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Immeubles non bâtis : bois, fôrets et parts de groupements forestiers"
+    definition_period = YEAR
 
 
 class b1be(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Immeubles non bâtis : biens ruraux loués à long termes"
+    definition_period = YEAR
 
 
 class b1bh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers"
+    definition_period = YEAR
 
 
 class b1bk(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Immeubles non bâtis : autres biens"
-
+    definition_period = YEAR
 
 
 ## droits sociaux- valeurs mobilières-liquidités- autres meubles
@@ -53,44 +57,49 @@ class b1cl(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Parts et actions détenues par les salariés et mandataires sociaux"
+    definition_period = YEAR
 
 
 class b1cb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Parts et actions de sociétés avec engagement de conservation de 6 ans minimum"
+    definition_period = YEAR
 
 
 class b1cd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité"
+    definition_period = YEAR
 
 
 class b1ce(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Autres valeurs mobilières"
+    definition_period = YEAR
 
 
 class b1cf(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Liquidités"
+    definition_period = YEAR
 
 
 class b1cg(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Autres biens meubles"
-
+    definition_period = YEAR
 
 
 class b1co(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Autres biens meubles : contrats d'assurance-vie"
-
+    definition_period = YEAR
 
 
 #    b1ch
@@ -104,7 +113,7 @@ class b2gh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Total du passif et autres déductions"
-
+    definition_period = YEAR
 
 
 ## réductions
@@ -112,43 +121,49 @@ class b2mt(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Réductions pour investissements directs dans une société"
+    definition_period = YEAR
 
 
 class b2ne(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Réductions pour investissements directs dans une société"
+    definition_period = YEAR
 
 
 class b2mv(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Réductions pour investissements par sociétés interposées, holdings"
+    definition_period = YEAR
 
 
 class b2nf(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Réductions pour investissements par sociétés interposées, holdings"
+    definition_period = YEAR
 
 
 class b2mx(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Réductions pour investissements par le biais de FIP"
+    definition_period = YEAR
 
 
 class b2na(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Réductions pour investissements par le biais de FCPI ou FCPR"
+    definition_period = YEAR
 
 
 class b2nc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Réductions pour dons à certains organismes d'intérêt général"
-
+    definition_period = YEAR
 
 
 ##  montant impôt acquitté hors de France
@@ -156,7 +171,7 @@ class b4rs(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Montant de l'impôt acquitté hors de France"
-
+    definition_period = YEAR
 
 
 ## BOUCLIER FISCAL
@@ -164,29 +179,33 @@ class b4rs(Variable):
 class rev_or(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
+    definition_period = YEAR
 
 
 class rev_exo(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-
+    definition_period = YEAR
 
 
 class tax_fonc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Taxe foncière"
+    definition_period = YEAR
 
 
 class restit_imp(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
+    definition_period = YEAR
 
 
 class etr(Variable):
     column = IntCol
     entity = Individu
-
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 
@@ -198,29 +217,29 @@ class isf_imm_bati(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"isf_imm_bati"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Immeubles bâtis
         '''
-        period = period.this_year
         b1ab = simulation.calculate('b1ab', period)
         b1ac = simulation.calculate('b1ac', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.res_princ
 
-        return period, (1 - P.abattement_sur_residence_principale) * b1ab + b1ac
+        return (1 - P.abattement_sur_residence_principale) * b1ab + b1ac
 
 
 class isf_imm_non_bati(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"isf_imm_non_bati"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Immeubles non bâtis
         '''
-        period = period.this_year
         b1bc = simulation.calculate('b1bc', period)
         b1be = simulation.calculate('b1be', period)
         b1bh = simulation.calculate('b1bh', period)
@@ -235,7 +254,7 @@ class isf_imm_non_bati(Variable):
         # part de groupements forestiers- agricoles fonciers
         b1bi = min_(b1bh, P.seuil) * P.taux_r1
         b1bj = max_(b1bh - P.seuil, 0) * P.taux_r2
-        return period, b1bd + b1bf + b1bg + b1bi + b1bj + b1bk
+        return b1bd + b1bf + b1bg + b1bi + b1bj + b1bk
 
 
 # # droits sociaux- valeurs mobilières- liquidités- autres meubles ##
@@ -246,25 +265,25 @@ class isf_actions_sal(Variable):  # # non présent en 2005##
     entity = FoyerFiscal
     label = u"isf_actions_sal"
     start_date = date(2006, 1, 1)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Parts ou actions détenues par les salariés et mandataires sociaux
         '''
-        period = period.this_year
         b1cl = simulation.calculate('b1cl', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.droits_soc
 
-        return period,  b1cl * P.taux1
+        return  b1cl * P.taux1
 
 
 class isf_droits_sociaux(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"isf_droits_sociaux"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         isf_actions_sal = simulation.calculate('isf_actions_sal', period)
         b1cb = simulation.calculate('b1cb', period)
         b1cd = simulation.calculate('b1cd', period)
@@ -274,17 +293,17 @@ class isf_droits_sociaux(Variable):
         P = simulation.legislation_at(period.start).taxation_capital.isf.droits_soc
 
         b1cc = b1cb * P.taux2
-        return period, isf_actions_sal + b1cc + b1cd + b1ce + b1cf + b1cg
+        return isf_actions_sal + b1cc + b1cd + b1ce + b1cf + b1cg
 
 
 class ass_isf(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"ass_isf"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         # TODO: Gérer les trois option meubles meublants
-        period = period.this_year
         isf_imm_bati = simulation.calculate('isf_imm_bati', period)
         isf_imm_non_bati = simulation.calculate('isf_imm_non_bati', period)
         isf_droits_sociaux = simulation.calculate('isf_droits_sociaux', period)
@@ -295,7 +314,7 @@ class ass_isf(Variable):
         total = isf_imm_bati + isf_imm_non_bati + isf_droits_sociaux
         forf_mob = (b1cg != 0) * b1cg + (b1cg == 0) * total * P.taux
         actif_brut = total + forf_mob
-        return period, actif_brut - b2gh
+        return actif_brut - b2gh
 
 
 # # calcul de l'impôt par application du barème ##
@@ -305,34 +324,33 @@ class isf_iai(DatedVariable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"isf_iai"
+    definition_period = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2010, 12, 31))
     def function_20020101_20101231(self, simulation, period):
-        period = period.this_year
         ass_isf = simulation.calculate('ass_isf', period)
         bareme = simulation.legislation_at(period.start).taxation_capital.isf.bareme
-        return period, bareme.calc(ass_isf)
+        return bareme.calc(ass_isf)
 
     @dated_function(start = date(2011, 1, 1))
     def function_20110101_20151231(self, simulation, period):
-        period = period.this_year
         ass_isf = simulation.calculate('ass_isf', period)
         bareme = simulation.legislation_at(period.start).taxation_capital.isf.bareme
         ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
-        return period, bareme.calc(ass_isf)
+        return bareme.calc(ass_isf)
 
 
 class isf_avant_reduction(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"isf_avant_reduction"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         isf_iai = simulation.calculate('isf_iai', period)
         decote_isf = simulation.calculate('decote_isf', period)
 
-        return period, isf_iai - decote_isf
+        return isf_iai - decote_isf
 
 
 class isf_reduc_pac(Variable):
@@ -340,17 +358,17 @@ class isf_reduc_pac(Variable):
     entity = FoyerFiscal
     label = u"isf_reduc_pac"
     stop_date = date(2012, 12, 31)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Réductions pour personnes à charges
         '''
-        period = period.this_year
         nb_pac = simulation.calculate('nb_pac', period)
         nbH = simulation.calculate('nbH', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.reduc_pac
 
-        return period, P.reduc_enf_garde * nb_pac + (P.reduc_enf_garde / 2) * nbH
+        return P.reduc_enf_garde * nb_pac + (P.reduc_enf_garde / 2) * nbH
 
 
 
@@ -359,13 +377,13 @@ class isf_inv_pme(Variable):
     entity = FoyerFiscal
     label = u"isf_inv_pme"
     start_date = date(2008, 1, 1)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Réductions pour investissements dans les PME
         à partir de 2008!
         '''
-        period = period.this_year
         b2mt = simulation.calculate('b2mt', period)
         b2ne = simulation.calculate('b2ne', period)
         b2mv = simulation.calculate('b2mv', period)
@@ -380,7 +398,7 @@ class isf_inv_pme(Variable):
         fcpi = b2na * P.taux_invest_direct_soc_holding
 
 
-        return period, holdings + fip + fcpi + inv_dir_soc
+        return holdings + fip + fcpi + inv_dir_soc
 
 
 class isf_org_int_gen(Variable):
@@ -388,31 +406,31 @@ class isf_org_int_gen(Variable):
     entity = FoyerFiscal
     label = u"isf_org_int_gen"
     start_date = date(2008, 1, 01)
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         b2nc = simulation.calculate('b2nc', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.reduc_invest_don
 
-        return period, b2nc * P.taux_don_interet_general
+        return b2nc * P.taux_don_interet_general
 
 class isf_avant_plaf(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"isf_avant_plaf"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Montant de l'impôt avant plafonnement
         '''
-        period = period.this_year
         isf_avant_reduction = simulation.calculate('isf_avant_reduction', period)
         isf_inv_pme = simulation.calculate('isf_inv_pme', period)
         isf_org_int_gen = simulation.calculate('isf_org_int_gen', period)
         isf_reduc_pac = simulation.calculate('isf_reduc_pac', period)
         borne_max = simulation.legislation_at(period.start).taxation_capital.isf.reduc_invest_don.max
 
-        return period, max_(0, isf_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
+        return max_(0, isf_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
 
 
 # # calcul du plafonnement ##
@@ -420,13 +438,13 @@ class tot_impot(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"tot_impot"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Total des impôts dus au titre des revenus et produits (irpp, cehr, pl, prélèvements sociaux) + ISF
         Utilisé pour calculer le montant du plafonnement de l'ISF
         '''
-        period = period.this_year
         irpp = simulation.calculate('irpp', period)
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
         crds_holder = simulation.compute('crds', period)
@@ -437,7 +455,7 @@ class tot_impot(Variable):
         csg = self.split_by_roles(csg_holder, roles = [VOUS, CONJ])
         prelsoc_cap = self.split_by_roles(prelsoc_cap_holder, roles = [VOUS, CONJ])
 
-        return period, (-irpp + isf_avant_plaf -
+        return (-irpp + isf_avant_plaf -
             (crds[VOUS] + crds[CONJ]) - (csg[VOUS] + csg[CONJ]) - (prelsoc_cap[VOUS] + prelsoc_cap[CONJ])
             )
 
@@ -449,6 +467,7 @@ class revetproduits(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Revenus et produits perçus (avant abattement)"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -456,17 +475,16 @@ class revetproduits(Variable):
         Cf.
         http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8342/fichedescriptiveformulaire_8342.pdf
         '''
-        period = period.this_year
         salcho_imp_holder = simulation.compute('revenu_assimile_salaire_apres_abattements', period)
         pen_net_holder = simulation.compute('revenu_assimile_pension_apres_abattements', period)
         retraite_titre_onereux_net = simulation.calculate('retraite_titre_onereux_net', period)
-        rev_cap_bar = simulation.calculate('rev_cap_bar', period)
+        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         fon = simulation.calculate('fon', period)
         ric_holder = simulation.compute('ric', period)
         rag_holder = simulation.compute('rag', period)
         rpns_exon_holder = simulation.compute('rpns_exon', period)
         rpns_pvct_holder = simulation.compute('rpns_pvct', period)
-        rev_cap_lib = simulation.calculate('rev_cap_lib', period)
+        rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         imp_lib = simulation.calculate('imp_lib', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.plafonnement
 
@@ -484,7 +502,7 @@ class revetproduits(Variable):
             revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + retraite_titre_onereux_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon +
             rpns_pvct + imp_lib + fon
             )
-        return period, pt * P.plafonnement_taux_d_imposition_isf
+        return pt * P.plafonnement_taux_d_imposition_isf
 
 
 class decote_isf(Variable):
@@ -492,26 +510,26 @@ class decote_isf(Variable):
     entity = FoyerFiscal
     label = u"Décote de l'ISF"
     start_date = date(2013, 1, 1)
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         ass_isf = simulation.calculate('ass_isf', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.decote
 
         elig = (ass_isf >= P.isf_borne_min_decote) & (ass_isf <= P.isf_borne_sup_decote)
         LB = P.isf_base_decote - P.isf_taux_decote * ass_isf
-        return period, LB * elig
+        return LB * elig
 
 
 class isf_apres_plaf(DatedVariable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Impôt sur la fortune après plafonnement"
+    definition_period = YEAR
     # Plafonnement supprimé pour l'année 2012
 
     @dated_function(start = date(2002, 1, 1), stop = date(2011, 12, 31))
     def function_20020101_20111231(self, simulation, period):
-        period = period.this_year
         tot_impot = simulation.calculate('tot_impot', period)
         revetproduits = simulation.calculate('revetproduits', period)
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
@@ -527,31 +545,29 @@ class isf_apres_plaf(DatedVariable):
             (P.seuil1 <= isf_avant_plaf) * (isf_avant_plaf <= P.seuil2) * min_(plafonnement, P.seuil1) +
             (isf_avant_plaf >= P.seuil2) * min_(isf_avant_plaf * P.taux, plafonnement)
             )
-        return period, max_(isf_avant_plaf - limitationplaf, 0)
+        return max_(isf_avant_plaf - limitationplaf, 0)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
-        period = period.this_year
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
 
         # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
         # si entre les deux seuils; l'allègement est limité au 1er seuil ##
         # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement
         #    est limité à 50% de l'ISF
-        return period, isf_avant_plaf
+        return isf_avant_plaf
 
     @dated_function(start = date(2013, 1, 1))
     def function_20130101_20151231(self, simulation, period):
         """
         Impôt sur la fortune après plafonnement
         """
-        period = period.this_year
         tot_impot = simulation.calculate('tot_impot', period)
         revetproduits = simulation.calculate('revetproduits', period)
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
 
         plafond = max_(0, tot_impot - revetproduits)  # case PU sur la déclaration d'impôt
-        return period, max_(isf_avant_plaf - plafond, 0)
+        return max_(isf_avant_plaf - plafond, 0)
 
 
 class isf_tot(Variable):
@@ -559,15 +575,15 @@ class isf_tot(Variable):
     entity = FoyerFiscal
     label = u"isf_tot"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_isf&espId=1&impot=ISF&sfid=50"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         b4rs = simulation.calculate('b4rs', period)
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
         isf_apres_plaf = simulation.calculate('isf_apres_plaf', period)
         irpp = simulation.calculate('irpp', period)
 
-        return period, min_(-((isf_apres_plaf - b4rs) * ((-irpp) > 0) + (isf_avant_plaf - b4rs) * ((-irpp) <= 0)), 0)
+        return min_(-((isf_apres_plaf - b4rs) * ((-irpp) > 0) + (isf_avant_plaf - b4rs) * ((-irpp) <= 0)), 0)
 
 
 # # BOUCLIER FISCAL ##
@@ -580,26 +596,26 @@ class rvcm_plus_abat(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"rvcm_plus_abat"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Revenu catégoriel avec abattement de 40% réintégré.
         '''
-        period = period.this_year
         rev_cat_rvcm = simulation.calculate('rev_cat_rvcm', period)
         rfr_rvcm = simulation.calculate('rfr_rvcm', period)
 
-        return period, rev_cat_rvcm + rfr_rvcm
+        return rev_cat_rvcm + rfr_rvcm
 
 
 class maj_cga(Variable):
     column = FloatCol
     entity = Individu
     label = u"Majoration pour non adhésion à un centre de gestion agréé (pour chaque individu du foyer)"
+    definition_period = YEAR
 
     # TODO: à reintégrer dans irpp (et vérifier au passage que frag_impo est dans la majo_cga
     def function(self, simulation, period):
-        period = period.this_year
         frag_impo = simulation.calculate('frag_impo', period)
         nrag_impg = simulation.calculate('nrag_impg', period)
         nbic_impn = simulation.calculate('nbic_impn', period)
@@ -626,7 +642,7 @@ class maj_cga(Variable):
         # Totaux
         ntimp = nrag_impg + nbic_timp + nacc_timp + nbnc_timp
 
-        return period, max_(0, P.cga_taux2 * (ntimp + frag_impo))
+        return max_(0, P.cga_taux2 * (ntimp + frag_impo))
 
 
 class bouclier_rev(Variable):
@@ -635,12 +651,12 @@ class bouclier_rev(Variable):
     label = u"bouclier_rev"
     start_date = date(2006, 1, 1)
     stop_date = date(2010, 12, 31)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Total des revenus sur l'année 'n' net de charges
         '''
-        period = period.this_year
         rbg = simulation.calculate('rbg', period)
         csg_deduc = simulation.calculate('csg_deduc', period)
         rvcm_plus_abat = simulation.calculate('rvcm_plus_abat', period)
@@ -687,7 +703,7 @@ class bouclier_rev(Variable):
 
         charges = pensions_alimentaires_deduites + cd_eparet
 
-        return period, revenus - charges
+        return revenus - charges
 
 
 class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
@@ -696,9 +712,9 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
     label = u"bouclier_imp_gen"
     start_date = date(2006, 1, 1)
     stop_date = date(2010, 12, 31)
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         irpp = simulation.calculate('irpp', period)
         taxe_habitation_holder = simulation.compute('taxe_habitation', period)
         tax_fonc = simulation.calculate('tax_fonc', period)
@@ -735,7 +751,7 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés en 'n-1'
         '''
-        return period, imp1 + imp2
+        return imp1 + imp2
 
 
 class restitutions(Variable):
@@ -744,16 +760,16 @@ class restitutions(Variable):
     label = u"restitutions"
     start_date = date(2006, 1, 1)
     stop_date = date(2010, 12, 31)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Restitutions d'impôt sur le revenu et degrèvements percus en l'année 'n'
         '''
-        period = period.this_year
         ppe = simulation.calculate('ppe', period)
         restit_imp = simulation.calculate('restit_imp', period)
 
-        return period, ppe + restit_imp
+        return ppe + restit_imp
 
 
 class bouclier_sumimp(Variable):
@@ -762,16 +778,16 @@ class bouclier_sumimp(Variable):
     label = u"bouclier_sumimp"
     start_date = date(2006, 1, 1)
     stop_date = date(2010, 12, 31)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Somme totale des impôts moins restitutions et degrèvements
         '''
-        period = period.this_year
         bouclier_imp_gen = simulation.calculate('bouclier_imp_gen', period)
         restitutions = simulation.calculate('restitutions', period)
 
-        return period, -bouclier_imp_gen + restitutions
+        return -bouclier_imp_gen + restitutions
 
 
 class bouclier_fiscal(Variable):
@@ -781,11 +797,11 @@ class bouclier_fiscal(Variable):
     start_date = date(2006, 1, 1)
     stop_date = date(2010, 12, 31)
     url = "http://fr.wikipedia.org/wiki/Bouclier_fiscal"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         bouclier_sumimp = simulation.calculate('bouclier_sumimp', period)
         bouclier_rev = simulation.calculate('bouclier_rev', period)
         P = simulation.legislation_at(period.start).bouclier_fiscal
 
-        return period, max_(0, bouclier_sumimp - (bouclier_rev * P.taux))
+        return max_(0, bouclier_sumimp - (bouclier_rev * P.taux))

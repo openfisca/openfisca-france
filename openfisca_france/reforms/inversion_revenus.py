@@ -4,6 +4,7 @@ from __future__ import division
 
 
 from openfisca_core import columns, reforms
+from openfisca_core.columns import MONTH, YEAR
 
 from .. import entities
 
@@ -29,16 +30,19 @@ def build_reform(tax_benefit_system):
         column = columns.FloatCol
         entity = entities.Individu
         label = u'Salaire imposable utilisé pour remonter au salaire brut'
+        definition_period = YEAR
 
     class chomage_imposable_pour_inversion(Reform.Variable):
         column = columns.FloatCol
         entity = entities.Individu
         label = u'Autres revenus imposables (chômage, préretraite), utilisé pour l’inversion'
+        definition_period = YEAR
 
     class retraite_imposable_pour_inversion(Reform.Variable):
         column = columns.FloatCol
         entity = entities.Individu
         label = u'Pensions, retraites, rentes connues imposables, utilisé pour l’inversion'
+        definition_period = YEAR
 
     class salaire_de_base(Reform.Variable):
         column = columns.FloatCol
@@ -46,6 +50,7 @@ def build_reform(tax_benefit_system):
         label = u"Salaire brut ou traitement indiciaire brut"
         reference = tax_benefit_system.column_by_name["salaire_de_base"]
         url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
+        definition_period = MONTH
 
         def function(self, simulation, period):
             """Calcule le salaire brut à partir du salaire imposable ou sinon du salaire net.
@@ -53,8 +58,6 @@ def build_reform(tax_benefit_system):
             Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
             Note : le supplément familial de traitement est imposable.
             """
-    #        period = period.this_month
-
             # Get value for year and divide below.
             salaire_imposable_pour_inversion = simulation.get_array('salaire_imposable_pour_inversion',
                 period.this_year)
@@ -64,7 +67,7 @@ def build_reform(tax_benefit_system):
                     # Calcule le salaire brut à partir du salaire net par inversion numérique.
                     if (salaire_net == 0).all():
                         # Quick path to avoid fsolve when using default value of input variables.
-                        return period, salaire_net
+                        return salaire_net
                     simulation = self.holder.entity.simulation
 
                     def solve_function(salaire_de_base):
@@ -74,15 +77,15 @@ def build_reform(tax_benefit_system):
                             salaire_de_base = salaire_de_base,
                             simulation = simulation,
                             ) - salaire_net
-                    return period, fsolve(solve_function, salaire_net)
+                    return fsolve(solve_function, salaire_net)
 
-                salaire_imposable_pour_inversion = simulation.calculate_add_divide('salaire_imposable_pour_inversion',
+                salaire_imposable_pour_inversion = simulation.calculate_divide('salaire_imposable_pour_inversion',
                     period)
 
             # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
             if (salaire_imposable_pour_inversion == 0).all():
                 # Quick path to avoid fsolve when using default value of input variables.
-                return period, salaire_imposable_pour_inversion
+                return salaire_imposable_pour_inversion
             simulation = self.holder.entity.simulation
 
             def solve_function(salaire_de_base):
@@ -93,7 +96,7 @@ def build_reform(tax_benefit_system):
                     simulation = simulation,
                     ) - salaire_imposable_pour_inversion
 
-            return period, fsolve(solve_function, salaire_imposable_pour_inversion)
+            return fsolve(solve_function, salaire_imposable_pour_inversion)
 
     #       TODO: inclure un taux de prime et calculer les primes en même temps que salaire_de_base
 
@@ -170,13 +173,14 @@ def build_reform(tax_benefit_system):
     #
     #        #<NODE desc= "Supplément familial de traitement " shortname="Supp. fam." code= "supp_familial_traitement"/>
     #        #<NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence"/>
-    #        return period, salbrut + hsup
+    #        return salbrut + hsup
 
     class chomage_brut(Reform.Variable):
         column = columns.FloatCol
         entity = entities.Individu
         label = u"Allocations chômage brutes"
         url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
+        definition_period = MONTH
 
         def function(self, simulation, period):
             """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
@@ -190,7 +194,7 @@ def build_reform(tax_benefit_system):
                     # Calcule les allocations chomage brutes à partir des allocations nettes par inversion numérique.
                     if (chomage_net == 0).all():
                         # Quick path to avoid fsolve when using default value of input variables.
-                        return period, chomage_net
+                        return chomage_net
                     simulation = self.holder.entity.simulation
 
                     def solve_function(chomage_brut):
@@ -200,16 +204,16 @@ def build_reform(tax_benefit_system):
                             period = period,
                             simulation = simulation,
                             ) - chomage_net
-                    return period, fsolve(solve_function, chomage_net)
+                    return fsolve(solve_function, chomage_net)
 
-                chomage_imposable_pour_inversion = simulation.calculate_add_divide(
+                chomage_imposable_pour_inversion = simulation.calculate_divide(
                     'chomage_imposable_pour_inversion', period)
 
             # Calcule les allocations chômage brutes à partir des allocations imposables.
             # taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
             if (chomage_imposable_pour_inversion == 0).all():
                 # Quick path to avoid fsolve when using default value of input variables.
-                return period, chomage_imposable_pour_inversion
+                return chomage_imposable_pour_inversion
             simulation = self.holder.entity.simulation
 
             def solve_function(chomage_brut):
@@ -220,19 +224,18 @@ def build_reform(tax_benefit_system):
                     period = period,
                     simulation = simulation,
                     ) - chomage_imposable_pour_inversion
-            return period, fsolve(solve_function, chomage_imposable_pour_inversion)
+            return fsolve(solve_function, chomage_imposable_pour_inversion)
 
     class retraite_brute(Reform.Variable):
         column = columns.FloatCol
         entity = entities.Individu
         label = u"Pensions de retraite brutes"
         url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
+        definition_period = MONTH
 
         def function(self, simulation, period):
             """"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
             """
-            # period = period.this_month
-
             # Get value for year and divide below.
             retraite_imposable_pour_inversion = simulation.get_array(
                 'retraite_imposable_pour_inversion', period.this_year)
@@ -242,7 +245,7 @@ def build_reform(tax_benefit_system):
                     # Calcule les pensions de retraite brutes à partir des pensions nettes par inversion numérique.
                     if (retraite_nette == 0).all():
                         # Quick path to avoid fsolve when using default value of input variables.
-                        return period, retraite_nette
+                        return retraite_nette
                     simulation = self.holder.entity.simulation
 
                     def solve_function(retraite_brute):
@@ -252,16 +255,16 @@ def build_reform(tax_benefit_system):
                             retraite_brute = retraite_brute,
                             simulation = simulation,
                             ) - retraite_nette
-                    return period, fsolve(solve_function, retraite_nette)
+                    return fsolve(solve_function, retraite_nette)
 
-                retraite_imposable_pour_inversion = simulation.calculate_add_divide(
+                retraite_imposable_pour_inversion = simulation.calculate_divide(
                     'retraite_imposable_pour_inversion', period)
 
             # Calcule les pensions de retraite brutes à partir des pensions imposables.
             taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
             if (retraite_imposable_pour_inversion == 0).all():
                 # Quick path to avoid fsolve when using default value of input variables.
-                return period, retraite_imposable_pour_inversion
+                return retraite_imposable_pour_inversion
             simulation = self.holder.entity.simulation
 
             def solve_function(retraite_brute):
@@ -272,6 +275,6 @@ def build_reform(tax_benefit_system):
                     period = period,
                     simulation = simulation,
                     ) - retraite_imposable_pour_inversion
-            return period, fsolve(solve_function, retraite_imposable_pour_inversion)
+            return fsolve(solve_function, retraite_imposable_pour_inversion)
 
     return Reform()

@@ -15,24 +15,33 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 class af(Variable):
     column = FloatCol
     entity = Famille
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 class salaire(Variable):
     column = FloatCol
     entity = Individu
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 class age(Variable):
     column = IntCol
     entity = Individu
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 class autonomie_financiere(Variable):
     column = BoolCol
     entity = Individu
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
 
 class depcom(Variable):
     column = FixedStrCol(max_length = 5)
     entity = Menage
-    is_permanent = True
     label = u"""Code INSEE "depcom" de la commune de résidence de la famille"""
+    definition_period = ETERNITY
 
 # This tests are more about core than france, but we need france entities to run some of them.
 # We use a dummy TBS to run the tests faster
@@ -85,7 +94,7 @@ def test_transpose():
     simulation = new_simulation(test_case)
     foyer_fiscal = simulation.foyer_fiscal
 
-    af_foyer_fiscal = foyer_fiscal.first_person.famille('af')
+    af_foyer_fiscal = foyer_fiscal.first_person.famille('af', options = [ADD])
 
     assert_near(af_foyer_fiscal, [20000, 10000, 10000])
 
@@ -106,9 +115,9 @@ def test_value_from_person():
     simulation = new_simulation(test_case)
 
     foyer_fiscal = simulation.foyer_fiscal
-    age = foyer_fiscal.members('age')
+    age = foyer_fiscal.members('age', period='2013-01')
 
-    age_conjoint = foyer_fiscal.conjoint('age')
+    age_conjoint = foyer_fiscal.conjoint('age', period='2013-01')
     assert_near(age_conjoint, [37, 0])
 
 def test_combination_projections():
@@ -117,7 +126,7 @@ def test_combination_projections():
 
     individu = simulation.persons
 
-    age_parent1 = individu.famille.demandeur('age')
+    age_parent1 = individu.famille.demandeur('age', period='2013-01')
 
     assert_near(age_parent1, [40, 40, 40, 40, 54, 54])
 
@@ -145,7 +154,7 @@ def test_complex_chain_2():
 
     simulation = new_simulation(test_case)
 
-    assert_near(simulation.famille.demandeur.menage.personne_de_reference('age'), [30, 31, 33])
-    assert_near(simulation.famille.conjoint.menage.personne_de_reference('age'), [31, 0, 0])
-    assert_near(simulation.famille.demandeur.foyer_fiscal.declarant_principal('age'), [30, 32, 32])
-    assert_near(simulation.foyer_fiscal.conjoint.famille.demandeur('age'), [30, 33])
+    assert_near(simulation.famille.demandeur.menage.personne_de_reference('age', period='2013-01'), [30, 31, 33])
+    assert_near(simulation.famille.conjoint.menage.personne_de_reference('age', period='2013-01'), [31, 0, 0])
+    assert_near(simulation.famille.demandeur.foyer_fiscal.declarant_principal('age', period='2013-01'), [30, 32, 32])
+    assert_near(simulation.foyer_fiscal.conjoint.famille.demandeur('age', period='2013-01'), [30, 33])

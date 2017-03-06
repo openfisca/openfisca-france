@@ -8,62 +8,76 @@ from openfisca_france.tests.test_entities import TEST_CASE, tax_benefit_system
 class salaire_famille(Variable):
     column = FloatCol
     entity = Famille
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         salaire_holder = simulation.compute('salaire')
-        return period, self.sum_by_entity(salaire_holder)
+        return self.sum_by_entity(salaire_holder)
 
 class salaire_enfants(Variable):
     column = FloatCol
     entity = Famille
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         salaire_holder = simulation.compute('salaire')
-        return period, self.sum_by_entity(salaire_holder, roles = ENFS)
+        return self.sum_by_entity(salaire_holder, roles = ENFS)
 
 class salaire_enf1(Variable):
     column = FloatCol
     entity = Famille
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         salaire_holder = simulation.compute('salaire')
         salaire = self.split_by_roles(salaire_holder)
         assert_near(salaire[CHEF], [1000, 3000])
-        return period, salaire[ENFS[0]]
+        return salaire[ENFS[0]]
 
 class salaire_conj(Variable):
     column = FloatCol
     entity = Famille
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         salaire_holder = simulation.compute('salaire')
         salaire = self.filter_role(salaire_holder, role = CONJ)
-        return period, salaire
+        return salaire
 
 class af_chef(Variable):
     column = FloatCol
     entity = Individu
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         af_holder = simulation.compute('af')
-        return period, self.cast_from_entity_to_roles(af_holder, roles = [CHEF])
+        return self.cast_from_entity_to_roles(af_holder, roles = [CHEF])
 
 class af_tous(Variable):
     column = FloatCol
     entity = Individu
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         af_holder = simulation.compute('af')
-        return period, self.cast_from_entity_to_roles(af_holder)
+        return self.cast_from_entity_to_roles(af_holder)
 
 class has_enfant_autonome(Variable):
     column = BoolCol
     entity = Famille
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def function(self, simulation, period):
         salaire = simulation.calculate('salaire')
         condition = salaire > 450
-        return period, self.any_by_roles(condition, roles = ENFS, entity = Famille)
+        return self.any_by_roles(condition, roles = ENFS, entity = Famille)
 
 
 tax_benefit_system.add_variables(salaire_famille, salaire_enfants, salaire_enf1, salaire_conj, af_chef, af_tous, has_enfant_autonome)

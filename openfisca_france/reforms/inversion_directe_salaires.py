@@ -16,9 +16,11 @@ class salaire_imposable_pour_inversion(Variable):
     column = FloatCol
     entity = Individu
     label = u'Salaire imposable utilisé pour remonter au salaire brut'
+    definition_period = MONTH
 
 
 class salaire_de_base(Variable):
+    definition_period = MONTH
 
     def function(self, simulation, period):
         """Calcule le salaire brut à partir du salaire imposable par inversion du barème
@@ -64,10 +66,11 @@ class salaire_de_base(Variable):
             prive_non_cadre.inverse().calc(salaire_imposable_pour_inversion) +
             (categorie_salarie == CATEGORIE_SALARIE['prive_cadre']) * prive_cadre.inverse().calc(salaire_imposable_pour_inversion)
             )
-        return period, salaire_de_base + hsup
+        return salaire_de_base + hsup
 
 
 class traitement_indiciaire_brut(Variable):
+    definition_period = MONTH
 
     def function(self, simulation, period):
         """Calcule le tratement indiciaire brut à partir du salaire imposable.
@@ -79,7 +82,7 @@ class traitement_indiciaire_brut(Variable):
         # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
 #            if salaire_imposable_pour_inversion == 0 or (salaire_imposable_pour_inversion == 0).all():
 #                # Quick path to avoid fsolve when using default value of input variables.
-#                return period, salaire_imposable_pour_inversion
+#                return salaire_imposable_pour_inversion
 
         # Calcule le salaire brut à partir du salaire imposable.
         # Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
@@ -127,10 +130,11 @@ class traitement_indiciaire_brut(Variable):
         # TODO: complete this to deal with the fonctionnaire
         # supp_familial_traitement = 0  # TODO: dépend de salbrut
         # indemnite_residence = 0  # TODO: fix bug
-        return period, traitement_indiciaire_brut
+        return traitement_indiciaire_brut
 
 
 class primes_fonction_publique(Variable):
+    definition_period = MONTH
 
     def function(self, simulation, period):
         """Calcule les primes.
@@ -139,7 +143,7 @@ class primes_fonction_publique(Variable):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut',
             period.start.offset('first-of', 'year').period('year'))
 
-        return period, TAUX_DE_PRIME * traitement_indiciaire_brut
+        return TAUX_DE_PRIME * traitement_indiciaire_brut
 
 
 class inversion_directe_salaires(Reform):

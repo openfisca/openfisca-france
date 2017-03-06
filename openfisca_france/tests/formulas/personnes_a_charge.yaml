@@ -1,13 +1,13 @@
-- name: "enfant_a_charge fonctionne en mode mensuel"
-  period: 2015-01
-  individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 12
-      garde_alternee: True
-  output_variables:
-    enfant_a_charge: [False, True]
+# - name: "enfant_a_charge fonctionne en mode mensuel"
+#   period: 2015-01
+#   individus:
+#     - id: "parent1"
+#       age: 40
+#     - id: "enfant1"
+#       age: 12
+#       garde_alternee: True
+#   output_variables:
+#     enfant_a_charge: [False, True]
 
 - name: "Un enfant de moins de 18 ans"
   period: 2015

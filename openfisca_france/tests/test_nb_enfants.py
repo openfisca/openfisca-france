@@ -14,10 +14,10 @@ def test_nb_enfants():
     ).new_simulation()
     from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
-    assert_near(nb_enf(simulation.famille, simulation.period, 3, 18), [2, 0])
-    assert_near(nb_enf(simulation.famille, simulation.period, 19, 50), [0, 1]) # Adults don't count
+    assert_near(nb_enf(simulation.famille, simulation.period.first_month, 3, 18), [2, 0])
+    assert_near(nb_enf(simulation.famille, simulation.period.first_month, 19, 50), [0, 1]) # Adults don't count
 
     test_case['individus'][5]['autonomie_financiere'] = True
     simulation_2 = new_simulation(test_case)
 
-    assert_near(nb_enf(simulation_2.famille, simulation_2.period, 19, 50), [0, 0])
+    assert_near(nb_enf(simulation_2.famille, simulation_2.period.first_month, 19, 50), [0, 0])

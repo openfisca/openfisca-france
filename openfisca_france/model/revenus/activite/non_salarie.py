@@ -29,6 +29,7 @@ class f5qm(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Agents généraux d’assurances: indemnités de cessation d’activité"
+    definition_period = YEAR
 
   # (f5qm, f5rm )
 
@@ -42,6 +43,7 @@ class ppe_du_ns(Variable):
     entity = Individu
     label = u"Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année"
     stop_date = date(2006, 12, 31)
+    definition_period = YEAR
 
   # (f5nv, f5ov, f5pv)
 
@@ -54,6 +56,7 @@ class ppe_tp_ns(Variable):
     entity = Individu
     label = u"Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière"
     stop_date = date(2006, 12, 31)
+    definition_period = YEAR
 
   # (f5nw, f5ow, f5pw)
 
@@ -65,6 +68,7 @@ class frag_exon(Variable):
     entity = Individu
     label = u"Revenus agricoles exonérés (régime du forfait)"
     start_date = date(2007, 1, 1)
+    definition_period = YEAR
 
   # (f5hn, f5in, f5jn))
 
@@ -76,6 +80,7 @@ class frag_impo(Variable):
     entity = Individu
     label = u"Revenus agricoles imposables (régime du forfait)"
     start_date = date(2007, 1, 1)
+    definition_period = YEAR
 
   # (f5ho, f5io, f5jo))
 
@@ -87,6 +92,7 @@ class arag_exon(Variable):
     entity = Individu
     label = u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur), activités exercées en Corse"
     start_date = date(2007, 1, 1)
+    definition_period = YEAR
 
   # (f5hb, f5ib, f5jb))
 
@@ -98,6 +104,7 @@ class arag_impg(Variable):
     entity = Individu
     label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
     start_date = date(2007, 1, 1)
+    definition_period = YEAR
 
   # (f5hc, f5ic, f5jc))
 
@@ -109,6 +116,7 @@ class arag_defi(Variable):
     entity = Individu
     label = u"Déficits agricoles (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
     start_date = date(2007, 1, 1)
+    definition_period = YEAR
 
   # (f5hf, f5if, f5jf))
 
@@ -120,6 +128,7 @@ class nrag_exon(Variable):
     entity = Individu
     label = u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur), activités exercées en Corse"
     start_date = date(2007, 1, 1)
+    definition_period = YEAR
 
   # (f5hh, f5ih, f5jh))
 
@@ -131,6 +140,7 @@ class nrag_impg(Variable):
     entity = Individu
     label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)"
     start_date = date(2007, 1, 1)
+    definition_period = YEAR
 
   # (f5hi, f5ii, f5ji))
 
@@ -142,6 +152,7 @@ class nrag_defi(Variable):
     entity = Individu
     label = u"Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)"
     start_date = date(2007, 1, 1)
+    definition_period = YEAR
 
   # (f5hl, f5il, f5jl))
 
@@ -153,6 +164,7 @@ class nrag_ajag(Variable):
     entity = Individu
     label = u"Jeunes agriculteurs, Abattement de 50% ou 100% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
     start_date = date(2007, 1, 1)
+    definition_period = YEAR
 
   # (f5hm, f5im, f5jm))
 
@@ -166,6 +178,7 @@ class ebic_impv(Variable):
     label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)"
     start_date = date(2009, 1, 1)
     stop_date = date(2009, 12, 31)
+    definition_period = YEAR
 
   # (f5ta, f5ua, f5va))
 
@@ -178,6 +191,7 @@ class ebic_imps(Variable):
     label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)"
     start_date = date(2009, 1, 1)
     stop_date = date(2009, 12, 31)
+    definition_period = YEAR
 
   # (f5tb, f5ub, f5vb))
 
@@ -190,6 +204,7 @@ class ebnc_impo(Variable):
     label = u"Revenus non commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)"
     start_date = date(2009, 1, 1)
     stop_date = date(2009, 12, 31)
+    definition_period = YEAR
 
   # (f5te, f5ue, f5ve))
 
@@ -200,6 +215,7 @@ class mbic_exon(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels nets exonérés (régime micro entreprise)"
+    definition_period = YEAR
 
   # (f5kn, f5ln, f5mn))
 
@@ -210,6 +226,7 @@ class abic_exon(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux nets exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5kb, f5lb, f5mb))
 
@@ -220,6 +237,7 @@ class nbic_exon(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5kh, f5lh, f5mh))
 
@@ -230,6 +248,7 @@ class mbic_impv(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime micro entreprise)"
+    definition_period = YEAR
 
   # (f5ko, f5lo, f5mo))
 
@@ -240,6 +259,7 @@ class mbic_imps(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime micro entreprise)"
+    definition_period = YEAR
 
   # (f5kp, f5lp, f5mp))
 
@@ -250,6 +270,7 @@ class abic_impn(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5kc, f5lc, f5mc))
 
@@ -261,6 +282,7 @@ class abic_imps(Variable):
     entity = Individu
     label = u"Revenus industriels et commerciaux imposables: régime simplifié avec CGA ou viseur (régime du bénéfice réel)"
     stop_date = date(2009, 12, 31)
+    definition_period = YEAR
 
   # (f5kd, f5ld, f5md))
 
@@ -273,6 +295,7 @@ class nbic_impn(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5ki, f5li, f5mi))
 
@@ -287,6 +310,7 @@ class nbic_imps(Variable):
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: régime simplifié sans CGA (régime du bénéfice réel)"
     stop_date = date(2009, 12, 31)
+    definition_period = YEAR
 
  # TODO: c'est 5HU pour les années anciennes
 
@@ -298,6 +322,7 @@ class nbic_mvct(Variable):
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels moins-values nettes à court terme"
     start_date = date(2012, 1, 1)
+    definition_period = YEAR
 
   # (f5kj, f5lj, f5mj))
                                                           # vérifier date début #####à intégrer dans OF#######
@@ -309,6 +334,7 @@ class abic_defn(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits industriels et commerciaux: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5kf, f5lf, f5mf))
 
@@ -320,6 +346,7 @@ class abic_defs(Variable):
     entity = Individu
     label = u"Déficits industriels et commerciaux: simplifié avec CGA ou viseur (régime du bénéfice réel)"
     stop_date = date(2009, 12, 1)
+    definition_period = YEAR
 
   # (f5kg, f5lg, f5mg))
                                                           # vérif <=2012
@@ -331,6 +358,7 @@ class nbic_defn(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5kl, f5ll, f5ml))
 
@@ -342,6 +370,7 @@ class nbic_defs(Variable):
     entity = Individu
     label = u"Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)"
     stop_date = date(2009, 12, 31)
+    definition_period = YEAR
 
   # (f5km, f5lm, f5mm))
 
@@ -352,6 +381,7 @@ class nbic_apch(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5ks, f5ls, f5ms))
 
@@ -362,6 +392,7 @@ class macc_exon(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux non professionnels nets exonérés (régime micro entreprise)"
+    definition_period = YEAR
 
   # (f5nn, f5on, f5pn))
 
@@ -372,6 +403,7 @@ class aacc_exon(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5nb, f5ob, f5pb))
 
@@ -382,6 +414,7 @@ class nacc_exon(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values sans CGA (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5nh, f5oh, f5ph))
 
@@ -392,6 +425,7 @@ class macc_impv(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux non professionnels imposables: vente de marchandises et assimilées (régime micro entreprise)"
+    definition_period = YEAR
 
   # (f5no, f5oo, f5po))
 
@@ -402,6 +436,7 @@ class macc_imps(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux non professionnels imposables: prestations de services (régime micro entreprise)"
+    definition_period = YEAR
 
   # (f5np, f5op, f5pp))
 
@@ -412,6 +447,7 @@ class aacc_impn(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5nc, f5oc, f5pc))
 
@@ -423,6 +459,7 @@ class aacc_imps(Variable):
     entity = Individu
     label = u"Locations meublées non professionnelles (régime micro entreprise)"
     start_date = date(2011, 1, 1)
+    definition_period = YEAR
 
   # (f5nd, f5od, f5pd)) #TODO: avant 2010
 
@@ -433,6 +470,7 @@ class aacc_defn(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5nf, f5of, f5pf))
 
@@ -444,6 +482,7 @@ class aacc_gits(Variable):
     entity = Individu
     label = u"Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise)"
     start_date = date(2011, 1, 1)
+    definition_period = YEAR
 
   # (f5ng, f5og, f5pg))
 
@@ -454,6 +493,7 @@ class nacc_impn(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5ni, f5oi, f5pi))
 
@@ -465,6 +505,7 @@ class aacc_defs(Variable):
     entity = Individu
     label = u"Déficits de revenus industriels et commerciaux non professionnels avec CGA (régime simplifié du bénéfice réel)"
     stop_date = date(2009, 12, 31)
+    definition_period = YEAR
 
 
 
@@ -476,6 +517,7 @@ class nacc_meup(Variable):
     entity = Individu
     label = u"Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)"
     start_date = date(2012, 1, 1)
+    definition_period = YEAR
 
   # (f5nj, f5oj, f5pj)) #TODO: dates 5PJ, 5PG, 5PD, 5OM
 
@@ -486,6 +528,7 @@ class nacc_defn(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5nl, f5ol, f5pl))
 
@@ -497,6 +540,7 @@ class nacc_defs(Variable):
     entity = Individu
     label = u"Locations meublées non professionnelles: Gîtes ruraux et chambres d'hôtes déjà soumis aux prélèvements sociaux avec CGA (régime du bénéfice réel)"
     start_date = date(2012, 1, 1)
+    definition_period = YEAR
 
   # (f5nm, f5om, f5pm)) #TODO autres 5NM
 
@@ -507,6 +551,7 @@ class mncn_impo(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus non commerciaux non professionnels imposables (régime déclaratif spécial ou micro BNC)"
+    definition_period = YEAR
 
   # (f5ku, f5lu, f5mu))
 
@@ -518,6 +563,7 @@ class cncn_bene(Variable):
     entity = Individu
     label = u"Revenus non commerciaux non professionnels imposables sans AA (régime de la déclaration controlée)"
     start_date = date(2006, 1, 1)
+    definition_period = YEAR
 
   # (f5sn, f5ns, f5os))
 
@@ -529,6 +575,7 @@ class cncn_defi(Variable):
     entity = Individu
     label = u"Déficits non commerciaux non professionnels sans AA (régime de la déclaration controlée)"
     start_date = date(2006, 1, 1)
+    definition_period = YEAR
 
   # (f5sp, f5nu, f5ou, f5sr))
                                                                   # pas de f5sr en 2013
@@ -540,6 +587,7 @@ class mbnc_exon(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus non commerciaux professionnels nets exonérés (régime déclaratif spécial ou micro BNC)"
+    definition_period = YEAR
 
   # (f5hp, f5ip, f5jp))
 
@@ -550,6 +598,7 @@ class abnc_exon(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)"
+    definition_period = YEAR
 
   # (f5qb, f5rb, f5sb))
 
@@ -560,6 +609,7 @@ class nbnc_exon(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
+    definition_period = YEAR
 
   # (f5qh, f5rh, f5sh))
 
@@ -570,6 +620,7 @@ class mbnc_impo(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus non commerciaux professionnels imposables (régime déclaratif spécial ou micro BNC)"
+    definition_period = YEAR
 
   # (f5hq, f5iq, f5jq))
 
@@ -580,6 +631,7 @@ class abnc_impo(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)"
+    definition_period = YEAR
 
   # (f5qc, f5rc, f5sc))
 
@@ -590,6 +642,7 @@ class abnc_defi(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits non commerciaux professionnels (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)"
+    definition_period = YEAR
 
   # (f5qe, f5re, f5se))
 
@@ -600,6 +653,7 @@ class nbnc_impo(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
+    definition_period = YEAR
 
   # (f5qi, f5ri, f5si))
 
@@ -610,6 +664,7 @@ class nbnc_defi(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits non commerciaux professionnels (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
+    definition_period = YEAR
 
   # (f5qk, f5rk, f5sk))
 
@@ -619,6 +674,7 @@ class mbic_mvct(Variable):
     entity = FoyerFiscal
     label = u"Moins-values industrielles et commerciales nettes à court terme du foyer (régime micro entreprise)"
     stop_date = date(2011, 12, 31)
+    definition_period = YEAR
 
   # (f5hu))
                                                           # vérif <=2012
@@ -628,6 +684,7 @@ class macc_mvct(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Moins-values industrielles et commerciales non professionnelles nettes à court terme du foyer (régime micro entreprise)"
+    definition_period = YEAR
 
   # (f5iu))
 
@@ -636,6 +693,7 @@ class mncn_mvct(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Moins-values non commerciales non professionnelles nettes à court terme du foyer (régime déclaratif spécial ou micro BNC)"
+    definition_period = YEAR
 
   # (f5ju))
 
@@ -647,6 +705,7 @@ class mbnc_mvct(Variable):
     entity = Individu
     label = u"Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)"
     start_date = date(2012, 1, 1)
+    definition_period = YEAR
 
   # (f5kz, f5lz , f5mz), f5lz , f5mz sont présentent en 2013
 
@@ -659,6 +718,7 @@ class frag_pvct(Variable):
     entity = Individu
     label = u"Plus-values agricoles  à court terme (régime du forfait)"
     start_date = date(2007, 1, 1)
+    definition_period = YEAR
 
   # (f5hw, f5iw, f5jw))
 
@@ -669,6 +729,7 @@ class mbic_pvct(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values industrielles et commerciales professionnels imposables: plus-values nettes à court terme (régime micro entreprise)"
+    definition_period = YEAR
 
   # (f5kx, f5lx, f5mx))
 
@@ -679,6 +740,7 @@ class macc_pvct(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values nettes à court terme (régime micro entreprise)"
+    definition_period = YEAR
 
   # (f5nx, f5ox, f5px))
 
@@ -689,6 +751,7 @@ class mbnc_pvct(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values non commerciales professionnelles imposables et Plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)"
+    definition_period = YEAR
 
   # (f5hv, f5iv, f5jv))
 
@@ -699,6 +762,7 @@ class mncn_pvct(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values non commerciales non professionnelles imposables et plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)"
+    definition_period = YEAR
 
   # (f5ky, f5ly, f5my))
 
@@ -709,6 +773,7 @@ class mbic_mvlt(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Moins-values industrielles et commerciales professionnels à long terme (régime micro entreprise)"
+    definition_period = YEAR
 
   # (f5kr, f5lr, f5mr))
 
@@ -719,6 +784,7 @@ class macc_mvlt(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Moins-values industrielles et commerciales non professionnelles à long terme (régime micro entreprise)"
+    definition_period = YEAR
 
   # (f5nr, f5or, f5pr))
 
@@ -729,6 +795,7 @@ class mncn_mvlt(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Moins-values non commerciales non professionnelles à long terme (régime déclaratif spécial ou micro BNC)"
+    definition_period = YEAR
 
   # (f5kw, f5lw, f5mw))
 
@@ -739,6 +806,7 @@ class mbnc_mvlt(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Moins-values non commerciales professionnelles à long terme (régime déclaratif spécial ou micro BNC)"
+    definition_period = YEAR
 
   # (f5hs, f5is, f5js))
 
@@ -750,6 +818,7 @@ class frag_pvce(Variable):
     entity = Individu
     label = u"Plus-values agricoles de cession taxables à 16% (régime du forfait)"
     start_date = date(2007, 1, 1)
+    definition_period = YEAR
 
   # (f5hx, f5ix, f5jx))
 
@@ -761,6 +830,7 @@ class arag_pvce(Variable):
     entity = Individu
     label = u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
     start_date = date(2007, 1, 1)
+    definition_period = YEAR
 
   # (f5he, f5ie, f5je))
 
@@ -772,6 +842,7 @@ class nrag_pvce(Variable):
     entity = Individu
     label = u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)"
     stop_date = date(2006, 12, 31)
+    definition_period = YEAR
 
   # TODO: vérif <=2012))  # (f5hk, f5lk, f5jk) codent autre chose sur d'autres années),
 
@@ -782,6 +853,7 @@ class mbic_pvce(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)"
+    definition_period = YEAR
 
   # (f5kq, f5lq, f5mq))
 
@@ -792,6 +864,7 @@ class abic_pvce(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values industrielles et commerciales de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5ke, f5le, f5me))
 
@@ -803,6 +876,7 @@ class nbic_pvce(Variable):
     entity = Individu
     label = u"Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)"
     start_date = date(2008, 1, 1)
+    definition_period = YEAR
 
   # (f5kk, f5ik, f5mk)) TODO: autre 5KK 2005/20006
 
@@ -813,6 +887,7 @@ class macc_pvce(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)"
+    definition_period = YEAR
 
   # (f5nq, f5oq, f5pq))
 
@@ -823,6 +898,7 @@ class aacc_pvce(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values industrielles et commerciales non professionnelles de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)"
+    definition_period = YEAR
 
   # (f5ne, f5oe, f5pe))
 
@@ -835,6 +911,7 @@ class nacc_pvce(Variable):
     label = u"Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)"
     start_date = date(2009, 1, 1)
     stop_date = date(2010, 12, 31)
+    definition_period = YEAR
 
   # (f5nk, f5ok, f5pk)) TODO: 5NK 2005/2006
 
@@ -845,6 +922,7 @@ class mncn_pvce(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values non commerciales non professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)"
+    definition_period = YEAR
 
   # (f5kv, f5lv, f5mv))
 
@@ -856,6 +934,7 @@ class cncn_pvce(Variable):
     entity = Individu
     label = u"Plus-values non commerciales non professionnelles taxables à 16% avec AA ou viseur (régime de la déclaration controlée)"
     start_date = date(2006, 1, 1)
+    definition_period = YEAR
 
   # (f5so, f5nt, f5ot))
 
@@ -866,6 +945,7 @@ class mbnc_pvce(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values non commerciales professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)"
+    definition_period = YEAR
 
   # (f5hr, f5ir, f5jr))
 
@@ -876,6 +956,7 @@ class abnc_pvce(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values non commerciaux professionnels de cession taxables à 16% (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)"
+    definition_period = YEAR
 
   # (f5qd, f5rd, f5sd))
 
@@ -887,6 +968,7 @@ class nbnc_pvce(Variable):
     entity = Individu
     label = u"Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)"
     start_date = date(2009, 1, 1)
+    definition_period = YEAR
 
   # (f5qj, f5rj, f5sj)) #TODO 5*J 2005/2006 (qui se transforme en 5*D...)
 
@@ -898,7 +980,7 @@ class frag_fore(Variable):
     entity = Individu
     label = u"Revenus des exploitants forestiers (régime du forfait)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class arag_sjag(Variable):
@@ -909,7 +991,7 @@ class arag_sjag(Variable):
     entity = Individu
     label = u"Abattement pour les jeunes agriculteurs des revenus agricoles sans CGA (régime du bénéfice réel)"
     start_date = date(2011, 1, 1)
-
+    definition_period = YEAR
 
 
 class abic_impm(Variable):
@@ -920,7 +1002,7 @@ class abic_impm(Variable):
     entity = Individu
     label = u"Locations meublées imposables avec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)"
     start_date = date(2009, 1, 1)
-
+    definition_period = YEAR
 
 
 class nbic_impm(Variable):
@@ -931,7 +1013,7 @@ class nbic_impm(Variable):
     entity = Individu
     label = u"Locations meublées imposables sans CGA (régime du bénéfice réel)"
     start_date = date(2009, 1, 1)
-
+    definition_period = YEAR
 
 
 class abic_defm(Variable):
@@ -942,7 +1024,7 @@ class abic_defm(Variable):
     entity = Individu
     label = u"Déficits de locations meubléesavec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)"
     start_date = date(2009, 1, 1)
-
+    definition_period = YEAR
 
 
 class alnp_imps(Variable):
@@ -954,7 +1036,7 @@ class alnp_imps(Variable):
     label = u"Locations meublées non professionnelles imposables avec CGA ou viseur (régime du bénéfice réel)"
     start_date = date(2009, 1, 1)
     stop_date = date(2010, 12, 31)
-
+    definition_period = YEAR
 
 
 class alnp_defs(Variable):
@@ -966,7 +1048,7 @@ class alnp_defs(Variable):
     label = u"Déficits de locations meublées non professionnelles avec CGA ou viseur (régime du bénéfice réel)"
     start_date = date(2009, 1, 1)
     stop_date = date(2010, 12, 31)
-
+    definition_period = YEAR
 
 
 class nlnp_defs(Variable):
@@ -978,7 +1060,7 @@ class nlnp_defs(Variable):
     label = u"Déficits de locations meublées non professionnelles imposables sans CGA (régime du bénéfice réel)"
     start_date = date(2009, 1, 1)
     stop_date = date(2010, 12, 31)
-
+    definition_period = YEAR
 
 
 class cbnc_assc(Variable):
@@ -988,7 +1070,7 @@ class cbnc_assc(Variable):
     entity = Individu
     label = u"Agents généraux d'assurances : indemnités de cessation d'activité (revenus non commerciaux professionnels, régime de la déclaration contrôlée)"
     start_date = date(2006, 1, 1)
-
+    definition_period = YEAR
 
 
 class abnc_proc(Variable):
@@ -999,7 +1081,7 @@ class abnc_proc(Variable):
     entity = Individu
     label = u"Honoraires de prospection commerciale exonérés avec CGA ou viseur (revenus non commerciaux professionnels, régime de la déclaration contrôlée)"
     start_date = date(2009, 1, 1)
-
+    definition_period = YEAR
 
 
 class nbnc_proc(Variable):
@@ -1010,7 +1092,7 @@ class nbnc_proc(Variable):
     entity = Individu
     label = u"Honoraires de prospection commerciale exonérés sans CGA (revenus non commerciaux professionnels, régime de la déclaration contrôlée)"
     start_date = date(2009, 1, 1)
-
+    definition_period = YEAR
 
 
 class mncn_exon(Variable):
@@ -1021,7 +1103,7 @@ class mncn_exon(Variable):
     entity = Individu
     label = u"Revenus nets exonérés non commerciaux non professionnels (régime déclaratif spécial ou micro BNC)"
     start_date = date(2009, 1, 1)
-
+    definition_period = YEAR
 
 
 class cncn_exon(Variable):
@@ -1032,7 +1114,7 @@ class cncn_exon(Variable):
     entity = Individu
     label = u"Revenus nets exonérés non commerciaux non professionnels (régime de la déclaration contrôlée)"
     start_date = date(2008, 1, 1)
-
+    definition_period = YEAR
 
 
 class cncn_aimp(Variable):
@@ -1043,7 +1125,7 @@ class cncn_aimp(Variable):
     entity = Individu
     label = u"Revenus imposables non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class cncn_adef(Variable):
@@ -1054,7 +1136,7 @@ class cncn_adef(Variable):
     entity = Individu
     label = u"Déficits non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class cncn_info(Variable):
@@ -1065,7 +1147,7 @@ class cncn_info(Variable):
     entity = Individu
     label = u"Inventeurs et auteurs de logiciels : produits taxables à 16%, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
     start_date = date(2009, 1, 1)
-
+    definition_period = YEAR
 
 
 class cncn_jcre(Variable):
@@ -1076,7 +1158,7 @@ class cncn_jcre(Variable):
     entity = Individu
     label = u"Jeunes créateurs : abattement de 50%, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
     start_date = date(2006, 1, 1)
-
+    definition_period = YEAR
 
 
 class revimpres(Variable):
@@ -1086,7 +1168,7 @@ class revimpres(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus nets à imposer aux prélèvements sociaux"
-
+    definition_period = YEAR
 
 
 class pveximpres(Variable):
@@ -1096,8 +1178,7 @@ class pveximpres(Variable):
     entity = Individu
     label = u"Plus-values à long terme exonérées en cas de départ à la retraite à imposer aux prélèvements sociaux"
     start_date = date(2006, 1, 1)
-
-
+    definition_period = YEAR
 
 
 class pvtaimpres(Variable):
@@ -1108,7 +1189,7 @@ class pvtaimpres(Variable):
     entity = Individu
     label = u"Plus-values à long terme taxables à 16% à la retraite à imposer aux prélèvements sociaux"
     stop_date = date(2009, 12, 31)
-
+    definition_period = YEAR
 
 
 class f5qf(Variable):
@@ -1117,7 +1198,7 @@ class f5qf(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-6)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class f5qg(Variable):
@@ -1126,7 +1207,7 @@ class f5qg(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-5)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class f5qn(Variable):
@@ -1135,7 +1216,7 @@ class f5qn(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-4)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class f5qo(Variable):
@@ -1144,7 +1225,7 @@ class f5qo(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-3)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class f5qp(Variable):
@@ -1153,7 +1234,7 @@ class f5qp(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-2)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class f5qq(Variable):
@@ -1162,7 +1243,7 @@ class f5qq(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-1)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class f5ga(Variable):
@@ -1172,7 +1253,7 @@ class f5ga(Variable):
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-10)"
     start_date = date(2010, 1, 1)
     stop_date = date(2010, 12, 31)
-
+    definition_period = YEAR
 
 
 class f5gb(Variable):
@@ -1182,7 +1263,7 @@ class f5gb(Variable):
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-9)"
     start_date = date(2010, 1, 1)
     stop_date = date(2010, 12, 31)
-
+    definition_period = YEAR
 
 
 class f5gc(Variable):
@@ -1192,7 +1273,7 @@ class f5gc(Variable):
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-8)"
     start_date = date(2010, 1, 1)
     stop_date = date(2010, 12, 31)
-
+    definition_period = YEAR
 
 
 class f5gd(Variable):
@@ -1202,7 +1283,7 @@ class f5gd(Variable):
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-7)"
     start_date = date(2010, 1, 1)
     stop_date = date(2010, 12, 31)
-
+    definition_period = YEAR
 
 
 class f5ge(Variable):
@@ -1212,7 +1293,7 @@ class f5ge(Variable):
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-6)"
     start_date = date(2010, 1, 1)
     stop_date = date(2010, 12, 31)
-
+    definition_period = YEAR
 
 
 class f5gf(Variable):
@@ -1222,7 +1303,7 @@ class f5gf(Variable):
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-5)"
     start_date = date(2010, 1, 1)
     stop_date = date(2010, 12, 31)
-
+    definition_period = YEAR
 
 
 class f5gg(Variable):
@@ -1232,7 +1313,7 @@ class f5gg(Variable):
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-4)"
     start_date = date(2010, 1, 1)
     stop_date = date(2010, 12, 31)
-
+    definition_period = YEAR
 
 
 class f5gh(Variable):
@@ -1242,7 +1323,7 @@ class f5gh(Variable):
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-3)"
     start_date = date(2010, 1, 1)
     stop_date = date(2010, 12, 31)
-
+    definition_period = YEAR
 
 
 class f5gi(Variable):
@@ -1252,7 +1333,7 @@ class f5gi(Variable):
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-2)"
     start_date = date(2010, 1, 1)
     stop_date = date(2010, 12, 31)
-
+    definition_period = YEAR
 
 
 class f5gj(Variable):
@@ -1262,7 +1343,7 @@ class f5gj(Variable):
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-1)"
     start_date = date(2010, 1, 1)
     stop_date = date(2010, 12, 31)
-
+    definition_period = YEAR
 
 
 class f5rn(Variable):
@@ -1272,7 +1353,7 @@ class f5rn(Variable):
     label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-6)"
     start_date = date(2010, 1, 1)
     stop_date = date(2010, 12, 31)
-
+    definition_period = YEAR
 
 
 class f5ro(Variable):
@@ -1280,7 +1361,7 @@ class f5ro(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-5)"
-
+    definition_period = YEAR
 
 
 class f5rp(Variable):
@@ -1288,7 +1369,7 @@ class f5rp(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-4)"
-
+    definition_period = YEAR
 
 
 class f5rq(Variable):
@@ -1296,7 +1377,7 @@ class f5rq(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-3)"
-
+    definition_period = YEAR
 
 
 class f5rr(Variable):
@@ -1304,7 +1385,7 @@ class f5rr(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-2)"
-
+    definition_period = YEAR
 
 
 class f5rw(Variable):
@@ -1312,7 +1393,7 @@ class f5rw(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-1)"
-
+    definition_period = YEAR
 
 
 class f5ht(Variable):
@@ -1321,7 +1402,7 @@ class f5ht(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-6)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class f5it(Variable):
@@ -1330,7 +1411,7 @@ class f5it(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-5)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class f5jt(Variable):
@@ -1339,7 +1420,7 @@ class f5jt(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-4)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class f5kt(Variable):
@@ -1348,7 +1429,7 @@ class f5kt(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-3)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class f5lt(Variable):
@@ -1357,7 +1438,7 @@ class f5lt(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-2)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class f5mt(Variable):
@@ -1366,14 +1447,13 @@ class f5mt(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-1)"
     start_date = date(2007, 1, 1)
-
+    definition_period = YEAR
 
 
 class f5sq(Variable):
     column = IntCol
     entity = Individu
-
-
+    definition_period = YEAR
 
 
 # TODO: Introduit par mes aides à consolider
@@ -1386,55 +1466,64 @@ class tns_auto_entrepreneur_chiffre_affaires(Variable):
     entity = Individu
     set_input = set_input_divide_by_period
     label = u"Chiffre d'affaires en tant qu'auto-entrepreneur"
+    definition_period = MONTH
 
 # Input annuel
 class tns_micro_entreprise_chiffre_affaires(Variable):
     column = FloatCol
     entity = Individu
-    set_input = set_input_divide_by_period
     label = u"Chiffre d'affaires en de micro-entreprise"
+    definition_period = YEAR
 
 enum_tns_type_activite = Enum([u'achat_revente', u'bic', u'bnc'])
 
 
-# TODO remove this ugly is_permanent
+# TODO remove this ugly ETERNITY
 class tns_auto_entrepreneur_type_activite(Variable):
     column = EnumCol(enum = enum_tns_type_activite)
     entity = Individu
-    is_permanent = True
     label = u"Type d'activité de l'auto-entrepreneur"
+    definition_period = ETERNITY
 
-# TODO remove this ugly is_permanent
+
+# TODO remove this ugly ETERNITY
 class tns_micro_entreprise_type_activite(Variable):
     column = EnumCol(enum = enum_tns_type_activite)
     entity = Individu
-    is_permanent = True
     label = u"Type d'activité de la micro-entreprise"
+    definition_period = ETERNITY
+
 
 # Input sur le dernier exercice. Par convention, sur l'année dernière.
 class tns_autres_revenus(Variable):
     column = FloatCol
     entity = Individu
-    set_input = set_input_divide_by_period
     label = u"Autres revenus non salariés"
+    definition_period = YEAR
+
 
 class tns_autres_revenus_chiffre_affaires(Variable):
     column = FloatCol
     entity = Individu
     set_input = set_input_divide_by_period
     label = u"Chiffre d'affaire pour les TNS non agricoles autres que les AE et ME"
+    definition_period = MONTH
+
 
 class tns_autres_revenus_type_activite(Variable):
     column = EnumCol(enum = enum_tns_type_activite)
     entity = Individu
-    is_permanent = True
     label = u"Type d'activité de l'entreprise non AE ni ME"
+    definition_period = MONTH
+
 
 class tns_avec_employe(Variable):
     column = BoolCol
     entity = Individu
     set_input = set_input_dispatch_by_period
     label = u"Le TNS a au moins un employé. Ne s'applique pas pour les agricoles ni auto-entrepreneurs ni micro entreprise"
+    definition_period = MONTH
+
 
 # Input annuel
 class tns_benefice_exploitant_agricole(Variable):
@@ -1442,6 +1531,7 @@ class tns_benefice_exploitant_agricole(Variable):
     entity = Individu
     set_input = set_input_dispatch_by_period
     label = u"Dernier bénéfice agricole"
+    definition_period = YEAR
 
 
 # Computed variables
@@ -1450,9 +1540,9 @@ class travailleur_non_salarie(Variable):
     label = u"L'individu a une activité professionnelle non salariée"
     column = BoolCol
     entity = Individu
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period) != 0
         tns_micro_entreprise_chiffre_affaires = simulation.calculate_add('tns_micro_entreprise_chiffre_affaires', this_year_and_last_year) != 0
@@ -1465,7 +1555,7 @@ class travailleur_non_salarie(Variable):
             tns_autres_revenus + tns_benefice_exploitant_agricole + tns_autres_revenus_chiffre_affaires
         )
 
-        return period, result
+        return result
 
 
 # Auxiliary function
@@ -1484,34 +1574,34 @@ class tns_auto_entrepreneur_benefice(DatedVariable):
     column = FloatCol
     label = u"Bénéfice en tant qu'auto-entrepreneur"
     entity = Individu
+    definition_period = MONTH
 
     @dated_function(start = date(2008, 1, 1))
     def function(self, simulation, period):
-        period = period.this_month
         tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
         bareme = simulation.legislation_at(period.start).tns
 
         benefice = compute_benefice_auto_entrepreneur_micro_entreprise(
             bareme, tns_auto_entrepreneur_type_activite, tns_auto_entrepreneur_chiffre_affaires)
-        return period, benefice
+        return benefice
 
 
 class tns_micro_entreprise_benefice(DatedVariable):
     column = FloatCol
     label = u"Bénéfice de la micro entreprise"
     entity = Individu
+    definition_period = YEAR
 
     @dated_function(start = date(2008, 1, 1))
     def function(self, simulation, period):
-        period = period.this_year
         tns_micro_entreprise_type_activite = simulation.calculate('tns_micro_entreprise_type_activite', period)
         tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period)
         bareme = simulation.legislation_at(period.start).tns
 
         benefice = compute_benefice_auto_entrepreneur_micro_entreprise(
             bareme, tns_micro_entreprise_type_activite, tns_micro_entreprise_chiffre_affaires)
-        return period, benefice
+        return benefice
 
 # The following formulas take into account 'cotisation sociales'. However, it seems that for all prestations,
 # the 'base ressources' are only using the 'benefice', without deducting the 'cotisation sociales'.
@@ -1521,10 +1611,10 @@ class tns_auto_entrepreneur_revenus_net(DatedVariable) :
     column = FloatCol
     label = u"Revenu d'un auto-entrepreneur"
     entity = Individu
+    definition_period = MONTH
 
     @dated_function(start = date(2008, 1, 1))
     def function(self, simulation, period):
-        period = period.this_month
         tns_auto_entrepreneur_benefice = simulation.calculate('tns_auto_entrepreneur_benefice', period)
         tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
@@ -1536,19 +1626,19 @@ class tns_auto_entrepreneur_revenus_net(DatedVariable) :
         tns_auto_entrepreneur_charges_sociales = taux_cotisations_sociales_sur_CA * tns_auto_entrepreneur_chiffre_affaires
         revenus = tns_auto_entrepreneur_benefice - tns_auto_entrepreneur_charges_sociales
 
-        return period, revenus
+        return revenus
 
 
 class tns_micro_entreprise_revenus_net(Variable) :
     column = FloatCol
     label = u"Revenu d'un TNS dans une micro-entreprise"
     entity = Individu
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', period)
         taux_cotisations_sociales = simulation.legislation_at(period.start).tns.micro_entreprise.cotisations_sociales
         tns_micro_entreprise_charges_sociales = tns_micro_entreprise_benefice * taux_cotisations_sociales
         revenus = tns_micro_entreprise_benefice - tns_micro_entreprise_charges_sociales
 
-        return period, revenus
+        return revenus

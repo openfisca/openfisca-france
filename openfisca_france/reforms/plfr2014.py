@@ -9,7 +9,7 @@ from openfisca_core import columns
 from openfisca_core.reforms import Reform
 
 from .. import entities
-from ..model.base import DatedVariable, dated_function, date
+from ..model.base import DatedVariable, dated_function, date, YEAR
 from ..model.prelevements_obligatoires.impot_revenu import reductions_impot
 
 
@@ -21,25 +21,27 @@ class plfr2014(Reform):
 
     class reduction_impot_exceptionnelle(DatedVariable):
         reference = reductions_impot.reduction_impot_exceptionnelle
+        definition_period = YEAR
 
         @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
         def function(self, simulation, period):
-            period = period.this_year
+            janvier = period.first_month
+
             nb_adult = simulation.calculate('nb_adult')
-            nb_parents = simulation.calculate('nb_parents')
+            nb_parents = simulation.calculate('nb_parents', period = janvier)
             rfr = simulation.calculate('rfr')
             params = simulation.legislation_at(period.start).plfr2014.reduction_impot_exceptionnelle
             plafond = params.seuil * nb_adult + (nb_parents - nb_adult) * 2 * params.majoration_seuil
             montant = params.montant_plafond * nb_adult
-            return period, min_(max_(plafond + montant - rfr, 0), montant)
+            return min_(max_(plafond + montant - rfr, 0), montant)
 
     class reductions(DatedVariable):
         label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
         reference = reductions_impot.reductions
+        definition_period = YEAR
 
         @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
         def function_20130101_20131231(self, simulation, period):
-            period = period.this_year
             accult = simulation.calculate('accult')
             adhcga = simulation.calculate('adhcga')
             cappme = simulation.calculate('cappme')
@@ -73,7 +75,7 @@ class plfr2014(Reform):
             total_reductions = accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + \
                 donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + \
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
-            return period, min_(ip_net, total_reductions)
+            return min_(ip_net, total_reductions)
 
     def apply(self):
         for variable in [self.reduction_impot_exceptionnelle, self.reductions]:

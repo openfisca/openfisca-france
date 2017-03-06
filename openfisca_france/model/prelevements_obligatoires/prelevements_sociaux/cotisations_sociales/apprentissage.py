@@ -13,9 +13,9 @@ class apprenti(Variable):
     entity = Individu
     label = u"L'individu est apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         age = simulation.calculate('age', period)
         age_condition = (16 <= age) * (age < 25)
         apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
@@ -24,7 +24,7 @@ class apprenti(Variable):
             ).astype('timedelta64[Y]')
         anciennete_contrat = (duree_contrat < timedelta64(3, 'Y'))
 
-        return period, age_condition * anciennete_contrat
+        return age_condition * anciennete_contrat
 
 
 class remuneration_apprenti(Variable):
@@ -32,6 +32,7 @@ class remuneration_apprenti(Variable):
     entity = Individu
     label = u"Rémunération de l'apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    definition_period = MONTH
 
     # Aux jeunes de 16 à 25 ans (exceptionnellement 15 ans, s'ils ont effectué la scolarité du premier cycle de
     # l'enseignement secondaire, ou, s'ils suivent une "formation apprentissage junior").
@@ -42,7 +43,6 @@ class remuneration_apprenti(Variable):
     # alternance (DIMA).
 
     def function(self, simulation, period):
-        period = period.this_month
         age = simulation.calculate('age', period)
         apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
         smic = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
@@ -87,7 +87,7 @@ class remuneration_apprenti(Variable):
                 (anciennete_contrat[age_condition] == timedelta64(anciennete, 'Y')) * part_de_smic
                 for anciennete, part_de_smic in age_interval['part_de_smic_by_anciennete'].iteritems()
                 ])
-        return period, output * smic * apprenti
+        return output * smic * apprenti
 
 
 class exoneration_cotisations_employeur_apprenti(Variable):
@@ -95,6 +95,7 @@ class exoneration_cotisations_employeur_apprenti(Variable):
     entity = Individu
     label = u"Exonération de cotisations employeur pour l'emploi d'un apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    definition_period = MONTH
     # Artisans et employeurs de moins de 11 salariés
     #
     # - exonération totale (part patronale et salariale) des charges sociales,
@@ -114,7 +115,6 @@ class exoneration_cotisations_employeur_apprenti(Variable):
     # de conclusion du contrat d'apprentissage.
 
     def function(self, simulation, period):
-        period = period.this_month
         accident_du_travail = simulation.calculate('accident_du_travail', period)
         apprenti = simulation.calculate('apprenti', period)
         cotisations_employeur = simulation.calculate('cotisations_employeur', period)
@@ -131,7 +131,7 @@ class exoneration_cotisations_employeur_apprenti(Variable):
             vieillesse_deplafonnee_employeur)
         exoneration_plus_11 = -cotisations_exonerees
 
-        return period, (
+        return (
             exoneration_plus_11 * (effectif_entreprise >= 11) +
             exoneration_moins_11 * (effectif_entreprise < 11)
             ) * apprenti
@@ -142,14 +142,14 @@ class exoneration_cotisations_salariales_apprenti(Variable):
     entity = Individu
     label = u"Exonération de cotisations salariales pour l'emploi d'un apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         apprenti = simulation.calculate('apprenti', period)
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         cotisations_salariales_non_contributives = simulation.calculate(
             'cotisations_salariales_non_contributives', period)
-        return period, - (cotisations_salariales_contributives + cotisations_salariales_non_contributives) * apprenti
+        return - (cotisations_salariales_contributives + cotisations_salariales_non_contributives) * apprenti
 
 
 class prime_apprentissage(Variable):
@@ -157,6 +157,7 @@ class prime_apprentissage(Variable):
     entity = Individu
     label = u"Prime d'apprentissage pour les entreprise employant un apprenti"
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    definition_period = YEAR
     # L'employeur peut également recevoir de la région dans laquelle est situé l'établissement du lieu de travail,
     # une prime d'apprentissage.
     #
@@ -175,9 +176,8 @@ class prime_apprentissage(Variable):
     # Son versement cesse lorsque l'apprenti n'est plus salarié dans l'entreprise ou l'établissement qui l'a embauché.
 
     def function(self, simulation, period):
-        period = period.this_year
         apprenti = simulation.calculate('apprenti', period)
-        return period, 1000 * apprenti
+        return 1000 * apprenti
 
 # # class credit_impot_emploi_apprenti(Variable):
 #     column = FloatCol

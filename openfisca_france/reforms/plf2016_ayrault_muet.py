@@ -49,16 +49,17 @@ class variator(Variable):
     column = FloatCol(default = 1)
     entity = FoyerFiscal
     label = u'Multiplicateur du seuil de régularisation'
+    definition_period = YEAR
 
 
 class reduction_csg(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Réduction dégressive de CSG"
+    definition_period = YEAR
 
     @dated_function(start = date(2015, 1, 1))
     def function_2015__(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
         smic_proratise = simulation.calculate_add('smic_proratise', period)
         assiette_csg_abattue = simulation.calculate_add('assiette_csg_abattue', period)
 
@@ -73,43 +74,44 @@ class reduction_csg(DatedVariable):
         # règle d'arrondi: 4 décimales au dix-millième le plus proche
         taux_allegement_csg = tx_max * min_(1, max_(seuil - 1 / ratio_smic_salaire, 0) / (seuil - 1))
         # Montant de l'allegment
-        return period, taux_allegement_csg * assiette_csg_abattue
+        return taux_allegement_csg * assiette_csg_abattue
 
 
 class reduction_csg_foyer_fiscal(Variable):
     entity = FoyerFiscal
     label = u"Réduction dégressive de CSG des memebres du foyer fiscal"
     column = FloatCol
+    definition_period = YEAR
 
     def function(self, simulation, period):
         reduction_csg = simulation.calculate('reduction_csg', period)
-        return period, simulation.foyer_fiscal.sum(reduction_csg)
+        return simulation.foyer_fiscal.sum(reduction_csg)
 
 
 class reduction_csg_nette(DatedVariable):
     column = FloatCol
     entity = Individu
     label = u"Réduction dégressive de CSG"
+    definition_period = YEAR
 
     @dated_function(start = date(2015, 1, 1))
     def function_2015__(individu, period):
-        period = period.this_year
         reduction_csg = individu('reduction_csg', period)
         ppe_elig_bis = individu.foyer_fiscal('ppe_elig_bis', period)
-        return period, reduction_csg * ppe_elig_bis
+        return reduction_csg * ppe_elig_bis
 
 
 class ppe_elig_bis(Variable):
     column = BoolCol(default = False)
     entity = FoyerFiscal
     label = u"ppe_elig_bis"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence
         'foy'
         '''
-        period = period.start.offset('first-of', 'year').period('year')
         rfr = simulation.calculate('rfr', period)
         ppe_coef = simulation.calculate('ppe_coef', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
@@ -120,20 +122,20 @@ class ppe_elig_bis(Variable):
         ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe
         seuil = (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
             + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
-        return period, (rfr * ppe_coef) <= (seuil * variator)
+        return (rfr * ppe_coef) <= (seuil * variator)
 
 
 class regularisation_reduction_csg(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Régularisation complète réduction dégressive de CSG"
+    definition_period = YEAR
 
     @dated_function(start = date(2015, 1, 1))
     def function_2015__(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
         reduction_csg = simulation.calculate('reduction_csg_foyer_fiscal', period)
         ppe_elig_bis = simulation.calculate('ppe_elig_bis', period)
-        return period, not_(ppe_elig_bis) * (reduction_csg > 1)
+        return not_(ppe_elig_bis) * (reduction_csg > 1)
 
 
 class ayrault_muet(Reform):

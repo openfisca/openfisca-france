@@ -12,9 +12,9 @@ class taux_versement_transport(Variable):
     column = FloatCol
     entity = Individu
     label = u""
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
         depcom_entreprise = simulation.calculate('depcom_entreprise', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
@@ -32,20 +32,20 @@ class taux_versement_transport(Variable):
             )
         # "L'entreprise emploie-t-elle plus de 9 ou 10 salariés dans le périmètre de l'Autorité organisatrice de transport
         # (AOT) suivante ou syndicat mixte de transport (SMT)"
-        return period, taux_versement_transport * or_(effectif_entreprise >= seuil_effectif, public) / 100
+        return taux_versement_transport * or_(effectif_entreprise >= seuil_effectif, public) / 100
 
 
 class versement_transport(Variable):
     column = FloatCol
     entity = Individu
     label = u"Versement transport"
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.start.period(u'month').offset('first-of')
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         taux_versement_transport = simulation.calculate('taux_versement_transport', period)
         cotisation = - taux_versement_transport * assiette_cotisations_sociales
-        return period, cotisation
+        return cotisation
 
 
 

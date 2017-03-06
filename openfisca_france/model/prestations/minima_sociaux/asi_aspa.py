@@ -11,21 +11,39 @@ class inapte_travail(Variable):
     column = BoolCol
     entity = Individu
     label = u"Reconnu inapte au travail"
-
+    definition_period = MONTH
 
 class taux_incapacite(Variable):
     column = FloatCol
     entity = Individu
     label = u"Taux d'incapacité"
+    definition_period = MONTH
+
+
+# Cette formule se base sur les revenus imposables annuels. Est-ce vraiment le cas pour l'ASI et l'ASPA ?
+class revenus_fonciers_minima_sociaux(Variable):
+    column = FloatCol
+    entity = Individu
+    label = u"Revenus fonciers pour la base ressource du rmi/rsa"
+    definition_period = MONTH
+
+    def function(individu, period):
+        period_declaration = period.this_year
+        f4ba = individu.foyer_fiscal('f4ba', period_declaration)
+        f4be = individu.foyer_fiscal('f4be', period_declaration)
+
+
+        # On projette les revenus du foyer fiscal seulement sur le déclarant principal
+        return (f4ba + f4be) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
 
 
 class asi_aspa_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base ressources individuelle du minimum vieillesse/ASPA"
     entity = Individu
+    definition_period = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
         last_year = period.last_year
         three_previous_months = period.last_3_months
         law = legislation(period)
@@ -52,9 +70,9 @@ class asi_aspa_base_ressources_individu(Variable):
             ]
 
         # Revenus du foyer fiscal que l'on projette sur le premier invidividus
-        rev_cap_bar_foyer_fiscal = max_(0, individu.foyer_fiscal('rev_cap_bar', three_previous_months, options = [ADD, DIVIDE]))
-        rev_cap_lib_foyer_fiscal = max_(0, individu.foyer_fiscal('rev_cap_lib', three_previous_months, options = [ADD, DIVIDE]))
-        retraite_titre_onereux_foyer_fiscal = individu.foyer_fiscal('retraite_titre_onereux', three_previous_months, options = [ADD, DIVIDE])
+        rev_cap_bar_foyer_fiscal = max_(0, individu.foyer_fiscal('rev_cap_bar', three_previous_months, options = [ADD]))
+        rev_cap_lib_foyer_fiscal = max_(0, individu.foyer_fiscal('rev_cap_lib', three_previous_months, options = [ADD]))
+        retraite_titre_onereux_foyer_fiscal = individu.foyer_fiscal('retraite_titre_onereux', three_previous_months, options = [ADD])
         revenus_foyer_fiscal = rev_cap_bar_foyer_fiscal + rev_cap_lib_foyer_fiscal + retraite_titre_onereux_foyer_fiscal
         revenus_foyer_fiscal_individu = revenus_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
@@ -107,31 +125,30 @@ class asi_aspa_base_ressources_individu(Variable):
             for ressource_type in ressources_incluses
             ) + aah + revenus_foyer_fiscal_individu + revenus_tns() - abs_(pensions_alimentaires_versees) - abattement_salaire()
 
-        return period, base_ressources_3_mois / 3
+        return base_ressources_3_mois / 3
 
 
 class asi_aspa_base_ressources(Variable):
     column = FloatCol
     label = u"Base ressource du minimum vieillesse et assimilés (ASPA)"
     entity = Famille
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         asi_aspa_base_ressources_i_holder = simulation.compute('asi_aspa_base_ressources_individu', period)
         ass = simulation.calculate('ass', period)
 
         asi_aspa_base_ressources_i = self.split_by_roles(asi_aspa_base_ressources_i_holder, roles = [CHEF, PART])
-        return period, ass + asi_aspa_base_ressources_i[CHEF] + asi_aspa_base_ressources_i[PART]
+        return ass + asi_aspa_base_ressources_i[CHEF] + asi_aspa_base_ressources_i[PART]
 
 
 class aspa_eligibilite(Variable):
     column = BoolCol
     label = u"Indicatrice individuelle d'éligibilité à l'allocation de solidarité aux personnes agées"
     entity = Individu
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
-
         age = simulation.calculate('age', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
         taux_incapacite = simulation.calculate('taux_incapacite', period)
@@ -142,16 +159,16 @@ class aspa_eligibilite(Variable):
         condition_age = condition_age_base + condition_age_anticipe
         condition_nationalite = simulation.calculate('asi_aspa_condition_nationalite', period)
 
-        return period, condition_age * condition_nationalite
+        return condition_age * condition_nationalite
 
 
 class asi_eligibilite(Variable):
     column = BoolCol
     label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
     entity = Individu
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         last_month = period.start.period('month').offset(-1)
 
         non_eligible_aspa = not_(simulation.calculate('aspa_eligibilite', period))
@@ -166,36 +183,37 @@ class asi_eligibilite(Variable):
             (handicap * touche_retraite + touche_pension_invalidite)
             )
 
-        return period, eligible
+        return eligible
 
 
 class asi_aspa_condition_nationalite(Variable):
     column = BoolCol
     label = u"Condition de nationnalité et de titre de séjour pour bénéficier de l'ASPA ou l'ASI"
     entity = Individu
+    definition_period = MONTH
 
     def function(self, simulation, period):
         ressortissant_eee = simulation.calculate('ressortissant_eee', period)
         duree_possession_titre_sejour = simulation.calculate('duree_possession_titre_sejour', period)
         duree_min_titre_sejour = simulation.legislation_at(period.start).prestations.minima_sociaux.aspa.duree_min_titre_sejour
 
-        return period, or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
+        return or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
 
 class asi_aspa_nb_alloc(Variable):
     column = IntCol
     label = u"Nombre d'allocataires ASI/ASPA"
     entity = Famille
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
         asi_elig_holder = simulation.compute('asi_eligibilite', period)
 
         asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
         aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
 
-        return period, (1 * aspa_eligibilite[CHEF] + 1 * aspa_eligibilite[PART] + 1 * asi_eligibilite[CHEF] + 1 * asi_eligibilite[PART])
+        return (1 * aspa_eligibilite[CHEF] + 1 * aspa_eligibilite[PART] + 1 * asi_eligibilite[CHEF] + 1 * asi_eligibilite[PART])
 
 
 class asi(Variable):
@@ -205,9 +223,10 @@ class asi(Variable):
     start_date = date(2007, 1, 1)
     url = u"http://vosdroits.service-public.fr/particuliers/F16940.xhtml"
     entity = Famille
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
-        period = period.this_month
         asi_elig_holder = simulation.compute('asi_eligibilite', period)
         aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
         maries = simulation.calculate('maries', period)
@@ -258,27 +277,26 @@ class asi(Variable):
         # TODO: Faute de mieux, on verse l'asi à la famille plutôt qu'aux individus
         # asi[CHEF] = asi_eligibilite[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
         # asi[PART] = asi_eligibilite[PART]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
-        return period, elig * montant_servi_asi
+        return elig * montant_servi_asi
 
 
 class aspa_couple(DatedVariable):
     column = BoolCol
     label = u"Couple au sens de l'ASPA"
     entity = Famille
+    definition_period = MONTH
 
     @dated_function(date(2002, 1, 1), date(2006, 12, 31))
     def function_2002_2006(self, simulation, period):
-        period = period
         maries = simulation.calculate('maries', period)
 
-        return period, maries
+        return maries
 
     @dated_function(date(2007, 1, 1))
     def function_2007(self, simulation, period):
-        period = period
         en_couple = simulation.calculate('en_couple', period)
 
-        return period, en_couple
+        return en_couple
 
 
 class aspa(Variable):
@@ -287,9 +305,10 @@ class aspa(Variable):
     entity = Famille
     label = u"Allocation de solidarité aux personnes agées"
     url = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
-        period = period.this_month
         asi_elig_holder = simulation.compute('asi_eligibilite', period)
         aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
         maries = simulation.calculate('maries', period)
@@ -335,4 +354,4 @@ class aspa(Variable):
         # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
         # aspa[CHEF] = aspa_eligibilite[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
         # aspa[PART] = aspa_eligibilite[PART]*montant_servi_aspa*(elig1 + elig2/2)
-        return period, elig * montant_servi_aspa
+        return elig * montant_servi_aspa

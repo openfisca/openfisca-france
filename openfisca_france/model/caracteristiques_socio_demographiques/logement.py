@@ -10,38 +10,53 @@ class coloc(Variable):
     column = BoolCol
     entity = Menage
     label = u"Vie en colocation"
+    definition_period = MONTH
+
 
 class logement_chambre(Variable):
     column = BoolCol
     entity = Menage
     label = u"Le logement est considéré comme une chambre"
+    definition_period = MONTH
+
 
 class loyer(Variable):
     column = FloatCol
     entity = Menage
     set_input = set_input_divide_by_period
     label = u"Loyer ou mensualité d'emprunt pour un primo-accédant"
+    definition_period = MONTH
+
 
 class depcom(Variable):
     column = FixedStrCol(max_length = 5)
     entity = Menage
     label = u"Code INSEE (depcom) du lieu de résidence"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
 
 class charges_locatives(Variable):
     column = FloatCol
     entity = Menage
     set_input = set_input_divide_by_period
     label = u'Charges locatives'
+    definition_period = MONTH
+
 
 class proprietaire_proche_famille(Variable):
     column = BoolCol
     entity = Famille
     label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
+    definition_period = MONTH
+
 
 class habite_chez_parents(Variable):
     column = BoolCol
     entity = Individu
     label = u"L'individu habite chez ses parents"
+    definition_period = MONTH
+
 
 class statut_occupation_logement(Variable):
     column = EnumCol(
@@ -59,10 +74,13 @@ class statut_occupation_logement(Variable):
     entity = Menage
     label = u"Statut d'occupation du logement"
     set_input = set_input_dispatch_by_period
+    definition_period = MONTH
+
 
 class residence_dom(Variable):
     column = BoolCol
     entity = Menage
+    definition_period = MONTH
 
     def function(menage, period):
         residence_guadeloupe = menage('residence_guadeloupe', period)
@@ -71,49 +89,54 @@ class residence_dom(Variable):
         residence_reunion = menage('residence_reunion', period)
         residence_mayotte = menage('residence_mayotte', period)
 
-        return period, residence_guadeloupe + residence_martinique + residence_reunion +residence_guyane + residence_mayotte
+        return residence_guadeloupe + residence_martinique + residence_reunion +residence_guyane + residence_mayotte
 
 
 class residence_guadeloupe(Variable):
     column = BoolCol
     entity = Menage
+    definition_period = MONTH
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
-        return period, startswith(depcom, '971')
+        return startswith(depcom, '971')
 
 
 class residence_martinique(Variable):
     column = BoolCol
     entity = Menage
+    definition_period = MONTH
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
-        return period, startswith(depcom, '972')
+        return startswith(depcom, '972')
 
 
 class residence_guyane(Variable):
     column = BoolCol
     entity = Menage
+    definition_period = MONTH
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
-        return period, startswith(depcom, '973')
+        return startswith(depcom, '973')
 
 
 class residence_reunion(Variable):
     column = BoolCol
     entity = Menage
+    definition_period = MONTH
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
-        return period, startswith(depcom, '974')
+        return startswith(depcom, '974')
 
 
 class residence_mayotte(Variable):
     column = BoolCol
     entity = Menage
+    definition_period = MONTH
 
     def function(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
-        return period, startswith(depcom, '976')
+        return startswith(depcom, '976')

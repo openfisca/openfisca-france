@@ -31,9 +31,9 @@ class allocations_familiales_imposables(Reform):
 
     class rbg(Variable):
         label = u"Nouveau revenu brut global intégrant les allocations familiales"
+        definition_period = YEAR
 
         def function(self, simulation, period):
-            period = period.this_year
             allocations_familiales_imposables = simulation.calculate_add('allocations_familiales_imposables', period)
             deficit_ante = simulation.calculate('deficit_ante', period)
             f6gh = simulation.calculate('f6gh', period)
@@ -43,7 +43,7 @@ class allocations_familiales_imposables(Reform):
             cga = simulation.legislation_at(period.start).impot_revenu.rpns.cga_taux2
 
             nacc_pvce = self.sum_by_entity(nacc_pvce_holder)
-            return period, max_(
+            return max_(
                 0,
                 allocations_familiales_imposables + rev_cat + f6gh +
                 (self.sum_by_entity(nbic_impm_holder) + nacc_pvce) * (1 + cga) - deficit_ante
@@ -51,10 +51,9 @@ class allocations_familiales_imposables(Reform):
 
     class rfr(Variable):
         label = u"Nouveau revenu fiscal de référence intégrant les allocations familiales"
+        definition_period = YEAR
 
         def function(self, simulation, period):
-            period = period.this_year
-
             allocations_familiales_imposables = simulation.calculate('allocations_familiales_imposables')
             f3va_holder = simulation.calculate('f3va')
             f3vi_holder = simulation.calculate('f3vi')
@@ -72,7 +71,7 @@ class allocations_familiales_imposables(Reform):
             rpns_exon = self.sum_by_entity(rpns_exon_holder)
             rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
 
-            return period, (
+            return (
                 max_(0, rni - allocations_familiales_imposables) +
                 rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vz + microentreprise
                 )
@@ -81,13 +80,13 @@ class allocations_familiales_imposables(Reform):
         column = columns.FloatCol
         entity = FoyerFiscal
         label = u"Allocations familiales imposables"
+        definition_period = YEAR
 
         def function(self, simulation, period):
-            period = period.this_year
             imposition = simulation.legislation_at(period.start).allocations_familiales_imposables.imposition
             af = simulation.foyer_fiscal.declarant_principal.famille('af', period, options = [ADD])
 
-            return period, af * imposition
+            return af * imposition
 
     def apply(self):
         self.update_variable(self.rbg)

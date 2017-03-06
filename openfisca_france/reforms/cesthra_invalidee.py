@@ -6,6 +6,7 @@ from numpy import maximum as max_
 from openfisca_core import columns
 from openfisca_core.reforms import Reform
 from openfisca_core.variables import Variable
+from openfisca_france.model.base import *
 
 from .. import entities
 from ..model.prelevements_obligatoires.impot_revenu import ir
@@ -40,28 +41,28 @@ class cesthra(Variable):
     column = columns.FloatCol
     entity = entities.FoyerFiscal
     label = u"Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
+    definition_period = YEAR
     # PLF 2013 (rejeté) : 'taxe à 75%'
 
     def function(self, simulation, period):
-        period = period.this_year
-        salaire_imposable_holder = simulation.calculate("salaire_imposable", period)
+        salaire_imposable_holder = simulation.calculate_add("salaire_imposable", period)
         law_cesthra = simulation.legislation_at(period.start).cesthra
         salaire_imposable = self.split_by_roles(salaire_imposable_holder)
 
         cesthra = 0
         for rev in salaire_imposable.itervalues():
             cesthra += max_(rev - law_cesthra.seuil, 0) * law_cesthra.taux
-        return period, cesthra
+        return cesthra
 
 
 class irpp(Variable):
     label = u"Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Montant après seuil de recouvrement (hors ppe)
         '''
-        period = period.this_year
         iai = simulation.calculate('iai', period)
         credits_impot = simulation.calculate('credits_impot', period)
         cehr = simulation.calculate('cehr', period)
@@ -69,7 +70,7 @@ class irpp(Variable):
         P = simulation.legislation_at(period.start).impot_revenu.recouvrement
 
         pre_result = iai - credits_impot + cehr + cesthra
-        return period, ((iai > P.seuil) *
+        return ((iai > P.seuil) *
             ((pre_result < P.min) * (pre_result > 0) * iai * 0 +
             ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)) +
             (iai <= P.seuil) * ((pre_result < 0) * (-pre_result) +

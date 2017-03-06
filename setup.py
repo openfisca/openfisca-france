@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '14.0.0',
+    version = '14.1.0',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -45,7 +45,7 @@ setup(
         'Babel >= 0.9.4',
         'Biryani[datetimeconv] >= 0.10.4',
         'numpy >= 1.11',
-        'OpenFisca-Core >= 5.0.0, < 6.0',
+        'OpenFisca-Core >= 6.0.0, < 7.0',
         'PyYAML >= 3.10',
         'requests >= 2.8',
         ],

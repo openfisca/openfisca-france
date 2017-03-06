@@ -1,5 +1,6 @@
 - name: "Exonération d'impôt sur les sociétés pour les créations en zone de revitalisation rurale (ZRR)"
   period: "2014"
+  relative_error_margin: 0.0001
   input_variables:
     contrat_de_travail_debut: "2014-01-01"
     effectif_entreprise: 20
