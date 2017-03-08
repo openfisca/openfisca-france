@@ -35,7 +35,7 @@ tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
 
 def compare(scenario, tested = False):
     year = scenario.period.date.year
-    totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
+    totpac = scenario.test_case['foyers_fiscaux'][0].get('personnes_a_charge')
 
     impots_arguments = transform_scenario_to_tax_calculator_inputs(scenario)
     simulation = scenario.new_simulation(debug = True)
