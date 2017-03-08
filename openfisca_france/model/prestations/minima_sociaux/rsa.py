@@ -573,7 +573,7 @@ class rsa_revenu_activite_individu(DatedVariable):
             'tns_auto_entrepreneur_benefice',
             'rsa_indemnites_journalieres_activite',
             # TODO hack IPP pour gérer les tns !
-            'rnc',
+            'rpns_individu',
             # 'ric',
             # 'rag',
             ]
