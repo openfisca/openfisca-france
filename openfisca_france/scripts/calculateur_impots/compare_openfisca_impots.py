@@ -246,13 +246,13 @@ def compare(scenario, tested = False):
         for code, field in fields.iteritems():
             if code == 'IINETIR' or code == 'IRESTIR':
                 iinet = 0
-            compare_variable(code, field, simulation, totpac, year)
-#            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
-#    print simulation.calculate('reductions')
-#    print fields['ITRED']['value']
-        if iinet: # S'il n'y a pas IINETIR et IRESTIR dans les résultats, on compare irpp à IINET (s'ils y sont c'est
-                # normal que les résultats soient différents
-            compare_variable('IINETIR', fields['IINET'], simulation, totpac, year)
+            # compare_variable(code, field, simulation, totpac, year)
+            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
+        # print simulation.calculate('reductions')
+        # print fields['ITRED']['value']
+        # if iinet: # S'il n'y a pas IINETIR et IRESTIR dans les résultats, on compare irpp à IINET (s'ils y sont c'est
+        #         # normal que les résultats soient différents
+        #     compare_variable('IINETIR', fields['IINET'], simulation, totpac, year)
 
     return fields
 
