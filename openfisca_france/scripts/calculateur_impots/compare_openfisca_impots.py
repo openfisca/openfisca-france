@@ -297,7 +297,7 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    year = 2010
+    year = 2011
     scenario = define_scenario(year)
     compare(scenario, tested = True)
     return 0
