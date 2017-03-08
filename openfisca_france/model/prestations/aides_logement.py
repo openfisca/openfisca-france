@@ -212,8 +212,10 @@ class aide_logement_base_ressources_defaut(Variable):
             max_(0, base_ressources_holder.array - abattement_ressources_enfant), roles = ENFS)
 
         # Revenus du foyer fiscal
-        rev_coll = simulation.famille.demandeur.foyer_fiscal('rev_coll', period.n_2)
-
+        rev_coll = (
+            simulation.famille.demandeur('rev_coll_individu', period.n_2) +
+            simulation.famille.conjoint('rev_coll_individu', period.n_2)
+            )
         ressources = (
             base_ressources_parents + br_enfants + rev_coll -
             (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
