@@ -25,7 +25,7 @@ import urllib2
 from lxml import etree
 
 import openfisca_france
-from openfisca_france.model.base import transform_scenario_to_tax_calculator_inputs
+from openfisca_france.scripts.calculateur_impots.base import transform_scenario_to_tax_calculator_inputs
 
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
