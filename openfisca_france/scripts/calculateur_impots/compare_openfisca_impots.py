@@ -40,7 +40,7 @@ def compare(scenario, tested = False):
     impots_arguments = transform_scenario_to_tax_calculator_inputs(scenario)
     simulation = scenario.new_simulation(debug = True)
 
-    request = urllib2.Request('http://www3.finances.gouv.fr/cgi-bin/calc-' + str(year + 1) + '.cgi', headers = {
+    request = urllib2.Request('http://www3.impots.gouv.fr/simulateur/cgi-bin/calc-{}.cgi'.format(year + 1), headers = {
         'User-Agent': 'OpenFisca-Script',
         })
 
