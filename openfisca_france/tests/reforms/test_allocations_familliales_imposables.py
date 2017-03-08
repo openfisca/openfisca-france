@@ -35,19 +35,19 @@ def test_allocations_familiales_imposables():
     reference_simulation = scenario.new_simulation(reference = True)
 
     absolute_error_margin = 0.01
-    af = reference_simulation.calculate_add('af')
+    af = reference_simulation.calculate_add('af', year)
     expected_af = [(12 * 399.0) * .32] * 10  # Pas de hangement de BMAF en cours d'année
     assert_near(expected_af, af, absolute_error_margin = absolute_error_margin)
-    rbg = reference_simulation.calculate('rbg')
+    rbg = reference_simulation.calculate('rbg', year)
 
     reform_simulation = scenario.new_simulation()
-    reform_af = reform_simulation.calculate_add('af')
+    reform_af = reform_simulation.calculate_add('af', year)
 
     assert_near(expected_af, reform_af, absolute_error_margin = absolute_error_margin)
-    reform_af_imposables = reform_simulation.calculate('allocations_familiales_imposables')
+    reform_af_imposables = reform_simulation.calculate('allocations_familiales_imposables', year)
     assert_near(expected_af, reform_af_imposables, absolute_error_margin = absolute_error_margin)
 
-    reform_rbg = reform_simulation.calculate('rbg')
+    reform_rbg = reform_simulation.calculate('rbg', year)
     assert_near(reform_rbg, rbg + af, absolute_error_margin = absolute_error_margin)
 
 

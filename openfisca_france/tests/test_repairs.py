@@ -28,7 +28,7 @@ def test_2_parents_2_enfants():
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('date_naissance').tolist(),
+        simulation.calculate('date_naissance', period = None).tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 30, 1, 1),
@@ -91,7 +91,7 @@ def test_famille_1_parent_3_enfants():
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('date_naissance').tolist(),
+        simulation.calculate('date_naissance', period = None).tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 10, 1, 1),
@@ -154,7 +154,7 @@ def test_famille_2_parents_2_enfants():
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('date_naissance').tolist(),
+        simulation.calculate('date_naissance', period = None).tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 30, 1, 1),
@@ -217,7 +217,7 @@ def test_foyer_fiscal_1_declarant_3_personnes_a_charge():
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('date_naissance').tolist(),
+        simulation.calculate('date_naissance', period = None).tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 10, 1, 1),
@@ -343,7 +343,7 @@ def test_menage_1_personne_de_reference_3_enfants():
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('date_naissance').tolist(),
+        simulation.calculate('date_naissance', period = None).tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 10, 1, 1),
@@ -407,7 +407,7 @@ def test_menage_1_personne_de_reference_1_conjoint_2_enfants():
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('date_naissance').tolist(),
+        simulation.calculate('date_naissance', period = None).tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 30, 1, 1),
