@@ -38,7 +38,6 @@ class prestations_familiales_enfant_a_charge(Variable):
 
     def function(individu, period, legislation):
         period = period.this_month
-
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         age = individu('age', period)
@@ -114,17 +113,16 @@ class div(Variable):
         return period,  revenus_foyer_fiscal + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
 
-class rev_coll(Variable):
+class rev_coll(Variable):  # TOD Should be unused
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
 
     def function(foyer_fiscal, period):
-        period = period.start.offset('first-of', 'month').period('year')
-
+        period = period.this_year
         # Quand rev_coll est calculé sur une année glissante, retraite_titre_onereux_net et pensions_alimentaires_versees sont calculés sur l'année légale correspondante.
-        retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period.offset('first-of'))
-        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period.offset('first-of'))
+        retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period)
+        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
         rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
         rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
         abat_spe = foyer_fiscal('abat_spe', period)
@@ -137,6 +135,33 @@ class rev_coll(Variable):
         # TODO: ajouter les revenus de l'étranger etr*0.9
         # pensions_alimentaires_versees is negative since it is paid by the declaree
         return period, (retraite_titre_onereux_net + rev_cap_lib + rev_cat_rvcm + fon + pensions_alimentaires_versees - f7ga - f7gb - f7gc - abat_spe + rev_cat_pv)
+
+
+class rev_coll_individu(Variable):
+    column = FloatCol
+    entity = Individu
+    label = u"Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
+
+    def function(individu, period):
+        period = period.this_year
+        # Quand rev_coll est calculé sur une année glissante, retraite_titre_onereux_net et pensions_alimentaires_versees sont calculés sur l'année légale correspondante.
+        retraite_titre_onereux_net = individu.foyer_fiscal('retraite_titre_onereux_net', period)
+        pensions_alimentaires_versees = individu.foyer_fiscal('pensions_alimentaires_versees', period)
+        rev_cap_lib = individu.foyer_fiscal('rev_cap_lib', period, options = [ADD])
+        rev_cat_rvcm = individu.foyer_fiscal('rev_cat_rvcm', period)
+        abat_spe = individu.foyer_fiscal('abat_spe', period)
+        fon = individu.foyer_fiscal('fon', period)
+        f7ga = individu.foyer_fiscal('f7ga', period)
+        f7gb = individu.foyer_fiscal('f7gb', period)
+        f7gc = individu.foyer_fiscal('f7gc', period)
+        rev_cat_pv = individu.foyer_fiscal('rev_cat_pv', period)
+
+        # TODO: ajouter les revenus de l'étranger etr*0.9
+        # pensions_alimentaires_versees is negative since it is paid by the declaree
+        return period, (
+            retraite_titre_onereux_net + rev_cap_lib + rev_cat_rvcm + fon +
+            pensions_alimentaires_versees - f7ga - f7gb - f7gc - abat_spe + rev_cat_pv
+            ) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
 
 class prestations_familiales_base_ressources(Variable):
@@ -160,7 +185,10 @@ class prestations_familiales_base_ressources(Variable):
         base_ressources_i_total = famille.sum(ressources_i)
 
         # Revenus du foyer fiscal
-        rev_coll = famille.demandeur.foyer_fiscal('rev_coll', annee_fiscale_n_2)
+        rev_coll = (
+            famille.demandeur('rev_coll_individu', annee_fiscale_n_2) +
+            famille.conjoint('rev_coll_individu', annee_fiscale_n_2)
+            )
 
         base_ressources = base_ressources_i_total + rev_coll
         return period, base_ressources

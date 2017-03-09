@@ -2207,46 +2207,47 @@ class rnc(Variable):
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
-        '''
-        Revenus non commerciaux individuels
-        'ind'
-        mbnc_exon (f5hp, f5ip, f5jp)
-        abnc_exon (f5qb, f5rb, f5sb)
-        nbnc_exon (f5qh, f5rh, f5sh)
-        mbnc_impo (f5hq, f5iq, f5jq)
-        abnc_impo (f5qc, f5rc, f5sc)
-        abnc_defi (f5qe, f5re, f5se)
-        nbnc_impo (f5qi, f5ri, f5si)
-        nbnc_defi (f5qk, f5rk, f5sk)
-        f5ql, f5qm????
-        '''
-        period = period.this_year
-        mbnc_exon = simulation.calculate('mbnc_exon', period)
-        mbnc_impo = simulation.calculate('mbnc_impo', period)
-        abnc_exon = simulation.calculate('abnc_exon', period)
-        nbnc_exon = simulation.calculate('nbnc_exon', period)
-        abnc_impo = simulation.calculate('abnc_impo', period)
-        nbnc_impo = simulation.calculate('nbnc_impo', period)
-        abnc_defi = simulation.calculate('abnc_defi', period)
-        nbnc_defi = simulation.calculate('nbnc_defi', period)
-        specialbnc = simulation.legislation_at(period.start).impot_revenu.rpns.micro.specialbnc
+    # Commented out for use with taxipp
+    # def function(self, simulation, period):
+    #     '''
+    #     Revenus non commerciaux individuels
+    #     'ind'
+    #     mbnc_exon (f5hp, f5ip, f5jp)
+    #     abnc_exon (f5qb, f5rb, f5sb)
+    #     nbnc_exon (f5qh, f5rh, f5sh)
+    #     mbnc_impo (f5hq, f5iq, f5jq)
+    #     abnc_impo (f5qc, f5rc, f5sc)
+    #     abnc_defi (f5qe, f5re, f5se)
+    #     nbnc_impo (f5qi, f5ri, f5si)
+    #     nbnc_defi (f5qk, f5rk, f5sk)
+    #     f5ql, f5qm????
+    #     '''
+    #     period = period.this_year
+    #     mbnc_exon = simulation.calculate('mbnc_exon', period)
+    #     mbnc_impo = simulation.calculate('mbnc_impo', period)
+    #     abnc_exon = simulation.calculate('abnc_exon', period)
+    #     nbnc_exon = simulation.calculate('nbnc_exon', period)
+    #     abnc_impo = simulation.calculate('abnc_impo', period)
+    #     nbnc_impo = simulation.calculate('nbnc_impo', period)
+    #     abnc_defi = simulation.calculate('abnc_defi', period)
+    #     nbnc_defi = simulation.calculate('nbnc_defi', period)
+    #     specialbnc = simulation.legislation_at(period.start).impot_revenu.rpns.micro.specialbnc
 
-        zbnc = (
-            mbnc_exon + mbnc_impo +
-            abnc_exon + nbnc_exon +
-            abnc_impo + nbnc_impo - abnc_defi - nbnc_defi
-            )
+    #     zbnc = (
+    #         mbnc_exon + mbnc_impo +
+    #         abnc_exon + nbnc_exon +
+    #         abnc_impo + nbnc_impo - abnc_defi - nbnc_defi
+    #         )
 
-        cbnc = min_(
-            mbnc_exon + mbnc_impo,
-            max_(
-                specialbnc.services.min,
-                round((mbnc_exon + mbnc_impo) * specialbnc.taux)
-                )
-            )
+    #     cbnc = min_(
+    #         mbnc_exon + mbnc_impo,
+    #         max_(
+    #             specialbnc.services.min,
+    #             round((mbnc_exon + mbnc_impo) * specialbnc.taux)
+    #             )
+    #         )
 
-        return period, zbnc - cbnc
+    #     return period, zbnc - cbnc
 
 
 class rpns(Variable):
