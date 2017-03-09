@@ -2251,9 +2251,11 @@ class rnc(Variable):
 
 
 class rpns(Variable):
+    base_function = requested_period_added_value
     column = FloatCol
     entity = Individu
     label = u"Revenus individuels des professions non salariées"
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         period = period.this_year
@@ -2337,9 +2339,11 @@ class rpns_mvlt(Variable):
 
 
 class rpns_individu(Variable):
+    base_function = requested_period_added_value
     column = FloatCol
     entity = Individu
     label = u"Revenus des professions non salariées individuels"
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
         '''
