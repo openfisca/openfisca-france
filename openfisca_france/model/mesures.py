@@ -557,7 +557,7 @@ class revenu_disponible_famille(Variable):
     label = u"Revenu disponible du foyer social (famille)"
 
     def function(self, simulation, period):
-            period = period.this_year
+        period = period.this_year
 
         revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
         revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
@@ -575,10 +575,10 @@ class revenu_disponible_famille(Variable):
         ppe = self.sum_by_entity(ppe)
 
         irpp_holder = simulation.compute('irpp', period)
-        irpp = self.cast_from_entity_to_role(irpp_holder, role = VOUS)  # Le déclarant paie tout l'IRPP
+        irpp = self.cast_from_entity_to_role(irpp_holder, role = VOUS)  # Le déclarant paie tout l'IRPP
         irpp = self.sum_by_entity(irpp)
         taxe_habitation_holder = simulation.compute('taxe_habitation', period)
-        taxe_habitation = self.cast_from_entity_to_role(taxe_habitation_holder, role = PREF)  # La personne de référence du ménage paie la TH
+        taxe_habitation = self.cast_from_entity_to_role(taxe_habitation_holder, role = PREF)  # La personne de référence du ménage paie la TH
         taxe_habitation = self.sum_by_entity(taxe_habitation)
         impots_directs = irpp + taxe_habitation
 
