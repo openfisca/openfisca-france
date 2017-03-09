@@ -25,7 +25,7 @@ def test_birth():
     json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert_equal(
-        simulation.calculate('date_naissance').tolist(),
+        simulation.calculate('date_naissance', period = None).tolist(),
         [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 10, 1, 1),

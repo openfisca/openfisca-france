@@ -41,8 +41,8 @@ def run(reform_key, year):
     reference_simulation = scenario.new_simulation(reference = True)
     reform_simulation = scenario.new_simulation()
 
-    impots_directs = reference_simulation.calculate('impots_directs')
-    reform_impots_directs = reform_simulation.calculate('impots_directs')
+    impots_directs = reference_simulation.calculate('impots_directs', period = year)
+    reform_impots_directs = reform_simulation.calculate('impots_directs', period = year)
 
 
 if __name__ == '__main__':

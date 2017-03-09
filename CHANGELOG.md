@@ -1,5 +1,19 @@
 # Changelog
 
+## 14.2.0 - [#699](https://github.com/openfisca/openfisca-france/pull/699)
+
+* Amélioration technique
+* Détails :
+  - Adapte `france` à  la version `7.0.0` de `core`.
+  - Spécifie toujours une période dans les appels de variables, dans les formules et dans les tests.
+
+* Évolution du système socio-fiscal
+* Périodes concernées : toutes
+* Zones impactées : `revenus/activite/salarie`
+* Détails :
+  - Corrige le calcul de `salaire_net_a_payer`
+  - Dans certains cas, on utilisait la valeur de `depense_cantine_titre_restaurant_employe` pour une autre période que celle demandée.
+
 ### 14.1.1 - [#697](https://github.com/openfisca/openfisca-france/pull/697)
 
 * Amélioration technique
