@@ -1,76 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from datetime import date
-
-from openfisca_core.columns import (AgeCol, BoolCol, DateCol, EnumCol, FixedStrCol, FloatCol, IntCol,
-    PeriodSizeIndependentIntCol, StrCol)
-from openfisca_core.enumerations import Enum
-from openfisca_core.formulas import (ADD, calculate_output_add, calculate_output_divide,
-    dated_function, DIVIDE, missing_value, set_input_dispatch_by_period, set_input_divide_by_period)
-from openfisca_core.variables import DatedVariable, Variable
-from openfisca_core.base_functions import (
-    requested_period_added_value,
-    requested_period_default_value,
-    requested_period_last_or_next_value,
-    requested_period_last_value,
-    )
-from openfisca_core.formula_helpers import apply_thresholds, switch
-from openfisca_core.periods import MONTH, YEAR, ETERNITY
-
+from openfisca_core.model_api import *
 from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage
-
-
-__all__ = [
-    'ADD',
-    'AgeCol',
-    'apply_thresholds',
-    'BoolCol',
-    'calculate_output_add',
-    'calculate_output_divide',
-    'CATEGORIE_SALARIE',
-    'CHEF',
-    'CONJ',
-    'CREF',
-    'date',
-    'DateCol',
-    'dated_function',
-    'DatedVariable',
-    'DIVIDE',
-    'ENFS',
-    'Enum',
-    'EnumCol',
-    'Famille',
-    'FixedStrCol',
-    'FloatCol',
-    'FoyerFiscal',
-    'Individu',
-    'IntCol',
-    'Menage',
-    'missing_value',
-    'PAC1',
-    'PAC2',
-    'PAC3',
-    'PART',
-    'PeriodSizeIndependentIntCol',
-    'PREF',
-    'QUIFAM',
-    'QUIFOY',
-    'QUIMEN',
-    'requested_period_added_value',
-    'requested_period_default_value',
-    'requested_period_last_or_next_value',
-    'requested_period_last_value',
-    'set_input_dispatch_by_period',
-    'set_input_divide_by_period',
-    'StrCol',
-    'switch',
-    'TAUX_DE_PRIME',
-    'Variable',
-    'VOUS',
-    'MONTH',
-    'YEAR',
-    'ETERNITY',
-    ]
 
 CATEGORIE_SALARIE = Enum([
     'prive_non_cadre',
