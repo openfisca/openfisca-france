@@ -202,11 +202,9 @@ class revenus_du_travail(Variable):
     def function(individu, period):
         period = period.this_year
         revenu_assimile_salaire = individu('revenu_assimile_salaire', period)
-        rag = individu('rag', period)
-        ric = individu('ric', period)
-        rnc = individu('rnc', period)
+        rpns = individu('rpns', period)  # TODO ou rpns_individu
 
-        return period, revenu_assimile_salaire + rag + ric + rnc
+        return period, revenu_assimile_salaire + rpns
 
 
 class pensions(Variable):
