@@ -34,6 +34,12 @@ class depcom(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+class depcom(Variable):
+    column = FixedStrCol(max_length = 5)
+    entity = FoyerFiscal
+    label = u"Code INSEE (depcom) du lieu de résidence"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 class charges_locatives(Variable):
     column = FloatCol

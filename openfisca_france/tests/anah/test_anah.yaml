@@ -1,0 +1,31 @@
+- name: "ANAH - individu aux revenus très modestes - IDF"
+  period: 2017
+  individus:
+    - id: "moi"
+  foyers_fiscaux:
+    - declarants: ["moi"]
+      rfr: 19870
+      depcom: 75110
+  output_variables:
+    eligibilite_anah: ["revenus_tres_modestes"]
+- name: "ANAH - individu aux revenus modestes - IDF"
+  period: 2017
+  individus:
+    - id: "moi"
+  menages:
+  foyers_fiscaux:
+    - declarants: ["moi"]
+      rfr: 24190
+      depcom: 75110
+  output_variables:
+    eligibilite_anah: ["revenus_tres_modestes"]
+- name: "ANAH - individu non éligible - IDF"
+  period: 2017
+  individus:
+    - id: "moi"
+  foyers_fiscaux:
+    - declarants: ["moi"]
+      rfr: 29870
+      depcom: 75110
+  output_variables:
+    eligibilite_anah: ["a_verifier"]
