@@ -134,12 +134,11 @@ class asi_aspa_base_ressources(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        asi_aspa_base_ressources_i_holder = simulation.compute('asi_aspa_base_ressources_individu', period)
-        ass = simulation.calculate('ass', period)
+    def formula(famille, period):
+        base_ressources_i = famille.members('asi_aspa_base_ressources_individu', period)
+        ass = famille('ass', period)
 
-        asi_aspa_base_ressources_i = self.split_by_roles(asi_aspa_base_ressources_i_holder, roles = [CHEF, PART])
-        return ass + asi_aspa_base_ressources_i[CHEF] + asi_aspa_base_ressources_i[PART]
+        return ass + famille.sum(base_ressources_i, role = Famille.PARENT)
 
 
 class aspa_eligibilite(Variable):
@@ -148,16 +147,16 @@ class aspa_eligibilite(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        age = simulation.calculate('age', period)
-        inapte_travail = simulation.calculate('inapte_travail', period)
-        taux_incapacite = simulation.calculate('taux_incapacite', period)
-        P = simulation.legislation_at(period.start).prestations.minima_sociaux
+    def formula(individu, period, legislation):
+        age = individu('age', period)
+        inapte_travail = individu('inapte_travail', period)
+        taux_incapacite = individu('taux_incapacite', period)
+        P = legislation(period).prestations.minima_sociaux
         condition_invalidite = (taux_incapacite > P.aspa.taux_incapacite_aspa_anticipe) + inapte_travail
         condition_age_base = (age >= P.aspa.age_min)
         condition_age_anticipe = (age >= P.aah.age_legal_retraite) * condition_invalidite
         condition_age = condition_age_base + condition_age_anticipe
-        condition_nationalite = simulation.calculate('asi_aspa_condition_nationalite', period)
+        condition_nationalite = individu('asi_aspa_condition_nationalite', period)
 
         return condition_age * condition_nationalite
 
@@ -168,14 +167,14 @@ class asi_eligibilite(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    def formula(individu, period):
         last_month = period.start.period('month').offset(-1)
 
-        non_eligible_aspa = not_(simulation.calculate('aspa_eligibilite', period))
-        touche_pension_invalidite = simulation.calculate('pensions_invalidite', period) > 0
-        handicap = simulation.calculate('handicap', period)
-        touche_retraite = simulation.calculate('retraite_nette', last_month) > 0
-        condition_nationalite = simulation.calculate('asi_aspa_condition_nationalite', period)
+        non_eligible_aspa = not_(individu('aspa_eligibilite', period))
+        touche_pension_invalidite = individu('pensions_invalidite', period) > 0
+        handicap = individu('handicap', period)
+        touche_retraite = individu('retraite_nette', last_month) > 0
+        condition_nationalite = individu('asi_aspa_condition_nationalite', period)
 
         eligible = (
             non_eligible_aspa *
@@ -192,10 +191,10 @@ class asi_aspa_condition_nationalite(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        ressortissant_eee = simulation.calculate('ressortissant_eee', period)
-        duree_possession_titre_sejour = simulation.calculate('duree_possession_titre_sejour', period)
-        duree_min_titre_sejour = simulation.legislation_at(period.start).prestations.minima_sociaux.aspa.duree_min_titre_sejour
+    def formula(individu, period, legislation):
+        ressortissant_eee = individu('ressortissant_eee', period)
+        duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
+        duree_min_titre_sejour = legislation(period).prestations.minima_sociaux.aspa.duree_min_titre_sejour
 
         return or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
@@ -206,14 +205,14 @@ class asi_aspa_nb_alloc(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
-        asi_elig_holder = simulation.compute('asi_eligibilite', period)
+    def formula(famille, period, legislation):
+        aspa_elig_i = famille.members('aspa_eligibilite', period)
+        asi_elig_i = famille.members('asi_eligibilite', period)
 
-        asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-        aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
+        nb_allocataire_asi = famille.sum(asi_elig_i, role = Famille.PARENT)
+        nb_allocataire_aspa = famille.sum(aspa_elig_i, role = Famille.PARENT)
 
-        return (1 * aspa_eligibilite[CHEF] + 1 * aspa_eligibilite[PART] + 1 * asi_eligibilite[CHEF] + 1 * asi_eligibilite[PART])
+        return nb_allocataire_asi + nb_allocataire_aspa
 
 
 class asi(Variable):
@@ -225,28 +224,28 @@ class asi(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula_2007(self, simulation, period):
-        asi_elig_holder = simulation.compute('asi_eligibilite', period)
-        aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
-        maries = simulation.calculate('maries', period)
-        en_couple = simulation.calculate('en_couple', period)
-        asi_aspa_nb_alloc = simulation.calculate('asi_aspa_nb_alloc', period)
-        base_ressources = simulation.calculate('asi_aspa_base_ressources', period)
-        P = simulation.legislation_at(period.start).prestations.minima_sociaux
+    def formula_2007(famille, period, legislation):
+        maries = famille('maries', period)
+        en_couple = famille('en_couple', period)
+        asi_aspa_nb_alloc = famille('asi_aspa_nb_alloc', period)
+        base_ressources = famille('asi_aspa_base_ressources', period)
+        P = legislation(period).prestations.minima_sociaux
 
-        asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-        aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
+        demandeur_eligible_asi = famille.demandeur('asi_eligibilite', period)
+        demandeur_eligible_aspa = famille.demandeur('aspa_eligibilite', period)
+        conjoint_eligible_asi = famille.conjoint('asi_eligibilite', period)
+        conjoint_eligible_aspa = famille.conjoint('aspa_eligibilite', period)
 
         # Un seul éligible
-        elig1 = ((asi_aspa_nb_alloc == 1) & (asi_eligibilite[CHEF] | asi_eligibilite[PART]))
+        elig1 = ((asi_aspa_nb_alloc == 1) & (demandeur_eligible_asi | conjoint_eligible_asi))
         # Couple d'éligibles mariés
-        elig2 = asi_eligibilite[CHEF] & asi_eligibilite[PART] & maries
+        elig2 = demandeur_eligible_asi & conjoint_eligible_asi & maries
         # Couple d'éligibles non mariés
-        elig3 = asi_eligibilite[CHEF] & asi_eligibilite[PART] & not_(maries)
+        elig3 = demandeur_eligible_asi & conjoint_eligible_asi & not_(maries)
         # Un seul éligible et époux éligible ASPA
-        elig4 = ((asi_eligibilite[CHEF] & aspa_eligibilite[PART]) | (asi_eligibilite[PART] & aspa_eligibilite[CHEF])) & maries
+        elig4 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & maries
         # Un seul éligible et conjoint non marié éligible ASPA
-        elig5 = ((asi_eligibilite[CHEF] & aspa_eligibilite[PART]) | (asi_eligibilite[PART] & aspa_eligibilite[CHEF])) & not_(maries)
+        elig5 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & not_(maries)
 
         elig = elig1 | elig2 | elig3 | elig4 | elig5
 
@@ -274,8 +273,8 @@ class asi(Variable):
         montant_servi_asi = max_(diff, 0)
 
         # TODO: Faute de mieux, on verse l'asi à la famille plutôt qu'aux individus
-        # asi[CHEF] = asi_eligibilite[CHEF]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
-        # asi[PART] = asi_eligibilite[PART]*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
+        # asi[CHEF] = demandeur_eligible_asi*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
+        # asi[PART] = conjoint_eligible_asi*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
         return elig * montant_servi_asi
 
 
@@ -285,13 +284,13 @@ class aspa_couple(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def formula_2002_01_01(self, simulation, period):
-        maries = simulation.calculate('maries', period)
+    def formula_2002_01_01(famille, period):
+        maries = famille('maries', period)
 
         return maries
 
-    def formula_2007_01_01(self, simulation, period):
-        en_couple = simulation.calculate('en_couple', period)
+    def formula_2007_01_01(famille, period):
+        en_couple = famille('en_couple', period)
 
         return en_couple
 
@@ -305,26 +304,26 @@ class aspa(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(self, simulation, period):
-        asi_elig_holder = simulation.compute('asi_eligibilite', period)
-        aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
-        maries = simulation.calculate('maries', period)
-        en_couple = simulation.calculate('en_couple', period)
-        asi_aspa_nb_alloc = simulation.calculate('asi_aspa_nb_alloc', period)
-        base_ressources = simulation.calculate('asi_aspa_base_ressources', period)
-        P = simulation.legislation_at(period.start).prestations.minima_sociaux
+    def formula(famille, period, legislation):
+        maries = famille('maries', period)
+        en_couple = famille('en_couple', period)
+        asi_aspa_nb_alloc = famille('asi_aspa_nb_alloc', period)
+        base_ressources = famille('asi_aspa_base_ressources', period)
+        P = legislation(period).prestations.minima_sociaux
 
-        asi_eligibilite = self.split_by_roles(asi_elig_holder, roles = [CHEF, PART])
-        aspa_eligibilite = self.split_by_roles(aspa_elig_holder, roles = [CHEF, PART])
+        demandeur_eligible_asi = famille.demandeur('asi_eligibilite', period)
+        demandeur_eligible_aspa = famille.demandeur('aspa_eligibilite', period)
+        conjoint_eligible_asi = famille.conjoint('asi_eligibilite', period)
+        conjoint_eligible_aspa = famille.conjoint('aspa_eligibilite', period)
 
         # Un seul éligible
-        elig1 = ((asi_aspa_nb_alloc == 1) & (aspa_eligibilite[CHEF] | aspa_eligibilite[PART]))
+        elig1 = ((asi_aspa_nb_alloc == 1) & (demandeur_eligible_aspa | conjoint_eligible_aspa))
         # Couple d'éligibles
-        elig2 = (aspa_eligibilite[CHEF] & aspa_eligibilite[PART])
+        elig2 = (demandeur_eligible_aspa & conjoint_eligible_aspa)
         # Un seul éligible et époux éligible ASI
-        elig3 = ((asi_eligibilite[CHEF] & aspa_eligibilite[PART]) | (asi_eligibilite[PART] & aspa_eligibilite[CHEF])) & maries
+        elig3 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & maries
         # Un seul éligible et conjoint non marié éligible ASI
-        elig4 = ((asi_eligibilite[CHEF] & aspa_eligibilite[PART]) | (asi_eligibilite[PART] & aspa_eligibilite[CHEF])) & not_(maries)
+        elig4 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & not_(maries)
 
         elig = elig1 | elig2 | elig3 | elig4
 
@@ -349,6 +348,6 @@ class aspa(Variable):
         montant_servi_aspa = max_(diff, 0)
 
         # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
-        # aspa[CHEF] = aspa_eligibilite[CHEF]*montant_servi_aspa*(elig1 + elig2/2)
-        # aspa[PART] = aspa_eligibilite[PART]*montant_servi_aspa*(elig1 + elig2/2)
+        # aspa[CHEF] = demandeur_eligible_aspa*montant_servi_aspa*(elig1 + elig2/2)
+        # aspa[PART] = conjoint_eligible_aspa*montant_servi_aspa*(elig1 + elig2/2)
         return elig * montant_servi_aspa
