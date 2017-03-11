@@ -19,22 +19,15 @@ class bourse_college(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
-        rfr = simulation.calculate('rfr', period.n_2)
-        age_holder = simulation.compute('age', period)
-        scolarite_holder = simulation.compute('scolarite', period)
-        P = simulation.legislation_at(period.start).bourses_education.bourse_college
+    def function(famille, period, legislation):
+        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
+        P = legislation(period).bourses_education.bourse_college
 
-        ages = self.split_by_roles(age_holder, roles = ENFS)
-        nb_enfants = sum(
-            age >= 0 for age in ages.itervalues()
-        )
+        age_i = famille.members('age', period)
+        nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
 
-        scolarites = self.split_by_roles(scolarite_holder, roles = ENFS)
-
-        nb_enfants_college = sum(
-            scolarite == SCOLARITE_COLLEGE for scolarite in scolarites.itervalues()
-        )
+        scolarite_i = famille.members('scolarite', period)
+        nb_enfants_college = famille.sum(scolarite_i == SCOLARITE_COLLEGE, role = Famille.ENFANT)
 
         montant_par_enfant = apply_thresholds(
             rfr,
@@ -58,15 +51,10 @@ class bourse_lycee_points_de_charge(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(self, simulation, period):
-        age_holder = simulation.compute('age', period)
-        isole = not_(simulation.calculate('en_couple', period))
-
-        # compte le nombre d'enfants
-        ages = self.split_by_roles(age_holder, roles = ENFS)
-        nb_enfants = sum(
-            age >= 0 for age in ages.itervalues()
-        )
+    def function(famille, period, legislation):
+        isole = not_(famille('en_couple', period))
+        age_i = famille.members('age', period)
+        nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
 
         points_de_charge = 11 * (nb_enfants >= 1)
         points_de_charge += 1 * (nb_enfants >= 2) # 1 point de charge pour le 2ème enfant
@@ -83,11 +71,11 @@ class bourse_lycee_nombre_parts(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(self, simulation, period):
-        points_de_charge = simulation.calculate('bourse_lycee_points_de_charge', period)
-        rfr = simulation.calculate('rfr', period.n_2)
-        plafonds_reference = simulation.legislation_at(period.start).bourses_education.bourse_lycee.plafonds_reference
-        increments_par_point_de_charge = simulation.legislation_at(period.start).bourses_education.bourse_lycee.increments_par_point_de_charge
+    def function(famille, period, legislation):
+        points_de_charge = famille('bourse_lycee_points_de_charge', period)
+        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
+        plafonds_reference = legislation(period).bourses_education.bourse_lycee.plafonds_reference
+        increments_par_point_de_charge = legislation(period).bourses_education.bourse_lycee.increments_par_point_de_charge
 
         choices = [10, 9, 8, 7, 6, 5, 4, 3]
         nombre_parts = apply_thresholds(
@@ -112,16 +100,12 @@ class bourse_lycee(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
-        nombre_parts = simulation.calculate('bourse_lycee_nombre_parts', period)
-        scolarite_holder = simulation.compute('scolarite', period)
-        valeur_part = simulation.legislation_at(period.start).bourses_education.bourse_lycee.valeur_part
+    def function(famille, period, legislation):
+        nombre_parts = famille('bourse_lycee_nombre_parts', period)
+        valeur_part = legislation(period).bourses_education.bourse_lycee.valeur_part
 
-        scolarites = self.split_by_roles(scolarite_holder, roles = ENFS)
-
-        nb_enfants_lycee = sum(
-            scolarite == SCOLARITE_LYCEE for scolarite in scolarites.itervalues()
-        )
+        scolarite_i = famille.members('scolarite', period)
+        nb_enfants_lycee = famille.sum(scolarite_i == SCOLARITE_LYCEE, role = Famille.ENFANT)
 
         montant = nombre_parts * valeur_part * nb_enfants_lycee
 
