@@ -25,7 +25,10 @@ class eligibilite_anah(Variable):
 
     def function(menage, period):
         departement = menage('depcom',period.first_month).astype(int) / 1000
-        in_idf = (departement == 75) + (departement == 77) # TODO: compléter
+        in_idf = (departement == 75) + (departement == 77) +
+                 (departement == 78) + (departement == 91) +
+                 (departement == 92) + (departement == 93) +
+                 (departement == 94) + (departement == 95)
 
         nb_members = menage.nb_persons()
 
