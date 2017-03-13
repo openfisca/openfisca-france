@@ -79,6 +79,25 @@
   menages:
     - personne_de_reference: moi
       conjoint: toi
+      autres: ["enfant"]
+      depcom: 75110
+  output_variables:
+    eligibilite_anah: [1]
+- name: "ANAH - couple hébergeant une personne majeure - IDF"
+  period: 2017
+  individus:
+    - id: "moi"
+    - id: "toi"
+    - id: "papa"
+  foyers_fiscaux:
+    - declarants: ["toi","moi"]
+      rfr: 16000
+    - declarants: ["papa"]
+      rfr: 20000
+  menages:
+    - personne_de_reference: moi
+      conjoint: toi
+      autres: ["papa"]
       depcom: 75110
   output_variables:
     eligibilite_anah: [1]

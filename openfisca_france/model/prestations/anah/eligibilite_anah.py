@@ -9,7 +9,7 @@ class rfr_individu(Variable):
     definition_period = YEAR
 
     def function(individu, period):
-        return individu.has_role(FoyerFiscal.DECLARANT) * individu.foyer_fiscal('rfr', period)
+        return individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) * individu.foyer_fiscal('rfr', period)
 
 class eligibilite_anah(Variable):
     column = EnumCol(
@@ -25,10 +25,7 @@ class eligibilite_anah(Variable):
 
     def function(menage, period):
         departement = menage('depcom',period.first_month).astype(int) / 1000
-        in_idf = (departement == 75) + (departement == 77) +
-                 (departement == 78) + (departement == 91) +
-                 (departement == 92) + (departement == 93) +
-                 (departement == 94) + (departement == 95)
+        in_idf = (departement == 75) + (departement == 77) + (departement == 78) + (departement == 91) + (departement == 92) + (departement == 93) + (departement == 94) + (departement == 95)
 
         nb_members = menage.nb_persons()
 
