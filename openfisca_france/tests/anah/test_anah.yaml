@@ -55,9 +55,9 @@
     - id: "toi"
   foyers_fiscaux:
     - declarants: ["moi"]
-      rfr: 35000
+      rfr: 15000
     - declarants: ["toi"]
-      rfr: 500
+      rfr: 20500
   menages:
     - personne_de_reference: moi
       conjoint: toi
