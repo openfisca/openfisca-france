@@ -9,7 +9,7 @@ class rfr_individu(Variable):
     definition_period = YEAR
 
     def function(individu, period):
-        return individu.foyer_fiscal('rfr', period)
+        return individu.has_role(FoyerFiscal.DECLARANT) * individu.foyer_fiscal('rfr', period)
 
 class eligibilite_anah(Variable):
     column = EnumCol(
