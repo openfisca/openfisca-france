@@ -64,3 +64,21 @@
       depcom: 75110
   output_variables:
     eligibilite_anah: [1]
+- name: "ANAH - couple en union libre, un enfant - IDF"
+  period: 2017
+  individus:
+    - id: "moi"
+    - id: "toi"
+    - id: "enfant"
+  foyers_fiscaux:
+    - declarants: ["moi"]
+      rfr: 16000
+    - declarants: ["toi"]
+      personnes_a_charge: ["enfant"]
+      rfr: 20000
+  menages:
+    - personne_de_reference: moi
+      conjoint: toi
+      depcom: 75110
+  output_variables:
+    eligibilite_anah: [1]
