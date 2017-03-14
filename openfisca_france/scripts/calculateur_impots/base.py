@@ -255,7 +255,7 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
                 column = tax_benefit_system.column_by_name[column_code]
                 cerfa_field = column.cerfa_field
                 assert cerfa_field is not None and isinstance(cerfa_field, dict), column_code
-                impots_arguments[cerfa_field[declarant_index]] = value
+                impots_arguments[cerfa_field[declarant_index]] = int(value) if isinstance(value, float) else value
 
         impots_arguments['0CF'] = len(foyer_fiscal['personnes_a_charge'])
         for personne_a_charge_index, personne_a_charge_id in enumerate(foyer_fiscal.pop('personnes_a_charge')):
