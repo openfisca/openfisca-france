@@ -1,14 +1,17 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-#TODO: reduce margin error from 2 to 0 by coding the floor and round rules
+
 
 """Compare income taxes computed by finances.gouv.fr web simulator with OpenFisca results."""
 
 
-########### DESCRIPTION ############
-## Ce script compare la simulation OpenFisca d'un scenario (à définir ci-dessous) avec l'officielle (DGFiP)
-## Il renvoie les erreurs d'OpenFisca : les valeurs attendues et les valeurs obtenues pour une dizaine de variables
-## quand elles diffèrent de plus de la marge d'erreur (=2€ à ce jour)
+# TODO: reduce margin error from 2 to 0 by coding the floor and round rules
+
+# DESCRIPTION:
+# Ce script compare la simulation OpenFisca d'un scenario (à définir ci-dessous) avec l'officielle (DGFiP)
+# Il renvoie les erreurs d'OpenFisca : les valeurs attendues et les valeurs obtenues pour une dizaine de variables
+# quand elles diffèrent de plus de la marge d'erreur (=2€ à ce jour)
+
 
 import argparse
 import collections
@@ -20,10 +23,9 @@ import urllib
 import urllib2
 
 from lxml import etree
-import numpy as np
 
 import openfisca_france
-from openfisca_france.model.base import transform_scenario_to_tax_calculator_inputs
+from openfisca_france.scripts.calculateur_impots.base import transform_scenario_to_tax_calculator_inputs
 
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
@@ -31,60 +33,14 @@ log = logging.getLogger(app_name)
 tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
 
 
-def define_scenario(year):
-    scenario = tax_benefit_system.new_scenario()
-    scenario.init_single_entity(
-        period = year,
-        parent1 = dict(
-            activite = u'Actif occupé',
-            date_naissance = 1973,
-            salaire_imposable = 48000,
-            statut_marital = u'Marié',
-            ),
-        parent2 = dict(
-            activite = u'Actif occupé',
-            date_naissance = 1973,
-            statut_marital = u'Marié',
-            ),
-        enfants = [
-            dict(
-                activite = u'Étudiant, élève',
-                date_naissance = '1993-02-01',
-                ),
-#            dict(
-#                activite = u'Étudiant, élève',
-#                date_naissance = '2000-04-17',
-#                ),
-            ],
-        foyer_fiscal = dict(  #TODO: pb avec f2ck
-            f5rn = 5000,
-            mbic_mvct = 2000,
-            ),
-        )
-    scenario.suggest()
-    return scenario
-
-
-def main():
-    parser = argparse.ArgumentParser(description = __doc__)
-    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
-    args = parser.parse_args()
-    logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
-
-    year = 2010
-    scenario = define_scenario(year)
-    compare(scenario, tested = True)
-    return 0
-
-
 def compare(scenario, tested = False):
     year = scenario.period.date.year
-    totpac = scenario.test_case['foyers_fiscaux'].values()[0].get('personnes_a_charge')
+    totpac = scenario.test_case['foyers_fiscaux'][0].get('personnes_a_charge')
 
     impots_arguments = transform_scenario_to_tax_calculator_inputs(scenario)
     simulation = scenario.new_simulation(debug = True)
 
-    request = urllib2.Request('http://www3.finances.gouv.fr/cgi-bin/calc-' + str(year + 1) + '.cgi', headers = {
+    request = urllib2.Request('https://www3.impots.gouv.fr/simulateur/cgi-bin/calc-{}.cgi'.format(year + 1), headers = {
         'User-Agent': 'OpenFisca-Script',
         })
 
@@ -290,17 +246,62 @@ def compare(scenario, tested = False):
         for code, field in fields.iteritems():
             if code == 'IINETIR' or code == 'IRESTIR':
                 iinet = 0
-            compare_variable(code, field, simulation, totpac, year)
-#            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
-#    print simulation.calculate('reductions')
-#    print fields['ITRED']['value']
-        if iinet: # S'il n'y a pas IINETIR et IRESTIR dans les résultats, on compare irpp à IINET (s'ils y sont c'est
-                # normal que les résultats soient différents
-            compare_variable('IINETIR', fields['IINET'], simulation, totpac, year)
+            # compare_variable(code, field, simulation, totpac, year)
+            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
+        # print simulation.calculate('reductions')
+        # print fields['ITRED']['value']
+        # if iinet: # S'il n'y a pas IINETIR et IRESTIR dans les résultats, on compare irpp à IINET (s'ils y sont c'est
+        #         # normal que les résultats soient différents
+        #     compare_variable('IINETIR', fields['IINET'], simulation, totpac, year)
 
     return fields
 
 
+def define_scenario(year):
+    scenario = tax_benefit_system.new_scenario()
+    scenario.init_single_entity(
+        period = year,
+        parent1 = dict(
+            activite = u'Actif occupé',
+            date_naissance = 1973,
+            salaire_imposable = 48000,
+            statut_marital = u'Marié',
+            ),
+        parent2 = dict(
+            activite = u'Actif occupé',
+            date_naissance = 1973,
+            statut_marital = u'Marié',
+            ),
+        enfants = [
+            dict(
+                activite = u'Étudiant, élève',
+                date_naissance = '1993-02-01',
+                ),
+            # dict(
+            #     activite = u'Étudiant, élève',
+            #     date_naissance = '2000-04-17',
+            #     ),
+            ],
+        foyer_fiscal = dict(  #TODO: pb avec f2ck
+            f5rn = 5000,
+            mbic_mvct = 2000,
+            ),
+        )
+    scenario.suggest()
+    return scenario
+
+
+def main():
+    parser = argparse.ArgumentParser(description = __doc__)
+    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
+    args = parser.parse_args()
+    logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
+
+    year = 2011
+    scenario = define_scenario(year)
+    compare(scenario, tested = True)
+    return 0
+
+
 if __name__ == "__main__":
-#    sys.exit(main())
-    main()
+   sys.exit(main())
