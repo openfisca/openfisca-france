@@ -9,7 +9,7 @@
     - personne_de_reference: moi
       depcom: 75110
   output_variables:
-    eligibilite_anah: [0]
+    eligibilite_anah: [2]
 - name: "ANAH - individu aux revenus modestes - IDF"
   period: 2017
   individus:
@@ -47,7 +47,7 @@
     - personne_de_reference: moi
       depcom: 75110
   output_variables:
-    eligibilite_anah: [2]
+    eligibilite_anah: [0]
 - name: "ANAH - couple en union libre - IDF"
   period: 2017
   individus:
