@@ -295,4 +295,4 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
             assert cerfa_field is not None and isinstance(cerfa_field, basestring), column_code
             impots_arguments[cerfa_field] = int(value) if isinstance(value, bool) else value
 
-    return impots_arguments
+    return
