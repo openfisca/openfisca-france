@@ -1,11 +1,15 @@
 # Changelog
 
-## 14.2.0 - [#699](https://github.com/openfisca/openfisca-france/pull/699)
+## 15.1.0 - [#699](https://github.com/openfisca/openfisca-france/pull/699)
+
+> Version précédemment publiée à tort en tant que 14.2.0
 
 * Amélioration technique
 * Détails :
   - Adapte `france` à  la version `7.0.0` de `core`.
   - Spécifie toujours une période dans les appels de variables, dans les formules et dans les tests.
+  
+<!-- -->
 
 * Évolution du système socio-fiscal
 * Périodes concernées : toutes
@@ -14,13 +18,24 @@
   - Corrige le calcul de `salaire_net_a_payer`
   - Dans certains cas, on utilisait la valeur de `depense_cantine_titre_restaurant_employe` pour une autre période que celle demandée.
 
-### 14.1.1 - [#697](https://github.com/openfisca/openfisca-france/pull/697)
+### 15.0.1 - [#697](https://github.com/openfisca/openfisca-france/pull/697)
+
+> Version précédemment publiée à tort en tant que 14.1.1
 
 * Amélioration technique
 * Utilise le module `core.model_api` plutôt que de réimporter un par un tous les objets Python nécessaires pour écrire une formule
     - Aucun impact pour les ré-utilisateurs
 
-## 14.1.0 - [#685](https://github.com/openfisca/openfisca-france/pull/685)
+# 15.0.0 - [#685](https://github.com/openfisca/openfisca-france/pull/685)
+
+> Version précédemment publiée à tort en tant que 14.1.0
+
+* Amélioration technique **non-rétrocompatible**
+* Détails:
+  - Renforce le contrôle de cohérence des entrées d'une simulation.
+  - Interdit de déclarer, pour une entrée de la simulation, à la fois un montant annuel et les douze montants mensuels correspondants s'ils ne sont pas parfaitement cohérents.
+
+<!-- -->
 
 * Amélioration technique
 * Détails :
