@@ -32,7 +32,7 @@ class eligibilite_anah(Variable):
 
         nb_members = menage.nb_persons()
 
-        rfr_foyer_fiscal = menage.members('rfr_foyer_fiscal', period)
+        rfr_foyer_fiscal = menage.members('rfr_foyer_fiscal', period.n_2)
         rfr = menage.sum(rfr_foyer_fiscal)
 
         bareme_idf = select(

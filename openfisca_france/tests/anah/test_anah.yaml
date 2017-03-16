@@ -4,7 +4,8 @@
     - id: "moi"
   foyers_fiscaux:
     - declarants: ["moi"]
-      rfr: 19870
+      rfr:
+        2015: 19870
   menages:
     - personne_de_reference: moi
       depcom: 75110
@@ -17,7 +18,8 @@
   menages:
   foyers_fiscaux:
     - declarants: ["moi"]
-      rfr: 24190
+      rfr:
+        2015: 24190
   menages:
     - personne_de_reference: moi
       depcom: 75110
@@ -30,7 +32,8 @@
   menages:
   foyers_fiscaux:
     - declarants: ["moi"]
-      rfr: 14370
+      rfr:
+        2015: 14370
   menages:
     - personne_de_reference: moi
       depcom: 86500
@@ -42,7 +45,8 @@
     - id: "moi"
   foyers_fiscaux:
     - declarants: ["moi"]
-      rfr: 29870
+      rfr:
+        2015: 29870
   menages:
     - personne_de_reference: moi
       depcom: 75110
@@ -55,9 +59,11 @@
     - id: "toi"
   foyers_fiscaux:
     - declarants: ["moi"]
-      rfr: 15000
+      rfr:
+        2015: 15000
     - declarants: ["toi"]
-      rfr: 20500
+      rfr:
+        2015: 20500
   menages:
     - personne_de_reference: moi
       conjoint: toi
@@ -72,10 +78,12 @@
     - id: "enfant"
   foyers_fiscaux:
     - declarants: ["moi"]
-      rfr: 16000
+      rfr:
+        2015: 16000
     - declarants: ["toi"]
       personnes_a_charge: ["enfant"]
-      rfr: 20000
+      rfr:
+        2015: 20000
   menages:
     - personne_de_reference: moi
       conjoint: toi
@@ -91,9 +99,11 @@
     - id: "papa"
   foyers_fiscaux:
     - declarants: ["toi","moi"]
-      rfr: 16000
+      rfr:
+        2015: 16000
     - declarants: ["papa"]
-      rfr: 20000
+      rfr:
+        2015: 20000
   menages:
     - personne_de_reference: moi
       conjoint: toi
