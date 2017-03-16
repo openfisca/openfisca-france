@@ -1,5 +1,16 @@
 # Changelog
 
+## 10.2.0 - [#707](https://github.com/openfisca/openfisca-france/pull/707))
+_Cette version est un backport de la PR 707 sur la version 10_
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/07/2016.
+    - Les changements prennent effet à partir de la rentrée scolaire 2016
+* Zones impactées: `prestations/education`
+* Détails:
+    - Met à jour le mode de calcul des bourses de collège et lycée, entrés en vigueur à la rentrée 2016.
+    - Introduit les variables `bourse_college_echelon` et `bourse_lycee_echelon`
+
 ## 10.1.1
 
 * Fix combination rule for aide 1er salarié / aide PME
