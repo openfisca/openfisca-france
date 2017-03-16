@@ -1,5 +1,15 @@
 # Changelog
 
+## 16.1.0 - [#707](https://github.com/openfisca/openfisca-france/pull/707))
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/07/2016.
+    - Les changements prennent effet à partir de la rentrée scolaire 2016
+* Zones impactées: `prestations/education`
+* Détails :
+    - Met à jour le mode de calcul des bourses de collège et lycée, entré en vigueur à la rentrée 2016.
+    - Introduit les variables `bourse_college_echelon` et `bourse_lycee_echelon`
+
 ## 16.0.0 - [#710](https://github.com/openfisca/openfisca-france/pull/710)
 * Amélioration technique **non-rétrocompatible**
 * Détails :
@@ -43,7 +53,7 @@
 > Version précédemment publiée à tort en tant que 14.1.0
 
 * Amélioration technique **non-rétrocompatible**
-* Détails:
+* Détails :
   - Renforce le contrôle de cohérence des entrées d'une simulation.
   - Interdit de déclarer, pour une entrée de la simulation, à la fois un montant annuel et les douze montants mensuels correspondants s'ils ne sont pas parfaitement cohérents.
 
