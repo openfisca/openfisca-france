@@ -1,3 +1,135 @@
+- name: "Rentrée 2016 : bourse collège taux 3, 2 enfants, rfr = 18260"
+  period: 2016-09
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1", "enfant2"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1", "enfant2"]
+    rfr:
+      2014: 18260
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1", "enfant2"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 10
+    - id: "enfant2"
+      age: 11
+      scolarite: 1 # Collège
+  output_variables:
+    bourse_college_echelon: 0 # non boursier
+    bourse_college: 0
+
+- name: "Rentrée 2016 : bourse collège taux 3, 2 enfants, rfr = 18250"
+  period: 2016-09
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1", "enfant2"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1", "enfant2"]
+    rfr:
+      2014: 18250
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1", "enfant2"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 10
+    - id: "enfant2"
+      age: 11
+      scolarite: 1 # Collège
+  output_variables:
+    bourse_college_echelon: 1
+    bourse_college: 84
+
+- name: "Rentrée 2016 : bourse collège taux 3, 3 enfants, rfr = 11700"
+  period: 2016-09
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1", "enfant2", "enfant3"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+    rfr:
+      2014: 11700
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1", "enfant2", "enfant3"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 10
+    - id: "enfant3"
+      age: 10
+    - id: "enfant2"
+      age: 11
+      scolarite: 1 # Collège
+  output_variables:
+    bourse_college_echelon: 2
+    bourse_college: 231
+
+- name: "Rentrée 2016 : bourse collège taux 3, 3 enfants, rfr = 11720"
+  period: 2016-09
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1", "enfant2", "enfant3"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+    rfr:
+      2014: 11720
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1", "enfant2", "enfant3"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 10
+    - id: "enfant3"
+      age: 10
+    - id: "enfant2"
+      age: 11
+      scolarite: 1 # Collège
+  output_variables:
+    bourse_college_echelon: 1
+    bourse_college: 84
+
+- name: "Rentrée 2016 : deux enfants au collège, rfr = 11720"
+  period: 2016-09
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1", "enfant2", "enfant3"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+    rfr:
+      2014: 11720
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1", "enfant2", "enfant3"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 10
+    - id: "enfant3"
+      age: 10
+      scolarite: 1 # Collège
+    - id: "enfant2"
+      age: 11
+      scolarite: 1 # Collège
+  output_variables:
+    bourse_college_echelon: 1
+    bourse_college: 84 * 2
+
 - name: "Bourse collège taux 3, 2 enfants, pas de ressources"
   period: 2015-09
   familles:
@@ -20,8 +152,8 @@
       age: 11
       scolarite: 1 # Collège
   output_variables:
-    bourse_college:
-      2015-09: 360
+    bourse_college_echelon: 3
+    bourse_college: 360
 
 - name: "Bourse collège taux 2, 2 enfants, rfr = 4000"
   period: 2015-09

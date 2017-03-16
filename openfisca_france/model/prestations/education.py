@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import logical_not as not_, logical_or as or_, round as round_
+from numpy import logical_not as not_, logical_or as or_, round as round_, select
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -10,6 +10,84 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 SCOLARITE_INCONNUE = 0
 SCOLARITE_COLLEGE = 1
 SCOLARITE_LYCEE = 2
+
+
+class bourse_college_echelon(DatedVariable):
+    column = IntCol
+    label = u"Échelon de la bourse de collège attribuée"
+    entity = Famille
+    definition_period = MONTH
+
+    @dated_function(start = date(2016, 7, 1))
+    def function_apres_2016(famille, period, legislation):
+        """
+        Références législatives :
+        Arrêté du 22 mars 2016 fixant les plafonds de ressources...
+        https://www.legifrance.gouv.fr/eli/arrete/2016/3/22/MENE1606428A/jo
+        """
+
+        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
+        age_i = famille.members('age', period)
+        nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
+        P = legislation(period).bourses_education.bourse_college.apres_2016
+
+        # Les plafonds sont estimés en multiples du SMIC au 1er juillet de l'année n_2
+        juillet_n_2 = period.n_2.first_month.offset(6, MONTH)
+        smic_juillet_n_2 = legislation(juillet_n_2).cotsoc.gen.smic_h_b
+
+        P_e3 = P.echelon_3
+        plafonds_echelon_3_en_pourcent_smic = select(
+            [nb_enfants <= i for i in range(1, 8)],
+            [P_e3.plafond_1e, P_e3.plafond_2e, P_e3.plafond_3e, P_e3.plafond_4e, P_e3.plafond_5e, P_e3.plafond_6e, P_e3.plafond_7e],
+            P_e3.plafond_8e
+            )
+        P_e2 = P.echelon_2
+        plafonds_echelon_2_en_pourcent_smic = select(
+            [nb_enfants <= i for i in range(1, 8)],
+            [P_e2.plafond_1e, P_e2.plafond_2e, P_e2.plafond_3e, P_e2.plafond_4e, P_e2.plafond_5e, P_e2.plafond_6e, P_e2.plafond_7e],
+            P_e2.plafond_8e
+            )
+        P_e1 = P.echelon_1
+        plafonds_echelon_1_en_pourcent_smic = select(
+            [nb_enfants <= i for i in range(1, 8)],
+            [P_e1.plafond_1e, P_e1.plafond_2e, P_e1.plafond_3e, P_e1.plafond_4e, P_e1.plafond_5e, P_e1.plafond_6e, P_e1.plafond_7e],
+            P_e1.plafond_8e
+            )
+
+        plafonds_echelon_3 = round_(plafonds_echelon_3_en_pourcent_smic * smic_juillet_n_2)
+        plafonds_echelon_2 = round_(plafonds_echelon_2_en_pourcent_smic * smic_juillet_n_2)
+        plafonds_echelon_1 = round_(plafonds_echelon_1_en_pourcent_smic * smic_juillet_n_2)
+
+        return apply_thresholds(
+            rfr,
+            thresholds = [
+                plafonds_echelon_3,
+                plafonds_echelon_2,
+                plafonds_echelon_1,
+                ],
+            choices = [3, 2, 1]
+            )
+
+    @dated_function(stop = date(2016, 6, 30))
+    def function_avant_2016(famille, period, legislation):
+        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
+        age_i = famille.members('age', period)
+        nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
+
+        P = legislation(period).bourses_education.bourse_college.avant_2016
+
+        coefficient_famille = 1 + nb_enfants * P.coeff_enfant_supplementaire
+
+        return apply_thresholds(
+            rfr,
+            thresholds = [
+                # plafond_taux_3 est le plus bas
+                round_(P.plafond_taux_3 * coefficient_famille),
+                round_(P.plafond_taux_2 * coefficient_famille),
+                round_(P.plafond_taux_1 * coefficient_famille),
+                ],
+            choices = [3, 2, 1]
+            )
 
 
 class bourse_college(Variable):
@@ -20,29 +98,30 @@ class bourse_college(Variable):
     set_input = set_input_divide_by_period
 
     def function(famille, period, legislation):
-        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
+        """
+        Références législatives :
+            Article D531-7 du code de l'éducation
+            https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000020743197&cidTexte=LEGITEXT000006071191&dateTexte=20160610
+        """
         P = legislation(period).bourses_education.bourse_college
 
-        age_i = famille.members('age', period)
-        nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
+        # On prends en compte la BMAF du premier janvier de l'année de la rentrée scolaire
+        bmaf_1er_janvier = legislation(period.this_year.first_month).prestations.prestations_familiales.af.bmaf
 
         scolarite_i = famille.members('scolarite', period)
         nb_enfants_college = famille.sum(scolarite_i == SCOLARITE_COLLEGE, role = Famille.ENFANT)
 
-        montant_par_enfant = apply_thresholds(
-            rfr,
-            thresholds = [
-                # plafond_taux_3 est le plus bas
-                round_(P.plafond_taux_3 + P.plafond_taux_3 * nb_enfants * P.coeff_enfant_supplementaire),
-                round_(P.plafond_taux_2 + P.plafond_taux_2 * nb_enfants * P.coeff_enfant_supplementaire),
-                round_(P.plafond_taux_1 + P.plafond_taux_1 * nb_enfants * P.coeff_enfant_supplementaire),
-                ],
-            choices = [P.montant_taux_3, P.montant_taux_2, P.montant_taux_1]
+        echelon = famille('bourse_college_echelon', period)
+
+        montant_par_enfant_en_pourcent_bmaf = select(
+            [echelon == 3, echelon == 2, echelon == 1],
+            [P.montant_taux_3, P.montant_taux_2, P.montant_taux_1],
             )
 
-        montant = nb_enfants_college * montant_par_enfant
+        # Arrondi au multiple de 3 le plus proche, car 3 trimestres
+        montant_par_enfant = round_(montant_par_enfant_en_pourcent_bmaf * bmaf_1er_janvier / 3) * 3
 
-        return montant
+        return nb_enfants_college * montant_par_enfant
 
 
 class bourse_lycee_points_de_charge(Variable):
