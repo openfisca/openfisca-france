@@ -644,7 +644,6 @@ class rsa_montant(DatedVariable):
 
         return period, rsa
 
-
     @dated_function(stop = date(2016, 12, 31))
     def function_2016(famille, period, legislation):
         period = period.this_month
@@ -695,7 +694,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
         revenus_capital = individu('revenus_capital', period)
         valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', period)
         valeur_locative_terrains_non_loue = individu('valeur_locative_terrains_non_loue', period)
-        # revenus_locatifs = individu('revenus_locatifs', period)
+        # revenus_locatifs = individu('revenus_locatifs', period)
         rsa = legislation(period).prestations.minima_sociaux.rsa
 
         return period, (
@@ -704,7 +703,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
             revenus_capital +
             valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue +
             valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue
-            # + revenus_locatifs
+            # + revenus_locatifs
             )
 
 
