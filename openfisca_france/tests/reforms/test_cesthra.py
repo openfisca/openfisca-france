@@ -9,7 +9,7 @@ from openfisca_france.tests import base
 
 def test_cesthra_invalidee():
     year = 2012
-    period = periods.period('year', year)
+    period = periods.period(year)
     reform = base.get_cached_reform(
         reform_key = 'cesthra_invalidee',
         tax_benefit_system = base.tax_benefit_system,

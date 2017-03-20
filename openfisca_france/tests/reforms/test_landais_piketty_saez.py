@@ -22,7 +22,7 @@ def test():
                 name = 'salaire_de_base',
                 ),
             ],
-        period = periods.period('year', year),
+        period = periods.period(year),
         parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
         # parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
         # enfants = [

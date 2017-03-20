@@ -2,10 +2,10 @@
   period: "2015"
   input_variables:
     contrat_de_travail_debut:
-      "2015-01-01": "2010-01-01"
+      "2015-01": "2010-01-01"
     depcom_entreprise: 69381
     effectif_entreprise:
-      "2014:15": 21
+      "year:2014:15": 21
     salaire_de_base:
       "2015": 35 * 52 * 9.61
     zone_franche_urbaine:
