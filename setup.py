@@ -46,7 +46,7 @@ setup(
         'Babel >= 0.9.4',
         'Biryani[datetimeconv] >= 0.10.4',
         'numpy >= 1.11',
-        'OpenFisca-Core >= 6.1.0, < 8.0',
+        'OpenFisca-Core >= 6.1.0, < 9.0',
         'PyYAML >= 3.10',
         'requests >= 2.8',
         ],
