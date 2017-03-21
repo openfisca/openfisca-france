@@ -277,10 +277,10 @@ def define_scenario(year):
                 activite = u'Étudiant, élève',
                 date_naissance = '1993-02-01',
                 ),
-            # dict(
-            #     activite = u'Étudiant, élève',
-            #     date_naissance = '2000-04-17',
-            #     ),
+            dict(
+                activite = u'Étudiant, élève',
+                date_naissance = '2000-04-17',
+                ),
             ],
         foyer_fiscal = dict(  #TODO: pb avec f2ck
             f5rn = 5000,
@@ -305,3 +305,4 @@ def main():
 
 if __name__ == "__main__":
    sys.exit(main())
+''''''
