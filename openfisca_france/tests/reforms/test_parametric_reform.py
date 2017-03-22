@@ -8,7 +8,7 @@ from openfisca_core.reforms import Reform
 from openfisca_france.tests.base import assert_near, tax_benefit_system
 
 simulation_year = 2013
-simulation_period = periods.period('year', simulation_year)
+simulation_period = periods.period(simulation_year)
 
 
 def modify_legislation_json(reference_legislation_json_copy):

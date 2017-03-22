@@ -7,14 +7,14 @@
   input_variables:
     entreprise_creation: "2014-01-01"
     effectif_entreprise:
-      "2014:15": 20
+      "year:2014:15": 20
     salaire_de_base:
       "2014": 35 * 52 * 9.53
       "2015": 35 * 52 * 9.61
       "2016": 35 * 52 * 9.67
       "2017": 35 * 52 * 9.67
     zone_restructuration_defense:
-      "2014:15": True
+      "year:2014:15": True
     categorie_salarie: 0
   output_variables:
     exoneration_cotisations_employeur_zrd:

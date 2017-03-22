@@ -1,5 +1,17 @@
 # Changelog
 
+## 16.0.0 - [#710](https://github.com/openfisca/openfisca-france/pull/710)
+* Amélioration technique **non-rétrocompatible**
+* Détails :
+    - Restreint les périodes acceptées par OpenFisca
+    - La liste des périodes autorisées est disponible dans la [documentation](https://doc.openfisca.fr/periodsinstants.html)
+
+<!-- -->
+
+* Amélioration technique
+* Détails :
+  - Adapte `france` à  la version `9.0.0` de `core`.
+
 ## 15.1.0 - [#699](https://github.com/openfisca/openfisca-france/pull/699)
 
 > Version précédemment publiée à tort en tant que 14.2.0
