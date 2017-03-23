@@ -2,9 +2,7 @@
 
 from __future__ import division
 
-from openfisca_core import columns
 from openfisca_core.reforms import Reform
-from openfisca_core.variables import Variable
 
 from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
 from ..model.base import *
@@ -50,7 +48,7 @@ class charges_deduc(Variable):
         return cd1 + cd2 + charge_loyer
 
 class charge_loyer(Variable):
-    column = columns.FloatCol
+    column = FloatCol
     entity = FoyerFiscal
     label = u"Charge déductible pour paiement d'un loyer"
     definition_period = YEAR

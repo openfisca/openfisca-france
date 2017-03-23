@@ -6,7 +6,7 @@ from __future__ import division
 
 from openfisca_core import periods
 from openfisca_core.reforms import Reform, update_legislation
-from ..model.base import DatedVariable, dated_function, date, YEAR
+from ..model.base import *
 
 
 # What if the reform was applied the year before it should

@@ -4,7 +4,6 @@ from __future__ import division
 
 from openfisca_core import columns
 from openfisca_core.reforms import Reform
-from openfisca_core.variables import Variable
 from openfisca_france.model.base import *
 
 from .. import entities

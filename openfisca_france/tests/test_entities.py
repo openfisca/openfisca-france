@@ -3,8 +3,6 @@
 from copy import deepcopy
 
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
-from openfisca_core.variables import Variable
-from openfisca_core.columns import FloatCol, IntCol, BoolCol
 from openfisca_core.tools import assert_near
 
 from openfisca_france.scenarios import Scenario

@@ -8,7 +8,7 @@ from openfisca_core import columns
 from openfisca_core.reforms import Reform
 
 from .. import entities
-from ..model.base import DatedVariable, dated_function, date, YEAR
+from ..model.base import *
 from ..model.prelevements_obligatoires.impot_revenu import reductions_impot
 
 
