@@ -54,6 +54,8 @@
 
 * Amélioration technique **non-rétrocompatible**
 * Détails :
+  - Interdit par défaut de calculer ou de définir une variable pour une période qui ne correspond pas à sa période de définition.
+    - Par exemple, interdit de définir une variable annuelle, comme l'impôt sur le revenu, sur un mois.
   - Renforce le contrôle de cohérence des entrées d'une simulation.
   - Interdit de déclarer, pour une entrée de la simulation, à la fois un montant annuel et les douze montants mensuels correspondants s'ils ne sont pas parfaitement cohérents.
 
