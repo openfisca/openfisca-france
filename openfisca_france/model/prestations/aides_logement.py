@@ -207,14 +207,14 @@ class aide_logement_base_ressources_defaut(Variable):
         abattement_depart_retraite = self.sum_by_entity(abattement_depart_retraite_holder, roles = [CHEF, PART])
         neutralisation_rsa = simulation.calculate('aide_logement_neutralisation_rsa', period)
         abattement_ressources_enfant = simulation.legislation_at(period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
-        br_enfants = self.sum_by_entity(
+        base_ressources_enfants = self.sum_by_entity(
             max_(0, base_ressources_holder.array - abattement_ressources_enfant), roles = ENFS)
 
         # Revenus du foyer fiscal
         rev_coll = simulation.famille.demandeur.foyer_fiscal('rev_coll', period.n_2)
 
         ressources = (
-            base_ressources_parents + br_enfants + rev_coll -
+            base_ressources_parents + base_ressources_enfants + rev_coll -
             (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
             )
 
@@ -283,6 +283,7 @@ class aide_logement_base_ressources(Variable):
 
         return ressources
 
+
 class aide_logement_loyer_plafond(Variable):
     column = FloatCol
     entity = Famille
@@ -296,7 +297,6 @@ class aide_logement_loyer_plafond(Variable):
         coloc = famille.demandeur.menage('coloc', period)
         chambre = famille.demandeur.menage('logement_chambre', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
-
 
         # Preprocessing pour pouvoir accéder aux paramètres dynamiquement par zone.
         plafonds_by_zone = [
@@ -545,7 +545,7 @@ class aide_logement_taux_loyer(Variable):
         return TL
 
 
-class aide_logement_participation_personelle(Variable):
+class aide_logement_participation_personnelle(Variable):
     column = FloatCol
     entity = Famille
     label = u"Participation personelle de la famille au loyer"
@@ -570,6 +570,7 @@ class aide_logement_participation_personelle(Variable):
 
         return P0 + Tp * Rp
 
+
 class aide_logement_montant_brut_avant_degressivite(Variable):
     column = FloatCol
     label = u"Montant des aides aux logements en secteur locatif avant degressivité et brut de CRDS"
@@ -584,9 +585,9 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
 
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
         charges_retenues = famille('aide_logement_charges', period)
-        participation_personelle = famille('aide_logement_participation_personelle', period)
+        participation_personnelle = famille('aide_logement_participation_personnelle', period)
 
-        montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personelle)
+        montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
         montant_accedants = 0  # TODO: APL pour les accédants à la propriété
 
         montant = select([locataire, accedant], [montant_locataire, montant_accedants])
