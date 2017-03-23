@@ -524,7 +524,7 @@ It is included in the bases of the following variables.
 	* `aide_logement_R0`
 	* `aide_logement_taux_famille`
 	* `aide_logement_taux_loyer`
-	* `aide_logement_participation_personelle`
+	* `aide_logement_participation_personnelle`
 
 ## 1.2.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.1.0...1.2.0)
 

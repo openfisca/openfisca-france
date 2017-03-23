@@ -167,7 +167,7 @@
     # taux de participation T_p : 0.03235
     # P0: 34.73
     # Rp: 7438
-    aide_logement_participation_personelle: 34.73 + (0.0283 + 0.00405) * 7438  # 275.35
+    aide_logement_participation_personnelle: 34.73 + (0.0283 + 0.00405) * 7438  # 275.35
     aide_logement_montant_brut: 292.85 + 53.27 - 275.35 # 70.77
 
 - name: "Personne isolée 2016-10"
@@ -195,7 +195,7 @@
     # taux de participation T_p : 0.03235
     # P0: 34.73
     # Rp: 7438
-    aide_logement_participation_personelle: 34.73 + (0.0283 + 0.00405) * 7438  # 275.35
+    aide_logement_participation_personnelle: 34.73 + (0.0283 + 0.00405) * 7438  # 275.35
     aide_logement_montant_brut: 292.85 + 53.27 - 275.35 # 70.77 brut CRDS
 
 - name: "Personne isolée, avant degressivité"
