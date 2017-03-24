@@ -90,9 +90,9 @@ class al_couple(Variable):
     label = u'Situation de couple pour le calcul des AL'
     definition_period = MONTH
 
-    def function(self, simulation, period):
-        en_couple = simulation.calculate('en_couple', period)
-        enceinte = simulation.calculate('enceinte_fam', period)
+    def function(famille, period):
+        en_couple = famille('en_couple', period)
+        enceinte = famille('enceinte_fam', period)
         couple = en_couple + enceinte  # le barème "couple" est utilisé pour les femmes enceintes isolées
 
         return couple
@@ -104,12 +104,12 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
     label = u"Base ressources en évaluation forfaitaire des aides au logement (R351-7 du CCH)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         def eval_forfaitaire_salaries():
-            salaire_imposable_holder = simulation.compute('salaire_imposable', period.offset(-1))
-            salaire_imposable = self.sum_by_entity(salaire_imposable_holder, roles = [CHEF, PART])
+            salaire_imposable_i = famille.members('salaire_imposable', period.offset(-1))
+            salaire_imposable = famille.sum(salaire_imposable_i, role = Famille.PARENT)
             # Application de l'abattement pour frais professionnels
-            params_abattement = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro
+            params_abattement = legislation(period).impot_revenu.tspr.abatpro
             somme_salaires_mois_precedent = 12 * salaire_imposable
             montant_abattement = round_(
                 min_(
@@ -123,9 +123,9 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
             last_july_first = Instant(
                 (period.start.year if period.start.month >= 7 else period.start.year - 1,
                 7, 1))
-            smic_horaire_brut = simulation.legislation_at(last_july_first).cotsoc.gen.smic_h_b
-            travailleur_non_salarie_holder = simulation.compute('travailleur_non_salarie', period)
-            any_tns = self.any_by_roles(travailleur_non_salarie_holder)
+            smic_horaire_brut = legislation(last_july_first).cotsoc.gen.smic_h_b
+            travailleur_non_salarie_i = famille.members('travailleur_non_salarie', period)
+            any_tns = famille.any(travailleur_non_salarie_i)
             return any_tns * 1500 * smic_horaire_brut
 
         return max_(eval_forfaitaire_salaries(), eval_forfaitaire_tns())
@@ -137,12 +137,12 @@ class aide_logement_abattement_chomage_indemnise(Variable):
     label = u"Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
-        chomage_net_m_1 = simulation.calculate('chomage_net', period.offset(-1))
-        chomage_net_m_2 = simulation.calculate('chomage_net', period.offset(-2))
-        revenus_activite_pro = simulation.calculate_add('salaire_imposable', period.n_2)
-        taux_abattement = simulation.legislation_at(period.start).prestations.aides_logement.ressources.abattement_chomage_indemnise
-        taux_frais_pro = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro.taux
+    def function(individu, period, legislation):
+        chomage_net_m_1 = individu('chomage_net', period.offset(-1))
+        chomage_net_m_2 = individu('chomage_net', period.offset(-2))
+        revenus_activite_pro = individu('salaire_imposable', period.n_2, options = [ADD])
+        taux_abattement = legislation(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
+        taux_frais_pro = legislation(period).impot_revenu.tspr.abatpro.taux
 
         abattement = and_(chomage_net_m_1 > 0, chomage_net_m_2 > 0) * taux_abattement * revenus_activite_pro
         abattement = round_((1 - taux_frais_pro) * abattement)
@@ -156,11 +156,11 @@ class aide_logement_abattement_depart_retraite(Variable):
     label = u"Montant de l'abattement sur les salaires en cas de départ en retraite"
     definition_period = MONTH
 
-    def function(self, simulation, period):
-        retraite = simulation.calculate('activite', period) == 3
-        activite_n_2 = simulation.calculate_add('salaire_imposable', period.n_2)
-        retraite_n_2 = simulation.calculate('retraite_imposable', period.n_2)
-        taux_frais_pro = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro.taux
+    def function(individu, period, legislation):
+        retraite = individu('activite', period) == 3
+        activite_n_2 = individu('salaire_imposable', period.n_2, options = [ADD])
+        retraite_n_2 = individu('retraite_imposable', period.n_2)
+        taux_frais_pro = legislation(period).impot_revenu.tspr.abatpro.taux
 
         abattement = 0.3 * activite_n_2 * (retraite_n_2 == 0) * retraite
         abattement = round_((1 - taux_frais_pro) * abattement)
@@ -174,17 +174,20 @@ class aide_logement_neutralisation_rsa(Variable):
     label = u"Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         # Circular definition, as rsa depends on al.
         # We don't allow it, so default value of rsa will be returned if a recursion is detected.
-        rsa_last_month = simulation.calculate('rsa', period.last_month, max_nb_cycles = 0) > 0
-        activite = simulation.compute_add('salaire_imposable', period.n_2)
-        chomage = simulation.compute_add('chomage_imposable', period.n_2)
-        activite_n_2 = self.sum_by_entity(activite)
-        chomage_n_2 = self.sum_by_entity(chomage)
-        taux_frais_pro = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro.taux
 
-        abattement = (activite_n_2 + chomage_n_2) * rsa_last_month
+        rsa_mois_dernier = famille('rsa', period.last_month, max_nb_cycles = 0)
+
+        revenu_activite_i = famille.members('salaire_imposable', period.n_2, options = [ADD])
+        revenu_chomage_i = famille.members('chomage_imposable', period.n_2, options = [ADD])
+        revenu_activite = famille.sum(revenu_activite_i)
+        revenu_chomage = famille.sum(revenu_chomage_i)
+
+        taux_frais_pro = legislation(period).impot_revenu.tspr.abatpro.taux
+
+        abattement = (revenu_activite + revenu_chomage) * (rsa_mois_dernier > 0)
         abattement = round_((1 - taux_frais_pro) * abattement)
 
         return abattement
@@ -196,22 +199,22 @@ class aide_logement_base_ressources_defaut(Variable):
     label = u"Base ressource par défaut des allocations logement"
     definition_period = MONTH
 
-    def function(self, simulation, period):
-        biactivite = simulation.calculate('biactivite', period)
-        Pr = simulation.legislation_at(period.start).prestations.aides_logement.ressources
-        base_ressources_holder = simulation.compute('prestations_familiales_base_ressources_individu', period)
-        base_ressources_parents = self.sum_by_entity(base_ressources_holder, roles = [CHEF, PART])
-        abattement_chomage_indemnise_holder = simulation.compute('aide_logement_abattement_chomage_indemnise', period)
-        abattement_chomage_indemnise = self.sum_by_entity(abattement_chomage_indemnise_holder, roles = [CHEF, PART])
-        abattement_depart_retraite_holder = simulation.compute('aide_logement_abattement_depart_retraite', period)
-        abattement_depart_retraite = self.sum_by_entity(abattement_depart_retraite_holder, roles = [CHEF, PART])
-        neutralisation_rsa = simulation.calculate('aide_logement_neutralisation_rsa', period)
-        abattement_ressources_enfant = simulation.legislation_at(period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
-        base_ressources_enfants = self.sum_by_entity(
-            max_(0, base_ressources_holder.array - abattement_ressources_enfant), roles = ENFS)
+    def function(famille, period, legislation):
+        biactivite = famille('biactivite', period)
+        Pr = legislation(period).prestations.aides_logement.ressources
+        base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
+        base_ressources_parents = famille.sum(base_ressources_i, role = Famille.PARENT)
+        abattement_chomage_indemnise_i = famille.members('aide_logement_abattement_chomage_indemnise', period)
+        abattement_chomage_indemnise = famille.sum(abattement_chomage_indemnise_i, role = Famille.PARENT)
+        abattement_depart_retraite_i = famille.members('aide_logement_abattement_depart_retraite', period)
+        abattement_depart_retraite = famille.sum(abattement_depart_retraite_i, role = Famille.PARENT)
+        neutralisation_rsa = famille('aide_logement_neutralisation_rsa', period)
+        abattement_ressources_enfant = legislation(period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
+        base_ressources_enfants = famille.sum(
+            max_(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
 
         # Revenus du foyer fiscal
-        rev_coll = simulation.famille.demandeur.foyer_fiscal('rev_coll', period.n_2)
+        rev_coll = famille.demandeur.foyer_fiscal('rev_coll', period.n_2)
 
         ressources = (
             base_ressources_parents + base_ressources_enfants + rev_coll -
@@ -233,28 +236,31 @@ class aide_logement_base_ressources(Variable):
     label = u"Base ressources des allocations logement"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         mois_precedent = period.offset(-1)
         last_day_reference_year = period.n_2.stop
-        base_ressources_defaut = simulation.calculate('aide_logement_base_ressources_defaut', period)
-        base_ressources_eval_forfaitaire = simulation.calculate(
+        base_ressources_defaut = famille('aide_logement_base_ressources_defaut', period)
+        base_ressources_eval_forfaitaire = famille(
             'aide_logement_base_ressources_eval_forfaitaire', period)
-        en_couple = simulation.calculate('en_couple', period)
-        aah_holder = simulation.compute('aah', mois_precedent)
-        aah = self.sum_by_entity(aah_holder, roles = [CHEF, PART])
-        age_holder = simulation.compute('age', period)
-        age = self.split_by_roles(age_holder, roles = [CHEF, PART])
-        smic_horaire_brut_n2 = simulation.legislation_at(last_day_reference_year).cotsoc.gen.smic_h_b
-        salaire_imposable_holder = simulation.compute('salaire_imposable', period.offset(-1))
-        somme_salaires = self.sum_by_entity(salaire_imposable_holder, roles = [CHEF, PART])
+        en_couple = famille('en_couple', period)
+
+        aah_i = famille.members('aah', mois_precedent)
+        aah = famille.sum(aah_i, role = Famille.PARENT)
+
+        age_demandeur = famille.demandeur('age', period)
+        age_conjoint = famille.conjoint('age', period)
+        smic_horaire_brut_n2 = legislation(last_day_reference_year).cotsoc.gen.smic_h_b
+
+        salaire_imposable_i = famille.members('salaire_imposable', period.offset(-1))
+        somme_salaires = famille.sum(salaire_imposable_i, role = Famille.PARENT)
 
         plafond_eval_forfaitaire = 1015 * smic_horaire_brut_n2
 
-        plafond_salaire_jeune_isole = simulation.legislation_at(period.start).prestations.aides_logement.ressources.dar_8
-        plafond_salaire_jeune_couple = simulation.legislation_at(period.start).prestations.aides_logement.ressources.dar_9
+        plafond_salaire_jeune_isole = legislation(period).prestations.aides_logement.ressources.dar_8
+        plafond_salaire_jeune_couple = legislation(period).prestations.aides_logement.ressources.dar_9
         plafond_salaire_jeune = where(en_couple, plafond_salaire_jeune_couple, plafond_salaire_jeune_isole)
 
-        neutral_jeune = or_(age[CHEF] < 25, and_(en_couple, age[PART] < 25))
+        neutral_jeune = or_(age_demandeur < 25, and_(en_couple, age_conjoint < 25))
         neutral_jeune &= somme_salaires < plafond_salaire_jeune
 
         eval_forfaitaire = base_ressources_defaut <= plafond_eval_forfaitaire
@@ -266,12 +272,10 @@ class aide_logement_base_ressources(Variable):
 
         # Planchers de ressources pour étudiants
         # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
-        Pr = simulation.legislation_at(period.start).prestations.aides_logement.ressources
-        etudiant_holder = simulation.compute('etudiant', period)
-        boursier_holder = simulation.compute('boursier', period)
-        etudiant = self.split_by_roles(etudiant_holder, roles = [CHEF, PART])
-        boursier = self.split_by_roles(boursier_holder, roles = [CHEF, PART])
-        montant_plancher_ressources = max_(0, etudiant[CHEF] * Pr.dar_4 - boursier[CHEF] * Pr.dar_5)
+        Pr = legislation(period).prestations.aides_logement.ressources
+        demandeur_etudiant = famille.demandeur('etudiant', period)
+        demandeur_boursier = famille.demandeur('boursier', period)
+        montant_plancher_ressources = max_(0, demandeur_etudiant * Pr.dar_4 - demandeur_boursier * Pr.dar_5)
         ressources = max_(ressources, montant_plancher_ressources)
 
         # Arrondi au centime, pour éviter qu'une petite imprécision liée à la recombinaison d'une valeur annuelle éclatée ne fasse monter d'un cran l'arrondi au 100€ supérieur.
@@ -519,13 +523,13 @@ class aide_logement_taux_loyer(Variable):
     label = u"Taux obscur basé sur une comparaison du loyer retenu à un loyer de référence."
     definition_period = MONTH
 
-    def function(self, simulation, period):
-        al = simulation.legislation_at(period.start).prestations.aides_logement
+    def function(famille, period, legislation):
+        al = legislation(period).prestations.aides_logement
         z2 = al.loyers_plafond.zone2
 
-        L = simulation.calculate('aide_logement_loyer_retenu', period)
-        couple = simulation.calculate('al_couple', period)
-        al_nb_pac = simulation.calculate('al_nb_personnes_a_charge', period)
+        L = famille('aide_logement_loyer_retenu', period)
+        couple = famille('al_couple', period)
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
 
         loyer_reference = (
             z2.personnes_seules * (not_(couple)) * (al_nb_pac == 0) +
@@ -551,21 +555,21 @@ class aide_logement_participation_personnelle(Variable):
     label = u"Participation personelle de la famille au loyer"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
 
-        al = simulation.legislation_at(period.start).prestations.aides_logement
+        al = legislation(period).prestations.aides_logement
 
-        R = simulation.calculate('aide_logement_base_ressources', period)
-        R0 = simulation.calculate('aide_logement_R0', period)
+        R = famille('aide_logement_base_ressources', period)
+        R0 = famille('aide_logement_R0', period)
         Rp = max_(0, R - R0)
 
-        loyer_retenu = simulation.calculate('aide_logement_loyer_retenu', period)
-        charges_retenues = simulation.calculate('aide_logement_charges', period)
+        loyer_retenu = famille('aide_logement_loyer_retenu', period)
+        charges_retenues = famille('aide_logement_charges', period)
         E = loyer_retenu + charges_retenues
         P0 = max_(al.participation_min.taux * E, al.participation_min.montant_forfaitaire)  # Participation personnelle minimale
 
-        Tf = simulation.calculate('aide_logement_taux_famille', period)
-        Tl = simulation.calculate('aide_logement_taux_loyer', period)
+        Tf = famille('aide_logement_taux_famille', period)
+        Tl = famille('aide_logement_taux_loyer', period)
         Tp = Tf + Tl  # Taux de participation
 
         return P0 + Tp * Rp
@@ -639,9 +643,9 @@ class aide_logement_montant(Variable):
     label = u"Montant des aides au logement net de CRDS"
     definition_period = MONTH
 
-    def function(self, simulation, period):
-        aide_logement_montant_brut = simulation.calculate('aide_logement_montant_brut', period)
-        crds_logement = simulation.calculate('crds_logement', period)
+    def function(famille, period):
+        aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
+        crds_logement = famille('crds_logement', period)
         montant = round_(aide_logement_montant_brut + crds_logement, 2)
 
         return montant
@@ -717,9 +721,9 @@ class als(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
-        als_non_etudiant = simulation.calculate('als_non_etudiant', period)
-        als_etudiant = simulation.calculate('als_etudiant', period)
+    def function(famille, period):
+        als_non_etudiant = famille('als_non_etudiant', period)
+        als_etudiant = famille('als_etudiant', period)
         result = (als_non_etudiant + als_etudiant)
 
         return result
@@ -768,10 +772,10 @@ class aide_logement(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
-        apl = simulation.calculate('apl', period)
-        als = simulation.calculate('als', period)
-        alf = simulation.calculate('alf', period)
+    def function(famille, period):
+        apl = famille('apl', period)
+        als = famille('als', period)
+        alf = famille('alf', period)
 
         return max_(max_(apl, als), alf)
 
@@ -784,9 +788,9 @@ class crds_logement(Variable):
     url = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml"
     definition_period = MONTH
 
-    def function(self, simulation, period):
-        aide_logement_montant_brut = simulation.calculate('aide_logement_montant_brut', period)
-        crds = simulation.legislation_at(period.start).prestations.prestations_familiales.af.crds
+    def function(famille, period, legislation):
+        aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
+        crds = legislation(period).prestations.prestations_familiales.af.crds
         return -aide_logement_montant_brut * crds
 
 
@@ -805,12 +809,12 @@ class zone_apl(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-    def function(self, simulation, period):
+    def function(menage, period):
         '''
         Retrouve la zone APL (aide personnalisée au logement) de la commune
         en fonction du depcom (code INSEE)
         '''
-        depcom = simulation.calculate('depcom', period)
+        depcom = menage('depcom', period)
 
         preload_zone_apl()
         default_value = 2
