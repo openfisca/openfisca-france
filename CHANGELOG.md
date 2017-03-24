@@ -1,5 +1,11 @@
 # Changelog
 
+### 16.1.1 - [#632](https://github.com/openfisca/openfisca-france/pull/632) 
+
+* Changement mineur
+* Détails :
+    - Arrête d'importer de numpy des fonctions qui sont déjà fournies par `openfisca_core.model_api`
+
 ## 16.1.0 - [#707](https://github.com/openfisca/openfisca-france/pull/707))
 
 * Évolution du système socio-fiscal
@@ -10,7 +16,7 @@
     - Met à jour le mode de calcul des bourses de collège et lycée, entré en vigueur à la rentrée 2016.
     - Introduit les variables `bourse_college_echelon` et `bourse_lycee_echelon`
 
-## 16.0.0 - [#710](https://github.com/openfisca/openfisca-france/pull/710)
+# 16.0.0 - [#710](https://github.com/openfisca/openfisca-france/pull/710)
 * Amélioration technique **non-rétrocompatible**
 * Détails :
     - Restreint les périodes acceptées par OpenFisca

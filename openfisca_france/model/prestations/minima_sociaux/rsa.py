@@ -3,7 +3,7 @@
 from __future__ import division
 
 
-from numpy import (datetime64, floor, logical_and as and_, logical_not as not_, logical_or as or_, maximum as max_, minimum as min_, select, where)
+from numpy import datetime64, floor, logical_and as and_, logical_or as or_
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf

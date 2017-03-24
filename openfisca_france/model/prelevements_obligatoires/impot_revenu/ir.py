@@ -5,8 +5,7 @@ from __future__ import division
 
 import logging
 
-from numpy import (datetime64, logical_and as and_, logical_not as not_, logical_or as or_, logical_xor as xor_,
-    maximum as max_, minimum as min_, round)
+from numpy import datetime64, logical_and as and_, logical_or as or_, logical_xor as xor_, round
 
 from openfisca_core import periods
 from openfisca_france.model.base import *  # noqa analysis:ignore

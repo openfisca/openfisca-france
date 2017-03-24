@@ -5,7 +5,7 @@ from datetime import date
 
 from openfisca_core import periods
 from openfisca_core.reforms import Reform, update_legislation
-from ..model.base import DatedVariable, dated_function, YEAR
+from ..model.base import *
 
 
 def modify_legislation_json(reference_legislation_json_copy):

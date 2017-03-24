@@ -4,8 +4,6 @@ from __future__ import division
 
 from openfisca_france.model.base import *  # noqa
 
-from numpy import logical_not as not_
-
 
 class aeeh_niveau_handicap(Variable):
     column = IntCol
