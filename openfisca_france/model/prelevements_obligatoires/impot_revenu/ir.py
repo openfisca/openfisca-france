@@ -5,7 +5,7 @@ from __future__ import division
 
 import logging
 
-from numpy import datetime64, logical_and as and_, logical_or as or_, logical_xor as xor_, round
+from numpy import datetime64, logical_and as and_, logical_or as or_, logical_xor as xor_, round as round_
 
 from openfisca_core import periods
 from openfisca_france.model.base import *  # noqa analysis:ignore
@@ -351,8 +351,8 @@ class revenu_assimile_salaire_apres_abattements(Variable):
         frais_reels = simulation.calculate('frais_reels', period)
         abatpro = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro
 
-        abattement_minimum = abatpro.min * not_(chomeur_longue_duree) + abatpro.min2 * chomeur_longue_duree
-        abatfor = round(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
+        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
+        abatfor = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
         return (
             (frais_reels > abatfor) * (revenu_assimile_salaire - frais_reels) +
             (frais_reels <= abatfor) * max_(0, revenu_assimile_salaire - abatfor)
@@ -427,10 +427,10 @@ class revenu_assimile_pension_apres_abattements(Variable):
     #            AO + BO + CO + DO + EO )
     #    penv2 = (d11-f11> abatpen.max)*(penv + (d11-f11-abatpen.max)) + (d11-f11<= abatpen.max)*penv
     #    Plus d'abatement de 20% en 2006
-        return max_(0, revenu_assimile_pension - round(max_(abatpen.taux * revenu_assimile_pension , abatpen.min)))
+        return max_(0, revenu_assimile_pension - round_(max_(abatpen.taux * revenu_assimile_pension , abatpen.min)))
 
 
-#    return max_(0, revenu_assimile_pension - min_(round(max_(abatpen.taux*revenu_assimile_pension , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
+#    return max_(0, revenu_assimile_pension - min_(round_(max_(abatpen.taux*revenu_assimile_pension , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
 
 class indu_plaf_abat_pen(Variable):
     column = FloatCol
@@ -502,7 +502,7 @@ class retraite_titre_onereux_net(Variable):
         f1dw = simulation.calculate('f1dw', period)
         abatviag = simulation.legislation_at(period.start).impot_revenu.tspr.abatviag
 
-        return round(abatviag.taux1 * f1aw + abatviag.taux2 * f1bw + abatviag.taux3 * f1cw + abatviag.taux4 * f1dw)
+        return round_(abatviag.taux1 * f1aw + abatviag.taux2 * f1bw + abatviag.taux3 * f1cw + abatviag.taux4 * f1dw)
 
 
 class traitements_salaires_pensions_rentes(Variable):
@@ -1252,7 +1252,7 @@ class cont_rev_loc(Variable):
         f4bl = simulation.calculate('f4bl', period)
         crl = simulation.legislation_at(period.start).impot_revenu.crl
 
-        return round(crl.taux * (f4bl >= crl.seuil) * f4bl)
+        return round_(crl.taux * (f4bl >= crl.seuil) * f4bl)
 
 
 class teicaa(Variable):  # f5rm
@@ -1412,7 +1412,7 @@ class plus_values(DatedVariable):
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
 
-        return round(out)
+        return round_(out)
 
     @dated_function(start = date(2008, 1, 1), stop = date(2011, 12, 31))
     def function_20080101_20111231(self, simulation, period):  # f3sd is in f3vd holder
@@ -1450,7 +1450,7 @@ class plus_values(DatedVariable):
         rdp += f3vd
         out += plus_values.taux1 * f3vd
 
-        return round(out)
+        return round_(out)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):  # f3sd is in f3vd holder
@@ -1493,7 +1493,7 @@ class plus_values(DatedVariable):
         out = (plus_values.taux2 * (f3vd + f3sd) + plus_values.taux3 * (f3vi + f3si) +
             plus_values.taux4 * (f3vf + f3sf) + plus_values.taux1 * max_(0, f3vg - f3vh) + plus_values.pvce * rpns_pvce)
                 # TODO: chek this rpns missing ?
-        return round(out)
+        return round_(out)
 
     @dated_function(start = date(2013, 1, 1))
     def function_20130101_20151231(self, simulation, period):  # f3sd is in f3vd holder
@@ -1539,7 +1539,7 @@ class plus_values(DatedVariable):
         out = (plus_values.taux2 * (f3vd + f3sd) + plus_values.taux3 * (f3vi + f3si) +
             plus_values.taux4 * (f3vf + f3sf) + plus_values.taux1 * max_(0, - f3vh) + plus_values.pvce * (rpns_pvce + f3sa))
         # TODO: chek this 3VG
-        return round(out)
+        return round_(out)
 
 
 class iai(Variable):
@@ -1839,7 +1839,7 @@ class fon(Variable):
         f4be = simulation.calculate('f4be', period)
         microfoncier = simulation.legislation_at(period.start).impot_revenu.rpns.micro.microfoncier
 
-        return f4ba - f4bb - f4bc + round(f4be * (1 - microfoncier.taux))
+        return f4ba - f4bb - f4bc + round_(f4be * (1 - microfoncier.taux))
 
 
 class rpns_pvce(Variable):
@@ -2145,7 +2145,7 @@ class ric(Variable):
             mbic_impv + mbic_imps + mbic_exon,
             max_(
                 micro.specialbnc.marchandises.min,
-                round(
+                round_(
                     mbic_impv * micro.specialbnc.marchandises.taux + mbic_imps * micro.specialbnc.services.taux + mbic_exon * taux
                     )
                 )
@@ -2206,7 +2206,7 @@ class rac(Variable):
         cond = (macc_impv > 0) & (macc_imps == 0)
         taux = micro.specialbnc.marchandises.taux * cond + micro.specialbnc.services.taux * not_(cond)
 
-        cacc = min_(macc_impv + macc_imps + macc_exon + mncn_impo, max_(micro.specialbnc.marchandises.min, round(
+        cacc = min_(macc_impv + macc_imps + macc_exon + mncn_impo, max_(micro.specialbnc.marchandises.min, round_(
             macc_impv * micro.specialbnc.marchandises.taux
             + macc_imps * micro.specialbnc.services.taux + macc_exon * taux
             + mncn_impo * micro.specialbnc.taux)))
@@ -2255,7 +2255,7 @@ class rnc(Variable):
             mbnc_exon + mbnc_impo,
             max_(
                 specialbnc.services.min,
-                round((mbnc_exon + mbnc_impo) * specialbnc.taux)
+                round_((mbnc_exon + mbnc_impo) * specialbnc.taux)
                 )
             )
 

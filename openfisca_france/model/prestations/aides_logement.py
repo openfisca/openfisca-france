@@ -131,6 +131,30 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
         return max_(eval_forfaitaire_salaries(), eval_forfaitaire_tns())
 
 
+class aide_logement_assiette_abattement_chomage(Variable):
+    column = FloatCol
+    entity = Individu
+    label = u"Assiette sur lequel un abattement chômage peut être appliqués pour les AL. Ce sont les revenus d'activité professionnelle, moins les abbattements pour frais professionnels."
+    definition_period = YEAR
+
+    def function(individu, period, legislation):
+        revenus_non_salarie = individu('rpns', period)
+        revenu_salarie = individu('salaire_imposable', period, options = [ADD])
+        chomeur_longue_duree = individu('chomeur_longue_duree', period)
+        frais_reels = individu('frais_reels', period)
+        abatpro = legislation(period).impot_revenu.tspr.abatpro
+
+        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
+        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
+        revenus_salarie_apres_abbatement = where(
+            frais_reels > abattement_forfaitaire,
+            revenu_salarie - frais_reels,
+            max_(0, revenu_salarie - abattement_forfaitaire)
+            )
+
+        return revenus_non_salarie + revenus_salarie_apres_abbatement
+
+
 class aide_logement_abattement_chomage_indemnise(Variable):
     column = FloatCol
     entity = Individu
@@ -138,16 +162,18 @@ class aide_logement_abattement_chomage_indemnise(Variable):
     definition_period = MONTH
 
     def function(individu, period, legislation):
+        """
+        Références législatives :
+        Article R532-7 du Code de la sécurité sociale
+        https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte=
+        """
         chomage_net_m_1 = individu('chomage_net', period.offset(-1))
         chomage_net_m_2 = individu('chomage_net', period.offset(-2))
-        revenus_activite_pro = individu('salaire_imposable', period.n_2, options = [ADD])
+        condition_abattement = (chomage_net_m_1 > 0) * (chomage_net_m_2 > 0)
+        revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period.n_2)
         taux_abattement = legislation(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
-        taux_frais_pro = legislation(period).impot_revenu.tspr.abatpro.taux
 
-        abattement = and_(chomage_net_m_1 > 0, chomage_net_m_2 > 0) * taux_abattement * revenus_activite_pro
-        abattement = round_((1 - taux_frais_pro) * abattement)
-
-        return abattement
+        return condition_abattement * taux_abattement * revenus_activite_pro
 
 
 class aide_logement_abattement_depart_retraite(Variable):
@@ -157,13 +183,17 @@ class aide_logement_abattement_depart_retraite(Variable):
     definition_period = MONTH
 
     def function(individu, period, legislation):
+        """
+        Références législatives :
+        Article R532-5 du Code de la sécurité sociale
+        https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231
+        """
         retraite = individu('activite', period) == 3
-        activite_n_2 = individu('salaire_imposable', period.n_2, options = [ADD])
         retraite_n_2 = individu('retraite_imposable', period.n_2)
-        taux_frais_pro = legislation(period).impot_revenu.tspr.abatpro.taux
+        condition_abattement = (retraite_n_2 == 0) * retraite
+        revenus_activite_pro = individu('revenu_assimile_salaire_apres_abattements', period.n_2)
 
-        abattement = 0.3 * activite_n_2 * (retraite_n_2 == 0) * retraite
-        abattement = round_((1 - taux_frais_pro) * abattement)
+        abattement = condition_abattement * 0.3 * revenus_activite_pro
 
         return abattement
 
@@ -175,22 +205,23 @@ class aide_logement_neutralisation_rsa(Variable):
     definition_period = MONTH
 
     def function(famille, period, legislation):
+        """
+        Références législatives :
+        Article R532-7 du Code de la sécurité sociale
+        https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte=
+
+        Article R351-14-1 du Code de la construction et de l'habitation
+        https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006897410&categorieLien=cid
+        """
+
         # Circular definition, as rsa depends on al.
         # We don't allow it, so default value of rsa will be returned if a recursion is detected.
-
         rsa_mois_dernier = famille('rsa', period.last_month, max_nb_cycles = 0)
 
-        revenu_activite_i = famille.members('salaire_imposable', period.n_2, options = [ADD])
-        revenu_chomage_i = famille.members('chomage_imposable', period.n_2, options = [ADD])
-        revenu_activite = famille.sum(revenu_activite_i)
-        revenu_chomage = famille.sum(revenu_chomage_i)
+        revenus_a_neutraliser_i = famille.members('revenu_assimile_salaire_apres_abattements', period.n_2)
+        revenus_a_neutraliser = famille.sum(revenus_a_neutraliser_i)
 
-        taux_frais_pro = legislation(period).impot_revenu.tspr.abatpro.taux
-
-        abattement = (revenu_activite + revenu_chomage) * (rsa_mois_dernier > 0)
-        abattement = round_((1 - taux_frais_pro) * abattement)
-
-        return abattement
+        return revenus_a_neutraliser * (rsa_mois_dernier > 0)
 
 
 class aide_logement_base_ressources_defaut(Variable):

@@ -283,8 +283,9 @@ class cmu_base_ressources(Variable):
 
         P = legislation(period).cmu
 
-
-        forfait_logement = (((statut_occupation_logement == 2) + (statut_occupation_logement == 6)) * cmu_forfait_logement_base +
+        proprietaire = (statut_occupation_logement == 2)
+        heberge_titre_gratuit = (statut_occupation_logement == 6)
+        forfait_logement = ((proprietaire + heberge_titre_gratuit) * cmu_forfait_logement_base +
             cmu_forfait_logement_al)
 
         ressources_individuelles = famille.members('cmu_base_ressources_individu', period)
