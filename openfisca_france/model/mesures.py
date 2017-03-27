@@ -423,9 +423,10 @@ class minima_sociaux(Variable):
         api = simulation.calculate('api', period)
         ass = simulation.calculate_add('ass', period)
         minimum_vieillesse = simulation.calculate_add('minimum_vieillesse', period)
+        rsa = simulation.calculate_add('rsa', period)
+        # rsa doit être calculé avant la ppa quand le non-recours est utilisé
         ppa = simulation.calculate_add('ppa', period)
         psa = simulation.calculate_add('psa', period)
-        rsa = simulation.calculate_add('rsa', period)
 
         aah = self.sum_by_entity(aah_holder)
         caah = self.sum_by_entity(caah_holder)
