@@ -529,6 +529,7 @@ class rsa_revenu_activite_individu(DatedVariable):
             'etr',
             'tns_auto_entrepreneur_benefice',
             'rsa_indemnites_journalieres_activite',
+            'rpns_individu',
             ]
 
         has_ressources_substitution = individu('rsa_has_ressources_substitution', mois_demande)
