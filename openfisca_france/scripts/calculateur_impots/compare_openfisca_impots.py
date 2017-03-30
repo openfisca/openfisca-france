@@ -25,12 +25,16 @@ import urllib2
 from lxml import etree
 
 import openfisca_france
-from openfisca_france.scripts.calculateur_impots.base import transform_scenario_to_tax_calculator_inputs
+from openfisca_france.scripts.calculateur_impots.base import (
+    openfisca_variable_name_by_tax_calculator_code,
+    transform_scenario_to_tax_calculator_inputs,
+    )
 
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
 tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
+tax_benefit_system.neutralize_column('rpns_individu')
 
 
 def compare(scenario, tested = False):
@@ -243,21 +247,33 @@ def compare(scenario, tested = False):
             }
     iinet = 1
     if tested:
-        for code, field in fields.iteritems():
-            if code == 'IINETIR' or code == 'IRESTIR':
-                iinet = 0
-            # compare_variable(code, field, simulation, totpac, year)
-            print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
+        compare_variables(fields, simulation)
+
+    return fields, simulation
+
+
+def compare_variables(fields, simulation, verbose = True):
+    for code, field in fields.iteritems():
+        if code == 'IINETIR' or code == 'IRESTIR':
+            iinet = 0
+        # compare_variables(fields, simulation)
+        name = fields[code]['name']
+        dgfip_value = fields[code]['value']
+        openfisca_variable_name = openfisca_variable_name_by_tax_calculator_code.get(code)
         # print simulation.calculate('reductions')
         # print fields['ITRED']['value']
         # if iinet: # S'il n'y a pas IINETIR et IRESTIR dans les résultats, on compare irpp à IINET (s'ils y sont c'est
         #         # normal que les résultats soient différents
         #     compare_variable('IINETIR', fields['IINET'], simulation, totpac, year)
+        if openfisca_variable_name is not None:
+            openfisca_value = simulation.calculate(openfisca_variable_name)
+            assert len(openfisca_value) == 1
+            if verbose:
+                print(u'{} ({}) = {}'.format(code, name, openfisca_variable_name).encode('utf-8'))
+                print(u'{} vs {}'.format(dgfip_value, openfisca_value[0]).encode('utf-8'))
 
-    return fields
 
-
-def define_scenario(year):
+def define_scenario(year, tax_benefit_system = tax_benefit_system):
     scenario = tax_benefit_system.new_scenario()
     scenario.init_single_entity(
         period = year,
@@ -265,27 +281,27 @@ def define_scenario(year):
             activite = u'Actif occupé',
             date_naissance = 1973,
             salaire_imposable = 48000,
-            statut_marital = u'Marié',
+            statut_marital = u'Célibataire',
             ),
-        parent2 = dict(
-            activite = u'Actif occupé',
-            date_naissance = 1973,
-            statut_marital = u'Marié',
-            ),
-        enfants = [
-            dict(
-                activite = u'Étudiant, élève',
-                date_naissance = '1993-02-01',
-                ),
-            dict(
-                activite = u'Étudiant, élève',
-                date_naissance = '2000-04-17',
-                ),
-            ],
-        foyer_fiscal = dict(  #TODO: pb avec f2ck
-            f5rn = 5000,
-            mbic_mvct = 2000,
-            ),
+        # parent2 = dict(
+        #     activite = u'Actif occupé',
+        #     date_naissance = 1973,
+        #     statut_marital = u'Marié',
+        #     ),
+        # enfants = [
+        #     dict(
+        #         activite = u'Étudiant, élève',
+        #         date_naissance = '1993-02-01',
+        #         ),
+        #     dict(
+        #         activite = u'Étudiant, élève',
+        #         date_naissance = '2000-04-17',
+        #         ),
+        #     ],
+        # foyer_fiscal = dict(  #TODO: pb avec f2ck
+        #     f5rn = 5000,
+        #     mbic_mvct = 2000,
+        #     ),
         )
     scenario.suggest()
     return scenario
