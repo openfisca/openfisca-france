@@ -1584,6 +1584,9 @@ class irpp(Variable):
         P = simulation.legislation_at(period.start).impot_revenu.recouvrement
 
         pre_result = iai - credits_impot + cehr
+        # Ratio de calage : la cible est décrite dans Ratio_correction_irpp.xls de Q:\Bas revenus - revenu de base\Documentation . Le numérateur est la masse que l'on calcule sans ce ratio.
+        ratio = 84.41/131.71
+
         return period, (
             (iai > P.seuil) * (
                 (pre_result < P.min) * (pre_result > 0) * iai * 0 +
@@ -1591,7 +1594,7 @@ class irpp(Variable):
                 ) +
             (iai <= P.seuil) * (
                 (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
-            )
+            ) * ratio
 
 
 class foyer_impose(Variable):
