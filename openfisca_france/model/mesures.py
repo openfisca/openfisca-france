@@ -82,6 +82,31 @@ class revenu_disponible(Variable):
 
         return period, revenus_du_travail + pensions + revenus_du_capital + prestations_sociales + ppe + impots_directs
 
+class revenu_disponible_noncale(Variable):
+    column = FloatCol
+    entity = Menage
+    label = u"Revenu disponible du ménage avec IRPP non calé (pour cas-types)"
+    url = "http://fr.wikipedia.org/wiki/Revenu_disponible"
+
+    def function(self, simulation, period):
+        period = period.this_year
+        revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
+        pensions_holder = simulation.compute('pensions', period)
+        revenus_du_capital_holder = simulation.compute('revenus_du_capital', period)
+        prestations_sociales_holder = simulation.compute('prestations_sociales', period)
+        ppe_holder = simulation.compute('ppe', period)
+        impots_directs_noncale = simulation.calculate('impots_directs_noncale', period)
+
+        pensions = self.sum_by_entity(pensions_holder)
+        ppe = self.cast_from_entity_to_role(ppe_holder, role = VOUS)
+        ppe = self.sum_by_entity(ppe)
+        prestations_sociales = self.cast_from_entity_to_role(prestations_sociales_holder, role = CHEF)
+        prestations_sociales = self.sum_by_entity(prestations_sociales)
+        revenus_du_capital = self.sum_by_entity(revenus_du_capital_holder)
+        revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
+
+        return period, revenus_du_travail + pensions + revenus_du_capital + prestations_sociales + ppe + impots_directs_noncale
+
 
 class niveau_de_vie(Variable):
     column = FloatCol
@@ -93,6 +118,17 @@ class niveau_de_vie(Variable):
         revenu_disponible = menage('revenu_disponible', period)
         uc = menage('uc', period)
         return period, revenu_disponible / uc
+
+class niveau_de_vie_noncale(Variable):
+    column = FloatCol
+    entity = Menage
+    label = u"Niveau de vie du ménage avec IRPP non calé (pour cas-types)"
+
+    def function(menage, period):
+        period = period.this_year
+        revenu_disponible_noncale = menage('revenu_disponible_noncale', period)
+        uc = menage('uc', period)
+        return period, revenu_disponible_noncale / uc
 
 
 class revenu_net_individu(Variable):
@@ -469,6 +505,22 @@ class impots_directs(Variable):
 
         return period, irpp + taxe_habitation
 
+class impots_directs_noncale(Variable):
+    column = FloatCol
+    entity = Menage
+    label = u"Impôts directs avec IRPP non calé (pour cas-types)"
+    url = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
+
+    def function(self, simulation, period):
+        period = period.this_year
+        irpp_noncale_holder = simulation.compute('irpp_noncale', period)
+        taxe_habitation = simulation.calculate('taxe_habitation', period)
+
+        irpp_noncale = self.cast_from_entity_to_role(irpp_noncale_holder, role = VOUS)
+        irpp_noncale = self.sum_by_entity(irpp_noncale)
+
+        return period, irpp_noncale + taxe_habitation
+
 
 class crds(Variable):
     column = FloatCol
@@ -572,6 +624,39 @@ class revenu_disponible_famille(Variable):
         impots_directs = irpp + taxe_habitation
 
         return period, revenus_du_travail + pensions + revenus_du_capital + prestations_sociales + ppe + impots_directs
+
+class revenu_disponible_famille_noncale(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Revenu disponible du foyer social (famille) avec IRPP non-calé (pour cas-types)"
+
+    def function(self, simulation, period):
+        period = period.this_year
+
+        revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
+        revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
+
+        pensions_holder = simulation.compute('pensions', period)
+        pensions = self.sum_by_entity(pensions_holder)
+
+        revenus_du_capital_holder = simulation.compute('revenus_du_capital', period)
+        revenus_du_capital = self.sum_by_entity(revenus_du_capital_holder)
+
+        prestations_sociales = simulation.calculate('prestations_sociales', period)
+
+        ppe_holder = simulation.compute('ppe', period)
+        ppe = self.cast_from_entity_to_role(ppe_holder, role = VOUS)
+        ppe = self.sum_by_entity(ppe)
+
+        irpp_noncale_holder = simulation.compute('irpp_noncale', period)
+        irpp_noncale = self.cast_from_entity_to_role(irpp_noncale_holder, role = VOUS)  # Le déclarant paie tout l'IRPP
+        irpp_noncale = self.sum_by_entity(irpp_noncale)
+        taxe_habitation_holder = simulation.compute('taxe_habitation', period)
+        taxe_habitation = self.cast_from_entity_to_role(taxe_habitation_holder, role = PREF)  # La personne de référence du ménage paie la TH
+        taxe_habitation = self.sum_by_entity(taxe_habitation)
+        impots_directs_noncale = irpp_noncale + taxe_habitation
+
+        return period, revenus_du_travail + pensions + revenus_du_capital + prestations_sociales + ppe + impots_directs_noncale
 
 
 class prelsoc_cap(Variable):

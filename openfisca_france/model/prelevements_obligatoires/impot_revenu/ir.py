@@ -1596,6 +1596,23 @@ class irpp(Variable):
                 (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
             ) * ratio
 
+class irpp_noncale(Variable):
+    column = FloatCol
+    entity = FoyerFiscal
+    label = u"Impôt sur le revenu des personnes physiques non calé (pour cas-types)"
+    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
+
+    def function(self, simulation, period):
+        '''
+        Montant après seuil de recouvrement (hors ppe)
+        '''
+        period = period.this_year
+        irpp = simulation.calculate('irpp', period)
+        # Ratio de calage : la cible est décrite dans Ratio_correction_irpp.xls de Q:\Bas revenus - revenu de base\Documentation . Le numérateur est la masse que l'on calcule sans ce ratio.
+        ratio = 84.41/131.71
+
+        return period, irpp / ratio
+
 
 class foyer_impose(Variable):
     column = BoolCol(default = False)
