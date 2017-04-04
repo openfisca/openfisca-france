@@ -27,6 +27,9 @@ setup(
         ('share/openfisca/openfisca-france', ['CHANGELOG.md', 'LICENSE.AGPL.txt', 'README.md']),
         ],
     extras_require = {
+        'api': [
+            'OpenFisca-Web-API >= 4.0.0, < 5.0',
+            ],
         'inversion_revenus': [
             'scipy >= 0.17',
             ],
