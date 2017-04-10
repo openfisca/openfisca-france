@@ -1,5 +1,14 @@
 # Changelog
 
+### 18.2.7 - [#728](https://github.com/openfisca/openfisca-france/pull/728)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2016.
+* Zones impactées : `prestations.prestations_familiales.asf`.
+* Détails :
+  - Met à jour le taux pour ASF, entré en vigueur le 1er avril 2016.
+  - Met à jour les taux pour l'ASF, CF, ASS, ATA, entré en vigueur le 1er avril 2017.
+
 ### 18.2.6 - [#747](https://github.com/openfisca/openfisca-france/pull/747)
 
 * Évolution du système socio-fiscal.
@@ -14,7 +23,6 @@
 * Changement mineur
 * Détails :
   - Supprime le système de chargement automatique des extensions via le dossier `extensions` . Les extensions sont maintenant installées sous la forme de packages indépendants.
-
 
 ### 18.2.4 - [#759](https://github.com/openfisca/openfisca-france/pull/759)
 
