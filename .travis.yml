@@ -33,4 +33,4 @@ deploy:
   - provider: script
     script: ssh deploy-api@api.openfisca.fr
     on:
-      tags: true
+      branch: ci
