@@ -83,3 +83,32 @@
     effectif_entreprise: 11
   output_variables:
     taux_versement_transport: 0.0285
+
+# > avril 2017
+
+
+- period: "month:2017-04"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "29002" #QUIMPERLÉ
+    effectif_entreprise: 11
+  output_variables:
+    taux_versement_transport: 0.008
+
+
+- period: "month:2017-04"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "91174" # Commune CORBEIL ESSONNES
+    effectif_entreprise: 11
+  output_variables:
+    taux_versement_transport: 0.0201
+
+
+- period: "month:2017-04"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "75120"
+    effectif_entreprise: 11
+  output_variables:
+    taux_versement_transport: 0.0295
