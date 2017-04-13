@@ -4,6 +4,7 @@ keywords:
   - base ressources
 description: Test concluant
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   activite: 3
   age: 65

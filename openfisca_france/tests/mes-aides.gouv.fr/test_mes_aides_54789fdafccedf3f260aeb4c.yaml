@@ -4,6 +4,7 @@ keywords:
   - base ressources
 description: "Test concluant : la pension d'invalidité du conjoint est bien prise en compte dans les ressources"
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   - activite: 3
     age: 65

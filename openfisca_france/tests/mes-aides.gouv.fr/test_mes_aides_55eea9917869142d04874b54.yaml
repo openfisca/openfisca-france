@@ -6,6 +6,7 @@ keywords:
   - taux partiel
 description: "Plafond Couple 2 revenus 1 enfant après le 1/4/14 : 45 393"
 period: "month:2015-09"
+relative_error_margin: 0.02
 individus:
   - enfant_a_charge:
       2015: true

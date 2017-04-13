@@ -4,6 +4,7 @@ keywords:
   - dom
 description: Dans les DOM pas de droit au CF lorsqu'il y a un enfant de moins de 3 ans
 period: "month:2015-02"
+relative_error_margin: 0.02
 individus:
   - age: 43
     age_en_mois: 517

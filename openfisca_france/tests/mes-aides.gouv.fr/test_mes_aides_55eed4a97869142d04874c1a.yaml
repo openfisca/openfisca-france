@@ -5,6 +5,7 @@ keywords:
 - plafonds
 description: 'Plafond Couple 1 revenu 1 enfant né après le 1/4/14: 29907'
 period: month:2015-09
+relative_error_margin: 0.02
 individus:
 - enfant_a_charge:
     2015: true

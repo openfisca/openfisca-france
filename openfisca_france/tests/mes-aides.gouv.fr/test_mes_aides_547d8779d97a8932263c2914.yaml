@@ -4,6 +4,7 @@ keywords:
   - base ressources
 description: Test concluant, les salaires de l'allocataire et du conjoint sont bien pris en compte dans le calcul de l'ASPA.
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - activite: 3
     age: 65

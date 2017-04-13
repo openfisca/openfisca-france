@@ -9,6 +9,7 @@ description: |
   1337.12 > 1300
   Donc ASS = 1 787,50 - 1337.12 = 450,38
 period: "month:2015-04"
+relative_error_margin: 0.02
 individus:
   - activite: 1
     age: 24

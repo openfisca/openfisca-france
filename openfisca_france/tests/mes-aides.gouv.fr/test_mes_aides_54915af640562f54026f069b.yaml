@@ -10,6 +10,7 @@ description: |
   Salaires déclarés 23000 euros
   23000 + 1560 = 24560 > 24507, donc pas droit à l'ACS.
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - age: 40
     age_en_mois: 491

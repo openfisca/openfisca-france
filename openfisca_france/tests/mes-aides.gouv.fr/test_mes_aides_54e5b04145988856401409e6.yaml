@@ -5,6 +5,7 @@ keywords:
   - eval forfaitaire
 description: La personne déclare un salaire > 1273 euros, on applique donc bien l'eval forfaitaire même si elle a moins de 25 ans.
 period: "month:2015-02"
+relative_error_margin: 0.02
 individus:
   age: 22
   age_en_mois: 270

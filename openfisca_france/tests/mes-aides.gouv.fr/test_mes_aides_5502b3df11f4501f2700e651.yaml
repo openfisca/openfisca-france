@@ -5,6 +5,7 @@ description: |
   RFR = 0 donc 10 parts, montant pour 1 enfant = 10*45,3 = 453
   Montant affiché = 453 * 2 = 906 euros
 period: "month:2015-03"
+relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 415

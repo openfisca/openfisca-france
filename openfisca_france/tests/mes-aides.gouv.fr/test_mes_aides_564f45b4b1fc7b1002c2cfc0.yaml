@@ -4,6 +4,7 @@ keywords:
 - rsa
 description: Résultat attendu, règle de gestion testée et éventuellement origine de l'écart avec le résultat de la simulation.
 period: month:2015-11
+relative_error_margin: 0.02
 individus:
 - enfant_a_charge:
     2015: true

@@ -5,6 +5,7 @@ keywords:
   - plafonds
 description: "Couple avec 1 revenu et 2 enfants nés avant 2014 > plafond: 42 875"
 period: "month:2015-05"
+relative_error_margin: 0.02
 individus:
   - age: 35
     age_en_mois: 423

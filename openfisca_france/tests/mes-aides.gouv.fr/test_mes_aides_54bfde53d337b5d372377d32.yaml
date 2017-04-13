@@ -2,6 +2,7 @@ name: 121_Neutral revenus pro
 keywords: rsa
 description: Les ressources ne sont plus perçues => Neutralisation
 period: "month:2015-01"
+relative_error_margin: 0.02
 individus:
   activite: 1
   age: 35

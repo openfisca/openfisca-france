@@ -4,6 +4,7 @@ keywords:
   - base ressources
 description: Les ressources du concubin font échec au droit Aspa du demandeur
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   - activite: 3
     age: 88

@@ -6,6 +6,7 @@ description: |
   La pension alimentaire doit être prise en compte car les collatéraux (frères et soeurs, oncles et tantes) ne sont pas concernés par l'obligation alimentaire.
   Toutefois, le simulateur ne permet pas de déclarer qui verse ou reçoit la pension alimentaire.
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   activite: 3
   age: 74

@@ -8,6 +8,7 @@ description: |
   CF= 200
   Revenus: 14600 + 530 X 12 + 200 X 12 = 23 360 > plafond CMUC
 period: "month:2015-04"
+relative_error_margin: 0.02
 individus:
   - age: 19
     age_en_mois: 239

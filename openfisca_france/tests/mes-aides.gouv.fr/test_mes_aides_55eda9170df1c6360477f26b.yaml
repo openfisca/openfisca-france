@@ -5,6 +5,7 @@ keywords:
 - plafonds
 description: 'Couple 2 revenus 1 enfant à charge né avant le 1/4/14: 47217'
 period: month:2015-09
+relative_error_margin: 0.02
 individus:
 - enfant_a_charge:
     2015: true

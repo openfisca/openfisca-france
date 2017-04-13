@@ -2,6 +2,7 @@ name: Les étudiants ne peuvent pas toucher le RSA
 keywords: rsa
 description: Dans le cas général, un étudiant n'a pas droit au RSA
 period: "month:2014-09"
+relative_error_margin: 0.02
 individus:
   activite: 2
   age: 34

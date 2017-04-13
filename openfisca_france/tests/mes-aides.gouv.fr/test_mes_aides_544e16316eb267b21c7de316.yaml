@@ -2,6 +2,7 @@ name: Neutralisation du RSA par l'ARE
 keywords: rsa
 description:
 period: "month:2014-10"
+relative_error_margin: 0.02
 individus:
   activite: 1
   age: 32

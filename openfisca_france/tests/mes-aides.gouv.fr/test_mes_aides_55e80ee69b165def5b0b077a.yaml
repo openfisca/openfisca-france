@@ -7,6 +7,7 @@ description: |
 
   Qu'elle soit déclarées par le chef de famille ou l'enfant, les pensions alimentaires perçues doivent être prises en compte dans l'éligibilité à l'ASF.
 period: "month:2015-09"
+relative_error_margin: 0.02
 individus:
   - enfant_a_charge:
       2015: true

@@ -2,6 +2,7 @@ name: 34_Elève, étudiant, stagiaire
 keywords: rsa
 description: "L. 262-4 3° : les étudiants n'ont pas accès au RSA, de même que les élèves ou stagiaires au sens de l'article L. 612-8 du code de l'éducation. Il faut donc compléter le bouton \"étudiant\"."
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   activite: 2
   age: 34

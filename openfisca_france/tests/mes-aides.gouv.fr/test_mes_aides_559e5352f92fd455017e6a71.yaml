@@ -4,6 +4,7 @@ keywords:
   - recette
 description: Test créé à partir d'un dossier de demande d'AL LOCATION
 period: "month:2015-07"
+relative_error_margin: 0.02
 individus:
   - age: 47
     age_en_mois: 573

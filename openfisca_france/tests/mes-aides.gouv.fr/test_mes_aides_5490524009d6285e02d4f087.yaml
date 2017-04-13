@@ -10,6 +10,7 @@ description: |
   Salaires déclarés 22900 euros
   22900 + 1560 = 24460 > 24507, donc droit à l'ACS.
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - age: 40
     age_en_mois: 491

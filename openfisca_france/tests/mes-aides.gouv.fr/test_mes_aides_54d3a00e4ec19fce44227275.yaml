@@ -19,6 +19,7 @@ description: |
   Pp	339,05
   AL	6,77 (montant théorique), mais comme il est < 15 on obtient 0
 period: "month:2015-02"
+relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 413

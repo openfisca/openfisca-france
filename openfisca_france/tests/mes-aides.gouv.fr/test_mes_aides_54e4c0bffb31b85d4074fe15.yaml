@@ -4,6 +4,7 @@ keywords:
   - eligibilité
 description:
 period: "month:2015-02"
+relative_error_margin: 0.02
 individus:
   activite: 3
   age: 63

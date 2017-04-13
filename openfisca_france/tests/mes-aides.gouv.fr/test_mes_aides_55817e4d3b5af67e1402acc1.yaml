@@ -4,6 +4,7 @@ keywords:
   - recette
 description: Les ressources du couple sont sup au plafond mais la pension alimentaire versée vient dégrever les dites ressources correctement.
 period: "month:2015-06"
+relative_error_margin: 0.02
 individus:
   - activite: 1
     age: 44

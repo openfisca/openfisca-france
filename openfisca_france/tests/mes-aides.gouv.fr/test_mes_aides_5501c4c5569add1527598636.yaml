@@ -7,6 +7,7 @@ description: |
   Plafond RFR correspondant pour 3 parts : 14786 euros
   RFR déclaré : 14700, donc parts = 3, montant = 3 * 45,3 = 135,9
 period: "month:2015-03"
+relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 415

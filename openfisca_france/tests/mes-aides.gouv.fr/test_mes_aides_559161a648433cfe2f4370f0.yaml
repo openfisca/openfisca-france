@@ -7,6 +7,7 @@ description: |
   Forfait logement: 1800,08 (cumul 12 mois)
   Total des ressources calculé par la CPAM: 18 250 < plafond ACS 21 006
 period: "month:2015-06"
+relative_error_margin: 0.02
 individus:
   - age: 36
     age_en_mois: 437

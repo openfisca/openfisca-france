@@ -10,6 +10,7 @@ description: |
   Salaire déclaré en année glissante : 16580 euros
   16580 + 1560 = 18140 < 18153, donc droit CMU-C
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - age: 40
     age_en_mois: 491

@@ -4,6 +4,7 @@ keywords:
   - eligibilité
 description: "Valeur attendue saisie : montant brut maximal personne seule SP.fr"
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   activite: 3
   age: 59

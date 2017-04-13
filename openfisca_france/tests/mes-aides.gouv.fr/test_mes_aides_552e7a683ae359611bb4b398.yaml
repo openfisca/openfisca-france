@@ -4,6 +4,7 @@ keywords:
   - dom
 description: Plafond CF 3 enfants = 35 524 donc ici salaire > plafond CF donc pas droit au CF
 period: "month:2015-04"
+relative_error_margin: 0.02
 individus:
   - age: 44
     age_en_mois: 535

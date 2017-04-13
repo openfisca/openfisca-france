@@ -10,6 +10,7 @@ description: |
   Salaire déclaré en année glissante : 7820 euros
   13776 + 7820 = 21596 < 21611, donc droit CMU-C
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - age: 40
     age_en_mois: 491

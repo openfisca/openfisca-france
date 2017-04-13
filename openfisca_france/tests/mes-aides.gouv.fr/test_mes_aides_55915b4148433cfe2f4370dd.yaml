@@ -9,6 +9,7 @@ description: |
 
   Avant la capture des prestations: AF de 130 euros
 period: "month:2015-06"
+relative_error_margin: 0.02
 individus:
   - age: 36
     age_en_mois: 440

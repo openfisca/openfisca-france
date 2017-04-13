@@ -4,6 +4,7 @@ keywords:
   - montant
 description: Le montant a été revalorisé à 1242 euros.
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   - activite: 3
     age: 74

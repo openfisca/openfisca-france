@@ -4,6 +4,7 @@ keywords:
   - dom
 description: Il n'y a pas d'APL dans les DOM, on ne peut que toucher l'ALS ou l'ALF.
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   age: 46
   age_en_mois: 559

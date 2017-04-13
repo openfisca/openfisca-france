@@ -4,6 +4,7 @@ description: |
   Le montant est majoré lorsque le parent vit seul.
   Montant = taux majoré (45,82%) * BMAF (406,21 €) = 186,13 euros
 period: "month:2014-07"
+relative_error_margin: 0.02
 individus:
   - age: 24
     age_en_mois: 298

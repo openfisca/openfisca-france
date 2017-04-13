@@ -9,6 +9,7 @@ description: |
 
   (513,88 + 62%[(2*300)/3]) - ([(2*300)/3] - 61,67) = 128,21€
 period: "month:2015-06"
+relative_error_margin: 0.02
 individus:
   age: 32
   age_en_mois: 393

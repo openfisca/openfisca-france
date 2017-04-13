@@ -5,6 +5,7 @@ keywords:
   - forfait logement
 description: Une personne hébergée à titre gratuit si c'est ressources <720 euros = 650eur + 60 eur (forfait logement) a droit à la CMUC
 period: "month:2015-01"
+relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 418

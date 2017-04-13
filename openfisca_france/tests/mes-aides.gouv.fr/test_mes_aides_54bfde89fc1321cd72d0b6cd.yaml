@@ -2,6 +2,7 @@ name: 122_Neutral revenus de remplacement
 keywords: rsa
 description:
 period: "month:2015-01"
+relative_error_margin: 0.02
 individus:
   age: 35
   age_en_mois: 420

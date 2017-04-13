@@ -10,6 +10,7 @@ description: |
   Salaires déclarés : 15380 euros.
   15380 + 13776 = 29156 ce qui est inférieur au plafond
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - age: 40
     age_en_mois: 491

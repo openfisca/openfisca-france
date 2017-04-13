@@ -4,6 +4,7 @@ keywords:
   - montant
 description: RFR = 2700 euros < plafond de 2790 euros pour le montant de 357 euros
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 411

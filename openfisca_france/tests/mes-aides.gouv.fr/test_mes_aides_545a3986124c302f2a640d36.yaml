@@ -4,6 +4,7 @@ description: |
   La personne se déclare demandeuse d'emploi. De plus, son salaire est diminué sur le dernier mois (700 € 2 mois puis 200€ seulement) : son activité a pris fin, il faut neutraliser les revenus dont la perception est interrompue.
   Il manque l'information que le demandeur devrait pouvoir remplir : "La perception de ce revenu est-elle interrompue ?".
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   activite: 1
   age: 28

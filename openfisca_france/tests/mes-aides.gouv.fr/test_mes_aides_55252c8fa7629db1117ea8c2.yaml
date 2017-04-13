@@ -7,6 +7,7 @@ description: |
   Ici éligible à l'AF (360 x 12) + CF (170 X 12) = 6 360
   Revenus = 20000 + 6360 = 26360 donc > plafond
 period: "month:2015-04"
+relative_error_margin: 0.02
 individus:
   - age: 19
     age_en_mois: 234

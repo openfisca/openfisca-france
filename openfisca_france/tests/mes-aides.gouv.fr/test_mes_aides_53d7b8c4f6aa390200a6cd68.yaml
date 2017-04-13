@@ -2,6 +2,7 @@ name: Les enfants doivent avoir moins de 21 ans
 keywords: cf
 description: "Enfant > 21 ans : non éligible"
 period: "month:2014-07"
+relative_error_margin: 0.02
 individus:
   - age: 24
     age_en_mois: 298

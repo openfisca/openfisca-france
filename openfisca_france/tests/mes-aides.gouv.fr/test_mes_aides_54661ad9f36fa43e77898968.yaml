@@ -8,6 +8,7 @@ keywords:
   Ici, le demandeur a déclaré 444 euros sur l'année glissante pour les 20 types de ressources à prendre en compte dans la base ressource.
   444 * 20 = 8880 euros > plafond de 8645 euros, donc pas de droit à la CMU-C.
 period: month:2014-11
+relative_error_margin: 0.02
 individus:
 - aah:
     '2012': 444

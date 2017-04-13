@@ -17,9 +17,7 @@ options_by_dir = {
     #     },
     'fiches_de_paie': {},
     'formulas': {},
-    'mes-aides.gouv.fr': {
-        'default_relative_error_margin': 0.02
-        },
+    'mes-aides.gouv.fr': {},
     'ui.openfisca.fr': {},
     'scipy': {
         'reforms':['de_net_a_brut'],

@@ -6,6 +6,7 @@ keywords:
   - taux partiel
 description: "Plafond Couple 1 revenu 1 enfant à charge né après le 1/4/14 : 35 729"
 period: "month:2015-09"
+relative_error_margin: 0.02
 individus:
   - enfant_a_charge:
       2015: true

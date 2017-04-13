@@ -5,6 +5,7 @@ keywords:
   - montant
 description:
 period: "month:2014-10"
+relative_error_margin: 0.02
 individus:
   age: 57
   age_en_mois: 686

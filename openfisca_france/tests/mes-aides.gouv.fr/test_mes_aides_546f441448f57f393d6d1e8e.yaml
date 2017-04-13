@@ -2,6 +2,7 @@ name: "Non-cumul pension alimentaire"
 keywords: asf
 description: Lorsqu'une pension alimentaire est saisie pour une enfant > pas de droit à l'Asf
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 418

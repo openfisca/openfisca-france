@@ -8,6 +8,7 @@ description: |
   Dépassement de ressources = 758
   => l'Aspa réduit s'élève à 42,00 euros
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - activite: 3
     age: 66

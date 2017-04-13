@@ -8,6 +8,7 @@ description: |
   Somme des salaires déclarés en année glissante : 15559 euros
   Donc droit à la CMU-C
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - age: 40
     age_en_mois: 491

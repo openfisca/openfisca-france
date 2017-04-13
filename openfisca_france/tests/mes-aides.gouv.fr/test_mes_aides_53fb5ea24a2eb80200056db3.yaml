@@ -2,6 +2,7 @@ name: Bénéficiaire AAH isolé
 keywords: rsa
 description: L'AAH doit être prise en compte dans le calcul
 period: "month:2014-08"
+relative_error_margin: 0.02
 individus:
   aah:
     2012: 2370

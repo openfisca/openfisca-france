@@ -4,6 +4,7 @@ keywords:
   - dom
 description: Foyer 4 enfants > plafond CF (41 133)
 period: "month:2015-04"
+relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 415

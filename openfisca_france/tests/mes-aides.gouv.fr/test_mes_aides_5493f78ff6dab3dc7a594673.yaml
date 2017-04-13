@@ -10,6 +10,7 @@ description: |
   Problème : simulateur donne même montant d'AL pour meublé et non meublé : anomalie
   simulateur CAF indique  : 329 € (plus élevé que pour un meublé)
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - activite: 1
     age: 42

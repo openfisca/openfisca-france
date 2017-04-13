@@ -2,6 +2,7 @@ name: 3_Personne seule sans enfant ni revenu
 keywords: rsa
 description:
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   age: 28
   age_en_mois: 346

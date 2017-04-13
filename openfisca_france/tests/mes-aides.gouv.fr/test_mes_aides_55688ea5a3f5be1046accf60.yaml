@@ -6,6 +6,7 @@ keywords:
   Enfant né avant 01/04/2014
   Couple avec 1 revenu < plafond : 35 729 euros
 period: month:2015-05
+relative_error_margin: 0.02
 individus:
 - age: 54
   age_en_mois: 656

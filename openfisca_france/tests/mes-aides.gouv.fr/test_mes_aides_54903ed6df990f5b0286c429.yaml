@@ -7,6 +7,7 @@ description: |
   Plafond ACS pour 2 personnes : 17505 euros.
   Ici, salaires déclarés = 17600 euros, donc pas droit à l'ACS.
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - age: 50
     age_en_mois: 611

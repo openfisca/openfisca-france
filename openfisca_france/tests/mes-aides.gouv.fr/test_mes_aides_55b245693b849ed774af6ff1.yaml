@@ -5,6 +5,7 @@ keywords:
   - Paris
 description: En l'absence de charges de logement, le demandeur n'a pas droit à PLF.
 period: "month:2015-07"
+relative_error_margin: 0.02
 individus:
   - enfant_a_charge:
         2015: true

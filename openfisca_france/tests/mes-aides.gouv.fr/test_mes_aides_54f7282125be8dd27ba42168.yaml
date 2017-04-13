@@ -13,6 +13,7 @@ keywords:
   d'où plafond  CMUC= 13400 euros
   d'où 1400*12 = 17000 est supérieur au plafond CMUC couple avec 2 enfants en résidence alternée
 period: month:2015-03
+relative_error_margin: 0.02
 individus:
 - age: 34
   age_en_mois: 418

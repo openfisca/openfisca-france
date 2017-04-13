@@ -5,6 +5,7 @@ description: |
   Pour les personnes seules, les ressources doivent être comprises entre 22813 € et 45623 €
   Ici, 3000 € par mois = 36000 par an, amputé des frais professionnels = 32400
 period: "month:2014-10"
+relative_error_margin: 0.02
 individus:
   - age: 25
     age_en_mois: 300

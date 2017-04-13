@@ -2,6 +2,7 @@ name: Impact résidence alternée sur le plafond (Test 18)
 keywords: "cmu-c/acs"
 description: Avec un enfant à charge en résidence alternée, le plafond applicable est minoré. Je n'ai pas droit à la CMUC mais à l'ACS dans le cas testé.
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - age: 50
     age_en_mois: 611

@@ -4,6 +4,7 @@ keywords:
   - montant
 description: Ressources déclarées = 14000 euros, inférieur au plafond de 14628 euros de référence pour 1 enfant à charge, montant correspondant = 84 euros
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 411

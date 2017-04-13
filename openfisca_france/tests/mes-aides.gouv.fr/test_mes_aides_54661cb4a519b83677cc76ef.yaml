@@ -6,6 +6,7 @@ description: |
   Les indemnités de volontariat ne comptent pas dans la base ressources
   Dans ce test le demandeur touche énormément d'indemnités de volontariat, mais il doit avoir quand même droit à la CMU-C.
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 411

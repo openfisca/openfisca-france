@@ -27,6 +27,7 @@ description: |
 
   caf.fr : 280,46 €
 period: "month:2015-02"
+relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 414

@@ -4,6 +4,7 @@ keywords:
   - rsa
 description: "Non éligible (L. 262-4 CASF)"
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - activite: 2
     age: 34

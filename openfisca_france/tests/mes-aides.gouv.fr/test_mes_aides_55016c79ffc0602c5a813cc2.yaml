@@ -8,6 +8,7 @@ description: |
   Plafond pour 3 parts correspondant : 25540 euros
   RFR = 25500, donc montant = 135,9
 period: "month:2015-03"
+relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 415

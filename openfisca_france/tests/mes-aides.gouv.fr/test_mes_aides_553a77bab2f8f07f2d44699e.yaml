@@ -4,6 +4,7 @@ keywords:
 - tns
 description: ''
 period: month:2015-04
+relative_error_margin: 0.02
 individus:
 - age: 44
   age_en_mois: 536

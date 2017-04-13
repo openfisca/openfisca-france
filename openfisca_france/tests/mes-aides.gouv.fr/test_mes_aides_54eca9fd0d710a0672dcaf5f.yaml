@@ -7,6 +7,7 @@ description: |
 
   Dans le cas d'espèce pas de droit au CF car ressources excèdent le plafond de ressources applicable
 period: "month:2015-02"
+relative_error_margin: 0.02
 individus:
   - age: 43
     age_en_mois: 517

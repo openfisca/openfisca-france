@@ -4,6 +4,7 @@ keywords:
   - plafonds
 description: Plafond bas = 5251 € / an
 period: "month:2014-07"
+relative_error_margin: 0.02
 individus:
   - age: 68
     age_en_mois: 826

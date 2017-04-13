@@ -7,6 +7,7 @@ description: |
   valeur locative terrains = 1300 euros
   1300 * 0.8 = 1040 : supérieur au plafond de 972 euros
 period: "month:2014-10"
+relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 409

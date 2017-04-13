@@ -4,6 +4,7 @@ keywords:
   - tns
 description: Case "J'ai au moins un employé" cochée => RSA = 0, même si on est en dessous des plafonds de CA.
 period: "month:2015-05"
+relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 415

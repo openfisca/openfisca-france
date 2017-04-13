@@ -4,6 +4,7 @@ keywords:
   - location
 description: Pas droit à l'AL si le propriétaire du logement loué est un ascendant ou descendant du demandeur ou de son conjoint.
 period: "month:2015-02"
+relative_error_margin: 0.02
 individus:
   age: 27
   age_en_mois: 326

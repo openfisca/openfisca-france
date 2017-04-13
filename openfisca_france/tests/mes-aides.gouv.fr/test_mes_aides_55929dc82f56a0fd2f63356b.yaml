@@ -4,6 +4,7 @@ keywords:
   - rsa
 description: Il ne faut pas appliquer le forfait logement
 period: "month:2015-06"
+relative_error_margin: 0.02
 individus:
   - age: 55
     age_en_mois: 665

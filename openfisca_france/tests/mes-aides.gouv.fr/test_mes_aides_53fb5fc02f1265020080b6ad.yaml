@@ -4,6 +4,7 @@ description: |
   Couple et grossesse en cours avec Aah taux plein pour conjoint.
   Le droit devrait être nul.
 period: "month:2014-08"
+relative_error_margin: 0.02
 individus:
   - age: 33
     age_en_mois: 407

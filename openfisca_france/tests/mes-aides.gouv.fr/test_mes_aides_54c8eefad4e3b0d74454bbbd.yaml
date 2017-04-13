@@ -8,6 +8,7 @@ description: |
   Plafond 1 personne CMU-C : 8645 euros.
   Salaires déclarés 8600 euros < plafiond, malgré le RSA de 514 euros.
 period: "month:2015-01"
+relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 413

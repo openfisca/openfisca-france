@@ -6,6 +6,7 @@ description: |
   Bourses de l'enseignement supérieur => Non prises en compte
   Bourses d'étude => Prises en compte comme un revenu d'activité (abattement 62%)
 period: "month:2015-01"
+relative_error_margin: 0.02
 individus:
   age: 35
   age_en_mois: 420

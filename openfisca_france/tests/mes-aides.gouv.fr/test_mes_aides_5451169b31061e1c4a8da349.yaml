@@ -8,6 +8,7 @@ description: |
   Brut abattu (71%) : 1305
   Net abattu : 652.5
 period: "month:2014-10"
+relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 408

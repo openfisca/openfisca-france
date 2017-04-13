@@ -6,6 +6,7 @@ keywords:
   - plafonds
 description: Test réalisé avec des ressources légèrement supérieures au plafond CMUc.
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   age: 40
   age_en_mois: 491

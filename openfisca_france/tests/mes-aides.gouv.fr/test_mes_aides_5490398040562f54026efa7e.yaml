@@ -5,6 +5,7 @@ keywords:
   - plafonds
 description: Des ressources inférieures au plafond CMUc pour un couple marié permet l'accès à la prestation.
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - age: 50
     age_en_mois: 611

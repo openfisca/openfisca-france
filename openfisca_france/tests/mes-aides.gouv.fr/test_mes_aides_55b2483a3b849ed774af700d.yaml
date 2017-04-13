@@ -5,6 +5,7 @@ keywords:
   - Paris
 description: Sans enfant à charge, PLF ne doit pas être proposé.
 period: "month:2015-07"
+relative_error_margin: 0.02
 individus:
   - enfant_a_charge:
       2015: true

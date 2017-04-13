@@ -23,6 +23,7 @@ description: |
 
   caf.fr : 173,72
 period: "month:2015-02"
+relative_error_margin: 0.02
 individus:
   activite: 1
   age: 34

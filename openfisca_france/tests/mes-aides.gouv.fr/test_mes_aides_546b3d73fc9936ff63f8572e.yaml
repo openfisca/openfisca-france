@@ -7,6 +7,7 @@ description: |
   La personne perçoit du RSA non majoré : elle n'ouvre plus droit au RSA majoré (enfant > 3 ans).
   Soit un RSA de : 641,72 - 100 = 541,72 €
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   - activite: 1
     age: 28

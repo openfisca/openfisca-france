@@ -10,6 +10,7 @@ keywords:
   AF + ASF = 130 * 12 + 200 * 12 = 3972
   8110 + 3972 = 12082
 period: month:2015-04
+relative_error_margin: 0.02
 individus:
 - age: 34
   age_en_mois: 418

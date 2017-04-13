@@ -12,6 +12,7 @@ description: |
   Commentaire : 1 enfant pas considéré à charge
   en principe 0 € d'AL selon simulateur
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - age: 42
     age_en_mois: 515

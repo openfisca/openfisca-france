@@ -2,6 +2,7 @@ name: base ressources intégration à tort de l'ASF non perçue
 keywords: "cmu-c/acs"
 description: Les ressources déclarées permettent d'attribuer la CMUC. L'ASF n'est pas encore perçue, l'enfant étant né le 01/04/2015.
 period: "month:2015-04"
+relative_error_margin: 0.02
 individus:
   - age: 51
     age_en_mois: 615

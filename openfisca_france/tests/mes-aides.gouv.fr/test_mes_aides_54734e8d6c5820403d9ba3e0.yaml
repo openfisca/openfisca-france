@@ -4,6 +4,7 @@ keywords:
   - enfants à charge
 description: Pas d'allocations familiales versées car dans l'exemple l'enfant gagne 900 euros par mois, ce qui est supérieur au maximum de 893 euros par mois.
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 411

@@ -5,6 +5,7 @@ keywords:
   - plafonds
 description: "11669 euros déclarés en année glissante, ce qui est inférieur au plafond ACS pour 1 personne en métropole (11670 euros) : droit ACS."
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   age: 50
   age_en_mois: 611

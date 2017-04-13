@@ -8,6 +8,7 @@ description: |
   =  658,54 - 295
   = 363,5
 period: "month:2015-04"
+relative_error_margin: 0.02
 individus:
   age: 35
   age_en_mois: 420

@@ -2,6 +2,7 @@ name: Les enfants doivent avoir plus de 3 ans
 keywords: cf
 description: "Ici un des 3 enfants a moins de 3 ans : pas de CF"
 period: "month:2014-07"
+relative_error_margin: 0.02
 individus:
   - age: 24
     age_en_mois: 298

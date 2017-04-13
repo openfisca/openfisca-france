@@ -4,6 +4,7 @@ keywords:
   - "cmu-c/acs"
 description: Personne qui vient d'avoir 65 ans. Jusque là non éligible à l'ASPA compte tenu de son âge. Retraite de 600€ par mois, soit 7200€ pour l'année de référence. A droit à la CMUC (au moins pour une année)
 period: "month:2015-04"
+relative_error_margin: 0.02
 individus:
   activite: 3
   age: 65

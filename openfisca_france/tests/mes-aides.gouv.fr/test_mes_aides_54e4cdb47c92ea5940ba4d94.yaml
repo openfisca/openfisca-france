@@ -25,6 +25,7 @@ description: |
 
   caf.fr : 309,57
 period: "month:2015-02"
+relative_error_margin: 0.02
 individus:
   age: 22
   age_en_mois: 273

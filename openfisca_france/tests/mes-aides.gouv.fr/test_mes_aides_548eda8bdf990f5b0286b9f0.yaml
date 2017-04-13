@@ -9,6 +9,7 @@ description: |
   Demandeur: ARE = 1000 X 3 mois (année glissante: 12000)
   Conjoint: ARE = année glissante 9000 et retraite = 1500 X 3 mois (année glissante= 18000)
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - activite: 1
     age: 45

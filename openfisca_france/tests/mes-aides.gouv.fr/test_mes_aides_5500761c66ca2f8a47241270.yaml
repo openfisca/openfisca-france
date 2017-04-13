@@ -7,6 +7,7 @@ description: |
   Nombre de parts = 10 car rfr = 7100, points de charge = 11 et plafond = 7198
   Montant = 10 * 45,3 = 453 euros
 period: "month:2015-03"
+relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 414

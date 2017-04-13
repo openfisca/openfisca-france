@@ -8,6 +8,7 @@ description: |
   Donc pas de droit au Cf.
   Or le simulateur restitue un droit au Cf 170 €.
 period: "month:2015-02"
+relative_error_margin: 0.02
 individus:
   - age: 65
     age_en_mois: 780

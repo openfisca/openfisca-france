@@ -5,6 +5,7 @@ keywords:
 description: Cas d'un TNS en activité commerciale dont le CA est supérieur au seuil micro-entreprise. Pas d'éligibilité au
   RSA.
 period: month:2015-04
+relative_error_margin: 0.02
 individus:
 - age: 35
   age_en_mois: 420

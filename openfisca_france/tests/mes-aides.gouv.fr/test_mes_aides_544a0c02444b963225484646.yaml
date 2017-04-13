@@ -7,6 +7,7 @@ description: |
   Plafond de référence = 12967 (au 1er juillet 2014) = 1080 € / mois (en métropole)
   http://www.cmu.fr/cmu-complementaire.php
 period: "month:2014-10"
+relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 410

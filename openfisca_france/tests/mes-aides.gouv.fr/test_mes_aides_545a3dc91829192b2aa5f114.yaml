@@ -8,6 +8,7 @@ keywords:
   ASF prise en compte : 91,40 € (0.225 * 406.21)
   Donc RSA : 658,37 €
 period: month:2014-11
+relative_error_margin: 0.02
 individus:
 - age: 20
   age_en_mois: 250

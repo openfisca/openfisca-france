@@ -10,6 +10,7 @@ description: |
 
   Note : Propriétaire membre de la famille pour neutraliser les APL
 period: "month:2015-04"
+relative_error_margin: 0.02
 individus:
   age: 24
   age_en_mois: 294

@@ -8,6 +8,7 @@ description: |
   Donc revenus 700 - 100 = 600 euros < 644,4 (plafonds bas ASS)
   donc la personne a droit a une ASS complète = 487,50 euros
 period: "month:2015-04"
+relative_error_margin: 0.02
 individus:
   activite: 1
   age: 24

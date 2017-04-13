@@ -5,6 +5,7 @@ keywords:
   - plafonds
 description: "Plafond couple 1 revenu 3 enfants à charge : 51 450"
 period: "month:2015-09"
+relative_error_margin: 0.02
 individus:
   - enfant_a_charge:
       2015: true

@@ -2,6 +2,7 @@ name: Parent isolé, non éligible si ressources > plafond
 keywords: cf
 description:
 period: "month:2014-10"
+relative_error_margin: 0.02
 individus:
   - age: 25
     age_en_mois: 300

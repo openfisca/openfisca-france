@@ -6,6 +6,7 @@ keywords:
   - plafonds
 description: Test réalisé avec des ressources immédiatement supérieures au plafond ACS pour une personne seule.
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   age: 50
   age_en_mois: 611

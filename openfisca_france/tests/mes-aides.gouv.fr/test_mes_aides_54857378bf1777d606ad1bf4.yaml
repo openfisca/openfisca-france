@@ -2,6 +2,7 @@ name: Couple éligible montant max
 keywords: asi
 description:
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - activite: 3
     age: 59

@@ -9,6 +9,7 @@ description: |
   Conjoint = 150 euros de retraite
   Total : 1242 - (500 + 104,23 + 150) = 487,77
 period: "month:2015-02"
+relative_error_margin: 0.02
 individus:
   - activite: 3
     age: 74

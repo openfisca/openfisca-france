@@ -9,6 +9,7 @@ description: |
   663.38 > 650
   Donc ASS = 1137,50 - 663.38 = 474,12
 period: "month:2015-04"
+relative_error_margin: 0.02
 individus:
   activite: 1
   age: 24

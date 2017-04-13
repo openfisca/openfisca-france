@@ -22,6 +22,7 @@ description: |
   Pp	34,73
   AL	309,56
 period: "month:2015-01"
+relative_error_margin: 0.02
 individus:
   aah:
     2014-01: 200

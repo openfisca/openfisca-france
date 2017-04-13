@@ -4,6 +4,7 @@ keywords:
   - recette
 description: "Couple avec 2 salaires:  2121,98 sup au plafond de 1787,50 donc rejet conforme"
 period: "month:2015-06"
+relative_error_margin: 0.02
 individus:
   - activite: 1
     age: 51

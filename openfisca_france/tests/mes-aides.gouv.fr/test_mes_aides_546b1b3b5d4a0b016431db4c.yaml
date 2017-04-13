@@ -7,6 +7,7 @@ keywords:
   Montant pension saisie pour l'enfant1ere erreur > >droit Asf alors qu'il ne devrait pas y en avoir
   2eme erreur > droit Rsa affiché 740 soit 763 - 122 (FL). Pas de déduction des pensions alimentaires déclarées.
 period: month:2014-11
+relative_error_margin: 0.02
 individus:
 - age: 34
   age_en_mois: 418

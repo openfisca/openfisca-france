@@ -4,6 +4,7 @@ description: |
   Aucune ressource. Détient un immeuble dont la valeur locative de 15000 €, prise en compte à hauteur de 50%, donne droit à la CMUC.
   L'article R861-6 dispose :... les biens non productifs de revenus sont considérés comme procurant un revenu annuel égal à 50% de leur valeur locative...
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   age: 50
   age_en_mois: 611

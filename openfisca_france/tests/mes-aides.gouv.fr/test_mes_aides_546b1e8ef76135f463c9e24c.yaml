@@ -9,6 +9,7 @@ description: |
 
   Edit Arnaud Kleinpeter : c'est normal, le montant simulé des allocations familiales est suffisamment précis pour qu'on n'ait pas besoin de le demander
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   - activite: 3
     age: 67

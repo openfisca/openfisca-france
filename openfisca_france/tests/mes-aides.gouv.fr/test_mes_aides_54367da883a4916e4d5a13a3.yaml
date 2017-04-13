@@ -8,6 +8,7 @@ description: |
   plafond de ressources pour personne seule : 972 euros
   2000*50%=1000>972 donc pas d'éligibilité CMU-C ni ACS
 period: "month:2014-10"
+relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 408

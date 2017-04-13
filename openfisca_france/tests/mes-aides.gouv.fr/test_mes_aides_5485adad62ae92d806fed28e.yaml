@@ -8,6 +8,7 @@ description: |
   Dépassement de ressources = 641,30
   => l'Aspa s'élève à 158,7 pour le retraité
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - activite: 3
     age: 65

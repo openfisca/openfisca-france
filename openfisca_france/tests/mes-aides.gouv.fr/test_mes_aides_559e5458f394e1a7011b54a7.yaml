@@ -4,6 +4,7 @@ keywords:
   - rsa
 description: Test créé à partir d'un dossier de demande de RSA
 period: "month:2015-07"
+relative_error_margin: 0.02
 individus:
   age: 58
   age_en_mois: 706

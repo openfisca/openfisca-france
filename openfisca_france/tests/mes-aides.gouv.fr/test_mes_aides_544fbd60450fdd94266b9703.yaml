@@ -8,6 +8,7 @@ description: |
   Test sur une ville de la Guadeloupe (DOM).
   Le plafond est de 9621 € / an (801.75 € / mois).
 period: "month:2014-10"
+relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 417

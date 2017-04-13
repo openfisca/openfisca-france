@@ -4,6 +4,7 @@ keywords:
   - enfants à charge
 description: Dans l'exemple, un enfant a moins de 14 ans et l'autre a plus de 20 ans
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 412

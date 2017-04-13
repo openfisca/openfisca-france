@@ -9,6 +9,7 @@ description: |
   Dans le cas testé, le demandeur déclare 200 euros par mois de salaire sur les 3 derniers mois et est donc éligible à la fois au RSA socle et au RSA activité.
   Il déclare également 20000 euros de salaires sur l'année glissante, ce qui devrait en théorie lui enlever le droit à la CMU-C. Mais la fraction de RSA socle dont il dispose lui octroie automatiquement le droit à la CMU-C.
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   activite: 1
   age: 28

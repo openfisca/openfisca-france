@@ -7,6 +7,7 @@ description: |
   Mais le foyer comporte un enfant à charge, qui a perçu 2600€ dans la période de référence.
   17600 > plafond de 17505€ donc pas de droit à l'ACS.
 period: "month:2014-11"
+relative_error_margin: 0.02
 individus:
   - age: 40
     age_en_mois: 490

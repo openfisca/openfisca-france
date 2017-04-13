@@ -2,6 +2,7 @@ name: Pas éligible si l'enfant n'est pas scolarisé au lycée
 keywords: bourse lycée
 description: "L'utilisateur a sélectionné \"au collège\" : pas de bourse de lycée"
 period: "month:2015-03"
+relative_error_margin: 0.02
 individus:
   - age: 34
     age_en_mois: 414

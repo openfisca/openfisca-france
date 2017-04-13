@@ -4,6 +4,7 @@ keywords:
   - base ressources
 description: Cette ressource est effectivement à prendre dans les ressources. Toutefois, il est envisageable qu'un assuré déclare cette ressource dans "retraite du combattant" et dans ce cas le résultat ne serait pas le même puisque cette ressource serait, de ce fait, exclue et on obtiendrait alors un montant d'Aspa à 200€ au lieu des 50€ attendus.
 period: "month:2014-12"
+relative_error_margin: 0.02
 individus:
   activite: 3
   age: 70

@@ -6,6 +6,7 @@ description: |
   Pour avoir droit au complément familial en métropole, il faut avoir trois enfants à charge âgés de 3 à 20 ans.
   Dans le cas, il y 2 enfants de 16 et 17 ans et un enfant de 21 ans donc pas de droit au Cf.
 period: "month:2015-02"
+relative_error_margin: 0.02
 individus:
   - age: 64
     age_en_mois: 773

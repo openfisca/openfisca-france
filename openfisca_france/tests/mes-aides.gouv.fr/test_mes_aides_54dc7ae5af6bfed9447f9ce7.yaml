@@ -5,6 +5,7 @@ keywords:
   - eligibilité
 description: Ici la personne est inapte au travail mais a 61 ans, donc inéligible.
 period: "month:2015-02"
+relative_error_margin: 0.02
 individus:
   age: 61
   age_en_mois: 738
