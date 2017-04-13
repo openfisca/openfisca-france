@@ -30,7 +30,7 @@ input_variables:
 output_variables:
 
   # salaire_super_brut: 0
-  IGNORE_cotisations_employeur: -737.96 - 222.12 - 72
+  # cotisations_employeur: -737.96 - 222.12 - 72
 
   # cotisations_employeur_contributives: 0
   ags: -5.4
@@ -56,8 +56,8 @@ output_variables:
   # cotisations_employeur_main_d_oeuvre
   conge_individuel_formation_cdd: 0
   contribution_solidarite_autonomie: -5.4
-  IGNORE_contribution_supplementaire_apprentissage: 0 #  pas dans la fiche
-  IGNORE_fnal: 0  # check
+  # contribution_supplementaire_apprentissage: 0 #  pas dans la fiche
+  # fnal: 0  # check
   formation_professionnelle: -28.8
   participation_effort_construction: -8.1
   prevoyance_obligatoire_cadre: 0
