@@ -1,6 +1,5 @@
 name: "TEMPLATE"  # TODO: Mettre ici un nom explicite de la fiche de paie tout en préservant l'anonymat de la personne.
 period: "2014-01"  # TODO: Mettre ici le mois de la fiche de paie.
-ignore: true  # TODO: Enlever cette ligne pour tester la fiche de paie.
 input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: False
