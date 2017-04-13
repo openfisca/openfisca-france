@@ -1,4 +1,5 @@
 - period: "2016-02"
+  reforms: openfisca_france.reforms.de_net_a_brut.de_net_a_brut
   relative_error_margin: 0.005
   input_variables:
     salaire_net_a_payer: 1790

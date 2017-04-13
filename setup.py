@@ -39,6 +39,7 @@ setup(
         'test': [
             'nose',
             'flake8',
+            'scipy >= 0.17', # Only used to test de_net_a_brut reform
             ],
         },
     include_package_data = True,  # Will read MANIFEST.in
