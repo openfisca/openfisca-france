@@ -4,7 +4,7 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_or as or_, logical_and as and_, round as round_
+from numpy import logical_or as or_, logical_and as and_
 
 import numpy as np
 

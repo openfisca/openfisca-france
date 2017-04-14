@@ -7,7 +7,7 @@ import json
 import logging
 import pkg_resources
 
-from numpy import ceil, fromiter, int16, logical_or as or_, logical_and as and_, round as round_, take
+from numpy import ceil, fromiter, int16, logical_or as or_, logical_and as and_, take
 
 import openfisca_france
 from openfisca_core.periods import Instant
