@@ -1,5 +1,17 @@
 # Changelog
 
+### 17.0.1 - [#730](https://github.com/openfisca/openfisca-france/pull/730)
+
+* Amélioration technique
+* Détails :
+  - Supprime les tests non exécutés par la CI
+    - Ceux ignorés via le prefixe `IGNORE_` ou la propriété `ignore`
+    - Ceux qui n'étaient pas mentionnés dans `test_yaml.py`
+  - Exécute dans la CI tous les tests YAML présents dans le répertoire `tests`
+  - Déplace les tests hors du package principal
+  - Déplace les configurations par dossier des tests YAML vers les fichiers de tests.
+  - Simplifie en conséquence `test_yaml.py`
+
 # 17.0.0
 
 * Évolution du système socio-fiscal.
