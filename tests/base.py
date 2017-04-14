@@ -3,8 +3,8 @@
 from openfisca_core.reforms import Reform, compose_reforms
 from openfisca_core.tools import assert_near
 
-from .. import FranceTaxBenefitSystem
-from ..reforms import (
+from openfisca_france import FranceTaxBenefitSystem
+from openfisca_france.reforms import (
     allocations_familiales_imposables,
     cesthra_invalidee,
     inversion_directe_salaires,
@@ -47,7 +47,7 @@ except ImportError:
     scipy = None
 
 if scipy is not None:
-    from ..reforms import de_net_a_brut
+    from openfisca_france.reforms import de_net_a_brut
     reform_list['de_net_a_brut'] = de_net_a_brut.de_net_a_brut
 
 reform_by_full_key = {}

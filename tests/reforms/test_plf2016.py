@@ -2,13 +2,12 @@
 
 import datetime
 
-
 from openfisca_core import periods
-from openfisca_france.tests import base
+from .. import base
 
 
 def test(year = 2015):
-    for reform_key in ['ayrault_muet']:
+    for reform_key in ['plf2016', 'plf2016_counterfactual', 'plf2016_counterfactual_2014']:
         yield run, reform_key, year
 
 
@@ -40,13 +39,12 @@ def run(reform_key, year):
 
     reference_simulation = scenario.new_simulation(reference = True)
     reform_simulation = scenario.new_simulation()
+#    error_margin = 1
 
-    impots_directs = reference_simulation.calculate('impots_directs', period = year)
-    reform_impots_directs = reform_simulation.calculate('impots_directs', period = year)
+    impo = reference_simulation.calculate('impots_directs', period = year)
+    reform_impo = reform_simulation.calculate('impots_directs', period = year)
 
 
 if __name__ == '__main__':
-    import logging
-    import sys
-    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test()
+    import nose
+    nose.runmodule()

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from openfisca_core.rates import average_rate, marginal_rate
-from openfisca_france.tests import base
+import base
 
 
 def test_average_tax_rate():

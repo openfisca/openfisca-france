@@ -5,7 +5,7 @@ from __future__ import division
 import datetime
 
 from openfisca_france.model.base import CATEGORIE_SALARIE
-from openfisca_france.tests import base
+import base
 
 
 scenarios_arguments = [

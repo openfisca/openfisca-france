@@ -2,21 +2,18 @@
 
 import datetime
 
+from nose.tools import assert_less
+
 from openfisca_core import periods
-from openfisca_france.tests import base
+from .. import base
 
 
-def test(year = 2015):
-    for reform_key in ['plf2016', 'plf2016_counterfactual', 'plf2016_counterfactual_2014']:
-        yield run, reform_key, year
-
-
-def run(reform_key, year):
+def test(year = 2013):
     max_sal = 18000
     count = 2
     people = 1
     reform = base.get_cached_reform(
-        reform_key = reform_key,
+        reform_key = 'plf2015',
         tax_benefit_system = base.tax_benefit_system,
         )
     scenario = reform.new_scenario().init_single_entity(
@@ -39,12 +36,20 @@ def run(reform_key, year):
 
     reference_simulation = scenario.new_simulation(reference = True)
     reform_simulation = scenario.new_simulation()
-#    error_margin = 1
+    error_margin = 1
 
-    impo = reference_simulation.calculate('impots_directs', period = year)
-    reform_impo = reform_simulation.calculate('impots_directs', period = year)
+    impots_directs = reference_simulation.calculate('impots_directs', period = year)
+    reform_impots_directs = reform_simulation.calculate('impots_directs', period = year)
+    ir_plaf_qf = reference_simulation.calculate('ir_plaf_qf', period = year)
+    reform_ir_plaf_qf = reform_simulation.calculate('ir_plaf_qf', period = year)
+    assert_less(max(abs([0, 918] - ir_plaf_qf)), error_margin)
+    assert_less(max(abs([0, 911.4] - reform_ir_plaf_qf)), error_margin)
+    assert_less(max(abs([0, -869] - impots_directs)), error_margin)
+    assert_less(max(abs([0, -911.4 + (1135 - 911.4)] - reform_impots_directs)), error_margin)
 
 
 if __name__ == '__main__':
-    import nose
-    nose.runmodule()
+    import logging
+    import sys
+    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
+    test()

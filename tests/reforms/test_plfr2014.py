@@ -3,7 +3,7 @@
 import datetime
 
 from openfisca_core import periods
-from openfisca_france.tests import base
+from .. import base
 
 
 def test(year = 2013):

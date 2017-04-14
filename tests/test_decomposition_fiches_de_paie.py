@@ -6,7 +6,7 @@ import json
 import os
 
 from openfisca_core import decompositions
-from openfisca_france.tests import base
+import base
 
 decompositions_directory = os.path.dirname(base.tax_benefit_system.decomposition_file_path)
 

@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from openfisca_france.tests.test_entities import TEST_CASE_AGES, new_simulation
+from test_entities import TEST_CASE_AGES, new_simulation
 from openfisca_france import CountryTaxBenefitSystem as FranceTBS
 from openfisca_core.tools import assert_near
 
