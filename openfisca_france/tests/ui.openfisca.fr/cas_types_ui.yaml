@@ -1,4 +1,5 @@
 - period: 2013
+  absolute_error_margin: 0.005
   familles:
     parents: "ind0"
   foyers_fiscaux:

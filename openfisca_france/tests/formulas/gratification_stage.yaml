@@ -1,5 +1,6 @@
 - name: "Stage à temps complet gratification minimale"
   period: 2015-03
+  absolute_error_margin: 0.005
   input_variables:
     stage_duree_heures: 22 * 7
   output_variables:
@@ -9,6 +10,7 @@
     accident_du_travail: 0
 - name: "Stage à temps complet gratification supérieure au minimum"
   period: 2015-03
+  absolute_error_margin: 0.005
   input_variables:
     stage_duree_heures: 22 * 7
     stage_gratification: 22 * 7 * 3.30 + 300

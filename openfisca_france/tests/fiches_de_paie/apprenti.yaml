@@ -1,5 +1,6 @@
 name: "Apprenti petite entreprise"
 period: "2015-03"  # TODO: Mettre ici le mois de la fiche de paie.
+absolute_error_margin: 0.005
 input_variables:
   apprentissage_contrat_debut: "2013-01-01"
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"

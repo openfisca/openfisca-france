@@ -104,6 +104,7 @@
 
 - name: "AAH demandeur sans ressource et conjoint salarié"
   period: "month:2015-04"
+  absolute_error_margin: 0.005
   familles:
     parents: ["parent1", "parent2"]
   individus:

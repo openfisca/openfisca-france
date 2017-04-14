@@ -1,5 +1,6 @@
 name: "Ingénieur SSII"
 period: "2013-08"
+absolute_error_margin: 0.005
 input_variables:
   allegement_fillon_mode_recouvrement: 0  # "anticipe_regularisation_fin_de_periode"
   arrco_tranche_a_taux_employeur: .04539

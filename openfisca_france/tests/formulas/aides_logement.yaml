@@ -131,6 +131,7 @@
 # Pour vérifier qu'on prend le plafond ASPA pour la bonne période
 - name: "Abattement sur les ressources des enfants à hauteur de 125% du plafond ASPA personne seule (autre période)"
   period: 2012-01
+  absolute_error_margin: 0.005
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]

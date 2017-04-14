@@ -67,6 +67,7 @@
 
 - name: "PPA personne seule, pas de bonification"
   period: 2016-01
+  absolute_error_margin: 0.005
   input_variables:
     age: 40
     salaire_net:
@@ -101,6 +102,7 @@
 
 - name: "PPA en couple avec 1 enfant, pas de bonification"
   period: 2016-01
+  absolute_error_margin: 0.005
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1"]
@@ -154,6 +156,7 @@
 
 - name: "PPA majoré: personne seule avec 1 enfant de moins de 3 ans"
   period: 2016-01
+  absolute_error_margin: 0.005
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
@@ -210,6 +213,7 @@
 
 - name: "PPA personne en couple avec deux sources de revenus, pas de bonification"
   period: 2016-01
+  absolute_error_margin: 0.005
   familles:
     parents: ["parent1", "parent2"]
     ppa_eligibilite: True
@@ -306,6 +310,7 @@
 
 - name: "PPA/RSA forfait logement 1 personne"
   period: 2016-01
+  absolute_error_margin: 0.005
   input_variables:
     statut_occupation_logement: 2 # propriétaire
     age: 40
@@ -315,6 +320,7 @@
 
 - name: "PPA/RSA forfait logement 2 personnes"
   period: 2016-01
+  absolute_error_margin: 0.005
   familles:
     parents: ["parent1", "parent2"]
   menages:
@@ -332,6 +338,7 @@
 
 - name: "PPA/RSA forfait logement 3 personnes"
   period: 2016-01
+  absolute_error_margin: 0.005
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1"]

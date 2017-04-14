@@ -4,6 +4,7 @@
     pour les salaires < 1.4 * SMIC, puis dégressive jusqu'à 2.4 * SMIC.
     Elle est de plus dégressive dans le temps"
   period: "2014"
+  absolute_error_margin: 0.005
   input_variables:
     entreprise_creation: "2014-01-01"
     effectif_entreprise:

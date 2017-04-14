@@ -1,5 +1,6 @@
 name: "Coordinatrice"
 period: "2014-03"
+absolute_error_margin: 0.005
 input_variables:
   allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: True

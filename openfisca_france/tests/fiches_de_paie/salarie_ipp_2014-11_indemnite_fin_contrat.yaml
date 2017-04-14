@@ -1,5 +1,6 @@
 name: "Salarié IPP"
 period: "2014-11"
+absolute_error_margin: 0.005
 input_variables:
   assujettie_taxe_salaires: True
   contrat_de_travail_duree: 1  # CDD

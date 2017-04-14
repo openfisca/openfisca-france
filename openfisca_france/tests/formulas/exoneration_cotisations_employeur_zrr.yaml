@@ -1,5 +1,6 @@
 - name: "Exonération cotisations employeur zone de revitalisation rurale (ZRR) - SMIC"
   period: "2014"
+  absolute_error_margin: 0.005
   input_variables:
     contrat_de_travail_debut: "2014-01-01"
     effectif_entreprise: 20
@@ -16,6 +17,7 @@
 
 - name: "Exonération cotisations employeur zone de revitalisation rurale (ZRR) - 1.4 SMIC"
   period: "2014"
+  absolute_error_margin: 0.005
   input_variables:
     contrat_de_travail_debut: "2014-05-01"
     effectif_entreprise: 20

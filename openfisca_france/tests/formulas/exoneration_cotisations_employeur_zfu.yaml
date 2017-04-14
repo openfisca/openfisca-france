@@ -1,5 +1,6 @@
 - name: "Exonération cotisations employeur zone franche urbaine (ZFU)"
   period: "2015"
+  absolute_error_margin: 0.005
   input_variables:
     contrat_de_travail_debut:
       "2015-01": "2010-01-01"

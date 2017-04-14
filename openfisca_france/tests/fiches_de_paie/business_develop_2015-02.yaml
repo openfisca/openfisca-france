@@ -1,5 +1,6 @@
 name: "Business Develop (N)"
 period: "2015-02"
+absolute_error_margin: 0.005
 input_variables:
   contrat_de_travail: 5  # forfait jour année
   depcom_entreprise: "75102"

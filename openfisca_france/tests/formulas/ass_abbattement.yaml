@@ -58,6 +58,7 @@
 
 - name: "Abbatement des revenus quand revenu du conjoint interompu"
   period: "month:2015-04"
+  absolute_error_margin: 0.005
   familles:
     parents: ["parent1", "parent2"]
   individus:
