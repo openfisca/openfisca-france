@@ -20,14 +20,20 @@ def modify_legislation_json(reference_legislation_json_copy):
                 "description": "Seuil",
                 "format": "integer",
                 "unit": "currency",
-                "values": [{'start': u'2012-01-01', 'stop': u'2013-12-31', 'value': 1000000}],
+                "values": [
+                    {'start': u'2014-01-01', },
+                    {'start': u'2012-01-01', 'value': 1000000},
+                    ],
                 },
             "taux": {
                 "@type": "Parameter",
                 "description": "Taux",
                 "format": "rate",
                 "unit": "currency",
-                "values": [{'start': u'2012-01-01', 'stop': u'2013-12-31', 'value': .75}],
+                "values": [
+                    {'start': u'2014-01-01', },
+                    {'start': u'2012-01-01', 'value': .75},
+                    ],
                 },
             },
         }

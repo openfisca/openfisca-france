@@ -16,20 +16,29 @@ def modify_legislation_json(reference_legislation_json_copy):
                 "@type": "Parameter",
                 "description": u"Activation de la charge",
                 "format": "boolean",
-                "values": [{'start': u'2002-01-01', 'stop': '2013-12-31', 'value': 1}],
+                "values": [
+                    {'start': u'2014-01-01', },
+                    {'start': u'2002-01-01', 'value': 1},
+                    ],
                 },
             "plaf": {
                 "@type": "Parameter",
                 "description": u'Plafond mensuel',
                 "format": 'integer',
                 "unit": 'currency',
-                "values": [{'start': '2002-01-01', 'stop': '2013-12-31', 'value': 1000}],
+                "values": [
+                    {'start': '2014-01-01', },
+                    {'start': '2002-01-01', 'value': 1000},
+                    ],
                 },
             "plaf_nbp": {
                 "@type": "Parameter",
                 "description": u'Ajuster le plafond au nombre de part',
                 "format": 'boolean',
-                "values": [{'start': '2002-01-01', 'stop': '2013-12-31', 'value': 0}],
+                "values": [
+                    {'start': '2014-01-01', },
+                    {'start': '2002-01-01', 'value': 0},
+                    ],
                 },
             },
         }
