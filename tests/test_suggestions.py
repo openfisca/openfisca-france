@@ -5,14 +5,13 @@ import json
 
 from nose.tools import assert_equal
 
-from . import base
-
+from cache import tax_benefit_system
 
 def test_birth():
     year = 2013
     janvier = '2013-01'
 
-    scenario = base.tax_benefit_system.new_scenario().init_single_entity(
+    scenario = tax_benefit_system.new_scenario().init_single_entity(
         period = year,
         parent1 = dict(),
         enfants = [

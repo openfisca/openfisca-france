@@ -4,22 +4,16 @@ import datetime
 
 
 from openfisca_core import periods
-from .. import base
+from openfisca_france.reforms.plf2016_ayrault_muet import ayrault_muet
+from ..cache import tax_benefit_system
 
 
-def test(year = 2015):
-    for reform_key in ['ayrault_muet']:
-        yield run, reform_key, year
-
-
-def run(reform_key, year):
+def test():
+    year = 2015
     max_sal = 18000
     count = 2
     people = 1
-    reform = base.get_cached_reform(
-        reform_key = reform_key,
-        tax_benefit_system = base.tax_benefit_system,
-        )
+    reform = ayrault_muet(tax_benefit_system)
     scenario = reform.new_scenario().init_single_entity(
         axes = [
             dict(

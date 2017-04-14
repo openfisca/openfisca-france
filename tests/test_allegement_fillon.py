@@ -8,7 +8,7 @@ import datetime
 from openfisca_core import periods
 from openfisca_core.reforms import Reform, update_legislation
 
-from base import tax_benefit_system
+from cache import tax_benefit_system
 
 
 def modify_legislation_json(reference_legislation_json_copy):

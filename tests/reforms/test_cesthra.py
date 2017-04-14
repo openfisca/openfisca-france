@@ -4,16 +4,14 @@ import datetime
 
 
 from openfisca_core import periods
-from .. import base
+from openfisca_france.reforms.cesthra_invalidee import cesthra_invalidee
+from ..cache import tax_benefit_system
 
 
 def test_cesthra_invalidee():
     year = 2012
     period = periods.period(year)
-    reform = base.get_cached_reform(
-        reform_key = 'cesthra_invalidee',
-        tax_benefit_system = base.tax_benefit_system,
-        )
+    reform = cesthra_invalidee(tax_benefit_system)
     scenario = reform.new_scenario().init_single_entity(
         axes = [
             dict(

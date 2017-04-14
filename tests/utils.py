@@ -5,7 +5,7 @@ import datetime
 from openfisca_core import periods
 from openfisca_core.tools import assert_near
 
-from . import base
+from cache import tax_benefit_system
 
 
 def check_calculation(variable, calculated_value, expected_value, error_margin):
@@ -29,15 +29,15 @@ def simulation_from_test(test, monthly_amount = False, default_error_margin = 1,
     for variable, value in test['input_vars'].iteritems():
         if variable == "age":
             parent1['date_naissance'] = datetime.date(year - value, 1, 1)
-        elif base.tax_benefit_system.column_by_name[variable].entity == 'men':
+        elif tax_benefit_system.column_by_name[variable].entity == 'men':
             menage[variable] = value
-        elif base.tax_benefit_system.column_by_name[variable].entity == 'ind':
+        elif tax_benefit_system.column_by_name[variable].entity == 'ind':
             parent1[variable] = value
 # TODO: if the person is a child
-        elif base.tax_benefit_system.column_by_name[variable].entity == 'foy':
+        elif tax_benefit_system.column_by_name[variable].entity == 'foy':
             foyer_fiscal[variable] = value
 
-    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
         period = year,
         parent1 = parent1,
         menage = menage,

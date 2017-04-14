@@ -5,17 +5,15 @@ import datetime
 from nose.tools import assert_less
 
 from openfisca_core import periods
-from .. import base
+from openfisca_france.reforms.plf2015 import plf2015
+from ..cache import tax_benefit_system
 
 
 def test(year = 2013):
     max_sal = 18000
     count = 2
     people = 1
-    reform = base.get_cached_reform(
-        reform_key = 'plf2015',
-        tax_benefit_system = base.tax_benefit_system,
-        )
+    reform = plf2015(tax_benefit_system)
     scenario = reform.new_scenario().init_single_entity(
         axes = [
             dict(

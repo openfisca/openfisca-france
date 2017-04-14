@@ -6,7 +6,7 @@ from nose.tools import nottest
 
 from openfisca_core.tools.test_runner import generate_tests
 
-from base import tax_benefit_system
+from cache import tax_benefit_system
 
 nottest(generate_tests)
 

@@ -6,13 +6,13 @@ import json
 import os
 
 from openfisca_core import decompositions
-import base
+from cache import tax_benefit_system
 
-decompositions_directory = os.path.dirname(base.tax_benefit_system.decomposition_file_path)
+decompositions_directory = os.path.dirname(tax_benefit_system.decomposition_file_path)
 
 
 def test_decomposition(print_decomposition = False):
-    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
         period = "2013-01",
         parent1 = dict(
             effectif_entreprise = 3000,
@@ -34,7 +34,7 @@ def test_decomposition(print_decomposition = False):
         )
 
     decomposition_json = decompositions.get_decomposition_json(
-        base.tax_benefit_system, xml_file_path = xml_file_path)
+        tax_benefit_system, xml_file_path = xml_file_path)
     simulations = [simulation]
     response = decompositions.calculate(simulations, decomposition_json)
     if print_decomposition:

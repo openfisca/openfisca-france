@@ -5,7 +5,7 @@ from __future__ import division
 import datetime
 
 from openfisca_france.model.base import CATEGORIE_SALARIE
-import base
+from cache import tax_benefit_system
 
 
 scenarios_arguments = [
@@ -36,7 +36,7 @@ def check_run(simulation, period):
 
 def test_basics():
     for scenario_arguments in scenarios_arguments:
-        scenario = base.tax_benefit_system.new_scenario()
+        scenario = tax_benefit_system.new_scenario()
         scenario.init_single_entity(**scenario_arguments)
         simulation = scenario.new_simulation(debug = False)
         period = scenario_arguments['period']

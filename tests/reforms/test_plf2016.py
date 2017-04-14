@@ -3,22 +3,20 @@
 import datetime
 
 from openfisca_core import periods
-from .. import base
+from openfisca_france.reforms.plf2016 import plf2016, plf2016_counterfactual, plf2016_counterfactual_2014
+from ..cache import tax_benefit_system
 
 
 def test(year = 2015):
-    for reform_key in ['plf2016', 'plf2016_counterfactual', 'plf2016_counterfactual_2014']:
-        yield run, reform_key, year
+    for reform in [plf2016, plf2016_counterfactual, plf2016_counterfactual_2014]:
+        yield run, reform, year
 
 
-def run(reform_key, year):
+def run(reform_class, year):
     max_sal = 18000
     count = 2
     people = 1
-    reform = base.get_cached_reform(
-        reform_key = reform_key,
-        tax_benefit_system = base.tax_benefit_system,
-        )
+    reform = reform_class(tax_benefit_system)
     scenario = reform.new_scenario().init_single_entity(
         axes = [
             dict(

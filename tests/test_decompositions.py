@@ -6,10 +6,9 @@ import xml.etree.ElementTree
 
 from openfisca_core import conv, decompositions, decompositionsxml
 
-import base
+from cache import tax_benefit_system
 
-
-decompositions_directory = os.path.dirname(base.tax_benefit_system.decomposition_file_path)
+decompositions_directory = os.path.dirname(tax_benefit_system.decomposition_file_path)
 
 
 def check_decomposition_xml_file(file_path):
@@ -17,7 +16,7 @@ def check_decomposition_xml_file(file_path):
     decomposition_xml_json = conv.check(decompositionsxml.xml_decomposition_to_json)(decomposition_tree.getroot(),
         state = conv.default_state)
 
-    decomposition_xml_json, errors = decompositionsxml.make_validate_node_xml_json(base.tax_benefit_system)(
+    decomposition_xml_json, errors = decompositionsxml.make_validate_node_xml_json(tax_benefit_system)(
         decomposition_xml_json, state = conv.default_state)
     if errors is not None:
         errors = conv.embed_error(decomposition_xml_json, 'errors', errors)
@@ -31,7 +30,7 @@ def check_decomposition_xml_file(file_path):
 
     decomposition_json = decompositionsxml.transform_node_xml_json_to_json(decomposition_xml_json)
 
-    decomposition_json, errors = decompositions.make_validate_node_json(base.tax_benefit_system)(
+    decomposition_json, errors = decompositions.make_validate_node_json(tax_benefit_system)(
         decomposition_json, state = conv.default_state)
     if errors is not None:
         errors = conv.embed_error(decomposition_json, 'errors', errors)
@@ -45,7 +44,7 @@ def check_decomposition_xml_file(file_path):
 
 def test_decomposition_xml_files():
     files_path = [
-        base.tax_benefit_system.decomposition_file_path,
+        tax_benefit_system.decomposition_file_path,
         os.path.join(
             decompositions_directory,
             'fiche_de_paie_decomposition.xml',
@@ -56,10 +55,10 @@ def test_decomposition_xml_files():
 
 
 def test_decomposition_calculate():
-    xml_file_path = base.tax_benefit_system.decomposition_file_path
-    decomposition_json = decompositions.get_decomposition_json(base.tax_benefit_system, xml_file_path)
+    xml_file_path = tax_benefit_system.decomposition_file_path
+    decomposition_json = decompositions.get_decomposition_json(tax_benefit_system, xml_file_path)
     year = 2013
-    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
         period = year,
         parent1 = {},
         ).new_simulation()

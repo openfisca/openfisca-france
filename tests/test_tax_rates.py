@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from openfisca_core.rates import average_rate, marginal_rate
-import base
-
+from cache import tax_benefit_system
 
 def test_average_tax_rate():
     year = 2013
-    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
         axes = [
             dict(
                 count = 100,
@@ -26,7 +25,7 @@ def test_average_tax_rate():
 
 def test_marginal_tax_rate():
     year = 2013
-    simulation = base.tax_benefit_system.new_scenario().init_single_entity(
+    simulation = tax_benefit_system.new_scenario().init_single_entity(
         axes = [
             dict(
                 count = 10000,
