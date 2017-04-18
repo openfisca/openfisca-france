@@ -9,7 +9,7 @@ class aeeh_niveau_handicap(Variable):
     column = IntCol
     entity = Individu
     label = u"Catégorie de handicap prise en compte pour l'AEEH"
-    definition_period = YEAR
+    definition_period = MONTH
 
 
 class aeeh(DatedVariable):
@@ -17,7 +17,9 @@ class aeeh(DatedVariable):
     entity = Famille
     label = u"Allocation d'éducation de l'enfant handicapé"
     url = "http://vosdroits.service-public.fr/particuliers/N14808.xhtml"
-    definition_period = YEAR
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    calculate_output = calculate_output_add
 
     @dated_function(start = date(2003, 1, 1))
     def function_20030101(self, simulation, period):
@@ -30,7 +32,7 @@ class aeeh(DatedVariable):
         Une majoration est versée au parent isolé bénéficiaire d'un complément d'Aeeh lorsqu'il cesse ou réduit
         son activité professionnelle ou lorsqu'il embauche une tierce personne rémunérée.
         '''
-        janvier = period.first_month
+        janvier = period.this_year.first_month
         age_holder = simulation.compute('age', janvier)
         handicap_holder = simulation.compute('handicap', janvier)
         isole = not_(simulation.calculate('en_couple', janvier))
@@ -80,4 +82,4 @@ class aeeh(DatedVariable):
     # du complément d'AEEH et la PCH.
 
         # Ces allocations ne sont pas soumis à la CRDS
-        return 12 * aeeh # annualisé
+        return aeeh

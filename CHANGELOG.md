@@ -1,5 +1,13 @@
 # Changelog
 
+# 17.0.0
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2003.
+* Zones impactées : `prestations/prestations_familiales/aeeh`.
+* Détails :
+  - Retourne pour `aeeh` un montant mensuel et non annuel
+
 ### 16.1.1 - [#632](https://github.com/openfisca/openfisca-france/pull/632) 
 
 * Changement mineur
