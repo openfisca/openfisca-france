@@ -22,7 +22,7 @@ deploy:
       - git tag "$(python setup.py --version)"
       - git push git@github.com:openfisca/openfisca-france.git --tags
     on:
-      branch: master
+      branch: ci
   - provider: pypi
     user: openfisca-bot
     password:
@@ -33,4 +33,4 @@ deploy:
   - provider: script
     script: ssh deploy-api@api.openfisca.fr
     on:
-      branch: ci
+      tags: true
