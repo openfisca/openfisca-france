@@ -308,7 +308,7 @@ class prestations_familiales(Variable):
         af = famille('af', period, options = [ADD])
         cf = famille('cf', period, options = [ADD])
         ars = famille('ars', period)
-        aeeh = famille('aeeh', period)
+        aeeh = famille('aeeh', period, options = [ADD])
         paje = famille('paje', period, options = [ADD])
         asf = famille('asf', period, options = [ADD])
         crds_pfam = famille('crds_pfam', period)
