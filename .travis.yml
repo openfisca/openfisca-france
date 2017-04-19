@@ -10,6 +10,7 @@ install:
 script: ./travis-run-tests.sh
 before_deploy:
   - python setup.py compile_catalog
+  - rm -f ./openfisca_bot ./deploy-api
   - openssl aes-256-cbc -K $encrypted_f6aff9134f80_key -iv $encrypted_f6aff9134f80_iv -in openfisca_bot.enc -out openfisca_bot -d
   - openssl aes-256-cbc -K $encrypted_a272d9ca0751_key -iv $encrypted_a272d9ca0751_iv -in deploy-api.enc -out deploy-api -d
   - eval "$(ssh-agent -s)"
