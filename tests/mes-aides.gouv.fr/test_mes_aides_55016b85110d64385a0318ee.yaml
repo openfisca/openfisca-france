@@ -1,0 +1,350 @@
+name: "4ème enfant : 2 points"
+keywords:
+  - bourse lycée
+  - points de charge
+description: |
+  2 points de charge supplémentaires pour le 4ème enfant à charge
+  Points de charge = (9 + 2) + 1 + 2 + 2 = 16
+  Plafond pour 3 parts correspondant : 21507 euros
+  RFR = 21500, donc montant = 135,9
+period: "month:2015-03"
+relative_error_margin: 0.02
+individus:
+  - age: 34
+    age_en_mois: 415
+    date_naissance: "1980-08-12"
+    chomage_imposable:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 55016b6ce471d52f5a015635
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    retraite_imposable:
+      2013: 0
+    salaire_imposable:
+      2013: 0
+    statut_marital: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 34
+    age_en_mois: 415
+    date_naissance: "1980-08-12"
+    chomage_imposable:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 55016b6ce471d52f5a015634
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    retraite_imposable:
+      2013: 0
+    salaire_imposable:
+      2013: 0
+    statut_marital: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    age_en_mois: 175
+    date_naissance: "2000-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 55016b6ce471d52f5a015633
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    scolarite: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 0
+    age_en_mois: 7
+    date_naissance: "2014-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 55016b6ce471d52f5a015632
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 0
+    age_en_mois: 7
+    date_naissance: "2014-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 55016b6ce471d52f5a015631
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 0
+    age_en_mois: 7
+    date_naissance: "2014-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 55016b6ce471d52f5a015630
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  acs:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  af:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  aide_logement:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  alf:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  als:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  apl:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  asf:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  asi:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  aspa:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  ass:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  bourse_college:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  bourse_lycee:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  cf:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  enfants:
+    - 55016b6ce471d52f5a015633
+    - 55016b6ce471d52f5a015632
+    - 55016b6ce471d52f5a015631
+    - 55016b6ce471d52f5a015630
+  paje_base:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  parents:
+    - 55016b6ce471d52f5a015635
+    - 55016b6ce471d52f5a015634
+  rsa:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+foyers_fiscaux:
+  declarants:
+    - 55016b6ce471d52f5a015635
+    - 55016b6ce471d52f5a015634
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+    - 55016b6ce471d52f5a015633
+    - 55016b6ce471d52f5a015632
+    - 55016b6ce471d52f5a015631
+    - 55016b6ce471d52f5a015630
+  rfr:
+    2013: 21500
+menages:
+  conjoint: 55016b6ce471d52f5a015634
+  depcom: 67482
+  enfants:
+    - 55016b6ce471d52f5a015633
+    - 55016b6ce471d52f5a015632
+    - 55016b6ce471d52f5a015631
+    - 55016b6ce471d52f5a015630
+  personne_de_reference: 55016b6ce471d52f5a015635
+  statut_occupation_logement: 6
+output_variables:
+  bourse_lycee: 135.9

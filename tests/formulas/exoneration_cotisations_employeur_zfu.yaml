@@ -1,0 +1,20 @@
+- name: "Exonération cotisations employeur zone franche urbaine (ZFU)"
+  period: "2015"
+  absolute_error_margin: 0.005
+  input_variables:
+    contrat_de_travail_debut:
+      "2015-01": "2010-01-01"
+    depcom_entreprise: 69381
+    effectif_entreprise:
+      "year:2014:15": 21
+    salaire_de_base:
+      "2015": 35 * 52 * 9.61
+    zone_franche_urbaine:
+      "2014": True
+      "2015": True
+    categorie_salarie: 0
+  output_variables:
+    exoneration_cotisations_employeur_zfu:
+      "2015-01": 35 * 52 * 9.61 * .307 * .6 / 12
+    exoneration_cotisations_employeur_geographiques:
+       "2015-01": 35 * 52 * 9.61 * .307 * .6 / 12

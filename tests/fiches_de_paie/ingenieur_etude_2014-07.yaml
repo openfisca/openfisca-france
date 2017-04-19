@@ -1,0 +1,110 @@
+name: "Ingénieur d'étude"
+period: "2014-07"
+absolute_error_margin: 0.005
+input_variables:
+  allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
+  assujettie_taxe_salaires: False
+  avantage_en_nature_valeur_reelle: 0
+  date_naissance: "1974-01-01"
+  contrat_de_travail: 0  # temps plein
+  contrat_de_travail_debut: "2014-01-01"
+  contrat_de_travail_fin: "2014-12-31"
+  contrat_de_travail_duree: 0  # CDI
+  depcom_entreprise : "75114"
+  effectif_entreprise: 3000
+  heures_non_remunerees_volume: 0
+  heures_remunerees_volume: 0
+  # exposition_accident: 3
+  indemnites_forfaitaires: 160 + 40.95  # indemnités transports et repas
+  indemnites_journalieres_maladie: 0
+  code_postal_entreprise: "75014"
+  prevoyance_obligatoire_cadre_taux_employeur: 59.02/3000  # 1.5% est le minimum
+  primes_salaires: 0
+  prise_en_charge_employeur_retraite_complementaire: 0
+  prise_en_charge_employeur_prevoyance_complementaire: 0
+  prise_en_charge_employeur_retraite_supplementaire: 0
+  ratio_alternants: 0.1
+  redevable_taxe_apprentissage: 1
+  remboursement_transport_base: 0  # Le double d'indmnités de transport indiqué sur la fiche de paie
+  salaire_de_base: 3000
+  taux_accident_travail: 0.011
+  titre_restaurant_valeur_unitaire: 0
+  titre_restaurant_volume: 0
+  categorie_salarie: 1  # non cadre
+  volume_jours_ijss: 0
+output_variables:
+  # salaire_super_brut: 0
+  # cotisations_employeur: 0
+  remboursement_transport: 0
+  ircantec_employeur: 0
+  pension_civile_employeur: 0
+  rafp_employeur: 0
+
+  allocations_temporaires_invalidite: 0
+  accident_du_travail: -33
+  famille: -157.5
+  # Permière ligne 12.8 = 12.8 + 1.75 + .3 (maldie + vieillesse_deplaf + csa )
+  mmid_employeur: -3000 * .128  # est aggrégé avec vieillesse deplaf et csa
+  taxe_salaires: 0
+  conge_individuel_formation_cdd: 0
+  contribution_solidarite_autonomie: -3000 * 0.003  #  est aggrégé avec vieillesse deplaf et maladie
+  contribution_supplementaire_apprentissage: 0
+  fnal: -15
+
+  # cotisations_employeur_contributives: 0
+  ags: -9
+  agff_employeur: -36.00
+  agirc_gmp_employeur: -41.17
+  agirc_employeur: 0
+  apec_employeur: -1.08
+  arrco_employeur: -137.4
+  chomage_employeur: -120
+  cotisation_exceptionnelle_temporaire_employeur: -6.60
+  vieillesse_deplafonnee_employeur: -3000 * 0.0175  # est aggrégé avec maladie et csa
+  vieillesse_plafonnee_employeur: -253.5
+  fonds_emploi_hospitalier: 0
+  formation_professionnelle: -48
+  participation_effort_construction: -13.5
+  prevoyance_obligatoire_cadre: -59.02
+  taxe_apprentissage: -3000 * 0.0068  # aggrégé avec contribution supplémentaire apprentissage
+  taux_versement_transport: .027
+  versement_transport: -81
+
+  allegement_fillon: 0
+  credit_impot_competitivite_emploi: 180
+  forfait_social: -4.72
+  tehr:
+    2014: 0
+  salaire_de_base: 3000
+
+  # cotisations_salariales: 0
+
+  # cotisations_salariales_contributives: 0
+  agff_salarie: -24
+  agirc_gmp_salarie: -25.17 # erreur dans la fiche de paie
+  agirc_salarie: 0  # agirc_gmp_salarie
+  apec_salarie: -0.72
+  arrco_salarie: -91.5
+  chomage_salarie: -72
+  cotisation_exceptionnelle_temporaire_salarie: -3.9
+  vieillesse_deplafonnee_salarie: -3000 * .0025  # est agrégée avec maladie sur la fiche de paie
+  vieillesse_plafonnee_salarie: -204
+  ircantec_salarie: 0
+  pension_civile_salarie: 0
+  rafp_salarie: 0
+
+  # cotisations_salariales_non_contributives: 0
+  mmid_salarie: -3000 * .0075  # est agrégée avec vieillesse déplaf. sur la fiche de paie
+  contribution_exceptionnelle_solidarite: 0
+  csg_deductible_salaire: -150.32 - 3.01
+  mhsup: 0
+  salaire_net: 3000 - (722.46 - 30.82) - .17 # moitié de la mutuelle et erreur de .17 gmp
+
+
+  # salaire imposable
+  csg_imposable_salaire: -0.024 * (.9825 * 3000 + 59.02)
+  crds_salaire: -0.005 * (3000 * .9825 + 59.02)  # = - 14.74 (attention dans fiche taux csg/crds aggrégé)
+  hsup: 0
+  salaire_imposable: 2395.55 -.17 #  .17 due à l'erreur sur gmp salaire imposable
+  depense_cantine_titre_restaurant_employe: 0
+  salaire_net_a_payer: 2478.49 + 30.82 -.17  # moitié de la mutuelle et erreur de .17 gmp

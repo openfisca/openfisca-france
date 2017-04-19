@@ -1,0 +1,311 @@
+name: Personne seule 1 enfant chômage indemnisé
+keywords:
+- al
+- recette
+- rsa
+"description": |-
+  Le simulateur propose à tort du RSA majoré.
+  Un parent isolé est éligible au RSA majoré sous certaines conditions de situation d'isolement
+
+  Le montant de RSA calculé est le bon (cf. RSA non majoré) mais le simulateur affiche en résultat le montant de RSA majoré pour situation d'isolement sans critère de conditions https://wiki.openfisca.fr/index.php/RSA#R.C3.A8gles_de_calcul)
+period: month:2015-07
+relative_error_margin: 0.02
+individus:
+- enfant_a_charge:
+    2015: true
+  activite: 1
+  age: 53
+  age_en_mois: 645
+  ass_precondition_remplie: false
+  date_naissance: '1961-09-13'
+  chomage_imposable:
+    '2013': 5795
+  chomage_brut:
+    2014-07: 549.9320861462176
+    2014-08: 549.9320861462176
+    2014-09: 549.9320861462176
+    2014-10: 549.9320861462176
+    2014-11: 549.9320861462176
+    2014-12: 549.9320861462176
+    2015-01: 549.9320861462176
+    2015-02: 549.9320861462176
+    2015-03: 549.9320861462176
+    2015-04: 556.1854944836662
+    2015-05: 537.4252694713202
+    2015-06: 556.1854944836662
+    2015-07: 556.1854944836662
+  chomage_net:
+    2014-07: 498.3333333333333
+    2014-08: 498.3333333333333
+    2014-09: 498.3333333333333
+    2014-10: 498.3333333333333
+    2014-11: 498.3333333333333
+    2014-12: 498.3333333333333
+    2015-01: 498.3333333333333
+    2015-02: 498.3333333333333
+    2015-03: 498.3333333333333
+    2015-04: 504
+    2015-05: 487
+    2015-06: 504
+    2015-07: 504
+  enfant_place: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  id: 559fbd84f394e1a7011b5779
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    '2013': 0
+  retraite_imposable:
+    '2013': 0
+  salaire_imposable:
+    '2013': 0
+  tns_auto_entrepreneur_type_activite: bic
+  tns_autres_revenus_type_activite: bic
+  tns_micro_entreprise_type_activite: bic
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- age: 18
+  age_en_mois: 217
+  date_naissance: '1997-05-19'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  id: 559fbd84f394e1a7011b5778
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  handicap: 0
+  scolarite: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+- acs:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  af:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  aide_logement:
+    2014-07: 362
+    2014-08: 362
+    2014-09: 362
+    2014-10: 362
+    2014-11: 362
+    2014-12: 362
+    2015-01: 362
+    2015-02: 362
+    2015-03: 362
+    2015-04: 362
+    2015-05: 362
+    2015-06: 362
+    2015-07: 362
+  alf:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  als:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  apl:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  asf:
+    2014-07: 100
+    2014-08: 100
+    2014-09: 100
+    2014-10: 100
+    2014-11: 100
+    2014-12: 100
+    2015-01: 100
+    2015-02: 100
+    2015-03: 100
+    2015-04: 100
+    2015-05: 100
+    2015-06: 100
+    2015-07: 100
+  asi:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  aspa:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  ass:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  bourse_college:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  bourse_lycee:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  cf:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  enfants:
+  - 559fbd84f394e1a7011b5778
+  paje_base:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  parents:
+  - 559fbd84f394e1a7011b5779
+  proprietaire_proche_famille: false
+  rsa:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  rsa_isolement_recent: false
+foyers_fiscaux:
+- declarants:
+  - 559fbd84f394e1a7011b5779
+  pensions_alimentaires_versees:
+    '2013': 0
+  personnes_a_charge:
+  - 559fbd84f394e1a7011b5778
+  rfr:
+    '2013': 0
+menages:
+- depcom: '77062'
+  enfants:
+  - 559fbd84f394e1a7011b5778
+  loyer: 500
+  personne_de_reference: 559fbd84f394e1a7011b5779
+  statut_occupation_logement: 4
+output_variables:
+  rsa_majore_eligibilite: false
+  rsa: 57.7

@@ -3,7 +3,7 @@
 from __future__ import division
 
 
-from numpy import datetime64, round as round_, timedelta64
+from numpy import datetime64, timedelta64
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal

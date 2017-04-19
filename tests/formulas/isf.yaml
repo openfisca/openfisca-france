@@ -1,0 +1,26 @@
+- name: "Impôt sur la fortune - Célibataire - Montant de la décôte"
+  keywords: isf
+  period: 2016
+  absolute_error_margin: 0.5
+  input_variables:
+    b1ab: 1700000
+    b1ac: 200000  # isf_imm_bati= 1390000
+    b1cb: 1000
+    b1cd: 1000
+    b1ce: 1000
+    b1cf: 1000
+    b1cg: 1000   #isf_droits_sociaux: 4250
+    b2gh: 3000
+  output_variables:
+    ass_isf: 1392250 # 1390000 + #22500 + 4250 + 1000 - 3000
+    decote_isf: 96.875 # 17500 - 0.0125 * 1392250
+
+- name: "Impôt sur la fortune - Célibataire - Abattement résidence principale"
+  keywords: isf
+  period: 2016
+  absolute_error_margin: 0.5
+  input_variables:
+    b1ab: 3000000
+    b1ac: 400000
+  output_variables:
+    isf_imm_bati: 2500000 # 0.7 * 3000000 + 400000

@@ -1,0 +1,307 @@
+name: Les allocations familiales sont exclues de la base ressources
+keywords:
+  - aspa
+  - base ressources
+description: |
+  J'ai indiqué avoir 2 enfants mineurs à charge et le simulateur ne me demande pas le montant de mes allocations familiales.
+
+  Pour autant le résultat du montant ASPA est juste car les prestations familiales sont exclues des ressources à retenir pour le calcul de l'ASPA (article R 815-22 du code de la sécurité sociale).
+
+  Edit Arnaud Kleinpeter : c'est normal, le montant simulé des allocations familiales est suffisamment précis pour qu'on n'ait pas besoin de le demander
+period: "month:2014-11"
+relative_error_margin: 0.02
+individus:
+  - activite: 3
+    age: 67
+    age_en_mois: 812
+    date_naissance: "1947-02-27"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 546b190bfc9936ff63f8566c
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    retraite_brute:
+      2012: 7200
+      2013-11: 600
+      2013-12: 600
+      2014-01: 600
+      2014-02: 600
+      2014-03: 600
+      2014-04: 600
+      2014-05: 600
+      2014-06: 600
+      2014-07: 600
+      2014-08: 600
+      2014-09: 600
+      2014-10: 600
+      2014-11: 600
+    retraite_nette:
+      2012: 6667.200000000002
+      2013-11: 555.6
+      2013-12: 555.6
+      2014-01: 555.6
+      2014-02: 555.6
+      2014-03: 555.6
+      2014-04: 555.6
+      2014-05: 555.6
+      2014-06: 555.6
+      2014-07: 555.6
+      2014-08: 555.6
+      2014-09: 555.6
+      2014-10: 555.6
+      2014-11: 555.6
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 9
+    age_en_mois: 118
+    date_naissance: "2004-12-21"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 546b190bfc9936ff63f8566b
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 2
+    age_en_mois: 25
+    date_naissance: "2012-10-09"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 546b190bfc9936ff63f8566a
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  acs:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  af:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  aide_logement:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  alf:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  als:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  apl:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  asf:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  asi:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  aspa:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  ass:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  bourse_college:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  bourse_lycee:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  cf:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  enfants:
+    - 546b190bfc9936ff63f8566b
+    - 546b190bfc9936ff63f8566a
+  paje_base:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  parents: 546b190bfc9936ff63f8566c
+  proprietaire_proche_famille: false
+  rsa:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  rsa_isolement_recent: true
+foyers_fiscaux:
+  declarants: 546b190bfc9936ff63f8566c
+  personnes_a_charge:
+    - 546b190bfc9936ff63f8566b
+    - 546b190bfc9936ff63f8566a
+menages:
+  depcom: 94068
+  enfants:
+    - 546b190bfc9936ff63f8566b
+    - 546b190bfc9936ff63f8566a
+  loyer: 1000
+  personne_de_reference: 546b190bfc9936ff63f8566c
+  statut_occupation_logement: 4
+output_variables:
+  af: 129.99
+  aspa: 200

@@ -1,0 +1,276 @@
+- period: "2014"
+  absolute_error_margin: 0.005
+  name: "RSA célibataire, salaire_net = 0"
+  input_variables:
+    date_naissance: "1985-01-01"  # 29 ans
+    # salaire_net: 0
+    statut_occupation_logement:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    statut_occupation_logement:
+      "2014-01": 2
+    rsa_revenu_activite_individu:
+      "2014-01": 0
+    rsa_base_ressources:
+      "2014-01": 0
+    rsa_revenu_activite:
+      "2014-01": 0
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore_eligibilite:
+      "2014-01": False
+    rsa:
+      "2014-01": 439.39
+
+- period: "2014"
+  absolute_error_margin: 0.005
+  name: "RSA célibataire, salaire_net = 5000"
+  input_variables:
+    date_naissance: "1985-01-01"  # 29 ans
+    salaire_net:
+      2012: 5000
+      2013: 5000
+      2014: 5000
+    statut_occupation_logement:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    statut_occupation_logement:
+      "2014-01": 2
+    rsa_revenu_activite_individu:
+      "2014-01": 416.67
+    rsa_base_ressources:
+      "2014-01": 416.67
+    rsa_revenu_activite:
+      "2014-01": 416.67
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore_eligibilite:
+      "2014-01": False
+    rsa:
+      "2014-01": 281.06
+
+- period: "2014"
+  absolute_error_margin: 0.005
+  name: "RSA célibataire, salaire_net = 10000"
+  input_variables:
+    date_naissance: "1985-01-01"  # 29 ans
+    salaire_net:
+      2012: 10000
+      2013: 10000
+      2014: 10000
+    statut_occupation_logement:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    statut_occupation_logement:
+      "2014-01": 2
+    rsa_revenu_activite_individu:
+      "2014-01": 833.33
+    rsa_base_ressources:
+      "2014-01": 833.33
+    rsa_revenu_activite:
+      "2014-01": 833.33
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore_eligibilite:
+      "2014-01": False
+    rsa:
+      "2014-01": 122.73
+
+- period: "2014"
+  absolute_error_margin: 0.005
+  name: "RSA célibataire, salaire_net = 12000"
+  input_variables:
+    date_naissance: "1985-01-01"  # 29 ans
+    salaire_net:
+      2012: 12000
+      2013: 12000
+      2014: 12000
+    statut_occupation_logement:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    statut_occupation_logement:
+      "2014-01": 2
+    rsa_revenu_activite_individu:
+      "2014-01": 1000
+    rsa_base_ressources:
+      "2014-01": 1000
+    rsa_revenu_activite:
+      "2014-01": 1000
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore_eligibilite:
+      "2014-01": False
+    rsa:
+      "2014-01": 59.39
+
+- period: "2014"
+  absolute_error_margin: 0.005
+  name: "RSA célibataire, salaire_net = 13000"
+  input_variables:
+    date_naissance: "1985-01-01"  # 29 ans
+    salaire_net:
+      2012: 13000
+      2013: 13000
+      2014: 13000
+    statut_occupation_logement:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    statut_occupation_logement:
+      "2014-01": 2
+    rsa_revenu_activite_individu:
+      "2014-01": 1083.33
+    rsa_base_ressources:
+      "2014-01": 1083.33
+    rsa_revenu_activite:
+      "2014-01": 1083.33
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore_eligibilite:
+      "2014-01": False
+    rsa:
+      "2014-01": 27.73
+
+- period: "2014"
+  absolute_error_margin: 0.005
+  name: "RSA célibataire, salaire_net = 14000"
+  input_variables:
+    date_naissance: "1985-01-01"  # 29 ans
+    salaire_net:
+      2012: 14000
+      2013: 14000
+      2014: 14000
+    statut_occupation_logement:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    statut_occupation_logement:
+      "2014-01": 2
+    rsa_revenu_activite_individu:
+      "2014-01": 1166.67
+    rsa_base_ressources:
+      "2014-01": 1166.67
+    rsa_revenu_activite:
+      "2014-01": 1166.67
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore_eligibilite:
+      "2014-01": False
+    rsa:
+      "2014-01": 0
+
+- period: "2014"
+  absolute_error_margin: 0.005
+  name: "RSA célibataire, salaire_net = 15000"
+  input_variables:
+    date_naissance: "1985-01-01"  # 29 ans
+    salaire_net:
+      2012: 15000
+      2013: 15000
+      2014: 15000
+    statut_occupation_logement:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    statut_occupation_logement:
+      "2014-01": 2
+    rsa_revenu_activite_individu:
+      "2014-01": 1250
+    rsa_base_ressources:
+      "2014-01": 1250
+    rsa_revenu_activite:
+      "2014-01": 1250
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore_eligibilite:
+      "2014-01": False
+    rsa:
+      "2014-01": 0
+
+- period: "2014"
+  absolute_error_margin: 0.005
+  name: "RSA célibataire, salaire_net = 20000"
+  input_variables:
+    date_naissance: "1985-01-01"  # 29 ans
+    salaire_net:
+      2012: 20000
+      2013: 20000
+      2014: 20000
+    statut_occupation_logement:
+      "2014-01": 2  # Propriétaire (non accédant) du logement
+  output_variables:
+    aide_logement:
+      "2014-01": 0
+    statut_occupation_logement:
+      "2014-01": 2
+    rsa_revenu_activite_individu:
+      "2014-01": 1666.67
+    rsa_base_ressources:
+      "2014-01": 1666.67
+    rsa_revenu_activite:
+      "2014-01": 1666.67
+    rsa_forfait_logement:
+      "2014-01": 59.92
+    rsa_socle:
+      "2014-01": 499.31
+    rsa_majore_eligibilite:
+      "2014-01": False
+    rsa:
+      "2014-01": 0
+
+- period: "2015-01"
+  name: "Pas de RSA si âge < 25"
+  input_variables:
+    date_naissance: "1990-01-02"  # 24 ans
+  output_variables:
+    rsa: 0
+
+- name: "Seul l'ASF réellement perçu doit être forfaiterement pris en compte dans le RSA"
+  period: 2016-01
+  relative_error_margin: 0.05
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1", "enfant2"]
+    asf: 100
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 6
+    - id: "enfant2"
+      age: 8
+  output_variables:
+    rsa_forfait_asf: 91.38
+
+- name: "Revalorisation septembre 2016"
+  period: 2016-10
+  relative_error_margin: 0.01
+  input_variables:
+    age: 40
+  output_variables:
+    rsa: 535.17

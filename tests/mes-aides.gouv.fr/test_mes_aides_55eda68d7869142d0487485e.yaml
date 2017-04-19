@@ -1,0 +1,387 @@
+name: Couple 1 revenu 4 enfants à charge dont 1 né avant le 1/4/14 < plafond
+keywords:
+- montant
+- paje
+- plafonds
+description: 'Plafond couple 1 revenu 4 enfants à charge: 60 025'
+period: month:2015-09
+relative_error_margin: 0.02
+individus:
+- enfant_a_charge:
+    2015: true
+  age: 55
+  age_en_mois: 664
+  date_naissance: '1960-05-04'
+  enfant_place: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  id: 55eda67f8c9ccb340464e3e3
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  handicap: 0
+  salaire_de_base:
+    2014-09: 8404.558404558404
+    2014-10: 8404.558404558404
+    2014-11: 8404.558404558404
+    2014-12: 8404.558404558404
+    2015-01: 8404.558404558404
+    2015-02: 8404.558404558404
+    2015-03: 8404.558404558404
+    2015-04: 8404.558404558404
+    2015-05: 8404.558404558404
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  salaire_imposable:
+    '2013': 59000
+    2014-09: 6795.022435897436
+    2014-10: 6795.022435897436
+    2014-11: 6795.022435897436
+    2014-12: 6795.022435897436
+    2015-01: 6795.022435897436
+    2015-02: 6795.022435897436
+    2015-03: 6795.022435897436
+    2015-04: 6795.022435897436
+    2015-05: 6795.022435897436
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  salaire_net:
+    2014-09: 6555.555555555556
+    2014-10: 6555.555555555556
+    2014-11: 6555.555555555556
+    2014-12: 6555.555555555556
+    2015-01: 6555.555555555556
+    2015-02: 6555.555555555556
+    2015-03: 6555.555555555556
+    2015-04: 6555.555555555556
+    2015-05: 6555.555555555556
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  statut_marital: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 55
+  age_en_mois: 660
+  date_naissance: '1960-08-09'
+  enfant_place: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  id: 55eda67f8c9ccb340464e3e2
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  handicap: 0
+  statut_marital: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 2
+  age_en_mois: 24
+  date_naissance: '2013-08-09'
+  enfant_place: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  id: 55eda67f8c9ccb340464e3e1
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 6
+  age_en_mois: 72
+  date_naissance: '2009-08-09'
+  enfant_place: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  id: 55eda67f8c9ccb340464e3e0
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 5
+  age_en_mois: 60
+  date_naissance: '2010-08-09'
+  enfant_place: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  id: 55eda67f8c9ccb340464e3df
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 5
+  age_en_mois: 60
+  date_naissance: '2010-08-09'
+  enfant_place: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  id: 55eda67f8c9ccb340464e3de
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+- acs:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  af:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  aide_logement:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  alf:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  als:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  apl:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  asf:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  asi:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  aspa:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  ass:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  bourse_college:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  bourse_lycee:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  cf:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  enfants:
+  - 55eda67f8c9ccb340464e3e1
+  - 55eda67f8c9ccb340464e3e0
+  - 55eda67f8c9ccb340464e3df
+  - 55eda67f8c9ccb340464e3de
+  paje_base:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  parents:
+  - 55eda67f8c9ccb340464e3e3
+  - 55eda67f8c9ccb340464e3e2
+  proprietaire_proche_famille: true
+  rsa:
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+foyers_fiscaux:
+- declarants:
+  - 55eda67f8c9ccb340464e3e3
+  - 55eda67f8c9ccb340464e3e2
+  personnes_a_charge:
+  - 55eda67f8c9ccb340464e3e1
+  - 55eda67f8c9ccb340464e3e0
+  - 55eda67f8c9ccb340464e3df
+  - 55eda67f8c9ccb340464e3de
+  rfr: {}
+menages:
+- conjoint: 55eda67f8c9ccb340464e3e2
+  depcom: '78646'
+  enfants:
+  - 55eda67f8c9ccb340464e3e1
+  - 55eda67f8c9ccb340464e3e0
+  - 55eda67f8c9ccb340464e3df
+  - 55eda67f8c9ccb340464e3de
+  loyer: 700
+  personne_de_reference: 55eda67f8c9ccb340464e3e3
+  statut_occupation_logement: 4
+output_variables:
+  paje_base: 186.65

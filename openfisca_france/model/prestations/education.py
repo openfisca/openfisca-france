@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import logical_or as or_, round as round_
+from numpy import logical_or as or_
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 

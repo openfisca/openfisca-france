@@ -1,0 +1,286 @@
+name: Le montant de base est multiplié par le nombre d'enfants
+keywords: asf
+description:
+period: "month:2014-07"
+relative_error_margin: 0.02
+individus:
+  - age: 24
+    age_en_mois: 298
+    date_naissance: "1989-09-14"
+    enceinte: false
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 53d78cf4f6aa390200a6ccfd
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 6
+    age_en_mois: 82
+    date_naissance: "2007-09-14"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 53d78cf4f6aa390200a6ccfc
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 6
+    age_en_mois: 82
+    date_naissance: "2007-09-14"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 53d78cf4f6aa390200a6ccfb
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 6
+    age_en_mois: 82
+    date_naissance: "2007-09-14"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 53d78cf4f6aa390200a6ccfa
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  acs:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  af:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  aide_logement:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  alf:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  als:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  apl:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  asf:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  asi:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  aspa:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  ass:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  bourse_college:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  bourse_lycee:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  cf:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  enfants:
+    - 53d78cf4f6aa390200a6ccfc
+    - 53d78cf4f6aa390200a6ccfb
+    - 53d78cf4f6aa390200a6ccfa
+  paje_base:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  parents: 53d78cf4f6aa390200a6ccfd
+  proprietaire_proche_famille: true
+  rsa:
+    2013-07: 0
+    2013-08: 0
+    2013-09: 0
+    2013-10: 0
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+  rsa_isolement_recent: true
+foyers_fiscaux:
+  declarants: 53d78cf4f6aa390200a6ccfd
+  personnes_a_charge:
+    - 53d78cf4f6aa390200a6ccfc
+    - 53d78cf4f6aa390200a6ccfb
+    - 53d78cf4f6aa390200a6ccfa
+menages:
+  enfants:
+    - 53d78cf4f6aa390200a6ccfc
+    - 53d78cf4f6aa390200a6ccfb
+    - 53d78cf4f6aa390200a6ccfa
+  loyer: 123
+  personne_de_reference: 53d78cf4f6aa390200a6ccfd
+  statut_occupation_logement: 4
+output_variables:
+  asf: 287.96
