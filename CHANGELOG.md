@@ -1,5 +1,12 @@
 # Changelog
 
+## 17.1.0 - [#724](https://github.com/openfisca/openfisca-france/pull/724)
+
+* Amélioration technique.
+* Détails :
+  - Permet d'installer OpenFisca-France avec une API web compatible via `pip install openfisca_france[api]`
+  - Redéploie `api.openfisca.fr` à chaque publication de version
+
 ### 17.0.1 - [#730](https://github.com/openfisca/openfisca-france/pull/730)
 
 * Amélioration technique
