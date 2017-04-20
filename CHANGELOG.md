@@ -1,5 +1,18 @@
 # Changelog
 
+## 17.2.0 - [#726](https://github.com/openfisca/openfisca-france/pull/726)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/04/2017.
+* Zones impactées: `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/versement_transport`
+* Détails :
+    - Mise à jour des taux de versement transport
+
+* Changement mineur
+* Zones impactées: `/assets/versement_transport`
+* Détails :
+    - Suppression de fichiers inutilisés (quelques mégas)
+
 ## 17.1.0 - [#724](https://github.com/openfisca/openfisca-france/pull/724)
 
 * Amélioration technique.
@@ -27,7 +40,7 @@
 * Détails :
   - Retourne pour `aeeh` un montant mensuel et non annuel
 
-### 16.1.1 - [#632](https://github.com/openfisca/openfisca-france/pull/632) 
+### 16.1.1 - [#632](https://github.com/openfisca/openfisca-france/pull/632)
 
 * Changement mineur
 * Détails :
@@ -63,7 +76,7 @@
 * Détails :
   - Adapte `france` à  la version `7.0.0` de `core`.
   - Spécifie toujours une période dans les appels de variables, dans les formules et dans les tests.
-  
+
 <!-- -->
 
 * Évolution du système socio-fiscal
