@@ -1,5 +1,13 @@
 # Changelog
 
+## 18.0.0 - [#718](https://github.com/openfisca/openfisca-france/pull/718)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : toutes
+* Zones impactées: `prestations/aides_logement`
+* Détails :
+    - Corrige l'erreur de frappe sur le nom de la variable `aide_logement_participation_personelle` qui devient donc `aide_logement_participation_personnelle`
+
 ## 17.2.0 - [#726](https://github.com/openfisca/openfisca-france/pull/726)
 
 * Évolution du système socio-fiscal
@@ -670,7 +678,7 @@ It is included in the bases of the following variables.
 	* `aide_logement_R0`
 	* `aide_logement_taux_famille`
 	* `aide_logement_taux_loyer`
-	* `aide_logement_participation_personelle`
+	* `aide_logement_participation_personnelle`
 
 ## 1.2.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.1.0...1.2.0)
 
