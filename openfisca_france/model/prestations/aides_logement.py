@@ -160,13 +160,10 @@ class aide_logement_abattement_chomage_indemnise(Variable):
     entity = Individu
     label = u"Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
     definition_period = MONTH
+    # Article R532-7 du Code de la sécurité sociale
+    url = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189"
 
     def function(individu, period, legislation):
-        """
-        Références législatives :
-        Article R532-7 du Code de la sécurité sociale
-        https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte=
-        """
         chomage_net_m_1 = individu('chomage_net', period.offset(-1))
         chomage_net_m_2 = individu('chomage_net', period.offset(-2))
         condition_abattement = (chomage_net_m_1 > 0) * (chomage_net_m_2 > 0)
@@ -181,13 +178,10 @@ class aide_logement_abattement_depart_retraite(Variable):
     entity = Individu
     label = u"Montant de l'abattement sur les salaires en cas de départ en retraite"
     definition_period = MONTH
+    # Article R532-5 du Code de la sécurité sociale
+    url = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231"
 
     def function(individu, period, legislation):
-        """
-        Références législatives :
-        Article R532-5 du Code de la sécurité sociale
-        https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231
-        """
         retraite = individu('activite', period) == 3
         retraite_n_2 = individu('retraite_imposable', period.n_2)
         condition_abattement = (retraite_n_2 == 0) * retraite
@@ -203,17 +197,14 @@ class aide_logement_neutralisation_rsa(Variable):
     entity = Famille
     label = u"Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
     definition_period = MONTH
+    url = [
+        # Article R532-7 du Code de la sécurité sociale
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189",
+        # Article R351-14-1 du Code de la construction et de l'habitation
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006897410"
+        ]
 
     def function(famille, period, legislation):
-        """
-        Références législatives :
-        Article R532-7 du Code de la sécurité sociale
-        https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte=
-
-        Article R351-14-1 du Code de la construction et de l'habitation
-        https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006897410&categorieLien=cid
-        """
-
         # Circular definition, as rsa depends on al.
         # We don't allow it, so default value of rsa will be returned if a recursion is detected.
         rsa_mois_dernier = famille('rsa', period.last_month, max_nb_cycles = 0)
