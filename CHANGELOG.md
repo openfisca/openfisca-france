@@ -1,5 +1,11 @@
 # Changelog
 
+## 18.1.0 - [#739](https://github.com/openfisca/openfisca-france/pull/739)
+
+* Changement mineur
+* Détails:
+  - Rends OpenFisca-France compatible avec la version `11.0` d'OpenFisca-Core
+
 ## 18.0.0 - [#718](https://github.com/openfisca/openfisca-france/pull/718)
 
 * Évolution du système socio-fiscal
