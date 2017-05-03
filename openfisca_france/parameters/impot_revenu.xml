@@ -3365,31 +3365,25 @@
   <BAREME code="teicaa" description="Taxe exceptionnelle sur l'indemnité compensatrice des agents d'assurance" origin="openfisca" type="monetary">
     <TRANCHE>
       <SEUIL>
-        <END deb="2013-01-01" />
         <VALUE deb="2001-01-01" valeur="0" />
       </SEUIL>
       <TAUX>
-        <END deb="2013-01-01" />
         <VALUE deb="2001-01-01" valeur="0.0" />
       </TAUX>
     </TRANCHE>
     <TRANCHE>
       <SEUIL>
-        <END deb="2013-01-01" />
         <VALUE deb="2001-01-01" valeur="23000" />
       </SEUIL>
       <TAUX>
-        <END deb="2013-01-01" />
         <VALUE deb="2001-01-01" valeur="0.04" />
       </TAUX>
     </TRANCHE>
     <TRANCHE>
       <SEUIL>
-        <END deb="2013-01-01" />
         <VALUE deb="2001-01-01" valeur="107000" />
       </SEUIL>
       <TAUX>
-        <END deb="2013-01-01" />
         <VALUE deb="2001-01-01" valeur="0.026" />
       </TAUX>
     </TRANCHE>

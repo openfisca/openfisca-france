@@ -877,11 +877,9 @@
         <BAREME code="rafp" description="Régime additionnel de retraite (RAFP, totalité sauf TI et NBI, min 20% TI )" option="contrib" origin="openfisca">
           <TRANCHE code="tranche0">
             <SEUIL>
-              <END deb="2013-01-01" />
               <VALUE deb="1993-01-01" valeur="0" />
             </SEUIL>
             <TAUX>
-              <END deb="2013-01-01" />
               <VALUE deb="2005-01-01" valeur="0.05" />
             </TAUX>
           </TRANCHE>
