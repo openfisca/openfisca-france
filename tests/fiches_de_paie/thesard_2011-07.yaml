@@ -68,7 +68,6 @@ output_variables:
 
   allegement_fillon: 0
   credit_impot_competitivite_emploi: 0
-  tehr: {'2011': 0}
   salaire_de_base: 1900
 
   # cotisations_salariales: -350.39 + 93.99 + 44.23 + 9.21

@@ -21,14 +21,20 @@ def reform_modify_legislation_json(reference_legislation_json_copy):
                 "description": "Seuil de la décôte pour un célibataire",
                 "format": "integer",
                 "unit": "currency",
-                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 1165}],
+                "values": [
+                    {'start': u'2015-01-01', },
+                    {'start': u'2014-01-01', 'value': 1165},
+                    ],
                 },
             "decote_seuil_couple": {
                 "@type": "Parameter",
                 "description": "Seuil de la décôte pour un couple",
                 "format": "integer",
                 "unit": "currency",
-                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 1920}],
+                "values": [
+                    {'start': u'2015-01-01', },
+                    {'start': u'2014-01-01', 'value': 1920},
+                    ],
                 },
             },
         }
@@ -73,14 +79,20 @@ def counterfactual_modify_legislation_json(reference_legislation_json_copy):
                 "description": "Seuil de la décôte pour un célibataire",
                 "format": "integer",
                 "unit": "currency",
-                "values": [{'start': u'2015-01-01', 'stop': u'2015-12-31', 'value': round(1135 * (1 + inflation))}],
+                "values": [
+                    {'start': u'2016-01-01', },
+                    {'start': u'2015-01-01', 'value': round(1135 * (1 + inflation))},
+                    ],
                 },
             "decote_seuil_couple": {
                 "@type": "Parameter",
                 "description": "Seuil de la décôte pour un couple",
                 "format": "integer",
                 "unit": "currency",
-                "values": [{'start': u'2015-01-01', 'stop': u'2015-12-31', 'value': round(1870 * (1 + inflation))}],
+                "values": [
+                    {'start': u'2065-01-01', },
+                    {'start': u'2015-01-01', 'value': round(1870 * (1 + inflation))},
+                    ],
                 },
             },
         }

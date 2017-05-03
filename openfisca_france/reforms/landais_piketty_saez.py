@@ -88,28 +88,64 @@ def modify_legislation_json(reference_legislation_json_copy):
                 "rates_kind": "average",
                 "brackets": [
                     {
-                        "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .02}],
-                        "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 1100}],
+                        "rate": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2000-01-01', 'value': .02},
+                            ],
+                        "threshold": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2000-01-01', 'value': 1100},
+                            ],
                         },
                     {
-                        "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .1}],
-                        "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 2200}],
+                        "rate": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2000-01-01', 'value': .1},
+                            ],
+                        "threshold": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2000-01-01', 'value': 2200},
+                            ],
                         },
                     {
-                        "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .13}],
-                        "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 5000}],
+                        "rate": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2000-01-01', 'value': .13},
+                            ],
+                        "threshold": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2000-01-01', 'value': 5000},
+                            ],
                         },
                     {
-                        "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .25}],
-                        "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 10000}],
+                        "rate": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2000-01-01', 'value': .25},
+                            ],
+                        "threshold": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2000-01-01', 'value': 10000},
+                            ],
                         },
                     {
-                        "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .5}],
-                        "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 40000}],
+                        "rate": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2000-01-01', 'value': .5},
+                            ],
+                        "threshold": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2000-01-01', 'value': 40000},
+                            ],
                         },
                     {
-                        "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .6}],
-                        "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 100000}],
+                        "rate": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2000-01-01', 'value': .6},
+                            ],
+                        "threshold": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2000-01-01', 'value': 100000},
+                            ],
                         },
                     ],
                 },
@@ -117,37 +153,55 @@ def modify_legislation_json(reference_legislation_json_copy):
                 "@type": "Parameter",
                 "description": u"Indicatrice d'imposition",
                 "format": "boolean",
-                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': True}],
+                "values": [
+                    {'start': u'2015-01-01', },
+                    {'start': u'2000-01-01', 'value': True},
+                    ],
                 },
             "credit_enfant": {
                 "@type": "Parameter",
                 "description": u"Crédit d'impôt forfaitaire par enfant",
                 "format": "integer",
-                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 0}],
+                "values": [
+                    {'start': u'2015-01-01', },
+                    {'start': u'2000-01-01', 'value': 0},
+                    ],
                 },
             "reduc_enfant": {
                 "@type": "Parameter",
                 "description": u"Réduction d'impôt forfaitaire par enfant",
                 "format": "integer",
-                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 0}],
+                "values": [
+                    {'start': u'2015-01-01', },
+                    {'start': u'2000-01-01', 'value': 0},
+                    ],
                 },
             "abatt_enfant": {
                 "@type": "Parameter",
                 "description": u"Abattement forfaitaire sur le revenu par enfant",
                 "format": "integer",
-                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 0}],
+                "values": [
+                    {'start': u'2015-01-01', },
+                    {'start': u'2000-01-01', 'value': 0},
+                    ],
                 },
             "reduc_conj": {
                 "@type": "Parameter",
                 "description": u"Réduction d'impôt forfaitaire si conjoint",
                 "format": "integer",
-                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 0}],
+                "values": [
+                    {'start': u'2015-01-01', },
+                    {'start': u'2000-01-01', 'value': 0},
+                    ],
                 },
             "abatt_conj": {
                 "@type": "Parameter",
                 "description": u"Abattement forfaitaire sur le revenu si conjoint",
                 "format": "integer",
-                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 0}],
+                "values": [
+                    {'start': u'2015-01-01', },
+                    {'start': u'2000-01-01', 'value': 0},
+                    ],
                 },
             },
         }

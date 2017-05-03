@@ -21,19 +21,28 @@ def ayrault_muet_modify_legislation_json(reference_legislation_json_copy):
             "@type": "Parameter",
             "format": "integer",
             "unit": "currency",
-            "values": [{'start': u'2015-01-01', 'stop': u'2015-12-31', 'value': round(16251 * inflator)}],
+            "values": [
+                {'start': u'2016-01-01', },
+                {'start': u'2015-01-01', 'value': round(16251 * inflator)},
+                ],
             },
         "elig2": {
             "@type": "Parameter",
             "format": "integer",
             "unit": "currency",
-            "values": [{'start': u'2015-01-01', 'stop': u'2015-12-31', 'value': round(32498 * inflator)}],
+            "values": [
+                {'start': u'2016-01-01', },
+                {'start': u'2015-01-01', 'value': round(32498 * inflator)},
+                ],
             },
         "elig3": {
             "@type": "Parameter",
             "format": "integer",
             "unit": "currency",
-            "values": [{'start': u'2015-01-01', 'stop': u'2015-12-31', 'value': round(4490 * inflator)}],
+            "values": [
+                {'start': u'2016-01-01', },
+                {'start': u'2015-01-01', 'value': round(4490 * inflator)},
+                ],
             },
         }
     reference_legislation_json_copy['children']['impot_revenu']['children']['credits_impot']['children']['ppe']['children'].update(
