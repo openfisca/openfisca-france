@@ -2,15 +2,6 @@
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-class rfr_foyer_fiscal(Variable):
-    column = FloatCol
-    entity = Individu
-    label = u"RFR de chaque foyer fiscal distinct, identifié par son déclarant principal"
-    definition_period = YEAR
-
-    def function(individu, period):
-        return individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) * individu.foyer_fiscal('rfr', period)
-
 class eligibilite_anah(Variable):
     column = EnumCol(
         enum = Enum([
@@ -32,8 +23,8 @@ class eligibilite_anah(Variable):
 
         nb_members = menage.nb_persons()
 
-        rfr_foyer_fiscal = menage.members('rfr_foyer_fiscal', period.n_2)
-        rfr = menage.sum(rfr_foyer_fiscal)
+        rfr_declarants_principaux_du_menage = menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) * menage.members.foyer_fiscal('rfr', period.n_2)
+        rfr = menage.sum(rfr_declarants_principaux_du_menage)
 
         bareme_idf = select(
             [nb_members==1,nb_members==2,nb_members==3,nb_members==4,nb_members>=5],
