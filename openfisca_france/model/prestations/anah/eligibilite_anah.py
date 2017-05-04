@@ -21,10 +21,10 @@ class eligibilite_anah(Variable):
                  (departement == 92) + (departement == 93) + \
                  (departement == 94) + (departement == 95)
 
-        nb_members = menage.nb_persons()
-
         rfr_declarants_principaux_du_menage = menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) * menage.members.foyer_fiscal('rfr', period.n_2)
         rfr = menage.sum(rfr_declarants_principaux_du_menage)
+
+        nb_members = menage.nb_persons()
 
         bareme_idf = select(
             [nb_members==1,nb_members==2,nb_members==3,nb_members==4,nb_members>=5],
