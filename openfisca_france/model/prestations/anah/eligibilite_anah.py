@@ -29,18 +29,18 @@ class eligibilite_anah(Variable):
 
         bareme_idf = select(
             [nb_members == 1, nb_members == 2, nb_members == 3, nb_members == 4, nb_members >= 5],
-            [select([rfr <= 19875, rfr <= 24194, rfr > 0], [0,1,2]),
-             select([rfr <= 29171, rfr <= 35510, rfr > 0], [0,1,2]),
-             select([rfr <= 35032, rfr <= 42648, rfr > 0], [0,1,2]),
-             select([rfr <= 40905, rfr <= 49799, rfr > 0], [0,1,2]),
-             select([rfr <= 46798 + ((nb_members - 5) * 5882), rfr <= 56970 + ((nb_members - 5) * 7162), rfr > 0], [2,1,0])])
+            [select([rfr <= 19875, rfr <= 24194], [2, 1], 0),
+             select([rfr <= 29171, rfr <= 35510], [2, 1], 0),
+             select([rfr <= 35032, rfr <= 42648], [2, 1], 0),
+             select([rfr <= 40905, rfr <= 49799], [2, 1], 0),
+             select([rfr <= 46798 + ((nb_members - 5) * 5882), rfr <= 56970 + ((nb_members - 5) * 7162)], [2, 1], 0)])
 
         bareme_out = select(
             [nb_members == 1, nb_members == 2, nb_members == 3, nb_members == 4, nb_members >= 5],
-            [select([rfr <= 14360, rfr <= 18409, rfr > 0], [0,1,2]),
-             select([rfr <= 21001, rfr <= 26923, rfr > 0], [0,1,2]),
-             select([rfr <= 25257, rfr <= 32377, rfr > 0], [0,1,2]),
-             select([rfr <= 29506, rfr <= 37826, rfr > 0], [0,1,2]),
-             select([rfr <= 33774 + ((nb_members - 5) * 4257), rfr <= 43297 + ((nb_members - 5) * 5454), rfr > 0], [2,1,0])])
+            [select([rfr <= 14360, rfr <= 18409], [2, 1], 0),
+             select([rfr <= 21001, rfr <= 26923], [2, 1], 0),
+             select([rfr <= 25257, rfr <= 32377], [2, 1], 0),
+             select([rfr <= 29506, rfr <= 37826], [2, 1], 0),
+             select([rfr <= 33774 + ((nb_members - 5) * 4257), rfr <= 43297 + ((nb_members - 5) * 5454)], [2, 1], 0)])
 
         return where(in_idf, bareme_idf, bareme_out)
