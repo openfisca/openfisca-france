@@ -15,11 +15,12 @@ class eligibilite_anah(Variable):
     definition_period = YEAR
 
     def function(menage, period):
-        departement = menage('depcom',period.first_month).astype(int) / 1000
-        in_idf = (departement == 75) + (departement == 77) + \
-                 (departement == 78) + (departement == 91) + \
-                 (departement == 92) + (departement == 93) + \
-                 (departement == 94) + (departement == 95)
+        # depcom is a 5-digit code where the leading two digits correspond to a département;
+        # integer division by 1000 is a handy way of computing these digits
+        departement = menage('depcom', period.first_month).astype(int) / 1000
+
+        departements_idf = [75, 77, 78, 91, 92, 93, 94, 95]
+        in_idf = sum([departement == departement_idf for departement_idf in departements_idf])
 
         rfr_declarants_principaux_du_menage = menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) * menage.members.foyer_fiscal('rfr', period.n_2)
         rfr = menage.sum(rfr_declarants_principaux_du_menage)
