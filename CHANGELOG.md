@@ -1,5 +1,24 @@
 # Changelog
 
+### 18.2.1 - [#708](https://github.com/openfisca/openfisca-france/pull/708)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : toutes
+* Zones impactées : `prestations/aides_logement`
+* Détails :
+  - Corrige certains calculs pour les aides logement :
+    - La neutralisation des ressources en cas de perception du RSA était sur-évaluée.
+    - Les abattements des ressources en cas de chômage ou de départ en retraite étaient imprécis.
+      - Non prise en compte des frais réels
+      - Non prise en compte du plafond et du plancher pour l'abattement sur les frais profesionnels 
+  - Ajoute les références législatives
+
+<!-- -->
+
+* Amélioration technique
+* Détails :
+  - Migre toutes les formules de `prestations/aides_logement` vers la syntaxe `v4`
+
 ## 18.2.0 - [#731](https://github.com/openfisca/openfisca-france/pull/731)
 * Amélioration technique
 * Détails :
@@ -12,7 +31,7 @@
 * Détails:
   - Rends OpenFisca-France compatible avec la version `11.0` d'OpenFisca-Core
 
-## 18.0.0 - [#718](https://github.com/openfisca/openfisca-france/pull/718)
+# 18.0.0 - [#718](https://github.com/openfisca/openfisca-france/pull/718)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : toutes
