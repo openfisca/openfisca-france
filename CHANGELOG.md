@@ -1,5 +1,11 @@
 # Changelog
 
+### 18.2.2 - [#742](https://github.com/openfisca/openfisca-france/pull/742)
+
+* Amélioration technique
+* Détails :
+  - Met à jour les tests sur la législation à la version `Openfisca-Core` `12.1.1`.
+
 ### 18.2.1 - [#708](https://github.com/openfisca/openfisca-france/pull/708)
 
 * Évolution du système socio-fiscal
