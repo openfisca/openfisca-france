@@ -14,25 +14,53 @@ class cmu_acs_eligibilite(Variable):
     label = u"Pré-éligibilité à la CMU, avant prise en compte des ressources"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    def formula(famille, period, legislation):
         previous_year = period.start.period('year').offset(-1)
         this_year = period.this_year
-        age_min = simulation.legislation_at(period.start).cmu.age_limite_pac
-        nb_enfants = simulation.calculate('cmu_nb_pac', period)
+        age_min = legislation(period).cmu.age_limite_pac
+        nb_enfants = famille('cmu_nb_pac', period)
 
         # Une personne de 25 ans ne doit pas être à charge fiscale, ni hébergée par ses parents, ni recevoir de pensions alimentaires pour pouvoir bénéficier de la CMU individuellement.
-        a_charge_des_parents = simulation.calculate('enfant_a_charge', this_year)
-        habite_chez_parents = simulation.calculate('habite_chez_parents', period)
-        recoit_pension = simulation.calculate_add('pensions_alimentaires_percues', previous_year) > 0
+        a_charge_des_parents = famille.members('enfant_a_charge', this_year)
+        habite_chez_parents = famille.members('habite_chez_parents', period)
+        recoit_pension = famille.members('pensions_alimentaires_percues', previous_year, options = [ADD]) > 0
         condition_independance = not_(a_charge_des_parents + habite_chez_parents + recoit_pension)
 
-        age = simulation.calculate('age', period)
+        age = famille.members('age', period)
         condition_age = (age >= age_min)
 
 
-        eligibilite_famille = (nb_enfants > 0) + self.any_by_roles(condition_age) + not_(self.any_by_roles(not_(condition_independance)))
+        eligibilite_famille = (
+            (nb_enfants > 0)
+            + famille.any(condition_age)
+            + famille.all(condition_independance)
+            )
 
         return eligibilite_famille
+
+
+class acs_montant_i(Variable):
+    column = FloatCol
+    entity = Individu
+    label = u"Montant de l'ACS attribué pour une personne en cas d'éligibilité de la famille"
+    definition_period = MONTH
+
+    def formula_2009_08_01(individu, period, legislation):
+        P = legislation(period).cmu
+        age = individu('age', period)
+        montant_si_pac = select(
+            [(age <= 15) * (age >= 0), age <= 25],
+            [P.acs_moins_16_ans, P.acs_16_49_ans]
+            )
+        montant_si_parent = select(
+            [age <=15, age <= 49, age <= 59, age >= 60],
+            [P.acs_moins_16_ans, P.acs_16_49_ans, P.acs_50_59_ans, P.acs_plus_60_ans],
+            )
+        return where(
+            individu.has_role(Famille.PARENT),
+            montant_si_parent,
+            montant_si_pac
+            )
 
 
 class acs_montant(Variable):
@@ -41,17 +69,9 @@ class acs_montant(Variable):
     label = u"Montant de l'ACS en cas d'éligibilité"
     definition_period = MONTH
 
-    def formula_2009_08_01(self, simulation, period):
-        age_holder = simulation.compute('age', period)
-        P = simulation.legislation_at(period.start).cmu
-
-        ages_couple = self.split_by_roles(age_holder, roles = [CHEF, PART])
-        ages_pac = self.split_by_roles(age_holder, roles = ENFS)
-
-        return ((nb_par_age(ages_couple, 0, 15) + nb_par_age(ages_pac, 0, 15)) * P.acs_moins_16_ans +
-            (nb_par_age(ages_couple, 16, 49) + nb_par_age(ages_pac, 16, 25)) * P.acs_16_49_ans +
-            nb_par_age(ages_couple, 50, 59) * P.acs_50_59_ans +
-            nb_par_age(ages_couple, 60, 200) * P.acs_plus_60_ans)
+    def formula_2009_08_01(famille, period, legislation):
+        acs_montant_i = famille.members('acs_montant_i', period)
+        return famille.sum(acs_montant_i)
 
 
 class cmu_forfait_logement_base(Variable):
@@ -60,10 +80,10 @@ class cmu_forfait_logement_base(Variable):
     label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
-        P = simulation.legislation_at(period.start).cmu.forfait_logement
-        law_rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
+    def formula(famille, period, legislation):
+        cmu_nbp_foyer = famille('cmu_nbp_foyer', period)
+        P = legislation(period).cmu.forfait_logement
+        law_rsa = legislation(period).prestations.minima_sociaux.rmi
 
         return forfait_logement(cmu_nbp_foyer, P, law_rsa)
 
@@ -74,11 +94,11 @@ class cmu_forfait_logement_al(Variable):
     label = u"Forfait logement applicable en cas d'aide au logement"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        nb_personnes_foyer = simulation.calculate('cmu_nbp_foyer', period)
-        aide_logement = simulation.calculate_add('aide_logement', period)
-        P = simulation.legislation_at(period.start).cmu.forfait_logement_al
-        law_rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
+    def formula(famille, period, legislation):
+        nb_personnes_foyer = famille('cmu_nbp_foyer', period)
+        aide_logement = famille('aide_logement', period)
+        P = legislation(period).cmu.forfait_logement_al
+        law_rsa = legislation(period).prestations.minima_sociaux.rmi
 
         return (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rsa))
 
@@ -89,9 +109,9 @@ class cmu_nbp_foyer(Variable):
     label = u"Nombre de personnes dans le foyer CMU"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        nb_parents = simulation.calculate('nb_parents', period)
-        cmu_nb_pac = simulation.calculate('cmu_nb_pac', period)
+    def formula(famille, period, legislation):
+        nb_parents = famille('nb_parents', period)
+        cmu_nb_pac = famille('cmu_nb_pac', period)
 
         return nb_parents + cmu_nb_pac
 
@@ -168,9 +188,9 @@ class acs_plafond(Variable):
     label = u"Plafond annuel de ressources pour l'éligibilité à l'ACS"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        cmu_c_plafond = simulation.calculate('cmu_c_plafond', period)
-        P = simulation.legislation_at(period.start).cmu
+    def formula(famille, period, legislation):
+        cmu_c_plafond = famille('cmu_c_plafond', period)
+        P = legislation(period).cmu
 
         return cmu_c_plafond * (1 + P.majoration_plafond_acs)
 
@@ -181,13 +201,13 @@ class cmu_base_ressources_individu(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    def formula(individu, period, legislation):
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
         # N-1
         last_month = period.last_month
 
-        P = simulation.legislation_at(period.start).cmu
+        P = legislation(period).cmu
 
         ressources_a_inclure = [
             'aah',
@@ -211,19 +231,23 @@ class cmu_base_ressources_individu(Variable):
             'salaire_net',
         ]
 
-        ressources = sum(
-            [simulation.calculate_add(ressource, previous_year) for ressource in ressources_a_inclure]
-            )
+        ressources = sum([
+            individu(ressource, previous_year, options = [ADD])
+            for ressource in ressources_a_inclure
+            ])
 
-        pensions_alim_versees = abs_(simulation.calculate_add('pensions_alimentaires_versees_individu', previous_year))
+        pensions_alim_versees = abs_(individu(
+            'pensions_alimentaires_versees_individu',
+            previous_year, options = [ADD])
+        )
 
-        revenus_stage_formation_pro_last_month = simulation.calculate('revenus_stage_formation_pro', last_month)
+        revenus_stage_formation_pro_last_month = individu('revenus_stage_formation_pro', last_month)
 
         # Abattement sur revenus d'activité si chômage ou formation professionnelle
         def abbattement_chomage():
-            indemnites_chomage_partiel = simulation.calculate_add('indemnites_chomage_partiel', previous_year)
-            salaire_net = simulation.calculate_add('salaire_net', previous_year)
-            chomage_last_month = simulation.calculate('chomage_net', last_month)
+            indemnites_chomage_partiel = individu('indemnites_chomage_partiel', previous_year, options = [ADD])
+            salaire_net = individu('salaire_net', previous_year, options = [ADD])
+            chomage_last_month = individu('chomage_net', last_month)
             condition = or_(chomage_last_month > 0, revenus_stage_formation_pro_last_month > 0)
             assiette = indemnites_chomage_partiel + salaire_net
             return condition * assiette * P.abattement_chomage
@@ -231,19 +255,19 @@ class cmu_base_ressources_individu(Variable):
 
         # Revenus de stage de formation professionnelle exclus si plus perçus depuis 1 mois
         def neutralisation_stage_formation_pro():
-            revenus_stage_formation_pro_annee = simulation.calculate_add('revenus_stage_formation_pro', previous_year)
+            revenus_stage_formation_pro_annee = individu('revenus_stage_formation_pro', previous_year, options = [ADD])
             return (revenus_stage_formation_pro_last_month == 0) * revenus_stage_formation_pro_annee
 
 
         def revenus_tns():
             last_year = period.last_year
 
-            revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', previous_year)
+            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', previous_year, options = [ADD])
 
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
-            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year)
-            tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year)
-            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year)
+            tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year)
+            tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year)
+            tns_autres_revenus = individu('tns_autres_revenus', last_year)
 
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
@@ -303,12 +327,10 @@ class cmu_nb_pac(Variable):
     label = u"Nombre de personnes à charge au titre de la CMU"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        age_holder = simulation.compute('age', period)
-        P = simulation.legislation_at(period.start).cmu
-
-        ages = self.split_by_roles(age_holder, roles = ENFS)
-        return nb_par_age(ages, 0, P.age_limite_pac)
+    def formula(famille, period, legislation):
+        P = legislation(period).cmu
+        age = famille.members('age', period)
+        return famille.sum((age >= 0) * (age <= P.age_limite_pac), role = Famille.ENFANT)
 
 
 class cmu_c(Variable):
@@ -382,11 +404,3 @@ def forfait_logement(nbp_foyer, P, law_rsa):
             [P.taux_1p, P.taux_2p, P.taux_3p_plus]
             )
 
-def nb_par_age(age_by_role, min, max):
-    '''
-    Calcule le nombre d'individus ayant un âge compris entre min et max
-    '''
-    return sum(
-        (min <= age) & (age <= max)
-        for age in age_by_role.itervalues()
-        )
