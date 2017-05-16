@@ -2,9 +2,9 @@
 
 ### 18.2.2 - [#742](https://github.com/openfisca/openfisca-france/pull/742)
 
-* Amélioration technique
+* Amélioration de messages d'erreur
 * Détails :
-  - Met à jour les tests sur la législation à la version `Openfisca-Core` `12.1.1`.
+  - Amélioration des messages d'erreur en cas d'erreur dans la législation
 
 ### 18.2.1 - [#708](https://github.com/openfisca/openfisca-france/pull/708)
 
