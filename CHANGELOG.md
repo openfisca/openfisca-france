@@ -1,5 +1,11 @@
 # Changelog
 
+### 18.2.2 - [#742](https://github.com/openfisca/openfisca-france/pull/742)
+
+* Amélioration technique
+* Détails :
+  - Amélioration des messages d'erreur en cas d'erreur dans la législation
+
 ### 18.2.1 - [#708](https://github.com/openfisca/openfisca-france/pull/708)
 
 * Évolution du système socio-fiscal
