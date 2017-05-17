@@ -2,7 +2,7 @@
 
 ### 18.2.2 - [#742](https://github.com/openfisca/openfisca-france/pull/742)
 
-* Amélioration de messages d'erreur
+* Amélioration technique
 * Détails :
   - Amélioration des messages d'erreur en cas d'erreur dans la législation
 
