@@ -4597,6 +4597,7 @@
         <VALUE deb="2014-04-01" valeur="0.4582" />
       </CODE>
       <CODE code="taux_majore_dom" description="Taux du complément familial majoré dans les DOM" format="percent" origin="ipp">
+        <VALUE deb="2017-04-01" valeur="0.3331" />
         <VALUE deb="2016-04-01" valeur="0.3093" />
         <VALUE deb="2015-04-01" valeur="0.2855" />
         <VALUE deb="2014-04-01" valeur="0.2617" />
