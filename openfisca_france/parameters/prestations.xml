@@ -3320,6 +3320,8 @@
         <VALUE deb="2001-01-01" valeur="18.81" />
       </CODE>
       <CODE code="montant_plein" description="Montant journalier à taux plein" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2017-04-01" valeur="16.32" />
+        <VALUE deb="2016-04-01" valeur="16.27" />
         <VALUE deb="2015-01-01" valeur="16.25" />
         <VALUE deb="2014-01-01" valeur="16.11" />
         <VALUE deb="2013-01-01" valeur="15.90" />
