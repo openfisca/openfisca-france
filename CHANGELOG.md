@@ -1,5 +1,13 @@
 # Changelog
 
+### 18.2.2 - [#747](https://github.com/openfisca/openfisca-france/pull/747)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2017.
+* Zones impactées : `openfisca_france/parameters/prestations.xml`, plus particulièrement les plafonds et montants de l'ASI et de l'ASPA
+* Détails :
+	- http://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf
+
 ### 18.2.1 - [#708](https://github.com/openfisca/openfisca-france/pull/708)
 
 * Évolution du système socio-fiscal
