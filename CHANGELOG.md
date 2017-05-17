@@ -1,5 +1,14 @@
 # Changelog
 
+### 18.2.6 - [#747](https://github.com/openfisca/openfisca-france/pull/747)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2017.
+* Zones impactées : `prestations/minima_sociaux/asi_aspa`, 
+* Détails :
+  - Mise à jour des plafonds et montants de l'ASI et de l'ASPA
+  - Source: http://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf
+
 ### 18.2.5 - [#760](https://github.com/openfisca/openfisca-france/pull/759)
 
 * Changement mineur
@@ -18,7 +27,6 @@
 * Changement mineur
 * Détails :
   - Retirer le fichier model/datatrees, le script de génération et les références aux date-trees présentes dans france_taxbenefitsystem.py
-
 
 ### 18.2.2 - [#742](https://github.com/openfisca/openfisca-france/pull/742)
 
