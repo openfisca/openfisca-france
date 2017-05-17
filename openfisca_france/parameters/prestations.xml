@@ -2342,6 +2342,8 @@
   <NODE code="ata" origin="ipp">
     <CODE code="montant_journalier" format="float" origin="ipp" type="monetary">
       <END deb="2015-11-01" />
+      <VALUE deb="2017-04-01" valeur="11.49" />
+      <VALUE deb="2016-04-01" valeur="11.46" />
       <VALUE deb="2015-01-01" valeur="11.45" />
       <VALUE deb="2014-01-01" valeur="11.35" />
       <VALUE deb="2013-01-01" valeur="11.2" />
