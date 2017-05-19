@@ -1,8 +1,8 @@
 #! /usr/bin/env bash
 
-current_version=`python setup.py --version`
+set -e
 
-make test
+current_version=`python setup.py --version`
 
 # This part is executed only when merging a branch in master.
 if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" != false ]]; then
