@@ -2,8 +2,6 @@
 
 current_version=`python setup.py --version`
 
-make test
-
 # This part is executed only when merging a branch in master.
 if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" != false ]]; then
     # A version bump is requested by default, except:
