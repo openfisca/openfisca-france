@@ -298,6 +298,22 @@
     f2da: 20000
   output_variables:
     irpp: 0
+- name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 50 000 €"
+  description: "TODO: Check with Mahdi wether 2DA exists in 2013."
+  period: 2013
+  absolute_error_margin: 0.5
+  input_variables:
+    f2da: 50000
+  output_variables:
+    irpp: 0
+- name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 150 000 €"
+  description: "TODO: Check with Mahdi wether 2DA exists in 2013."
+  period: 2013
+  absolute_error_margin: 0.5
+  input_variables:
+    f2da: 150000
+  output_variables:
+    irpp: 0
 
 
 - name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €"
@@ -374,6 +390,23 @@
     f2dc: 20000
   output_variables:
     irpp: 0
+- name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 50 000 €"
+  description: "TODO: Check with Mahdi."
+  period: 2013
+  absolute_error_margin: 0.5
+  input_variables:
+    f2dc: 50000
+  output_variables:
+    irpp: 0
+- name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 150 000 €"
+  description: "TODO: Check with Mahdi."
+  period: 2013
+  absolute_error_margin: 0.5
+  input_variables:
+    f2dc: 150000
+  output_variables:
+    irpp: 0
+
 
 - name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €"
   period: 2010

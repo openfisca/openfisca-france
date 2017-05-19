@@ -339,6 +339,112 @@
   output_variables:
     af: 0 / 12
 
+
+- name: "Allocations familiales - Couple, 2 enfants nés en 1990"
+  description: Montant AF brut de CRDS
+  period: 2006-01
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2"]
+  individus:
+    - id: "parent1"
+      date_naissance: "1966-01-01"
+    - id: "parent2"
+      date_naissance: "1966-01-01"
+    - id: "enfant1"
+      date_naissance: "1990-01-01"
+    - id: "enfant2"
+      date_naissance: "1990-01-01"
+  output_variables:
+    af: 2118.96 / 12
+
+- name: "Allocations familiales - Couple, 2 enfants nés en 1990"
+  description: Montant AF brut de CRDS
+  period: 2007-01
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2"]
+  individus:
+    - id: "parent1"
+      date_naissance: "1966-01-01"
+    - id: "parent2"
+      date_naissance: "1966-01-01"
+    - id: "enfant1"
+      date_naissance: "1990-01-01"
+    - id: "enfant2"
+      date_naissance: "1990-01-01"
+  output_variables:
+    af: 2154.96 / 12
+
+- name: "Allocations familiales - Couple, 2 enfants nés en 1990"
+  description: Montant AF brut de CRDS
+  period: 2008-01
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2"]
+  individus:
+    - id: "parent1"
+      date_naissance: "1966-01-01"
+    - id: "parent2"
+      date_naissance: "1966-01-01"
+    - id: "enfant1"
+      date_naissance: "1990-01-01"
+    - id: "enfant2"
+      date_naissance: "1990-01-01"
+  output_variables:
+    af: 2176.56 / 12
+
+- name: "Allocations familiales - Couple, 2 enfants nés en 1990"
+  description: Montant AF brut de CRDS
+  period: 2009-01
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2"]
+  individus:
+    - id: "parent1"
+      date_naissance: "1966-01-01"
+    - id: "parent2"
+      date_naissance: "1966-01-01"
+    - id: "enfant1"
+      date_naissance: "1990-01-01"
+    - id: "enfant2"
+      date_naissance: "1990-01-01"
+  output_variables:
+    af: 2241.72 / 12
+
+
 - name: "Allocations familiales - Couple, 3 enfants nés en 2003, 2004 et 2005"
   description: Montant AF brut de CRDS
   period: 2006-01
