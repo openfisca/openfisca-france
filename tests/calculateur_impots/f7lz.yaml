@@ -1,5 +1,6 @@
 - name: f7lz
   period: 2005
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
@@ -27,6 +28,7 @@
     rfr: 17280
 - name: f7lz
   period: 2006
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
@@ -54,6 +56,7 @@
     rfr: 21600
 - name: f7lz
   period: 2007
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
@@ -82,6 +85,7 @@
     rni: 21600
 - name: f7lz
   period: 2008
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
@@ -110,6 +114,7 @@
     rni: 21600
 - name: f7lz
   period: 2009
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
@@ -138,6 +143,7 @@
     rni: 21600
 - name: f7lz
   period: 2010
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
@@ -166,6 +172,7 @@
     rni: 21600
 - name: f7lz
   period: 2011
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
@@ -194,6 +201,7 @@
     rni: 21600
 - name: f7lz
   period: 2012
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
@@ -223,6 +231,7 @@
     rni: 21600
 - name: f7lz
   period: 2013
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:

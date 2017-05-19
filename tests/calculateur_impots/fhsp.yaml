@@ -1,5 +1,6 @@
 - name: fhsp
   period: 2013
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:

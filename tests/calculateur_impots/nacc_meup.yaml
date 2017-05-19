@@ -1,5 +1,6 @@
 - name: nacc_meup
   period: 2007
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
@@ -28,6 +29,7 @@
     rni: 21600
 - name: nacc_meup
   period: 2008
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
@@ -56,6 +58,7 @@
     rni: 21600
 - name: nacc_meup
   period: 2009
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
@@ -84,6 +87,7 @@
     rni: 21600
 - name: nacc_meup
   period: 2010
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
@@ -112,6 +116,7 @@
     rni: 21600
 - name: nacc_meup
   period: 2011
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
@@ -140,6 +145,7 @@
     rni: 21600
 - name: nacc_meup
   period: 2012
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
@@ -169,6 +175,7 @@
     rni: 22035
 - name: nacc_meup
   period: 2013
+  relative_error_margin: 0.001
   familles:
   - id: '0'
     parents:
