@@ -16,8 +16,7 @@ test:
   pre:
     - git fetch
   override:
-    - make test
-    - ./check-version-bump.sh
+    - ./run-tests.sh
 deployment:
   master:
     branch: master
