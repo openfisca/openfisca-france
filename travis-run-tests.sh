@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+set -e
+
 current_version=`python setup.py --version`
 
 # This part is executed only when merging a branch in master.
