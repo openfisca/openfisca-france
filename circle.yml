@@ -20,7 +20,7 @@ test:
     - ./check-version-bump.sh
 deployment:
   master:
-    branch: master
+    branch: circle
     commands:
       - git tag `python setup.py --version`
       - git push --tags  # update the repository version
