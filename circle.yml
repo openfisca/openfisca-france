@@ -9,6 +9,8 @@ dependencies:
   override:
     - pip install --upgrade pip wheel  # pip >= 8.0 needed to be compatible with "manylinux" wheels, used by numpy >= 1.11
     - pip install twine
+    - pip install babel # this line is only needed by internationalization with i18n. We should remove it when we get rid of i18n.
+    - python setup.py compile_catalog  # this line is only needed by internationalization with i18n. We should remove it when we get rid of i18n.
     - pip install .[test] --upgrade
 test:
   pre:
