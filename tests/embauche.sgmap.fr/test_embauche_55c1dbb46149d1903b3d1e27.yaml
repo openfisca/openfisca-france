@@ -10,7 +10,7 @@ description: |
   Coeff max est égal au plafond donc montant annuel Fillon =
   17490,20* 0,2795 = 4888,51
   Montant mensuel = 407,36€
-period: "month:2015-9-1"
+period: 2015-09
 relative_error_margin: 0.02
 input_variables:
   allegement_fillon_mode_recouvrement: 2

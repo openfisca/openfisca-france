@@ -1,7 +1,7 @@
 name: "Test Fillon à 1,7 SMIC (au-delà du seuil)"
 keywords: Fillon
 description: "Au-delà de 1,6 SMIC, la déduction est nulle"
-period: "month:2015-9-1"
+period: 2015-09
 input_variables:
   allegement_fillon_mode_recouvrement: 2
   contrat_de_travail_debut: "2015-01-01"

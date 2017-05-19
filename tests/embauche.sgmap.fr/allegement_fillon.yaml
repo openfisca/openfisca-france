@@ -1,6 +1,6 @@
 name: Fillon
 
-period: "month:2015-10-1"
+period: "month:2015-10"
 relative_error_margin: 0.02
 input_variables:
   contrat_de_travail_debut: "2015-1-1"

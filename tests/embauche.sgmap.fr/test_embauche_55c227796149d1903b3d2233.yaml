@@ -8,7 +8,7 @@ description: |
   Donc :
   (0,2835/0,6) * [1,6*(17490,20/24486,28)-1] = 0,06751
   (24486,28*0,06751)/12 mois = 137,75 par mois
-period: "month:2015-9-1"
+period: 2015-09
 relative_error_margin: 0.1
 input_variables:
   allegement_fillon_mode_recouvrement: 2

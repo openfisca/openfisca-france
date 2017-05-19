@@ -9,7 +9,7 @@ description: |
   Contribution au développement de l'apprentissage en 2015 : 0 (obsolète)
   Montant mensuel = 0
 
-period: "month:2015-1-1"
+period: 2015-01
 relative_error_margin: 0.02
 input_variables:
   contrat_de_travail_debut: "2015-1-1"
