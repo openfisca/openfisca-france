@@ -1,7 +1,7 @@
 machine:
   python:
     version: 2.7.12  # this specific version is preinstalled on the CI servers and allows faster builds
-  env:
+  environment:
     PYPI_USERNAME: openfisca-bot  # set here the name of your Pypi account to automatically publish your template to Pypi
     # PYPI_PASSWORD: this value is set in CircleCI's web interface; do not set it here, it is a secret!
 
