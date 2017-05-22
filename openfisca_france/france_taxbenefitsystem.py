@@ -7,7 +7,7 @@ from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 
 from .entities import entities
 from . import decompositions, scenarios
-from .model import datatrees
+
 from .model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import preprocessing
 from .conf.cache_blacklist import cache_blacklist as conf_cache_blacklist
 
@@ -24,7 +24,6 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
     decomposition_file_path = os.path.join(
         os.path.dirname(os.path.abspath(decompositions.__file__)), 'decomp.xml')
     preprocess_legislation = staticmethod(preprocessing.preprocess_legislation)
-    columns_name_tree_by_entity = datatrees.columns_name_tree_by_entity
 
     REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
     REV_TYP = None  # utils.REV_TYP  # Not defined for France
