@@ -1,5 +1,11 @@
 # Changelog
 
+### 18.2.3 - [#757](https://github.com/openfisca/openfisca-france/pull/757)
+
+* Changement mineur
+* Détails :
+  - Retirer le fichier model/datatrees, le script de génération et les références aux date-trees présentes dans france_taxbenefitsystem.py
+
 ### 18.2.2 - [#742](https://github.com/openfisca/openfisca-france/pull/742)
 
 * Amélioration technique
