@@ -253,6 +253,7 @@
     f2da: 20000
   output_variables:
     irpp: -0
+
 - name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 50 000 €"
   period: 2011
   absolute_error_margin: 0.5
@@ -298,23 +299,6 @@
     f2da: 20000
   output_variables:
     irpp: -0
-- name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 50 000 €"
-  description: "TODO: Check with Mahdi wether 2DA exists in 2013."
-  period: 2013
-  absolute_error_margin: 0.5
-  input_variables:
-    f2da: 50000
-  output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 150 000 €"
-  description: "TODO: Check with Mahdi wether 2DA exists in 2013."
-  period: 2013
-  absolute_error_margin: 0.5
-  input_variables:
-    f2da: 150000
-  output_variables:
-    irpp: -0
-
 
 - name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €"
   period: 2010
@@ -390,23 +374,6 @@
     f2dc: 20000
   output_variables:
     irpp: -0
-- name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 50 000 €"
-  description: "TODO: Check with Mahdi."
-  period: 2013
-  absolute_error_margin: 0.5
-  input_variables:
-    f2dc: 50000
-  output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 150 000 €"
-  description: "TODO: Check with Mahdi."
-  period: 2013
-  absolute_error_margin: 0.5
-  input_variables:
-    f2dc: 150000
-  output_variables:
-    irpp: -0
-
 
 - name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €"
   period: 2010
@@ -414,21 +381,21 @@
   input_variables:
     f2dh: 20000
   output_variables:
-    irpp: -345
+    irpp: 345
 - name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €"
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 50000
   output_variables:
-    irpp: -345
+    irpp: 345
 - name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €"
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 150000
   output_variables:
-    irpp: -345
+    irpp: 345
 
 - name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €"
   period: 2011
@@ -436,21 +403,21 @@
   input_variables:
     f2dh: 20000
   output_variables:
-    irpp: -345
+    irpp: 345
 - name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €"
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 50000
   output_variables:
-    irpp: -345
+    irpp: 345
 - name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €"
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 150000
   output_variables:
-    irpp: -345
+    irpp: 345
 
 - name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €"
   period: 2012
@@ -458,18 +425,21 @@
   input_variables:
     f2dh: 20000
   output_variables:
+    irpp: 345
 - name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €"
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 50000
   output_variables:
+    irpp: 345
 - name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €"
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 150000
   output_variables:
+    irpp: 345
 
 - name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €"
   period: 2013
@@ -477,18 +447,21 @@
   input_variables:
     f2dh: 20000
   output_variables:
+    irpp: 345
 - name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €"
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 50000
   output_variables:
+    irpp: 345
 - name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €"
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 150000
   output_variables:
+    irpp: 345
 
 
 - name: "IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €"
