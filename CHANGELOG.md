@@ -1,10 +1,18 @@
 # Changelog
 
+### 18.2.4 - [#759](https://github.com/openfisca/openfisca-france/pull/759)
+
+* Changement mineur
+* Détails :
+  - suppression des fichiers `i18n`, ainsi que les références aux `mo (`makefile`  et `setup.py`)
+  - suppression des imports et config de `babel`, utilisés pour le test de `i18n`
+
 ### 18.2.3 - [#757](https://github.com/openfisca/openfisca-france/pull/757)
 
 * Changement mineur
 * Détails :
   - Retirer le fichier model/datatrees, le script de génération et les références aux date-trees présentes dans france_taxbenefitsystem.py
+
 
 ### 18.2.2 - [#742](https://github.com/openfisca/openfisca-france/pull/742)
 
