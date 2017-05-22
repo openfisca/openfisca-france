@@ -4,7 +4,7 @@ Merci de contribuer à OpenFisca ! Effacez cette ligne ainsi que, pour chaque li
 * Périodes concernées : toutes. | jusqu'au JJ/MM/AAAA. | à partir du JJ/MM/AAAA.
 * Zones impactées : `chemin/vers/le/fichier/contenant/les/variables/impactées`.
 * Détails :
-  - Description de la fonctionalité ajoutée ou du nouveau comportement adopté.
+  - Description de la fonctionnalité ajoutée ou du nouveau comportement adopté.
   - Cas dans lesquels une erreur était constatée.
 
 - - - -
