@@ -2,9 +2,10 @@
 # alors qu'Openfisca la caclule pour Lyon (.0175)
 # Marges d'erreur définies par défaut égales à 0.5 euros
 
-- name: "Cotisations sociales - Celibataire public titulaire etat" 
+- name: "Cotisations sociales - Celibataire public titulaire etat"
   description: Montant cotisations sociales celibataire public titulaire etat
   period: 2012-01
+  absolute_error_margin: 0.005
   input_variables:
     date_naissance: "1972-01-01"
     depcom_entreprise: "69381"
@@ -54,6 +55,7 @@
 - name: "Cotisations sociales - Celibataire public titulaire territoriale"
   description: Montant cotisations sociales celibataire public titulaire territoriale
   period: 2012-01
+  absolute_error_margin: 0.005
   input_variables:
     date_naissance: "1972-01-01"
     depcom_entreprise: "69381"
@@ -74,7 +76,7 @@
     rafp_employeur: -20
     pension_civile_employeur: -546
     cotisations_employeur_contributives: -(546 + 20)
-    
+
 
     cotisations_employeur: -(546 + 10 + 20 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6)
                 # pension, ati, rafp, maladie, famille, fnal1, fnal2, csa,
@@ -99,6 +101,7 @@
 - name: "Cotisations sociales - Celibataire public titulaire hospitaliere"
   description: Montant cotisations sociales celibataire public titulaire hospitaliere
   period: 2012-01
+  absolute_error_margin: 0.005
   input_variables:
     date_naissance: "1972-01-01"
     depcom_entreprise: "69381"
@@ -140,6 +143,7 @@
 - name: "Cotisations sociales - Celibataire public non titulaire"
   description: Montant cotisations sociales celibataire public non titulaire
   period: 2012-01
+  absolute_error_margin: 0.005
   absolute_error_margin: 1
   input_variables:
     date_naissance: 1972-01-01
@@ -184,6 +188,7 @@
 
 - name: "Cotisations sociales - Couple 1 public titulaire etat deux enfants"
   period: 2012-01
+  absolute_error_margin: 0.005
   description: Montant cotisations sociales couple un public titulaire deux enfants
   familles:
     parents: ["parent1", "parent2"]
@@ -240,6 +245,7 @@
 
 - name: "Cotisations sociales - Couple 2 public titulaire etat deux enfants"
   period: 2012-01
+  absolute_error_margin: 0.005
   description: Montant cotisations sociales couple deux public titulaire deux enfants
   absolute_error_margin: 1
   familles:
