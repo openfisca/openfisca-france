@@ -223,7 +223,7 @@
   output_variables:
     iai: 1577
     ir_plaf_qf: 1685
-    irpp: 1577
+    irpp: -1577
     nbptr: 1
     ppe: 0
     rbg: 21600
@@ -254,7 +254,7 @@
   output_variables:
     iai: 1566
     ir_plaf_qf: 1674
-    irpp: 1566
+    irpp: -1566
     nbptr: 1
     ppe: 0
     rbg: 21600
