@@ -1,25 +1,33 @@
 # -*- coding: utf-8 -*-
 
+"""
+Ce fichier contient une fonction `transform_ipp_tree` appelée (indirectement) par le script
+`convert_ipp_xlsx_to_openfisca_xml.py`.
+
+Cette fonction renomme des paramètres provenant des barèmes IPP pour insertion dans l'arbre des paramètres OpenFisca.
+Le script de merge éclate cet arbre cible en plusieurs fichiers XML écrits dans le répertoire `parameters`.
+"""
 
 import collections
-import datetime
 
 
-def fixed_bases_tax_scale(base_by_slice_name, null_rate_base = None, rates_tree = None):
+def fixed_bases_tax_scale(base_by_slice_name, rates_tree, null_rate_base = None):
+    """
+    Crée un barème qui sera transformé en un élément XML <BAREME> par le script de fusion.
+
+    Cette fonction sert essentiellement pour les barèmes des cotisations sociales
+    dont les seuils s'expriment en unité du plafond de la sécurité sociale.
+
+    Voir la fonction `tax_scale` pour une version plus simple.
+    """
     first_start = UnboundLocalError
-    last_stop = UnboundLocalError
     for bracket in rates_tree.itervalues():
         if isinstance(bracket, (float, int)):
             continue
         bracket_start = bracket[0]['start']
         if first_start is UnboundLocalError or bracket_start < first_start:
             first_start = bracket_start
-        bracket_stop = bracket[-1].get('stop')
-        if last_stop is UnboundLocalError or \
-                last_stop is not None and (bracket_stop is None or last_stop < bracket_stop):
-            last_stop = bracket_stop
     assert first_start is not UnboundLocalError
-    assert last_stop is not UnboundLocalError
 
     # Convert constant brackets to real brackets.
     for slice_name, bracket in rates_tree.iteritems():
@@ -28,8 +36,6 @@ def fixed_bases_tax_scale(base_by_slice_name, null_rate_base = None, rates_tree 
                 start = first_start,
                 value = str(bracket),
                 )
-            if last_stop is not None:
-                rates_bracket_item['stop'] = last_stop
             rates_tree[slice_name] = [rates_bracket_item]
 
     if null_rate_base is not None:
@@ -38,18 +44,8 @@ def fixed_bases_tax_scale(base_by_slice_name, null_rate_base = None, rates_tree 
             if first_start < bracket[0]['start']:
                 bracket.insert(0, dict(
                     start = first_start,
-                    stop = bracket[0]['start'] - datetime.timedelta(days = 1),
                     value = '0',
                     ))
-            stop = bracket[-1].get('stop')
-            if stop is not None and (last_stop is None or stop < last_stop):
-                bracket_last_item = dict(
-                    start = stop + datetime.timedelta(days = 1),
-                    value = '0',
-                    )
-                if last_stop is not None:
-                    bracket_last_item['stop'] = last_stop
-                bracket.append(bracket_last_item)
             for item in bracket:
                 if item['value'] is None:
                     item['value'] = '0'
@@ -58,8 +54,6 @@ def fixed_bases_tax_scale(base_by_slice_name, null_rate_base = None, rates_tree 
             start = first_start,
             value = '0',
             )
-        if last_stop is not None:
-            rates_bracket_null_item['stop'] = last_stop
         rates_tree['tranche_nulle'] = [rates_bracket_null_item]
 
         base_by_slice_name = base_by_slice_name.copy()
@@ -72,20 +66,13 @@ def fixed_bases_tax_scale(base_by_slice_name, null_rate_base = None, rates_tree 
             start = rates_bracket[0]['start'],
             value = str(base_by_slice_name[slice_name]),
             )
-        stop = rates_bracket[-1].get('stop')
-        if stop is not None:
-            bases_bracket_item['stop'] = stop
         bases_tree[slice_name] = [bases_bracket_item]
 
-    return dict(
-        TYPE = 'BAREME',
-        SEUIL = bases_tree,
-        TAUX = rates_tree,
-        )
+    return tax_scale(bases_tree, rates_tree)
 
 
-def tax_scale(bases_tree, rates_tree = None):
-    assert rates_tree is not None, 'TODO'
+def tax_scale(bases_tree, rates_tree):
+    """Crée un barème qui sera transformé en un élément XML <BAREME> par le script de fusion."""
     return dict(
         TYPE = 'BAREME',
         SEUIL = bases_tree,
@@ -94,6 +81,9 @@ def tax_scale(bases_tree, rates_tree = None):
 
 
 def transform_ipp_tree(root):
+    """
+    root est la racine de l'arbre construit depuis les fichiers XLS de l'IPP.
+    """
     del root['baremes_ipp_tarification_energie_logement']
     del root['baremes_ipp_chomage_unemployment']
     # root['chomage'] = root.pop('baremes_ipp_chomage_unemployment')
@@ -246,7 +236,7 @@ def transform_ipp_tree(root):
     ecodev['taux_plafond'] = taux_plafond = ecodev.pop('plafond_en_du_revenu_net_global')
 
     # reduction impot emprunt
-    reductions_impots['intemp'] = intemp = impot_revenu.pop('habitat_princ')
+    reductions_impots['intemp'] = intemp = impot_revenu.pop('habitat_princ_reduc')
     reduction_d_impot_pour_interets_d_emprunt_habitat = intemp['reduction_d_impot_pour_interets_d_emprunt_habitat']
     reduction_d_impot_pour_interets_d_emprunt_habitat['taux1'] = reduction_d_impot_pour_interets_d_emprunt_habitat.pop(
         'taux')
@@ -269,8 +259,11 @@ def transform_ipp_tree(root):
 
     # investissement foret
     reductions_impots['invfor'] = invfor = impot_revenu.pop('foret')
-    reductions_impots['invfor'].update(invfor.pop('reduction_d_impot_pour_investissements_forestiers'))
-    invfor['seuil'] = invfor.pop('plafond_des_depenses_d_investissement_forestier')
+    depenses_d_investissement_forestier = invfor.pop('depenses_d_investissement_forestier')
+    invfor.update({
+        'taux': depenses_d_investissement_forestier['taux'],
+        'seuil': depenses_d_investissement_forestier['plafond_de_depenses'],
+        })
 
     # prestations compensatoires
     reductions_impots['prcomp'] = prcomp = impot_revenu.pop('prest_compen')
@@ -1060,9 +1053,9 @@ def transform_ipp_tree(root):
         'majoration_par_enfant_en_du_plafond_de_ressources_avec_0_enfant')
     ars['montant_seuil_non_versement'] = montant_seuil_non_versement = ars_min.pop('montant_minimum_verse')
     ars['plafond_ressources'] = plafond_ressources = ars_plaf.pop('plafond_de_ressources_0_enfant')
-    ars['taux_primaire'] = taux_primaire = ars_m.pop('enfants_entre_6_et_11_ans_en_de_la_bmaf_1')
-    ars['taux_college'] = taux_college = ars_m.pop('enfants_entre_11_et_15_ans_en_de_la_bmaf_2')
-    ars['taux_lycee'] = taux_lycee = ars_m.pop('enfants_de_plus_de_15_ans_en_de_la_bmaf_3')
+    ars['taux_primaire'] = taux_primaire = ars_m.pop('enfants_entre_6_et_10_ans_en_de_la_bmaf_1')
+    ars['taux_college'] = taux_college = ars_m.pop('enfants_entre_11_et_14_ans_en_de_la_bmaf_2')
+    ars['taux_lycee'] = taux_lycee = ars_m.pop('enfants_15_ans_et_en_de_la_bmaf_3')
 
     prestations_familiales['cf'] = cf = dict()
     cf = prestations_familiales['cf']
@@ -1115,14 +1108,13 @@ def transform_ipp_tree(root):
 
     del prestations['paje_cm2']['conditions_pour_qu_un_enfant_adopte_ouvre_droit_a_la_prime_a_son_arrivee']
     prestations_familiales['paje'] = paje = dict()
-    paje = prestations_familiales['paje']
     paje['clmg'] = clmg = dict()
-    prestations_familiales['paje'].update(prestations.pop('paje_cm'))
-    prestations_familiales['paje'].update(prestations.pop('paje_cm2'))
-    prestations_familiales['paje'].update(prestations.pop('paje_plaf'))
-    prestations_familiales['paje'].update(prestations.pop('paje_clca'))
-    prestations_familiales['paje'].update(prestations.pop('paje_prepare'))
-    prestations_familiales['paje'].update(prestations.pop('plaf_cmg'))
+    paje.update(prestations.pop('paje_cm'))
+    paje.update(prestations.pop('paje_cm2'))
+    paje.update(prestations.pop('plaf_cmg'))
+    paje.update(prestations.pop('paje_clca'))
+    paje.update(prestations.pop('paje_prepare'))
+    paje['paje_plaf'] = paje_plaf = prestations.pop('paje_plaf')
     paje['clmg'].update(prestations.pop('paje_cmg'))
     paje['base'] = base = dict()
     paje['clca'] = clca = dict()
@@ -1149,12 +1141,13 @@ def transform_ipp_tree(root):
 
     base['avant_2014'] = avant_2014 = dict()
     avant_2014 = base['avant_2014']
-    avant_2014['plafond_ressources_0_enf'] = paje.pop('plafond_de_ressources_0_enfant')
-    prestations_familiales['paje'].update(paje.pop('majoration_en_ou_en_du_plafond_de_ressources_avec_0_enfant'))
-    avant_2014['majoration_biact_parent_isoles'] = majoration_biact_parent_isoles = paje.pop(
-        'biactifs_et_parents_isoles_1')
-    avant_2014['taux_majoration_2_premiers_enf'] = taux_majoration_2_premiers_enf = paje.pop('1er_et_2eme_enfant')
-    avant_2014['taux_majoration_3eme_enf_et_plus'] = taux_majoration_3eme_enf_et_plus = paje.pop('3eme_enfant_et_plus')
+    avant_2014['plafond_ressources_0_enf'] = paje_plaf \
+        .pop('premier_plafond_ne_ou_adopte_avant_le_1er_avril_2014') \
+        .pop('plafond_de_ressources_0_enfant')
+    paje_plaf.update(paje_plaf.pop('majoration_en_ou_en_du_plafond_de_ressources_avec_0_enfant'))
+    avant_2014['majoration_biact_parent_isoles'] = paje_plaf.pop('biactifs_et_parents_isoles_1')
+    avant_2014['taux_majoration_2_premiers_enf'] = paje_plaf.pop('1er_et_2eme_enfant')
+    avant_2014['taux_majoration_3eme_enf_et_plus'] = paje_plaf.pop('3eme_enfant_et_plus')
     paje['clmg'].update(clmg.pop('complement_libre_choix_du_mode_de_garde_en_de_la_bmaf_1'))
     clmg['taux_recours_emploi_1er_plafond'] = clmg.pop('revenus_inferieurs_a_45_du_plafond_d_allocation')
     clmg['taux_recours_emploi_2e_plafond'] = clmg.pop('revenus_superieurs_a_45_du_plafond_d_allocation')
