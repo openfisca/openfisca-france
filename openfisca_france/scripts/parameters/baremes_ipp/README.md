@@ -39,6 +39,12 @@ INFO:convert_ipp_xlsx_to_openfisca_xml:XML files written to '/tmp/baremes-ipp-v3
 
 > Ce processus de conversion de données a été internalisé dans OpenFisca-France à partir de celui de l'IPP disponible [ici](https://framagit.org/french-tax-and-benefit-tables/ipp-tax-and-benefit-tables-converters#in-the-ipp-world).
 
+### Intégration avec OpenFisca
+
+Il n'existe pas de script automatique de fusion des fichiers XML produits avec les fichiers XML existants – ceux du répertoire `parameters` d'OpenFisca-France.
+
+En déplaçant les fichiers XML du répertoire temporaire vers `openfisca_france/parameters`, le contributeur voit apparaître un *diff* dans *git*, et choisit manuellement d'ajouter ou non les lignes modifiées dans un *commit*.
+
 ### Gestion des erreurs
 
 En interne le script passe par différentes étapes de conversion : `XLSX -> XLS -> YAML raw -> YAML clean -> XML`.
