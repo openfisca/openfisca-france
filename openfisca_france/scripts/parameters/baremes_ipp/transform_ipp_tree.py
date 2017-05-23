@@ -82,7 +82,7 @@ def tax_scale(bases_tree, rates_tree):
 
 def transform_ipp_tree(root):
     """
-    root est la racine de l'arbre construit depuis les fichiers XLS de l'IPP.
+    root est la racine de l'arbre construit depuis les fichiers XLSX de l'IPP.
     """
     del root['baremes_ipp_tarification_energie_logement']
     del root['baremes_ipp_chomage_unemployment']
