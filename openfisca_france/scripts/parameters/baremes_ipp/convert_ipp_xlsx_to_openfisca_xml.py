@@ -39,11 +39,16 @@ def cmd_exists(cmd):
 
 def main():
     parser = argparse.ArgumentParser(description = __doc__)
-    parser.add_argument('--tmp-dir', default = None, help = u"Where to write output files")
+    parser.add_argument('--tmp-dir', default = None, help = u"Where to write intermediary files")
+    parser.add_argument('--xml-dir', default = None, help = u"Where to write XML files")
     parser.add_argument('--zip-url', default = default_zip_url, help = u"URL of the ZIP file to download")
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = u"Increase output verbosity")
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.INFO)
+
+    if args.xml_dir is not None and not os.path.exists(args.xml_dir):
+        log.error(u'Directory {!r} does not exist.'.format(args.xml_dir))
+        return 1
 
     if not cmd_exists('ssconvert'):
         log.error(u'Command "ssconvert" must be installed. It is provided by the "gnumeric" spreadsheet. '
@@ -90,8 +95,11 @@ def main():
     log.info(u'YAML clean files written to {!r}.'.format(yaml_clean_dir_path))
 
     log.info(u'Converting YAML clean files to XML...')
-    xml_dir_path = os.path.join(tmp_dir, 'xml')
-    os.mkdir(xml_dir_path)
+    if args.xml_dir is None:
+        xml_dir_path = os.path.join(tmp_dir, 'xml')
+        os.mkdir(xml_dir_path)
+    else:
+        xml_dir_path = args.xml_dir
     yaml_clean_to_xml.transform(yaml_clean_dir_path, xml_dir_path)
     log.info(u'XML files written to {!r}'.format(xml_dir_path))
 
