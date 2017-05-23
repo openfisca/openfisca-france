@@ -4,8 +4,7 @@
 
 * Changement mineur
 * Détails :
-  - suppression des fichiers `i18n`, ainsi que les références aux `mo (`makefile`  et `setup.py`)
-  - suppression des imports et config de `babel`, utilisés pour le test de `i18n`
+  - Suppression de l'internationalisation (traductions des messages d'erreurs). Cette fonctionnalité n'était pas utilisée.
 
 ### 18.2.3 - [#757](https://github.com/openfisca/openfisca-france/pull/757)
 
