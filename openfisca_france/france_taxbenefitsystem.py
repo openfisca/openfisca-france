@@ -15,7 +15,6 @@ from .conf.cache_blacklist import cache_blacklist as conf_cache_blacklist
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
-
 class FranceTaxBenefitSystem(TaxBenefitSystem):
     """French tax benefit system"""
     CURRENCY = u"€"
@@ -57,8 +56,6 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
 
         self.add_variables_from_directory(os.path.join(COUNTRY_DIR, 'model'))
         self.cache_blacklist = conf_cache_blacklist
-
-
 
     def prefill_cache(self):
         # Compute one "zone APL" variable, to pre-load CSV of "code INSEE commune" to "Zone APL".

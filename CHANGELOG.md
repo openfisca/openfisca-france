@@ -1,5 +1,12 @@
 # Changelog
 
+### 18.2.5 - [#760](https://github.com/openfisca/openfisca-france/pull/759)
+
+* Changement mineur
+* Détails :
+  - Supprime le système de chargement automatique des extensions via le dossier `extensions` . Ce système a été remplacé par l'import d'OpenFisca France dans le template de l'extension.
+
+
 ### 18.2.4 - [#759](https://github.com/openfisca/openfisca-france/pull/759)
 
 * Changement mineur
