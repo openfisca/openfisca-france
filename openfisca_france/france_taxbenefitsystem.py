@@ -13,8 +13,6 @@ from .conf.cache_blacklist import cache_blacklist as conf_cache_blacklist
 
 
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
-EXTENSIONS_PATH = os.path.join(COUNTRY_DIR, 'extensions')
-EXTENSIONS_DIRECTORIES = glob.glob(os.path.join(EXTENSIONS_PATH, '*/'))
 
 
 class FranceTaxBenefitSystem(TaxBenefitSystem):
@@ -58,9 +56,6 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
 
         self.add_variables_from_directory(os.path.join(COUNTRY_DIR, 'model'))
         self.cache_blacklist = conf_cache_blacklist
-        for extension_dir in EXTENSIONS_DIRECTORIES:
-            self.load_extension(extension_dir)
-
 
     def prefill_cache(self):
         # Compute one "zone APL" variable, to pre-load CSV of "code INSEE commune" to "Zone APL".
