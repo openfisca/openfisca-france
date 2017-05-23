@@ -1,5 +1,11 @@
 # Changelog
 
+### 18.2.9 - [#763]
+
+* Changement mineur
+* Détails :
+  - Introduit la réforme `smic_h_b_9_euros`
+
 ### 18.2.8 - [#762](https://github.com/openfisca/openfisca-france/pull/762)
 
 * Changement mineur
@@ -39,7 +45,7 @@
   - Mise à jour des plafonds et montants de l'ASI et de l'ASPA
   - Source: http://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf
 
-### 18.2.5 - [#760](https://github.com/openfisca/openfisca-france/pull/759)
+### 18.2.5 - [#760](https://github.com/openfisca/openfisca-france/pull/760)
 
 * Changement mineur
 * Détails :
