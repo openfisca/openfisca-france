@@ -1,5 +1,14 @@
 # Changelog
 
+### 18.3.0 - [#746](https://github.com/openfisca/openfisca-france/pull/746)
+
+* Amélioration technique : internalise et réunit les fichiers relatifs aux barèmes IPP
+* Détails :
+  - Ajoute un script qui exécute le processus d'import dans son ensemble.
+    - Laisse le contributeur commiter les changements manuellement.
+  - Désormais le seul lieu de contribution pour les paramètres est `openfisca_france/parameters`.
+    - Disparition de `param.xml`.
+
 ### 18.2.2 - [#742](https://github.com/openfisca/openfisca-france/pull/742)
 
 * Amélioration technique
