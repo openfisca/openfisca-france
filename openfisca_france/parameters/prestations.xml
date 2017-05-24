@@ -2072,6 +2072,7 @@
       <VALUE deb="1958-01-01" valeur="1600" />
     </CODE>
     <CODE code="plafond_de_ressources_menages" format="float" origin="ipp" type="monetary">
+      <VALUE deb="2017-04-01" valeur="14963.65" />
       <VALUE deb="2016-04-01" valeur="14918.9" />
       <VALUE deb="2014-10-01" valeur="14904" />
       <VALUE deb="2013-04-01" valeur="14667.32" />
@@ -2159,6 +2160,7 @@
       <VALUE deb="1956-04-01" valeur="258000" />
     </CODE>
     <CODE code="plafond_de_ressources_personnes_seules" format="float" origin="ipp" type="monetary">
+      <VALUE deb="2017-04-01" valeur="9638.42" />
       <VALUE deb="2016-04-01" valeur="9609.6" />
       <VALUE deb="2014-10-01" valeur="9600" />
       <VALUE deb="2013-04-01" valeur="9447.21" />
@@ -2585,6 +2587,7 @@
       <VALUE deb="1962-04-01" valeur="800" />
     </CODE>
     <CODE code="plafonds_de_ressources_menages" format="float" origin="ipp" type="monetary">
+      <VALUE deb="2017-04-01" valeur="14963.65" />
       <VALUE deb="2016-04-01" valeur="14918.9" />
       <VALUE deb="2014-10-01" valeur="14904" />
       <VALUE deb="2014-04-01" valeur="14755.32" />
@@ -2671,6 +2674,7 @@
       <VALUE deb="1962-04-01" valeur="3200" />
     </CODE>
     <CODE code="plafonds_de_ressources_personnes_seules" format="float" origin="ipp" type="monetary">
+      <VALUE deb="2017-04-01" valeur="9638.42" />
       <VALUE deb="2016-04-01" valeur="9609.6" />
       <VALUE deb="2014-10-01" valeur="9600" />
       <VALUE deb="2014-04-01" valeur="9503.89" />
