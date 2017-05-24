@@ -4,10 +4,25 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2016.
-* Zones impactées : `prestations.prestations_familiales.asf`.
+* Zones impactées :
+  - `prestations.prestations_familiales.asf`
+  - `prestations.prestations_familiales.cf`
+  - `prestations.minima_sociaux.ass`
 * Détails :
-  - Met à jour le taux pour ASF, entré en vigueur le 1er avril 2016.
-  - Met à jour les taux pour l'ASF, CF, ASS, ATA, entré en vigueur le 1er avril 2017.
+  - Mise à jour du montant de l'ASF aux 1er avril 2016, 1er avril 2017, et 1er avril 2018.
+    - [Source pour 2016](https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000032345545&idArticle=LEGIARTI000032347447&dateTexte=20160403)
+    - [Autre source pour 2016](http://circulaire.legifrance.gouv.fr/pdf/2016/03/cir_40664.pdf)
+    - [Source pour 2017 et 2018](https://www.legifrance.gouv.fr/eli/decret/2017/4/12/2017-532/jo/texte)
+  - Mise à jour du montant du CF majoré en métropole aux 1er avril 2017 et 1er avril 2018.
+    - [Source](https://www.legifrance.gouv.fr/eli/decret/2017/4/12/2017-532/jo/texte)
+  - Mise à jour du montant du du CF majoré dans les DOM au 1er avril 2017
+    - [Source](https://www.legifrance.gouv.fr/eli/decret/2017/4/12/2017-534/jo/texte)
+  - Mise à jour du montant de l'ASS aux 1er avril 2016 et premier avril 2017
+    - [Source pour 2016](https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte) 
+    - [Source pour 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/10/2017-1022/jo/texte) 
+  - Mise à jour du montant de l'ATA aux 1er avril 2016 et premier avril 2017
+    - [Source pour 2016](https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte) 
+    - [Source pour 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/10/2017-1022/jo/texte) 
 
 ### 18.2.6 - [#747](https://github.com/openfisca/openfisca-france/pull/747)
 
