@@ -4601,7 +4601,7 @@
       </CODE>
       <CODE code="taux_cf_majore" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2014-03-31,openfisca_valeur=0.4165,ipp_valeur=unknown)" description="Taux du complément familial majoré" format="percent" origin="ipp">
         <VALUE deb="2018-04-01" valeur="0.6248" />
-        <VALUE deb="2017-04-01" valeur="0.5822" />
+        <VALUE deb="2017-04-01" valeur="0.5833" />
         <VALUE deb="2016-04-01" valeur="0.5416" />
         <VALUE deb="2015-04-01" valeur="0.4999" />
         <VALUE deb="2014-04-01" valeur="0.4582" />
