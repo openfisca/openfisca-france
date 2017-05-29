@@ -2340,8 +2340,10 @@
     </NODE>
   </NODE>
   <NODE code="ata" origin="ipp">
-    <CODE code="montant_journalier" format="float" origin="ipp" type="monetary">
+    <CODE code="montant_journalier" format="float" origin="ipp" type="monetary" description="Montant journalier de l'ATA">
       <END deb="2015-11-01" />
+      <VALUE deb="2017-04-01" valeur="11.49" />
+      <VALUE deb="2016-04-01" valeur="11.46" />
       <VALUE deb="2015-01-01" valeur="11.45" />
       <VALUE deb="2014-01-01" valeur="11.35" />
       <VALUE deb="2013-01-01" valeur="11.2" />
@@ -3319,7 +3321,9 @@
         <VALUE deb="2002-01-01" valeur="19.19" />
         <VALUE deb="2001-01-01" valeur="18.81" />
       </CODE>
-      <CODE code="montant_plein" description="Montant journalier à taux plein" format="float" origin="openfisca" type="monetary">
+      <CODE code="montant_plein" description="Montant journalier à taux plein de l'ASS" format="float" origin="openfisca" type="monetary">
+        <VALUE deb="2017-04-01" valeur="16.32" />
+        <VALUE deb="2016-04-01" valeur="16.27" />
         <VALUE deb="2015-01-01" valeur="16.25" />
         <VALUE deb="2014-01-01" valeur="16.11" />
         <VALUE deb="2013-01-01" valeur="15.90" />
@@ -4468,13 +4472,25 @@
           <VALUE deb="2009-06-01" valeur="0.3" />
         </CODE>
       </NODE>
-      <CODE code="taux_1_parent" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2016-04-01,openfisca_fin=None,openfisca_valeur=0.2589,ipp_valeur=unknown)" description="Orphelin de père ou de mère (un seul parent manquant) ou situation assimilée: beaux parents ou pension alimentaire non versée, en pourcentage de la BMAF" format="percent" origin="ipp">
+      <CODE code="taux_1_parent"
+        conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2016-04-01,openfisca_fin=None,openfisca_valeur=0.2589,ipp_valeur=unknown)"
+        description="Montant de l'ASF, en pourcentage de la BMAF, pour un enfant orphelin de père ou de mère (un seul parent manquant) ou dans une situation assimilée: beaux parents ou pension alimentaire non versée"
+        format="percent" origin="ipp">
+        <VALUE deb="2018-04-01" valeur="0.2813" />
+        <VALUE deb="2017-04-01" valeur="0.2702" />
+        <VALUE deb="2016-04-01" valeur="0.2589" />
         <VALUE deb="2015-04-01" valeur="0.2476" />
         <VALUE deb="2014-04-01" valeur="0.2363" />
         <VALUE deb="1978-01-01" valeur="0.225" />
         <VALUE deb="1970-12-26" valeur="0.16" />
       </CODE>
-      <CODE code="taux_2_parents" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2016-04-01,openfisca_fin=None,openfisca_valeur=0.3450,ipp_valeur=unknown)" description="Orphelin (de père et de mère), ou situation assimilée" format="percent" origin="ipp">
+      <CODE code="taux_2_parents"
+        conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2016-04-01,openfisca_fin=None,openfisca_valeur=0.3450,ipp_valeur=unknown)"
+        description="Montant de l'ASF, en pourcentage de la BMAF, pour un enfant orphelin (de père et de mère), ou situation assimilée."
+        format="percent" origin="ipp">
+        <VALUE deb="2018-04-01" valeur="0.375" />
+        <VALUE deb="2017-04-01" valeur="0.36" />
+        <VALUE deb="2016-04-01" valeur="0.345" />
         <VALUE deb="2015-04-01" valeur="0.33" />
         <VALUE deb="2014-04-01" valeur="0.315" />
         <VALUE deb="1970-12-26" valeur="0.3" />
@@ -4584,11 +4600,14 @@
         <VALUE deb="1978-01-01" valeur="0.4475" />
       </CODE>
       <CODE code="taux_cf_majore" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2014-03-31,openfisca_valeur=0.4165,ipp_valeur=unknown)" description="Taux du complément familial majoré" format="percent" origin="ipp">
+        <VALUE deb="2018-04-01" valeur="0.6248" />
+        <VALUE deb="2017-04-01" valeur="0.5833" />
         <VALUE deb="2016-04-01" valeur="0.5416" />
         <VALUE deb="2015-04-01" valeur="0.4999" />
         <VALUE deb="2014-04-01" valeur="0.4582" />
       </CODE>
       <CODE code="taux_majore_dom" description="Taux du complément familial majoré dans les DOM" format="percent" origin="ipp">
+        <VALUE deb="2017-04-01" valeur="0.3331" />
         <VALUE deb="2016-04-01" valeur="0.3093" />
         <VALUE deb="2015-04-01" valeur="0.2855" />
         <VALUE deb="2014-04-01" valeur="0.2617" />

@@ -98,17 +98,18 @@
     rsa_isolement_recent: true
     parents: [1]
     enfants: [3, 4]
-    # af_base: 130 # calculé
-    # asf: 200
+    # af_base: 130.12
+    # asf: 210.54
   menages:
     personne_de_reference: 1
     enfants: [3,4]
     statut_occupation_logement: 4 # locataire
     loyer: 400
   output_variables:
-    af_base: 130
-    asf: 200
-    rsa: 986.42 - 130 - 180
+    af_base: 130.12
+    asf: 210.54
+    # RSA - AF - Forfait ASF
+    rsa: 986.42 - 130.12 - 180
 
 - name: "Les primes sur un mois ne sont pas moyennées"
   period: 2017-01
