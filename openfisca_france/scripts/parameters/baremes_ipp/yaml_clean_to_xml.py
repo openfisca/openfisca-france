@@ -118,8 +118,8 @@ def build_tree_from_yaml_clean(yaml_dir):
             sorted_relative_ipp_paths = sorted(unsorted_relative_ipp_paths, cmp = compare_relative_ipp_paths)
             # tax_rate_tree_by_bracket_type = {}
 
-            for start, row in sorted_row_by_start:
-                for relative_ipp_path in sorted_relative_ipp_paths:
+            for relative_ipp_path in sorted_relative_ipp_paths:
+                for start, row in sorted_row_by_start:
                     value = row
                     for fragment in relative_ipp_path:
                         value = value.get(fragment)
@@ -138,22 +138,23 @@ def build_tree_from_yaml_clean(yaml_dir):
                             relative_ipp_path,
                             )
                         ]
-
                     sub_tree = tree
                     for fragment in ipp_path[:-1]:
                         sub_tree = sub_tree.setdefault(fragment, collections.OrderedDict())
                     fragment = ipp_path[-1]
                     sub_tree = sub_tree.setdefault(fragment, [])
                     if sub_tree:
-                        previous_leaf = sub_tree[-1]
-                        if previous_leaf['value'] == value:
+                        last_leaf = sub_tree[-1]
+                        if last_leaf['value'] == value:
                             # Merge leaves with the same value.
                             # One day, when we'll support "Références législatives", this behavior may change.
                             continue
+                    # Append a node with a `value` key which will represent a <VALUE> or a <END> element in the XML.
                     sub_tree.append(dict(
                         start = start,
                         value = value,
                         ))
+
     return tree
 
 
@@ -167,15 +168,20 @@ def iter_ipp_values(node):
 
 
 def prepare_xml_values(name, leafs):
-    leafs = list(reversed([
-        leaf
-        for leaf in leafs
-        if leaf['value'] is not None
-        ]))
+    def iter_leafs(leafs):
+        value_was_encountered = False
+        for leaf in leafs:
+            if leaf['value'] is not None or value_was_encountered:
+                yield leaf
+                value_was_encountered = True
+
+    leafs = list(reversed(list(iter_leafs(leafs))))
     format = None
     type = None
     for leaf in leafs:
         value = leaf['value']
+        if value is None:
+            continue
         if isinstance(value, basestring):
             split_value = value.split()
             if len(split_value) == 2 and split_value[1] in (
@@ -280,13 +286,14 @@ def ipp_node_to_element(name, node):
 
 
 def transform_values_to_element_children(values, element):
-    element.extend(map(
-        lambda value: etree.Element('VALUE', attrib = dict(
-            deb = value['start'].isoformat(),
-            valeur = unicode(value['value']),
-            )),
-        values,
-        ))
+    for value in values:
+        attrib = dict(deb = value['start'].isoformat())
+        if value['value'] is None:
+            tag = 'END'
+        else:
+            tag = 'VALUE'
+            attrib['valeur'] = unicode(value['value'])
+        element.append(etree.Element(tag, attrib = attrib))
 
 
 def write_xml_file(xml_dir, file_name, element):
