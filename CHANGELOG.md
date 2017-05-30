@@ -1,5 +1,20 @@
 # Changelog
 
+### 18.3.1 - [#767](https://github.com/openfisca/openfisca-france/pull/767)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2017.
+* Zones impactées :
+  - `prestations.minima_sociaux.rsa`
+  - `prestations.prestations_familiales.af`
+* Détails :
+  - Mise à jour du montant du montant de base pour le RSA aux 1er avril, 1er septembre 2017.
+    - [Source](https://www.legifrance.gouv.fr/eli/decret/2017/5/4/2017-739/jo/article_1)
+  - Mise à jour de la BMAF au 1er avril 2017
+    - [Source](http://circulaire.legifrance.gouv.fr/pdf/2017/03/cir_41970.pdf)
+  - Correction mineure du taux de la BMAF au 1er avril 2015
+    - [Source](http://circulaire.legifrance.gouv.fr/pdf/2016/03/cir_40664.pdf) cf. valeur initiale (valeur erronée 406.21274, valeur corrigée 406.21)
+
 ### 18.3.0 - [#746](https://github.com/openfisca/openfisca-france/pull/746)
 
 * Amélioration technique
