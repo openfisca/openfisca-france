@@ -45,13 +45,9 @@ INFO:convert_ipp_xlsx_to_openfisca_xml:XML files written to '/tmp/baremes-ipp-v3
 
 ### Intégration avec OpenFisca
 
-Il n'existe pas de script automatique de fusion des fichiers XML produits avec les fichiers XML existants – ceux du répertoire `parameters` d'OpenFisca-France. En écrivant les fichiers XML dans `openfisca_france/parameters`, le contributeur voit apparaître un *diff* dans *git*, et peut choisit manuellement d'ajouter ou non les lignes modifiées dans un *commit*.
+Le script [`merge_ipp_xml_files_with_openfisca_parameters.py`](./merge_ipp_xml_files_with_openfisca_parameters.py) fusionne les fichiers XML produits depuis les fichiers XLSX de l'IPP avec les fichiers XML existants d'OpenFisca-France.
 
-Pour cela, utiliser l'option `--xml-dir` du script :
-
-```sh
-./openfisca_france/scripts/parameters/baremes_ipp/convert_ipp_xlsx_to_openfisca_xml.py --xml-dir openfisca_france/parameters
-```
+Plus précisément, il réécrit les fichiers de paramètres d'OpenFisca-France en conservant leur structure, tout en remplaçant les valeurs par celles provenant de l'IPP. Le contributeur voit apparaître un *diff* dans *git*, et peut choisit manuellement d'ajouter ou non les lignes modifiées dans un *commit*.
 
 ### Gestion des erreurs
 
