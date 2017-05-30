@@ -4031,8 +4031,9 @@
         <VALUE deb="2003-07-01" valeur="20" />
       </CODE>
       <CODE code="bmaf" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2001-01-01,openfisca_fin=2001-12-31,openfisca_valeur=334.84,ipp_valeur=2196.38),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2011-01-01,openfisca_fin=2012-03-31,openfisca_valeur=395.04,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2014-04-01,openfisca_fin=2016-03-31,openfisca_valeur=406.21,ipp_valeur=406.21274)" description="Base mensuelle des allocations familiales" format="float" origin="ipp" type="monetary">
+        <VALUE deb="2017-04-01" valeur="407.84" />
         <VALUE deb="2016-04-01" valeur="406.62" />
-        <VALUE deb="2014-04-01" valeur="406.21274" />
+        <VALUE deb="2014-04-01" valeur="406.21" />
         <VALUE deb="2013-04-01" valeur="403.79" />
         <VALUE deb="2012-01-01" valeur="399" />
         <VALUE deb="2011-01-01" valeur="395.04" />
