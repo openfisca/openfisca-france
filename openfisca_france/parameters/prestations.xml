@@ -3704,6 +3704,8 @@
         </CODE>
       </NODE>
       <CODE code="montant_de_base_du_rsa" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2001-01-01,openfisca_fin=2001-12-31,openfisca_valeur=397.6,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2005-01-01,openfisca_fin=2005-12-31,openfisca_valeur=425.4,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2002-01-01,openfisca_fin=2002-12-31,openfisca_valeur=405.62,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2003-01-01,openfisca_fin=2003-12-31,openfisca_valeur=411.7,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2009-01-01,openfisca_fin=2009-12-31,openfisca_valeur=454.63,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2007-01-01,openfisca_fin=2007-12-31,openfisca_valeur=440.86,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2006-01-01,openfisca_fin=2006-12-31,openfisca_valeur=433.06,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2008-01-01,openfisca_fin=2008-12-31,openfisca_valeur=447.91,ipp_valeur=unknown),children:openfisca-not-fully-included-in-ipp(openfisca_deb=2004-01-01,openfisca_fin=2004-12-31,openfisca_valeur=417.88,ipp_valeur=unknown)" description="Rsa socle" format="float" origin="ipp" type="monetary">
+        <VALUE deb="2017-09-01" valeur="545.48" />
+        <VALUE deb="2017-04-01" valeur="536.78" />
         <VALUE deb="2016-09-01" valeur="535.17" />
         <VALUE deb="2016-04-01" valeur="524.68" />
         <VALUE deb="2015-09-01" valeur="524.16" />
