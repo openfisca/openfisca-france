@@ -21,8 +21,7 @@ class aeeh(Variable):
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
-    @dated_function(start = date(2003, 1, 1))
-    def formula_20030101(self, simulation, period):
+    def formula_2003_01_01(self, simulation, period):
         '''
         Allocation d'éducation de l'enfant handicapé (Allocation d'éducation spécialisée avant le 1er janvier 2006)
         Ce montant peut être majoré par un complément accordé par la Cdaph qui prend en compte :

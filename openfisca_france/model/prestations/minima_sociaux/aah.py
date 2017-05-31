@@ -286,7 +286,6 @@ class caah(Variable):
         l'autre.
     '''
 
-    @dated_function(start = date(2005, 7, 1))
     def formula_2005_07_01(self, simulation, period):
         law = simulation.legislation_at(period.start).prestations
 
@@ -313,8 +312,8 @@ class caah(Variable):
 
         return max_(compl_ress, mva)
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2005, 6, 30))  # TODO FIXME start date
-    def formula_2005_06_30(self, simulation, period):
+    # TODO FIXME start date
+    def formula_2002_01_01(self, simulation, period):
         law = simulation.legislation_at(period.start).prestations
 
         cpltx = law.minima_sociaux.caah.cpltx

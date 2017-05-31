@@ -133,8 +133,7 @@ class credit_impot_competitivite_emploi(Variable):
     definition_period = MONTH
     calculate_output = calculate_output_add
 
-    @dated_function(date(2013, 1, 1))
-    def formula_2013_(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         assiette_allegement = simulation.calculate('assiette_allegement', period)
         jeune_entreprise_innovante = simulation.calculate('jeune_entreprise_innovante', period)
         smic_proratise = simulation.calculate('smic_proratise', period)
@@ -155,8 +154,7 @@ class aide_premier_salarie(Variable):
     definition_period = MONTH
     calculate_output = calculate_output_add
 
-    @dated_function(start=date(2015, 6, 9))
-    def formula(self, simulation, period):
+    def formula_2015_06_09(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         apprenti = simulation.calculate('apprenti', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
@@ -219,8 +217,7 @@ class aide_embauche_pme(Variable):
     definition_period = MONTH
     calculate_output = calculate_output_add
 
-    @dated_function(start=date(2016, 1, 18))
-    def formula(self, simulation, period):
+    def formula_2016_01_18(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         apprenti = simulation.calculate('apprenti', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
@@ -311,8 +308,7 @@ class allegement_fillon(Variable):
 
     # Attention : cet allègement a des règles de cumul spécifiques
 
-    @dated_function(date(2005, 7, 1))
-    def formula(self, simulation, period):
+    def formula_2005_07_01(self, simulation, period):
         stagiaire = simulation.calculate('stagiaire', period)
         apprenti = simulation.calculate('apprenti', period)
         allegement_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
@@ -382,8 +378,7 @@ class allegement_cotisation_allocations_familiales(Variable):
     url = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
     definition_period = MONTH
 
-    @dated_function(date(2015, 1, 1))
-    def formula(self, simulation, period):
+    def formula_2015_01_01(self, simulation, period):
         stagiaire = simulation.calculate('stagiaire', period)
         apprenti = simulation.calculate('apprenti', period)
         allegement_mode_recouvrement = \

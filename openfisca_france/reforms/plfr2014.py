@@ -22,8 +22,7 @@ class plfr2014(Reform):
         reference = reductions_impot.reduction_impot_exceptionnelle
         definition_period = YEAR
 
-        @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-        def formula(self, simulation, period):
+        def formula_2013_01_01(self, simulation, period):
             janvier = period.first_month
 
             nb_adult = simulation.calculate('nb_adult', period)
@@ -39,8 +38,7 @@ class plfr2014(Reform):
         reference = reductions_impot.reductions
         definition_period = YEAR
 
-        @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-        def formula_20130101_20131231(self, simulation, period):
+        def formula_2013_01_01(self, simulation, period):
             accult = simulation.calculate('accult', period)
             adhcga = simulation.calculate('adhcga', period)
             cappme = simulation.calculate('cappme', period)

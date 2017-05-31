@@ -18,8 +18,7 @@ class bourse_college_echelon(Variable):
     entity = Famille
     definition_period = MONTH
 
-    @dated_function(start = date(2016, 7, 1))
-    def formula_apres_2016(famille, period, legislation):
+    def formula_2016_07_01(famille, period, legislation):
         """
         Références législatives :
         Arrêté du 22 mars 2016 fixant les plafonds de ressources...
@@ -68,8 +67,7 @@ class bourse_college_echelon(Variable):
             choices = [3, 2, 1]
             )
 
-    @dated_function(stop = date(2016, 6, 30))
-    def formula_avant_2016(famille, period, legislation):
+    def formula(famille, period, legislation):
         rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
         age_i = famille.members('age', period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
@@ -263,8 +261,7 @@ class bourse_lycee(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    @dated_function(start = date(2016, 7, 1))
-    def formula_apres_2016(famille, period, legislation):
+    def formula_2016_07_01(famille, period, legislation):
         """
         Références legislatives :
             Article Article D531-29 du code de l'éducation
@@ -291,8 +288,7 @@ class bourse_lycee(Variable):
         return nb_enfants_lycee * montant_par_enfant
 
 
-    @dated_function(stop = date(2016, 6, 30))
-    def formula_avant_2016(famille, period, legislation):
+    def formula(famille, period, legislation):
         nombre_parts = famille('bourse_lycee_nombre_parts', period)
         valeur_part = legislation(period).bourses_education.bourse_lycee.avant_2016.valeur_part
 

@@ -321,8 +321,7 @@ class af(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    @dated_function(start = date(2015, 7, 1))
-    def formula_20150701(famille, period, legislation):
+    def formula_2015_07_01(famille, period, legislation):
         af_base = famille('af_base', period)
         af_majoration = famille('af_majoration', period)
         af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)
@@ -334,8 +333,7 @@ class af(Variable):
             af_forfaitaire_complement_degressif
             )
 
-    @dated_function(stop = date(2015, 6, 30))
-    def formula_20150630(famille, period, legislation):
+    def formula(famille, period, legislation):
         af_base = famille('af_base', period)
         af_majoration = famille('af_majoration', period)
         af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)

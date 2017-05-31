@@ -286,14 +286,12 @@ class aspa_couple(Variable):
     entity = Famille
     definition_period = MONTH
 
-    @dated_function(date(2002, 1, 1), date(2006, 12, 31))
-    def formula_2002_2006(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         maries = simulation.calculate('maries', period)
 
         return maries
 
-    @dated_function(date(2007, 1, 1))
-    def formula_2007(self, simulation, period):
+    def formula_2007_01_01(self, simulation, period):
         en_couple = simulation.calculate('en_couple', period)
 
         return en_couple

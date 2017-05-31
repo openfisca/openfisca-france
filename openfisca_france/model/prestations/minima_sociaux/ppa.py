@@ -336,8 +336,7 @@ class ppa(Variable):
     definition_period = MONTH
     calculate_output = calculate_output_add
 
-    @dated_function(start = date(2016, 1, 1))
-    def formula(famille, period, legislation):
+    def formula_2016_01_01(famille, period, legislation):
         seuil_non_versement = legislation(period).prestations.minima_sociaux.ppa.seuil_non_versement
         # éligibilité étudiants
 

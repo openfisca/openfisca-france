@@ -582,8 +582,7 @@ class rev_cat_rvcm(Variable):
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2004, 12, 31))
-    def formula_20020101_20041231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         """
         Revenus des valeurs et capitaux mobiliers
         """
@@ -629,8 +628,7 @@ class rev_cat_rvcm(Variable):
         DEF = deficit_rcm
         return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
-    @dated_function(start = date(2005, 1, 1), stop = date(2012, 12, 31))
-    def formula_20050101_20121231(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         """
         Revenus des valeurs et capitaux mobiliers
         """
@@ -679,8 +677,8 @@ class rev_cat_rvcm(Variable):
         DEF = deficit_rcm
         return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
 
-    @dated_function(start = date(2013, 1, 1))
-    def formula_20130101_20151231(self, simulation, period):
+    # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
+    def formula_2013_01_01(self, simulation, period):
         """
         Revenus des valeurs et capitaux mobiliers
         """
@@ -1138,8 +1136,7 @@ class decote(Variable):
     label = u"décote"
     definition_period = YEAR
 
-    @dated_function(start = date(2015, 1, 1))
-    def formula_2015(self, simulation, period):
+    def formula_2015_01_01(self, simulation, period):
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         nb_adult = simulation.calculate('nb_adult', period)
         decote_seuil_celib = simulation.legislation_at(period.start).impot_revenu.decote.seuil_celib
@@ -1149,8 +1146,7 @@ class decote(Variable):
 
         return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
-    @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
-    def formula_2014(self, simulation, period):
+    def formula_2014_01_01(self, simulation, period):
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         nb_adult = simulation.calculate('nb_adult', period)
         decote_seuil_celib = simulation.legislation_at(period.start).impot_revenu.decote.seuil_celib
@@ -1160,8 +1156,7 @@ class decote(Variable):
 
         return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
-    @dated_function(start = date(2001, 1, 1), stop = date(2013, 12, 31))
-    def formula_2001_2013(self, simulation, period):
+    def formula_2001_01_01(self, simulation, period):
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         decote = simulation.legislation_at(period.start).impot_revenu.decote
 
@@ -1378,8 +1373,7 @@ class plus_values(Variable):
     label = u"Taxation des plus_values"
     definition_period = YEAR
 
-    @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
-    def formula_20070101_20071231(self, simulation, period):  # f3sd is in f3vd holder
+    def formula_2007_01_01(self, simulation, period):  # f3sd is in f3vd holder
         """
         Taxation des plus values
         TODO: 2013 f3Vg au barème / tout refaire
@@ -1414,8 +1408,7 @@ class plus_values(Variable):
 
         return round_(out)
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2011, 12, 31))
-    def formula_20080101_20111231(self, simulation, period):  # f3sd is in f3vd holder
+    def formula_2008_01_01(self, simulation, period):  # f3sd is in f3vd holder
         """
         Taxation des plus value
         TODO:  2013 f3Vg au barème / tout refaire
@@ -1452,8 +1445,7 @@ class plus_values(Variable):
 
         return round_(out)
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def formula_20120101_20121231(self, simulation, period):  # f3sd is in f3vd holder
+    def formula_2012_01_01(self, simulation, period):  # f3sd is in f3vd holder
         """
         Taxation des plus value
         TODO: 2013 f3Vg au barème / tout refaire
@@ -1488,15 +1480,15 @@ class plus_values(Variable):
         # revenus taxés à un taux proportionnel
         rdp += f3vd
         out += plus_values.taux1 * f3vd
-    #        out = plus_values.taux2 * f3vd + plus_values.taux3 * f3vi + plus_values.taux4 * f3vf + plus_values.taux1 *max_(
-    #            0, f3vg - f3vh)
+        #        out = plus_values.taux2 * f3vd + plus_values.taux3 * f3vi + plus_values.taux4 * f3vf + plus_values.taux1 *max_(
+        #            0, f3vg - f3vh)
         out = (plus_values.taux2 * (f3vd + f3sd) + plus_values.taux3 * (f3vi + f3si) +
             plus_values.taux4 * (f3vf + f3sf) + plus_values.taux1 * max_(0, f3vg - f3vh) + plus_values.pvce * rpns_pvce)
                 # TODO: chek this rpns missing ?
         return round_(out)
 
-    @dated_function(start = date(2013, 1, 1))
-    def formula_20130101_20151231(self, simulation, period):  # f3sd is in f3vd holder
+    # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
+    def formula_2013_01_01(self, simulation, period):  # f3sd is in f3vd holder
         """
         Taxation des plus value
         TODO: 2013 f3Vg au barème / tout refaire
@@ -1745,8 +1737,7 @@ class rev_cap_lib(Variable):
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
     definition_period = MONTH
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
-    def formula_20020101_20071231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         year = period.this_year
         f2dh = simulation.calculate('f2dh', year)
         f2ee = simulation.calculate('f2ee', year)
@@ -1756,8 +1747,8 @@ class rev_cap_lib(Variable):
         out = f2dh + f2ee
         return out * not_(finpfl) / 12
 
-    @dated_function(start = date(2008, 1, 1))
-    def formula_20080101_20151231(self, simulation, period):
+    # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
+    def formula_2008_01_01(self, simulation, period):
         year = period.this_year
         f2da = simulation.calculate('f2da', year)
         f2dh = simulation.calculate('f2dh', year)
@@ -1790,9 +1781,9 @@ class imp_lib(Variable):
     label = u"Prelèvement libératoire sur les revenus du capital"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
     definition_period = YEAR
+    end = '2012-12-31'
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
-    def formula_20020101_20071231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         '''
         Prelèvement libératoire sur les revenus du capital
         '''
@@ -1804,8 +1795,7 @@ class imp_lib(Variable):
         out = -(prelevement_liberatoire.assvie * f2dh + prelevement_liberatoire.autre * f2ee)
         return out
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2012, 12, 31))
-    def formula_20080101_20121231(self, simulation, period):
+    def formula_2008_01_01(self, simulation, period):
         '''
         Prelèvement libératoire sur les revenus du capital
         '''

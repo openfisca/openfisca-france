@@ -324,14 +324,13 @@ class isf_iai(Variable):
     label = u"isf_iai"
     definition_period = YEAR
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2010, 12, 31))
-    def formula_20020101_20101231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         ass_isf = simulation.calculate('ass_isf', period)
         bareme = simulation.legislation_at(period.start).taxation_capital.isf.bareme
         return bareme.calc(ass_isf)
 
-    @dated_function(start = date(2011, 1, 1))
-    def formula_20110101_20151231(self, simulation, period):
+    # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
+    def formula_2011_01_01(self, simulation, period):
         ass_isf = simulation.calculate('ass_isf', period)
         bareme = simulation.legislation_at(period.start).taxation_capital.isf.bareme
         ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
@@ -537,8 +536,7 @@ class isf_apres_plaf(Variable):
     definition_period = YEAR
     # Plafonnement supprimé pour l'année 2012
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2011, 12, 31))
-    def formula_20020101_20111231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         tot_impot = simulation.calculate('tot_impot', period)
         revetproduits = simulation.calculate('revetproduits', period)
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
@@ -556,8 +554,7 @@ class isf_apres_plaf(Variable):
             )
         return max_(isf_avant_plaf - limitationplaf, 0)
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def formula_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         isf_avant_plaf = simulation.calculate('isf_avant_plaf', period)
 
         # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
@@ -566,8 +563,8 @@ class isf_apres_plaf(Variable):
         #    est limité à 50% de l'ISF
         return isf_avant_plaf
 
-    @dated_function(start = date(2013, 1, 1))
-    def formula_20130101_20151231(self, simulation, period):
+    # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
+    def formula_2013_01_01(self, simulation, period):
         """
         Impôt sur la fortune après plafonnement
         """

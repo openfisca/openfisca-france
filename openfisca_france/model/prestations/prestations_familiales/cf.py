@@ -140,8 +140,7 @@ class cf_majore_plafond(Variable):
     label = u"Plafond d'éligibilité au Complément Familial majoré"
     definition_period = MONTH
 
-    @dated_function(date(2014, 4, 1))
-    def formula(famille, period, legislation):
+    def formula_2014_04_01(famille, period, legislation):
         plafond_base = famille('cf_plafond', period)
         pfam = legislation(period).prestations.prestations_familiales
         return plafond_base * pfam.cf.plafond_cf_majore
@@ -234,8 +233,7 @@ class cf_majore_avant_cumul(Variable):
     label = u"Complément familial majoré avant cumul"
     definition_period = MONTH
 
-    @dated_function(date(2014, 4, 1))
-    def formula(famille, period, legislation):
+    def formula_2014_04_01(famille, period, legislation):
         eligibilite_base = famille('cf_eligibilite_base', period)
         eligibilite_dom = famille('cf_eligibilite_dom', period)
         ressources = famille('cf_ressources', period)

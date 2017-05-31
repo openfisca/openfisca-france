@@ -140,8 +140,7 @@ class forfait_social(Variable):
     # au bénéfice de leurs salariés, anciens salariés et de leurs ayants droit (entreprises à partir de 10 salariés),
     # la réserve spéciale de participation dans les sociétés coopératives ouvrières de production (Scop).
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2012, 7, 31))
-    def formula_1(individu, period, legislation):
+    def formula_2009_01_01(individu, period, legislation):
         prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options = [ADD])
 
         parametres = legislation(period).prelevements_sociaux.forfait_social
@@ -150,8 +149,7 @@ class forfait_social(Variable):
 
         return - assiette_taux_plein * taux_plein
 
-    @dated_function(start = date(2012, 8, 1))
-    def formula_2(individu, period, legislation):
+    def formula_2012_08_01(individu, period, legislation):
         prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options = [ADD])
 
         parametres = legislation(period).prelevements_sociaux.forfait_social

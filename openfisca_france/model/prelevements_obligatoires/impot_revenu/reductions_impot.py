@@ -18,8 +18,7 @@ class reductions(Variable):
     label = u"reductions"
     definition_period = YEAR
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def formula_20020101_20021231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2002
         '''
@@ -47,8 +46,7 @@ class reductions(Variable):
                 garext + intemp + invfor + invrev + prcomp + rsceha + saldom + spfcpi)
         return min_(ip_net, total_reductions)
 
-    @dated_function(start = date(2003, 1, 1), stop = date(2004, 12, 31))
-    def formula_20030101_20041231(self, simulation, period):
+    def formula_2003_01_01(self, simulation, period):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2003 et 2004
         '''
@@ -77,8 +75,7 @@ class reductions(Variable):
                 garext + intemp + invfor + invrev + prcomp + repsoc + rsceha + saldom + spfcpi)
         return min_(ip_net, total_reductions)
 
-    @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
-    def formula_20050101_20051231(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2005
         '''
@@ -106,8 +103,7 @@ class reductions(Variable):
                 intcon + invfor + invlst + prcomp + repsoc + rsceha + saldom + spfcpi)
         return min_(ip_net, total_reductions)
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
-    def formula_20060101_20061231(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2006
         '''
@@ -137,8 +133,7 @@ class reductions(Variable):
         ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
         return min_(ip_net, total_reductions)
 
-    @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
-    def formula_20070101_20071231(self, simulation, period):
+    def formula_2007_01_01(self, simulation, period):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2007
         '''
@@ -169,8 +164,7 @@ class reductions(Variable):
 
         return min_(ip_net, total_reductions)
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
-    def formula_20080101_20081231(self, simulation, period):
+    def formula_2008_01_01(self, simulation, period):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2008
         '''
@@ -201,8 +195,7 @@ class reductions(Variable):
         ecpess + intagr + invfor + invlst + mohist + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
         return min_(ip_net, total_reductions)
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def formula_20090101_20091231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2009
         '''
@@ -240,8 +233,8 @@ class reductions(Variable):
         saldom + scelli + sofica + sofipe + spfcpi)
         return min_(ip_net, total_reductions)
 
-    @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
-    def formula_20100101_20101231(self, simulation, period):  # TODO: check (sees checked) and report in Niches.xls
+    # TODO: check (sees checked) and report in Niches.xls
+    def formula_2010_01_01(self, simulation, period):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2010
         '''
@@ -279,8 +272,7 @@ class reductions(Variable):
         saldom + scelli + sofica + sofipe + spfcpi)  # TODO: check (sees checked) and report in Niches.xls
         return min_(ip_net, total_reductions)
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def formula_20110101_20111231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2011
         '''
@@ -318,8 +310,7 @@ class reductions(Variable):
         saldom + scelli + sofica + sofipe + spfcpi)
         return min_(ip_net, total_reductions)
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def formula_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2012
         '''
@@ -355,8 +346,7 @@ class reductions(Variable):
         saldom + scelli + sofica + spfcpi)
         return min_(ip_net, total_reductions)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def formula_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2013
         '''
@@ -397,8 +387,8 @@ class reductions(Variable):
         spfcpi)
         return min_(ip_net, total_reductions)
 
-    @dated_function(start = date(2014, 1, 1))  # Not checked
-    def formula_2014__(self, simulation, period):
+    # Start date not checked
+    def formula_2014(self, simulation, period):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2014 et + (non vérifiée)
         '''
@@ -491,9 +481,9 @@ class cappme(Variable):
     entity = FoyerFiscal
     label = u"cappme"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def formula_20020101_20021231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         '''
         Souscriptions au capital des PME
         2002
@@ -507,8 +497,7 @@ class cappme(Variable):
         seuil = P.seuil * (maries_ou_pacses + 1)
         return P.taux * min_(base, seuil)
 
-    @dated_function(start = date(2003, 1, 1), stop = date(2003, 12, 31))
-    def formula_20030101_20031231(self, simulation, period):
+    def formula_2003_01_01(self, simulation, period):
         '''
         Souscriptions au capital des PME
         2003
@@ -523,8 +512,7 @@ class cappme(Variable):
         seuil = P.seuil * (maries_ou_pacses + 1)
         return P.taux * min_(base, seuil)
 
-    @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
-    def formula_20040101_20041231(self, simulation, period):
+    def formula_2004_01_01(self, simulation, period):
         '''
         Souscriptions au capital des PME
         2004
@@ -540,8 +528,7 @@ class cappme(Variable):
         seuil = P.seuil * (maries_ou_pacses + 1)
         return P.taux * min_(base, seuil)
 
-    @dated_function(start = date(2005, 1, 1), stop = date(2008, 12, 31))
-    def formula_20050101_20081231(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         '''
         Souscriptions au capital des PME
         2005-2008
@@ -558,8 +545,7 @@ class cappme(Variable):
         seuil = P.seuil * (maries_ou_pacses + 1)
         return P.taux * min_(base, seuil)
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2010, 12, 31))
-    def formula_20090101_20101231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Souscriptions au capital des PME
         2009-2010
@@ -578,8 +564,7 @@ class cappme(Variable):
         seuil = P.seuil_tpe * (maries_ou_pacses + 1) * (f7cu > 0) + P.seuil * (maries_ou_pacses + 1) * (f7cu <= 0)
         return P.taux * min_(base, seuil)
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def formula_20110101_20111231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Souscriptions au capital des PME
         2011
@@ -599,8 +584,7 @@ class cappme(Variable):
         max0 = max_(seuil - base, 0)
         return max_(P.taux25 * min_(base, seuil), P.taux * min_(max0, f7cf + f7cu))
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def formula_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Souscriptions au capital des PME
         2012 cf. 2041 GR
@@ -623,8 +607,7 @@ class cappme(Variable):
         return P.taux25 * min_(base, seuil1) + P.taux * min_(f7cq, seuil1) + P.taux18 * (min_(f7cf, seuil3) +
                 mini(f7cu, seuil2, seuil1))
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def formula_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Souscriptions au capital des PME
         2013
@@ -689,9 +672,9 @@ class creaen(Variable):
     entity = FoyerFiscal
     label = u"creaen"
     definition_period = YEAR
+    end = '2014-12-31'
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
-    def formula_20060101_20081231(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         '''
         Aide aux créateurs et repreneurs d'entreprises
         2006-2008
@@ -703,8 +686,7 @@ class creaen(Variable):
 
         return (P.base * f7fy + P.hand * f7gy)
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def formula_20090101_20091231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Aide aux créateurs et repreneurs d'entreprises
         2009
@@ -721,8 +703,7 @@ class creaen(Variable):
         return (P.base * ((f7jy + f7fy) + f7hy / 2) +
                     P.hand * ((f7ky + f7gy) + f7iy / 2))
 
-    @dated_function(start = date(2010, 1, 1), stop = date(2011, 12, 31))
-    def formula_20100101_20111231(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         '''
         Aide aux créateurs et repreneurs d'entreprises
         2010-2011
@@ -741,8 +722,7 @@ class creaen(Variable):
         return (P.base * ((f7jy + f7fy) + (f7hy + f7ly) / 2) +
                     P.hand * ((f7ky + f7gy) + (f7iy + f7my) / 2))
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2014, 12, 31))
-    def formula_20120101_20141231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Aide aux créateurs et repreneurs d'entreprises
         2012-
@@ -797,9 +777,9 @@ class dfppce(Variable):
     entity = FoyerFiscal
     label = u"dfppce"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2003, 12, 31))
-    def formula_20020101_20031231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
@@ -813,8 +793,7 @@ class dfppce(Variable):
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
-    @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
-    def formula_20040101_20041231(self, simulation, period):
+    def formula_2004_01_01(self, simulation, period):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
@@ -829,8 +808,7 @@ class dfppce(Variable):
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
-    @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
-    def formula_20050101_20051231(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
@@ -846,8 +824,7 @@ class dfppce(Variable):
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
-    def formula_20060101_20061231(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
@@ -864,8 +841,7 @@ class dfppce(Variable):
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
-    @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
-    def formula_20070101_20071231(self, simulation, period):
+    def formula_2007_01_01(self, simulation, period):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
@@ -883,8 +859,7 @@ class dfppce(Variable):
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2010, 12, 31))
-    def formula_20080101_20101231(self, simulation, period):
+    def formula_2008_01_01(self, simulation, period):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales
@@ -903,8 +878,7 @@ class dfppce(Variable):
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def formula_20110101_20111231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales (2011-2013)
@@ -923,8 +897,7 @@ class dfppce(Variable):
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def formula_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales (2011-2013)
@@ -943,8 +916,7 @@ class dfppce(Variable):
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def formula_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Dons aux autres oeuvres et dons effectués pour le financement des partis
         politiques et des campagnes électorales (2011-2013)
@@ -976,9 +948,9 @@ class doment(Variable):
     entity = FoyerFiscal
     label = u"doment"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
-    def formula_20050101_20051231(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
@@ -990,8 +962,7 @@ class doment(Variable):
 
         return  f7ur + f7oz + f7pz + f7qz + f7rz
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
-    def formula_20060101_20081231(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
@@ -1004,8 +975,7 @@ class doment(Variable):
 
         return  f7ur + f7oz + f7pz + f7qz + f7rz + f7sz
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def formula_20090101_20091231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
@@ -1023,8 +993,7 @@ class doment(Variable):
 
         return  f7oz + f7pz + f7qz + f7rz + f7sz + f7qe + f7qf + f7qg + f7qh + f7qi + f7qj
 
-    @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
-    def formula_20100101_20101231(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
@@ -1052,8 +1021,7 @@ class doment(Variable):
         return (f7oz + f7pz + f7qz + f7rz + f7qe + f7qf + f7qg + f7qh + f7qi + f7qj + f7qo + f7qp + f7qq + f7qr + f7qs +
                     f7mm + f7ma + f7lg + f7ks + f7ls)
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def formula_20110101_20111231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
@@ -1095,8 +1063,7 @@ class doment(Variable):
                     f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pz + f7qz + f7qf + f7qg + f7qh + f7qi + f7qo +
                     f7qp + f7qq + f7qr + f7qe + f7qv)
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def formula_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
@@ -1167,8 +1134,7 @@ class doment(Variable):
                     f7ps + f7pt + f7pu + f7pw + f7px + f7py + f7qe + f7qf + f7qg + f7qi + f7qo + f7qp + f7qr + f7qv + f7qz +
                     f7rg + f7ri + f7rj + f7rk + f7rl + f7rm + f7ro + f7rp + f7rq + f7rr + f7rt + f7ru + f7rv + f7rw)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def formula_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
@@ -1275,9 +1241,9 @@ class domlog(Variable):
     entity = FoyerFiscal
     label = u"domlog"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def formula_20020101_20021231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2002
@@ -1291,8 +1257,7 @@ class domlog(Variable):
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc)
 
-    @dated_function(start = date(2003, 1, 1), stop = date(2004, 12, 31))
-    def formula_20030101_20041231(self, simulation, period):
+    def formula_2003_01_01(self, simulation, period):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2003-2004
@@ -1307,8 +1272,7 @@ class domlog(Variable):
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc) + f7ui
 
-    @dated_function(start = date(2005, 1, 1), stop = date(2007, 12, 31))
-    def formula_20050101_20071231(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2005-2007
@@ -1323,8 +1287,7 @@ class domlog(Variable):
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub) + f7ui
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
-    def formula_20080101_20081231(self, simulation, period):
+    def formula_2008_01_01(self, simulation, period):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2008
@@ -1333,8 +1296,7 @@ class domlog(Variable):
 
         return f7ui
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def formula_20090101_20091231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2009
@@ -1346,8 +1308,7 @@ class domlog(Variable):
 
         return f7qb + f7qc + f7qd + f7qk / 2
 
-    @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
-    def formula_20100101_20101231(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2010
@@ -1362,8 +1323,7 @@ class domlog(Variable):
 
         return f7qb + f7qc + f7qd + f7ql + f7qt + f7qm
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def formula_20110101_20111231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2011
@@ -1385,8 +1345,7 @@ class domlog(Variable):
 
         return f7qb + f7qc + f7qd + f7ql + f7qm + f7qt + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def formula_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2012
@@ -1421,8 +1380,7 @@ class domlog(Variable):
         return (f7qb + f7qc + f7qd + f7ql + f7qm + f7qt + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok + f7ol + f7om +
                     f7on + f7oo + f7op + f7oq + f7or + f7os + f7ot + f7ou + f7ov + f7ow)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def formula_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2013
@@ -1474,9 +1432,10 @@ class domsoc(Variable):
     entity = FoyerFiscal
     label = u"domsoc"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2010, 1, 1), stop = date(2012, 12, 31))
-    def formula_20100101_20121231(self, simulation, period):
+
+    def formula_2010_01_01(self, simulation, period):
         '''
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
         2010-
@@ -1495,8 +1454,7 @@ class domsoc(Variable):
 
         return  f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw + f7qx
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def formula_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
         2013
@@ -1525,9 +1483,9 @@ class donapd(Variable):
     entity = FoyerFiscal
     label = u"donapd"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2010, 12, 31))
-    def formula_20020101_20101231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         '''
         Dons effectués à  des organises d'aide aux personnes en difficulté (2002-2010)
         '''
@@ -1536,8 +1494,7 @@ class donapd(Variable):
 
         return P.taux * min_(f7ud, P.max)
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2013, 12, 31))
-    def formula_20110101_20131231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Dons effectués à  des organises d'aide aux personnes en difficulté (2011-2013)
         '''
@@ -1617,9 +1574,10 @@ class garext(Variable):
     entity = FoyerFiscal
     label = u"garext"
     definition_period = YEAR
+    end = '2005-12-31'
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def formula_20020101_20021231(self, simulation, period):
+
+    def formula_2002_01_01(self, simulation, period):
         '''
         Frais de garde des enfants à l’extérieur du domicile (cases GA, GB, GC de la 2042)
         et GE, GF, GG
@@ -1634,8 +1592,7 @@ class garext(Variable):
         max1 = P.plafond
         return P.taux * (min_(f7ga, max1) + min_(f7gb, max1) + min_(f7gc, max1))
 
-    @dated_function(start = date(2003, 1, 1), stop = date(2005, 12, 31))
-    def formula_20030101_20051231(self, simulation, period):
+    def formula_2003_01_01(self, simulation, period):
         '''
         Frais de garde des enfants à l’extérieur du domicile (cases GA, GB, GC de la 2042)
         et GE, GF, GG
@@ -1726,9 +1683,10 @@ class invfor(Variable):
     entity = FoyerFiscal
     label = u"invfor"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
-    def formula_20020101_20051231(self, simulation, period):
+
+    def formula_2002_01_01(self, simulation, period):
         '''
         Investissements forestiers pour 2002-2005
         '''
@@ -1740,8 +1698,7 @@ class invfor(Variable):
         seuil = P.seuil * (maries_ou_pacses + 1)
         return P.taux * min_(f7un, seuil)
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
-    def formula_20060101_20081231(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         '''
         Investissements forestiers pour 2006-2008
         '''
@@ -1751,8 +1708,7 @@ class invfor(Variable):
 
         return P.taux * f7un
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def formula_20090101_20091231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Investissements forestiers pour 2009
         '''
@@ -1766,8 +1722,7 @@ class invfor(Variable):
         return P.taux * (min_(f7un, P.seuil * (maries_ou_pacses + 1)) + min_(f7up, P.ifortra_seuil * (maries_ou_pacses + 1)) +
                 min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1)))
 
-    @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
-    def formula_20100101_20101231(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         '''
         Investissements forestiers pour 2010
         '''
@@ -1785,8 +1740,7 @@ class invfor(Variable):
             min_(f7up + f7uu + f7te, P.ifortra_seuil * (maries_ou_pacses + 1)) +
             min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))))
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def formula_20110101_20111231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Investissements forestiers pour 2011 cf. 2041 GK
         '''
@@ -1811,8 +1765,7 @@ class invfor(Variable):
             P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0) +
             P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1)))
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def formula_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Investissements forestiers pour 2012 cf. 2041 GK
         '''
@@ -1841,8 +1794,7 @@ class invfor(Variable):
             P.report11 * min_(f7tg + f7uw, max1) +
             P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1)))
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def formula_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Investissements forestiers pour 2013 cf. 2041 GK
         '''
@@ -1881,9 +1833,9 @@ class invlst(Variable):
     entity = FoyerFiscal
     label = u"invlst"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
-    def formula_20040101_20041231(self, simulation, period):
+    def formula_2004_01_01(self, simulation, period):
         '''
         Investissements locatifs dans le secteur touristique
         2004
@@ -1925,8 +1877,7 @@ class invlst(Variable):
 
         return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
 
-    @dated_function(start = date(2005, 1, 1), stop = date(2010, 12, 31))
-    def formula_20050101_20101231(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         '''
         Investissements locatifs dans le secteur touristique
         2005-2010
@@ -1968,8 +1919,7 @@ class invlst(Variable):
 
         return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def formula_20110101_20111231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Investissements locatifs dans le secteur touristique
         2011
@@ -2012,8 +1962,7 @@ class invlst(Variable):
 
         return around(xc + xa + xg + xb + xh + xi + xj + xl + xo)
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def formula_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Investissements locatifs dans le secteur touristique
         2012
@@ -2061,8 +2010,7 @@ class invlst(Variable):
 
         return around(xc + xa + xg + xx + xb + xz + xh + xi + xj + xl + xo)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def formula_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Investissements locatifs dans le secteur touristique
         2013
@@ -2125,9 +2073,9 @@ class locmeu(Variable):
     entity = FoyerFiscal
     label = u"locmeu"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def formula_20090101_20091231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2009
@@ -2137,8 +2085,7 @@ class locmeu(Variable):
 
         return P.taux * min_(P.max, f7ij) / 9
 
-    @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
-    def formula_20100101_20101231(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2010
@@ -2152,8 +2099,7 @@ class locmeu(Variable):
 
         return ((min_(P.max, max_(f7ij, f7il)) + min_(P.max, f7im)) / 9 + f7ik) * P.taux + f7is
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def formula_20110101_20111231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2011
@@ -2180,8 +2126,7 @@ class locmeu(Variable):
             P.taux * max_(f7ik, f7ip + f7ir + f7iq) +
             f7is + f7iu + f7it)
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def formula_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2012
@@ -2220,8 +2165,7 @@ class locmeu(Variable):
             P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
             f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iz)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def formula_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2013
@@ -2296,9 +2240,9 @@ class patnat(Variable):
     entity = FoyerFiscal
     label = u"patnat"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
-    def formula_20100101_20101231(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         '''
         Dépenses de protections du patrimoine naturel (case 7KA)
         2010
@@ -2309,8 +2253,7 @@ class patnat(Variable):
         max1 = P.max
         return P.taux * min_(f7ka, max1)
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def formula_20110101_20111231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Dépenses de protections du patrimoine naturel (case 7KA, 7KB)
         2011
@@ -2322,8 +2265,7 @@ class patnat(Variable):
         max1 = P.max
         return P.taux * min_(f7ka, max1) + f7kb
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def formula_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Dépenses de protections du patrimoine naturel (case 7KA, 7KB, 7KC)
         2012
@@ -2336,8 +2278,7 @@ class patnat(Variable):
         max1 = P.max
         return P.taux * min_(f7ka, max1) + f7kb + f7kc
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def formula_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Dépenses de protections du patrimoine naturel (case 7KA, 7KB, 7KC)
         2013
@@ -2429,9 +2370,10 @@ class resimm(Variable):
     entity = FoyerFiscal
     label = u"resimm"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2010, 12, 31))
-    def formula_20090101_20101231(self, simulation, period):
+
+    def formula_2009_01_01(self, simulation, period):
         '''
         Travaux de restauration immobilière (cases 7RA et 7RB)
         2009-2010
@@ -2444,8 +2386,7 @@ class resimm(Variable):
         max2 = max_(max1 - f7rb, 0)
         return P.taux_rb * min_(f7rb, max1) + P.taux_ra * min_(f7ra, max2)
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def formula_20110101_20111231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Travaux de restauration immobilière (cases 7RA, 7RB, 7RC, 7RD)
         2011
@@ -2463,8 +2404,7 @@ class resimm(Variable):
         return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc, max3) +
                 P.taux_ra * min_(f7ra, max4))
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def formula_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Travaux de restauration immobilière (cases 7RA, 7RB, 7RC, 7RD, 7RE, 7RF)
         2012
@@ -2485,8 +2425,7 @@ class resimm(Variable):
         return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc + f7rf, max3) +
                 P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re, max5))
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def formula_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Travaux de restauration immobilière (cases 7RA, 7RB, 7RC, 7RD, 7RE, 7RF, 7SX, 7SY)
         2012
@@ -2535,9 +2474,10 @@ class saldom(Variable):
     entity = FoyerFiscal
     label = u"saldom"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2004, 12, 31))
-    def formula_20020101_20041231(self, simulation, period):
+
+    def formula_2002_01_01(self, simulation, period):
         '''
         Sommes versées pour l'emploi d'un salariés à  domicile
         2002-2004
@@ -2551,8 +2491,7 @@ class saldom(Variable):
         max1 = P.max1 * not_(isinvalid) + P.max3 * isinvalid
         return P.taux * min_(f7df, max1)
 
-    @dated_function(start = date(2005, 1, 1), stop = date(2006, 12, 31))
-    def formula_20050101_20061231(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         '''
         Sommes versées pour l'emploi d'un salariés à  domicile
         2005-2006
@@ -2572,8 +2511,7 @@ class saldom(Variable):
         max1 = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
         return P.taux * min_(f7df, max1)
 
-    @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
-    def formula_20070101_20081231(self, simulation, period):
+    def formula_2007_01_01(self, simulation, period):
         '''
         Sommes versées pour l'emploi d'un salariés à  domicile
         2007-2008
@@ -2595,8 +2533,7 @@ class saldom(Variable):
         max1 = maxEffectif - min_(f7db, maxEffectif)
         return P.taux * min_(f7df, max1)
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2013, 12, 31))
-    def formula_20090101_20131231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Sommes versées pour l'emploi d'un salariés à  domicile
         2009-2013
@@ -2626,9 +2563,10 @@ class scelli(Variable):
     entity = FoyerFiscal
     label = u"scelli"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def formula_20090101_20091231(self, simulation, period):
+
+    def formula_2009_01_01(self, simulation, period):
         '''
         Investissements locatif neufs : Dispositif Scellier (cases 7HJ et 7HK)
         2009
@@ -2639,8 +2577,7 @@ class scelli(Variable):
 
         return max_(P.taux1 * min_(P.max, f7hj), P.taux2 * min_(P.max, f7hk)) / 9
 
-    @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
-    def formula_20100101_20101231(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         '''
         Investissements locatif neufs : Dispositif Scellier
         2010
@@ -2667,8 +2604,7 @@ class scelli(Variable):
                 max_(P.taux1 * f7hr, P.taux2 * f7hs) +
                 f7la)
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def formula_20110101_20111231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Investissements locatif neufs : Dispositif Scellier
         2011
@@ -2729,8 +2665,7 @@ class scelli(Variable):
                 f7la + f7lb + f7lc
                 )
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def formula_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Investissements locatif neufs : Dispositif Scellier
         2012
@@ -2824,8 +2759,7 @@ class scelli(Variable):
                     P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
                 )
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def formula_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Investissements locatif neufs : Dispositif Scellier
         2013
@@ -2989,9 +2923,10 @@ class spfcpi(Variable):
     entity = FoyerFiscal
     label = u"spfcpi"
     definition_period = YEAR
+    end = '2014-12-31'
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def formula_20020101_20021231(self, simulation, period):
+
+    def formula_2002_01_01(self, simulation, period):
         '''
         Souscription de parts de fonds communs de placement dans l'innovation,
         de fonds d'investissement de proximité
@@ -3005,8 +2940,7 @@ class spfcpi(Variable):
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
         return P.taux1 * min_(f7gq, max1)
 
-    @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
-    def formula_20030101_20061231(self, simulation, period):
+    def formula_2003_01_01(self, simulation, period):
         '''
         Souscription de parts de fonds communs de placement dans l'innovation,
         de fonds d'investissement de proximité
@@ -3021,8 +2955,7 @@ class spfcpi(Variable):
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
         return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1))
 
-    @dated_function(start = date(2007, 1, 1), stop = date(2010, 12, 31))
-    def formula_20070101_20101231(self, simulation, period):
+    def formula_2007_01_01(self, simulation, period):
         '''
         Souscription de parts de fonds communs de placement dans l'innovation,
         de fonds d'investissement de proximité
@@ -3040,8 +2973,7 @@ class spfcpi(Variable):
                     P.taux1 * min_(f7fq, max1) +
                     P.taux2 * min_(f7fm, max1))
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2013, 12, 31))
-    def formula_20110101_20131231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Souscription de parts de fonds communs de placement dans l'innovation,
         de fonds d'investissement de proximité
@@ -3059,8 +2991,7 @@ class spfcpi(Variable):
         return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1) + P.taux2 * min_(f7fm, max1) +
                 P.taux3 * min_(f7fl, max1))
 
-    @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
-    def formula_20140101_20141231(self, simulation, period):
+    def formula_2014_01_01(self, simulation, period):
         '''
         Souscription de parts de fonds communs de placement dans l'innovation,
         de fonds d'investissement de proximité

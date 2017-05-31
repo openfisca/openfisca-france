@@ -306,9 +306,9 @@ class cd1(Variable):
     label = u"Charges déductibles non plafonnées"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
     definition_period = YEAR
+    end = '2014-12-31'
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2003, 12, 31))
-    def formula_20020101_20031231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2002
         '''
@@ -321,8 +321,7 @@ class cd1(Variable):
         niches1 = pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles + cd_deddiv + cd_doment
         return niches1
 
-    @dated_function(start = date(2004, 1, 1), stop = date(2005, 12, 31))
-    def formula_20040101_20051231(self, simulation, period):
+    def formula_2004_01_01(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2004
         '''
@@ -337,8 +336,7 @@ class cd1(Variable):
                    cd_deddiv + cd_doment + cd_eparet)
         return niches1
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
-    def formula_20060101_20061231(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2006
         '''
@@ -351,8 +349,7 @@ class cd1(Variable):
         niches1 = pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles + cd_deddiv + cd_eparet
         return niches1
 
-    @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
-    def formula_20070101_20081231(self, simulation, period):
+    def formula_2007_01_01(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2007
         '''
@@ -364,8 +361,7 @@ class cd1(Variable):
         niches1 = pensions_alimentaires_deduites + cd_acc75a + cd_deddiv + cd_eparet
         return niches1
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2013, 12, 31))
-    def formula_20090101_20131231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2009
         '''
@@ -378,8 +374,7 @@ class cd1(Variable):
         niches1 = pensions_alimentaires_deduites + cd_acc75a + cd_deddiv + cd_eparet + grosses_reparations
         return niches1
 
-    @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
-    def formula_20140101_20141231(self, simulation, period):
+    def formula_2014_01_01(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2014
         '''
@@ -400,9 +395,9 @@ class cd2(Variable):
     label = u"Charges déductibles plafonnées"
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
     definition_period = YEAR
+    end = '2008-12-31'
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
-    def formula_20020101_20051231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
@@ -412,8 +407,7 @@ class cd2(Variable):
         niches2 = cd_sofipe + cinema
         return niches2
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
-    def formula_20060101_20061231(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
@@ -422,8 +416,7 @@ class cd2(Variable):
         niches2 = cd_sofipe
         return niches2
 
-    @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
-    def formula_20070101_20081231(self, simulation, period):
+    def formula_2007_01_01(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
@@ -508,9 +501,9 @@ class pertes_capital_societes_nouvelles(Variable):
     entity = FoyerFiscal
     label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté"
     definition_period = YEAR
+    end = '2006-12-31'
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def formula_20020101_20021231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         '''
         Pertes en capital consécutives à la souscription au capital de sociétés
         nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
@@ -522,8 +515,7 @@ class pertes_capital_societes_nouvelles(Variable):
         plafond_cb = percap.plafond_cb * (1 + maries_ou_pacses)
         return min_(f6cb, plafond_cb)
 
-    @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
-    def formula_20030101_20061231(self, simulation, period):
+    def formula_2003_01_01(self, simulation, period):
         '''
         Pertes en capital consécutives à la souscription au capital de sociétés
         nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration

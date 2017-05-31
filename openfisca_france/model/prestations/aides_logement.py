@@ -448,8 +448,7 @@ class aide_logement_R0(Variable):
     label = u"Revenu de référence, basé sur la situation familiale, pris en compte dans le calcul des AL."
     definition_period = MONTH
 
-    @dated_function(stop = date(2014, 12, 31))
-    def formula_2014(famille, period, legislation):
+    def formula(famille, period, legislation):
         al = legislation(period).prestations.aides_logement
         pfam_n_2 = legislation(period.start.offset(-2, 'year')).prestations.prestations_familiales
         minim_n_2 = legislation(period.start.offset(-2, 'year')).prestations.minima_sociaux
@@ -482,8 +481,7 @@ class aide_logement_R0(Variable):
         return R0
 
     # cf Décret n° 2014-1739 du 29 décembre 2014 relatif au calcul des aides personnelles au logement
-    @dated_function(start = date(2015, 1, 1))
-    def formula_2015(famille, period, legislation):
+    def formula_2015_01_01(famille, period, legislation):
         al = legislation(period).prestations.aides_logement
         couple = famille('al_couple', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
@@ -629,13 +627,11 @@ class aide_logement_montant_brut(Variable):
     label = u"Montant des aides au logement après degressivité, avant CRDS"
     definition_period = MONTH
 
-    @dated_function(stop = date(2016, 6, 30))
-    def formula_avant_degression(famille, period):
+    def formula(famille, period):
         montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
         return montant_avant_degressivite
 
-    @dated_function(start = date(2016, 7, 1))
-    def formula_apres_degression(famille, period):
+    def formula_2016_07_01(famille, period):
         montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
         loyer_reel = famille('aide_logement_loyer_reel', period)
         loyer_degressivite = famille('aide_logement_loyer_seuil_degressivite', period)

@@ -240,8 +240,7 @@ class casa(Variable):
     url = u"http://www.service-public.fr/actualites/002691.html"
     definition_period = MONTH
 
-    @dated_function(start = date(2015, 1, 1))
-    def formula_2015(individu, period, legislation):
+    def formula_2015_01_01(individu, period, legislation):
         retraite_brute = individu('retraite_brute', period = period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
@@ -253,8 +252,7 @@ class casa(Variable):
             )
         return - casa
 
-    @dated_function(start = date(2013, 4, 1), stop = date(2014, 12, 31))
-    def formula_2013_2014(individu, period, legislation):
+    def formula_2013_04_01(individu, period, legislation):
         retraite_brute = individu('retraite_brute', period = period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
         contributions = legislation(period.start).prelevements_sociaux.contributions

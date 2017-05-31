@@ -83,8 +83,7 @@ class contribution_supplementaire_apprentissage(Variable):
     url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
     definition_period = MONTH
 
-    @dated_function(date(2010, 1, 1))
-    def formula(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         ratio_alternants = simulation.calculate('ratio_alternants', period)
@@ -208,8 +207,7 @@ class financement_organisations_syndicales(Variable):
     label = u"Contribution patronale au financement des organisations syndicales"
     definition_period = MONTH
 
-    @dated_function(date(2015, 1, 1))
-    def formula(self, simulation, period):
+    def formula_2015_01_01(self, simulation, period):
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         cotisation = apply_bareme(
             simulation,

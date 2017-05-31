@@ -236,8 +236,7 @@ class rafp_salarie(Variable):
     # Part salariale de la retraite additionelle de la fonction publique
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
 
-    @dated_function(start = date(2005, 1, 1))
-    def formula(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
@@ -264,8 +263,7 @@ class rafp_employeur(Variable):
     definition_period = MONTH
 
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
-    @dated_function(start = date(2005, 1, 1))
-    def formula(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
