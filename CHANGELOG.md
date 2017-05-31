@@ -2,10 +2,12 @@
 
 ### 18.3.0 - [#746](https://github.com/openfisca/openfisca-france/pull/746)
 
-* Amélioration technique : internalise et réunit les fichiers relatifs aux barèmes IPP
+* Amélioration technique
 * Détails :
+  - Réunit dans un même répertoire les fichiers relatifs aux barèmes IPP.
   - Ajoute un script qui exécute le processus d'import dans son ensemble.
     - Laisse le contributeur commiter les changements manuellement.
+	- Internalisation du dépôt [converters](https://framagit.org/french-tax-and-benefit-tables/ipp-tax-and-benefit-tables-converters) de l'IPP.
   - Désormais le seul lieu de contribution pour les paramètres est `openfisca_france/parameters`.
     - Disparition de `param.xml`.
 
@@ -88,7 +90,7 @@
     - La neutralisation des ressources en cas de perception du RSA était sur-évaluée.
     - Les abattements des ressources en cas de chômage ou de départ en retraite étaient imprécis.
       - Non prise en compte des frais réels
-      - Non prise en compte du plafond et du plancher pour l'abattement sur les frais profesionnels 
+      - Non prise en compte du plafond et du plancher pour l'abattement sur les frais profesionnels
   - Ajoute les références législatives
 
 <!-- -->
