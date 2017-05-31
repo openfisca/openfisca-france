@@ -12,7 +12,7 @@ Ces barèmes IPP sont très complets et il est intéressant pour OpenFisca de pr
 
 ## Conversion XLSX vers XML
 
-OpenFisca définit ses paramètres dans un format XML décrit [ici](https://doc.openfisca.fr/legislation-parameters/index.html).
+OpenFisca définit ses paramètres dans un format XML décrit [ici](https://doc.openfisca.fr/coding-the-legislation/legislation_parameters.html).
 
 L'IPP fournit ses paramètres sous forme de tableurs au format XLSX.
 
