@@ -313,7 +313,7 @@ class af_allocation_forfaitaire(Variable):
         return af_forfaitaire_module
 
 
-class af(DatedVariable):
+class af(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     entity = Famille

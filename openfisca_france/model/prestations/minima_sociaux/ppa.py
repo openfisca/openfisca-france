@@ -329,7 +329,7 @@ class ppa_fictive(Variable):
         return elig * ppa_fictive
 
 
-class ppa(DatedVariable):
+class ppa(Variable):
     column = FloatCol
     entity = Famille
     label = u"Prime Pour l'Activité"

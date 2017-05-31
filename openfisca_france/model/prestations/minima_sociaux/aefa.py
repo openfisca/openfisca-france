@@ -6,7 +6,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
 
-class aefa(DatedVariable):
+class aefa(Variable):
     '''
     Aide exceptionelle de fin d'année (prime de Noël)
     Instituée en 1998

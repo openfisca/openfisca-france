@@ -300,7 +300,7 @@ class rfr_cd(Variable):
         return cd_acc75a + cd_doment + cd_eparet + cd_sofipe
 
 
-class cd1(DatedVariable):
+class cd1(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Charges déductibles non plafonnées"
@@ -394,7 +394,7 @@ class cd1(DatedVariable):
         return niches1
 
 
-class cd2(DatedVariable):
+class cd2(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Charges déductibles plafonnées"
@@ -503,7 +503,7 @@ class cd_acc75a(Variable):
         return min_(f6eu, amax)
 
 
-class pertes_capital_societes_nouvelles(DatedVariable):
+class pertes_capital_societes_nouvelles(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté"

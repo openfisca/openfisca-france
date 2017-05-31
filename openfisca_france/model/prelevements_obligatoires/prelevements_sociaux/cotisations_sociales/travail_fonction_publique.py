@@ -228,7 +228,7 @@ class pension_civile_employeur(Variable):
         return -cot_pat_pension_civile
 
 
-class rafp_salarie(DatedVariable):
+class rafp_salarie(Variable):
     column = FloatCol
     entity = Individu
     label = u"Part salariale de la retraite additionelle de la fonction publique"
@@ -257,7 +257,7 @@ class rafp_salarie(DatedVariable):
         return -rafp_salarie
 
 
-class rafp_employeur(DatedVariable):
+class rafp_employeur(Variable):
     column = FloatCol
     entity = Individu
     label = u"Part patronale de la retraite additionnelle de la fonction publique"

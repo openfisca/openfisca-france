@@ -76,7 +76,7 @@ class contribution_developpement_apprentissage(Variable):
         return cotisation * redevable_taxe_apprentissage
 
 
-class contribution_supplementaire_apprentissage(DatedVariable):
+class contribution_supplementaire_apprentissage(Variable):
     column = FloatCol
     entity = Individu
     label = u"Contribution supplémentaire à l'apprentissage"
@@ -202,7 +202,7 @@ class fnal_tranche_a_plus_20(Variable):
         return cotisation * (taille_entreprise > 2)
 
 
-class financement_organisations_syndicales(DatedVariable):
+class financement_organisations_syndicales(Variable):
     column = FloatCol
     entity = Individu
     label = u"Contribution patronale au financement des organisations syndicales"

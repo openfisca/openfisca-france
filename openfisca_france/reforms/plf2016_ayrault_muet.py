@@ -57,7 +57,7 @@ class variator(Variable):
     definition_period = YEAR
 
 
-class reduction_csg(DatedVariable):
+class reduction_csg(Variable):
     column = FloatCol
     entity = Individu
     label = u"Réduction dégressive de CSG"
@@ -93,7 +93,7 @@ class reduction_csg_foyer_fiscal(Variable):
         return simulation.foyer_fiscal.sum(reduction_csg)
 
 
-class reduction_csg_nette(DatedVariable):
+class reduction_csg_nette(Variable):
     column = FloatCol
     entity = Individu
     label = u"Réduction dégressive de CSG"
@@ -130,7 +130,7 @@ class ppe_elig_bis(Variable):
         return (rfr * ppe_coef) <= (seuil * variator)
 
 
-class regularisation_reduction_csg(DatedVariable):
+class regularisation_reduction_csg(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Régularisation complète réduction dégressive de CSG"

@@ -231,7 +231,7 @@ class aah(Variable):
         return aah_base
 
 
-class caah(DatedVariable):
+class caah(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"Complément d'allocation adulte handicapé (mensualisé)"

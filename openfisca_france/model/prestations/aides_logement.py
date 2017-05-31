@@ -442,7 +442,7 @@ class aide_logement_charges(Variable):
         return where(coloc, montant_coloc, montant_cas_general)
 
 
-class aide_logement_R0(DatedVariable):
+class aide_logement_R0(Variable):
     column = FloatCol
     entity = Famille
     label = u"Revenu de référence, basé sur la situation familiale, pris en compte dans le calcul des AL."
@@ -623,7 +623,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         return montant
 
 
-class aide_logement_montant_brut(DatedVariable):
+class aide_logement_montant_brut(Variable):
     column = FloatCol
     entity = Famille
     label = u"Montant des aides au logement après degressivité, avant CRDS"

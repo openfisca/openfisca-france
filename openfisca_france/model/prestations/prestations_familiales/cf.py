@@ -134,7 +134,7 @@ class cf_plafond(Variable):
         return plafond
 
 
-class cf_majore_plafond(DatedVariable):
+class cf_majore_plafond(Variable):
     column = FloatCol
     entity = Famille
     label = u"Plafond d'éligibilité au Complément Familial majoré"
@@ -228,7 +228,7 @@ class cf_non_majore_avant_cumul(Variable):
         return max_(eligibilite * montant, eligibilite_diff * montant_diff)
 
 
-class cf_majore_avant_cumul(DatedVariable):
+class cf_majore_avant_cumul(Variable):
     column = FloatCol
     entity = Famille
     label = u"Complément familial majoré avant cumul"

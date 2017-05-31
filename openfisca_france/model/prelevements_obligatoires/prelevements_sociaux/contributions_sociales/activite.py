@@ -128,7 +128,7 @@ class crds_salaire(Variable):
         return montant_crds
 
 
-class forfait_social(DatedVariable):
+class forfait_social(Variable):
     column = FloatCol
     entity = Individu
     label = u"Forfait social"

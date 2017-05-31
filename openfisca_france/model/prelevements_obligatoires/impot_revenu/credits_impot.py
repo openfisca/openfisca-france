@@ -11,7 +11,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 log = logging.getLogger(__name__)
 
 
-class credits_impot(DatedVariable):
+class credits_impot(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédits d'impôt pour l'impôt sur les revenus"
@@ -321,7 +321,7 @@ class aidmob(Variable):
         return (f1ar + f1br + f1cr + f1dr + f1er) * _P.impot_revenu.credits_impot.aidmob.montant
 
 
-class aidper(DatedVariable):
+class aidper(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédits d’impôt pour dépenses en faveur de l’aide aux personnes"
@@ -587,7 +587,7 @@ class creimp_exc_2008(Variable):
                 (rpp > 11673) * max_(0, 8317 * (12475 - rpp) / 802)))
 
 
-class creimp(DatedVariable):
+class creimp(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Avoirs fiscaux et crédits d'impôt"
@@ -917,7 +917,7 @@ class drbail(Variable):
         return P.taux * f4tq
 
 
-class inthab(DatedVariable):
+class inthab(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d’impôt intérêts des emprunts pour l’habitation principale"
@@ -1200,7 +1200,7 @@ class percvm(Variable):
         return _P.impot_revenu.credits_impot.percvm.taux * f3vv_end_2010
 
 
-class preetu(DatedVariable):
+class preetu(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d’impôt pour souscription de prêts étudiants"
@@ -1273,7 +1273,7 @@ class prlire(Variable):
         return _P.impot_revenu.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
 
 
-class quaenv(DatedVariable):
+class quaenv(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale"
@@ -1613,7 +1613,7 @@ class quaenv_bouquet(Variable):
         return or_(bouquet, f7wh)
 
 
-class saldom2(DatedVariable):
+class saldom2(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d’impôt emploi d’un salarié à domicile"

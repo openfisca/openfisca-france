@@ -12,7 +12,7 @@ SCOLARITE_COLLEGE = 1
 SCOLARITE_LYCEE = 2
 
 
-class bourse_college_echelon(DatedVariable):
+class bourse_college_echelon(Variable):
     column = IntCol
     label = u"Échelon de la bourse de collège attribuée"
     entity = Famille
@@ -256,7 +256,7 @@ class bourse_lycee_echelon(Variable):
             )
 
 
-class bourse_lycee(DatedVariable):
+class bourse_lycee(Variable):
     column = FloatCol
     label = u"Montant annuel de la bourse de lycée"
     entity = Famille

@@ -12,7 +12,7 @@ class aeeh_niveau_handicap(Variable):
     definition_period = MONTH
 
 
-class aeeh(DatedVariable):
+class aeeh(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation d'éducation de l'enfant handicapé"

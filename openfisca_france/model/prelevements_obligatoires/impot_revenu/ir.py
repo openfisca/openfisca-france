@@ -575,7 +575,7 @@ class deficit_rcm(Variable):
         return f2aa + f2al + f2am + f2an + f2aq + f2ar
 
 
-class rev_cat_rvcm(DatedVariable):
+class rev_cat_rvcm(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Capitaux"
@@ -1132,7 +1132,7 @@ class avantage_qf(Variable):
         return ir_ss_qf - ir_plaf_qf
 
 
-class decote(DatedVariable):
+class decote(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"décote"
@@ -1372,7 +1372,7 @@ class microentreprise(Variable):
             )
 
 
-class plus_values(DatedVariable):
+class plus_values(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Taxation des plus_values"
@@ -1732,7 +1732,7 @@ class rev_cap_bar(Variable):
     # We add f2da an f2ee to allow for comparaison between years
 
 
-class rev_cap_lib(DatedVariable):
+class rev_cap_lib(Variable):
     '''Revenu du capital imposé au prélèvement libératoire
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
@@ -1784,7 +1784,7 @@ class avf(Variable):
         return f2ab
 
 
-class imp_lib(DatedVariable):
+class imp_lib(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Prelèvement libératoire sur les revenus du capital"

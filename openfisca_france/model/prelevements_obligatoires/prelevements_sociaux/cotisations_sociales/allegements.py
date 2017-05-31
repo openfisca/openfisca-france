@@ -126,7 +126,7 @@ class coefficient_proratisation(Variable):
         return coefficient
 
 
-class credit_impot_competitivite_emploi(DatedVariable):
+class credit_impot_competitivite_emploi(Variable):
     column = FloatCol
     entity = Individu
     label = u"Crédit d'imôt pour la compétitivité et l'emploi"
@@ -148,7 +148,7 @@ class credit_impot_competitivite_emploi(DatedVariable):
         return credit_impot_competitivite_emploi * non_cumul * not_(association)
 
 
-class aide_premier_salarie(DatedVariable):
+class aide_premier_salarie(Variable):
     column = FloatCol
     entity = Individu
     label = u"Aide à l'embauche d'un premier salarié"
@@ -211,7 +211,7 @@ class aide_premier_salarie(DatedVariable):
         return eligible * (montant_max / 24) * coefficient_proratisation * non_cumulee
 
 
-class aide_embauche_pme(DatedVariable):
+class aide_embauche_pme(Variable):
     column = FloatCol
     entity = Individu
     label = u"Aide à l'embauche d'un salarié pour les PME"
@@ -301,7 +301,7 @@ class smic_proratise(Variable):
         return smic_proratise
 
 
-class allegement_fillon(DatedVariable):
+class allegement_fillon(Variable):
     column = FloatCol
     entity = Individu
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
@@ -375,7 +375,7 @@ def compute_allegement_fillon(simulation, period):
     return taux_fillon * assiette
 
 
-class allegement_cotisation_allocations_familiales(DatedVariable):
+class allegement_cotisation_allocations_familiales(Variable):
     column = FloatCol
     label = u"Allègement de la cotisation d'allocations familiales sur les bas et moyens salaires"
     entity = Individu

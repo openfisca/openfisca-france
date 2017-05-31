@@ -55,7 +55,7 @@ def modify_legislation_json(reference_legislation_json_copy):
     return reference_legislation_json_copy
 
 
-class decote(DatedVariable):
+class decote(Variable):
     label = u"Décote IR 2015 appliquée sur IR 2014 (revenus 2013)"
     definition_period = YEAR
 

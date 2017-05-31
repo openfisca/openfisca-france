@@ -9,7 +9,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
 
-class rsa_base_ressources(DatedVariable):
+class rsa_base_ressources(Variable):
     column = FloatCol
     label = u"Base ressources du Rmi ou du Rsa"
     entity = Famille
@@ -148,7 +148,7 @@ class rsa_base_ressources_individu(Variable):
         return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
 
 
-class rsa_base_ressources_minima_sociaux(DatedVariable):
+class rsa_base_ressources_minima_sociaux(Variable):
     column = FloatCol
     label = u"Minima sociaux inclus dans la base ressource RSA/RMI"
     entity = Famille
@@ -178,7 +178,7 @@ class rsa_base_ressources_minima_sociaux(DatedVariable):
         return aspa + asi + ass + famille.sum(aah_i + caah_i)
 
 
-class rsa_base_ressources_prestations_familiales(DatedVariable):
+class rsa_base_ressources_prestations_familiales(Variable):
     column = FloatCol
     entity = Famille
     label = u"Prestations familiales inclues dans la base ressource RSA/RMI"
@@ -275,7 +275,7 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
         return result
 
 
-class crds_mini(DatedVariable):
+class crds_mini(Variable):
     column = FloatCol
     entity = Famille
     label = u"CRDS versée sur les minimas sociaux"
@@ -496,7 +496,7 @@ class salaire_net_hors_revenus_exceptionnels(Variable):
             individu('indemnite_fin_contrat_net', period)
             )
 
-class rsa_revenu_activite_individu(DatedVariable):
+class rsa_revenu_activite_individu(Variable):
     column = FloatCol
     label = u"Revenus d'activité du Rsa - Individuel"
     entity = Individu
@@ -596,7 +596,7 @@ class rsa_fictif(Variable):
         return montant
 
 
-class rsa_montant(DatedVariable):
+class rsa_montant(Variable):
     column = FloatCol
     label = u"Revenu de solidarité active, avant prise en compte de la non-calculabilité."
     entity = Famille
@@ -675,7 +675,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
             )
 
 
-class rsa_condition_nationalite(DatedVariable):
+class rsa_condition_nationalite(Variable):
     column = BoolCol
     entity = Individu
     label = u"Conditions de nationnalité et de titre de séjour pour bénéficier du RSA"
@@ -942,7 +942,7 @@ class rsa_non_calculable_tns_individu(Variable):
             )
 
 
-class rsa_socle(DatedVariable):
+class rsa_socle(Variable):
     column = FloatCol
     entity = Famille
     label = "RSA socle"

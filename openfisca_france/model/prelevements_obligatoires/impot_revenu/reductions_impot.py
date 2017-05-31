@@ -12,7 +12,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 log = logging.getLogger(__name__)
 
 
-class reductions(DatedVariable):
+class reductions(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"reductions"
@@ -486,7 +486,7 @@ class assvie(Variable):
         return P.taux * min_(f7gw + f7gx + f7gy, max1)
 
 
-class cappme(DatedVariable):
+class cappme(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"cappme"
@@ -684,7 +684,7 @@ class cotsyn(Variable):
         return P.taux * (min_(f7ac, maxv) + min_(f7ae, maxc) + min_(f7ag, maxp))
 
 
-class creaen(DatedVariable):
+class creaen(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"creaen"
@@ -792,7 +792,7 @@ class daepad(Variable):
         return P.taux * (min_(f7cd, P.max) + min_(f7ce, P.max))
 
 
-class dfppce(DatedVariable):
+class dfppce(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"dfppce"
@@ -971,7 +971,7 @@ class dfppce(DatedVariable):
 
 
 # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
-class doment(DatedVariable):
+class doment(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"doment"
@@ -1270,7 +1270,7 @@ class doment(DatedVariable):
 
         # TODO: vérifier les dates des variables de doment et domsoc (y sont-elles encore en 2013 par ex ?)
 
-class domlog(DatedVariable):
+class domlog(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"domlog"
@@ -1469,7 +1469,7 @@ class domlog(DatedVariable):
 #En accord avec la DGFiP mais pas de 7ub et 7uj dans la notice
 
 
-class domsoc(DatedVariable):
+class domsoc(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"domsoc"
@@ -1520,7 +1520,7 @@ class domsoc(DatedVariable):
         return  fhra + fhrb + fhrc + fhrd + f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw + f7qx
 
 
-class donapd(DatedVariable):
+class donapd(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"donapd"
@@ -1612,7 +1612,7 @@ class ecpess(Variable):
                 P.sup * (f7ef + f7eg / 2))
 
 
-class garext(DatedVariable):
+class garext(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"garext"
@@ -1721,7 +1721,7 @@ class intemp(Variable):
         return P.taux * min_(f7wg, max1)
 
 
-class invfor(DatedVariable):
+class invfor(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"invfor"
@@ -1876,7 +1876,7 @@ class invfor(DatedVariable):
             P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1)))
 
 
-class invlst(DatedVariable):
+class invlst(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"invlst"
@@ -2120,7 +2120,7 @@ class invrev(Variable):
                  P.taux_gt * f7gt + P.taux_gt * f7gv)
 
 
-class locmeu(DatedVariable):
+class locmeu(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"locmeu"
@@ -2291,7 +2291,7 @@ class mohist(Variable):
         return P.taux * min_(f7nz, P.max)
 
 
-class patnat(DatedVariable):
+class patnat(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"patnat"
@@ -2424,7 +2424,7 @@ class repsoc(Variable):
         return P.taux * min_(f7fh, seuil)
 
 
-class resimm(DatedVariable):
+class resimm(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"resimm"
@@ -2530,7 +2530,7 @@ class rsceha(Variable):
         return P.taux * min_(f7gz, max1)
 
 
-class saldom(DatedVariable):
+class saldom(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"saldom"
@@ -2621,7 +2621,7 @@ class saldom(DatedVariable):
         return P.taux * min_(f7df, max1)
 
 
-class scelli(DatedVariable):
+class scelli(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"scelli"
@@ -2984,7 +2984,7 @@ class sofipe(Variable):
         return P.taux * min_(f7gs, max1)
 
 
-class spfcpi(DatedVariable):
+class spfcpi(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"spfcpi"

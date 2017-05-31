@@ -18,7 +18,7 @@ from ..model.prelevements_obligatoires.impot_revenu import reductions_impot
 class plfr2014(Reform):
     name = u'Projet de Loi de Finances Rectificative 2014'
 
-    class reduction_impot_exceptionnelle(DatedVariable):
+    class reduction_impot_exceptionnelle(Variable):
         reference = reductions_impot.reduction_impot_exceptionnelle
         definition_period = YEAR
 
@@ -34,7 +34,7 @@ class plfr2014(Reform):
             montant = params.montant_plafond * nb_adult
             return min_(max_(plafond + montant - rfr, 0), montant)
 
-    class reductions(DatedVariable):
+    class reductions(Variable):
         label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
         reference = reductions_impot.reductions
         definition_period = YEAR

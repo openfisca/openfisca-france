@@ -46,7 +46,7 @@ class plf2016(Reform):
     name = u'Projet de Loi de Finances 2016 appliquée aux revenus 2014'
     # key = 'plf2016'
 
-    class decote(DatedVariable):
+    class decote(Variable):
         label = u"Décote IR 2016 appliquée en 2015 sur revenus 2014"
         definition_period = YEAR
 
@@ -123,7 +123,7 @@ class plf2016_counterfactual(Reform):
     name = u'Contrefactuel du PLF 2016 sur les revenus 2015'
     # key = 'plf2016_counterfactual'
 
-    class decote(DatedVariable):
+    class decote(Variable):
         label = u"Décote IR 2015 appliquée sur revenus 2015 (contrefactuel)"
         definition_period = YEAR
 
@@ -135,7 +135,7 @@ class plf2016_counterfactual(Reform):
             assert decote.seuil == 1016
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
-    class reduction_impot_exceptionnelle(DatedVariable):
+    class reduction_impot_exceptionnelle(Variable):
         definition_period = YEAR
 
         @dated_function(start = date(2015, 1, 1), stop = date(2015, 12, 31))
@@ -152,7 +152,7 @@ class plf2016_counterfactual(Reform):
             montant = montant_plafond * nb_adult
             return min_(max_(plafond + montant - rfr, 0), montant)
 
-    class reductions(DatedVariable):
+    class reductions(Variable):
         label = u"Somme des réductions d'impôt"
         definition_period = YEAR
 
@@ -283,7 +283,7 @@ class plf2016_counterfactual_2014(Reform):
     name = u'Contrefactuel 2014 du PLF 2016 sur les revenus 2015'
     key = 'plf2016_counterfactual_2014'
 
-    class decote(DatedVariable):
+    class decote(Variable):
         definition_period = YEAR
 
         @dated_function(start = date(2015, 1, 1))
@@ -294,7 +294,7 @@ class plf2016_counterfactual_2014(Reform):
             assert decote.seuil == 1016
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
-    class reduction_impot_exceptionnelle(DatedVariable):
+    class reduction_impot_exceptionnelle(Variable):
         definition_period = YEAR
 
         @dated_function(start = date(2015, 1, 1), stop = date(2015, 12, 31))
@@ -311,7 +311,7 @@ class plf2016_counterfactual_2014(Reform):
             montant = montant_plafond * nb_adult
             return min_(max_(plafond + montant - rfr, 0), montant)
 
-    class reductions(DatedVariable):
+    class reductions(Variable):
         label = u"Somme des réductions d'impôt"
         definition_period = YEAR
 

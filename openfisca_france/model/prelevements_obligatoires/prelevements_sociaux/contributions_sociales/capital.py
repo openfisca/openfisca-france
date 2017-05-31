@@ -59,7 +59,7 @@ class crds_cap_bar(Variable):
         return -rev_cap_bar * _P.crds.revenus_du_patrimoine
 
 
-class prelsoc_cap_bar(DatedVariable):
+class prelsoc_cap_bar(Variable):
     """Calcule le prélèvement social sur les revenus du capital soumis au barème"""
     column = FloatCol
     entity = FoyerFiscal
@@ -148,7 +148,7 @@ class crds_pv_mo(Variable):
         return -f3vg * _P.crds.revenus_du_patrimoine
 
 
-class prelsoc_pv_mo(DatedVariable):
+class prelsoc_pv_mo(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les plus-values de cession de valeurs mobilières"
@@ -242,7 +242,7 @@ class crds_pv_immo(Variable):
         return -f3vz * _P.crds.revenus_du_patrimoine
 
 
-class prelsoc_pv_immo(DatedVariable):
+class prelsoc_pv_immo(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les plus-values immobilières"
@@ -338,7 +338,7 @@ class crds_fon(Variable):
         return -rev_cat_rfon * _P.crds.revenus_du_patrimoine
 
 
-class prelsoc_fon(DatedVariable):
+class prelsoc_fon(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus fonciers"

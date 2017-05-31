@@ -1570,7 +1570,7 @@ def compute_benefice_auto_entrepreneur_micro_entreprise(bareme, type_activite, c
     return benefice
 
 
-class tns_auto_entrepreneur_benefice(DatedVariable):
+class tns_auto_entrepreneur_benefice(Variable):
     column = FloatCol
     label = u"Bénéfice en tant qu'auto-entrepreneur"
     entity = Individu
@@ -1587,7 +1587,7 @@ class tns_auto_entrepreneur_benefice(DatedVariable):
         return benefice
 
 
-class tns_micro_entreprise_benefice(DatedVariable):
+class tns_micro_entreprise_benefice(Variable):
     column = FloatCol
     label = u"Bénéfice de la micro entreprise"
     entity = Individu
@@ -1607,7 +1607,7 @@ class tns_micro_entreprise_benefice(DatedVariable):
 # the 'base ressources' are only using the 'benefice', without deducting the 'cotisation sociales'.
 # Although this rule seems unfair towards independent workers, we are now applying it for all presations and therefore
 # we are not using the following formulas for calculating prestations.
-class tns_auto_entrepreneur_revenus_net(DatedVariable) :
+class tns_auto_entrepreneur_revenus_net(Variable) :
     column = FloatCol
     label = u"Revenu d'un auto-entrepreneur"
     entity = Individu

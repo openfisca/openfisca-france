@@ -318,7 +318,7 @@ class ass_isf(Variable):
 # # calcul de l'impôt par application du barème ##
 
 
-class isf_iai(DatedVariable):
+class isf_iai(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"isf_iai"
@@ -412,7 +412,7 @@ class isf_org_int_gen(Variable):
 
         return b2nc * P.taux_don_interet_general
 
-class isf_avant_plaf(DatedVariable):
+class isf_avant_plaf(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Montant de l'impôt sur la fortune avant plafonnement"
@@ -530,7 +530,7 @@ class decote_isf(Variable):
         return LB * elig
 
 
-class isf_apres_plaf(DatedVariable):
+class isf_apres_plaf(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Impôt sur la fortune après plafonnement"

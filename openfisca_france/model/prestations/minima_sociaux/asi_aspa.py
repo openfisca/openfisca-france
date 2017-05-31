@@ -280,7 +280,7 @@ class asi(Variable):
         return elig * montant_servi_asi
 
 
-class aspa_couple(DatedVariable):
+class aspa_couple(Variable):
     column = BoolCol
     label = u"Couple au sens de l'ASPA"
     entity = Famille
