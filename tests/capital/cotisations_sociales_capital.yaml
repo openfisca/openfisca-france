@@ -1,0 +1,174 @@
+- name: "f2dc_2013"
+  description: Montant des cotisations sociales sur un revenu des actions et des parts de 20000 euros en 2013
+  period: 2013
+  absolute_error_margin: 1
+  input_variables:
+    f2dc: 20000
+  output_variables:
+    prelsoc_cap_bar: -1360
+    csg_cap_bar: -1640
+    crds_cap_bar: -100
+    ir_plaf_qf: 330
+    irpp: -0
+
+- name: "f2fu_2013"
+  description: Montant des cotisations sociales sur des revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via entreprise donnant droit à abattement (2fu) de 20000 euros en 2013
+  period: 2013
+  absolute_error_margin: 1
+  input_variables:
+    f2fu: 20000
+  output_variables:
+    prelsoc_cap_bar: -1360
+    csg_cap_bar: -1640
+    crds_cap_bar: -100
+    ir_plaf_qf: 330
+    irpp: -0
+
+- name: "f2go_2013"
+  description: Montant des cotisations sociales sur d autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié n ouvrant pas droit à abattement de 20000 euros en 2013
+  period: 2013
+  absolute_error_margin: 1
+  input_variables:
+    f2go: 20000
+  output_variables:
+    rev_cat_rvcm: 25000
+    prelsoc_cap_bar: -1700
+    csg_cap_bar: -2050
+    crds_cap_bar: -125
+    ir_plaf_qf: 2150
+    irpp: -2150
+
+- name: "f2ts_2013"
+  description: Montant des cotisations sociales sur des revenus de valeurs mobilières, produits des contrats d assurance-vie d une durée inférieure à 8 ans et distributions n ouvrant pas droit à abattement de 20000 euros en 2013
+  period: 2013
+  absolute_error_margin: 1
+  input_variables:
+    f2ts: 20000
+  output_variables:
+    rev_cat_rvcm: 20000
+    prelsoc_cap_bar: -1360
+    csg_cap_bar: -1640
+    crds_cap_bar: -100
+    ir_plaf_qf: 1450
+    irpp: -1450
+
+- name: "f2tr_2013"
+  description: Montant des cotisations sociales sur des produits de placements à revenu fixe, intérêts et autres revenus assimilés n ouvrant pas droit à abattement de 20000 euros en 2013
+  period: 2013
+  absolute_error_margin: 1
+  input_variables:
+    f2tr: 20000
+  output_variables:
+    rev_cat_rvcm: 20000
+    prelsoc_cap_bar: -1360
+    csg_cap_bar: -1640
+    crds_cap_bar: -100
+    ir_plaf_qf: 1450
+    irpp: -1450
+
+- name: "f4ba_2012"
+  description: Montant des cotisations sociales sur des revenus fonciers imposables de 20000 euros en 2012
+  period: 2012
+  absolute_error_margin: 1
+  input_variables:
+    f4ba: 20000
+  output_variables:
+    prelsoc_fon: -(4.5 + 2 + 0.3) * 0.01 * 20000
+    csg_fon: -.082 * 20000
+    crds_fon: -.005 * 20000
+    irpp: -1461
+
+- name: "f4ba_2010"
+  description: Montant des cotisations sociales sur des revenus fonciers imposables de 20000 euros en 2010
+  period: 2010
+  absolute_error_margin: 1
+  input_variables:
+    f4ba: 20000
+  output_variables:
+    prelsoc_fon: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
+    csg_fon: -.082 * 20000
+    crds_fon: -.005 * 20000
+
+- name: "f3vg _2012"
+  description: Montant des cotisations sociales sur des plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés de 20000 euros en 2012
+  period: 2012
+  absolute_error_margin: 1
+  input_variables:
+    f3vg: 20000
+  output_variables:
+    prelsoc_pv_mo: -(4.5 + 2 + 0.3) * 0.01 * 20000
+    csg_pv_mo: -.082 * 20000
+    crds_pv_mo: -.005 * 20000
+
+- name: "f3vg _2010"
+  description: Montant des cotisations sociales sur des plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés de 20000 euros en 2010
+  period: 2010
+  absolute_error_margin: 1
+  input_variables:
+    f3vg: 20000
+  output_variables:
+    prelsoc_pv_mo: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
+    csg_pv_mo: -.082 * 20000
+    crds_pv_mo: -.005 * 20000
+
+- name: "f3vg _2006"
+  description: Montant des cotisations sociales sur des plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés de 20000 euros en 2006
+  period: 2006
+  absolute_error_margin: 1
+  input_variables:
+    f3vg: 20000
+  output_variables:
+    prelsoc_pv_mo: -460
+    csg_pv_mo: -1640
+    crds_pv_mo: -100
+
+- name: "f3vz_2012"
+  description: Montant des cotisations sociales sur des plus-values imposables sur cessions d’immeubles ou de biens meubles de 20000 euros en 2012
+  period: 2012
+  input_variables:
+    f3vz: 20000
+  output_variables:
+    prelsoc_pv_immo: -(4.5 + 2 + 0.3) * 0.01 * 20000
+    csg_pv_immo: -.082 * 20000
+    crds_pv_immo: -.005 * 20000
+
+- name: "f3vz_2010"
+  description: Montant des cotisations sociales sur des plus-values imposables sur cessions d’immeubles ou de biens meubles de 20000 euros en 2010
+  period: 2010
+  input_variables:
+    f3vz: 20000
+  output_variables:
+    prelsoc_pv_immo: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
+    csg_pv_immo: -.082 * 20000
+    crds_pv_immo: -.005 * 20000
+
+- name: "f2dc_f2ca_2013"
+  description: Montant des cotisations sociales sur des revenus des actions et parts donnant droit à abattement de 20000 euros et des frais et charges déductibles de 5000 euros en 2013
+  period: 2013
+  absolute_error_margin: 0.2
+  input_variables:
+    f2dc: 20000
+    f2ca: 5000
+  output_variables:
+    csg_cap_bar: -1640
+    crds_cap_bar: -100
+    prelsoc_cap_bar: -1360
+    rev_cat_rvcm: 7000
+    irpp: -0
+
+- name: "f4babbbcbd_2006"
+  description: Montant des cotisations sociales sur des revenus fonciers imposables de 20000 euros, un déficit imputable sur les revenus fonciers de 1000 euros,  un déficit imputable sur le revenu global de 1000 euros, des déficits antérieurs non encore imputés de 1000 euros en 2006
+  period: 2006
+  absolute_error_margin: 0.5
+  input_variables:
+    f4ba: 20000
+    f4bb: 1000
+    f4bc: 1000
+    f4bd: 1000
+  output_variables:
+    csg_fon: -1394
+    crds_fon: -85
+    prelsoc_fon: -391
+    rev_cat_rfon: 17000
+    irpp: -1119
+

@@ -1,0 +1,137 @@
+- name: "Annuel"
+  period: 2013
+  reforms: openfisca_france.reforms.smic_h_b_9_euros.smic_h_b_9_euros
+  absolute_error_margin: 0.01
+  input_variables:
+    salaire_de_base: # 9 smic horaire 2013
+      2013-01: 35 * 52 / 12 * 9
+      2013-02: 35 * 52 / 12 * 9
+      2013-03: 35 * 52 / 12 * 9
+      2013-04: 35 * 52 / 12 * 9
+      2013-05: 35 * 52 / 12 * 9
+      2013-06: 35 * 52 / 12 * 9
+      2013-07: 35 * 52 / 12 * 9
+      2013-08: 35 * 52 / 12 * 9
+      2013-09: 35 * 52 / 12 * 9 + 1000
+      2013-10: 35 * 52 / 12 * 9
+      2013-11: 35 * 52 / 12 * 9
+      2013-12: 35 * 52 / 12 * 9 * 2
+    allegement_fillon_mode_recouvrement: 0
+    effectif_entreprise: 3000
+    code_postal_entreprise: "75001"
+    categorie_salarie: 0
+  output_variables:
+    allegement_fillon:
+      2013-12: 3233.51
+
+- name: "Circulaire acoss 2013 regularisation fin de periode"
+  period: 2013
+  reforms: openfisca_france.reforms.smic_h_b_9_euros.smic_h_b_9_euros
+  absolute_error_margin: 0.01
+  input_variables:
+    salaire_de_base: # 9 smic horaire 2013
+      2013-01: 35 * 52 / 12 * 9
+      2013-02: 35 * 52 / 12 * 9
+      2013-03: 35 * 52 / 12 * 9
+      2013-04: 35 * 52 / 12 * 9
+      2013-05: 35 * 52 / 12 * 9
+      2013-06: 35 * 52 / 12 * 9
+      2013-07: 35 * 52 / 12 * 9
+      2013-08: 35 * 52 / 12 * 9
+      2013-09: 35 * 52 / 12 * 9 + 1000
+      2013-10: 35 * 52 / 12 * 9
+      2013-11: 35 * 52 / 12 * 9
+      2013-12: 35 * 52 / 12 * 9 * 2
+    allegement_fillon_mode_recouvrement: 1
+    effectif_entreprise: 3000
+    code_postal_entreprise: "75001"
+    categorie_salarie: 0
+  output_variables:
+    allegement_fillon:
+      2013-01: 354.9
+      2013-02: 354.9
+      2013-03: 354.9
+      2013-04: 354.9
+      2013-05: 354.9
+      2013-06: 354.9
+      2013-07: 354.9
+      2013-08: 354.9
+      2013-09: 0
+      2013-10: 354.9
+      2013-11: 354.9
+      2013-12: -315.49  # employeur est redevable
+
+- name: "Circulaire acoss 2013 progressif"
+  period: 2013
+  reforms: openfisca_france.reforms.smic_h_b_9_euros.smic_h_b_9_euros
+  absolute_error_margin: 0.01
+  input_variables:
+    salaire_de_base: # 9 smic horaire 2013
+      2013-01: 35 * 52 / 12 * 9
+      2013-02: 35 * 52 / 12 * 9
+      2013-03: 35 * 52 / 12 * 9
+      2013-04: 35 * 52 / 12 * 9
+      2013-05: 35 * 52 / 12 * 9
+      2013-06: 35 * 52 / 12 * 9
+      2013-07: 35 * 52 / 12 * 9
+      2013-08: 35 * 52 / 12 * 9
+      2013-09: 35 * 52 / 12 * 9 + 1000
+      2013-10: 35 * 52 / 12 * 9
+      2013-11: 35 * 52 / 12 * 9
+      2013-12: 35 * 52 / 12 * 9 * 2
+    allegement_fillon_mode_recouvrement: 2
+    effectif_entreprise: 3000
+    code_postal_entreprise: "75001"
+    categorie_salarie: 0
+  output_variables:
+    allegement_fillon:
+      2013-01: 354.9
+      2013-02: 354.9
+      2013-03: 354.9
+      2013-04: 354.9
+      2013-05: 354.9
+      2013-06: 354.9
+      2013-07: 354.9
+      2013-08: 354.9
+      2013-09: -78.58
+      2013-10: 355.44
+      2013-11: 354.39
+      2013-12: -236.94
+
+- name: "Salarie 2015 5000 euros"
+  period: 2015
+  reforms: openfisca_france.reforms.smic_h_b_9_euros.smic_h_b_9_euros
+  absolute_error_margin: 0.01
+  input_variables:
+    salaire_de_base: # 9 smic horaire 2013
+      2013-01: 5000
+      2013-02: 5000
+      2013-03: 5000
+      2013-04: 5000
+      2013-05: 5000
+      2013-06: 5000
+      2013-07: 5000
+      2013-08: 5000
+      2013-09: 5000
+      2013-10: 5000
+      2013-11: 5000
+      2013-12: 5000
+    allegement_fillon_mode_recouvrement: 2
+    effectif_entreprise: 1
+    code_postal_entreprise: "75001"
+    categorie_salarie: 0
+    contrat_de_travail_debut: "2015-01-01"
+  output_variables:
+    allegement_fillon:
+      2015-01: 0
+      2015-02: 0
+      2015-03: 0
+      2015-04: 0
+      2015-05: 0
+      2015-06: 0
+      2015-07: 0
+      2015-08: 0
+      2015-09: 0
+      2015-10: 0
+      2015-11: 0
+      2015-12: 0
