@@ -35,7 +35,7 @@ Se placer dans le répertoire racine d'OpenFisca-France, là où se trouve le fi
 ./openfisca_france/scripts/parameters/baremes_ipp/convert_ipp_xlsx_to_openfisca_xml.py
 ```
 
-Le script génère un nouveau répertoire temporaire à chaque exécution dont une partie du nom est aléatoire. Il l'affiche en début de script, et ne l'efface pas à la fin. Le script termine en affichant cette ligne, indiquant le nom du répertoire temporaire. Par exemple (la partie `v3SAEz` peut changer) :
+Le script génère un nouveau répertoire dans `/tmp` à chaque exécution, dont une partie du nom est aléatoire. Ce répertoire n'est pas effacé par le script. Par exemple :
 
 ```
 INFO:convert_ipp_xlsx_to_openfisca_xml:XML files written to '/tmp/baremes-ipp-v3SAEz/xml'
@@ -63,8 +63,10 @@ Les erreurs sont stockées au format YAML dans les fichiers `ERRORS.yaml` et `WA
 
 Par exemple, certains onglets des fichiers XLSX sont ignorés car ils ne contiennent pas de données mais uniquement du texte explicatif comme un lexique des abbréviations utilisées. Dans ce cas, ceci est indiqué dans le fichier `WARNINGS.yaml`.
 
-### Étape manuelle de transformation
+### Transformation de l'arbre
 
-Il existe une étape manuelle de transformation définie dans le fichier [`transform_ipp_tree.py`](./transform_ipp_tree.py) au niveau de la fonction portant le même nom. Cette fonction reçoit en entrée la racine de l'arbre des paramètres construit depuis les fichiers YAML clean de l'IPP, et modifie cet arbre pour correspondre aux noms d'OpenFisca.
+Il existe une étape de transformation de l'arbre des paramètres, définie dans le fichier [`transform_ipp_tree.py`](./transform_ipp_tree.py). La fonction, du même nom que le fichier, reçoit en entrée la racine de l'arbre des paramètres construit depuis les fichiers YAML clean de l'IPP, et modifie cet arbre pour correspondre aux noms d'OpenFisca.
 
-Lorsque les fichiers XLSX de l'IPP sont modifiés, il se peut que leur structure change. Dans ce cas la fonction `transform_ipp_tree` doit être adaptée en conséquence.
+Lorsque les fichiers XLSX de l'IPP sont modifiés, il se peut que leur structure change. Dans ce cas, le script plante, très probablement sur une `KeyError` car la fonction `transform_ipp_tree` essaie d'accéder à une clé qui n'existe plus. Ces clés sont équivalentes aux noms des paramètres XML.
+
+Par exemple, la clé `reduction_pour_versement_compte_epargne_codev` correspond au paramètre IPP `Réduction pour versement compte épargne CODEV`. Si le paramètre IPP change de nom, ou si la structure change et qu'il se retrouve à un autre niveau de l'arbre, il faut adapter la fonction `transform_ipp_tree` manuellement. Il n'existe pas de façon automatisée pour retrouver le nom d'un paramètre dans le fichier YAML correspondant à l'une de ces clés.
