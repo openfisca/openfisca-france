@@ -14,7 +14,15 @@ test:
   pre:
     - git fetch
   override:
-    - make test
+    - nosetests:
+        parallel: true
+        files:
+          - tests/**/*.py
+    - openfisca-run-test:
+        parallel: true
+        files:
+          - tests/**/*.yaml
+          - tests/**/*.yml
     - ./check-version-bump.sh
 deployment:
   master:
