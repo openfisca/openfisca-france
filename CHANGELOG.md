@@ -1,5 +1,11 @@
 # Changelog
 
+### 18.2.8 - [#762](https://github.com/openfisca/openfisca-france/pull/762)
+
+* Changement mineur
+* Détails :
+  - Fait passer les tests en parallèle
+
 ### 18.2.7 - [#728](https://github.com/openfisca/openfisca-france/pull/728)
 
 * Évolution du système socio-fiscal.
