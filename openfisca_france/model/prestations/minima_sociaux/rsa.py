@@ -16,7 +16,7 @@ class rsa_base_ressources(DatedVariable):
     definition_period = MONTH
 
     @dated_function(start = date(2017, 01, 01))
-    def function_2017(famille, mois_demande, legislation, mois_courant):
+    def formula_2017(famille, mois_demande, legislation, mois_courant):
         rsa_base_ressources_prestations_familiales = famille('rsa_base_ressources_prestations_familiales', mois_demande, extra_params = [mois_courant])
         rsa_base_ressources_minima_sociaux = famille('rsa_base_ressources_minima_sociaux', mois_demande, extra_params = [mois_courant])
 
@@ -40,7 +40,7 @@ class rsa_base_ressources(DatedVariable):
             )
 
     @dated_function(start = date(2009, 6, 1), stop = date(2016, 12, 31))
-    def function_rsa(famille, period):
+    def formula_rsa(famille, period):
         rsa_base_ressources_prestations_familiales = famille('rsa_base_ressources_prestations_familiales', period)
         rsa_base_ressources_minima_sociaux = famille('rsa_base_ressources_minima_sociaux', period)
 
@@ -60,7 +60,7 @@ class rsa_base_ressources(DatedVariable):
             )
 
     @dated_function(stop = date(2009, 5, 31))
-    def function_rmi(famille, period):
+    def formula_rmi(famille, period):
         rsa_base_ressources_prestations_familiales = famille('rsa_base_ressources_prestations_familiales', period)
         rsa_base_ressources_minima_sociaux = famille('rsa_base_ressources_minima_sociaux', period)
 
@@ -80,7 +80,7 @@ class rsa_has_ressources_substitution(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         return (
             famille('chomage_net', period) +
             famille('indemnites_journalieres', period) +
@@ -94,7 +94,7 @@ class rsa_base_ressources_individu(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         # Revenus professionels
         types_revenus_pros = [
             'chomage_net',
@@ -155,7 +155,7 @@ class rsa_base_ressources_minima_sociaux(DatedVariable):
     definition_period = MONTH
 
     @dated_function(start = date(2017, 01, 01))
-    def function_2017(famille, mois_demande, legislation, mois_courant):
+    def formula_2017(famille, mois_demande, legislation, mois_courant):
         # Prestations calculées que l'on réinjecte dans la BR du RSA
         aspa = famille('aspa', mois_demande)
         asi = famille('asi', mois_demande)
@@ -167,7 +167,7 @@ class rsa_base_ressources_minima_sociaux(DatedVariable):
         return aspa + asi + ass + famille.sum(aah_i + caah_i)
 
     @dated_function(stop = date(2016, 12, 31))
-    def function(famille, period):
+    def formula(famille, period):
         three_previous_months = period.last_3_months
         aspa = famille('aspa', period)
         asi = famille('asi', period)
@@ -185,7 +185,7 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
     definition_period = MONTH
 
     @dated_function(date(2002, 1, 1), date(2003, 12, 31))
-    def function_2002(famille, period):
+    def formula_2002(famille, period):
         prestations = [
             'af_base',
             'cf',
@@ -198,7 +198,7 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
         return result
 
     @dated_function(start = date(2004, 1, 1), stop = date(2014, 3, 31))
-    def function_2003(famille, period):
+    def formula_2003(famille, period):
         prestations = [
             'af_base',
             'cf',
@@ -214,7 +214,7 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
         return result
 
     @dated_function(start = date(2014, 4, 1), stop = (2016, 12, 31))
-    def function_2014(famille, period):
+    def formula_2014(famille, period):
         # TODO : Neutraliser les ressources de type prestations familiales quand elles sont interrompues
         prestations_calculees = [
             'rsa_forfait_asf',
@@ -245,7 +245,7 @@ class rsa_base_ressources_prestations_familiales(DatedVariable):
         return result
 
     @dated_function(start = date(2017, 01, 01))
-    def function_2017(famille, mois_demande, legislation, mois_courant):
+    def formula_2017(famille, mois_demande, legislation, mois_courant):
         # TODO : Neutraliser les ressources de type prestations familiales quand elles sont interrompues
         prestations_calculees = [
             'rsa_forfait_asf',
@@ -282,7 +282,7 @@ class crds_mini(DatedVariable):
     definition_period = MONTH
 
     @dated_function(start = date(2009, 6, 1))
-    def function_2009_(famille, period, legislation):
+    def formula_2009_(famille, period, legislation):
         rsa_activite = famille('rsa_activite', period)
         taux_crds = legislation(period).prelevements_sociaux.contributions.crds.taux
 
@@ -295,7 +295,7 @@ class div_ms(Variable):
     label = u"Dividende entrant en compte dans le calcul des minimas sociaux"
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
         period_declaration = period.this_year
         f3vc = individu.foyer_fiscal('f3vc', period_declaration)
         f3ve = individu.foyer_fiscal('f3ve', period_declaration)
@@ -313,7 +313,7 @@ class enceinte_fam(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         enceinte_i = famille.members('enceinte', period)
         parent_enceinte = famille.any(enceinte_i, role = Famille.PARENT)
 
@@ -330,7 +330,7 @@ class rsa_enfant_a_charge(Variable):
     label = u"Enfant pris en compte dans le calcul du RSA"
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         P_rsa = legislation(period).prestations.minima_sociaux.rsa
         P_rmi = legislation(period).prestations.minima_sociaux.rmi
 
@@ -400,7 +400,7 @@ class rsa_nb_enfants(Variable):
     label = u"Nombre d'enfants pris en compte pour le calcul du RSA"
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         return famille.sum(famille.members('rsa_enfant_a_charge', period))
 
 
@@ -418,7 +418,7 @@ class rsa_revenu_activite(Variable):
     start_date = date(2009, 6, 1)
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         rsa_revenu_activite_i = famille.members('rsa_revenu_activite_individu', period)
         rsa_enfant_a_charge_i = famille.members('rsa_enfant_a_charge', period)
         enfant_i = famille.members('est_enfant_dans_famille', period)
@@ -434,7 +434,7 @@ class rsa_indemnites_journalieres_activite(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
         m_3 = period.offset(-3,'month')
 
         def ijss_activite_sous_condition(period):
@@ -472,7 +472,7 @@ class rsa_indemnites_journalieres_hors_activite(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
         return individu('indemnites_journalieres', period) - individu('rsa_indemnites_journalieres_activite', period)
 
 
@@ -489,7 +489,7 @@ class salaire_net_hors_revenus_exceptionnels(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
         return (
             individu('salaire_net', period) -
             individu('primes_salaires_net', period) -
@@ -504,7 +504,7 @@ class rsa_revenu_activite_individu(DatedVariable):
     definition_period = MONTH
 
     @dated_function(start = date(2017, 01, 01))
-    def function_2017(individu, mois_demande, legislation, mois_courant):
+    def formula_2017(individu, mois_demande, legislation, mois_courant):
         last_3_months = mois_demande.last_3_months
 
         types_revenus_activite = [
@@ -542,7 +542,7 @@ class rsa_revenu_activite_individu(DatedVariable):
         return revenus_moyennes + revenus_tns_annualises + revenus_non_moyennes
 
     @dated_function(stop = date(2016, 12, 31))
-    def function_2016(individu, period):
+    def formula_2016(individu, period):
         last_3_months = period.last_3_months
 
         # Note Auto-entrepreneurs:
@@ -581,7 +581,7 @@ class rsa_fictif(Variable):
     label = "RSA fictif pour un mois"
     definition_period = MONTH
 
-    def function(famille, mois_courant, legislation, mois_demande):
+    def formula(famille, mois_courant, legislation, mois_demande):
         rsa_socle_non_majore = famille('rsa_socle', mois_courant)
         rsa_socle_majore = famille('rsa_socle_majore', mois_courant)
         rsa_socle = max_(rsa_socle_non_majore, rsa_socle_majore)
@@ -604,7 +604,7 @@ class rsa_montant(DatedVariable):
     definition_period = MONTH
 
     @dated_function(start = date(2017, 01, 01))
-    def function_2017(famille, period, legislation):
+    def formula_2017(famille, period, legislation):
         seuil_non_versement = legislation(period).prestations.minima_sociaux.rsa.rsa_nv
 
         rsa = famille('rsa_fictif', period.last_3_months, extra_params = [period], options = [ADD]) / 3
@@ -614,7 +614,7 @@ class rsa_montant(DatedVariable):
 
 
     @dated_function(stop = date(2016, 12, 31))
-    def function_2016(famille, period, legislation):
+    def formula_2016(famille, period, legislation):
         rsa_socle_non_majore = famille('rsa_socle', period)
         rsa_socle_majore = famille('rsa_socle_majore', period)
         rsa_socle = max_(rsa_socle_non_majore, rsa_socle_majore)
@@ -642,7 +642,7 @@ class rsa(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(famille, period):
+    def formula(famille, period):
         montant = famille('rsa_montant', period)
         non_calculable = famille('rsa_non_calculable', period)
 
@@ -656,7 +656,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
     start_date = date(2009, 6, 1)
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         interets_epargne_sur_livrets = individu('interets_epargne_sur_livrets', period)
         epargne_non_remuneree = individu('epargne_non_remuneree', period)
         revenus_capital = individu('revenus_capital', period)
@@ -682,14 +682,14 @@ class rsa_condition_nationalite(DatedVariable):
     definition_period = MONTH
 
     @dated_function(start = date(2009, 6, 1))
-    def function_rsa(individu, period, legislation):
+    def formula_rsa(individu, period, legislation):
         ressortissant_eee = individu('ressortissant_eee', period)
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
         duree_min_titre_sejour = legislation(period).prestations.minima_sociaux.rsa.duree_min_titre_sejour
         return or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
     @dated_function(stop = date(2009, 5, 31))
-    def function_rmi(individu, period, legislation):
+    def formula_rmi(individu, period, legislation):
         ressortissant_eee = individu('ressortissant_eee', period)
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
         duree_min_titre_sejour = legislation(period).prestations.minima_sociaux.rmi.duree_min_titre_sejour
@@ -702,7 +702,7 @@ class rsa_eligibilite(Variable):
     label = u"Eligibilité au RSA et au RMI"
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         rsa_nb_enfants = famille('rsa_nb_enfants', period)
         rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
 
@@ -729,10 +729,10 @@ class rsa_eligibilite_tns(Variable):
     column = BoolCol(default = True)
     entity = Famille
     label = u"Condition de chiffres d'affaires pour qu'un travailleur non salarié soit éligible au RSA"
-    stop_date = date(2016, 12, 31)
+    end = '2016-12-31'
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         last_year = period.last_year
 
         tns_benefice_agricole_i = famille.members('tns_benefice_exploitant_agricole', last_year)
@@ -789,7 +789,7 @@ class rsa_forfait_asf(Variable):
     start_date = date(2014, 4, 1)
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         # Si un ASF est versé, on ne prend pas en compte le montant réel mais un forfait.
         prestations_familiales = legislation(period).prestations.prestations_familiales
         minima_sociaux = legislation(period).prestations.minima_sociaux
@@ -809,7 +809,7 @@ class rsa_forfait_logement(Variable):
     label = u"Forfait logement intervenant dans le calcul du Rmi ou du Rsa"
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         np_pers = famille('nb_parents', period) + famille('rsa_nb_enfants', period)
         aide_logement = famille('aide_logement', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
@@ -867,7 +867,7 @@ class rsa_majore_eligibilite(Variable):
     label = u"Eligibilité au RSA majoré pour parent isolé"
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         isole = not_(famille('en_couple', period))
         isolement_recent = famille('rsa_isolement_recent', period)
         enfant_moins_3_ans = nb_enf(famille, period, 0, 2) > 0
@@ -895,10 +895,10 @@ class rsa_non_calculable(Variable):
         )
     entity = Famille
     label = u"RSA non calculable"
-    stop_date = date(2016, 12, 31)
+    end = '2016-12-31'
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         # Si le montant du RSA est nul sans tenir compte des revenus
         # TNS pouvant provoquer une non calculabilité (parce que
         # les autres revenus sont trop importants), alors a fortiori
@@ -927,7 +927,7 @@ class rsa_non_calculable_tns_individu(Variable):
 
     # En fait l'évaluation par le PCD est plutôt l'exception que la règle. En général on retient plutôt le bénéfice déclaré au FISC (après abattement forfaitaire ou réel).
 
-    def function(individu, period):
+    def formula(individu, period):
         this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
         tns_benefice_exploitant_agricole = individu(
             'tns_benefice_exploitant_agricole', this_year_and_last_year, options = [ADD])
@@ -949,7 +949,7 @@ class rsa_socle(DatedVariable):
     definition_period = MONTH
 
     @dated_function(start = date(2009, 6, 1))
-    def function_rsa(famille, period, legislation):
+    def formula_rsa(famille, period, legislation):
         nb_parents = famille('nb_parents', period)
         eligib = famille('rsa_eligibilite', period)
         rsa_nb_enfants = famille('rsa_nb_enfants', period)
@@ -971,7 +971,7 @@ class rsa_socle(DatedVariable):
         return eligib * socle * taux
 
     @dated_function(stop = date(2009, 5, 31))
-    def function_rmi(famille, period, legislation):
+    def formula_rmi(famille, period, legislation):
         nb_parents = famille('nb_parents', period)
         eligib = famille('rsa_eligibilite', period)
         rsa_nb_enfants = famille('rsa_nb_enfants', period)
@@ -998,7 +998,7 @@ class rsa_socle_majore(Variable):
     start_date = date(2009, 6, 1)
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         eligib = famille('rsa_majore_eligibilite', period)
         nbenf = famille('rsa_nb_enfants', period)
 

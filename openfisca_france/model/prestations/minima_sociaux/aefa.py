@@ -29,7 +29,7 @@ class aefa(DatedVariable):
     definition_period = YEAR
 
     @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
-    def function_2009__(famille, period, legislation):
+    def formula_2009__(famille, period, legislation):
         janvier = period.first_month
 
         af_nbenf = famille('af_nbenf', janvier)
@@ -63,7 +63,7 @@ class aefa(DatedVariable):
         return aefa
 
     @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
-    def function_2008(famille, period, legislation):
+    def formula_2008(famille, period, legislation):
         janvier = period.first_month
 
         af_nbenf = famille('af_nbenf', janvier)
@@ -98,7 +98,7 @@ class aefa(DatedVariable):
         return aefa
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
-    def function__2008_(famille, period, legislation):
+    def formula__2008_(famille, period, legislation):
         janvier = period.first_month
 
         af_nbenf = famille('af_nbenf', janvier)

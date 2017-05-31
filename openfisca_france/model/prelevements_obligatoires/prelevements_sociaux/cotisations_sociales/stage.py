@@ -28,7 +28,7 @@ class stage_gratification(Variable):
     start_date = date(2014, 11, 1)  # TODO: remove when updating legislation backwards
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
         stage_gratification_taux = simulation.calculate('stage_gratification_taux', period)
         stagiaire = simulation.calculate('stagiaire', period)
@@ -47,7 +47,7 @@ class stage_gratification_reintegration(Variable):
     start_date = date(2014, 11, 1)  # TODO: remove when updating legislation backwards
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
         stage_gratification = simulation.calculate('stage_gratification', period)
         plafond_securite_sociale_horaire = (
@@ -64,7 +64,7 @@ class stagiaire(Variable):
     label = u"L'individu est stagiaire"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
         return (stage_duree_heures > 0)
 
@@ -76,7 +76,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
     url = "http://www.apce.com/pid2798/stages.html?espace=3"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         agirc_employeur = simulation.calculate('agirc_employeur', period)
         agirc_gmp_employeur = simulation.calculate('agirc_gmp_employeur', period)
         arrco_employeur = simulation.calculate('arrco_employeur', period)
@@ -108,7 +108,7 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
     url = "http://www.apce.com/pid2798/stages.html?espace=3"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         agirc_salarie = simulation.calculate('agirc_salarie', period)
         agirc_gmp_salarie = simulation.calculate('agirc_gmp_salarie', period)
         arrco_salarie = simulation.calculate('arrco_salarie', period)

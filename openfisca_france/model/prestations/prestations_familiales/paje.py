@@ -67,7 +67,7 @@ class paje(Variable):
     url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje-0"  # noqa
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         '''
         Prestation d'accueil du jeune enfant
         '''
@@ -90,7 +90,7 @@ class paje_base(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         couple_biactif = famille('biactivite', period)
         parent_isole = not_(famille('en_couple', period))
         nombre_enfants = famille('af_nbenf', period)
@@ -179,7 +179,7 @@ class paje_base_enfant_eligible_avant_reforme_2014(Variable):
     label = u"Enfant ouvrant droit à la PAJE de base né avant le 1er avril 2014"
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         date_naissance = individu('date_naissance', period)
@@ -197,7 +197,7 @@ class paje_base_enfant_eligible_apres_reforme_2014(Variable):
     label = u"Enfant ouvrant droit à la PAJE de base né après le 1er avril 2014"
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         date_naissance = individu('date_naissance', period)
@@ -218,7 +218,7 @@ class paje_naissance(Variable):
     url = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         '''
         Prestation d'accueil du jeune enfant - Allocation de naissance
         '''
@@ -257,7 +257,7 @@ class paje_clca(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         """
         Prestation d'accueil du jeune enfant - Complément de libre choix d'activité
         'fam'
@@ -334,7 +334,7 @@ class paje_clca_taux_plein(Variable):
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         paje_clca = famille('paje_clca', period)
         inactif = famille('inactif', period)
 
@@ -349,7 +349,7 @@ class paje_clca_taux_partiel(Variable):
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         paje_clca = famille('paje_clca', period)
         partiel1 = famille('partiel1', period)
 
@@ -367,7 +367,7 @@ class paje_cmg(Variable):
     url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"  # noqa
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         '''
         Prestation d accueil du jeune enfant - Complément de libre choix du mode de garde
 
@@ -479,7 +479,7 @@ class paje_colca(Variable):
     url = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         '''
         Prestation d'accueil du jeune enfant - Complément optionnel de libre choix du mode de garde
         '''
@@ -504,11 +504,11 @@ class ape_avant_cumul(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation parentale d'éducation, avant prise en compte de la non-cumulabilité avec le CF et l'APJE"
-    stop_date = date(2003, 12, 31)
+    end = '2003-12-31'
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         '''
         Allocation parentale d'éducation
 
@@ -565,11 +565,11 @@ class apje_avant_cumul(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation pour le jeune enfant, avant prise en compte de la non-cumulabilité avec le CF et l'APE"
-    stop_date = date(2003, 12, 31)
+    end = '2003-12-31'
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         '''
         Allocation pour jeune enfant
         '''
@@ -609,11 +609,11 @@ class ape(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation parentale d'éducation"
-    stop_date = date(2003, 12, 31)
+    end = '2003-12-31'
     url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         '''
         L'allocation de base de la paje n'est pas cumulable avec le complément familial
         '''
@@ -629,11 +629,11 @@ class apje(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation pour le jeune enfant"
-    stop_date = date(2003, 12, 31)
+    end = '2003-12-31'
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         # L'APJE n'est pas cumulable avec le complément familial et l'APE
         apje_avant_cumul = famille('apje_avant_cumul', period)
         ape_avant_cumul = famille('ape_avant_cumul', period)

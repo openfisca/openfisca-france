@@ -13,7 +13,7 @@ class ars(Variable):
     url = "http://vosdroits.service-public.fr/particuliers/F1878.xhtml"
     definition_period = YEAR
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         '''
         Allocation de rentrée scolaire brute de CRDS
         '''

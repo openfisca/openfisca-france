@@ -22,7 +22,7 @@ class salaire_imposable_pour_inversion(Variable):
 class salaire_de_base(Variable):
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         """Calcule le salaire brut à partir du salaire imposable par inversion du barème
         de cotisations sociales correspondant à la catégorie à laquelle appartient le salarié.
         """
@@ -72,7 +72,7 @@ class salaire_de_base(Variable):
 class traitement_indiciaire_brut(Variable):
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         """Calcule le tratement indiciaire brut à partir du salaire imposable.
         """
         # Get value for year and divide below.
@@ -136,7 +136,7 @@ class traitement_indiciaire_brut(Variable):
 class primes_fonction_publique(Variable):
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         """Calcule les primes.
         """
         # Get value for year and divide below.

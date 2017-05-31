@@ -138,7 +138,7 @@ class f8td_2002_2005(Variable):
     entity = FoyerFiscal
     label = u"Contribution exceptionnelle sur les hauts revenus"
     start_date = date(2002, 1, 1)
-    stop_date = date(2005, 12, 31)
+    end = '2005-12-31'
     definition_period = YEAR
 
 
@@ -148,7 +148,7 @@ class f8td(Variable):
     entity = FoyerFiscal
     label = u"Revenus non imposables dépassent la moitié du RFR"
     start_date = date(2011, 1, 1)
-    stop_date = date(2014, 12, 31)
+    end = '2014-12-31'
     definition_period = YEAR
 
 

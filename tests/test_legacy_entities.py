@@ -11,7 +11,7 @@ class salaire_famille(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         salaire_holder = simulation.compute('salaire', period = period)
         return self.sum_by_entity(salaire_holder)
 
@@ -21,7 +21,7 @@ class salaire_enfants(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         salaire_holder = simulation.compute('salaire', period = period)
         return self.sum_by_entity(salaire_holder, roles = ENFS)
 
@@ -31,7 +31,7 @@ class salaire_enf1(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         salaire_holder = simulation.compute('salaire', period = period)
         salaire = self.split_by_roles(salaire_holder)
         assert_near(salaire[CHEF], [1000, 3000])
@@ -43,7 +43,7 @@ class salaire_conj(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         salaire_holder = simulation.compute('salaire', period = period)
         salaire = self.filter_role(salaire_holder, role = CONJ)
         return salaire
@@ -54,7 +54,7 @@ class af_chef(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         af_holder = simulation.compute('af', period = period)
         return self.cast_from_entity_to_roles(af_holder, roles = [CHEF])
 
@@ -64,7 +64,7 @@ class af_tous(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         af_holder = simulation.compute('af', period = period)
         return self.cast_from_entity_to_roles(af_holder)
 
@@ -74,7 +74,7 @@ class has_enfant_autonome(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         salaire = simulation.calculate('salaire', period = period)
         condition = salaire > 450
         return self.any_by_roles(condition, roles = ENFS, entity = Famille)

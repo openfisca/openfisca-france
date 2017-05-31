@@ -25,7 +25,7 @@ class assiette_cotisations_sociales(Variable):
     label = u"Assiette des cotisations sociales des salaries"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         assiette_cotisations_sociales_prive = simulation.calculate('assiette_cotisations_sociales_prive', period)
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
@@ -42,7 +42,7 @@ class assiette_cotisations_sociales_prive(Variable):
     label = u"Assiette des cotisations sociales des salaries du prive"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         avantage_en_nature = simulation.calculate('avantage_en_nature', period)
         hsup = simulation.calculate('hsup', period)
         indemnites_compensatrices_conges_payes = simulation.calculate('indemnites_compensatrices_conges_payes', period)
@@ -77,7 +77,7 @@ class indemnite_fin_contrat(Variable):
     url = u"https://www.service-public.fr/particuliers/vosdroits/F40"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
@@ -118,7 +118,7 @@ class reintegration_titre_restaurant_employeur(Variable):
     label = u"Prise en charge de l'employeur des dépenses de cantine et des titres restaurants non exonérés de charges sociales"  # noqa
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         valeur_unitaire = simulation.calculate("titre_restaurant_valeur_unitaire", period)
         volume = simulation.calculate("titre_restaurant_volume", period)
         taux_employeur = simulation.calculate('titre_restaurant_taux_employeur', period)
@@ -150,7 +150,7 @@ class penibilite(Variable):
     start_date = date(2015, 1, 1)
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         exposition_penibilite = simulation.calculate('exposition_penibilite', period)
         multiplicateur =  simulation.legislation_at(period.start).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
 
@@ -184,7 +184,7 @@ class accident_du_travail(Variable):
     label = u"Cotisations employeur accident du travail et maladie professionelle"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate(
             'assiette_cotisations_sociales', period)
         taux_accident_travail = simulation.calculate('taux_accident_travail', period)
@@ -200,7 +200,7 @@ class agff_salarie(Variable):
     definition_period = MONTH
     # AGFF: Association pour la gestion du fonds de financement (sous-entendu des départs entre 60 et 65 ans)
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation,
             period,
@@ -218,7 +218,7 @@ class agff_employeur(Variable):
     definition_period = MONTH
     # TODO: améliorer pour gérer mensuel/annuel
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate(
             'assiette_cotisations_sociales', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
@@ -251,7 +251,7 @@ class agirc_gmp_assiette(Variable):
     definition_period = MONTH
     # TODO: gestion annuel/mensuel
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         gmp = simulation.legislation_at(period.start).prelevements_sociaux.gmp
         assiette = max_(
@@ -268,7 +268,7 @@ class agirc_gmp_salarie(Variable):
     definition_period = MONTH
     # TODO: gestion annuel/mensuel
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         agirc_gmp_assiette = simulation.calculate('agirc_gmp_assiette', period)
         agirc_salarie = simulation.calculate('agirc_salarie', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
@@ -294,7 +294,7 @@ class agirc_gmp_employeur(Variable):
     definition_period = MONTH
     # TODO: gestion annuel/mensuel
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         agirc_employeur = simulation.calculate('agirc_employeur', period)
         agirc_gmp_assiette = simulation.calculate('agirc_gmp_assiette', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
@@ -320,7 +320,7 @@ class agirc_salarie(Variable):
     label = u"Cotisation AGIRC tranche B (salarié)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation,
             period,
@@ -338,7 +338,7 @@ class agirc_employeur(Variable):
     label = u"Cotisation AGIRC tranche B (employeur)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation, period,
             cotisation_type = "employeur",
@@ -355,7 +355,7 @@ class ags(Variable):
     label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)"  # noqa analysis:ignore
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation, period,
             cotisation_type = "employeur",
@@ -371,7 +371,7 @@ class apec_salarie(Variable):
     label = u"Cotisations agence pour l'emploi des cadres (APEC,  salarié)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         cotisation = apply_bareme(
             simulation, period,
@@ -388,7 +388,7 @@ class apec_employeur(Variable):
     label = u"Cotisations Agenece pour l'emploi des cadres (APEC, employeur)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation,
             period,
@@ -406,7 +406,7 @@ class arrco_salarie(Variable):
     definition_period = MONTH
     # TODO: check gestion mensuel/annuel
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation_minimale = apply_bareme(
             simulation,
             period,
@@ -436,7 +436,7 @@ class arrco_employeur(Variable):
     definition_period = MONTH
     # TODO: check gestion mensuel/annuel
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation_minimale = apply_bareme(
             simulation,
             period,
@@ -465,7 +465,7 @@ class chomage_salarie(Variable):
     label = u"Cotisation chômage tranche A (salarié)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation,
             period,
@@ -482,7 +482,7 @@ class chomage_employeur(Variable):
     label = u"Cotisation chômage tranche A (employeur)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation,
             period,
@@ -499,7 +499,7 @@ class contribution_solidarite_autonomie(Variable):
     label = u"Contribution solidarité autonomie (employeur)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation,
             period,
@@ -516,7 +516,7 @@ class cotisation_exceptionnelle_temporaire_salarie(Variable):
     label = u"Cotisation_exceptionnelle_temporaire (salarie)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation,
             period,
@@ -533,7 +533,7 @@ class cotisation_exceptionnelle_temporaire_employeur(Variable):
     label = u"Cotisation exceptionnelle temporaire (employeur)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation,
             period,
@@ -550,7 +550,7 @@ class famille(Variable):
     label = u"Cotisation famille (employeur)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation,
             period,
@@ -567,7 +567,7 @@ class mmid_salarie(Variable):
     label = u"Cotisation maladie (salarié)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         salarie_regime_alsace_moselle = simulation.calculate('salarie_regime_alsace_moselle', period)
 
         cotisation_regime_general = apply_bareme(
@@ -598,7 +598,7 @@ class mmid_employeur(Variable):
     url = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation,
             period,
@@ -616,7 +616,7 @@ class mmida_employeur(Variable):
     label = u"Cotisation maladie (employeur)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation,
             period,
@@ -635,7 +635,7 @@ class mhsup(Variable):
     label = u"Heures supplémentaires comptées négativement"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         hsup = simulation.calculate('hsup', period)
 
         return -hsup
@@ -648,7 +648,7 @@ class plafond_securite_sociale(Variable):
     definition_period = MONTH
     # TODO gérer les plafonds mensuel, trimestriel, annuel
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         plafond_temps_plein = simulation.legislation_at(period.start).cotsoc.gen.plafond_securite_sociale
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
@@ -694,7 +694,7 @@ class prevoyance_obligatoire_cadre(Variable):
     definition_period = MONTH
     # TODO: gérer le mode de recouvrement et l'aspect mensuel/annuel
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
@@ -715,7 +715,7 @@ class complementaire_sante_employeur(Variable):
     label = u"Couverture complémentaire santé collective d'entreprise - part employeur"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         complementaire_sante_taux_employeur = simulation.calculate(
             'complementaire_sante_taux_employeur', period)
         complementaire_sante_montant = simulation.calculate('complementaire_sante_montant', period)
@@ -730,7 +730,7 @@ class complementaire_sante_salarie(Variable):
     label = u"Couverture complémentaire santé collective d'entreprise - part salarié"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         complementaire_sante_taux_employeur = simulation.calculate(
             'complementaire_sante_taux_employeur', period)
         complementaire_sante_montant = simulation.calculate('complementaire_sante_montant', period)
@@ -757,7 +757,7 @@ class taille_entreprise(Variable):
     url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 
         taille_entreprise = (
@@ -776,7 +776,7 @@ class taux_accident_travail(Variable):
     start_date = date(2012, 1, 1)
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         exposition_accident = simulation.calculate('exposition_accident', period)
         accident = simulation.legislation_at(period.start).cotsoc.accident
 
@@ -790,7 +790,7 @@ class vieillesse_deplafonnee_salarie(Variable):
     label = u"Cotisation vieillesse déplafonnée (salarié)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation,
             period,
@@ -807,7 +807,7 @@ class vieillesse_plafonnee_salarie(Variable):
     label = u"Cotisation vieillesse plafonnée (salarié)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation, period,
             cotisation_type = 'salarie',
@@ -823,7 +823,7 @@ class vieillesse_deplafonnee_employeur(Variable):
     label = u"Cotisation vieillesse déplafonnée"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation,
             period, cotisation_type = 'employeur',
@@ -839,7 +839,7 @@ class vieillesse_plafonnee_employeur(Variable):
     label = u"Cotisation vieillesse plafonnée (employeur)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cotisation = apply_bareme(
             simulation,
             period, cotisation_type = 'employeur',

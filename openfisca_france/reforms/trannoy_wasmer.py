@@ -49,7 +49,7 @@ class charges_deduc(Variable):
     label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cd1 = simulation.calculate('cd1', period)
         cd2 = simulation.calculate('cd2', period)
         charge_loyer = simulation.calculate('charge_loyer', period)
@@ -62,7 +62,7 @@ class charge_loyer(Variable):
     label = u"Charge déductible pour paiement d'un loyer"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         nbptr = simulation.calculate('nbptr', period)
 
         loyer = simulation.foyer_fiscal.declarant_principal.menage('loyer', period, options = [ADD])

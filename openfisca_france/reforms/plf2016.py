@@ -51,7 +51,7 @@ class plf2016(Reform):
         definition_period = YEAR
 
         @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
-        def function_2014(self, simulation, period):
+        def formula_2014(self, simulation, period):
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             nb_adult = simulation.calculate('nb_adult', period)
             plf = simulation.legislation_at(period.start).plf2016
@@ -128,7 +128,7 @@ class plf2016_counterfactual(Reform):
         definition_period = YEAR
 
         @dated_function(start = date(2015, 1, 1))
-        def function_2015__(self, simulation, period):
+        def formula_2015__(self, simulation, period):
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             inflator = 1 + .001 + .005
             decote = simulation.legislation_at(period.start).impot_revenu.decote
@@ -139,7 +139,7 @@ class plf2016_counterfactual(Reform):
         definition_period = YEAR
 
         @dated_function(start = date(2015, 1, 1), stop = date(2015, 12, 31))
-        def function_2015(self, simulation, period):
+        def formula_2015(self, simulation, period):
             nb_adult = simulation.calculate('nb_adult')
             nb_parents = simulation.calculate('nb_parents')
             rfr = simulation.calculate('rfr')
@@ -157,7 +157,7 @@ class plf2016_counterfactual(Reform):
         definition_period = YEAR
 
         @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
-        def function_20130101_20131231(self, simulation, period):
+        def formula_20130101_20131231(self, simulation, period):
             accult = simulation.calculate('accult', period)
             adhcga = simulation.calculate('adhcga', period)
             cappme = simulation.calculate('cappme', period)
@@ -287,7 +287,7 @@ class plf2016_counterfactual_2014(Reform):
         definition_period = YEAR
 
         @dated_function(start = date(2015, 1, 1))
-        def function_2015(self, simulation, period):
+        def formula_2015(self, simulation, period):
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             inflator = 1 + .001 + .005
             decote = simulation.legislation_at(period.start).impot_revenu.decote
@@ -298,7 +298,7 @@ class plf2016_counterfactual_2014(Reform):
         definition_period = YEAR
 
         @dated_function(start = date(2015, 1, 1), stop = date(2015, 12, 31))
-        def function_2015(self, simulation, period):
+        def formula_2015(self, simulation, period):
             nb_adult = simulation.calculate('nb_adult')
             nb_parents = simulation.calculate('nb_parents')
             rfr = simulation.calculate('rfr')
@@ -316,7 +316,7 @@ class plf2016_counterfactual_2014(Reform):
         definition_period = YEAR
 
         @dated_function(start = date(2013, 1, 1), stop = date(2015, 12, 31))
-        def function_20130101_20131231(self, simulation, period):
+        def formula_20130101_20131231(self, simulation, period):
             accult = simulation.calculate('accult', period)
             adhcga = simulation.calculate('adhcga', period)
             cappme = simulation.calculate('cappme', period)

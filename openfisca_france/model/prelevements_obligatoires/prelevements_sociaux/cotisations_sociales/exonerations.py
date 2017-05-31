@@ -22,7 +22,7 @@ class exoneration_cotisations_employeur_geographiques(Variable):
     url = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         exoneration_cotisations_employeur_zfu = simulation.calculate_add('exoneration_cotisations_employeur_zfu',
             period)
         exoneration_cotisations_employeur_zrd = simulation.calculate_add('exoneration_cotisations_employeur_zrd',
@@ -43,7 +43,7 @@ class exoneration_cotisations_employeur_jei(Variable):
     url = "http://www.apce.com/pid1653/jeune-entreprise-innovante.html?pid=1653&pagination=2"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         assiette_allegement = simulation.calculate('assiette_allegement', period)
         jei_date_demande = simulation.calculate('jei_date_demande', period)
         jeune_entreprise_innovante = simulation.calculate('jeune_entreprise_innovante', period)
@@ -143,7 +143,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
 # territoriales) ne peut dépasser le plafond des aides de minimis, fixé à 200 000 euros sur une période glissante de 36
 # mois (100 000 euros pour les entreprises de transport routier).
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         assiette_allegement = simulation.calculate('assiette_allegement', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)  # 0: CDI, 1:CDD
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
@@ -242,7 +242,7 @@ class exoneration_cotisations_employeur_zrd(Variable):
     url = "http://www.apce.com/pid11668/exoneration-dans-les-zrd.html?espace=1&tp=1"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         assiette_allegement = simulation.calculate('assiette_allegement', period)
         entreprise_creation = simulation.calculate('entreprise_creation', period)
         smic_proratise = simulation.calculate('smic_proratise', period)
@@ -293,7 +293,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
     #
     # L'employeur ne doit avoir procédé à aucun licenciement économique durant les 12 mois précédant l'embauche.
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         assiette_allegement = simulation.calculate('assiette_allegement', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)  # 0: CDI, 1:CDD
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
@@ -337,7 +337,7 @@ class exoneration_is_creation_zrr(Variable):
     definition_period = YEAR
     calculate_output = calculate_output_divide
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         decembre = period.first_month.offset(11, 'month')
         effectif_entreprise = simulation.calculate('effectif_entreprise', decembre)
         entreprise_benefice = simulation.calculate_add('entreprise_benefice', period)
@@ -386,7 +386,7 @@ class exoneration_is_creation_zrr(Variable):
 #     # Actuellement, deux régions sont concernées : Champagne-Ardenne (zone d'emploi de la Vallée de la Meuse)
 #     # et Midi-Pyrénées (zone d'emploi de Lavelanet).
 #
-#     def function(self, simulation, period):
+#     def formula(self, simulation, period):
 #         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 #         return (effectif_entreprise >= 1) * False
 
@@ -396,7 +396,7 @@ class jeune_entreprise_innovante(Variable):
     label = u"L'entreprise est une jeune entreprise innovante"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         # Toute entreprise existante au 1er janvier 2004 ou créée entre le 1er janvier 2004 et le 31 décembre 2016 à
         # condition de remplir les conditions suivantes :
         #
@@ -461,7 +461,7 @@ class bassin_emploi_redynamiser(Variable):
     # et Midi-Pyrénées (zone d'emploi de Lavelanet).
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 
         return (effectif_entreprise >= 1) * False
@@ -474,7 +474,7 @@ class zone_restructuration_defense(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         return (effectif_entreprise >= 1) * False
 
@@ -486,7 +486,7 @@ class zone_franche_urbaine(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         return (effectif_entreprise >= 1) * False
 
@@ -498,7 +498,7 @@ class zone_revitalisation_rurale(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         return (effectif_entreprise >= 1) * False
 

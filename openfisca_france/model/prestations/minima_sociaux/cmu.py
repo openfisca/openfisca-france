@@ -14,7 +14,7 @@ class cmu_acs_eligibilite(Variable):
     label = u"Pré-éligibilité à la CMU, avant prise en compte des ressources"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         previous_year = period.start.period('year').offset(-1)
         this_year = period.this_year
         age_min = simulation.legislation_at(period.start).cmu.age_limite_pac
@@ -42,7 +42,7 @@ class acs_montant(Variable):
     start_date = date(2009, 8, 1)
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         age_holder = simulation.compute('age', period)
         P = simulation.legislation_at(period.start).cmu
 
@@ -61,7 +61,7 @@ class cmu_forfait_logement_base(Variable):
     label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
         P = simulation.legislation_at(period.start).cmu.forfait_logement
         law_rsa = simulation.legislation_at(period.start).prestations.minima_sociaux.rmi
@@ -75,7 +75,7 @@ class cmu_forfait_logement_al(Variable):
     label = u"Forfait logement applicable en cas d'aide au logement"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         nb_personnes_foyer = simulation.calculate('cmu_nbp_foyer', period)
         aide_logement = simulation.calculate_add('aide_logement', period)
         P = simulation.legislation_at(period.start).cmu.forfait_logement_al
@@ -90,7 +90,7 @@ class cmu_nbp_foyer(Variable):
     label = u"Nombre de personnes dans le foyer CMU"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         nb_parents = simulation.calculate('nb_parents', period)
         cmu_nb_pac = simulation.calculate('cmu_nb_pac', period)
 
@@ -102,7 +102,7 @@ class cmu_eligible_majoration_dom(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         menage = famille.demandeur.menage
         residence_guadeloupe = menage('residence_guadeloupe', period)
         residence_martinique = menage('residence_martinique', period)
@@ -118,7 +118,7 @@ class cmu_c_plafond(Variable):
     label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         age_holder = simulation.compute('age', period)
         alt_holder = simulation.compute('garde_alternee', period)
         cmu_eligible_majoration_dom = simulation.calculate('cmu_eligible_majoration_dom', period)
@@ -169,7 +169,7 @@ class acs_plafond(Variable):
     label = u"Plafond annuel de ressources pour l'éligibilité à l'ACS"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cmu_c_plafond = simulation.calculate('cmu_c_plafond', period)
         P = simulation.legislation_at(period.start).cmu
 
@@ -182,7 +182,7 @@ class cmu_base_ressources_individu(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
         # N-1
@@ -258,7 +258,7 @@ class cmu_base_ressources(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         previous_year = period.start.period('year').offset(-1)
 
         ressources_a_inclure = [
@@ -304,7 +304,7 @@ class cmu_nb_pac(Variable):
     label = u"Nombre de personnes à charge au titre de la CMU"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         age_holder = simulation.compute('age', period)
         P = simulation.legislation_at(period.start).cmu
 
@@ -318,7 +318,7 @@ class cmu_c(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         cmu_c_plafond = famille('cmu_c_plafond', period)
         cmu_base_ressources = famille('cmu_base_ressources', period)
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
@@ -349,7 +349,7 @@ class acs(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(famille, period):
+    def formula(famille, period):
         cmu_c = famille('cmu_c', period)
         cmu_base_ressources = famille('cmu_base_ressources', period)
         acs_plafond = famille('acs_plafond', period)

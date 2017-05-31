@@ -12,7 +12,7 @@ class autonomie_financiere(Variable):
     label = u"Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         salaire_net = individu('salaire_net', period.start.period('month', 6).offset(-6), options = [ADD])
         _P = legislation(period)
 
@@ -29,7 +29,7 @@ class prestations_familiales_enfant_a_charge(Variable):
     label = u"Enfant considéré à charge au sens des prestations familiales"
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         age = individu('age', period)
@@ -50,7 +50,7 @@ class prestations_familiales_base_ressources_individu(Variable):
     label = u"Base ressource individuelle des prestations familiales"
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
         annee_fiscale_n_2 = period.n_2
 
         traitements_salaires_pensions_rentes = individu('traitements_salaires_pensions_rentes', annee_fiscale_n_2)
@@ -68,7 +68,7 @@ class biactivite(Variable):
     label = u"Indicatrice de biactivité"
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         annee_fiscale_n_2 = period.n_2
 
         pfam = legislation(annee_fiscale_n_2).prestations.prestations_familiales
@@ -86,7 +86,7 @@ class div(Variable):
     label = u"Dividendes imposés"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
         rpns_pvce = individu('rpns_pvce', period)
         rpns_pvct = individu('rpns_pvct', period)
         rpns_mvct = individu('rpns_mvct', period)
@@ -111,7 +111,7 @@ class rev_coll(Variable):
     label = u"Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
     definition_period = YEAR
 
-    def function(foyer_fiscal, period):
+    def formula(foyer_fiscal, period):
         # Quand rev_coll est calculé sur une année glissante, retraite_titre_onereux_net et pensions_alimentaires_versees sont calculés sur l'année légale correspondante.
         retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period.offset('first-of'))
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period.offset('first-of'))
@@ -135,7 +135,7 @@ class prestations_familiales_base_ressources(Variable):
     label = u"Base ressource des prestations familiales"
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         '''
         Base ressource des prestations familiales de la famille
         'fam'

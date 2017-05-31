@@ -10,7 +10,7 @@ class ada(Variable):
     start_date = date(2015, 11, 1)
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         nb_parents = simulation.calculate('nb_parents', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
         place_hebergement = simulation.calculate('place_hebergement', period)

@@ -57,7 +57,7 @@ class f3si(Variable):
 class f3sa(Variable):
     column = IntCol
     entity = FoyerFiscal
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
   # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
@@ -207,7 +207,7 @@ class f3vh(Variable):
 class f3vu(Variable):
     column = IntCol
     entity = FoyerFiscal
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
   # TODO: vérifier pour 2010 et 2011
@@ -228,7 +228,7 @@ class f3vv_end_2010(Variable):
     entity = FoyerFiscal
     label = u"Pertes ouvrant droit au crédit d’impôt de 19 % "
     start_date = date(2010, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 

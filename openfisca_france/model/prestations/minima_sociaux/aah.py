@@ -12,7 +12,7 @@ class aah_base_ressources(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         law = simulation.legislation_at(period.start)
 
         salaire_this_month = simulation.compute('salaire_imposable', period)
@@ -69,7 +69,7 @@ class aah_base_ressources_eval_trimestrielle(Variable):
         ressources à partir de votre revenu mensuel.
     '''
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         three_previous_months = period.start.period('month', 3).offset(-3)
         last_year = period.last_year
 
@@ -119,7 +119,7 @@ class aah_base_ressources_eval_annuelle(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         return simulation.calculate('revenu_activite', period.n_2) + simulation.calculate('revenu_assimile_pension', period.n_2)
 
 
@@ -158,7 +158,7 @@ class aah_eligible(Variable):
         au minimum vieillesse.
     '''
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         law = simulation.legislation_at(period.start).prestations
         taux_incapacite = simulation.calculate('taux_incapacite', period)
         age = simulation.calculate('age', period)
@@ -185,7 +185,7 @@ class aah_non_calculable(Variable):
     label = u"AAH non calculable"
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
         taux_incapacite = individu('taux_incapacite', period)
         aah_eligible = individu('aah_eligible', period)
 
@@ -200,7 +200,7 @@ class aah_base(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         law = legislation(period).prestations
 
         aah_eligible = individu('aah_eligible', period)
@@ -223,7 +223,7 @@ class aah(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         aah_base = simulation.calculate('aah_base', period)
         # caah
         # mva
@@ -287,7 +287,7 @@ class caah(DatedVariable):
     '''
 
     @dated_function(start = date(2005, 7, 1))
-    def function_2005_07_01(self, simulation, period):
+    def formula_2005_07_01(self, simulation, period):
         law = simulation.legislation_at(period.start).prestations
 
         garantie_ressources = law.minima_sociaux.caah.garantie_ressources
@@ -314,7 +314,7 @@ class caah(DatedVariable):
         return max_(compl_ress, mva)
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 6, 30))  # TODO FIXME start date
-    def function_2005_06_30(self, simulation, period):
+    def formula_2005_06_30(self, simulation, period):
         law = simulation.legislation_at(period.start).prestations
 
         cpltx = law.minima_sociaux.caah.cpltx

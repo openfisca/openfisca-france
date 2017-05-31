@@ -42,7 +42,7 @@ class ppe_du_ns(Variable):
     column = IntCol
     entity = Individu
     label = u"Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année"
-    stop_date = date(2006, 12, 31)
+    end = '2006-12-31'
     definition_period = YEAR
 
   # (f5nv, f5ov, f5pv)
@@ -55,7 +55,7 @@ class ppe_tp_ns(Variable):
     column = BoolCol
     entity = Individu
     label = u"Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière"
-    stop_date = date(2006, 12, 31)
+    end = '2006-12-31'
     definition_period = YEAR
 
   # (f5nw, f5ow, f5pw)
@@ -177,7 +177,7 @@ class ebic_impv(Variable):
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)"
     start_date = date(2009, 1, 1)
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
   # (f5ta, f5ua, f5va))
@@ -190,7 +190,7 @@ class ebic_imps(Variable):
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)"
     start_date = date(2009, 1, 1)
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
   # (f5tb, f5ub, f5vb))
@@ -203,7 +203,7 @@ class ebnc_impo(Variable):
     entity = Individu
     label = u"Revenus non commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)"
     start_date = date(2009, 1, 1)
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
   # (f5te, f5ue, f5ve))
@@ -281,7 +281,7 @@ class abic_imps(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux imposables: régime simplifié avec CGA ou viseur (régime du bénéfice réel)"
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
   # (f5kd, f5ld, f5md))
@@ -309,7 +309,7 @@ class nbic_imps(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: régime simplifié sans CGA (régime du bénéfice réel)"
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
  # TODO: c'est 5HU pour les années anciennes
@@ -345,7 +345,7 @@ class abic_defs(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits industriels et commerciaux: simplifié avec CGA ou viseur (régime du bénéfice réel)"
-    stop_date = date(2009, 12, 1)
+    end = '2009-12-01'
     definition_period = YEAR
 
   # (f5kg, f5lg, f5mg))
@@ -369,7 +369,7 @@ class nbic_defs(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)"
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
   # (f5km, f5lm, f5mm))
@@ -504,7 +504,7 @@ class aacc_defs(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits de revenus industriels et commerciaux non professionnels avec CGA (régime simplifié du bénéfice réel)"
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
 
@@ -673,7 +673,7 @@ class mbic_mvct(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Moins-values industrielles et commerciales nettes à court terme du foyer (régime micro entreprise)"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
   # (f5hu))
@@ -841,7 +841,7 @@ class nrag_pvce(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)"
-    stop_date = date(2006, 12, 31)
+    end = '2006-12-31'
     definition_period = YEAR
 
   # TODO: vérif <=2012))  # (f5hk, f5lk, f5jk) codent autre chose sur d'autres années),
@@ -910,7 +910,7 @@ class nacc_pvce(Variable):
     entity = Individu
     label = u"Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)"
     start_date = date(2009, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
   # (f5nk, f5ok, f5pk)) TODO: 5NK 2005/2006
@@ -1035,7 +1035,7 @@ class alnp_imps(Variable):
     entity = Individu
     label = u"Locations meublées non professionnelles imposables avec CGA ou viseur (régime du bénéfice réel)"
     start_date = date(2009, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -1047,7 +1047,7 @@ class alnp_defs(Variable):
     entity = Individu
     label = u"Déficits de locations meublées non professionnelles avec CGA ou viseur (régime du bénéfice réel)"
     start_date = date(2009, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -1059,7 +1059,7 @@ class nlnp_defs(Variable):
     entity = Individu
     label = u"Déficits de locations meublées non professionnelles imposables sans CGA (régime du bénéfice réel)"
     start_date = date(2009, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -1188,7 +1188,7 @@ class pvtaimpres(Variable):
     column = IntCol
     entity = Individu
     label = u"Plus-values à long terme taxables à 16% à la retraite à imposer aux prélèvements sociaux"
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
 
@@ -1252,7 +1252,7 @@ class f5ga(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-10)"
     start_date = date(2010, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -1262,7 +1262,7 @@ class f5gb(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-9)"
     start_date = date(2010, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -1272,7 +1272,7 @@ class f5gc(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-8)"
     start_date = date(2010, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -1282,7 +1282,7 @@ class f5gd(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-7)"
     start_date = date(2010, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -1292,7 +1292,7 @@ class f5ge(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-6)"
     start_date = date(2010, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -1302,7 +1302,7 @@ class f5gf(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-5)"
     start_date = date(2010, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -1312,7 +1312,7 @@ class f5gg(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-4)"
     start_date = date(2010, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -1322,7 +1322,7 @@ class f5gh(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-3)"
     start_date = date(2010, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -1332,7 +1332,7 @@ class f5gi(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-2)"
     start_date = date(2010, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -1342,7 +1342,7 @@ class f5gj(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-1)"
     start_date = date(2010, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -1352,7 +1352,7 @@ class f5rn(Variable):
     entity = FoyerFiscal
     label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-6)"
     start_date = date(2010, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -1542,7 +1542,7 @@ class travailleur_non_salarie(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period) != 0
         tns_micro_entreprise_chiffre_affaires = simulation.calculate_add('tns_micro_entreprise_chiffre_affaires', this_year_and_last_year) != 0
@@ -1577,7 +1577,7 @@ class tns_auto_entrepreneur_benefice(DatedVariable):
     definition_period = MONTH
 
     @dated_function(start = date(2008, 1, 1))
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
         bareme = simulation.legislation_at(period.start).tns
@@ -1594,7 +1594,7 @@ class tns_micro_entreprise_benefice(DatedVariable):
     definition_period = YEAR
 
     @dated_function(start = date(2008, 1, 1))
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         tns_micro_entreprise_type_activite = simulation.calculate('tns_micro_entreprise_type_activite', period)
         tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period)
         bareme = simulation.legislation_at(period.start).tns
@@ -1614,7 +1614,7 @@ class tns_auto_entrepreneur_revenus_net(DatedVariable) :
     definition_period = MONTH
 
     @dated_function(start = date(2008, 1, 1))
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         tns_auto_entrepreneur_benefice = simulation.calculate('tns_auto_entrepreneur_benefice', period)
         tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
@@ -1635,7 +1635,7 @@ class tns_micro_entreprise_revenus_net(Variable) :
     entity = Individu
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', period)
         taux_cotisations_sociales = simulation.legislation_at(period.start).tns.micro_entreprise.cotisations_sociales
         tns_micro_entreprise_charges_sociales = tns_micro_entreprise_benefice * taux_cotisations_sociales

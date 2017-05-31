@@ -15,7 +15,7 @@ class apprenti(Variable):
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         age = simulation.calculate('age', period)
         age_condition = (16 <= age) * (age < 25)
         apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
@@ -42,7 +42,7 @@ class remuneration_apprenti(Variable):
     # secondaire, ou avoir suivi une formation dans le cadre du dispositif d'initiation aux métiers en
     # alternance (DIMA).
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         age = simulation.calculate('age', period)
         apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
         smic = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
@@ -114,7 +114,7 @@ class exoneration_cotisations_employeur_apprenti(Variable):
     # Précision : le décompte de l'effectif des entreprises non artisanales s'apprécie au 31 décembre précédant la date
     # de conclusion du contrat d'apprentissage.
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         accident_du_travail = simulation.calculate('accident_du_travail', period)
         apprenti = simulation.calculate('apprenti', period)
         cotisations_employeur = simulation.calculate('cotisations_employeur', period)
@@ -144,7 +144,7 @@ class exoneration_cotisations_salariales_apprenti(Variable):
     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         apprenti = simulation.calculate('apprenti', period)
         cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
         cotisations_salariales_non_contributives = simulation.calculate(
@@ -175,7 +175,7 @@ class prime_apprentissage(Variable):
     #
     # Son versement cesse lorsque l'apprenti n'est plus salarié dans l'entreprise ou l'établissement qui l'a embauché.
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         apprenti = simulation.calculate('apprenti', period)
         return 1000 * apprenti
 
@@ -185,7 +185,7 @@ class prime_apprentissage(Variable):
 #     label = u" Crédit d'impôt pour l'emploi d'apprentis"
 #     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
 #
-#     def function(self, simulation, period):
+#     def formula(self, simulation, period):
 #         pass
 #     # Cet avantage fiscal est réservé aux entreprises imposées selon un régime d'imposition du réel.
 #     # Précision : les entreprises exonérées d'impôt sur les bénéfices au titre des entreprises nouvelles, d'une

@@ -67,7 +67,7 @@ class hsup(Variable):
     entity = Individu
     label = u"Heures supplémentaires : revenus exonérés connus"
     start_date = date(2007, 1, 1)
-    stop_date = date(2013, 12, 13)
+    end = '2013-12-13'
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
@@ -86,7 +86,7 @@ class ppe_du_sa(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(individu, period):
+    def formula(individu, period):
         heures_remunerees_volume = individu('heures_remunerees_volume', period)
         travail_temps_decompte_en_heures = (
             (individu('contrat_de_travail', period) > 0) *
@@ -108,7 +108,7 @@ class ppe_tp_sa(Variable):
     label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
         mois = period.first_month
         indicateur = individu('contrat_de_travail', mois) == 0
         # On parcours tous les mois de l'année pour s'assurer que l'individu était employé à temps plein
@@ -585,7 +585,7 @@ class avantage_en_nature(Variable):
     label = u"Avantages en nature"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         period = period
         avantage_en_nature_valeur_reelle = simulation.calculate('avantage_en_nature_valeur_reelle', period)
         avantage_en_nature_valeur_forfaitaire = simulation.calculate('avantage_en_nature_valeur_forfaitaire', period)
@@ -601,7 +601,7 @@ class avantage_en_nature_valeur_forfaitaire(Variable):
     definition_period = MONTH
 
     # TODO: coplete this function
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         period = period
         avantage_en_nature_valeur_reelle = simulation.calculate('avantage_en_nature_valeur_reelle', period)
 
@@ -615,7 +615,7 @@ class depense_cantine_titre_restaurant_employe(Variable):
     label = u"Dépense de cantine et de titre restaurant à charge de l'employe"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         period = period
 
         valeur_unitaire = simulation.calculate("titre_restaurant_valeur_unitaire", period)
@@ -632,7 +632,7 @@ class depense_cantine_titre_restaurant_employeur(Variable):
     label = u"Dépense de cantine et de titre restaurant à charge de l'employeur"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         period = period
         valeur_unitaire = simulation.calculate("titre_restaurant_valeur_unitaire", period)
         volume = simulation.calculate("titre_restaurant_volume", period)  # Compute with jours ouvrables ?
@@ -647,7 +647,7 @@ class nombre_jours_calendaires(Variable):
     label = u"Nombre de jours calendaires travaillés"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
 
@@ -671,7 +671,7 @@ class remboursement_transport(Variable):
     label = u"Remboursement partiel des frais de transport par l'employeur"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
 
         remboursement_transport_base = simulation.calculate('remboursement_transport_base', period)
         # TODO: paramètres en dur dans le code
@@ -687,7 +687,7 @@ class gipa(Variable):
     definition_period = MONTH
     # TODO: à coder
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         period = period.start.period(u'year').offset('first-of')
         return self.zeros()
 
@@ -698,7 +698,7 @@ class indemnite_residence(Variable):
     label = u"Indemnité de résidence des fonctionnaires"
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         period = period.first_month
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         salaire_de_base = individu('salaire_de_base', period)
@@ -723,7 +723,7 @@ class indice_majore(Variable):
     label = u"Indice majoré"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         period = period.start.period(u'month').offset('first-of')
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
@@ -740,7 +740,7 @@ class primes_fonction_publique(Variable):
     url = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         # period = period.first_month
         categorie_salarie = simulation.calculate('categorie_salarie', period)
 
@@ -760,7 +760,7 @@ class af_nbenf_fonc(Variable):
     definition_period = MONTH
     # Hack pour éviter une boucle infinie
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         salaire_de_base = simulation.calculate_add('salaire_de_base', period.start.period('month', 6).offset(-6))
@@ -785,7 +785,7 @@ class supp_familial_traitement(Variable):
     # Attention : par hypothèse ne peut êre attribué qu'à la tête du ménage
     # TODO: gérer le cas encore problématique du conjoint fonctionnaire
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         categorie_salarie = individu('categorie_salarie', period)
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         _P = legislation(period)
@@ -862,7 +862,7 @@ class remuneration_principale(Variable):
     label = u"Rémunération principale des agents titulaires de la fonction publique"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         nouvelle_bonification_indiciaire = simulation.calculate('nouvelle_bonification_indiciaire', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
@@ -881,7 +881,7 @@ class salaire_net_a_payer(Variable):
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         Calcul du salaire net à payer après déduction des sommes
         dues par les salarié avancées par l'employeur
@@ -910,7 +910,7 @@ class salaire_super_brut_hors_allegements(Variable):
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         period = period
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
@@ -942,7 +942,7 @@ class salaire_super_brut(Variable):
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         period = period
         salaire_super_brut_hors_allegements = simulation.calculate('salaire_super_brut_hors_allegements', period)
         exonerations_et_allegements = simulation.calculate('exonerations_et_allegements', period)
@@ -956,7 +956,7 @@ class exonerations_et_allegements(Variable):
     label = u"Charges, aides et crédits différées ou particulières"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         exoneration_cotisations_employeur_apprenti = simulation.calculate_add(
             'exoneration_cotisations_employeur_apprenti', period)
         exoneration_cotisations_employeur_geographiques = simulation.calculate(
@@ -987,7 +987,7 @@ class cout_du_travail(Variable):
     definition_period = MONTH
     calculate_output = calculate_output_add
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         period = period
         salaire_super_brut = simulation.calculate('salaire_super_brut', period)
         cout_differe = simulation.calculate('cout_differe', period)
@@ -1001,7 +1001,7 @@ class cout_differe(Variable):
     label = u"Charges, aides et crédits différées ou particulières"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
         aide_premier_salarie = simulation.calculate_add('aide_premier_salarie', period)
         aide_embauche_pme = simulation.calculate_add('aide_embauche_pme', period)

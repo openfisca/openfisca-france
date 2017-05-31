@@ -138,7 +138,7 @@ class f6aa(Variable):
     entity = FoyerFiscal
     label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel"
     start_date = date(2005, 1, 1)
-    stop_date = date(2006, 12, 31)
+    end = '2006-12-31'
     definition_period = YEAR
 
   # TODO: ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
@@ -150,7 +150,7 @@ class f6cc(Variable):
     entity = FoyerFiscal
     label = u"Souscriptions au capital des SOFIPÊCHE"
     start_date = date(2005, 1, 1)
-    stop_date = date(2005, 12, 31)
+    end = '2005-12-31'
     definition_period = YEAR
 
   # ancien numéro de case, antérieur à 2008 ....au moins vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en  12 et13)
@@ -163,7 +163,7 @@ class f6eh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     start_date = date(2005, 1, 1)
-    stop_date = date(2005, 12, 31)
+    end = '2005-12-31'
     definition_period = YEAR
 # TODO: vérifier date de début et de fin de cette case (rien en 12 et 13)
 
@@ -174,7 +174,7 @@ class f6da(Variable):
     entity = FoyerFiscal
     label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté"
     start_date = date(2005, 1, 1)
-    stop_date = date(2005, 12, 31)
+    end = '2005-12-31'
     definition_period = YEAR
 
 
@@ -291,7 +291,7 @@ class rfr_cd(Variable):
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cd_acc75a = simulation.calculate('cd_acc75a', period)
         cd_doment = simulation.calculate('cd_doment', period)
         cd_eparet = simulation.calculate('cd_eparet', period)
@@ -308,7 +308,7 @@ class cd1(DatedVariable):
     definition_period = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2003, 12, 31))
-    def function_20020101_20031231(self, simulation, period):
+    def formula_20020101_20031231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2002
         '''
@@ -322,7 +322,7 @@ class cd1(DatedVariable):
         return niches1
 
     @dated_function(start = date(2004, 1, 1), stop = date(2005, 12, 31))
-    def function_20040101_20051231(self, simulation, period):
+    def formula_20040101_20051231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2004
         '''
@@ -338,7 +338,7 @@ class cd1(DatedVariable):
         return niches1
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
-    def function_20060101_20061231(self, simulation, period):
+    def formula_20060101_20061231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2006
         '''
@@ -352,7 +352,7 @@ class cd1(DatedVariable):
         return niches1
 
     @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
-    def function_20070101_20081231(self, simulation, period):
+    def formula_20070101_20081231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2007
         '''
@@ -365,7 +365,7 @@ class cd1(DatedVariable):
         return niches1
 
     @dated_function(start = date(2009, 1, 1), stop = date(2013, 12, 31))
-    def function_20090101_20131231(self, simulation, period):
+    def formula_20090101_20131231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2009
         '''
@@ -379,7 +379,7 @@ class cd1(DatedVariable):
         return niches1
 
     @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
-    def function_20140101_20141231(self, simulation, period):
+    def formula_20140101_20141231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2014
         '''
@@ -402,7 +402,7 @@ class cd2(DatedVariable):
     definition_period = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
-    def function_20020101_20051231(self, simulation, period):
+    def formula_20020101_20051231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
@@ -413,7 +413,7 @@ class cd2(DatedVariable):
         return niches2
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
-    def function_20060101_20061231(self, simulation, period):
+    def formula_20060101_20061231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
@@ -423,7 +423,7 @@ class cd2(DatedVariable):
         return niches2
 
     @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
-    def function_20070101_20081231(self, simulation, period):
+    def formula_20070101_20081231(self, simulation, period):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
@@ -439,7 +439,7 @@ class rbg_int(Variable):
     label = u"Revenu brut global intermédiaire"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         rbg = simulation.calculate('rbg', period)
         cd1 = simulation.calculate('cd1', period)
 
@@ -453,7 +453,7 @@ class charges_deduc(Variable):
     url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         cd1 = simulation.calculate('cd1', period)
         cd2 = simulation.calculate('cd2', period)
 
@@ -467,7 +467,7 @@ class pensions_alimentaires_deduites(Variable):
     url = "http://frederic.anne.free.fr/Cours/ITV.htm"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         f6gi = simulation.calculate('f6gi', period)
         f6gj = simulation.calculate('f6gj', period)
         f6gp = simulation.calculate('f6gp', period)
@@ -495,7 +495,7 @@ class cd_acc75a(Variable):
     label = u"Frais d’accueil sous votre toit d’une personne de plus de 75 ans"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         f6eu = simulation.calculate('f6eu', period)
         f6ev = simulation.calculate('f6ev', period)
         acc75a = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.accueil_personne_agee
@@ -510,7 +510,7 @@ class pertes_capital_societes_nouvelles(DatedVariable):
     definition_period = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def function_20020101_20021231(self, simulation, period):
+    def formula_20020101_20021231(self, simulation, period):
         '''
         Pertes en capital consécutives à la souscription au capital de sociétés
         nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
@@ -523,7 +523,7 @@ class pertes_capital_societes_nouvelles(DatedVariable):
         return min_(f6cb, plafond_cb)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
-    def function_20030101_20061231(self, simulation, period):
+    def formula_20030101_20061231(self, simulation, period):
         '''
         Pertes en capital consécutives à la souscription au capital de sociétés
         nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
@@ -544,7 +544,7 @@ class cd_deddiv(Variable):
     label = u"Déductions diverses"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         f6dd = simulation.calculate('f6dd', period)
 
         return f6dd
@@ -555,10 +555,10 @@ class cd_doment(Variable):
     entity = FoyerFiscal
     label = u"Investissements DOM-TOM dans le cadre d’une entreprise"
     start_date = date(2002, 1, 1)
-    stop_date = date(2005, 12, 31)
+    end = '2005-12-31'
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         Investissements DOM-TOM dans le cadre d’une entreprise (case EH de la
         déclaration n° 2042 complémentaire)
@@ -575,7 +575,7 @@ class cd_eparet(Variable):
     start_date = date(2004, 1, 1)
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         f6ps_holder = simulation.compute('f6ps', period)
         f6rs_holder = simulation.compute('f6rs', period)
         f6ss_holder = simulation.compute('f6ss', period)
@@ -607,10 +607,10 @@ class cd_sofipe(Variable):
     entity = FoyerFiscal
     label = u"Souscriptions au capital des SOFIPÊCHE"
     start_date = date(2002, 1, 1)
-    stop_date = date(2006, 12, 31)
+    end = '2006-12-31'
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         Souscriptions au capital des SOFIPÊCHE (case CC de la déclaration
         complémentaire)
@@ -629,10 +629,10 @@ class souscriptions_cinema_audiovisuel(Variable):
     entity = FoyerFiscal
     label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel"
     start_date = date(2002, 1, 1)
-    stop_date = date(2005, 12, 31)
+    end = '2005-12-31'
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         Souscriptions en faveur du cinéma ou de l’audiovisuel (case AA de la
         déclaration n° 2042 complémentaire)
@@ -650,10 +650,10 @@ class epargne_codeveloppement(Variable):
     entity = FoyerFiscal
     label = u"Versements sur un compte épargne codéveloppement"
     start_date = date(2007, 1, 1)
-    stop_date = date(2008, 12, 31)
+    end = '2008-12-31'
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         Versements sur un compte épargne codéveloppement (case EH de la déclaration
         complémentaire)
@@ -673,7 +673,7 @@ class grosses_reparations(Variable):
     start_date = date(2009, 1, 1)
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         Dépenses de grosses réparations des nus-propriétaires (case 6CB et 6HJ)
         '''

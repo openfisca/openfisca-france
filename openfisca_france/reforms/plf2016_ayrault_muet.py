@@ -64,7 +64,7 @@ class reduction_csg(DatedVariable):
     definition_period = YEAR
 
     @dated_function(start = date(2015, 1, 1))
-    def function_2015__(self, simulation, period):
+    def formula_2015__(self, simulation, period):
         smic_proratise = simulation.calculate_add('smic_proratise', period)
         assiette_csg_abattue = simulation.calculate_add('assiette_csg_abattue', period)
 
@@ -88,7 +88,7 @@ class reduction_csg_foyer_fiscal(Variable):
     column = FloatCol
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         reduction_csg = simulation.calculate('reduction_csg', period)
         return simulation.foyer_fiscal.sum(reduction_csg)
 
@@ -100,7 +100,7 @@ class reduction_csg_nette(DatedVariable):
     definition_period = YEAR
 
     @dated_function(start = date(2015, 1, 1))
-    def function_2015__(individu, period):
+    def formula_2015__(individu, period):
         reduction_csg = individu('reduction_csg', period)
         ppe_elig_bis = individu.foyer_fiscal('ppe_elig_bis', period)
         return reduction_csg * ppe_elig_bis
@@ -112,7 +112,7 @@ class ppe_elig_bis(Variable):
     label = u"ppe_elig_bis"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence
         'foy'
@@ -137,7 +137,7 @@ class regularisation_reduction_csg(DatedVariable):
     definition_period = YEAR
 
     @dated_function(start = date(2015, 1, 1))
-    def function_2015__(self, simulation, period):
+    def formula_2015__(self, simulation, period):
         reduction_csg = simulation.calculate('reduction_csg_foyer_fiscal', period)
         ppe_elig_bis = simulation.calculate('ppe_elig_bis', period)
         return not_(ppe_elig_bis) * (reduction_csg > 1)

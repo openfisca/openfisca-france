@@ -34,7 +34,7 @@ class allocations_familiales_imposables(Reform):
         label = u"Nouveau revenu brut global intégrant les allocations familiales"
         definition_period = YEAR
 
-        def function(self, simulation, period):
+        def formula(self, simulation, period):
             allocations_familiales_imposables = simulation.calculate_add('allocations_familiales_imposables', period)
             deficit_ante = simulation.calculate('deficit_ante', period)
             f6gh = simulation.calculate('f6gh', period)
@@ -54,7 +54,7 @@ class allocations_familiales_imposables(Reform):
         label = u"Nouveau revenu fiscal de référence intégrant les allocations familiales"
         definition_period = YEAR
 
-        def function(self, simulation, period):
+        def formula(self, simulation, period):
             allocations_familiales_imposables = simulation.calculate('allocations_familiales_imposables')
             f3va_holder = simulation.calculate('f3va')
             f3vi_holder = simulation.calculate('f3vi')
@@ -83,7 +83,7 @@ class allocations_familiales_imposables(Reform):
         label = u"Allocations familiales imposables"
         definition_period = YEAR
 
-        def function(self, simulation, period):
+        def formula(self, simulation, period):
             imposition = simulation.legislation_at(period.start).allocations_familiales_imposables.imposition
             af = simulation.foyer_fiscal.declarant_principal.famille('af', period, options = [ADD])
 
