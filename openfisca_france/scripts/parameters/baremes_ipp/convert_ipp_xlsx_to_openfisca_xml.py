@@ -28,7 +28,9 @@
 Convertit les barèmes de l'IPP au format XLSX vers le format XML des paramètres d'OpenFisca.
 
 Nécessite l'installation de :
-- ssconvert : `apt install gnumeric`
+- ssconvert :
+    - Debian : `apt install gnumeric`
+    - macOS : `brew install gnumeric`
 - xlrd : `pip install xlrd`
 """
 
@@ -72,7 +74,8 @@ def main():
 
     if not cmd_exists('ssconvert'):
         log.error(u'Command "ssconvert" must be installed. It is provided by the "gnumeric" spreadsheet. '
-            u'Under a Debian GNU/Linux distribution, type `sudo apt install gnumeric`.')
+            u'Under a Debian GNU/Linux distribution, type `sudo apt install gnumeric`. '
+            u'Under macOS, type `brew install gnumeric`.')
         return 1
 
     tmp_dir = tempfile.mkdtemp(prefix='baremes-ipp-') \

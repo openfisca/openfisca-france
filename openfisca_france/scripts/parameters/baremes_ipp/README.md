@@ -25,6 +25,10 @@ pip install xlrd
 # Ou bien utilisez l'extra-require comme ceci : pip install --editable ".[baremes_ipp]"
 ```
 
+Il faut également installer `gnumeric` :
+- sous Debian : `sudo apt install gnumeric`
+- sous macOS : `brew install gnumeric`
+
 Se placer dans le répertoire racine d'OpenFisca-France, là où se trouve le fichier `setup.py` :
 
 ```sh
