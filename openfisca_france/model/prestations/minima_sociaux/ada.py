@@ -7,10 +7,9 @@ class ada(Variable):
     column = FloatCol
     entity = Famille
     label = u"Montant mensuel  de l'aide pour demandeur d'asile"
-    start_date = date(2015, 11, 1)
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    def formula_2015_11(self, simulation, period):
         nb_parents = simulation.calculate('nb_parents', period)
         af_nbenf = simulation.calculate('af_nbenf', period)
         place_hebergement = simulation.calculate('place_hebergement', period)

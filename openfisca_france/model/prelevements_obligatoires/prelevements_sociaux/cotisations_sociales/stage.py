@@ -25,10 +25,10 @@ class stage_gratification(Variable):
     column = FloatCol
     entity = Individu
     label = u"Gratification de stage"
-    start_date = date(2014, 11, 1)  # TODO: remove when updating legislation backwards
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    # TODO: make this formula valid before 2014-11 when updating legislation backwards
+    def formula_2014_11(self, simulation, period):
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
         stage_gratification_taux = simulation.calculate('stage_gratification_taux', period)
         stagiaire = simulation.calculate('stagiaire', period)
@@ -44,10 +44,10 @@ class stage_gratification_reintegration(Variable):
     column = FloatCol
     entity = Individu
     label = u"Part de la gratification de stage réintégrée à l'assiette des cotisations et contributions sociales"
-    start_date = date(2014, 11, 1)  # TODO: remove when updating legislation backwards
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    # TODO: make this formula valid before 2014-11 when updating legislation backwards
+    def formula_2014_11(self, simulation, period):
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
         stage_gratification = simulation.calculate('stage_gratification', period)
         plafond_securite_sociale_horaire = (

@@ -26,10 +26,9 @@ class af_coeff_garde_alternee(Variable):
     column = FloatCol(default = 1)
     entity = Famille
     label = u"Coefficient à appliquer aux af pour tenir compte de la garde alternée"
-    start_date = date(2007, 5, 1)
     definition_period = MONTH
 
-    def formula(famille, period):
+    def formula_2007_05_01(famille, period):
         nb_enf = famille('af_nbenf', period)
         garde_alternee = famille.members('garde_alternee', period)
         pfam_enfant_a_charge = famille.members('prestations_familiales_enfant_a_charge', period)
@@ -117,10 +116,9 @@ class af_taux_modulation(Variable):
     column = FloatCol(default = 1)
     entity = Famille
     label = u"Taux de modulation à appliquer au montant des AF depuis 2015"
-    start_date = date(2015, 7, 1)
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula_2015_07_01(famille, period, legislation):
         af_nbenf = famille('af_nbenf', period)
         pfam = legislation(period).prestations.prestations_familiales.af
         base_ressources = famille('prestations_familiales_base_ressources', period)
@@ -141,10 +139,9 @@ class af_allocation_forfaitaire_taux_modulation(Variable):
     column = FloatCol(default = 1)
     entity = Famille
     label = u"Taux de modulation à appliquer à l'allocation forfaitaire des AF depuis 2015"
-    start_date = date(2015, 7, 1)
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula_2015_07_01(famille, period, legislation):
         pfam = legislation(period).prestations.prestations_familiales.af
         af_nbenf = famille('af_nbenf', period)
         af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
@@ -238,10 +235,9 @@ class af_complement_degressif(Variable):
     column = FloatCol
     entity = Famille
     label = u"AF - Complément dégressif en cas de dépassement du plafond"
-    start_date = date(2015, 7, 1)
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula_2015_07_01(famille, period, legislation):
         af_nbenf = famille('af_nbenf', period)
         base_ressources = famille('prestations_familiales_base_ressources', period)
         af_base = famille('af_base', period)
@@ -267,10 +263,9 @@ class af_allocation_forfaitaire_complement_degressif(Variable):
     column = FloatCol
     entity = Famille
     label = u"AF - Complément dégressif pour l'allocation forfaitaire en cas de dépassement du plafond"
-    start_date = date(2015, 7, 1)
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula_2015_07_01(famille, period, legislation):
         af_nbenf = famille('af_nbenf', period)
         af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
         pfam = legislation(period).prestations.prestations_familiales.af
@@ -296,10 +291,9 @@ class af_allocation_forfaitaire(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocations familiales - forfait"
-    start_date = date(2003, 7, 1)
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula_2003_07_01(famille, period, legislation):
         af_nbenf = famille('af_nbenf', period)
         af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
         P = legislation(period).prestations.prestations_familiales.af

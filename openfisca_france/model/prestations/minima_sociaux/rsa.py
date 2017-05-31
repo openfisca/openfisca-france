@@ -405,10 +405,9 @@ class rsa_revenu_activite(Variable):
     column = FloatCol
     label = u"Revenus d'activité du RSA"
     entity = Famille
-    start_date = date(2009, 6, 1)
     definition_period = MONTH
 
-    def formula(famille, period):
+    def formula_2009_06_01(famille, period):
         rsa_revenu_activite_i = famille.members('rsa_revenu_activite_individu', period)
         rsa_enfant_a_charge_i = famille.members('rsa_enfant_a_charge', period)
         enfant_i = famille.members('est_enfant_dans_famille', period)
@@ -490,7 +489,6 @@ class rsa_revenu_activite_individu(Variable):
     column = FloatCol
     label = u"Revenus d'activité du Rsa - Individuel"
     entity = Individu
-    start_date = date(2009, 6, 1)
     definition_period = MONTH
 
     def formula_2017_01_01(individu, mois_demande, legislation, mois_courant):
@@ -530,7 +528,7 @@ class rsa_revenu_activite_individu(Variable):
 
         return revenus_moyennes + revenus_tns_annualises + revenus_non_moyennes
 
-    def formula(individu, period):
+    def formula_2009_06(individu, period):
         last_3_months = period.last_3_months
 
         # Note Auto-entrepreneurs:
@@ -565,11 +563,10 @@ class rsa_revenu_activite_individu(Variable):
 class rsa_fictif(Variable):
     column = FloatCol
     entity = Famille
-    start_date = date(2016, 10, 01)
     label = "RSA fictif pour un mois"
     definition_period = MONTH
 
-    def formula(famille, mois_courant, legislation, mois_demande):
+    def formula_2016_10(famille, mois_courant, legislation, mois_demande):
         rsa_socle_non_majore = famille('rsa_socle', mois_courant)
         rsa_socle_majore = famille('rsa_socle_majore', mois_courant)
         rsa_socle = max_(rsa_socle_non_majore, rsa_socle_majore)
@@ -588,7 +585,6 @@ class rsa_montant(Variable):
     column = FloatCol
     label = u"Revenu de solidarité active, avant prise en compte de la non-calculabilité."
     entity = Famille
-    start_date = date(2009, 06, 1)
     definition_period = MONTH
 
     def formula_2017_01_01(famille, period, legislation):
@@ -600,7 +596,7 @@ class rsa_montant(Variable):
         return rsa
 
 
-    def formula(famille, period, legislation):
+    def formula_2009_06(famille, period, legislation):
         rsa_socle_non_majore = famille('rsa_socle', period)
         rsa_socle_majore = famille('rsa_socle_majore', period)
         rsa_socle = max_(rsa_socle_non_majore, rsa_socle_majore)
@@ -624,11 +620,10 @@ class rsa(Variable):
     column = FloatCol
     label = u"Revenu de solidarité active"
     entity = Famille
-    start_date = date(2009, 06, 1)
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(famille, period):
+    def formula_2009_06(famille, period):
         montant = famille('rsa_montant', period)
         non_calculable = famille('rsa_non_calculable', period)
 
@@ -639,10 +634,9 @@ class rsa_base_ressources_patrimoine_individu(Variable):
     column = FloatCol
     label = u"Base de ressources des revenus du patrimoine du RSA"
     entity = Individu
-    start_date = date(2009, 6, 1)
     definition_period = MONTH
 
-    def formula(individu, period, legislation):
+    def formula_2009_06_01(individu, period, legislation):
         interets_epargne_sur_livrets = individu('interets_epargne_sur_livrets', period)
         epargne_non_remuneree = individu('epargne_non_remuneree', period)
         revenus_capital = individu('revenus_capital', period)
@@ -771,10 +765,9 @@ class rsa_forfait_asf(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation de soutien familial forfaitisée pour le RSA"
-    start_date = date(2014, 4, 1)
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula_2014_04_01(famille, period, legislation):
         # Si un ASF est versé, on ne prend pas en compte le montant réel mais un forfait.
         prestations_familiales = legislation(period).prestations.prestations_familiales
         minima_sociaux = legislation(period).prestations.minima_sociaux
@@ -979,10 +972,9 @@ class rsa_socle_majore(Variable):
     column = FloatCol
     entity = Famille
     label = u"Montant majoré pour parent isolé du Revenu de solidarité active socle"
-    start_date = date(2009, 6, 1)
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula_2009_06_01(famille, period, legislation):
         eligib = famille('rsa_majore_eligibilite', period)
         nbenf = famille('rsa_nb_enfants', period)
 

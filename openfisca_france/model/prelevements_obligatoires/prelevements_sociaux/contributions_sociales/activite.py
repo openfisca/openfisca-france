@@ -132,7 +132,6 @@ class forfait_social(Variable):
     column = FloatCol
     entity = Individu
     label = u"Forfait social"
-    start_date = date(2009, 1, 1)
     definition_period = MONTH
     calculate_output = calculate_output_add
 
@@ -263,11 +262,10 @@ class rev_microsocial(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu net des cotisations sociales pour le régime microsocial"
-    start_date = date(2009, 1, 1)
     url = u"http://www.apce.com/pid6137/regime-micro-social.html"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         assiette_service = simulation.calculate('assiette_service', period)
         assiette_vente = simulation.calculate('assiette_vente', period)
         assiette_proflib = simulation.calculate('assiette_proflib', period)

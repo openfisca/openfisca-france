@@ -220,13 +220,12 @@ class asi(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"Allocation supplémentaire d'invalidité"
-    start_date = date(2007, 1, 1)
     url = u"http://vosdroits.service-public.fr/particuliers/F16940.xhtml"
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(self, simulation, period):
+    def formula_2007(self, simulation, period):
         asi_elig_holder = simulation.compute('asi_eligibilite', period)
         aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
         maries = simulation.calculate('maries', period)

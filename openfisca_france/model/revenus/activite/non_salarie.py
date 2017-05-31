@@ -67,7 +67,7 @@ class frag_exon(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus agricoles exonérés (régime du forfait)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
   # (f5hn, f5in, f5jn))
@@ -79,7 +79,7 @@ class frag_impo(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus agricoles imposables (régime du forfait)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
   # (f5ho, f5io, f5jo))
@@ -91,7 +91,7 @@ class arag_exon(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur), activités exercées en Corse"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
   # (f5hb, f5ib, f5jb))
@@ -103,7 +103,7 @@ class arag_impg(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
   # (f5hc, f5ic, f5jc))
@@ -115,7 +115,7 @@ class arag_defi(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits agricoles (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
   # (f5hf, f5if, f5jf))
@@ -127,7 +127,7 @@ class nrag_exon(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur), activités exercées en Corse"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
   # (f5hh, f5ih, f5jh))
@@ -139,7 +139,7 @@ class nrag_impg(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
   # (f5hi, f5ii, f5ji))
@@ -151,7 +151,7 @@ class nrag_defi(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
   # (f5hl, f5il, f5jl))
@@ -163,7 +163,7 @@ class nrag_ajag(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Jeunes agriculteurs, Abattement de 50% ou 100% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
   # (f5hm, f5im, f5jm))
@@ -176,7 +176,7 @@ class ebic_impv(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     end = '2009-12-31'
     definition_period = YEAR
 
@@ -189,7 +189,7 @@ class ebic_imps(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     end = '2009-12-31'
     definition_period = YEAR
 
@@ -202,7 +202,7 @@ class ebnc_impo(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus non commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     end = '2009-12-31'
     definition_period = YEAR
 
@@ -321,7 +321,7 @@ class nbic_mvct(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels moins-values nettes à court terme"
-    start_date = date(2012, 1, 1)
+    # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
   # (f5kj, f5lj, f5mj))
@@ -458,7 +458,7 @@ class aacc_imps(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Locations meublées non professionnelles (régime micro entreprise)"
-    start_date = date(2011, 1, 1)
+    # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
   # (f5nd, f5od, f5pd)) #TODO: avant 2010
@@ -481,7 +481,7 @@ class aacc_gits(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise)"
-    start_date = date(2011, 1, 1)
+    # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
   # (f5ng, f5og, f5pg))
@@ -516,7 +516,7 @@ class nacc_meup(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)"
-    start_date = date(2012, 1, 1)
+    # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
   # (f5nj, f5oj, f5pj)) #TODO: dates 5PJ, 5PG, 5PD, 5OM
@@ -539,7 +539,7 @@ class nacc_defs(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Locations meublées non professionnelles: Gîtes ruraux et chambres d'hôtes déjà soumis aux prélèvements sociaux avec CGA (régime du bénéfice réel)"
-    start_date = date(2012, 1, 1)
+    # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
   # (f5nm, f5om, f5pm)) #TODO autres 5NM
@@ -562,7 +562,7 @@ class cncn_bene(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus non commerciaux non professionnels imposables sans AA (régime de la déclaration controlée)"
-    start_date = date(2006, 1, 1)
+    # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
   # (f5sn, f5ns, f5os))
@@ -574,7 +574,7 @@ class cncn_defi(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits non commerciaux non professionnels sans AA (régime de la déclaration controlée)"
-    start_date = date(2006, 1, 1)
+    # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
   # (f5sp, f5nu, f5ou, f5sr))
@@ -704,7 +704,7 @@ class mbnc_mvct(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)"
-    start_date = date(2012, 1, 1)
+    # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
   # (f5kz, f5lz , f5mz), f5lz , f5mz sont présentent en 2013
@@ -717,7 +717,7 @@ class frag_pvct(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values agricoles  à court terme (régime du forfait)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
   # (f5hw, f5iw, f5jw))
@@ -817,7 +817,7 @@ class frag_pvce(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values agricoles de cession taxables à 16% (régime du forfait)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
   # (f5hx, f5ix, f5jx))
@@ -829,7 +829,7 @@ class arag_pvce(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
   # (f5he, f5ie, f5je))
@@ -875,7 +875,7 @@ class nbic_pvce(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)"
-    start_date = date(2008, 1, 1)
+    # start_date = date(2008, 1, 1)
     definition_period = YEAR
 
   # (f5kk, f5ik, f5mk)) TODO: autre 5KK 2005/20006
@@ -909,7 +909,7 @@ class nacc_pvce(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -933,7 +933,7 @@ class cncn_pvce(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Plus-values non commerciales non professionnelles taxables à 16% avec AA ou viseur (régime de la déclaration controlée)"
-    start_date = date(2006, 1, 1)
+    # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
   # (f5so, f5nt, f5ot))
@@ -967,7 +967,7 @@ class nbnc_pvce(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
   # (f5qj, f5rj, f5sj)) #TODO 5*J 2005/2006 (qui se transforme en 5*D...)
@@ -979,7 +979,7 @@ class frag_fore(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus des exploitants forestiers (régime du forfait)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -990,7 +990,7 @@ class arag_sjag(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Abattement pour les jeunes agriculteurs des revenus agricoles sans CGA (régime du bénéfice réel)"
-    start_date = date(2011, 1, 1)
+    # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -1001,7 +1001,7 @@ class abic_impm(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Locations meublées imposables avec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -1012,7 +1012,7 @@ class nbic_impm(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Locations meublées imposables sans CGA (régime du bénéfice réel)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -1023,7 +1023,7 @@ class abic_defm(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits de locations meubléesavec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -1034,7 +1034,7 @@ class alnp_imps(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Locations meublées non professionnelles imposables avec CGA ou viseur (régime du bénéfice réel)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1046,7 +1046,7 @@ class alnp_defs(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits de locations meublées non professionnelles avec CGA ou viseur (régime du bénéfice réel)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1058,7 +1058,7 @@ class nlnp_defs(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits de locations meublées non professionnelles imposables sans CGA (régime du bénéfice réel)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1069,7 +1069,7 @@ class cbnc_assc(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Agents généraux d'assurances : indemnités de cessation d'activité (revenus non commerciaux professionnels, régime de la déclaration contrôlée)"
-    start_date = date(2006, 1, 1)
+    # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -1080,7 +1080,7 @@ class abnc_proc(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Honoraires de prospection commerciale exonérés avec CGA ou viseur (revenus non commerciaux professionnels, régime de la déclaration contrôlée)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -1091,7 +1091,7 @@ class nbnc_proc(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Honoraires de prospection commerciale exonérés sans CGA (revenus non commerciaux professionnels, régime de la déclaration contrôlée)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -1102,7 +1102,7 @@ class mncn_exon(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus nets exonérés non commerciaux non professionnels (régime déclaratif spécial ou micro BNC)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -1113,7 +1113,7 @@ class cncn_exon(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus nets exonérés non commerciaux non professionnels (régime de la déclaration contrôlée)"
-    start_date = date(2008, 1, 1)
+    # start_date = date(2008, 1, 1)
     definition_period = YEAR
 
 
@@ -1124,7 +1124,7 @@ class cncn_aimp(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Revenus imposables non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -1135,7 +1135,7 @@ class cncn_adef(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Déficits non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -1146,7 +1146,7 @@ class cncn_info(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Inventeurs et auteurs de logiciels : produits taxables à 16%, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -1157,7 +1157,7 @@ class cncn_jcre(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Jeunes créateurs : abattement de 50%, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
-    start_date = date(2006, 1, 1)
+    # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -1177,7 +1177,7 @@ class pveximpres(Variable):
     column = IntCol
     entity = Individu
     label = u"Plus-values à long terme exonérées en cas de départ à la retraite à imposer aux prélèvements sociaux"
-    start_date = date(2006, 1, 1)
+    # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -1197,7 +1197,7 @@ class f5qf(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-6)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -1206,7 +1206,7 @@ class f5qg(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-5)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -1215,7 +1215,7 @@ class f5qn(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-4)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -1224,7 +1224,7 @@ class f5qo(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-3)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -1233,7 +1233,7 @@ class f5qp(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-2)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -1242,7 +1242,7 @@ class f5qq(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-1)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -1251,7 +1251,7 @@ class f5ga(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-10)"
-    start_date = date(2010, 1, 1)
+    # start_date = date(2010, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1261,7 +1261,7 @@ class f5gb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-9)"
-    start_date = date(2010, 1, 1)
+    # start_date = date(2010, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1271,7 +1271,7 @@ class f5gc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-8)"
-    start_date = date(2010, 1, 1)
+    # start_date = date(2010, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1281,7 +1281,7 @@ class f5gd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-7)"
-    start_date = date(2010, 1, 1)
+    # start_date = date(2010, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1291,7 +1291,7 @@ class f5ge(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-6)"
-    start_date = date(2010, 1, 1)
+    # start_date = date(2010, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1301,7 +1301,7 @@ class f5gf(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-5)"
-    start_date = date(2010, 1, 1)
+    # start_date = date(2010, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1311,7 +1311,7 @@ class f5gg(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-4)"
-    start_date = date(2010, 1, 1)
+    # start_date = date(2010, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1321,7 +1321,7 @@ class f5gh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-3)"
-    start_date = date(2010, 1, 1)
+    # start_date = date(2010, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1331,7 +1331,7 @@ class f5gi(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-2)"
-    start_date = date(2010, 1, 1)
+    # start_date = date(2010, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1341,7 +1341,7 @@ class f5gj(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-1)"
-    start_date = date(2010, 1, 1)
+    # start_date = date(2010, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1351,7 +1351,7 @@ class f5rn(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-6)"
-    start_date = date(2010, 1, 1)
+    # start_date = date(2010, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -1401,7 +1401,7 @@ class f5ht(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-6)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -1410,7 +1410,7 @@ class f5it(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-5)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -1419,7 +1419,7 @@ class f5jt(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-4)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -1428,7 +1428,7 @@ class f5kt(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-3)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -1437,7 +1437,7 @@ class f5lt(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-2)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -1446,7 +1446,7 @@ class f5mt(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-1)"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 

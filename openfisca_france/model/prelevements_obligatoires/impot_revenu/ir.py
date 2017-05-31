@@ -528,11 +528,10 @@ class rev_cat_pv(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Plus-values"
-    start_date = date(2013, 1, 1)
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         f3vg = simulation.calculate('f3vg', period)
         f3vh = simulation.calculate('f3vh', period)
 
@@ -559,11 +558,10 @@ class deficit_rcm(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Deficit capitaux mobiliers"
-    start_date = date(2009, 1, 1)
     url = "http://www.lefigaro.fr/impots/2008/04/25/05003-20080425ARTFIG00254-les-subtilites-des-revenus-de-capitaux-mobiliers-.php"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         f2aa = simulation.calculate('f2aa', period)
         f2al = simulation.calculate('f2al', period)
         f2am = simulation.calculate('f2am', period)
@@ -1167,10 +1165,9 @@ class decote_gain_fiscal(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Gain fiscal de la décote/Décote au sens Dgfip tel que sur la feuille d'impôt"
-    start_date = date(1982, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_1982_01_01(self, simulation, period):
         '''
         Renvoie le gain fiscal du à la décote
         '''
@@ -1237,10 +1234,9 @@ class cont_rev_loc(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Contribution sur les revenus locatifs"
-    start_date = date(2001, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2001_01_01(self, simulation, period):
         '''
         Contribution sur les revenus locatifs
         '''
@@ -1273,10 +1269,9 @@ class assiette_vente(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Assiette régime microsociale pour les ventes"
-    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Assiette régime microsociale pour les ventes
         '''
@@ -1289,10 +1284,9 @@ class assiette_service(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Assiette régime microsociale pour les prestations et services"
-    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Assiette régime microsociale pour les prestations et services
         '''
@@ -1308,10 +1302,9 @@ class assiette_proflib(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Assiette régime microsociale pour les professions libérales"
-    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Assiette régime microsocial pour les professions libérales
         '''
@@ -1329,11 +1322,10 @@ class microsocial(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Assiette régime microsociale totale"
-    start_date = date(2009, 1, 1)
     url = "http://fr.wikipedia.org/wiki/R%C3%A9gime_micro-social"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         assiette_service = simulation.calculate('assiette_service', period)
         assiette_vente = simulation.calculate('assiette_vente', period)
         assiette_proflib = simulation.calculate('assiette_proflib', period)
@@ -1349,10 +1341,9 @@ class microentreprise(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"microentreprise"
-    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         ebnc_impo_holder = simulation.compute('ebnc_impo', period)
         ebic_imps_holder = simulation.compute('ebic_imps', period)
         ebic_impv_holder = simulation.compute('ebic_impv', period)
@@ -1557,11 +1548,10 @@ class cehr(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Contribution exceptionnelle sur les hauts revenus"
-    start_date = date(2011, 1, 1)
     url = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Contribution exceptionnelle sur les hauts revenus
         'foy'
@@ -2554,10 +2544,9 @@ class taux_effectif(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"taux_effectif"
-    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         rni = simulation.calculate('rni', period)
         nbptr = simulation.calculate('nbptr', period)
         microentreprise = simulation.calculate('microentreprise', period)

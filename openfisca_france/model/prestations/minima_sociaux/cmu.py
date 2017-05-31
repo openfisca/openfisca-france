@@ -39,10 +39,9 @@ class acs_montant(Variable):
     column = FloatCol
     entity = Famille
     label = u"Montant de l'ACS en cas d'éligibilité"
-    start_date = date(2009, 8, 1)
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    def formula_2009_08_01(self, simulation, period):
         age_holder = simulation.compute('age', period)
         P = simulation.legislation_at(period.start).cmu
 

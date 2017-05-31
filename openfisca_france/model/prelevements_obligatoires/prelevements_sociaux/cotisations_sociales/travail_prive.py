@@ -147,10 +147,9 @@ class penibilite(Variable):
     column = FloatCol
     entity = Individu
     label = u"Les dépenses liées à l'utilisation du compte pénibilité par le salarié sont prises en charge par un fonds financé par l'employeur"
-    start_date = date(2015, 1, 1)
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    def formula_2015_01_01(self, simulation, period):
         exposition_penibilite = simulation.calculate('exposition_penibilite', period)
         multiplicateur =  simulation.legislation_at(period.start).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
 
@@ -773,10 +772,9 @@ class taux_accident_travail(Variable):
     column = FloatCol
     entity = Individu
     label = u"Approximation du taux accident à partir de l'exposition au risque donnée"
-    start_date = date(2012, 1, 1)
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         exposition_accident = simulation.calculate('exposition_accident', period)
         accident = simulation.legislation_at(period.start).cotsoc.accident
 

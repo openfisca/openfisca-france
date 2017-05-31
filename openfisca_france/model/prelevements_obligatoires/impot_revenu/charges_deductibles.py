@@ -41,7 +41,7 @@ class f6el(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées à des enfants majeurs: 1er enfant"
-    start_date = date(2006, 1, 1)
+    # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -50,7 +50,7 @@ class f6em(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées à des enfants majeurs: 2eme enfant"
-    start_date = date(2006, 1, 1)
+    # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -67,7 +67,7 @@ class f6gu(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées (mineurs, ascendants)"
-    start_date = date(2006, 1, 1)
+    # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -137,7 +137,7 @@ class f6aa(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel"
-    start_date = date(2005, 1, 1)
+    # start_date = date(2005, 1, 1)
     end = '2006-12-31'
     definition_period = YEAR
 
@@ -149,7 +149,7 @@ class f6cc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Souscriptions au capital des SOFIPÊCHE"
-    start_date = date(2005, 1, 1)
+    # start_date = date(2005, 1, 1)
     end = '2005-12-31'
     definition_period = YEAR
 
@@ -162,7 +162,7 @@ class f6eh(Variable):
     cerfa_field = u"EH"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    start_date = date(2005, 1, 1)
+    # start_date = date(2005, 1, 1)
     end = '2005-12-31'
     definition_period = YEAR
 # TODO: vérifier date de début et de fin de cette case (rien en 12 et 13)
@@ -173,7 +173,7 @@ class f6da(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté"
-    start_date = date(2005, 1, 1)
+    # start_date = date(2005, 1, 1)
     end = '2005-12-31'
     definition_period = YEAR
 
@@ -184,7 +184,7 @@ class f6cb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -195,7 +195,7 @@ class f6hj(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
-    start_date = date(2010, 1, 1)
+    # start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -204,7 +204,7 @@ class f6hk(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
-    start_date = date(2011, 1, 1)
+    # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -213,7 +213,7 @@ class f6hl(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
-    start_date = date(2012, 1, 1)
+    # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -222,7 +222,7 @@ class f6hm(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
-    start_date = date(2013, 1, 1)
+    # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -546,11 +546,10 @@ class cd_doment(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Investissements DOM-TOM dans le cadre d’une entreprise"
-    start_date = date(2002, 1, 1)
     end = '2005-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2002(self, simulation, period):
         '''
         Investissements DOM-TOM dans le cadre d’une entreprise (case EH de la
         déclaration n° 2042 complémentaire)
@@ -564,10 +563,9 @@ class cd_eparet(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Charge déductible au titre de l'épargne retraite (PERP, PRÉFON, COREM et CGOS)"
-    start_date = date(2004, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2004(self, simulation, period):
         f6ps_holder = simulation.compute('f6ps', period)
         f6rs_holder = simulation.compute('f6rs', period)
         f6ss_holder = simulation.compute('f6ss', period)
@@ -598,11 +596,10 @@ class cd_sofipe(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Souscriptions au capital des SOFIPÊCHE"
-    start_date = date(2002, 1, 1)
     end = '2006-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2002(self, simulation, period):
         '''
         Souscriptions au capital des SOFIPÊCHE (case CC de la déclaration
         complémentaire)
@@ -620,11 +617,10 @@ class souscriptions_cinema_audiovisuel(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel"
-    start_date = date(2002, 1, 1)
     end = '2005-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2002(self, simulation, period):
         '''
         Souscriptions en faveur du cinéma ou de l’audiovisuel (case AA de la
         déclaration n° 2042 complémentaire)
@@ -641,11 +637,10 @@ class epargne_codeveloppement(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Versements sur un compte épargne codéveloppement"
-    start_date = date(2007, 1, 1)
     end = '2008-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2007(self, simulation, period):
         '''
         Versements sur un compte épargne codéveloppement (case EH de la déclaration
         complémentaire)
@@ -662,10 +657,9 @@ class grosses_reparations(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations des nus-propriétaires"
-    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2009(self, simulation, period):
         '''
         Dépenses de grosses réparations des nus-propriétaires (case 6CB et 6HJ)
         '''

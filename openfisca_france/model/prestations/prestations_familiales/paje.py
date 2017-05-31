@@ -63,11 +63,10 @@ class paje(Variable):
     column = FloatCol
     entity = Famille
     label = u"PAJE - Ensemble des prestations"
-    start_date = date(2004, 1, 1)
     url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje-0"  # noqa
     definition_period = MONTH
 
-    def formula(famille, period):
+    def formula_2004_01_01(famille, period):
         '''
         Prestation d'accueil du jeune enfant
         '''
@@ -85,12 +84,11 @@ class paje_base(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation de base de la PAJE"
-    start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(famille, period, legislation):
+    def formula_2004(famille, period, legislation):
         couple_biactif = famille('biactivite', period)
         parent_isole = not_(famille('en_couple', period))
         nombre_enfants = famille('af_nbenf', period)
@@ -214,11 +212,10 @@ class paje_naissance(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation de naissance de la PAJE"
-    start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula_2004_01_01(famille, period, legislation):
         '''
         Prestation d'accueil du jeune enfant - Allocation de naissance
         '''
@@ -252,12 +249,11 @@ class paje_clca(Variable):
     column = FloatCol
     entity = Famille
     label = u"PAJE - Complément de libre choix d'activité"
-    start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(famille, period, legislation):
+    def formula_2004(famille, period, legislation):
         """
         Prestation d'accueil du jeune enfant - Complément de libre choix d'activité
         'fam'
@@ -330,11 +326,10 @@ class paje_clca_taux_plein(Variable):
     column = BoolCol
     entity = Famille
     label = u"Indicatrice Clca taux plein"
-    start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
 
-    def formula(famille, period):
+    def formula_2004_01_01(famille, period):
         paje_clca = famille('paje_clca', period)
         inactif = famille('inactif', period)
 
@@ -345,11 +340,10 @@ class paje_clca_taux_partiel(Variable):
     column = BoolCol
     entity = Famille
     label = u"Indicatrice Clca taux partiel"
-    start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
 
-    def formula(famille, period):
+    def formula_2004_01_01(famille, period):
         paje_clca = famille('paje_clca', period)
         partiel1 = famille('partiel1', period)
 
@@ -363,11 +357,10 @@ class paje_cmg(Variable):
     column = FloatCol
     entity = Famille
     label = u"PAJE - Complément de libre choix du mode de garde"
-    start_date = date(2004, 1, 1)
     url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"  # noqa
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula_2004_01_01(famille, period, legislation):
         '''
         Prestation d accueil du jeune enfant - Complément de libre choix du mode de garde
 
@@ -475,11 +468,10 @@ class paje_colca(Variable):
     column = FloatCol
     entity = Famille
     label = u"PAJE - Complément optionnel de libre choix d'activité"
-    start_date = date(2004, 1, 1)
     url = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula_2004_01_01(famille, period, legislation):
         '''
         Prestation d'accueil du jeune enfant - Complément optionnel de libre choix du mode de garde
         '''

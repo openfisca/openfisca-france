@@ -253,10 +253,9 @@ class accult(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Acquisition de biens culturels"
-    start_date = date(2002, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2002(self, simulation, period):
         '''
         Acquisition de biens culturels (case 7UO)
         2002-
@@ -272,11 +271,10 @@ class acqgpl(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte"
-    start_date = date(2002, 1, 1)
     end = '2007-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2002(self, simulation, period):
         '''
         Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte
         2002-2007
@@ -292,11 +290,10 @@ class aidmob(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d'impôt aide à la mobilité"
-    start_date = date(2005, 1, 1)
     end = '2008-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2005(self, simulation, period):
         '''
         Crédit d'impôt aide à la mobilité
         2005-2008
@@ -486,10 +483,9 @@ class assloy(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d’impôt primes d’assurance pour loyers impayés"
-    start_date = date(2005, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2005(self, simulation, period):
         '''
         Crédit d’impôt primes d’assurance pour loyers impayés (case 4BF)
         2005-
@@ -504,10 +500,9 @@ class autent(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"autent"
-    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2009(self, simulation, period):
         '''
         Auto-entrepreneur : versements d’impôt sur le revenu (case 8UY)
         2009-
@@ -521,10 +516,9 @@ class ci_garext(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Frais de garde des enfants à l’extérieur du domicile"
-    start_date = date(2005, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2005(self, simulation, period):
         '''
         Frais de garde des enfants à l’extérieur du domicile (cases 7GA à 7GC et 7GE à 7GG)
         2005-
@@ -852,11 +846,10 @@ class divide(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d'impôt dividendes"
-    start_date = date(2005, 1, 1)
     end = '2009-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         '''
         Crédit d'impôt dividendes
         2005-2009
@@ -1076,11 +1069,10 @@ class jeunes(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"jeunes"
-    start_date = date(2005, 1, 1)
     end = '2008-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         jeunes_ind_holder = simulation.compute('jeunes_ind', period)
 
         return self.sum_by_entity(jeunes_ind_holder)
@@ -1090,11 +1082,10 @@ class jeunes_ind(Variable):
     column = FloatCol(default = 0)
     entity = Individu
     label = u"Crédit d'impôt en faveur des jeunes"
-    start_date = date(2005, 1, 1)
     end = '2008-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         '''
         Crédit d'impôt en faveur des jeunes
         2005-2008
@@ -1136,10 +1127,9 @@ class mecena(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Mécénat d'entreprise"
-    start_date = date(2003, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2003_01_01(self, simulation, period):
         '''
         Mécénat d'entreprise (case 7US)
         2003-
@@ -1153,11 +1143,10 @@ class percvm(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d’impôt pertes sur cessions de valeurs mobilières"
-    start_date = date(2010, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         '''
         Crédit d’impôt pertes sur cessions de valeurs mobilières (3VV)
         -2010
@@ -1535,10 +1524,9 @@ class quaenv_bouquet(Variable):
     column = BoolCol(default = False)
     entity = FoyerFiscal
     label = u"quaenv_bouquet"
-    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Les dépenses de travaux dépendent d'un bouquet de travaux
         2013

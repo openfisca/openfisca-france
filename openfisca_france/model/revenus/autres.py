@@ -137,7 +137,7 @@ class f8td_2002_2005(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Contribution exceptionnelle sur les hauts revenus"
-    start_date = date(2002, 1, 1)
+    # start_date = date(2002, 1, 1)
     end = '2005-12-31'
     definition_period = YEAR
 
@@ -147,7 +147,7 @@ class f8td(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Revenus non imposables dépassent la moitié du RFR"
-    start_date = date(2011, 1, 1)
+    # start_date = date(2011, 1, 1)
     end = '2014-12-31'
     definition_period = YEAR
 
@@ -174,5 +174,5 @@ class f8uy(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu dont le remboursement est demandé"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     definition_period = YEAR

@@ -39,7 +39,7 @@ class sal_pen_exo_etr(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif"
-    start_date = date(2013, 1, 1)
+    # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -66,7 +66,7 @@ class hsup(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Heures supplémentaires : revenus exonérés connus"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     end = '2013-12-13'
     definition_period = MONTH
     set_input = set_input_divide_by_period

@@ -236,7 +236,6 @@ class casa(Variable):
     column = FloatCol
     entity = Individu
     label = u"Contribution additionnelle de solidarité et d'autonomie"
-    start_date = date(2013, 4, 1)
     url = u"http://www.service-public.fr/actualites/002691.html"
     definition_period = MONTH
 

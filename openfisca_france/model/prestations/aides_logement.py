@@ -351,10 +351,9 @@ class aide_logement_loyer_seuil_degressivite(Variable):
     column = FloatCol
     entity = Famille
     label = u"Seuil de degressivité dans le calcul des aides au logement"
-    start_date = date(2016, 7, 1)
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula_2016_07_01(famille, period, legislation):
         al = legislation(period).prestations.aides_logement
         zone_apl = famille.demandeur.menage('zone_apl', period)
         loyer_plafond = famille('aide_logement_loyer_plafond', period)
@@ -376,10 +375,9 @@ class aide_logement_loyer_seuil_suppression(Variable):
     column = FloatCol
     entity = Famille
     label = u"Seuil de suppression dans le calcul des aides au logement"
-    start_date = date(2016, 7, 1)
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula_2016_07_01(famille, period, legislation):
         al = legislation(period).prestations.aides_logement
         zone_apl = famille.demandeur.menage('zone_apl', period)
         loyer_plafond = famille('aide_logement_loyer_plafond', period)

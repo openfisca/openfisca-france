@@ -457,11 +457,10 @@ class assvie(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"assvie"
-    start_date = date(2002, 1, 1)
     end = '2004-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         '''
         Assurance-vie (cases GW, GX et GY de la 2042)
         2002-2004
@@ -740,10 +739,9 @@ class deffor(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"deffor"
-    start_date = date(2006, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         '''
         Défense des forêts contre l'incendie
         2006-
@@ -1509,10 +1507,9 @@ class duflot(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"duflot"
-    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Investissements locatifs interméiaires (loi Duflot)
         2013-
@@ -1530,11 +1527,10 @@ class ecodev(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"ecodev"
-    start_date = date(2009, 1, 1)
     end = '2009-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Sommes versées sur un compte épargne codéveloppement (case 7UH)
         2009
@@ -1621,10 +1617,9 @@ class intagr(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"intagr"
-    start_date = date(2005, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         '''
         Intérêts pour paiement différé accordé aux agriculteurs
         2005-
@@ -1641,11 +1636,10 @@ class intcon(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"intcon"
-    start_date = date(2004, 1, 1)
     end = '2005-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2004_01_01(self, simulation, period):
         '''
         Intérêts des prêts à la consommation (case UH)
         2004-2005
@@ -1661,11 +1655,10 @@ class intemp(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"intemp"
-    start_date = date(2002, 1, 1)
     end = '2003-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         '''
         Intérêts d'emprunts
         2002-2003
@@ -2043,11 +2036,10 @@ class invrev(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"invrev"
-    start_date = date(2002, 1, 1)
     end = '2003-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         '''
         Investissements locatifs dans les résidences de tourisme situées dans une zone de
         revitalisation rurale (cases GS, GT, XG, GU et GV)
@@ -2221,10 +2213,9 @@ class mohist(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"mohist"
-    start_date = date(2008, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2008_01_01(self, simulation, period):
         '''
         Travaux de conservation et de restauration d’objets classés monuments historiques (case NZ)
         2008-
@@ -2331,11 +2322,10 @@ class reduction_impot_exceptionnelle(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Réduction d'impôt exceptionnelle"
-    start_date = date(2013, 1, 1)
     end = '2013-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         nb_adult = simulation.calculate('nb_adult', period)
         nbptr = simulation.calculate('nbptr', period)
         rfr = simulation.calculate('rfr', period)
@@ -2349,10 +2339,9 @@ class repsoc(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"repsoc"
-    start_date = date(2003, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2003_01_01(self, simulation, period):
         '''
         Intérèts d'emprunts pour reprises de société
         2003-
@@ -2877,10 +2866,9 @@ class sofica(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"sofica"
-    start_date = date(2006, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         '''
         Souscriptions au capital de SOFICA
         2006-
@@ -2899,11 +2887,10 @@ class sofipe(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"sofipe"
-    start_date = date(2009, 1, 1)
     end = '2011-01-01'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         """
         Souscription au capital d’une SOFIPECHE (case 7GS)
         2009-2011

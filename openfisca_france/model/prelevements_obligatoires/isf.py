@@ -262,10 +262,9 @@ class isf_actions_sal(Variable):  # # non présent en 2005##
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"isf_actions_sal"
-    start_date = date(2006, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2006(self, simulation, period):
         '''
         Parts ou actions détenues par les salariés et mandataires sociaux
         '''
@@ -373,10 +372,9 @@ class isf_inv_pme(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"isf_inv_pme"
-    start_date = date(2008, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2008(self, simulation, period):
         '''
         Réductions pour investissements dans les PME
         à partir de 2008!
@@ -402,10 +400,9 @@ class isf_org_int_gen(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"isf_org_int_gen"
-    start_date = date(2008, 1, 01)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2008(self, simulation, period):
         b2nc = simulation.calculate('b2nc', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.reduc_invest_don
 
@@ -517,10 +514,9 @@ class decote_isf(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Décote de l'ISF"
-    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2013(self, simulation, period):
         ass_isf = simulation.calculate('ass_isf', period)
         P = simulation.legislation_at(period.start).taxation_capital.isf.decote
 
@@ -655,11 +651,10 @@ class bouclier_rev(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"bouclier_rev"
-    start_date = date(2006, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2006(self, simulation, period):
         '''
         Total des revenus sur l'année 'n' net de charges
         '''
@@ -716,11 +711,10 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"bouclier_imp_gen"
-    start_date = date(2006, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2006(self, simulation, period):
         irpp = simulation.calculate('irpp', period)
         taxe_habitation_holder = simulation.compute('taxe_habitation', period)
         tax_fonc = simulation.calculate('tax_fonc', period)
@@ -764,11 +758,10 @@ class restitutions(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"restitutions"
-    start_date = date(2006, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2006(self, simulation, period):
         '''
         Restitutions d'impôt sur le revenu et degrèvements percus en l'année 'n'
         '''
@@ -782,11 +775,10 @@ class bouclier_sumimp(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"bouclier_sumimp"
-    start_date = date(2006, 1, 1)
     end = '2010-12-31'
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2006(self, simulation, period):
         '''
         Somme totale des impôts moins restitutions et degrèvements
         '''
@@ -800,12 +792,11 @@ class bouclier_fiscal(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"bouclier_fiscal"
-    start_date = date(2006, 1, 1)
     end = '2010-12-31'
     url = "http://fr.wikipedia.org/wiki/Bouclier_fiscal"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula_2006(self, simulation, period):
         bouclier_sumimp = simulation.calculate('bouclier_sumimp', period)
         bouclier_rev = simulation.calculate('bouclier_rev', period)
         P = simulation.legislation_at(period.start).bouclier_fiscal

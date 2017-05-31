@@ -100,13 +100,12 @@ class psa(Variable):
     column = FloatCol
     entity = Famille
     label = u"Prime de solidarité active"
-    start_date = date(2009, 4, 1)
     end = '2009-04-30'
     url = u"http://www.service-public.fr/actualites/001077.html"
     definition_period = MONTH
     calculate_output = calculate_output_add
 
-    def formula(famille, period, legislation):
+    def formula_2009_04(famille, period, legislation):
         '''
         Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
         Versement en avril 2009 d’une prime de solidarité active (Psa) aux familles modestes qui ont bénéficié
@@ -137,11 +136,10 @@ class rmi(Variable):
     column = FloatCol
     entity = Famille
     label = u"Revenu Minimum d'Insertion"
-    start_date = date(1988, 12, 1)
     end = '2009-05-31'
     definition_period = MONTH
 
-    def formula(famille, period):
+    def formula_1988_12(famille, period):
         activite_i = famille.members('activite', period)
         condition_activite_i = (activite_i != 0) * (activite_i != 2) * (activite_i != 3)
         condition_activite = famille.any(condition_activite_i)
@@ -159,11 +157,10 @@ class rsa_activite(Variable):
     column = FloatCol
     entity = Famille
     label = u"Revenu de solidarité active - activité"
-    start_date = date(2009, 6, 1)
     end = '2015-12-31'
     definition_period = MONTH
 
-    def formula(famille, period):
+    def formula_2009_06_01(famille, period):
         rsa = famille('rsa', period, period)
         rsa_base_ressources = famille('rsa_base_ressources', period)
         rsa_socle = famille('rsa_socle', period)
@@ -176,11 +173,10 @@ class rsa_activite_individu(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenu de solidarité active - activité au niveau de l'individu"
-    start_date = date(2009, 6, 1)
     end = '2015-12-31'
     definition_period = YEAR
 
-    def formula(individu, period):
+    def formula_2009_06_01(individu, period):
         '''
         Note: le partage en moitié est un point de législation, pas un choix arbitraire
         '''
