@@ -18,7 +18,7 @@ L'IPP fournit ses paramètres sous forme de tableurs au format XLSX.
 
 Le script [`convert_ipp_xlsx_to_openfisca_xml.py`](./convert_ipp_xlsx_to_openfisca_xml.py) prend en charge la conversion de XLSX vers XML.
 
->**Attention, ce script ne semble fonctionner que sous Linux, et pas sous OSX. Voir la [discussion](https://github.com/openfisca/openfisca-france/pull/746#issuecomment-305123915) sur le sujet.**
+>**Attention, ce script ne semble fonctionner que sous Linux, et pas sous macOS. Voir la [discussion](https://github.com/openfisca/openfisca-france/pull/746#issuecomment-305123915) sur le sujet.**
 
 Ce script nécessite le paquet [`xlrd`](https://pypi.python.org/pypi/xlrd). Pour l'installer :
 
