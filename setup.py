@@ -51,7 +51,7 @@ setup(
     install_requires = [
         'Biryani[datetimeconv] >= 0.10.4',
         'numpy >= 1.11, < 1.13',
-        'OpenFisca-Core >= 13.0.0, < 14.0',
+        'OpenFisca-Core >= 14.0, < 15.0',
         'PyYAML >= 3.10',
         'requests >= 2.8',
         ],
