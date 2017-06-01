@@ -1,5 +1,14 @@
 # Changelog
 
+### 18.4.2 - [#770](https://github.com/openfisca/openfisca-france/pull/770)
+
+* Amélioration technique
+* Détails :
+  - Mets à jour OpenFisca-Core
+    - Modifie la manière de définir les dates de début des formules, et les dates de fin des variables.
+    - Modifie les conventions de nommages des formules des variables.
+    - Pour plus d'information, voir le [Changelog d'OpenFisca-Core](https://github.com/openfisca/openfisca-core/blob/master/CHANGELOG.md#1400---522) correspondant.
+
 ### 18.4.1 - [#776](https://github.com/openfisca/openfisca-france/pull/776)
 
 * Correction d'un crash
