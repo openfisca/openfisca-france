@@ -43,7 +43,8 @@ class salaire_de_base(Variable):
 
         net = simulation.get_array('salaire_net_a_payer', period)
 
-        assert net is not None
+        if net is None:
+            return self.zeros()
 
         simulation = self.holder.entity.simulation
 
