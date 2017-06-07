@@ -186,12 +186,10 @@
     </NODE>
   </NODE>
   <NODE code="cice" origin="ipp">
-    <CODE code="plafond_smic" origin="ipp">
-      <!-- Code général des impôts - Article 244 quater C - II -->
+    <CODE code="plafond_smic" origin="ipp" reference="Code général des impôts - Article 244 quater C - II">
       <VALUE deb="2013-01-01" valeur="2.5" />
     </CODE>
-    <CODE code="taux" format="percent" origin="ipp">
-      <!-- Code général des impôts - Article 244 quater C - III  -->
+    <CODE code="taux" format="percent" origin="ipp" reference="Code général des impôts - Article 244 quater C - III">
       <VALUE deb="2017-01-01" valeur="0.07" />
       <VALUE deb="2014-01-01" valeur="0.06" />
       <VALUE deb="2013-01-01" valeur="0.04" />
@@ -894,13 +892,12 @@
       </BAREME>
     </NODE>
     <NODE code="ags" origin="ipp">
-      <BAREME code="employeur" origin="ipp">
+      <BAREME code="employeur" origin="ipp" reference="http://www.ags-garantie-salaires.org/actualites/items/taux-de-cotisation-89.html">
         <TRANCHE code="tranche_a_b">
           <SEUIL>
             <VALUE deb="1974-01-01" valeur="0" />
           </SEUIL>
           <TAUX>
-            <!-- http://www.ags-garantie-salaires.org/actualites/items/taux-de-cotisation-89.html -->
             <VALUE deb="2017-01-01"     valeur="0.0020" />
             <VALUE deb="2016-01-01" valeur="0.0025" />
             <VALUE deb="2011-04-01" valeur="0.003" />
@@ -1744,9 +1741,9 @@
         <VALUE deb="1989-09-01" valeur="254" />
       </CODE>
       <CODE code="plafond_base_solidarite" description="Plafond de la contribution exceptionnelle de solidarité " format="float" origin="openfisca" type="monetary">
-        <VALUE deb="2015-01-01" valeur="12516" />
-        <VALUE deb="2002-01-01" valeur="12516" />  # TODO check. Pas dispo dans barème IPP
-          </CODE>
+        <PLACEHOLDER deb="2015-01-01" />
+        <VALUE deb="2002-01-01" valeur="12516" />
+      </CODE>
       <CODE code="seuil_d_assujettissement" format="float" origin="ipp" type="monetary">
         <VALUE deb="2013-01-01" valeur="1430.76" />
         <VALUE deb="2012-07-01" valeur="1426.12" />
@@ -2619,8 +2616,7 @@
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="gmp" origin="ipp">
-    <!-- http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/ -->
+  <NODE code="gmp" origin="ipp" reference="http://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/">
     <CODE code="cotisation_forfaitaire_annuelle_en_euros" format="float" origin="ipp" type="monetary">
       <VALUE deb="2017-01-01" valeur="844.56" />
       <VALUE deb="2016-01-01" valeur="816.84" />

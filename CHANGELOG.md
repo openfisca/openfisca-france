@@ -1,5 +1,12 @@
 # Changelog
 
+### 18.4.0 - [#772](https://github.com/openfisca/openfisca-france/pull/772)
+
+* Amélioration technique
+* Détails :
+  - Permet d'ajouter une référence aux paramètres XML.
+  - Supprime les commentaires des XML (Compatibilité avec core 13.0.0).
+
 ### 18.3.1 - [#767](https://github.com/openfisca/openfisca-france/pull/767)
 
 * Évolution du système socio-fiscal.
