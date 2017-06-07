@@ -412,16 +412,33 @@ class isf_org_int_gen(Variable):
 
         return b2nc * P.taux_don_interet_general
 
-class isf_avant_plaf(Variable):
+class isf_avant_plaf(DatedVariable):
+    '''
+    Montant de l'impôt avant plafonnement
+    '''
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"isf_avant_plaf"
     definition_period = YEAR
 
-    def function(self, simulation, period):
-        '''
-        Montant de l'impôt avant plafonnement
-        '''
+    @dated_function(stop = date(2007, 12, 31))
+    def function_debut(self, simulation, period):
+        isf_avant_reduction = simulation.calculate('isf_avant_reduction', period)
+        isf_reduc_pac = simulation.calculate('isf_reduc_pac', period)
+
+        return max_(0, isf_avant_reduction - isf_reduc_pac)
+
+    @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
+    def function_2008(self, simulation, period):
+        isf_avant_reduction = simulation.calculate('isf_avant_reduction', period)
+        isf_inv_pme = simulation.calculate('isf_inv_pme', period)
+        isf_org_int_gen = simulation.calculate('isf_org_int_gen', period)
+        isf_reduc_pac = simulation.calculate('isf_reduc_pac', period)
+
+        return max_(0, isf_avant_reduction - (isf_inv_pme + isf_org_int_gen) - isf_reduc_pac)
+
+    @dated_function(start = date(2009, 1, 1))
+    def function_2009(self, simulation, period):
         isf_avant_reduction = simulation.calculate('isf_avant_reduction', period)
         isf_inv_pme = simulation.calculate('isf_inv_pme', period)
         isf_org_int_gen = simulation.calculate('isf_org_int_gen', period)

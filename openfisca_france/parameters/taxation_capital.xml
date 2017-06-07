@@ -203,7 +203,7 @@
         <VALUE deb="2013-01-01" valeur="0.0125" />
       </CODE>
     </NODE>
-    <NODE code="droits_soc" description="Droits sociaux" origin="openfisca"> ## parts actions détenus par salariés et mandataires sociaux intro en 2006 ##
+    <NODE code="droits_soc" description="Droits sociaux (parts actions détenus par salariés et mandataires sociaux intro en 2006)" origin="openfisca">
      <CODE code="taux1" description="Taux parts et actions détenues par les salariés et mandataires sociaux" format="percent" origin="openfisca">
         <VALUE deb="2006-01-01" valeur="0.25" />
       </CODE>
@@ -283,13 +283,11 @@
       <CODE code="limite_reduction_de_l_isf_lie_aux_dons_realises" format="float" origin="ipp" type="monetary">
         <VALUE deb="2008-01-01" valeur="50000" />
       </CODE>
-      <CODE code="max" description="Plafond pour investissement dans les PME" format="integer" origin="openfisca" type="monetary"> ## ce type de réductions apparaît seulement en 2008 ##
-      # <VALUE deb="2014-01-01" valeur="45000" />
+      <CODE code="max" description="Plafond pour investissement dans les PME" format="integer" origin="openfisca" type="monetary">
+        <VALUE deb="2014-01-01" valeur="45000" />
         <VALUE deb="2011-01-01" valeur="45000" />
         <VALUE deb="2009-01-01" valeur="50000" />
-        <VALUE deb="2008-01-01" valeur="50000000" /> ## no upperbound before 2009- set arbitrarily large##
-      <VALUE deb="2002-01-01" valeur="0" /> # taux set to 0 to avoid error- expect prog to pass when date inf to 2008 #
-      # </CODE>
+      </CODE>
       <CODE code="plafond_invest_pme" format="float" origin="ipp" type="monetary">
         <VALUE deb="2011-01-01" valeur="45000" />
         <VALUE deb="2009-01-01" valeur="50000" />
