@@ -50,6 +50,17 @@ class plf2016(Reform):
         label = u"Décote IR 2016 appliquée en 2015 sur revenus 2014"
         definition_period = YEAR
 
+        # This formula is copy-pasted from the reference decote formula, so that we only change the decote formula for 2014
+        def formula_2015_01_01(self, simulation, period):
+            ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
+            nb_adult = simulation.calculate('nb_adult', period)
+            decote_seuil_celib = simulation.legislation_at(period.start).impot_revenu.decote.seuil_celib
+            decote_seuil_couple = simulation.legislation_at(period.start).impot_revenu.decote.seuil_couple
+            decote_celib = (ir_plaf_qf < 4 / 3 * decote_seuil_celib) * (decote_seuil_celib - 3 / 4 * ir_plaf_qf)
+            decote_couple = (ir_plaf_qf < 4 / 3 * decote_seuil_couple) * (decote_seuil_couple - 3 / 4 * ir_plaf_qf)
+
+            return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
+
         def formula_2014_01_01(self, simulation, period):
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             nb_adult = simulation.calculate('nb_adult', period)
@@ -134,12 +145,12 @@ class plf2016_counterfactual(Reform):
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
     class reduction_impot_exceptionnelle(Variable):
-        definition_period = YEAR
+        end = None
 
         def formula_2015_01_01(self, simulation, period):
-            nb_adult = simulation.calculate('nb_adult')
-            nb_parents = simulation.calculate('nb_parents')
-            rfr = simulation.calculate('rfr')
+            nb_adult = simulation.calculate('nb_adult', period)
+            nb_parents = simulation.calculate('nb_parents', period.first_month)
+            rfr = simulation.calculate('rfr', period)
             inflator = 1 + .001 + .005
             # params = simulation.legislation_at(period.start).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
             seuil = 13795 * inflator
@@ -290,12 +301,12 @@ class plf2016_counterfactual_2014(Reform):
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
     class reduction_impot_exceptionnelle(Variable):
-        definition_period = YEAR
+        end = None
 
         def formula_2015_01_01(self, simulation, period):
-            nb_adult = simulation.calculate('nb_adult')
-            nb_parents = simulation.calculate('nb_parents')
-            rfr = simulation.calculate('rfr')
+            nb_adult = simulation.calculate('nb_adult', period)
+            nb_parents = simulation.calculate('nb_parents', period.first_month)
+            rfr = simulation.calculate('rfr', period)
             inflator = 1 + .001 + .005
             # params = simulation.legislation_at(period.start).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
             seuil = 13795 * inflator
