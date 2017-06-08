@@ -15,8 +15,8 @@ class eligibilite_anah(Variable):
     definition_period = YEAR
 
     def function(menage, period):
-        # depcom is a 5-digit code where the leading two digits correspond to a département;
-        # integer division by 1000 is a handy way of computing these digits
+        # depcom est le code INSEE de la localité, les deux premiers chiffres sont le département
+        # le reste de la division entière par 1000 donne ces deux chiffres sans manipulation de chaînes
         departement = menage('depcom', period.first_month).astype(int) / 1000
 
         departements_idf = [75, 77, 78, 91, 92, 93, 94, 95]
