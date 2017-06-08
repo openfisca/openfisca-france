@@ -19,7 +19,7 @@ class plfr2014(Reform):
     name = u'Projet de Loi de Finances Rectificative 2014'
 
     class reduction_impot_exceptionnelle(Variable):
-        reference = reductions_impot.reduction_impot_exceptionnelle
+        reference_column = reductions_impot.reduction_impot_exceptionnelle
         definition_period = YEAR
 
         def formula_2013_01_01(self, simulation, period):
@@ -35,7 +35,7 @@ class plfr2014(Reform):
 
     class reductions(Variable):
         label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
-        reference = reductions_impot.reductions
+        reference_column = reductions_impot.reductions
         definition_period = YEAR
 
         def formula_2013_01_01(self, simulation, period):

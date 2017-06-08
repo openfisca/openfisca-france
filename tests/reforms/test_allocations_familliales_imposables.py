@@ -31,7 +31,7 @@ def test_allocations_familiales_imposables():
             ],
         )
 
-    reference_simulation = scenario.new_simulation(reference = True)
+    reference_simulation = scenario.new_simulation(use_baseline = True)
 
     absolute_error_margin = 0.01
     af = reference_simulation.calculate_add('af', year)

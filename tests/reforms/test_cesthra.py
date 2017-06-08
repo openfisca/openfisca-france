@@ -30,7 +30,7 @@ def test_cesthra_invalidee():
             ],
         )
 
-    reference_simulation = scenario.new_simulation(reference = True)
+    reference_simulation = scenario.new_simulation(use_baseline = True)
     reference_impo = reference_simulation.calculate('impots_directs', period = period)
     assert reference_impo is not None
     reference_revenu_disponible = reference_simulation.calculate('revenu_disponible', period = period)
