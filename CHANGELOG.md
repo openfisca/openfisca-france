@@ -1,5 +1,12 @@
 # Changelog
 
+### 18.4.1 - [#776](https://github.com/openfisca/openfisca-france/pull/776)
+
+* Correction d'un crash
+* Détails :
+  - Openfisca n'est pas compatible avec la nouvelle version de numpy 1.13.
+  - Requiert numpy < 1.13
+
 ### 18.4.0 - [#772](https://github.com/openfisca/openfisca-france/pull/772)
 
 * Amélioration technique
