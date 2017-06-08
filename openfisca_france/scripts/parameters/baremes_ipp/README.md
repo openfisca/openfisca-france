@@ -31,6 +31,9 @@ Il faut également installer `gnumeric` :
 - sous Debian : `sudo apt install gnumeric`
 - sous macOS : `brew install gnumeric`
 
+> Attention : Sous macOS, il est possible que les fichiers XLS écrits par `ssconvert` ne soient pas lisibles par `xlrd`. Nous n'avons pas identifié la cause de ce problème.
+
+
 Se placer dans le répertoire racine d'OpenFisca-France, là où se trouve le fichier `setup.py` :
 
 ```sh
