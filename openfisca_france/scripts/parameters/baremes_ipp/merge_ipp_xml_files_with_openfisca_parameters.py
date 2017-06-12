@@ -7,7 +7,7 @@ Merge IPP XML files with OpenFisca XML parameters.
 
 Keep elements and attributes order from OpenFisca side, replace <CODE> and <BAREME> leaves by IPP ones.
 
-Let the user commit or not the diff using git.
+Let the user commit or not the diff using git. The script `../format_parameters.py` can be used to ease the merge.
 """
 
 
@@ -24,40 +24,24 @@ from openfisca_france.france_taxbenefitsystem import FranceTaxBenefitSystem, COU
 parameters_dir_path = os.path.join(COUNTRY_DIR, 'parameters')
 
 
-def xml_element(tag, attrib, children):
-    element = etree.Element(tag, attrib)
-    element.extend(children)
-    return element
-
-
-def by_deb(child_element):
-    return child_element.attrib['deb']
-
-
-def by_code(child_element):
-    return child_element.attrib['code']
-
-
-def by_tag(child_element):
-    return child_element.tag
-
-
-def without_comments(element):
-    """Return children of `element` ignoring XML comments."""
-    return filter(lambda child: child.tag is not etree.Comment, element)
-
-
 def replace_children(element, children):
     for child in element:
         child.getparent().remove(child)
     element.extend(children)
 
 
-def merge_elements(openfisca_element, element, path = []):
-    """
-    Merge `element` in `openfisca_element`, modifying `openfisca_element`.
+def merge_attributes(openfisca_element, ipp_element):
+    for key, value in ipp_element.attrib.iteritems():
+        if key in openfisca_element.attrib:
+            if openfisca_element.attrib[key] != ipp_element.attrib[key]:
+                openfisca_element.attrib[key] = ipp_element.attrib[key]
+        else:
+            openfisca_element.attrib[key] = ipp_element.attrib[key]
 
-    The source of truth is `openfisca_element`.
+
+def merge_elements(openfisca_element, ipp_element, path = []):
+    """
+    Merge `ipp_element` in `openfisca_element`, modifying `openfisca_element`.
 
     Returns `None`.
     """
@@ -65,40 +49,51 @@ def merge_elements(openfisca_element, element, path = []):
         path_with_code = path + [openfisca_element.attrib['code']]
         return u'At {}: {}'.format('.'.join(path_with_code), error)
 
-    assert element.attrib['code'] == openfisca_element.attrib['code'], (element, openfisca_element)
-    assert element.tag == openfisca_element.tag, \
+    assert ipp_element.attrib['code'] == openfisca_element.attrib['code'], (openfisca_element, ipp_element)
+    assert ipp_element.tag == openfisca_element.tag, \
         error_at_path(u'OpenFisca element {!r} differs from IPP element {!r}'.format(
-            openfisca_element.tag, element.tag).encode('utf-8'))
+            openfisca_element.tag, ipp_element.tag).encode('utf-8'))
+
+    merge_attributes(openfisca_element, ipp_element)
+
+    # Merge children
 
     if openfisca_element.tag == 'NODE':
-        for openfisca_child_element in without_comments(openfisca_element):
-            for child_element in element:
-                if child_element.attrib['code'] == openfisca_child_element.attrib['code']:
-                    merge_elements(openfisca_child_element, child_element, path + [openfisca_element.attrib['code']])
-                    break
+        ipp_children_by_code = {
+            child.attrib['code']: child
+            for child in ipp_element
+        }
+        for openfisca_child in openfisca_element:
+            code = openfisca_child.attrib['code']
+            if code in ipp_children_by_code.keys():
+                ipp_child = ipp_children_by_code[code]
+                del ipp_children_by_code[code]
+                merge_elements(openfisca_child, ipp_child, path + [openfisca_element.attrib['code']])
+        for code, ipp_child in ipp_children_by_code.iteritems():
+            openfisca_element.append(ipp_child)
 
-    elif openfisca_element.tag in {'CODE', 'BAREME'}:
-        # Replace OpenFisca attributes from IPP attributes, keeping OpenFisca attributes order.
-        for name, _ in openfisca_element.attrib.iteritems():
-            if element.get(name) is not None:
-                openfisca_element.attrib[name] = element.attrib[name]
-        # Add attributes only in IPP element.
-        for name, value in element.attrib.iteritems():
-            if openfisca_element.get(name) is None:
-                openfisca_element.attrib[name] = element.attrib[name]
-        if openfisca_element.tag == 'CODE':
-            replace_children(openfisca_element, element.getchildren())
-        else:
-            assert openfisca_element.tag == 'BAREME', openfisca_element
-            for index, openfisca_tranche_element in enumerate(openfisca_element):
-                ipp_tranche_element = openfisca_element[index]
-                openfisca_seuil_element = openfisca_tranche_element.find('SEUIL')
-                ipp_seuil_element = ipp_tranche_element.find('SEUIL')
-                replace_children(openfisca_seuil_element, ipp_seuil_element.getchildren())
-                openfisca_taux_element = openfisca_tranche_element.find('TAUX')
-                ipp_taux_element = ipp_tranche_element.find('TAUX')
-                replace_children(openfisca_taux_element, ipp_taux_element.getchildren())
+    elif openfisca_element.tag == 'CODE':
+        replace_children(openfisca_element, ipp_element.getchildren())
 
+    elif openfisca_element.tag == 'BAREME':
+        assert ipp_element.tag == 'BAREME', (openfisca_element, ipp_element)
+        for index, openfisca_tranche in enumerate(openfisca_element):
+            ipp_tranche = ipp_element[index]
+            merge_attributes(openfisca_tranche, ipp_tranche)
+
+            ipp_tranche_children_by_tag = {
+                child.tag: child
+                for child in ipp_tranche
+            }
+
+            for openfisca_tranche_child in openfisca_tranche:
+                tag = openfisca_tranche_child.tag
+                if tag in ipp_tranche_children_by_tag.keys():
+                    ipp_tranche_child = ipp_tranche_children_by_tag[tag]
+                    del ipp_tranche_children_by_tag[tag]
+                    replace_children(openfisca_tranche_child, ipp_tranche_child)
+            for tag, ipp_tranche_child in ipp_tranche_children_by_tag.iteritems():
+                openfisca_tranche.append(ipp_tranche_child)
     else:
         raise NotImplementedError(openfisca_element)
 
@@ -138,12 +133,15 @@ def main():
         for file_name in os.listdir(args.ipp_xml_dir)
         if file_name.endswith('.xml')
         ]
+    if not ipp_file_paths:
+        print("Warning : no IPP XML found.")
     ipp_xml_tree_by_file_name = get_xml_tree_by_file_name(xmlschema, ipp_file_paths)
 
     for openfisca_file_name, openfisca_xml_tree in openfisca_xml_tree_by_file_name.iteritems():
         openfisca_xml_root_element = openfisca_xml_tree.getroot()
         ipp_xml_tree = ipp_xml_tree_by_file_name.get(openfisca_file_name)
         if ipp_xml_tree is not None:
+            print('Processing {}...'.format(openfisca_file_name))
             ipp_xml_root_element = ipp_xml_tree.getroot()
             merge_elements(openfisca_xml_root_element, ipp_xml_root_element)  # Mutates `openfisca_xml_root_element`
         output_tree = etree.ElementTree(openfisca_xml_root_element)
