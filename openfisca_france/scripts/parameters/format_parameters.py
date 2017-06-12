@@ -5,7 +5,7 @@
 """
 Formate les fichiers de paramètre XML avec lxml.
 
-Les fichiers, une fois formatés, peuvent être mergés avec les barêmes IPP avec un diff propre. Les commentaires sont supprimés.
+Les fichiers, une fois formatés, peuvent être mergés avec les barêmes IPP avec un diff propre.
 
 """
 
