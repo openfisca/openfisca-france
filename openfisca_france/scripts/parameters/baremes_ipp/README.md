@@ -34,8 +34,11 @@ Il faut également installer `gnumeric` :
 Se placer dans le répertoire racine d'OpenFisca-France, là où se trouve le fichier `setup.py` :
 
 ```sh
-./openfisca_france/scripts/parameters/baremes_ipp/convert_ipp_xlsx_to_openfisca_xml.py
+./openfisca_france/scripts/parameters/baremes_ipp/convert_ipp_xlsx_to_openfisca_xml.py --ref-ipp 2c6936d6
 ```
+
+> L'argument `--ref-ipp` permet de spécifier une version spécifique des [fichiers `XLSX` publiés par l'IPP](https://framagit.org/french-tax-and-benefit-tables/ipp-tax-and-benefit-tables-xlsx/repository/archive.zip) à utiliser.
+> La dernière version de ces fichiers compatible avec le script d'import est `2c6936d6`. Pour utiliser les fichiers les plus récents, retirer le paramètre `--ref-ipp`.
 
 Le script génère un nouveau répertoire dans `/tmp` à chaque exécution, dont une partie du nom est aléatoire. Ce répertoire n'est pas effacé par le script. Par exemple :
 
