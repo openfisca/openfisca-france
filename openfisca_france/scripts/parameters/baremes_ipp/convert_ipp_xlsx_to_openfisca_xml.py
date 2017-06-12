@@ -29,7 +29,8 @@ import yaml_raw_to_yaml_clean
 
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
-default_zip_url = u'https://framagit.org/french-tax-and-benefit-tables/ipp-tax-and-benefit-tables-xlsx/repository/archive.zip?ref=master'  # noqa
+ref = '2c6936d6'
+default_zip_url = u'https://framagit.org/french-tax-and-benefit-tables/ipp-tax-and-benefit-tables-xlsx/repository/archive.zip?ref={}'.format(ref)  # noqa
 log = logging.getLogger(app_name)
 
 
@@ -68,7 +69,7 @@ def main():
     with zipfile.ZipFile(zip_file_path, "r") as zip_file:
         zip_file.extractall(tmp_dir)
     # Find the name of the only directory in `xlsx_dir_path`, ending by the git commit ID in SHA-1 format.
-    xlsx_dir_path = glob.glob(os.path.join(tmp_dir, 'ipp-tax-and-benefit-tables-xlsx-master*'))[0]
+    xlsx_dir_path = glob.glob(os.path.join(tmp_dir, 'ipp-tax-and-benefit-tables-xlsx-*'))[0]
     log.info(u'ZIP file extracted to {!r}.'.format(xlsx_dir_path))
 
     log.info(u'Converting XLSX files to XLS...')
