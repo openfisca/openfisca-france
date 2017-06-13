@@ -31,6 +31,7 @@ setup(
             ],
         'baremes_ipp': [
             'xlrd >= 1.0.0',
+            'lxml >= 3.8.0, < 4.0',
             ],
         'inversion_revenus': [
             'scipy >= 0.17',
