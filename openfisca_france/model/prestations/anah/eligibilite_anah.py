@@ -14,7 +14,7 @@ class eligibilite_anah(Variable):
     label = u"Barème d'éligibilité aux aides ANAH"
     definition_period = YEAR
 
-    def function(menage, period):
+    def formula(menage, period):
         # depcom est le code INSEE de la localité, les deux premiers chiffres sont le département
         # le reste de la division entière par 1000 donne ces deux chiffres sans manipulation de chaînes
         departement = menage('depcom', period.first_month).astype(int) / 1000
