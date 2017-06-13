@@ -1,5 +1,11 @@
 # Changelog
 
+### 18.5.1 - [#780](https://github.com/openfisca/openfisca-france/pull/780)
+
+* Amélioration technique
+* Détails :
+  - Migre les formules liées aux prestations sociales vers la syntaxe introduite par OpenFisca-Core 4
+
 ## 18.5.0 - [#704](https://github.com/openfisca/openfisca-france/pull/685)
 
 * Évolution du système socio-fiscal.
