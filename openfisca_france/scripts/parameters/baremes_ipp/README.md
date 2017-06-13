@@ -20,11 +20,10 @@ Le script [`convert_ipp_xlsx_to_openfisca_xml.py`](./convert_ipp_xlsx_to_openfis
 
 >**Attention, ce script ne semble fonctionner que sous Linux, et pas sous macOS. Voir la [discussion](https://github.com/openfisca/openfisca-france/pull/746#issuecomment-305123915) sur le sujet.**
 
-Ce script nécessite le paquet [`xlrd`](https://pypi.python.org/pypi/xlrd). Pour l'installer :
+Ce script nécessite des dépendances supplémentaires. Pour les installer :
 
 ```sh
-pip install xlrd
-# Ou bien utilisez l'extra-require comme ceci : pip install --editable ".[baremes_ipp]"
+pip install .[baremes_ipp]
 ```
 
 Il faut également installer `gnumeric` :
