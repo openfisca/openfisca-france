@@ -1,5 +1,13 @@
 # Changelog
 
+## 18.5.0 - [#704](https://github.com/openfisca/openfisca-france/pull/685)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2017
+* Zones impactées : `openfisca_france/model/prestations/anah`.
+* Détails :
+  - Estimation de [l'éligibilité aux aides de l'ANAH](http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/)
+
 ### 18.4.2 - [#770](https://github.com/openfisca/openfisca-france/pull/770)
 
 * Amélioration technique
