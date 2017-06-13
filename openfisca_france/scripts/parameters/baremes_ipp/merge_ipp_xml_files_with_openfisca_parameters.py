@@ -58,8 +58,6 @@ def merge_elements(openfisca_element, ipp_element, path = []):
 
     # Merge children
 
-
-
     if openfisca_element.tag == 'NODE':
         ipp_children_by_code = {
             child.attrib['code']: child
@@ -78,23 +76,24 @@ def merge_elements(openfisca_element, ipp_element, path = []):
         replace_children(openfisca_element, ipp_element.getchildren())
 
     elif openfisca_element.tag == 'BAREME':
-        assert openfisca_element.tag == 'BAREME', (openfisca_element, ipp_element)
+        assert ipp_element.tag == 'BAREME', (openfisca_element, ipp_element)
         for index, openfisca_tranche in enumerate(openfisca_element):
             ipp_tranche = ipp_element[index]
             merge_attributes(openfisca_tranche, ipp_tranche)
-            for ipp_child in ipp_tranche:
-                ipp_tranche_children_by_tag = {
-                    child.tag: child
-                    for child in ipp_tranche
-                }
-                for openfisca_tranche_child in openfisca_tranche:
-                    tag = openfisca_tranche_child.tag
-                    if tag in ipp_tranche_children_by_tag.keys():
-                        ipp_tranche_child = ipp_tranche_children_by_tag[tag]
-                        del ipp_tranche_children_by_tag[tag]
-                        replace_children(openfisca_tranche_child, ipp_tranche_child)
-                for tag, ipp_tranche_child in ipp_tranche_children_by_tag.iteritems():
-                    openfisca_tranche.append(ipp_tranche_child)
+
+            ipp_tranche_children_by_tag = {
+                child.tag: child
+                for child in ipp_tranche
+            }
+
+            for openfisca_tranche_child in openfisca_tranche:
+                tag = openfisca_tranche_child.tag
+                if tag in ipp_tranche_children_by_tag.keys():
+                    ipp_tranche_child = ipp_tranche_children_by_tag[tag]
+                    del ipp_tranche_children_by_tag[tag]
+                    replace_children(openfisca_tranche_child, ipp_tranche_child)
+            for tag, ipp_tranche_child in ipp_tranche_children_by_tag.iteritems():
+                openfisca_tranche.append(ipp_tranche_child)
     else:
         raise NotImplementedError(openfisca_element)
 
