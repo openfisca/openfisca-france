@@ -13,7 +13,7 @@ class asf_elig_enfant(Variable):
     label = u"Enfant pouvant ouvrir droit à l'ASF"
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
 
@@ -32,7 +32,7 @@ class asf_elig(Variable):
     label = u"Éligibilité à l'ASF"
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         pensions_alimentaires_percues = famille.members('pensions_alimentaires_percues', period)
         pas_de_pensions = not_(famille.sum(pensions_alimentaires_percues))
 
@@ -50,7 +50,7 @@ class asf(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         pfam = legislation(period).prestations.prestations_familiales
         asf_elig = famille('asf_elig', period)
         asf_par_enfant = famille.members('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux_1_parent

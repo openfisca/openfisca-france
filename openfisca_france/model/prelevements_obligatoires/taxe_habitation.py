@@ -12,7 +12,7 @@ class exonere_taxe_habitation(Variable):
     url = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         """Exonation de la taxe d'habitation
 
         'men'
@@ -64,7 +64,7 @@ class taxe_habitation(Variable):
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         last_year = period.last_year
 
         exonere_taxe_habitation = simulation.calculate('exonere_taxe_habitation', period)

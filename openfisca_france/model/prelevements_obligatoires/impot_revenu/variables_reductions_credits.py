@@ -42,7 +42,7 @@ class f7xu(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -3"
-    start_date = date(2006, 1, 1)
+#    start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -51,7 +51,7 @@ class f7xw(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -2"
-    start_date = date(2007, 1, 1)
+#    start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -60,7 +60,7 @@ class f7xy(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -1"
-    start_date = date(2008, 1, 1)
+#    start_date = date(2008, 1, 1)
     definition_period = YEAR
 
 
@@ -69,7 +69,7 @@ class f7va(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dons à des organismes d'aides aux personnes établis dans un Etat européen"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -78,7 +78,7 @@ class f7vc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dons à des autres organismes établis dans un Etat européen"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
   # f7va, f7vc 2011 ou 2013 ?
@@ -92,7 +92,7 @@ class f7ac(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Cotisations syndicales des salariées et pensionnés"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
   # f7ac, f7ae, f7ag
@@ -103,7 +103,7 @@ class f7db(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Sommes versées pour l'emploi d'un salarié à domicile par les personnes ayant excercé une activité professionnelle ou ayant été demandeur d'emploi l'année de perception des revenus déclarés"
-    start_date = date(2007, 1, 1)
+#    start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -120,7 +120,7 @@ class f7dq(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Emploi direct pour la première fois d'un salarié à domicile durant l'année de perception des revenus déclarés"
-    start_date = date(2009, 1, 1)
+#    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -146,8 +146,8 @@ class f7uh_2007(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Intérêts payés la première année de remboursement du prêt pour l'habitation principale"
-    start_date = date(2007, 1, 1)
-    stop_date = date(2007, 12, 31)
+#    start_date = date(2007, 1, 1)
+    end = '2007-12-31'
     definition_period = YEAR
 
 
@@ -156,7 +156,7 @@ class f7vy(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): Première annuité"
-    start_date = date(2008, 1, 1)
+#    start_date = date(2008, 1, 1)
     definition_period = YEAR
 
 
@@ -165,7 +165,7 @@ class f7vz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): annuités suivantes"
-    start_date = date(2008, 1, 1)
+#    start_date = date(2008, 1, 1)
     definition_period = YEAR
 
 
@@ -182,7 +182,7 @@ class f7vw(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: première annuité"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -191,7 +191,7 @@ class f7vv(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: annuités suivantes"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
   # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
@@ -201,7 +201,7 @@ class f7vu(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: première annuité"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
   # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
@@ -211,7 +211,7 @@ class f7vt(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: annuités suivantes"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
   # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
@@ -337,7 +337,7 @@ class f7td(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Intérêts des prêts étudiants versés avant l'année de perception des revenus déclarés"
-    start_date = date(2008, 1, 1)
+#    start_date = date(2008, 1, 1)
     definition_period = YEAR
 
 
@@ -346,7 +346,7 @@ class f7vo(Variable):
     column = PeriodSizeIndependentIntCol
     entity = FoyerFiscal
     label = u"Nombre d'années de remboursement du prêt étudiant avant l'année de perception des revenus déclarés"
-    start_date = date(2006, 1, 1)
+#    start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -406,7 +406,7 @@ class f7we(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés"
-    start_date = date(2009, 1, 1)
+#    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -415,7 +415,7 @@ class f7wg(Variable):
     column = BoolCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés -1"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -424,8 +424,8 @@ class f7wa(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique des murs avant le 03/04/2012"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -434,8 +434,8 @@ class f7wb(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique des murs à compter du 04/04/2012"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -444,7 +444,7 @@ class f7wc(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique sur plus de la moitié de la surface des murs extérieurs"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -453,8 +453,8 @@ class f7ve(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de la toiture avant le 04/04/2012"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -463,8 +463,8 @@ class f7vf(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de la toiture à compter du 04/04/2012"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -473,7 +473,7 @@ class f7vg(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de toute la toiture"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -482,7 +482,7 @@ class f7sg(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Matériaux d'isolation thermique des murs (acquisitionn et pose)"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -491,7 +491,7 @@ class f7sj(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Matériaux d'isolation thermique des parois vitrées"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -500,7 +500,7 @@ class f7sk(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Volets isolants"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -509,7 +509,7 @@ class f7sl(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Portes d'entrées donnant sur l'extérieur"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -518,7 +518,7 @@ class f7sm(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de production d'électricité utilisant l'énergie radiative du soleil"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -527,7 +527,7 @@ class f7sn(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Appareils de chauffage au bois ou autres biomasses remplaçant un appareil équivalent"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -536,7 +536,7 @@ class f7so(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Appareils de chauffage au bois ou autres biomasses ne remplaçant pas un appareil équivalent"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -545,7 +545,7 @@ class f7sp(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur autres que air/air et autres que géothermiques dont la finalité essentielle est la production de chaleur"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -554,7 +554,7 @@ class f7sq(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur géothermiques dont la finalité essentielle est la production de chaleur"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -563,7 +563,7 @@ class f7sr(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur (autres que air/air) dédiées à la production d'eau chaude sanitaire (chauffe-eaux thermodynamiques)"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -572,7 +572,7 @@ class f7ss(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de fourniture d'eau chaude sanitaire fonctionnant à l'énergie solaire et dotés de capteurs solaires"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -581,7 +581,7 @@ class f7st(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Autres équipements de production d'énergie utilisant une source d'énergie renouvelable (éolien, hydraulique)"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -590,7 +590,7 @@ class f7su(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de récupération et de traitement des eaux pluviales"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -599,7 +599,7 @@ class f7sv(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Diagnostic de performance énergétique"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -608,7 +608,7 @@ class f7sw(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de raccordement à un réseau de chaleur"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -623,8 +623,8 @@ class f7wq(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées du 01/01/2012 au 03/04/2012"
-    start_date = date(2010, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2010, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -633,8 +633,8 @@ class f7ws(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolations des parois vitrées à compter du 04/04/2012"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -643,8 +643,8 @@ class f7wt(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées réalisées sur au moins la moitié des fenêtres du logement "
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -653,8 +653,8 @@ class f7wu(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de volets avant 2012"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -663,8 +663,8 @@ class f7wv(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de volets en 2012"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -673,8 +673,8 @@ class f7ww(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de portes avant 2012"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -683,8 +683,8 @@ class f7wx(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de portes en 2012"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -693,7 +693,7 @@ class f7wh(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (logement achevé depuis plus de 2 ans): bouquet de travaux réalisé pendant l'année de perception des revenus"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -702,7 +702,7 @@ class f7wk(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Votre habitation principale est une maison individuelle"
-    start_date = date(2009, 1, 1)
+#    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -711,7 +711,7 @@ class f7wf(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées avant le 01/01/n-1"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -721,7 +721,7 @@ class f7wi(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: Ascenseurs électriques à traction"
-    stop_date = date(2012, 12, 31)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -738,7 +738,7 @@ class f7wl(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: travaux de prévention des risques technologiques"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -747,7 +747,7 @@ class f7wr(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses en faveur de l'aide aux personnes réalisées dans des habitations données en location : travaux de prévention des risques technologiques"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -757,7 +757,7 @@ class f7ur(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements réalisés en n-1, total réduction d’impôt"
-    stop_date = date(2008, 12, 31)
+    end = '2008-12-31'
     definition_period = YEAR
 
 
@@ -766,7 +766,7 @@ class f7oz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-6"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
   # TODO: vérifier les années antérieures
@@ -776,7 +776,7 @@ class f7pz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer réalisés en 2007 dans le cadre d'une entreprise: report de réduction d'impôt non imputée les années antérieures"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -785,7 +785,7 @@ class f7qz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer réalisés en 2008 dans le casdre d'une entreprise: report de réduction d'impôt non imputée les années antérieures"
-    stop_date = date(2012, 12, 31)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -794,7 +794,7 @@ class f7rz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3"
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -803,7 +803,7 @@ class f7qv(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010, nvestissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -812,7 +812,7 @@ class f7qo(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010 à hauteur de 50%"
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
 
@@ -821,7 +821,7 @@ class f7qp(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements immobliliers engagés avant le 1.1.2011 et investissements ayant reçu un agrément avant le 5.12.2010 à hauteur de 60%"
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
 
@@ -830,7 +830,7 @@ class f7pa(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -839,7 +839,7 @@ class f7pb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -848,7 +848,7 @@ class f7pc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -857,7 +857,7 @@ class f7pd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -866,7 +866,7 @@ class f7qe(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%"
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
 
@@ -875,7 +875,7 @@ class f7pe(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -884,7 +884,7 @@ class f7pf(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -893,7 +893,7 @@ class f7pg(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -902,7 +902,7 @@ class f7ph(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -911,7 +911,7 @@ class f7pi(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -920,7 +920,7 @@ class f7pj(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -929,7 +929,7 @@ class f7pk(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -938,7 +938,7 @@ class f7pl(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -947,7 +947,7 @@ class f7pm(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -956,7 +956,7 @@ class f7pn(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -965,7 +965,7 @@ class f7po(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -974,7 +974,7 @@ class f7pp(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -983,7 +983,7 @@ class f7pq(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -992,7 +992,7 @@ class f7pr(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -1001,7 +1001,7 @@ class f7ps(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -1010,7 +1010,7 @@ class f7pt(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -1019,7 +1019,7 @@ class f7pu(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -1028,7 +1028,7 @@ class f7pv(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -1037,7 +1037,7 @@ class f7pw(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -1046,7 +1046,7 @@ class f7px(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt  à hauteur de 52,63 %"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -1055,7 +1055,7 @@ class f7py(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1064,7 +1064,7 @@ class f7rg(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1073,7 +1073,7 @@ class f7rh(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1082,7 +1082,7 @@ class f7ri(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1091,7 +1091,7 @@ class f7rj(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1100,7 +1100,7 @@ class f7rk(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1109,7 +1109,7 @@ class f7rl(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1118,7 +1118,7 @@ class f7rm(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1127,7 +1127,7 @@ class f7rn(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1136,7 +1136,7 @@ class f7ro(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1145,7 +1145,7 @@ class f7rp(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1154,7 +1154,7 @@ class f7rq(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1163,7 +1163,7 @@ class f7rr(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1172,7 +1172,7 @@ class f7rs(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1181,7 +1181,7 @@ class f7rt(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1190,7 +1190,7 @@ class f7ru(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1199,7 +1199,7 @@ class f7rv(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1208,7 +1208,7 @@ class f7rw(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1217,7 +1217,7 @@ class f7rx(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1226,7 +1226,7 @@ class f7ry(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1235,7 +1235,7 @@ class f7nu(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1244,7 +1244,7 @@ class f7nv(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1253,7 +1253,7 @@ class f7nw(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1262,7 +1262,7 @@ class f7nx(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1271,7 +1271,7 @@ class f7ny(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
  #TODO: 7N* : end ?
@@ -1281,8 +1281,8 @@ class f7mn(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%"
-    start_date = date(2011, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2011, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -1291,7 +1291,7 @@ class f7lh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -1300,8 +1300,8 @@ class f7mb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%"
-    start_date = date(2011, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2011, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -1310,8 +1310,8 @@ class f7kt(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt, Investissements dans votre entreprise"
-    start_date = date(2011, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2011, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -1320,7 +1320,7 @@ class f7li(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -1329,8 +1329,8 @@ class f7mc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%"
-    start_date = date(2011, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2011, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -1339,8 +1339,8 @@ class f7ku(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements dans votre entreprise"
-    start_date = date(2011, 1, 1)
-    stop_date = date(2011, 12, 31)
+#    start_date = date(2011, 1, 1)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -1351,7 +1351,7 @@ class f7sz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location"
-    start_date = date(2006, 1, 1)
+#    start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -1360,7 +1360,7 @@ class fhsa(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 52,63%"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1369,7 +1369,7 @@ class fhsb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 62,5%"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1378,7 +1378,7 @@ class fhsf(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 52,63%"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1387,7 +1387,7 @@ class fhsg(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 62,5%"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1396,7 +1396,7 @@ class fhsc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise en 2010"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1405,7 +1405,7 @@ class fhsh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise en 2011"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1414,7 +1414,7 @@ class fhsd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2010"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1423,7 +1423,7 @@ class fhsi(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2011"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1432,7 +1432,7 @@ class fhse(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1441,7 +1441,7 @@ class fhsj(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1450,7 +1450,7 @@ class fhsk(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2010 à hauteur de 52,63%"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1459,7 +1459,7 @@ class fhsl(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2010 à hauteur de 62,5%"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1468,7 +1468,7 @@ class fhsp(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2011 à hauteur de 52,63%"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1477,7 +1477,7 @@ class fhsq(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2011 à hauteur de 62,5%"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1486,7 +1486,7 @@ class fhsm(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise en 2010"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1495,7 +1495,7 @@ class fhsr(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise en 2011"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1504,7 +1504,7 @@ class fhsn(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe en 2010"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1513,7 +1513,7 @@ class fhss(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe en 2011"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1522,7 +1522,7 @@ class fhso(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1531,7 +1531,7 @@ class fhst(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1540,7 +1540,7 @@ class fhsu(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 52,63%"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1549,7 +1549,7 @@ class fhsv(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1558,7 +1558,7 @@ class fhsw(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1567,7 +1567,7 @@ class fhsx(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1576,7 +1576,7 @@ class fhsy(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1585,7 +1585,7 @@ class fhsz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 52,63%"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1594,7 +1594,7 @@ class fhta(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1603,7 +1603,7 @@ class fhtb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1612,7 +1612,7 @@ class fhtc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1621,7 +1621,7 @@ class fhtd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1631,7 +1631,7 @@ class f7fy(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées avant l'année n-1 et ayant pris fin en année n-1"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -1640,8 +1640,8 @@ class f7gy(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées avant l'année n-1 et ayant pris fin en année n-1"
-    start_date = date(2006, 1, 1)
-    stop_date = date(2011, 12, 31)
+#    start_date = date(2006, 1, 1)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -1650,8 +1650,8 @@ class f7hy(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées en n-1 et n'ayant pas pris fin en n-1"
-    start_date = date(2009, 1, 1)
-    stop_date = date(2011, 12, 31)
+#    start_date = date(2009, 1, 1)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -1660,8 +1660,8 @@ class f7ky(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées en n-1 et ayant pris fin en n-1"
-    start_date = date(2009, 1, 1)
-    stop_date = date(2011, 12, 31)
+#    start_date = date(2009, 1, 1)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -1670,7 +1670,7 @@ class f7iy(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Report du solde de réduction d'impôt non encore imputé sur les investissements réalisés"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1679,7 +1679,7 @@ class f7ly(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions ayant pas pris fin l'année de perception des revenus déclarés"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
   # 2012 et 2013 ok
@@ -1689,7 +1689,7 @@ class f7my(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions ayant pas pris fin l'année de perception des revenus déclarés"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
   # 2012 et 2013 ok
@@ -1700,7 +1700,7 @@ class f7ra(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Travaux de restauration immobilière dans une zone de protection du patrimoine architectural, urbain et paysager"
-    start_date = date(2009, 1, 1)
+#    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
   # 2012 et 2013 ok
@@ -1710,7 +1710,7 @@ class f7rb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
-    start_date = date(2009, 1, 1)
+#    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -1719,7 +1719,7 @@ class f7rc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -1728,7 +1728,7 @@ class f7rd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -1737,7 +1737,7 @@ class f7re(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1746,7 +1746,7 @@ class f7rf(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1755,7 +1755,7 @@ class f7sx(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1764,7 +1764,7 @@ class f7sy(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
  # 2012 et 2013 ok
@@ -1774,7 +1774,7 @@ class f7gw(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1783,7 +1783,7 @@ class f7gx(Variable):
     column = IntCol
     entity = FoyerFiscal
     label = u"Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1793,8 +1793,8 @@ class f7xa(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: travaux engagés avant 2011 dans un village résidentiel de tourisme"
-    start_date = date(2011, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2011, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -1803,8 +1803,8 @@ class f7xb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: travaux engagés avant 2011 dans une résidence de tourisme classée ou meublée"
-    start_date = date(2011, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2011, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -1813,7 +1813,7 @@ class f7xc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: prix d'acquisition ou de revient d'un logement neuf acquis ou achevé en n-1"
-    stop_date = date(2012, 12, 31)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -1822,8 +1822,8 @@ class f7xd(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: logement neuf, demande d'étalement du solde de la réduction d'impôt sur 6 ans"
-    start_date = date(2009, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2009, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -1832,8 +1832,8 @@ class f7xe(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, demande d'étalement du solde de la réduction d'impôt sur 6 ans"
-    start_date = date(2009, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2009, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -1850,7 +1850,7 @@ class f7xh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: travaux de reconstruction, agrandissement, réparation dans une résidence de tourisme classée ou un meublé de tourisme"
-    stop_date = date(2012, 12, 31)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -1859,7 +1859,7 @@ class f7xi(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -1868,7 +1868,7 @@ class f7xj(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, report des dépenses d'investissement des années antérieures"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -1877,7 +1877,7 @@ class f7xk(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -1886,7 +1886,7 @@ class f7xl(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, prix de revient d'un logement réhabilité en n-1 et achevé depuis moins de 15 ans"
-    stop_date = date(2012, 12, 31)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -1904,7 +1904,7 @@ class f7xn(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1913,7 +1913,7 @@ class f7xo(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures"
-    start_date = date(2008, 1, 1)
+#    start_date = date(2008, 1, 1)
     definition_period = YEAR
 
 
@@ -1922,7 +1922,7 @@ class f7xp(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -1931,7 +1931,7 @@ class f7xq(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -1940,7 +1940,7 @@ class f7xr(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -1949,7 +1949,7 @@ class f7xv(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1958,8 +1958,8 @@ class f7xx(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: travaux engagés après 2012 dans un village résidentiel de tourisme"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -1968,7 +1968,7 @@ class f7xz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: travaux engagés après 2012 dans une résidence de tourisme classée ou un meublé tourisme"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -1977,7 +1977,7 @@ class f7uy(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1986,7 +1986,7 @@ class f7uz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2028,7 +2028,7 @@ class f7cc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2037,7 +2037,7 @@ class f7cq(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1pour les start-up"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2056,7 +2056,7 @@ class f7gs(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Reports concernant les investissements achevés ou acquis au cours des années antérieures: Investissements réalisés en n-3 en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2065,14 +2065,14 @@ class f7ua(Variable):
     cerfa_field = u"7UA"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    stop_date = date(2007, 12, 31)
+    end = '2007-12-31'
     definition_period = YEAR
 
 class f7ub(Variable):
     cerfa_field = u"7UB"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    stop_date = date(2007, 12, 31)
+    end = '2007-12-31'
     definition_period = YEAR
 
 
@@ -2092,7 +2092,7 @@ class f7ui(Variable):
     cerfa_field = u"7UI"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    stop_date = date(2008, 12, 31)
+    end = '2008-12-31'
     definition_period = YEAR
 
 
@@ -2100,7 +2100,7 @@ class f7uj(Variable):
     cerfa_field = u"7UJ"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    stop_date = date(2007, 12, 31)
+    end = '2007-12-31'
     definition_period = YEAR
 
 
@@ -2108,7 +2108,7 @@ class f7qb(Variable):
     cerfa_field = u"7QB"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -2116,7 +2116,7 @@ class f7qc(Variable):
     cerfa_field = u"7QC"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -2124,7 +2124,7 @@ class f7qd(Variable):
     cerfa_field = u"7QD"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -2132,7 +2132,7 @@ class f7qk(Variable):
     cerfa_field = u"7QK"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
 
@@ -2140,7 +2140,7 @@ class f7qn(Variable):
     cerfa_field = u"7QN"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -2148,7 +2148,7 @@ class f7kg(Variable):
     cerfa_field = u"7KG"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -2156,7 +2156,7 @@ class f7ql(Variable):
     cerfa_field = u"7QL"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -2164,7 +2164,7 @@ class f7qt(Variable):
     cerfa_field = u"7QT"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -2172,7 +2172,7 @@ class f7qm(Variable):
     cerfa_field = u"7QM"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -2264,8 +2264,8 @@ class f7mm(Variable):
     cerfa_field = u"7MM"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    start_date = date(2010, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2010, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -2273,7 +2273,7 @@ class f7lg(Variable):
     cerfa_field = u"7LG"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -2281,7 +2281,7 @@ class f7ma(Variable):
     cerfa_field = u"7MA"
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -2304,7 +2304,7 @@ class f7oa(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% avant 2009"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2313,7 +2313,7 @@ class f7ob(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2009"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2322,7 +2322,7 @@ class f7oc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2331,7 +2331,7 @@ class f7oh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% avant 2009"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2340,7 +2340,7 @@ class f7oi(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2009"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2349,7 +2349,7 @@ class f7oj(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2358,7 +2358,7 @@ class f7ok(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Autres investissements"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2367,7 +2367,7 @@ class f7ol(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2376,7 +2376,7 @@ class f7om(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2385,7 +2385,7 @@ class f7on(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2394,7 +2394,7 @@ class f7oo(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2403,7 +2403,7 @@ class f7op(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2412,7 +2412,7 @@ class f7oq(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2421,7 +2421,7 @@ class f7or(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2430,7 +2430,7 @@ class f7os(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2439,7 +2439,7 @@ class f7ot(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2448,7 +2448,7 @@ class f7ou(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2457,7 +2457,7 @@ class f7ov(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2466,7 +2466,7 @@ class f7ow(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, "
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
  #TODO: 7O* : end ?
@@ -2476,7 +2476,7 @@ class fhod(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés avant le 1.1.2011"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2485,7 +2485,7 @@ class fhoe(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2494,7 +2494,7 @@ class fhof(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2503,7 +2503,7 @@ class fhog(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2512,7 +2512,7 @@ class fhox(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2011"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2521,7 +2521,7 @@ class fhoy(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2012"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2530,7 +2530,7 @@ class fhoz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Autres investissements"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 # Investissements outre-mer dans le logement social
@@ -2540,7 +2540,7 @@ class fhra(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2013, Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2549,7 +2549,7 @@ class fhrb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2013, Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2558,7 +2558,7 @@ class fhrc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2013, Investissements ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2012"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2567,7 +2567,7 @@ class fhrd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2013, Autres investissements"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2594,7 +2594,7 @@ class f7fm(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Souscription de parts de fonds d'investissement de proximité investis en Corse"
-    start_date = date(2007, 1, 1)
+#    start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -2603,7 +2603,7 @@ class f7fl(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Souscription de parts de fonds d'investissement de proximité investis outre-mer par des personnes domiciliées outre-mer"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2613,7 +2613,7 @@ class f7gn(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Souscriptions au capital de SOFICA 36 %"
-    start_date = date(2006, 1, 1)
+#    start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -2622,7 +2622,7 @@ class f7fn(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Souscriptions au capital de SOFICA 30 %"
-    start_date = date(2006, 1, 1)
+#    start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -2658,7 +2658,7 @@ class f7nz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Travaux de conservation et de restauration d’objets classés monuments historiques"
-    start_date = date(2008, 1, 1)
+#    start_date = date(2008, 1, 1)
     definition_period = YEAR
 
 
@@ -2668,7 +2668,7 @@ class f7ka(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de protection du patrimoine naturel"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -2677,7 +2677,7 @@ class f7kb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2686,7 +2686,7 @@ class f7kc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2695,7 +2695,7 @@ class f7kd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2704,7 +2704,7 @@ class f7uh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dons et cotisations versés aux partis politiques"
-    start_date = date(2007, 1, 1)
+#    start_date = date(2007, 1, 1)
     definition_period = YEAR
 
  #TODO: séparer en plusieurs variables (même case pour plusieurs variables selon les années)
@@ -2723,7 +2723,7 @@ class f7ul(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements forestiers"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2732,7 +2732,7 @@ class f7uu(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements forestiers"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -2741,7 +2741,7 @@ class f7uv(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements forestiers"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2750,7 +2750,7 @@ class f7uw(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements forestiers"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2759,7 +2759,7 @@ class f7th(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements forestiers"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2768,7 +2768,7 @@ class f7ux(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements forestiers"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2777,7 +2777,7 @@ class f7tg(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements forestiers"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2786,8 +2786,8 @@ class f7tf(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements forestiers"
-    start_date = date(2011, 1, 1)
-    stop_date = date(2013, 12, 31)
+#    start_date = date(2011, 1, 1)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -2796,7 +2796,7 @@ class f7ut(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements forestiers"
-    start_date = date(2009, 1, 1)
+#    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -2815,7 +2815,7 @@ class f7hj(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole"
-    start_date = date(2009, 1, 1)
+#    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -2824,7 +2824,7 @@ class f7hk(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM"
-    start_date = date(2009, 1, 1)
+#    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -2833,7 +2833,7 @@ class f7hn(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole avec promesse d'achat avant le 1er janvier 2010"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -2842,7 +2842,7 @@ class f7ho(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM avec promesse d'achat avant le 1er janvier 2010"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -2851,7 +2851,7 @@ class f7hl(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 (métropole et DOM ne respectant pas les plafonds)"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -2860,7 +2860,7 @@ class f7hm(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2009 dans les DOM et respectant les plafonds"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -2869,7 +2869,7 @@ class f7hr(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009, en métropole en 2009; dans les DOM du 1.1.2009 au 26.5.2009 ; dans les DOM du 27.5.2009 au 30.12.2009 lorsqu'ils ne respectent pas les plafonds spécifiques"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -2878,7 +2878,7 @@ class f7hs(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 dans les DOM COM du 27.5.2009 au 31.12.2009 respectant les plafonds spécifiques"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -2887,7 +2887,7 @@ class f7la(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2009"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -2896,7 +2896,7 @@ class f7lb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2010"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2905,7 +2905,7 @@ class f7lc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2010"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2914,7 +2914,7 @@ class f7ld(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2011"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2923,7 +2923,7 @@ class f7le(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2011"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2932,7 +2932,7 @@ class f7lf(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2011"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2941,7 +2941,7 @@ class f7ls(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2950,7 +2950,7 @@ class f7lm(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2959,7 +2959,7 @@ class f7lz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Report du solde de réduction d'impôt de l'année 2012"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2968,7 +2968,7 @@ class f7mg(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2012 : report du solde de réduction d'impôt de l'année 2012"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2977,7 +2977,7 @@ class f7na(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, métropole, BBC"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2986,7 +2986,7 @@ class f7nb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, "
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -2995,7 +2995,7 @@ class f7nc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, métropole, BBC"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3004,7 +3004,7 @@ class f7nd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, métropole, BBC"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3013,7 +3013,7 @@ class f7ne(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, métropole, BBC"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3022,7 +3022,7 @@ class f7nf(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, "
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3031,7 +3031,7 @@ class f7ng(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, "
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3040,7 +3040,7 @@ class f7nh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, métropole, non-BBC"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3049,7 +3049,7 @@ class f7ni(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, métropole, non-BBC"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3058,7 +3058,7 @@ class f7nj(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, métropole, non-BBC"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3067,7 +3067,7 @@ class f7nk(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3076,7 +3076,7 @@ class f7nl(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3085,7 +3085,7 @@ class f7nm(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3094,7 +3094,7 @@ class f7nn(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3103,7 +3103,7 @@ class f7no(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3112,7 +3112,7 @@ class f7np(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3121,7 +3121,7 @@ class f7nq(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3130,7 +3130,7 @@ class f7nr(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, Investissement réalisé du 1.1.2011 au 31.1.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3139,7 +3139,7 @@ class f7ns(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3148,7 +3148,7 @@ class f7nt(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.4.2011 au 31.12.2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3157,7 +3157,7 @@ class f7hv(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3166,7 +3166,7 @@ class f7hw(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 dans les DOM COM"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3175,7 +3175,7 @@ class f7hx(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole avec promesse d'achat avant le 1.1.2010"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3184,7 +3184,7 @@ class f7hz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 dans les DOM COM avec promesse d'achat avant le 1.1.2010"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3193,7 +3193,7 @@ class f7ht(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2009, Investissements réalisés en 2009 et achevés en 2010, en métropole en 2009; dans les DOM du 1.1.2009 au 26.5.2009 ; dans les DOM du 27.5.2009 au 30.12.2009 lorsqu'ils ne respectent pas les plafonds spécifiques"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3202,7 +3202,7 @@ class f7hu(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2009, Investissements réalisés en 2009 et achevés en 2010, dans les DOM COM du 27.5.2009 au 31.12.2009 respectant les plafonds spécifiques"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3211,7 +3211,7 @@ class f7ha(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés et réalisés en 2011"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3220,7 +3220,7 @@ class f7hb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés et réalisés en 2011, avec promesse d'achat en 2010"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3229,7 +3229,7 @@ class f7hg(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2011 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3238,7 +3238,7 @@ class f7hh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2011 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna avec promesse d'achat en 2010"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3247,7 +3247,7 @@ class f7hd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, réalisés en 2010, en métropole et dans les DOM-COM"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3256,7 +3256,7 @@ class f7he(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, en métropole et dans les DOM-COM avec promesse d'achat avant le 1.1.2010"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3265,7 +3265,7 @@ class f7hf(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Investissements achevés en 2011, Investissements réalisés en 2009 en métropole et dans les DOM-COM"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3274,7 +3274,7 @@ class f7ja(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2012, métropole, BBC"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3283,7 +3283,7 @@ class f7jb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, métropole, BBC"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3292,7 +3292,7 @@ class f7jd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, métropole, BBC"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3301,7 +3301,7 @@ class f7je(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, métropole, BBC "
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3310,7 +3310,7 @@ class f7jf(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2012, métropole, non-BBC"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3319,7 +3319,7 @@ class f7jg(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, métropole, non-BBC"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3328,7 +3328,7 @@ class f7jh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, métropole, non-BBC"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3337,7 +3337,7 @@ class f7jj(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, métropole, non-BBC"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3346,7 +3346,7 @@ class f7jk(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3355,7 +3355,7 @@ class f7jl(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3364,7 +3364,7 @@ class f7jm(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3373,7 +3373,7 @@ class f7jn(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3382,7 +3382,7 @@ class f7jo(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3391,7 +3391,7 @@ class f7jp(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3400,7 +3400,7 @@ class f7jq(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.1.2012 au 31.3.2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3409,7 +3409,7 @@ class f7jr(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, Investissement réalisé du 1.4.2012 au 31.12.2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3418,7 +3418,7 @@ class f7gj(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3427,7 +3427,7 @@ class f7gk(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon, avec promesse d'achat en 2011"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3436,7 +3436,7 @@ class f7gl(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2012 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3445,7 +3445,7 @@ class f7gp(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2012 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon, avec promesse d'achat en 2010s"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3454,7 +3454,7 @@ class f7fa(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, métropole, BBC"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3463,7 +3463,7 @@ class f7fb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, métropole, non-BBC"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3472,7 +3472,7 @@ class f7fc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013, DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3481,7 +3481,7 @@ class f7fd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3491,7 +3491,7 @@ class f7ij(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 et achevés en 2012, engagement de réalisation de l'investissement en 2011"
-    start_date = date(2009, 1, 1)
+#    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -3500,7 +3500,7 @@ class f7il(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 et achevés en 2012, promesse d'achat en 2010"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -3509,7 +3509,7 @@ class f7im(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2010 et achevés en 2012 avec promesse d'achat en 2009"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -3518,7 +3518,7 @@ class f7ik(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Reports de 1/9 de l'investissement réalisé et achevé en 2009"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -3527,7 +3527,7 @@ class f7in(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, investissement réalisé du 1.1.2011 au 31.3.2011"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3536,7 +3536,7 @@ class f7iv(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, investissement réalisé du 1.4.2011 au 31.12.2011"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3545,7 +3545,7 @@ class f7iw(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 et achevés en 2012"
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3554,7 +3554,7 @@ class f7io(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : "
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3563,7 +3563,7 @@ class f7ip(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : "
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3572,7 +3572,7 @@ class f7ir(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : "
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3581,7 +3581,7 @@ class f7iq(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : "
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3590,7 +3590,7 @@ class f7iu(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : "
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3599,7 +3599,7 @@ class f7it(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : "
-    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -3608,7 +3608,7 @@ class f7is(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé: année  n-4"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -3617,7 +3617,7 @@ class f7ia(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3626,7 +3626,7 @@ class f7ib(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3635,7 +3635,7 @@ class f7ic(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 et achevés en 2011 avec promesse d'achat en 2009 ou réalisés en 2009"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3644,7 +3644,7 @@ class f7id(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Engagement de réalisation de l'investissement en 2012"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3653,7 +3653,7 @@ class f7ie(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Promesse d'achat en 2011"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3662,7 +3662,7 @@ class f7if(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.1.2012 au 31.3.2012, investissement réalisé du 1.1.2012 au 31.3.2012"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3671,7 +3671,7 @@ class f7ig(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.4.2012 au 31.12.2012"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3680,7 +3680,7 @@ class f7ix(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2009; réalisés en 2009 et achevés en 2010; réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report du solde de réduction d'impôt de l'année 2011"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3689,7 +3689,7 @@ class f7ih(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report du solde de réduction d'impôt de l'année 2011"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3698,7 +3698,7 @@ class f7iz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2011"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3707,7 +3707,7 @@ class f7jt(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2013, Engagement de réalisation de l'investissement en 2013"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3716,7 +3716,7 @@ class f7ju(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2013, Engagement de réalisation de l'investissement en 2012"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3725,7 +3725,7 @@ class f7jv(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2012"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3734,7 +3734,7 @@ class f7jw(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3743,7 +3743,7 @@ class f7jx(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2011 avec promesse d'achat en 2010 ou réalisés en 2010"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3752,7 +3752,7 @@ class f7jy(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2010 avec promesse d'achat en 2009 ou réalisés en 2009"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3761,7 +3761,7 @@ class f7jc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report du solde de réduction d'impôt de l'année 2012"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3770,7 +3770,7 @@ class f7ji(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d'impôt de l'année 2012"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3779,7 +3779,7 @@ class f7js(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d’impôt de l’année 2012"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -3795,7 +3795,7 @@ class f7gt(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2010"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
   # vérif <=2012
@@ -3805,7 +3805,7 @@ class f7gu(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2009"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
   # vérif <=2012
@@ -3815,7 +3815,7 @@ class f7gv(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés et achevés en 2012 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
   # vérif <=2012
@@ -3825,7 +3825,7 @@ class f7xg(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissement locatif dans le secteur touristique, travaux réalisés dans un village résidentiel de tourisme"
-    stop_date = date(2012, 12, 1)
+    end = '2012-12-01'
     definition_period = YEAR
 
   # vérif <=2012
@@ -3856,8 +3856,8 @@ class f7sb(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %"
-    start_date = date(2009, 1, 1)
-    stop_date = date(2011, 12, 31)
+#    start_date = date(2009, 1, 1)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -3866,8 +3866,8 @@ class f7sc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale"
-    start_date = date(2009, 1, 1)
-    stop_date = date(2009, 12, 1)
+#    start_date = date(2009, 1, 1)
+    end = '2009-12-01'
     definition_period = YEAR
 
 
@@ -3880,7 +3880,7 @@ class f7sd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à condensation"
-    start_date = date(2009, 1, 1)
+#    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -3889,7 +3889,7 @@ class f7se(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, économie d'énergie: chaudières à micro-cogénération gaz"
-    start_date = date(2009, 1, 1)
+#    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -3898,7 +3898,7 @@ class f7sh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale, isolation thermique: matériaux d'isolation des toitures (acquisition et pose)"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -3911,7 +3911,7 @@ class f7up(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt pour investissements forestiers: travaux"
-    start_date = date(2009, 1, 1)
+#    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -3920,7 +3920,7 @@ class f7uq(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt pour investissements forestiers: contrat de gestion"
-    start_date = date(2009, 1, 1)
+#    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -3930,7 +3930,7 @@ class f1ar(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Crédit d'impôt aide à la mobilité : le déclarant déménage à plus de 200 km pour son emploi"
-    stop_date = date(2080, 12, 31)
+    end = '2008-12-31'
     definition_period = YEAR
 
 
@@ -3940,7 +3940,7 @@ class f1br(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Crédit d'impôt aide à la mobilité : le conjoint déménage à plus de 200 km pour son emploi"
-    stop_date = date(2008, 12, 31)
+    end = '2008-12-31'
     definition_period = YEAR
 
 
@@ -3949,7 +3949,7 @@ class f1cr(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Crédit d'impôt aide à la mobilité : la 1ère personne à charge déménage à plus de 200 km pour son emploi"
-    stop_date = date(2008, 12, 31)
+    end = '2008-12-31'
     definition_period = YEAR
 
 
@@ -3958,7 +3958,7 @@ class f1dr(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Crédit d'impôt aide à la mobilité : la 2è personne à charge déménage à plus de 200 km pour son emploi"
-    stop_date = date(2008, 12, 31)
+    end = '2008-12-31'
     definition_period = YEAR
 
 
@@ -3967,7 +3967,7 @@ class f1er(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Crédit d'impôt aide à la mobilité : la 3è personne à charge déménage à plus de 200 km pour son emploi"
-    stop_date = date(2006, 12, 31)
+    end = '2006-12-31'
     definition_period = YEAR
 
 
@@ -3990,7 +3990,7 @@ class f7sf(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit de travaux en faveur d'aides aux personnes pour des logements en location (avant 2012 ) / Appareils de régulation du chauffage, matériaux de calorifugeage (après 2011)"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -3999,7 +3999,7 @@ class f7si(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose)"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -4008,7 +4008,7 @@ class f7te(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses d'investissement forestier"
-    start_date = date(2010, 1, 1)
+#    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -4017,8 +4017,8 @@ class f7tu(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de travaux dans l'habitation principale"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -4027,8 +4027,8 @@ class f7tt(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de travaux dans l'habitation principale"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -4037,8 +4037,8 @@ class f7tv(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de travaux dans l'habitation principale"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -4047,8 +4047,8 @@ class f7tx(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de travaux dans l'habitation principale"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -4057,8 +4057,8 @@ class f7ty(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de travaux dans l'habitation principale"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -4067,8 +4067,8 @@ class f7tw(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Dépenses de travaux dans l'habitation principale"
-    start_date = date(2012, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -4079,7 +4079,7 @@ class f7gh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs intermédiaires en métropole"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -4088,7 +4088,7 @@ class f7gi(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Investissements locatifs intermédiaires outre-mer"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -4100,7 +4100,7 @@ class f8tc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt autres entreprises (recherche non encore remboursé (années antérieures))"
-    stop_date = date(2008, 12, 31)
+    end = '2008-12-31'
     definition_period = YEAR
 
 
@@ -4165,7 +4165,7 @@ class f8ts(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt en faveur des entreprises: investissement en Corse, crédit d'impôt"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -4182,7 +4182,7 @@ class f8uw(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt compétitivité emploi (CICE), autres entreprises"
-    start_date = date(2013, 1, 1)
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -4215,7 +4215,7 @@ class f8wc__2008(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt en faveur des entreprises: Nouvelles technologies"
-    stop_date = date(2008, 12, 31)
+    end = '2008-12-31'
     definition_period = YEAR
 
 
@@ -4224,7 +4224,7 @@ class f8wc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt en faveur des entreprises: Prêts sans intérêt"
-    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -4233,7 +4233,7 @@ class f8wd(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt en faveur des entreprises: Formation des chefs d'entreprise"
-    start_date = date(2006, 1, 1)
+#    start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -4242,7 +4242,7 @@ class f8we(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt en faveur des entreprises: Intéressement"
-    start_date = date(2008, 1, 1)
+#    start_date = date(2008, 1, 1)
     definition_period = YEAR
 
 
@@ -4251,7 +4251,7 @@ class f8wr(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt en faveur des entreprises: Métiers d'art"
-    start_date = date(2006, 1, 1)
+#    start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -4260,8 +4260,8 @@ class f8ws(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt en faveur des entreprises: Emploi de salariés réservistes"
-    start_date = date(2006, 1, 1)
-    stop_date = date(2009, 12, 31)
+#    start_date = date(2006, 1, 1)
+    end = '2009-12-31'
     definition_period = YEAR
 
   # verif<=2012
@@ -4271,7 +4271,7 @@ class f8wt(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt en faveur des entreprises: Remplacement pour congé des agriculteurs"
-    start_date = date(2006, 1, 1)
+#    start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -4280,7 +4280,7 @@ class f8wu(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt en faveur des entreprises: Maître restaurateur"
-    start_date = date(2006, 1, 1)
+#    start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -4289,8 +4289,8 @@ class f8wv(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt en faveur des entreprises: Débitants de tabac"
-    start_date = date(2007, 1, 1)
-    stop_date = date(2012, 12, 31)
+#    start_date = date(2007, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
   # verif<=2012
@@ -4300,8 +4300,8 @@ class f8wx(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt en faveur des entreprises: Formation des salariés à l'économie d'entreprise"
-    start_date = date(2007, 1, 1)
-    stop_date = date(2009, 12, 31)
+#    start_date = date(2007, 1, 1)
+    end = '2009-12-31'
     definition_period = YEAR
 
   # verif<=2012
@@ -4313,8 +4313,8 @@ class elig_creimp_exc_2008(Variable):
         )
     entity = FoyerFiscal
     label = u"Éligibilité au crédit d'impôt exceptionnel sur les revenus 2008"
-    start_date = date(2008, 1, 1)
-    stop_date = date(2008, 12, 31)
+#    start_date = date(2008, 1, 1)
+    end = '2008-12-31'
     definition_period = YEAR
 
 
@@ -4322,8 +4322,8 @@ class elig_creimp_jeunes(Variable):
     column = BoolCol
     entity = Individu
     label = u"Éligible au crédit d'impôt jeunes"
-    start_date = date(2005, 1, 1)
-    stop_date = date(2008, 1, 1)
+#    start_date = date(2005, 1, 1)
+    end = '2008-01-01'
     definition_period = YEAR
 
  #Sert à savoir si son secteur d'activité permet au jeune de bénéficier du crédit impôts jeunes

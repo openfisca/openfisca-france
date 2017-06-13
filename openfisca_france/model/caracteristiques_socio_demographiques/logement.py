@@ -81,7 +81,7 @@ class residence_dom(Variable):
     entity = Menage
     definition_period = MONTH
 
-    def function(menage, period):
+    def formula(menage, period):
         residence_guadeloupe = menage('residence_guadeloupe', period)
         residence_martinique = menage('residence_martinique', period)
         residence_guyane = menage('residence_guyane', period)
@@ -96,7 +96,7 @@ class residence_guadeloupe(Variable):
     entity = Menage
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
         return startswith(depcom, '971')
 
@@ -106,7 +106,7 @@ class residence_martinique(Variable):
     entity = Menage
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
         return startswith(depcom, '972')
 
@@ -116,7 +116,7 @@ class residence_guyane(Variable):
     entity = Menage
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
         return startswith(depcom, '973')
 
@@ -126,7 +126,7 @@ class residence_reunion(Variable):
     entity = Menage
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
         return startswith(depcom, '974')
 
@@ -136,6 +136,6 @@ class residence_mayotte(Variable):
     entity = Menage
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         depcom = simulation.calculate('depcom', period)
         return startswith(depcom, '976')

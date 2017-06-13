@@ -39,7 +39,7 @@ class csg_deductible_chomage(Variable):
     url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         chomage_brut = individu('chomage_brut', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
@@ -71,7 +71,7 @@ class csg_imposable_chomage(Variable):
     url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         chomage_brut = individu('chomage_brut', period)
         legislation = legislation(period.start)
 
@@ -97,7 +97,7 @@ class crds_chomage(Variable):
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm"
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         chomage_brut = individu('chomage_brut', period)
         csg_deductible_chomage = individu('csg_deductible_chomage', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
@@ -140,7 +140,7 @@ class chomage_imposable(Variable):
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm"
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
         chomage_brut = individu('chomage_brut', period)
         csg_deductible_chomage = individu('csg_deductible_chomage', period, options = [ADD])
 
@@ -156,7 +156,7 @@ class chomage_net(Variable):
     url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
         chomage_imposable = individu('chomage_imposable', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period, options = [ADD])
         crds_chomage = individu('crds_chomage', period, options = [ADD])
@@ -176,7 +176,7 @@ class csg_deductible_retraite(Variable):
     url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         retraite_brute = individu('retraite_brute', period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
         law = legislation(period.start)
@@ -199,7 +199,7 @@ class csg_imposable_retraite(Variable):
     url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         retraite_brute = individu('retraite_brute', period)
         law = legislation(period.start)
 
@@ -219,7 +219,7 @@ class crds_retraite(Variable):
     url = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"  # noqa
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         retraite_brute = individu('retraite_brute', period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
         law = legislation(period.start)
@@ -232,16 +232,14 @@ class crds_retraite(Variable):
         return montant_crds
 
 
-class casa(DatedVariable):
+class casa(Variable):
     column = FloatCol
     entity = Individu
     label = u"Contribution additionnelle de solidarité et d'autonomie"
-    start_date = date(2013, 4, 1)
     url = u"http://www.service-public.fr/actualites/002691.html"
     definition_period = MONTH
 
-    @dated_function(start = date(2015, 1, 1))
-    def function_2015(individu, period, legislation):
+    def formula_2015_01_01(individu, period, legislation):
         retraite_brute = individu('retraite_brute', period = period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
@@ -253,8 +251,7 @@ class casa(DatedVariable):
             )
         return - casa
 
-    @dated_function(start = date(2013, 4, 1), stop = date(2014, 12, 31))
-    def function_2013_2014(individu, period, legislation):
+    def formula_2013_04_01(individu, period, legislation):
         retraite_brute = individu('retraite_brute', period = period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
         contributions = legislation(period.start).prelevements_sociaux.contributions
@@ -282,7 +279,7 @@ class retraite_imposable(Variable):
     url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
         retraite_brute = individu('retraite_brute', period, options = [ADD])
         csg_deductible_retraite = individu('csg_deductible_retraite', period, options = [ADD])
 
@@ -298,7 +295,7 @@ class retraite_nette(Variable):
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
         retraite_imposable = individu('retraite_imposable', period, options = [DIVIDE])
         casa = individu('casa', period)
         csg_imposable_retraite = individu('csg_imposable_retraite', period)
@@ -314,7 +311,7 @@ class crds_pfam(Variable):
     url = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"
     definition_period = YEAR
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         af = famille('af', period, options = [ADD])
         cf = famille('cf', period, options = [ADD])
         asf = famille('asf', period, options = [ADD])

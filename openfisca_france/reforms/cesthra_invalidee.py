@@ -48,7 +48,7 @@ class cesthra(Variable):
     definition_period = YEAR
     # PLF 2013 (rejeté) : 'taxe à 75%'
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         salaire_imposable_holder = simulation.calculate_add("salaire_imposable", period)
         law_cesthra = simulation.legislation_at(period.start).cesthra
         salaire_imposable = self.split_by_roles(salaire_imposable_holder)
@@ -63,7 +63,7 @@ class irpp(Variable):
     label = u"Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         Montant après seuil de recouvrement (hors ppe)
         '''

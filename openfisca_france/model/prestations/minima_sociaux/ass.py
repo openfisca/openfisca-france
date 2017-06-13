@@ -21,7 +21,7 @@ class ass(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         ass_base_ressources = simulation.calculate('ass_base_ressources', period)
         ass_eligibilite_i_holder = simulation.compute('ass_eligibilite_individu', period)
         en_couple = simulation.calculate('en_couple', period)
@@ -49,7 +49,7 @@ class ass_base_ressources(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         ass_base_ressources_i_holder = simulation.compute('ass_base_ressources_individu', period)
         ass_base_ressources_demandeur = self.filter_role(ass_base_ressources_i_holder, role = CHEF)
         ass_base_ressources_conjoint_holder = simulation.compute('ass_base_ressources_conjoint', period)
@@ -65,7 +65,7 @@ class ass_base_ressources_individu(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
         # N-1
@@ -109,7 +109,7 @@ class ass_base_ressources_conjoint(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         last_month = period.start.period('month').offset(-1)
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
@@ -177,7 +177,7 @@ class ass_eligibilite_individu(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         # 1 si demandeur d'emploi
         activite = simulation.calculate('activite', period)
 

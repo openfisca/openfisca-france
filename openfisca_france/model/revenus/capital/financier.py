@@ -10,8 +10,8 @@ class f2da(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Revenus des actions et parts soumis au prélèvement libératoire de 21 %"
-    start_date = date(2008, 1, 1)
-    stop_date = date(2012, 12, 31)
+    # start_date = date(2008, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -97,7 +97,7 @@ class f2bh(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux avec CSG déductible"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -114,7 +114,7 @@ class f2ck(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Crédit d'impôt égal au prélèvement forfaitaire déjà versé"
-    start_date = date(2013, 1, 1)
+    # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -141,7 +141,7 @@ class f2aa(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des années antérieures non encore déduits"
-    start_date = date(2007, 1, 1)
+    # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
@@ -150,7 +150,7 @@ class f2al(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des années antérieures non encore déduits"
-    start_date = date(2008, 1, 1)
+    # start_date = date(2008, 1, 1)
     definition_period = YEAR
 
 
@@ -159,7 +159,7 @@ class f2am(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des années antérieures non encore déduits"
-    start_date = date(2009, 1, 1)
+    # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
@@ -168,7 +168,7 @@ class f2an(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des années antérieures non encore déduits"
-    start_date = date(2010, 1, 1)
+    # start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
@@ -177,7 +177,7 @@ class f2aq(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des années antérieures non encore déduits"
-    start_date = date(2011, 1, 1)
+    # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
@@ -186,7 +186,7 @@ class f2ar(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des années antérieures non encore déduits"
-    start_date = date(2012, 1, 1)
+    # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -196,7 +196,7 @@ class f2as(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Déficits des années antérieures non encore déduits: année 2012"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 # TODO: vérifier existence <=2011
@@ -206,7 +206,7 @@ class f2dm(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %"
-    start_date = date(2008, 1, 1)
+    # start_date = date(2008, 1, 1)
     definition_period = YEAR
 
 # TODO: nouvelle case à utiliser où c'est nécessaire
@@ -217,8 +217,8 @@ class f2gr(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Revenus distribués dans le PEA (pour le calcul du crédit d'impôt de 50 %)"
-    start_date = date(2005, 1, 1)
-    stop_date = date(2009, 12, 31)
+    # start_date = date(2005, 1, 1)
+    end = '2009-12-31'
     definition_period = YEAR
 
 # TODO: vérifier existence à partir de 2011

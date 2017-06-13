@@ -48,7 +48,7 @@ class f1tx(Variable):
 class f3si(Variable):
     column = IntCol
     entity = FoyerFiscal
-    start_date = date(2012, 1, 1)
+    # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
   # TODO: parmi ces cas créer des valeurs individuelles
@@ -57,7 +57,7 @@ class f3si(Variable):
 class f3sa(Variable):
     column = IntCol
     entity = FoyerFiscal
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
   # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
@@ -65,7 +65,7 @@ class f3sa(Variable):
 class f3sf(Variable):
     column = IntCol
     entity = FoyerFiscal
-    start_date = date(2012, 1, 1)
+    # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
   # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
@@ -73,7 +73,7 @@ class f3sf(Variable):
 class f3sd(Variable):
     column = IntCol
     entity = FoyerFiscal
-    start_date = date(2012, 1, 1)
+    # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
   # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
@@ -83,7 +83,7 @@ class f3vc(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Produits et plus-values exonérés provenant de structure de capital-risque"
-    start_date = date(2006, 1, 1)
+    # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
 
@@ -95,7 +95,7 @@ class f3vd(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %"
-    start_date = date(2008, 1, 1)
+    # start_date = date(2008, 1, 1)
     definition_period = YEAR
 
   # (f3vd, f3sd)
@@ -159,7 +159,7 @@ class f3vt(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %"
-    start_date = date(2012, 1, 1)
+    # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -181,7 +181,7 @@ class f3va(Variable):
     column = IntCol(val_type = "monetary")
     entity = Individu
     label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values"
-    start_date = date(2006, 1, 1)
+    # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
   # (f3va, f3vb )))
@@ -207,7 +207,7 @@ class f3vh(Variable):
 class f3vu(Variable):
     column = IntCol
     entity = FoyerFiscal
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
   # TODO: vérifier pour 2010 et 2011
@@ -217,7 +217,7 @@ class f3vv(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Plus-values réalisées par les non-résidents: montant du prélèvement de 45 % déjà versé"
-    start_date = date(2013, 1, 1)
+    # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
   # TODO: à revoir :ok pour 2013, pas de 3vv pour 2012, et correspond à autre chose en 2009, vérifier 2010 et 2011
@@ -227,8 +227,8 @@ class f3vv_end_2010(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Pertes ouvrant droit au crédit d’impôt de 19 % "
-    start_date = date(2010, 1, 1)
-    stop_date = date(2010, 12, 31)
+    # start_date = date(2010, 1, 1)
+    end = '2010-12-31'
     definition_period = YEAR
 
 
@@ -237,7 +237,7 @@ class f3vz(Variable):
     column = IntCol(val_type = "monetary")
     entity = FoyerFiscal
     label = u"Plus-values imposables sur cessions d’immeubles ou de biens meubles"
-    start_date = date(2011, 1, 1)
+    # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
   # TODO: vérifier avant 2012

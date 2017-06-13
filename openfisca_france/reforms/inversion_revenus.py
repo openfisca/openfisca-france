@@ -52,7 +52,7 @@ def build_reform(tax_benefit_system):
         url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
         definition_period = MONTH
 
-        def function(self, simulation, period):
+        def formula(self, simulation, period):
             """Calcule le salaire brut à partir du salaire imposable ou sinon du salaire net.
 
             Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
@@ -182,7 +182,7 @@ def build_reform(tax_benefit_system):
         url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
         definition_period = MONTH
 
-        def function(self, simulation, period):
+        def formula(self, simulation, period):
             """"Calcule les allocations chômage brutes à partir des allocations imposables ou sinon des allocations nettes.
             """
             # Get value for year and divide below.
@@ -233,7 +233,7 @@ def build_reform(tax_benefit_system):
         url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
         definition_period = MONTH
 
-        def function(self, simulation, period):
+        def formula(self, simulation, period):
             """"Calcule les pensions de retraite brutes à partir des pensions imposables ou sinon des pensions nettes.
             """
             # Get value for year and divide below.

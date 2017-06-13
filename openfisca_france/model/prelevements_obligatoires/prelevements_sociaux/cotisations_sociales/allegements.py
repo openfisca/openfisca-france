@@ -25,7 +25,7 @@ class assiette_allegement(Variable):
     label = u"Assiette des allègements de cotisations sociales employeur"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate_add('assiette_cotisations_sociales', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         period = period
@@ -41,7 +41,7 @@ class coefficient_proratisation(Variable):
     label = u"Coefficient de proratisation du salaire notamment pour le calcul du SMIC"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         #  * Tous les calculs sont faits sur le mois *
 
         # Les types de contrats gérés
@@ -126,15 +126,14 @@ class coefficient_proratisation(Variable):
         return coefficient
 
 
-class credit_impot_competitivite_emploi(DatedVariable):
+class credit_impot_competitivite_emploi(Variable):
     column = FloatCol
     entity = Individu
     label = u"Crédit d'imôt pour la compétitivité et l'emploi"
     definition_period = MONTH
     calculate_output = calculate_output_add
 
-    @dated_function(date(2013, 1, 1))
-    def function_2013_(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         assiette_allegement = simulation.calculate('assiette_allegement', period)
         jeune_entreprise_innovante = simulation.calculate('jeune_entreprise_innovante', period)
         smic_proratise = simulation.calculate('smic_proratise', period)
@@ -148,15 +147,14 @@ class credit_impot_competitivite_emploi(DatedVariable):
         return credit_impot_competitivite_emploi * non_cumul * not_(association)
 
 
-class aide_premier_salarie(DatedVariable):
+class aide_premier_salarie(Variable):
     column = FloatCol
     entity = Individu
     label = u"Aide à l'embauche d'un premier salarié"
     definition_period = MONTH
     calculate_output = calculate_output_add
 
-    @dated_function(start=date(2015, 6, 9))
-    def function(self, simulation, period):
+    def formula_2015_06_09(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         apprenti = simulation.calculate('apprenti', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
@@ -211,7 +209,7 @@ class aide_premier_salarie(DatedVariable):
         return eligible * (montant_max / 24) * coefficient_proratisation * non_cumulee
 
 
-class aide_embauche_pme(DatedVariable):
+class aide_embauche_pme(Variable):
     column = FloatCol
     entity = Individu
     label = u"Aide à l'embauche d'un salarié pour les PME"
@@ -219,8 +217,7 @@ class aide_embauche_pme(DatedVariable):
     definition_period = MONTH
     calculate_output = calculate_output_add
 
-    @dated_function(start=date(2016, 1, 18))
-    def function(self, simulation, period):
+    def formula_2016_01_18(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         apprenti = simulation.calculate('apprenti', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
@@ -293,7 +290,7 @@ class smic_proratise(Variable):
     label = u"SMIC proratisé (mensuel)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
         smic_horaire_brut = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b
         smic_proratise = coefficient_proratisation * smic_horaire_brut * 35 * 52 / 12
@@ -301,7 +298,7 @@ class smic_proratise(Variable):
         return smic_proratise
 
 
-class allegement_fillon(DatedVariable):
+class allegement_fillon(Variable):
     column = FloatCol
     entity = Individu
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
@@ -311,8 +308,7 @@ class allegement_fillon(DatedVariable):
 
     # Attention : cet allègement a des règles de cumul spécifiques
 
-    @dated_function(date(2005, 7, 1))
-    def function(self, simulation, period):
+    def formula_2005_07_01(self, simulation, period):
         stagiaire = simulation.calculate('stagiaire', period)
         apprenti = simulation.calculate('apprenti', period)
         allegement_mode_recouvrement = simulation.calculate('allegement_fillon_mode_recouvrement', period)
@@ -375,15 +371,14 @@ def compute_allegement_fillon(simulation, period):
     return taux_fillon * assiette
 
 
-class allegement_cotisation_allocations_familiales(DatedVariable):
+class allegement_cotisation_allocations_familiales(Variable):
     column = FloatCol
     label = u"Allègement de la cotisation d'allocations familiales sur les bas et moyens salaires"
     entity = Individu
     url = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
     definition_period = MONTH
 
-    @dated_function(date(2015, 1, 1))
-    def function(self, simulation, period):
+    def formula_2015_01_01(self, simulation, period):
         stagiaire = simulation.calculate('stagiaire', period)
         apprenti = simulation.calculate('apprenti', period)
         allegement_mode_recouvrement = \

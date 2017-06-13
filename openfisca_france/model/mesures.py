@@ -13,7 +13,7 @@ class uc(Variable):
     label = u"Unités de consommation"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         Calcule le nombre d'unités de consommation du ménage avec l'échelle de l'INSEE
         '''
@@ -38,7 +38,7 @@ class type_menage(Variable):
     label = u"Type de ménage"
     definition_period = YEAR
 
-    def function(menage, period):
+    def formula(menage, period):
         '''
         Type de menage
         TODO: prendre les enfants du ménage et non ceux de la famille
@@ -65,7 +65,7 @@ class revenu_disponible(Variable):
     url = "http://fr.wikipedia.org/wiki/Revenu_disponible"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
         pen_holder = simulation.compute('pensions', period)
         rev_cap_holder = simulation.compute('revenus_du_capital', period)
@@ -90,7 +90,7 @@ class niveau_de_vie(Variable):
     label = u"Niveau de vie du ménage"
     definition_period = YEAR
 
-    def function(menage, period):
+    def formula(menage, period):
         revenu_disponible = menage('revenu_disponible', period)
         uc = menage('uc', period)
         return revenu_disponible / uc
@@ -102,7 +102,7 @@ class revenu_net_individu(Variable):
     label = u"Revenu net de l'individu"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
         pensions = individu('pensions', period)
         revenus_du_capital = individu('revenus_du_capital', period)
         revenus_du_travail = individu('revenus_du_travail', period)
@@ -117,7 +117,7 @@ class revenu_net(Variable):
     url = u"http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php",
     definition_period = YEAR
 
-    def function(menage, period):
+    def formula(menage, period):
         revenu_net_individus = menage.members('revenu_net_individu', period)
         return menage.sum(revenu_net_individus)
 
@@ -128,7 +128,7 @@ class niveau_de_vie_net(Variable):
     label = u"Niveau de vie net du ménage"
     definition_period = YEAR
 
-    def function(menage, period):
+    def formula(menage, period):
         revenu_net = menage('revenu_net', period)
         uc = menage('uc', period)
 
@@ -141,7 +141,7 @@ class revenu_initial_individu(Variable):
     label = u"Revenu initial de l'individu"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
         cotisations_employeur_contributives = individu('cotisations_employeur_contributives', period)
         cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
         pensions = individu('pensions', period)
@@ -158,7 +158,7 @@ class revenu_initial(Variable):
     column = FloatCol
     definition_period = YEAR
 
-    def function(menage, period):
+    def formula(menage, period):
         revenu_initial_individus = menage.members('revenu_initial_individu', period)
         return menage.sum(revenu_initial_individus)
 
@@ -169,7 +169,7 @@ class niveau_de_vie_initial(Variable):
     label = u"Niveau de vie initial du ménage"
     definition_period = YEAR
 
-    def function(menage, period):
+    def formula(menage, period):
         revenu_initial = menage('revenu_initial', period)
         uc = menage('uc', period)
 
@@ -193,7 +193,7 @@ class revenus_du_travail(Variable):
     url = "http://fr.wikipedia.org/wiki/Revenu_du_travail"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
         revenu_assimile_salaire = individu('revenu_assimile_salaire', period)
         rag = individu('rag', period)
         ric = individu('ric', period)
@@ -209,7 +209,7 @@ class pensions(Variable):
     url = "http://fr.wikipedia.org/wiki/Rente"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
         chomage_net = individu('chomage_net', period, options = [ADD])
         retraite_nette = individu('retraite_nette', period, options = [ADD])
         pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period, options = [ADD])
@@ -231,7 +231,7 @@ class cotsoc_bar(Variable):
     label = u"Cotisations sociales sur les revenus du capital imposés au barème"
     definition_period = YEAR
 
-    def function(foyer_fiscal, period):
+    def formula(foyer_fiscal, period):
         csg_cap_bar = foyer_fiscal('csg_cap_bar', period)
         prelsoc_cap_bar = foyer_fiscal('prelsoc_cap_bar', period)
         crds_cap_bar = foyer_fiscal('crds_cap_bar', period)
@@ -245,7 +245,7 @@ class cotsoc_lib(Variable):
     label = u"Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire"
     definition_period = YEAR
 
-    def function(foyer_fiscal, period):
+    def formula(foyer_fiscal, period):
         csg_cap_lib = foyer_fiscal('csg_cap_lib', period)
         prelsoc_cap_lib = foyer_fiscal('prelsoc_cap_lib', period)
         crds_cap_lib = foyer_fiscal('crds_cap_lib', period)
@@ -260,7 +260,7 @@ class revenus_du_capital(Variable):
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
 
         # Revenus du foyer fiscal, que l'on projette uniquement sur le 1er déclarant
         foyer_fiscal = individu.foyer_fiscal
@@ -286,7 +286,7 @@ class prestations_sociales(Variable):
     url = "http://fr.wikipedia.org/wiki/Prestation_sociale"
     definition_period = YEAR
 
-    def function(famille, period):
+    def formula(famille, period):
         '''
         Prestations sociales
         '''
@@ -304,7 +304,7 @@ class prestations_familiales(Variable):
     url = "http://www.social-sante.gouv.fr/informations-pratiques,89/fiches-pratiques,91/prestations-familiales,1885/les-prestations-familiales,12626.html"
     definition_period = YEAR
 
-    def function(famille, period):
+    def formula(famille, period):
         af = famille('af', period, options = [ADD])
         cf = famille('cf', period, options = [ADD])
         ars = famille('ars', period)
@@ -323,7 +323,7 @@ class minimum_vieillesse(Variable):
     label = u"Minimum vieillesse (ASI + ASPA)"
     definition_period = YEAR
 
-    def function(famille, period):
+    def formula(famille, period):
         return famille('asi', period, options = [ADD]) + famille('aspa', period, options = [ADD])
 
 
@@ -334,7 +334,7 @@ class minima_sociaux(Variable):
     url = "http://fr.wikipedia.org/wiki/Minima_sociaux"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         aah_holder = simulation.compute_add('aah', period)
         caah_holder = simulation.compute_add('caah', period)
         aefa = simulation.calculate('aefa', period)
@@ -358,7 +358,7 @@ class aides_logement(Variable):
     url = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
     definition_period = YEAR
 
-    def function(famille, period):
+    def formula(famille, period):
         '''
         Prestations logement
         '''
@@ -377,7 +377,7 @@ class impots_directs(Variable):
     url = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         irpp_holder = simulation.compute('irpp', period)
         taxe_habitation = simulation.calculate('taxe_habitation', period)
 
@@ -393,7 +393,7 @@ class crds(Variable):
     label = u"Contributions au remboursement de la dette sociale"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
         # CRDS sur revenus individuels
         crds_salaire = individu('crds_salaire', period, options = [ADD])
         crds_retraite = individu('crds_retraite', period, options = [ADD])
@@ -422,7 +422,7 @@ class csg(Variable):
     label = u"Contribution sociale généralisée"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
         csg_imposable_salaire = individu('csg_imposable_salaire', period, options = [ADD])
         csg_deductible_salaire = individu('csg_deductible_salaire', period, options = [ADD])
         csg_imposable_chomage = individu('csg_imposable_chomage', period, options = [ADD])
@@ -448,7 +448,7 @@ class cotisations_non_contributives(Variable):
     label = u"Cotisations sociales non contributives"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
         cotisations_employeur_non_contributives = individu('cotisations_employeur_non_contributives',
             period)
         cotisations_salariales_non_contributives = individu('cotisations_salariales_non_contributives',
@@ -464,7 +464,7 @@ class prelsoc_cap(Variable):
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
         # Prélevements effectués sur les revenus du foyer fiscal
         prelsoc_fon = individu.foyer_fiscal('prelsoc_fon', period)
         prelsoc_cap_lib = individu.foyer_fiscal('prelsoc_cap_lib', period)
@@ -482,7 +482,7 @@ class check_csk(Variable):
     label = u"check_csk"
     definition_period = YEAR
 
-    def function(menage, period):
+    def formula(menage, period):
         foyer_fiscal = menage.personne_de_reference.foyer_fiscal
 
         # Prélevements effectués sur les revenus du foyer fiscal
@@ -499,7 +499,7 @@ class check_csg(Variable):
     label = u"check_csg"
     definition_period = YEAR
 
-    def function(menage, period):
+    def formula(menage, period):
         foyer_fiscal = menage.personne_de_reference.foyer_fiscal
         # CSG prélevée sur les revenus du foyer fiscal
         csg_cap_bar = foyer_fiscal('csg_cap_bar', periop)
@@ -515,7 +515,7 @@ class check_crds(Variable):
     label = u"check_crds"
     definition_period = YEAR
 
-    def function(menage, period):
+    def formula(menage, period):
         foyer_fiscal = menage.personne_de_reference.foyer_fiscal
         # CRDS prélevée sur les revenus du foyer fiscal
         crds_pv_mo = foyer_fiscal('crds_pv_mo', period)

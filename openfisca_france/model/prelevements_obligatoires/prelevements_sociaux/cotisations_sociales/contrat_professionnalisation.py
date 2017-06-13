@@ -16,7 +16,7 @@ class professionnalisation(Variable):
     url = "http://www.apce.com/pid879/contrat-de-professionnalisation.html?espace=1&tp=1"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         age = simulation.calculate('age', period)
         ass = simulation.calculate_add('ass', period)
         rsa = simulation.calculate('rsa', period)
@@ -55,7 +55,7 @@ class remuneration_professionnalisation(Variable):
     #  au minimum 85 % du salaire minimum prévu par la convention ou l'accord de branche auquel est soumise
     #  l'entreprise.
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         age = simulation.calculate('age', period)
         smic = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
         professionnalisation = simulation.calculate('professionnalisation', period)
@@ -117,7 +117,7 @@ class exoneration_cotisations_employeur_professionnalisation(Variable):
     #  Aide spécifique de 686 euros par accompagnement et pour une année pleine est attribuée sous certaines conditions
     #  aux groupements d'employeurs qui organisent dans le cadre des contrats de professionnalisation
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         age = simulation.calculate('age', period)
         mmid_employeur = simulation.calculate('mmid_employeur', period)
         famille = simulation.calculate('famille', period)
