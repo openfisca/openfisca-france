@@ -77,11 +77,11 @@ class rsa_has_ressources_substitution(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(famille, period):
+    def formula(individu, period):
         return (
-            famille('chomage_net', period) +
-            famille('indemnites_journalieres', period) +
-            famille('retraite_nette', period)
+            individu('chomage_net', period) +
+            individu('indemnites_journalieres', period) +
+            individu('retraite_nette', period)
             ) > 0
 
 
