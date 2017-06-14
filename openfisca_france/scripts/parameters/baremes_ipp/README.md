@@ -10,15 +10,16 @@ L'IPP produit des fichiers au format XLSX appelés « Barèmes IPP » :
 
 Ces barèmes IPP sont très complets et il est intéressant pour OpenFisca de profiter de leur contenu.
 
-## Conversion XLSX vers XML
+Les scripts décrits ici permettent d'importer les barèmes IPP (fournis sous forme de tableurs au format XLSX) dans [les fichiers de paramètres](https://doc.openfisca.fr/coding-the-legislation/legislation_parameters.html) XML d'OpenFisca France.
 
-OpenFisca définit ses paramètres dans un format XML décrit [ici](https://doc.openfisca.fr/coding-the-legislation/legislation_parameters.html).
+## Imports des barèmes IPP dans OpenFisca
 
-L'IPP fournit ses paramètres sous forme de tableurs au format XLSX.
+### En local
 
-Le script [`convert_ipp_xlsx_to_openfisca_xml.py`](./convert_ipp_xlsx_to_openfisca_xml.py) prend en charge la conversion de XLSX vers XML.
+>**Attention, ce script ne semble fonctionner que sous Linux, et pas sous macOS. Voir la [discussion](https://github.com/openfisca/openfisca-france/pull/746#issuecomment-305123915) sur le sujet.**  
+> **Si vous avez accès au serveur OpenFisca-France, vous pouvez [executer le script sur ce-dernier](#sur-le-serveur-openfisca)**
 
->**Attention, ce script ne semble fonctionner que sous Linux, et pas sous macOS. Voir la [discussion](https://github.com/openfisca/openfisca-france/pull/746#issuecomment-305123915) sur le sujet.**
+#### Installation
 
 Ce script nécessite des dépendances supplémentaires. Pour les installer :
 
@@ -28,18 +29,52 @@ pip install --editable .[baremes_ipp]
 
 Il faut également installer `gnumeric` :
 - sous Debian : `sudo apt install gnumeric`
-- sous macOS : `brew install gnumeric`
+
+#### Utilisation
 
 Se placer dans le répertoire racine d'OpenFisca-France, là où se trouve le fichier `setup.py` :
 
 ```sh
-./openfisca_france/scripts/parameters/baremes_ipp/convert_ipp_xlsx_to_openfisca_xml.py --ref-ipp 2c6936d6
+./openfisca_france/scripts/parameters/baremes_ipp/convert_ipp_xlsx_to_openfisca_xml.py --ref-ipp 2c6936d6 --merge
 ```
 
 > L'argument `--ref-ipp` permet de spécifier une version spécifique des [fichiers `XLSX` publiés par l'IPP](https://framagit.org/french-tax-and-benefit-tables/ipp-tax-and-benefit-tables-xlsx/repository/archive.zip) à utiliser.
 > La dernière version de ces fichiers compatible avec le script d'import est `2c6936d6`. Pour utiliser les fichiers les plus récents, retirer le paramètre `--ref-ipp`.
 
-Le script génère un nouveau répertoire dans `/tmp` à chaque exécution, dont une partie du nom est aléatoire. Ce répertoire n'est pas effacé par le script. Par exemple :
+Une fois le script exécuté, le contributeur voit apparaître un *diff* dans *git*, et peut choisir manuellement d'ajouter ou non les lignes modifiées dans un *commit*.
+
+### Sur le serveur OpenFisca
+
+Se connecter au serveur OpenFisca :
+
+```sh
+ssh baremes-ipp@openfisca.fr -A
+```
+
+Puis exécuter les commandes suivantes :
+
+```sh
+cd openfisca-france
+BRANCH_NAME=update-baremes-ipp-`date +'%Y-%m-%d-%H-%M'`
+git checkout -b $BRANCH_NAME
+./openfisca_france/scripts/parameters/baremes_ipp/convert_ipp_xlsx_to_openfisca_xml.py --ref-ipp 2c6936d6 --merge
+git commit --all -m "Update baremes IPP"
+git push origin $BRANCH_NAME
+git checkout master
+```
+
+> L'argument `--ref-ipp` permet de spécifier une version spécifique des [fichiers `XLSX` publiés par l'IPP](https://framagit.org/french-tax-and-benefit-tables/ipp-tax-and-benefit-tables-xlsx/repository/archive.zip) à utiliser.
+> La dernière version de ces fichiers compatible avec le script d'import est `2c6936d6`. Pour utiliser les fichiers les plus récents, retirer le paramètre `--ref-ipp`.
+
+Une fois le script exécuté, une branche `update-baremes-ipp-YYYY-MM-DD-HH-MM` (par exemple `update-baremes-ipp-2017-06-14-15-30` si le script est exécuté le 14 juin 2017 à 15h30) est publiée sur ce dépôt. Le contributeur peut alors éditer le code sur cette branche, et ouvrir une pull request.
+
+## Étapes de la transformation
+
+### Conversion XLSX vers XML
+
+Le script [`convert_ipp_xlsx_to_openfisca_xml.py`](./convert_ipp_xlsx_to_openfisca_xml.py) prend en charge la conversion de XLSX vers XML.
+
+Ce script génère un nouveau répertoire dans `/tmp` à chaque exécution, dont une partie du nom est aléatoire. Ce répertoire n'est pas effacé par le script. Par exemple :
 
 ```
 INFO:convert_ipp_xlsx_to_openfisca_xml:XML files written to '/tmp/baremes-ipp-v3SAEz/xml'
@@ -47,7 +82,7 @@ INFO:convert_ipp_xlsx_to_openfisca_xml:XML files written to '/tmp/baremes-ipp-v3
 
 > Ce processus de conversion de données a été internalisé dans OpenFisca-France à partir de celui de l'IPP disponible [ici](https://framagit.org/french-tax-and-benefit-tables/ipp-tax-and-benefit-tables-converters#in-the-ipp-world).
 
-### Intégration avec OpenFisca
+### Fusion avec les paramètres OpenFisca
 
 Le script [`merge_ipp_xml_files_with_openfisca_parameters.py`](./merge_ipp_xml_files_with_openfisca_parameters.py) fusionne les fichiers XML produits depuis les fichiers XLSX de l'IPP avec les fichiers XML existants d'OpenFisca-France :
 
@@ -55,7 +90,7 @@ Le script [`merge_ipp_xml_files_with_openfisca_parameters.py`](./merge_ipp_xml_f
 ./openfisca_france/scripts/parameters/baremes_ipp/merge_ipp_xml_files_with_openfisca_parameters.py /tmp/baremes-ipp-v3SAEz/xml # Par exemple. Remplacer par le dossier temporaire mentionné précedemment qui contient les XML.
 ```
 
-Plus précisément, il réécrit les fichiers de paramètres d'OpenFisca-France en conservant leur structure, tout en remplaçant les valeurs par celles provenant de l'IPP. Le contributeur voit apparaître un *diff* dans *git*, et peut choisir manuellement d'ajouter ou non les lignes modifiées dans un *commit*.
+Plus précisément, il réécrit les fichiers de paramètres d'OpenFisca-France en conservant leur structure, tout en remplaçant les valeurs par celles provenant de l'IPP. 
 
 ### Gestion des erreurs
 
