@@ -12,11 +12,10 @@ class aah_base_ressources(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        law = simulation.legislation_at(period.start)
+    def formula(famille, period, legislation):
+        law = legislation(period)
 
-        salaire_this_month = simulation.compute('salaire_imposable', period)
-        demandeur_en_activite = self.filter_role(salaire_this_month, role = CHEF) > 0
+        demandeur_en_activite = famille.demandeur('salaire_imposable', period) > 0
 
         def assiette_conjoint(revenus_conjoint):
             return 0.9 * (1 - 0.2) * revenus_conjoint
@@ -28,25 +27,22 @@ class aah_base_ressources(Variable):
             return (1 - 0.8) * tranche1 + (1 - 0.4) * tranche2
 
         def base_ressource_eval_trim():
-            aah_base_ressources_eval_trimestrielle = simulation.compute('aah_base_ressources_eval_trimestrielle', period)
-            base_ressource_demandeur = self.filter_role(aah_base_ressources_eval_trimestrielle, role = CHEF)
-            base_ressource_conjoint = self.filter_role(aah_base_ressources_eval_trimestrielle, role = PART)
+            base_ressource_demandeur = famille.demandeur('aah_base_ressources_eval_trimestrielle', period)
+            base_ressource_conjoint = famille.conjoint('aah_base_ressources_eval_trimestrielle', period)
 
             return assiette_demandeur(base_ressource_demandeur) + assiette_conjoint(base_ressource_conjoint)
 
         def base_ressource_eval_annuelle():
-            aah_base_ressources_eval_annuelle = simulation.compute('aah_base_ressources_eval_annuelle', period)
-            base_ressource_demandeur = self.filter_role(aah_base_ressources_eval_annuelle, role = CHEF)
-            base_ressource_conjoint = self.filter_role(aah_base_ressources_eval_annuelle, role = PART)
+            base_ressource_demandeur = famille.demandeur('aah_base_ressources_eval_annuelle', period)
+            base_ressource_conjoint = famille.conjoint('aah_base_ressources_eval_annuelle', period)
 
             return assiette_demandeur(base_ressource_demandeur) + assiette_conjoint(base_ressource_conjoint)
 
-        aah_base_ressource = (
-            demandeur_en_activite * base_ressource_eval_trim() +
-            not_(demandeur_en_activite) * base_ressource_eval_annuelle()
-        )
-
-        return aah_base_ressource
+        return where(
+            demandeur_en_activite,
+            base_ressource_eval_trim(),
+            base_ressource_eval_annuelle()
+            )
 
 
 class aah_base_ressources_eval_trimestrielle(Variable):
@@ -69,35 +65,35 @@ class aah_base_ressources_eval_trimestrielle(Variable):
         ressources à partir de votre revenu mensuel.
     '''
 
-    def formula(self, simulation, period):
+    def formula(individu, period, legislation):
         three_previous_months = period.start.period('month', 3).offset(-3)
         last_year = period.last_year
 
-        salaire_net = simulation.calculate_add('salaire_net', three_previous_months)
-        chomage_net = simulation.calculate_add('chomage_net', three_previous_months)
-        retraite_nette = simulation.calculate_add('retraite_nette', three_previous_months)
-        pensions_alimentaires_percues = simulation.calculate_add('pensions_alimentaires_percues', three_previous_months)
-        pensions_alimentaires_versees_individu = simulation.calculate_add(
-            'pensions_alimentaires_versees_individu', three_previous_months)
-        rsa_base_ressources_patrimoine_i = simulation.calculate_add('rsa_base_ressources_patrimoine_individu', three_previous_months)
-        indemnites_journalieres_imposables = simulation.calculate_add('indemnites_journalieres_imposables', three_previous_months)
-        indemnites_stage = simulation.calculate_add('indemnites_stage', three_previous_months)
-        revenus_stage_formation_pro = simulation.calculate_add('revenus_stage_formation_pro', three_previous_months)
-        allocation_securisation_professionnelle = simulation.calculate_add(
-            'allocation_securisation_professionnelle', three_previous_months)
-        prestation_compensatoire = simulation.calculate_add('prestation_compensatoire', three_previous_months)
-        pensions_invalidite = simulation.calculate_add('pensions_invalidite', three_previous_months)
-        indemnites_chomage_partiel = simulation.calculate_add('indemnites_chomage_partiel', three_previous_months)
-        bourse_recherche = simulation.calculate_add('bourse_recherche', three_previous_months)
-        gains_exceptionnels = simulation.calculate_add('gains_exceptionnels', three_previous_months)
+        salaire_net = individu('salaire_net', three_previous_months, options = [ADD])
+        chomage_net = individu('chomage_net', three_previous_months, options = [ADD])
+        retraite_nette = individu('retraite_nette', three_previous_months, options = [ADD])
+        pensions_alimentaires_percues = individu('pensions_alimentaires_percues', three_previous_months, options = [ADD])
+        pensions_alimentaires_versees_individu = individu(
+            'pensions_alimentaires_versees_individu', three_previous_months, options = [ADD])
+        rsa_base_ressources_patrimoine_i = individu('rsa_base_ressources_patrimoine_individu', three_previous_months, options = [ADD])
+        indemnites_journalieres_imposables = individu('indemnites_journalieres_imposables', three_previous_months, options = [ADD])
+        indemnites_stage = individu('indemnites_stage', three_previous_months, options = [ADD])
+        revenus_stage_formation_pro = individu('revenus_stage_formation_pro', three_previous_months, options = [ADD])
+        allocation_securisation_professionnelle = individu(
+            'allocation_securisation_professionnelle', three_previous_months, options = [ADD])
+        prestation_compensatoire = individu('prestation_compensatoire', three_previous_months, options = [ADD])
+        pensions_invalidite = individu('pensions_invalidite', three_previous_months, options = [ADD])
+        indemnites_chomage_partiel = individu('indemnites_chomage_partiel', three_previous_months, options = [ADD])
+        bourse_recherche = individu('bourse_recherche', three_previous_months, options = [ADD])
+        gains_exceptionnels = individu('gains_exceptionnels', three_previous_months, options = [ADD])
 
         def revenus_tns():
-            revenus_auto_entrepreneur = simulation.calculate_add('tns_auto_entrepreneur_benefice', three_previous_months)
+            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', three_previous_months, options = [ADD])
 
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
-            tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year) * 3 / 12
-            tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year) * 3 / 12
-            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year) * 3 / 12
+            tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year) * 3 / 12
+            tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year) * 3 / 12
+            tns_autres_revenus = individu('tns_autres_revenus', last_year) * 3 / 12
 
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
@@ -119,8 +115,9 @@ class aah_base_ressources_eval_annuelle(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        return simulation.calculate('revenu_activite', period.n_2) + simulation.calculate('revenu_assimile_pension', period.n_2)
+
+    def formula(individu, period, legislation):
+        return individu('revenu_activite', period.n_2) + individu('revenu_assimile_pension', period.n_2)
 
 
 class aah_eligible(Variable):
@@ -158,11 +155,11 @@ class aah_eligible(Variable):
         au minimum vieillesse.
     '''
 
-    def formula(self, simulation, period):
-        law = simulation.legislation_at(period.start).prestations
-        taux_incapacite = simulation.calculate('taux_incapacite', period)
-        age = simulation.calculate('age', period)
-        autonomie_financiere = simulation.calculate('autonomie_financiere', period)
+    def formula(individu, period, legislation):
+        law = legislation(period).prestations
+        taux_incapacite = individu('taux_incapacite', period)
+        age = individu('age', period)
+        autonomie_financiere = individu('autonomie_financiere', period)
         eligible_aah = (
             (taux_incapacite >= 0.5) *
             (age <= law.minima_sociaux.aah.age_legal_retraite) *
@@ -223,8 +220,8 @@ class aah(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(self, simulation, period):
-        aah_base = simulation.calculate('aah_base', period)
+    def formula(individu, period, legislation):
+        aah_base = individu('aah_base', period)
         # caah
         # mva
 
@@ -286,19 +283,17 @@ class caah(Variable):
         l'autre.
     '''
 
-    def formula_2005_07_01(self, simulation, period):
-        law = simulation.legislation_at(period.start).prestations
+    def formula_2005_07_01(individu, period, legislation):
+        law = legislation(period).prestations
 
         garantie_ressources = law.minima_sociaux.caah.garantie_ressources
         aah_montant = law.minima_sociaux.aah.montant
 
-        aah = simulation.calculate('aah', period)
-        asi_eligibilite = simulation.calculate('asi_eligibilite', period)
-        asi_holder = simulation.compute('asi', period)  # montant asi de la famille
-        asi = self.cast_from_entity_to_roles(asi_holder)  # attribué à tous les membres de la famille
+        aah = individu('aah', period)
+        asi_eligibilite = individu('asi_eligibilite', period)
+        asi = individu.famille('asi', period)  # montant asi de la famille
         benef_asi = (asi_eligibilite * (asi > 0))
-        al_holder = simulation.compute('aide_logement_montant', period)  # montant allocs logement de la famille
-        al = self.cast_from_entity_to_roles(al_holder)  # attribué à tout individu membre de la famille
+        al = individu.famille('aide_logement_montant', period) # montant allocs logement de la famille
 
         elig_cpl = ((aah > 0) | (benef_asi > 0))
         # TODO: & logement indépendant & inactif 12 derniers mois
@@ -313,19 +308,17 @@ class caah(Variable):
         return max_(compl_ress, mva)
 
     # TODO FIXME start date
-    def formula_2002_01_01(self, simulation, period):
-        law = simulation.legislation_at(period.start).prestations
+    def formula_2002_01_01(individu, period, legislation):
+        law = legislation(period).prestations
 
         cpltx = law.minima_sociaux.caah.cpltx
         aah_montant = law.minima_sociaux.aah.montant
 
-        aah = simulation.calculate('aah', period)
-        asi_eligibilite = simulation.calculate('asi_eligibilite', period)
-        asi_holder = simulation.compute('asi', period)  # montant asi de la famille
-        asi = self.cast_from_entity_to_roles(asi_holder)  # attribué à tous les membres de la famille
+        aah = individu('aah', period)
+        asi_eligibilite = individu('asi_eligibilite', period)
+        asi = individu.famille('asi', period)  # montant asi de la famille
         benef_asi = (asi_eligibilite * (asi > 0))
-        al_holder = simulation.compute('aide_logement_montant', period)  # montant allocs logement de la famille
-        al = self.cast_from_entity_to_roles(al_holder)  # attribué à tout individu membre de la famille
+        al = individu.famille('aide_logement_montant', period) # montant allocs logement de la famille
 
         elig_ancien_caah = (al > 0) * ((aah > 0) | (benef_asi > 0))  # TODO: & invalidité >= 80%  & logement indépendant
         ancien_caah = cpltx * aah_montant * elig_ancien_caah
