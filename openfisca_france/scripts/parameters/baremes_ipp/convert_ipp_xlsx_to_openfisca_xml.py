@@ -26,7 +26,7 @@ import zipfile
 import xls_to_yaml_raw
 import yaml_clean_to_xml
 import yaml_raw_to_yaml_clean
-
+from merge_ipp_xml_files_with_openfisca_parameters import merge_ipp_xml_files_with_openfisca_parameters
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
@@ -43,6 +43,7 @@ def main():
     parser.add_argument('--tmp-dir', default = None, help = u"Where to write intermediary files")
     parser.add_argument('--xml-dir', default = None, help = u"Where to write XML files")
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = u"Increase output verbosity")
+    parser.add_argument('--merge', action = 'store_true', default = False, help = u"Merge the generated XML with the OpenFisca France parameters")
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.INFO)
 
@@ -109,6 +110,9 @@ def main():
         xml_dir_path = args.xml_dir
     yaml_clean_to_xml.transform(yaml_clean_dir_path, xml_dir_path)
     log.info(u'XML files written to {!r}'.format(xml_dir_path))
+
+    if args.merge:
+        merge_ipp_xml_files_with_openfisca_parameters(xml_dir_path)
 
 
 if __name__ == "__main__":

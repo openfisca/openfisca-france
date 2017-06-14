@@ -110,14 +110,9 @@ def get_xml_tree_by_file_name(xmlschema, file_paths):
     return xml_tree_by_file_name
 
 
-def main():
-    parser = argparse.ArgumentParser(description = __doc__)
-    parser.add_argument('ipp_xml_dir', help = "Directory of XML files converted from IPP")
-    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
-    args = parser.parse_args()
-
-    if not os.path.isdir(args.ipp_xml_dir):
-        parser.error(u'Path {!r} does not exist.'.format(args.ipp_xml_dir))
+def merge_ipp_xml_files_with_openfisca_parameters(ipp_xml_dir):
+    if not os.path.isdir(ipp_xml_dir):
+        parser.error(u'Path {!r} does not exist.'.format(ipp_xml_dir))
 
     xmlschema = legislationsxml.load_xml_schema()
     france_tax_benefit_system = FranceTaxBenefitSystem()
@@ -129,8 +124,8 @@ def main():
     openfisca_xml_tree_by_file_name = get_xml_tree_by_file_name(xmlschema, openfisca_file_paths)
 
     ipp_file_paths = [
-        os.path.join(args.ipp_xml_dir, file_name)
-        for file_name in os.listdir(args.ipp_xml_dir)
+        os.path.join(ipp_xml_dir, file_name)
+        for file_name in os.listdir(ipp_xml_dir)
         if file_name.endswith('.xml')
         ]
     if not ipp_file_paths:
@@ -150,6 +145,13 @@ def main():
 
     return 0
 
+
+def main():
+    parser = argparse.ArgumentParser(description = __doc__)
+    parser.add_argument('ipp_xml_dir', help = "Directory of XML files converted from IPP")
+    args = parser.parse_args()
+
+    merge_ipp_xml_files_with_openfisca_parameters(args.ipp_xml_dir)
 
 if __name__ == "__main__":
     sys.exit(main())
