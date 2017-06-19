@@ -123,6 +123,14 @@ Clonez OpenFisca-France sur votre machine :
 ```sh
 git clone https://github.com/openfisca/openfisca-france.git
 cd openfisca-france
+
+```
+
+Vous pouvez vous assurer que votre installation s'est bien passée en exécutant :
+
+```sh
+pip install -e ".[test]"
+make test #Les test mettent environt 5 minutes pour s'exécuter.
 ```
 OpenFisca-France est prêt à être utilisé !
 
@@ -139,7 +147,7 @@ Pour ce faire, installez l'API Web OpenFisca :
 
 - si vous avez installé OpenFisca-France avec pip install : 
     ```sh
-    pip install openfisca-france[api]
+    pip install 'openfisca-france[api]'
     ```
 - si vous avez installé OpenFisca-France avec git clone:
 
