@@ -54,7 +54,7 @@ Informations complémentaires :
 - sortez du _virtualenv_ en tapant `exit` (or Ctrl-D) ;
 - re-rentrez en tapant `pew workon openfisca` dans votre terminal.
 
-### Installation minimale (pip install)
+### A. Installation minimale (pip install)
 
 Suivez cette installation si vous souhaitez :
 - procéder à des calculs sur une large population ;
@@ -62,7 +62,7 @@ Suivez cette installation si vous souhaitez :
 - écrire une extension au dessus de la législation française (exemple : les extensions de Paris et Rennes) ;
 - servir OpenFisca-France avec l'API Web OpenFisca.
 
-Pour pouvoir modifier OpenFisca-France, consultez l'[Installation avancée](#installation-avancée-git-clone).
+Pour pouvoir modifier OpenFisca-France, consultez l'[Installation avancée](#b-installation-avancée-git-clone).
 
 #### Installer OpenFisca-France avec pip install
 
@@ -93,7 +93,7 @@ En fonction de vos projets, vous pourriez bénéficier de l'installation des paq
 - pour représenter graphiquement vos résultats, essayez la librairie [matplotlib](http://matplotlib.org/) ;
 - pour gérer vos données, découvrez la librairie [pandas](http://pandas.pydata.org/).
 
-### Installation avancée (Git Clone)
+### B. Installation avancée (Git Clone)
 
 Suivez cette installation si vous souhaitez :
 - créer ou changer la législation d'OpenFisca-France ;
