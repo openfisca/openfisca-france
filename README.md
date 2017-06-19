@@ -130,7 +130,7 @@ Vous pouvez vous assurer que votre installation s'est bien passée en exécutant
 
 ```sh
 pip install -e ".[test]"
-make test #Les test mettent environt 5 minutes pour s'exécuter.
+make test #Les test mettent environ 30 minutes pour s'exécuter.
 ```
 OpenFisca-France est prêt à être utilisé !
 
