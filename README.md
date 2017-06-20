@@ -20,7 +20,7 @@ Utilisez l'API publique si vous souhaitez :
 
 ## Installation
 
-Ce paquet requiert Python 2.7.
+Ce paquet requiert [Python 2.7](https://www.python.org/downloads/) .
 
 Plateformes supportées :
 - distribution GNU/Linux (en particulier Debian and Ubuntu) ;
@@ -39,13 +39,19 @@ Nous recommandons l'utilisation d'un [environnement virtuel](https://virtualenv.
 Pour installer Pew, lancez une fenêtre de terminal et suivez ces instructions : 
 
 ```sh
+Python -V # Python 2.7.9 ou mieux devrait être installé sur votre ordinateur.
+# Si non, téléchargez-le sur http://www.python.org.
+```
+
+```sh
 pip install --upgrade pip
-pip install pew  # répondez "Y" à la question sur la modification du fichier de configuration de votre shell
+pip install pew
 ```
 Créez un nouveau _virtualenv_ nommé **openfisca** et configurez-le avec python2.7 :
 
 ```sh
 pew new openfisca --python=python2.7
+# répondez "Y" à la question sur la modification du fichier de configuration de votre shell
 ```
 
 Le  _virtualenv_  **openfisca** sera alors activé, c'est-à-dire que les commandes suivantes s'exécuteront directement dans l'environnement virtuel.
@@ -82,7 +88,7 @@ Installez OpenFisca-France :
 ```sh
 pip install openfisca-france
 ```
-
+Félicitations :tada: OpenFisca-France est prêt à être utilisé !
 #### Prochaines étapes
 
 - Apprenez à utiliser OpenFisca avec nos [tutoriels](https://doc.openfisca.fr/getting-started.html) (en anglais).
@@ -132,7 +138,7 @@ Vous pouvez vous assurer que votre installation s'est bien passée en exécutant
 pip install -e ".[test]"
 make test #Les test mettent environ 30 minutes pour s'exécuter.
 ```
-OpenFisca-France est prêt à être utilisé !
+:tada: OpenFisca-France est prêt à être utilisé !
 
 #### Prochaines étapes
 
@@ -164,9 +170,10 @@ openfisca-serve --port 2000
 Testez votre installation en requêtant la commande suivante :
 
 ```sh
-curl "http://localhost:2000/api/1/swagger"
+curl "http://localhost:2000/api/2/formula/2017-02/cout_du_travail?salaire_de_base=2300"
 ```
 
+:tada: Vous servez OpenFisca-France via l'API Web OpenFisca !
 Pour en savoir plus, explorez _[OpenFisca Web API documentation](https://doc.openfisca.fr/openfisca-web-api/index.html)_ (en anglais).
 
 ## Stratégie de versionnement
