@@ -150,7 +150,7 @@ nosetests tests/test_basics.py # Ces test peuvent prendre jusqu'à 60 secondes.
 
 #### Prochaines étapes
 
-- Pour écrire une nouvelle législation, lisez _[Coding the Legislation](https://doc.openfisca.fr/coding-the-legislation/index.html)_ (en anglais).
+- Pour enrichir ou faire évoluer la législation d'OpenFisca-France, lisez _[Coding the Legislation](https://doc.openfisca.fr/coding-the-legislation/index.html)_ (en anglais).
 - Pour contribuer au code, lisez le _[Contribution Guidebook](https://doc.openfisca.fr/contribute/index.html)_ (en anglais).
 
 ## Servez OpenFisca-France avec l'API Web OpenFisca
