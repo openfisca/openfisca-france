@@ -12,15 +12,15 @@ OpenFisca is a versatile microsimulation free software. This repository contains
 
 France met à disposition une [API Web publique](https://doc.openfisca.fr/openfisca-web-api/endpoints.html) qui ne demande aucune installation.
 Utilisez l'API publique si vous souhaitez :
-- accéder à un paramètre (Ex : [le montant du SMIC horaire brut](https://api-test.openfisca.fr/parameter/cotsoc.gen.smic_h_b) ) ;
-- consulter une formule de calcul (Ex : [le calcul de l'allocations de base des allocations familiales](https://api-test.openfisca.fr/variable/af_base)) ;
+- accéder à un paramètre (Ex : [le montant du SMIC horaire brut](https://api-test.openfisca.fr/parameter/cotsoc.gen.smic_h_b)) ;
+- consulter une formule de calcul (Ex : [le calcul de l'allocation de base des allocations familiales](https://api-test.openfisca.fr/variable/af_base)) ;
 - faire des calculs ponctuels sur une situation (Ex : le calcul du coût du travail).
 
 [L'explorateur de législation](https://legislation.openfisca.fr/) contient la liste des paramètres et variables disponibles.
 
 ## Installation
 
-Ce paquet requiert [Python 2.7](https://www.python.org/downloads/) et [pip](https://pip.pypa.io/en/stable/installing/) .
+Ce paquet requiert [Python 2.7](https://www.python.org/downloads/) et [pip](https://pip.pypa.io/en/stable/installing/).
 
 Plateformes supportées :
 - distributions GNU/Linux (en particulier Debian and Ubuntu) ;
@@ -31,15 +31,15 @@ Pour les autres OS : si vous pouvez exécuter Python et Numpy, l'installation d'
 
 ### Installez un environnement virtuel avec Pew
 
-Nous recommandons l'utilisation d'un [environnement virtuel](https://virtualenv.pypa.io/en/stable/) ("_virtualenv_") avec un gestionnaire de _virtualenv_ tel que [pew](https://github.com/berdario/pew).
+Nous recommandons l'utilisation d'un [environnement virtuel](https://virtualenv.pypa.io/en/stable/) (_virtualenv_) avec un gestionnaire de _virtualenv_ tel que [Pew](https://github.com/berdario/pew).
 
 - Un _[virtualenv](https://virtualenv.pypa.io/en/stable/)_ crée un environnement pour les besoins spécifiques du projet sur lequel vous travaillez.
-- Un gestionnaire de _virtualenv_, tel que [pew](https://github.com/berdario/pew), vous permet de facilement créer, supprimer et naviguer entre différents projets.
+- Un gestionnaire de _virtualenv_, tel que [Pew](https://github.com/berdario/pew), vous permet de facilement créer, supprimer et naviguer entre différents projets.
 
 Pour installer Pew, lancez une fenêtre de terminal et suivez ces instructions : 
 
 ```sh
-python -V # Python 2.7.9 ou plus récent devrait être installé sur votre ordinateur.
+python --version # Python 2.7.9 ou plus récent devrait être installé sur votre ordinateur.
 # Si non, téléchargez-le sur http://www.python.org et téléchargez pip.
 ```
 
@@ -64,9 +64,9 @@ Informations complémentaires :
 - sortez du _virtualenv_ en tapant `exit` (or Ctrl-D) ;
 - re-rentrez en tapant `pew workon openfisca` dans votre terminal.
 
-Bravo :tada: Vous êtes prêt à installer OpenFisca-France !
+Bravo :tada: Vous êtes prêt·e à installer OpenFisca-France !
 
-Nous proposons 2 procédures d'installation. Choisissez l'installation A ou B ci-dessous en fonction de l'usage que vous souhaitez faire d'OpenFisca-France.
+Nous proposons deux procédures d'installation. Choisissez l'installation A ou B ci-dessous en fonction de l'usage que vous souhaitez faire d'OpenFisca-France.
 
 ### A. Installation minimale (pip install)
 
@@ -104,9 +104,9 @@ Félicitations :tada: OpenFisca-France est prêt à être utilisé !
 - Hébergez et servez votre instance d'OpenFisca-France avec l'[API Web OpenFisca](#servez-openfisca-france-avec-lapi-web-openfisca).
 
 En fonction de vos projets, vous pourriez bénéficier de l'installation des paquets suivants dans votre _virtualenv_ :
-- pour installer une extension or écrire une législation au dessus d'OpenFisca France, consultez la [documentation sur les extensions](https://doc.openfisca.fr/contribute/extensions.html) (en anglais);
-- pour représenter graphiquement vos résultats, essayez la librairie [matplotlib](http://matplotlib.org/) ;
-- pour gérer vos données, découvrez la librairie [pandas](http://pandas.pydata.org/).
+- pour installer une extension ou écrire une législation au-dessus d'OpenFisca-France, consultez la [documentation sur les extensions](https://doc.openfisca.fr/contribute/extensions.html) (en anglais) ;
+- pour représenter graphiquement vos résultats, essayez la bibliothèque [matplotlib](http://matplotlib.org/) ;
+- pour gérer vos données, découvrez la bibliothèque [pandas](http://pandas.pydata.org/).
 
 ### B. Installation avancée (Git Clone)
 
@@ -186,7 +186,7 @@ Pour en savoir plus, explorez _[OpenFisca Web API documentation](https://doc.ope
 
 ## Stratégie de versionnement
 
-Le code d'OpenFisca-France est versionné de manière continue et automatique. Ainsi, à chaque fois que le code de la législation évolue sur la branche principale `master`, une nouvelle version est publiée.
+Le code d'OpenFisca-France est déployé de manière continue et automatique. Ainsi, à chaque fois que le code de la législation évolue sur la branche principale `master`, une nouvelle version est publiée.
 
 De nouvelles versions sont donc publiées très régulièrement. Cependant, la différence entre deux versions consécutives étant réduite, les efforts d'adaptation pour passer de l'une à l'autre sont en général très limités.
 
