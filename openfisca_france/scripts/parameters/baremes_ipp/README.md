@@ -47,6 +47,8 @@ Une fois le script exécuté, le contributeur voit apparaître un *diff* dans *g
 
 ### Sur le serveur OpenFisca
 
+> **Vous devez avoir les droits d'accès en `ssh` au serveur `openfisca.fr` pour pouvoir exécuter l'import en suivant cette procédure**
+
 Se connecter au serveur OpenFisca :
 
 ```sh
@@ -68,7 +70,11 @@ git checkout master
 > L'argument `--ref-ipp` permet de spécifier une version spécifique des [fichiers `XLSX` publiés par l'IPP](https://framagit.org/french-tax-and-benefit-tables/ipp-tax-and-benefit-tables-xlsx/repository/archive.zip) à utiliser.
 > La dernière version de ces fichiers compatible avec le script d'import est `2c6936d6`. Pour utiliser les fichiers les plus récents, retirer le paramètre `--ref-ipp`.
 
-Une fois le script exécuté, une branche `update-baremes-ipp-YYYY-MM-DD-HH-MM` (par exemple `update-baremes-ipp-2017-06-14-15-30` si le script est exécuté le 14 juin 2017 à 15h30) est publiée sur ce dépôt. Le contributeur peut alors éditer le code sur cette branche, et ouvrir une pull request.
+Une fois le script exécuté, une branche `update-baremes-ipp-YYYY-MM-DD-HH-MM` est publiée sur ce dépôt.
+
+>Exemple :  `update-baremes-ipp-2017-06-14-15-30` si le script est exécuté le 14 juin 2017 à 15h30
+
+ Le contributeur peut alors éditer le code sur cette branche, et ouvrir une pull request.
 
 ## Étapes de la transformation
 
@@ -76,7 +82,7 @@ Une fois le script exécuté, une branche `update-baremes-ipp-YYYY-MM-DD-HH-MM` 
 
 Le script [`convert_ipp_xlsx_to_openfisca_xml.py`](./convert_ipp_xlsx_to_openfisca_xml.py) prend en charge la conversion de XLSX vers XML.
 
-Ce script génère un nouveau répertoire dans `/tmp` à chaque exécution, dont une partie du nom est aléatoire. Ce répertoire n'est pas effacé par le script.
+Ce script génère un nouveau répertoire dans `/tmp` à chaque exécution, dont une partie du nom est aléatoire.
 
 Le nom du répertoire où sont créés les fichiers `XML` issus de la conversion est visible dans les logs du script. Par exemple :
 
@@ -90,10 +96,11 @@ INFO:convert_ipp_xlsx_to_openfisca_xml:XML files written to '/tmp/baremes-ipp-v3
 
 Le script [`merge_ipp_xml_files_with_openfisca_parameters.py`](./merge_ipp_xml_files_with_openfisca_parameters.py) fusionne les fichiers XML produits depuis les fichiers XLSX de l'IPP avec les fichiers XML existants d'OpenFisca-France :
 
-Par exemple, si le dossier temporaire qui contient les `XML` produits par le script de conversion précédent est `/tmp/baremes-ipp-v3SAEz/xml`, exécuter :
-```sh
-./openfisca_france/scripts/parameters/baremes_ipp/merge_ipp_xml_files_with_openfisca_parameters.py /tmp/baremes-ipp-v3SAEz/xml 
-```
+>Exemple : si le dossier temporaire qui contient les `XML` produits par le script de conversion précédent est `/tmp/baremes-ipp-v3SAEz/xml`, exécuter :
+>
+>```sh
+>./openfisca_france/scripts/parameters/baremes_ipp/merge_ipp_xml_files_with_openfisca_parameters.py /tmp/baremes-ipp-v3SAEz/xml 
+>```
 
 Plus précisément, il réécrit les fichiers de paramètres d'OpenFisca-France en conservant leur structure, tout en remplaçant les valeurs par celles provenant de l'IPP. 
 
