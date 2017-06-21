@@ -137,7 +137,7 @@ Clonez OpenFisca-France sur votre machine :
 ```sh
 git clone https://github.com/openfisca/openfisca-france.git
 cd openfisca-france
-pip install -e '.'
+pip install -e .
 ```
 
 Vous pouvez vous assurer que votre installation s'est bien passée en exécutant :
@@ -163,7 +163,7 @@ Pour ce faire, installez l'API Web OpenFisca :
     ```sh
     pip install 'openfisca-france[api]'
     ```
-- si vous avez installé OpenFisca-France avec git clone:
+- si vous avez installé OpenFisca-France avec git clone, dans le répertoire openfisca-france, exécutez la commande suivante :
 
     ```sh
     pip install -e '.[api]'
@@ -179,6 +179,19 @@ Testez votre installation en requêtant la commande suivante :
 
 ```sh
 curl "http://localhost:2000/api/2/formula/2017-02/cout_du_travail?salaire_de_base=2300"
+```
+Vous devriez avoir le resultat suivant :
+```JSON
+{
+    "values":{
+        "cout_du_travail": 3078.4599609375
+     },
+     "params": {
+        "salaire_de_base": 2300.0
+        },
+     "period": ["month", [2017, 2, 1], 1],
+     "apiVersion": "2.1.0"
+ }
 ```
 
 :tada: Vous servez OpenFisca-France via l'API Web OpenFisca !
