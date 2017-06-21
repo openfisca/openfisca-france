@@ -3,18 +3,203 @@
 [![Build Status](https://travis-ci.org/openfisca/openfisca-france.svg?branch=master)](https://travis-ci.org/openfisca/openfisca-france)
 
 ## [EN] Introduction
-OpenFisca is a versatile microsimulation free software. This repository contains the OpenFisca model of the French tax and benefit system. Therefore, the working language here is French. You can however check the [general OpenFisca documentation](https://doc.openfisca.fr/) in English !
+OpenFisca is a versatile microsimulation free software. This repository contains the OpenFisca model of the French tax and benefit system. Therefore, the working language here is French. You can however check the [general OpenFisca documentation](https://doc.openfisca.fr/) in English!
 
 ## [FR] Introduction
 [OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation du système social et fiscal français. Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](https://doc.openfisca.fr/).
 
-## Prérequis
+## Interroger OpenFisca-France (sans installation)
 
-Ce paquet nécessite Python 2.7.
+France met à disposition une [API Web publique](https://doc.openfisca.fr/openfisca-web-api/endpoints.html) qui ne demande aucune installation.
+Utilisez l'API publique si vous souhaitez :
+- accéder à un paramètre (Ex : [le montant du SMIC horaire brut](https://api-test.openfisca.fr/parameter/cotsoc.gen.smic_h_b)) ;
+- consulter une formule de calcul (Ex : [le calcul de l'allocation de base des allocations familiales](https://api-test.openfisca.fr/variable/af_base)) ;
+- faire des calculs ponctuels sur une situation (Ex : le calcul du coût du travail).
+
+[L'explorateur de législation](https://legislation.openfisca.fr/) contient la liste des paramètres et variables disponibles.
+
+## Installation
+
+Ce paquet requiert [Python 2.7](https://www.python.org/downloads/) et [pip](https://pip.pypa.io/en/stable/installing/).
+
+Plateformes supportées :
+- distributions GNU/Linux (en particulier Debian and Ubuntu) ;
+- Mac OS X ;
+- Windows (nous recommandons d'utiliser [ConEmu](https://conemu.github.io/) à la place de la console par défaut) ; 
+
+Pour les autres OS : si vous pouvez exécuter Python et Numpy, l'installation d'OpenFisca devrait fonctionner.
+
+### Installez un environnement virtuel avec Pew
+
+Nous recommandons l'utilisation d'un [environnement virtuel](https://virtualenv.pypa.io/en/stable/) (_virtualenv_) avec un gestionnaire de _virtualenv_ tel que [Pew](https://github.com/berdario/pew).
+
+- Un _[virtualenv](https://virtualenv.pypa.io/en/stable/)_ crée un environnement pour les besoins spécifiques du projet sur lequel vous travaillez.
+- Un gestionnaire de _virtualenv_, tel que [Pew](https://github.com/berdario/pew), vous permet de facilement créer, supprimer et naviguer entre différents projets.
+
+Pour installer Pew, lancez une fenêtre de terminal et suivez ces instructions : 
+
+```sh
+python --version # Python 2.7.9 ou plus récent devrait être installé sur votre ordinateur.
+# Si non, téléchargez-le sur http://www.python.org et téléchargez pip.
+```
+
+```sh
+pip install --upgrade pip
+pip install pew
+```
+Créez un nouveau _virtualenv_ nommé **openfisca** et configurez-le avec python2.7 :
+
+```sh
+pew new openfisca --python=python2.7
+# Si demandé, répondez "Y" à la question sur la modification du fichier de configuration de votre shell
+```
+Le  _virtualenv_  **openfisca** sera alors activé, c'est-à-dire que les commandes suivantes s'exécuteront directement dans l'environnement virtuel. Vous verrez dans votre terminal :
+
+```sh
+Installing setuptools, pip, wheel...done.
+Launching subshell in virtual environment. Type 'exit' or 'Ctrl+D' to return.
+```
+
+Informations complémentaires :
+- sortez du _virtualenv_ en tapant `exit` (or Ctrl-D) ;
+- re-rentrez en tapant `pew workon openfisca` dans votre terminal.
+
+Bravo :tada: Vous êtes prêt·e à installer OpenFisca-France !
+
+Nous proposons deux procédures d'installation. Choisissez l'installation A ou B ci-dessous en fonction de l'usage que vous souhaitez faire d'OpenFisca-France.
+
+### A. Installation minimale (pip install)
+
+Suivez cette installation si vous souhaitez :
+- procéder à des calculs sur une large population ;
+- créer des simulations fiscales ;
+- écrire une extension au-dessus de la législation française (exemple : les extensions de [Paris](https://github.com/sgmap/openfisca-paris) et [Rennes](https://github.com/sgmap/openfisca-rennesmetropole) ;
+- servir OpenFisca-France avec l'API Web OpenFisca.
+
+Pour pouvoir modifier OpenFisca-France, consultez l'[Installation avancée](#b-installation-avancée-git-clone).
+
+#### Installer OpenFisca-France avec pip install
+
+Dans votre _virtualenv_, vérifiez les pré-requis :
+
+```sh
+python --version  # Devrait afficher "Python 2.7.xx".
+#Si non, vérifiez que vous passez --python=python2.7 lors de la création de votre environnement virtuel.
+```
+
+```sh
+pip --version  # Devrait afficher au moins 9.0.x
+#Si non, exécutez "pip install --upgrade pip".
+```
+Installez OpenFisca-France :
+
+```sh
+pip install openfisca-france
+```
+Félicitations :tada: OpenFisca-France est prêt à être utilisé !
+
+#### Prochaines étapes
+
+- Apprenez à utiliser OpenFisca avec nos [tutoriels](https://doc.openfisca.fr/getting-started.html) (en anglais).
+- Hébergez et servez votre instance d'OpenFisca-France avec l'[API Web OpenFisca](#servez-openfisca-france-avec-lapi-web-openfisca).
+
+En fonction de vos projets, vous pourriez bénéficier de l'installation des paquets suivants dans votre _virtualenv_ :
+- pour installer une extension ou écrire une législation au-dessus d'OpenFisca-France, consultez la [documentation sur les extensions](https://doc.openfisca.fr/contribute/extensions.html) (en anglais) ;
+- pour représenter graphiquement vos résultats, essayez la bibliothèque [matplotlib](http://matplotlib.org/) ;
+- pour gérer vos données, découvrez la bibliothèque [pandas](http://pandas.pydata.org/).
+
+### B. Installation avancée (Git Clone)
+
+Suivez cette installation si vous souhaitez :
+- enrichir ou modifier la législation d'OpenFisca-France ;
+- contribuer au code source d'OpenFisca-France.
+
+#### Cloner OpenFisca-France avec Git
+
+Premièrement, assurez-vous que [Git](https://www.git-scm.com/) est bien installé sur votre machine.
+
+Dans votre _virtualenv_, assurez-vous que vous êtes dans le répertoire où vous souhaitez cloner OpenFisca-France.
+
+Vérifiez les pré-requis :
+
+```sh
+python --version  # Devrait afficher "Python 2.7.xx".
+#Si non, vérifiez que vous passez --python=python2.7 lors de la création de votre environnement virtuel.
+```
+
+```sh
+pip --version  # Devrait afficher au moins 9.0.
+#Si non, exécutez "pip install --upgrade pip".
+```
+
+Clonez OpenFisca-France sur votre machine : 
+
+```sh
+git clone https://github.com/openfisca/openfisca-france.git
+cd openfisca-france
+pip install -e .
+```
+
+Vous pouvez vous assurer que votre installation s'est bien passée en exécutant :
+
+```sh
+pip install -e ".[test]"
+nosetests tests/test_basics.py # Ces test peuvent prendre jusqu'à 60 secondes.
+```
+:tada: OpenFisca-France est prêt à être utilisé !
+
+#### Prochaines étapes
+
+- Pour enrichir ou faire évoluer la législation d'OpenFisca-France, lisez _[Coding the Legislation](https://doc.openfisca.fr/coding-the-legislation/index.html)_ (en anglais).
+- Pour contribuer au code, lisez le _[Contribution Guidebook](https://doc.openfisca.fr/contribute/index.html)_ (en anglais).
+
+## Servez OpenFisca-France avec l'API Web OpenFisca
+
+Si vous développez une application web, vous pouvez brancher OpenFisca-France à l'API Web OpenFisca.
+
+Pour ce faire, installez l'API Web OpenFisca :
+
+- si vous avez installé OpenFisca-France avec pip install : 
+    ```sh
+    pip install 'openfisca-france[api]'
+    ```
+- si vous avez installé OpenFisca-France avec git clone, dans le répertoire openfisca-france, exécutez la commande suivante :
+
+    ```sh
+    pip install -e '.[api]'
+    ```
+
+Puis servez l'API Web OpenFisca localement :
+
+```sh
+openfisca-serve --port 2000
+```
+
+Testez votre installation en requêtant la commande suivante :
+
+```sh
+curl "http://localhost:2000/api/2/formula/2017-02/cout_du_travail?salaire_de_base=2300"
+```
+Vous devriez avoir le resultat suivant :
+```JSON
+{
+    "values":{
+        "cout_du_travail": 3078.4599609375
+     },
+     "params": {
+        "salaire_de_base": 2300.0
+        },
+     "period": ["month", [2017, 2, 1], 1],
+     "apiVersion": "2.1.0"
+ }
+```
+
+:tada: Vous servez OpenFisca-France via l'API Web OpenFisca !
+Pour en savoir plus, explorez _[OpenFisca Web API documentation](https://doc.openfisca.fr/openfisca-web-api/index.html)_ (en anglais).
 
 ## Stratégie de versionnement
 
-Le code d'Openfisca-France est versionné de manière continue et automatique. Ainsi, à chaque fois que le code de la législation évolue sur la branche principale `master`, une nouvelle version est publiée.
+Le code d'OpenFisca-France est déployé de manière continue et automatique. Ainsi, à chaque fois que le code de la législation évolue sur la branche principale `master`, une nouvelle version est publiée.
 
 De nouvelles versions sont donc publiées très régulièrement. Cependant, la différence entre deux versions consécutives étant réduite, les efforts d'adaptation pour passer de l'une à l'autre sont en général très limités.
 
