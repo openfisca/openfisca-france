@@ -20,7 +20,7 @@ Utilisez l'API publique si vous souhaitez :
 
 ## Installation
 
-Ce paquet requiert [Python 2.7](https://www.python.org/downloads/) .
+Ce paquet requiert [Python 2.7](https://www.python.org/downloads/) et [pip](https://pip.pypa.io/en/stable/installing/) .
 
 Plateformes supportées :
 - distribution GNU/Linux (en particulier Debian and Ubuntu) ;
@@ -39,8 +39,8 @@ Nous recommandons l'utilisation d'un [environnement virtuel](https://virtualenv.
 Pour installer Pew, lancez une fenêtre de terminal et suivez ces instructions : 
 
 ```sh
-Python -V # Python 2.7.9 ou mieux devrait être installé sur votre ordinateur.
-# Si non, téléchargez-le sur http://www.python.org.
+python -V # Python 2.7.9 ou mieux devrait être installé sur votre ordinateur.
+# Si non, téléchargez-le sur http://www.python.org et téléchargez pip.
 ```
 
 ```sh
@@ -51,14 +51,23 @@ Créez un nouveau _virtualenv_ nommé **openfisca** et configurez-le avec python
 
 ```sh
 pew new openfisca --python=python2.7
-# répondez "Y" à la question sur la modification du fichier de configuration de votre shell
+# Si demandé, répondez "Y" à la question sur la modification du fichier de configuration de votre shell
 ```
+Le  _virtualenv_  **openfisca** sera alors activé, c'est-à-dire que les commandes suivantes s'exécuteront directement dans l'environnement virtuel. Vous verrez dans votre terminal :
 
-Le  _virtualenv_  **openfisca** sera alors activé, c'est-à-dire que les commandes suivantes s'exécuteront directement dans l'environnement virtuel.
+```sh
+Installing setuptools, pip, wheel...done.
+Launching subshell in virtual environment. Type 'exit' or 'Ctrl+D' to return.
+openfiscabash-3.2$ 
+```
 
 Informations complémentaires :
 - sortez du _virtualenv_ en tapant `exit` (or Ctrl-D) ;
 - re-rentrez en tapant `pew workon openfisca` dans votre terminal.
+
+Bravo :tada: Vous êtes prêts à installer OpenFisca-France !
+
+Nous proposons 2 procédures d'installation. Choisissez l'installation A ou B ci-dessous en fonction de l'usage que vous souhaitez faire d'OpenFiscaFrance.
 
 ### A. Installation minimale (pip install)
 
@@ -80,7 +89,7 @@ python --version  # Devrait afficher "Python 2.7.xx".
 ```
 
 ```sh
-pip --version  # Devrait afficher au moins 9.0.
+pip --version  # Devrait afficher au moins 9.0.x
 #Si non, exécutez "pip install --upgrade pip".
 ```
 Installez OpenFisca-France :
