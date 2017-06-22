@@ -61,6 +61,9 @@
     <VALUE deb="2005-01-01" valeur="0.15"/>
   </CODE>
   <CODE code="plafond_base" description="Plafond annuel pour une personne seule" format="float" origin="openfisca" type="monetary">
+    <VALUE deb="2017-04-01" valeur="8723"/>
+    <VALUE deb="2016-04-01" valeur="8653.16"/>
+    <VALUE deb="2015-07-01" valeur="8644.52"/>
     <VALUE deb="2014-07-01" valeur="8644.52"/>
     <VALUE deb="2013-07-01" valeur="8592.96"/>
     <VALUE deb="2012-07-01" valeur="7934.90"/>
