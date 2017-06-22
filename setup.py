@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '18.5.1',
+    version = '18.5.2',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -31,6 +31,7 @@ setup(
             ],
         'baremes_ipp': [
             'xlrd >= 1.0.0',
+            'lxml >= 3.8.0, < 4.0',
             ],
         'inversion_revenus': [
             'scipy >= 0.17',

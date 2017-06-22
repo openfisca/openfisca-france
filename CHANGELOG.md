@@ -1,5 +1,13 @@
 # Changelog
 
+### 18.5.2 - [#778](https://github.com/openfisca/openfisca-france/pull/778)
+
+* Amélioration technique
+* Détails :
+  - Ajoute un script de reformatage des fichiers de paramètres XML. Ce reformatage est utile pour rendre plus lisible le diff lors des import des paramètres de l'IPP.
+  - Reformate les paramètres XML en utilisant le script décrit plus haut.
+  - Ajoute un script de merge des paramètres XML avec les paramètres de l'IPP (Institut des Politiques Publiques). Ce script réécrit les paramètres XML en laissant un diff le plus lisible possible.
+
 ### 18.5.1 - [#780](https://github.com/openfisca/openfisca-france/pull/780)
 
 * Amélioration technique
