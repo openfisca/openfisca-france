@@ -2849,21 +2849,21 @@ class ppe_brute(Variable):
     #                           (cond2 & (base <= ppe.seuil2)) * (base * ppe.taux1) +
     #                           (cond2 & (base > ppe.seuil2) & (base <= ppe.seuil3)) * ((ppe.seuil3 - base) * ppe.taux2) +
     #                           (cond2 & (base > ppe.seuil4) & (base <= ppe.seuil5)) * (ppe.seuil5 - base) * ppe.taux3)
-            return (1 / ppe_coef) * (
+            return (
                 (base <= ppe.seuil2) * (base) * ppe.taux1 +
                 (base > ppe.seuil2) * (base <= ppe.seuil3) * (ppe.seuil3 - base) * ppe.taux2 +
                 ligne2 * (base > ppe.seuil4) * (base <= ppe.seuil5) * (ppe.seuil5 - base) * ppe.taux3
                 )
 
         def ppe_bar2(base):
-            return (1 / ppe_coef) * (
+            return (
                 (base <= ppe.seuil2) * (base) * ppe.taux1
                 + ((base > ppe.seuil2) & (base <= ppe.seuil3)) * (ppe.seuil3 - base) * ppe.taux2)
 
         # calcul des primes individuelles.
 
-        ppev = eliv * ppe_bar1(basev)
-        ppec = elic * ppe_bar1(basec)
+        ppev = eliv * (1 / ppe_coef) * ppe_bar1(basev)
+        ppec = elic * (1 / ppe_coef) * ppe_bar1(basec)
 
         # Primes de monoactivité
         ppe_monact_vous = (eliv & ligne2 & (basevi >= ppe.seuil1) & (basev <= ppe.seuil4)) * ppe.monact
@@ -2889,7 +2889,7 @@ class ppe_brute(Variable):
         ppe_vous = ppe_elig * (ppev * coef(coef_tpv) + ppe_monact_vous)
         ppe_conj = ppe_elig * (ppec * coef(coef_tpc) + ppe_monact_conj)
 
-        ppe_pac = ppe_elig * foyer_fiscal.sum(
+        ppe_pac = ppe_elig * (1 / ppe_coef) * foyer_fiscal.sum(
             eligible_i * ppe_bar2(base_i) * coef(coef_tp_i),
             role = FoyerFiscal.PERSONNE_A_CHARGE)
 
