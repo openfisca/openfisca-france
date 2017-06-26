@@ -320,11 +320,11 @@ class rfr_cd(Variable):
     reference = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        cd_acc75a = simulation.calculate('cd_acc75a', period)
-        cd_doment = simulation.calculate('cd_doment', period)
-        cd_eparet = simulation.calculate('cd_eparet', period)
-        cd_sofipe = simulation.calculate('cd_sofipe', period)
+    def formula(foyer_fiscal, period, parameters):
+        cd_acc75a = foyer_fiscal('cd_acc75a', period)
+        cd_doment = foyer_fiscal('cd_doment', period)
+        cd_eparet = foyer_fiscal('cd_eparet', period)
+        cd_sofipe = foyer_fiscal('cd_sofipe', period)
 
         return cd_acc75a + cd_doment + cd_eparet + cd_sofipe
 
@@ -337,81 +337,81 @@ class cd1(Variable):
     definition_period = YEAR
     end = '2014-12-31'
 
-    def formula_2002_01_01(self, simulation, period):
+    def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2002
         '''
-        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
-        cd_acc75a = simulation.calculate('cd_acc75a', period)
-        pertes_capital_societes_nouvelles = simulation.calculate('pertes_capital_societes_nouvelles', period)
-        cd_deddiv = simulation.calculate('cd_deddiv', period)
-        cd_doment = simulation.calculate('cd_doment', period)
+        pensions_alimentaires_deduites = foyer_fiscal('pensions_alimentaires_deduites', period)
+        cd_acc75a = foyer_fiscal('cd_acc75a', period)
+        pertes_capital_societes_nouvelles = foyer_fiscal('pertes_capital_societes_nouvelles', period)
+        cd_deddiv = foyer_fiscal('cd_deddiv', period)
+        cd_doment = foyer_fiscal('cd_doment', period)
 
         niches1 = pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles + cd_deddiv + cd_doment
         return niches1
 
-    def formula_2004_01_01(self, simulation, period):
+    def formula_2004_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2004
         '''
-        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
-        cd_acc75a = simulation.calculate('cd_acc75a', period)
-        pertes_capital_societes_nouvelles = simulation.calculate('pertes_capital_societes_nouvelles', period)
-        cd_deddiv = simulation.calculate('cd_deddiv', period)
-        cd_doment = simulation.calculate('cd_doment', period)
-        cd_eparet = simulation.calculate('cd_eparet', period)
+        pensions_alimentaires_deduites = foyer_fiscal('pensions_alimentaires_deduites', period)
+        cd_acc75a = foyer_fiscal('cd_acc75a', period)
+        pertes_capital_societes_nouvelles = foyer_fiscal('pertes_capital_societes_nouvelles', period)
+        cd_deddiv = foyer_fiscal('cd_deddiv', period)
+        cd_doment = foyer_fiscal('cd_doment', period)
+        cd_eparet = foyer_fiscal('cd_eparet', period)
 
         niches1 = (pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles +
                    cd_deddiv + cd_doment + cd_eparet)
         return niches1
 
-    def formula_2006_01_01(self, simulation, period):
+    def formula_2006_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2006
         '''
-        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
-        cd_acc75a = simulation.calculate('cd_acc75a', period)
-        pertes_capital_societes_nouvelles = simulation.calculate('pertes_capital_societes_nouvelles', period)
-        cd_deddiv = simulation.calculate('cd_deddiv', period)
-        cd_eparet = simulation.calculate('cd_eparet', period)
+        pensions_alimentaires_deduites = foyer_fiscal('pensions_alimentaires_deduites', period)
+        cd_acc75a = foyer_fiscal('cd_acc75a', period)
+        pertes_capital_societes_nouvelles = foyer_fiscal('pertes_capital_societes_nouvelles', period)
+        cd_deddiv = foyer_fiscal('cd_deddiv', period)
+        cd_eparet = foyer_fiscal('cd_eparet', period)
 
         niches1 = pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles + cd_deddiv + cd_eparet
         return niches1
 
-    def formula_2007_01_01(self, simulation, period):
+    def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2007
         '''
-        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
-        cd_acc75a = simulation.calculate('cd_acc75a', period)
-        cd_deddiv = simulation.calculate('cd_deddiv', period)
-        cd_eparet = simulation.calculate('cd_eparet', period)
+        pensions_alimentaires_deduites = foyer_fiscal('pensions_alimentaires_deduites', period)
+        cd_acc75a = foyer_fiscal('cd_acc75a', period)
+        cd_deddiv = foyer_fiscal('cd_deddiv', period)
+        cd_eparet = foyer_fiscal('cd_eparet', period)
 
         niches1 = pensions_alimentaires_deduites + cd_acc75a + cd_deddiv + cd_eparet
         return niches1
 
-    def formula_2009_01_01(self, simulation, period):
+    def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2009
         '''
-        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
-        cd_acc75a = simulation.calculate('cd_acc75a', period)
-        cd_deddiv = simulation.calculate('cd_deddiv', period)
-        cd_eparet = simulation.calculate('cd_eparet', period)
-        grosses_reparations = simulation.calculate('grosses_reparations', period)
+        pensions_alimentaires_deduites = foyer_fiscal('pensions_alimentaires_deduites', period)
+        cd_acc75a = foyer_fiscal('cd_acc75a', period)
+        cd_deddiv = foyer_fiscal('cd_deddiv', period)
+        cd_eparet = foyer_fiscal('cd_eparet', period)
+        grosses_reparations = foyer_fiscal('grosses_reparations', period)
 
         niches1 = pensions_alimentaires_deduites + cd_acc75a + cd_deddiv + cd_eparet + grosses_reparations
         return niches1
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la liste des charges déductibles avant rbg_int pour 2014
         '''
-        pensions_alimentaires_deduites = simulation.calculate('pensions_alimentaires_deduites', period)
-        cd_acc75a = simulation.calculate('cd_acc75a', period)
-        cd_deddiv = simulation.calculate('cd_deddiv', period)
-        cd_eparet = simulation.calculate('cd_eparet', period)
-        grosses_reparations = simulation.calculate('grosses_reparations', period)
+        pensions_alimentaires_deduites = foyer_fiscal('pensions_alimentaires_deduites', period)
+        cd_acc75a = foyer_fiscal('cd_acc75a', period)
+        cd_deddiv = foyer_fiscal('cd_deddiv', period)
+        cd_eparet = foyer_fiscal('cd_eparet', period)
+        grosses_reparations = foyer_fiscal('grosses_reparations', period)
 
         niches1 = pensions_alimentaires_deduites + cd_acc75a + cd_deddiv + cd_eparet + grosses_reparations
         # log.error("Charges déductibles to be checked because not defined for %s", 2014)
@@ -426,30 +426,30 @@ class cd2(Variable):
     definition_period = YEAR
     end = '2008-12-31'
 
-    def formula_2002_01_01(self, simulation, period):
+    def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
-        cd_sofipe = simulation.calculate('cd_sofipe', period)
-        cinema = simulation.calculate('souscriptions_cinema_audiovisuel', period)
+        cd_sofipe = foyer_fiscal('cd_sofipe', period)
+        cinema = foyer_fiscal('souscriptions_cinema_audiovisuel', period)
 
         niches2 = cd_sofipe + cinema
         return niches2
 
-    def formula_2006_01_01(self, simulation, period):
+    def formula_2006_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
-        cd_sofipe = simulation.calculate('cd_sofipe', period)
+        cd_sofipe = foyer_fiscal('cd_sofipe', period)
 
         niches2 = cd_sofipe
         return niches2
 
-    def formula_2007_01_01(self, simulation, period):
+    def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la liste des charges déductibles à intégrer après le rbg_int
         '''
-        epargne_codeveloppement = simulation.calculate('epargne_codeveloppement', period)
+        epargne_codeveloppement = foyer_fiscal('epargne_codeveloppement', period)
 
         niches2 = epargne_codeveloppement
         return niches2
@@ -461,9 +461,9 @@ class rbg_int(Variable):
     label = u"Revenu brut global intermédiaire"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        rbg = simulation.calculate('rbg', period)
-        cd1 = simulation.calculate('cd1', period)
+    def formula(foyer_fiscal, period, parameters):
+        rbg = foyer_fiscal('rbg', period)
+        cd1 = foyer_fiscal('cd1', period)
 
         return max_(rbg - cd1, 0)
 
@@ -475,9 +475,9 @@ class charges_deduc(Variable):
     reference = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        cd1 = simulation.calculate('cd1', period)
-        cd2 = simulation.calculate('cd2', period)
+    def formula(foyer_fiscal, period, parameters):
+        cd1 = foyer_fiscal('cd1', period)
+        cd2 = foyer_fiscal('cd2', period)
 
         return cd1 + cd2
 
@@ -489,14 +489,14 @@ class pensions_alimentaires_deduites(Variable):
     reference = "http://frederic.anne.free.fr/Cours/ITV.htm"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        f6gi = simulation.calculate('f6gi', period)
-        f6gj = simulation.calculate('f6gj', period)
-        f6gp = simulation.calculate('f6gp', period)
-        f6el = simulation.calculate('f6el', period)
-        f6em = simulation.calculate('f6em', period)
-        f6gu = simulation.calculate('f6gu', period)
-        penalim = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.pensions_alimentaires
+    def formula(foyer_fiscal, period, parameters):
+        f6gi = foyer_fiscal('f6gi', period)
+        f6gj = foyer_fiscal('f6gj', period)
+        f6gp = foyer_fiscal('f6gp', period)
+        f6el = foyer_fiscal('f6el', period)
+        f6em = foyer_fiscal('f6em', period)
+        f6gu = foyer_fiscal('f6gu', period)
+        penalim = parameters(period).impot_revenu.charges_deductibles.pensions_alimentaires
 
         max1 = penalim.plafond
         taux_jgt_2006 = penalim.taux_jgt_2006
@@ -517,10 +517,10 @@ class cd_acc75a(Variable):
     label = u"Frais d’accueil sous votre toit d’une personne de plus de 75 ans"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        f6eu = simulation.calculate('f6eu', period)
-        f6ev = simulation.calculate('f6ev', period)
-        acc75a = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.accueil_personne_agee
+    def formula(foyer_fiscal, period, parameters):
+        f6eu = foyer_fiscal('f6eu', period)
+        f6ev = foyer_fiscal('f6ev', period)
+        acc75a = parameters(period).impot_revenu.charges_deductibles.accueil_personne_agee
         amax = acc75a.plafond * max_(1, f6ev)
         return min_(f6eu, amax)
 
@@ -532,28 +532,28 @@ class pertes_capital_societes_nouvelles(Variable):
     definition_period = YEAR
     end = '2006-12-31'
 
-    def formula_2002_01_01(self, simulation, period):
+    def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
         Pertes en capital consécutives à la souscription au capital de sociétés
         nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
         complémentaire)
         '''
-        f6cb = simulation.calculate('f6cb', period)
-        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        percap = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
+        f6cb = foyer_fiscal('f6cb', period)
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        percap = parameters(period).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
         plafond_cb = percap.plafond_cb * (1 + maries_ou_pacses)
         return min_(f6cb, plafond_cb)
 
-    def formula_2003_01_01(self, simulation, period):
+    def formula_2003_01_01(foyer_fiscal, period, parameters):
         '''
         Pertes en capital consécutives à la souscription au capital de sociétés
         nouvelles ou de sociétés en difficulté (cases CB et DA de la déclaration
         complémentaire)
         '''
-        f6cb = simulation.calculate('f6cb', period)
-        f6da = simulation.calculate('f6da', period)
-        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        percap = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
+        f6cb = foyer_fiscal('f6cb', period)
+        f6da = foyer_fiscal('f6da', period)
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        percap = parameters(period).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
         plafond_cb = percap.plafond_cb * (1 + maries_ou_pacses)
         plafond_da = percap.plafond_da * (1 + maries_ou_pacses)
         return min_(min_(f6cb, plafond_cb) + min_(f6da, plafond_da), plafond_da)
@@ -565,8 +565,8 @@ class cd_deddiv(Variable):
     label = u"Déductions diverses"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        f6dd = simulation.calculate('f6dd', period)
+    def formula(foyer_fiscal, period, parameters):
+        f6dd = foyer_fiscal('f6dd', period)
 
         return f6dd
 
@@ -578,12 +578,12 @@ class cd_doment(Variable):
     end = '2005-12-31'
     definition_period = YEAR
 
-    def formula_2002(self, simulation, period):
+    def formula_2002(foyer_fiscal, period, parameters):
         '''
         Investissements DOM-TOM dans le cadre d’une entreprise (case EH de la
         déclaration n° 2042 complémentaire)
         '''
-        f6eh = simulation.calculate('f6eh', period)
+        f6eh = foyer_fiscal('f6eh', period)
 
         return f6eh
 
@@ -617,15 +617,15 @@ class cd_sofipe(Variable):
     end = '2006-12-31'
     definition_period = YEAR
 
-    def formula_2002(self, simulation, period):
+    def formula_2002(foyer_fiscal, period, parameters):
         '''
         Souscriptions au capital des SOFIPÊCHE (case CC de la déclaration
         complémentaire)
         '''
-        f6cc = simulation.calculate('f6cc', period)
-        rbg_int = simulation.calculate('rbg_int', period)
-        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        sofipeche = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.sofipeche
+        f6cc = foyer_fiscal('f6cc', period)
+        rbg_int = foyer_fiscal('rbg_int', period)
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        sofipeche = parameters(period).impot_revenu.charges_deductibles.sofipeche
 
         plafond = min_(sofipeche.plafond_pct_rng * rbg_int, sofipeche.plafond * (1 + maries_ou_pacses))
         return min_(f6cc, plafond)
@@ -638,14 +638,14 @@ class souscriptions_cinema_audiovisuel(Variable):
     end = '2005-12-31'
     definition_period = YEAR
 
-    def formula_2002(self, simulation, period):
+    def formula_2002(foyer_fiscal, period, parameters):
         '''
         Souscriptions en faveur du cinéma ou de l’audiovisuel (case AA de la
         déclaration n° 2042 complémentaire)
         '''
-        f6aa = simulation.calculate('f6aa', period)
-        rbg_int = simulation.calculate('rbg_int', period)
-        cinema = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.cinema
+        f6aa = foyer_fiscal('f6aa', period)
+        rbg_int = foyer_fiscal('rbg_int', period)
+        cinema = parameters(period).impot_revenu.charges_deductibles.cinema
 
         max1 = min_(cinema.taux * rbg_int, cinema.max)
         return min_(f6aa, max1)
@@ -658,14 +658,14 @@ class epargne_codeveloppement(Variable):
     end = '2008-12-31'
     definition_period = YEAR
 
-    def formula_2007(self, simulation, period):
+    def formula_2007(foyer_fiscal, period, parameters):
         '''
         Versements sur un compte épargne codéveloppement (case EH de la déclaration
         complémentaire)
         '''
-        f6eh = simulation.calculate('f6eh', period)
-        rbg_int = simulation.calculate('rbg_int', period)
-        ecodev = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.compte_epargne_codev
+        f6eh = foyer_fiscal('f6eh', period)
+        rbg_int = foyer_fiscal('rbg_int', period)
+        ecodev = parameters(period).impot_revenu.charges_deductibles.compte_epargne_codev
 
         plafond = min_(ecodev.plafond_pct_rng * rbg_int, ecodev.plafond)
         return min_(f6eh, plafond)
@@ -677,14 +677,14 @@ class grosses_reparations(Variable):
     label = u"Dépenses de grosses réparations des nus-propriétaires"
     definition_period = YEAR
 
-    def formula_2009(self, simulation, period):
+    def formula_2009(foyer_fiscal, period, parameters):
         '''
         Dépenses de grosses réparations des nus-propriétaires (case 6CB et 6HJ)
         '''
-        f6cb = simulation.calculate('f6cb', period)
-        f6hj = simulation.calculate('f6hj', period)
-        f6hk = simulation.calculate('f6hk', period)
-        f6hl = simulation.calculate('f6hl', period)
-        grorep = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.grosses_reparations
+        f6cb = foyer_fiscal('f6cb', period)
+        f6hj = foyer_fiscal('f6hj', period)
+        f6hk = foyer_fiscal('f6hk', period)
+        f6hl = foyer_fiscal('f6hl', period)
+        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
 
         return min_(f6cb + f6hj + f6hk + f6hl, grorep.plafond)
