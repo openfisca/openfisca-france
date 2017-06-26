@@ -1,5 +1,11 @@
 # Changelog
 
+### 18.5.3 - [#786](https://github.com/openfisca/openfisca-france/pull/786)
+
+* Changement mineur
+* Détails
+  - Répare la réforme `de_net_a_brut`.
+
 ### 18.5.2 - [#778](https://github.com/openfisca/openfisca-france/pull/778)
 
 * Amélioration technique
