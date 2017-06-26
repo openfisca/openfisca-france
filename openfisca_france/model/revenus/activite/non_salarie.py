@@ -1678,13 +1678,13 @@ class travailleur_non_salarie(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    def formula(individu, period, parameters):
         this_year_and_last_year = period.start.offset('first-of', 'year').period('year', 2).offset(-1)
-        tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period) != 0
-        tns_micro_entreprise_chiffre_affaires = simulation.calculate_add('tns_micro_entreprise_chiffre_affaires', this_year_and_last_year) != 0
-        tns_autres_revenus = simulation.calculate_add('tns_autres_revenus', this_year_and_last_year) != 0
-        tns_benefice_exploitant_agricole = simulation.calculate_add('tns_benefice_exploitant_agricole', this_year_and_last_year) != 0
-        tns_autres_revenus_chiffre_affaires = simulation.calculate_add('tns_autres_revenus_chiffre_affaires', this_year_and_last_year) != 0
+        tns_auto_entrepreneur_chiffre_affaires = individu('tns_auto_entrepreneur_chiffre_affaires', period) != 0
+        tns_micro_entreprise_chiffre_affaires = individu('tns_micro_entreprise_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
+        tns_autres_revenus = individu('tns_autres_revenus', this_year_and_last_year, options = [ADD]) != 0
+        tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', this_year_and_last_year, options = [ADD]) != 0
+        tns_autres_revenus_chiffre_affaires = individu('tns_autres_revenus_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
 
         result = (
             tns_auto_entrepreneur_chiffre_affaires + tns_micro_entreprise_chiffre_affaires +
@@ -1712,10 +1712,10 @@ class tns_auto_entrepreneur_benefice(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula_2008_01_01(self, simulation, period):
-        tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
-        tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
-        bareme = simulation.parameters_at(period.start).tns
+    def formula_2008_01_01(individu, period, parameters):
+        tns_auto_entrepreneur_type_activite = individu('tns_auto_entrepreneur_type_activite', period)
+        tns_auto_entrepreneur_chiffre_affaires = individu('tns_auto_entrepreneur_chiffre_affaires', period)
+        bareme = parameters(period).tns
 
         benefice = compute_benefice_auto_entrepreneur_micro_entreprise(
             bareme, tns_auto_entrepreneur_type_activite, tns_auto_entrepreneur_chiffre_affaires)
@@ -1728,10 +1728,10 @@ class tns_micro_entreprise_benefice(Variable):
     entity = Individu
     definition_period = YEAR
 
-    def formula_2008_01_01(self, simulation, period):
-        tns_micro_entreprise_type_activite = simulation.calculate('tns_micro_entreprise_type_activite', period)
-        tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period)
-        bareme = simulation.parameters_at(period.start).tns
+    def formula_2008_01_01(individu, period, parameters):
+        tns_micro_entreprise_type_activite = individu('tns_micro_entreprise_type_activite', period)
+        tns_micro_entreprise_chiffre_affaires = individu('tns_micro_entreprise_chiffre_affaires', period)
+        bareme = parameters(period).tns
 
         benefice = compute_benefice_auto_entrepreneur_micro_entreprise(
             bareme, tns_micro_entreprise_type_activite, tns_micro_entreprise_chiffre_affaires)
@@ -1747,11 +1747,11 @@ class tns_auto_entrepreneur_revenus_net(Variable) :
     entity = Individu
     definition_period = MONTH
 
-    def formula_2008_01_01(self, simulation, period):
-        tns_auto_entrepreneur_benefice = simulation.calculate('tns_auto_entrepreneur_benefice', period)
-        tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
-        tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
-        bareme_cs_ae = simulation.parameters_at(period.start).tns.auto_entrepreneur
+    def formula_2008_01_01(individu, period, parameters):
+        tns_auto_entrepreneur_benefice = individu('tns_auto_entrepreneur_benefice', period)
+        tns_auto_entrepreneur_type_activite = individu('tns_auto_entrepreneur_type_activite', period)
+        tns_auto_entrepreneur_chiffre_affaires = individu('tns_auto_entrepreneur_chiffre_affaires', period)
+        bareme_cs_ae = parameters(period).tns.auto_entrepreneur
         taux_cotisations_sociales_sur_CA = (
             (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.achat_revente) * bareme_cs_ae.achat_revente +
             (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.bic) * bareme_cs_ae.bic +
@@ -1768,9 +1768,9 @@ class tns_micro_entreprise_revenus_net(Variable) :
     entity = Individu
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', period)
-        taux_cotisations_sociales = simulation.parameters_at(period.start).tns.micro_entreprise.cotisations_sociales
+    def formula(individu, period, parameters):
+        tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', period)
+        taux_cotisations_sociales = parameters(period).tns.micro_entreprise.cotisations_sociales
         tns_micro_entreprise_charges_sociales = tns_micro_entreprise_benefice * taux_cotisations_sociales
         revenus = tns_micro_entreprise_benefice - tns_micro_entreprise_charges_sociales
 
