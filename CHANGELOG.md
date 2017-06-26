@@ -1,5 +1,16 @@
 # Changelog
 
+### 18.6.3 - [#787](https://github.com/openfisca/openfisca-france/pull/787)
+
+* Amélioration technique
+* Détails :
+  - Migre les formules situés dans les fichiers suivant vers la syntaxe introduite par OpenFisca-Core 4 :
+    - `prelevements_obligatoires/impot_revenu/credits_impot.py`
+    - `prelevements_obligatoires/impot_revenu/ir.py`
+    - `prelevements_obligatoires/isf.py`
+    - `prelevements_obligatoires/taxe_habitation.py`
+    - `reforms/landais_piketty_saez.py`
+
 ### 18.6.2 - [#794](https://github.com/openfisca/openfisca-france/pull/794)
 
 * Correction d'un crash
