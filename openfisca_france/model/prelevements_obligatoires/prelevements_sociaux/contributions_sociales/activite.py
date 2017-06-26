@@ -20,18 +20,18 @@ class assiette_csg_abattue(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        primes_salaires = simulation.calculate('primes_salaires', period)
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
-        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        # indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
+    def formula(individu, period, parameters):
+        primes_salaires = individu('primes_salaires', period)
+        salaire_de_base = individu('salaire_de_base', period)
+        primes_fonction_publique = individu('primes_fonction_publique', period)
+        # indemnites_journalieres_maladie = individu('indemnites_journalieres_maladie', period)
         # TODO: mettre à part ?
-        indemnite_residence = simulation.calculate('indemnite_residence', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
-        hsup = simulation.calculate('hsup', period)
-        remuneration_principale = simulation.calculate('remuneration_principale', period)
-        stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
-        indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
+        indemnite_residence = individu('indemnite_residence', period)
+        supp_familial_traitement = individu('supp_familial_traitement', period)
+        hsup = individu('hsup', period)
+        remuneration_principale = individu('remuneration_principale', period)
+        stage_gratification_reintegration = individu('stage_gratification_reintegration', period)
+        indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
 
         return (
             + indemnite_fin_contrat
@@ -52,11 +52,11 @@ class assiette_csg_non_abattue(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)
-        complementaire_sante_employeur = simulation.calculate_add('complementaire_sante_employeur', period)
-        prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate_add(
-            'prise_en_charge_employeur_prevoyance_complementaire', period)
+    def formula(individu, period, parameters):
+        prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period)
+        complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
+        prise_en_charge_employeur_prevoyance_complementaire = individu(
+            'prise_en_charge_employeur_prevoyance_complementaire', period, options = [ADD])
 
         # TODO + indemnites_journalieres_maladie,
         return (
@@ -72,12 +72,12 @@ class csg_deductible_salaire(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
-        assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
-        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+    def formula(individu, period, parameters):
+        assiette_csg_abattue = individu('assiette_csg_abattue', period)
+        assiette_csg_non_abattue = individu('assiette_csg_non_abattue', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
 
-        csg = simulation.parameters_at(period.start).prelevements_sociaux.contributions.csg
+        csg = parameters(period).prelevements_sociaux.contributions.csg
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
@@ -94,11 +94,11 @@ class csg_imposable_salaire(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
-        assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
-        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        parameters = simulation.parameters_at(period.start)
+    def formula(individu, period, parameters):
+        assiette_csg_abattue = individu('assiette_csg_abattue', period)
+        assiette_csg_non_abattue = individu('assiette_csg_non_abattue', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
+        parameters = parameters(period)
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,
@@ -117,12 +117,12 @@ class crds_salaire(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
-        assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
-        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
+    def formula(individu, period, parameters):
+        assiette_csg_abattue = individu('assiette_csg_abattue', period)
+        assiette_csg_non_abattue = individu('assiette_csg_non_abattue', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
 
-        law = simulation.parameters_at(period.start)
+        law = parameters(period)
 
         montant_crds = montant_csg_crds(
             law_node = law.prelevements_sociaux.contributions.crds.activite,
@@ -224,14 +224,14 @@ class salaire_net(Variable):
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    def formula(individu, period, parameters):
         '''
         Calcul du salaire net d'après définition INSEE
         net = net de csg et crds
         '''
-        salaire_imposable = simulation.calculate('salaire_imposable', period)
-        crds_salaire = simulation.calculate('crds_salaire', period)
-        csg_imposable_salaire = simulation.calculate('csg_imposable_salaire', period)
+        salaire_imposable = individu('salaire_imposable', period)
+        crds_salaire = individu('crds_salaire', period)
+        csg_imposable_salaire = individu('csg_imposable_salaire', period)
 
         return salaire_imposable + crds_salaire + csg_imposable_salaire
 
@@ -244,9 +244,9 @@ class tehr(Variable):
     calculate_output = calculate_output_divide
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        salaire_de_base = simulation.calculate_add('salaire_de_base', period)  # TODO: check base
-        law = simulation.parameters_at(period.start)
+    def formula(individu, period, parameters):
+        salaire_de_base = individu('salaire_de_base', period, options = [ADD])  # TODO: check base
+        law = parameters(period)
 
         bar = law.cotsoc.tehr
         return -bar.calc(salaire_de_base)
@@ -265,11 +265,11 @@ class rev_microsocial(Variable):
     reference = u"http://www.apce.com/pid6137/regime-micro-social.html"
     definition_period = YEAR
 
-    def formula_2009_01_01(self, simulation, period):
-        assiette_service = simulation.calculate('assiette_service', period)
-        assiette_vente = simulation.calculate('assiette_vente', period)
-        assiette_proflib = simulation.calculate('assiette_proflib', period)
-        _P = simulation.parameters_at(period.start)
+    def formula_2009_01_01(foyer_fiscal, period, parameters):
+        assiette_service = foyer_fiscal('assiette_service', period)
+        assiette_vente = foyer_fiscal('assiette_vente', period)
+        assiette_proflib = foyer_fiscal('assiette_proflib', period)
+        _P = parameters(period)
 
         P = _P.cotsoc.sal.microsocial
         total = assiette_service + assiette_vente + assiette_proflib

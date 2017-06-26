@@ -57,7 +57,7 @@ class indemnites_journalieres(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    def formula(individu, period, parameters):
         ressources = [
             'indemnites_journalieres_maternite',
             'indemnites_journalieres_paternite',
@@ -66,7 +66,7 @@ class indemnites_journalieres(Variable):
             'indemnites_journalieres_accident_travail',
             'indemnites_journalieres_maladie_professionnelle',
             ]
-        total = sum(simulation.calculate(ressource, period) for ressource in ressources)
+        total = sum(individu(ressource, period) for ressource in ressources)
 
         return total
 
@@ -78,10 +78,10 @@ class indemnites_journalieres_imposables(Variable):
     reference = "http://vosdroits.service-public.fr/particuliers/F3152.xhtml"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        indemnites_journalieres = simulation.calculate('indemnites_journalieres', period)
-        indemnites_journalieres_accident_travail = simulation.calculate('indemnites_journalieres_accident_travail', period)
-        indemnites_journalieres_maladie_professionnelle = simulation.calculate('indemnites_journalieres_accident_travail', period)
+    def formula(individu, period, parameters):
+        indemnites_journalieres = individu('indemnites_journalieres', period)
+        indemnites_journalieres_accident_travail = individu('indemnites_journalieres_accident_travail', period)
+        indemnites_journalieres_maladie_professionnelle = individu('indemnites_journalieres_accident_travail', period)
         result = indemnites_journalieres - 0.5 * (
             indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle
         )

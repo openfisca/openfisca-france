@@ -222,10 +222,10 @@ class en_couple(Variable):
     label = u"Indicatrice de vie en couple"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    def formula(famille, period, parameters):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        nb_parents = simulation.calculate('nb_parents', period)
+        nb_parents = famille('nb_parents', period)
 
         return nb_parents == 2
 
@@ -246,10 +246,10 @@ class etudiant(Variable):
     label = u"Indicatrice individuelle étudiant"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    def formula(individu, period, parameters):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        activite = simulation.calculate('activite', period)
+        activite = individu('activite', period)
 
         return activite == TypesActivite.etudiant
 

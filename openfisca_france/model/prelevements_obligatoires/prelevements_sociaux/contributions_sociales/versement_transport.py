@@ -15,12 +15,12 @@ class taux_versement_transport(Variable):
     label = u""
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        depcom_entreprise = simulation.calculate('depcom_entreprise', period)
-        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
+    def formula(individu, period, parameters):
+        depcom_entreprise = individu('depcom_entreprise', period)
+        effectif_entreprise = individu('effectif_entreprise', period)
+        categorie_salarie = individu('categorie_salarie', period)
 
-        seuil_effectif = simulation.parameters_at(period.start).cotsoc.versement_transport.seuil_effectif
+        seuil_effectif = parameters(period).cotsoc.versement_transport.seuil_effectif
 
         preload_taux_versement_transport()
         public = (
@@ -49,9 +49,9 @@ class versement_transport(Variable):
     label = u"Versement transport"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
-        taux_versement_transport = simulation.calculate('taux_versement_transport', period)
+    def formula(individu, period, parameters):
+        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+        taux_versement_transport = individu('taux_versement_transport', period)
         cotisation = - taux_versement_transport * assiette_cotisations_sociales
         return cotisation
 
