@@ -594,30 +594,20 @@ class cd_eparet(Variable):
     label = u"Charge déductible au titre de l'épargne retraite (PERP, PRÉFON, COREM et CGOS)"
     definition_period = YEAR
 
-    def formula_2004(self, simulation, period):
-        f6ps_holder = simulation.compute('f6ps', period)
-        f6rs_holder = simulation.compute('f6rs', period)
-        f6ss_holder = simulation.compute('f6ss', period)
-        f6ps = self.filter_role(f6ps_holder, role = VOUS)
-        f6pt = self.filter_role(f6ps_holder, role = CONJ)
-        f6pu = self.filter_role(f6ps_holder, role = PAC1)
-
-        f6rs = self.filter_role(f6rs_holder, role = VOUS)
-        f6rt = self.filter_role(f6rs_holder, role = CONJ)
-        f6ru = self.filter_role(f6rs_holder, role = PAC1)
-
-        f6ss = self.filter_role(f6ss_holder, role = VOUS)
-        f6st = self.filter_role(f6ss_holder, role = CONJ)
-        f6su = self.filter_role(f6ss_holder, role = PAC1)
+    def formula_2004(foyer_fiscal, period, parameters):
+        f6ps_i = foyer_fiscal.members('f6ps', period)
+        f6rs_i = foyer_fiscal.members('f6rs', period)
+        f6ss_i = foyer_fiscal.members('f6ss', period)
 
         # TODO: En théorie, les plafonds de déductions (ps, pt, pu) sont calculés sur
         # le formulaire 2041 GX
-        return ((f6ps == 0) * (f6rs + f6ss) +
-                (f6ps != 0) * min_(f6rs + f6ss, f6ps) +
-                (f6pt == 0) * (f6rt + f6st) +
-                (f6pt != 0) * min_(f6rt + f6st, f6pt) +
-                (f6pu == 0) * (f6ru + f6su) +
-                (f6pu != 0) * min_(f6ru + f6su, f6pu))
+        return foyer_fiscal.sum(
+            where(
+                f6ps_i == 0,
+                f6rs_i + f6ss_i,
+                min_(f6rs_i + f6ss_i, f6ps_i)
+                )
+            )
 
 
 class cd_sofipe(Variable):
