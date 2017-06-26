@@ -636,35 +636,23 @@ class cotsyn(Variable):
     label = u"cotsyn"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula(foyer_fiscal, period, parameters):
         '''
         Cotisations syndicales (2002-20131
         '''
-        f7ac_holder = simulation.compute('f7ac', period)
-        salaire_imposable_holder = simulation.compute_add('salaire_imposable', period)
-        cho_holder = simulation.compute_add('chomage_imposable', period)
-        rst_holder = simulation.compute_add('retraite_imposable', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.cotsyn
+        f7ac = foyer_fiscal.members('f7ac', period)
+        salaire_imposable = foyer_fiscal.members('salaire_imposable', period, options = [ADD])
+        chomage_imposable = foyer_fiscal.members('chomage_imposable', period, options = [ADD])
+        retraite_imposable = foyer_fiscal.members('retraite_imposable', period, options = [ADD])
 
-        f7ac = self.filter_role(f7ac_holder, role = VOUS)
-        f7ae = self.filter_role(f7ac_holder, role = CONJ)
-        f7ag = self.filter_role(f7ac_holder, role = PAC1)
-
-        chomage_imposable = self.split_by_roles(cho_holder)
-        retraite_imposable = self.split_by_roles(rst_holder)
-        salaire_imposable = self.split_by_roles(salaire_imposable_holder)
-
+        P = parameters(start).impot_revenu.reductions_impots.cotsyn
         tx = P.seuil
 
-        salv, salc, salp = salaire_imposable[VOUS], salaire_imposable[CONJ], salaire_imposable[PAC1]
-        chov, choc, chop = chomage_imposable[VOUS], chomage_imposable[CONJ], chomage_imposable[PAC1]
-        rstv, rstc, rstp = retraite_imposable[VOUS], retraite_imposable[CONJ], retraite_imposable[PAC1]
-        maxv = (salv + chov + rstv) * tx
-        maxc = (salc + choc + rstc) * tx
-        maxp = (salp + chop + rstp) * tx
+        max_imposable = (salaire_imposable + chomage_imposable + retraite_imposable) * tx
 
-        return P.taux * (min_(f7ac, maxv) + min_(f7ae, maxc) + min_(f7ag, maxp))
-
+        return P.taux * foyer_fiscal.sum(
+            min_(f7ac, max_imposable)
+            )
 
 class creaen(Variable):
     value_type = float
