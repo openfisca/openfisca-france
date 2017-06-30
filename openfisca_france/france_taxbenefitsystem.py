@@ -36,23 +36,8 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
         TaxBenefitSystem.__init__(self, entities)
         self.Scenario = scenarios.Scenario
 
-        param_files = [
-            '__root__.xml',
-            'bouclier_fiscal.xml',
-            'bourses_education.xml',
-            'cmu.xml',
-            'cotsoc.xml',
-            'fonc.xml',
-            'impot_revenu.xml',
-            'prelevements_sociaux.xml',
-            'prestations.xml',
-            'taxation_capital.xml',
-            'tns.xml'
-            ]
-
-        for param_file in param_files:
-            param_path = os.path.join(COUNTRY_DIR, 'parameters', param_file)
-            self.add_legislation_params(param_path)
+        param_dir = os.path.join(COUNTRY_DIR, 'parameters')
+        self.add_legislation_params(param_dir)
 
         self.add_variables_from_directory(os.path.join(COUNTRY_DIR, 'model'))
         self.cache_blacklist = conf_cache_blacklist
