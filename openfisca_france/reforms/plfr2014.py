@@ -80,15 +80,15 @@ class plfr2014(Reform):
 
 def modify_legislation_json(reference_legislation_json_copy):
     plfr2014_legislation_subtree = {
-        "@type": "Node",
+        "type": "node",
         "description": "Projet de loi de finance rectificative 2014",
         "children": {
             "reduction_impot_exceptionnelle": {
-                "@type": "Node",
+                "type": "node",
                 "description": "Réduction d'impôt exceptionnelle",
                 "children": {
                     "montant_plafond": {
-                        "@type": "Parameter",
+                        "type": "parameter",
                         "description": "Montant plafond par part pour les deux premières parts",
                         "format": "integer",
                         "unit": "currency",
@@ -98,7 +98,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                             ],
                         },
                     "seuil": {
-                        "@type": "Parameter",
+                        "type": "parameter",
                         "description": "Seuil (à partir duquel la réduction décroît) par part pour les deux "
                                        "premières parts",
                         "format": "integer",
@@ -109,7 +109,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                             ],
                         },
                     "majoration_seuil": {
-                        "@type": "Parameter",
+                        "type": "parameter",
                         "description": "Majoration du seuil par demi-part supplémentaire",
                         "format": "integer",
                         "unit": "currency",
@@ -123,19 +123,19 @@ def modify_legislation_json(reference_legislation_json_copy):
             },
         }
     plfrss2014_legislation_subtree = {
-        "@type": "Node",
+        "type": "node",
         "description": "Projet de loi de financement de la sécurité sociale rectificative 2014",
         "children": {
             "exonerations_bas_salaires": {
-                "@type": "Node",
+                "type": "node",
                 "description": "Exonérations de cotisations salariées sur les bas salaires",
                 "children": {
                     "prive": {
-                        "@type": "Node",
+                        "type": "node",
                         "description": "Salariés du secteur privé",
                         "children": {
                             "taux": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Taux",
                                 "format": "rate",
                                 "values": [
@@ -144,7 +144,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "seuil": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Seuil (en SMIC)",
                                 "format": "rate",
                                 "values": [
@@ -155,11 +155,11 @@ def modify_legislation_json(reference_legislation_json_copy):
                             },
                         },
                     "public": {
-                        "@type": "Node",
+                        "type": "node",
                         "description": "Salariés du secteur public",
                         "children": {
                             "taux_1": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Taux",
                                 "format": "rate",
                                 "values": [
@@ -168,7 +168,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "seuil_1": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
                                 "values": [
@@ -177,7 +177,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "taux_2": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Taux",
                                 "format": "rate",
                                 "values": [
@@ -186,7 +186,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "seuil_2": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
                                 "values": [
@@ -195,7 +195,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "taux_3": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Taux",
                                 "format": "rate",
                                 "values": [
@@ -204,7 +204,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "seuil_3": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
                                 "values": [
@@ -213,7 +213,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "taux_4": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Taux",
                                 "format": "rate",
                                 "values": [
@@ -222,7 +222,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "seuil_4": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
                                 "values": [
@@ -231,7 +231,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "taux_5": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Taux",
                                 "format": "rate",
                                 "values": [
@@ -240,7 +240,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "seuil_5": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
                                 "values": [
@@ -249,7 +249,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "taux_6": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Taux",
                                 "format": "rate",
                                 "values": [
@@ -258,7 +258,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "seuil_6": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
                                 "values": [
@@ -267,7 +267,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "taux_7": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Taux",
                                 "format": "rate",
                                 "values": [
@@ -276,7 +276,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "seuil_7": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
                                 "values": [
@@ -285,7 +285,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "taux_8": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Taux",
                                 "format": "rate",
                                 "values": [
@@ -294,7 +294,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "seuil_8": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
                                 "values": [
@@ -303,7 +303,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "taux_9": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Taux",
                                 "format": "rate",
                                 "values": [
@@ -312,7 +312,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "seuil_9": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
                                 "values": [
@@ -321,7 +321,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "taux_10": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Taux",
                                 "format": "rate",
                                 "values": [
@@ -330,7 +330,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "seuil_10": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
                                 "values": [
@@ -339,7 +339,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "taux_11": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Taux",
                                 "format": "rate",
                                 "values": [
@@ -348,7 +348,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                                     ],
                                 },
                             "seuil_11": {
-                                "@type": "Parameter",
+                                "type": "parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
                                 "values": [

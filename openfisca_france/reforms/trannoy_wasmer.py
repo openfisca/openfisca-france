@@ -9,11 +9,11 @@ from ..model.base import *
 
 def modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_subtree = {
-        "@type": "Node",
+        "type": "node",
         "description": "Charge de loyer",
         "children": {
             "active": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": u"Activation de la charge",
                 "format": "boolean",
                 "values": [
@@ -22,7 +22,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                     ],
                 },
             "plaf": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": u'Plafond mensuel',
                 "format": 'integer',
                 "unit": 'currency',
@@ -32,7 +32,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                     ],
                 },
             "plaf_nbp": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": u'Ajuster le plafond au nombre de part',
                 "format": 'boolean',
                 "values": [

@@ -12,11 +12,11 @@ from ..model.prelevements_obligatoires.impot_revenu import ir
 
 def modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_subtree = {
-        "@type": "Node",
+        "type": "node",
         "description": "Contribution execptionnelle sur les très hauts revenus d'activité",
         "children": {
             "seuil": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": "Seuil",
                 "format": "integer",
                 "unit": "currency",
@@ -26,7 +26,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                     ],
                 },
             "taux": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": "Taux",
                 "format": "rate",
                 "unit": "currency",

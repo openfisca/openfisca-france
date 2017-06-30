@@ -18,7 +18,7 @@ def ayrault_muet_modify_legislation_json(reference_legislation_json_copy):
 
     reform_legislation_subtree = {
         "elig1": {
-            "@type": "Parameter",
+            "type": "parameter",
             "format": "integer",
             "unit": "currency",
             "values": [
@@ -27,7 +27,7 @@ def ayrault_muet_modify_legislation_json(reference_legislation_json_copy):
                 ],
             },
         "elig2": {
-            "@type": "Parameter",
+            "type": "parameter",
             "format": "integer",
             "unit": "currency",
             "values": [
@@ -36,7 +36,7 @@ def ayrault_muet_modify_legislation_json(reference_legislation_json_copy):
                 ],
             },
         "elig3": {
-            "@type": "Parameter",
+            "type": "parameter",
             "format": "integer",
             "unit": "currency",
             "values": [

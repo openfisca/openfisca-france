@@ -9,11 +9,11 @@ from ..model.base import *
 
 def modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_subtree = {
-        "@type": "Node",
+        "type": "node",
         "description": "Intégration au revenu imposable des allocations familiales",
         "children": {
             "imposition": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": "Indicatrice d'imposition",
                 "format": "boolean",
                 "values": [

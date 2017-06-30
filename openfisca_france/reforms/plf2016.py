@@ -13,11 +13,11 @@ from ..model.base import *
 
 def reform_modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_subtree = {
-        "@type": "Node",
+        "type": "node",
         "description": "PLF 2016 sur revenus 2014",
         "children": {
             "decote_seuil_celib": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": "Seuil de la décôte pour un célibataire",
                 "format": "integer",
                 "unit": "currency",
@@ -27,7 +27,7 @@ def reform_modify_legislation_json(reference_legislation_json_copy):
                     ],
                 },
             "decote_seuil_couple": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": "Seuil de la décôte pour un couple",
                 "format": "integer",
                 "unit": "currency",
@@ -81,11 +81,11 @@ def counterfactual_modify_legislation_json(reference_legislation_json_copy):
     # TODO: inflater les paramètres de la décote le barème de l'IR
     inflation = .001
     reform_legislation_subtree = {
-        "@type": "Node",
+        "type": "node",
         "description": "PLF 2016 sur revenus 2015",
         "children": {
             "decote_seuil_celib": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": "Seuil de la décôte pour un célibataire",
                 "format": "integer",
                 "unit": "currency",
@@ -95,7 +95,7 @@ def counterfactual_modify_legislation_json(reference_legislation_json_copy):
                     ],
                 },
             "decote_seuil_couple": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": "Seuil de la décôte pour un couple",
                 "format": "integer",
                 "unit": "currency",

@@ -75,11 +75,11 @@ class revenu_disponible(Variable):
 
 def modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_subtree = {
-        "@type": "Node",
+        "type": "node",
         "description": u"Impôt à base large proposé par Landais, Piketty et Saez",
         "children": {
             "bareme": {
-                "@type": "Scale",
+                "type": "scale",
                 "unit": "currency",
                 "description": u"Barème de l'impôt",
                 "rates_kind": "average",
@@ -147,7 +147,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                     ],
                 },
             "imposition": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": u"Indicatrice d'imposition",
                 "format": "boolean",
                 "values": [
@@ -156,7 +156,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                     ],
                 },
             "credit_enfant": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": u"Crédit d'impôt forfaitaire par enfant",
                 "format": "integer",
                 "values": [
@@ -165,7 +165,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                     ],
                 },
             "reduc_enfant": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": u"Réduction d'impôt forfaitaire par enfant",
                 "format": "integer",
                 "values": [
@@ -174,7 +174,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                     ],
                 },
             "abatt_enfant": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": u"Abattement forfaitaire sur le revenu par enfant",
                 "format": "integer",
                 "values": [
@@ -183,7 +183,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                     ],
                 },
             "reduc_conj": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": u"Réduction d'impôt forfaitaire si conjoint",
                 "format": "integer",
                 "values": [
@@ -192,7 +192,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                     ],
                 },
             "abatt_conj": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": u"Abattement forfaitaire sur le revenu si conjoint",
                 "format": "integer",
                 "values": [

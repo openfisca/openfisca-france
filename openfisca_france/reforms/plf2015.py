@@ -10,11 +10,11 @@ from ..model.base import *
 
 def modify_legislation_json(reference_legislation_json_copy):
     reform_legislation_subtree = {
-        "@type": "Node",
+        "type": "node",
         "description": u"PLF 2015 sur revenus 2013 (Décote)",
         "children": {
             "seuil_celib": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": u"Seuil de la décote pour un célibataire",
                 "format": "integer",
                 "unit": "currency",
@@ -24,7 +24,7 @@ def modify_legislation_json(reference_legislation_json_copy):
                     ],
                 },
             "seuil_couple": {
-                "@type": "Parameter",
+                "type": "parameter",
                 "description": u"Seuil de la décote pour un couple",
                 "format": "integer",
                 "unit": "currency",

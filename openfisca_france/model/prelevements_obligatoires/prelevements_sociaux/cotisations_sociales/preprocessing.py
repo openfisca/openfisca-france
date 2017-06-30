@@ -130,11 +130,11 @@ def preprocess_legislation(legislation_json):
 
     cotsoc = legislation_json["children"]["cotsoc"]
     cotsoc["children"]["cotisations_employeur"] = collections.OrderedDict((
-        (u'@type', u'Node'),
+        (u'type', u'node'),
         (u'children', collections.OrderedDict()),
         ))
     cotsoc["children"]["cotisations_salarie"] = collections.OrderedDict((
-        (u'@type', u'Node'),
+        (u'type', u'node'),
         (u'children', collections.OrderedDict()),
         ))
 
