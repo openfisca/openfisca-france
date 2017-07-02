@@ -898,6 +898,7 @@
             <VALUE deb="1974-01-01" valeur="0"/>
           </SEUIL>
           <TAUX>
+            <VALUE deb="2017-07-01" valeur="0.0015"/>
             <VALUE deb="2017-01-01" valeur="0.0020"/>
             <VALUE deb="2016-01-01" valeur="0.0025"/>
             <VALUE deb="2011-04-01" valeur="0.003"/>
