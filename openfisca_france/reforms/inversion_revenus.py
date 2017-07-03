@@ -48,7 +48,6 @@ def build_reform(tax_benefit_system):
         column = columns.FloatCol
         entity = entities.Individu
         label = u"Salaire brut ou traitement indiciaire brut"
-        reference_column = tax_benefit_system.column_by_name["salaire_de_base"]
         url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
         definition_period = MONTH
 
