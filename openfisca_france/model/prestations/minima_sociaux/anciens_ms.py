@@ -12,7 +12,7 @@ class api(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation de parent isolé"
-    url = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
+    reference = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
     end = '2009-05-31'
     definition_period = MONTH
     calculate_output = calculate_output_add
@@ -101,7 +101,7 @@ class psa(Variable):
     entity = Famille
     label = u"Prime de solidarité active"
     end = '2009-04-30'
-    url = u"http://www.service-public.fr/actualites/001077.html"
+    reference = u"http://www.service-public.fr/actualites/001077.html"
     definition_period = MONTH
     calculate_output = calculate_output_add
 

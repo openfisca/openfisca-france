@@ -213,7 +213,7 @@ class aide_embauche_pme(Variable):
     column = FloatCol
     entity = Individu
     label = u"Aide à l'embauche d'un salarié pour les PME"
-    url = u"http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
+    reference = u"http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
     definition_period = MONTH
     calculate_output = calculate_output_add
 
@@ -302,7 +302,7 @@ class allegement_fillon(Variable):
     column = FloatCol
     entity = Individu
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
-    url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542"
+    reference = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542"
     definition_period = MONTH
     calculate_output = calculate_output_add
 
@@ -375,7 +375,7 @@ class allegement_cotisation_allocations_familiales(Variable):
     column = FloatCol
     label = u"Allègement de la cotisation d'allocations familiales sur les bas et moyens salaires"
     entity = Individu
-    url = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
+    reference = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
     definition_period = MONTH
 
     def formula_2015_01_01(self, simulation, period):

@@ -75,7 +75,7 @@ class indemnites_journalieres_imposables(Variable):
     column = FloatCol
     label = u"Total des indemnités journalières imposables"
     entity = Individu
-    url = "http://vosdroits.service-public.fr/particuliers/F3152.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F3152.xhtml"
     definition_period = MONTH
 
     def formula(self, simulation, period):

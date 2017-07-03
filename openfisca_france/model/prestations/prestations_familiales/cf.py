@@ -269,7 +269,7 @@ class cf(Variable):
     column = FloatCol
     entity = Famille
     label = u"Complément familial"
-    url = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 

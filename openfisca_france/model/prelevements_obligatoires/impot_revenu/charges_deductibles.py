@@ -288,7 +288,7 @@ class rfr_cd(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Charges déductibles entrant dans le revenus fiscal de référence"
-    url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
+    reference = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -304,7 +304,7 @@ class cd1(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Charges déductibles non plafonnées"
-    url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
+    reference = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
     definition_period = YEAR
     end = '2014-12-31'
 
@@ -393,7 +393,7 @@ class cd2(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Charges déductibles plafonnées"
-    url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
+    reference = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
     definition_period = YEAR
     end = '2008-12-31'
 
@@ -443,7 +443,7 @@ class charges_deduc(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Charges déductibles"
-    url = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
+    reference = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -457,7 +457,7 @@ class pensions_alimentaires_deduites(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Pensions alimentaires"
-    url = "http://frederic.anne.free.fr/Cours/ITV.htm"
+    reference = "http://frederic.anne.free.fr/Cours/ITV.htm"
     definition_period = YEAR
 
     def formula(self, simulation, period):

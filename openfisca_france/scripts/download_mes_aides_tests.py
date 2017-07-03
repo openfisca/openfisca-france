@@ -43,13 +43,13 @@ def fetch_json(url):
 
 
 def fetch_situation(api_base_url, situation_id):
-    url = u'{}/api/situations/{}/openfisca-request'.format(api_base_url, situation_id)
+    reference = u'{}/api/situations/{}/openfisca-request'.format(api_base_url, situation_id)
     log.info(u'fetch situation: GET "{}"'.format(url))
     return fetch_json(url)
 
 
 def fetch_tests(api_base_url):
-    url = u'{}/api/public/acceptance-tests'.format(api_base_url)
+    reference = u'{}/api/public/acceptance-tests'.format(api_base_url)
     log.info(u'fetch tests: GET "{}"'.format(url))
     return fetch_json(url)
 

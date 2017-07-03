@@ -74,7 +74,7 @@ class indemnite_fin_contrat(Variable):
     column = FloatCol
     entity = Individu
     label = u"Indemnité de fin de contrat"
-    url = u"https://www.service-public.fr/particuliers/vosdroits/F40"
+    reference = u"https://www.service-public.fr/particuliers/vosdroits/F40"
     definition_period = MONTH
 
     def formula(self, simulation, period):
@@ -594,7 +594,7 @@ class mmid_employeur(Variable):
     column = FloatCol
     entity = Individu
     label = u"Cotisation maladie (employeur)"
-    url = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html"
+    reference = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html"
     definition_period = MONTH
 
     def formula(self, simulation, period):
@@ -753,7 +753,7 @@ class taille_entreprise(Variable):
         )
     entity = Individu
     label = u"Catégorie de taille d'entreprise"
-    url = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
+    reference = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
     definition_period = MONTH
 
     def formula(self, simulation, period):

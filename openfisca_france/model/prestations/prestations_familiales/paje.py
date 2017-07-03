@@ -63,7 +63,7 @@ class paje(Variable):
     column = FloatCol
     entity = Famille
     label = u"PAJE - Ensemble des prestations"
-    url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje-0"  # noqa
+    reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje-0"  # noqa
     definition_period = MONTH
 
     def formula_2004_01_01(famille, period):
@@ -84,7 +84,7 @@ class paje_base(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation de base de la PAJE"
-    url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -212,7 +212,7 @@ class paje_naissance(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation de naissance de la PAJE"
-    url = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
     definition_period = MONTH
 
     def formula_2004_01_01(famille, period, legislation):
@@ -249,7 +249,7 @@ class paje_clca(Variable):
     column = FloatCol
     entity = Famille
     label = u"PAJE - Complément de libre choix d'activité"
-    url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -326,7 +326,7 @@ class paje_clca_taux_plein(Variable):
     column = BoolCol
     entity = Famille
     label = u"Indicatrice Clca taux plein"
-    url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
 
     def formula_2004_01_01(famille, period):
@@ -340,7 +340,7 @@ class paje_clca_taux_partiel(Variable):
     column = BoolCol
     entity = Famille
     label = u"Indicatrice Clca taux partiel"
-    url = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
 
     def formula_2004_01_01(famille, period):
@@ -357,7 +357,7 @@ class paje_cmg(Variable):
     column = FloatCol
     entity = Famille
     label = u"PAJE - Complément de libre choix du mode de garde"
-    url = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"  # noqa
+    reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"  # noqa
     definition_period = MONTH
 
     def formula_2004_01_01(famille, period, legislation):
@@ -468,7 +468,7 @@ class paje_colca(Variable):
     column = FloatCol
     entity = Famille
     label = u"PAJE - Complément optionnel de libre choix d'activité"
-    url = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
     definition_period = MONTH
 
     def formula_2004_01_01(famille, period, legislation):
@@ -497,7 +497,7 @@ class ape_avant_cumul(Variable):
     entity = Famille
     label = u"Allocation parentale d'éducation, avant prise en compte de la non-cumulabilité avec le CF et l'APJE"
     end = '2003-12-31'
-    url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
+    reference = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
     definition_period = MONTH
 
     def formula(famille, period, legislation):
@@ -558,7 +558,7 @@ class apje_avant_cumul(Variable):
     entity = Famille
     label = u"Allocation pour le jeune enfant, avant prise en compte de la non-cumulabilité avec le CF et l'APE"
     end = '2003-12-31'
-    url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
     definition_period = MONTH
 
     def formula(famille, period, legislation):
@@ -602,7 +602,7 @@ class ape(Variable):
     entity = Famille
     label = u"Allocation parentale d'éducation"
     end = '2003-12-31'
-    url = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
+    reference = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
     definition_period = MONTH
 
     def formula(famille, period):
@@ -622,7 +622,7 @@ class apje(Variable):
     entity = Famille
     label = u"Allocation pour le jeune enfant"
     end = '2003-12-31'
-    url = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
     definition_period = MONTH
 
     def formula(famille, period):

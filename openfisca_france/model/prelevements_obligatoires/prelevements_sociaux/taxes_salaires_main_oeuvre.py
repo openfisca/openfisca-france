@@ -80,7 +80,7 @@ class contribution_supplementaire_apprentissage(Variable):
     column = FloatCol
     entity = Individu
     label = u"Contribution supplémentaire à l'apprentissage"
-    url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
+    reference = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
     definition_period = MONTH
 
     def formula_2010_01_01(self, simulation, period):
@@ -223,7 +223,7 @@ class formation_professionnelle(Variable):
     column = FloatCol
     entity = Individu
     label = u"Formation professionnelle"
-    url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
+    reference = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
     definition_period = MONTH
 
     def formula(self, simulation, period):
@@ -282,7 +282,7 @@ class taxe_apprentissage(Variable):
     column = FloatCol
     entity = Individu
     label = u"Taxe d'apprentissage (employeur, entreprise redevable de la taxe d'apprentissage uniquement)"
-    url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
+    reference = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
     definition_period = MONTH
 
     def formula(self, simulation, period):

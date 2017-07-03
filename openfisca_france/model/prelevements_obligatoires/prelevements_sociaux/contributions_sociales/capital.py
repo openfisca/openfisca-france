@@ -34,7 +34,7 @@ class csg_cap_bar(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"CSG sur les revenus du capital soumis au barème"
-    url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
+    reference = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -49,7 +49,7 @@ class crds_cap_bar(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"CRDS sur les revenus du capital soumis au barème"
-    url = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
+    reference = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -64,7 +64,7 @@ class prelsoc_cap_bar(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus du capital soumis au barème"
-    url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
+    reference = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
     definition_period = YEAR
 
     def formula_2002_01_01(self, simulation, period):
@@ -113,7 +113,7 @@ class csg_pv_mo(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"CSG sur les plus-values de cession de valeurs mobilières"
-    url = "http://vosdroits.service-public.fr/particuliers/F21618.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F21618.xhtml"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -130,7 +130,7 @@ class crds_pv_mo(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"CRDS sur les plus-values de cession de valeurs mobilières"
-    url = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
+    reference = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -147,7 +147,7 @@ class prelsoc_pv_mo(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les plus-values de cession de valeurs mobilières"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
     definition_period = YEAR
 
     def formula_2002_01_01(self, simulation, period):
@@ -203,7 +203,7 @@ class csg_pv_immo(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"CSG sur les plus-values immobilières"
-    url = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
+    reference = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -220,7 +220,7 @@ class crds_pv_immo(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"CRDS sur les plus-values immobilières"
-    url = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
+    reference = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -237,7 +237,7 @@ class prelsoc_pv_immo(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les plus-values immobilières"
-    url = "http://www.pap.fr/argent/impots/les-plus-values-immobilieres/a1314/l-imposition-de-la-plus-value-immobiliere"
+    reference = "http://www.pap.fr/argent/impots/les-plus-values-immobilieres/a1314/l-imposition-de-la-plus-value-immobiliere"
     definition_period = YEAR
 
     def formula_2002_01_01(self, simulation, period):
@@ -293,7 +293,7 @@ class csg_fon(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"CSG sur les revenus fonciers"
-    url = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
+    reference = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -311,7 +311,7 @@ class crds_fon(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"CRDS sur les revenus fonciers"
-    url = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -329,7 +329,7 @@ class prelsoc_fon(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus fonciers"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
     definition_period = YEAR
 
     def formula_2002_01_01(self, simulation, period):
@@ -391,7 +391,7 @@ class csg_cap_lib(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"CSG sur les revenus du capital soumis au prélèvement libératoire"
-    url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
+    reference = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -405,7 +405,7 @@ class crds_cap_lib(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"CRDS sur les revenus du capital soumis au prélèvement libératoire"
-    url = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
+    reference = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -420,7 +420,7 @@ class prelsoc_cap_lib(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire"
-    url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
+    reference = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
     definition_period = YEAR
 
     def formula(self, simulation, period):

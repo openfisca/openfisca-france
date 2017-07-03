@@ -9,7 +9,7 @@ class exonere_taxe_habitation(Variable):
     column = BoolCol(default = True)
     entity = Menage
     label = u"Exonération de la taxe d'habitation"
-    url = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -61,7 +61,7 @@ class taxe_habitation(Variable):
     column = FloatCol
     entity = Menage
     label = u"Taxe d'habitation"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
     definition_period = YEAR
 
     def formula(self, simulation, period):

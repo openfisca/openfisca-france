@@ -35,7 +35,7 @@ class salaire_de_base(Variable):
     column = columns.FloatCol
     entity = entities.Individu
     label = u"Salaire brut ou traitement indiciaire brut"
-    url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
+    reference = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
     definition_period = MONTH
 
     def formula(self, simulation, period):

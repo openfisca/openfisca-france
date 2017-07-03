@@ -62,7 +62,7 @@ class revenu_disponible(Variable):
     column = FloatCol
     entity = Menage
     label = u"Revenu disponible du ménage"
-    url = "http://fr.wikipedia.org/wiki/Revenu_disponible"
+    reference = "http://fr.wikipedia.org/wiki/Revenu_disponible"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -114,7 +114,7 @@ class revenu_net(Variable):
     entity = Menage
     label = u"Revenu net du ménage"
     column = FloatCol
-    url = u"http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php",
+    reference = u"http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php",
     definition_period = YEAR
 
     def formula(menage, period):
@@ -190,7 +190,7 @@ class revenus_du_travail(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenus du travail (salariés et non salariés)"
-    url = "http://fr.wikipedia.org/wiki/Revenu_du_travail"
+    reference = "http://fr.wikipedia.org/wiki/Revenu_du_travail"
     definition_period = YEAR
 
     def formula(individu, period):
@@ -206,7 +206,7 @@ class pensions(Variable):
     column = FloatCol
     entity = Individu
     label = u"Pensions et revenus de remplacement"
-    url = "http://fr.wikipedia.org/wiki/Rente"
+    reference = "http://fr.wikipedia.org/wiki/Rente"
     definition_period = YEAR
 
     def formula(individu, period):
@@ -257,7 +257,7 @@ class revenus_du_capital(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenus du patrimoine"
-    url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
+    reference = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
     definition_period = YEAR
 
     def formula(individu, period):
@@ -283,7 +283,7 @@ class prestations_sociales(Variable):
     column = FloatCol
     entity = Famille
     label = u"Prestations sociales"
-    url = "http://fr.wikipedia.org/wiki/Prestation_sociale"
+    reference = "http://fr.wikipedia.org/wiki/Prestation_sociale"
     definition_period = YEAR
 
     def formula(famille, period):
@@ -301,7 +301,7 @@ class prestations_familiales(Variable):
     column = FloatCol
     entity = Famille
     label = u"Prestations familiales"
-    url = "http://www.social-sante.gouv.fr/informations-pratiques,89/fiches-pratiques,91/prestations-familiales,1885/les-prestations-familiales,12626.html"
+    reference = "http://www.social-sante.gouv.fr/informations-pratiques,89/fiches-pratiques,91/prestations-familiales,1885/les-prestations-familiales,12626.html"
     definition_period = YEAR
 
     def formula(famille, period):
@@ -331,7 +331,7 @@ class minima_sociaux(Variable):
     column = FloatCol
     entity = Famille
     label = u"Minima sociaux"
-    url = "http://fr.wikipedia.org/wiki/Minima_sociaux"
+    reference = "http://fr.wikipedia.org/wiki/Minima_sociaux"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -355,7 +355,7 @@ class aides_logement(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocations logements"
-    url = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
     definition_period = YEAR
 
     def formula(famille, period):
@@ -374,7 +374,7 @@ class impots_directs(Variable):
     column = FloatCol
     entity = Menage
     label = u"Impôts directs"
-    url = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
+    reference = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -461,7 +461,7 @@ class prelsoc_cap(Variable):
     column = FloatCol
     entity = Individu
     label = u"Prélèvements sociaux sur les revenus du capital"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
     definition_period = YEAR
 
     def formula(individu, period):
