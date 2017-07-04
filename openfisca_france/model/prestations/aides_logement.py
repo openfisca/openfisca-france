@@ -161,7 +161,7 @@ class aide_logement_abattement_chomage_indemnise(Variable):
     label = u"Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
     definition_period = MONTH
     # Article R532-7 du Code de la sécurité sociale
-    url = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189"
 
     def formula(individu, period, legislation):
         chomage_net_m_1 = individu('chomage_net', period.offset(-1))
@@ -179,7 +179,7 @@ class aide_logement_abattement_depart_retraite(Variable):
     label = u"Montant de l'abattement sur les salaires en cas de départ en retraite"
     definition_period = MONTH
     # Article R532-5 du Code de la sécurité sociale
-    url = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231"
 
     def formula(individu, period, legislation):
         retraite = individu('activite', period) == 3
@@ -197,7 +197,7 @@ class aide_logement_neutralisation_rsa(Variable):
     entity = Famille
     label = u"Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
     definition_period = MONTH
-    url = [
+    reference = [
         # Article R532-7 du Code de la sécurité sociale
         u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189",
         # Article R351-14-1 du Code de la construction et de l'habitation
@@ -672,7 +672,7 @@ class alf(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation logement familiale"
-    url = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml"
+    reference = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -711,7 +711,7 @@ class als_etudiant(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation logement sociale (étudiante)"
-    url = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement"
+    reference = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement"
     definition_period = MONTH
 
     def formula(famille, period):
@@ -733,7 +733,7 @@ class als(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation logement sociale"
-    url = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml"
+    reference = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -751,7 +751,7 @@ class apl(Variable):
     entity = Famille
     label = u" Aide personnalisée au logement"
     # (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
-    url = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
+    reference = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -801,7 +801,7 @@ class crds_logement(Variable):
     column = FloatCol
     entity = Famille
     label = u"CRDS des allocations logement"
-    url = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml"
+    reference = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml"
     definition_period = MONTH
 
     def formula(famille, period, legislation):

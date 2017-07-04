@@ -45,7 +45,7 @@ def test_parametric_reform():
         parent1 = dict(date_naissance = datetime.date(simulation_year - 40, 1, 1)),
         )
 
-    reference_simulation = scenario.new_simulation(reference = True)
+    reference_simulation = scenario.new_simulation(use_baseline = True)
     assert_near(reference_simulation.calculate('impots_directs', period = simulation_period), [0, -7889.20019531, -23435.52929688],
         absolute_error_margin = .01)
 

@@ -19,7 +19,7 @@ class exoneration_cotisations_employeur_geographiques(Variable):
     column = FloatCol
     entity = Individu
     label = u"Exonérations de cotisations employeur dépendant d'une zone géographique"
-    url = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
+    reference = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
     definition_period = MONTH
 
     def formula(self, simulation, period):
@@ -40,7 +40,7 @@ class exoneration_cotisations_employeur_jei(Variable):
     column = FloatCol
     entity = Individu
     label = u"Exonrérations de cotisations employeur pour une jeune entreprise innovante"
-    url = "http://www.apce.com/pid1653/jeune-entreprise-innovante.html?pid=1653&pagination=2"
+    reference = "http://www.apce.com/pid1653/jeune-entreprise-innovante.html?pid=1653&pagination=2"
     definition_period = MONTH
 
     def formula(self, simulation, period):
@@ -88,7 +88,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
     column = FloatCol
     entity = Individu
     label = u"Exonrérations de cotisations employeur pour l'embauche en zone franche urbaine (ZFU)"
-    url = "http://www.apce.com/pid553/exoneration-dans-les-zfu.html?espace=1&tp=1&pagination=2"
+    reference = "http://www.apce.com/pid553/exoneration-dans-les-zfu.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
 # TODO
@@ -239,7 +239,7 @@ class exoneration_cotisations_employeur_zrd(Variable):
     column = FloatCol
     entity = Individu
     label = u"Exonrérations de cotisations employeur pour l'embauche en zone de restructuration de la Défense (ZRD)"
-    url = "http://www.apce.com/pid11668/exoneration-dans-les-zrd.html?espace=1&tp=1"
+    reference = "http://www.apce.com/pid11668/exoneration-dans-les-zrd.html?espace=1&tp=1"
     definition_period = MONTH
 
     def formula(self, simulation, period):
@@ -277,7 +277,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
     column = FloatCol
     entity = Individu
     label = u"Exonrérations de cotisations employeur pour l'embauche en zone de revitalisation rurale (ZRR)"
-    url = "http://www.apce.com/pid538/embauches-en-zru-et-zrr.html?espace=1&tp=1"
+    reference = "http://www.apce.com/pid538/embauches-en-zru-et-zrr.html?espace=1&tp=1"
     definition_period = MONTH
 
     # Les entreprises et groupements d'employeurs exerçant une activité industrielle, commerciale, artisanale, agricole
@@ -333,7 +333,7 @@ class exoneration_is_creation_zrr(Variable):
     column = FloatCol
     entity = Individu
     label = u"Exonrérations fiscales pour création d'une entreprise en zone de revitalisation rurale (ZRR)"
-    url = 'http://www.apce.com/pid11690/exonerations-d-impots-zrr.html?espace=1&tp=1'
+    reference = 'http://www.apce.com/pid11690/exonerations-d-impots-zrr.html?espace=1&tp=1'
     definition_period = YEAR
     calculate_output = calculate_output_divide
 

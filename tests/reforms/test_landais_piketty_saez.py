@@ -31,7 +31,7 @@ def test():
         #     ],
         )
 
-#    reference_simulation = scenario.new_simulation(reference = True)
+#    reference_simulation = scenario.new_simulation(use_baseline = True)
 #
 
     reform_simulation = scenario.new_simulation()

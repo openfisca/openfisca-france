@@ -73,7 +73,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
     column = FloatCol
     entity = Individu
     label = u"Exonrérations de cotisations employeur pour un stagaire"
-    url = "http://www.apce.com/pid2798/stages.html?espace=3"
+    reference = "http://www.apce.com/pid2798/stages.html?espace=3"
     definition_period = MONTH
 
     def formula(self, simulation, period):
@@ -105,7 +105,7 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
     column = FloatCol
     entity = Individu
     label = u"Exonrérations de cotisations salarié pour un stagiaire"
-    url = "http://www.apce.com/pid2798/stages.html?espace=3"
+    reference = "http://www.apce.com/pid2798/stages.html?espace=3"
     definition_period = MONTH
 
     def formula(self, simulation, period):

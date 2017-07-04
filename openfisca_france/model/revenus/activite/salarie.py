@@ -481,7 +481,7 @@ class salaire_de_base(Variable):
     entity = Individu
     label = u"Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie"
     set_input = set_input_divide_by_period
-    url = u'http://www.insee.fr/fr/methodes/default.asp?page=definitions/salaire-mensuel-base-smb.htm'
+    reference = u'http://www.insee.fr/fr/methodes/default.asp?page=definitions/salaire-mensuel-base-smb.htm'
     definition_period = MONTH
 
 
@@ -737,7 +737,7 @@ class primes_fonction_publique(Variable):
     column = FloatCol
     entity = Individu
     label = u"Calcul des primes pour les fonctionnaries"
-    url = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml"
+    reference = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml"
     definition_period = MONTH
 
     def formula(self, simulation, period):

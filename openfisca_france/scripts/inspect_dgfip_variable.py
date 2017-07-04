@@ -36,7 +36,7 @@ def inspect_dgfip_variable(variable, year, browser_name):
         '8': u"autres_imputations.htm",
         }.get(section_number)
     assert url_section is not None, 'Unhandled section number: {}'.format(section_number)
-    url = url_base + url_section
+    reference = url_base + url_section
     if section_number not in ('3', '4'):
         url += u'#' + case
 

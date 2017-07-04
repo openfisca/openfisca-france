@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '18.5.3',
+    version = '18.6.0',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -20,7 +20,7 @@ setup(
     description = u'French tax and benefit system for OpenFisca',
     keywords = 'benefit france microsimulation social tax',
     license = 'http://www.fsf.org/licensing/licenses/agpl-3.0.html',
-    url = 'https://github.com/openfisca/openfisca-france',
+    reference = 'https://github.com/openfisca/openfisca-france',
 
     data_files = [
         ('share/openfisca/openfisca-france', ['CHANGELOG.md', 'LICENSE.AGPL.txt', 'README.md']),
@@ -52,7 +52,7 @@ setup(
     install_requires = [
         'Biryani[datetimeconv] >= 0.10.4',
         'numpy >= 1.11, < 1.13',
-        'OpenFisca-Core >= 14.1.1, < 15.0',
+        'OpenFisca-Core >= 15.0.0, < 16.0',
         'PyYAML >= 3.10',
         'requests >= 2.8',
         ],

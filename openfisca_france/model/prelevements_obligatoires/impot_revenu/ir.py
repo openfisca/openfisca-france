@@ -475,7 +475,7 @@ class retraite_titre_onereux(Variable):
     entity = FoyerFiscal
     label = u"Rentes viagères (rentes à titre onéreux)"
     set_input = set_input_divide_by_period
-    url = u"http://fr.wikipedia.org/wiki/Rente_viagère"
+    reference = u"http://fr.wikipedia.org/wiki/Rente_viagère"
     definition_period = MONTH
 
     def formula(self, simulation, period):
@@ -492,7 +492,7 @@ class retraite_titre_onereux_net(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Rentes viagères après abattements"
-    url = u"http://www.lafinancepourtous.fr/Vie-professionnelle-et-retraite/Retraite/Epargne-retraite/La-rente-viagere/La-fiscalite-de-la-rente-viagere"  # noqa
+    reference = u"http://www.lafinancepourtous.fr/Vie-professionnelle-et-retraite/Retraite/Epargne-retraite/La-rente-viagere/La-fiscalite-de-la-rente-viagere"  # noqa
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -528,7 +528,7 @@ class rev_cat_pv(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Plus-values"
-    url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
 
     def formula_2013_01_01(self, simulation, period):
@@ -542,7 +542,7 @@ class rev_cat_tspr(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Traitements, salaires, pensions et rentes"
-    url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -558,7 +558,7 @@ class deficit_rcm(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Deficit capitaux mobiliers"
-    url = "http://www.lefigaro.fr/impots/2008/04/25/05003-20080425ARTFIG00254-les-subtilites-des-revenus-de-capitaux-mobiliers-.php"
+    reference = "http://www.lefigaro.fr/impots/2008/04/25/05003-20080425ARTFIG00254-les-subtilites-des-revenus-de-capitaux-mobiliers-.php"
     definition_period = YEAR
 
     def formula_2009_01_01(self, simulation, period):
@@ -577,7 +577,7 @@ class rev_cat_rvcm(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Capitaux"
-    url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
 
     def formula_2002_01_01(self, simulation, period):
@@ -772,7 +772,7 @@ class rev_cat_rfon(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Foncier"
-    url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -805,7 +805,7 @@ class rev_cat_rpns(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Revenus personnels non salariés"
-    url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -831,7 +831,7 @@ class rev_cat(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenus catégoriels"
-    url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -856,7 +856,7 @@ class deficit_ante(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Déficit global antérieur"
-    url = "http://impotsurlerevenu.org/declaration-de-revenus-fonciers-2044/796-deficits-anterieurs-restant-a-imputer-cadre-450.php"
+    reference = "http://impotsurlerevenu.org/declaration-de-revenus-fonciers-2044/796-deficits-anterieurs-restant-a-imputer-cadre-450.php"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -877,7 +877,7 @@ class rbg(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu brut global"
-    url = "http://www.documentissime.fr/dossiers-droit-pratique/dossier-19-l-impot-sur-le-revenu-les-modalites-generales-d-imposition/la-determination-du-revenu-imposable/le-revenu-brut-global.html"
+    reference = "http://www.documentissime.fr/dossiers-droit-pratique/dossier-19-l-impot-sur-le-revenu-les-modalites-generales-d-imposition/la-determination-du-revenu-imposable/le-revenu-brut-global.html"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -901,7 +901,7 @@ class csg_deduc_patrimoine(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -918,7 +918,7 @@ class csg_deduc_patrimoine_simulated(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine simulée"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -939,7 +939,7 @@ class csg_deduc(Variable):  # f6de
     column = FloatCol
     entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -955,7 +955,7 @@ class rng(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu net global"
-    url = "http://impotsurlerevenu.org/definitions/114-revenu-net-global.php"
+    reference = "http://impotsurlerevenu.org/definitions/114-revenu-net-global.php"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -971,7 +971,7 @@ class rni(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu net imposable"
-    url = "http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php"
+    reference = "http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -1322,7 +1322,7 @@ class microsocial(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Assiette régime microsociale totale"
-    url = "http://fr.wikipedia.org/wiki/R%C3%A9gime_micro-social"
+    reference = "http://fr.wikipedia.org/wiki/R%C3%A9gime_micro-social"
     definition_period = YEAR
 
     def formula_2009_01_01(self, simulation, period):
@@ -1529,7 +1529,7 @@ class iai(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Impôt avant imputations de l'impôt sur le revenu"
-    url = "http://forum-juridique.net-iris.fr/finances-fiscalite-assurance/43963-declaration-impots.html"
+    reference = "http://forum-juridique.net-iris.fr/finances-fiscalite-assurance/43963-declaration-impots.html"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -1548,7 +1548,7 @@ class cehr(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Contribution exceptionnelle sur les hauts revenus"
-    url = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
+    reference = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
     definition_period = YEAR
 
     def formula_2011_01_01(self, simulation, period):
@@ -1568,7 +1568,7 @@ class irpp(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Impôt sur le revenu des personnes physiques"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -1610,7 +1610,7 @@ class pensions_alimentaires_versees(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Pensions alimentaires versées"
-    url = u"http://vosdroits.service-public.fr/particuliers/F2.xhtml"
+    reference = u"http://vosdroits.service-public.fr/particuliers/F2.xhtml"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -1658,7 +1658,7 @@ class glo(Variable):
     column = FloatCol
     entity = Individu
     label = u"Gain de levée d'options"
-    url = "http://www.officeo.fr/imposition-au-bareme-progressif-de-l-impot-sur-le-revenu-des-gains-de-levee-d-options-sur-actions-et-attributions-d-actions-gratuites"
+    reference = "http://www.officeo.fr/imposition-au-bareme-progressif-de-l-impot-sur-le-revenu-des-gains-de-levee-d-options-sur-actions-et-attributions-d-actions-gratuites"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -1685,7 +1685,7 @@ class rev_cap_bar(Variable):
     entity = FoyerFiscal
     label = u"Revenus du capital imposés au barème"
     set_input = set_input_divide_by_period
-    url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
+    reference = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
     definition_period = MONTH
 
     def formula(self, simulation, period):
@@ -1724,7 +1724,7 @@ class rev_cap_lib(Variable):
     entity = FoyerFiscal
     label = u"Revenu du capital imposé au prélèvement libératoire"
     set_input = set_input_divide_by_period
-    url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
+    reference = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
     definition_period = MONTH
 
     def formula_2002_01_01(self, simulation, period):
@@ -1769,7 +1769,7 @@ class imp_lib(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Prelèvement libératoire sur les revenus du capital"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
     definition_period = YEAR
     end = '2012-12-31'
 
@@ -1805,7 +1805,7 @@ class fon(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenus fonciers"
-    url = "http://impotsurlerevenu.org/definitions/220-revenu-foncier.php"
+    reference = "http://impotsurlerevenu.org/definitions/220-revenu-foncier.php"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -2034,7 +2034,7 @@ class rag(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenus agricoles"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=BA&pageId=prof_ba&sfid=50"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=BA&pageId=prof_ba&sfid=50"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -2071,7 +2071,7 @@ class ric(Variable):
     column = FloatCol
     entity = Individu
     label = u"Bénéfices industriels et commerciaux"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?pageId=prof_bic&espId=2&impot=BIC&sfid=50"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?pageId=prof_bic&espId=2&impot=BIC&sfid=50"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -2137,7 +2137,7 @@ class rac(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenus accessoires individuels"
-    url = "http://vosdroits.service-public.fr/particuliers/F1225.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F1225.xhtml"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -2198,7 +2198,7 @@ class rnc(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenus non commerciaux individuels"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -2491,7 +2491,7 @@ class abat_spe(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Abattements spéciaux"
-    url = "http://bofip.impots.gouv.fr/bofip/2036-PGP"
+    reference = "http://bofip.impots.gouv.fr/bofip/2036-PGP"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, legislation):
@@ -2584,7 +2584,7 @@ class nbptr(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Nombre de parts"
-    url = "http://vosdroits.service-public.fr/particuliers/F2705.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F2705.xhtml"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -2925,7 +2925,7 @@ class ppe(Variable):
     entity = FoyerFiscal
     label = u"Prime pour l'emploi"
     end = '2015-12-31'
-    url = "http://vosdroits.service-public.fr/particuliers/F2882.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F2882.xhtml"
     definition_period = YEAR
 
     def formula(self, simulation, period):

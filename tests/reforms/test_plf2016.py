@@ -35,7 +35,7 @@ def run(reform_class, year):
             ] if people >= 3 else None,
         )
 
-    reference_simulation = scenario.new_simulation(reference = True)
+    reference_simulation = scenario.new_simulation(use_baseline = True)
     reform_simulation = scenario.new_simulation()
 #    error_margin = 1
 

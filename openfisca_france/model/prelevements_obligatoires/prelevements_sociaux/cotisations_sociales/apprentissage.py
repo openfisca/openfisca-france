@@ -12,7 +12,7 @@ class apprenti(Variable):
     column = BoolCol
     entity = Individu
     label = u"L'individu est apprenti"
-    url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
     def formula(self, simulation, period):
@@ -31,7 +31,7 @@ class remuneration_apprenti(Variable):
     column = FloatCol
     entity = Individu
     label = u"Rémunération de l'apprenti"
-    url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
     # Aux jeunes de 16 à 25 ans (exceptionnellement 15 ans, s'ils ont effectué la scolarité du premier cycle de
@@ -94,7 +94,7 @@ class exoneration_cotisations_employeur_apprenti(Variable):
     column = FloatCol
     entity = Individu
     label = u"Exonération de cotisations employeur pour l'emploi d'un apprenti"
-    url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
     # Artisans et employeurs de moins de 11 salariés
     #
@@ -141,7 +141,7 @@ class exoneration_cotisations_salariales_apprenti(Variable):
     column = FloatCol
     entity = Individu
     label = u"Exonération de cotisations salariales pour l'emploi d'un apprenti"
-    url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
     def formula(self, simulation, period):
@@ -156,7 +156,7 @@ class prime_apprentissage(Variable):
     column = FloatCol
     entity = Individu
     label = u"Prime d'apprentissage pour les entreprise employant un apprenti"
-    url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = YEAR
     # L'employeur peut également recevoir de la région dans laquelle est situé l'établissement du lieu de travail,
     # une prime d'apprentissage.

@@ -576,7 +576,7 @@ class isf_tot(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"isf_tot"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_isf&espId=1&impot=ISF&sfid=50"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_isf&espId=1&impot=ISF&sfid=50"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -793,7 +793,7 @@ class bouclier_fiscal(Variable):
     entity = FoyerFiscal
     label = u"bouclier_fiscal"
     end = '2010-12-31'
-    url = "http://fr.wikipedia.org/wiki/Bouclier_fiscal"
+    reference = "http://fr.wikipedia.org/wiki/Bouclier_fiscal"
     definition_period = YEAR
 
     def formula_2006(self, simulation, period):

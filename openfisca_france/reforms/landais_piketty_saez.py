@@ -58,7 +58,7 @@ class revenu_disponible(Variable):
     column = FloatCol
     entity = Menage
     label = u"Revenu disponible du ménage"
-    url = u"http://fr.wikipedia.org/wiki/Revenu_disponible"
+    reference = u"http://fr.wikipedia.org/wiki/Revenu_disponible"
     definition_period = YEAR
 
     def formula(self, simulation, period):

@@ -10,7 +10,7 @@ class ars(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation de rentrée scolaire"
-    url = "http://vosdroits.service-public.fr/particuliers/F1878.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F1878.xhtml"
     definition_period = YEAR
 
     def formula(famille, period, legislation):

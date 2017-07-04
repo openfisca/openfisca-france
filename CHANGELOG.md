@@ -1,5 +1,13 @@
 # Changelog
 
+## 18.6.0 - [#775](https://github.com/openfisca/openfisca-france/pull/775)
+
+* Amélioration technique
+* Détails :
+  - Adapte `france` à  la version `15.0.0` de `core`.
+  - Applique le renommage de l'attribut de `Variable` `url` en `reference`.
+  - Pour les variables réformées, ne définis plus l'attribut `reference`.
+
 ### 18.5.3 - [#786](https://github.com/openfisca/openfisca-france/pull/786)
 
 * Changement mineur
