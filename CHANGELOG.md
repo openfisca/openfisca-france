@@ -1,5 +1,11 @@
 # Changelog
 
+### 18.6.1 - [#793](https://github.com/openfisca/openfisca-france/pull/793)
+
+* Changement mineur
+* Détails :
+  - Répare la déclaration de l'URL du dépôt, endomagée dans la version `18.6.0`
+
 ## 18.6.0 - [#775](https://github.com/openfisca/openfisca-france/pull/775)
 
 * Amélioration technique
