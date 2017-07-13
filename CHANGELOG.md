@@ -1,5 +1,12 @@
 # Changelog
 
+### 18.6.2 - [#794](https://github.com/openfisca/openfisca-france/pull/794)
+
+* Correction d'un crash
++ Détails :
+  - Mets à jour la version d'OpenFisca-Web-API requise pour qu'elle soit compatible avec la version d'OpenFisca-Core requise.
+  - Les deux versions référencées dans le `setup.py` étaient incompatibles, provoquant une erreur au démarrage de l'API avec `gunicorn` ou `paster`.
+
 ### 18.6.1 - [#793](https://github.com/openfisca/openfisca-france/pull/793)
 
 * Changement mineur
