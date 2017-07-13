@@ -20,7 +20,7 @@ setup(
     description = u'French tax and benefit system for OpenFisca',
     keywords = 'benefit france microsimulation social tax',
     license = 'http://www.fsf.org/licensing/licenses/agpl-3.0.html',
-    reference = 'https://github.com/openfisca/openfisca-france',
+    url = 'https://github.com/openfisca/openfisca-france',
 
     data_files = [
         ('share/openfisca/openfisca-france', ['CHANGELOG.md', 'LICENSE.AGPL.txt', 'README.md']),
