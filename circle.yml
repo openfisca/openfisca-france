@@ -9,11 +9,12 @@ dependencies:
   override:
     - pip install --upgrade pip wheel  # pip >= 8.0 needed to be compatible with "manylinux" wheels, used by numpy >= 1.11
     - pip install twine
-    - pip install .[test] --upgrade
+    - pip install ".[test, api]" --upgrade
 test:
   pre:
     - git fetch
   override:
+    - pip check
     - nosetests:
         parallel: true
         files:
