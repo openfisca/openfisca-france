@@ -1,5 +1,20 @@
 # Changelog
 
+### 18.6.5 - [#785](https://github.com/openfisca/openfisca-france/pull/785)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2017.
+* Zones impactées :
+  - `prestations/minima_sociaux/cmu`
+  - `prestations/minima_sociaux/aah`
+* Détails :
+  - Mise à jour du plafond de ressources pour la CMU
+    - [Cf. Code de la sécurité sociale - Article D861-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006739670)
+  - Mise à jour du montant de l'AAH et de son complément de ressources
+    - [Montant de l'AAH au 1er avril 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/3/AFSA1710706D/jo/texte)
+    - Le montant de la garantie de revenus est calculé à partir du montant précédent, plus un montant fixe défini dans [cet article](https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000019505277)
+    - [Circulaire indiquant le coefficient de revalorisation](http://circulaire.legifrance.gouv.fr/pdf/2017/03/cir_41966.pdf)
+
 ### 18.6.4 - [#784](https://github.com/openfisca/openfisca-france/pull/784)
 
 * Évolution du système socio-fiscal.
