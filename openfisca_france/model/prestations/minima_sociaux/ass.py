@@ -175,12 +175,21 @@ class ass_eligibilite_individu(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        # 1 si demandeur d'emploi
-        activite = individu('activite', period)
+        # activite = 1 pour un demandeur d'emploi
+        demandeur_emploi_non_indemnise = and_(individu('activite', period) == 1, individu('chomage_net', period) == 0)
 
-        # Indique que l'user a travaillé 5 ans au cours des 10 dernieres années.
+        # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = individu('ass_precondition_remplie', period)
 
-        are_perceived_this_month = individu('chomage_net', period)
+        return and_(demandeur_emploi_non_indemnise, ass_precondition_remplie)
 
-        return and_(and_(activite == 1, ass_precondition_remplie), are_perceived_this_month == 0)
+    def formula_2017_01_01(individu, period):
+        aah_eligible = individu('aah', period) > 0
+
+        # activite = 1 pour un demandeur d'emploi
+        demandeur_emploi_non_indemnise = and_(individu('activite', period) == 1, individu('chomage_net', period) == 0)
+
+        # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
+        ass_precondition_remplie = individu('ass_precondition_remplie', period)
+
+        return and_(not_(aah_eligible), and_(demandeur_emploi_non_indemnise, ass_precondition_remplie))

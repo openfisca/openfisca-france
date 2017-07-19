@@ -1,5 +1,15 @@
 # Changelog
 
+### 18.6.4 - [#784](https://github.com/openfisca/openfisca-france/pull/784)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2017
+* Zones impactées : `prestations/minima_sociaux/ass`.
+* Détails :
+  - Implémentation de la non-éligibilité à l'ASS (Allocation de Solidarité Spécifique) en cas d'éligibilité à l'AAH (Allocation aux Adultes Handicapés)
+    - [article 87 loi n° 2016-1917 du 29 décembre 2016 de finances pour 2017](https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=49AD9A92D43F6C7A085F8E1D669AEFC2.tpdila18v_2?cidTexte=JORFTEXT000033734169&idArticle=LEGIARTI000033760616&dateTexte=20170622&categorieLien=id#LEGIARTI000033760616)
+    - [article L. 5423-7 du code du travail](https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=49AD9A92D43F6C7A085F8E1D669AEFC2.tpdila18v_2?idArticle=LEGIARTI000033813814&cidTexte=LEGITEXT000006072050&dateTexte=20170622)
+
 ### 18.6.3 - [#787](https://github.com/openfisca/openfisca-france/pull/787)
 
 * Amélioration technique
