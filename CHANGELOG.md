@@ -1,5 +1,18 @@
 # Changelog
 
+### 18.6.5 - [#785](https://github.com/openfisca/openfisca-france/pull/785)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2017.
+* Zones impactées :
+  - `openfisca_france/parameters/cmu.xml`
+  - `openfisca_france/parameters/prestations.xml`
+* Détails :
+  - Mise à jour du plafond de ressources pour la CMU
+    - Cf. Code de la sécurité sociale - Article D861-1
+  - Mise à jour du montant de l'AAH et de son complément de ressources 
+    - [Circulaire indiquant le coefficient de revalorisation](http://circulaire.legifrance.gouv.fr/pdf/2017/03/cir_41966.pdf)
+
 ### 18.6.4 - [#784](https://github.com/openfisca/openfisca-france/pull/784)
 
 * Évolution du système socio-fiscal.
