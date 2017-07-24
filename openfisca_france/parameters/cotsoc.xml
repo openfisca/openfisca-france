@@ -484,15 +484,15 @@
             <VALUE deb="1993-07-01" valeur="0"/>
           </SEUIL>
           <TAUX>
-            <VALUE deb="2017-07-01" valeur="0.0015"/>
-            <VALUE deb="2017-01-01" valeur="0.0020"/>
-            <VALUE deb="2016-01-01" valeur="0.0025"/>
-            <VALUE deb="2011-04-01" valeur="0.003"/>
-            <VALUE deb="2009-11-01" valeur="0.004"/>
-            <VALUE deb="2009-08-01" valeur="0.003"/>
-            <VALUE deb="2006-07-01" valeur="0.0015"/>
-            <VALUE deb="2006-01-01" valeur="0.0025"/>
-            <VALUE deb="2005-04-01" valeur="0.0035"/>
+            <VALUE deb="2017-07-01" valeur="0.0015" reference="https://www.ags-garantie-salaires.org/archives.html?year=2017"/>
+            <VALUE deb="2017-01-01" valeur="0.0020" reference="https://www.ags-garantie-salaires.org/archives.html?year=2016"/>
+            <VALUE deb="2016-01-01" valeur="0.0025" reference="https://www.ags-garantie-salaires.org/archives.html?year=2016"/>
+            <VALUE deb="2011-04-01" valeur="0.003" reference="https://www.ags-garantie-salaires.org/archives.html?year=2011"/>
+            <VALUE deb="2009-11-01" valeur="0.004" reference="https://www.ags-garantie-salaires.org/archives.html?year=2009"/>
+            <VALUE deb="2009-08-01" valeur="0.003" reference="https://www.ags-garantie-salaires.org/archives.html?year=2009"/>
+            <VALUE deb="2006-07-01" valeur="0.0015" reference="https://www.ags-garantie-salaires.org/archives.html?year=2006"/>
+            <VALUE deb="2006-01-01" valeur="0.0025" reference="https://www.ags-garantie-salaires.org/archives.html?year=2006"/>
+            <VALUE deb="2005-04-01" valeur="0.0035" reference="https://www.ags-garantie-salaires.org/archives.html?year=2005"/>
             <VALUE deb="2003-09-01" valeur="0.0045"/>
             <VALUE deb="2003-01-01" valeur="0.0035"/>
             <VALUE deb="2002-07-01" valeur="0.003"/>
