@@ -1,4 +1,10 @@
 # Changelog
+ 
+### 18.6.6 - [#781](https://github.com/openfisca/openfisca-france/pull/781)
+
+* Changement mineur.
+* Détails :
+  - Mise à jour du `label` de `age` pour expliciter qu'il s'agit de l'âge en début de mois
 
 ### 18.6.5 - [#785](https://github.com/openfisca/openfisca-france/pull/785)
 
