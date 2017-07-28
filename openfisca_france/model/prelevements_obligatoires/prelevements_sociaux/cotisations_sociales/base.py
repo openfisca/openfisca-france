@@ -19,8 +19,10 @@ def apply_bareme_for_relevant_type_sal(
         for type_sal_name, type_sal_index in CATEGORIE_SALARIE:
             if type_sal_name not in bareme_by_type_sal_name:  # to deal with public_titulaire_militaire
                 continue
-            bareme = bareme_by_type_sal_name[type_sal_name].get(bareme_name)  # TODO; should have better warnings
-            if bareme is not None:
+
+            node = bareme_by_type_sal_name[type_sal_name]
+            if bareme_name in node.children:
+                bareme = getattr(node, bareme_name)
                 yield bareme.calc(
                     base * (categorie_salarie == type_sal_index),
                     factor = plafond_securite_sociale,
