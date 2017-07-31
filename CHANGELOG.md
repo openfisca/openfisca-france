@@ -1,5 +1,11 @@
 # Changelog
- 
+
+## 18.7.0 - [#797](https://github.com/openfisca/openfisca-france/pull/797)
+
+* Amélioration technique
+* Détails :
+  - Déclare OpenFisca-France compatible avec OpenFisca-Core 17 
+
 ### 18.6.6 - [#781](https://github.com/openfisca/openfisca-france/pull/781)
 
 * Changement mineur.
