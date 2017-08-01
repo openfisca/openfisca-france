@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 
-''' xml_to_json_france.py : Parse XML parameter files for Openfisca-France and convert them to YAML files. Comments are NOT transformed.
+''' xml_to_yaml_france.py : Parse XML parameter files for Openfisca-France and convert them to YAML files. Comments are NOT transformed.
 
 Usage :
-  `python xml_to_json_france.py output_dir`
+  `python xml_to_yaml_france.py output_dir`
 or just (output is written in a directory called `yaml_parameters`):
-  `python xml_to_json_france.py`
+  `python xml_to_yaml_france.py`
 '''
 
 import sys
 import os
 
 from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
-from openfisca_core.scripts.xml_to_json import xml_to_json
+from openfisca_core.scripts.migrations.v16_2_to_v17 import xml_to_yaml
 
 
 if len(sys.argv) > 1:
@@ -38,4 +38,4 @@ legislation_xml_info_list = [
     for param_file in param_files
 ]
 
-xml_to_json.write_legislation(legislation_xml_info_list, target_path)
+xml_to_yaml.write_legislation(legislation_xml_info_list, target_path)
