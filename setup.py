@@ -32,6 +32,7 @@ setup(
         'baremes_ipp': [
             'xlrd >= 1.0.0',
             'lxml >= 3.8.0, < 4.0',
+            'Biryani[datetimeconv] >= 0.10.4',
             ],
         'inversion_revenus': [
             'scipy >= 0.17',
@@ -50,9 +51,8 @@ setup(
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        'Biryani[datetimeconv] >= 0.10.4',
         'numpy >= 1.11, < 1.13',
-        'OpenFisca-Core >= 15.0.0, < 17.0',
+        'OpenFisca-Core >= 17.0.0, < 18.0',
         'PyYAML >= 3.10',
         'requests >= 2.8',
         ],
