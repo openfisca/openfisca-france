@@ -3,7 +3,7 @@
 import datetime
 import json
 
-from openfisca_core import legislations, legislationsxml
+from openfisca_core import legislations
 
 from openfisca_france import FranceTaxBenefitSystem
 
@@ -12,12 +12,9 @@ from openfisca_france import FranceTaxBenefitSystem
 tax_benefit_system = FranceTaxBenefitSystem()
 
 
-def check_legislation_xml_file(year):
-    compact_legislation = tax_benefit_system.get_legislation(year)
-
-    assert compact_legislation is not None
-
-
 def test_legislation_xml_file():
+    legislation = tax_benefit_system.get_legislation()
+    assert legislation is not None
     for year in range(2006, datetime.date.today().year + 1):
-        yield check_legislation_xml_file, year
+        legislation_at_instant = tax_benefit_system.get_legislation_at_instant(year)
+        assert legislation_at_instant is not None
