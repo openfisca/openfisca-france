@@ -3,7 +3,7 @@
 import datetime
 
 
-from openfisca_core import periods
+from openfisca_core import periods, legislations
 from openfisca_france.reforms.cesthra_invalidee import cesthra_invalidee
 from ..cache import tax_benefit_system
 

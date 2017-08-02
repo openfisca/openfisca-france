@@ -1,0 +1,10 @@
+type: node
+description: Intégration au revenu imposable des allocations familiales
+imposition: 
+  type: parameter
+  description: "Indicatrice d'imposition"
+  values: 
+    '2015-01-01':
+      value: null
+    '2000-01-01':
+      value: True

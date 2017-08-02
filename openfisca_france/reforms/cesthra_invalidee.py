@@ -2,7 +2,9 @@
 
 from __future__ import division
 
-from openfisca_core import columns
+import os
+
+from openfisca_core import columns, legislations
 from openfisca_core.reforms import Reform
 from openfisca_france.model.base import *
 
@@ -10,34 +12,13 @@ from .. import entities
 from ..model.prelevements_obligatoires.impot_revenu import ir
 
 
+dir_path = os.path.dirname(__file__)
+
+
 def modify_legislation_json(reference_legislation_json_copy):
-    reform_legislation_subtree = {
-        "type": "node",
-        "description": "Contribution execptionnelle sur les très hauts revenus d'activité",
-        "children": {
-            "seuil": {
-                "type": "parameter",
-                "description": "Seuil",
-                "format": "integer",
-                "unit": "currency",
-                "values": [
-                    {'start': u'2014-01-01', },
-                    {'start': u'2012-01-01', 'value': 1000000},
-                    ],
-                },
-            "taux": {
-                "type": "parameter",
-                "description": "Taux",
-                "format": "rate",
-                "unit": "currency",
-                "values": [
-                    {'start': u'2014-01-01', },
-                    {'start': u'2012-01-01', 'value': .75},
-                    ],
-                },
-            },
-        }
-    reference_legislation_json_copy['children']['cesthra'] = reform_legislation_subtree
+    file_path = os.path.join(dir_path, 'cesthra_invalidite.yaml')
+    reform_legislation_subtree = legislations.load_file(name='cesthra', file_path=file_path)
+    reference_legislation_json_copy.add_child('cesthra', reform_legislation_subtree)
     return reference_legislation_json_copy
 
 

@@ -1,0 +1,32 @@
+type: node
+description: Projet de loi de finance rectificative 2014
+reduction_impot_exceptionnelle: 
+  type: node
+  description: Réduction d'impôt exceptionnelle
+  montant_plafond: 
+    type: parameter
+    description: Montant plafond par part pour les deux premières parts
+    unit: currency
+    values: 
+      '2015-01-01':
+        value: null
+      '2013-01-01':
+        value: 350
+  seuil: 
+    type: parameter
+    description: Seuil (à partir duquel la réduction décroît) par part pour les deux premières parts
+    unit: currency
+    values: 
+      '2015-01-01':
+        value: null
+      '2013-01-01':
+        value: 13795
+  majoration_seuil: 
+    type: parameter
+    description: Majoration du seuil par demi-part supplémentaire
+    unit: currency
+    values: 
+      '2015-01-01':
+        value: null
+      '2013-01-01':
+        value: 3536

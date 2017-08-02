@@ -1,0 +1,18 @@
+type: node
+description: Contribution execptionnelle sur les très hauts revenus d'activité
+seuil:
+  type: parameter
+  description: Seuil
+  values: 
+    '2014-01-01':
+      value: null
+    '2012-01-01':
+      value: 1000000
+taux: 
+  type: parameter
+  description: Taux
+  values: 
+    '2014-01-01':
+      value: null
+    '2012-01-01':
+      value: .75

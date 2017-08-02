@@ -2,47 +2,23 @@
 
 from __future__ import division
 
+import os
+
+from openfisca_core import legislations
 from openfisca_core.reforms import Reform
 
 from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
 from ..model.base import *
 
+
+dir_path = os.path.dirname(__file__)
+
+
 def modify_legislation_json(reference_legislation_json_copy):
-    reform_legislation_subtree = {
-        "type": "node",
-        "description": "Charge de loyer",
-        "children": {
-            "active": {
-                "type": "parameter",
-                "description": u"Activation de la charge",
-                "format": "boolean",
-                "values": [
-                    {'start': u'2014-01-01', },
-                    {'start': u'2002-01-01', 'value': 1},
-                    ],
-                },
-            "plaf": {
-                "type": "parameter",
-                "description": u'Plafond mensuel',
-                "format": 'integer',
-                "unit": 'currency',
-                "values": [
-                    {'start': '2014-01-01', },
-                    {'start': '2002-01-01', 'value': 1000},
-                    ],
-                },
-            "plaf_nbp": {
-                "type": "parameter",
-                "description": u'Ajuster le plafond au nombre de part',
-                "format": 'boolean',
-                "values": [
-                    {'start': '2014-01-01', },
-                    {'start': '2002-01-01', 'value': 0},
-                    ],
-                },
-            },
-        }
-    reference_legislation_json_copy['children']['charge_loyer'] = reform_legislation_subtree
+    file_path = os.path.join(dir_path, 'trannoy_wasmer.yaml')
+    reform_legislation_subtree = legislations.load_file(name='trannoy_wasmer', file_path=file_path)
+
+    reference_legislation_json_copy.add_child('charge_loyer', reform_legislation_subtree)
     return reference_legislation_json_copy
 
 class charges_deduc(Variable):

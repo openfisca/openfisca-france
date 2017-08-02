@@ -6,11 +6,17 @@
 
 """Impôt Landais, Piketty, Saez"""
 
-
 from __future__ import division
 
+import os
+
+from openfisca_core import legislations
 from openfisca_core.reforms import Reform
 from openfisca_france.model.base import *
+
+
+dir_path = os.path.dirname(__file__)
+
 
 class assiette_csg(Variable):
     column = FloatCol
@@ -74,135 +80,9 @@ class revenu_disponible(Variable):
 
 
 def modify_legislation_json(reference_legislation_json_copy):
-    reform_legislation_subtree = {
-        "type": "node",
-        "description": u"Impôt à base large proposé par Landais, Piketty et Saez",
-        "children": {
-            "bareme": {
-                "type": "scale",
-                "unit": "currency",
-                "description": u"Barème de l'impôt",
-                "rates_kind": "average",
-                "brackets": [
-                    {
-                        "rate": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': .02},
-                            ],
-                        "threshold": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': 1100},
-                            ],
-                        },
-                    {
-                        "rate": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': .1},
-                            ],
-                        "threshold": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': 2200},
-                            ],
-                        },
-                    {
-                        "rate": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': .13},
-                            ],
-                        "threshold": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': 5000},
-                            ],
-                        },
-                    {
-                        "rate": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': .25},
-                            ],
-                        "threshold": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': 10000},
-                            ],
-                        },
-                    {
-                        "rate": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': .5},
-                            ],
-                        "threshold": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': 40000},
-                            ],
-                        },
-                    {
-                        "rate": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': .6},
-                            ],
-                        "threshold": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': 100000},
-                            ],
-                        },
-                    ],
-                },
-            "imposition": {
-                "type": "parameter",
-                "description": u"Indicatrice d'imposition",
-                "format": "boolean",
-                "values": [
-                    {'start': u'2015-01-01', },
-                    {'start': u'2000-01-01', 'value': True},
-                    ],
-                },
-            "credit_enfant": {
-                "type": "parameter",
-                "description": u"Crédit d'impôt forfaitaire par enfant",
-                "format": "integer",
-                "values": [
-                    {'start': u'2015-01-01', },
-                    {'start': u'2000-01-01', 'value': 0},
-                    ],
-                },
-            "reduc_enfant": {
-                "type": "parameter",
-                "description": u"Réduction d'impôt forfaitaire par enfant",
-                "format": "integer",
-                "values": [
-                    {'start': u'2015-01-01', },
-                    {'start': u'2000-01-01', 'value': 0},
-                    ],
-                },
-            "abatt_enfant": {
-                "type": "parameter",
-                "description": u"Abattement forfaitaire sur le revenu par enfant",
-                "format": "integer",
-                "values": [
-                    {'start': u'2015-01-01', },
-                    {'start': u'2000-01-01', 'value': 0},
-                    ],
-                },
-            "reduc_conj": {
-                "type": "parameter",
-                "description": u"Réduction d'impôt forfaitaire si conjoint",
-                "format": "integer",
-                "values": [
-                    {'start': u'2015-01-01', },
-                    {'start': u'2000-01-01', 'value': 0},
-                    ],
-                },
-            "abatt_conj": {
-                "type": "parameter",
-                "description": u"Abattement forfaitaire sur le revenu si conjoint",
-                "format": "integer",
-                "values": [
-                    {'start': u'2015-01-01', },
-                    {'start': u'2000-01-01', 'value': 0},
-                    ],
-                },
-            },
-        }
-    reference_legislation_json_copy['children']['landais_piketty_saez'] = reform_legislation_subtree
+    file_path = os.path.join(dir_path, 'landais_piketty_saez.yaml')
+    reform_legislation_subtree = legislations.load_file(name='landais_piketty_saez', file_path=file_path)
+    reference_legislation_json_copy.add_child('landais_piketty_saez', reform_legislation_subtree)
     return reference_legislation_json_copy
 
 

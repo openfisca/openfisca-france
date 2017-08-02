@@ -2,9 +2,15 @@
 
 from __future__ import division
 
-from openfisca_core import periods
-from openfisca_core.reforms import Reform, update_legislation
+import os
+
+from openfisca_core import periods, legislations
+from openfisca_core.reforms import Reform
+from openfisca_core.legislations import Parameter, ValueAtInstant
 from ..model.base import *
+
+
+dir_path = os.path.dirname(__file__)
 
 
 # Réforme de l'amendement Ayrault-Muet
@@ -16,37 +22,21 @@ def ayrault_muet_modify_legislation_json(reference_legislation_json_copy):
         inflator = inflator * (1 + inflation / 100)
     del inflation
 
-    reform_legislation_subtree = {
-        "elig1": {
-            "type": "parameter",
-            "format": "integer",
-            "unit": "currency",
-            "values": [
-                {'start': u'2016-01-01', },
-                {'start': u'2015-01-01', 'value': round(16251 * inflator)},
-                ],
-            },
-        "elig2": {
-            "type": "parameter",
-            "format": "integer",
-            "unit": "currency",
-            "values": [
-                {'start': u'2016-01-01', },
-                {'start': u'2015-01-01', 'value': round(32498 * inflator)},
-                ],
-            },
-        "elig3": {
-            "type": "parameter",
-            "format": "integer",
-            "unit": "currency",
-            "values": [
-                {'start': u'2016-01-01', },
-                {'start': u'2015-01-01', 'value': round(4490 * inflator)},
-                ],
-            },
-        }
-    reference_legislation_json_copy['children']['impot_revenu']['children']['credits_impot']['children']['ppe']['children'].update(
-        reform_legislation_subtree)
+    elig1 = Parameter('elig1', values_list = [
+        ValueAtInstant('elig1', "2015-01-01", value=round(16251 * inflator)),
+        ValueAtInstant('elig1', "2016-01-01", value=None),
+        ])
+    elig2 = Parameter('elig2', values_list = [
+        ValueAtInstant('elig2', "2015-01-01", value=round(32498 * inflator)),
+        ValueAtInstant('elig2', "2016-01-01", value=None),
+        ])
+    elig3 = Parameter('elig3', values_list = [
+        ValueAtInstant('elig3', "2015-01-01", value=round(4490 * inflator)),
+        ValueAtInstant('elig3', "2016-01-01", value=None),
+        ])
+    reference_legislation_json_copy.impot_revenu.credits_impot.ppe.add_child('elig1', elig1)
+    reference_legislation_json_copy.impot_revenu.credits_impot.ppe.add_child('elig2', elig2)
+    reference_legislation_json_copy.impot_revenu.credits_impot.ppe.add_child('elig3', elig3)
     return reference_legislation_json_copy
 
 

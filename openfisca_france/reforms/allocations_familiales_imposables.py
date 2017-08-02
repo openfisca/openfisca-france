@@ -2,28 +2,20 @@
 
 from __future__ import division
 
-from openfisca_core import columns
+import os
+
+from openfisca_core import columns, legislations
 from openfisca_core.reforms import Reform
 from ..model.base import *
 
 
+dir_path = os.path.dirname(__file__)
+
+
 def modify_legislation_json(reference_legislation_json_copy):
-    reform_legislation_subtree = {
-        "type": "node",
-        "description": "Intégration au revenu imposable des allocations familiales",
-        "children": {
-            "imposition": {
-                "type": "parameter",
-                "description": "Indicatrice d'imposition",
-                "format": "boolean",
-                "values": [
-                    {'start': u'2015-01-01', },
-                    {'start': u'2000-01-01', 'value': True}
-                    ],
-                },
-            },
-        }
-    reference_legislation_json_copy['children']['allocations_familiales_imposables'] = reform_legislation_subtree
+    file_path = os.path.join(dir_path, 'allocations_familiales_imposables.yaml')
+    reform_legislation_subtree = legislations.load_file(name='allocations_familiales_imposables', file_path=file_path)
+    reference_legislation_json_copy.add_child('allocations_familiales_imposables', reform_legislation_subtree)
     return reference_legislation_json_copy
 
 

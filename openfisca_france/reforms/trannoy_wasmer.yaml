@@ -1,0 +1,27 @@
+type: node
+description: Charge de loyer
+active: 
+  type: parameter
+  description: Activation de la charge
+  values: 
+    '2014-01-01':
+      value: null
+    '2002-01-01':
+      value: True
+plaf: 
+  type: parameter
+  description: Plafond mensuel
+  unit: currency
+  values: 
+    '2014-01-01':
+      value: null
+    '2002-01-01':
+      value: 1000
+plaf_nbp: 
+  type: parameter
+  description: Ajuster le plafond au nombre de part
+  values: 
+    '2014-01-01':
+      value: null
+    '2002-01-01':
+      value: False

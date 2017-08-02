@@ -1,57 +1,29 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import division
-from datetime import date
 
-from openfisca_core import periods
-from openfisca_core.reforms import Reform, update_legislation
+from datetime import date
+import os
+
+from openfisca_core import periods, legislations
+from openfisca_core.reforms import Reform
 from ..model.base import *
 
 
+dir_path = os.path.dirname(__file__)
+
+
 def modify_legislation_json(reference_legislation_json_copy):
-    reform_legislation_subtree = {
-        "type": "node",
-        "description": u"PLF 2015 sur revenus 2013 (Décote)",
-        "children": {
-            "seuil_celib": {
-                "type": "parameter",
-                "description": u"Seuil de la décote pour un célibataire",
-                "format": "integer",
-                "unit": "currency",
-                "values": [
-                    {'start': u'2014-01-01', },
-                    {'start': u'2013-01-01', 'value': 1135},
-                    ],
-                },
-            "seuil_couple": {
-                "type": "parameter",
-                "description": u"Seuil de la décote pour un couple",
-                "format": "integer",
-                "unit": "currency",
-                "values": [
-                    {'start': u'2014-01-01', },
-                    {'start': u'2013-01-01', 'value': 1870},
-                    ],
-                },
-            },
-        }
     reform_year = 2013
     reform_period = periods.period(reform_year)
 
-    reference_legislation_json_copy = update_legislation(
-        legislation_json = reference_legislation_json_copy,
-        path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 1, 'rate'),
-        period = reform_period,
-        value = 0,
-        )
-    reference_legislation_json_copy = update_legislation(
-        legislation_json = reference_legislation_json_copy,
-        path = ('children', 'impot_revenu', 'children', 'bareme', 'brackets', 2, 'threshold'),
-        period = reform_period,
-        value = 9690,
-        )
+    file_path = os.path.join(dir_path, 'plf2015.yaml')
+    reform_legislation_subtree = legislations.load_file(name='plf2015', file_path=file_path)
+    reference_legislation_json_copy.add_child('plf2015', reform_legislation_subtree)
 
-    reference_legislation_json_copy['children']['plf2015'] = reform_legislation_subtree
+    reference_legislation_json_copy.impot_revenu.bareme[1].rate.update(period=reform_period, value=0)
+    reference_legislation_json_copy.impot_revenu.bareme[2].threshold.update(period=reform_period, value=9690)
+
     return reference_legislation_json_copy
 
 

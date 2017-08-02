@@ -1,0 +1,20 @@
+type: node
+description: PLF 2016 sur revenus 2014
+decote_seuil_celib: 
+  type: parameter
+  description: Seuil de la décôte pour un célibataire
+  unit: currency
+  values: 
+    '2015-01-01':
+      value: null
+    '2014-01-01':
+      value: 1165
+decote_seuil_couple: 
+  type: parameter
+  description: Seuil de la décôte pour un couple
+  unit: currency
+  values: 
+    '2015-01-01':
+      value: null
+    '2014-01-01':
+      value: 1920
