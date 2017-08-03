@@ -79,11 +79,11 @@ class revenu_disponible(Variable):
         return revenus_du_travail + pen + revenus_du_capital + impot_revenu_lps + prestations_sociales
 
 
-def modify_legislation_json(reference_legislation_json_copy):
+def modify_legislation(reference_legislation_copy):
     file_path = os.path.join(dir_path, 'landais_piketty_saez.yaml')
     reform_legislation_subtree = legislations.load_file(name='landais_piketty_saez', file_path=file_path)
-    reference_legislation_json_copy.add_child('landais_piketty_saez', reform_legislation_subtree)
-    return reference_legislation_json_copy
+    reference_legislation_copy.add_child('landais_piketty_saez', reform_legislation_subtree)
+    return reference_legislation_copy
 
 
 class landais_piketty_saez(Reform):
@@ -92,4 +92,4 @@ class landais_piketty_saez(Reform):
     def apply(self):
         for variable in [assiette_csg, impot_revenu_lps, revenu_disponible]:
             self.update_variable(variable)
-        self.modify_legislation_json(modifier_function = modify_legislation_json)
+        self.modify_legislation(modifier_function = modify_legislation)

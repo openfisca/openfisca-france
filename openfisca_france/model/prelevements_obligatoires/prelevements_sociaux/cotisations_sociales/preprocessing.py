@@ -120,14 +120,14 @@ def build_sal(node_json):
     return sal
 
 
-def preprocess_legislation(legislation_json):
+def preprocess_legislation(legislation):
     '''
     Preprocess the legislation parameters to build the cotisations sociales taxscales (barèmes)
     '''
-    sal = build_sal(legislation_json)
-    pat = build_pat(legislation_json)
+    sal = build_sal(legislation)
+    pat = build_pat(legislation)
 
-    cotsoc = legislation_json.children["cotsoc"]
+    cotsoc = legislation.children["cotsoc"]
     cotsoc.children["cotisations_employeur"] = Node('cotisations_employeur_after_preprocessing', children={})
     cotsoc.children["cotisations_salarie"] = Node('cotisations_salarie_after_preprocessing', children={})
 
@@ -139,4 +139,4 @@ def preprocess_legislation(legislation_json):
             if category in CATEGORIE_SALARIE._nums:
                 cotsoc.children[cotisation_name].children[category] = bareme
 
-    return legislation_json
+    return legislation

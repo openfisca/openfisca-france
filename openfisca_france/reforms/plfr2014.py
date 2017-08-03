@@ -79,16 +79,16 @@ class plfr2014(Reform):
     def apply(self):
         for variable in [self.reduction_impot_exceptionnelle, self.reductions]:
             self.update_variable(variable)
-        self.modify_legislation_json(modifier_function = modify_legislation_json)
+        self.modify_legislation(modifier_function = modify_legislation)
 
 
-def modify_legislation_json(reference_legislation_json_copy):
+def modify_legislation(reference_legislation_copy):
     file_path = os.path.join(dir_path, 'plfr2014.yaml')
     plfr2014_legislation_subtree = legislations.load_file(name='plfr2014', file_path=file_path)
 
     file_path = os.path.join(dir_path, 'plfrss2014.yaml')
     plfrss2014_legislation_subtree = legislations.load_file(name='plfrss2014', file_path=file_path)
 
-    reference_legislation_json_copy.add_child('plfr2014', plfr2014_legislation_subtree)
-    reference_legislation_json_copy.add_child('plfrss2014', plfrss2014_legislation_subtree)
-    return reference_legislation_json_copy
+    reference_legislation_copy.add_child('plfr2014', plfr2014_legislation_subtree)
+    reference_legislation_copy.add_child('plfrss2014', plfrss2014_legislation_subtree)
+    return reference_legislation_copy

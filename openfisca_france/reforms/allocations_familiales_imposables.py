@@ -12,11 +12,11 @@ from ..model.base import *
 dir_path = os.path.dirname(__file__)
 
 
-def modify_legislation_json(reference_legislation_json_copy):
+def modify_legislation(reference_legislation_copy):
     file_path = os.path.join(dir_path, 'allocations_familiales_imposables.yaml')
     reform_legislation_subtree = legislations.load_file(name='allocations_familiales_imposables', file_path=file_path)
-    reference_legislation_json_copy.add_child('allocations_familiales_imposables', reform_legislation_subtree)
-    return reference_legislation_json_copy
+    reference_legislation_copy.add_child('allocations_familiales_imposables', reform_legislation_subtree)
+    return reference_legislation_copy
 
 
 class allocations_familiales_imposables(Reform):
@@ -85,4 +85,4 @@ class allocations_familiales_imposables(Reform):
         self.update_variable(self.rbg)
         self.update_variable(self.rfr)
         self.add_variable(self.allocations_familiales_imposables)
-        self.modify_legislation_json(modifier_function = modify_legislation_json)
+        self.modify_legislation(modifier_function = modify_legislation)

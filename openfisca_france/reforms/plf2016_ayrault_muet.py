@@ -15,7 +15,7 @@ dir_path = os.path.dirname(__file__)
 
 # Réforme de l'amendement Ayrault-Muet
 
-def ayrault_muet_modify_legislation_json(reference_legislation_json_copy):
+def ayrault_muet_modify_legislation(reference_legislation_copy):
     # TODO: inflater les paramètres de la décote le barème de l'IR
     inflator = 1
     for inflation in [2.8, 0.1, 1.5, 2.1, 2, 0.9, 0.5, 0.1]:
@@ -34,10 +34,10 @@ def ayrault_muet_modify_legislation_json(reference_legislation_json_copy):
         ValueAtInstant('elig3', "2015-01-01", value=round(4490 * inflator)),
         ValueAtInstant('elig3', "2016-01-01", value=None),
         ])
-    reference_legislation_json_copy.impot_revenu.credits_impot.ppe.add_child('elig1', elig1)
-    reference_legislation_json_copy.impot_revenu.credits_impot.ppe.add_child('elig2', elig2)
-    reference_legislation_json_copy.impot_revenu.credits_impot.ppe.add_child('elig3', elig3)
-    return reference_legislation_json_copy
+    reference_legislation_copy.impot_revenu.credits_impot.ppe.add_child('elig1', elig1)
+    reference_legislation_copy.impot_revenu.credits_impot.ppe.add_child('elig2', elig2)
+    reference_legislation_copy.impot_revenu.credits_impot.ppe.add_child('elig3', elig3)
+    return reference_legislation_copy
 
 
 class variator(Variable):
@@ -144,4 +144,4 @@ class ayrault_muet(Reform):
             variator,
             ]:
             self.update_variable(variable)
-        self.modify_legislation_json(modifier_function = ayrault_muet_modify_legislation_json)
+        self.modify_legislation(modifier_function = ayrault_muet_modify_legislation)

@@ -13,18 +13,18 @@ from ..model.base import *
 dir_path = os.path.dirname(__file__)
 
 
-def modify_legislation_json(reference_legislation_json_copy):
+def modify_legislation(reference_legislation_copy):
     reform_year = 2013
     reform_period = periods.period(reform_year)
 
     file_path = os.path.join(dir_path, 'plf2015.yaml')
     reform_legislation_subtree = legislations.load_file(name='plf2015', file_path=file_path)
-    reference_legislation_json_copy.add_child('plf2015', reform_legislation_subtree)
+    reference_legislation_copy.add_child('plf2015', reform_legislation_subtree)
 
-    reference_legislation_json_copy.impot_revenu.bareme[1].rate.update(period=reform_period, value=0)
-    reference_legislation_json_copy.impot_revenu.bareme[2].threshold.update(period=reform_period, value=9690)
+    reference_legislation_copy.impot_revenu.bareme[1].rate.update(period=reform_period, value=0)
+    reference_legislation_copy.impot_revenu.bareme[2].threshold.update(period=reform_period, value=9690)
 
-    return reference_legislation_json_copy
+    return reference_legislation_copy
 
 
 class decote(Variable):
@@ -46,4 +46,4 @@ class plf2015(Reform):
 
     def apply(self):
         self.update_variable(decote)
-        self.modify_legislation_json(modifier_function = modify_legislation_json)
+        self.modify_legislation(modifier_function = modify_legislation)

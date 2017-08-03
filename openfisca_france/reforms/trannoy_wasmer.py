@@ -14,12 +14,12 @@ from ..model.base import *
 dir_path = os.path.dirname(__file__)
 
 
-def modify_legislation_json(reference_legislation_json_copy):
+def modify_legislation(reference_legislation_copy):
     file_path = os.path.join(dir_path, 'trannoy_wasmer.yaml')
     reform_legislation_subtree = legislations.load_file(name='trannoy_wasmer', file_path=file_path)
 
-    reference_legislation_json_copy.add_child('charge_loyer', reform_legislation_subtree)
-    return reference_legislation_json_copy
+    reference_legislation_copy.add_child('charge_loyer', reform_legislation_subtree)
+    return reference_legislation_copy
 
 class charges_deduc(Variable):
     label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
@@ -58,4 +58,4 @@ class trannoy_wasmer(Reform):
     def apply(self):
         self.update_variable(charges_deduc)
         self.add_variable(charge_loyer)
-        self.modify_legislation_json(modifier_function = modify_legislation_json)
+        self.modify_legislation(modifier_function = modify_legislation)

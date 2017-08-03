@@ -15,11 +15,11 @@ from ..model.prelevements_obligatoires.impot_revenu import ir
 dir_path = os.path.dirname(__file__)
 
 
-def modify_legislation_json(reference_legislation_json_copy):
+def modify_legislation(reference_legislation_copy):
     file_path = os.path.join(dir_path, 'cesthra_invalidite.yaml')
     reform_legislation_subtree = legislations.load_file(name='cesthra', file_path=file_path)
-    reference_legislation_json_copy.add_child('cesthra', reform_legislation_subtree)
-    return reference_legislation_json_copy
+    reference_legislation_copy.add_child('cesthra', reform_legislation_subtree)
+    return reference_legislation_copy
 
 
 class cesthra(Variable):
@@ -68,4 +68,4 @@ class cesthra_invalidee(Reform):
     def apply(self):
         self.add_variable(cesthra)
         self.update_variable(irpp)
-        self.modify_legislation_json(modifier_function = modify_legislation_json)
+        self.modify_legislation(modifier_function = modify_legislation)

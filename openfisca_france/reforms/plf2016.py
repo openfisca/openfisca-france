@@ -16,11 +16,11 @@ dir_path = os.path.dirname(__file__)
 
 # What if the reform was applied the year before it should
 
-def reform_modify_legislation_json(reference_legislation_json_copy):
+def reform_modify_legislation(reference_legislation_copy):
     file_path = os.path.join(dir_path, 'plf2016.yaml')
     reform_legislation_subtree = legislations.load_file(name='plf2016', file_path=file_path)
-    reference_legislation_json_copy.add_child('plf2016', reform_legislation_subtree)
-    return reference_legislation_json_copy
+    reference_legislation_copy.add_child('plf2016', reform_legislation_subtree)
+    return reference_legislation_copy
 
 
 class plf2016(Reform):
@@ -53,12 +53,12 @@ class plf2016(Reform):
 
     def apply(self):
         self.update_variable(self.decote)
-        self.modify_legislation_json(modifier_function = reform_modify_legislation_json)
+        self.modify_legislation(modifier_function = reform_modify_legislation)
 
 
 # Counterfactual ie business as usual
 
-def counterfactual_modify_legislation_json(reference_legislation_json_copy):
+def counterfactual_modify_legislation(reference_legislation_copy):
     # TODO: inflater les paramètres de la décote le barème de l'IR
     inflation = .001
     reform_legislation_subtree = Node('plf2016_conterfactual', children = {
@@ -71,8 +71,8 @@ def counterfactual_modify_legislation_json(reference_legislation_json_copy):
             ValueAtInstant('decote_seuil_couple', "2065-01-01", value=None),
             ]),
         })
-    reference_legislation_json_copy.add_child('plf2016_conterfactual', reform_legislation_subtree)
-    return reference_legislation_json_copy
+    reference_legislation_copy.add_child('plf2016_conterfactual', reform_legislation_subtree)
+    return reference_legislation_copy
 
     # WIP : Nouveaux parametres à actualiser :
     # 1° Le 1 est remplacé par les dispositions suivantes :
@@ -169,27 +169,27 @@ class plf2016_counterfactual(Reform):
     def apply(self):
         for variable in [self.decote, self.reductions, self.reduction_impot_exceptionnelle]:
             self.update_variable(variable)
-        self.modify_legislation_json(modifier_function = counterfactual_modify_legislation_json)
+        self.modify_legislation(modifier_function = counterfactual_modify_legislation)
 
 
-def counterfactual_2014_modify_legislation_json(reference_legislation_json_copy):
+def counterfactual_2014_modify_legislation(reference_legislation_copy):
     # TODO: inflater les paramètres de la décote le barème de l'IR
     inflator = 1 + .001 + .005
     reform_year = 2015
     reform_period = periods.period(reform_year)
-    # reference_legislation_json_copy.ir.reductions_impots.reduction_impot_exceptionnelle.montant_plafond.update(period=reform_period, value=350*inflator)
-    # reference_legislation_json_copy.ir.reductions_impots.reduction_impot_exceptionnelle.seuil.update(period=reform_period, value=13795*inflator)
-    # reference_legislation_json_copy.ir.reductions_impots.reduction_impot_exceptionnelle.majoration_seuil.update(period=reform_period, value=3536*inflator)
-    reference_legislation_json_copy.impot_revenu.bareme[1].threshold.update(period=reform_period, value=6011*inflator)
-    reference_legislation_json_copy.impot_revenu.bareme[1].rate.update(period=reform_period, value=.055*inflator)
-    reference_legislation_json_copy.impot_revenu.bareme[2].threshold.update(period=reform_period, value=11991*inflator)
-    reference_legislation_json_copy.impot_revenu.bareme[2].rate.update(period=reform_period, value=.14*inflator)
-    reference_legislation_json_copy.impot_revenu.bareme[3].threshold.update(period=reform_period, value=26631*inflator)
-    reference_legislation_json_copy.impot_revenu.bareme[3].rate.update(period=reform_period, value=.30*inflator)
-    reference_legislation_json_copy.impot_revenu.bareme[4].threshold.update(period=reform_period, value=71397*inflator)
-    reference_legislation_json_copy.impot_revenu.bareme[4].rate.update(period=reform_period, value=.40*inflator)
+    # reference_legislation_copy.ir.reductions_impots.reduction_impot_exceptionnelle.montant_plafond.update(period=reform_period, value=350*inflator)
+    # reference_legislation_copy.ir.reductions_impots.reduction_impot_exceptionnelle.seuil.update(period=reform_period, value=13795*inflator)
+    # reference_legislation_copy.ir.reductions_impots.reduction_impot_exceptionnelle.majoration_seuil.update(period=reform_period, value=3536*inflator)
+    reference_legislation_copy.impot_revenu.bareme[1].threshold.update(period=reform_period, value=6011*inflator)
+    reference_legislation_copy.impot_revenu.bareme[1].rate.update(period=reform_period, value=.055*inflator)
+    reference_legislation_copy.impot_revenu.bareme[2].threshold.update(period=reform_period, value=11991*inflator)
+    reference_legislation_copy.impot_revenu.bareme[2].rate.update(period=reform_period, value=.14*inflator)
+    reference_legislation_copy.impot_revenu.bareme[3].threshold.update(period=reform_period, value=26631*inflator)
+    reference_legislation_copy.impot_revenu.bareme[3].rate.update(period=reform_period, value=.30*inflator)
+    reference_legislation_copy.impot_revenu.bareme[4].threshold.update(period=reform_period, value=71397*inflator)
+    reference_legislation_copy.impot_revenu.bareme[4].rate.update(period=reform_period, value=.40*inflator)
 
-    return reference_legislation_json_copy
+    return reference_legislation_copy
 
 
 class plf2016_counterfactual_2014(Reform):
@@ -266,4 +266,4 @@ class plf2016_counterfactual_2014(Reform):
     def apply(self):
         for variable in [self.decote, self.reduction_impot_exceptionnelle, self.reductions]:
             self.update_variable(variable)
-        self.modify_legislation_json(modifier_function = counterfactual_2014_modify_legislation_json)
+        self.modify_legislation(modifier_function = counterfactual_2014_modify_legislation)
