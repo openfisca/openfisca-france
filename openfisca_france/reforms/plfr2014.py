@@ -13,7 +13,7 @@ from ..model.base import *
 from ..model.prelevements_obligatoires.impot_revenu import reductions_impot
 
 
-dir_path = os.path.dirname(__file__)
+dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 
 # TODO: les baisses de charges n'ont pas été codées car annulées (toute ou en partie ?)

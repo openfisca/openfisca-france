@@ -12,7 +12,7 @@ from .. import entities
 from ..model.prelevements_obligatoires.impot_revenu import ir
 
 
-dir_path = os.path.dirname(__file__)
+dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 
 def modify_legislation(reference_legislation_copy):

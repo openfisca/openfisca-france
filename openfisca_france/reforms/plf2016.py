@@ -11,7 +11,7 @@ from openfisca_core.legislations import Node, Parameter, ValueAtInstant
 from ..model.base import *
 
 
-dir_path = os.path.dirname(__file__)
+dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 
 # What if the reform was applied the year before it should

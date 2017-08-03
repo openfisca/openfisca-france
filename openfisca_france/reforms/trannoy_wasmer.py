@@ -11,7 +11,7 @@ from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
 from ..model.base import *
 
 
-dir_path = os.path.dirname(__file__)
+dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 
 def modify_legislation(reference_legislation_copy):

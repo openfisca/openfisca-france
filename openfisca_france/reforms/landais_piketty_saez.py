@@ -15,7 +15,7 @@ from openfisca_core.reforms import Reform
 from openfisca_france.model.base import *
 
 
-dir_path = os.path.dirname(__file__)
+dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 
 class assiette_csg(Variable):

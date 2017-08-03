@@ -2,6 +2,7 @@ recursive-include openfisca_france/assets/apl *
 recursive-include openfisca_france/assets/versement_transport *
 recursive-include openfisca_france/decompositions *
 recursive-include openfisca_france/parameters *
+recursive-include openfisca_france/reforms/parameters *
 recursive-include openfisca_france/scripts *
 include openfisca_france/tests/__init__.py
 include openfisca_france/tests/base.py
