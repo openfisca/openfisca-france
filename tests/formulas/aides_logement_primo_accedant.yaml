@@ -1,9 +1,13 @@
 - name: "Aides logements - Primo-accédants"
   description: Aides au logement de base pour les primo-accédants
   period: 2017-08
+  relative_error_margin: 0.001
   input_variables :
     loyer: 500
     charges_locatives: 40
     aide_logement_base_ressources: 800
   output_variables:
-    aides_logement_primo_accedant: 0
+    aides_logement_primo_accedant_nb_part: 1.2
+    aides_logement_primo_accedant_k: 0.8689
+    aides_logement_loyer_minimal: 6.36
+    aides_logement_primo_accedant: 463.67

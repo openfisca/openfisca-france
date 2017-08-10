@@ -874,14 +874,24 @@ class aides_logement_primo_accedant(Variable):
     def formula(famille, period, legislation):
         L = famille.demandeur.menage('loyer', period)
         C = famille.demandeur.menage('charges_locatives', period)
+        K= famille('aides_logement_primo_accedant_k', period)
+        Lo = famille('aides_logement_loyer_minimal', period)
+
+        return K * ( L + C - Lo)
+
+class aides_logement_primo_accedant_k(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Allocation logement primo accedant K"
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
         coef_k = legislation(period).prestations.al_param_accal.constante_du_coefficient_k
         multi_n = legislation(period).prestations.al_param_accal.multiplicateur_de_n
         R = famille('aide_logement_base_ressources', period)
         N = famille('aides_logement_primo_accedant_nb_part', period)
-        K= coef_k - ( R / (multi_n * N))
-        Lo = famille('aides_logement_loyer_minimal', period)
 
-        return K * ( L + C - Lo)
+        return coef_k - ( R / (multi_n * N))
 
 class  aides_logement_primo_accedant_nb_part(Variable):
     column = FloatCol
@@ -914,5 +924,7 @@ class  aides_logement_loyer_minimal(Variable):
         prestations = legislation(period).prestations
         bareme = prestations.al_param_accal.bareme_loyer_minimun_lo
         baseRessource = famille('aide_logement_base_ressources', period)
+        majoration_loyer = prestations.al_param.majoration_du_loyer_minimum_lo
+        N = famille('aides_logement_primo_accedant_nb_part', period)
 
-        return bareme.calc(baseRessource)
+        return ((bareme.calc(baseRessource / N) * N) + majoration_loyer) / 12  
