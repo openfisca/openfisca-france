@@ -864,3 +864,55 @@ def preload_zone_apl():
             commune_depcom_by_subcommune_depcom = json.load(json_file)
             for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.iteritems():
                 zone_apl_by_depcom[subcommune_depcom] = zone_apl_by_depcom[commune_depcom]
+
+class aides_logement_primo_accedant(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Allocation logement primo accedant"
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+        L = famille.demandeur.menage('loyer', period)
+        C = famille.demandeur.menage('charges_locatives', period)
+        coef_k = legislation(period).prestations.al_param_accal.constante_du_coefficient_k
+        multi_n = legislation(period).prestations.al_param_accal.multiplicateur_de_n
+        R = famille('aide_logement_base_ressources', period)
+        N = famille('aides_logement_primo_accedant_nb_part', period)
+        K= coef_k - ( R / (multi_n * N))
+        Lo = famille('aides_logement_loyer_minimal', period)
+
+        return K * ( L + C - Lo)
+
+class  aides_logement_primo_accedant_nb_part(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Allocation logement primo accedant nombre de part"
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+        prestations = legislation(period).prestations
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        couple = famille('al_couple', period)
+
+        return (
+           prestations.al_param_accal.n_0_personnes_a_charge.isole * not_(couple) * (al_nb_pac == 0) +
+           prestations.al_param_accal.n_0_personnes_a_charge.menage * couple * (al_nb_pac == 0) +
+           prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1) +
+           prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2) +
+           prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3) +
+           prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4) +
+           prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+         )
+
+class  aides_logement_loyer_minimal(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Allocation logement loyer minimal"
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+        prestations = legislation(period).prestations
+        bareme = prestations.al_param_accal.bareme_loyer_minimun_lo
+        baseRessource = famille('aide_logement_base_ressources', period)
+
+        return bareme.calc(baseRessource)
