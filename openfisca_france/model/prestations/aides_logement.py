@@ -872,10 +872,12 @@ class aides_logement_primo_accedant(Variable):
     definition_period = MONTH
 
     def formula(famille, period, legislation):
-        L = famille.demandeur.menage('loyer', period)
+        loyer = famille.demandeur.menage('loyer', period)
+        plafond_mensualite = famille('aides_logement_primo_accedant_plafond_mensualite', period)
+        L = min_(loyer, plafond_mensualite)
         C = famille.demandeur.menage('charges_locatives', period)
         K= famille('aides_logement_primo_accedant_k', period)
-        Lo = famille('aides_logement_loyer_minimal', period)
+        Lo = famille('aides_logement_primo_accedant_loyer_minimal', period)
 
         return K * ( L + C - Lo)
 
@@ -914,7 +916,7 @@ class  aides_logement_primo_accedant_nb_part(Variable):
            prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
          )
 
-class  aides_logement_loyer_minimal(Variable):
+class  aides_logement_primo_accedant_loyer_minimal(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation logement loyer minimal"
@@ -928,3 +930,47 @@ class  aides_logement_loyer_minimal(Variable):
         N = famille('aides_logement_primo_accedant_nb_part', period)
 
         return ((bareme.calc(baseRessource / N) * N) + majoration_loyer) / 12  
+
+class aides_logement_primo_accedant_plafond_mensualite(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Allocation logement primo accédant plafond mensualité"
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+        al_plaf_acc = legislation(period).prestations.al_plaf_acc
+        z1 = al_plaf_acc.plafond_pour_accession_a_la_propriete_zone_1
+        z2 = al_plaf_acc.plafond_pour_accession_a_la_propriete_zone_2
+        z3 = al_plaf_acc.plafond_pour_accession_a_la_propriete_zone_3
+        zone_apl = famille.demandeur.menage('zone_apl', period)
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        couple = famille('al_couple', period)
+
+        return (zone_apl == 1) * (
+           z1.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
+           z1.menage_seul * couple * (al_nb_pac == 0) +
+           z1.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
+           z1.menage_ou_isole_avec_2_enfants* (al_nb_pac == 2) +
+           z1.menage_ou_isole_avec_3_enfants* (al_nb_pac == 3) +
+           z1.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
+           z1.menage_ou_isole_avec_5_enfants * (al_nb_pac >= 5) +
+           z1.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 5) * (al_nb_pac - 5)
+         ) + (zone_apl == 2) * (
+           z2.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
+           z2.menage_seul * couple * (al_nb_pac == 0) +
+           z2.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
+           z2.menage_ou_isole_avec_2_enfants* (al_nb_pac == 2) +
+           z2.menage_ou_isole_avec_3_enfants* (al_nb_pac == 3) +
+           z2.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
+           z2.menage_ou_isole_avec_5_enfants * (al_nb_pac >= 5) +
+           z2.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 5) * (al_nb_pac - 5)
+         ) + (zone_apl == 3) * (
+           z3.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
+           z3.menage_seul * couple * (al_nb_pac == 0) +
+           z3.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
+           z3.menage_ou_isole_avec_2_enfants* (al_nb_pac == 2) +
+           z3.menage_ou_isole_avec_3_enfants* (al_nb_pac == 3) +
+           z3.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
+           z3.menage_ou_isole_avec_5_enfants * (al_nb_pac >= 5) +
+           z3.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 5) * (al_nb_pac - 5)
+         )

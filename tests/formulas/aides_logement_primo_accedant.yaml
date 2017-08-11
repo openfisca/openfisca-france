@@ -6,8 +6,10 @@
     loyer: 500
     charges_locatives: 40
     aide_logement_base_ressources: 800
+    zone_apl: 1
   output_variables:
     aides_logement_primo_accedant_nb_part: 1.2
     aides_logement_primo_accedant_k: 0.8689
-    aides_logement_loyer_minimal: 6.36
-    aides_logement_primo_accedant: 463.67
+    aides_logement_primo_accedant_loyer_minimal: 6.36    
+    aides_logement_primo_accedant_plafond_mensualite: 311.23    
+    aides_logement_primo_accedant: 299.64
