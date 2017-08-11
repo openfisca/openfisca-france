@@ -611,7 +611,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
 
         montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
         montant_accedants = famille('aides_logement_primo_accedant', period)
-        
+
         montant = select([locataire, accedant], [montant_locataire, montant_accedants])
 
         montant = montant * (montant >= al.al_min.montant_min_mensuel.montant_min_apl_al)  # Montant minimal de versement
@@ -985,4 +985,5 @@ class  aides_logement_primo_accedant_ressources(Variable):
         baseRessource = famille('aide_logement_base_ressources', period)
         loyer = famille.demandeur.menage('loyer', period)
         coef_plancher_ressources = legislation(period).prestations.aides_logement.ressources.dar_3
-        return max_(baseRessource, loyer * coef_plancher_ressources)  
+        return max_(baseRessource, loyer * coef_plancher_ressources)
+ 
