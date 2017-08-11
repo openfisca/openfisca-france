@@ -868,7 +868,8 @@ def preload_zone_apl():
 class aides_logement_primo_accedant(Variable):
     column = FloatCol
     entity = Famille
-    label = u"Allocation logement primo accedant"
+    label = u"Allocation logement pour les primo-accédants"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
     def formula_2007_07(famille, period, legislation):
@@ -884,7 +885,8 @@ class aides_logement_primo_accedant(Variable):
 class aides_logement_primo_accedant_k(Variable):
     column = FloatCol
     entity = Famille
-    label = u"Allocation logement primo accedant K"
+    label = u"Allocation logement pour les primo-accédants K"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
     def formula(famille, period, legislation):
@@ -898,7 +900,8 @@ class aides_logement_primo_accedant_k(Variable):
 class  aides_logement_primo_accedant_nb_part(Variable):
     column = FloatCol
     entity = Famille
-    label = u"Allocation logement primo accedant nombre de part"
+    label = u"Allocation logement pour les primo-accédants nombre de part"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
     def formula(famille, period, legislation):
@@ -919,7 +922,8 @@ class  aides_logement_primo_accedant_nb_part(Variable):
 class  aides_logement_primo_accedant_loyer_minimal(Variable):
     column = FloatCol
     entity = Famille
-    label = u"Allocation logement loyer minimal"
+    label = u"Allocation logement pour les primo-accédants loyer minimal"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
     def formula(famille, period, legislation):
@@ -929,12 +933,13 @@ class  aides_logement_primo_accedant_loyer_minimal(Variable):
         majoration_loyer = prestations.al_param.majoration_du_loyer_minimum_lo
         N = famille('aides_logement_primo_accedant_nb_part', period)
 
-        return ((bareme.calc(baseRessource / N) * N) + majoration_loyer) / 12  
+        return (bareme.calc(baseRessource / N) * N + majoration_loyer) / 12  
 
 class aides_logement_primo_accedant_plafond_mensualite(Variable):
     column = FloatCol
     entity = Famille
-    label = u"Allocation logement primo accédant plafond mensualité"
+    label = u"Allocation logement pour les primo-accédants plafond mensualité"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=41AE9B6BDDC571E9CB28A605FDA0F639.tpdila22v_1?idArticle=LEGIARTI000006737216&cidTexte=LEGITEXT000006073189&dateTexte=20170811&categorieLien=id&oldAction=&nbResultRech="
     definition_period = MONTH
 
     def formula(famille, period, legislation):
@@ -950,8 +955,8 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
            z1.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
            z1.menage_seul * couple * (al_nb_pac == 0) +
            z1.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
-           z1.menage_ou_isole_avec_2_enfants* (al_nb_pac == 2) +
-           z1.menage_ou_isole_avec_3_enfants* (al_nb_pac == 3) +
+           z1.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
+           z1.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
            z1.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
            z1.menage_ou_isole_avec_5_enfants * (al_nb_pac >= 5) +
            z1.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 5) * (al_nb_pac - 5)
@@ -959,8 +964,8 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
            z2.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
            z2.menage_seul * couple * (al_nb_pac == 0) +
            z2.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
-           z2.menage_ou_isole_avec_2_enfants* (al_nb_pac == 2) +
-           z2.menage_ou_isole_avec_3_enfants* (al_nb_pac == 3) +
+           z2.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
+           z2.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
            z2.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
            z2.menage_ou_isole_avec_5_enfants * (al_nb_pac >= 5) +
            z2.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 5) * (al_nb_pac - 5)
@@ -968,8 +973,8 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
            z3.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
            z3.menage_seul * couple * (al_nb_pac == 0) +
            z3.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
-           z3.menage_ou_isole_avec_2_enfants* (al_nb_pac == 2) +
-           z3.menage_ou_isole_avec_3_enfants* (al_nb_pac == 3) +
+           z3.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
+           z3.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
            z3.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
            z3.menage_ou_isole_avec_5_enfants * (al_nb_pac >= 5) +
            z3.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 5) * (al_nb_pac - 5)
@@ -978,7 +983,8 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
 class  aides_logement_primo_accedant_ressources(Variable):
     column = FloatCol
     entity = Famille
-    label = u"Allocation logement primo accédant ressources"
+    label = u"Allocation logement pour les primo-accédants ressources"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=0E9C46E37CA82EB75BD1482030D54BB5.tpdila18v_2?idArticle=LEGIARTI000021632291&cidTexte=LEGITEXT000006074096&dateTexte=20170623&categorieLien=id&oldAction="
     definition_period = MONTH
 
     def formula(famille, period, legislation):
