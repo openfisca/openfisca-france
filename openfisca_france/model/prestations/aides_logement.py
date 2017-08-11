@@ -871,7 +871,7 @@ class aides_logement_primo_accedant(Variable):
     label = u"Allocation logement primo accedant"
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula_2007_07(famille, period, legislation):
         loyer = famille.demandeur.menage('loyer', period)
         plafond_mensualite = famille('aides_logement_primo_accedant_plafond_mensualite', period)
         L = min_(loyer, plafond_mensualite)
