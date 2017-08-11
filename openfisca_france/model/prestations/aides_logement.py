@@ -939,7 +939,7 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation logement pour les primo-accédants plafond mensualité"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=41AE9B6BDDC571E9CB28A605FDA0F639.tpdila22v_1?idArticle=LEGIARTI000006737216&cidTexte=LEGITEXT000006073189&dateTexte=20170811&categorieLien=id&oldAction=&nbResultRech="
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737237&cidTexte=LEGITEXT000006073189&dateTexte=20170811"
     definition_period = MONTH
 
     def formula(famille, period, legislation):
