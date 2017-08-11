@@ -1,5 +1,14 @@
 # Changelog
 
+## 18.8.0 - [#801](https://github.com/openfisca/openfisca-france/pull/801)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `/prestations/aides_logement`.
+* Détails :
+  - Calcul des aides au logement pour les primo-accédants.
+  - Marge d'erreur (~5% sur les tests) voir avec un expert métier pour rectifier le calcul.
+
 ## 18.7.0 - [#797](https://github.com/openfisca/openfisca-france/pull/797)
 
 * Amélioration technique
