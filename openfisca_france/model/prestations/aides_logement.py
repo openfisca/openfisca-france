@@ -610,7 +610,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         participation_personnelle = famille('aide_logement_participation_personnelle', period)
 
         montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
-        montant_accedants = 0  # TODO: APL pour les accédants à la propriété
+        montant_accedants = famille('aides_logement_primo_accedant', period)
 
         montant = select([locataire, accedant], [montant_locataire, montant_accedants])
 
@@ -864,3 +864,132 @@ def preload_zone_apl():
             commune_depcom_by_subcommune_depcom = json.load(json_file)
             for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.iteritems():
                 zone_apl_by_depcom[subcommune_depcom] = zone_apl_by_depcom[commune_depcom]
+
+class aides_logement_primo_accedant(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Allocation logement pour les primo-accédants"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
+    definition_period = MONTH
+
+    def formula_2007_07(famille, period, legislation):
+        loyer = famille.demandeur.menage('loyer', period)
+        plafond_mensualite = famille('aides_logement_primo_accedant_plafond_mensualite', period)
+        L = min_(loyer, plafond_mensualite)
+        C = famille('aide_logement_charges', period)
+        K = famille('aides_logement_primo_accedant_k', period)
+        Lo = famille('aides_logement_primo_accedant_loyer_minimal', period)
+
+        return K * ( L + C - Lo)
+
+class aides_logement_primo_accedant_k(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Allocation logement pour les primo-accédants K"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+        coef_k = legislation(period).prestations.al_param_accal.constante_du_coefficient_k
+        multi_n = legislation(period).prestations.al_param_accal.multiplicateur_de_n
+        R = famille('aides_logement_primo_accedant_ressources', period)
+        N = famille('aides_logement_primo_accedant_nb_part', period)
+
+        return coef_k - ( R / (multi_n * N))
+
+class  aides_logement_primo_accedant_nb_part(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Allocation logement pour les primo-accédants nombre de part"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+        prestations = legislation(period).prestations
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        couple = famille('al_couple', period)
+
+        return (
+           prestations.al_param_accal.n_0_personnes_a_charge.isole * not_(couple) * (al_nb_pac == 0) +
+           prestations.al_param_accal.n_0_personnes_a_charge.menage * couple * (al_nb_pac == 0) +
+           prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1) +
+           prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2) +
+           prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3) +
+           prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4) +
+           prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+         )
+
+class  aides_logement_primo_accedant_loyer_minimal(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Allocation logement pour les primo-accédants loyer minimal"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+        prestations = legislation(period).prestations
+        bareme = prestations.al_param_accal.bareme_loyer_minimun_lo
+        baseRessource = famille('aides_logement_primo_accedant_ressources', period)
+        majoration_loyer = prestations.al_param.majoration_du_loyer_minimum_lo
+        N = famille('aides_logement_primo_accedant_nb_part', period)
+
+        return (bareme.calc(baseRessource / N) * N + majoration_loyer) / 12  
+
+class aides_logement_primo_accedant_plafond_mensualite(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Allocation logement pour les primo-accédants plafond mensualité"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737237&cidTexte=LEGITEXT000006073189&dateTexte=20170811"
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+        al_plaf_acc = legislation(period).prestations.al_plaf_acc
+        z1 = al_plaf_acc.plafond_pour_accession_a_la_propriete_zone_1
+        z2 = al_plaf_acc.plafond_pour_accession_a_la_propriete_zone_2
+        z3 = al_plaf_acc.plafond_pour_accession_a_la_propriete_zone_3
+        zone_apl = famille.demandeur.menage('zone_apl', period)
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        couple = famille('al_couple', period)
+
+        return (zone_apl == 1) * (
+           z1.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
+           z1.menage_seul * couple * (al_nb_pac == 0) +
+           z1.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
+           z1.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
+           z1.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
+           z1.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
+           z1.menage_ou_isole_avec_5_enfants * (al_nb_pac >= 5) +
+           z1.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 5) * (al_nb_pac - 5)
+         ) + (zone_apl == 2) * (
+           z2.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
+           z2.menage_seul * couple * (al_nb_pac == 0) +
+           z2.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
+           z2.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
+           z2.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
+           z2.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
+           z2.menage_ou_isole_avec_5_enfants * (al_nb_pac >= 5) +
+           z2.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 5) * (al_nb_pac - 5)
+         ) + (zone_apl == 3) * (
+           z3.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
+           z3.menage_seul * couple * (al_nb_pac == 0) +
+           z3.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
+           z3.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
+           z3.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
+           z3.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
+           z3.menage_ou_isole_avec_5_enfants * (al_nb_pac >= 5) +
+           z3.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 5) * (al_nb_pac - 5)
+         )
+
+class  aides_logement_primo_accedant_ressources(Variable):
+    column = FloatCol
+    entity = Famille
+    label = u"Allocation logement pour les primo-accédants ressources"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=0E9C46E37CA82EB75BD1482030D54BB5.tpdila18v_2?idArticle=LEGIARTI000021632291&cidTexte=LEGITEXT000006074096&dateTexte=20170623&categorieLien=id&oldAction="
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+        baseRessource = famille('aide_logement_base_ressources', period)
+        loyer = famille.demandeur.menage('loyer', period)
+        coef_plancher_ressources = legislation(period).prestations.aides_logement.ressources.dar_3
+        return max_(baseRessource, loyer * coef_plancher_ressources)
+ 

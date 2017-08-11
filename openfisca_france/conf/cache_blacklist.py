@@ -1,5 +1,5 @@
 # When using openfisca for a large population, having too many variables in cache make openfisca performances drop.
-# The following variables are intermadiate results and do not need to be cached in those usecases.
+# The following variables are intermediate results and do not need to be cached in those usecases.
 
 cache_blacklist = set([
     'aide_logement_loyer_retenu',
@@ -11,4 +11,10 @@ cache_blacklist = set([
     'aide_logement_loyer_seuil_degressivite',
     'aide_logement_loyer_seuil_suppression',
     'aide_logement_montant_brut_avant_degressivite',
+    'aides_logement_primo_accedant',
+    'aides_logement_primo_accedant_k',
+    'aides_logement_primo_accedant_nb_part',
+    'aides_logement_primo_accedant_loyer_minimal',
+    'aides_logement_primo_accedant_plafond_mensualite',
+    'aides_logement_primo_accedant_ressources',
 ])
