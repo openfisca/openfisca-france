@@ -128,8 +128,8 @@ def preprocess_legislation(legislation):
     pat = build_pat(legislation)
 
     cotsoc = legislation.children["cotsoc"]
-    cotsoc.children["cotisations_employeur"] = Node('cotisations_employeur_after_preprocessing', children={})
-    cotsoc.children["cotisations_salarie"] = Node('cotisations_salarie_after_preprocessing', children={})
+    cotsoc.children["cotisations_employeur"] = Node('cotisations_employeur_after_preprocessing', validated_yaml={})
+    cotsoc.children["cotisations_salarie"] = Node('cotisations_salarie_after_preprocessing', validated_yaml={})
 
     for cotisation_name, baremes in (
             ('cotisations_employeur', pat.children),
