@@ -1,11 +1,9 @@
-type: node
 description: Impôt à base large proposé par Landais Piketty et Saez
 bareme:
-  type: scale
   unit: currency
   description: Barème de l'impôt
   brackets:
-    - rate:
+    - average_rate:
         '2015-01-01':
           value: null
         '2000-01-01':
@@ -15,7 +13,7 @@ bareme:
           value: null
         '2000-01-01':
           value: 1100
-    - rate:
+    - average_rate:
         '2015-01-01':
           value: null
         '2000-01-01':
@@ -25,7 +23,7 @@ bareme:
           value: null
         '2000-01-01':
           value: 2200
-    - rate:
+    - average_rate:
         '2015-01-01':
           value: null
         '2000-01-01':
@@ -35,7 +33,7 @@ bareme:
           value: null
         '2000-01-01':
           value: 5000
-    - rate:
+    - average_rate:
         '2015-01-01':
           value: null
         '2000-01-01':
@@ -45,7 +43,7 @@ bareme:
           value: null
         '2000-01-01':
           value: 10000
-    - rate:
+    - average_rate:
         '2015-01-01':
           value: null
         '2000-01-01':
@@ -55,7 +53,7 @@ bareme:
           value: null
         '2000-01-01':
           value: 40000
-    - rate:
+    - average_rate:
         '2015-01-01':
           value: null
         '2000-01-01':
@@ -66,7 +64,6 @@ bareme:
         '2000-01-01':
           value: 100000
 imposition:
-  type: parameter
   description: "Indicatrice d'imposition"
   values:
     '2015-01-01':
@@ -74,7 +71,6 @@ imposition:
     '2000-01-01':
       value: True
 credit_enfant:
-  type: parameter
   description: "Crédit d'impôt forfaitaire par enfant"
   values:
     '2015-01-01':
@@ -82,7 +78,6 @@ credit_enfant:
     '2000-01-01':
       value: 0
 reduc_enfant:
-  type: parameter
   description: "Réduction d'impôt forfaitaire par enfant"
   values:
     '2015-01-01':
@@ -90,7 +85,6 @@ reduc_enfant:
     '2000-01-01':
       value: 0
 abatt_enfant:
-  type: parameter
   description: Abattement forfaitaire sur le revenu par enfant
   values:
     '2015-01-01':
@@ -98,7 +92,6 @@ abatt_enfant:
     '2000-01-01':
       value: 0
 reduc_conj:
-  type: parameter
   description: "Réduction d'impôt forfaitaire si conjoint"
   values:
     '2015-01-01':
@@ -106,7 +99,6 @@ reduc_conj:
     '2000-01-01':
       value: 0
 abatt_conj:
-  type: parameter
   description: Abattement forfaitaire sur le revenu si conjoint
   values:
     '2015-01-01':

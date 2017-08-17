@@ -22,18 +22,9 @@ def ayrault_muet_modify_legislation(reference_legislation_copy):
         inflator = inflator * (1 + inflation / 100)
     del inflation
 
-    elig1 = Parameter('elig1', values_list = [
-        ValueAtInstant('elig1', "2015-01-01", value=round(16251 * inflator)),
-        ValueAtInstant('elig1', "2016-01-01", value=None),
-        ])
-    elig2 = Parameter('elig2', values_list = [
-        ValueAtInstant('elig2', "2015-01-01", value=round(32498 * inflator)),
-        ValueAtInstant('elig2', "2016-01-01", value=None),
-        ])
-    elig3 = Parameter('elig3', values_list = [
-        ValueAtInstant('elig3', "2015-01-01", value=round(4490 * inflator)),
-        ValueAtInstant('elig3', "2016-01-01", value=None),
-        ])
+    elig1 = Parameter('elig1', {'values': {"2015-01-01": {'value': round(16251 * inflator)}, "2016-01-01": {'value': None}}})
+    elig2 = Parameter('elig2', {'values': {"2015-01-01": {'value': round(32498 * inflator)}, "2016-01-01": {'value': None}}})
+    elig3 = Parameter('elig3', {'values': {"2015-01-01": {'value': round(4490 * inflator)}, "2016-01-01": {'value': None}}})
     reference_legislation_copy.impot_revenu.credits_impot.ppe.add_child('elig1', elig1)
     reference_legislation_copy.impot_revenu.credits_impot.ppe.add_child('elig2', elig2)
     reference_legislation_copy.impot_revenu.credits_impot.ppe.add_child('elig3', elig3)

@@ -7,7 +7,7 @@ import os
 
 from openfisca_core import periods, legislations
 from openfisca_core.reforms import Reform
-from openfisca_core.legislations import Node, Parameter, ValueAtInstant
+from openfisca_core.legislations import Node
 from ..model.base import *
 
 
@@ -61,15 +61,9 @@ class plf2016(Reform):
 def counterfactual_modify_legislation(reference_legislation_copy):
     # TODO: inflater les paramètres de la décote le barème de l'IR
     inflation = .001
-    reform_legislation_subtree = Node('plf2016_conterfactual', children = {
-        'decote_seuil_celib': Parameter('decote_seuil_celib', values_list = [
-            ValueAtInstant('decote_seuil_celib', "2015-01-01", value=round(1135 * (1 + inflation))),
-            ValueAtInstant('decote_seuil_celib', "2016-01-01", value=None),
-            ]),
-        'decote_seuil_couple': Parameter('decote_seuil_couple', values_list = [
-            ValueAtInstant('decote_seuil_couple', "2015-01-01", value=round(1870 * (1 + inflation))),
-            ValueAtInstant('decote_seuil_couple', "2065-01-01", value=None),
-            ]),
+    reform_legislation_subtree = Node('plf2016_conterfactual', validated_yaml = {
+        'decote_seuil_celib': {'values': {"2015-01-01": {'value': round(1135 * (1 + inflation))}, "2016-01-01": {'value': None}}},
+        'decote_seuil_couple': {'values': {"2015-01-01": {'value': round(1870 * (1 + inflation))}, "2065-01-01": {'value': None}}},
         })
     reference_legislation_copy.add_child('plf2016_conterfactual', reform_legislation_subtree)
     return reference_legislation_copy
