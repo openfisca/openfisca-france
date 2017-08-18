@@ -1,5 +1,13 @@
 # Changelog
 
+## 18.8.1 - [#789](https://github.com/openfisca/openfisca-france/pull/789)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/07/2017
+* Zones impactées : `openfisca_france/parameters/cotsoc.xml`, `openfisca_france/parameters/prelevements_sociaux.xml`.
+* Détails :
+  - Prise en compte de la baisse de la cotisation AGS au 1er juillet.
+
 ## 18.8.0 - [#801](https://github.com/openfisca/openfisca-france/pull/801)
 
 * Évolution du système socio-fiscal.
