@@ -1,5 +1,14 @@
 # Changelog
 
+### 18.8.2 - [#806](https://github.com/openfisca/openfisca-france/pull/788)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/07/2017
+* Zones impactées : `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/versement_transport`.
+* Détails :
+  - Mise à jour conformément à [la circulaire du 31 mai](https://www.urssaf.fr/portail/files/live/sites/urssaf/files/Lettres_circulaires/2017/ref_LCIRC-2017-0000019.pdf)
+  - données extraites via l'API de l'URSSAF, cf. https://github.com/sgmap/taux-versement-transport
+
 ## 18.8.1 - [#789](https://github.com/openfisca/openfisca-france/pull/789)
 
 * Évolution du système socio-fiscal.
@@ -21,7 +30,7 @@
 
 * Amélioration technique
 * Détails :
-  - Déclare OpenFisca-France compatible avec OpenFisca-Core 17 
+  - Déclare OpenFisca-France compatible avec OpenFisca-Core 17
 
 ### 18.6.6 - [#781](https://github.com/openfisca/openfisca-france/pull/781)
 
@@ -193,17 +202,17 @@
   - Mise à jour du montant du du CF majoré dans les DOM au 1er avril 2017
     - [Source](https://www.legifrance.gouv.fr/eli/decret/2017/4/12/2017-534/jo/texte)
   - Mise à jour du montant de l'ASS aux 1er avril 2016 et premier avril 2017
-    - [Source pour 2016](https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte) 
-    - [Source pour 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/10/2017-1022/jo/texte) 
+    - [Source pour 2016](https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte)
+    - [Source pour 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/10/2017-1022/jo/texte)
   - Mise à jour du montant de l'ATA aux 1er avril 2016 et premier avril 2017
-    - [Source pour 2016](https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte) 
-    - [Source pour 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/10/2017-1022/jo/texte) 
+    - [Source pour 2016](https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte)
+    - [Source pour 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/10/2017-1022/jo/texte)
 
 ### 18.2.6 - [#747](https://github.com/openfisca/openfisca-france/pull/747)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2017.
-* Zones impactées : `prestations/minima_sociaux/asi_aspa`, 
+* Zones impactées : `prestations/minima_sociaux/asi_aspa`,
 * Détails :
   - Mise à jour des plafonds et montants de l'ASI et de l'ASPA
   - Source: http://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf
