@@ -1,5 +1,14 @@
 # Changelog
 
+### 18.8.1 - [#788](https://github.com/openfisca/openfisca-france/pull/788)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/07/2017
+* Zones impactées : `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/versement_transport`.
+* Détails :
+  - Mise à jour conformément à [la circulaire du 31 mai](https://www.urssaf.fr/portail/files/live/sites/urssaf/files/Lettres_circulaires/2017/ref_LCIRC-2017-0000019.pdf)
+  - données extraites via l'API de l'URSSAF, cf. https://github.com/sgmap/taux-versement-transport
+
 ## 18.8.0 - [#801](https://github.com/openfisca/openfisca-france/pull/801)
 
 * Évolution du système socio-fiscal.
