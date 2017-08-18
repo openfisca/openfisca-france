@@ -1,5 +1,13 @@
 # Changelog
 
+## 18.9.1 - [#583](https://github.com/openfisca/openfisca-france/pull/583)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/11/2014.
+* Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/stage`.
+* Détails :
+  - Extraction du taux de gratification minimum des stagiaires vers le fichier de paramètres.
+
 ## 18.9.0 - [#798](https://github.com/openfisca/openfisca-france/pull/798)
 
 * Amélioration technique
