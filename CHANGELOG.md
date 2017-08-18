@@ -1,6 +1,6 @@
 # Changelog
 
-### 18.8.2 - [#788](https://github.com/openfisca/openfisca-france/pull/788)
+### 18.8.2 - [#806](https://github.com/openfisca/openfisca-france/pull/788)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/07/2017
