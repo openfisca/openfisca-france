@@ -4,9 +4,6 @@ from __future__ import division
 
 import os
 
-from openfisca_core import periods, legislations
-from openfisca_core.reforms import Reform
-from openfisca_core.legislations import Parameter, ValueAtInstant
 from ..model.base import *
 
 
@@ -15,7 +12,7 @@ dir_path = os.path.dirname(__file__)
 
 # Réforme de l'amendement Ayrault-Muet
 
-def ayrault_muet_modify_legislation(reference_legislation_copy):
+def ayrault_muet_modify_parameters(parameters):
     # TODO: inflater les paramètres de la décote le barème de l'IR
     inflator = 1
     for inflation in [2.8, 0.1, 1.5, 2.1, 2, 0.9, 0.5, 0.1]:
@@ -25,10 +22,10 @@ def ayrault_muet_modify_legislation(reference_legislation_copy):
     elig1 = Parameter('elig1', {'values': {"2015-01-01": {'value': round(16251 * inflator)}, "2016-01-01": {'value': None}}})
     elig2 = Parameter('elig2', {'values': {"2015-01-01": {'value': round(32498 * inflator)}, "2016-01-01": {'value': None}}})
     elig3 = Parameter('elig3', {'values': {"2015-01-01": {'value': round(4490 * inflator)}, "2016-01-01": {'value': None}}})
-    reference_legislation_copy.impot_revenu.credits_impot.ppe.add_child('elig1', elig1)
-    reference_legislation_copy.impot_revenu.credits_impot.ppe.add_child('elig2', elig2)
-    reference_legislation_copy.impot_revenu.credits_impot.ppe.add_child('elig3', elig3)
-    return reference_legislation_copy
+    parameters.impot_revenu.credits_impot.ppe.add_child('elig1', elig1)
+    parameters.impot_revenu.credits_impot.ppe.add_child('elig2', elig2)
+    parameters.impot_revenu.credits_impot.ppe.add_child('elig3', elig3)
+    return parameters
 
 
 class variator(Variable):
@@ -51,8 +48,8 @@ class reduction_csg(Variable):
         seuil = 1.34
         coefficient_correctif = .9
         taux_csg = (
-            simulation.legislation_at(period.start).csg.activite.imposable.taux +
-            simulation.legislation_at(period.start).csg.activite.deductible.taux
+            simulation.parameters_at(period.start).csg.activite.imposable.taux +
+            simulation.parameters_at(period.start).csg.activite.deductible.taux
             )
         tx_max = coefficient_correctif * taux_csg
         ratio_smic_salaire = smic_proratise / (assiette_csg_abattue + 1e-16)
@@ -103,7 +100,7 @@ class ppe_elig_bis(Variable):
         celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         nbptr = simulation.calculate('nbptr', period)
         variator = simulation.calculate('variator', period)
-        ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe
+        ppe = simulation.parameters_at(period.start).impot_revenu.credits_impot.ppe
         seuil = (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
             + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
         return (rfr * ppe_coef) <= (seuil * variator)
@@ -135,4 +132,4 @@ class ayrault_muet(Reform):
             variator,
             ]:
             self.update_variable(variable)
-        self.modify_legislation(modifier_function = ayrault_muet_modify_legislation)
+        self.modify_parameters(modifier_function = ayrault_muet_modify_parameters)

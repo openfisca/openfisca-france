@@ -4,22 +4,19 @@ from __future__ import division
 
 import os
 
-from openfisca_core import legislations
-from openfisca_core.reforms import Reform
-
-from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
 from ..model.base import *
+from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
 
 
 dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 
-def modify_legislation(reference_legislation_copy):
+def modify_parameters(parameters):
     file_path = os.path.join(dir_path, 'trannoy_wasmer.yaml')
-    reform_legislation_subtree = legislations.load_file(name='trannoy_wasmer', file_path=file_path)
+    reform_parameters_subtree = load_file(name='trannoy_wasmer', file_path=file_path)
 
-    reference_legislation_copy.add_child('charge_loyer', reform_legislation_subtree)
-    return reference_legislation_copy
+    parameters.add_child('charge_loyer', reform_parameters_subtree)
+    return parameters
 
 class charges_deduc(Variable):
     label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
@@ -43,7 +40,7 @@ class charge_loyer(Variable):
 
         loyer = simulation.foyer_fiscal.declarant_principal.menage('loyer', period, options = [ADD])
 
-        charge_loyer = simulation.legislation_at(period.start).charge_loyer
+        charge_loyer = simulation.parameters_at(period.start).charge_loyer
 
         plaf = charge_loyer.plaf
         plaf_nbp = charge_loyer.plaf_nbp
@@ -58,4 +55,4 @@ class trannoy_wasmer(Reform):
     def apply(self):
         self.update_variable(charges_deduc)
         self.add_variable(charge_loyer)
-        self.modify_legislation(modifier_function = modify_legislation)
+        self.modify_parameters(modifier_function = modify_parameters)

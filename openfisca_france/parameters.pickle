@@ -1,9 +1,9 @@
-(S'7502eb85a985e4333837d04c9013798c'
+(S'd41d8cd98f00b204e9800998ecf8427e'
 p0
 ccopy_reg
 _reconstructor
 p1
-(copenfisca_core.legislations
+(copenfisca_core.parameters
 Node
 p2
 c__builtin__
@@ -60,7 +60,7 @@ sg9
 S'seuil_prix_titre'
 p28
 g1
-(copenfisca_core.legislations
+(copenfisca_core.parameters
 Parameter
 p29
 g3
@@ -71,7 +71,7 @@ S'values_list'
 p33
 (lp34
 g1
-(copenfisca_core.legislations
+(copenfisca_core.parameters
 ValueAtInstant
 p35
 g3
@@ -249,7 +249,7 @@ sg9
 S'arrco'
 p102
 g1
-(copenfisca_core.legislations
+(copenfisca_core.parameters
 Scale
 p103
 g3
@@ -260,7 +260,7 @@ S'brackets'
 p107
 (lp108
 g1
-(copenfisca_core.legislations
+(copenfisca_core.parameters
 Bracket
 p109
 g3
@@ -270,7 +270,7 @@ Rp111
 S'threshold'
 p113
 g1
-(copenfisca_core.legislations
+(copenfisca_core.parameters
 ValuesHistory
 p114
 g3

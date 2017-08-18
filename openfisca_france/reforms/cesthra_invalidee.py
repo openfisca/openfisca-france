@@ -4,8 +4,6 @@ from __future__ import division
 
 import os
 
-from openfisca_core import columns, legislations
-from openfisca_core.reforms import Reform
 from openfisca_france.model.base import *
 
 from .. import entities
@@ -15,15 +13,15 @@ from ..model.prelevements_obligatoires.impot_revenu import ir
 dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 
-def modify_legislation(reference_legislation_copy):
+def modify_parameters(parameters):
     file_path = os.path.join(dir_path, 'cesthra_invalidite.yaml')
-    reform_legislation_subtree = legislations.load_file(name='cesthra', file_path=file_path)
-    reference_legislation_copy.add_child('cesthra', reform_legislation_subtree)
-    return reference_legislation_copy
+    reform_parameters_subtree = load_file(name='cesthra', file_path=file_path)
+    parameters.add_child('cesthra', reform_parameters_subtree)
+    return parameters
 
 
 class cesthra(Variable):
-    column = columns.FloatCol
+    column = FloatCol
     entity = entities.FoyerFiscal
     label = u"Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
     definition_period = YEAR
@@ -31,7 +29,7 @@ class cesthra(Variable):
 
     def formula(self, simulation, period):
         salaire_imposable_holder = simulation.calculate_add("salaire_imposable", period)
-        law_cesthra = simulation.legislation_at(period.start).cesthra
+        law_cesthra = simulation.parameters_at(period.start).cesthra
         salaire_imposable = self.split_by_roles(salaire_imposable_holder)
 
         cesthra = 0
@@ -52,7 +50,7 @@ class irpp(Variable):
         credits_impot = simulation.calculate('credits_impot', period)
         cehr = simulation.calculate('cehr', period)
         cesthra = simulation.calculate('cesthra', period = period)
-        P = simulation.legislation_at(period.start).impot_revenu.recouvrement
+        P = simulation.parameters_at(period.start).impot_revenu.recouvrement
 
         pre_result = iai - credits_impot + cehr + cesthra
         return ((iai > P.seuil) *
@@ -68,4 +66,4 @@ class cesthra_invalidee(Reform):
     def apply(self):
         self.add_variable(cesthra)
         self.update_variable(irpp)
-        self.modify_legislation(modifier_function = modify_legislation)
+        self.modify_parameters(modifier_function = modify_parameters)

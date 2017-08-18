@@ -5,9 +5,6 @@ from __future__ import division
 
 import os
 
-from openfisca_core import periods, legislations
-from openfisca_core.reforms import Reform
-from openfisca_core.legislations import Node
 from ..model.base import *
 
 
@@ -16,11 +13,11 @@ dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 # What if the reform was applied the year before it should
 
-def reform_modify_legislation(reference_legislation_copy):
+def reform_modify_parameters(parameters):
     file_path = os.path.join(dir_path, 'plf2016.yaml')
-    reform_legislation_subtree = legislations.load_file(name='plf2016', file_path=file_path)
-    reference_legislation_copy.add_child('plf2016', reform_legislation_subtree)
-    return reference_legislation_copy
+    reform_parameters_subtree = load_file(name='plf2016', file_path=file_path)
+    parameters.add_child('plf2016', reform_parameters_subtree)
+    return parameters
 
 
 class plf2016(Reform):
@@ -35,8 +32,8 @@ class plf2016(Reform):
         def formula_2015_01_01(self, simulation, period):
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             nb_adult = simulation.calculate('nb_adult', period)
-            decote_seuil_celib = simulation.legislation_at(period.start).impot_revenu.decote.seuil_celib
-            decote_seuil_couple = simulation.legislation_at(period.start).impot_revenu.decote.seuil_couple
+            decote_seuil_celib = simulation.parameters_at(period.start).impot_revenu.decote.seuil_celib
+            decote_seuil_couple = simulation.parameters_at(period.start).impot_revenu.decote.seuil_couple
             decote_celib = (ir_plaf_qf < 4 / 3 * decote_seuil_celib) * (decote_seuil_celib - 3 / 4 * ir_plaf_qf)
             decote_couple = (ir_plaf_qf < 4 / 3 * decote_seuil_couple) * (decote_seuil_couple - 3 / 4 * ir_plaf_qf)
 
@@ -45,7 +42,7 @@ class plf2016(Reform):
         def formula_2014_01_01(self, simulation, period):
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             nb_adult = simulation.calculate('nb_adult', period)
-            plf = simulation.legislation_at(period.start).plf2016
+            plf = simulation.parameters_at(period.start).plf2016
 
             decote_celib = (ir_plaf_qf < plf.decote_seuil_celib) * (plf.decote_seuil_celib - .75 * ir_plaf_qf)
             decote_couple = (ir_plaf_qf < plf.decote_seuil_couple) * (plf.decote_seuil_couple - .75 * ir_plaf_qf)
@@ -53,20 +50,20 @@ class plf2016(Reform):
 
     def apply(self):
         self.update_variable(self.decote)
-        self.modify_legislation(modifier_function = reform_modify_legislation)
+        self.modify_parameters(modifier_function = reform_modify_parameters)
 
 
 # Counterfactual ie business as usual
 
-def counterfactual_modify_legislation(reference_legislation_copy):
+def counterfactual_modify_parameters(parameters):
     # TODO: inflater les paramètres de la décote le barème de l'IR
     inflation = .001
-    reform_legislation_subtree = Node('plf2016_conterfactual', validated_yaml = {
+    reform_parameters_subtree = Node('plf2016_conterfactual', validated_yaml = {
         'decote_seuil_celib': {'values': {"2015-01-01": {'value': round(1135 * (1 + inflation))}, "2016-01-01": {'value': None}}},
         'decote_seuil_couple': {'values': {"2015-01-01": {'value': round(1870 * (1 + inflation))}, "2065-01-01": {'value': None}}},
         })
-    reference_legislation_copy.add_child('plf2016_conterfactual', reform_legislation_subtree)
-    return reference_legislation_copy
+    parameters.add_child('plf2016_conterfactual', reform_parameters_subtree)
+    return parameters
 
     # WIP : Nouveaux parametres à actualiser :
     # 1° Le 1 est remplacé par les dispositions suivantes :
@@ -99,7 +96,7 @@ class plf2016_counterfactual(Reform):
         def formula_2015_01_01(self, simulation, period):
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             inflator = 1 + .001 + .005
-            decote = simulation.legislation_at(period.start).impot_revenu.decote
+            decote = simulation.parameters_at(period.start).impot_revenu.decote
             assert decote.seuil == 1016
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
@@ -111,7 +108,7 @@ class plf2016_counterfactual(Reform):
             nb_parents = simulation.calculate('nb_parents', period.first_month)
             rfr = simulation.calculate('rfr', period)
             inflator = 1 + .001 + .005
-            # params = simulation.legislation_at(period.start).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
+            # params = simulation.parameters_at(period.start).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
             seuil = 13795 * inflator
             majoration_seuil = 3536 * inflator
             montant_plafond = 350 * inflator
@@ -163,27 +160,27 @@ class plf2016_counterfactual(Reform):
     def apply(self):
         for variable in [self.decote, self.reductions, self.reduction_impot_exceptionnelle]:
             self.update_variable(variable)
-        self.modify_legislation(modifier_function = counterfactual_modify_legislation)
+        self.modify_parameters(modifier_function = counterfactual_modify_parameters)
 
 
-def counterfactual_2014_modify_legislation(reference_legislation_copy):
+def counterfactual_2014_modify_parameters(parameters):
     # TODO: inflater les paramètres de la décote le barème de l'IR
     inflator = 1 + .001 + .005
     reform_year = 2015
-    reform_period = periods.period(reform_year)
-    # reference_legislation_copy.ir.reductions_impots.reduction_impot_exceptionnelle.montant_plafond.update(period=reform_period, value=350*inflator)
-    # reference_legislation_copy.ir.reductions_impots.reduction_impot_exceptionnelle.seuil.update(period=reform_period, value=13795*inflator)
-    # reference_legislation_copy.ir.reductions_impots.reduction_impot_exceptionnelle.majoration_seuil.update(period=reform_period, value=3536*inflator)
-    reference_legislation_copy.impot_revenu.bareme[1].threshold.update(period=reform_period, value=6011*inflator)
-    reference_legislation_copy.impot_revenu.bareme[1].rate.update(period=reform_period, value=.055*inflator)
-    reference_legislation_copy.impot_revenu.bareme[2].threshold.update(period=reform_period, value=11991*inflator)
-    reference_legislation_copy.impot_revenu.bareme[2].rate.update(period=reform_period, value=.14*inflator)
-    reference_legislation_copy.impot_revenu.bareme[3].threshold.update(period=reform_period, value=26631*inflator)
-    reference_legislation_copy.impot_revenu.bareme[3].rate.update(period=reform_period, value=.30*inflator)
-    reference_legislation_copy.impot_revenu.bareme[4].threshold.update(period=reform_period, value=71397*inflator)
-    reference_legislation_copy.impot_revenu.bareme[4].rate.update(period=reform_period, value=.40*inflator)
+    reform_period = period(reform_year)
+    # parameters.ir.reductions_impots.reduction_impot_exceptionnelle.montant_plafond.update(period=reform_period, value=350*inflator)
+    # parameters.ir.reductions_impots.reduction_impot_exceptionnelle.seuil.update(period=reform_period, value=13795*inflator)
+    # parameters.ir.reductions_impots.reduction_impot_exceptionnelle.majoration_seuil.update(period=reform_period, value=3536*inflator)
+    parameters.impot_revenu.bareme[1].threshold.update(period=reform_period, value=6011*inflator)
+    parameters.impot_revenu.bareme[1].rate.update(period=reform_period, value=.055*inflator)
+    parameters.impot_revenu.bareme[2].threshold.update(period=reform_period, value=11991*inflator)
+    parameters.impot_revenu.bareme[2].rate.update(period=reform_period, value=.14*inflator)
+    parameters.impot_revenu.bareme[3].threshold.update(period=reform_period, value=26631*inflator)
+    parameters.impot_revenu.bareme[3].rate.update(period=reform_period, value=.30*inflator)
+    parameters.impot_revenu.bareme[4].threshold.update(period=reform_period, value=71397*inflator)
+    parameters.impot_revenu.bareme[4].rate.update(period=reform_period, value=.40*inflator)
 
-    return reference_legislation_copy
+    return parameters
 
 
 class plf2016_counterfactual_2014(Reform):
@@ -196,7 +193,7 @@ class plf2016_counterfactual_2014(Reform):
         def formula_2015_01_01(self, simulation, period):
             ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
             inflator = 1 + .001 + .005
-            decote = simulation.legislation_at(period.start).impot_revenu.decote
+            decote = simulation.parameters_at(period.start).impot_revenu.decote
             assert decote.seuil == 1016
             return (ir_plaf_qf < decote.seuil * inflator) * (decote.seuil * inflator - ir_plaf_qf) * 0.5
 
@@ -208,7 +205,7 @@ class plf2016_counterfactual_2014(Reform):
             nb_parents = simulation.calculate('nb_parents', period.first_month)
             rfr = simulation.calculate('rfr', period)
             inflator = 1 + .001 + .005
-            # params = simulation.legislation_at(period.start).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
+            # params = simulation.parameters_at(period.start).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
             seuil = 13795 * inflator
             majoration_seuil = 3536 * inflator
             montant_plafond = 350 * inflator
@@ -260,4 +257,4 @@ class plf2016_counterfactual_2014(Reform):
     def apply(self):
         for variable in [self.decote, self.reduction_impot_exceptionnelle, self.reductions]:
             self.update_variable(variable)
-        self.modify_legislation(modifier_function = counterfactual_2014_modify_legislation)
+        self.modify_parameters(modifier_function = counterfactual_2014_modify_parameters)

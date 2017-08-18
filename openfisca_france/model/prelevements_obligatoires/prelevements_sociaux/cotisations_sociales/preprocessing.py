@@ -6,7 +6,6 @@ import collections
 import copy
 import logging
 
-from openfisca_core.legislations import Node
 from openfisca_france.model.base import *  # noqa
 
 
@@ -120,14 +119,14 @@ def build_sal(node_json):
     return sal
 
 
-def preprocess_legislation(legislation):
+def preprocess_parameters(parameters):
     '''
     Preprocess the legislation parameters to build the cotisations sociales taxscales (barèmes)
     '''
-    sal = build_sal(legislation)
-    pat = build_pat(legislation)
+    sal = build_sal(parameters)
+    pat = build_pat(parameters)
 
-    cotsoc = legislation.children["cotsoc"]
+    cotsoc = parameters.children["cotsoc"]
     cotsoc.children["cotisations_employeur"] = Node('cotisations_employeur_after_preprocessing', validated_yaml={})
     cotsoc.children["cotisations_salarie"] = Node('cotisations_salarie_after_preprocessing', validated_yaml={})
 
@@ -139,4 +138,4 @@ def preprocess_legislation(legislation):
             if category in CATEGORIE_SALARIE._nums:
                 cotsoc.children[cotisation_name].children[category] = bareme
 
-    return legislation
+    return parameters

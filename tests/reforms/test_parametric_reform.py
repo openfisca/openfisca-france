@@ -12,16 +12,16 @@ simulation_year = 2013
 simulation_period = periods.period(simulation_year)
 
 
-def modify_legislation(reference_legislation_copy):
-    reference_legislation_copy.impot_revenu.bareme[0].rate.update(period=simulation_period, value=1)
-    return reference_legislation_copy
+def modify_parameters(parameters):
+    parameters.impot_revenu.bareme[0].rate.update(period=simulation_period, value=1)
+    return parameters
 
 
 class ir_100_tranche_1(Reform):
     name = u"Imposition à 100% dès le premier euro et jusqu'à la fin de la 1ère tranche"
 
     def apply(self):
-        self.modify_legislation(modifier_function = modify_legislation)
+        self.modify_parameters(modifier_function = modify_parameters)
 
 
 def test_parametric_reform():

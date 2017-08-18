@@ -10,8 +10,6 @@ from __future__ import division
 
 import os
 
-from openfisca_core import legislations
-from openfisca_core.reforms import Reform
 from openfisca_france.model.base import *
 
 
@@ -79,11 +77,11 @@ class revenu_disponible(Variable):
         return revenus_du_travail + pen + revenus_du_capital + impot_revenu_lps + prestations_sociales
 
 
-def modify_legislation(reference_legislation_copy):
+def modify_parameters(parameters):
     file_path = os.path.join(dir_path, 'landais_piketty_saez.yaml')
-    reform_legislation_subtree = legislations.load_file(name='landais_piketty_saez', file_path=file_path)
-    reference_legislation_copy.add_child('landais_piketty_saez', reform_legislation_subtree)
-    return reference_legislation_copy
+    reform_parameters_subtree = load_file(name='landais_piketty_saez', file_path=file_path)
+    parameters.add_child('landais_piketty_saez', reform_parameters_subtree)
+    return parameters
 
 
 class landais_piketty_saez(Reform):
@@ -92,4 +90,4 @@ class landais_piketty_saez(Reform):
     def apply(self):
         for variable in [assiette_csg, impot_revenu_lps, revenu_disponible]:
             self.update_variable(variable)
-        self.modify_legislation(modifier_function = modify_legislation)
+        self.modify_parameters(modifier_function = modify_parameters)

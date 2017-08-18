@@ -5,10 +5,6 @@ from __future__ import division
 from datetime import date
 import os
 
-from openfisca_core import columns, legislations
-from openfisca_core.reforms import Reform
-
-from .. import entities
 from ..model.base import *
 from ..model.prelevements_obligatoires.impot_revenu import reductions_impot
 
@@ -31,7 +27,7 @@ class plfr2014(Reform):
             nb_adult = simulation.calculate('nb_adult', period)
             nb_parents = simulation.calculate('nb_parents', period = janvier)
             rfr = simulation.calculate('rfr', period)
-            params = simulation.legislation_at(period.start).plfr2014.reduction_impot_exceptionnelle
+            params = simulation.parameters_at(period.start).plfr2014.reduction_impot_exceptionnelle
             plafond = params.seuil * nb_adult + (nb_parents - nb_adult) * 2 * params.majoration_seuil
             montant = params.montant_plafond * nb_adult
             return min_(max_(plafond + montant - rfr, 0), montant)
@@ -79,16 +75,16 @@ class plfr2014(Reform):
     def apply(self):
         for variable in [self.reduction_impot_exceptionnelle, self.reductions]:
             self.update_variable(variable)
-        self.modify_legislation(modifier_function = modify_legislation)
+        self.modify_parameters(modifier_function = modify_parameters)
 
 
-def modify_legislation(reference_legislation_copy):
+def modify_parameters(parameters):
     file_path = os.path.join(dir_path, 'plfr2014.yaml')
-    plfr2014_legislation_subtree = legislations.load_file(name='plfr2014', file_path=file_path)
+    plfr2014_parameters_subtree = load_file(name='plfr2014', file_path=file_path)
 
     file_path = os.path.join(dir_path, 'plfrss2014.yaml')
-    plfrss2014_legislation_subtree = legislations.load_file(name='plfrss2014', file_path=file_path)
+    plfrss2014_parameters_subtree = load_file(name='plfrss2014', file_path=file_path)
 
-    reference_legislation_copy.add_child('plfr2014', plfr2014_legislation_subtree)
-    reference_legislation_copy.add_child('plfrss2014', plfrss2014_legislation_subtree)
-    return reference_legislation_copy
+    parameters.add_child('plfr2014', plfr2014_parameters_subtree)
+    parameters.add_child('plfrss2014', plfrss2014_parameters_subtree)
+    return parameters
