@@ -71,7 +71,7 @@ class csg_deductible_salaire(Variable):
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
 
-        csg = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg
+        csg = simulation.parameters_at(period.start).prelevements_sociaux.contributions.csg
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
@@ -92,7 +92,7 @@ class csg_imposable_salaire(Variable):
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        legislation = simulation.legislation_at(period.start)
+        legislation = simulation.parameters_at(period.start)
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,
@@ -116,7 +116,7 @@ class crds_salaire(Variable):
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
 
-        law = simulation.legislation_at(period.start)
+        law = simulation.parameters_at(period.start)
 
         montant_crds = montant_csg_crds(
             law_node = law.prelevements_sociaux.contributions.crds.activite,
@@ -246,7 +246,7 @@ class tehr(Variable):
 
     def formula(self, simulation, period):
         salaire_de_base = simulation.calculate_add('salaire_de_base', period)  # TODO: check base
-        law = simulation.legislation_at(period.start)
+        law = simulation.parameters_at(period.start)
 
         bar = law.cotsoc.tehr
         return -bar.calc(salaire_de_base)
@@ -269,7 +269,7 @@ class rev_microsocial(Variable):
         assiette_service = simulation.calculate('assiette_service', period)
         assiette_vente = simulation.calculate('assiette_vente', period)
         assiette_proflib = simulation.calculate('assiette_proflib', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         P = _P.cotsoc.sal.microsocial
         total = assiette_service + assiette_vente + assiette_proflib

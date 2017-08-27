@@ -32,7 +32,7 @@ class stage_gratification(Variable):
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
         stage_gratification_taux = simulation.calculate('stage_gratification_taux', period)
         stagiaire = simulation.calculate('stagiaire', period)
-        plafond_securite_sociale_horaire = simulation.legislation_at(period.start).cotsoc.gen.plafond_securite_sociale_horaire
+        plafond_securite_sociale_horaire = simulation.parameters_at(period.start).cotsoc.gen.plafond_securite_sociale_horaire
         # TODO: move to legislation parameters file
         stage_gratification_taux_min = .1375  # depuis le 1er décembre 2014
         # .15 à partir de 2015-09-01
@@ -51,7 +51,7 @@ class stage_gratification_reintegration(Variable):
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
         stage_gratification = simulation.calculate('stage_gratification', period)
         plafond_securite_sociale_horaire = (
-            simulation.legislation_at(period.start).cotsoc.gen.plafond_securite_sociale_horaire)
+            simulation.parameters_at(period.start).cotsoc.gen.plafond_securite_sociale_horaire)
         # TODO: move to legislation parameters file
         stage_gratification_taux_min = .1375  # .15 à partir de 2015-09-01  
         stage_gratification_min = plafond_securite_sociale_horaire * stage_duree_heures * stage_gratification_taux_min
@@ -85,7 +85,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
         stagiaire = simulation.calculate('stagiaire', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
 
-        bareme_by_type_sal_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur
+        bareme_by_type_sal_name = simulation.parameters_at(period.start).cotsoc.cotisations_employeur
         exoneration = sum(
             apply_bareme_for_relevant_type_sal(
                 bareme_by_type_sal_name = bareme_by_type_sal_name,
@@ -117,7 +117,7 @@ class exoneration_cotisations_salarie_stagiaire(Variable):
         stagiaire = simulation.calculate('stagiaire', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
 
-        bareme_by_type_sal_name = simulation.legislation_at(period.start).cotsoc.cotisations_salarie
+        bareme_by_type_sal_name = simulation.parameters_at(period.start).cotsoc.cotisations_salarie
         bareme_names = ['agff', 'assedic']
 
         exoneration = plafond_securite_sociale * 0.0

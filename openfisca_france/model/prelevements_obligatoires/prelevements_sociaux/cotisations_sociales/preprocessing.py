@@ -127,8 +127,8 @@ def preprocess_parameters(parameters):
     pat = build_pat(parameters)
 
     cotsoc = parameters.children["cotsoc"]
-    cotsoc.children["cotisations_employeur"] = Node('cotisations_employeur_after_preprocessing', validated_yaml={})
-    cotsoc.children["cotisations_salarie"] = Node('cotisations_salarie_after_preprocessing', validated_yaml={})
+    cotsoc.children["cotisations_employeur"] = ParameterNode('cotisations_employeur_after_preprocessing', data = {})
+    cotsoc.children["cotisations_salarie"] = ParameterNode('cotisations_salarie_after_preprocessing', data = {})
 
     for cotisation_name, baremes in (
             ('cotisations_employeur', pat.children),

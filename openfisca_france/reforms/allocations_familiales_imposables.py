@@ -12,7 +12,7 @@ dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 def modify_parameters(parameters):
     file_path = os.path.join(dir_path, 'allocations_familiales_imposables.yaml')
-    reform_parameters_subtree = load_file(name='allocations_familiales_imposables', file_path=file_path)
+    reform_parameters_subtree = load_parameter_file(name='allocations_familiales_imposables', file_path=file_path)
     parameters.add_child('allocations_familiales_imposables', reform_parameters_subtree)
     return parameters
 

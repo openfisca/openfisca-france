@@ -80,10 +80,10 @@ class plfr2014(Reform):
 
 def modify_parameters(parameters):
     file_path = os.path.join(dir_path, 'plfr2014.yaml')
-    plfr2014_parameters_subtree = load_file(name='plfr2014', file_path=file_path)
+    plfr2014_parameters_subtree = load_parameter_file(name='plfr2014', file_path=file_path)
 
     file_path = os.path.join(dir_path, 'plfrss2014.yaml')
-    plfrss2014_parameters_subtree = load_file(name='plfrss2014', file_path=file_path)
+    plfrss2014_parameters_subtree = load_parameter_file(name='plfrss2014', file_path=file_path)
 
     parameters.add_child('plfr2014', plfr2014_parameters_subtree)
     parameters.add_child('plfrss2014', plfrss2014_parameters_subtree)

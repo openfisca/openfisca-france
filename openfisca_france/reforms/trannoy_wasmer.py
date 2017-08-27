@@ -13,7 +13,7 @@ dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 def modify_parameters(parameters):
     file_path = os.path.join(dir_path, 'trannoy_wasmer.yaml')
-    reform_parameters_subtree = load_file(name='trannoy_wasmer', file_path=file_path)
+    reform_parameters_subtree = load_parameter_file(name = 'trannoy_wasmer', file_path = file_path)
 
     parameters.add_child('charge_loyer', reform_parameters_subtree)
     return parameters

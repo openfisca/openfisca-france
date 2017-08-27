@@ -15,7 +15,7 @@ dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 def reform_modify_parameters(parameters):
     file_path = os.path.join(dir_path, 'plf2016.yaml')
-    reform_parameters_subtree = load_file(name='plf2016', file_path=file_path)
+    reform_parameters_subtree = load_parameter_file(name='plf2016', file_path=file_path)
     parameters.add_child('plf2016', reform_parameters_subtree)
     return parameters
 
@@ -58,7 +58,7 @@ class plf2016(Reform):
 def counterfactual_modify_parameters(parameters):
     # TODO: inflater les paramètres de la décote le barème de l'IR
     inflation = .001
-    reform_parameters_subtree = Node('plf2016_conterfactual', validated_yaml = {
+    reform_parameters_subtree = ParameterNode('plf2016_conterfactual', data = {
         'decote_seuil_celib': {'values': {"2015-01-01": {'value': round(1135 * (1 + inflation))}, "2016-01-01": {'value': None}}},
         'decote_seuil_couple': {'values': {"2015-01-01": {'value': round(1870 * (1 + inflation))}, "2065-01-01": {'value': None}}},
         })

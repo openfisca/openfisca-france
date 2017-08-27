@@ -79,7 +79,7 @@ class revenu_disponible(Variable):
 
 def modify_parameters(parameters):
     file_path = os.path.join(dir_path, 'landais_piketty_saez.yaml')
-    reform_parameters_subtree = load_file(name='landais_piketty_saez', file_path=file_path)
+    reform_parameters_subtree = load_parameter_file(name='landais_piketty_saez', file_path=file_path)
     parameters.add_child('landais_piketty_saez', reform_parameters_subtree)
     return parameters
 

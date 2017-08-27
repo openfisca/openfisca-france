@@ -16,7 +16,7 @@ def modify_parameters(parameters):
     reform_period = period(reform_year)
 
     file_path = os.path.join(dir_path, 'plf2015.yaml')
-    reform_parameters_subtree = load_file(name='plf2015', file_path=file_path)
+    reform_parameters_subtree = load_parameter_file(name='plf2015', file_path=file_path)
     parameters.add_child('plf2015', reform_parameters_subtree)
 
     parameters.impot_revenu.bareme[1].rate.update(period=reform_period, value=0)

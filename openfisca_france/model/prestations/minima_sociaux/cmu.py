@@ -142,7 +142,7 @@ class cmu_c_plafond(Variable):
         alt_holder = simulation.compute('garde_alternee', period)
         cmu_eligible_majoration_dom = simulation.calculate('cmu_eligible_majoration_dom', period)
         # cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
-        P = simulation.legislation_at(period.start).cmu
+        P = simulation.parameters_at(period.start).cmu
 
         PAC = [PART] + ENFS
 

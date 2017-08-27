@@ -15,7 +15,7 @@ dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 def modify_parameters(parameters):
     file_path = os.path.join(dir_path, 'cesthra_invalidite.yaml')
-    reform_parameters_subtree = load_file(name='cesthra', file_path=file_path)
+    reform_parameters_subtree = load_parameter_file(name='cesthra', file_path=file_path)
     parameters.add_child('cesthra', reform_parameters_subtree)
     return parameters
 

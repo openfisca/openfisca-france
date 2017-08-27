@@ -37,7 +37,7 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
         self.Scenario = scenarios.Scenario
 
         param_dir = os.path.join(COUNTRY_DIR, 'parameters')
-        self.add_parameter_path(param_dir)
+        self.load_parameters(param_dir)
 
         self.add_variables_from_directory(os.path.join(COUNTRY_DIR, 'model'))
         self.cache_blacklist = conf_cache_blacklist
