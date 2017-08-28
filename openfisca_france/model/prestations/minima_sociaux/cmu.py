@@ -14,10 +14,10 @@ class cmu_acs_eligibilite(Variable):
     label = u"Pré-éligibilité à la CMU, avant prise en compte des ressources"
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         previous_year = period.start.period('year').offset(-1)
         this_year = period.this_year
-        age_min = legislation(period).cmu.age_limite_pac
+        age_min = parameters(period).cmu.age_limite_pac
         nb_enfants = famille('cmu_nb_pac', period)
 
         # Une personne de 25 ans ne doit pas être à charge fiscale, ni hébergée par ses parents, ni recevoir de pensions alimentaires pour pouvoir bénéficier de la CMU individuellement.
@@ -45,8 +45,8 @@ class acs_montant_i(Variable):
     label = u"Montant de l'ACS attribué pour une personne en cas d'éligibilité de la famille"
     definition_period = MONTH
 
-    def formula_2009_08_01(individu, period, legislation):
-        P = legislation(period).cmu
+    def formula_2009_08_01(individu, period, parameters):
+        P = parameters(period).cmu
         age = individu('age', period)
         montant_si_pac = select(
             [(age <= 15) * (age >= 0), age <= 25],
@@ -69,7 +69,7 @@ class acs_montant(Variable):
     label = u"Montant de l'ACS en cas d'éligibilité"
     definition_period = MONTH
 
-    def formula_2009_08_01(famille, period, legislation):
+    def formula_2009_08_01(famille, period, parameters):
         acs_montant_i = famille.members('acs_montant_i', period)
         return famille.sum(acs_montant_i)
 
@@ -80,10 +80,10 @@ class cmu_forfait_logement_base(Variable):
     label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         cmu_nbp_foyer = famille('cmu_nbp_foyer', period)
-        P = legislation(period).cmu.forfait_logement
-        law_rsa = legislation(period).prestations.minima_sociaux.rmi
+        P = parameters(period).cmu.forfait_logement
+        law_rsa = parameters(period).prestations.minima_sociaux.rmi
 
         return forfait_logement(cmu_nbp_foyer, P, law_rsa)
 
@@ -94,11 +94,11 @@ class cmu_forfait_logement_al(Variable):
     label = u"Forfait logement applicable en cas d'aide au logement"
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         nb_personnes_foyer = famille('cmu_nbp_foyer', period)
         aide_logement = famille('aide_logement', period)
-        P = legislation(period).cmu.forfait_logement_al
-        law_rsa = legislation(period).prestations.minima_sociaux.rmi
+        P = parameters(period).cmu.forfait_logement_al
+        law_rsa = parameters(period).prestations.minima_sociaux.rmi
 
         return (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rsa))
 
@@ -109,7 +109,7 @@ class cmu_nbp_foyer(Variable):
     label = u"Nombre de personnes dans le foyer CMU"
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         nb_parents = famille('nb_parents', period)
         cmu_nb_pac = famille('cmu_nb_pac', period)
 
@@ -188,9 +188,9 @@ class acs_plafond(Variable):
     label = u"Plafond annuel de ressources pour l'éligibilité à l'ACS"
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         cmu_c_plafond = famille('cmu_c_plafond', period)
-        P = legislation(period).cmu
+        P = parameters(period).cmu
 
         return cmu_c_plafond * (1 + P.majoration_plafond_acs)
 
@@ -201,13 +201,13 @@ class cmu_base_ressources_individu(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
         # N-1
         last_month = period.last_month
 
-        P = legislation(period).cmu
+        P = parameters(period).cmu
 
         ressources_a_inclure = [
             'aah',
@@ -281,7 +281,7 @@ class cmu_base_ressources(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         previous_year = period.start.period('year').offset(-1)
 
         ressources_a_inclure = [
@@ -304,7 +304,7 @@ class cmu_base_ressources(Variable):
         cmu_forfait_logement_base = famille('cmu_forfait_logement_base', period)
         cmu_forfait_logement_al = famille('cmu_forfait_logement_al', period)
 
-        P = legislation(period).cmu
+        P = parameters(period).cmu
 
         proprietaire = (statut_occupation_logement == 2)
         heberge_titre_gratuit = (statut_occupation_logement == 6)
@@ -327,8 +327,8 @@ class cmu_nb_pac(Variable):
     label = u"Nombre de personnes à charge au titre de la CMU"
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
-        P = legislation(period).cmu
+    def formula(famille, period, parameters):
+        P = parameters(period).cmu
         age = famille.members('age', period)
         return famille.sum((age >= 0) * (age <= P.age_limite_pac), role = Famille.ENFANT)
 

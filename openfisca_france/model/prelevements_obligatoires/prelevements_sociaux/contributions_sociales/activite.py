@@ -92,12 +92,12 @@ class csg_imposable_salaire(Variable):
         assiette_csg_abattue = simulation.calculate('assiette_csg_abattue', period)
         assiette_csg_non_abattue = simulation.calculate('assiette_csg_non_abattue', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        legislation = simulation.parameters_at(period.start)
+        parameters = simulation.parameters_at(period.start)
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = assiette_csg_abattue,
             base_sans_abattement = assiette_csg_non_abattue,
-            law_node = legislation.prelevements_sociaux.contributions.csg.activite.imposable,
+            law_node = parameters.prelevements_sociaux.contributions.csg.activite.imposable,
             plafond_securite_sociale = plafond_securite_sociale,
             )
 
@@ -139,19 +139,19 @@ class forfait_social(Variable):
     # au bénéfice de leurs salariés, anciens salariés et de leurs ayants droit (entreprises à partir de 10 salariés),
     # la réserve spéciale de participation dans les sociétés coopératives ouvrières de production (Scop).
 
-    def formula_2009_01_01(individu, period, legislation):
+    def formula_2009_01_01(individu, period, parameters):
         prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options = [ADD])
 
-        parametres = legislation(period).prelevements_sociaux.forfait_social
+        parametres = parameters(period).prelevements_sociaux.forfait_social
         taux_plein = parametres.taux_plein
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
 
         return - assiette_taux_plein * taux_plein
 
-    def formula_2012_08_01(individu, period, legislation):
+    def formula_2012_08_01(individu, period, parameters):
         prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options = [ADD])
 
-        parametres = legislation(period).prelevements_sociaux.forfait_social
+        parametres = parameters(period).prelevements_sociaux.forfait_social
         taux_plein = parametres.taux_plein
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
 

@@ -9,12 +9,12 @@ class ada(Variable):
     label = u"Montant mensuel  de l'aide pour demandeur d'asile"
     definition_period = MONTH
 
-    def formula_2015_11(famille, period, legislation):
+    def formula_2015_11(famille, period, parameters):
         nb_parents = famille('nb_parents', period)
         af_nbenf = famille('af_nbenf', period)
         place_hebergement = famille('place_hebergement', period)
         asile_demandeur = famille('asile_demandeur', period)
-        ada = legislation(period).prestations.minima_sociaux.ada
+        ada = parameters(period).prestations.minima_sociaux.ada
 
         nb_pers = af_nbenf + nb_parents
         ada_par_jour = (ada.montant_journalier_pour_une_personne +

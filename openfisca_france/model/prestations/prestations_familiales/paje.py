@@ -88,13 +88,13 @@ class paje_base(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula_2004(famille, period, legislation):
+    def formula_2004(famille, period, parameters):
         couple_biactif = famille('biactivite', period)
         parent_isole = not_(famille('en_couple', period))
         nombre_enfants = famille('af_nbenf', period)
-        pfam = legislation(period).prestations.prestations_familiales
+        pfam = parameters(period).prestations.prestations_familiales
         date_gel_paje = Instant((2013, 04, 01))   # Le montant de la PAJE est gelé depuis avril 2013.
-        bmaf = pfam.af.bmaf if period.start < date_gel_paje else legislation(date_gel_paje).prestations.prestations_familiales.af.bmaf
+        bmaf = pfam.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations.prestations_familiales.af.bmaf
         montant_taux_plein = bmaf * pfam.paje.base.taux_allocation_base
 
         def plafond_avant_avril_2014():
@@ -177,12 +177,12 @@ class paje_base_enfant_eligible_avant_reforme_2014(Variable):
     label = u"Enfant ouvrant droit à la PAJE de base né avant le 1er avril 2014"
     definition_period = MONTH
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         date_naissance = individu('date_naissance', period)
         ne_avant_2014 = datetime64('2014-04-01') > date_naissance
-        age_limite = legislation(period).prestations.prestations_familiales.paje.base.age_max_enfant
+        age_limite = parameters(period).prestations.prestations_familiales.paje.base.age_max_enfant
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
@@ -195,12 +195,12 @@ class paje_base_enfant_eligible_apres_reforme_2014(Variable):
     label = u"Enfant ouvrant droit à la PAJE de base né après le 1er avril 2014"
     definition_period = MONTH
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         date_naissance = individu('date_naissance', period)
         ne_avant_2014 = datetime64('2014-04-01') > date_naissance
-        age_limite = legislation(period.start).prestations.prestations_familiales.paje.base.age_max_enfant
+        age_limite = parameters(period.start).prestations.prestations_familiales.paje.base.age_max_enfant
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
@@ -215,7 +215,7 @@ class paje_naissance(Variable):
     reference = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
     definition_period = MONTH
 
-    def formula_2004_01_01(famille, period, legislation):
+    def formula_2004_01_01(famille, period, parameters):
         '''
         Prestation d'accueil du jeune enfant - Allocation de naissance
         '''
@@ -223,10 +223,10 @@ class paje_naissance(Variable):
         base_ressources = famille('prestations_familiales_base_ressources', period)
         isole = not_(famille('en_couple', period))
         biactivite = famille('biactivite', period)
-        P = legislation(period).prestations.prestations_familiales
+        P = parameters(period).prestations.prestations_familiales
 
         date_gel_paje = Instant((2013, 04, 01))  # Le montant de la PAJE est gelé depuis avril 2013.
-        bmaf = P.af.bmaf if period.start < date_gel_paje else legislation(date_gel_paje).prestations.prestations_familiales.af.bmaf
+        bmaf = P.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations.prestations_familiales.af.bmaf
         nais_prime = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
 
         age_en_mois_i = famille.members('age_en_mois', period)
@@ -253,7 +253,7 @@ class paje_clca(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula_2004(famille, period, legislation):
+    def formula_2004(famille, period, parameters):
         """
         Prestation d'accueil du jeune enfant - Complément de libre choix d'activité
         'fam'
@@ -280,7 +280,7 @@ class paje_clca(Variable):
         partiel1 = famille('partiel1', period)
         partiel2 = famille('partiel2', period)
 
-        P = legislation(period).prestations.prestations_familiales
+        P = parameters(period).prestations.prestations_familiales
 
         paje = paje_base >= 0
         # durée de versement :
@@ -360,7 +360,7 @@ class paje_cmg(Variable):
     reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"  # noqa
     definition_period = MONTH
 
-    def formula_2004_01_01(famille, period, legislation):
+    def formula_2004_01_01(famille, period, parameters):
         '''
         Prestation d accueil du jeune enfant - Complément de libre choix du mode de garde
 
@@ -397,8 +397,8 @@ class paje_cmg(Variable):
         gar_dom = famille('gar_dom', period)
         paje_clca_taux_partiel = famille('paje_clca_taux_partiel', period)
         paje_clca_taux_plein = famille('paje_clca_taux_plein', period)
-        P = legislation(period).prestations.prestations_familiales
-        P_n_2 = legislation(period.offset(-2, 'year')).prestations.prestations_familiales
+        P = parameters(period).prestations.prestations_familiales
+        P_n_2 = parameters(period.offset(-2, 'year')).prestations.prestations_familiales
 
         aah_i = famille.members('aah', period)
         aah = famille.sum(aah_i)
@@ -471,7 +471,7 @@ class paje_colca(Variable):
     reference = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
     definition_period = MONTH
 
-    def formula_2004_01_01(famille, period, legislation):
+    def formula_2004_01_01(famille, period, parameters):
         '''
         Prestation d'accueil du jeune enfant - Complément optionnel de libre choix du mode de garde
         '''
@@ -479,7 +479,7 @@ class paje_colca(Variable):
         opt_colca = famille('opt_colca', period)
         paje_base = famille('paje_base', period)
 
-        P = legislation(period).prestations.prestations_familiales
+        P = parameters(period).prestations.prestations_familiales
 
         age_en_mois_i = famille.members('age_en_mois', period)
         age_m_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
@@ -500,7 +500,7 @@ class ape_avant_cumul(Variable):
     reference = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         '''
         Allocation parentale d'éducation
 
@@ -532,7 +532,7 @@ class ape_avant_cumul(Variable):
         inactif = famille('inactif', period)
         partiel1 = famille('partiel1', period)
         partiel2 = famille('partiel2', period)
-        P = legislation(period).prestations.prestations_familiales
+        P = parameters(period).prestations.prestations_familiales
 
         elig = (nb_enf(famille, period, 0, P.ape.age_max_enfant - 1) >= 1) & (nb_enf(famille, period, 0, P.af.age2) >= 2)        # Inactif
         # Temps partiel 1
@@ -561,15 +561,15 @@ class apje_avant_cumul(Variable):
     reference = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         '''
         Allocation pour jeune enfant
         '''
         base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
         biactivite = famille('biactivite', period, options = [ADD])
         isole = not_(famille('en_couple', period))
-        P = legislation(period).prestations.prestations_familiales
-        P_n_2 = legislation(period.start.offset(-2, 'year')).prestations.prestations_familiales
+        P = parameters(period).prestations.prestations_familiales
+        P_n_2 = parameters(period.start.offset(-2, 'year')).prestations.prestations_familiales
 
         # TODO: APJE courte voir doc ERF 2006
         nbenf = nb_enf(famille, period, 0, P.apje.age_max_dernier_enf - 1)

@@ -138,8 +138,8 @@ class credit_impot_competitivite_emploi(Variable):
         jeune_entreprise_innovante = simulation.calculate('jeune_entreprise_innovante', period)
         smic_proratise = simulation.calculate('smic_proratise', period)
         stagiaire = simulation.calculate('stagiaire', period)
-        legislation = simulation.parameters_at(period.start)
-        taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, legislation)
+        parameters = simulation.parameters_at(period.start)
+        taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, parameters)
         credit_impot_competitivite_emploi = taux_cice * assiette_allegement
         non_cumul = not_(stagiaire)
         association = simulation.calculate('entreprise_est_association_non_lucrative', period)
@@ -466,7 +466,7 @@ def compute_allegement_progressif(simulation, period, variable_name, compute_fun
         return compute_function(simulation, up_to_this_month) - cumul
 
 
-def taux_exo_cice(assiette_allegement, smic_proratise, legislation):
-    cice = legislation.prelevements_sociaux.cice
+def taux_exo_cice(assiette_allegement, smic_proratise, parameters):
+    cice = parameters.prelevements_sociaux.cice
     taux_cice = ((assiette_allegement / (smic_proratise + 1e-16)) <= cice.plafond_smic) * cice.taux
     return taux_cice

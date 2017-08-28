@@ -21,7 +21,7 @@ class aeeh(Variable):
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
-    def formula_2003_01_01(famille, period, legislation):
+    def formula_2003_01_01(famille, period, parameters):
         '''
         Allocation d'éducation de l'enfant handicapé (Allocation d'éducation spécialisée avant le 1er janvier 2006)
         Ce montant peut être majoré par un complément accordé par la Cdaph qui prend en compte :
@@ -33,7 +33,7 @@ class aeeh(Variable):
         '''
         janvier = period.this_year.first_month
         isole = not_(famille('en_couple', janvier))
-        prestations_familiales = legislation(period).prestations.prestations_familiales
+        prestations_familiales = parameters(period).prestations.prestations_familiales
 
 
         if period.start.year >= 2006:

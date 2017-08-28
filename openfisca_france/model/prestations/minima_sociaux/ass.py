@@ -21,10 +21,10 @@ class ass(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         ass_base_ressources = famille('ass_base_ressources', period)
         en_couple = famille('en_couple', period)
-        ass_params = legislation(period).prestations.minima_sociaux.ass
+        ass_params = parameters(period).prestations.minima_sociaux.ass
 
         ass_eligibilite_i = famille.members('ass_eligibilite_individu', period)
         elig = famille.any(ass_eligibilite_i, role = Famille.PARENT)
@@ -106,7 +106,7 @@ class ass_base_ressources_conjoint(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         last_month = period.start.period('month').offset(-1)
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
@@ -128,8 +128,8 @@ class ass_base_ressources_conjoint(Variable):
             # Les ressources interrompues sont abattues différement si elles sont substituées ou non.
             # http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000020398006&cidTexte=LEGITEXT000006072050
 
-            tx_abat_partiel = legislation(period).prestations.minima_sociaux.ass.abat_rev_subst_conj
-            tx_abat_total = legislation(period).prestations.minima_sociaux.ass.abat_rev_non_subst_conj
+            tx_abat_partiel = parameters(period).prestations.minima_sociaux.ass.abat_rev_subst_conj
+            tx_abat_total = parameters(period).prestations.minima_sociaux.ass.abat_rev_non_subst_conj
 
             abat_partiel = ressource_interrompue * has_ressources_substitution * (1 - neutral_totale)
             abat_total = ressource_interrompue * (1 - abat_partiel)

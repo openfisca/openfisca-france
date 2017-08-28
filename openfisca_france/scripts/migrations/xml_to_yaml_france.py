@@ -38,4 +38,4 @@ legislation_xml_info_list = [
     for param_file in param_files
 ]
 
-xml_to_yaml.write_legislation(legislation_xml_info_list, target_path)
+xml_to_yaml.write_parameters(legislation_xml_info_list, target_path)

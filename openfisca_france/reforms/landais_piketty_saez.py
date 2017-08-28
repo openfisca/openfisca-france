@@ -22,7 +22,7 @@ class assiette_csg(Variable):
     label = u"Assiette de la CSG"
     definition_period = YEAR
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         salaire_de_base = individu('salaire_de_base', period, options = [ADD])
         chomage_brut = individu('chomage_brut', period, options = [ADD])
         retraite_brute = individu('retraite_brute', period, options = [ADD])
@@ -37,13 +37,13 @@ class impot_revenu_lps(Variable):
     label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
     definition_period = YEAR
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         janvier = period.first_month
 
         nbF = individu.foyer_fiscal('nbF', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         nbH = individu.foyer_fiscal('nbH', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         nbEnf = (nbF + nbH / 2)
-        lps = legislation(period).landais_piketty_saez
+        lps = parameters(period).landais_piketty_saez
         ae = nbEnf * lps.abatt_enfant
         re = nbEnf * lps.reduc_enfant
         ce = nbEnf * lps.credit_enfant
@@ -62,7 +62,7 @@ class revenu_disponible(Variable):
     reference = u"http://fr.wikipedia.org/wiki/Revenu_disponible"
     definition_period = YEAR
 
-    def formula(menage, period, legislation):
+    def formula(menage, period, parameters):
         impot_revenu_lps_i = menage.members('impot_revenu_lps', period)
         impot_revenu_lps = menage.sum(impot_revenu_lps_i)
         pen_i = menage.members('pensions', period)

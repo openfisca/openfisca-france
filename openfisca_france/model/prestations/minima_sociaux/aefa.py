@@ -29,7 +29,7 @@ class aefa(Variable):
     definition_period = YEAR
     end = '2015-12-31'
 
-    def formula_2009_01_01(famille, period, legislation):
+    def formula_2009_01_01(famille, period, parameters):
         janvier = period.first_month
 
         af_nbenf = famille('af_nbenf', janvier)
@@ -37,8 +37,8 @@ class aefa(Variable):
         ass = famille('ass', period, options = [ADD])
         api = famille('api', period, options = [ADD])
         rsa = famille('rsa', period, options = [ADD])
-        P = legislation(period).prestations.minima_sociaux.aefa
-        af = legislation(period).prestations.prestations_familiales.af
+        P = parameters(period).prestations.minima_sociaux.aefa
+        af = parameters(period).prestations.prestations_familiales.af
 
         aer_i = famille.members('aer', period, options = [ADD])
         aer = famille.sum(aer_i)
@@ -62,7 +62,7 @@ class aefa(Variable):
         aefa = max_(aefa_maj, aefa)
         return aefa
 
-    def formula_2008_01_01(famille, period, legislation):
+    def formula_2008_01_01(famille, period, parameters):
         janvier = period.first_month
 
         af_nbenf = famille('af_nbenf', janvier)
@@ -70,8 +70,8 @@ class aefa(Variable):
         ass = famille('ass', period, options = [ADD])
         api = famille('api', period, options = [ADD])
         rsa = famille('rsa', period, options = [ADD])
-        P = legislation(period).prestations.minima_sociaux.aefa
-        af = legislation(period).prestations.prestations_familiales.af
+        P = parameters(period).prestations.minima_sociaux.aefa
+        af = parameters(period).prestations.prestations_familiales.af
 
         aer_i = famille.members('aer', period, options = [ADD])
         aer = famille.sum(aer_i)
@@ -96,7 +96,7 @@ class aefa(Variable):
         aefa = max_(aefa_maj, aefa)
         return aefa
 
-    def formula_2002_01_01(famille, period, legislation):
+    def formula_2002_01_01(famille, period, parameters):
         janvier = period.first_month
 
         af_nbenf = famille('af_nbenf', janvier)
@@ -104,8 +104,8 @@ class aefa(Variable):
         ass = famille('ass', period, options = [ADD])
         api = famille('api', period, options = [ADD])
         rsa = famille('rsa', period, options = [ADD])
-        P = legislation(period).prestations.minima_sociaux.aefa
-        af = legislation(period).prestations.prestations_familiales.af
+        P = parameters(period).prestations.minima_sociaux.aefa
+        af = parameters(period).prestations.prestations_familiales.af
 
         aer_i = famille.members('aer', period, options = [ADD])
         aer = famille.sum(aer_i)
