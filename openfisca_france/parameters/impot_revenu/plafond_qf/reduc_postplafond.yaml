@@ -1,0 +1,32 @@
+description: Réduction post plafond
+reference: ipp
+unit: currency
+values:
+  1998-01-01:
+    value: 4336.0
+  2001-01-01:
+    value: 570.0
+  2002-01-01:
+    value: 580.0
+  2003-01-01:
+    value: 590.0
+  2004-01-01:
+    value: 600.0
+  2005-01-01:
+    value: 611.0
+  2006-01-01:
+    value: 622.0
+  2007-01-01:
+    value: 630.0
+  2008-01-01:
+    value: 648.0
+  2009-01-01:
+    value: 661.0
+  2012-01-01:
+    value: 997.0
+  2013-01-01:
+    value: 1497.0
+  2014-01-01:
+    value: 1504.0
+  2015-01-01:
+    value: 1506.0

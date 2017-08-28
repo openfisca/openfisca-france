@@ -1,0 +1,6 @@
+description: Prime à la naissance et à l'adoption, en pourcentage de la BMAF
+reference: ipp
+unit: /1
+values:
+  2004-01-01:
+    value: 2.2975

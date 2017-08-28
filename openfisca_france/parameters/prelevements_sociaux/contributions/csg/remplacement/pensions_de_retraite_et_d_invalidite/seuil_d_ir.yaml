@@ -1,0 +1,7 @@
+reference: ipp
+unit: currency
+values:
+  1991-02-01:
+    value: 61.0
+  2015-01-01:
+    value: null

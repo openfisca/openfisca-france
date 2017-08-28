@@ -1,0 +1,10 @@
+description: Taux appliqué aux revenus et produits de l'année pour le calcul du plafonnement
+reference: openfisca
+unit: /1
+values:
+  2002-01-01:
+    value: 0.85
+  2012-01-01:
+    value: 0.0
+  2013-01-01:
+    value: 0.75

@@ -1,0 +1,16 @@
+description: Taux pour les écoliers (en % de bmaf)
+reference: ipp
+unit: /1
+values:
+  1986-08-01:
+    value: 0.2
+  1995-08-01:
+    value: 0.322274972703
+  1997-08-01:
+    value: 0.2
+  2001-08-01:
+    value: 0.7322
+  2008-08-03:
+    value: 0.725
+  2012-09-03:
+    value: 0.8972

@@ -1,0 +1,8 @@
+description: Plafond de revenus
+reference: openfisca
+unit: currency
+values:
+  2005-01-01:
+    value: 12060.0
+  2009-01-01:
+    value: null

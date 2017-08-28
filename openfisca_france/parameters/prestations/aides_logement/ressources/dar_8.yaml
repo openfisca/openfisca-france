@@ -1,0 +1,18 @@
+description: Montant 2ème alinéa du III de R. 351-7
+reference: openfisca
+unit: currency
+values:
+  2002-01-01:
+    value: 0.0
+  2002-07-01:
+    value: 1085.0
+  2009-01-01:
+    value: 1200.0
+  2010-01-01:
+    value: 1204.8
+  2011-01-01:
+    value: 1222.87
+  2012-01-01:
+    value: 1248.55
+  2013-01-01:
+    value: 1273.52

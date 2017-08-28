@@ -1,0 +1,8 @@
+description: Activité de type Achat-Revente
+reference: openfisca
+unit: /1
+values:
+  2008-01-01:
+    value: 0.142
+  2015-01-01:
+    value: 0.134

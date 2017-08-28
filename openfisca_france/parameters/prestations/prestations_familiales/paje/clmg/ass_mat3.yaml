@@ -1,0 +1,7 @@
+description: Taux pour recours à une assistante maternelle, une association, une entreprise
+  ou une microcréche après le second plafond
+reference: ipp
+unit: /1
+values:
+  2004-01-01:
+    value: 1.1505

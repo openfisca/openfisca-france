@@ -1,0 +1,6 @@
+description: Seuil TPE
+reference: openfisca
+unit: currency
+values:
+  2009-01-01:
+    value: 50000.0

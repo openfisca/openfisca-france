@@ -1,0 +1,8 @@
+description: Taux par enfants supplémentaires
+reference: openfisca
+unit: /1
+values:
+  2002-01-01:
+    value: 0.4
+  2015-01-01:
+    value: null

@@ -1,0 +1,5 @@
+description: Âge limite inférieur
+reference: ipp
+values:
+  2002-01-01:
+    value: 3.0

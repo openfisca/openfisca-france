@@ -1,0 +1,6 @@
+description: Pente appliquée aux revenus d'activité pour la prime d'activité
+reference: ipp
+unit: /1
+values:
+  2016-01-01:
+    value: 0.62

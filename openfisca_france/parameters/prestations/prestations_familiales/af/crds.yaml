@@ -1,0 +1,6 @@
+description: Taux de crds
+reference: openfisca
+unit: /1
+values:
+  1996-01-01:
+    value: 0.005

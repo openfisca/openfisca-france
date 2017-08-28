@@ -1,0 +1,8 @@
+description: Montant de l'aide forfaitaire exceptionnelle de 2008
+reference: openfisca
+unit: currency
+values:
+  2008-01-01:
+    value: 67.55
+  2009-01-01:
+    value: null

@@ -1,0 +1,6 @@
+description: Taux_RD
+reference: openfisca
+unit: /1
+values:
+  2011-01-01:
+    value: 0.4

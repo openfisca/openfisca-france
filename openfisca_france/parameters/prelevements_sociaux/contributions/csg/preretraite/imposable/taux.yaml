@@ -1,0 +1,8 @@
+description: taux de la CSG imposable
+reference: openfisca
+unit: /1
+values:
+  1998-01-01:
+    value: 0.024
+  2007-10-11:
+    value: 0.033

@@ -1,0 +1,34 @@
+description: Cas général - par personne à charge supplémentaire
+reference: ipp
+unit: currency
+values:
+  1994-07-01:
+    value: 61.0
+  1997-07-01:
+    value: 63.0
+  1998-07-01:
+    value: 64.0
+  1999-07-01:
+    value: 65.0
+  2000-07-01:
+    value: 66.0
+  2001-07-01:
+    value: 10.52
+  2002-07-01:
+    value: 10.63
+  2007-01-01:
+    value: 10.82
+  2008-01-01:
+    value: 11.12
+  2009-01-01:
+    value: 11.45
+  2010-01-01:
+    value: 11.49
+  2011-01-01:
+    value: 11.62
+  2012-01-01:
+    value: 11.74
+  2013-01-01:
+    value: 11.99
+  2014-10-01:
+    value: 12.07

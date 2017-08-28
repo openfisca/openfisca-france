@@ -1,0 +1,34 @@
+description: Zone 1 - enfants supplémentaires
+reference: ipp
+unit: currency
+values:
+  2001-01-01:
+    value: 310.0
+  2001-07-01:
+    value: 314.0
+  2002-01-01:
+    value: 47.87
+  2002-07-01:
+    value: 48.44
+  2003-07-01:
+    value: 49.65
+  2005-09-01:
+    value: 50.54
+  2007-01-01:
+    value: 51.96
+  2008-01-01:
+    value: 53.39
+  2009-01-01:
+    value: 54.97
+  2010-01-01:
+    value: 55.15
+  2011-01-01:
+    value: 55.76
+  2012-01-01:
+    value: 56.32
+  2013-01-01:
+    value: 57.53
+  2014-10-01:
+    value: 57.86
+  2015-10-01:
+    value: 57.91

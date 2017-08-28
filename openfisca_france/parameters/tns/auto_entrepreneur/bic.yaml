@@ -1,0 +1,8 @@
+description: Activité de type BIC
+reference: openfisca
+unit: /1
+values:
+  2008-01-01:
+    value: 0.248
+  2015-01-01:
+    value: 0.232

@@ -1,0 +1,5 @@
+description: Pourcentage du salaire de base
+reference: openfisca
+values:
+  2002-01-01:
+    value: 0.1

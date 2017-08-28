@@ -1,0 +1,12 @@
+description: Seuil de non versement
+reference: ipp
+unit: currency
+values:
+  1989-11-12:
+    value: 100.0
+  2002-01-01:
+    value: 15.0
+  2004-06-01:
+    value: 24.0
+  2007-01-01:
+    value: 15.0

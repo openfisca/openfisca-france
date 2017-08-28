@@ -1,0 +1,7 @@
+description: Enfant issu du conjoint décédé
+reference: openfisca
+values:
+  2002-01-01:
+    value: 1.0
+  2008-01-01:
+    value: 0.0

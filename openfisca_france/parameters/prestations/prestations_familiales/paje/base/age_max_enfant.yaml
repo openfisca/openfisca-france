@@ -1,0 +1,5 @@
+description: Limite d'âge (stricte) pour bénéficier de la PAJE
+reference: ipp
+values:
+  2004-01-01:
+    value: 3.0

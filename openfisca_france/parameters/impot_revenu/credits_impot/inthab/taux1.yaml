@@ -1,0 +1,6 @@
+description: Taux 1
+reference: openfisca
+unit: /1
+values:
+  2007-01-01:
+    value: 0.4

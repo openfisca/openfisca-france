@@ -1,0 +1,5 @@
+description: Nombre d'années pleines de détentions 3e seuil
+reference: openfisca
+values:
+  2012-02-01:
+    value: 24.0

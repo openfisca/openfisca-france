@@ -1,0 +1,13 @@
+reference: ipp
+unit: /1
+values:
+  1991-08-06:
+    value: 0.2978
+  1992-02-12:
+    value: 0.3155
+  1992-07-01:
+    value: 0.3344
+  1993-01-01:
+    value: 0.3457
+  1999-01-01:
+    value: null

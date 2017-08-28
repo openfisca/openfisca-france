@@ -1,0 +1,7 @@
+reference: ipp
+unit: currency
+values:
+  1990-01-01:
+    value: 25000.0
+  2000-01-01:
+    value: null

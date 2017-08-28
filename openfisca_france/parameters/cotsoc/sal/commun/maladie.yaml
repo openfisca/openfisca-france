@@ -1,0 +1,13 @@
+brackets:
+- rate:
+    1993-07-01:
+      value: 0.068
+    1997-01-01:
+      value: 0.055
+    1998-01-01:
+      value: 0.0075
+  threshold:
+    1993-07-01:
+      value: 0.0
+description: 'Assurance maladie, maternité, invalidité, décès '
+reference: openfisca

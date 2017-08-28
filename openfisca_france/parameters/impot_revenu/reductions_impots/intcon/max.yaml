@@ -1,0 +1,8 @@
+description: Plafond
+reference: openfisca
+unit: currency
+values:
+  2004-01-01:
+    value: 600.0
+  2006-01-01:
+    value: null
