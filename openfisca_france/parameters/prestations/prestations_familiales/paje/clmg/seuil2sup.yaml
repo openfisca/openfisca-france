@@ -1,0 +1,29 @@
+description: 'Second plafond de ressources: maj. enfant suppl.'
+reference: ipp
+values:
+  2004-01-01:
+    value: 5791.0
+  2004-07-01:
+    value: 5901.0
+  2005-07-01:
+    value: 6001.0
+  2006-07-01:
+    value: 6103.0
+  2007-07-01:
+    value: 7759.0
+  2009-01-01:
+    value: 7875.0
+  2010-01-01:
+    value: 8096.0
+  2011-01-01:
+    value: 8104.0
+  2012-01-01:
+    value: 8195.0
+  2013-01-01:
+    value: 8357.0
+  2014-01-01:
+    value: 8515.0
+  2015-01-01:
+    value: 8575.0
+  2016-01-01:
+    value: 8609.0

@@ -1,0 +1,107 @@
+description: Impôt à base large proposé par Landais Piketty et Saez
+bareme:
+  unit: currency
+  description: Barème de l'impôt
+  brackets:
+    - average_rate:
+        '2015-01-01':
+          value: null
+        '2000-01-01':
+          value: .02
+      threshold:
+        '2015-01-01':
+          value: null
+        '2000-01-01':
+          value: 1100
+    - average_rate:
+        '2015-01-01':
+          value: null
+        '2000-01-01':
+          value: .1
+      threshold:
+        '2015-01-01':
+          value: null
+        '2000-01-01':
+          value: 2200
+    - average_rate:
+        '2015-01-01':
+          value: null
+        '2000-01-01':
+          value: .13
+      threshold:
+        '2015-01-01':
+          value: null
+        '2000-01-01':
+          value: 5000
+    - average_rate:
+        '2015-01-01':
+          value: null
+        '2000-01-01':
+          value: .25
+      threshold:
+        '2015-01-01':
+          value: null
+        '2000-01-01':
+          value: 10000
+    - average_rate:
+        '2015-01-01':
+          value: null
+        '2000-01-01':
+          value: .5
+      threshold:
+        '2015-01-01':
+          value: null
+        '2000-01-01':
+          value: 40000
+    - average_rate:
+        '2015-01-01':
+          value: null
+        '2000-01-01':
+          value: .6
+      threshold:
+        '2015-01-01':
+          value: null
+        '2000-01-01':
+          value: 100000
+imposition:
+  description: "Indicatrice d'imposition"
+  values:
+    '2015-01-01':
+      value: null
+    '2000-01-01':
+      value: True
+credit_enfant:
+  description: "Crédit d'impôt forfaitaire par enfant"
+  values:
+    '2015-01-01':
+      value: null
+    '2000-01-01':
+      value: 0
+reduc_enfant:
+  description: "Réduction d'impôt forfaitaire par enfant"
+  values:
+    '2015-01-01':
+      value: null
+    '2000-01-01':
+      value: 0
+abatt_enfant:
+  description: Abattement forfaitaire sur le revenu par enfant
+  values:
+    '2015-01-01':
+      value: null
+    '2000-01-01':
+      value: 0
+reduc_conj:
+  description: "Réduction d'impôt forfaitaire si conjoint"
+  values:
+    '2015-01-01':
+      value: null
+    '2000-01-01':
+      value: 0
+abatt_conj:
+  description: Abattement forfaitaire sur le revenu si conjoint
+  values:
+    '2015-01-01':
+      value: null
+    '2000-01-01':
+      value: 0

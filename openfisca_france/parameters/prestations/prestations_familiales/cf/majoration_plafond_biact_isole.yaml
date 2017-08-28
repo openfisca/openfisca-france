@@ -1,0 +1,32 @@
+description: Majoration du plafond pour biactifs ou isolé
+reference: ipp
+unit: currency
+values:
+  1986-01-01:
+    value: 33973.0
+  2003-07-01:
+    value: 5663.0
+  2004-07-01:
+    value: 5771.0
+  2005-07-01:
+    value: 5869.0
+  2006-07-01:
+    value: 5969.0
+  2007-07-01:
+    value: 7588.0
+  2009-01-01:
+    value: 7702.0
+  2010-01-01:
+    value: 7918.0
+  2011-01-01:
+    value: 7926.0
+  2012-01-01:
+    value: 8005.0
+  2013-01-01:
+    value: 8173.0
+  2014-01-01:
+    value: 8328.0
+  2015-01-01:
+    value: 8386.0
+  2016-01-01:
+    value: 8420.0

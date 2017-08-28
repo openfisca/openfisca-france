@@ -138,8 +138,8 @@ class credit_impot_competitivite_emploi(Variable):
         jeune_entreprise_innovante = simulation.calculate('jeune_entreprise_innovante', period)
         smic_proratise = simulation.calculate('smic_proratise', period)
         stagiaire = simulation.calculate('stagiaire', period)
-        legislation = simulation.legislation_at(period.start)
-        taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, legislation)
+        parameters = simulation.parameters_at(period.start)
+        taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, parameters)
         credit_impot_competitivite_emploi = taux_cice * assiette_allegement
         non_cumul = not_(stagiaire)
         association = simulation.calculate('entreprise_est_association_non_lucrative', period)
@@ -292,7 +292,7 @@ class smic_proratise(Variable):
 
     def formula(self, simulation, period):
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
-        smic_horaire_brut = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b
+        smic_horaire_brut = simulation.parameters_at(period.start).cotsoc.gen.smic_h_b
         smic_proratise = coefficient_proratisation * smic_horaire_brut * 35 * 52 / 12
 
         return smic_proratise
@@ -348,7 +348,7 @@ def compute_allegement_fillon(simulation, period):
     # au titre des salariés temporaires pour lesquels elle est tenue à
     # l’obligation d’indemnisation compensatrice de congés payés.
 
-    fillon = simulation.legislation_at(period.start).prelevements_sociaux.fillon
+    fillon = simulation.parameters_at(period.start).prelevements_sociaux.fillon
 
     # Du 2003-07-01 au 2005-06-30
     if date(2003, 7, 1) <= period.start.date <= date(2005, 6, 30):
@@ -405,7 +405,7 @@ def compute_allegement_cotisation_allocations_familiales(simulation, period):
     smic_proratise = simulation.calculate_add('smic_proratise', period)
     # TODO: Ne semble pas dépendre de la taille de l'entreprise mais à vérifier
     # taille_entreprise = simulation.calculate('taille_entreprise', period)
-    law = simulation.legislation_at(period.start).prelevements_sociaux.allegement_cotisation_allocations_familiales
+    law = simulation.parameters_at(period.start).prelevements_sociaux.allegement_cotisation_allocations_familiales
     ratio_smic_salaire = assiette / smic_proratise
 
     # Montant de l'allegment
@@ -466,7 +466,7 @@ def compute_allegement_progressif(simulation, period, variable_name, compute_fun
         return compute_function(simulation, up_to_this_month) - cumul
 
 
-def taux_exo_cice(assiette_allegement, smic_proratise, legislation):
-    cice = legislation.prelevements_sociaux.cice
+def taux_exo_cice(assiette_allegement, smic_proratise, parameters):
+    cice = parameters.prelevements_sociaux.cice
     taux_cice = ((assiette_allegement / (smic_proratise + 1e-16)) <= cice.plafond_smic) * cice.taux
     return taux_cice

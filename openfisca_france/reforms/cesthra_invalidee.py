@@ -2,47 +2,26 @@
 
 from __future__ import division
 
-from openfisca_core import columns
-from openfisca_core.reforms import Reform
+import os
+
 from openfisca_france.model.base import *
 
 from .. import entities
 from ..model.prelevements_obligatoires.impot_revenu import ir
 
 
-def modify_legislation_json(reference_legislation_json_copy):
-    reform_legislation_subtree = {
-        "@type": "Node",
-        "description": "Contribution execptionnelle sur les très hauts revenus d'activité",
-        "children": {
-            "seuil": {
-                "@type": "Parameter",
-                "description": "Seuil",
-                "format": "integer",
-                "unit": "currency",
-                "values": [
-                    {'start': u'2014-01-01', },
-                    {'start': u'2012-01-01', 'value': 1000000},
-                    ],
-                },
-            "taux": {
-                "@type": "Parameter",
-                "description": "Taux",
-                "format": "rate",
-                "unit": "currency",
-                "values": [
-                    {'start': u'2014-01-01', },
-                    {'start': u'2012-01-01', 'value': .75},
-                    ],
-                },
-            },
-        }
-    reference_legislation_json_copy['children']['cesthra'] = reform_legislation_subtree
-    return reference_legislation_json_copy
+dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
+
+
+def modify_parameters(parameters):
+    file_path = os.path.join(dir_path, 'cesthra_invalidite.yaml')
+    reform_parameters_subtree = load_parameter_file(name='cesthra', file_path=file_path)
+    parameters.add_child('cesthra', reform_parameters_subtree)
+    return parameters
 
 
 class cesthra(Variable):
-    column = columns.FloatCol
+    column = FloatCol
     entity = entities.FoyerFiscal
     label = u"Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
     definition_period = YEAR
@@ -50,7 +29,7 @@ class cesthra(Variable):
 
     def formula(self, simulation, period):
         salaire_imposable_holder = simulation.calculate_add("salaire_imposable", period)
-        law_cesthra = simulation.legislation_at(period.start).cesthra
+        law_cesthra = simulation.parameters_at(period.start).cesthra
         salaire_imposable = self.split_by_roles(salaire_imposable_holder)
 
         cesthra = 0
@@ -71,7 +50,7 @@ class irpp(Variable):
         credits_impot = simulation.calculate('credits_impot', period)
         cehr = simulation.calculate('cehr', period)
         cesthra = simulation.calculate('cesthra', period = period)
-        P = simulation.legislation_at(period.start).impot_revenu.recouvrement
+        P = simulation.parameters_at(period.start).impot_revenu.recouvrement
 
         pre_result = iai - credits_impot + cehr + cesthra
         return ((iai > P.seuil) *
@@ -87,4 +66,4 @@ class cesthra_invalidee(Reform):
     def apply(self):
         self.add_variable(cesthra)
         self.update_variable(irpp)
-        self.modify_legislation_json(modifier_function = modify_legislation_json)
+        self.modify_parameters(modifier_function = modify_parameters)

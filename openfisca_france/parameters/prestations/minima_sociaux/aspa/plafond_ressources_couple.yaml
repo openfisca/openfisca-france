@@ -1,0 +1,30 @@
+description: Plafond de ressources annuelles pour un couple pour percevoir l'ASPA
+reference: ipp
+unit: currency
+values:
+  2006-01-01:
+    value: 13137.69
+  2007-01-01:
+    value: 13374.16
+  2008-01-01:
+    value: 13521.27
+  2008-09-01:
+    value: 13629.44
+  2009-04-01:
+    value: 13765.73
+  2010-04-01:
+    value: 13889.62
+  2011-04-01:
+    value: 14181.3
+  2012-04-01:
+    value: 14479.1
+  2013-04-01:
+    value: 14667.32
+  2014-04-01:
+    value: 14755.32
+  2014-10-01:
+    value: 14904.0
+  2016-04-01:
+    value: 14918.9
+  2017-04-01:
+    value: 14963.65

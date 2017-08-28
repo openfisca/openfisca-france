@@ -1,0 +1,6 @@
+description: Taux 18%
+reference: openfisca
+unit: /1
+values:
+  2012-01-01:
+    value: 0.18

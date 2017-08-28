@@ -1,0 +1,10 @@
+description: Taux pour recours à un emploi direct avant le premier plafond
+reference: ipp
+unit: /1
+values:
+  2004-01-01:
+    value: 1.0067
+  2008-05-01:
+    value: 1.1404
+  2012-06-01:
+    value: 1.0067

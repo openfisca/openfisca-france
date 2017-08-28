@@ -1,0 +1,7 @@
+description: Coefficient R. 351-7-1
+reference: openfisca
+values:
+  2002-01-01:
+    value: 13.0
+  2007-07-01:
+    value: 16.25

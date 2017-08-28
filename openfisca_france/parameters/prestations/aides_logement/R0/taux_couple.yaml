@@ -1,0 +1,7 @@
+description: Taux couple
+unit: currency
+values:
+  2015-01-01:
+    value: 6508.0
+  2016-01-01:
+    value: 6534.0

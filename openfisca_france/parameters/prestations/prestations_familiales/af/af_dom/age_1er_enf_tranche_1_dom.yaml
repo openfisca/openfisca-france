@@ -1,0 +1,7 @@
+description: Âge de début de la 1ere majoration
+reference: ipp
+values:
+  1991-08-06:
+    value: 10.0
+  1999-01-01:
+    value: 11.0

@@ -217,13 +217,13 @@ class isf_imm_bati(Variable):
     label = u"isf_imm_bati"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, legislation):
+    def formula(foyer_fiscal, period, parameters):
         '''
         Immeubles bâtis
         '''
         b1ab = foyer_fiscal('b1ab', period)
         b1ac = foyer_fiscal('b1ac', period)
-        P = legislation(period).taxation_capital.isf.res_princ
+        P = parameters(period).taxation_capital.isf.res_princ
 
         return (1 - P.abattement_sur_residence_principale) * b1ab + b1ac
 
@@ -234,7 +234,7 @@ class isf_imm_non_bati(Variable):
     label = u"isf_imm_non_bati"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, legislation):
+    def formula(foyer_fiscal, period, parameters):
         '''
         Immeubles non bâtis
         '''
@@ -242,7 +242,7 @@ class isf_imm_non_bati(Variable):
         b1be = foyer_fiscal('b1be', period)
         b1bh = foyer_fiscal('b1bh', period)
         b1bk = foyer_fiscal('b1bk', period)
-        P = legislation(period).taxation_capital.isf.nonbat
+        P = parameters(period).taxation_capital.isf.nonbat
 
         # forêts
         b1bd = b1bc * P.taux_f
@@ -264,12 +264,12 @@ class isf_actions_sal(Variable):  # # non présent en 2005##
     label = u"isf_actions_sal"
     definition_period = YEAR
 
-    def formula_2006(foyer_fiscal, period, legislation):
+    def formula_2006(foyer_fiscal, period, parameters):
         '''
         Parts ou actions détenues par les salariés et mandataires sociaux
         '''
         b1cl = foyer_fiscal('b1cl', period)
-        P = legislation(period).taxation_capital.isf.droits_soc
+        P = parameters(period).taxation_capital.isf.droits_soc
 
         return  b1cl * P.taux1
 
@@ -280,14 +280,14 @@ class isf_droits_sociaux(Variable):
     label = u"isf_droits_sociaux"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, legislation):
+    def formula(foyer_fiscal, period, parameters):
         isf_actions_sal = foyer_fiscal('isf_actions_sal', period)
         b1cb = foyer_fiscal('b1cb', period)
         b1cd = foyer_fiscal('b1cd', period)
         b1ce = foyer_fiscal('b1ce', period)
         b1cf = foyer_fiscal('b1cf', period)
         b1cg = foyer_fiscal('b1cg', period)
-        P = legislation(period).taxation_capital.isf.droits_soc
+        P = parameters(period).taxation_capital.isf.droits_soc
 
         b1cc = b1cb * P.taux2
         return isf_actions_sal + b1cc + b1cd + b1ce + b1cf + b1cg
@@ -299,14 +299,14 @@ class ass_isf(Variable):
     label = u"ass_isf"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, legislation):
+    def formula(foyer_fiscal, period, parameters):
         # TODO: Gérer les trois option meubles meublants
         isf_imm_bati = foyer_fiscal('isf_imm_bati', period)
         isf_imm_non_bati = foyer_fiscal('isf_imm_non_bati', period)
         isf_droits_sociaux = foyer_fiscal('isf_droits_sociaux', period)
         b1cg = foyer_fiscal('b1cg', period)
         b2gh = foyer_fiscal('b2gh', period)
-        P = legislation(period).taxation_capital.isf.forf_mob
+        P = parameters(period).taxation_capital.isf.forf_mob
 
         total = isf_imm_bati + isf_imm_non_bati + isf_droits_sociaux
         forf_mob = (b1cg != 0) * b1cg + (b1cg == 0) * total * P.taux
@@ -323,15 +323,15 @@ class isf_iai(Variable):
     label = u"isf_iai"
     definition_period = YEAR
 
-    def formula_2002_01_01(foyer_fiscal, period, legislation):
+    def formula_2002_01_01(foyer_fiscal, period, parameters):
         ass_isf = foyer_fiscal('ass_isf', period)
-        bareme = legislation(period).taxation_capital.isf.bareme
+        bareme = parameters(period).taxation_capital.isf.bareme
         return bareme.calc(ass_isf)
 
     # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
-    def formula_2011_01_01(foyer_fiscal, period, legislation):
+    def formula_2011_01_01(foyer_fiscal, period, parameters):
         ass_isf = foyer_fiscal('ass_isf', period)
-        bareme = legislation(period).taxation_capital.isf.bareme
+        bareme = parameters(period).taxation_capital.isf.bareme
         ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
         return bareme.calc(ass_isf)
 
@@ -342,7 +342,7 @@ class isf_avant_reduction(Variable):
     label = u"isf_avant_reduction"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, legislation):
+    def formula(foyer_fiscal, period, parameters):
         isf_iai = foyer_fiscal('isf_iai', period)
         decote_isf = foyer_fiscal('decote_isf', period)
 
@@ -356,13 +356,13 @@ class isf_reduc_pac(Variable):
     end = '2012-12-31'
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, legislation):
+    def formula(foyer_fiscal, period, parameters):
         '''
         Réductions pour personnes à charges
         '''
         nb_pac = foyer_fiscal('nb_pac', period)
         nbH = foyer_fiscal('nbH', period)
-        P = legislation(period).taxation_capital.isf.reduc_pac
+        P = parameters(period).taxation_capital.isf.reduc_pac
 
         return P.reduc_enf_garde * nb_pac + (P.reduc_enf_garde / 2) * nbH
 
@@ -374,7 +374,7 @@ class isf_inv_pme(Variable):
     label = u"isf_inv_pme"
     definition_period = YEAR
 
-    def formula_2008(foyer_fiscal, period, legislation):
+    def formula_2008(foyer_fiscal, period, parameters):
         '''
         Réductions pour investissements dans les PME
         à partir de 2008!
@@ -385,7 +385,7 @@ class isf_inv_pme(Variable):
         b2nf = foyer_fiscal('b2nf', period)
         b2mx = foyer_fiscal('b2mx', period)
         b2na = foyer_fiscal('b2na', period)
-        P = legislation(period).taxation_capital.isf.reduc_invest_don
+        P = parameters(period).taxation_capital.isf.reduc_invest_don
 
         inv_dir_soc = b2mt * P.taux_don_interet_general + b2ne * P.taux_invest_direct_soc_holding
         holdings = b2mv * P.taux_don_interet_general + b2nf * P.taux_invest_direct_soc_holding
@@ -402,9 +402,9 @@ class isf_org_int_gen(Variable):
     label = u"isf_org_int_gen"
     definition_period = YEAR
 
-    def formula_2008(foyer_fiscal, period, legislation):
+    def formula_2008(foyer_fiscal, period, parameters):
         b2nc = foyer_fiscal('b2nc', period)
-        P = legislation(period).taxation_capital.isf.reduc_invest_don
+        P = parameters(period).taxation_capital.isf.reduc_invest_don
 
         return b2nc * P.taux_don_interet_general
 
@@ -414,13 +414,13 @@ class isf_avant_plaf(Variable):
     label = u"Montant de l'impôt sur la fortune avant plafonnement"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, legislation):
+    def formula(foyer_fiscal, period, parameters):
         isf_avant_reduction = foyer_fiscal('isf_avant_reduction', period)
         isf_reduc_pac = foyer_fiscal('isf_reduc_pac', period)
 
         return max_(0, isf_avant_reduction - isf_reduc_pac)
 
-    def formula_2008(foyer_fiscal, period, legislation):
+    def formula_2008(foyer_fiscal, period, parameters):
         isf_avant_reduction = foyer_fiscal('isf_avant_reduction', period)
         isf_inv_pme = foyer_fiscal('isf_inv_pme', period)
         isf_org_int_gen = foyer_fiscal('isf_org_int_gen', period)
@@ -428,12 +428,12 @@ class isf_avant_plaf(Variable):
 
         return max_(0, isf_avant_reduction - (isf_inv_pme + isf_org_int_gen) - isf_reduc_pac)
 
-    def formula_2009(foyer_fiscal, period, legislation):
+    def formula_2009(foyer_fiscal, period, parameters):
         isf_avant_reduction = foyer_fiscal('isf_avant_reduction', period)
         isf_inv_pme = foyer_fiscal('isf_inv_pme', period)
         isf_org_int_gen = foyer_fiscal('isf_org_int_gen', period)
         isf_reduc_pac = foyer_fiscal('isf_reduc_pac', period)
-        borne_max = legislation(period).taxation_capital.isf.reduc_invest_don.max
+        borne_max = parameters(period).taxation_capital.isf.reduc_invest_don.max
 
         return max_(0, isf_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
 
@@ -445,7 +445,7 @@ class tot_impot(Variable):
     label = u"Total des impôts dus au titre des revenus et produits (irpp, cehr, pl, prélèvements sociaux) + ISF. Utilisé pour calculer le montant du plafonnement de l'ISF."
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, legislation):
+    def formula(foyer_fiscal, period, parameters):
         irpp = foyer_fiscal('irpp', period)
         isf_avant_plaf = foyer_fiscal('isf_avant_plaf', period)
         crds_i = foyer_fiscal.members('crds', period)
@@ -474,7 +474,7 @@ class revetproduits(Variable):
     label = u"Revenus et produits perçus (avant abattement)"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, legislation):
+    def formula(foyer_fiscal, period, parameters):
         '''
         Utilisé pour calculer le montant du plafonnement de l'ISF
         Cf.
@@ -491,7 +491,7 @@ class revetproduits(Variable):
         rpns_pvct_i = foyer_fiscal.members('rpns_pvct', period)
         rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
         imp_lib = foyer_fiscal('imp_lib', period)
-        P = legislation(period).taxation_capital.isf.plafonnement
+        P = parameters(period).taxation_capital.isf.plafonnement
 
         revenu_assimile_pension_apres_abattements = foyer_fiscal.sum(pen_net_i)
         rag = foyer_fiscal.sum(rag_i)
@@ -516,9 +516,9 @@ class decote_isf(Variable):
     label = u"Décote de l'ISF"
     definition_period = YEAR
 
-    def formula_2013(foyer_fiscal, period, legislation):
+    def formula_2013(foyer_fiscal, period, parameters):
         ass_isf = foyer_fiscal('ass_isf', period)
-        P = legislation(period).taxation_capital.isf.decote
+        P = parameters(period).taxation_capital.isf.decote
 
         elig = (ass_isf >= P.isf_borne_min_decote) & (ass_isf <= P.isf_borne_sup_decote)
         LB = P.isf_base_decote - P.isf_taux_decote * ass_isf
@@ -532,11 +532,11 @@ class isf_apres_plaf(Variable):
     definition_period = YEAR
     # Plafonnement supprimé pour l'année 2012
 
-    def formula_2002_01_01(foyer_fiscal, period, legislation):
+    def formula_2002_01_01(foyer_fiscal, period, parameters):
         tot_impot = foyer_fiscal('tot_impot', period)
         revetproduits = foyer_fiscal('revetproduits', period)
         isf_avant_plaf = foyer_fiscal('isf_avant_plaf', period)
-        P = legislation(period).taxation_capital.isf.plaf
+        P = parameters(period).taxation_capital.isf.plaf
 
         # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas
         # si entre les deux seuils; l'allègement est limité au 1er seuil
@@ -550,7 +550,7 @@ class isf_apres_plaf(Variable):
             )
         return max_(isf_avant_plaf - limitationplaf, 0)
 
-    def formula_2012_01_01(foyer_fiscal, period, legislation):
+    def formula_2012_01_01(foyer_fiscal, period, parameters):
         isf_avant_plaf = foyer_fiscal('isf_avant_plaf', period)
 
         # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
@@ -560,7 +560,7 @@ class isf_apres_plaf(Variable):
         return isf_avant_plaf
 
     # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
-    def formula_2013_01_01(foyer_fiscal, period, legislation):
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
         Impôt sur la fortune après plafonnement
         """
@@ -579,7 +579,7 @@ class isf_tot(Variable):
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_isf&espId=1&impot=ISF&sfid=50"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, legislation):
+    def formula(foyer_fiscal, period, parameters):
         b4rs = foyer_fiscal('b4rs', period)
         isf_avant_plaf = foyer_fiscal('isf_avant_plaf', period)
         isf_apres_plaf = foyer_fiscal('isf_apres_plaf', period)
@@ -600,7 +600,7 @@ class rvcm_plus_abat(Variable):
     label = u"rvcm_plus_abat"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, legislation):
+    def formula(foyer_fiscal, period, parameters):
         '''
         Revenu catégoriel avec abattement de 40% réintégré.
         '''
@@ -617,7 +617,7 @@ class maj_cga(Variable):
     definition_period = YEAR
 
     # TODO: à reintégrer dans irpp (et vérifier au passage que frag_impo est dans la majo_cga
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         frag_impo = individu('frag_impo', period)
         nrag_impg = individu('nrag_impg', period)
         nbic_impn = individu('nbic_impn', period)
@@ -630,7 +630,7 @@ class maj_cga(Variable):
         nacc_defs = individu('nacc_defs', period)
         nbnc_impo = individu('nbnc_impo', period)
         nbnc_defi = individu('nbnc_defi', period)
-        P = legislation(period).impot_revenu.rpns
+        P = parameters(period).impot_revenu.rpns
 
         nbic_timp = (nbic_impn + nbic_imps) - (nbic_defn + nbic_defs)
 
@@ -654,7 +654,7 @@ class bouclier_rev(Variable):
     end = '2010-12-31'
     definition_period = YEAR
 
-    def formula_2006(foyer_fiscal, period, legislation):
+    def formula_2006(foyer_fiscal, period, parameters):
         '''
         Total des revenus sur l'année 'n' net de charges
         '''
@@ -714,7 +714,7 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
     end = '2010-12-31'
     definition_period = YEAR
 
-    def formula_2006(foyer_fiscal, period, legislation):
+    def formula_2006(foyer_fiscal, period, parameters):
         irpp = foyer_fiscal('irpp', period)
         tax_fonc = foyer_fiscal('tax_fonc', period)
         isf_tot = foyer_fiscal('isf_tot', period)
@@ -761,7 +761,7 @@ class restitutions(Variable):
     end = '2010-12-31'
     definition_period = YEAR
 
-    def formula_2006(foyer_fiscal, period, legislation):
+    def formula_2006(foyer_fiscal, period, parameters):
         '''
         Restitutions d'impôt sur le revenu et degrèvements percus en l'année 'n'
         '''
@@ -778,7 +778,7 @@ class bouclier_sumimp(Variable):
     end = '2010-12-31'
     definition_period = YEAR
 
-    def formula_2006(foyer_fiscal, period, legislation):
+    def formula_2006(foyer_fiscal, period, parameters):
         '''
         Somme totale des impôts moins restitutions et degrèvements
         '''
@@ -796,9 +796,9 @@ class bouclier_fiscal(Variable):
     reference = "http://fr.wikipedia.org/wiki/Bouclier_fiscal"
     definition_period = YEAR
 
-    def formula_2006(foyer_fiscal, period, legislation):
+    def formula_2006(foyer_fiscal, period, parameters):
         bouclier_sumimp = foyer_fiscal('bouclier_sumimp', period)
         bouclier_rev = foyer_fiscal('bouclier_rev', period)
-        P = legislation(period).bouclier_fiscal
+        P = parameters(period).bouclier_fiscal
 
         return max_(0, bouclier_sumimp - (bouclier_rev * P.taux))

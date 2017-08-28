@@ -1,0 +1,6 @@
+description: Taux_SX
+reference: openfisca
+unit: /1
+values:
+  2013-01-01:
+    value: 0.22

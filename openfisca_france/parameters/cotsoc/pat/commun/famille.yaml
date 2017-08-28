@@ -1,0 +1,11 @@
+brackets:
+- rate:
+    1993-07-01:
+      value: 0.054
+    2014-01-01:
+      value: 0.0525
+  threshold:
+    1993-07-01:
+      value: 0.0
+description: Allocation familiales
+reference: openfisca

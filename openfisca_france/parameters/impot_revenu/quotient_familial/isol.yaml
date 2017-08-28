@@ -1,0 +1,5 @@
+description: Parent isolé
+reference: openfisca
+values:
+  2002-01-01:
+    value: 0.5

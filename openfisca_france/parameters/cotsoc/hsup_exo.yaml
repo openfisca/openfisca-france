@@ -1,0 +1,9 @@
+description: Exonération des heures supplémentaires
+reference: openfisca
+values:
+  2002-01-01:
+    value: 0.0
+  2007-01-01:
+    value: 1.0
+  2012-01-01:
+    value: 0.0

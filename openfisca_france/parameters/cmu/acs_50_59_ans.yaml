@@ -1,0 +1,6 @@
+description: ACS pour une personne âgée de 50 à 59 ans
+reference: openfisca
+unit: currency
+values:
+  2009-08-01:
+    value: 350.0

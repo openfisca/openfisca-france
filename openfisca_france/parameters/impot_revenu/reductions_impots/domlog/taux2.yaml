@@ -1,0 +1,8 @@
+description: Second taux
+reference: openfisca
+unit: /1
+values:
+  2002-01-01:
+    value: 0.05
+  2008-01-01:
+    value: null

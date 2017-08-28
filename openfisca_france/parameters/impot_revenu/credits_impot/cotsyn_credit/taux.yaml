@@ -1,0 +1,8 @@
+description: Cotisations syndicales
+reference: openfisca
+unit: /1
+values:
+  2012-01-01:
+    value: 0.66
+  2013-01-01:
+    value: null

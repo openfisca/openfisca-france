@@ -1,0 +1,6 @@
+description: Âge minimal pour bénéficier de la PPA
+reference: openfisca
+unit: year
+values:
+  2016-01-01:
+    value: 18.0

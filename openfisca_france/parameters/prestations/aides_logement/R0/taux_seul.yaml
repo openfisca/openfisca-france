@@ -1,0 +1,7 @@
+description: Taux 1 adulte
+unit: currency
+values:
+  2015-01-01:
+    value: 4544.0
+  2016-01-01:
+    value: 4562.0

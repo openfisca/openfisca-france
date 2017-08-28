@@ -1,0 +1,6 @@
+description: Majoration du plafond par enfant
+reference: ipp
+unit: /1
+values:
+  2014-04-01:
+    value: 0.22

@@ -1,0 +1,6 @@
+description: Allocation de base (en % de la bmaf)
+reference: ipp
+unit: /1
+values:
+  2004-01-01:
+    value: 0.4595

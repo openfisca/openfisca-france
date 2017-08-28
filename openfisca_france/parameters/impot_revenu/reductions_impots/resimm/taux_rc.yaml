@@ -1,0 +1,6 @@
+description: Taux_RC
+reference: openfisca
+unit: /1
+values:
+  2011-01-01:
+    value: 0.3

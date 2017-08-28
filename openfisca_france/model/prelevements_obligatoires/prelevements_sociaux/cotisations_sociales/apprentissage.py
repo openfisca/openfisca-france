@@ -45,7 +45,7 @@ class remuneration_apprenti(Variable):
     def formula(self, simulation, period):
         age = simulation.calculate('age', period)
         apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
-        smic = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
+        smic = simulation.parameters_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
         anciennete_contrat = (
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')

@@ -1,0 +1,7 @@
+description: Taux pour 5 pac
+unit: currency
+values:
+  2015-01-01:
+    value: 8851.0
+  2016-01-01:
+    value: 8886.0

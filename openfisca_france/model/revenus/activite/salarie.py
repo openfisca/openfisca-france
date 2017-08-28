@@ -698,13 +698,13 @@ class indemnite_residence(Variable):
     label = u"Indemnité de résidence des fonctionnaires"
     definition_period = MONTH
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         period = period.first_month
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         salaire_de_base = individu('salaire_de_base', period)
         categorie_salarie = individu('categorie_salarie', period)
         zone_apl = individu.menage('zone_apl', period)
-        _P = legislation(period)
+        _P = parameters(period)
 
         P = _P.fonc.indem_resid
         min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
@@ -727,7 +727,7 @@ class indice_majore(Variable):
         period = period.start.period(u'month').offset('first-of')
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         traitement_annuel_brut = _P.fonc.IM_100
         return (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * (categorie_salarie >= 2)
@@ -764,7 +764,7 @@ class af_nbenf_fonc(Variable):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         salaire_de_base = simulation.calculate_add('salaire_de_base', period.start.period('month', 6).offset(-6))
-        law = simulation.legislation_at(period.start)
+        law = simulation.parameters_at(period.start)
         nbh_travaillees = 169
         smic_mensuel_brut = law.cotsoc.gen.smic_h_b * nbh_travaillees
         autonomie_financiere = (salaire_de_base / 6) >= (law.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
@@ -785,10 +785,10 @@ class supp_familial_traitement(Variable):
     # Attention : par hypothèse ne peut êre attribué qu'à la tête du ménage
     # TODO: gérer le cas encore problématique du conjoint fonctionnaire
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         categorie_salarie = individu('categorie_salarie', period)
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
-        _P = legislation(period)
+        _P = parameters(period)
 
         fonc_nbenf = individu.famille('af_nbenf_fonc', period) * individu.has_role(Famille.DEMANDEUR)
 

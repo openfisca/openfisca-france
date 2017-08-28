@@ -17,7 +17,7 @@ class api(Variable):
     definition_period = MONTH
     calculate_output = calculate_output_add
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         """
         Allocation de parent isolé
         """
@@ -26,8 +26,8 @@ class api(Variable):
         rsa_base_ressources = famille('rsa_base_ressources', period)
         af_majoration = famille('af_majoration', period)
         rsa = famille('rsa', period)
-        af = legislation(period).prestations.prestations_familiales.af
-        api = legislation(period).prestations.minima_sociaux.api
+        af = parameters(period).prestations.prestations_familiales.af
+        api = parameters(period).prestations.minima_sociaux.api
 
 
         # TODO:
@@ -105,7 +105,7 @@ class psa(Variable):
     definition_period = MONTH
     calculate_output = calculate_output_add
 
-    def formula_2009_04(famille, period, legislation):
+    def formula_2009_04(famille, period, parameters):
         '''
         Prime de solidarité active (exceptionnelle, 200€ versés une fois en avril 2009)
         Versement en avril 2009 d’une prime de solidarité active (Psa) aux familles modestes qui ont bénéficié
@@ -115,7 +115,7 @@ class psa(Variable):
         d’être âgé de plus de 25 ans ou d’avoir au moins un enfant à charge).
         La Psa, prime exceptionnelle, s’élève à 200 euros par foyer bénéficiaire.
         '''
-        P = legislation(period).prestations.minima_sociaux.rmi
+        P = parameters(period).prestations.minima_sociaux.rmi
         api = famille('api', period)
         rsa = famille('rsa', period)
         af_nbenf = famille('af_nbenf', period)

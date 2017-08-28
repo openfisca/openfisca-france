@@ -1,0 +1,9 @@
+description: Majoration du plafond annuel de ressources par enfant supplémentaire
+  (à partir du 3e enfant)
+reference: ipp
+unit: currency
+values:
+  2015-07-01:
+    value: 5595.0
+  2016-01-01:
+    value: 5617.0

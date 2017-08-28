@@ -1,0 +1,6 @@
+description: Pourcentage du RSA socle pour une personne (pour une personne)
+reference: openfisca
+unit: /1
+values:
+  2000-01-01:
+    value: 0.12

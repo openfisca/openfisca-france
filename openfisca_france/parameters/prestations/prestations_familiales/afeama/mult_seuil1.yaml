@@ -1,0 +1,8 @@
+description: Premier plafond de ressources pour un enfant (en % du plafond ARS)
+reference: openfisca
+unit: /1
+values:
+  2000-01-01:
+    value: 0.8
+  2007-01-01:
+    value: null

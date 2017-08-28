@@ -1,0 +1,6 @@
+description: Taux 13%
+reference: openfisca
+unit: /1
+values:
+  2011-01-01:
+    value: 0.13

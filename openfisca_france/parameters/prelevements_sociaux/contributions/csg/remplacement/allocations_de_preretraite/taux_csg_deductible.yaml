@@ -1,0 +1,9 @@
+reference: ipp
+unit: /1
+values:
+  1997-01-01:
+    value: 0.01
+  1998-01-01:
+    value: 0.038
+  2005-01-01:
+    value: 0.042

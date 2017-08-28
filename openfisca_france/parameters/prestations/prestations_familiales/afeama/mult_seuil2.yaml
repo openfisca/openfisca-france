@@ -1,0 +1,8 @@
+description: Second plafond de ressources pour un enfant
+reference: openfisca
+unit: /1
+values:
+  2000-01-01:
+    value: 1.1
+  2007-01-01:
+    value: null

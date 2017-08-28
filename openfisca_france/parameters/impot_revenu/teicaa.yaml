@@ -1,0 +1,22 @@
+brackets:
+- rate:
+    2001-01-01:
+      value: 0.0
+  threshold:
+    2001-01-01:
+      value: 0.0
+- rate:
+    2001-01-01:
+      value: 0.04
+  threshold:
+    2001-01-01:
+      value: 23000.0
+- rate:
+    2001-01-01:
+      value: 0.026
+  threshold:
+    2001-01-01:
+      value: 107000.0
+description: Taxe exceptionnelle sur l'indemnité compensatrice des agents d'assurance
+reference: openfisca
+unit: currency

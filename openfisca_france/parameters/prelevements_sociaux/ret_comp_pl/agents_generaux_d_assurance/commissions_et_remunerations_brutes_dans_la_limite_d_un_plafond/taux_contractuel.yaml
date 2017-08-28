@@ -1,0 +1,7 @@
+reference: ipp
+unit: /1
+values:
+  1968-01-01:
+    value: 0.036
+  1971-01-01:
+    value: 0.063

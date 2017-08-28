@@ -467,7 +467,7 @@ class pensions_alimentaires_deduites(Variable):
         f6el = simulation.calculate('f6el', period)
         f6em = simulation.calculate('f6em', period)
         f6gu = simulation.calculate('f6gu', period)
-        penalim = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.pensions_alimentaires
+        penalim = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.pensions_alimentaires
 
         max1 = penalim.plafond
         taux_jgt_2006 = penalim.taux_jgt_2006
@@ -491,7 +491,7 @@ class cd_acc75a(Variable):
     def formula(self, simulation, period):
         f6eu = simulation.calculate('f6eu', period)
         f6ev = simulation.calculate('f6ev', period)
-        acc75a = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.accueil_personne_agee
+        acc75a = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.accueil_personne_agee
         amax = acc75a.plafond * max_(1, f6ev)
         return min_(f6eu, amax)
 
@@ -511,7 +511,7 @@ class pertes_capital_societes_nouvelles(Variable):
         '''
         f6cb = simulation.calculate('f6cb', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
+        percap = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
         plafond_cb = percap.plafond_cb * (1 + maries_ou_pacses)
         return min_(f6cb, plafond_cb)
 
@@ -524,7 +524,7 @@ class pertes_capital_societes_nouvelles(Variable):
         f6cb = simulation.calculate('f6cb', period)
         f6da = simulation.calculate('f6da', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        percap = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
+        percap = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
         plafond_cb = percap.plafond_cb * (1 + maries_ou_pacses)
         plafond_da = percap.plafond_da * (1 + maries_ou_pacses)
         return min_(min_(f6cb, plafond_cb) + min_(f6da, plafond_da), plafond_da)
@@ -607,7 +607,7 @@ class cd_sofipe(Variable):
         f6cc = simulation.calculate('f6cc', period)
         rbg_int = simulation.calculate('rbg_int', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        sofipeche = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.sofipeche
+        sofipeche = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.sofipeche
 
         plafond = min_(sofipeche.plafond_pct_rng * rbg_int, sofipeche.plafond * (1 + maries_ou_pacses))
         return min_(f6cc, plafond)
@@ -627,7 +627,7 @@ class souscriptions_cinema_audiovisuel(Variable):
         '''
         f6aa = simulation.calculate('f6aa', period)
         rbg_int = simulation.calculate('rbg_int', period)
-        cinema = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.cinema
+        cinema = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.cinema
 
         max1 = min_(cinema.taux * rbg_int, cinema.max)
         return min_(f6aa, max1)
@@ -647,7 +647,7 @@ class epargne_codeveloppement(Variable):
         '''
         f6eh = simulation.calculate('f6eh', period)
         rbg_int = simulation.calculate('rbg_int', period)
-        ecodev = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.compte_epargne_codev
+        ecodev = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.compte_epargne_codev
 
         plafond = min_(ecodev.plafond_pct_rng * rbg_int, ecodev.plafond)
         return min_(f6eh, plafond)
@@ -667,6 +667,6 @@ class grosses_reparations(Variable):
         f6hj = simulation.calculate('f6hj', period)
         f6hk = simulation.calculate('f6hk', period)
         f6hl = simulation.calculate('f6hl', period)
-        grorep = simulation.legislation_at(period.start).impot_revenu.charges_deductibles.grosses_reparations
+        grorep = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.grosses_reparations
 
         return min_(f6cb + f6hj + f6hk + f6hl, grorep.plafond)

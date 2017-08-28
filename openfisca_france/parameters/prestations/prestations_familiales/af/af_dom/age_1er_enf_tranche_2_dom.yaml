@@ -1,0 +1,7 @@
+description: Âge de début de la 2ème majoration
+reference: ipp
+values:
+  1991-08-06:
+    value: 15.0
+  1999-01-01:
+    value: 16.0

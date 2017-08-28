@@ -88,7 +88,7 @@ class indemnite_fin_contrat(Variable):
         # Pour l'instant, cette variable d'entrée peut les remplacer
         # Elle est cependant fixée à False par défaut
         indemnite_fin_contrat_due = simulation.calculate('indemnite_fin_contrat_due', period)
-        taux = simulation.legislation_at(period.start).cotsoc.indemnite_fin_contrat.taux
+        taux = simulation.parameters_at(period.start).cotsoc.indemnite_fin_contrat.taux
         result = (
             # CDD
             (contrat_de_travail_duree == 1) *
@@ -122,7 +122,7 @@ class reintegration_titre_restaurant_employeur(Variable):
         valeur_unitaire = simulation.calculate("titre_restaurant_valeur_unitaire", period)
         volume = simulation.calculate("titre_restaurant_volume", period)
         taux_employeur = simulation.calculate('titre_restaurant_taux_employeur', period)
-        cantines_titres_restaurants = simulation.legislation_at(
+        cantines_titres_restaurants = simulation.parameters_at(
             period.start).cotsoc.assiette.cantines_titres_restaurants
 
         taux_minimum_exoneration = cantines_titres_restaurants.taux_minimum_exoneration
@@ -151,7 +151,7 @@ class penibilite(Variable):
 
     def formula_2015_01_01(self, simulation, period):
         exposition_penibilite = simulation.calculate('exposition_penibilite', period)
-        multiplicateur =  simulation.legislation_at(period.start).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
+        multiplicateur =  simulation.parameters_at(period.start).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
 
         cotisation_base = apply_bareme(
             simulation, period,
@@ -223,7 +223,7 @@ class agff_employeur(Variable):
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
 
-        law = simulation.legislation_at(period.start)
+        law = simulation.parameters_at(period.start)
 
         cotisation_non_cadre = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = law.cotsoc.cotisations_employeur,
@@ -252,7 +252,7 @@ class agirc_gmp_assiette(Variable):
 
     def formula(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
-        gmp = simulation.legislation_at(period.start).prelevements_sociaux.gmp
+        gmp = simulation.parameters_at(period.start).prelevements_sociaux.gmp
         assiette = max_(
             (gmp.salaire_charniere_annuel / 12 - assiette_cotisations_sociales) * (assiette_cotisations_sociales > 0),
             0,
@@ -273,9 +273,9 @@ class agirc_gmp_salarie(Variable):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
 
-        gmp = simulation.legislation_at(period.start).prelevements_sociaux.gmp
+        gmp = simulation.parameters_at(period.start).prelevements_sociaux.gmp
         cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale
-        taux = simulation.legislation_at(period.start).cotsoc.cotisations_salarie.prive_cadre.agirc.rates[1]
+        taux = simulation.parameters_at(period.start).cotsoc.cotisations_salarie.prive_cadre.agirc.rates[1]
         sous_plafond_securite_sociale = (
             (assiette_cotisations_sociales <= plafond_securite_sociale) & (assiette_cotisations_sociales > 0)
             )
@@ -299,9 +299,9 @@ class agirc_gmp_employeur(Variable):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
 
-        gmp = simulation.legislation_at(period.start).prelevements_sociaux.gmp
+        gmp = simulation.parameters_at(period.start).prelevements_sociaux.gmp
         cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_patronale
-        taux = simulation.legislation_at(period.start).cotsoc.cotisations_employeur['prive_cadre']['agirc'].rates[1]
+        taux = simulation.parameters_at(period.start).cotsoc.cotisations_employeur['prive_cadre']['agirc'].rates[1]
 
         sous_plafond_securite_sociale = (
             (assiette_cotisations_sociales <= plafond_securite_sociale) & (assiette_cotisations_sociales > 0)
@@ -648,7 +648,7 @@ class plafond_securite_sociale(Variable):
     # TODO gérer les plafonds mensuel, trimestriel, annuel
 
     def formula(self, simulation, period):
-        plafond_temps_plein = simulation.legislation_at(period.start).cotsoc.gen.plafond_securite_sociale
+        plafond_temps_plein = simulation.parameters_at(period.start).cotsoc.gen.plafond_securite_sociale
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
         heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period)
@@ -776,7 +776,7 @@ class taux_accident_travail(Variable):
 
     def formula_2012_01_01(self, simulation, period):
         exposition_accident = simulation.calculate('exposition_accident', period)
-        accident = simulation.legislation_at(period.start).cotsoc.accident
+        accident = simulation.parameters_at(period.start).cotsoc.accident
 
         return (exposition_accident == 0) * accident.faible + (exposition_accident == 1) * accident.moyen \
             + (exposition_accident == 2) * accident.eleve + (exposition_accident == 3) * accident.treseleve

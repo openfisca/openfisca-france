@@ -1,0 +1,6 @@
+description: 1ère majoration pour âge
+reference: ipp
+unit: /1
+values:
+  1991-08-06:
+    value: 0.0369

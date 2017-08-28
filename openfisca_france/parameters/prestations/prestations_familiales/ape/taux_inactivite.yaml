@@ -1,0 +1,10 @@
+description: Cessation complète d'activité à plein temps (en % de la bmaf)
+reference: ipp
+unit: /1
+values:
+  1985-01-01:
+    value: 0.624
+  1986-07-01:
+    value: 0.902
+  1987-04-01:
+    value: 1.4257

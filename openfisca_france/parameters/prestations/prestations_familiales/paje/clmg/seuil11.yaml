@@ -1,0 +1,29 @@
+description: Premier plafond de ressources pour un enfant
+reference: ipp
+values:
+  2004-01-01:
+    value: 14349.0
+  2004-07-01:
+    value: 14622.0
+  2005-07-01:
+    value: 14870.0
+  2006-07-01:
+    value: 15123.0
+  2007-07-01:
+    value: 19255.0
+  2009-01-01:
+    value: 19513.0
+  2010-01-01:
+    value: 20059.0
+  2011-01-01:
+    value: 20079.0
+  2012-01-01:
+    value: 20281.0
+  2013-01-01:
+    value: 20706.0
+  2014-01-01:
+    value: 21100.0
+  2015-01-01:
+    value: 21248.0
+  2016-01-01:
+    value: 21332.0

@@ -1,0 +1,6 @@
+description: Âge mininimal pour toucher les AF
+reference: openfisca
+unit: year
+values:
+  2002-01-01:
+    value: 0.0

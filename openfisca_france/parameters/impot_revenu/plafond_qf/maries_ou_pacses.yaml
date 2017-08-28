@@ -1,0 +1,30 @@
+description: Mariés ou PACS
+reference: openfisca
+unit: currency
+values:
+  2001-01-01:
+    value: 2017.0
+  2002-01-01:
+    value: 2051.0
+  2003-01-01:
+    value: 2086.0
+  2004-01-01:
+    value: 2121.0
+  2005-01-01:
+    value: 2159.0
+  2006-01-01:
+    value: 2198.0
+  2007-01-01:
+    value: 2227.0
+  2008-01-01:
+    value: 2292.0
+  2009-01-01:
+    value: 2301.0
+  2010-01-01:
+    value: 2336.0
+  2012-01-01:
+    value: 2000.0
+  2013-01-01:
+    value: 1500.0
+  2014-01-01:
+    value: 1508.0

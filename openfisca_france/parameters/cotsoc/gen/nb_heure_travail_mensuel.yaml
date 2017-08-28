@@ -1,0 +1,5 @@
+description: Nombre d'heures travaillées forfaitaires
+reference: openfisca
+values:
+  2002-01-01:
+    value: 151.67

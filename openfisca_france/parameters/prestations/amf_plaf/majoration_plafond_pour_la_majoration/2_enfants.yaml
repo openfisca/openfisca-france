@@ -1,0 +1,7 @@
+reference: ipp
+unit: currency
+values:
+  1974-07-01:
+    value: 24120.0
+  1978-01-01:
+    value: null

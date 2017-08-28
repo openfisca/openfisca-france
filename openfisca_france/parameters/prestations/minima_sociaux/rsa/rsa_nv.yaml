@@ -1,0 +1,6 @@
+description: Seuil de non versement
+reference: openfisca
+unit: currency
+values:
+  2002-01-01:
+    value: 6.0

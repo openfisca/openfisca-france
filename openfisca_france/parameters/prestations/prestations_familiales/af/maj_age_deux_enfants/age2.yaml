@@ -1,0 +1,8 @@
+description: Âge de début de la 2ème majoration
+reference: openfisca
+unit: year
+values:
+  2002-01-01:
+    value: 16.0
+  2008-05-01:
+    value: 14.0

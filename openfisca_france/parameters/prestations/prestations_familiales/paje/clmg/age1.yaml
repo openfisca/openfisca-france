@@ -1,0 +1,6 @@
+description: Limite d'âge (stricte) pour une prestation pleine
+reference: openfisca
+unit: year
+values:
+  2004-01-01:
+    value: 3.0

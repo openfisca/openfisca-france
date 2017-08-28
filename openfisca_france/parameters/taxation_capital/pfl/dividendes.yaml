@@ -1,0 +1,9 @@
+reference: ipp
+unit: /1
+values:
+  2008-01-01:
+    value: 0.18
+  2011-01-01:
+    value: 0.19
+  2012-01-01:
+    value: 0.21

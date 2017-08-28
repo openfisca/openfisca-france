@@ -1,0 +1,29 @@
+description: 'Premier plafond de ressources: maj. enfant suppl.'
+reference: ipp
+values:
+  2004-01-01:
+    value: 2626.0
+  2004-07-01:
+    value: 2655.0
+  2005-07-01:
+    value: 2701.0
+  2006-07-01:
+    value: 2747.0
+  2007-07-01:
+    value: 3492.0
+  2009-01-01:
+    value: 3543.0
+  2010-01-01:
+    value: 3643.0
+  2011-01-01:
+    value: 3647.0
+  2012-01-01:
+    value: 3683.0
+  2013-01-01:
+    value: 3761.0
+  2014-01-01:
+    value: 3831.0
+  2015-01-01:
+    value: 3859.0
+  2016-01-01:
+    value: 3874.0

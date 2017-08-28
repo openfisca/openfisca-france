@@ -1,0 +1,6 @@
+description: Taux de l'abattement
+reference: ipp
+unit: /1
+values:
+  1943-01-01:
+    value: 0.1

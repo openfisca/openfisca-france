@@ -1,0 +1,6 @@
+description: Plafond
+reference: openfisca
+unit: currency
+values:
+  2009-01-01:
+    value: 19000.0

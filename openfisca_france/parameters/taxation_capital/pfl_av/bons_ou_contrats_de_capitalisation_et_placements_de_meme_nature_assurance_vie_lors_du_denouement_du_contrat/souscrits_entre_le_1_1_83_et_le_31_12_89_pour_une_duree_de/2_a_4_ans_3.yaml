@@ -1,0 +1,7 @@
+reference: ipp
+unit: /1
+values:
+  1983-01-01:
+    value: 0.25
+  1998-01-01:
+    value: null

@@ -2,48 +2,21 @@
 
 from __future__ import division
 
-from openfisca_core.reforms import Reform
+import os
 
-from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
 from ..model.base import *
+from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
 
-def modify_legislation_json(reference_legislation_json_copy):
-    reform_legislation_subtree = {
-        "@type": "Node",
-        "description": "Charge de loyer",
-        "children": {
-            "active": {
-                "@type": "Parameter",
-                "description": u"Activation de la charge",
-                "format": "boolean",
-                "values": [
-                    {'start': u'2014-01-01', },
-                    {'start': u'2002-01-01', 'value': 1},
-                    ],
-                },
-            "plaf": {
-                "@type": "Parameter",
-                "description": u'Plafond mensuel',
-                "format": 'integer',
-                "unit": 'currency',
-                "values": [
-                    {'start': '2014-01-01', },
-                    {'start': '2002-01-01', 'value': 1000},
-                    ],
-                },
-            "plaf_nbp": {
-                "@type": "Parameter",
-                "description": u'Ajuster le plafond au nombre de part',
-                "format": 'boolean',
-                "values": [
-                    {'start': '2014-01-01', },
-                    {'start': '2002-01-01', 'value': 0},
-                    ],
-                },
-            },
-        }
-    reference_legislation_json_copy['children']['charge_loyer'] = reform_legislation_subtree
-    return reference_legislation_json_copy
+
+dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
+
+
+def modify_parameters(parameters):
+    file_path = os.path.join(dir_path, 'trannoy_wasmer.yaml')
+    reform_parameters_subtree = load_parameter_file(name = 'trannoy_wasmer', file_path = file_path)
+
+    parameters.add_child('charge_loyer', reform_parameters_subtree)
+    return parameters
 
 class charges_deduc(Variable):
     label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
@@ -67,7 +40,7 @@ class charge_loyer(Variable):
 
         loyer = simulation.foyer_fiscal.declarant_principal.menage('loyer', period, options = [ADD])
 
-        charge_loyer = simulation.legislation_at(period.start).charge_loyer
+        charge_loyer = simulation.parameters_at(period.start).charge_loyer
 
         plaf = charge_loyer.plaf
         plaf_nbp = charge_loyer.plaf_nbp
@@ -82,4 +55,4 @@ class trannoy_wasmer(Reform):
     def apply(self):
         self.update_variable(charges_deduc)
         self.add_variable(charge_loyer)
-        self.modify_legislation_json(modifier_function = modify_legislation_json)
+        self.modify_parameters(modifier_function = modify_parameters)

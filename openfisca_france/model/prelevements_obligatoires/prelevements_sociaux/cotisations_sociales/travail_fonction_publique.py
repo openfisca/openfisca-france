@@ -19,7 +19,7 @@ class allocations_temporaires_invalidite(Variable):
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         base = assiette_cotisations_sociales_public
         cotisation_etat = apply_bareme_for_relevant_type_sal(
@@ -83,7 +83,7 @@ class contribution_exceptionnelle_solidarite(Variable):
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         salaire_de_base = simulation.calculate('salaire_de_base', period)
 
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         seuil_assuj_fds = seuil_fds(_P)
 
@@ -125,7 +125,7 @@ class fonds_emploi_hospitalier(Variable):
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "feh",
@@ -146,7 +146,7 @@ class ircantec_salarie(Variable):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         ircantec = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie,
@@ -168,7 +168,7 @@ class ircantec_employeur(Variable):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         ircantec = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
@@ -190,7 +190,7 @@ class pension_civile_salarie(Variable):
     def formula(self, simulation, period):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)  # TODO: check nbi
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         sal = _P.cotsoc.cotisations_salarie
         terr_or_hosp = (
@@ -214,7 +214,7 @@ class pension_civile_employeur(Variable):
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         # plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         pat = _P.cotsoc.cotisations_employeur
         terr_or_hosp = (
@@ -242,7 +242,7 @@ class rafp_salarie(Variable):
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
         indemnite_residence = simulation.calculate('indemnite_residence', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         eligible = ((categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat'])
                      + (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_territoriale'])
@@ -269,7 +269,7 @@ class rafp_employeur(Variable):
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
         indemnite_residence = simulation.calculate('indemnite_residence', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         eligible = (
             (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat']) +

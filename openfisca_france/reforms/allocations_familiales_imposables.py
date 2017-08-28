@@ -2,29 +2,19 @@
 
 from __future__ import division
 
-from openfisca_core import columns
-from openfisca_core.reforms import Reform
+import os
+
 from ..model.base import *
 
 
-def modify_legislation_json(reference_legislation_json_copy):
-    reform_legislation_subtree = {
-        "@type": "Node",
-        "description": "Intégration au revenu imposable des allocations familiales",
-        "children": {
-            "imposition": {
-                "@type": "Parameter",
-                "description": "Indicatrice d'imposition",
-                "format": "boolean",
-                "values": [
-                    {'start': u'2015-01-01', },
-                    {'start': u'2000-01-01', 'value': True}
-                    ],
-                },
-            },
-        }
-    reference_legislation_json_copy['children']['allocations_familiales_imposables'] = reform_legislation_subtree
-    return reference_legislation_json_copy
+dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
+
+
+def modify_parameters(parameters):
+    file_path = os.path.join(dir_path, 'allocations_familiales_imposables.yaml')
+    reform_parameters_subtree = load_parameter_file(name='allocations_familiales_imposables', file_path=file_path)
+    parameters.add_child('allocations_familiales_imposables', reform_parameters_subtree)
+    return parameters
 
 
 class allocations_familiales_imposables(Reform):
@@ -41,7 +31,7 @@ class allocations_familiales_imposables(Reform):
             nacc_pvce_holder = simulation.calculate('nacc_pvce', period)
             nbic_impm_holder = simulation.calculate('nbic_impm', period)
             rev_cat = simulation.calculate('rev_cat', period)
-            cga = simulation.legislation_at(period.start).impot_revenu.rpns.cga_taux2
+            cga = simulation.parameters_at(period.start).impot_revenu.rpns.cga_taux2
 
             nacc_pvce = self.sum_by_entity(nacc_pvce_holder)
             return max_(
@@ -78,13 +68,13 @@ class allocations_familiales_imposables(Reform):
                 )
 
     class allocations_familiales_imposables(Variable):
-        column = columns.FloatCol
+        column = FloatCol
         entity = FoyerFiscal
         label = u"Allocations familiales imposables"
         definition_period = YEAR
 
         def formula(self, simulation, period):
-            imposition = simulation.legislation_at(period.start).allocations_familiales_imposables.imposition
+            imposition = simulation.parameters_at(period.start).allocations_familiales_imposables.imposition
             af = simulation.foyer_fiscal.declarant_principal.famille('af', period, options = [ADD])
 
             return af * imposition
@@ -93,4 +83,4 @@ class allocations_familiales_imposables(Reform):
         self.update_variable(self.rbg)
         self.update_variable(self.rfr)
         self.add_variable(self.allocations_familiales_imposables)
-        self.modify_legislation_json(modifier_function = modify_legislation_json)
+        self.modify_parameters(modifier_function = modify_parameters)
