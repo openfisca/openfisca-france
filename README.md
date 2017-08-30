@@ -3,14 +3,14 @@
 [![Build Status](https://travis-ci.org/openfisca/openfisca-france.svg?branch=master)](https://travis-ci.org/openfisca/openfisca-france)
 
 ## [EN] Introduction
-OpenFisca is a versatile microsimulation free software. This repository contains the OpenFisca model of the French tax and benefit system. Therefore, the working language here is French. You can however check the [general OpenFisca documentation](https://doc.openfisca.fr/) in English!
+OpenFisca is a versatile microsimulation free software. This repository contains the OpenFisca model of the French tax and benefit system. Therefore, the working language here is French. You can however check the [general OpenFisca documentation](http://openfisca.org/doc/) in English!
 
 ## [FR] Introduction
-[OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation du système social et fiscal français. Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](https://doc.openfisca.fr/).
+[OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation du système social et fiscal français. Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](http://openfisca.org/doc/).
 
 ## Interroger OpenFisca-France (sans installation)
 
-France met à disposition une [API Web publique](https://doc.openfisca.fr/openfisca-web-api/endpoints.html) qui ne demande aucune installation.
+France met à disposition une [API Web publique](http://openfisca.org/doc/openfisca-web-api/endpoints.html) qui ne demande aucune installation.
 Utilisez l'API publique si vous souhaitez :
 - accéder à un paramètre (Ex : [le montant du SMIC horaire brut](https://api-test.openfisca.fr/parameter/cotsoc.gen.smic_h_b)) ;
 - consulter une formule de calcul (Ex : [le calcul de l'allocation de base des allocations familiales](https://api-test.openfisca.fr/variable/af_base)) ;
@@ -100,11 +100,11 @@ Félicitations :tada: OpenFisca-France est prêt à être utilisé !
 
 #### Prochaines étapes
 
-- Apprenez à utiliser OpenFisca avec nos [tutoriels](https://doc.openfisca.fr/getting-started.html) (en anglais).
+- Apprenez à utiliser OpenFisca avec nos [tutoriels](http://openfisca.org/doc/getting-started.html) (en anglais).
 - Hébergez et servez votre instance d'OpenFisca-France avec l'[API Web OpenFisca](#servez-openfisca-france-avec-lapi-web-openfisca).
 
 En fonction de vos projets, vous pourriez bénéficier de l'installation des paquets suivants dans votre _virtualenv_ :
-- pour installer une extension ou écrire une législation au-dessus d'OpenFisca-France, consultez la [documentation sur les extensions](https://doc.openfisca.fr/contribute/extensions.html) (en anglais) ;
+- pour installer une extension ou écrire une législation au-dessus d'OpenFisca-France, consultez la [documentation sur les extensions](http://openfisca.org/doc/contribute/extensions.html) (en anglais) ;
 - pour représenter graphiquement vos résultats, essayez la bibliothèque [matplotlib](http://matplotlib.org/) ;
 - pour gérer vos données, découvrez la bibliothèque [pandas](http://pandas.pydata.org/).
 
@@ -150,8 +150,8 @@ nosetests tests/test_basics.py # Ces test peuvent prendre jusqu'à 60 secondes.
 
 #### Prochaines étapes
 
-- Pour enrichir ou faire évoluer la législation d'OpenFisca-France, lisez _[Coding the Legislation](https://doc.openfisca.fr/coding-the-legislation/index.html)_ (en anglais).
-- Pour contribuer au code, lisez le _[Contribution Guidebook](https://doc.openfisca.fr/contribute/index.html)_ (en anglais).
+- Pour enrichir ou faire évoluer la législation d'OpenFisca-France, lisez _[Coding the Legislation](http://openfisca.org/doc/coding-the-legislation/index.html)_ (en anglais).
+- Pour contribuer au code, lisez le _[Contribution Guidebook](http://openfisca.org/doc/contribute/index.html)_ (en anglais).
 
 ## Servez OpenFisca-France avec l'API Web OpenFisca
 
@@ -195,7 +195,7 @@ Vous devriez avoir le resultat suivant :
 ```
 
 :tada: Vous servez OpenFisca-France via l'API Web OpenFisca !
-Pour en savoir plus, explorez _[OpenFisca Web API documentation](https://doc.openfisca.fr/openfisca-web-api/index.html)_ (en anglais).
+Pour en savoir plus, explorez _[OpenFisca Web API documentation](http://openfisca.org/doc/openfisca-web-api/index.html)_ (en anglais).
 
 ## Stratégie de versionnement
 
