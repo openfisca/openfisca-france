@@ -27,15 +27,12 @@ class stage_gratification(Variable):
     label = u"Gratification de stage"
     definition_period = MONTH
 
-    # TODO: make this formula valid before 2014-11 when updating legislation backwards
     def formula_2014_11(self, simulation, period):
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
         stage_gratification_taux = simulation.calculate('stage_gratification_taux', period)
         stagiaire = simulation.calculate('stagiaire', period)
         plafond_securite_sociale_horaire = simulation.parameters_at(period.start).cotsoc.gen.plafond_securite_sociale_horaire
-        # TODO: move to legislation parameters file
-        stage_gratification_taux_min = .1375  # depuis le 1er décembre 2014
-        # .15 à partir de 2015-09-01
+        stage_gratification_taux_min = simulation.parameters_at(period.start).cotsoc.stage.taux_gratification_min
         return stagiaire * plafond_securite_sociale_horaire * stage_duree_heures * max_(
             stage_gratification_taux, stage_gratification_taux_min)
 
@@ -46,14 +43,11 @@ class stage_gratification_reintegration(Variable):
     label = u"Part de la gratification de stage réintégrée à l'assiette des cotisations et contributions sociales"
     definition_period = MONTH
 
-    # TODO: make this formula valid before 2014-11 when updating legislation backwards
     def formula_2014_11(self, simulation, period):
         stage_duree_heures = simulation.calculate('stage_duree_heures', period)
         stage_gratification = simulation.calculate('stage_gratification', period)
-        plafond_securite_sociale_horaire = (
-            simulation.parameters_at(period.start).cotsoc.gen.plafond_securite_sociale_horaire)
-        # TODO: move to legislation parameters file
-        stage_gratification_taux_min = .1375  # .15 à partir de 2015-09-01  
+        plafond_securite_sociale_horaire = simulation.parameters_at(period.start).cotsoc.gen.plafond_securite_sociale_horaire
+        stage_gratification_taux_min = simulation.parameters_at(period.start).cotsoc.stage.taux_gratification_min
         stage_gratification_min = plafond_securite_sociale_horaire * stage_duree_heures * stage_gratification_taux_min
         return max_(stage_gratification - stage_gratification_min, 0)
 
