@@ -778,7 +778,7 @@ class aide_logement_non_calculable(Variable):
     def formula(famille, period):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
 
-        return (statut_occupation_logement == 1) * 1 + (statut_occupation_logement == 7) * 2
+        return (statut_occupation_logement == 7) * 2
 
 
 class aide_logement(Variable):
