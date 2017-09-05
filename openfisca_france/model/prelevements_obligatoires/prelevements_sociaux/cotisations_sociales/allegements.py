@@ -129,7 +129,7 @@ class coefficient_proratisation(Variable):
 class credit_impot_competitivite_emploi(Variable):
     column = FloatCol
     entity = Individu
-    label = u"Crédit d'imôt pour la compétitivité et l'emploi"
+    label = u"Crédit d'impôt pour la compétitivité et l'emploi"
     definition_period = MONTH
     calculate_output = calculate_output_add
 
