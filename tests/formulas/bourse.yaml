@@ -420,3 +420,103 @@
   output_variables:
     bourse_college:
       2017-09: 0
+
+- name: "Bourse collège taux 2, 2 enfants, rfr = 9950"
+  period: 2017-09
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1", "enfant2"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1", "enfant2"]
+    rfr:
+      2015: 9950
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1", "enfant2"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 10
+      scolarite: 1 # Collège
+    - id: "enfant2"
+      age: 3
+  output_variables:
+    bourse_college_echelon:
+      2017-09: 2
+    bourse_college:
+      2017-09: 288
+
+- name: "Bourse collège taux 2, 1 enfant, rfr = 8084"
+  period: 2017-09
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1"]
+    rfr:
+      2015: 8084
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 10
+      scolarite: 1 # Collège
+  output_variables:
+    bourse_college_echelon:
+      2017-09: 2
+    bourse_college:
+      2017-09: 288
+
+- name: "Bourse collège taux 1, 1 enfant, rfr = 8085"
+  period: 2017-09
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1"]
+    rfr:
+      2015: 8085
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 10
+      scolarite: 1 # Collège
+  output_variables:
+    bourse_college_echelon:
+      2017-09: 1
+    bourse_college:
+      2017-09: 105
+
+- name: "Bourse collège taux 3, 1 enfant, rfr = 2852"
+  period: 2017-09
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1"]
+    rfr:
+      2015: 2852
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 10
+      scolarite: 1 # Collège
+  output_variables:
+    bourse_college:
+      2017-09: 450
