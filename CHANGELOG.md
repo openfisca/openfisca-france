@@ -1,5 +1,13 @@
 # Changelog
 
+## 18.9.3 - [#817](https://github.com/openfisca/openfisca-france/pull/817)
+
+* Changement mineur.
+* Périodes concernées : à partir du 07/05/2017.
+* Zones impactées : `parameters/bourses_education/bourse_college`.
+* Détails :
+  - Mise à jour des montant des bourses des collèges conformément au [décret du 5 mai 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/5/MENE1711101D/jo/texte).
+
 ## 18.9.2 - [#812](https://github.com/openfisca/openfisca-france/pull/812)
 
 * Évolution du système socio-fiscal.
