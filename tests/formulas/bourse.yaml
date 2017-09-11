@@ -372,3 +372,51 @@
   output_variables:
     bourse_college:
       2015-09: 0
+
+- name: "Bourse collège taux 1, 1 enfants, rfr = 14955"
+  period: 2017-09
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1"]
+    rfr:
+      2015: 14955
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 10
+      scolarite: 1 # Collège
+  output_variables:
+    bourse_college_echelon:
+      2017-09: 1
+    bourse_college:
+      2017-09: 105
+
+- name: "Bourse collège refusée, 1 enfants, rfr = 14956"
+  period: 2017-09
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1"]
+    rfr:
+      2015: 14956
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 10
+      scolarite: 1 # Collège
+  output_variables:
+    bourse_college:
+      2017-09: 0
