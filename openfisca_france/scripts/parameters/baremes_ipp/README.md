@@ -10,7 +10,7 @@ L'IPP produit des fichiers au format XLSX appelés « Barèmes IPP » :
 
 Ces barèmes IPP sont très complets et il est intéressant pour OpenFisca de profiter de leur contenu.
 
-Les scripts décrits ici permettent d'importer les barèmes IPP (fournis sous forme de tableurs au format XLSX) dans [les fichiers de paramètres](https://doc.openfisca.fr/coding-the-legislation/legislation_parameters.html) d'OpenFisca France, au [format XML](https://github.com/openfisca/openfisca-france/tree/master/openfisca_france/parameters).
+Les scripts décrits ici permettent d'importer les barèmes IPP (fournis sous forme de tableurs au format XLSX) dans [les fichiers de paramètres](http://openfisca.org/doc/coding-the-legislation/legislation_parameters.html) d'OpenFisca France, au [format XML](https://github.com/openfisca/openfisca-france/tree/master/openfisca_france/parameters).
 
 ## Imports des barèmes IPP dans OpenFisca
 
