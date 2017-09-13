@@ -1,5 +1,11 @@
 # Changelog
 
+## 18.9.5 - [#814](https://github.com/openfisca/openfisca-france/pull/814)
+
+* Changement mineur
+* Détails :
+  - Rajout des références législatives sur la baisse de la cotisation AGS au 1er juillet 2017.
+
 ### 18.9.4 - [#809](https://github.com/openfisca/openfisca-france/pull/809)
 
 * Changement mineur.
