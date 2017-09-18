@@ -1,5 +1,11 @@
 # Changelog
 
+## 18.9.6 - [#815](https://github.com/openfisca/openfisca-france/pull/815)
+
+* Changement mineur
+* Détails :
+  - Corrige une typo dans la description de `credit_impot_competitivite_emploi`
+
 ## 18.9.5 - [#814](https://github.com/openfisca/openfisca-france/pull/814)
 
 * Changement mineur
