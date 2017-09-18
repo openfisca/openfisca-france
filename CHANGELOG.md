@@ -1,5 +1,11 @@
 # Changelog
 
+## 18.9.7 - [#811](https://github.com/openfisca/openfisca-france/pull/811)
+
+* Changement mineur
+* Détails :
+  - Documente les entités `FoyerFiscal` et `Menage`
+
 ## 18.9.6 - [#815](https://github.com/openfisca/openfisca-france/pull/815)
 
 * Changement mineur
