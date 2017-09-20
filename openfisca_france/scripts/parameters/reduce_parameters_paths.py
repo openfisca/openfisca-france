@@ -4,7 +4,6 @@ import os
 import shutil
 import sys
 import yaml
-import ruamel.yaml
 
 PARENT_DIRECTORY = os.path.abspath('../..')
 PATH_LENGTH_TO_IGNORE = len(PARENT_DIRECTORY)
@@ -42,14 +41,16 @@ def clean_from_filename(relative_path):
     return relative_path[:last_separator_index]
 
 
-def merge(fList, destination_path):
+def merge(directory, fList, destination_path):
+    print os.linesep
     print "Merging in: " + destination_path
     if not fList:
         return []
 
     with open(destination_path, 'a') as yaml_file:
         for f in fList:
-            with open(f, 'r') as stream:
+            filepath = os.path.join(directory, f)
+            with open(filepath, 'r') as stream:
                 filename = os.path.splitext(os.path.basename(f))[0]
                 fDict = {filename: None}
                 fDict[filename] = yaml.load(stream)
@@ -62,6 +63,7 @@ def new_parameters_directory(old_directory, new_directory, paths_to_clean):
         shutil.rmtree(new_directory)
     os.mkdir(new_directory)
 
+
     # Loop on directories
     for directory, sub_directories, files in os.walk(old_directory):
         functional_path = get_sub_parent_path(directory, old_directory)
@@ -69,15 +71,13 @@ def new_parameters_directory(old_directory, new_directory, paths_to_clean):
 
         if functional_path in paths_to_clean:
             # If current directory is too long, create directory but merge its content in one file
-            # new_yaml(os.path.join(directory, sub_directory), new_path)
-            # Keep index.yaml
             old_index = os.path.join(directory, INDEX_FILENAME)
             new_index = os.path.join(new_path, INDEX_FILENAME)
+            # Keep index.yaml
             shutil.copyfile(old_index, new_index)
             # Merge all in index.yaml
-            print os.linesep
-            print files
-            merge(files.remove(INDEX_FILENAME), new_index)
+            files.remove(INDEX_FILENAME)
+            merge(directory, files, new_index)
         else:
             # If current directory isn't too long, don't change it
             if not os.path.exists(new_path):
