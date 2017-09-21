@@ -1,5 +1,11 @@
 # Changelog
 
+### 18.9.9 - [#803](https://github.com/openfisca/openfisca-france/pull/803)
+
+* Changement mineur
+* Détails :
+  - Simplifie le calcul des aides au logement en utilisant le calcul de législation dynamique (nouvelle feature de OpenFisca)
+
 ### 18.9.8 - [#825](https://github.com/openfisca/openfisca-france/pull/825)
 
 * Correction d'un crash sous Windows
