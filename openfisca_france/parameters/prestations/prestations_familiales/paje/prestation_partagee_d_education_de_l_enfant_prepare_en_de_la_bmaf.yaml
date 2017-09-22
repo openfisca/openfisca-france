@@ -1,10 +1,10 @@
+reference: ipp
 prestation_partagee_d_education_de_l_enfant_prepare:
   reference: ipp
   unit: /1
   values:
     2015-01-01:
       value: 0.9662
-reference: ipp
 taux_partiel_50:
   reference: ipp
   unit: /1

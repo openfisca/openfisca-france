@@ -1,3 +1,4 @@
+reference: ipp
 compte_personnel_de_formation:
   reference: ipp
   unit: /1
@@ -22,7 +23,6 @@ professionnalisation:
   values:
     2015-01-01:
       value: 0.003
-reference: ipp
 securisation_des_parcours_professionnels:
   reference: ipp
   unit: /1

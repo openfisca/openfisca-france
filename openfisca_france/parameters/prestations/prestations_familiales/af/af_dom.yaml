@@ -1,3 +1,4 @@
+reference: ipp
 age_1er_enf_tranche_1_dom:
   description: Âge de début de la 1ere majoration
   reference: ipp
@@ -129,7 +130,6 @@ nombre_minimal_d_enfant_pour_avoir_droit_a_la_majoration_forfaitaire_pour_les_pl
   values:
     1991-08-06:
       value: 3.0
-reference: ipp
 taux_1er_enf_tranche_1_dom:
   description: 1ère majoration pour âge
   reference: ipp

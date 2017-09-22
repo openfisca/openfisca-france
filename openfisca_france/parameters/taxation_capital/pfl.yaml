@@ -1,4 +1,6 @@
+reference: ipp
 autres_produits_de_placement_a_revenu_fixe_comptes_sur_livrets_creances_depots_cautionnement_et_comptes_courants:
+  reference: ipp
   courus_entre_le_16_7_78_et_31_12_79:
     reference: ipp
     unit: /1
@@ -47,8 +49,8 @@ autres_produits_de_placement_a_revenu_fixe_comptes_sur_livrets_creances_depots_c
         value: 0.19
       2012-01-01:
         value: 0.24
-  reference: ipp
 bons_de_caisse_des_banque_bons_du_tresor_sur_formules_bons_d_epargne_des_ptt:
+  reference: ipp
   emis_a_partir_du_1_1_95_et_sans_anonymat:
     reference: ipp
     unit: /1
@@ -119,7 +121,6 @@ bons_de_caisse_des_banque_bons_du_tresor_sur_formules_bons_d_epargne_des_ptt:
         value: 0.38
       2013-01-01:
         value: 0.24
-  reference: ipp
 dividendes:
   reference: ipp
   unit: /1
@@ -188,9 +189,8 @@ plan_d_epargne_populaire:
         value: 0.24
       2013-01-01:
         value: null
-reference: ipp
-? titres_de_creances_negociables_billets_de_tresorerie_certificats_de_depots_negociables_bons_du_tresor_negociables_et_bons_des_institutions_financieres_specialisees
-: reference: ipp
+titres_de_creances_negociables_billets_de_tresorerie_certificats_de_depots_negociables_bons_du_tresor_negociables_et_bons_des_institutions_financieres_specialisees:
+  reference: ipp
   unit: /1
   values:
     1974-01-01:

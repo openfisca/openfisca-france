@@ -1,6 +1,7 @@
 description: Impôt sur les plus values à taux forfaitaires
-? imposition_des_plus_values_mobilieres_levees_d_options_attribuees_depuis_27_4_2000_cessions_realisees_moins_de_deux_ans_apres_la_levee
-: reference: ipp
+reference: ipp
+imposition_des_plus_values_mobilieres_levees_d_options_attribuees_depuis_27_4_2000_cessions_realisees_moins_de_deux_ans_apres_la_levee:
+  reference: ipp
   seuil_tranche_superieure:
     reference: ipp
     unit: currency
@@ -64,7 +65,6 @@ pvce:
   values:
     2002-01-01:
       value: 0.16
-reference: ipp
 seuil_d_imposition:
   reference: ipp
   unit: currency

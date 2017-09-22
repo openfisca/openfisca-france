@@ -1,3 +1,5 @@
+description: Complément de libre choix du mode de garde
+reference: ipp
 age1:
   description: Limite d'âge (stricte) pour une prestation pleine
   reference: openfisca
@@ -13,30 +15,26 @@ age2:
     2004-01-01:
       value: 6.0
 ass_mat1:
-  description: Taux pour recours à une assistante maternelle, une association, une
-    entreprise ou une microcréche avant le premier plafond
+  description: Taux pour recours à une assistante maternelle, une association, une entreprise ou une microcréche avant le premier plafond
   reference: ipp
   unit: /1
   values:
     2004-01-01:
       value: 1.7257
 ass_mat2:
-  description: Taux pour recours à une assistante maternelle, une association, une
-    entreprise ou une microcréche avant le second plafond
+  description: Taux pour recours à une assistante maternelle, une association, une entreprise ou une microcréche avant le second plafond
   reference: ipp
   unit: /1
   values:
     2004-01-01:
       value: 1.4381
 ass_mat3:
-  description: Taux pour recours à une assistante maternelle, une association, une
-    entreprise ou une microcréche après le second plafond
+  description: Taux pour recours à une assistante maternelle, une association, une entreprise ou une microcréche après le second plafond
   reference: ipp
   unit: /1
   values:
     2004-01-01:
       value: 1.1505
-description: Complément de libre choix du mode de garde
 domi1:
   description: Taux pour recours à une garde à domicile avant le premier plafond
   reference: ipp
@@ -64,7 +62,6 @@ majoration_du_plafond_pour_une_personne_isolee:
   values:
     2008-05-01:
       value: 0.4
-reference: ipp
 remuneration_brute_maximale_de_l_assistante_maternelle_par_jour_et_par_enfant_en_multiple_du_smic_horaire:
   reference: ipp
   values:

@@ -1,4 +1,6 @@
+reference: ipp
 achat_vente_vente_a_consommer_sur_place_prestations_d_hebergement_sauf_location_hebergement_meuble:
+  reference: ipp
   chiffre_d_affaires:
     reference: ipp
     unit: /1
@@ -11,7 +13,6 @@ achat_vente_vente_a_consommer_sur_place_prestations_d_hebergement_sauf_location_
         value: 0.141
       2015-01-01:
         value: 0.133
-  reference: ipp
 activites_liberales_relevant_de_la_cipav:
   chiffre_d_affaires:
     reference: ipp
@@ -64,4 +65,3 @@ prestations_de_service:
       2015-01-01:
         value: 0.229
   reference: ipp
-reference: ipp

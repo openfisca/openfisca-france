@@ -1,3 +1,4 @@
+reference: ipp
 deux_enfants:
   reference: ipp
   values:
@@ -12,7 +13,6 @@ majoration_pour_un_enfant_supplementaire:
       value: 6443.0
     2016-01-01:
       value: 6469.0
-reference: ipp
 un_enfant:
   reference: ipp
   values:

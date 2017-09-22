@@ -1,3 +1,4 @@
+reference: ipp
 commissions_et_remunerations_brutes_entre_un_seuil_plancher_et_un_seuil_plafond:
   reference: ipp
   retraite_complementaire:
@@ -6,7 +7,6 @@ commissions_et_remunerations_brutes_entre_un_seuil_plancher_et_un_seuil_plafond:
     values:
       1996-01-01:
         value: 0.03
-reference: ipp
 sous_5_pss:
   reference: ipp
   regime_supplementaire_pour_les_auxilliaires_medicaux_conventionnes_asv:
