@@ -1,6 +1,7 @@
 description: Allocations logement
 reference: ipp
 al_pac:
+  reference: ipp
   age_limite_pour_les_enfants_a_charge:
     reference: ipp
     values:
@@ -9,6 +10,7 @@ al_pac:
       2000-01-01:
         value: 21.0
   age_minimal:
+    reference: ipp
     pour_les_ascendants_et_leur_conjoint:
       reference: ipp
       values:
@@ -19,7 +21,6 @@ al_pac:
       values:
         1991-11-11:
           value: 60.0
-    reference: ipp
   plafonds_de_ressources_que_les_potentiels_personnes_a_charge_autre_que_les_enfants_doivent_respecter_1:
     reference: ipp
     values:
@@ -33,4 +34,3 @@ al_pac:
     values:
       2000-01-01:
         value: 0.8
-  reference: ipp

@@ -1,75 +1,74 @@
 description: Prestation d'accueil du jeune enfant
 reference: ipp
 age_maximal_du_plus_jeune_enfant_pour_beneficier_de_la_prepare_en_annee_1:
+  reference: ipp
   deux_enfants_ou_plus:
     reference: ipp
     values:
       2015-01-01:
         value: 3.0
-  reference: ipp
   un_enfant:
     reference: ipp
     values:
       2015-01-01:
         value: 1.0
 clmg:
+  description: Complément de libre choix du mode de garde
+  reference: ipp
   age1:
-    description: "Limite d'\xE2ge (stricte) pour une prestation pleine"
+    description: Limite d'âge (stricte) pour une prestation pleine
     reference: openfisca
     unit: year
     values:
       2004-01-01:
         value: 3.0
   age2:
-    description: "Limite d'\xE2ge (stricte) pour une prestation r\xE9duite"
+    description: Limite d'âge (stricte) pour une prestation réduite
     reference: openfisca
     unit: year
     values:
       2004-01-01:
         value: 6.0
   ass_mat1:
-    description: "Taux pour recours \xE0 une assistante maternelle, une association,\
-      \ une entreprise ou une microcr\xE9che avant le premier plafond"
+    description: Taux pour recours à une assistante maternelle, une association, une entreprise
+  ou une microcréche avant le premier plafond
     reference: ipp
     unit: /1
     values:
       2004-01-01:
         value: 1.7257
   ass_mat2:
-    description: "Taux pour recours \xE0 une assistante maternelle, une association,\
-      \ une entreprise ou une microcr\xE9che avant le second plafond"
+    description: Taux pour recours à une assistante maternelle, une association, une entreprise
+  ou une microcréche avant le second plafond
     reference: ipp
     unit: /1
     values:
       2004-01-01:
         value: 1.4381
   ass_mat3:
-    description: "Taux pour recours \xE0 une assistante maternelle, une association,\
-      \ une entreprise ou une microcr\xE9che apr\xE8s le second plafond"
+    description: Taux pour recours à une assistante maternelle, une association, une entreprise
+  ou une microcréche après le second plafond
     reference: ipp
     unit: /1
     values:
       2004-01-01:
         value: 1.1505
-  description: "Compl\xE9ment de libre choix du mode de garde"
   domi1:
-    description: "Taux pour recours \xE0 une garde \xE0 domicile avant le premier\
-      \ plafond"
+    description: Taux pour recours à une garde à domicile avant le premier plafond
     reference: ipp
     unit: /1
     values:
       2004-01-01:
         value: 2.0853
   domi2:
-    description: "Taux pour recours \xE0 une garde \xE0 domicile avant le second plafond"
+    description: Taux pour recours à une garde à domicile avant le second plafond
     reference: ipp
     unit: /1
     values:
       2004-01-01:
         value: 1.7979
   domi3:
-    description: "Taux pour recours \xE0 une garde \xE0 domicile apr\xE8s le second\
-      \ plafond"
+    description: Taux pour recours à une garde à domicile après le second plafond
     reference: ipp
     unit: /1
     values:
@@ -81,7 +80,6 @@ clmg:
     values:
       2008-05-01:
         value: 0.4
-  reference: ipp
   remuneration_brute_maximale_de_l_assistante_maternelle_par_jour_et_par_enfant_en_multiple_du_smic_horaire:
     reference: ipp
     values:
@@ -268,7 +266,7 @@ clmg:
       2016-01-01:
         value: 8609.0
   taux_recours_emploi_1er_plafond:
-    description: "Taux pour recours \xE0 un emploi direct avant le premier plafond"
+    description: Taux pour recours à un emploi direct avant le premier plafond
     reference: ipp
     unit: /1
     values:
@@ -279,20 +277,21 @@ clmg:
       2012-06-01:
         value: 1.0067
   taux_recours_emploi_2e_plafond:
-    description: "Taux pour recours \xE0 un emploi direct avant le second plafond"
+    description: Taux pour recours à un emploi direct avant le second plafond
     reference: ipp
     unit: /1
     values:
       2004-01-01:
         value: 0.7191
   taux_recours_emploi_supp_2e_plafond:
-    description: "Taux pour recours \xE0 un emploi direct apr\xE8s le second plafond"
+    description: Taux pour recours à un emploi direct après le second plafond
     reference: ipp
     unit: /1
     values:
       2004-01-01:
         value: 0.4314
 deuxieme_plafond_ne_ou_adopte_apres_le_1er_avril_2014:
+  reference: ipp
   deux_enfants:
     reference: ipp
     values:
@@ -307,7 +306,6 @@ deuxieme_plafond_ne_ou_adopte_apres_le_1er_avril_2014:
         value: 6443.0
       2016-01-01:
         value: 6469.0
-  reference: ipp
   un_enfant:
     reference: ipp
     values:
@@ -316,12 +314,12 @@ deuxieme_plafond_ne_ou_adopte_apres_le_1er_avril_2014:
       2016-01-01:
         value: 45575.0
 periode_de_reference_pour_justifier_les_8_trimestres_de_cotisation_vieillesse_1:
+  reference: ipp
   deux_enfants:
     reference: ipp
     values:
       2004-01-01:
         value: 4.0
-  reference: ipp
   trois_enfants_ou_plus:
     reference: ipp
     values:
@@ -333,13 +331,13 @@ periode_de_reference_pour_justifier_les_8_trimestres_de_cotisation_vieillesse_1:
       2004-01-01:
         value: 2.0
 prestation_partagee_d_education_de_l_enfant_prepare_en_de_la_bmaf:
+  reference: ipp
   prestation_partagee_d_education_de_l_enfant_prepare:
     reference: ipp
     unit: /1
     values:
       2015-01-01:
         value: 0.9662
-  reference: ipp
   taux_partiel_50:
     reference: ipp
     unit: /1

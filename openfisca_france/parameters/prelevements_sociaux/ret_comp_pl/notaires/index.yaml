@@ -1,6 +1,7 @@
 reference: ipp
-? moyenne_des_produits_de_base_de_l_office_des_3_dernieres_annees_limitee_a_3_moyenne_generale_des_produits_des_offices_de_france
-: colmar_metz:
+moyenne_des_produits_de_base_de_l_office_des_3_dernieres_annees_limitee_a_3_moyenne_generale_des_produits_des_offices_de_france:
+  reference: ipp
+  colmar_metz:
     reference: ipp
     unit: /1
     values:
@@ -10,7 +11,6 @@ reference: ipp
         value: 0.04
       2015-01-01:
         value: 0.036
-  reference: ipp
   section_a_allocation_variable:
     reference: ipp
     unit: /1

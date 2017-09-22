@@ -1,5 +1,6 @@
 reference: ipp
 cas_des_entreprises_2000_salaries_ou_alternants_representent_1_de_l_effectif_i_i_i:
+  reference: ipp
   contribution_supplementaire_a_l_apprentissage_csa:
     reference: ipp
     unit: /1
@@ -10,8 +11,8 @@ cas_des_entreprises_2000_salaries_ou_alternants_representent_1_de_l_effectif_i_i
         value: 0.0025
       2014-01-01:
         value: 0.004
-  reference: ipp
 entreprises_de_250_salaries_et_plus:
+  reference: ipp
   contribution_supplementaire_a_l_apprentissage_csa:
     reference: ipp
     unit: /1
@@ -20,4 +21,3 @@ entreprises_de_250_salaries_et_plus:
         value: 0.001
       2011-01-01:
         value: null
-  reference: ipp

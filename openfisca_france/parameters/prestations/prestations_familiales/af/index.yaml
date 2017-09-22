@@ -1,8 +1,9 @@
 description: Allocations familiales
 reference: ipp
 af_dom:
+  reference: ipp
   age_1er_enf_tranche_1_dom:
-    description: "\xC2ge de d\xE9but de la 1ere majoration"
+    description: Âge de début de la 1ere majoration
     reference: ipp
     values:
       1991-08-06:
@@ -10,7 +11,7 @@ af_dom:
       1999-01-01:
         value: 11.0
   age_1er_enf_tranche_2_dom:
-    description: "\xC2ge de d\xE9but de la 2\xE8me majoration"
+    description: Âge de début de la 2ème majoration
     reference: ipp
     values:
       1991-08-06:
@@ -132,23 +133,22 @@ af_dom:
     values:
       1991-08-06:
         value: 3.0
-  reference: ipp
   taux_1er_enf_tranche_1_dom:
-    description: "1\xE8re majoration pour \xE2ge"
+    description: 1ère majoration pour âge
     reference: ipp
     unit: /1
     values:
       1991-08-06:
         value: 0.0369
   taux_1er_enf_tranche_2_dom:
-    description: "2\xE8me majoration pour \xE2ge"
+    description: 2ème majoration pour âge
     reference: ipp
     unit: /1
     values:
       1991-08-06:
         value: 0.0567
   taux_enfant_seul:
-    description: "Un seul enfant \xE0 charge (DOM)"
+    description: Un seul enfant à charge (DOM)
     reference: ipp
     unit: /1
     values:
