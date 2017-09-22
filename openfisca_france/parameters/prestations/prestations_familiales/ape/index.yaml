@@ -1,2 +1,16 @@
 description: Allocation parentale d'éducation (APE)
 reference: ipp
+intervalle_considere_pour_le_calcul_du_nombre_d_annees_d_activite_precedant_la_demande_d_ape_mois:
+  pour_le_2e_enfant:
+    reference: ipp
+    values:
+      1994-07-01:
+        value: 60.0
+  pour_le_3e_enfant:
+    reference: ipp
+    values:
+      1985-01-01:
+        value: 30.0
+      1987-04-01:
+        value: 120.0
+  reference: ipp

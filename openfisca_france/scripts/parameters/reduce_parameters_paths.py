@@ -11,7 +11,6 @@ PATH_LENGTH_TO_IGNORE = len(PARENT_DIRECTORY)
 PARAMETERS_DIRECTORY = os.path.join(PARENT_DIRECTORY, 'parameters')
 PATH_MAX_LENGTH = 150
 
-CLEANED_PARAMETERS_DIRECTORY = os.path.join(PARENT_DIRECTORY, 'new_parameters')
 INDEX_FILENAME = 'index.yaml'
 
 
@@ -94,13 +93,9 @@ def parse_and_clean(directory, paths_to_clean):
     items = os.listdir(directory)
 
     # Copy index.yaml first when it exists
-    parent_new_index_path = None
+    index_path = None
     if INDEX_FILENAME in items:
         index_path = os.path.join(directory, INDEX_FILENAME)
-        functional_path = get_sub_parent_path(index_path, PARAMETERS_DIRECTORY)
-
-        parent_new_index_path = os.path.join(CLEANED_PARAMETERS_DIRECTORY, functional_path)
-        shutil.copyfile(index_path, parent_new_index_path)
         items.remove(INDEX_FILENAME)
 
     # Parse other items in directory and harvest content for long paths
@@ -111,31 +106,26 @@ def parse_and_clean(directory, paths_to_clean):
         if os.path.isdir(item_path):
             if functional_path in paths_to_clean:
                 # Check if parent directory has an index.yaml file
-                if parent_new_index_path is None:
-                    # No harvesting when no destination file is identified
+
+                if index_path is None:
+                    # No destination file => No harvesting
                     print INDEX_FILENAME + "expected. Not found in: " + directory
 
                 else:
-                    print os.linesep + "Cleaning long directory into: " + parent_new_index_path
+                    print os.linesep + "Cleaning long directory into: " + index_path
                     content = harvest(item_path)
                     # Append harvested content to parent index.yaml
-                    with open(parent_new_index_path, 'a') as yaml_file:
+                    with open(index_path, 'a') as yaml_file:
                         yaml_file.write(yaml.dump(content, default_flow_style=False))
-            else:
-                # Directory to keep unchanged
-                os.mkdir(os.path.join(CLEANED_PARAMETERS_DIRECTORY, functional_path))
-                parse_and_clean(item_path, paths_to_clean)
+                    # Delete harvested directory
+                    print "Deleting " + item_path
+                    shutil.rmtree(item_path)
 
-        else:
-            shutil.copyfile(item_path, os.path.join(CLEANED_PARAMETERS_DIRECTORY, functional_path))
+            else:
+                parse_and_clean(item_path, paths_to_clean)
 
 
 long_parameters_paths = list_long_paths(PARAMETERS_DIRECTORY)
 print str(len(long_parameters_paths)) + " directories have files with more than " + str(PATH_MAX_LENGTH) + \
     " characters in their paths starting from this directory: " + PARENT_DIRECTORY
-
-
-if os.path.exists(CLEANED_PARAMETERS_DIRECTORY):
-    shutil.rmtree(CLEANED_PARAMETERS_DIRECTORY)
-os.mkdir(CLEANED_PARAMETERS_DIRECTORY)
 parse_and_clean(PARAMETERS_DIRECTORY, long_parameters_paths)
