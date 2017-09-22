@@ -28,7 +28,6 @@ def list_long_paths(absolute_directory_path):
         for f in files:
             file_path = os.path.join(directory, f)
             if (len(file_path) - PATH_LENGTH_TO_IGNORE) > PATH_MAX_LENGTH:
-                # print str((len(file_path) - PATH_LENGTH_TO_IGNORE)) + " " + file_path
                 path_extract = clean_from_filename(get_sub_parent_path(file_path, PARAMETERS_DIRECTORY))
                 if path_extract not in long_paths:
                     long_paths.append(path_extract)
@@ -92,40 +91,31 @@ def harvest(item):
 def parse_and_clean(directory, paths_to_clean):
     items = os.listdir(directory)
 
-    # Copy index.yaml first when it exists
-    index_path = None
-    if INDEX_FILENAME in items:
-        index_path = os.path.join(directory, INDEX_FILENAME)
-        items.remove(INDEX_FILENAME)
-
-    # Parse other items in directory and harvest content for long paths
+    # Parse items in directory and harvest content for long paths
     for item in items:
         item_path = os.path.join(directory, item)
         functional_path = get_sub_parent_path(item_path, PARAMETERS_DIRECTORY)
 
         if os.path.isdir(item_path):
             if functional_path in paths_to_clean:
-                # Check if parent directory has an index.yaml file
+                yaml_path = os.path.join(directory, item + ".yaml")
 
-                if index_path is None:
-                    # No destination file => No harvesting
-                    print INDEX_FILENAME + "expected. Not found in: " + directory
+                print os.linesep + "Cleaning long directory into: " + yaml_path
+                content = harvest(item_path)
+                with open(yaml_path, 'w') as yaml_file:
+                    yaml_file.write(yaml.dump(content[item], default_flow_style=False, allow_unicode=True))
 
-                else:
-                    print os.linesep + "Cleaning long directory into: " + index_path
-                    content = harvest(item_path)
-                    # Append harvested content to parent index.yaml
-                    with open(index_path, 'a') as yaml_file:
-                        yaml_file.write(yaml.dump(content, default_flow_style=False))
-                    # Delete harvested directory
-                    print "Deleting " + item_path
-                    shutil.rmtree(item_path)
+                # Delete harvested directory
+                print "Deleting " + item_path
+                shutil.rmtree(item_path)
 
             else:
                 parse_and_clean(item_path, paths_to_clean)
 
 
 long_parameters_paths = list_long_paths(PARAMETERS_DIRECTORY)
-print str(len(long_parameters_paths)) + " directories have files with more than " + str(PATH_MAX_LENGTH) + \
-    " characters in their paths starting from this directory: " + PARENT_DIRECTORY
-parse_and_clean(PARAMETERS_DIRECTORY, long_parameters_paths)
+print "{} directories have files with more than {} characters in their paths starting from this directory: {}".format(len(long_parameters_paths), PATH_MAX_LENGTH, PARENT_DIRECTORY).encode('utf-8')
+
+while len(long_parameters_paths) > 0:
+    parse_and_clean(PARAMETERS_DIRECTORY, long_parameters_paths)
+    long_parameters_paths = list_long_paths(PARAMETERS_DIRECTORY)
