@@ -3,10 +3,9 @@
 ### 18.9.8 - [#825](https://github.com/openfisca/openfisca-france/pull/825)
 
 * Correction d'un crash sous Windows
-* Zones impactées : `openfisca_france/parameters`.
 * Détails :
-  - Dans `parameters/`, assemble dans un nouveau YAML le contenu d'un sous-répertoire lorsque le chemin vers celui-ci ou l'un de ses fichiers est trop long.
-  - Corrige l'erreur WindowsError: [Error 206] Nom de fichier ou extension trop long` qui interrompt le clone d'OpenFisca-France sous Windows.
+  - Corrige l'erreur WindowsError: `[Error 206] Nom de fichier ou extension trop long` qui interrompt le clone d'OpenFisca-France sous Windows.
+  - Dans `parameters`, assemble dans un nouveau YAML le contenu d'un sous-répertoire lorsque le chemin vers celui-ci ou l'un de ses fichiers est trop long.
 
 ### 18.9.7 - [#811](https://github.com/openfisca/openfisca-france/pull/811)
 
