@@ -1,0 +1,31 @@
+reference: ipp
+compte_personnel_de_formation:
+  reference: ipp
+  unit: /1
+  values:
+    2015-01-01:
+      value: 0.002
+conge_individuel_de_formation:
+  reference: ipp
+  unit: /1
+  values:
+    2015-01-01:
+      value: 0.002
+plan_de_formation:
+  reference: ipp
+  unit: /1
+  values:
+    2015-01-01:
+      value: 0.001
+professionnalisation:
+  reference: ipp
+  unit: /1
+  values:
+    2015-01-01:
+      value: 0.003
+securisation_des_parcours_professionnels:
+  reference: ipp
+  unit: /1
+  values:
+    2015-01-01:
+      value: 0.002
