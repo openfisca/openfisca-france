@@ -12,8 +12,8 @@ OpenFisca is a versatile microsimulation free software. This repository contains
 
 France met à disposition une [API Web publique](http://openfisca.org/doc/openfisca-web-api/endpoints.html) qui ne demande aucune installation.
 Utilisez l'API publique si vous souhaitez :
-- accéder à un paramètre (Ex : [le montant du SMIC horaire brut](https://api-test.openfisca.fr/parameter/cotsoc.gen.smic_h_b)) ;
-- consulter une formule de calcul (Ex : [le calcul de l'allocation de base des allocations familiales](https://api-test.openfisca.fr/variable/af_base)) ;
+- accéder à un paramètre (Ex : [le montant du SMIC horaire brut](https://fr.openfisca.org/api/v18/parameter/cotsoc.gen.smic_h_b)) ;
+- consulter une formule de calcul (Ex : [le calcul de l'allocation de base des allocations familiales](https://fr.openfisca.org/api/v18/variable/af_base)) ;
 - faire des calculs ponctuels sur une situation (Ex : le calcul du coût du travail).
 
 [L'explorateur de législation](https://legislation.openfisca.fr/) contient la liste des paramètres et variables disponibles.
