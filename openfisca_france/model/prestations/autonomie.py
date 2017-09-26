@@ -10,8 +10,6 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 # TODO: fill the parameters file. May be should use the majoration pour tierce personne as parameter
-
-seuil_non_versement = 28.83
 taux_reste_a_vivre = 0.10
 
 
@@ -140,6 +138,7 @@ class apa_domicile(Variable):
         legislation = legislation(period.start).autonomie
         age = individu('age', period)
         apa_age_min = legislation.age_ouverture_des_droits.age_d_ouverture_des_droits
+        seuil_non_versement = legislation.seuil_de_versement_de_l_apa.seuil_versement.seuil_de_versement_de_l_apa
         dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
 
         apa_domicile_participation = individu('apa_domicile_participation', period)
@@ -157,6 +156,8 @@ class apa_etablissement(Variable):
     def formula(individu, period, legislation):
         period = period.start.offset('first-of', 'month').period('month')
         legislation = legislation(period.start).autonomie
+        seuil_non_versement = legislation.seuil_de_versement_de_l_apa.seuil_versement.seuil_de_versement_de_l_apa
+        
         en_couple = individu.famille('en_couple', period)
         age = individu('age', period)
         apa_age_min = legislation.age_ouverture_des_droits.age_d_ouverture_des_droits
