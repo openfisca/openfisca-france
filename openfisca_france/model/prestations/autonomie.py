@@ -9,10 +9,6 @@ from numpy import maximum as max_, minimum as min_, select
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-# TODO: fill the parameters file. May be should use the majoration pour tierce personne as parameter
-taux_reste_a_vivre = 0.10
-
-
 class base_ressources_apa(Variable):
     column = FloatCol
     label = u"Ressources considérées dans le calcul de l'APA"
@@ -192,6 +188,7 @@ class apa_etablissement(Variable):
                 dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6) * 0.80
             ]
         participation_beneficiaire = select(conditions_ressources, participations)
+        taux_reste_a_vivre = legislation.apa_institution.taux_reste_a_vivre
         participation_beneficiaire = min_(
             participation_beneficiaire,
             max_(base_ressources_apa_etablissement * (1 - taux_reste_a_vivre), 0)
