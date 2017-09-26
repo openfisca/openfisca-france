@@ -1,5 +1,13 @@
 # Changelog
 
+### 18.10.0
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `/prestations/apa`.
+* Détails :
+  - Implémente l'Allocation Personnalisée d'Autonomie.
+
 ### 18.9.10 - [#829](https://github.com/openfisca/openfisca-france/pull/829)
 
 * Évolution du système socio-fiscal.
