@@ -45,9 +45,7 @@ class apa_domicile_participation(Variable):
         # Les départements doivent appliquer la nouvelle formule
         # entre le 1er mars 2016 et le 28 février 2017
         base_ressources_apa = individu('base_ressources_apa', period)
-        dependance_plan_aide_domicile = individu('dependance_plan_aide_domicile', period)
         en_couple = individu.famille('en_couple', period)
-        gir = individu('gir', period)
         legislation = legislation(period.start).autonomie
         seuil_inf = legislation.apa_domicile.seuil_de_revenu_en_part_du_mtp.seuil_inferieur
         seuil_sup = legislation.apa_domicile.seuil_de_revenu_en_part_du_mtp.seuil_superieur
@@ -58,11 +56,7 @@ class apa_domicile_participation(Variable):
             1 +
             en_couple * (legislation.apa_domicile.divison_des_ressources_du_menage_pour_les_couples - 1)
             )
-        dependance_plan_aide_domicile_accepte = compute_dependance_plan_aide_domicile_accepte(
-            legislation_autonomie = legislation,
-            gir = gir,
-            dependance_plan_aide_domicile = dependance_plan_aide_domicile
-            )
+        dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
         base_ressources_apa_domicile = base_ressources_apa / proratisation_couple
 
         condition_ressources_domicile = [
@@ -83,12 +77,7 @@ class apa_domicile_participation(Variable):
         # entre le 1er mars 2016 et le 28 février 2017
         base_ressources_apa = individu('base_ressources_apa', period)
         en_couple = individu.famille('en_couple', period)
-        dependance_plan_aide_domicile = individu('dependance_plan_aide_domicile', period)
-        dependance_plan_aide_domicile_accepte = compute_dependance_plan_aide_domicile_accepte(
-            legislation_autonomie = legislation,
-            gir = gir,
-            dependance_plan_aide_domicile = dependance_plan_aide_domicile
-            )
+        dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
         legislation = legislation(period.start).autonomie
         majoration_tierce_personne = legislation.mtp.mtp
         proratisation_couple = (
@@ -151,13 +140,7 @@ class apa_domicile(Variable):
         legislation = legislation(period.start).autonomie
         age = individu('age', period)
         apa_age_min = legislation.age_ouverture_des_droits.age_d_ouverture_des_droits
-        dependance_plan_aide_domicile = individu('dependance_plan_aide_domicile', period)
-        gir = individu('gir', period)
-        dependance_plan_aide_domicile_accepte = compute_dependance_plan_aide_domicile_accepte(
-            legislation_autonomie = legislation,
-            gir = gir,
-            dependance_plan_aide_domicile = dependance_plan_aide_domicile
-            )
+        dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
 
         apa_domicile_participation = individu('apa_domicile_participation', period)
 
@@ -295,12 +278,17 @@ class apa_urgence_institution(Variable):
         return apa_urgence_institution
 
 
-# Helpers
+class dependance_plan_aide_domicile_accepte(Variable):
+    column = FloatCol
+    label = u"dependance_plan_aide_domicile_accepte"
+    entity = Individu
+    definition_period = MONTH
 
-def compute_dependance_plan_aide_domicile_accepte(legislation_autonomie = None, gir = None,
-            dependance_plan_aide_domicile = None):
-        assert isinstance(gir, np.ndarray)
-        assert isinstance(dependance_plan_aide_domicile, np.ndarray)
+    def formula(individu, period, legislation):
+        gir = individu('gir', period)
+        dependance_plan_aide_domicile = individu('dependance_plan_aide_domicile', period)
+        legislation_autonomie = legislation(period.start).autonomie
+
         plafond_gir1 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_1
         plafond_gir2 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_2
         plafond_gir3 = legislation_autonomie.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_3
