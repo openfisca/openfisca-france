@@ -19,9 +19,10 @@ class base_ressources_apa(Variable):
     column = FloatCol
     label = u"Ressources considérées dans le calcul de l'APA"
     entity = Individu
+    definition_period = MONTH
 
-    def function(individu, period):
-        period = period.this_month
+    def formula(individu, period):
+        period = period.first_month
         revenu_fiscal_de_reference = individu.foyer_fiscal('rfr', period.n_2) / 12
         aide_logement_montant = individu.famille('aide_logement_montant', period)
         valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', period)
@@ -30,16 +31,17 @@ class base_ressources_apa(Variable):
         base_ressources_apa = revenu_fiscal_de_reference - (
             valeur_locative_immo_non_loue + valeur_locative_terrains_non_loue + aide_logement_montant
             )
-        return period, base_ressources_apa
+        return base_ressources_apa
 
 
-class apa_domicile_participation(DatedVariable):
+class apa_domicile_participation(Variable):
     column = FloatCol
     label = u"Participation du bénéficiaire de l'APA à domicile"
     entity = Individu
+    definition_period = MONTH
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2016, 2, 29))
-    def function_2002_20160229(individu, period, legislation):
+
+    def formula_2002(individu, period, legislation):
         # Les départements doivent appliquer la nouvelle formule
         # entre le 1er mars 2016 et le 28 février 2017
         base_ressources_apa = individu('base_ressources_apa', period)
@@ -74,10 +76,9 @@ class apa_domicile_participation(DatedVariable):
             taux_max_participation,
             ]
         apa_domicile_participation = select(condition_ressources_domicile, taux_participation) * dependance_plan_aide_domicile_accepte
-        return period, apa_domicile_participation
+        return apa_domicile_participation
 
-    @dated_function(start = date(2016, 3, 1))
-    def function_20160301(individu, period, legislation):
+    def formula_2016_03_01(individu, period, legislation):
         # Les départements doivent appliquer la nouvelle formule
         # entre le 1er mars 2016 et le 28 février 2017
         base_ressources_apa = individu('base_ressources_apa', period)
@@ -136,15 +137,16 @@ class apa_domicile_participation(DatedVariable):
                 )
             )
 
-        return period, apa_domicile_participation
+        return apa_domicile_participation
 
 
 class apa_domicile(Variable):
     column = FloatCol
     label = u"Allocation personalisée d'autonomie"
     entity = Individu
+    definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         period = period.start.offset('first-of', 'month').period('month')
         legislation = legislation(period.start).autonomie
         age = individu('age', period)
@@ -160,15 +162,16 @@ class apa_domicile(Variable):
         apa_domicile_participation = individu('apa_domicile_participation', period)
 
         apa = dependance_plan_aide_domicile_accepte - apa_domicile_participation
-        return period, apa * (apa >= seuil_non_versement) * (age >= apa_age_min)
+        return apa * (apa >= seuil_non_versement) * (age >= apa_age_min)
 
 
 class apa_etablissement(Variable):
     column = FloatCol
     label = u"Allocation personalisée d'autonomie en institution"
     entity = Individu
+    definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         period = period.start.offset('first-of', 'month').period('month')
         legislation = legislation(period.start).autonomie
         en_couple = individu.famille('en_couple', period)
@@ -215,7 +218,7 @@ class apa_etablissement(Variable):
             (dependance_tarif_etablissement_gir_5_6 > 0) * (dependance_tarif_etablissement_gir_dependant > 0)
             )  # permet de sélectionner les individus vivant en établissement éligible.
         eligibilite_gir = (0 < gir) & (gir <= 4)
-        return period, (
+        return (
             apa * (apa >= seuil_non_versement) * eligibilite_etablissement * (age >= apa_age_min) * eligibilite_gir
             )
 
@@ -237,53 +240,59 @@ class gir(Variable):
         )
     entity = Individu
     label = u"Groupe iso-ressources de l'individu"
+    definition_period = MONTH
 
 
 class dependance_plan_aide_domicile(Variable):
     column = FloatCol
     entity = Individu
     label = u"Plan d'aide à domicile pour une personne dépendate"
+    definition_period = MONTH
 
 
 class dependance_tarif_etablissement_gir_5_6(Variable):
     column = FloatCol
     entity = Individu
     label = u"Tarif dépendance de l'établissement pour les GIR 5 et 6"
+    definition_period = MONTH
 
 
 class dependance_tarif_etablissement_gir_dependant(Variable):
     column = FloatCol
     entity = Individu
     label = u"Tarif dépendance de l'établissement pour le GIR de la personne dépendante"
+    definition_period = MONTH
 
 
 class apa_urgence_domicile(Variable):
     column = FloatCol
     label = u"Allocation personalisée d'autonomie en institution"
     entity = Individu
+    definition_period = MONTH
 
-    def function(individu, period, legislation):
-        period = period.this_month
+    def formula(individu, period, legislation):
+        period = period.first_month
         legislation = legislation(period.start).autonomie
         majoration_tierce_personne = autonomie.mtp.mtp
         plafond_gir1 = legislation.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_1
         part_urgence_domicile = legislation.apa_domicile.apa_d_urgence.part_du_plafond_de_l_apa_a_domicile
         apa_urgence_domicile = part_urgence_domicile * plafond_gir1 * majoration_tierce_personne
 
-        return period, apa_urgence_domicile
+        return apa_urgence_domicile
 
 
 class apa_urgence_institution(Variable):
     column = FloatCol
     label = u"Allocation personalisée d'autonomie en institution"
     entity = Individu
+    definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         period = period.start.offset('first-of', 'month').period('month')
         dependance_tarif_etablissement_gir_1_2 = individu('dependance_tarif_etablissement_gir_5_6', period)
         part_urgence_institution = legislation.apa_institution.apa_d_urgence.part_du_tarif_dependance_gir_1_2_de_l_etablissement_d_accueil
         apa_urgence_institution = part_urgence_institution * dependance_tarif_etablissement_gir_1_2
-        return period, apa_urgence_institution
+        return apa_urgence_institution
 
 
 # Helpers
