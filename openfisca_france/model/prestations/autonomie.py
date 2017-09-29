@@ -273,9 +273,13 @@ class apa_urgence_institution(Variable):
 
 class dependance_plan_aide_domicile_accepte(Variable):
     column = FloatCol
-    label = u"dependance_plan_aide_domicile_accepte"
+    label = u"Coût du plan d'aide plafonné pris en compte pour la détermination de l'APA"
     entity = Individu
     definition_period = MONTH
+    reference = [
+        # Code de l'action sociale et des familles - Article R232-10-1 
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=4D213136F764CDAC77B33F705B4DE178.tplgfr41s_1?idArticle=LEGIARTI000032133764&cidTexte=LEGITEXT000006074069&dateTexte=20170929&categorieLien=id&oldAction=&nbResultRech='
+    ]
 
     def formula(individu, period, parameters):
         gir = individu('gir', period)
