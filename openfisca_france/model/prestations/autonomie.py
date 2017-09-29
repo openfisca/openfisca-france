@@ -222,7 +222,7 @@ class gir(Variable):
 class dependance_plan_aide_domicile(Variable):
     column = FloatCol
     entity = Individu
-    label = u"Plan d'aide à domicile pour une personne dépendate"
+    label = u"Plan d'aide à domicile pour une personne dépendante"
     definition_period = MONTH
 
 
