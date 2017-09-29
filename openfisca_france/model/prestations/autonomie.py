@@ -25,7 +25,7 @@ class base_ressources_apa(Variable):
 
 class apa_domicile_participation(Variable):
     column = FloatCol
-    label = u"Participation du bénéficiaire de l'APA à domicile"
+    label = u"Participation du bénéficiaire de l'APA à domicile en euros"
     entity = Individu
     definition_period = MONTH
 
@@ -58,8 +58,8 @@ class apa_domicile_participation(Variable):
             (base_ressources_apa_domicile - seuil_inf * majoration_tierce_personne) / ((seuil_sup - seuil_inf) * majoration_tierce_personne) * taux_max_participation,
             taux_max_participation,
             ]
-        apa_domicile_participation = select(condition_ressources_domicile, taux_participation) * dependance_plan_aide_domicile_accepte
-        return apa_domicile_participation
+        return select(condition_ressources_domicile, taux_participation) * dependance_plan_aide_domicile_accepte
+        
 
     def formula_2016_03_01(individu, period, parameters):
         # Les départements doivent appliquer la nouvelle formule
@@ -74,26 +74,29 @@ class apa_domicile_participation(Variable):
             en_couple * (parameters.apa_domicile.divison_des_ressources_du_menage_pour_les_couples - 1)
             )
         base_ressources_apa_domicile = base_ressources_apa / proratisation_couple
-        # TODO: use a marignal tax scale
+
+
+        premier_seuil = 0.317 * majoration_tierce_personne
+        second_seuil = 0.498 * majoration_tierce_personne
         condlist = [
-            dependance_plan_aide_domicile_accepte <= (0.317 * majoration_tierce_personne),
-            (0.317 * majoration_tierce_personne) <= dependance_plan_aide_domicile_accepte <= (0.498 * majoration_tierce_personne),
-            dependance_plan_aide_domicile_accepte >= (0.498 * majoration_tierce_personne),
+            dependance_plan_aide_domicile_accepte <= premier_seuil,
+            premier_seuil <= dependance_plan_aide_domicile_accepte <= second_seuil,
+            dependance_plan_aide_domicile_accepte >= second_seuil,
             ]
         choicelist_1 = [
             dependance_plan_aide_domicile_accepte,
-            0.317 * majoration_tierce_personne,
-            0.317 * majoration_tierce_personne,
+            premier_seuil,
+            premier_seuil,
             ]
         choicelist_2 = [
             0,
-            dependance_plan_aide_domicile_accepte - 0.317 * majoration_tierce_personne,
-            0.498 * majoration_tierce_personne,
+            dependance_plan_aide_domicile_accepte - premier_seuil,
+            second_seuil,
             ]
         choicelist_3 = [
             0,
             0,
-            dependance_plan_aide_domicile_accepte - 0.815 * majoration_tierce_personne
+            dependance_plan_aide_domicile_accepte - (premier_seuil + second_seuil)
             ]
         A_1 = select(condlist, choicelist_1)
         A_2 = select(condlist, choicelist_2)
@@ -222,7 +225,7 @@ class gir(Variable):
 class dependance_plan_aide_domicile(Variable):
     column = FloatCol
     entity = Individu
-    label = u"Plan d'aide à domicile pour une personne dépendante"
+    label = u"Coût du plan d'aide à domicile pour une personne dépendante"
     definition_period = MONTH
 
 
@@ -242,7 +245,7 @@ class dependance_tarif_etablissement_gir_dependant(Variable):
 
 class apa_urgence_domicile(Variable):
     column = FloatCol
-    label = u"Allocation personalisée d'autonomie en institution"
+    label = u"Allocation personalisée d'autonomie d'urgence à domicile"
     entity = Individu
     definition_period = MONTH
 
@@ -252,9 +255,7 @@ class apa_urgence_domicile(Variable):
         majoration_tierce_personne = autonomie.mtp.mtp
         plafond_gir1 = parameters.apa_domicile.plafond_de_l_apa_a_domicile_en_part_du_mtp.gir_1
         part_urgence_domicile = parameters.apa_domicile.apa_d_urgence.part_du_plafond_de_l_apa_a_domicile
-        apa_urgence_domicile = part_urgence_domicile * plafond_gir1 * majoration_tierce_personne
-
-        return apa_urgence_domicile
+        return part_urgence_domicile * plafond_gir1 * majoration_tierce_personne
 
 
 class apa_urgence_institution(Variable):
