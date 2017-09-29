@@ -121,6 +121,19 @@ class apa_domicile_participation(Variable):
         return apa_domicile_participation
 
 
+class apa_domicile_taux_participation(Variable):
+    column = FloatCol
+    label = u"Taux de participation du bénéficiaire à l'APA à domicile"
+    entity = Individu
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
+        apa_domicile_participation = individu('apa_domicile_participation', period)
+
+        return (apa_domicile >= 0) * apa_domicile_participation / dependance_plan_aide_domicile_accepte
+
+
 class apa_domicile(Variable):
     column = FloatCol
     label = u"Allocation personalisée d'autonomie"
