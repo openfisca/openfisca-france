@@ -102,9 +102,9 @@ class apa_domicile_participation(Variable):
         A_2 = select(condlist, choicelist_2)
         A_3 = select(condlist, choicelist_3)
 
-        apa_domicile_participation = (
+        apa_domicile_participation = min_(0.9 * dependance_plan_aide_domicile_accepte,
             0.9 *
-            (base_ressources_apa_domicile - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne) *
+            max_(0, base_ressources_apa_domicile - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne) *
             (
                 A_1 +
                 A_2 * (
