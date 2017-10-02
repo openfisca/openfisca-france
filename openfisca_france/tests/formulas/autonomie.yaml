@@ -40,10 +40,8 @@
   input_variables:
     age: 50
     gir: "Gir 1"
-    dependance_plan_aide_domicile: 2000
   output_variables:
-    apa_domicile: 0
-    apa_etablissement: 0
+    apa_eligibilite: 0
 
 - name: "APA condition d'âge - test l'âge d'ouverture en établissement"
   description: Montant APA
@@ -56,8 +54,7 @@
     dependance_tarif_etablissement_gir_dependant: 2000
     base_ressources_apa: 5000
   output_variables:
-    apa_domicile: 0
-    apa_etablissement: 0
+    apa_eligibilite: 0
 
 - name: "APA établissement célibataire ressources supérieures seuil 2 GIR 1 - test ressource seuil 2 établissement"
   description: Montant APA

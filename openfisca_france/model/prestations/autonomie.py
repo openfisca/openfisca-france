@@ -121,6 +121,24 @@ class apa_domicile_participation(Variable):
         return apa_domicile_participation
 
 
+class apa_eligibilite(Variable):
+    column = BoolCol
+    entity = Individu
+    label = u"Allocation personalisée d'autonomie - Éligibilité"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        period = period.start.offset('first-of', 'month').period('month')
+        parameters = parameters(period.start).autonomie
+        age = individu('age', period)
+        apa_age_min = parameters.age_ouverture_des_droits.age_d_ouverture_des_droits
+
+        gir = individu('gir', period)
+        eligibilite_gir = (0 < gir) & (gir <= 4)
+        
+        return (age >= apa_age_min) * eligibilite_gir
+
+
 class apa_domicile_taux_participation(Variable):
     column = FloatCol
     label = u"Taux de participation du bénéficiaire à l'APA à domicile"
@@ -143,15 +161,14 @@ class apa_domicile(Variable):
     def formula(individu, period, parameters):
         period = period.start.offset('first-of', 'month').period('month')
         parameters = parameters(period.start).autonomie
-        age = individu('age', period)
-        apa_age_min = parameters.age_ouverture_des_droits.age_d_ouverture_des_droits
+        apa_eligibilite = individu('apa_eligibilite', period)
         seuil_non_versement = parameters.seuil_de_versement_de_l_apa.seuil_versement.seuil_de_versement_de_l_apa
         dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
 
         apa_domicile_participation = individu('apa_domicile_participation', period)
 
         apa = dependance_plan_aide_domicile_accepte - apa_domicile_participation
-        return apa * (apa >= seuil_non_versement) * (age >= apa_age_min)
+        return apa * (apa >= seuil_non_versement) * apa_eligibilite
 
 
 class apa_etablissement(Variable):
@@ -166,8 +183,7 @@ class apa_etablissement(Variable):
         seuil_non_versement = parameters.seuil_de_versement_de_l_apa.seuil_versement.seuil_de_versement_de_l_apa
         
         en_couple = individu.famille('en_couple', period)
-        age = individu('age', period)
-        apa_age_min = parameters.age_ouverture_des_droits.age_d_ouverture_des_droits
+        apa_eligibilite = individu('apa_eligibilite', period)
         gir = individu('gir', period)
         base_ressources_apa = individu('base_ressources_apa', period)
         proratisation_couple_etablissement = (
@@ -209,10 +225,8 @@ class apa_etablissement(Variable):
         eligibilite_etablissement = (
             (dependance_tarif_etablissement_gir_5_6 > 0) * (dependance_tarif_etablissement_gir_dependant > 0)
             )  # permet de sélectionner les individus vivant en établissement éligible.
-        eligibilite_gir = (0 < gir) & (gir <= 4)
-        return (
-            apa * (apa >= seuil_non_versement) * eligibilite_etablissement * (age >= apa_age_min) * eligibilite_gir
-            )
+        
+        return apa * (apa >= seuil_non_versement) * eligibilite_etablissement * apa_eligibilite
 
 
 class gir(Variable):
