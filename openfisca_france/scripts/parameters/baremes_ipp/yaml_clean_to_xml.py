@@ -71,89 +71,100 @@ def build_tree_from_yaml_clean(yaml_dir):
             if rows is None:
                 log.info(u'  Skipping file {} without "Valeurs"'.format(relative_file_path))
                 continue
-            row_by_start = {}
-            for row in rows:
-                start = row.get(u"Date d'effet")
-                if start is None:
-                    for date_name in date_names:
-                        start = row.get(date_name)
-                        if start is not None:
-                            break
-                    else:
-                        # No date found. Skip row.
-                        continue
-                elif not isinstance(start, datetime.date):
-                    start = start[u"Année Revenus"]
-                row_by_start[start] = row
-            sorted_row_by_start = sorted(row_by_start.iteritems())
-
-            relative_ipp_paths_by_start = {}
-            unsorted_relative_ipp_paths = set()
-            for start, row in sorted_row_by_start:
-                relative_ipp_paths_by_start[start] = start_relative_ipp_paths = []
-                for name, child in row.iteritems():
-                    if name in date_names:
-                        continue
-                    if name in note_names:
-                        continue
-                    if name in reference_names:
-                        continue
-                    start_relative_ipp_paths.extend(
-                        (name,) + tuple(path)
-                        for path, value in iter_ipp_values(child)
-                        )
-                unsorted_relative_ipp_paths.update(start_relative_ipp_paths)
-
-            def compare_relative_ipp_paths(x, y):
-                if x == y:
-                    return 0
-                for relative_ipp_paths in relative_ipp_paths_by_start.itervalues():
-                    try:
-                        return cmp(relative_ipp_paths.index(x), relative_ipp_paths.index(y))
-                    except ValueError:
-                        # Either x or y paths are missing in relative_ipp_paths => Their order can't be compared.
-                        continue
-                return -1
-
-            sorted_relative_ipp_paths = sorted(unsorted_relative_ipp_paths, cmp = compare_relative_ipp_paths)
-            # tax_rate_tree_by_bracket_type = {}
-
-            for start, row in sorted_row_by_start:
-                for relative_ipp_path in sorted_relative_ipp_paths:
-                    value = row
-                    for fragment in relative_ipp_path:
-                        value = value.get(fragment)
-                        if value is None:
-                            break
-
-                    if value in (u'-', u'na', u'nc'):
-                        # Value is unknown. Previous value must be propagated.
-                        continue
-                    ipp_path = [
-                        fragment if fragment in ('RENAME', 'TRANCHE', 'TYPE') else strings.slugify(fragment,
-                            separator = u'_')
-                        for fragment in itertools.chain(
-                            relative_file_path.split(os.sep)[:-1],
-                            [sheet_name],
-                            relative_ipp_path,
-                            )
-                        ]
-
-                    sub_tree = tree
-                    for fragment in ipp_path[:-1]:
-                        sub_tree = sub_tree.setdefault(fragment, collections.OrderedDict())
-                    fragment = ipp_path[-1]
-                    sub_tree = sub_tree.setdefault(fragment, [])
-                    if sub_tree:
-                        previous_leaf = sub_tree[-1]
-                        if previous_leaf['value'] == value:
-                            # Merge leaves with the same value.
-                            # One day, when we'll support "Références législatives", this behavior may change.
+            try:
+                row_by_start = {}
+                for row in rows:
+                    start = row.get(u"Date d'effet")
+                    if start is None:
+                        for date_name in date_names:
+                            start = row.get(date_name)
+                            if start is not None:
+                                break
+                        else:
+                            # No date found. Skip row.
                             continue
-                    sub_tree.append(dict(
-                        start = start,
-                        value = value,
-                        ))
+                    elif not isinstance(start, datetime.date):
+                        start = start[u"Année Revenus"]
+
+                    references = []
+                    for reference_name in reference_names:
+                        if reference_name in row:
+                            references.append(row[reference_name])
+                            del row[reference_name]
+                    row['reference'] = ' - '.join(references)
+
+                    row_by_start[start] = row
+                sorted_row_by_start = sorted(row_by_start.iteritems())
+
+                relative_ipp_paths_by_start = {}
+                unsorted_relative_ipp_paths = set()
+                for start, row in sorted_row_by_start:
+                    relative_ipp_paths_by_start[start] = start_relative_ipp_paths = []
+                    for name, child in row.iteritems():
+                        if name in date_names:
+                            continue
+                        if name in note_names:
+                            continue
+                        if name == 'reference':
+                            continue
+                        start_relative_ipp_paths.extend(
+                            (name,) + tuple(path)
+                            for path, value in iter_ipp_values(child)
+                            )
+                    unsorted_relative_ipp_paths.update(start_relative_ipp_paths)
+
+                def compare_relative_ipp_paths(x, y):
+                    if x == y:
+                        return 0
+                    for relative_ipp_paths in relative_ipp_paths_by_start.itervalues():
+                        try:
+                            return cmp(relative_ipp_paths.index(x), relative_ipp_paths.index(y))
+                        except ValueError:
+                            # Either x or y paths are missing in relative_ipp_paths => Their order can't be compared.
+                            continue
+                    return -1
+
+                sorted_relative_ipp_paths = sorted(unsorted_relative_ipp_paths, cmp = compare_relative_ipp_paths)
+                # tax_rate_tree_by_bracket_type = {}
+
+                for start, row in sorted_row_by_start:
+                    for relative_ipp_path in sorted_relative_ipp_paths:
+                        value = row
+                        for fragment in relative_ipp_path:
+                            value = value.get(fragment)
+                            if value is None:
+                                break
+
+                        if value in (u'-', u'na', u'nc'):
+                            # Value is unknown. Previous value must be propagated.
+                            continue
+                        ipp_path = [
+                            fragment if fragment in ('RENAME', 'TRANCHE', 'TYPE') else strings.slugify(fragment,
+                                separator = u'_')
+                            for fragment in itertools.chain(
+                                relative_file_path.split(os.sep)[:-1],
+                                [sheet_name],
+                                relative_ipp_path,
+                                )
+                            ]
+
+                        sub_tree = tree
+                        for fragment in ipp_path[:-1]:
+                            sub_tree = sub_tree.setdefault(fragment, collections.OrderedDict())
+                        fragment = ipp_path[-1]
+                        sub_tree = sub_tree.setdefault(fragment, [])
+                        if sub_tree:
+                            previous_leaf = sub_tree[-1]
+                            if previous_leaf['value'] == value:
+                                # Merge leaves with the same value.
+                                continue
+                        sub_tree.append(dict(
+                            start = start,
+                            value = value,
+                            reference = row['reference'],
+                            ))
+            except Exception as e:
+                log.error('Parsing failed for file {} : \n{}'.format(filename_encoded, e))
     return tree
 
 
