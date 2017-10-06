@@ -35,6 +35,7 @@ def fixed_bases_tax_scale(base_by_slice_name, rates_tree, null_rate_base = None)
             rates_bracket_item = dict(
                 start = first_start,
                 value = str(bracket),
+                reference = '',
                 )
             rates_tree[slice_name] = [rates_bracket_item]
 
@@ -45,6 +46,7 @@ def fixed_bases_tax_scale(base_by_slice_name, rates_tree, null_rate_base = None)
                 bracket.insert(0, dict(
                     start = first_start,
                     value = '0',
+                    reference = '',
                     ))
             for item in bracket:
                 if item['value'] is None:
@@ -53,6 +55,7 @@ def fixed_bases_tax_scale(base_by_slice_name, rates_tree, null_rate_base = None)
         rates_bracket_null_item = dict(
             start = first_start,
             value = '0',
+            reference = '',
             )
         rates_tree['tranche_nulle'] = [rates_bracket_null_item]
 
@@ -65,6 +68,7 @@ def fixed_bases_tax_scale(base_by_slice_name, rates_tree, null_rate_base = None)
         bases_bracket_item = dict(
             start = rates_bracket[0]['start'],
             value = str(base_by_slice_name[slice_name]),
+            reference = '',
             )
         bases_tree[slice_name] = [bases_bracket_item]
 
