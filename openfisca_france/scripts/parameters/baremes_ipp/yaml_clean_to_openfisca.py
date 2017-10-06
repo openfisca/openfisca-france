@@ -10,6 +10,7 @@ import itertools
 import logging
 import os
 import sys
+import re
 
 from biryani import strings
 from lxml import etree
@@ -177,16 +178,11 @@ def iter_ipp_values(node):
         yield [], node
 
 
-def prepare_xml_values(name, leafs):
-    leafs = list(reversed([
-        leaf
-        for leaf in leafs
-        if leaf['value'] is not None
-        ]))
-    format = None
-    type = None
-    for leaf in leafs:
-        value = leaf['value']
+def transform_values_history_to_openfisca_format(values_list):
+    new_values_dict = {}
+    for element in values_list:
+        value = element['value']
+        unit = None
         if isinstance(value, basestring):
             split_value = value.split()
             if len(split_value) == 2 and split_value[1] in (
@@ -199,122 +195,118 @@ def prepare_xml_values(name, leafs):
                     ):
                 value = float(split_value[0])
                 unit = split_value[1]
-                if unit == u'%':
-                    if format is None:
-                        format = u'percent'
-                    elif format != u'percent':
-                        log.warning(u'Non constant percent format {} in {}: {}'.format(format, name, leafs))
-                        return None, format, type
-                    value = value / 100
-                else:
-                    if format is None:
-                        format = u'float'
-                    elif format != u'float':
-                        log.warning(u'Non constant float format {} in {}: {}'.format(format, name, leafs))
-                        return None, format, type
-                    if type is None:
-                        type = u'monetary'
-                    elif type != u'monetary':
-                        log.warning(u'Non constant monetary type {} in {}: {}'.format(type, name, leafs))
-                        return None, format, type
-                    else:
-                        assert type == u'monetary', type
-                # elif unit == u'AF':
-                #     # Convert "anciens francs" to €.
-                #     value = round(value / (100 * 6.55957), 2)
-                # elif unit == u'FRF':
-                #     # Convert "nouveaux francs" to €.
-                #     if month < year_1960:
-                #         value /= 100
-                #     value = round(value / 6.55957, 2)
+            if unit == '%':
+                value /= 100.
+                unit = '/1'
         if isinstance(value, float) and value == int(value):
             value = int(value)
-        leaf['value'] = value
-    return leafs, format, type
+        new_value = {
+            'value': value,
+            'reference': element['reference'],
+        }
+        if unit:
+            new_value['unit'] = unit
+        new_values_dict[element['start']] = new_value
+    return new_values_dict
 
+traduction_bareme = {
+    'MONTANT': 'amount',
+    'BASE': 'base',
+    'SEUIL': 'threshold',
+    'TAUX': 'rate',
+}
 
-def ipp_node_to_element(name, node):
-    """
-    A `node` is a dict or a list produced by `build_tree_from_yaml_clean` or `transform_ipp_tree`.
-    """
+def transform_node_to_openfisca_format(node):
     if isinstance(node, dict):
-        if node.get('TYPE') == u'BAREME':
-            bareme_element = etree.Element('BAREME', attrib = dict(
-                code = strings.slugify(name, separator = u'_'),
-                origin = u'ipp',
-                ))
-            for slice_name in node.get('SEUIL', {}).keys():
-                tranche_element = etree.Element('TRANCHE', attrib = dict(
-                    code = strings.slugify(slice_name, separator = u'_'),
-                    ))
-
-                seuil_element = etree.Element('SEUIL')
-                values, format, type = prepare_xml_values(name, node.get('SEUIL', {}).get(slice_name, []))
-                transform_values_to_element_children(values, seuil_element)
-                if len(seuil_element) > 0:
-                    tranche_element.append(seuil_element)
-
-                taux_element = etree.Element('TAUX')
-                values, format, type = prepare_xml_values(name, node.get('TAUX', {}).get(slice_name, []))
-                transform_values_to_element_children(values, taux_element)
-                if len(taux_element) > 0:
-                    tranche_element.append(taux_element)
-
-                if len(tranche_element) > 0:
-                    bareme_element.append(tranche_element)
-            return bareme_element if len(bareme_element) > 0 else None
+        if 'TYPE' in node:
+            node_type = node['TYPE']
+            if node_type == 'BAREME':
+                bracket_names = []
+                for member_french, member_english in traduction_bareme.items():
+                    if member_french in node:
+                        if not bracket_names:
+                            bracket_names = node[member_french].keys()
+                        else:
+                            if set(bracket_names) != set(node[member_french].keys()):
+                                log.error('Mismatch in brackets : {} vs {}'.format(bracket_names, node[member_french].keys()))
+                                return
+                try:
+                    # tranche_1, tranche_2...
+                    bracket_names = sorted(bracket_names, key = lambda x: int(x.split('_')[1]))
+                except:
+                    try:
+                        # tranche1, tranche2...
+                        bracket_names = sorted(bracket_names, key = lambda x: int(x[7:]))
+                    except:
+                        # I give up
+                        pass
+                
+                brackets = []
+                for bracket_name in bracket_names:
+                    bracket = {}
+                    for member_french, member_english in traduction_bareme.items():
+                        if member_french in node:
+                            bracket[member_english] = transform_values_history_to_openfisca_format(node[member_french][bracket_name])
+                    brackets.append(bracket)
+                return {'brackets': brackets}
+            else:
+                raise ValueError(node_type)
         else:
-            node_element = etree.Element('NODE', attrib = dict(
-                code = strings.slugify(name, separator = u'_'),
-                origin = u'ipp',
-                ))
-            for key, value in node.iteritems():
-                child_element = ipp_node_to_element(key, value)
-                if child_element is not None:
-                    node_element.append(child_element)
-            return node_element if len(node_element) > 0 else None
-    else:
-        assert isinstance(node, list), node
-        values, format, type = prepare_xml_values(name, node)
-        if not values:
-            return None
-        code_element = etree.Element('CODE', attrib = dict(
-            code = strings.slugify(name, separator = u'_'),
-            origin = u'ipp',
-            ))
-        if format is not None:
-            code_element.set('format', format)
-        if type is not None:
-            code_element.set('type', type)
-        transform_values_to_element_children(values, code_element)
-        return code_element if len(code_element) > 0 else None
+            new_node = {}
+            for name, child in node.items():
+                new_child = transform_node_to_openfisca_format(child)
+                new_node[name] = new_child
+            return new_node
+    elif isinstance(node, list):
+        return {
+            'values': transform_values_history_to_openfisca_format(node),
+            }
+
+    raise ValueError(node)
 
 
-def transform_values_to_element_children(values, element):
-    element.extend(map(
-        lambda value: etree.Element('VALUE', attrib = dict(
-            deb = value['start'].isoformat(),
-            valeur = unicode(value['value']),
-            )),
-        values,
-        ))
+def custom_str_representer(dumper, data):
+    if re.match(r'^\d{4}-\d{2}-\d{2}$', data):
+        tag = u'tag:yaml.org,2002:timestamp'
+        return dumper.represent_scalar(tag, data)
+    return dumper.represent_str(data)
 
 
-def write_xml_file(xml_dir, file_name, element):
-    element_tree = etree.ElementTree(element)
-    element_tree.write(
-        os.path.join(xml_dir, file_name),
-        encoding = 'utf-8',
-        pretty_print = True,
-        )
+def custom_unicode_representer(dumper, data):
+    if re.match(r'^\d{4}-\d{2}-\d{2}$', data):
+        tag = u'tag:yaml.org,2002:timestamp'
+        return dumper.represent_scalar(tag, data)
+    return dumper.represent_unicode(data)
+
+yaml.add_representer(str, custom_str_representer, Dumper=yaml.SafeDumper)
+yaml.add_representer(unicode, custom_unicode_representer, Dumper=yaml.SafeDumper)
 
 
-def transform(yaml_clean_dir, xml_dir):
-    ipp_tree = build_tree_from_yaml_clean(yaml_clean_dir)
-    transform_ipp_tree(ipp_tree)  # User-written transformations which modify `ipp_tree`.
-    ipp_root_element = ipp_node_to_element(u'root', ipp_tree)
+def merge_dir(node, directory):
+    print(directory)
+    
+    dir_children = os.listdir(directory)
+    
+    for name, child in node.items():
+        dir_name = name
+        file_name = name + '.yaml'
+        if dir_name in dir_children:
+            dir_path = os.path.join(directory, dir_name)
+            merge_dir(child, dir_path)
+        elif file_name in dir_children:
+            file_path = os.path.join(directory, file_name)
+            merge_file(child, file_path)
+        else:
+            write_node(name, child, directory)
 
-    for child_element in ipp_root_element:
-        write_xml_file(xml_dir, '{}.xml'.format(child_element.attrib['code']), child_element)
-        ipp_root_element.remove(child_element)
-    write_xml_file(xml_dir, '__root__.xml', ipp_root_element)
+def merge_file(node, file_path):
+    return write_file(node, file_path)
+
+def write_node(name, child, directory):
+    file_name = name + '.yaml'
+    file_path = os.path.join(directory, file_name)
+    return write_file(child, file_path)
+
+def write_file(node, file_path):
+    with open(file_path, 'w') as f:
+        yaml.safe_dump(node, f, default_flow_style=False, allow_unicode=True)

@@ -24,9 +24,10 @@ import urllib
 import zipfile
 
 import xls_to_yaml_raw
-import yaml_clean_to_xml
+import yaml_clean_to_openfisca
 import yaml_raw_to_yaml_clean
-from merge_ipp_xml_files_with_openfisca_parameters import merge_ipp_xml_files_with_openfisca_parameters
+import transform_ipp_tree
+from openfisca_france.france_taxbenefitsystem import FranceTaxBenefitSystem, COUNTRY_DIR
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
@@ -41,9 +42,7 @@ def main():
     parser.add_argument('--ref-ipp', default = None, help = u"Reference of the repository ipp-tax-and-benefit-tables-xlsx to use")
     parser.add_argument('--zip-url', default = None, help = u"URL of the ZIP file to download")
     parser.add_argument('--tmp-dir', default = None, help = u"Where to write intermediary files")
-    parser.add_argument('--xml-dir', default = None, help = u"Where to write XML files")
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = u"Increase output verbosity")
-    parser.add_argument('--merge', action = 'store_true', default = False, help = u"Merge the generated XML with the OpenFisca France parameters")
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.INFO)
 
@@ -53,10 +52,6 @@ def main():
     else:
         ref_ipp = args.ref_ipp or 'master'
         zip_url = u'https://framagit.org/french-tax-and-benefit-tables/ipp-tax-and-benefit-tables-xlsx/repository/archive.zip?ref={}'.format(ref_ipp)
-
-    if args.xml_dir is not None and not os.path.exists(args.xml_dir):
-        log.error(u'Directory {!r} does not exist.'.format(args.xml_dir))
-        return 1
 
     if not cmd_exists('ssconvert'):
         log.error(u'Command "ssconvert" must be installed. It is provided by the "gnumeric" spreadsheet. '
@@ -102,17 +97,14 @@ def main():
     yaml_raw_to_yaml_clean.clean(yaml_raw_dir_path, yaml_clean_dir_path)
     log.info(u'YAML clean files written to {!r}.'.format(yaml_clean_dir_path))
 
-    log.info(u'Converting YAML clean files to XML...')
-    if args.xml_dir is None:
-        xml_dir_path = os.path.join(tmp_dir, 'xml')
-        os.mkdir(xml_dir_path)
-    else:
-        xml_dir_path = args.xml_dir
-    yaml_clean_to_xml.transform(yaml_clean_dir_path, xml_dir_path)
-    log.info(u'XML files written to {!r}'.format(xml_dir_path))
+    log.info(u'Converting YAML clean files to openfisca YAML format...')
+    ipp_tree = yaml_clean_to_openfisca.build_tree_from_yaml_clean(yaml_clean_dir_path)
+    transform_ipp_tree.transform_ipp_tree(ipp_tree)
+    ipp_tree2 = yaml_clean_to_openfisca.transform_node_to_openfisca_format(ipp_tree)
 
-    if args.merge:
-        merge_ipp_xml_files_with_openfisca_parameters(xml_dir_path)
+    parameters_dir_path = os.path.join(COUNTRY_DIR, 'parameters')
+    yaml_clean_to_openfisca.merge_dir(ipp_tree2, parameters_dir_path)
+    log.info(u'YAML files merged in {!r}'.format(parameters_dir_path))
 
 
 if __name__ == "__main__":
