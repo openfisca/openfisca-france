@@ -4,9 +4,13 @@
 
 ## [EN] Introduction
 OpenFisca is a versatile microsimulation free software. This repository contains the OpenFisca model of the French tax and benefit system. Therefore, the working language here is French. You can however check the [general OpenFisca documentation](http://openfisca.org/doc/) in English!
+> We host a public instance of of the [OpenFisca-France Web API](https://fr.openfisca.org/api/v18/). Learn more about its endpoint in the [Swagger documentation](https://legislation.openfisca.fr/swagger)
+> If you need to run large amount of calculations, or add extensions, you should [host your own instance](#servez-openfisca-france-avec-l-api-web-openfisca).
 
 ## [FR] Introduction
 [OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation du système social et fiscal français. Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](http://openfisca.org/doc/).
+> Nous mettons à disposition une instance publique de [l'API Web OpenFisca-France](https://fr.openfisca.org/api/v18/). Découvrez ses capacité sur sa [documentation Swagger] (https://legislation.openfisca.fr/swagger)
+> Si vous avez besoin de réaliser un grand nombre de calculs ou d'ajouter des extensions, vous pouvez [servir votre propre instance](#servez-openfisca-france-avec-l-api-web-openfisca).
 
 ## Interroger OpenFisca-France (sans installation)
 
@@ -25,7 +29,7 @@ Ce paquet requiert [Python 2.7](https://www.python.org/downloads/) et [pip](http
 Plateformes supportées :
 - distributions GNU/Linux (en particulier Debian and Ubuntu) ;
 - Mac OS X ;
-- Windows (nous recommandons d'utiliser [ConEmu](https://conemu.github.io/) à la place de la console par défaut) ; 
+- Windows (nous recommandons d'utiliser [ConEmu](https://conemu.github.io/) à la place de la console par défaut) ;
 
 Pour les autres OS : si vous pouvez exécuter Python et Numpy, l'installation d'OpenFisca devrait fonctionner.
 
@@ -36,7 +40,7 @@ Nous recommandons l'utilisation d'un [environnement virtuel](https://virtualenv.
 - Un _[virtualenv](https://virtualenv.pypa.io/en/stable/)_ crée un environnement pour les besoins spécifiques du projet sur lequel vous travaillez.
 - Un gestionnaire de _virtualenv_, tel que [Pew](https://github.com/berdario/pew), vous permet de facilement créer, supprimer et naviguer entre différents projets.
 
-Pour installer Pew, lancez une fenêtre de terminal et suivez ces instructions : 
+Pour installer Pew, lancez une fenêtre de terminal et suivez ces instructions :
 
 ```sh
 python --version # Python 2.7.9 ou plus récent devrait être installé sur votre ordinateur.
@@ -132,7 +136,7 @@ pip --version  # Devrait afficher au moins 9.0.
 #Si non, exécutez "pip install --upgrade pip".
 ```
 
-Clonez OpenFisca-France sur votre machine : 
+Clonez OpenFisca-France sur votre machine :
 
 ```sh
 git clone https://github.com/openfisca/openfisca-france.git
@@ -155,47 +159,53 @@ nosetests tests/test_basics.py # Ces test peuvent prendre jusqu'à 60 secondes.
 
 ## Servez OpenFisca-France avec l'API Web OpenFisca
 
-Si vous développez une application web, vous pouvez brancher OpenFisca-France à l'API Web OpenFisca.
+Si vous développez une application web, vous pouvez servir OpenFisca-France via l'API Web OpenFisca.
 
-Pour ce faire, installez l'API Web OpenFisca :
-
-- si vous avez installé OpenFisca-France avec pip install : 
-    ```sh
-    pip install 'openfisca-france[api]'
-    ```
-- si vous avez installé OpenFisca-France avec git clone, dans le répertoire openfisca-france, exécutez la commande suivante :
-
-    ```sh
-    pip install -e '.[api]'
-    ```
-
-Puis servez l'API Web OpenFisca localement :
 
 ```sh
-openfisca-serve --port 2000
+COUNTRY_PACKAGE=openfisca_france gunicorn "openfisca_web_api_preview.app:create_app()" --bind localhost:5000 --workers 3
 ```
 
 Testez votre installation en requêtant la commande suivante :
 
 ```sh
-curl "http://localhost:2000/api/2/formula/2017-02/cout_du_travail?salaire_de_base=2300"
+curl "http://localhost:5000/parameter/cotsoc.gen.smic_h_b"
 ```
 Vous devriez avoir le resultat suivant :
 ```JSON
 {
-    "values":{
-        "cout_du_travail": 3078.4599609375
-     },
-     "params": {
-        "salaire_de_base": 2300.0
-        },
-     "period": ["month", [2017, 2, 1], 1],
-     "apiVersion": "2.1.0"
- }
+  "description": "SMIC horaire brut", 
+  "id": "cotsoc.gen.smic_h_b", 
+  "values": {
+    "2001-08-01": 6.67, 
+    "2002-07-01": 6.83, 
+    "2003-07-01": 7.19, 
+    "2004-07-01": 7.61, 
+    "2005-07-01": 8.03, 
+    "2006-07-01": 8.27, 
+    "2007-07-01": 8.44, 
+    "2008-05-01": 8.63, 
+    "2008-07-01": 8.71, 
+    "2009-07-01": 8.82, 
+    "2010-01-01": 8.86, 
+    "2011-01-01": 9.0, 
+    "2011-12-01": 9.19, 
+    "2012-01-01": 9.22, 
+    "2012-07-01": 9.4, 
+    "2013-01-01": 9.43, 
+    "2014-01-01": 9.53, 
+    "2015-01-01": 9.61, 
+    "2016-01-01": 9.67, 
+    "2017-01-01": 9.76
+  }
+}
 ```
 
 :tada: Vous servez OpenFisca-France via l'API Web OpenFisca !
-Pour en savoir plus, explorez _[OpenFisca Web API documentation](http://openfisca.org/doc/openfisca-web-api/index.html)_ (en anglais).
+
+Pour en savoir plus, explorez [la documentation de l'API Web](https://legislation.openfisca.fr/swagger).
+
+Vous pouvez activer le suivi des visites sur votre instance via Piwik avec _[le Tracker API OpenFisca](https://github.com/openfisca/tracker)_ (en anglais).
 
 ## Stratégie de versionnement
 
