@@ -502,15 +502,15 @@ class check_csk(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        # Si deux personnes de références sont dans le même foyer fiscal, on risque de compter double!
-        foyer_fiscal = menage.personne_de_reference.foyer_fiscal
 
-        # Prélevements effectués sur les revenus du foyer fiscal
-        prelsoc_cap_bar = foyer_fiscal('prelsoc_cap_bar', period)
-        prelsoc_pv_mo = foyer_fiscal('prelsoc_pv_mo', period)
-        prelsoc_fon = foyer_fiscal('prelsoc_fon', period)
+        # Prélevements effectués sur les revenus des foyers fiscaux, projetés sur les déclarants principaux
+        prelsoc_cap_bar = menage.members.foyer_fiscal('prelsoc_cap_bar', period)
+        prelsoc_pv_mo = menage.members.foyer_fiscal('prelsoc_pv_mo', period)
+        prelsoc_fon = menage.members.foyer_fiscal('prelsoc_fon', period)
 
-        return prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
+        prel_foyer_fiscal_i = (prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return menage.sum(prel_foyer_fiscal_i)
 
 
 class check_csg(Variable):
@@ -520,14 +520,15 @@ class check_csg(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        # Si deux personnes de références sont dans le même foyer fiscal, on risque de compter double!
-        foyer_fiscal = menage.personne_de_reference.foyer_fiscal
-        # CSG prélevée sur les revenus du foyer fiscal
-        csg_cap_bar = foyer_fiscal('csg_cap_bar', periop)
-        csg_pv_mo = foyer_fiscal('csg_pv_mo', periop)
-        csg_fon = foyer_fiscal('csg_fon', periop)
 
-        return csg_cap_bar + csg_pv_mo + csg_fon
+        # CSG prélevée sur les revenus des foyers fiscaux, projetée sur les déclarants principaux
+        csg_cap_bar = menage.members.foyer_fiscal('csg_cap_bar', periop)
+        csg_pv_mo = menage.members.foyer_fiscal('csg_pv_mo', periop)
+        csg_fon = menage.members.foyer_fiscal('csg_fon', periop)
+
+        csg_foyer_fiscal_i = (csg_cap_bar + csg_pv_mo + csg_fon) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return menage.sum(csg_foyer_fiscal_i)
 
 
 class check_crds(Variable):
@@ -537,11 +538,11 @@ class check_crds(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        # Si deux personnes de références sont dans le même foyer fiscal, on risque de compter double!
-        foyer_fiscal = menage.personne_de_reference.foyer_fiscal
-        # CRDS prélevée sur les revenus du foyer fiscal
-        crds_pv_mo = foyer_fiscal('crds_pv_mo', period)
-        crds_fon = foyer_fiscal('crds_fon', period)
-        crds_cap_bar = foyer_fiscal('crds_cap_bar', period)
+        # CRDS prélevée sur les revenus des foyers fiscaux, projetée sur les déclarants principaux
+        crds_pv_mo = menage.members.foyer_fiscal('crds_pv_mo', period)
+        crds_fon = menage.members.foyer_fiscal('crds_fon', period)
+        crds_cap_bar = menage.members.foyer_fiscal('crds_cap_bar', period)
 
-        return crds_pv_mo + crds_fon + crds_cap_bar
+        crds_foyer_fiscal_i = (crds_pv_mo + crds_fon + crds_cap_bar) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return menage.sum(crds_foyer_fiscal_i)
