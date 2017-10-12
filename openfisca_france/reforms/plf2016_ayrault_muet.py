@@ -42,15 +42,15 @@ class reduction_csg(Variable):
     label = u"Réduction dégressive de CSG"
     definition_period = YEAR
 
-    def formula_2015_01_01(self, simulation, period):
-        smic_proratise = simulation.calculate_add('smic_proratise', period)
-        assiette_csg_abattue = simulation.calculate_add('assiette_csg_abattue', period)
+    def formula_2015_01_01(individu, period, parameters):
+        smic_proratise = individu('smic_proratise', period, options = [ADD])
+        assiette_csg_abattue = individu('assiette_csg_abattue', period, options = [ADD])
 
         seuil = 1.34
         coefficient_correctif = .9
         taux_csg = (
-            simulation.parameters_at(period.start).csg.activite.imposable.taux +
-            simulation.parameters_at(period.start).csg.activite.deductible.taux
+            parameters(period).csg.activite.imposable.taux +
+            parameters(period).csg.activite.deductible.taux
             )
         tx_max = coefficient_correctif * taux_csg
         ratio_smic_salaire = smic_proratise / (assiette_csg_abattue + 1e-16)
@@ -66,9 +66,9 @@ class reduction_csg_foyer_fiscal(Variable):
     value_type = float
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        reduction_csg = simulation.calculate('reduction_csg', period)
-        return simulation.foyer_fiscal.sum(reduction_csg)
+    def formula(foyer_fiscal, period, parameters):
+        reduction_csg = foyer_fiscal('reduction_csg', period)
+        return foyer_fiscal.sum(reduction_csg)
 
 
 class reduction_csg_nette(Variable):
@@ -89,19 +89,19 @@ class ppe_elig_bis(Variable):
     label = u"ppe_elig_bis"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula(foyer_fiscal, period, parameters):
         '''
         PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence
         'foy'
         '''
-        rfr = simulation.calculate('rfr', period)
-        ppe_coef = simulation.calculate('ppe_coef', period)
-        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        veuf = simulation.calculate('veuf', period)
-        celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
-        nbptr = simulation.calculate('nbptr', period)
-        variator = simulation.calculate('variator', period)
-        ppe = simulation.parameters_at(period.start).impot_revenu.credits_impot.ppe
+        rfr = foyer_fiscal('rfr', period)
+        ppe_coef = foyer_fiscal('ppe_coef', period)
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        veuf = foyer_fiscal('veuf', period)
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        nbptr = foyer_fiscal('nbptr', period)
+        variator = foyer_fiscal('variator', period)
+        ppe = parameters(period).impot_revenu.credits_impot.ppe
         seuil = (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
             + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
         return (rfr * ppe_coef) <= (seuil * variator)
@@ -113,9 +113,9 @@ class regularisation_reduction_csg(Variable):
     label = u"Régularisation complète réduction dégressive de CSG"
     definition_period = YEAR
 
-    def formula_2015_01_01(self, simulation, period):
-        reduction_csg = simulation.calculate('reduction_csg_foyer_fiscal', period)
-        ppe_elig_bis = simulation.calculate('ppe_elig_bis', period)
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        reduction_csg = foyer_fiscal('reduction_csg_foyer_fiscal', period)
+        ppe_elig_bis = foyer_fiscal('ppe_elig_bis', period)
         return not_(ppe_elig_bis) * (reduction_csg > 1)
 
 

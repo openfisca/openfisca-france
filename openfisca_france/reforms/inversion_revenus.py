@@ -14,7 +14,7 @@ def brut_to_target(target_name = None, period = None, simulation = None, **input
     simulation.get_or_new_holder(target_name).delete_arrays()
     for variable_name, array in input_array_by_name.iteritems():
         simulation.get_or_new_holder(variable_name).put_in_cache(array, period)
-    return simulation.calculate_add(target_name)
+    return simulation.calculate(target_name, options = [ADD])
 
 
 def build_reform(tax_benefit_system):
@@ -105,7 +105,7 @@ def build_reform(tax_benefit_system):
     #
     #        hsup = simulation.calculate('hsup', period)
     #        categorie_salarie = simulation.calculate('categorie_salarie', period)
-    #        P = simulation.parameters_at(period.start)
+    #        P = parameters(period)
     #
     #        plafond_securite_sociale = P.cotsoc.gen.plafond_securite_sociale
     #

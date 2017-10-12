@@ -27,30 +27,29 @@ class cesthra(Variable):
     definition_period = YEAR
     # PLF 2013 (rejeté) : 'taxe à 75%'
 
-    def formula(self, simulation, period):
-        salaire_imposable_holder = simulation.calculate_add("salaire_imposable", period)
-        law_cesthra = simulation.parameters_at(period.start).cesthra
-        salaire_imposable = self.split_by_roles(salaire_imposable_holder)
+    def formula(foyer_fiscal, period, parameters):
+        salaire_imposable_i = foyer_fiscal.members("salaire_imposable", period, options = [ADD])
+        law_cesthra = parameters(period).cesthra
+        salaire_imposable = self.split_by_roles(salaire_imposable_i)
 
-        cesthra = 0
-        for rev in salaire_imposable.itervalues():
-            cesthra += max_(rev - law_cesthra.seuil, 0) * law_cesthra.taux
-        return cesthra
+        cesthra_i = max_(salaire_imposable_i - law_cesthra.seuil, 0) * law_cesthra.taux
+
+        return foyer_fiscal.sum(cesthra_i)
 
 
 class irpp(Variable):
     label = u"Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula(foyer_fiscal, period, parameters):
         '''
         Montant après seuil de recouvrement (hors ppe)
         '''
-        iai = simulation.calculate('iai', period)
-        credits_impot = simulation.calculate('credits_impot', period)
-        cehr = simulation.calculate('cehr', period)
-        cesthra = simulation.calculate('cesthra', period = period)
-        P = simulation.parameters_at(period.start).impot_revenu.recouvrement
+        iai = foyer_fiscal('iai', period)
+        credits_impot = foyer_fiscal('credits_impot', period)
+        cehr = foyer_fiscal('cehr', period)
+        cesthra = foyer_fiscal('cesthra', period = period)
+        P = parameters(period).impot_revenu.recouvrement
 
         pre_result = iai - credits_impot + cehr + cesthra
         return ((iai > P.seuil) *
