@@ -25,7 +25,7 @@ class plfr2014(Reform):
             janvier = period.first_month
 
             nb_adult = foyer_fiscal('nb_adult', period)
-            nb_parents = foyer_fiscal('nb_parents', period = janvier)
+            nb_parents = foyer_fiscal.declarant_principal.famille('nb_parents', period = janvier)
             rfr = foyer_fiscal('rfr', period)
             params = parameters(period).plfr2014.reduction_impot_exceptionnelle
             plafond = params.seuil * nb_adult + (nb_parents - nb_adult) * 2 * params.majoration_seuil

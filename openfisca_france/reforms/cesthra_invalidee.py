@@ -30,7 +30,6 @@ class cesthra(Variable):
     def formula(foyer_fiscal, period, parameters):
         salaire_imposable_i = foyer_fiscal.members("salaire_imposable", period, options = [ADD])
         law_cesthra = parameters(period).cesthra
-        salaire_imposable = self.split_by_roles(salaire_imposable_i)
 
         cesthra_i = max_(salaire_imposable_i - law_cesthra.seuil, 0) * law_cesthra.taux
 

@@ -105,7 +105,7 @@ class plf2016_counterfactual(Reform):
 
         def formula_2015_01_01(foyer_fiscal, period, parameters):
             nb_adult = foyer_fiscal('nb_adult', period)
-            nb_parents = foyer_fiscal('nb_parents', period.first_month)
+            nb_parents = foyer_fiscal.declarant_principal.famille('nb_parents', period.first_month)
             rfr = foyer_fiscal('rfr', period)
             inflator = 1 + .001 + .005
             # params = parameters(period).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
@@ -202,7 +202,7 @@ class plf2016_counterfactual_2014(Reform):
 
         def formula_2015_01_01(foyer_fiscal, period, parameters):
             nb_adult = foyer_fiscal('nb_adult', period)
-            nb_parents = foyer_fiscal('nb_parents', period.first_month)
+            nb_parents = foyer_fiscal.declarant_principal.famille('nb_parents', period.first_month)
             rfr = foyer_fiscal('rfr', period)
             inflator = 1 + .001 + .005
             # params = parameters(period).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
