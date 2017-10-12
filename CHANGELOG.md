@@ -4,7 +4,7 @@
 
 * Amélioration technique
 * Détails :
-  - Déclare OpenFisca-France compatible avec OpenFisca-Core 19
+  - Déclare OpenFisca-France compatible avec OpenFisca-Core 18
 
 ## 18.10.0
 
