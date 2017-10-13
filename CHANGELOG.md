@@ -1,5 +1,11 @@
 # Changelog
 
+### 20.0.4 [#842](https://github.com/openfisca/openfisca-france/pull/842)
+
+* Amélioration technique
+* Détails :
+  - Migre la quasi-totalité des formules vers la syntaxe introduite par OpenFisca-Core 4
+
 ### 20.0.3 [#879](https://github.com/openfisca/openfisca-france/pull/879)
 
 * Amélioration technique
@@ -18,7 +24,7 @@
 * Périodes concernées : toutes.
 * Zones impactées : `prestations/aides_logement.py`
 * Détails :
-- Garantie que l'aide au logement pour un foyer primo-accédant est nulle si le prêt est déjà remboursé.
+  - Garantie que l'aide au logement pour un foyer primo-accédant est nulle si le prêt est déjà remboursé.
 
 # 20.0.0 - [#846](https://github.com/openfisca/openfisca-france/pull/846)
 
@@ -158,7 +164,6 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Ajout de l'abattement forfaitaire de 5€ dans le calcul des aides au logement à partir du 01/10/2017.
 
 # 19.0.0 - [#858](https://github.com/openfisca/openfisca-france/pull/858)
->>>>>>> theirs
 
 * Améliorations techniques **non rétro-compatibles**
 * Détails :
