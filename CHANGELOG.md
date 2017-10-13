@@ -1,6 +1,12 @@
 # Changelog
 
-### 18.10.0
+### 18.10.1
+
+* Amélioration technique
+* Détails :
+  - Déclare OpenFisca-France compatible avec OpenFisca-Core 18
+
+## 18.10.0
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
