@@ -43,7 +43,8 @@ log = logging.getLogger(__name__)
 
 
 class jour_xyz(Variable):
-    column = IntCol(default = 360)
+    value_type = int
+    default = 360
     entity = FoyerFiscal
     label = u"Jours décomptés au titre de cette déclaration"
     definition_period = YEAR

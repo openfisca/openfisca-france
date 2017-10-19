@@ -4,7 +4,8 @@ from openfisca_france.model.base import *  # noqa
 
 
 class date_naissance(Variable):
-    column = DateCol(default = date(1970, 1, 1))
+    value_type = date
+    default = date(1970, 1, 1)
     entity = Individu
     label = u"Date de naissance"
     definition_period = ETERNITY
@@ -266,14 +267,16 @@ class etudiant(Variable):
 
 
 class rempli_obligation_scolaire(Variable):
-    column = BoolCol(default = True)
+    value_type = bool
+    default = True
     entity = Individu
     label = u"Rempli l'obligation scolaire"
     definition_period = MONTH
 
 
 class ressortissant_eee(Variable):
-    column = BoolCol(default = True)
+    value_type = bool
+    default = True
     entity = Individu
     label = u"Ressortissant de l'EEE ou de la Suisse."
     definition_period = MONTH

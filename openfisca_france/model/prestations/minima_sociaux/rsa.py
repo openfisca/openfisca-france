@@ -705,7 +705,8 @@ class rsa_eligibilite(Variable):
 
 
 class rsa_eligibilite_tns(Variable):
-    column = BoolCol(default = True)
+    value_type = bool
+    default = True
     entity = Famille
     label = u"Condition de chiffres d'affaires pour qu'un travailleur non salarié soit éligible au RSA"
     end = '2016-12-31'

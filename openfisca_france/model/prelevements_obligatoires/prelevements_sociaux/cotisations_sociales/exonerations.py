@@ -9,7 +9,8 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal
 
 class jei_date_demande(Variable):
-    column = DateCol(default = date(2099, 12, 31))
+    value_type = date
+    default = date(2099, 12, 31)
     entity = Individu
     label = u"Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)"
     definition_period = MONTH
