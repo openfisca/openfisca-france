@@ -4692,10 +4692,9 @@ class f8wx(Variable):
   # verif<=2012
 
 class elig_creimp_exc_2008(Variable):
-    column = IntCol(
-        default = 1,
-        val_type = "monetary",
-        )
+    default = 1
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Éligibilité au crédit d'impôt exceptionnel sur les revenus 2008"
 #    start_date = date(2008, 1, 1)

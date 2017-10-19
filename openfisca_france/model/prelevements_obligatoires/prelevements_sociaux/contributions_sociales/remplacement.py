@@ -125,15 +125,15 @@ class crds_chomage(Variable):
 
 class chomage_imposable(Variable):
     base_function = requested_period_added_value
-    column = FloatCol(
-        val_type = "monetary",
-        cerfa_field = {
-            QUIFOY['vous']: u"1AP",
-            QUIFOY['conj']: u"1BP",
-            QUIFOY['pac1']: u"1CP",
-            QUIFOY['pac2']: u"1DP",
-            QUIFOY['pac3']: u"1EP",
-            })
+    unit = 'currency'
+    cerfa_field = {
+        QUIFOY['vous']: u"1AP",
+        QUIFOY['conj']: u"1BP",
+        QUIFOY['pac1']: u"1CP",
+        QUIFOY['pac2']: u"1DP",
+        QUIFOY['pac3']: u"1EP",
+        }
+    value_type = float
     entity = Individu
     label = u"Allocations chômage imposables"
     set_input = set_input_divide_by_period
@@ -264,15 +264,15 @@ class casa(Variable):
 
 class retraite_imposable(Variable):
     base_function = requested_period_added_value
-    column = FloatCol(
-        val_type = "monetary",
-        cerfa_field = {
-            QUIFOY['vous']: u"1AS",
-            QUIFOY['conj']: u"1BS",
-            QUIFOY['pac1']: u"1CS",
-            QUIFOY['pac2']: u"1DS",
-            QUIFOY['pac3']: u"1ES",
-            })
+    unit = 'currency'
+    value_type = float
+    cerfa_field = {
+        QUIFOY['vous']: u"1AS",
+        QUIFOY['conj']: u"1BS",
+        QUIFOY['pac1']: u"1CS",
+        QUIFOY['pac2']: u"1DS",
+        QUIFOY['pac3']: u"1ES",
+        }
     entity = Individu
     label = u"Retraites au sens strict imposables (rentes à titre onéreux exclues)"
     set_input = set_input_divide_by_period

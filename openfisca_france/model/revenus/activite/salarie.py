@@ -544,7 +544,7 @@ class categorie_salarie(Variable):
 
 
 class heures_duree_collective_entreprise(Variable):
-    column = IntCol  # TODO default la valeur de la durée légale ?
+    value_type = int  # TODO default la valeur de la durée légale ?
     entity = Individu
     label = u"Durée mensuelle collective dans l'entreprise (heures, temps plein)"
     definition_period = MONTH

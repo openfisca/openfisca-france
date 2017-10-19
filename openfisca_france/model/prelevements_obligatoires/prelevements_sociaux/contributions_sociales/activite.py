@@ -177,16 +177,15 @@ class forfait_social(Variable):
 
 class salaire_imposable(Variable):
     base_function = requested_period_added_value
-    column = FloatCol(
-        cerfa_field = {
-            QUIFOY['vous']: u"1AJ",
-            QUIFOY['conj']: u"1BJ",
-            QUIFOY['pac1']: u"1CJ",
-            QUIFOY['pac2']: u"1DJ",
-            QUIFOY['pac3']: u"1EJ",
-            },  # (f1aj, f1bj, f1cj, f1dj, f1ej)
-        val_type = "monetary",
-        )
+    value_type = float
+    unit = 'currency'
+    cerfa_field = {  # (f1aj, f1bj, f1cj, f1dj, f1ej)
+        QUIFOY['vous']: u"1AJ",
+        QUIFOY['conj']: u"1BJ",
+        QUIFOY['pac1']: u"1CJ",
+        QUIFOY['pac2']: u"1DJ",
+        QUIFOY['pac3']: u"1EJ",
+        }
     entity = Individu
     label = u"Salaires imposables"
     set_input = set_input_divide_by_period

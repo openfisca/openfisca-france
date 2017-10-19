@@ -36,7 +36,8 @@ class autonomie_financiere(Variable):
 
 
 class depcom(Variable):
-    column = FixedStrCol(max_length = 5)
+    value_type = str
+    max_length = 5
     entity = Menage
     label = u"""Code INSEE "depcom" de la commune de résidence de la famille"""
     definition_period = ETERNITY

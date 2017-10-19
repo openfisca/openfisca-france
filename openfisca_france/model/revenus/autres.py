@@ -10,7 +10,8 @@ class pensions_alimentaires_percues(Variable):
         QUIFOY['pac2']: u"1DO",
         QUIFOY['pac3']: u"1EO",
         }
-    column = FloatCol(val_type = "monetary")
+    value_type = float
+    unit = 'currency'
     entity = Individu
     label = u"Pensions alimentaires perçues"
     definition_period = MONTH

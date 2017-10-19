@@ -28,7 +28,8 @@ class loyer(Variable):
 
 
 class depcom(Variable):
-    column = FixedStrCol(max_length = 5)
+    value_type = str
+    max_length = 5
     entity = Menage
     label = u"Code INSEE (depcom) du lieu de résidence"
     definition_period = MONTH
