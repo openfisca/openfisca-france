@@ -1698,15 +1698,16 @@
             </SEUIL>
             <TAUX>
               <VALUE deb="2021-01-01" fuzzy="true" valeur="0.1055" />
-              <VALUE deb="2020-01-01" fin="2020-12-31" valeur="0.1055" />
-              <VALUE deb="2019-01-01" fin="2019-12-31" valeur="0.1028" />
-              <VALUE deb="2018-01-01" fin="2018-12-31" valeur="0.1001" />
-              <VALUE deb="2017-01-01" fin="2017-12-31" valeur="0.0974" />
-              <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0947" />
-              <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0920" />
-              <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0893" />
+              <VALUE deb="2020-01-01" fin="2020-12-31" valeur="0.1110" />
+              <VALUE deb="2019-01-01" fin="2019-12-31" valeur="0.1083" />
+              <VALUE deb="2018-01-01" fin="2018-12-31" valeur="0.1056" />
+              <VALUE deb="2017-01-01" fin="2017-12-31" valeur="0.1029" />
+              <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0994" />
+              <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0954" />
+              <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0914" />
               <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0876" />
-              <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0839" />
+              <VALUE deb="2012-11-01" fin="2012-12-31" valeur="0.0849" />
+              <VALUE deb="2012-01-01" fin="2012-10-31" valeur="0.0839" />
               <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.0812" />
               <VALUE deb="1991-02-01" fin="2010-12-31" valeur="0.0785" />
             </TAUX>
@@ -1867,15 +1868,16 @@
             </SEUIL>
             <TAUX>
               <VALUE deb="2021-01-01" fuzzy="true" valeur="0.1055" />
-              <VALUE deb="2020-01-01" fin="2020-12-31" valeur="0.1055" />
-              <VALUE deb="2019-01-01" fin="2019-12-31" valeur="0.1028" />
-              <VALUE deb="2018-01-01" fin="2018-12-31" valeur="0.1001" />
-              <VALUE deb="2017-01-01" fin="2017-12-31" valeur="0.0974" />
-              <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0947" />
-              <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0920" />
-              <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0893" />
+              <VALUE deb="2020-01-01" fin="2020-12-31" valeur="0.1110" />
+              <VALUE deb="2019-01-01" fin="2019-12-31" valeur="0.1083" />
+              <VALUE deb="2018-01-01" fin="2018-12-31" valeur="0.1056" />
+              <VALUE deb="2017-01-01" fin="2017-12-31" valeur="0.1029" />
+              <VALUE deb="2016-01-01" fin="2016-12-31" valeur="0.0994" />
+              <VALUE deb="2015-01-01" fin="2015-12-31" valeur="0.0954" />
+              <VALUE deb="2014-01-01" fin="2014-12-31" valeur="0.0914" />
               <VALUE deb="2013-01-01" fin="2013-12-31" valeur="0.0876" />
-              <VALUE deb="2012-01-01" fin="2012-12-31" valeur="0.0839" />
+              <VALUE deb="2012-11-01" fin="2012-12-31" valeur="0.0849" />
+              <VALUE deb="2012-01-01" fin="2012-10-31" valeur="0.0839" />
               <VALUE deb="2011-01-01" fin="2011-12-31" valeur="0.0812" />
               <VALUE deb="2003-01-01" fin="2010-12-31" valeur="0.0785" />
             </TAUX>
